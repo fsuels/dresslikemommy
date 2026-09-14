@@ -1,0 +1,1 @@
+mutation RemoveOnlyNewGuideDescriptions($resourceId: ID!, $translationKeys: [String!]!, $locales: [String!]!) { translationsRemove(resourceId: $resourceId, translationKeys: $translationKeys, locales: $locales) { userErrors { field message } } }

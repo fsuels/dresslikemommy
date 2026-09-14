@@ -1,0 +1,110 @@
+{
+  "schema": "dlm.data_pilot.source_inventory.v1",
+  "scope": "Existing repository evidence only. No private inputs or external accounts accessed.",
+  "assessment_as_of_utc": "2026-09-11T17:15:46.509656+00:00",
+  "evidence_label": "REPO_KNOWN",
+  "selected_source": "S01",
+  "sources": [
+    {
+      "id": "S01",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/shopify_baseline.json",
+      "sha256": "ae3f01ea0689060292cf576fde8dbd48859407d8712c8790a42728064f25b4b1",
+      "bytes": 12696,
+      "window": "2026-08-10..2026-09-08, 30 dates; product tab is separately 90 dates",
+      "grain": "Sales/session aggregates; device/referrer/country groups",
+      "disposition": "USE_SELECTED_30D_AGGREGATES",
+      "gaps": "Order flags, row-level buyer/cost/attribution joins; currency code absent in MONEY cells"
+    },
+    {
+      "id": "S02",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sales_candidate_reconciliation_summary.json",
+      "sha256": "2970dddacc2323baad07fcb9796ce64414d73bd2db32da98c8b12d064513876d",
+      "bytes": 33308,
+      "window": "2026-08-08..2026-09-04 (28d); 2026-06-07..2026-09-04 (90d)",
+      "grain": "Sanitized Shopify/GA4 reconciliation and product aggregates",
+      "disposition": "REFERENCE_ONLY_DIFFERENT_WINDOWS",
+      "gaps": "Private transaction rows needed to reconstruct 30d; recorded product costs modeled"
+    },
+    {
+      "id": "S03",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+      "sha256": "64a85a444b45932f93d33d4366c4cc8cab750b5064401dfbf6da55d86c31cb64",
+      "bytes": 83356,
+      "window": "Rolling period from 2026-09-05; nested later heartbeat snapshots",
+      "grain": "Two-order aggregate and product/basket matches",
+      "disposition": "REFERENCE_ONLY_ROLLING_COHORT",
+      "gaps": "Full 30d inclusion, actual provider/settlement/acquisition costs; repeated snapshots not new sales"
+    },
+    {
+      "id": "S04",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/actual_fulfillment_cost_readback.json",
+      "sha256": "85ad31625c078488b64e114febeece4a2fde8b506ee171d09cb041ef49c301a3",
+      "bytes": 10313,
+      "window": "Six selected baskets from 2026-06-07..2026-09-04 population",
+      "grain": "One alias per selected basket, actual CNY components",
+      "disposition": "PARTIAL_COST_EVIDENCE_NO_30D_ALLOCATION",
+      "gaps": "Order dates/protected mapping, allocated USD settlement, duties/losses/remaining costs"
+    },
+    {
+      "id": "S05",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/actual_cost_after_payment_fees.json",
+      "sha256": "b21386c5e256e02dfb85102dbd506d8d65bee3a7c46a6e4e8a930cb1baab970d",
+      "bytes": 5638,
+      "window": "Same selected six baskets; captured 2026-09-06",
+      "grain": "One alias per basket, conditional cost screen",
+      "disposition": "REFERENCE_ONLY_CONDITIONAL_FX",
+      "gaps": "Actual net margin and approved CPA null; funding factors not order allocations"
+    },
+    {
+      "id": "S06",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/shopify_payout_fee_readback.json",
+      "sha256": "1b1d642854e936ceb93fc14c01792b39156c6924aa39fd510147b8210e2e1b9d",
+      "bytes": 5000,
+      "window": "Same selected six baskets; captured 2026-09-06",
+      "grain": "Recorded payout-fee allocation per alias",
+      "disposition": "PARTIAL_FEES_NO_30D_ALLOCATION",
+      "gaps": "No complete 30d mapping or final bank settlement/closed return exposure"
+    },
+    {
+      "id": "S07",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/recent_order_payment_fees_20260907.json",
+      "sha256": "dc3e58c2e6be722ad26c9db180afd3540d77727b311b50a88d3762ba58728a79",
+      "bytes": 6843,
+      "window": "Bounded recent two-order period; source has UTC read bounds",
+      "grain": "Two anonymized order rows and native-currency fees",
+      "disposition": "REFERENCE_ONLY_NATIVE_CURRENCIES",
+      "gaps": "Actual supplier/freight/duty costs, common settled currency and paid-vs-organic attribution"
+    },
+    {
+      "id": "S08",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/italian_ga4_campaign_cost_readback.json",
+      "sha256": "c3a12cec7d333669bd11f8bcefb373b2ff44094daaa5cbba47aa34d6b6bd645a",
+      "bytes": 5899,
+      "window": "2026-06-07..2026-09-04 plus separate 2026-09-05",
+      "grain": "Campaign totals, distinct source-defined windows",
+      "disposition": "REFERENCE_ONLY_INCOMPLETE_ACCOUNT_PERIOD",
+      "gaps": "Daily all-account channel spending; selected 30d allocation; order-attribution reconciliation"
+    },
+    {
+      "id": "S09",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-shopify-margin-cac-export-pack/summary.json",
+      "sha256": "999c58ac003ac3144bcdd556b0dd971fef55e6bd087aff282e5b0f87bd605d44",
+      "bytes": 3044,
+      "window": "2025-04-28T22:49..2026-04-28T22:49 America/New_York",
+      "grain": "365-day model summary, 83 included orders",
+      "disposition": "EXCLUDE_FROM_CURRENT_ACTUAL_PROFIT",
+      "gaps": "50% cost assumption; no actual complete delivered-cost or account spend basis"
+    },
+    {
+      "id": "S10",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/launch-plan-20260911/analytics_readback.json",
+      "sha256": "43fecf783e2a3807fe226e75499450d38c288c0f4e53ce0169cbadede2984d30",
+      "bytes": 13332,
+      "window": "August 1..31 sales (31d); June12..Sep9 sessions (90d)",
+      "grain": "ShopifyQL sales and country-session aggregates",
+      "disposition": "REFERENCE_ONLY_DIFFERENT_WINDOWS",
+      "gaps": "Costs/order-level eligibility/attribution; incompatible 30d dates"
+    }
+  ],
+  "search_scope": "Targeted existing September organic, CEO turnaround, Microsoft packets and April margin/economics packs; not an exhaustive filesystem inventory."
+}

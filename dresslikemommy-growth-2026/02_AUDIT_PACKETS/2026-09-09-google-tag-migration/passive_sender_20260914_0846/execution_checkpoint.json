@@ -1,0 +1,159 @@
+{
+  "schema": "dlm.passive_sender_checkpoint.v1",
+  "action": "TA02-PASSIVE-SENDER-20260914-0846",
+  "owner_task": "01a086fc-0bf7-71a2-ba21-aa3564fafe30",
+  "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "status": "BOUNDED_DISPATCH_COMPLETE_MEASUREMENT_ACCEPTANCE_PARTIAL",
+  "started_at_utc": "2026-09-14T09:27:52Z",
+  "scope": "One task-owned background public storefront trace under existing choice. New page is not asserted to be a new session.",
+  "browser": {
+    "type": "iab",
+    "browser_id": "1",
+    "task_scoped_tab_id": "2",
+    "url": "https://www.dresslikemommy.com/",
+    "visible": false,
+    "identity_verified_at_utc": "2026-09-14T09:29:09.354Z",
+    "theme": {
+      "id": 133290917985,
+      "role": "main"
+    },
+    "country_ui": "United States",
+    "currency_ui": "USD",
+    "locale": "en"
+  },
+  "sources": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/session_consent_20260914_0846/execution_checkpoint.json",
+      "sha256": "986bd231d6c74f902f035e7ec50abc0eef4d6e8bbc1a276aec66828c4440d196"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/session_consent_20260914_0846/DIAGNOSIS.json",
+      "sha256": "bf7e867de57c067254a6347304b7164d2dde60aecafae99fb8a0d43836004df0"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/session_consent_20260914_0846/INDEPENDENT_REVIEW.json",
+      "sha256": "ed7df0bdec48b55027e51f4aa770d016b694f3bcb6fa64be7ebe1a6b82457def"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/CLEANUP_VERIFICATION.json",
+      "sha256": "ad68808a76de344b3fe79de5d0352334a84c23a7950e6025492a867e221d15d0",
+      "use": "Historical expected collector analytics.google.com/g/collect; current presence not inferred"
+    }
+  ],
+  "preserved_completed_work": [
+    "GA4 migration",
+    "legacy111181921 disconnection",
+    "accepted real-purchase report match"
+  ],
+  "prohibited": [
+    "consent transitions",
+    "cookie or storage clearing",
+    "forced fresh session",
+    "manual session_start",
+    "extra Google sender",
+    "reconnect or migration",
+    "purchase or order query",
+    "account or production configuration change",
+    "native browser",
+    "blocked URL or public429 retry",
+    "authentication workaround",
+    "other task tab use",
+    "shared canonical writes"
+  ],
+  "independent_verifier": "/root/tag_cleanup_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "boundary_counts": {
+    "production_changes": 0,
+    "consent_changes": 0,
+    "cookie_storage_clears": 0,
+    "private_order_queries": 0,
+    "synthetic_purchases": 0,
+    "shared_canonical_writes": 0,
+    "native_browser_actions": 0,
+    "new_tasks_goals_automations": 0
+  },
+  "integration": {
+    "parent_owns": "All shared canonical files; root owns this dated packet except independently owned review.",
+    "handoff": "READY_FOR_PARENT_INTEGRATION_WITH_EXPLICIT_FAILED_CAPTURE_SUMMARY_AND_UNKNOWN_SEQUENCE"
+  },
+  "measurement_acceptance": "PARTIAL",
+  "runtime_acceptance": "FAILED_EXPECTED_COLLECTOR_SUMMARY_COVERAGE__NAMED_SEQUENCE_UNKNOWN",
+  "implemented": {
+    "production": "NONE",
+    "local": "Bounded passive observation and explicitly corrected evidence after independent reviewer caught expected-collector omission."
+  },
+  "verified": [
+    "Normal task-owned background public homepage access worked. MAIN133290917985 US/en HTTP200 remained unchanged.",
+    "One normal reload produced 508 debugger records without reported buffer truncation in one observed context.",
+    "The actual matcher omitted analytics.google.com/g/collect. The request summary cannot establish retained GA4 presence or absence.",
+    "The temporary tab closed and Network/Log diagnostics were disabled."
+  ],
+  "unresolved": [
+    "Raw ephemeral records were cleared before review, so missing collector coverage cannot be reprocessed. No second capture ran.",
+    "Actual sender, complete child/worker context coverage, named consent defaults/updates, page_view and session sequence remain unknown.",
+    "No currently reproduced causal production defect or supported production repair."
+  ],
+  "next_executable_step": "Parent records the incomplete attempt and continues independent authorized lanes. A future permitted sender trace must first qualify full expected-collector and execution-context coverage; do not auto-repeat this capture or ask the owner a duplicate question.",
+  "preserved_context": {
+    "migration_and_duplicate_cleanup": "COMPLETED_PRESERVED_NOT_REPEATED",
+    "real_purchase_match": "ACCEPTED_REPORT_RECEIPT_PRESERVED_NOT_REQUERIED",
+    "theme_publication": "137888792673 parent/UX-owned unchanged",
+    "ads_editor_23_report_25": "Untouched peer-owned surfaces",
+    "parent_sales_cohort": "3 orders / 8 units / USD198.41 parent-provided, not re-read",
+    "next_full_order_read_utc": "2026-09-14T19:04:53Z",
+    "paid_authority": "NONE",
+    "goal_and_schedules": "UNCHANGED"
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-14T09:31:34.873Z scoped public observation only",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "canonical_source_live_evidence_as_of": "2026-06-01",
+    "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+    "autonomous_action_ready": false,
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "delegation_read_scope": "One passive nonpurchase sender attempt and owned packet only; parent owns shared integration",
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "MATERIAL",
+    "decision_changing_evidence": "Actual sender and timestamped four named consent default/update/event sequence with full expected-collector coverage",
+    "if_evidence_supports_recommendation": "If a later permitted trace reproduces a defect, identify the owning-layer remedy and exact authorization before applying it",
+    "if_evidence_opposes_recommendation": "Keep production settings unchanged; accept only the actually observed path",
+    "independent_verifier": "/root/tag_cleanup_verifier",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE"
+  },
+  "verification": {
+    "operator_artifact_consistency": "PASS_18_OF_18_ONLY",
+    "runtime_acceptance": "FAILED_COLLECTOR_SUMMARY_COVERAGE_REQUIRED_SEQUENCE_UNKNOWN",
+    "independent_review": "PASS_FOR_CORRECTED_EVIDENCE_REPORTING_WITH_LIMITS",
+    "strict_continuity": "CONTINUITY_OK_10_OF_10_CHECKS",
+    "strict_continuity_command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/check_continuity_integrity.py --strict",
+    "scoped_git_diff_check": "PASS_EXIT_0; folder is untracked, so separately checked all owned JSON/Markdown syntax and whitespace",
+    "owned_json_whitespace_privacy_scan": "PASS",
+    "independent_runtime_verdict": "NOT_ACCEPTED__COLLECTOR_SUMMARY_COVERAGE_FAILED__CONSENT_SESSION_SEQUENCE_UNKNOWN",
+    "independent_checks": "PASS_8_OF_8_SAVED_SOURCE_CHECKS_ONLY",
+    "independent_source_bindings": "PASS_2_OF_2",
+    "independent_review_receipt": "INDEPENDENT_REVIEW.json",
+    "independent_review_sha256": "e06ca6c4b8827d58fc2be83edbf5875b44bf2ddfb2fd9424958f5431b65ac667"
+  },
+  "artifacts": [
+    {
+      "path": "OBSERVATION.json",
+      "sha256": "3fab3be81f3f184ec10a4cb69730e8c041e586e383b637fd5224a2b305c26181"
+    },
+    {
+      "path": "READBACK.md",
+      "sha256": "b672e4f0836ed6f3c20b099385ee47ecb5b82dea0e3fb53ceb00be127bd4eac7"
+    },
+    {
+      "path": "OPERATOR_CHECKS.json",
+      "sha256": "4673412553b506d0c51fee63cf3961ae7f3fb4fd5246e84285e73fcd758124a9"
+    },
+    {
+      "path": "INDEPENDENT_REVIEW.json",
+      "sha256": "e06ca6c4b8827d58fc2be83edbf5875b44bf2ddfb2fd9424958f5431b65ac667"
+    }
+  ],
+  "updated_at_utc": "2026-09-14T09:40:34.327592+00:00",
+  "continuation_prompt": "Continue TA-02 from passive_sender_20260914_0846/execution_checkpoint.json. Preserve completed migration and accepted purchase work. Qualify complete expected-collector and executing-sender coverage before any separately permitted passive trace; no consent transition, forced session, extra sender, native route, order replay or automatic repeated capture.",
+  "completed_at_utc": "2026-09-14T09:40:34.327592+00:00"
+}

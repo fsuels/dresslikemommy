@@ -1,0 +1,293 @@
+{
+  "schema": "dlm.au_variant_release_policy_review.v1",
+  "reviewed_at_utc": "2026-09-11T20:16:21.458893+00:00",
+  "reviewer": "/root/together_heart_source",
+  "independence": "Independent of original Analytics hold review and production/feed/theme execution. Prior corrected-file verification reused, not rebuilt or replayed.",
+  "stage": "VERIFY",
+  "verdict": "CONTINUE_BOUNDED_EVIDENCE_HOLD__PRESELECTION_NOT_STANDALONE_MINIMUM_REQUIREMENT",
+  "confidence": {
+    "official_requirements_and_saved_facts": "H",
+    "Google_eligibility_or_actual_AU_initial_render_compliance": "UNKNOWN"
+  },
+  "decision": "Current saved evidence does not qualify the complete 4,923-offer release or a specific compliant subset. This is a risk-based evidence hold for unresolved initial variant/price clarity and ordering affordance, not a finding that all offers violate Google policy. Automatic preselection alone is not a defensible blanket minimum-rule gate.",
+  "target": {
+    "merchant": "513542500",
+    "country": "AU",
+    "language": "en",
+    "currency": "AUD",
+    "feed_label": "AU",
+    "destination": "Free listings",
+    "excluded_destination": "Shopping_ads",
+    "rows": 4923,
+    "parents": 240,
+    "tsv_sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+    "bytes": 17284594
+  },
+  "authority": {
+    "AU_upload": "Existing explicit AU direct-file authorization remains; do not request another generic upload approval.",
+    "source": "au-en.google_submission_checkpoint.json authority/release_authority and all-markets.execution_checkpoint.json owner_request; parent supplied actual-message provenance.",
+    "owner_request_clock_limit": "2026-09-11T20:01:48Z is first execution after the latest all-markets request, not the exact message-send time.",
+    "sole_production_executor": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+    "reviewer_external_write_authority": "NONE",
+    "theme_publication": "This review creates no publication authority or alternative route around the existing Shopify publication restriction.",
+    "paid_authority": "NONE; no campaign, budget, billing or Shopping_ads activation."
+  },
+  "official_sources": [
+    {
+      "url": "https://support.google.com/merchants/answer/6324416?hl=en",
+      "title": "Link [link]",
+      "accessed_on_utc": "2026-09-11",
+      "sections": "Minimum requirements; Best practices; Examples",
+      "short_quote": "Pre-select the correct variant.",
+      "classification": "Explicit best practice, not a bullet in Minimum requirements. Examples nevertheless instruct automatic selection.",
+      "minimum_paraphrase": "Supply a crawlable product URL on the verified domain that works on desktop/mobile; free-listing clicks use link/mobile_link. The minimum list does not separately mandate preselection."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/4752265?hl=en",
+      "title": "About landing page requirements",
+      "accessed_on_utc": "2026-09-11",
+      "sections": "Minimum requirements: Show your product clearly; Best practices",
+      "minimum_paraphrase": "For ads and free listings, the linked variant must be readily identifiable and primary, with matching product details and a clear feed-matching price/currency. Other displayed prices must be distinguishable. Purchasable items need an active buying control or equivalent ordering route; the page must work on mobile.",
+      "best_practice": "Correct default variant selection is explicitly a best practice.",
+      "scope_caveat": "The separate stable-landing-page rule explicitly limits itself to Shopping-ad traffic. Do not silently extend that rule to organic traffic or erase the general free-listing matching and clarity requirements."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/6324371?hl=en",
+      "title": "Price [price]",
+      "accessed_on_utc": "2026-09-11",
+      "sections": "Minimum requirements; Tax: value added tax",
+      "minimum_paraphrase": "Submitted amount/currency must match landing and checkout; show target currency prominently. Variants and their prices must be straightforward. AU prices include applicable GST. A price range is not categorically banned, but cannot substitute for unambiguous identification of the submitted variant price."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/6324448?hl=en",
+      "title": "Availability [availability]",
+      "accessed_on_utc": "2026-09-11",
+      "sections": "When to use; Minimum requirements",
+      "minimum_paraphrase": "Availability must agree across feed, visible page, structured data if present, and checkout. In-stock offers need a functional purchase control and must be fulfillable/shippable to supported destinations. This defines ability to fulfill orders, not ownership of physical inventory."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/13889434?hl=en",
+      "title": "Free listings for products",
+      "accessed_on_utc": "2026-09-11",
+      "sections": "Eligibility and requirements; Provide the required product attributes",
+      "minimum_paraphrase": "Free listings require policy-compliant product attributes and AU shipping settings or product shipping costs. Website returns information is required; adding the return policy within Merchant is recommended. Free-listing permission does not guarantee display."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/12079604?hl=en",
+      "title": "Editorial & technical requirements",
+      "accessed_on_utc": "2026-09-11",
+      "sections": "Our policy; Technical requirements; Usefulness",
+      "minimum_paraphrase": "Free listings require compliant product data and relevant, usable, functional landing pages. Difficult navigation or inability to complete a purchase can be disallowed."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/9158778?hl=en",
+      "title": "Checkout requirements and best practices",
+      "accessed_on_utc": "2026-09-11",
+      "sections": "Allow everyone to check out; Provide accurate pricing",
+      "minimum_paraphrase": "Customers must be able to add available items and complete purchase; the product price remains consistent into cart and checkout. Required non-government fees must be disclosed in the applicable shipping costs."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/15108086?hl=en",
+      "title": "Availability-mismatch troubleshooting answer",
+      "accessed_on_utc": "2026-09-11",
+      "sections": "Availability mismatch corrective guidance",
+      "paraphrase": "This corrective guidance directs each variant URL to a pre-populated variant page. Its stronger wording makes preselection the safer mismatch remedy, while the governing link/landing specifications label it a best practice. It is not evidence that this account has an AU availability violation."
+    }
+  ],
+  "decisive_saved_evidence": {
+    "validated_file": {
+      "status": "REPO_KNOWN_SAVED_SOURCE_AND_INDEPENDENT_REVIEW",
+      "source_completed_at_utc": "2026-09-11T18:53:09.071Z",
+      "independent_five_price_read_at_utc": "2026-09-11T18:59:28Z",
+      "counts": "240 ACTIVE parents / 4,945 source variants / 4,923 emitted available offers / 22 unavailable omitted",
+      "five_corrected_AU_prices": "33.00 AUD each",
+      "variants": [
+        "41883237220449",
+        "41883237285985",
+        "41883237318753",
+        "41883238465633",
+        "41883238498401"
+      ],
+      "limit": "API salability and correct source/file values do not certify rendered checkout, owned inventory or Google eligibility."
+    },
+    "AU_actual_buyer_sample": {
+      "receipt": "../international_landing_checkout_receipt.json",
+      "checked_at_utc": "2026-09-11T16:23:02.636274+00:00",
+      "offer_id": "shopify_AU_6718945034337_39756755861601",
+      "variant": "Child 2-3 years / Black",
+      "price": "26.00 AUD",
+      "known": "MAIN country/currency and exact manual-selection cart quantity 1 and checkout country/price/currency passed; test item removed, cart empty; no payment/contact or order. Numeric-variant preselection failed.",
+      "initial_render_gap": "Receipt does not preserve the initial visible variant-price association or ordering affordance before manual selection. Manual purchase success is positive evidence, not evidence of total unbuyability, and not full deep-link acceptance."
+    },
+    "AU_initial_HTTP_sample": {
+      "receipt": "../au_public_http.json",
+      "checked_at_utc": "2026-09-11T16:14:33.577522+00:00",
+      "known": "200 without auth/cookies, no preview bar; exact offer JSON-LD 26 AUD/InStock; several AUD strings extracted from HTML.",
+      "limit": "Explicitly not a rendered-browser check; extracted strings and JSON-LD do not establish prominence, selection state or variant-price differentiation."
+    },
+    "MAIN_same_selector_counterexample": {
+      "receipt": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/public_landing_diagnosis_20260911/public_readback.json",
+      "window_utc": "2026-09-11T16:01:00Z/2026-09-11T16:07:34Z",
+      "product": "7672336646241",
+      "variant": "46512190292065",
+      "known": "Published t/100 custom selected size/color were null, visible price range 24.99-26.99 USD and PICK A SIZE disabled; underlying inputs and JSON-LD retained Adult 4XL/Green/26.99 USD.",
+      "limit": "This is a USD observation, not a freshly rendered AU mismatch; initial disabled control is not by itself proof that manual ordering is impossible. Historical Minimalist Heart abnormal prices in this receipt were subsequently corrected and are not current."
+    },
+    "UX_candidate_and_publication": {
+      "candidate": "137888792673",
+      "current_MAIN": "133290917985",
+      "source_read_at_utc": "2026-09-11T19:30:09Z",
+      "publication_recheck_at_utc": "2026-09-11T19:49:49Z",
+      "known": "V7 still UNPUBLISHED; 527 candidate files exact, MAIN/candidate source comparisons unchanged. V7 preview tested Together Heart default variant/26.99 USD and exact cart on desktop/mobile.",
+      "limit": "Preview is not live; corrected five AU links were not individually rendered. Public 429 restriction remains; no retries were performed in this review."
+    },
+    "access_shipping_and_account": {
+      "checkpoint_updated_at_utc": "2026-09-11T20:01:06.593968+00:00",
+      "known": "Authenticated Merchant account and source inventory read back; no existing provided AU source; AU shipping service in AUD exists. Earlier sign-in hold is superseded.",
+      "shipping_as_of_utc": "2026-09-11T19:52:07.601911+00:00",
+      "shipping_limit": "Four complete AU policies observed; only one expanded. This establishes configuration presence, not every delivery charge or actual performance.",
+      "account_as_of_utc": "2026-09-11T19:50:42.117584+00:00",
+      "account_issue": "No products displayed; saved impact says United States; review pending.",
+      "account_limit": "Do not infer AU-wide restriction, approval, serving, or the cause of the US issue."
+    },
+    "subset_profile": {
+      "provenance": "Parent-computed au-en.parent-price-profile_20260911.json; independently read receipt/hash, not recomputed here to avoid duplicate work.",
+      "checked_at_utc": "2026-09-11T20:08:13.401075+00:00",
+      "counts": {
+        "offers": 4923,
+        "parents": 240,
+        "uniform_price_parents": 0,
+        "uniform_price_offers": 0,
+        "variable_price_parents": 240,
+        "variable_price_offers": 4923,
+        "single_offer_parents": 0,
+        "multiple_offer_parents": 240
+      },
+      "interpretation": "No uniform-price or genuinely single-offer parent exists in the reviewed feed. Keeping one submitted offer per parent would not remove other variants from its landing page."
+    }
+  },
+  "decision_comparison": [
+    {
+      "option": "Submit all 4,923 offers now",
+      "verdict": "NOT_CLEARED_BY_THIS_REVIEW",
+      "reason": "Local accuracy, authorization, access and shipping configuration are positive. Known custom-selector initialization defect plus missing initial AU variant-price evidence leaves a material matching/clarity risk; correctness of JSON-LD alone does not settle customer-visible compliance. This is not a claim that Google prohibits every offer."
+    },
+    {
+      "option": "Submit a precisely eligible subset now",
+      "verdict": "NO_SUBSET_ESTABLISHED",
+      "reason": "Zero uniform-price/single-offer parents. Exact AU sample 39756755861601 is a potential one-offer pilot because manual checkout passed, but initial price/variant clarity remains unrecorded. No other manually verified offer can be presumed qualified."
+    },
+    {
+      "option": "Continue a bounded hold while resolving the actual landing evidence",
+      "verdict": "RECOMMENDED",
+      "reason": "Preserve approval and prepared source. Resolve the known UX defect and verify the relevant live behavior, or produce decisive existing/current MAIN evidence that the manual path satisfies the minimum rules. Do not make V7 publication or automatic preselection an invented Google prerequisite."
+    }
+  ],
+  "single_next_owner_action": {
+    "owner": "Existing UX owner and user Shopify Admin publisher",
+    "action": "Complete the already-reviewed V7 publication handoff, with its existing fresh role/hash gate, because this resolves the reproduced selector defect across the shared page. After the public throttle gate clears, UX owns the bounded live acceptance readback.",
+    "authority_limit": "No publication execution or new publishing authority granted here. Root may instead clear a narrowly evidenced manual-selection route if decisive saved/live evidence satisfies the actual minimum requirements."
+  },
+  "release_clearing_evidence": [
+    "Actual published MAIN identity with no preview contamination. Exact feed links must make the advertised variant and AUD price clearly identifiable and distinguish other prices; an in-stock item must have a usable ordering route.",
+    "Desktop/narrow behavior and exact cart variant, quantity, AUD price and checkout consistency for the failing shared-selector cases; confirm the five corrected Adult 2XL links at 33.00 AUD. Preserve cart cleanup/no order. These are targeted repository verification criteria, not a Google mandate to manually test every offer or precisely seven samples.",
+    "Manual variant selection may clear a precisely bounded offer if the page already shows the matching offer/price clearly and the ordering path works. Lack of preselection alone is insufficient to fail it; source uniformity or selecting one row per parent is insufficient to pass it.",
+    "Only resume public buyer checks after the existing 429/access stop clears through its current owner; do not fetch or retry from this review."
+  ],
+  "required_after_submission": [
+    "Sole Merchant owner verifies exact source ID/account/AU/en/AU label/Free listings destination, immutable submitted bytes/hash and continuing Shopping_ads exclusions, with no duplicate provided AU source or US source modification.",
+    "Read the actual Google received file/processing result and reconcile accepted/rejected/omitted IDs against the approved exact file or explicitly bounded subset. Verify all included corrected target effective prices/currencies at 33.00 AUD under that AU source.",
+    "Read destination/issue eligibility separately from file receipt; retain pending account review and processing delays accurately. Upload, received, eligible, serving, traffic, genuine orders and profit are separate outcomes.",
+    "Preserve before-state and a narrow source-specific reversal plan; never restore known erroneous 325308.00 AUD prices. Manual upload is not an hourly feed lifecycle."
+  ],
+  "contradictions_to_resolve": [
+    "Older review says sign-in and native before-state absent; the current checkpoint resolves them. Do not request sign-in again.",
+    "Preselection is explicitly best practice in link/landing specs but imperative in examples and availability troubleshooting. Use matching, clarity and functional ordering as the substantive gate; seek exact Google issue guidance if a diagnostic later requires preselection.",
+    "Manual AU checkout success opposes any claim that MAIN cannot sell that variant. It does not fill missing initial visible variant-price evidence.",
+    "Correct source/JSON-LD cannot silently supersede contrary rendered custom-selector observations; US rendered facts cannot be relabeled AU facts.",
+    "V7 full source verification and preview success cannot be represented as current MAIN publication or buyer acceptance.",
+    "Pending issue impact explicitly names United States; AU restriction/approval and whole-catalog eligibility remain unknown."
+  ],
+  "reproducibility_checks": {
+    "feed_hash_and_bytes_match": true,
+    "checkpoint_same_feed_and_not_uploaded": true,
+    "parent_profile_digest_and_counts_match": true,
+    "official_primary_sources_browsed_currently": true,
+    "saved_live_receipts_reconciled_without_replay": true,
+    "no_blanket_preselection_minimum_claim": true,
+    "no_safe_subset_inferred_from_feed_only": true,
+    "old_access_gate_superseded": true
+  },
+  "input_manifest": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.tsv": {
+      "sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+      "bytes": 17284594
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.release_review_20260911.json": {
+      "sha256": "d7661b6bcab172ddccc7a98c7b06e47403c88745458f90120813b32349741c14",
+      "bytes": 17688
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.google_submission_checkpoint.json": {
+      "sha256": "c8dfc71b8dcb4beebceb7e893e0b7e6c72060414c2c7a0d0efea6afd2fabfbe2",
+      "bytes": 14353
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.corrected_price_independent_review.json": {
+      "sha256": "cb6c1243578c6aafdf65c07084d7fe7ac9609218fd82bc00124682309b0131b9",
+      "bytes": 12724
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.parent-price-profile_20260911.json": {
+      "sha256": "ade6eadea624ac7e49e6bd86042c36f62ff00c277376f85f35e89a7e359c30e2",
+      "bytes": 152882
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/all-markets.execution_checkpoint.json": {
+      "sha256": "8cc3930ab7fabcc756839016f1fee94d7f0e63f8e5015e06d94f89857d3a1a1f",
+      "bytes": 3675
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_landing_checkout_receipt.json": {
+      "sha256": "d25af448898e7352069d26d49525751502ca20d562670af91a56b8f935fda7dd",
+      "bytes": 4638
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/au_public_http.json": {
+      "sha256": "3b7eb52e6a641c557daf68a6d156a57939843ceb8f860a52d7b221387f8e8fee",
+      "bytes": 1084
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/public_landing_diagnosis_20260911/public_readback.json": {
+      "sha256": "22f5b07f9045385aa4da3067edf7d1500a0730cd083b2f3271197904bbd211ea",
+      "bytes": 6092
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/OWNER_ACTION.md": {
+      "sha256": "941196b8fc607c1e3b325940d6b61bf12756397a7923944c29b11149bf51e9b9",
+      "bytes": 4035
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/source-validation.json": {
+      "sha256": "a5aaa2e9ab57a5043597a5b51fa3eebfa0a28058d818d845a66ee679011790a1",
+      "bytes": 1477
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/publication-recheck-1949.json": {
+      "sha256": "f0624bc0767e3ecd67195876cca922215884acc1ac6156d73e9b06a82c8b6d46",
+      "bytes": 805
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/browser-after.json": {
+      "sha256": "b54a1621abd8f3afc398799e4287904de0fb802a040c65e8ba9c6c3136cd1906",
+      "bytes": 6323
+    }
+  },
+  "boundaries": {
+    "public_storefront_requests": 0,
+    "native_or_account_calls": 0,
+    "Shopify_queries_or_mutations": 0,
+    "feed_or_theme_changes": 0,
+    "shared_canonical_edits": 0,
+    "new_goals_or_tasks": 0,
+    "writes": "This independent review JSON only."
+  },
+  "uncertainty_branch": {
+    "decision_depends_on_uncertain_state": true,
+    "decision_changing_evidence": "Initial actual AU variant-price visibility and working order path under MAIN; or a role-verified release followed by bounded acceptance.",
+    "if_evidence_supports_recommendation": "Clear exact substantiated scope through parent and sole Merchant owner; retain existing AU authorization and obtain actual Google after-state.",
+    "if_evidence_opposes_recommendation": "Keep the affected offer/cohort held, identify the precise mismatch, and amend the existing UX/source path without expanding the audit.",
+    "material_decision": true,
+    "independent_verifier": "/root/together_heart_source",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE_PRODUCTION; independent current primary-policy and saved-buyer-evidence review."
+  }
+}

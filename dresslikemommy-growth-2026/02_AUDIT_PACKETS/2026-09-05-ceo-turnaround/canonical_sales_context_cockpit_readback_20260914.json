@@ -1,0 +1,22 @@
+{
+  "status": "PASS_WITH_LIMITS",
+  "at_utc": "2026-09-14T08:06:41.402732+00:00",
+  "checks": {
+    "complete_owner_action_byte_preserved": true,
+    "current_goal_card_exact": true,
+    "rendered_current_cohort": true,
+    "rendered_GA4_real_receipt": true,
+    "rendered_theme_candidate": true,
+    "rendered_theme_rollback": true,
+    "rendered_single_owner_action": true,
+    "complete_36row_detail_in_MD": true
+  },
+  "prior_check_failure": {
+    "command_chunk": "981101",
+    "assertion": "36-row must occur in rendered HTML",
+    "resolution": "Incorrect evaluator assumption. Existing renderer deliberately summarizes the native receiver; complete36-row detail remains in source MD. Replaced with actual current cohort, exact receipt and protected action assertions; no implementation changed."
+  },
+  "method": "Local generated HTML text and source-block comparison, not a visual browser or live storefront test.",
+  "MD_sha256": "dd07c8ca52ad5d8b5a9e2706416a1c443db47b823b3cca894dfe787bdb48067d",
+  "HTML_sha256": "686ee6f3a3e64a7d2367f7361ff25ed89d858167da6fb501989fbf8ad7e08ab6"
+}

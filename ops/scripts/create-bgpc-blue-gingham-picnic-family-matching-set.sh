@@ -41,7 +41,7 @@ SEO_DESCRIPTION = "Blue gingham family set with skirt looks for mom + girls and 
 PRINT_NAME = "Blue Gingham Picnic"
 SHORTCODE = "BGPC"
 COLOR_TOKEN = "BLUE"
-VENDOR_URL = "https://detail.1688.com/offer/919618605678.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
@@ -310,7 +310,7 @@ def tags() -> list[str]:
         "Summer",
         "Vacation",
         "Resort",
-        VENDOR_URL,
+
     ]
     values.extend(row["picker_label"] for row in SIZE_CHART)
     values.extend(row["role"] for row in SIZE_CHART)

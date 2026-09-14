@@ -1,0 +1,47 @@
+{
+  "as_of_utc": "2026-09-11T18:41:19.459198+00:00",
+  "status": "CONFIGURATION_VERIFIED",
+  "checks": {
+    "same_id": true,
+    "same_name": true,
+    "same_heartbeat_kind": true,
+    "same_existing_task": true,
+    "same_active_status": true,
+    "exact_prompt": true,
+    "original_prompt_preserved": true,
+    "thirty_minute_cadence": true,
+    "created_at_preserved": true,
+    "other_configuration_fields_preserved": true,
+    "all_other_automations_unchanged": true
+  },
+  "checks_passed": 11,
+  "runtime_status": "MANUAL_INITIAL_CONTINUATION_COMPLETED_VERIFIED_LOCAL_WORK",
+  "future_scheduled_execution": "NOT_YET_OBSERVED",
+  "business_outcomes": "NOT_ESTABLISHED",
+  "rollback": "Restore saved before prompt and four-hour recurrence through automation_update for this same automation id, preserving all other fields.",
+  "downstream_execution_result": "Five AU local feed prices corrected to33.00AUD; exactly4918otherrowsunchanged",
+  "continuity_checks": {
+    "cockpit_renderer": {
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    "command_integration": {
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    "strict_continuity": {
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    "scoped_whitespace": {
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  },
+  "independent_safeguard_recheck": "PASS_WITH_LIMITS; original prompt prefix, complete revised addition and exact existing target verified by continuation_review",
+  "completion_readback": "FIRST_COMPLETION.json",
+  "completion_readback_checks_passed": 12,
+  "latest_requested_outcome": "Submit verified AU feed to Google and verify receipt",
+  "latest_requested_outcome_status": "BLOCKED_ON_THEME_PUBLICATION_AND_LIVE_VARIANT_ACCEPTANCE; NOT_COMPLETE",
+  "completion_rule_receipt": "RELEASE_COMPLETION_RULE.json"
+}

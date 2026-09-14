@@ -1,0 +1,64 @@
+{
+  "decision": "PASS_WITH_LIMITS",
+  "reviewer": "theme_audit_review",
+  "review_date": "2026-09-11",
+  "scope": "Independent source and local regression review of the missing-initial-guide guard; final two-file payload binding includes the separately reviewed native deep-link correction.",
+  "target": {
+    "theme_id": "137888792673",
+    "name": "DLM UX Performance QA 2026-09-10",
+    "role": "UNPUBLISHED",
+    "source_receipt_utc": "2026-09-11T22:36:01.209Z"
+  },
+  "blocking_findings": [],
+  "source_finding": {
+    "file": "assets/product-desktop-ux-20260513-ruler-sync.js",
+    "line": 3864,
+    "before": "var groups = buildSizeGuideGroups(parsed);",
+    "after": "var groups = parsed ? buildSizeGuideGroups(parsed) : [];",
+    "cause": "A missing initial table produces parsed=null; buildSizeGuideGroups immediately reads parsed.rows at line 6367. initMatchingSizeGuide runs before initMatchingSetBuilder, so the exception prevents the buyer selector from initializing.",
+    "minimality": "Replacing this single revised line with its prior text reconstructs the exact before asset. No roles, variants, source measurements, prices or guide tables are changed or invented.",
+    "async_review": "Existing default-locale source loading remains intact at lines 3916-3936. A successful source-table append schedules renderGuide; lines 5943-5950 reacquire the table and require a valid parse before building groups. Missing or failed source loading leaves an empty guide without blocking builder initialization. This asynchronous success path was inspected in source, not externally exercised by this reviewer."
+  },
+  "reviewed_files": [
+    {
+      "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "sha256": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20",
+      "bytes": 269931,
+      "before_sha256": "51aaa2d6492b65efe8132dd6f194a351b3a8106945616f4751a8beb00217bdab"
+    },
+    {
+      "filename": "sections/main-product.liquid",
+      "sha256": "01a345e7d32c7bb23c6ba159c9388d7f9a839116378a56ef3fdcb351f1f3e6f1",
+      "bytes": 190639,
+      "before_sha256": "754fab75e951e02ce26fb69f3d9ec633d19eafa4e081239b93ed20feeffcd429",
+      "separate_review": "native-deeplink-independent-review.json"
+    }
+  ],
+  "verification": {
+    "independently_executed": "node --test selector-recovery-final.test.mjs: exit 0, 14 passed, 0 failed, no uncaught errors; 5414.865625 ms.",
+    "test_sha256": "58025af9775bab0575553b91c8da57dd52a4047d20f73bbd4fc923899e5f3566",
+    "regression_relevance": "The actual MainProduct-contained missing-table fixture reproduces the prior rows exception, then verifies repaired initialization, Girl/Boy/Mother/Father controls and zero invented tables. The suite also covers native fallback, exact SKU identity, supported-bundle holdouts, both sticky viewports and resolved/null deep-link states.",
+    "fixture_limit": "The missing-table fixture exercises the no-product-handle loader branch. It does not claim a successful remote table arrival or browser rendering.",
+    "theme_check": "Root-performed full 527-file Theme Check reports exit 0; independently inspected diagnostics [] and empty stderr, and compared all 527 checked-copy files to planned-binding.json by SHA256, MD5 and size: zero mismatches."
+  },
+  "payload_binding": {
+    "apply": "final-release/mutation-variables.json",
+    "apply_sha256": "e26d40a6a5937caff5895d265dba51c4a1508ba053a3faee72c1bc3dd504cae2",
+    "inverse": "final-release/inverse.json",
+    "inverse_sha256": "37159335e17920522f5ad96a950df5c7ba22dc71d804c6ef61cb02ec0c494d0e",
+    "verification": "Both payloads contain exactly the two named TEXT files and target only the named unpublished theme. Apply bodies exactly match the reviewed local proposals. Inverse bodies exactly match before copies and their MD5s match the fresh preview source receipt.",
+    "before_source_sha256": "a68384eb5a97adfa4864f1f47abb5bce4806c18566073515a7f094a6886bca36",
+    "planned_binding_sha256": "08da3b5f77f032f81b337940ecf6f81f5dcc317056d8f041a7d9614f5426623e"
+  },
+  "release_boundary": "Same four-file union versus frozen V7: 527 total, 4 changed, 523 preserved, no deletions. Planned comparison versus current MAIN: 61 modified, 2 added consent assets, 464 preserved, no deletions; 63 differences. This review does not authorize publication or assert catalog-wide perfection.",
+  "remaining_acceptance": "Root must stage the exact reviewed payload, read back the full source and verify actual Trail Plaid selector/cart behavior and native deep-link sticky behavior in the updated draft. This reviewer performed no browser, network, Shopify or canonical action.",
+  "artifacts": [
+    "missing-guide-init-repair/manifest.json",
+    "missing-guide-init-repair/ruler-sync.js.diff",
+    "missing-guide-init-repair/test-results.txt",
+    "missing-guide-init-repair/initial-incomplete-fixture-test-results.txt",
+    "missing-guide-init-repair/theme-check.json",
+    "final-release/before-source.json",
+    "final-release/planned-binding.json"
+  ]
+}

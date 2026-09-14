@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-09-11 16:13:18 UTC",
+  "status": "PASS",
+  "reviewer": "theme_audit_review",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "scope": "Read-only existing source and fresh source receipts; no browser actions or external writes",
+  "findings": [
+    "MAIN Liquid proceeds from currency to options without selected_variant_id.",
+    "Combined Liquid line 182 emits product.selected_variant.id; candidate snippet is byte-identical.",
+    "Candidate JavaScript lines 2495-2503 resolves that ID, 3538-3542 seeds option context and 3617-3628 initializes role, size, axes and purchasable variant.",
+    "The mechanism already exists in the combined predecessor rollback, MD5 1d3544d25d247e50b862a089c9249e9a.",
+    "V6 Arabic classifier changes did not introduce the deep-link repair."
+  ],
+  "freshLiquidHashesVerified": true,
+  "combinedJavaScriptRollbackHashVerified": true,
+  "conclusion": "No new code fix is warranted; verify the existing combined release after owner publication.",
+  "limits": [
+    "Full MAIN JavaScript text was not obtained from the Text response branch; its complete execution path was not independently reconstructed.",
+    "Root performed the exact-variant cart test; independent reviewer inspected source and receipts. Parent separately reproduced preview selection success and MAIN failure."
+  ]
+}

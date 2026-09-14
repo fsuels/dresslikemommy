@@ -1,0 +1,53 @@
+{
+  "status": "LIVE_SHOPIFY_VERIFIED__GOOGLE_EMPTY_BEFORE",
+  "merchant_account": "513542500",
+  "record_clock_utc": "2026-09-11T20:16:44Z",
+  "time_precision": "Recorded after the provider read; exact query timestamp remains in task tool history",
+  "query": "query MerchantSupportedWallets { shop { id name myshopifyDomain paymentSettings { supportedDigitalWallets } } }",
+  "schema_checked": [
+    "Shop",
+    "QueryRoot",
+    "PaymentSettings"
+  ],
+  "validation": "PASS",
+  "shopify": {
+    "data": {
+      "shop": {
+        "id": "gid://shopify/Shop/15571635",
+        "name": "Dress Like Mommy",
+        "myshopifyDomain": "dresslikemommy-com.myshopify.com",
+        "paymentSettings": {
+          "supportedDigitalWallets": [
+            "SHOPIFY_PAY",
+            "APPLE_PAY",
+            "GOOGLE_PAY"
+          ]
+        }
+      }
+    }
+  },
+  "google_before": {
+    "digital_wallets": [],
+    "bnpl": [],
+    "observed_account": "513542500",
+    "observed_page": "/mc/settings/paymentsignal/edit"
+  },
+  "proposed_scope": "Declare only supported named digital wallets available in native selector. No payment-provider, billing, installment, processing or checkout configuration changes.",
+  "rollback": "Remove only newly added declarations if erroneous; preserve all concurrent settings.",
+  "external_writes": [],
+  "native_picker_options": [
+    "Amazon Pay",
+    "Apple Pay",
+    "Google Pay",
+    "Meta Pay",
+    "Paypal",
+    "Shop Pay",
+    "Venmo"
+  ],
+  "intended_selections": {
+    "APPLE_PAY": "Apple Pay",
+    "GOOGLE_PAY": "Google Pay",
+    "SHOPIFY_PAY": "Shop Pay"
+  },
+  "native_save_plan": "Select exactly these three unchecked options, Save once, independently reload Business info Details and payment settings to read back. BNPL remains empty."
+}

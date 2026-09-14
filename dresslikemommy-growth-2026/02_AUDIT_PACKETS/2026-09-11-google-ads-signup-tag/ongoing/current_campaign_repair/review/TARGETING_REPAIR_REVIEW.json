@@ -1,0 +1,131 @@
+{
+  "verdict": "PASS_WITH_GATES",
+  "reviewed_at_utc": "2026-09-11 20:03:14 UTC",
+  "reviewer": "tag_repair_review",
+  "independent_of_targeting_plan_builder": true,
+  "payload_sha256": "0f97572467b459d3d49dcd4dc2afaf60068e8c3fa6137c6dfdde455102adb1dc",
+  "previous_payload_sha256": "a15ce034d541febd339af89b1c83ac72a1cdc5786c06f43eaaaf57d0e716cafd",
+  "final_revision_checked_at_utc": "2026-09-11 20:05:54 UTC",
+  "final_revision_checks": {
+    "status": "PASS_WITH_GATES",
+    "checks_passed": 11,
+    "checks_total": 11,
+    "checks": {
+      "new_exact_plan_hash": true,
+      "same_readback_hash": true,
+      "same_target_and_three_operations": true,
+      "same_three_rollbacks": true,
+      "same_two_negative_values": true,
+      "all_protected_settings_unchanged": true,
+      "identity_freshness_dedup_gates_retained": true,
+      "explicit_new_negative_ids_and_scoped_rollback": true,
+      "manual_copy_and_video_limit_added": true,
+      "saved_setting_vs_serving_lag_added": true,
+      "launch_and_channel_limits_retained": true
+    },
+    "final_payload_sha256": "0f97572467b459d3d49dcd4dc2afaf60068e8c3fa6137c6dfdde455102adb1dc"
+  },
+  "live_readback_sha256": "15c2f4177aca8a2352a88e9412ff5e5a68485e505a2ca7a8083eea71b0a919b3",
+  "initial_plan_checks": {
+    "verdict": "PASS_WITH_GATES",
+    "checks_passed": 20,
+    "checks_total": 20,
+    "checks": {
+      "exact_target": true,
+      "exact_before_receipt": true,
+      "only_three_controls": true,
+      "presence_before_supported": true,
+      "presence_after_exact": true,
+      "expansion_customization_before_after": true,
+      "three_control_rollbacks_and_dependency": true,
+      "status_budget_bid_goal_preserved": true,
+      "geo_language_themes_preserved": true,
+      "other_settings_links_accounts_unchanged": true,
+      "exact_two_preventive_phrase_candidates": true,
+      "exact_held_US_EN_source_rows": true,
+      "no_blanket_protected_term_added": true,
+      "inheritance_unknown_and_dedup_gate": true,
+      "normal_identity_gate": true,
+      "fresh_before_reopened_after": true,
+      "all_reported_delivery_YouTube": true,
+      "reported_avg_CPC_arithmetic": true,
+      "no_YouTube_or_savings_claim": true,
+      "no_launch_or_CPC_promotion": true
+    },
+    "payload_sha256": "a15ce034d541febd339af89b1c83ac72a1cdc5786c06f43eaaaf57d0e716cafd",
+    "readback_sha256": "15c2f4177aca8a2352a88e9412ff5e5a68485e505a2ca7a8083eea71b0a919b3",
+    "readback_window_utc": "2026-09-11T19:48:00Z/2026-09-11T19:57:00Z",
+    "source_negative_rows": [
+      {
+        "market_scope": "US_EN",
+        "negative_keyword": "sewing pattern",
+        "match_candidate": "PHRASE",
+        "status": "HELD"
+      },
+      {
+        "market_scope": "US_EN",
+        "negative_keyword": "sewing patterns",
+        "match_candidate": "PHRASE",
+        "status": "HELD"
+      }
+    ],
+    "storefront_or_account_actions": "NOT RUN"
+  },
+  "material_target_or_text_corrections_requested": [],
+  "scope": "Only existing campaign24247604341: US presence-only, Final URL expansion OFF, text customization OFF; up to the two reviewed campaign PHRASE negatives after inheritance/dedup.",
+  "semantic_review": {
+    "evidence": "Root readback19:48–19:57 UTC records249 impressions,4 clicks,USD0.64 cost andUSD0.16 displayed average CPC, zero reported conversions, all on YouTube. Reviewer did not replay native surfaces.",
+    "presence": "A defensible deliberate narrowing to likely US current/regular presence. It can reduce reach; it is neither a residency test nor a guarantee of US-only observed users.",
+    "url_expansion": "OFF limits automatic primary-URL expansion. The separately reviewed sitelinks remain distinct destinations; future Merchant product links would require renewed URL-scope review. Current campaign UI reports no Merchant setup/no data feed, not global unlink proof.",
+    "text_customization": "OFF stops this feature's customized text assets serving. It does not itself save/correct the18 supplied-copy edits, disable remaining image/video automation, or establish which ad creative produced earlier YouTube delivery.",
+    "negatives": "The two PHRASE exclusions are explicit preventive judgments for sewing-instruction intent, not observed queries. Singular/plural is deliberate because close variants are not automatically excluded. Broader pattern/adult/free/wedding/category negatives are not added.",
+    "channel_limit": "PMax negatives affect Search/Shopping inventory. They do not control the recorded YouTube delivery or establish waste/savings. No channel or placement exclusion is in this plan.",
+    "economics": "The three controls and negatives do not enforceUSD0.15 CPC or qualify PMax for launch. Four reported clicks and zero reported conversions cannot establish reliable conversion rate, profit or finalROAS."
+  },
+  "mandatory_execution_gates": [
+    "Complete normal Google identity verification. Preserve draft and do not bypass the existing challenge with another surface.",
+    "Recheck exact account/campaign and all relevant before-values before each Save; reconcile drift.",
+    "Keep Paused,USD5/day,tROAS650,US/English,account-default Purchases,search themes,links and remaining asset optimization settings unchanged.",
+    "Treat the control edits and negatives as separate save units; unresolved inheritance blocks negative additions without blocking separately authorized control preparation.",
+    "Before any negative addition, inspect account-level inheritance, shared lists and campaign-level rows; capture exact existing IDs/text/match/scope. Add only missing, nonredundant reviewed phrases at campaign scope.",
+    "A phrase can exclude a relevant query containing those words even when intent differs. No measured recall/efficiency effect is established; do not extend the terms automatically."
+  ],
+  "mandatory_after_state_and_rollback_supplement": {
+    "controls": "Reopen settings and verify Presence, Final URL expansion=false,text customization=false and protected settings. Restore original presence option if rollback is required; restore text customization before Final URL expansion to respect the documented dependency. Checkbox restoration does not guarantee identical historical Google-generated assets.",
+    "negatives": "Record IDs for only newly created campaign negatives; reopen and verify exact PHRASE text,scope and no unrelated/inherited changes. If reversal is required, remove only those new campaign entries by recorded ID after checking they remain unchanged; never remove/edit inherited or pre-existing negatives.",
+    "publication_limit": "Saved UI state is the immediate acceptance criterion. Google documents24–48 hours for some URL/customization effects to fully reflect; do not claim immediate complete serving behavior from a Save. Keep campaign Paused throughout."
+  },
+  "plan_completion_note": "RESOLVED: the final root plan now includes new-negative ID capture/scoped rollback and both serving/copy limitations. Rollback applies only to entries actually created by this repair, potentially zero to two after dedup; preserve inherited/pre-existing entries.",
+  "sources_checked_at_utc": "2026-09-11 20:03:14 UTC",
+  "primary_sources": [
+    {
+      "url": "https://support.google.com/google-ads/answer/15726455?hl=en",
+      "supports": "Performance Max negative keywords are limited to Search and Shopping inventory."
+    },
+    {
+      "url": "https://support.google.com/google-ads/answer/14587068?hl=en",
+      "supports": "Negative keywords do not automatically match close variants."
+    },
+    {
+      "url": "https://support.google.com/google-ads/answer/1722038?hl=en",
+      "supports": "Presence includes likely current or regular presence; signals are not perfectly accurate."
+    },
+    {
+      "url": "https://support.google.com/google-ads/answer/14337369?hl=en",
+      "supports": "Final URL requires text assets; disabling text customization stops its assets serving, while automatic video generation can continue."
+    },
+    {
+      "url": "https://support.google.com/google-ads/answer/14337539?hl=en",
+      "supports": "URL expansion can use unexpected destinations; settings may take24–48 hours to fully reflect."
+    },
+    {
+      "url": "https://support.google.com/google-ads/answer/10724897?hl=en",
+      "supports": "Final URL/Shopping product URL distinctions; supplied URLs and Merchant-linked product URLs must be considered separately."
+    }
+  ],
+  "launch_authorized": false,
+  "global_paid_authority_changed": false,
+  "native_or_storefront_actions": "NOT RUN",
+  "current_save_gate": "BLOCKED_GOOGLE_IDENTITY_VERIFICATION_PENDING",
+  "next_step": "Complete Google verification normally, then root refreshes the exact before-state and applies only the reviewed bounded changes with separate negative inheritance/ID gates."
+}

@@ -1,0 +1,251 @@
+{
+  "captured_at_utc": "2026-09-11T20:35:29.017330+00:00",
+  "classification": "LIVE_VERIFIED_CONFIGURATION_AND_AGGREGATE_RECEIPT__CONTROLLED_ACCEPTANCE_OPEN",
+  "method": "Read-only task-owned IAB tabs 8 Pinterest Conversions and 4 authenticated Shopify admin. Native DOM text; no sample customer data export, no tracking setting or consent change.",
+  "identity": {
+    "pinterest": "dresslikemommy",
+    "advertiser_id": "549756244483",
+    "tag_id": "2620007050621",
+    "shopify_store": "dresslikemommy-com",
+    "pinterest_app_id": "3009811",
+    "prior_pixel_id": "22577249",
+    "prior_pixel_id_status": "Prior September 11 native helper record; this admin route identifies app 3009811, not an independent new pixel-ID readback"
+  },
+  "access": {
+    "pinterest": "LIVE_VERIFIED_CORRECT_ACCOUNT",
+    "shopify": "LIVE_VERIFIED_CORRECT_AUTHENTICATED_STORE",
+    "old_wrong_profile_403_and_account_chooser": "SUPERSEDED; no login/account switch performed"
+  },
+  "hub": {
+    "merchant": "Approved",
+    "shopify": "Connected",
+    "event_quality_summary": "Good setup",
+    "campaigns_last_30_days": "No active campaigns; one total",
+    "organic_baseline_last_30_days": {
+      "impressions_display": "2.95k",
+      "engagements": 82,
+      "saves": 2
+    },
+    "interpretation": "Baseline before scheduled P1-P6 publications; not attributable results from this turn."
+  },
+  "shopify_pinterest_marketing": {
+    "tag_and_capi": "UI states automatically set up for your store",
+    "advertiser_id": "549756244483",
+    "tag_id": "2620007050621",
+    "primary_claimed_website": "www.dresslikemommy.com",
+    "primary_link": "https://www.dresslikemommy.com",
+    "editable_tracking_mapping_exposed": false,
+    "billing": "NOT_CHANGED; unnecessary payment details not retained"
+  },
+  "shopify_customer_events": {
+    "route": "https://admin.shopify.com/store/dresslikemommy-com/settings/customer_events/pixels/app/3009811",
+    "sources": [
+      "Server",
+      "Web"
+    ],
+    "data_access": "Always on",
+    "activity_log_latest_visible": "June 2, 2026 8:00 PM Data access granted",
+    "privacy_dialog": {
+      "permission": "Required",
+      "purposes": [
+        "marketing",
+        "analytics"
+      ],
+      "data_sale": "Data collected qualifies as data sale",
+      "sale_optout": "The pixel will not collect data when the customer opts out of their data being sold."
+    },
+    "limit": "Always on is the data-access selection, not proof of consent bypass or current visitor consent. No selection changed."
+  },
+  "pinterest_tag_manager": {
+    "tag_name": "conversion_tracker",
+    "tag_id": "2620007050621",
+    "latest_event": "2026-09-11 20:11 UTC",
+    "automatic_enhanced_match": "Enabled",
+    "selected_fields": [
+      "Email",
+      "Phone Number",
+      "External ID",
+      "First and Last name",
+      "City, State, Zip Code and Country",
+      "Gender",
+      "Birthdate"
+    ],
+    "action": "Options inspected, closed with Cancel; no enable/save"
+  },
+  "event_quality": {
+    "updated_display": "9/10/2026",
+    "range": "Last 14 days",
+    "capi": {
+      "source": "Shopify",
+      "score": "Fair",
+      "top_actions": [
+        "Product ID in Add Payment Info",
+        "Click ID in Checkout",
+        "Email in Add to Cart"
+      ],
+      "click_id": {
+        "coverage": "0%",
+        "issue": "Click ID not set up",
+        "events": [
+          "Checkout",
+          "Add to Cart",
+          "Initiate Checkout",
+          "Add Payment Info",
+          "Page Visit",
+          "Search",
+          "View Category"
+        ]
+      },
+      "product_id_add_payment_info": {
+        "coverage": "0%",
+        "issue": "Product ID not set up"
+      },
+      "search_query_search": {
+        "coverage": "0%",
+        "issue": "Search Query not set up"
+      },
+      "duplicate_events_visible_good_rows": [
+        "Event ID: Page Visit, View Category"
+      ],
+      "duplicate_events_limit": "Other event-specific overlap not independently expanded; does not validate purchase deduplication"
+    },
+    "tag": {
+      "source": "Shopify",
+      "score": "Fair",
+      "top_actions": [
+        "Email in Add to Cart",
+        "Email in Initiate Checkout",
+        "Click ID in Checkout"
+      ],
+      "search_query_search": {
+        "coverage": "62%",
+        "issue": "Low Search Query coverage"
+      },
+      "product_id": {
+        "Page Visit": {
+          "coverage": "28%",
+          "status": "Product ID is in good health"
+        },
+        "Checkout": {
+          "coverage": "100%",
+          "status": "Product ID is in good health"
+        },
+        "Add to Cart": {
+          "coverage": "100%",
+          "status": "Product ID is in good health"
+        },
+        "Initiate Checkout": {
+          "coverage": "100%",
+          "status": "Product ID is in good health"
+        },
+        "Add Payment Info": {
+          "coverage": "100%",
+          "status": "Product ID is in good health"
+        }
+      }
+    },
+    "hub_detail_conflict": "Detailed source-specific Fair remains the actionable finding despite hub Good setup label.",
+    "same_window_comparison": {
+      "recorded_at_utc": "2026-09-11T20:37:32.246056+00:00",
+      "range": "Last 14 days",
+      "updated_display": "9/10/2026",
+      "product_id_add_payment_info": {
+        "Tag": "100%, good health",
+        "CAPI": "0%, not set up"
+      },
+      "search_query_search": {
+        "Tag": "62%, low coverage",
+        "CAPI": "0%, not set up"
+      },
+      "interpretation": "Proves source-specific coverage differs. Does not establish why the managed server payload lacks fields or that receiver/catalog/purchase values are correct. Blanket browser tag reinstall is not justified."
+    }
+  },
+  "events_overview": {
+    "range": "Last 30 days",
+    "platform_semantics": "Events after duplicate events removed, per UI; this does not independently validate deduplication",
+    "rows": [
+      {
+        "event": "PageVisit",
+        "total": 15099,
+        "source": "Api \u00b7 Tag",
+        "last_received_utc": "2026-09-11 20:10"
+      },
+      {
+        "event": "ViewCategory",
+        "total": 4629,
+        "source": "Api \u00b7 Tag",
+        "last_received_utc": "2026-09-11 19:46"
+      },
+      {
+        "event": "AddToCart",
+        "total": 339,
+        "source": "Api \u00b7 Tag",
+        "last_received_utc": "2026-09-11 19:19"
+      },
+      {
+        "event": "InitiateCheckout",
+        "total": 68,
+        "source": "Api \u00b7 Tag",
+        "last_received_utc": "2026-09-11 19:50"
+      },
+      {
+        "event": "AddPaymentInfo",
+        "total": 21,
+        "source": "Api \u00b7 Tag",
+        "last_received_utc": "2026-09-05 15:18"
+      },
+      {
+        "event": "Search",
+        "total": 20,
+        "source": "Api \u00b7 Tag",
+        "last_received_utc": "2026-09-11 20:11"
+      },
+      {
+        "event": "Checkout",
+        "total": 10,
+        "source": "Api \u00b7 Tag",
+        "last_received_utc": "2026-09-06 21:31"
+      }
+    ],
+    "limitations": "Aggregate receiving proof only. Genuine order identity/value/currency/items, source-to-catalog matching, controlled test receipt, correct deduplication and attribution are not established. Latest Checkout is not a new order from this turn."
+  },
+  "click_id_assessment": {
+    "status": "ROOT_CAUSE_UNKNOWN",
+    "evidence": "0% native coverage",
+    "inference": "Click IDs originate in genuine Pinterest click context. With no active campaigns and no controlled genuine-click sample in this audit, 0% alone does not establish lost-ID transport or a broken installation.",
+    "next_falsifier": "Under approved consent, inspect a genuine eligible Pinterest referral for retained click context and matching receiver result; do not invent epik values or click live paid ads."
+  },
+  "consent_gate": {
+    "status": "PENDING_EXACT_TEMPORARY_QA_AUTHORIZATION_AND_RESTORATION_CONTROL",
+    "prior_rejection": "Give consent to continue test",
+    "reason": "Changes a privacy choice and may authorize Pinterest tracking/data transmission without explicit authorization for this specific QA action and destination.",
+    "bypassed": false,
+    "current_baseline": "Additional Google destination AW-18433316477 was added in the separate Google task; temporary marketing/analytics consent may also permit other installed pixels.",
+    "sequence": "NEXT_TRACKING_TEST_20260911.md",
+    "scope": "ordinary page/search/product QA; no cart/checkout/payment/fake purchase/live ad click; preserve sale opt-out and restore denied choices using verified ordinary preferences control",
+    "new_google_destination_is_not_an_independent_approval_gate": true
+  },
+  "writes_this_tracking_review": 0,
+  "no_installation_fix_justified": "The native Shopify integration, tag and AEM are present and receiving events. No proven editable mapping correction or duplicate-tag defect was established. Reinstall/reset/extra tag or wider customer-data collection would not be an evidence-backed fix.",
+  "next_action": "Coordinate with current UX owner for a verified ordinary live consent-and-revocation control, then resolve the existing specific consent-test review and run the fixed page/search/product receiver sequence. Current route sample lacks that control. Keep scheduled-publication follow-through independent.",
+  "sources": [
+    "https://ads.pinterest.com/advertiser/549756244483/conversions/health/",
+    "https://help.pinterest.com/en-gb/business/article/eqs",
+    "https://developers.pinterest.com/docs/track-conversions/track-conversions-in-the-api/",
+    "https://developers.pinterest.com/docs/track-conversions/integrate-third-party-tracking-tools/",
+    "https://help.pinterest.com/en/business/article/link-your-shopify-and-pinterest-accounts"
+  ],
+  "ordinary_restoration_control_preflight": {
+    "recorded_at_utc": "2026-09-11T20:45:31.904163+00:00",
+    "method": "After parent ended temporary AU storefront exclusion, normal task-owned tab11 navigation to live homepage and click its Privacy policy link; rendered controls/DOM read only.",
+    "routes": [
+      "https://www.dresslikemommy.com/",
+      "https://www.dresslikemommy.com/policies/privacy-policy"
+    ],
+    "state": "United States/USD/English; cart0 before and after",
+    "observed": "No visible cookie banner, footer preferences button, or cookie/consent/preferences/opt-out control on these two routes. Privacy policy text directs cookie control to browser settings but exposes no ordinary storefront revocation control.",
+    "status": "ORDINARY_RESTORATION_CONTROL_NOT_FOUND_IN_CURRENT_ROUTE_SAMPLE",
+    "limits": "No grant/decline/country/cart/cookie/pixel/theme mutation. No cookie deletion or script consent workaround. Other routes are untested; numeric serving theme ID and current SDK flags not independently read in this check. Existing V7 contains the reviewed reopening-control repair; publication is relevant only if that exact control remains the required restoration path.",
+    "cleanup": "Own tab11 closed; original native helper session remains separate historical uncertainty."
+  }
+}

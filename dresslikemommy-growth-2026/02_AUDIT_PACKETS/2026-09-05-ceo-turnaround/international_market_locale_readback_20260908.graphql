@@ -1,0 +1,36 @@
+query PublishedInternationalLocales { shopLocales(published: true) { locale name primary published } }
+
+query CurrentInternationalMarkets($after: String) {
+  markets(first: 50, after: $after) {
+    nodes {
+      id name status
+      currencySettings { baseCurrency { currencyCode enabled } localCurrencies }
+      conditions {
+        regionsCondition {
+          regions(first: 50) {
+            nodes { __typename name ... on MarketRegionCountry { code currency { currencyCode enabled } } }
+            pageInfo { hasNextPage endCursor }
+          }
+        }
+      }
+      webPresences(first: 50) {
+        nodes { id defaultLocale { locale } alternateLocales { locale } rootUrls { locale url } }
+        pageInfo { hasNextPage endCursor }
+      }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}
+
+query CurrentInternationalWebPresences($after: String) {
+  webPresences(first: 50, after: $after) {
+    nodes {
+      id
+      defaultLocale { locale }
+      alternateLocales { locale }
+      rootUrls { locale url }
+      markets(first: 50) { nodes { id name status } pageInfo { hasNextPage endCursor } }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}

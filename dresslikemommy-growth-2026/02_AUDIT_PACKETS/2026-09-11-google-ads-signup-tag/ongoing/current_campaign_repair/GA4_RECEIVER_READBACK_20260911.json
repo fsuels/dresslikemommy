@@ -1,0 +1,116 @@
+{
+  "schema": "dlm.ga4_existing_receiver_readback.v1",
+  "recorded_at_utc": "2026-09-11T21:40:00.961352+00:00",
+  "status": "ACCESS_VERIFIED_ITEM_REPORTS_READ_PURCHASE_ACCEPTANCE_OPEN",
+  "request_scope": "Parent root01a08223 requested only the existing retained receiver check, read-only, without consent decisions or synthetic purchases; report already-known Search Console owner/access evidence.",
+  "identity": {
+    "analytics_account_id": "88409806",
+    "property_id": "330266838",
+    "property_label": "dresslikemommy.com - GA4",
+    "measurement_id_retained": "G-N4EQNK0MMB",
+    "identity_basis": "Direct target URL and rendered property/account labels and matching property IDs in UI report/admin links.",
+    "property_timezone": "NOT_REREAD",
+    "property_currency": "NOT_REREAD; report displays dollar amounts"
+  },
+  "access": {
+    "surface": "Task-owned IAB browser1/tab9",
+    "normal_entry_url": "https://analytics.google.com/analytics/web/#/a88409806p330266838/",
+    "report_access": "VERIFIED",
+    "login_prompt": false,
+    "consent_decision": false,
+    "account_switch": false,
+    "native_Chrome_used": false,
+    "separate_Google_Ads_Save_gate": "UNRESOLVED; Analytics read access does not prove Ads identity verification"
+  },
+  "home_initial": {
+    "window_label": "Last7days",
+    "exact_dates": "NOT_REREAD_ON_HOME_CARD",
+    "purchases_displayed": 1,
+    "post_migration_purchase_inferred": false
+  },
+  "existing_ecommerce_report_baseline": {
+    "date_from": "2026-08-14",
+    "date_to": "2026-09-10",
+    "date_label": "Last28days",
+    "items_viewed": 2191,
+    "items_added_to_cart": 236,
+    "items_purchased": 18,
+    "item_revenue_display": "$464.18",
+    "purpose": "Initial existing-report state only, not current campaign attribution or migration acceptance."
+  },
+  "bounded_current_report": {
+    "date_from": "2026-09-10",
+    "date_to": "2026-09-11",
+    "date_label": "Custom Sep10–Sep11,2026",
+    "today_is_partial": true,
+    "audience": "All Users",
+    "additional_filter": "None added",
+    "ecommerce_purchases_report": {
+      "heading": "Ecommerce purchases: Item name",
+      "items_viewed": 97,
+      "items_added_to_cart": 8,
+      "items_purchased": 0,
+      "item_revenue_display": "$0.00",
+      "quality_indicator": "This report uses100%of available data"
+    },
+    "transactions_report": {
+      "heading": "Transactions: Transaction ID",
+      "ecommerce_purchases": 0,
+      "purchase_revenue_display": "$0.00",
+      "rows": "No data available",
+      "quality_indicator": "This report uses100%of available data"
+    }
+  },
+  "interpretation": [
+    "Retained property report access is now verified on this permitted background surface.",
+    "Dated item views and added-to-cart quantities are present in GA4 reporting. These are item-level metrics, not necessarily counts of users or event calls.",
+    "The same date window reports zero ecommerce purchases in Transactions as well as zero items purchased. No transaction identity was returned to join.",
+    "This resolves access and provides report-side nonpurchase ecommerce evidence. It does not establish genuine purchase accuracy, consent correctness, same-action deduplication, paid attribution, or the new Ads conversion action7760272273.",
+    "A100%available-data indicator is not proof of zero processing delay or complete capture. Intraday processing, timezone/currency, customer consent and Shopify transaction parity remain unverified; zero rows are not a diagnosed sender failure."
+  ],
+  "search_console_known_evidence": {
+    "existing_scope": "TA-05; parent current Analytics/Search Console queue and completed historical root diagnosis. No new dedicated owner or ownership transfer created.",
+    "property": "https://www.dresslikemommy.com/",
+    "current_native_GSC_access": "NOT_CHECKED",
+    "current_GA4_navigation": "Queries and Google organic search traffic entries are visible under Search Console; navigation availability alone does not prove native GSC access or report freshness.",
+    "historical_evidence": "Twelve exact server-error examples and June crawl dates were previously diagnosed from an August27-dated report; September6 notices lacked URLs/counts/crawl dates. Public429stop remains.",
+    "sources": [
+      "ops/marketing/action_queue.md TA-05 and September8 Analytics/Search Console queue",
+      "ops/AGENT_COORDINATION.md Search Console exact server-error recovery claim",
+      "ops/marketing/current_marketing_state.md September8 Analytics and Search Console scope"
+    ]
+  },
+  "writes_and_privacy": {
+    "tracking_or_property_writes": 0,
+    "consent_writes": 0,
+    "synthetic_events": 0,
+    "purchases_or_payments": 0,
+    "report_explorations_created": 0,
+    "exports": 0,
+    "PII_or_transaction_ids_requested": false,
+    "public_storefront_requests": 0,
+    "native_GSC_URL_tests_or_validation": 0,
+    "shared_canonical_writes": 0,
+    "UI_actions": "Existing report navigation and date-filter Apply only; no report customization/save/share/import."
+  },
+  "prior_source": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/GA4_EXPERT_ACCEPTANCE_20260910.md",
+  "next_receiver_step": "Use a genuine Shopify purchase and a matched mature reporting window with verified timezone/currency to reconcile transaction identity/value/items and actual receiver behavior. Do not create or replay a production purchase.",
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-11T21:40:00.961352+00:00",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "Matched genuine transaction and receiver/value/currency/items/consent evidence.",
+    "if_evidence_supports_recommendation": "Continue exact read-only acceptance and reconcile with root01a086fc/parent; no automatic paid release.",
+    "if_evidence_opposes_recommendation": "Retain purchase and paid gates and diagnose only the demonstrated discrepancy."
+  },
+  "verification": {
+    "rendered_report_identity": "PASS",
+    "exact_date_window_on_both_reports": "PASS",
+    "ecommerce_item_and_transaction_totals_read_separately": "PASS",
+    "source_capture": "Native DOM-backed report snapshots read in this task; no hidden app state or private APIs.",
+    "independent_full_purchase_acceptance": "NOT_RUN_NOT_CLAIMED"
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "action_id": "TA07-DAILY-20260914-1841",
+  "reviewer": "/root/merchant_translation_review",
+  "reviewed_at_utc": "2026-09-14T19:02:56.526211+00:00",
+  "independence": {
+    "did_not_build_or_execute_production_change": true,
+    "fixture_execution_only": true,
+    "external_calls": 0,
+    "external_writes": 0,
+    "artifact_owner": "This file only"
+  },
+  "status": "PASS_WITH_LIMITS",
+  "scope": "Multilingual collector, explicit translation exclusion, source/completeness/lifecycle integrity, checkpoint integration and existing-task daily heartbeat. No live release approval.",
+  "rounds": [
+    {
+      "round": 1,
+      "verdict": "FAIL",
+      "bindings": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js",
+          "sha256": "c120d3f0bde09b86b6f09aababc446bf99d255328ecfc365cbad8c75cb1acf88"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js",
+          "sha256": "98b68809fab2e437bd17f9f0c927e6ca80a19bbb2a0834eb244b2f6db710d7ad"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/feed.test.mjs",
+          "sha256": "e5ece49a38238d5503d9edd727843fa5b1c3958495dcbdbd8d420cc689125cef"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/checkpoint.js",
+          "sha256": "9f1c52ec14d1dd899bf79855a9210d1a2269cf946320864901959b21cc7b5d89"
+        },
+        {
+          "path": "/Users/fsuels/.codex/automations/google-merchant-all-market-free-listings/automation.toml",
+          "sha256": "985408ea32adf7334efb6540707d52ccccd12ba268c1389e189332050d4dd546"
+        }
+      ],
+      "findings": [
+        {
+          "id": "R1",
+          "priority": "P1",
+          "file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js",
+          "lines": [
+            91,
+            95,
+            128
+          ],
+          "title": "Do not timestamp replayed translation data as newly observed",
+          "evidence": "checkpoint.js:109-128 replays journal key/data and advances every clock after the first to current time. The collector stamps market/global components from those current clock calls, losing the original observation age.",
+          "reproduction": {
+            "actual_read_at": "2026-09-11T14:00:00.000Z",
+            "replay_at": "2026-09-11T15:30:00.000Z",
+            "cached_queries": 6,
+            "reported_market_started_at": "2026-09-11T15:30:00.000Z",
+            "reported_global_started_at": "2026-09-11T15:30:00.000Z",
+            "maxSnapshotAgeHours": 1,
+            "build_accepted": true,
+            "actual_age_minutes": 90,
+            "external_requests": 0
+          },
+          "impact": "Component source-age validation can accept stale cached translations in a resumed refresh. Existing default two-hour job limit bounds but does not correct the timestamp misstatement.",
+          "requested_correction": "Persist and reuse actual read observation timestamps or conservatively age components from the original job start. Add a resumed-foreign stale-cache regression. No production release until corrected and independently rechecked."
+        }
+      ],
+      "checks": [
+        {
+          "name": "Before/current English TSV byte parity",
+          "status": "PASS",
+          "fixture_rows": 2,
+          "sha256": "09e395189afe04fddc9786b32d85bd065808a1f7087a5134e89363b1d55027f9",
+          "execution": "Independent in-memory Node assertion; no file or network mutation"
+        },
+        {
+          "name": "Checkpoint component age reproduction",
+          "status": "FAIL_REPRODUCED",
+          "execution": "Independent in-memory replay of six fixture source responses; exact query/variable sequence matched"
+        },
+        {
+          "name": "Empty exact-market title overrides fresh global title",
+          "status": "PASS",
+          "observed": "Explicit missing_or_stale_translation exclusion; no fallback to hide override."
+        },
+        {
+          "name": "Stale exact-market handle overrides fresh global handle",
+          "status": "PASS",
+          "observed": "Explicit stale_handle_translation exclusion; no fallback to hide override."
+        }
+      ],
+      "code_inspection_passes": [
+        "Global values are merged before exact-market overrides, retaining empty values and outdated flags.",
+        "Translation exclusions are explicit and default to reject_feed; buyable variant currency, image, identity and landing guards still run.",
+        "Incomplete source pagination, duplicate identifiers, manifest changes and catalog/currency changes remain fail-closed.",
+        "English data-row generation is unchanged; excluded products enter complete-replacement removal accounting."
+      ],
+      "heartbeat_verdict": "PASS_WITH_LIMITS",
+      "heartbeat_evidence": {
+        "kind": "heartbeat",
+        "status": "ACTIVE",
+        "target_thread_id": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+        "account": "513542500",
+        "shopify_shop": "15571635",
+        "recurrence": "Daily morning and afternoon",
+        "findings": "Retains sole Merchant owner, existing parent coordination, actual market/language source truth, independent review/readback for material releases, no spend or security bypass, and meaningful-change notifications. Does not guarantee ratings, approval, exposure, traffic, orders or profit."
+      },
+      "limits": [
+        "Existing 46/46 full-suite result was reported by parent; this reviewer independently ran only the two checks listed above.",
+        "No live configs, source submissions, scheduled execution, product exposure, Store Quality outcomes or production deployment were verified."
+      ]
+    },
+    {
+      "round": 2,
+      "verdict": "PASS_WITH_LIMITS",
+      "bindings": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js",
+          "sha256": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js",
+          "sha256": "b5f69886a32a92a47ecff7c0c06a0eca05cb640ad3a08be7fb5f4f8592c5c6f0"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/checkpoint.js",
+          "sha256": "a4c5101f8627e2cde1362d92ee507b9c0b7ebd2a6f02d4f33f14471b23a82839"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/feed.test.mjs",
+          "sha256": "e1a1a58895beef4acf76abb37793f3ae7e38d0447053d2f9f137b38ce8b270c5"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/checkpoint.test.mjs",
+          "sha256": "d442fa322fc97faa8312b8594c48b1798a07a586e92dd1f80fad543cba6e633f"
+        },
+        {
+          "path": "/Users/fsuels/.codex/automations/google-merchant-all-market-free-listings/automation.toml",
+          "sha256": "985408ea32adf7334efb6540707d52ccccd12ba268c1389e189332050d4dd546"
+        }
+      ],
+      "resolved_findings": [
+        {
+          "id": "R1",
+          "status": "FIXED_AND_INDEPENDENTLY_VERIFIED",
+          "files": [
+            {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js",
+              "lines": [
+                91,
+                100,
+                127,
+                145
+              ]
+            },
+            {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/checkpoint.js",
+              "lines": [
+                108,
+                132
+              ]
+            },
+            {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js",
+              "lines": [
+                152,
+                161
+              ]
+            }
+          ],
+          "correction": "Each actual source response receives observedAt in the journal. Replay reuses it; legacy journal entries conservatively use original job start. Translation views retain their earliest/latest actual page-response observations, validated against the existing source TTL."
+        }
+      ],
+      "findings": [],
+      "checks": [
+        {
+          "name": "Independent corrected English TSV byte parity against before generator",
+          "status": "PASS",
+          "rows": 2,
+          "sha256": "09e395189afe04fddc9786b32d85bd065808a1f7087a5134e89363b1d55027f9"
+        },
+        {
+          "name": "Independent replay with current timestamped journal,30-minute age/one-hour TTL",
+          "status": "PASS",
+          "build_accepted": true,
+          "cached_queries": 6,
+          "new_source_requests": 0,
+          "first_observed_at": "2026-09-11T14:00:00.000Z"
+        },
+        {
+          "name": "Independent replay with current timestamped journal,90-minute age/one-hour TTL",
+          "status": "PASS",
+          "build_rejected": "stale_or_incomplete_translation_context",
+          "cached_queries": 6,
+          "new_source_requests": 0,
+          "first_observed_at": "2026-09-11T14:00:00.000Z"
+        },
+        {
+          "name": "Independent replay with legacy journal,90-minute age/one-hour TTL",
+          "status": "PASS",
+          "build_rejected": "stale_or_incomplete_translation_context",
+          "cached_queries": 6,
+          "new_source_requests": 0,
+          "first_observed_at": "2026-09-11T14:00:00.000Z"
+        },
+        {
+          "name": "Existing resumable-foreign regression executed independently",
+          "status": "PASS",
+          "command": "node --test --test-name-pattern=\"resumed foreign feeds preserve\" test/checkpoint.test.mjs",
+          "exit_code": 0,
+          "tests": 1,
+          "passed": 1,
+          "failed": 0
+        },
+        {
+          "name": "Reviewed source and heartbeat hashes still match frozen bindings",
+          "status": "PASS"
+        }
+      ],
+      "assessment": "The identified freshness defect is corrected. Global inheritance, market override precedence, opt-in exclusions, buyable-row validation, landing gates, complete source reconciliation and English feed bytes retain their intended semantics. Checkpoint replay remains bounded and source-age aware. No further actionable defect found in the bounded review.",
+      "limits": [
+        "PASS_WITH_LIMITS is local implementation review, not release authorization or proof of deployment.",
+        "Old foreign snapshots with the superseded translationContext clock schema are intentionally rejected; generate a fresh qualified snapshot. Pre-change foreign journals with an incompatible query sequence may fail closed and require a new job.",
+        "Fresh source collection, translations semantic quality, language/variant landing correctness, all-market Merchant receipt/approval/exposure and Store Quality remain separate release/operational checks.",
+        "The full47/47 suite was reported by the parent at2026-09-14T19:00:32Z; this reviewer independently ran only the bounded checks listed here.",
+        "Heartbeat configuration is verified locally; execution still requires the local runtime. No schedule change or future execution was performed."
+      ]
+    }
+  ],
+  "next_action": "Root may integrate the reviewed local correction and qualify the next fresh Spanish cohort; preserve the existing landing gate and obtain release readback before claiming submitted or showing products."
+}

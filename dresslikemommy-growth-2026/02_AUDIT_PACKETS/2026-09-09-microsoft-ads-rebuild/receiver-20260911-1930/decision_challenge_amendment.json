@@ -1,0 +1,32 @@
+{
+  "amendment": "Pre-execution decision challenge; four-field delta unchanged",
+  "decision_id": "DLM-DEC-2026-09-11-MICROSOFT-SINGLE-PURCHASE-GOAL",
+  "options": [
+    {
+      "name": "Correct existing event and demote overlapping URL definitions",
+      "selected": true
+    },
+    {
+      "name": "Status quo three purchase-primary definitions with eventUnique andUSD1fallback",
+      "selected": false,
+      "reason": "Retains inconsistent sales semantics and eligibility overlap"
+    },
+    {
+      "name": "Create a separate clean purchase event goal",
+      "selected": false,
+      "reason": "Adds another goal and migration surface while the existing exact purchase event goal is editable"
+    }
+  ],
+  "invalidating_assumption": "Current purchase event belongs to actual Shopify checkout_completed and its value/currency are usable; receiver names alone do not finish this proof.",
+  "decision_changing_evidence": "Wrong sender/criteria, native field drift, invalid currency/value, unexpected overlap, after-save mismatch or missing current authority stops dependent launch and triggers narrow correction.",
+  "independent_verifier": "/root/international_campaign_build",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "source_live_evidence_as_of": "2026-09-11",
+  "live_state_mode": "LIVE_VERIFIED_EXACT_MICROSOFT_SURFACE; global paid controls remain STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "Current owner bounded nonspend tracking repair; numeric launch requires exact authorization",
+  "approved_external_scope": "Four specified fields on three existing purchase goals only",
+  "decision_depends_on_uncertain_state": true,
+  "material_decision": true,
+  "if_evidence_supports_recommendation": "Persist four fields, verify, continue functional receiver and qualified paused preparation",
+  "if_evidence_opposes_recommendation": "Do not promote measurement readiness or launch; preserve campaignsPaused and exact rollback evidence"
+}

@@ -1,0 +1,95 @@
+{
+  "status": "LIVE_UI_FACTS__PURCHASE_GAP_CAUSE_UNKNOWN",
+  "observed_utc_window": {
+    "start": "2026-09-06T11:11:59Z",
+    "end": "2026-09-06T11:40:19.332779+00:00"
+  },
+  "source": "Existing Chrome Test Shopify Customer events, root-only normal UI read. Exact per-call timestamps not retained.",
+  "store": "dresslikemommy-com",
+  "browser_tab": "475224135",
+  "ga4_custom_pixel": {
+    "id": "111181921",
+    "name": "DLM GA4 Measurement Protocol",
+    "connected_evidence": "Disconnect DLM GA4 Measurement Protocol button present",
+    "permission_required": true,
+    "required_purposes": {
+      "analytics": true,
+      "marketing": false,
+      "preferences": false
+    },
+    "data_sale_selection": "Data collected does not qualify as data sale",
+    "measurement_id": "G-N4EQNK0MMB",
+    "measurement_id_to_property_mapping": "LIVE_VERIFIED: property330266838/account88409806 -> web stream4030905738 -> G-N4EQNK0MMB",
+    "api_secret": "PRESENT_VALUE_NOT_RECORDED",
+    "diagnostic_flags": {
+      "DLM_FORCE_DEBUG_VIEW": false,
+      "DLM_USE_MP_VALIDATION": false
+    },
+    "verified_visible_code": {
+      "checkout_completed": "Checks analyticsAllowed, uses order.id with checkout.token fallback, sends purchase with checkout totalPrice, tax, shipping and currency.",
+      "analyticsAllowed": "Rejects missing privacy cache; analyticsProcessingAllowed takes precedence; marketingAllowed used only if analytics flag unknown; otherwise false.",
+      "client_cookie_parser": "const candidate = parts.slice(2, parts.length - 1).join(\".\");"
+    },
+    "scope_limit": "Selected visible source fragments, not a complete installed-code fingerprint or customer event receipt."
+  },
+  "other_pixel_inventory": [
+    {
+      "name": "DLM Google Ads native conv",
+      "id": "111214689",
+      "type": "Web",
+      "connection": "Disconnect DLM Google Ads native conv button present",
+      "permission_required": true,
+      "required_purposes": {
+        "marketing": true,
+        "analytics": true,
+        "preferences": false
+      },
+      "visible_consent_branch": [
+        "if (marketingFlag === true) return allowed true",
+        "if (marketingFlag === false && analyticsFlag !== true) return allowed false",
+        "if (analyticsFlag === true) return allowed true"
+      ],
+      "limit": "The code branch allows analytics true after marketing false; Shopify requires both purposes at pixel level. No receipt proves an event fired against a customer permission decision; do not weaken these UI settings."
+    },
+    {
+      "name": "Google & YouTube",
+      "app_id": "1780363",
+      "web_pixel_id": "216367201",
+      "type": "Server Web",
+      "data_access": "Optimized selected; Always on not selected",
+      "connection": "App pixel detail present; no explicit connection status read"
+    }
+  ],
+  "privacy_at_missing_purchases": "UNKNOWN",
+  "root_actions": [
+    "Read Customer events list",
+    "Open existing GA4 pixel",
+    "Use code editor Find only; no code edits",
+    "Read visible purchase/consent/client parser fragments",
+    "Open existing native Ads pixel and read required permissions/visible consent function",
+    "Open Google & YouTube app pixel details; read Optimized selection",
+    "Read existing GA4 web stream identity and active-collection status",
+    "Mark Shopify/Analytics tabs handed off"
+  ],
+  "limits": [
+    "No public pixel Test link, test purchase or event send. Existing429 challenge gate respected.",
+    "No connect/disconnect, code Save, consent-setting, account or measurement mutation.",
+    "Current source fragments do not prove the three missing purchases were caused by this code.",
+    "Sensitive embedded values remain transient only; no raw AX dump or real API-secret value is persisted."
+  ],
+  "ga4_stream": {
+    "account_id": "88409806",
+    "property_id": "330266838",
+    "stream_id": "4030905738",
+    "measurement_id": "G-N4EQNK0MMB",
+    "stream_name": "dresslikemommy.com - GA4",
+    "stream_url": "https://www.dresslikemommy.com",
+    "ui_collection_status": "Data collection is active in the past48 hours",
+    "limit": "Not purchase completeness, sender identity or consent proof."
+  },
+  "browser_handoff": {
+    "shopify_tab": "475224135, Google & YouTube pixel details; no unsaved code edits",
+    "analytics_tab": "475224120, web stream4030905738 details",
+    "owner_italian_order_tab": "475224261 preserved"
+  }
+}

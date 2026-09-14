@@ -1,0 +1,1151 @@
+{
+  "schema": "dlm.ca_gb_independent_candidate_review.v1",
+  "status": "PASS_LOCAL_CA_GB__LIVE_RELEASE_NOT_VERIFIED",
+  "full_review_complete": true,
+  "reviewer": "/root/together_heart_source",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE_OWNER_CANDIDATES",
+  "ownership": "Only this ca-gb.independent_review.json receipt; Merchant01a08706 retains builder/config/feed/source/publisher and canonical ownership.",
+  "preflight": {
+    "status": "PASS",
+    "recorded_at_utc": "2026-09-11T19:19:29.825420+00:00",
+    "live_read_started_at_utc": "2026-09-11 19:17:36 UTC",
+    "live_read_completed_at_utc": "2026-09-11 19:17:37 UTC",
+    "checks_passed": 10,
+    "checks_total": 10,
+    "checks": [
+      {
+        "check": "Frozen exact two-market config",
+        "status": "PASS",
+        "detail": "Config is the owner-frozen CA/GB copy; no builder/config changes."
+      },
+      {
+        "check": "ca-en exact active market and country membership",
+        "status": "PASS",
+        "detail": "Country is explicitly included in the configured current market; complete region pagination."
+      },
+      {
+        "check": "ca-en exact active catalog and publication",
+        "status": "PASS",
+        "detail": "Current catalog/publication pair exactly matches the frozen builder expectation; complete catalog pagination."
+      },
+      {
+        "check": "ca-en local contextual currency configuration",
+        "status": "PASS",
+        "detail": "Base currency may differ from visitor contextual currency; local currencies are enabled."
+      },
+      {
+        "check": "gb-en exact active market and country membership",
+        "status": "PASS",
+        "detail": "Country is explicitly included in the configured current market; complete region pagination."
+      },
+      {
+        "check": "gb-en exact active catalog and publication",
+        "status": "PASS",
+        "detail": "Current catalog/publication pair exactly matches the frozen builder expectation; complete catalog pagination."
+      },
+      {
+        "check": "gb-en local contextual currency configuration",
+        "status": "PASS",
+        "detail": "Base currency may differ from visitor contextual currency; local currencies are enabled."
+      },
+      {
+        "check": "Five exact variants and ten current contextual currency observations",
+        "status": "PASS",
+        "detail": "Independent live query binds exact IDs/parent and returns current CA and GB contextual prices; no guessed FX or USD copying."
+      },
+      {
+        "check": "Observed corrected-price sample is internally consistent",
+        "status": "PASS",
+        "detail": "Five variants each return33.0CAD and18.0GBP; these are observed values, not yet final-file comparisons."
+      },
+      {
+        "check": "Prior AU receipt and frozen configuration preserved",
+        "status": "PASS",
+        "detail": "Existing AU completed review and CA/GB frozen config are byte-identical during this preflight."
+      }
+    ],
+    "frozen_config": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/ca-gb.config.json",
+      "sha256": "e2a65f4ea558d65338bbcca1e0e24a52ffa42ede34ad4630e97e746ed4d15e2a",
+      "shop_id": "gid://shopify/Shop/15571635",
+      "source_locale": "en",
+      "online_publication_id_config_only": "gid://shopify/Publication/55169925"
+    },
+    "owner_checkpoint_observed": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/ca-gb.execution_checkpoint.json",
+      "sha256_at_read": "17de86a5c431735a5b4abbc79cbb7874d2552176ebdeb75a85ca627a91a616b2",
+      "dispatch_key": "TA-07:CA_GB_CONTEXTUAL_FEED_BUILD:2026-09-11:6ce4404257af85366",
+      "status_at_read": "CA_BUILD_COMPLETE_GB_SOURCE_READING",
+      "limit": "Owner progress file may advance; its source completion or candidate validation is not inferred here."
+    },
+    "market_findings": {
+      "ca-en": {
+        "market_id": "gid://shopify/Market/544866401",
+        "market_name": "International",
+        "status": "ACTIVE",
+        "base_currency": "USD",
+        "local_currencies": true,
+        "country": "CA",
+        "country_region": {
+          "id": "gid://shopify/MarketRegionCountry/46324318305",
+          "name": "Canada"
+        },
+        "region_count": 21,
+        "region_pagination_complete": true,
+        "catalogs": [
+          {
+            "id": "gid://shopify/MarketCatalog/910622817",
+            "status": "ACTIVE",
+            "publication": {
+              "id": "gid://shopify/Publication/77105823841"
+            }
+          }
+        ],
+        "catalog_pagination_complete": true,
+        "configured_currency": "CAD"
+      },
+      "gb-en": {
+        "market_id": "gid://shopify/Market/544800865",
+        "market_name": "Eurozone",
+        "status": "ACTIVE",
+        "base_currency": "EUR",
+        "local_currencies": true,
+        "country": "GB",
+        "country_region": {
+          "id": "gid://shopify/MarketRegionCountry/46325497953",
+          "name": "United Kingdom"
+        },
+        "region_count": 43,
+        "region_pagination_complete": true,
+        "catalogs": [
+          {
+            "id": "gid://shopify/MarketCatalog/6880723041",
+            "status": "ACTIVE",
+            "publication": {
+              "id": "gid://shopify/Publication/77105660001"
+            }
+          }
+        ],
+        "catalog_pagination_complete": true,
+        "configured_currency": "GBP"
+      }
+    },
+    "fresh_contextual_prices": [
+      {
+        "id": "gid://shopify/ProductVariant/41883237220449",
+        "product": {
+          "id": "gid://shopify/Product/7230336729185"
+        },
+        "ca": {
+          "price": {
+            "amount": "33.0",
+            "currencyCode": "CAD"
+          }
+        },
+        "gb": {
+          "price": {
+            "amount": "18.0",
+            "currencyCode": "GBP"
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237285985",
+        "product": {
+          "id": "gid://shopify/Product/7230336729185"
+        },
+        "ca": {
+          "price": {
+            "amount": "33.0",
+            "currencyCode": "CAD"
+          }
+        },
+        "gb": {
+          "price": {
+            "amount": "18.0",
+            "currencyCode": "GBP"
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237318753",
+        "product": {
+          "id": "gid://shopify/Product/7230336729185"
+        },
+        "ca": {
+          "price": {
+            "amount": "33.0",
+            "currencyCode": "CAD"
+          }
+        },
+        "gb": {
+          "price": {
+            "amount": "18.0",
+            "currencyCode": "GBP"
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238465633",
+        "product": {
+          "id": "gid://shopify/Product/7230336729185"
+        },
+        "ca": {
+          "price": {
+            "amount": "33.0",
+            "currencyCode": "CAD"
+          }
+        },
+        "gb": {
+          "price": {
+            "amount": "18.0",
+            "currencyCode": "GBP"
+          }
+        }
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238498401",
+        "product": {
+          "id": "gid://shopify/Product/7230336729185"
+        },
+        "ca": {
+          "price": {
+            "amount": "33.0",
+            "currencyCode": "CAD"
+          }
+        },
+        "gb": {
+          "price": {
+            "amount": "18.0",
+            "currencyCode": "GBP"
+          }
+        }
+      }
+    ],
+    "conflicts": [],
+    "interpretation": "CA belongs to active International and GB to active Eurozone. Their USD/EUR base currencies and names are not conflicts: country membership, localCurrencies=true and actual CAD/GBP contextual prices resolve the intended visitor contexts.",
+    "workflow": {
+      "schema_discovery": "QueryRoot and all selected market, region, catalog, publication, pricing, money and pagination types inspected",
+      "connected_validation": "VALID",
+      "bundled_validation_helper": "VALID",
+      "documentation_search_helper": "Attempted; fetch failed. Exact connected schema and both validators were used before execution.",
+      "read_only_graphql_query_count": 1,
+      "native_or_public_browser_calls": 0,
+      "external_mutations": 0
+    },
+    "query": "query IndependentCaGbContextPreflight($caMarket: ID!, $gbMarket: ID!, $variantIds: [ID!]!) {\n  caMarket: market(id: $caMarket) {\n    id name status\n    currencySettings { baseCurrency { currencyCode } localCurrencies }\n    catalogs(first: 20) { nodes { id status publication { id } } pageInfo { hasNextPage endCursor } }\n    conditions { regionsCondition { regions(first: 100) { nodes { id name } pageInfo { hasNextPage endCursor } } } }\n  }\n  gbMarket: market(id: $gbMarket) {\n    id name status\n    currencySettings { baseCurrency { currencyCode } localCurrencies }\n    catalogs(first: 20) { nodes { id status publication { id } } pageInfo { hasNextPage endCursor } }\n    conditions { regionsCondition { regions(first: 100) { nodes { id name } pageInfo { hasNextPage endCursor } } } }\n  }\n  variants: nodes(ids: $variantIds) {\n    ... on ProductVariant {\n      id product { id }\n      ca: contextualPricing(context: { country: CA }) { price { amount currencyCode } }\n      gb: contextualPricing(context: { country: GB }) { price { amount currencyCode } }\n    }\n  }\n}",
+    "query_variables": {
+      "caMarket": "gid://shopify/Market/544866401",
+      "gbMarket": "gid://shopify/Market/544800865",
+      "variantIds": [
+        "gid://shopify/ProductVariant/41883237220449",
+        "gid://shopify/ProductVariant/41883237285985",
+        "gid://shopify/ProductVariant/41883237318753",
+        "gid://shopify/ProductVariant/41883238465633",
+        "gid://shopify/ProductVariant/41883238498401"
+      ]
+    },
+    "protected_au_receipt_sha256": "cb6c1243578c6aafdf65c07084d7fe7ac9609218fd82bc00124682309b0131b9"
+  },
+  "candidate_validation": {
+    "status": "PASS_LOCAL_CA_GB",
+    "markets": {
+      "ca-en": {
+        "status": "PASS",
+        "reviewed_at_utc": "2026-09-11T19:27:11.102376+00:00",
+        "source_started_at_utc": "2026-09-11T19:15:02.591Z",
+        "source_completed_at_utc": "2026-09-11T19:17:27.347Z",
+        "independent_market_preflight_at_utc": "2026-09-11 19:17:37 UTC",
+        "checks_passed": 23,
+        "checks_total": 23,
+        "checks": [
+          {
+            "check": "Original text-comparison difference fully explained",
+            "status": "PASS",
+            "detail": "Any difference from the initial comparator is exactly one terminal ASCII space after the character cap; every other character is preserved."
+          },
+          {
+            "check": "Exact owner-bound TSV and completed source",
+            "status": "PASS",
+            "detail": "Final candidate identity and source completion match the readiness checkpoint."
+          },
+          {
+            "check": "Strict4923-row18-column TSV parse",
+            "status": "PASS",
+            "detail": "Real CSV parser retains quoted newlines; complete ordered schema."
+          },
+          {
+            "check": "Unique exact IDs and source order",
+            "status": "PASS",
+            "detail": "All emitted IDs follow source parent/variant order exactly; no duplicate, added or missing available offer."
+          },
+          {
+            "check": "Exact240 ACTIVE source parents and closing state",
+            "status": "PASS",
+            "detail": "Closing manifest exactly matches source product identity/status/version/count/publication fields."
+          },
+          {
+            "check": "Exact4945 unique source variants",
+            "status": "PASS",
+            "detail": "Variant identity and exact per-parent counts reconcile."
+          },
+          {
+            "check": "Available4923 included and22 unavailable omitted",
+            "status": "PASS",
+            "detail": "Source buyability/publication determines this candidate set; no owned physical stock or Google eligibility inference."
+          },
+          {
+            "check": "Complete source connection pagination",
+            "status": "PASS",
+            "detail": "Every saved connection closes and product/variant/manifest page totals reconcile."
+          },
+          {
+            "check": "Saved shop and country market context matches fresh preflight",
+            "status": "PASS",
+            "detail": "Saved source context binds the market/catalog/publication IDs independently read at19:17:37UTC."
+          },
+          {
+            "check": "All contextual prices exact in native currency",
+            "status": "PASS",
+            "detail": "All4923 prices match saved Decimal-formatted contextual pricing in CAD; no guessed FX or USD copying."
+          },
+          {
+            "check": "Exact240 parent groups",
+            "status": "PASS",
+            "detail": "Whole product/variant suffixes match exact source identities."
+          },
+          {
+            "check": "Exact country currency and numeric variant links",
+            "status": "PASS",
+            "detail": "Three parsed query pairs exactly match country, currency and full variant ID; path equals source handle."
+          },
+          {
+            "check": "Every title and description maps to source normalization",
+            "status": "PASS",
+            "detail": "Whitespace normalization,150/5000-character caps and trailing ASCII-space trim after clipping reproduce each source title/description exactly; no content rewriting."
+          },
+          {
+            "check": "Every image belongs to its source product or variant",
+            "status": "PASS",
+            "detail": "Exact image URL occurs in bound featured/variant media; no external image assumption."
+          },
+          {
+            "check": "All nonmarket offer fields preserve completed AU baseline",
+            "status": "PASS",
+            "detail": "All14 nonmarket feed fields per row and all4945 non-contextual source variant records match the unchanged AU source; parent fields match apart from updatedAt."
+          },
+          {
+            "check": "Existing paid exclusions and availability retained",
+            "status": "PASS",
+            "detail": "All4923 rows exclude Shopping_ads; availability is a source declaration."
+          },
+          {
+            "check": "Manifest exact IDs SHA MD5 bytes counts and source timestamp",
+            "status": "PASS",
+            "detail": "Local manifest matches actual file and saved source; no remote object or Google receipt inference."
+          },
+          {
+            "check": "Diagnostics exact counts omissions and no build errors",
+            "status": "PASS",
+            "detail": "The exact22 unavailable source IDs are the only omissions; existing warning gaps remain separate."
+          },
+          {
+            "check": "First-candidate lifecycle exact",
+            "status": "PASS",
+            "detail": "Local new candidate lifecycle only; no deployed feed lifecycle claimed."
+          },
+          {
+            "check": "Five corrected prices match retained independent preflight",
+            "status": "PASS",
+            "detail": "No repeated query: these file prices match the five independently observed country-context prices at19:17:37UTC."
+          },
+          {
+            "check": "Protected US and AU files unchanged",
+            "status": "PASS",
+            "detail": "All43 owner-frozen US/AU files retain exact hashes and byte counts, including the completed AU review."
+          },
+          {
+            "check": "Owner28-check receipt agrees with independently computed result",
+            "status": "PASS",
+            "detail": "Owner validation is supporting provenance; this reviewer recomputed the source/file checks."
+          },
+          {
+            "check": "Candidate and config remain unchanged during review",
+            "status": "PASS",
+            "detail": "All five final candidate artifacts and frozen config are stable during review."
+          }
+        ],
+        "input_manifest": {
+          "ca-en.tsv": {
+            "sha256": "2bd7ea6c66e36e557f66a0de1e6335aea5b589d146f87daa9c71ce549547d861",
+            "bytes": 17284594
+          },
+          "ca-en.snapshot.json": {
+            "sha256": "c925871d94876ebe93b9a3a3612f32eb35d36506d5d169c3faf03c97107fac4f",
+            "bytes": 6786947
+          },
+          "ca-en.manifest.json": {
+            "sha256": "32e483bc33953bb91b5a1569cb50963cb0b79dacab5dafd176d457cde3bc0b9f",
+            "bytes": 232105
+          },
+          "ca-en.diagnostics.json": {
+            "sha256": "81d1f841aade9f2be8e4052f90827b0964f0ab60e90cb22817e3ca2bce7c1e0c",
+            "bytes": 968258
+          },
+          "ca-en.local_validation.json": {
+            "sha256": "9e0675ff855a1a9b4ea5e2890ee4a6f26394134ba28ffbb8339a3a80b4625219",
+            "bytes": 3307
+          }
+        },
+        "counts": {
+          "active_parents": 240,
+          "source_variants": 4945,
+          "rows": 4923,
+          "unavailable_omitted": 22,
+          "columns": 18,
+          "parent_groups": 240,
+          "native_prices_verified_against_saved_source": 4923,
+          "protected_us_au_files": 43
+        },
+        "five_corrected_prices": [
+          {
+            "variant_id": "gid://shopify/ProductVariant/41883237220449",
+            "price": "33.00 CAD",
+            "preflight_amount": "33.0",
+            "preflight_currency": "CAD"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/41883237285985",
+            "price": "33.00 CAD",
+            "preflight_amount": "33.0",
+            "preflight_currency": "CAD"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/41883237318753",
+            "price": "33.00 CAD",
+            "preflight_amount": "33.0",
+            "preflight_currency": "CAD"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/41883238465633",
+            "price": "33.00 CAD",
+            "preflight_amount": "33.0",
+            "preflight_currency": "CAD"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/41883238498401",
+            "price": "33.00 CAD",
+            "preflight_amount": "33.0",
+            "preflight_currency": "CAD"
+          }
+        ],
+        "protected_file_failures": [],
+        "mismatch_counts": {
+          "prices": 0,
+          "links": 0,
+          "groups": 0,
+          "titles": 0,
+          "descriptions": 0,
+          "images": 0,
+          "nonmarket_feed_rows": 0,
+          "parent_source_nonmarket": 0,
+          "variant_source_nonmarket": 0
+        },
+        "limitations": [
+          "Local candidate only; no upload or Google processing/eligibility/approval/serving/traffic/sales/profit claim.",
+          "Full source evidence belongs to this saved export timestamp; independent live preflight remains19:17:37UTC and was not repeated.",
+          "No public landing, numeric preselection, country return policy or attribute-gap acceptance certification."
+        ],
+        "previous_review_attempts": [
+          {
+            "status": "FAIL",
+            "reviewed_at_utc": "2026-09-11T19:26:26.545952+00:00",
+            "source_started_at_utc": "2026-09-11T19:15:02.591Z",
+            "source_completed_at_utc": "2026-09-11T19:17:27.347Z",
+            "independent_market_preflight_at_utc": "2026-09-11 19:17:37 UTC",
+            "checks_passed": 22,
+            "checks_total": 23,
+            "checks": [
+              {
+                "check": "Original text-comparison difference fully explained",
+                "status": "FAIL",
+                "detail": "Any difference from the initial comparator is exactly one terminal ASCII space after the character cap; every other character is preserved."
+              },
+              {
+                "check": "Exact owner-bound TSV and completed source",
+                "status": "PASS",
+                "detail": "Final candidate identity and source completion match the readiness checkpoint."
+              },
+              {
+                "check": "Strict4923-row18-column TSV parse",
+                "status": "PASS",
+                "detail": "Real CSV parser retains quoted newlines; complete ordered schema."
+              },
+              {
+                "check": "Unique exact IDs and source order",
+                "status": "PASS",
+                "detail": "All emitted IDs follow source parent/variant order exactly; no duplicate, added or missing available offer."
+              },
+              {
+                "check": "Exact240 ACTIVE source parents and closing state",
+                "status": "PASS",
+                "detail": "Closing manifest exactly matches source product identity/status/version/count/publication fields."
+              },
+              {
+                "check": "Exact4945 unique source variants",
+                "status": "PASS",
+                "detail": "Variant identity and exact per-parent counts reconcile."
+              },
+              {
+                "check": "Available4923 included and22 unavailable omitted",
+                "status": "PASS",
+                "detail": "Source buyability/publication determines this candidate set; no owned physical stock or Google eligibility inference."
+              },
+              {
+                "check": "Complete source connection pagination",
+                "status": "PASS",
+                "detail": "Every saved connection closes and product/variant/manifest page totals reconcile."
+              },
+              {
+                "check": "Saved shop and country market context matches fresh preflight",
+                "status": "PASS",
+                "detail": "Saved source context binds the market/catalog/publication IDs independently read at19:17:37UTC."
+              },
+              {
+                "check": "All contextual prices exact in native currency",
+                "status": "PASS",
+                "detail": "All4923 prices match saved Decimal-formatted contextual pricing in CAD; no guessed FX or USD copying."
+              },
+              {
+                "check": "Exact240 parent groups",
+                "status": "PASS",
+                "detail": "Whole product/variant suffixes match exact source identities."
+              },
+              {
+                "check": "Exact country currency and numeric variant links",
+                "status": "PASS",
+                "detail": "Three parsed query pairs exactly match country, currency and full variant ID; path equals source handle."
+              },
+              {
+                "check": "Every title and description maps to source normalization",
+                "status": "PASS",
+                "detail": "Whitespace normalization,150/5000-character caps and trailing ASCII-space trim after clipping reproduce each source title/description exactly; no content rewriting."
+              },
+              {
+                "check": "Every image belongs to its source product or variant",
+                "status": "PASS",
+                "detail": "Exact image URL occurs in bound featured/variant media; no external image assumption."
+              },
+              {
+                "check": "All nonmarket offer fields preserve completed AU baseline",
+                "status": "PASS",
+                "detail": "All14 nonmarket feed fields per row and all4945 non-contextual source variant records match the unchanged AU source; parent fields match apart from updatedAt."
+              },
+              {
+                "check": "Existing paid exclusions and availability retained",
+                "status": "PASS",
+                "detail": "All4923 rows exclude Shopping_ads; availability is a source declaration."
+              },
+              {
+                "check": "Manifest exact IDs SHA MD5 bytes counts and source timestamp",
+                "status": "PASS",
+                "detail": "Local manifest matches actual file and saved source; no remote object or Google receipt inference."
+              },
+              {
+                "check": "Diagnostics exact counts omissions and no build errors",
+                "status": "PASS",
+                "detail": "The exact22 unavailable source IDs are the only omissions; existing warning gaps remain separate."
+              },
+              {
+                "check": "First-candidate lifecycle exact",
+                "status": "PASS",
+                "detail": "Local new candidate lifecycle only; no deployed feed lifecycle claimed."
+              },
+              {
+                "check": "Five corrected prices match retained independent preflight",
+                "status": "PASS",
+                "detail": "No repeated query: these file prices match the five independently observed country-context prices at19:17:37UTC."
+              },
+              {
+                "check": "Protected US and AU files unchanged",
+                "status": "PASS",
+                "detail": "All43 owner-frozen US/AU files retain exact hashes and byte counts, including the completed AU review."
+              },
+              {
+                "check": "Owner28-check receipt agrees with independently computed result",
+                "status": "PASS",
+                "detail": "Owner validation is supporting provenance; this reviewer recomputed the source/file checks."
+              },
+              {
+                "check": "Candidate and config remain unchanged during review",
+                "status": "PASS",
+                "detail": "All five final candidate artifacts and frozen config are stable during review."
+              }
+            ],
+            "input_manifest": {
+              "ca-en.tsv": {
+                "sha256": "2bd7ea6c66e36e557f66a0de1e6335aea5b589d146f87daa9c71ce549547d861",
+                "bytes": 17284594
+              },
+              "ca-en.snapshot.json": {
+                "sha256": "c925871d94876ebe93b9a3a3612f32eb35d36506d5d169c3faf03c97107fac4f",
+                "bytes": 6786947
+              },
+              "ca-en.manifest.json": {
+                "sha256": "32e483bc33953bb91b5a1569cb50963cb0b79dacab5dafd176d457cde3bc0b9f",
+                "bytes": 232105
+              },
+              "ca-en.diagnostics.json": {
+                "sha256": "81d1f841aade9f2be8e4052f90827b0964f0ab60e90cb22817e3ca2bce7c1e0c",
+                "bytes": 968258
+              },
+              "ca-en.local_validation.json": {
+                "sha256": "9e0675ff855a1a9b4ea5e2890ee4a6f26394134ba28ffbb8339a3a80b4625219",
+                "bytes": 3307
+              }
+            },
+            "counts": {
+              "active_parents": 240,
+              "source_variants": 4945,
+              "rows": 4923,
+              "unavailable_omitted": 22,
+              "columns": 18,
+              "parent_groups": 240,
+              "native_prices_verified_against_saved_source": 4923,
+              "protected_us_au_files": 43
+            },
+            "five_corrected_prices": [
+              {
+                "variant_id": "gid://shopify/ProductVariant/41883237220449",
+                "price": "33.00 CAD",
+                "preflight_amount": "33.0",
+                "preflight_currency": "CAD"
+              },
+              {
+                "variant_id": "gid://shopify/ProductVariant/41883237285985",
+                "price": "33.00 CAD",
+                "preflight_amount": "33.0",
+                "preflight_currency": "CAD"
+              },
+              {
+                "variant_id": "gid://shopify/ProductVariant/41883237318753",
+                "price": "33.00 CAD",
+                "preflight_amount": "33.0",
+                "preflight_currency": "CAD"
+              },
+              {
+                "variant_id": "gid://shopify/ProductVariant/41883238465633",
+                "price": "33.00 CAD",
+                "preflight_amount": "33.0",
+                "preflight_currency": "CAD"
+              },
+              {
+                "variant_id": "gid://shopify/ProductVariant/41883238498401",
+                "price": "33.00 CAD",
+                "preflight_amount": "33.0",
+                "preflight_currency": "CAD"
+              }
+            ],
+            "protected_file_failures": [],
+            "mismatch_counts": {
+              "prices": 0,
+              "links": 0,
+              "groups": 0,
+              "titles": 0,
+              "descriptions": 0,
+              "images": 0,
+              "nonmarket_feed_rows": 0,
+              "parent_source_nonmarket": 0,
+              "variant_source_nonmarket": 0
+            },
+            "limitations": [
+              "Local candidate only; no upload or Google processing/eligibility/approval/serving/traffic/sales/profit claim.",
+              "Full source evidence belongs to this saved export timestamp; independent live preflight remains19:17:37UTC and was not repeated.",
+              "No public landing, numeric preselection, country return policy or attribute-gap acceptance certification."
+            ],
+            "previous_review_attempts": [
+              {
+                "status": "FAIL",
+                "reviewed_at_utc": "2026-09-11T19:24:10.290200+00:00",
+                "source_started_at_utc": "2026-09-11T19:15:02.591Z",
+                "source_completed_at_utc": "2026-09-11T19:17:27.347Z",
+                "independent_market_preflight_at_utc": "2026-09-11 19:17:37 UTC",
+                "checks_passed": 21,
+                "checks_total": 22,
+                "checks": [
+                  {
+                    "check": "Exact owner-bound TSV and completed source",
+                    "status": "PASS",
+                    "detail": "Final candidate identity and source completion match the readiness checkpoint."
+                  },
+                  {
+                    "check": "Strict4923-row18-column TSV parse",
+                    "status": "PASS",
+                    "detail": "Real CSV parser retains quoted newlines; complete ordered schema."
+                  },
+                  {
+                    "check": "Unique exact IDs and source order",
+                    "status": "PASS",
+                    "detail": "All emitted IDs follow source parent/variant order exactly; no duplicate, added or missing available offer."
+                  },
+                  {
+                    "check": "Exact240 ACTIVE source parents and closing state",
+                    "status": "PASS",
+                    "detail": "Closing manifest exactly matches source product identity/status/version/count/publication fields."
+                  },
+                  {
+                    "check": "Exact4945 unique source variants",
+                    "status": "PASS",
+                    "detail": "Variant identity and exact per-parent counts reconcile."
+                  },
+                  {
+                    "check": "Available4923 included and22 unavailable omitted",
+                    "status": "PASS",
+                    "detail": "Source buyability/publication determines this candidate set; no owned physical stock or Google eligibility inference."
+                  },
+                  {
+                    "check": "Complete source connection pagination",
+                    "status": "PASS",
+                    "detail": "Every saved connection closes and product/variant/manifest page totals reconcile."
+                  },
+                  {
+                    "check": "Saved shop and country market context matches fresh preflight",
+                    "status": "PASS",
+                    "detail": "Saved source context binds the market/catalog/publication IDs independently read at19:17:37UTC."
+                  },
+                  {
+                    "check": "All contextual prices exact in native currency",
+                    "status": "PASS",
+                    "detail": "All4923 prices match saved Decimal-formatted contextual pricing in CAD; no guessed FX or USD copying."
+                  },
+                  {
+                    "check": "Exact240 parent groups",
+                    "status": "PASS",
+                    "detail": "Whole product/variant suffixes match exact source identities."
+                  },
+                  {
+                    "check": "Exact country currency and numeric variant links",
+                    "status": "PASS",
+                    "detail": "Three parsed query pairs exactly match country, currency and full variant ID; path equals source handle."
+                  },
+                  {
+                    "check": "Every title and description maps to source normalization",
+                    "status": "FAIL",
+                    "detail": "Whitespace normalization and150/5000-character limits reproduce each source title/description; no content rewriting."
+                  },
+                  {
+                    "check": "Every image belongs to its source product or variant",
+                    "status": "PASS",
+                    "detail": "Exact image URL occurs in bound featured/variant media; no external image assumption."
+                  },
+                  {
+                    "check": "All nonmarket offer fields preserve completed AU baseline",
+                    "status": "PASS",
+                    "detail": "All14 nonmarket feed fields per row and all4945 non-contextual source variant records match the unchanged AU source; parent fields match apart from updatedAt."
+                  },
+                  {
+                    "check": "Existing paid exclusions and availability retained",
+                    "status": "PASS",
+                    "detail": "All4923 rows exclude Shopping_ads; availability is a source declaration."
+                  },
+                  {
+                    "check": "Manifest exact IDs SHA MD5 bytes counts and source timestamp",
+                    "status": "PASS",
+                    "detail": "Local manifest matches actual file and saved source; no remote object or Google receipt inference."
+                  },
+                  {
+                    "check": "Diagnostics exact counts omissions and no build errors",
+                    "status": "PASS",
+                    "detail": "The exact22 unavailable source IDs are the only omissions; existing warning gaps remain separate."
+                  },
+                  {
+                    "check": "First-candidate lifecycle exact",
+                    "status": "PASS",
+                    "detail": "Local new candidate lifecycle only; no deployed feed lifecycle claimed."
+                  },
+                  {
+                    "check": "Five corrected prices match retained independent preflight",
+                    "status": "PASS",
+                    "detail": "No repeated query: these file prices match the five independently observed country-context prices at19:17:37UTC."
+                  },
+                  {
+                    "check": "Protected US and AU files unchanged",
+                    "status": "PASS",
+                    "detail": "All43 owner-frozen US/AU files retain exact hashes and byte counts, including the completed AU review."
+                  },
+                  {
+                    "check": "Owner28-check receipt agrees with independently computed result",
+                    "status": "PASS",
+                    "detail": "Owner validation is supporting provenance; this reviewer recomputed the source/file checks."
+                  },
+                  {
+                    "check": "Candidate and config remain unchanged during review",
+                    "status": "PASS",
+                    "detail": "All five final candidate artifacts and frozen config are stable during review."
+                  }
+                ],
+                "input_manifest": {
+                  "ca-en.tsv": {
+                    "sha256": "2bd7ea6c66e36e557f66a0de1e6335aea5b589d146f87daa9c71ce549547d861",
+                    "bytes": 17284594
+                  },
+                  "ca-en.snapshot.json": {
+                    "sha256": "c925871d94876ebe93b9a3a3612f32eb35d36506d5d169c3faf03c97107fac4f",
+                    "bytes": 6786947
+                  },
+                  "ca-en.manifest.json": {
+                    "sha256": "32e483bc33953bb91b5a1569cb50963cb0b79dacab5dafd176d457cde3bc0b9f",
+                    "bytes": 232105
+                  },
+                  "ca-en.diagnostics.json": {
+                    "sha256": "81d1f841aade9f2be8e4052f90827b0964f0ab60e90cb22817e3ca2bce7c1e0c",
+                    "bytes": 968258
+                  },
+                  "ca-en.local_validation.json": {
+                    "sha256": "9e0675ff855a1a9b4ea5e2890ee4a6f26394134ba28ffbb8339a3a80b4625219",
+                    "bytes": 3307
+                  }
+                },
+                "counts": {
+                  "active_parents": 240,
+                  "source_variants": 4945,
+                  "rows": 4923,
+                  "unavailable_omitted": 22,
+                  "columns": 18,
+                  "parent_groups": 240,
+                  "native_prices_verified_against_saved_source": 4923,
+                  "protected_us_au_files": 43
+                },
+                "five_corrected_prices": [
+                  {
+                    "variant_id": "gid://shopify/ProductVariant/41883237220449",
+                    "price": "33.00 CAD",
+                    "preflight_amount": "33.0",
+                    "preflight_currency": "CAD"
+                  },
+                  {
+                    "variant_id": "gid://shopify/ProductVariant/41883237285985",
+                    "price": "33.00 CAD",
+                    "preflight_amount": "33.0",
+                    "preflight_currency": "CAD"
+                  },
+                  {
+                    "variant_id": "gid://shopify/ProductVariant/41883237318753",
+                    "price": "33.00 CAD",
+                    "preflight_amount": "33.0",
+                    "preflight_currency": "CAD"
+                  },
+                  {
+                    "variant_id": "gid://shopify/ProductVariant/41883238465633",
+                    "price": "33.00 CAD",
+                    "preflight_amount": "33.0",
+                    "preflight_currency": "CAD"
+                  },
+                  {
+                    "variant_id": "gid://shopify/ProductVariant/41883238498401",
+                    "price": "33.00 CAD",
+                    "preflight_amount": "33.0",
+                    "preflight_currency": "CAD"
+                  }
+                ],
+                "protected_file_failures": [],
+                "mismatch_counts": {
+                  "prices": 0,
+                  "links": 0,
+                  "groups": 0,
+                  "titles": 0,
+                  "descriptions": 104,
+                  "images": 0,
+                  "nonmarket_feed_rows": 0,
+                  "parent_source_nonmarket": 0,
+                  "variant_source_nonmarket": 0
+                },
+                "limitations": [
+                  "Local candidate only; no upload or Google processing/eligibility/approval/serving/traffic/sales/profit claim.",
+                  "Full source evidence belongs to this saved export timestamp; independent live preflight remains19:17:37UTC and was not repeated.",
+                  "No public landing, numeric preselection, country return policy or attribute-gap acceptance certification."
+                ]
+              }
+            ],
+            "reviewer_comparison_correction": {
+              "cause": "Initial comparison omitted trim after character-cap truncation. Exactly one terminal U+0020 at the cap explains all observed differences; no substantive source/feed content changed.",
+              "affected_rows": 104,
+              "affected_products": 4,
+              "unexplained_differences": 27,
+              "previous_report_sha256": "b2f6112ece9f638536294fa8dd39761ea62d31e0703daa4002806028100bfc1d",
+              "candidate_bytes_changed": false
+            }
+          }
+        ],
+        "reviewer_comparison_correction": {
+          "cause": "Initial comparison omitted trim after character-cap truncation. Exactly one terminal U+0020 at the cap explains all observed differences; no substantive source/feed content changed.",
+          "affected_rows": 104,
+          "affected_products": 4,
+          "unexplained_differences": 0,
+          "previous_report_sha256": "0308e31cb6412218f1892fba2ac38d3d3516f6faff363f1ab769b49414a25490",
+          "candidate_bytes_changed": false,
+          "reviewer_diagnostic_note": "One interim diagnostic comparison used an overescaped whitespace regex; corrected without changing candidate inputs or substantive comparisons."
+        }
+      },
+      "gb-en": {
+        "status": "PASS",
+        "reviewed_at_utc": "2026-09-11T19:27:36.377395+00:00",
+        "source_started_at_utc": "2026-09-11T19:19:08.083Z",
+        "source_completed_at_utc": "2026-09-11T19:21:32.262Z",
+        "independent_market_preflight_at_utc": "2026-09-11 19:17:37 UTC",
+        "checks_passed": 23,
+        "checks_total": 23,
+        "checks": [
+          {
+            "check": "Original text-comparison difference fully explained",
+            "status": "PASS",
+            "detail": "Any difference from the initial comparator is exactly one terminal ASCII space after the character cap; every other character is preserved."
+          },
+          {
+            "check": "Exact owner-bound TSV and completed source",
+            "status": "PASS",
+            "detail": "Final candidate identity and source completion match the readiness checkpoint."
+          },
+          {
+            "check": "Strict4923-row18-column TSV parse",
+            "status": "PASS",
+            "detail": "Real CSV parser retains quoted newlines; complete ordered schema."
+          },
+          {
+            "check": "Unique exact IDs and source order",
+            "status": "PASS",
+            "detail": "All emitted IDs follow source parent/variant order exactly; no duplicate, added or missing available offer."
+          },
+          {
+            "check": "Exact240 ACTIVE source parents and closing state",
+            "status": "PASS",
+            "detail": "Closing manifest exactly matches source product identity/status/version/count/publication fields."
+          },
+          {
+            "check": "Exact4945 unique source variants",
+            "status": "PASS",
+            "detail": "Variant identity and exact per-parent counts reconcile."
+          },
+          {
+            "check": "Available4923 included and22 unavailable omitted",
+            "status": "PASS",
+            "detail": "Source buyability/publication determines this candidate set; no owned physical stock or Google eligibility inference."
+          },
+          {
+            "check": "Complete source connection pagination",
+            "status": "PASS",
+            "detail": "Every saved connection closes and product/variant/manifest page totals reconcile."
+          },
+          {
+            "check": "Saved shop and country market context matches fresh preflight",
+            "status": "PASS",
+            "detail": "Saved source context binds the market/catalog/publication IDs independently read at19:17:37UTC."
+          },
+          {
+            "check": "All contextual prices exact in native currency",
+            "status": "PASS",
+            "detail": "All4923 prices match saved Decimal-formatted contextual pricing in GBP; no guessed FX or USD copying."
+          },
+          {
+            "check": "Exact240 parent groups",
+            "status": "PASS",
+            "detail": "Whole product/variant suffixes match exact source identities."
+          },
+          {
+            "check": "Exact country currency and numeric variant links",
+            "status": "PASS",
+            "detail": "Three parsed query pairs exactly match country, currency and full variant ID; path equals source handle."
+          },
+          {
+            "check": "Every title and description maps to source normalization",
+            "status": "PASS",
+            "detail": "Whitespace normalization,150/5000-character caps and trailing ASCII-space trim after clipping reproduce each source title/description exactly; no content rewriting."
+          },
+          {
+            "check": "Every image belongs to its source product or variant",
+            "status": "PASS",
+            "detail": "Exact image URL occurs in bound featured/variant media; no external image assumption."
+          },
+          {
+            "check": "All nonmarket offer fields preserve completed AU baseline",
+            "status": "PASS",
+            "detail": "All14 nonmarket feed fields per row and all4945 non-contextual source variant records match the unchanged AU source; parent fields match apart from updatedAt."
+          },
+          {
+            "check": "Existing paid exclusions and availability retained",
+            "status": "PASS",
+            "detail": "All4923 rows exclude Shopping_ads; availability is a source declaration."
+          },
+          {
+            "check": "Manifest exact IDs SHA MD5 bytes counts and source timestamp",
+            "status": "PASS",
+            "detail": "Local manifest matches actual file and saved source; no remote object or Google receipt inference."
+          },
+          {
+            "check": "Diagnostics exact counts omissions and no build errors",
+            "status": "PASS",
+            "detail": "The exact22 unavailable source IDs are the only omissions; existing warning gaps remain separate."
+          },
+          {
+            "check": "First-candidate lifecycle exact",
+            "status": "PASS",
+            "detail": "Local new candidate lifecycle only; no deployed feed lifecycle claimed."
+          },
+          {
+            "check": "Five corrected prices match retained independent preflight",
+            "status": "PASS",
+            "detail": "No repeated query: these file prices match the five independently observed country-context prices at19:17:37UTC."
+          },
+          {
+            "check": "Protected US and AU files unchanged",
+            "status": "PASS",
+            "detail": "All43 owner-frozen US/AU files retain exact hashes and byte counts, including the completed AU review."
+          },
+          {
+            "check": "Owner28-check receipt agrees with independently computed result",
+            "status": "PASS",
+            "detail": "Owner validation is supporting provenance; this reviewer recomputed the source/file checks."
+          },
+          {
+            "check": "Candidate and config remain unchanged during review",
+            "status": "PASS",
+            "detail": "All five final candidate artifacts and frozen config are stable during review."
+          }
+        ],
+        "input_manifest": {
+          "gb-en.tsv": {
+            "sha256": "6c5e86a09cc91baf37ff9705a4511b6f3076a8d23ba8381b7dc02ed55f864e87",
+            "bytes": 17284594
+          },
+          "gb-en.snapshot.json": {
+            "sha256": "6b3ea0331cf140c0cd7ddfb88ad1c17a1d4ab831f46dcf676000bac76491dc56",
+            "bytes": 6786949
+          },
+          "gb-en.manifest.json": {
+            "sha256": "f5e539e6bff161e435e6a3f59b46cb44deb26b9900cbde0f5816002009c1d325",
+            "bytes": 232105
+          },
+          "gb-en.diagnostics.json": {
+            "sha256": "12be8d604fc4f5e1e3f458cf9c13d793f408c9142dba75ab3cec461fcece58d0",
+            "bytes": 968258
+          },
+          "gb-en.local_validation.json": {
+            "sha256": "224aeb13b6b101781f4b51329d0e2acde50dfce609be50e779c2566c18010c97",
+            "bytes": 3307
+          }
+        },
+        "counts": {
+          "active_parents": 240,
+          "source_variants": 4945,
+          "rows": 4923,
+          "unavailable_omitted": 22,
+          "columns": 18,
+          "parent_groups": 240,
+          "native_prices_verified_against_saved_source": 4923,
+          "protected_us_au_files": 43
+        },
+        "five_corrected_prices": [
+          {
+            "variant_id": "gid://shopify/ProductVariant/41883237220449",
+            "price": "18.00 GBP",
+            "preflight_amount": "18.0",
+            "preflight_currency": "GBP"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/41883237285985",
+            "price": "18.00 GBP",
+            "preflight_amount": "18.0",
+            "preflight_currency": "GBP"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/41883237318753",
+            "price": "18.00 GBP",
+            "preflight_amount": "18.0",
+            "preflight_currency": "GBP"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/41883238465633",
+            "price": "18.00 GBP",
+            "preflight_amount": "18.0",
+            "preflight_currency": "GBP"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/41883238498401",
+            "price": "18.00 GBP",
+            "preflight_amount": "18.0",
+            "preflight_currency": "GBP"
+          }
+        ],
+        "protected_file_failures": [],
+        "mismatch_counts": {
+          "prices": 0,
+          "links": 0,
+          "groups": 0,
+          "titles": 0,
+          "descriptions": 0,
+          "images": 0,
+          "nonmarket_feed_rows": 0,
+          "parent_source_nonmarket": 0,
+          "variant_source_nonmarket": 0
+        },
+        "limitations": [
+          "Local candidate only; no upload or Google processing/eligibility/approval/serving/traffic/sales/profit claim.",
+          "Full source evidence belongs to this saved export timestamp; independent live preflight remains19:17:37UTC and was not repeated.",
+          "No public landing, numeric preselection, country return policy or attribute-gap acceptance certification."
+        ]
+      }
+    },
+    "candidate_hashes_verified": true,
+    "source_to_file_comparison_done": true,
+    "full_source_or_row_count_validated": true,
+    "complete": true
+  },
+  "limits": [
+    "Both completed local candidate/source files are independently reviewed; all external receiving and serving gates remain separate.",
+    "Full source-to-file verification uses each saved source timestamp; only five variants per country were independently read live at19:17:37UTC.",
+    "Catalog publication IDs and market country membership were freshly read; configured Online Store publication55169925 was not separately queried.",
+    "No public landing or native/account access, batch retry, upload, publisher, credential, Shopify mutation or paid-state change.",
+    "No Google receipt, eligibility, approval, serving, international performance, traffic, sales or profit inference.",
+    "No owned physical inventory inference.",
+    "Both owner-provided final candidate hashes and complete source files have been examined. This completes local artifact quality review only; intended live release and Google submission/receiving remain NOT_VERIFIED."
+  ],
+  "next_action": "Merchant must complete the intended authorized live release and verify receiving before claiming the live task complete. This report certifies local artifact quality only; preserve separate deployment/account/Google gates.",
+  "review_revisions": [
+    {
+      "market": "ca-en",
+      "previous_report_sha256": "725686f4f49bc69bb043aaa7d7ef7a3f8ae5b7b45547a7a2040945f754f218af",
+      "reviewed_at_utc": "2026-09-11T19:24:10.290200+00:00"
+    },
+    {
+      "market": "ca-en",
+      "previous_report_sha256": "b2f6112ece9f638536294fa8dd39761ea62d31e0703daa4002806028100bfc1d",
+      "reviewed_at_utc": "2026-09-11T19:26:26.545952+00:00"
+    },
+    {
+      "market": "ca-en",
+      "previous_report_sha256": "0308e31cb6412218f1892fba2ac38d3d3516f6faff363f1ab769b49414a25490",
+      "reviewed_at_utc": "2026-09-11T19:27:11.102376+00:00"
+    },
+    {
+      "market": "gb-en",
+      "previous_report_sha256": "7534a322ce5302078ad965f07a7008b6e39796d01cf224a28acfe360d9c52826",
+      "reviewed_at_utc": "2026-09-11T19:27:36.377395+00:00"
+    }
+  ],
+  "local_candidate_review_complete": true,
+  "full_review_scope": "LOCAL_ARTIFACT_QUALITY_ONLY",
+  "intended_live_release_status": "NOT_VERIFIED",
+  "google_submission_status": "NOT_VERIFIED",
+  "google_receipt_status": "NOT_VERIFIED",
+  "intended_live_task_complete": false,
+  "final_local_closeout_checks": {
+    "recorded_at_utc": "2026-09-11T19:28:30.146552+00:00",
+    "ten_final_candidate_artifacts_still_match_reviewed_hashes": true,
+    "frozen_ca_gb_config_unchanged": true,
+    "completed_au_review_unchanged": true,
+    "preflight_timestamp_preserved": true,
+    "prior_comparator_failures_and_corrections_retained": true,
+    "google_submission_and_receipt_not_verified": true,
+    "previous_report_sha256": "5c30574c06b77a56da9c061d92a93470aca2204db49691392075fe209c1e5f40"
+  }
+}

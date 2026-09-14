@@ -1,0 +1,92 @@
+{
+  "schema": "dlm.au_source_refresh_execution_handoff.v1",
+  "action": "TA07-AU-SOURCE-FRESHNESS-20260914-1453",
+  "executor_thread_id": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "recorded_at_utc": "2026-09-14T15:49:45.544374+00:00",
+  "overall_status": "PARTIAL__AU_RECEIVING_AND_12_SAMPLES_VERIFIED__NATIVE_REMOVALS_PENDING",
+  "implemented": "One reviewed existing-source AU manual file replacement completed.",
+  "verified": {
+    "account_id": "513542500",
+    "source_id": "10727245667",
+    "candidate_sha256": "f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236",
+    "candidate_bytes": 16618022,
+    "candidate_rows": 4741,
+    "source_completed_at_utc": "2026-09-14T15:03:55.842Z",
+    "file_selected_at_utc": "2026-09-14T15:27:57.054Z",
+    "upload_started_at_utc": "2026-09-14T15:28:32.317Z",
+    "upload_click_count": 1,
+    "native_history_time_literal": "Sep 14, 2026 11:28:35 AM",
+    "native_time_utc_qualified": "2026-09-14T15:28:35Z assuming America/New_York task context; account timezone not independently verified.",
+    "received_updated_count": 4741,
+    "received_new_count": 0,
+    "attributes": "All recognized",
+    "file_issues": "No issues found",
+    "changed_price_samples_matching": 6,
+    "protected_price_samples_matching": 6,
+    "all_twelve_native_status": "Approved",
+    "all_twelve_availability": "In stock",
+    "all_twelve_marketing_methods": "Free listings",
+    "all_twelve_country": "Australia",
+    "frozen_file_checks": 22,
+    "frozen_external_binding_checks": 5
+  },
+  "not_yet_verified": {
+    "source_count": {
+      "expected": 4741,
+      "native_current": 4761
+    },
+    "omissions": {
+      "expected_absent": 20,
+      "native_current_present": 20,
+      "native_current_absent": 0
+    },
+    "all530_native_effective_prices": false,
+    "all_offer_approval_serving_orders_profit": false
+  },
+  "important_qualifications": [
+    "The file changes530 retained prices by+A$1 and omits20 offers; all other retained fields are unchanged. The remaining10 source price changes are8 held available plus2 unavailable variants, all excluded.",
+    "Original three failed same-price/payload assumptions remain preserved, with explicit reviewed delta resolution.",
+    "Current correct protected pink/red prices/statuses have2-days-ago native last-update labels; no per-record rewrite timestamp is claimed.",
+    "Current-source-list omission must be checked separately; no broader archive/deletion/accountwide/serving absence is implied.",
+    "Australia remains a manual-file source. This action does not establish autonomous all-market synchronization or complete CA/GB/other-language/returns/StoreQuality work."
+  ],
+  "approval": {
+    "review_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_au_independent_release_review_20260914_1453.json",
+    "review_sha256": "dc5c26205d14c62f289ca3473c74ad11ebc915674ad5857a9f0913b963194c12",
+    "parent_exact_release_dispatch_received": true,
+    "release_packet_sha256": "fce639297946421744046bc4d619557e47d6071dfbcb3637b237c5c2523a63f0",
+    "freeze_sha256": "4b66f6e616be749abfa0b7e751228708745b866e0520e5db34c40530085917f6",
+    "no_future_standing_authority": true
+  },
+  "receipts": {
+    "release_attempt.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/release_attempt.json",
+      "sha256": "17b52465de505b41202be95c517dba1b0e20fbda6aa34b49e46be6ae8c385a2b"
+    },
+    "native_google_receiving_result.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_google_receiving_result.json",
+      "sha256": "f029a4a8b1722ca8dbad5ad8a64511eb75fc6d671b6292a24ff3f0ef795fe568"
+    },
+    "native_sample_readback.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_sample_readback.json",
+      "sha256": "9ae88ccc150b0b48559eea9a45779af2f81e301ec51445deb35d7100974f298a"
+    },
+    "native_source_count_after.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_source_count_after.json",
+      "sha256": "85d48c7e705bd23d1b9160ad5d9710a6243e628155c8571384c02b35083919ee"
+    },
+    "native_omissions_first_pass.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_omissions_first_pass.json",
+      "sha256": "b5ea81b6c34823d8c4799514e25cfd3d485a3ba2b705717b5b8d155027490d5a"
+    },
+    "native_omission_reconciliation.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_omission_reconciliation.json",
+      "sha256": "5d2ee817631d861b0b27aa33d6485abb75492a8bf623850a8a7708397f3e3aa2"
+    }
+  },
+  "other_external_writes": 0,
+  "rollback": "No automatic restoration of stale full file, pilot or held offers.",
+  "next_owner_action": "Use the existing Merchant task/owner follow-up to recheck only source10727245667 current count and the two source-qualified parent-prefix queries. Reuse completed receiving and12 samples; do not upload again.",
+  "continuation_prompt": "Reconcile AU source10727245667 against the20 omitted IDs in native_omission_reconciliation.json; reuse the verified4741 receiving result and12 matching samples. No duplicate upload or unrelated writes.",
+  "canonical_integration_owner": "Parent01a08223-036e-7fa3-8961-ecd297163fb5; shared canonical files untouched by executor."
+}

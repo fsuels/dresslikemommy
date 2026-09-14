@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>DLM session isolation</title>
+<h1 id="lane-heading">Session test</h1>
+<p>Local test only. No business account access.</p>
+<label for="note">Session note</label>
+<input id="note">
+<button id="save">Save note</button>
+<button id="next">Next step</button>
+<output id="result" aria-live="polite"></output>
+<script>
+  const requestedLane = new URL(location.href).searchParams.get('lane');
+  const lane = ['shopify', 'merchant', 'holdout'].includes(requestedLane) ? requestedLane : 'holdout';
+  document.title = 'DLM session isolation — ' + lane;
+  document.getElementById('lane-heading').textContent = lane + ' session';
+  const note = document.getElementById('note');
+  const result = document.getElementById('result');
+  const show = () => {
+    result.textContent = 'Lane: ' + lane + ' | Saved: ' + (sessionStorage.getItem('note') || 'empty') + ' | Steps: ' + (sessionStorage.getItem('count') || '0');
+  };
+  document.getElementById('save').addEventListener('click', () => {
+    sessionStorage.setItem('note', note.value);
+    show();
+  });
+  document.getElementById('next').addEventListener('click', () => {
+    sessionStorage.setItem('count', String(Number(sessionStorage.getItem('count') || 0) + 1));
+    show();
+  });
+  show();
+</script>
+</html>

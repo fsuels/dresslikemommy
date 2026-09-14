@@ -1,0 +1,50 @@
+/* Desktop view (default) */
+.breadcrumb {
+  font-size: 12px; /* Adjust the size as needed */
+  text-transform: capitalize;
+  display: block; /* Ensure breadcrumb is displayed */
+  padding-left: 50px; /* Adjust padding for desktop view */
+}
+
+.breadcrumb a {
+  font-size: 12px; /* Adjust the size as needed */
+  text-transform: capitalize;
+  display: inline-block;
+  margin: 0; /* Remove margin */
+  padding: 0; /* Remove padding */
+}
+
+.breadcrumb span {
+  margin: 0 5px; /* Adjust the space between separators */
+}
+
+/* Mobile view adjustments */
+@media only screen and (max-width: 767px) {
+  /* Hide collection breadcrumbs on mobile — the title + active pill already show the page */
+  .collection-breadcrumb {
+    display: none !important;
+  }
+
+  /* Non-collection breadcrumbs (product pages, etc.) can still show */
+  .breadcrumb:not(.collection-breadcrumb) {
+    font-size: 13px;
+    padding-left: 12px;
+    display: block !important;
+    visibility: visible !important;
+    margin-top: 10px;
+  }
+
+  .breadcrumb:not(.collection-breadcrumb) a {
+    font-size: 13px;
+    margin: 4px 0;
+    padding: 0;
+  }
+
+  .breadcrumb span {
+    margin: 0 2px;
+  }
+
+  .breadcrumb .mobile-hide {
+    display: none !important;
+  }
+}

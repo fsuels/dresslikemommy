@@ -40,6 +40,8 @@ CSV_FIELDNAMES = [
     "repurchase_rate_pct",
     "rating",
     "years_on_1688",
+    "years_on_1688_scope",
+    "years_on_1688_label",
     "badges",
     "service_flags",
     "dropship_supported",
@@ -75,8 +77,10 @@ ALIASES = {
     "moq": ("moq", "minimum_order", "min_order", "min_qty", "起批量"),
     "monthly_sales": ("monthly_sales", "sales", "orders", "sold", "成交", "recent_sales"),
     "repurchase_rate_pct": ("repurchase_rate_pct", "repurchase_rate", "return_rate", "repeat_rate", "回头率"),
-    "rating": ("rating", "service_score", "shop_score", "score"),
+    "rating": ("rating", "service_score", "shop_score"),
     "years_on_1688": ("years_on_1688", "years", "supplier_years", "诚信通年限", "经营年限"),
+    "years_on_1688_scope": ("years_on_1688_scope", "supplier_years_scope", "tenure_scope"),
+    "years_on_1688_label": ("years_on_1688_label", "supplier_years_label", "tenure_label"),
     "badges": ("badges", "badge", "certifications", "certification", "seller_badges"),
     "service_flags": ("service_flags", "services", "shipping_flags", "delivery_flags", "保障"),
     "dropship_supported": ("dropship_supported", "dropship", "one_piece_dropship", "一件代发"),
@@ -173,6 +177,7 @@ CURRENT_YEAR = dt.date.today().year
 MIN_FRESH_YEAR = CURRENT_YEAR - 1
 MIN_FRESH_OFFER_ID = 850_000_000_000
 DEFAULT_MARKET_TARGET = "balanced"
+SUPPLIER_TENURE_SCOPE = "supplier_context_phrase"
 
 MATERNITY_IDENTITY_TERMS = (
     "maternity",
@@ -313,6 +318,8 @@ class Candidate:
     repurchase_rate_pct: str = ""
     rating: str = ""
     years_on_1688: str = ""
+    years_on_1688_scope: str = ""
+    years_on_1688_label: str = ""
     badges: str = ""
     service_flags: str = ""
     dropship_supported: str = ""
@@ -350,6 +357,19 @@ def clean(value: Any) -> str:
 
 def has_any_term(text: str, terms: tuple[str, ...]) -> bool:
     return any(term in text for term in terms)
+
+
+def phrase_present(text: str, phrase: str) -> bool:
+    phrase = clean(phrase).lower()
+    if not phrase:
+        return False
+    if any(ord(character) > 127 for character in phrase):
+        return phrase in text
+    return bool(re.search(rf"(?<![a-z0-9]){re.escape(phrase)}(?![a-z0-9])", text))
+
+
+def has_any_phrase(text: str, terms: tuple[str, ...]) -> bool:
+    return any(phrase_present(text, term) for term in terms)
 
 
 def maternity_product_haystack(candidate: Candidate) -> str:
@@ -490,12 +510,25 @@ def yes_no_unknown(value: str) -> bool | None:
     text = clean(value).lower()
     if not text:
         return None
-    yes_terms = ("yes", "y", "true", "1", "supported", "support", "has", "有", "是", "支持", "可", "一件代发")
-    no_terms = ("no", "n", "false", "0", "none", "not", "没有", "无", "否", "不支持")
-    if any(term in text for term in yes_terms):
-        return True
-    if any(term in text for term in no_terms):
+    no_values = {"no", "n", "false", "0", "none", "没有", "无", "否", "不可"}
+    no_terms = (
+        "not supported",
+        "unsupported",
+        "does not support",
+        "doesn't support",
+        "no support",
+        "not available",
+        "不支持",
+        "不可以",
+        "不可一件代发",
+        "无一件代发",
+    )
+    if text in no_values or any(term in text for term in no_terms):
         return False
+    yes_values = {"yes", "y", "true", "1", "有", "是", "可"}
+    yes_terms = ("supported", "supports", "support available", "has ", "支持", "可以", "一件代发")
+    if text in yes_values or any(term in text for term in yes_terms):
+        return True
     return None
 
 
@@ -574,69 +607,106 @@ def detect_ip_risks(candidate: Candidate) -> list[str]:
     return sorted({term for term in IP_RISK_TERMS if term in text})
 
 
+def inferred_sibling_fit(product_haystack: str) -> float:
+    sibling_terms = (
+        "sibling matching",
+        "matching siblings",
+        "sibling outfits",
+        "siblings outfits",
+        "sisters matching",
+        "matching sisters",
+        "brothers matching",
+        "matching brothers",
+        "brother-sister",
+        "brother sister",
+        "brother and sister",
+        "sister-sister",
+        "brother-brother",
+        "姐妹装",
+        "姐妹同款",
+        "兄弟装",
+        "兄弟同款",
+        "兄妹装",
+        "兄妹同款",
+        "姐弟装",
+        "姐弟同款",
+    )
+    return 5.0 if has_any_phrase(product_haystack, sibling_terms) else 2.0
+
+
 def inferred_category_fit(candidate: Candidate) -> float | None:
     category_id = clean(candidate.category_id)
     if not category_id:
         return None
     product_haystack = " ".join([candidate.title, candidate.raw_card_text, candidate.badges, candidate.service_flags]).lower()
-    if category_id == "maternity":
-        if maternity_has_photoshoot_signal(candidate):
-            return 5.0
-        if has_any_term(product_haystack, MATERNITY_IDENTITY_TERMS):
-            return 3.0
-        return 2.0
-    terms = {
-        "mommy-and-me": (
-            "mother",
-            "daughter",
-            "mother-daughter",
-            "mom",
-            "mommy",
-            "mommy and me",
-            "母女",
-            "亲子",
-            "parent-child",
-        ),
-        "daddy-and-me": (
-            "father",
-            "son",
-            "father-son",
-            "father-daughter",
-            "dad",
-            "daddy",
-            "父子",
-            "父女",
-            "亲子",
-            "parent-child",
-        ),
-        "family-matching": (
-            "family",
-            "family of",
-            "mother",
-            "father",
-            "daughter",
-            "son",
-            "家庭",
-            "全家",
-            "一家",
-            "亲子",
-            "parent-child",
-        ),
-        "couples": ("couple", "couples", "情侣", "情侣装", "情侣款", "sweetheart", "his and hers"),
-    }
-    strong_terms = terms.get(category_id, ())
-    if any(term in product_haystack for term in strong_terms):
-        return 5.0
-    if category_id == "family-matching" and "dress" in product_haystack and "shirt" in product_haystack:
-        return 4.0
+    title = clean(candidate.title).lower()
+    obvious_wrong_products = (
+        "lingerie",
+        "intimates",
+        "underwear",
+        "bralette",
+        "panties",
+        "thong",
+        "sexy uniform",
+        "doll clothes",
+        "doll clothing",
+        "doll outfit",
+        "dress accessories",
+        "hair accessory",
+        "headband",
+        "stiletto",
+        "pumps",
+        "fabric for dresses",
+        "内衣",
+        "文胸",
+        "胸罩",
+        "内裤",
+        "丁字裤",
+        "情趣",
+        "娃衣",
+        "玩偶服",
+    )
+    if has_any_phrase(title, obvious_wrong_products):
+        return 1.0
+    if category_id == "siblings-matching":
+        return inferred_sibling_fit(product_haystack)
+    mommy_terms = (
+        "mother-daughter", "mother daughter", "mother and daughter", "mommy and me", "mommy & me", "mom and me", "mom & me", "母女"
+    )
+    daddy_terms = (
+        "father-son", "father son", "father and son", "father-daughter", "father daughter", "father and daughter",
+        "dad and son", "dad and daughter", "daddy and me", "daddy & me", "父子", "父女"
+    )
+    family_terms = (
+        "family matching", "matching family", "family outfit", "family outfits", "family clothing", "family clothes",
+        "family of three", "family of four", "family of five", "全家", "一家三口", "一家四口", "家庭装", "家庭亲子", "亲子装"
+    )
+    couple_terms = (
+        "couple outfit", "couple outfits", "couple clothing", "couple wear", "couple style", "couple's", "couples", "情侣", "夫妻", "男女同款"
+    )
+    maternity_terms = (
+        "maternity", "pregnant", "pregnancy", "mom-to-be", "baby bump", "bump dress", "孕妇", "孕妈", "孕肚", "大肚"
+    )
+    if category_id == "mommy-and-me":
+        return 5.0 if has_any_phrase(product_haystack, mommy_terms) else 2.0
+    if category_id == "daddy-and-me":
+        return 5.0 if has_any_phrase(product_haystack, daddy_terms) else 2.0
+    if category_id == "family-matching":
+        return 5.0 if has_any_phrase(product_haystack, family_terms) else 2.0
     if category_id == "couples":
-        english_pair = ("men" in product_haystack or "man" in product_haystack) and (
-            "women" in product_haystack or "woman" in product_haystack
+        english_gender_pair = bool(
+            re.search(r"\b(?:men|man|male)\b.*\b(?:women|woman|female)\b|\b(?:women|woman|female)\b.*\b(?:men|man|male)\b", product_haystack)
         )
-        chinese_pair = "男" in product_haystack and "女" in product_haystack
-        mixed_outfit = "shirt" in product_haystack and "dress" in product_haystack
-        if english_pair or chinese_pair or mixed_outfit:
-            return 4.0
+        chinese_gender_pair = "男" in product_haystack and "女" in product_haystack
+        coordinated_genders = (english_gender_pair or chinese_gender_pair) and has_any_phrase(
+            product_haystack,
+            ("matching", "same style", "same-style", "coordinated", "同款", "配套"),
+        )
+        return 5.0 if has_any_phrase(product_haystack, couple_terms) or coordinated_genders else 2.0
+    if category_id == "maternity":
+        has_maternity = has_any_phrase(product_haystack, maternity_terms)
+        has_matching_family = has_any_phrase(product_haystack, mommy_terms + family_terms)
+        return 5.0 if has_maternity and has_matching_family else 2.0
     return 2.0
 
 
@@ -705,7 +775,7 @@ def has_supplier_proof(candidate: Candidate) -> bool:
     proof_fields = [
         candidate.vendor_url,
         candidate.vendor_location,
-        candidate.years_on_1688,
+        candidate.years_on_1688 if clean(candidate.years_on_1688_scope) == "supplier_context_phrase" else "",
         candidate.rating,
         candidate.badges,
         candidate.service_flags,
@@ -760,14 +830,14 @@ def has_search_demand_signal(
 ) -> bool:
     if repurchase is not None and repurchase >= 20:
         return True
-    if monthly_sales is not None and monthly_sales >= 30:
+    sales_context = clean(candidate.sales_context).lower()
+    sales_window_known = not any(
+        phrase in sales_context
+        for phrase in ("exact time window not shown", "time window unknown", "unknown time window")
+    )
+    if monthly_sales is not None and monthly_sales >= 30 and sales_window_known:
         return True
-    if moq is not None and moq <= 1:
-        return True
-    if {"一件代发", "24小时发货", "48小时发货", "现货"} & signals:
-        return True
-    text = " ".join([candidate.title, candidate.raw_card_text, candidate.service_flags]).lower()
-    return any(term in text for term in ("一件代发", "dropship", "one piece", "in stock", "现货"))
+    return False
 
 
 def score_candidate(
@@ -788,9 +858,19 @@ def score_candidate(
     dropship = yes_no_unknown(candidate.dropship_supported)
     moq = number(candidate.moq)
     years = number(candidate.years_on_1688)
+    tenure_confirmed = clean(candidate.years_on_1688_scope) == SUPPLIER_TENURE_SCOPE
     monthly_sales = number(candidate.monthly_sales)
+    sales_context = clean(candidate.sales_context).lower()
+    sales_window_known = not any(
+        phrase in sales_context
+        for phrase in ("exact time window not shown", "time window unknown", "unknown time window")
+    )
     repurchase = percent(candidate.repurchase_rate_pct)
-    rating = number(candidate.rating)
+    raw_rating = number(candidate.rating)
+    rating_is_invalid = raw_rating is not None and not 0 <= raw_rating <= 5
+    rating = None if rating_is_invalid else raw_rating
+    if rating_is_invalid:
+        candidate.rating = ""
     inferred_fit = inferred_category_fit(candidate)
     category_fit = inferred_fit if inferred_fit is not None else score_0_to_5(candidate.category_match, 3.0)
     candidate.category_match = f"{category_fit:g}"
@@ -812,7 +892,7 @@ def score_candidate(
         signals=signals,
         repurchase=repurchase,
         monthly_sales=monthly_sales,
-        years=years,
+        years=years if tenure_confirmed else None,
         rating=rating,
     )
 
@@ -822,14 +902,21 @@ def score_candidate(
         hard_reject_reasons.append("missing product URL")
     if review_stage == "detail" and has_unavailable_signal(candidate):
         hard_reject_reasons.append("detail page suggests the product is unavailable or removed")
+    if review_stage == "detail" and (years is None or not tenure_confirmed):
+        hard_reject_reasons.append(
+            "supplier operating years not confirmed from supplier-context evidence; "
+            "detail-stage recommendations require at least 5 years on 1688"
+        )
+    elif review_stage == "detail" and years < 5:
+        hard_reject_reasons.append(f"supplier tenure below 5-year minimum ({years:g} years on 1688)")
     if category_fit <= 1:
         hard_reject_reasons.append("poor fit for Dress Like Mommy categories")
     elif review_stage == "search" and category_id == "maternity" and category_fit < 4.5:
-        hard_reject_reasons.append("ordinary maternity item; missing photoshoot/studio/gown signal")
+        hard_reject_reasons.append("maternity item is missing an explicit matching-family signal")
     elif review_stage == "search" and category_fit < 3.5:
         hard_reject_reasons.append("weak visible match for selected store category")
     if category_id == "maternity" and category_fit >= 4.5:
-        positive.append("maternity photoshoot/studio gown signal")
+        positive.append("maternity and matching-family signal")
     if market_focus:
         market_label = MARKET_TARGET_LABELS[market_target]
         positive.append(f"{market_label} search focus")
@@ -900,14 +987,12 @@ def score_candidate(
         fit_score += 6
         positive.append("size chart confirmed")
     elif size_chart is None:
-        fit_score += 2
         concerns.append("size chart still needs confirmation")
     else:
         concerns.append("size chart missing")
 
     reliability_score = 0.0
-    if years is None:
-        reliability_score += 2
+    if years is None or not tenure_confirmed:
         concerns.append("supplier operating years missing")
     elif years >= 5:
         reliability_score += 6
@@ -937,7 +1022,6 @@ def score_candidate(
     reliability_score += min(12, badge_score)
 
     if repurchase is None:
-        reliability_score += 1.5
         concerns.append("repeat-buyer rate missing")
     elif repurchase >= 40:
         reliability_score += 5
@@ -951,8 +1035,9 @@ def score_candidate(
     else:
         concerns.append(f"low repeat-buyer signal ({repurchase:g}%)")
 
-    if rating is None:
-        reliability_score += 1
+    if rating_is_invalid:
+        concerns.append(f"invalid shop/service rating ({raw_rating:g}; expected 0-5)")
+    elif rating is None:
         concerns.append("shop/service rating missing")
     elif rating >= 4.8:
         reliability_score += 4
@@ -963,11 +1048,12 @@ def score_candidate(
         concerns.append(f"weak shop/service rating ({rating:g})")
 
     if monthly_sales is None:
-        reliability_score += 1
         concerns.append("recent sales/order volume missing")
+    elif not sales_window_known:
+        concerns.append("sales count has no confirmed time window")
     elif monthly_sales >= 200:
         reliability_score += 3
-        positive.append(f"strong recent sales volume ({monthly_sales:g})")
+        positive.append(f"strong time-bounded sales volume ({monthly_sales:g})")
     elif monthly_sales >= 50:
         reliability_score += 2
     elif monthly_sales > 0:
@@ -988,20 +1074,17 @@ def score_candidate(
         fulfillment_score += 4
         positive.append("ready-stock signal")
     else:
-        fulfillment_score += 2
         concerns.append("fast dispatch signal missing")
 
     if dropship is True or "一件代发" in signals:
         fulfillment_score += 6
         positive.append("one-piece/dropship signal")
     elif dropship is None:
-        fulfillment_score += 2
         concerns.append("one-piece/dropship support unknown")
     else:
         concerns.append("not dropship friendly")
 
     if moq is None:
-        fulfillment_score += 2
         concerns.append("MOQ missing")
     elif moq <= 1:
         fulfillment_score += 5
@@ -1022,8 +1105,6 @@ def score_candidate(
         fulfillment_score += 2
     elif rating is not None and rating >= 4.8:
         fulfillment_score += 2
-    else:
-        fulfillment_score += 1
 
     readiness_score = 0.0
     if ip_risks:
@@ -1204,6 +1285,8 @@ def candidate_from_row(row: dict[str, Any], index: int) -> Candidate:
         repurchase_rate_pct=first_value(row, "repurchase_rate_pct"),
         rating=first_value(row, "rating"),
         years_on_1688=first_value(row, "years_on_1688"),
+        years_on_1688_scope=first_value(row, "years_on_1688_scope"),
+        years_on_1688_label=first_value(row, "years_on_1688_label"),
         badges=first_value(row, "badges"),
         service_flags=first_value(row, "service_flags"),
         dropship_supported=first_value(row, "dropship_supported"),
@@ -1263,6 +1346,8 @@ def write_csv(path: Path, candidates: list[Candidate]) -> None:
                     "repurchase_rate_pct": candidate.repurchase_rate_pct,
                     "rating": candidate.rating,
                     "years_on_1688": candidate.years_on_1688,
+                    "years_on_1688_scope": candidate.years_on_1688_scope,
+                    "years_on_1688_label": candidate.years_on_1688_label,
                     "badges": candidate.badges,
                     "service_flags": candidate.service_flags,
                     "dropship_supported": candidate.dropship_supported,
@@ -1308,6 +1393,8 @@ def candidate_to_dict(candidate: Candidate) -> dict[str, Any]:
         "repurchase_rate_pct": candidate.repurchase_rate_pct,
         "rating": candidate.rating,
         "years_on_1688": candidate.years_on_1688,
+        "years_on_1688_scope": candidate.years_on_1688_scope,
+        "years_on_1688_label": candidate.years_on_1688_label,
         "badges": candidate.badges,
         "service_flags": candidate.service_flags,
         "dropship_supported": candidate.dropship_supported,

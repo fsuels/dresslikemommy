@@ -1,0 +1,60 @@
+{
+  "mutation": "mutation CorrectMinimalistHeartPrices($productId:ID!,$variants:[ProductVariantsBulkInput!]!){productVariantsBulkUpdate(productId:$productId,variants:$variants,allowPartialUpdates:false){productVariants{id title price compareAtPrice} userErrors{field message}}}",
+  "variables": {
+    "productId": "gid://shopify/Product/7230336729185",
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/41883237220449",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237285985",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237318753",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238465633",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238498401",
+        "price": "22.99"
+      }
+    ]
+  },
+  "inverse_variables": {
+    "productId": "gid://shopify/Product/7230336729185",
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/41883237220449",
+        "price": "229918.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237285985",
+        "price": "229918.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237318753",
+        "price": "229918.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238465633",
+        "price": "229918.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238498401",
+        "price": "229918.99"
+      }
+    ]
+  },
+  "source_review": "parent price_proposal_independent_review.json 37/37",
+  "approval": {
+    "owner_reply": "yes, change. I confirm!",
+    "preceding_question": "May I change these five to $22.99 USD each?",
+    "scope": "Only five price fields on exact Adult2XL White/Blue/Pink/Black/Red variants; no other fields",
+    "approved_at_utc": "2026-09-11T17:11:54.196Z"
+  }
+}

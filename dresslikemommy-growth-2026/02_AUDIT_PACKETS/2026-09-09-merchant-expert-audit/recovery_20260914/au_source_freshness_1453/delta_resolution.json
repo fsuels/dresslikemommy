@@ -1,0 +1,72 @@
+{
+  "schema": "dlm.au_freshness_delta_resolution.v1",
+  "created_at_utc": "2026-09-14T15:13:15.932648+00:00",
+  "decision": "SOURCE_SUPPORTED_PRICE_AND_ACTIVE_CATALOG_REFRESH_READY_FOR_INDEPENDENT_REVIEW",
+  "initial_hypothesis": "Same retained rows/prices as September 11; disproved by current Shopify AU prices. Initial false checks are preserved in candidate_validation.json.",
+  "resolution": "Use the genuinely fresh AU contextual prices. 530 retained offers increase by A$1; all other feed fields remain unchanged. Do not copy the old price or US prices. No rate-conversion cause is inferred.",
+  "checks": {
+    "no_added_offer_ids": true,
+    "exact_twenty_removed_from_two_absent_active_parents": true,
+    "530_retained_rows_change_only_price": true,
+    "all_530_price_deltas_are_plus_one_AUD": true,
+    "all_4741_prices_match_fresh_AU_contextualPricing": true,
+    "all_other_retained_feed_fields_unchanged": true,
+    "remaining_4211_rows_byte_equivalent_fields": true,
+    "no_other_retained_source_payload_changes": true,
+    "source_price_amount_changes_540": true,
+    "one_timestamp_only_parent_change": true,
+    "six_parent_162_exclusions_unchanged": true,
+    "22_currently_unavailable_variants_omitted": true,
+    "protected_six_prices_unchanged": true,
+    "no_shipping_return_label_change": true,
+    "source_pagination_and_context_valid": true,
+    "input_source_clocks_preserved": true,
+    "pure_filter_preserves_current_source_lines": true,
+    "no_builder_generation_errors": true
+  },
+  "checks_passed": 18,
+  "checks_total": 18,
+  "source_timestamp_only_changes": [
+    {
+      "id": "gid://shopify/Product/7505374838881",
+      "before": "2026-09-07T18:16:55Z",
+      "after": "2026-09-14T03:39:57Z"
+    }
+  ],
+  "source_contextual_price_amount_changes": 540,
+  "retained_feed_price_changes": 530,
+  "other_source_payload_changes": [],
+  "retained_qualification_limit": "Current retained product payload is identical except contextual price amounts and one updatedAt field; unchanged six-parent holds carry forward the prior source/selector containment. This is not a new every-offer buyer/MAIN-theme/return-policy certification.",
+  "price_delta_counts": [
+    {
+      "before": "34.00 AUD",
+      "after": "35.00 AUD",
+      "rows": 255
+    },
+    {
+      "before": "37.00 AUD",
+      "after": "38.00 AUD",
+      "rows": 93
+    },
+    {
+      "before": "47.00 AUD",
+      "after": "48.00 AUD",
+      "rows": 50
+    },
+    {
+      "before": "51.00 AUD",
+      "after": "52.00 AUD",
+      "rows": 81
+    },
+    {
+      "before": "54.00 AUD",
+      "after": "55.00 AUD",
+      "rows": 8
+    },
+    {
+      "before": "57.00 AUD",
+      "after": "58.00 AUD",
+      "rows": 43
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "captured_at_utc": "2026-09-14 18:47:56 UTC",
+  "classification": "VERIFY",
+  "status": "EARLY_QUERY_READBACK__FIRST_WEEK_REVIEWS_NOT_YET_DUE",
+  "shop_domain": "dresslikemommy-com.myshopify.com",
+  "reporting_timezone": "America/New_York",
+  "reports": {
+    "guide_pin_early_diagnostic": {
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'pinterest' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' AND utm_content = 'p1' SINCE 2026-09-13 UNTIL 2026-09-13",
+      "result": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'pinterest' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' AND utm_content = 'p1' SINCE 2026-09-13 UNTIL 2026-09-13",
+        "columns": [
+          {
+            "name": "sessions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_with_cart_additions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_reached_checkout",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_completed_checkout",
+            "dataType": "INTEGER"
+          }
+        ],
+        "rows": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "rowCount": 1,
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "error": false
+    },
+    "sunshine_early_diagnostic": {
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'pinterest' AND utm_medium = 'social' AND utm_campaign = 'dlm_sunshine_organic_20260907' AND utm_content = 'product_detail_01' SINCE 2026-09-11 UNTIL 2026-09-13",
+      "result": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'pinterest' AND utm_medium = 'social' AND utm_campaign = 'dlm_sunshine_organic_20260907' AND utm_content = 'product_detail_01' SINCE 2026-09-11 UNTIL 2026-09-13",
+        "columns": [
+          {
+            "name": "sessions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_with_cart_additions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_reached_checkout",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_completed_checkout",
+            "dataType": "INTEGER"
+          }
+        ],
+        "rows": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "rowCount": 1,
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "error": false
+    },
+    "pinterest_referrer_crosscheck": {
+      "result": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE referrer_name = 'pinterest' GROUP BY referrer_source, utm_source, utm_medium, utm_campaign, utm_content SINCE 2026-09-10 UNTIL 2026-09-13 ORDER BY sessions DESC LIMIT 25",
+        "columns": [],
+        "rows": [],
+        "rowCount": 0,
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "error": false
+    }
+  },
+  "interpretation": "Exact early P1 and Sunshine UTM queries returned zero aggregates; the Pinterest-referrer cross-check returned no rows. No matched attributed buying activity is demonstrated in these windows. This does not establish zero actual visits, complete attribution, a broken tag, or an organic sales result.",
+  "limits": [
+    "Not the September17/18 first-complete-week assessments.",
+    "P1 September13 is a partial release date and includes known QA opportunities; its first conservative complete reporting date is September14.",
+    "No customer-level order/cost join, Pinterest outbound report, GA4 receiver or GSC report was read today.",
+    "Filter support and connected-shop identity were read back; lack of matched traffic does not establish event capture completeness.",
+    "No arbitrary subtraction of QA sessions. Platform lag and consent/referral loss remain possible."
+  ],
+  "next_action": "Maintain the existing native Pin schedules; obtain channel outbound evidence through the Pinterest owner when due, improve one existing buyer-intent page after current-source qualification, and perform the fixed-window assessments at their planned dates.",
+  "traffic_or_sales_lift_claimed": false
+}

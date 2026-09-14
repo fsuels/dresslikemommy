@@ -1,0 +1,70 @@
+{
+  "schema": "dlm.context.compact_id_canonical_checks.v1",
+  "verified_at_utc": "2026-09-14T12:01:19.197885+00:00",
+  "status": "PASS_WITH_LIMITS",
+  "application": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/compact_id_canonical_application_20260914_1032.json",
+    "sha256": "b90cd539855316823a3e7d362610622af8b9984a3dab9f075fb12450683a200e"
+  },
+  "source_acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/compact_id_parent_acceptance_20260914_1032.json",
+    "sha256": "31f44c63e420393e1895e6b04de5ca507e6733b4417b0357165a098ae70c50aa"
+  },
+  "after_hashes": {
+    "ops/marketing/action_queue.md": "da8fc1b3d53ef15de7b73f8c4242290f51f60b7208a293122419a9a6cb9f0a03",
+    "ops/marketing/operator_cockpit.md": "73944c6742c39b01dd12d216ad3d085f54e4298b79575b1c0c1c09d568dc0be7",
+    "ops/PROBLEM_TRACKER.md": "3187f022981126b35d8d5970e621228b3b6d2729e5b3701702f6104fb84a2963",
+    "ops/AGENT_COORDINATION.md": "691cec1f1c7d2a8d9b610304d65b25dabf8515d7da2f9769919e11e32f83fbc4",
+    "ops/AGENT_WORKLOG.md": "ea61ed386fff540e9febecc90a821d047372f2363786a8594ca4aa2066302743"
+  },
+  "source_code_hashes": {
+    "ops/scripts/compile_task_context.py": "a210e9d379cb29b843fccfac6e8ee6a49c3844a3474ca76af40d075c72639851",
+    "ops/tests/test_compile_task_context.py": "054334b471d9b21d5684b535c26219ccd962c583c771656e0f310277967a403f",
+    "ops/scripts/session_context.py": "29e8be4ce9616248827eaf7587b4f95ca4a54474958a7d45d27af8cedc02a83f",
+    "ops/tests/test_session_context.py": "ae3ffead070cb9c608590bf5b87f546c22a270a16d54653de5eb6cf5f6c6abc7"
+  },
+  "commands": {
+    "render_marketing_cockpit.py": {
+      "exit_code": 0,
+      "chunk_id": "ca7581"
+    },
+    "scoped_git_diff_check": {
+      "exit_code": 0,
+      "chunk_id": "3a08a6"
+    },
+    "compile_task_context.py current numeric Microsoft pair": {
+      "exit_code": 0,
+      "chunk_id": "fd1f31",
+      "current_claim_first": 35,
+      "retained_historical_claims": [
+        40,
+        54
+      ],
+      "readback": {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/compact_id_current_readback_final_20260914_1032.json",
+        "sha256": "232be301adac52b5601c5af31589b8f0d13e560ab2ca21a8da0754874c76637e"
+      }
+    },
+    "audit_marketing_command_integration.py --write-report --fail-on-risk": {
+      "exit_code": 0,
+      "chunk_id": "1566c0",
+      "integrated": 25,
+      "tracked": 25,
+      "risks": 0
+    },
+    "check_continuity_integrity.py --strict": {
+      "exit_code": 0,
+      "chunk_id": "dbdeb6",
+      "passed": 10,
+      "failed": 0
+    }
+  },
+  "unchanged_first_integration_files": [
+    "ops/marketing/current_marketing_state.md",
+    "ops/marketing/daily_scorecard.md",
+    "ops/marketing/decision_log.md"
+  ],
+  "limits": "Final local context and canonical acceptance only; existing live account, purchase/consent/economics and owner publication gates remain.",
+  "business_writes": 0,
+  "new_harness_goal_task_scheduler": 0
+}

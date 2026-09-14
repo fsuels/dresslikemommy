@@ -1,0 +1,121 @@
+{
+  "reviewed_at_utc": "2026-09-06T17:54:15.119476+00:00",
+  "verdict": "FAIL_REVISE_LOCALE_FALLBACK_GAP",
+  "independence": "Reviewer did not author the copy, build/execute the mutation, inspect source UI, call APIs, or rerun connector validation. Only local read/parse/hash/scope checks and content review were performed.",
+  "check_count": 22,
+  "passed_count": 21,
+  "checks": {
+    "execution_plan_sha_matches_frozen_assignment": true,
+    "one_metafield_and_no_other_input": true,
+    "execution_candidate_equals_exact_variables": true,
+    "description_matches_independent_copy_candidate": true,
+    "description_exact151_single_line": true,
+    "exact_article_identity": true,
+    "only_exact_reserved_description_key_and_type": true,
+    "explicit_null_compareDigest_preserved": true,
+    "fresh_article_equals_all_before_fields": true,
+    "before_and_fresh_description_and_title_tags_absent": true,
+    "current_body_hash_bound": true,
+    "title_handle_published_identity_preserved_in_guard": true,
+    "read_query_aliases_bind_reserved_fields": true,
+    "single_metafieldsSet_mutation_only": true,
+    "all_execution_plan_source_hashes_bind": true,
+    "styles_and_sizing_claims_have_current_body_anchors": true,
+    "browse_and_separate_selection_claims_have_current_body_anchors": true,
+    "copy_plan_prohibits_other_field_writes": true,
+    "rollback_targets_only_created_field_and_restores_absence": true,
+    "rollback_nonatomic_concurrency_risk_retained": true,
+    "reported_validation_and_guard_statuses_consistent": true,
+    "localized_description_preservation_established": false
+  },
+  "candidate_description": "Explore family matching pajama styles and sizing tips. Browse mommy-and-me pajamas, check each person's size, and confirm what each selection includes.",
+  "candidate_characters": 151,
+  "body_sha256": "01c2e9ab6b5c02346c0653bcc526205b5d52c856679e4f8446698999ba53522d",
+  "target": {
+    "owner_id": "gid://shopify/Article/559471886433",
+    "namespace": "global",
+    "key": "description_tag",
+    "prior": "ABSENT",
+    "compareDigest": null
+  },
+  "source_bindings": [
+    {
+      "file": "pajamas_guide_meta_execution_plan.json",
+      "sha256": "524baa55f3a65ae7aaccff7af6528b4703a4e6bb1587bec35896e9d4bcb2fd06"
+    },
+    {
+      "file": "pajamas_guide_meta_description_plan.json",
+      "sha256": "e7069427183cc2e9e24c9f9c39d7c4722fab23a3221855d949d360a5dc4a0805"
+    },
+    {
+      "file": "pajamas_guide_meta_before.json",
+      "sha256": "2165d2fa6e1bd304e149c5ae77a03f381769d8e9864d37cd91d12b7cd9a4bc02"
+    },
+    {
+      "file": "pajamas_guide_meta_fresh_guard.json",
+      "sha256": "6bb83685a1ba5d38334dfd67d6dd2f6714f7bd10a9923a5057a3662247aa0cee"
+    },
+    {
+      "file": "pajamas_guide_meta_mutation.graphql",
+      "sha256": "d6c0d99c08ef43b085ab79f5a84e36bc476b8bd6ac1f2f8c9ee275da71720482"
+    },
+    {
+      "file": "pajamas_guide_meta_variables.json",
+      "sha256": "5b2216673fee8d2df932ed89b884b1a6dff668409b42070a85863773b4cc0c00"
+    },
+    {
+      "file": "pajamas_guide_meta_rollback.json",
+      "sha256": "7fb79656711e04e7078e3e7729e0834ee9b49ebcad413ca0de4b7dd0736c502b"
+    },
+    {
+      "file": "pajamas_guide_meta_query.graphql",
+      "sha256": "5c83e6c00e19224270cd825fac0818e44fae183479c34414cb2071f2a62c82da"
+    },
+    {
+      "file": "pajamas_guide_search_head_readback.json",
+      "sha256": "971448a9308790a6803aaa631cabc107d29f73bbb7bb65ee579030422edb6ba9"
+    },
+    {
+      "file": "pajamas_guide_meta_description_plan.md",
+      "sha256": "415d64119d47cae34d29f6aa1f8d417799b9755dae5a5c11cf36398e0be20a55"
+    },
+    {
+      "file": "pajamas_guide_meta_french_before.json",
+      "sha256": "148157b0e7b497650df5374307a14174bed8c2db89fce8bf780d210ddd78d9a0"
+    }
+  ],
+  "semantic_review": {
+    "verdict": "FAIL_REVISE_RELEASE_SCOPE",
+    "source_supported_copy": "The description summarizes the current guide sections and existing mommy-and-me pajama route. It asks shoppers to check each size and inclusion; it adds no material, shipping, popularity, universal-stock, dad availability, fit guarantee or sales-lift claim.",
+    "create_only_scope": "Explicit compareDigest:null is retained in the one-item metafieldsSet payload against the observed absent global.description_tag. Under the supplied validated CAS semantics, a concurrent creation must fail rather than overwrite. This does not lock the entire article; retain the fresh article guard and sole-writer scope.",
+    "preservation_limit": "The input leaves stored article fields untouched, but this does not establish language-specific rendered SEO preservation. French currently renders a French excerpt; absent SEO translation overrides make English fallback a material unresolved risk. Separate source and localized MAIN readbacks are required by a superseding release.",
+    "rollback_limit": "Prior state is absence. Delete only the newly created exact field after verifying owner, field identity/value/digest and no intervening writer; do not save the old320character rendered excerpt as a guessed source value. Delete lacks atomic CAS and must stop on ambiguity.",
+    "authority": "Parent supplied the existing direct owner automatic-repair instruction. This review checks the exact proposed scope and creates no independent owner approval or spend authority.",
+    "execution_limit": "No mutation has run according to parent. The21mechanicalchecks remainPASS, but the release fails the newly identified locale-preservation gate. Do not execute the reviewed English-only payload. No Google snippet/ranking/traffic/profit outcome is claimed."
+  },
+  "required_operator_after": "Replace this English-only release with a bounded locale-aware plan that binds exact published locales, source/translation before-states, reviewed descriptions, supported field/digest path, partial-failure handling and absence-restoring rollback. Review the superseding plan before any release; do not treat the current21passingmechanicalchecks as international safety or approval of a future21fieldplan.",
+  "external_actions_by_reviewer": 0,
+  "canonical_edits_by_reviewer": 0,
+  "prior_verdict_supersession": {
+    "prior": "PASS_PREWRITE_RELEASE_CONSISTENCY",
+    "reason": "Additional French and operator-supplied translatable-resource evidence arrived before any mutation. It exposes a locale-rendering preservation gap outside the earlier mechanical payload checks. The prior execute-next instruction is withdrawn."
+  },
+  "failed_count": 1,
+  "locale_evidence": {
+    "fresh_french_head": {
+      "source_file": "pajamas_guide_meta_french_before.json",
+      "sha256": "148157b0e7b497650df5374307a14174bed8c2db89fce8bf780d210ddd78d9a0",
+      "captured_at_utc": "2026-09-06T17:51:19.425Z",
+      "lang": "fr",
+      "canonical": "https://www.dresslikemommy.com/fr/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "existing_description_language": "French"
+    },
+    "translatable_resource_report": {
+      "provenance": "Parent message; no corresponding raw resource artifact was supplied to this reviewer. Not independently recreated.",
+      "observation": "French resource has title/body_html translations but no SEO override; English resource lists title/body_html/summary_html/handle only. Root reports20publishedlocales.",
+      "published_locale_count_independently_verified": false
+    },
+    "inference": "Creating the primary global.description_tag could make French and other locales fall back to English instead of their current localized body excerpt. This is an unresolved material risk, not an observed postwrite regression.",
+    "mutation_status": "NOT RUN according to parent; no execution receipt supplied."
+  }
+}

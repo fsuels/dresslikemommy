@@ -1,0 +1,150 @@
+{
+  "schema": "dlm.recent_order_basket_variants.v1",
+  "observed_at_utc": "2026-09-07 00:12:32 UTC",
+  "window": {
+    "start_inclusive": "2026-09-05T04:00:00Z",
+    "end_exclusive": "2026-09-06T23:35:57.262Z",
+    "complete": true
+  },
+  "rows": [
+    {
+      "row_key": "RECENT_01",
+      "created_at": "2026-09-05T15:19:05Z",
+      "complete_line_items": true,
+      "items": [
+        {
+          "quantity": 1,
+          "currentQuantity": 1,
+          "discountedTotalSet": {
+            "shopMoney": {
+              "amount": "25.49",
+              "currencyCode": "USD"
+            },
+            "presentmentMoney": {
+              "amount": "21.95",
+              "currencyCode": "EUR"
+            }
+          },
+          "product": {
+            "id": "gid://shopify/Product/7229023846497",
+            "title": "Vibrant Rainbow Maxi Dress Set for Colorful Summer ... | DLM"
+          },
+          "variant": {
+            "id": "gid://shopify/ProductVariant/41878198943841",
+            "title": "Girl 4-5 Years / Multi Color",
+            "price": "23.99",
+            "inventoryItem": {
+              "unitCost": {
+                "amount": "12.0",
+                "currencyCode": "USD"
+              }
+            }
+          }
+        },
+        {
+          "quantity": 1,
+          "currentQuantity": 1,
+          "discountedTotalSet": {
+            "shopMoney": {
+              "amount": "28.98",
+              "currencyCode": "USD"
+            },
+            "presentmentMoney": {
+              "amount": "24.95",
+              "currencyCode": "EUR"
+            }
+          },
+          "product": {
+            "id": "gid://shopify/Product/7229023846497",
+            "title": "Vibrant Rainbow Maxi Dress Set for Colorful Summer ... | DLM"
+          },
+          "variant": {
+            "id": "gid://shopify/ProductVariant/41878199107681",
+            "title": "Mother M / Multi Color",
+            "price": "27.99",
+            "inventoryItem": {
+              "unitCost": {
+                "amount": "14.0",
+                "currencyCode": "USD"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "row_key": "RECENT_02",
+      "created_at": "2026-09-06T21:31:05Z",
+      "complete_line_items": true,
+      "items": [
+        {
+          "quantity": 1,
+          "currentQuantity": 1,
+          "discountedTotalSet": {
+            "shopMoney": {
+              "amount": "14.99",
+              "currencyCode": "USD"
+            },
+            "presentmentMoney": {
+              "amount": "14.99",
+              "currencyCode": "USD"
+            }
+          },
+          "product": {
+            "id": "gid://shopify/Product/7109117280353",
+            "title": "Chic Pink Mermaid Scales Tankini Set for Mother and Daughter"
+          },
+          "variant": {
+            "id": "gid://shopify/ProductVariant/41497061949537",
+            "title": "Child 4-5 years / Multi-Color",
+            "price": "14.99",
+            "inventoryItem": {
+              "unitCost": {
+                "amount": "7.5",
+                "currencyCode": "USD"
+              }
+            }
+          }
+        },
+        {
+          "quantity": 1,
+          "currentQuantity": 1,
+          "discountedTotalSet": {
+            "shopMoney": {
+              "amount": "16.99",
+              "currencyCode": "USD"
+            },
+            "presentmentMoney": {
+              "amount": "16.99",
+              "currencyCode": "USD"
+            }
+          },
+          "product": {
+            "id": "gid://shopify/Product/7109117280353",
+            "title": "Chic Pink Mermaid Scales Tankini Set for Mother and Daughter"
+          },
+          "variant": {
+            "id": "gid://shopify/ProductVariant/41497061851233",
+            "title": "Mother L / Multi-Color",
+            "price": "16.99",
+            "inventoryItem": {
+              "unitCost": {
+                "amount": "8.5",
+                "currencyCode": "USD"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "interpretation": {
+    "source": "Supported read-only Shopify orders/lineItems, current ProductVariant and InventoryItem.unitCost.",
+    "sales_prices": "discountedTotalSet is the recorded line total in shop and presentment currency. Variant.price is the current default shop price; they are different concepts.",
+    "recorded_costs": "Shopify unitCost is not a supplier invoice or delivered-cost quote. Each of these four values matches current default price*0.50 rounded to cents, consistent with the previously observed pricing template; source lineage for each newly sold unit remains unverified.",
+    "matching": "Use exact current variant IDs and order timestamps to find the corresponding provider items after normal Mac unlock. No private order/transaction/customer identifiers are included.",
+    "profit": "UNKNOWN. Do not substitute this template-cost pattern for actual product/China inspection/local freight/international freight/duties and other expenses.",
+    "market": "Belgium's actual order revenue is USD54.47 / EUR46.90, while the current default USD pair is51.98. No cause of the difference is asserted.",
+    "actions": "Read-only, no procurement/payment/order/fulfillment/refund or campaign change."
+  }
+}

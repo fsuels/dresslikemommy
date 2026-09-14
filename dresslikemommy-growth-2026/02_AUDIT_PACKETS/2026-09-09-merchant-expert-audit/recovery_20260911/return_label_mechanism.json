@@ -1,0 +1,85 @@
+{
+  "schema": "dlm.merchant.return_label_mechanism_review.v1",
+  "review_date_utc": "2026-09-11",
+  "verdict": "DIRECT_MAPPING_UNKNOWN_CONDITIONAL_EXISTING_SOURCE_RULE_ALTERNATIVE",
+  "confidence": {"official_document_interpretation": "HIGH", "account_specific_mechanism": "UNKNOWN"},
+  "target": {"merchant_account_id": "513542500", "source_id": "10014302986", "publisher": "Existing Shopify Google & YouTube app"},
+  "direct_publisher_mapping": {
+    "status": "UNKNOWN_NOT_DOCUMENTED_IN_REVIEWED_PRIMARY_SOURCES",
+    "shopify_ui_input": null,
+    "shopify_metafield_namespace": null,
+    "shopify_metafield_key": null,
+    "shopify_return_rules_automatic_mapping_proved": false,
+    "google_output_attribute": "return_policy_label",
+    "label_value": "Exact saved exception policy label; not invented in this review",
+    "absence_behavior": "Configured default policy applies",
+    "unsupported_conclusion_avoided": "Failure to find a published contract is not proof that no private app capability exists"
+  },
+  "documented_alternative": {
+    "mechanism": "Conditional Merchant attribute rule on the existing primary source",
+    "status": "DOCUMENTED_GENERAL_CAPABILITY_ACCOUNT_AVAILABILITY_UNKNOWN",
+    "prerequisite_addon": "Advanced data source management",
+    "path": ["Data sources", "Product sources", "Select existing primary source 10014302986", "Attribute rules", "Select correct feed label", "Add attribute rule"],
+    "target_attribute": "return_policy_label; must be present in actual target dropdown",
+    "operation": "Conditional Set to exact saved exception label",
+    "input_classifier": null,
+    "classifier_selection_status": "Requires actual inbound data and seller-grounded product classification",
+    "draft_and_test_before_apply": true,
+    "documented_reapplication": "Rules apply to each subsequent upload until changed",
+    "scope": "Source and selected feed label",
+    "new_standalone_country_sources_inherit_rules": false,
+    "second_primary_source_needed": false,
+    "supplemental_source_needed": false,
+    "publisher_reset_needed": false
+  },
+  "cohort_requirements": {
+    "groups": ["Swimwear", "Intimates", "Explicitly marked Final Sale", "Gift cards where present"],
+    "all_discounted_items_treated_as_final_sale": false,
+    "shopify_tags_assumed_transmitted": false,
+    "product_type_or_other_received_classifier_acceptable": "Only if actual values completely and accurately represent the policy cohorts",
+    "classifier_maintained_for_future_products": "UNKNOWN",
+    "manufacturer_or_identifier_fields_changed": false,
+    "return_terms_or_defective_handling_changed": false
+  },
+  "release_gates": [
+    "Existing source has actual product data and exposes the required rule target",
+    "Received classification fields support all actual exception groups without title or tag guesses",
+    "Saved policy and label match the public policy and intended country applicability",
+    "Draft preview covers every affected variant and preserves ordinary-product treatment",
+    "Fresh processed offers confirm exception assignment and removal when classification changes",
+    "Additions and primary-publisher removals are read back; rules alone do not prove lifecycle delivery",
+    "All applicable existing sources/feed labels are covered, with explicit handling of later country-source splits"
+  ],
+  "falsifiers": [
+    "No Attribute rules capability or no return_policy_label target on source 10014302986",
+    "No complete, reliable classifier in the data actually received from Shopify",
+    "A variant misses the exception, an ordinary product acquires it, or a classification change leaves a stale label",
+    "A new country source lacks the rule"
+  ],
+  "local_evidence_reviewed": [
+    {"path": "return_candidate_review.json", "use": "Independent prior review establishes unresolved exception binding; does not prove present receiver emptiness"},
+    {"path": "../receiver_20260910/live_baseline.json", "use": "Historical source/account identity only; September 10 zero count is not current September 11 receipt evidence"},
+    {"path": "../receiver_20260910/return_policy_reconciliation.json", "use": "Targeted field-name search only; generic metafield schema entries do not establish Google publisher mapping"}
+  ],
+  "sources_retrieved_date_utc": "2026-09-11",
+  "sources": [
+    {"id": "shopify_returns", "url": "https://support.google.com/merchants/answer/14232691?hl=en", "finding": "Separate policy configuration is documented, not an app field mapping"},
+    {"id": "shopify_sync", "url": "https://support.google.com/merchants/answer/13693394?hl=en", "finding": "App data-edit instructions omit this mapping; existing rules need copying to new standalone country sources"},
+    {"id": "label", "url": "https://support.google.com/merchants/answer/9445425?hl=en", "finding": "Product-level exception attribute and default fallback"},
+    {"id": "exception_setup", "url": "https://support.google.com/merchants/answer/14011730?hl=en", "finding": "Create policy exception, then assign its label in product data"},
+    {"id": "rules", "url": "https://support.google.com/merchants/answer/14994083?hl=en", "finding": "Existing-source conditional transformations, drafts/tests and upload reapplication"},
+    {"id": "shopify_product_data", "url": "https://help.shopify.com/en/manual/online-sales-channels/marketplaces/google/getting-setup/syncing-products", "finding": "Defers channel product-data guidance to Google; no return-label field contract found"}
+  ],
+  "checks": {
+    "primary_document_sources_only": true,
+    "direct_mapping_not_invented": true,
+    "unknown_account_availability_explicit": true,
+    "future_country_rule_gap_explicit": true,
+    "no_account_or_browser_calls": true,
+    "no_external_writes": true,
+    "only_owned_report_files_written": true,
+    "lifecycle_success_not_claimed": true
+  },
+  "next_action": "Read-only inspection of the existing source's rule target and received classification fields",
+  "continuation": "If the existing source exposes return_policy_label and reliable exception classifiers, prepare a bounded rule draft and independent processed-offer verification; otherwise report the unsupported path without a reset or duplicate publisher"
+}

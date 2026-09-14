@@ -1,0 +1,274 @@
+{
+  "schema": "dlm.merchant.receiver_canonical_independent_review.v1",
+  "status": "PASS_WITH_GATES",
+  "review_verdict": "PASS",
+  "confidence": "H",
+  "reviewer": "/root/merchant_landing_code_review",
+  "scope": "Independent saved-evidence and six-file canonical preservation review. Only this review JSON/Markdown written; no native, Shopify, web, source or shared canonical changes.",
+  "semantic_checked_at_utc": "2026-09-10T19:05:58.550005Z",
+  "canonical_checked_at_utc": "2026-09-10T19:10:06.137191Z",
+  "anchor": "2026-09-10-merchant-source-receiver-audit-and-timezone-alignment",
+  "material_findings": [],
+  "binary_checks": {
+    "all_semantic_checks_pass": true,
+    "all_six_current_after_hashes_match": true,
+    "all_15_operations_reverse_to_before_hashes_and_bytes": true,
+    "worklog_is_append_only": true,
+    "all_289_other_coordination_table_rows_preserved": true,
+    "full_506_byte_paid_control_preserved": true,
+    "delegated_three_global_cockpit_replacements_within_scope": true,
+    "surrounding_ux_paid_other_channel_content_preserved": true,
+    "all_12_reviewed_packet_inputs_unchanged": true,
+    "all_15_root_closeout_bindings_match": true,
+    "five_named_historical_artifacts_unchanged": true,
+    "native_or_api_replay_performed": false,
+    "root_validation_commands_duplicated": false,
+    "overall_merchant_setup_complete": false
+  },
+  "canonical_preservation": {
+    "status": "PASS",
+    "checked_at_utc": "2026-09-10T19:10:06.137191Z",
+    "operation_count": 15,
+    "file_count": 6,
+    "files": [
+      {
+        "path": "ops/AGENT_COORDINATION.md",
+        "operations": 1,
+        "before_sha256": "6112e8c2416b3eeb0ba9a5dcf37a675bc2f148ff5d281366ec7a0b36d50f589c",
+        "before_bytes": 396837,
+        "current_sha256": "4c514450d39c5b9b4b57ad83dccd2c11ecaa5338b82080d8f4da87993b401582",
+        "current_bytes": 396802,
+        "inverse_pass": true
+      },
+      {
+        "path": "ops/marketing/current_marketing_state.md",
+        "operations": 1,
+        "before_sha256": "0823479f496f503d957e857da82ebbe04ca5f97947da048c969f06c01e2114ff",
+        "before_bytes": 230394,
+        "current_sha256": "c50a00744bad61bcc85b76076e22fca737b9062843d9311d315681fc863aed97",
+        "current_bytes": 229324,
+        "inverse_pass": true
+      },
+      {
+        "path": "ops/marketing/operator_cockpit.md",
+        "operations": 4,
+        "before_sha256": "58627c32a6c91cf6aeffe885e3e8db3bd78c9fb996b912012374fce13f017acf",
+        "before_bytes": 104547,
+        "current_sha256": "a8c56ec67c19de255728f5b5aa7732bb9bea6932334391a50b12578667159d1d",
+        "current_bytes": 104982,
+        "inverse_pass": true
+      },
+      {
+        "path": "ops/PROBLEM_TRACKER.md",
+        "operations": 1,
+        "before_sha256": "2e1bf561403fb56f6eda7c5e07939a2d6e57cd463efa24ebdfc0f682ab805fcd",
+        "before_bytes": 856614,
+        "current_sha256": "de46a46a4bef174e0e680393b7671ec57dd7af1b2bec8894f84592824b8f769c",
+        "current_bytes": 856595,
+        "inverse_pass": true
+      },
+      {
+        "path": "ops/AGENT_WORKLOG.md",
+        "operations": 1,
+        "before_sha256": "1857a199e3bcfea71db8d08ff1696d6921f5ca9ff97a8480447974f2a251e0a8",
+        "before_bytes": 3994310,
+        "current_sha256": "f3931f995e2c25b2769bb883b03571983011204e1658f7c8e248948b2f729a04",
+        "current_bytes": 3999559,
+        "inverse_pass": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/AUDIT_AND_FIX_PLAN.md",
+        "operations": 7,
+        "before_sha256": "72550dc889f7a2672febf5a621753372b3def717418147204e997100e98e130a",
+        "before_bytes": 20885,
+        "current_sha256": "1fd39a469fd67c0a56ccfb9585279ccaa8a878c2e35b01f74940fca395c4f7c5",
+        "current_bytes": 20318,
+        "inverse_pass": true
+      }
+    ],
+    "other_coordination_table_rows": {
+      "count": 289,
+      "sha256": "8a04a14c3a249ec4b742e78949d362870b4031fc562dfd651dc4ad9d93dfc314",
+      "byte_identical_and_order_preserved": true
+    },
+    "paid_control": {
+      "bytes": 506,
+      "sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+      "byte_identical": true
+    },
+    "worklog": {
+      "append_only": true,
+      "old_bytes": 3994310,
+      "appended_bytes": 5249,
+      "append_sha256": "199ebf8d5540f291c727f5623f16de97a5b001a3c599d9baba4ba8a75ae2fd1f"
+    },
+    "delegated_global_cockpit_replacements": [
+      {
+        "heading": "## One Owner Action",
+        "old_chars": 269,
+        "new_chars": 298
+      },
+      {
+        "heading": "## One Owner Action",
+        "old_chars": 211,
+        "new_chars": 335
+      },
+      {
+        "heading": "## Current publication status",
+        "old_chars": 230,
+        "new_chars": 380
+      }
+    ],
+    "surrounding_content_preservation": "Exact inverse restores all bytes outside the 15 declared operations, including adjacent UX/paid/other-channel content.",
+    "source_bindings": {
+      "canonical_before.json": {
+        "bytes": 1692,
+        "sha256": "764d0d776b75708fee9d8c00166007a38bdf7e541875265732841cf6a12c5113"
+      },
+      "canonical_patch.json": {
+        "bytes": 38508,
+        "sha256": "11aa98e1824ec88f741a2dfbd0b8c56b0030e4fd52e00e4138157afa93fcca4c"
+      },
+      "canonical_after.json": {
+        "bytes": 1125,
+        "sha256": "564195a869cdb0e6ff6a736f9051cc926fd8d000e0390d6b19de86e56d4689fe"
+      }
+    }
+  },
+  "substantive_checks": {
+    "exact_receiver_and_app_zero_scope": true,
+    "34_derived_vs_31_configured_not_approved": true,
+    "unsupported_country_language_rows_distinct": true,
+    "source_baseline_and_lifecycle_limits": true,
+    "one_timezone_save_matches_independent_receipt": true,
+    "return_source_30_days_no_change_15_not_accepted": true,
+    "policy_body_bindings_and_no_op_match": true,
+    "new_mac_lock_and_separate_sync_rejection": true,
+    "sample_shipping_unknown_logo_and_no_zero_cause_claim": true,
+    "standards_evidence_and_no_canonical_research_mutation": true,
+    "predecessor_history_paid_authority_and_owner_action": true
+  },
+  "packet_source_bindings": {
+    "README.md": {
+      "bytes": 6990,
+      "sha256": "4d929f3fa59645039c22e249cab73b89aef46e14cba5046bfa19cc53e51c4e29"
+    },
+    "access_checkpoint.json": {
+      "bytes": 2961,
+      "sha256": "6fabd5e5825be756c9c9471e53c3448e66d0e25d837c01cb461359a1da83892e"
+    },
+    "live_baseline.json": {
+      "bytes": 6304,
+      "sha256": "e38a999d33b6fae049b1426c801242a55f757b0f62aa27ddc1a854d4c78d3ed7"
+    },
+    "account_requirements.json": {
+      "bytes": 2322,
+      "sha256": "6a9a63b3270fce9e84c44eaafe1b7daac7e14bdbdfe7fcfb217aa0cdf8ffeb3e"
+    },
+    "timezone_review.json": {
+      "bytes": 7010,
+      "sha256": "eb0fd92ab293ae957a25d9f96fd5bf84988ddfa8592e1e688e42bca2c372e21d"
+    },
+    "timezone_review.md": {
+      "bytes": 1736,
+      "sha256": "ef84c92e352427d91d4eff1120988c31291cb58aaea8f153abdc01681dc7c421"
+    },
+    "timezone_receipt.json": {
+      "bytes": 1938,
+      "sha256": "e5fcd24c2f3a334702e254b2828d9915988fc4bf050729dc888a129db0a08503"
+    },
+    "timezone_change_plan.json": {
+      "bytes": 1806,
+      "sha256": "bf43ef43a5b5e6c8fead5a9e4df8f299b3eb3dd49278d8ea5b7d6b4b6dfd5c96"
+    },
+    "standards_reconciliation.json": {
+      "bytes": 7291,
+      "sha256": "082979d913543b0dc65696b65302f2599ad3422521da698eb30adf1a59dd17ff"
+    },
+    "standards_reconciliation.md": {
+      "bytes": 5411,
+      "sha256": "4ee67f84b9642760f26c0ceadfcab94d8fc4802620a31d7b346c3cdea836286f"
+    },
+    "return_policy_reconciliation.json": {
+      "bytes": 44019,
+      "sha256": "d6ea283a1e9ac159e0545e582bf82daadc5f91fc8fad0e65357d93b60f2221f7"
+    },
+    "return_policy_reconciliation.md": {
+      "bytes": 2933,
+      "sha256": "61d7645e974343a2dadbf82c25a6bba6ed304ba69c8047f11e89f89659542190"
+    }
+  },
+  "historical_source_bindings": {
+    "../native_authorized_20260910/canonical_before.json": {
+      "sha256": "b04b16e2d27fdc8c817a0975d4c0a6d42b4262668cbb2ee7dfdd5fc5e01e91d4",
+      "bytes": 398818
+    },
+    "../native_authorized_20260910/canonical_patch.json": {
+      "sha256": "17dae2db3eea99a526c79ae4e36b4837db0c78b5562ca74d07ff00174b30b180",
+      "bytes": 24771
+    },
+    "../native_authorized_20260910/ACCESS_CHECKPOINT.md": {
+      "sha256": "793b6524ba178439db9ede3068857facae7189d690ff80461663f7bfb742e56b",
+      "bytes": 2681
+    },
+    "../native_authorized_20260910/access_checkpoint.json": {
+      "sha256": "f05a826b6930cc43785a423a89e3d4a0885eee08194383394fc0a8a51883971a",
+      "bytes": 4059
+    },
+    "../lifecycle_20260910/preflight_review.json": {
+      "sha256": "0475fc3ebfb23725b1f31093b81467dbda132fc59f9b3838fc64aacaca001abb",
+      "bytes": 9679
+    }
+  },
+  "root_closeout_snapshot": {
+    "binding": {
+      "sha256": "f3a061d90ab1d8f196e7e4d4a8ec4306addfff949566a3cbcb5416614b63e81b",
+      "bytes": 4853
+    },
+    "recorded_at_utc": "2026-09-10T19:10:03.965054+00:00",
+    "canonical_review_field_at_read": "PENDING separate reviewer",
+    "interpretation": "This is the immutable pre-verdict receipt snapshot reviewed here. This independent report supplies the verdict; a later closeout status/pointer update need not preserve that snapshot hash.",
+    "root_recorded_validation": {
+      "timezone_independent_saved_receipt_checks": "8/8 PASS; no native/API replay",
+      "return_policy_source_checks": "20/20 PASS; both sources NO_CHANGE",
+      "render_marketing_cockpit.py": {
+        "status": "PASS",
+        "exit_code": 0
+      },
+      "audit_marketing_command_integration.py --write-report --fail-on-risk": {
+        "status": "PASS",
+        "exit_code": 0,
+        "tracked": 25,
+        "integrated_generated_archive": 25,
+        "risks": 0
+      },
+      "check_continuity_integrity.py --strict": {
+        "status": "PASS",
+        "exit_code": 0,
+        "checks": 10,
+        "result": "CONTINUITY_OK"
+      },
+      "scoped_git_diff_check": {
+        "status": "PASS",
+        "exit_code": 0
+      },
+      "packet_json_parse": {
+        "status": "PASS",
+        "files_at_run": 11
+      },
+      "canonical_independent_review": "PENDING separate reviewer"
+    },
+    "independent_execution_of_root_commands": false
+  },
+  "limits": [
+    "Zero products applies to existing Content API source 10014302986 and the connected Shopify app; cause remains UNKNOWN.",
+    "34 app countries are derived from displayed collapsed-group sizes; 31 Merchant countries are configured, not approved country coverage. Twenty language-reason rows lack country mapping.",
+    "Only one timezone save is evidenced. Both current 30-day policy source pages require NO_CHANGE; Merchant's 15-day suggestion remains unsubmitted and Terms differences remain unresolved.",
+    "The newly observed Mac lock supersedes earlier unstable-Chrome directions. Current general Merchant authorization is resolved; the separate exact Product sync click automatic-review rejection remains pending and was not bypassed.",
+    "Historical source/theme proof and UX successor 137888792673 ownership are preserved. No historical artifact is asserted to prove current complete live storefront or receiving state.",
+    "Root-generated cockpit HTML and integration output are outside the six-file inverse scope; root validation results are read from its saved receipt, not independently rerun."
+  ],
+  "next_owner_action": "Unlock the Mac using the already pending question; reverify exact Merchant account/page before source-backed return setup and receiver tracing.",
+  "continuation_prompt": "Continue Merchant 513542500 from 2026-09-10-merchant-source-receiver-audit-and-timezone-alignment after the existing unlock gate clears. Preserve the separate Product sync exact-click gate, 30-day source policy exceptions, earlier repairs, UX successor and full-paid authority."
+}
+

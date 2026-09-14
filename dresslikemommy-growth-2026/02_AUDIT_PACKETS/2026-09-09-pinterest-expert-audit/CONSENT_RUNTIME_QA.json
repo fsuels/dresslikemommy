@@ -1,0 +1,95 @@
+{
+  "schema": "dlm.consent_runtime_qa.v1",
+  "recordedAtUtc": "2026-09-09 19:04:50 UTC",
+  "themeId": 137880666209,
+  "status": "BOUNDED_PREVIEW_QA_PASSED__MANAGED_DIALOG_TRANSLATION_OPEN",
+  "sourceRevision": "Original39filemanifest plus CONSENT_CSS_V2_AFTER.json",
+  "checks": [
+    {
+      "check": "Preview identity",
+      "result": "PASS",
+      "evidence": "Shopify.theme.id137880666209/roleunpublished and visible named Draft bar"
+    },
+    {
+      "check": "Existing SDK and actual ancestry",
+      "result": "PASS",
+      "evidence": "privacyBanner.showPreferences function; visible preferences direct BODY child"
+    },
+    {
+      "check": "Open and close without choice",
+      "result": "PASS",
+      "evidence": "Footer click opens; SDK focuses close; closing returns focus and enables footer; original consent remained blank"
+    },
+    {
+      "check": "Keyboard activation",
+      "result": "PASS",
+      "evidence": "Return on restored footer focus reopened real dialog"
+    },
+    {
+      "check": "Decline and persistence",
+      "result": "PASS",
+      "evidence": "analytics/marketing/preferences=no and allowed=false; persists on reload and unchecked controls on reopening"
+    },
+    {
+      "check": "Grant and granular revocation",
+      "result": "PASS",
+      "evidence": "Acceptall givesyes; uncheckedMarketing+Savemychoices givesmarketingno whileanalyticsprefsremainyes; persistsreload"
+    },
+    {
+      "check": "Initial candidate contrast",
+      "result": "FAILED_THEN_CORRECTED",
+      "evidence": "V1 newbuttonrgba18,18,18,.95 on#1a1a1a; CSSv2 actual#ccc,14px,44pxheight; calculatedcontrast10.8375:1"
+    },
+    {
+      "check": "Mobile390x844",
+      "result": "PASS_FOR_OBSERVED_SCOPE",
+      "evidence": "Visible scrollable dialog and usable controls; no horizontal overflow; corrected footercontrolheight44"
+    },
+    {
+      "check": "Localized labels",
+      "result": "PASS_FOR_OBSERVED_SCOPE",
+      "evidence": "English, Arabic and Spanish labels rendered; Arabicbutton143.5px wide/44pxhighwithinviewport"
+    },
+    {
+      "check": "Managed dialog translation",
+      "result": "OPEN",
+      "evidence": "Shopify.locale=ar and Arabicfooterlabel; nativeSDKdialogstillEnglish. Requires supportedShopifyprivacyconfigurationinspection"
+    },
+    {
+      "check": "Pinterest network and receiver acceptance",
+      "result": "NOT_VERIFIED",
+      "evidence": "SourceandSDKpermissionsverified; workerrequestcoverage/postdedupreceiver/orderparitynotcertified. Earlier235requestcapturewastruncated; unsupportedautoattachnotbypassed"
+    }
+  ],
+  "cleanup": {
+    "previewExited": true,
+    "mainThemeRestored": 133290917985,
+    "viewportReset": true,
+    "language": "en",
+    "countryPreserved": "US",
+    "cartItems": 0,
+    "cartWritesByThisTask": 0,
+    "purchases": 0,
+    "temporaryTabClosed": true,
+    "originalConsentRestored": false,
+    "reason": "Original consent was blank and legacy_tracking_consent cookie absent. It remained absent after choices, so deleting that nonexistent cookie could not restore unchosen state; no essential/authentication cookie was cleared.",
+    "remainingTestSessionConsent": {
+      "analytics": "no",
+      "marketing": "no",
+      "preferences": "no",
+      "sale_of_data": ""
+    },
+    "analyticsAllowed": false,
+    "marketingAllowed": false,
+    "scope": "Isolated in-app test session only; no storewide privacy setting or Chrome consent changed"
+  },
+  "nativePinterest": {
+    "latestState": "MAC_LOCKED",
+    "observedAtUtc": "2026-09-09 18:57 UTC",
+    "ownerUnlockRequested": true,
+    "priorStates": "Correct DLM advertiser read, health fetch error; later user window changes and unrelated sign-in title. Current Mac-lock observation supersedes earlier account-switch gate.",
+    "pinsPublished": 0,
+    "campaignsCreated": 0,
+    "spend": 0
+  }
+}

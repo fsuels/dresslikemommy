@@ -1,0 +1,659 @@
+{
+  "schema": "dlm.us_es_source_independent_review.v1",
+  "reviewed_at_utc": "2026-09-14T18:44:06.012261+00:00",
+  "reviewer": "/root/collector_global_fallback_fix",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "H_FOR_FROZEN_BYTES_AND_RECOMPUTED_SOURCE_COUNTS__OPERATOR_TRANSCRIPTION_FOR_UI_OBSERVATIONS",
+  "scope": "Independent review of completed Merchant source qualification only. No implementation review or endorsement of pipeline proposal. My separately built local collector candidate was not read, executed, modified or used as the verifier.",
+  "independence": {
+    "source_packet_built_by": "Merchant owner 01a08706-c63a-7e01-ba48-7777bcb1788a",
+    "reviewer_did_not_build_source_packet": true,
+    "reviewer_did_not_execute_source_or_browser_reads": true,
+    "api_calls": 0,
+    "browser_calls": 0,
+    "credential_reads": 0,
+    "source_or_runtime_or_canonical_edits": 0,
+    "candidate_edits": 0,
+    "agents_spawned": 0,
+    "owned_output": "/private/tmp/dlm-us-es-source-independent-review-20260914.json",
+    "completed_turn_metadata": "Parent verifies separately; not counted as my evidence"
+  },
+  "input_roots": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification",
+    "execution_handoff_sha256": "4783cc8fec69b8d77ff5bb33e202b1abe9047f8b354a0bd20ffe10d3587ecb72",
+    "artifact_freeze_sha256": "bdbaf889472e456d36467a56710321b43555604b8f79f22bfae18cb20a4c7253",
+    "snapshot_sha256": "f89f132ca37dcf26999575828040d4437455e6977ab840db2c82d1499c917678",
+    "global_supplement_sha256": "9815b5b010a6978e62b3ec5ebeb8c39aba37e25655c26084d7416d260601d998",
+    "potential_manifest_sha256": "1c478491dddbe5795c89f83281c2dfe5ae5c0992c809c9291fc587ed9c4f1cfa",
+    "input_bindings_sha256": "e13720b8c07fadd93db53924fb7d3f8b252d82eff377b118c9bb0d75777c9e25"
+  },
+  "independent_checks": [
+    {
+      "check": "Exact assigned handoff binding",
+      "passed": true
+    },
+    {
+      "check": "Exact assigned freeze binding",
+      "passed": true
+    },
+    {
+      "check": "Every declared file SHA and size independently matches",
+      "passed": true,
+      "evidence": {
+        "entries": 44,
+        "distinct_files": 40
+      }
+    },
+    {
+      "check": "Freeze inventory is complete, excluding itself only",
+      "passed": true
+    },
+    {
+      "check": "Source identity, exact locale/country/currency/market and source clock",
+      "passed": true
+    },
+    {
+      "check": "Source first/last exact identity and published locale receipts agree",
+      "passed": true
+    },
+    {
+      "check": "Source market/catalog context is stable and exact",
+      "passed": true
+    },
+    {
+      "check": "238 unique source parents and 4925 unique variants are exact and complete",
+      "passed": true
+    },
+    {
+      "check": "Final source manifest matches every product identity, timestamp, count and publication field",
+      "passed": true
+    },
+    {
+      "check": "Every source parent is active and qualified by all three publication booleans",
+      "passed": true
+    },
+    {
+      "check": "Saved source pagination traces close every connection",
+      "passed": true
+    },
+    {
+      "check": "Saved parent and final-manifest trace totals match exact source count",
+      "passed": true
+    },
+    {
+      "check": "Saved nested variant traces exactly match every source parent count",
+      "passed": true
+    },
+    {
+      "check": "Supplement metadata binds the same source and keeps a distinct completion clock",
+      "passed": true
+    },
+    {
+      "check": "Supplement has exact parent identity and updatedAt joins",
+      "passed": true
+    },
+    {
+      "check": "Supplement pagination is complete and separate variants were not reread",
+      "passed": true
+    },
+    {
+      "check": "Supplement recorded query hash matches the exact unchanged PRODUCTS_QUERY",
+      "passed": true
+    },
+    {
+      "check": "Market-scoped source arrays are empty for all 238 parents",
+      "passed": true
+    },
+    {
+      "check": "Global records have unique keys, exact es locale and explicit boolean freshness",
+      "passed": true
+    },
+    {
+      "check": "All 238 global views contain nonempty title and body, and no returned translated handles",
+      "passed": true
+    },
+    {
+      "check": "Required-field freshness partition is exactly 227 fresh / 11 rejected with 13 stale fields",
+      "passed": true
+    },
+    {
+      "check": "Six hold records exactly preserve inherited reasons, evidence and release conditions",
+      "passed": true
+    },
+    {
+      "check": "Required-stale and held parent sets are disjoint",
+      "passed": true
+    },
+    {
+      "check": "Parent partition exactly 221 potential / 11 required-stale / six held",
+      "passed": true
+    },
+    {
+      "check": "Independent source partition exactly reconciles 4925 variants",
+      "passed": true
+    },
+    {
+      "check": "Source availability and overlap qualifiers are exact",
+      "passed": true
+    },
+    {
+      "check": "Complete CSV covers every unique source variant once with recomputed status",
+      "passed": true
+    },
+    {
+      "check": "Potential and rejected CSVs are exact ordered subsets of the full partition",
+      "passed": true
+    },
+    {
+      "check": "All 4925 CSV rows preserve identity, source content/options/price/availability, scopes, clocks and unverified URLs",
+      "passed": true,
+      "evidence": {
+        "mismatches": []
+      }
+    },
+    {
+      "check": "Parent manifest independently matches all 238 records and raw body hashes",
+      "passed": true,
+      "evidence": {
+        "mismatches": []
+      }
+    },
+    {
+      "check": "Derived review input changes only translations and adds explicit source/supplement provenance",
+      "passed": true
+    },
+    {
+      "check": "Derived input preserves both clocks, hashes, outdated flags and unverified landing status",
+      "passed": true
+    },
+    {
+      "check": "Isolated Spanish configuration remains disabled and unscheduled",
+      "passed": true
+    },
+    {
+      "check": "Frozen unchanged-builder diagnostics have 238 exact missing-content failures and zero rows",
+      "passed": true
+    },
+    {
+      "check": "No local Google TSV or native Spanish source is represented as produced",
+      "passed": true
+    },
+    {
+      "check": "Checkpoint after state matches the exact frozen hash",
+      "passed": true
+    },
+    {
+      "check": "Removing only the added checkpoint key reproduces prior bytes and all 37 prior keys",
+      "passed": true,
+      "evidence": {
+        "reconstructed_before_sha256": "b26944a2b9b0b6736c0f3edcfb2a2669eb489bd8a11f3a4daadd5d77e75b618a"
+      }
+    },
+    {
+      "check": "Added checkpoint key binds frozen handoff, clocks and withheld result",
+      "passed": true
+    },
+    {
+      "check": "Two distinct buyer receipts bind exact source fields and correctly distinguish direct-link failure from manual-price success",
+      "passed": true
+    },
+    {
+      "check": "Buyer receipt leaves landing, cart, order and consent claims unverified",
+      "passed": true
+    },
+    {
+      "check": "Native receipt confines Spanish absence to inspected inventory and preserves existing English identities",
+      "passed": true
+    },
+    {
+      "check": "Source wizard/capacity receipt makes no source creation or numeric headroom claim",
+      "passed": true
+    },
+    {
+      "check": "Shipping and business outcome limits remain explicit",
+      "passed": true
+    }
+  ],
+  "independent_check_count": 43,
+  "independent_checks_passed": 43,
+  "defects": [],
+  "recomputed": {
+    "source_parents": 238,
+    "source_variants": 4925,
+    "source_available_variants": 4903,
+    "source_completed_at_utc": "2026-09-14T18:04:07.475Z",
+    "global_supplement_completed_at_utc": "2026-09-14T18:07:06.528Z",
+    "updatedAt_join_mismatches": 0,
+    "variant_partition": {
+      "SOURCE_TRANSLATION_QUALIFIED_LANDING_UNVERIFIED": 4552,
+      "TRANSLATION_REJECTED": 189,
+      "SOURCE_NOT_AVAILABLE": 22,
+      "EXISTING_ELIGIBILITY_HOLD": 162
+    },
+    "potential_parents": 221,
+    "required_stale_parents": 11,
+    "held_parents": 6,
+    "required_stale_hold_overlap": 0,
+    "unavailable_variant_in_required_stale_parent": 1,
+    "market_scoped_translation_records": 0,
+    "global_records": 1186,
+    "required_stale_fields": {
+      "stale_body_html": 8,
+      "stale_title": 5
+    },
+    "all_outdated_record_count": 28,
+    "all_outdated_parent_count": 13,
+    "all_outdated_field_types": {
+      "body_html": 8,
+      "title": 5,
+      "meta_title": 6,
+      "meta_description": 7,
+      "product_type": 2
+    },
+    "no_translated_handle_records_returned": true,
+    "global_record_returned_market_identity": false
+  },
+  "buyer_source_binding_review": [
+    {
+      "product_id": "gid://shopify/Product/6718945034337",
+      "variant_id": "gid://shopify/ProductVariant/39756755861601",
+      "source_binding_passed": true,
+      "receipt_distinguishes_direct_failure_from_manual_success": true,
+      "direct_read_at_utc": "2026-09-14T18:12:58.554Z",
+      "evidence_kind": "FROZEN_EXECUTOR_TRANSCRIPTION_NOT_INDEPENDENT_BROWSER_REPLAY"
+    },
+    {
+      "product_id": "gid://shopify/Product/7230336729185",
+      "variant_id": "gid://shopify/ProductVariant/41883237220449",
+      "source_binding_passed": true,
+      "receipt_distinguishes_direct_failure_from_manual_success": true,
+      "direct_read_at_utc": "2026-09-14T18:16:02.522Z",
+      "evidence_kind": "FROZEN_EXECUTOR_TRANSCRIPTION_NOT_INDEPENDENT_BROWSER_REPLAY"
+    }
+  ],
+  "checkpoint": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/all-markets.execution_checkpoint.json",
+    "after_sha256": "392f417ef5603b0846b232d3ffcde2fe0c18804e17136f5fac39be2e1a594e63",
+    "reconstructed_before_sha256": "b26944a2b9b0b6736c0f3edcfb2a2669eb489bd8a11f3a4daadd5d77e75b618a",
+    "unchanged_prior_keys": 37,
+    "sole_added_key": "latest_us_spanish_qualification_20260914",
+    "method": "Removed only declared new key in memory; json.dumps(indent=2, ensure_ascii=True) plus newline exactly reproduced the independently bound prior SHA. No file write."
+  },
+  "file_bindings": [
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/README.md",
+      "expected_sha256": "e20138fea07fc25035203f192b3c41443bd773a50795c8ea1ec9d6d444beb3f5",
+      "actual_sha256": "e20138fea07fc25035203f192b3c41443bd773a50795c8ea1ec9d6d444beb3f5",
+      "bytes": 6801,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/buyer_readback.json",
+      "expected_sha256": "5512201b90d713d4bca5383fcddd77afa84480040f885aee69164134aa8609d7",
+      "actual_sha256": "5512201b90d713d4bca5383fcddd77afa84480040f885aee69164134aa8609d7",
+      "bytes": 5391,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/checkpoint_change_receipt.json",
+      "expected_sha256": "e52dcb0abc5421c31c62e1563a995209f595d94cfc930ce24099aecda8bfdef4",
+      "actual_sha256": "e52dcb0abc5421c31c62e1563a995209f595d94cfc930ce24099aecda8bfdef4",
+      "bytes": 905,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/collection_receipt.json",
+      "expected_sha256": "ab91aa9f441e3d2eedc3ee319fe241e1c03272267e8a3b226e6f0a56aae0eda7",
+      "actual_sha256": "ab91aa9f441e3d2eedc3ee319fe241e1c03272267e8a3b226e6f0a56aae0eda7",
+      "bytes": 1691,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/complete_source_partition.csv",
+      "expected_sha256": "46488d9f3a1cb16948a17b742fd2bdc623ae1d0945ddd867d15cb7baa5d43a6f",
+      "actual_sha256": "46488d9f3a1cb16948a17b742fd2bdc623ae1d0945ddd867d15cb7baa5d43a6f",
+      "bytes": 3365776,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/completion_validation.json",
+      "expected_sha256": "4b56aec46a4cd2f24ab658b198c565e69b7ea08b350ffe44e7e0d2e349e439cc",
+      "actual_sha256": "4b56aec46a4cd2f24ab658b198c565e69b7ea08b350ffe44e7e0d2e349e439cc",
+      "bytes": 2297,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/current_pipeline_readiness/us-es.diagnostics.json",
+      "expected_sha256": "fe8c2553208cc6c164e802f95a8e07452b4574f49a93fddbb7d9a158649b9041",
+      "actual_sha256": "fe8c2553208cc6c164e802f95a8e07452b4574f49a93fddbb7d9a158649b9041",
+      "bytes": 82348,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/decision_frame.json",
+      "expected_sha256": "0d361309345225034727069d42b4134c7b280a1558a510eba5239131eac71fcd",
+      "actual_sha256": "0d361309345225034727069d42b4134c7b280a1558a510eba5239131eac71fcd",
+      "bytes": 2954,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/derived_global_translation_input_NOT_RELEASED.json",
+      "expected_sha256": "53a850885236763dfcd64916679d3cfbd601e3f745e3dcb129f7dab9e4545d39",
+      "actual_sha256": "53a850885236763dfcd64916679d3cfbd601e3f745e3dcb129f7dab9e4545d39",
+      "bytes": 8459159,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/execution_handoff.json",
+      "expected_sha256": "4783cc8fec69b8d77ff5bb33e202b1abe9047f8b354a0bd20ffe10d3587ecb72",
+      "actual_sha256": "4783cc8fec69b8d77ff5bb33e202b1abe9047f8b354a0bd20ffe10d3587ecb72",
+      "bytes": 14245,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/existing_translation_guard_tests.json",
+      "expected_sha256": "5f8ac549b461d2448f4b450313523691fbe478e75f4a7443b44c4c0a01a8a76e",
+      "actual_sha256": "5f8ac549b461d2448f4b450313523691fbe478e75f4a7443b44c4c0a01a8a76e",
+      "bytes": 632,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/existing_translation_guard_tests.txt",
+      "expected_sha256": "d648fe73f33fd864b0c53cbe9cde9dbb8af7c9022ea52148b4f9f8ff18602441",
+      "actual_sha256": "d648fe73f33fd864b0c53cbe9cde9dbb8af7c9022ea52148b4f9f8ff18602441",
+      "bytes": 518,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/global_es_translation_supplement.json",
+      "expected_sha256": "9815b5b010a6978e62b3ec5ebeb8c39aba37e25655c26084d7416d260601d998",
+      "actual_sha256": "9815b5b010a6978e62b3ec5ebeb8c39aba37e25655c26084d7416d260601d998",
+      "bytes": 1734048,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/input_bindings.json",
+      "expected_sha256": "e13720b8c07fadd93db53924fb7d3f8b252d82eff377b118c9bb0d75777c9e25",
+      "actual_sha256": "e13720b8c07fadd93db53924fb7d3f8b252d82eff377b118c9bb0d75777c9e25",
+      "bytes": 4356,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/isolated_config.json",
+      "expected_sha256": "2c85719db86f8fb4e041c6d4ef66001dfe5e8817d2f1a2e8cf37c641ed98582e",
+      "actual_sha256": "2c85719db86f8fb4e041c6d4ef66001dfe5e8817d2f1a2e8cf37c641ed98582e",
+      "bytes": 1365,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/native_inventory_language_capacity_receipt.json",
+      "expected_sha256": "8394df98cae9c3e5bb113a84da8b190ff3b04cf38481bc7686010135cb8deb31",
+      "actual_sha256": "8394df98cae9c3e5bb113a84da8b190ff3b04cf38481bc7686010135cb8deb31",
+      "bytes": 5267,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/parent_translation_qualification.csv",
+      "expected_sha256": "0d05e65e17abe88f2decd00f76325cf861bc784406339392deeaf3f3299bf969",
+      "actual_sha256": "0d05e65e17abe88f2decd00f76325cf861bc784406339392deeaf3f3299bf969",
+      "bytes": 67221,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/pipeline_correction_proposal.json",
+      "expected_sha256": "c0770b14791bab8822b60a82f28337b6cf2f549a1ab5eb9c8305e390b6edad5d",
+      "actual_sha256": "c0770b14791bab8822b60a82f28337b6cf2f549a1ab5eb9c8305e390b6edad5d",
+      "bytes": 5439,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/potential_candidate_manifest_NOT_UPLOADABLE.csv",
+      "expected_sha256": "1c478491dddbe5795c89f83281c2dfe5ae5c0992c809c9291fc587ed9c4f1cfa",
+      "actual_sha256": "1c478491dddbe5795c89f83281c2dfe5ae5c0992c809c9291fc587ed9c4f1cfa",
+      "bytes": 3107184,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/release_readback_rollback_plan.json",
+      "expected_sha256": "4f7457aeaaac573e804731d3c7431488e22239d80d97d96e3b9a22e2bfd1c9ff",
+      "actual_sha256": "4f7457aeaaac573e804731d3c7431488e22239d80d97d96e3b9a22e2bfd1c9ff",
+      "bytes": 4603,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/representative_plan.json",
+      "expected_sha256": "80b753ddd00bb1b1c4c85556c6858be691f9e3ba16fec851dab1388b89fed9e0",
+      "actual_sha256": "80b753ddd00bb1b1c4c85556c6858be691f9e3ba16fec851dab1388b89fed9e0",
+      "bytes": 6564,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/saved_artifact_review.json",
+      "expected_sha256": "80236d0f5360f8c505ff5cdfa9d760a7d80e5fa16b83ce26e0b6e37b5dc9ebd2",
+      "actual_sha256": "80236d0f5360f8c505ff5cdfa9d760a7d80e5fa16b83ce26e0b6e37b5dc9ebd2",
+      "bytes": 3510,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/scoped_diff_output.txt",
+      "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/scoped_diff_result.json",
+      "expected_sha256": "7a40f6f98bdcea0a2d35f38dd5b49dacd4acde1b5f4f75b5df0acfbaae5ad8d4",
+      "actual_sha256": "7a40f6f98bdcea0a2d35f38dd5b49dacd4acde1b5f4f75b5df0acfbaae5ad8d4",
+      "bytes": 680,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/source_reconciliation.json",
+      "expected_sha256": "196094ddcb5cb1fec3dc0f610559829fe210e5856a09d6273fcce0dea0b70838",
+      "actual_sha256": "196094ddcb5cb1fec3dc0f610559829fe210e5856a09d6273fcce0dea0b70838",
+      "bytes": 1703,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/source_validation.json",
+      "expected_sha256": "f63b1379d2c8dc307768f59a61b2bfa5b1283c99f6154e240a68d25a7f39875b",
+      "actual_sha256": "f63b1379d2c8dc307768f59a61b2bfa5b1283c99f6154e240a68d25a7f39875b",
+      "bytes": 66197,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/strict_continuity_output.txt",
+      "expected_sha256": "fca990e821bec091d15e436d2c9a83b872e65398fa91f8ca7c06caed4ad00e57",
+      "actual_sha256": "fca990e821bec091d15e436d2c9a83b872e65398fa91f8ca7c06caed4ad00e57",
+      "bytes": 1347,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/strict_continuity_result.json",
+      "expected_sha256": "fe847fdeadbddd3b37ce5b2caf4c7225baea0930fd8b5bba8409467011253842",
+      "actual_sha256": "fe847fdeadbddd3b37ce5b2caf4c7225baea0930fd8b5bba8409467011253842",
+      "bytes": 467,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/translation_rejected_available_offers.csv",
+      "expected_sha256": "c9fd6b30094734ba9a3e9d0dd7f8a97616f606c8d064fe9313ce2593b707587a",
+      "actual_sha256": "c9fd6b30094734ba9a3e9d0dd7f8a97616f606c8d064fe9313ce2593b707587a",
+      "bytes": 124127,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/us-es.snapshot.json",
+      "expected_sha256": "f89f132ca37dcf26999575828040d4437455e6977ab840db2c82d1499c917678",
+      "actual_sha256": "f89f132ca37dcf26999575828040d4437455e6977ab840db2c82d1499c917678",
+      "bytes": 6759323,
+      "passed": true
+    },
+    {
+      "group": "artifact_freeze",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/us_es_eligibility_holds_NOT_RELEASED.json",
+      "expected_sha256": "800ebce9c5ebc2174d7ac9d23e9985312a6c1724e3329700483478304be52ff3",
+      "actual_sha256": "800ebce9c5ebc2174d7ac9d23e9985312a6c1724e3329700483478304be52ff3",
+      "bytes": 4652,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/us-es.snapshot.json",
+      "expected_sha256": "f89f132ca37dcf26999575828040d4437455e6977ab840db2c82d1499c917678",
+      "actual_sha256": "f89f132ca37dcf26999575828040d4437455e6977ab840db2c82d1499c917678",
+      "bytes": 6759323,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/global_es_translation_supplement.json",
+      "expected_sha256": "9815b5b010a6978e62b3ec5ebeb8c39aba37e25655c26084d7416d260601d998",
+      "actual_sha256": "9815b5b010a6978e62b3ec5ebeb8c39aba37e25655c26084d7416d260601d998",
+      "bytes": 1734048,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/collection_receipt.json",
+      "expected_sha256": "ab91aa9f441e3d2eedc3ee319fe241e1c03272267e8a3b226e6f0a56aae0eda7",
+      "actual_sha256": "ab91aa9f441e3d2eedc3ee319fe241e1c03272267e8a3b226e6f0a56aae0eda7",
+      "bytes": 1691,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/isolated_config.json",
+      "expected_sha256": "2c85719db86f8fb4e041c6d4ef66001dfe5e8817d2f1a2e8cf37c641ed98582e",
+      "actual_sha256": "2c85719db86f8fb4e041c6d4ef66001dfe5e8817d2f1a2e8cf37c641ed98582e",
+      "bytes": 1365,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/eligibility_holds_20260911.json",
+      "expected_sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+      "actual_sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+      "bytes": 4385,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js",
+      "expected_sha256": "81748e4882ecb5b3b414db997f1902eb730c2ff612937f1c9cacb74ab6e3cb6d",
+      "actual_sha256": "81748e4882ecb5b3b414db997f1902eb730c2ff612937f1c9cacb74ab6e3cb6d",
+      "bytes": 9583,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/queries.js",
+      "expected_sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+      "actual_sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+      "bytes": 4226,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js",
+      "expected_sha256": "7eed96af11540a1b455b006fc04ccf51c268d8b674e35696a1f32a8a24957d84",
+      "actual_sha256": "7eed96af11540a1b455b006fc04ccf51c268d8b674e35696a1f32a8a24957d84",
+      "bytes": 19653,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/bin/build.mjs",
+      "expected_sha256": "08cfbfcbb4574507a5bb1ec52502eb9dcfa6b4a6e20ff81475cb4d7f3ce6ef83",
+      "actual_sha256": "08cfbfcbb4574507a5bb1ec52502eb9dcfa6b4a6e20ff81475cb4d7f3ce6ef83",
+      "bytes": 4458,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/cohort_filter.py",
+      "expected_sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9",
+      "actual_sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9",
+      "bytes": 5275,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/config.json",
+      "expected_sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b",
+      "actual_sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b",
+      "bytes": 2224,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/candidate/us-en.tsv",
+      "expected_sha256": "b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571",
+      "actual_sha256": "b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571",
+      "bytes": 16504238,
+      "passed": true
+    },
+    {
+      "group": "input_bindings",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/candidate/au-en.tsv",
+      "expected_sha256": "f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236",
+      "actual_sha256": "f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236",
+      "bytes": 16618022,
+      "passed": true
+    }
+  ],
+  "operator_checks_not_rebranded": {
+    "source_membership_checks_491": "Operator-reported; not counted as reviewer checks.",
+    "saved_artifact_checks_22": "Operator-reported; not counted as reviewer checks.",
+    "focused_tests_4": "Read frozen result only; tests not rerun here.",
+    "strict_continuity_and_scoped_diff": "Frozen operator receipts verified by SHA; commands not rerun here.",
+    "unchanged_builder_exit_2": "Frozen operator command result; saved 238 diagnostics independently counted, builder not rerun."
+  },
+  "limits_and_required_wording": [
+    "4552 is a potential source/required-field cohort with unverified landing behavior, not an executable, uploadable, approved or serving feed. No source, receipt, approval, serving, traffic, order or profit result is established.",
+    "227 fresh / 11 stale parents and 13 stale fields refer only to required title and body fields. Raw supplement contains 28 outdated records across 13 parents: 8 body_html, 5 title, 6 meta_title, 7 meta_description and 2 product_type. Fifteen outdated records are outside the required-field partition; two additional parents are stale only in non-required fields.",
+    "No linguistic QA follows from outdated:false. The source-bound shirt title visibly contains truncation, which further prevents any complete Spanish-quality claim.",
+    "Global scope is supported by the saved unchanged-query hash and operator-recorded marketId:null request. Returned translation records omit market identity. This packet cannot independently qualify returned scope per record or exercise nonempty market-override precedence.",
+    "The supplement and source IDs/updatedAt values reconcile, but this is a review of saved source evidence, not an independent live API replay or storefront-language certification.",
+    "Buyer and native-account observations are contemporaneous executor transcriptions. Their exact source bindings and internal qualifications were checked; rendered UI was not independently replayed. Manual button enablement is not cart acceptance.",
+    "Bound local English TSVs, hold specification and runtime inputs remain byte-identical. No independent current English Merchant receiver, old sample/20-omission or live runtime reread was performed.",
+    "Numeric quota/headroom remains unknown. The inspected priority view and reachable canceled wizard do not establish future ingestion capacity. US delivery context is reused with its prior limits; optional return assignment remains unknown.",
+    "Pipeline correction proposal and any future translation-only exclusion policy are not approved by this review. My separately reviewed collector candidate is not integrated and was not used to validate this packet."
+  ],
+  "local_tool_limit": {
+    "event": "Homebrew Node import/hash attempt exited 134 because libsimdjson.29.dylib was unavailable.",
+    "safe_fallback": "Exact unchanged PRODUCTS_QUERY hash independently reconstructed with Python literal extraction and declared ATTRIBUTES interpolation; matched a2b104439fae3de2f9e1459e3667253e174ebe7eb92059ec6426f68cf59af138. No runtime repair or query execution."
+  },
+  "next_owner_action": "Route the two exact frozen Spanish numeric-variant URLs to the existing UX owner for bounded repair/readback; this goes first because both fail the release-critical landing-context gate. Keep source cohort and collector review withheld from submission."
+}

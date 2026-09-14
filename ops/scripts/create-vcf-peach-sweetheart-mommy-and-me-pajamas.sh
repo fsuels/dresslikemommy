@@ -33,7 +33,7 @@ HANDLE="peach-sweetheart-mommy-and-me-pajamas"
 TITLE="Peach Sweetheart Mommy and Me Pajamas — Short-Sleeve Set"
 SEO_TITLE="Peach Mommy & Me Pajamas — Matching Set | Dress Like Mommy"
 SEO_DESC="Shop our Peach Sweetheart matching mommy-and-me pajamas — soft cotton short-sleeve set for mom + daughter. Sizes 2Y–10Y, Mom S–XL."
-VENDOR_URL="https://detail.1688.com/offer/920493992812.html"
+VENDOR_URL=""
 SHORTCODE="VCF"
 COLOR_TOKEN="CREAM"
 COLOR_LABEL="Peach Sweetheart"
@@ -262,7 +262,7 @@ body = {
   "query": "mutation productCreate($product: ProductCreateInput!) { productCreate(product: $product) { product { id handle title } userErrors { field message } } }",
   "variables": { "product": {
     "title": title, "handle": handle, "vendor": "dresslikemommy.com",
-    "productType": "Matching Family Pajamas", "status": "ACTIVE",
+    "productType": "Matching Family Pajamas", "status": "DRAFT",
     "category": "gid://shopify/TaxonomyCategory/aa-1-17-4",
     "descriptionHtml": desc,
     "seo": { "title": seo_title, "description": seo_desc },
@@ -395,21 +395,9 @@ MFRESP="$(gql "$TMPDIR_LOCAL/metafieldsSet.json")"
 echo "$MFRESP" | python3 -c "import json,sys;d=json.load(sys.stdin);ue=d.get('data',{}).get('metafieldsSet',{}).get('userErrors',[]);mfs=d.get('data',{}).get('metafieldsSet',{}).get('metafields',[]);print('wrote',len(mfs),'metafields');[print(' -',m['namespace']+'.'+m['key'],'=',str(m['value'])[:80]) for m in mfs];print('userErrors:',ue)"
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 5d. publishablePublish (5 channels)
-# ─────────────────────────────────────────────────────────────────────────────
-echo "==> publishablePublish"
-for PUB in \
-  "gid://shopify/Publication/55169925" \
-  "gid://shopify/Publication/21969633377" \
-  "gid://shopify/Publication/29172400225" \
-  "gid://shopify/Publication/76582879329" \
-  "gid://shopify/Publication/76604768353"; do
-  cat > "$TMPDIR_LOCAL/pub.json" <<EOF
-{"query":"mutation pub(\$id:ID!,\$input:[PublicationInput!]!){ publishablePublish(id:\$id, input:\$input){ userErrors{ field message } } }","variables":{"id":"$PRODUCT_ID","input":[{"publicationId":"$PUB"}]}}
-EOF
-  RES="$(gql "$TMPDIR_LOCAL/pub.json")"
-  echo "  $PUB -> $(echo "$RES" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('data',{}).get('publishablePublish',{}).get('userErrors',[]) or 'ok')")"
-done
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+echo "Sales-channel publication skipped; product remains a draft pending approval."
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 5e. Media — only if uploads exist

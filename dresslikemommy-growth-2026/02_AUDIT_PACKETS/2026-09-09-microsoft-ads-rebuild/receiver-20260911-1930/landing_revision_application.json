@@ -1,0 +1,44 @@
+{
+  "status": "APPLIED_EXACT_LOCAL_CSV_VERIFIED",
+  "at_utc": "2026-09-11T20:26:35.455237+00:00",
+  "plan": "landing_revision_plan_v2.json",
+  "plan_sha256": "973657f413ce2078eb37aa1318dc092381e093a485e648b492358b41a27a4184",
+  "independent_preflight": "landing_revision_independent_review.json",
+  "files": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/ad_groups.csv": {
+      "before": "448a80f4b78fd0fdc5f94a557e2c512f0959f7d2390743923e4f365eb6b868d8",
+      "after": "dbf27dfc5ccd5cfb27c5aed898f202c76060b5b484ec353b3140ad701d950f92",
+      "rows": 21,
+      "changed_fields": 6,
+      "changed_rows": 2,
+      "all_other_cells_and_row_bytes_preserved": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/keywords.csv": {
+      "before": "658a8fef354ae4a299b2692d0dfda50f8c08a9d5f0c2d4fceb0c78351e53e94e",
+      "after": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012",
+      "rows": 147,
+      "changed_fields": 6,
+      "changed_rows": 6,
+      "all_other_cells_and_row_bytes_preserved": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/responsive_search_ads.csv": {
+      "before": "0f8e442dbc8e7d5fc8e5424892ee4a357bf412edd0afdf843eac04c97f000eaa",
+      "after": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07",
+      "rows": 21,
+      "changed_fields": 2,
+      "changed_rows": 2,
+      "all_other_cells_and_row_bytes_preserved": true
+    }
+  },
+  "changed_fields": 14,
+  "changed_final_urls": 10,
+  "changed_provenance_fields": 4,
+  "checks_passed": 16,
+  "native_changes": 0,
+  "rollback": "Exact three before CSV files guarded by current after hashes, or inverse14fields; preserve subsequent edits",
+  "limitations": [
+    "No native import/campaign creation",
+    "No full buyer or native-language acceptance",
+    "No CPC/cost/profit claim"
+  ]
+}

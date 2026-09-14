@@ -1,0 +1,307 @@
+{
+  "schema": "dlm.cross_platform_restart_independent_review.v1",
+  "reviewed_at_utc": "2026-09-07T01:20:05.745658+00:00",
+  "verdict": "PASS_LOCAL_PLAN_AND_SOURCE_CONSISTENCY__NATIVE_AND_PAID_GATES_REMAIN",
+  "independence": "Reviewer did not build/execute the source reads or prepare the restart/Facebook plans. Local JSON/query/Decimal/hash checks only; prior owned image review reused without a new visual audit.",
+  "source_sha256": {
+    "cross_platform_shopify_publications_20260907.json": "a75206a1863bf5f51d3013234b16ce9ce669fe8e54131ed57c2914525591d904",
+    "cross_platform_shopify_publications_20260907.graphql": "360343a83002b7a46240ef1e68fea56ea92a130b392a5587f7e804425915d118",
+    "cross_platform_restart_plan_20260907.json": "ff518c0ab1f89154552a2a4b7bed5141cb7ca624005ae0bdbe1861c7177ebe3c",
+    "cross_platform_facebook_post_20260907.json": "3a8bd75026846b5b315478182adf7732cd7def87b5f5ff284730c920f1623e91",
+    "sunshine_product_detail_v1.png": "751f8636c646032f88d975759a199885bd3e7237c000b6237328ee1121cb44f9",
+    "sunshine_product_detail_current.json": "33e52374f0e3fe4341df6912d91f4824865052dceea71b819b9bef9d502361b6",
+    "sunshine_product_detail_review.json": "39d18f287212af4cfbb3506cbf2892245382743beb5812f7e0dd4af470613a5e",
+    "sunshine_product_detail_release_plan.json": "03b852ec1246f1943a9be638a760f65de7563764540feed4fac104e4415c1943",
+    "microsoft_australia_keyword_purchase_review.json": "b9854b554d432d9f963b45e06745b6efba6afdb6b94a6b6703ff6777110a7ce7"
+  },
+  "checks": [
+    {
+      "check": "query/result scope is read-only with no recorded GraphQL failure",
+      "pass": true,
+      "evidence": "Saved query requests APP publications and the supplied product nodes; no external action was performed by this reviewer."
+    },
+    {
+      "check": "operator-recorded store identity and known Sunshine identity agree",
+      "pass": true,
+      "evidence": "Wrapper identity matches the saved product source. The publication query itself does not select shop; this is internally consistent operator-supplied identity, not an independent fresh login/account inspection."
+    },
+    {
+      "check": "all relevant pagination complete",
+      "pass": true,
+      "evidence": "One publication page, nine nested app pages and four product-publication pages all report hasNextPage=false; cursor values are not copied into this review."
+    },
+    {
+      "check": "four requested channels each resolve to one unique publication",
+      "pass": true,
+      "evidence": "App title and publication ID provide the join; Shopify AppCatalog IDs are not downstream advertising catalog IDs."
+    },
+    {
+      "check": "four exact active products and thirty-six unique publication rows",
+      "pass": true,
+      "evidence": "Each candidate has nine unique publication relationships; four requested channels per product are selected, the other twenty relationships are not counted toward the sixteen."
+    },
+    {
+      "check": "all sixteen exact requested joins are published",
+      "pass": true,
+      "evidence": "4 products × 4 requested channels =16 Shopify-side published relationships; these are readback facts, not sixteen new publishing actions."
+    },
+    {
+      "check": "downstream identity eligibility and tracking limits remain explicit",
+      "pass": true,
+      "evidence": "No connected ad account, accepted feed, live pixel, serving, free-listing approval or profitability is inferred from Shopify publication."
+    },
+    {
+      "check": "Microsoft USD CPC and bid facts retain their historical timestamp",
+      "pass": true,
+      "evidence": "USD6.14/23 clicks=USD0.266956521739...; rounded six-place CPC0.266957. The reported USD0.25 maximum bids were observed on September6, not refreshed. Neither proves serving at USD0.15."
+    },
+    {
+      "check": "purchase-goal uncertainty and no blanket or duplicate repair remain",
+      "pass": true,
+      "evidence": "Historical Purchases goal counts are not deduplicated retained orders. Preserve the prior Smart-goal repair; current campaigns/goals/exposure still require native readback."
+    },
+    {
+      "check": "planning economics do not create spend authority",
+      "pass": true,
+      "evidence": "The USD50 amount is provisional total planning, not spending authority. An actual numerical CPA needs current costs, retained revenue, exposure and attribution; use the tighter 30%-profit and retained 6.5x constraints until explicitly changed. Do not divide funding among four unqualified channels."
+    },
+    {
+      "check": "unknown Page and native access gate remain unbound",
+      "pass": true,
+      "evidence": "Page, Meta ad account/catalog/dataset and current operating access are not established. One reported lock result and pending owner clarification are preserved; no retry or workaround by reviewer."
+    },
+    {
+      "check": "reused reviewed graphic alt and caption match current source",
+      "pass": true,
+      "evidence": "Reuse the frozen 1024x1536 graphic and prior independent visual review without re-generation. Caption describes visible stripes and source-supported size/one-shirt options, adding no price, materials, stock, shipping or fit promise."
+    },
+    {
+      "check": "Facebook actual photo-post text includes exact direct product and four UTMs",
+      "pass": true,
+      "evidence": "The corrected plan places the URL in the actual photo-post text. Native/public clickable-link and destination readback remain mandatory; no image-click behavior is assumed."
+    },
+    {
+      "check": "outcomes and publication remain unclaimed",
+      "pass": true,
+      "evidence": "No measured-zero or fresh-sales result is substituted for missing data. Preserve the dated eight-order and separate two-order cohorts; exclude operator visits. Local Facebook preparation and existing Shopify publication are not new public exposure."
+    },
+    {
+      "check": "all reviewed sources preserved and final corrections bound",
+      "pass": true,
+      "evidence": "Only the two new review artifacts are written. Root corrected the dated Microsoft bid language and Facebook link insertion before these final hashes were taken."
+    }
+  ],
+  "check_count": 15,
+  "passed_count": 15,
+  "failed_checks": [],
+  "publication_observed_at_utc": "2026-09-07 01:08:16 UTC",
+  "pagination": {
+    "publication_count": 9,
+    "nested_app_pages": 9,
+    "product_pages": 4,
+    "all_fourteen_page_infos_complete": true,
+    "all_product_publication_rows": 36,
+    "selected_requested_channel_joins": 16,
+    "unselected_other_relationships": 20
+  },
+  "selected_channel_joins": [
+    {
+      "product_id": "gid://shopify/Product/7545279512673",
+      "product_title": "Sunshine Stripe Family Matching Tops - Cotton Tee",
+      "channel": "Google & YouTube",
+      "publication_id": "gid://shopify/Publication/21969633377",
+      "shopify_app_id": "gid://shopify/App/1780363",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/7676067937",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7545279512673",
+      "product_title": "Sunshine Stripe Family Matching Tops - Cotton Tee",
+      "channel": "Microsoft Channel",
+      "publication_id": "gid://shopify/Publication/76604735585",
+      "shopify_app_id": "gid://shopify/App/2997493",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/11222220897",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7545279512673",
+      "product_title": "Sunshine Stripe Family Matching Tops - Cotton Tee",
+      "channel": "Pinterest",
+      "publication_id": "gid://shopify/Publication/76582879329",
+      "shopify_app_id": "gid://shopify/App/3009811",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/11214618721",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7545279512673",
+      "product_title": "Sunshine Stripe Family Matching Tops - Cotton Tee",
+      "channel": "Facebook & Instagram",
+      "publication_id": "gid://shopify/Publication/29172400225",
+      "shopify_app_id": "gid://shopify/App/2329312",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/7834435681",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533081133153",
+      "product_title": "Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set",
+      "channel": "Google & YouTube",
+      "publication_id": "gid://shopify/Publication/21969633377",
+      "shopify_app_id": "gid://shopify/App/1780363",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/7676067937",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533081133153",
+      "product_title": "Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set",
+      "channel": "Microsoft Channel",
+      "publication_id": "gid://shopify/Publication/76604735585",
+      "shopify_app_id": "gid://shopify/App/2997493",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/11222220897",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533081133153",
+      "product_title": "Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set",
+      "channel": "Pinterest",
+      "publication_id": "gid://shopify/Publication/76582879329",
+      "shopify_app_id": "gid://shopify/App/3009811",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/11214618721",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533081133153",
+      "product_title": "Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set",
+      "channel": "Facebook & Instagram",
+      "publication_id": "gid://shopify/Publication/29172400225",
+      "shopify_app_id": "gid://shopify/App/2329312",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/7834435681",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229023846497",
+      "product_title": "Vibrant Rainbow Mommy and Me Maxi Dresses",
+      "channel": "Google & YouTube",
+      "publication_id": "gid://shopify/Publication/21969633377",
+      "shopify_app_id": "gid://shopify/App/1780363",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/7676067937",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229023846497",
+      "product_title": "Vibrant Rainbow Mommy and Me Maxi Dresses",
+      "channel": "Microsoft Channel",
+      "publication_id": "gid://shopify/Publication/76604735585",
+      "shopify_app_id": "gid://shopify/App/2997493",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/11222220897",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229023846497",
+      "product_title": "Vibrant Rainbow Mommy and Me Maxi Dresses",
+      "channel": "Pinterest",
+      "publication_id": "gid://shopify/Publication/76582879329",
+      "shopify_app_id": "gid://shopify/App/3009811",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/11214618721",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229023846497",
+      "product_title": "Vibrant Rainbow Mommy and Me Maxi Dresses",
+      "channel": "Facebook & Instagram",
+      "publication_id": "gid://shopify/Publication/29172400225",
+      "shopify_app_id": "gid://shopify/App/2329312",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/7834435681",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109117280353",
+      "product_title": "Chic Pink Mermaid Scales Tankini Set for Mother and Daughter",
+      "channel": "Google & YouTube",
+      "publication_id": "gid://shopify/Publication/21969633377",
+      "shopify_app_id": "gid://shopify/App/1780363",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/7676067937",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109117280353",
+      "product_title": "Chic Pink Mermaid Scales Tankini Set for Mother and Daughter",
+      "channel": "Microsoft Channel",
+      "publication_id": "gid://shopify/Publication/76604735585",
+      "shopify_app_id": "gid://shopify/App/2997493",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/11222220897",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109117280353",
+      "product_title": "Chic Pink Mermaid Scales Tankini Set for Mother and Daughter",
+      "channel": "Pinterest",
+      "publication_id": "gid://shopify/Publication/76582879329",
+      "shopify_app_id": "gid://shopify/App/3009811",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/11214618721",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109117280353",
+      "product_title": "Chic Pink Mermaid Scales Tankini Set for Mother and Daughter",
+      "channel": "Facebook & Instagram",
+      "publication_id": "gid://shopify/Publication/29172400225",
+      "shopify_app_id": "gid://shopify/App/2329312",
+      "shopify_app_catalog_id": "gid://shopify/AppCatalog/7834435681",
+      "catalog_status": "ACTIVE",
+      "isPublished": true
+    }
+  ],
+  "historical_microsoft": {
+    "report_captured_at_utc": "2026-09-06T17:34:31.923Z",
+    "window": "All time(9/6/2023 - 9/6/2026)",
+    "currency": "USD",
+    "two_exact_dress_cost_usd": "6.14",
+    "two_exact_dress_clicks": 23,
+    "historical_cpc_usd_6dp": "0.266957",
+    "maximum_bid_usd_observed_at_report": "0.25",
+    "refreshed_this_turn": false,
+    "retained_orders": null,
+    "profit": null,
+    "usd_015_serving_proved": false
+  },
+  "corrections_resolved": [
+    {
+      "issue": "Dated bid evidence could read as current.",
+      "resolution": "Restart plan explicitly says the USD0.25 bids were observed September6 at17:34UTC and not refreshed this turn."
+    },
+    {
+      "issue": "Facebook caption ended at a CTA while destination existed only as a separate planning field.",
+      "resolution": "Exact post_text now equals caption plus newline plus the tagged URL; actual clickable customer-link readback is required."
+    }
+  ],
+  "limitations": [
+    "Shop identity is supplied in the receipt wrapper and corroborated by the known current product source; the saved publications query does not itself select shop. This reviewer made no fresh account call.",
+    "Shopify APP catalog ACTIVE and isPublished true do not establish downstream account bindings, product eligibility, sync freshness, pixel/event receipt, delivery, stock, serving or profit.",
+    "Current Microsoft status/bidding, Google access/free-listing eligibility, Pinterest board/duplicate/customer path and actual Meta Page/ad account/catalog/dataset remain native gates.",
+    "The supplied lock status and pending owner clarification are operator observations. No browser retry, account recovery, permission change or lock bypass was attempted.",
+    "The reused image was independently visually approved earlier and its bytes are unchanged. Native Facebook image/text/link behavior is unverified.",
+    "Goal/heartbeat and unrelated historical control state were not independently re-audited; this review grants no new publication or spend authority."
+  ],
+  "next_action": "Resolve the pending normal access clarification, then finish the existing Sunshine Pinterest native checks first; keep the Facebook draft unbound until its real Page and clickable product path are verified.",
+  "external_calls": 0,
+  "external_writes": 0,
+  "written_files": [
+    "cross_platform_restart_review_20260907.json",
+    "cross_platform_restart_review_20260907.md"
+  ]
+}

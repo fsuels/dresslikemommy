@@ -1,0 +1,62 @@
+query OngoingMarketReadback($after: String) {
+  shop {
+    id
+    name
+    myshopifyDomain
+    currencyCode
+    enabledPresentmentCurrencies
+    ianaTimezone
+    primaryDomain { url }
+  }
+  shopLocales {
+    locale
+    name
+    primary
+    published
+    marketWebPresences { id }
+  }
+  markets(first: 10, after: $after) {
+    pageInfo { hasNextPage endCursor }
+    nodes {
+      id
+      name
+      handle
+      status
+      type
+      currencySettings {
+        baseCurrency { currencyCode enabled }
+        localCurrencies
+        roundingEnabled
+      }
+      conditions {
+        conditionTypes
+        regionsCondition {
+          applicationLevel
+          regions(first: 50) {
+            pageInfo { hasNextPage endCursor }
+            nodes {
+              __typename
+              id
+              name
+              ... on MarketRegionCountry {
+                code
+                currency { currencyCode enabled }
+              }
+            }
+          }
+        }
+      }
+      webPresences(first: 5) {
+        pageInfo { hasNextPage endCursor }
+        nodes {
+          id
+          domain { url }
+          subfolderSuffix
+          defaultLocale { locale published }
+          alternateLocales { locale published }
+          rootUrls { locale url }
+        }
+      }
+    }
+  }
+}

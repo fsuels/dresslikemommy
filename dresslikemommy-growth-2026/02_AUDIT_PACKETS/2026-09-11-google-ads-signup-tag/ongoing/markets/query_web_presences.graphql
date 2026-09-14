@@ -1,0 +1,17 @@
+query OngoingSharedWebPresence($after: String) {
+  webPresences(first: 10, after: $after) {
+    pageInfo { hasNextPage endCursor }
+    nodes {
+      id
+      domain { url }
+      subfolderSuffix
+      defaultLocale { locale published }
+      alternateLocales { locale published }
+      rootUrls { locale url }
+      markets(first: 10) {
+        pageInfo { hasNextPage endCursor }
+        nodes { id handle status }
+      }
+    }
+  }
+}

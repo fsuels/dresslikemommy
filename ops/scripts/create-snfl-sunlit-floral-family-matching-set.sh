@@ -38,7 +38,7 @@ MERCH_STYLE="Matching Family Set"
 MERCH_TYPE="Two-Piece Set"
 MERCH_COLLECTION_TAG="Matching Family Set"
 SEASON="Summer"
-VENDOR_URL="https://detail.1688.com/offer/1035829442886.html"
+VENDOR_URL=""
 VENDOR="dresslikemommy.com"
 CHILD_PRICE="28.99"
 ADULT_PRICE="31.99"
@@ -449,7 +449,7 @@ tags = sorted(dict.fromkeys([
     "Child 6-7 Years", "Child 8 Years", "Child 9-10 Years",
     "Mother S", "Mother M", "Mother L", "Mother XL", "Mother 2XL",
     "Father S", "Father M", "Father L", "Father XL", "Father 2XL",
-    "Father 3XL", "Father 4XL", vendor_url,
+    "Father 3XL", "Father 4XL",
 ]))
 
 derived = {

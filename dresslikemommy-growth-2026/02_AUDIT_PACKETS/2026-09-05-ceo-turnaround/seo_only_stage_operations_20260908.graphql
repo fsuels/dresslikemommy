@@ -1,0 +1,42 @@
+query SeoOnlyStageBefore {
+  shop { id myshopifyDomain }
+  themes(first:50) {
+    nodes { id name role processing processingFailed }
+    pageInfo { hasNextPage endCursor }
+  }
+  main: theme(id:"gid://shopify/OnlineStoreTheme/133290917985") {
+    id role
+    files(first:10, filenames:["locales/da.json","locales/nl.json"]) {
+      nodes { filename checksumMd5 body { ... on OnlineStoreThemeFileBodyText { content } } }
+      pageInfo { hasNextPage endCursor }
+    }
+  }
+  preservedDraft: theme(id:"gid://shopify/OnlineStoreTheme/137782591585") { id name role }
+}
+
+mutation DuplicateSeoOnly($id:ID!, $name:String!) {
+  themeDuplicate(id:$id,name:$name) {
+    newTheme { id name role processing processingFailed }
+    userErrors { field message }
+  }
+}
+
+mutation StageSeoOnly($themeId:ID!, $files:[OnlineStoreThemeFilesUpsertFileInput!]!) {
+  themeFilesUpsert(themeId:$themeId,files:$files) {
+    upsertedThemeFiles { filename }
+    job { id done }
+    userErrors { field message }
+  }
+}
+
+query SeoOnlyManifest($mainId:ID!, $draftId:ID!) {
+ shop { id myshopifyDomain }
+ main:theme(id:$mainId) {
+  id role processing processingFailed
+  files(first:1000) { nodes { filename checksumMd5 size } pageInfo { hasNextPage endCursor } }
+ }
+ draft:theme(id:$draftId) {
+  id role processing processingFailed
+  files(first:1000) { nodes { filename checksumMd5 size } pageInfo { hasNextPage endCursor } }
+ }
+}

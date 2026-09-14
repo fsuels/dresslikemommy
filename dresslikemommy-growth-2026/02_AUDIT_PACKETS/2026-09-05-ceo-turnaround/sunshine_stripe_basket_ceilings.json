@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "status": "CONDITIONAL_QUOTE_CEILINGS__NOT_SHIPPING_QUOTES_OR_APPROVED_CPA",
+  "product_id": "7545279512673",
+  "purpose": "Qualify whether smaller baskets could fund30% merchandise profit and6.5x ad economics; do not assume the one five-unit order is expectedAOV.",
+  "source_inputs": [
+    "sunshine_stripe_current_offer.json",
+    "sunshine_stripe_procurement_readback.json",
+    "actual_fulfillment_funding_screen.json",
+    "shopify_payout_fee_readback.json"
+  ],
+  "formula": "R=current merchandise for exact listed variants; G=observed unit goods CNY\u00d7hypothetical quantities; F=explicit payment-fee basis; k=0.164265USD/CNY including funding handling; A=R/6.5. Total provider ceiling=(0.70R-F-A-E)/k. Non-goods provider ceiling=total ceiling-G. E is actual disjoint other USD expenses (duties/VAT borne not included in provider amount, return loss, overhead and external costs); unknown. Table is the E=0 mathematical upper envelope, not an assumption that these expenses are zero. Each USD1 of E reduces CNY ceiling by1/k.",
+  "funding_factor_usd_per_cny": "0.164265",
+  "funding_scope": "Higher of eight observed historical factors; no verified per-order funding allocation or future rate guarantee.",
+  "ceiling_rounding": "Floor provider quote ceilings to CNY0.01. For hypothetical baskets, first round the conditional 2.9%+$0.30 payment fee half-up to USD0.01; then calculate ceilings using exact R/6.5 and that fee. Ad-spend figures are rounded displays only. Required conversion percentages round upward to 0.001 percentage point, preserving a conservative minimum.",
+  "payment_scope": "Four new hypothetical baskets use observed domestic2.9%+$0.30 fee structure conditionally. The observed five-unit row uses actual4.13USD full-order fee and excludes12.99USD priority-shipping revenue from R, consistent with the prior conservative screen.",
+  "rows": [
+    {
+      "scenario": "ONE_CHILD",
+      "variant_quantities": {
+        "Child 2 Years / Sunshine Stripe": 1
+      },
+      "units": 1,
+      "merchandise_usd": "21.99",
+      "goods_cny_if_observed_unit_prices_recur": "22.00",
+      "payment_fee_usd": "0.94",
+      "payment_fee_basis": "Hypothetical2.9%+$0.30 domestic fee on merchandise only; future fee/currency method unknown",
+      "ads_usd_at_exact_6_5x": "3.38",
+      "total_provider_cny_ceiling_before_other_usd_expenses": "67.39",
+      "non_goods_provider_cny_ceiling_before_other_usd_expenses": "45.39",
+      "conversion_pct_required_at_0_15_cpc_for_6_5x": "4.434",
+      "actual_non_goods_provider_cny": null,
+      "actual_future_cost_usd": null,
+      "approved_cpa_usd": null,
+      "launch_ready": false,
+      "conditional_non_goods_headroom_cny_at_e_zero": null
+    },
+    {
+      "scenario": "ONE_ADULT",
+      "variant_quantities": {
+        "Adult S / Sunshine Stripe": 1
+      },
+      "units": 1,
+      "merchandise_usd": "24.99",
+      "goods_cny_if_observed_unit_prices_recur": "26.00",
+      "payment_fee_usd": "1.02",
+      "payment_fee_basis": "Hypothetical2.9%+$0.30 domestic fee on merchandise only; future fee/currency method unknown",
+      "ads_usd_at_exact_6_5x": "3.84",
+      "total_provider_cny_ceiling_before_other_usd_expenses": "76.87",
+      "non_goods_provider_cny_ceiling_before_other_usd_expenses": "50.87",
+      "conversion_pct_required_at_0_15_cpc_for_6_5x": "3.902",
+      "actual_non_goods_provider_cny": null,
+      "actual_future_cost_usd": null,
+      "approved_cpa_usd": null,
+      "launch_ready": false,
+      "conditional_non_goods_headroom_cny_at_e_zero": null
+    },
+    {
+      "scenario": "CHILD_ADULT_PAIR",
+      "variant_quantities": {
+        "Child 2 Years / Sunshine Stripe": 1,
+        "Adult S / Sunshine Stripe": 1
+      },
+      "units": 2,
+      "merchandise_usd": "46.98",
+      "goods_cny_if_observed_unit_prices_recur": "48.00",
+      "payment_fee_usd": "1.66",
+      "payment_fee_basis": "Hypothetical2.9%+$0.30 domestic fee on merchandise only; future fee/currency method unknown",
+      "ads_usd_at_exact_6_5x": "7.23",
+      "total_provider_cny_ceiling_before_other_usd_expenses": "146.09",
+      "non_goods_provider_cny_ceiling_before_other_usd_expenses": "98.09",
+      "conversion_pct_required_at_0_15_cpc_for_6_5x": "2.076",
+      "actual_non_goods_provider_cny": null,
+      "actual_future_cost_usd": null,
+      "approved_cpa_usd": null,
+      "launch_ready": false,
+      "conditional_non_goods_headroom_cny_at_e_zero": null
+    },
+    {
+      "scenario": "THREE_TEES",
+      "variant_quantities": {
+        "Child 2 Years / Sunshine Stripe": 1,
+        "Adult S / Sunshine Stripe": 1,
+        "Adult M / Sunshine Stripe": 1
+      },
+      "units": 3,
+      "merchandise_usd": "71.97",
+      "goods_cny_if_observed_unit_prices_recur": "74.00",
+      "payment_fee_usd": "2.39",
+      "payment_fee_basis": "Hypothetical2.9%+$0.30 domestic fee on merchandise only; future fee/currency method unknown",
+      "ads_usd_at_exact_6_5x": "11.07",
+      "total_provider_cny_ceiling_before_other_usd_expenses": "224.73",
+      "non_goods_provider_cny_ceiling_before_other_usd_expenses": "150.73",
+      "conversion_pct_required_at_0_15_cpc_for_6_5x": "1.355",
+      "actual_non_goods_provider_cny": null,
+      "actual_future_cost_usd": null,
+      "approved_cpa_usd": null,
+      "launch_ready": false,
+      "conditional_non_goods_headroom_cny_at_e_zero": null
+    },
+    {
+      "scenario": "OBSERVED_FIVE_TEES",
+      "variant_quantities": {
+        "Child 2 Years / Sunshine Stripe": 2,
+        "Adult S / Sunshine Stripe": 1,
+        "Adult M / Sunshine Stripe": 1,
+        "Adult L / Sunshine Stripe": 1
+      },
+      "units": 5,
+      "merchandise_usd": "118.95",
+      "goods_cny_if_observed_unit_prices_recur": "122.00",
+      "payment_fee_usd": "4.13",
+      "payment_fee_basis": "Recorded actual allocation on131.94USD gross including priority shipping",
+      "ads_usd_at_exact_6_5x": "18.30",
+      "total_provider_cny_ceiling_before_other_usd_expenses": "370.34",
+      "non_goods_provider_cny_ceiling_before_other_usd_expenses": "248.34",
+      "conversion_pct_required_at_0_15_cpc_for_6_5x": "0.820",
+      "actual_non_goods_provider_cny": "122.44",
+      "actual_future_cost_usd": null,
+      "approved_cpa_usd": null,
+      "launch_ready": false,
+      "conditional_non_goods_headroom_cny_at_e_zero": "125.90"
+    }
+  ],
+  "decision_rule": "Request/inspect a supported actual quote and other-expense allocation for the exact quantity before any paid promotion. If non-goods costs exceed the displayed upper envelope, that6.5x/30% scenario cannot qualify; if below, it is only a necessary condition and E can still disqualify it. No linear division of actual five-unit freight/service cost, projected AOV or forecasted conversion.",
+  "measurement_limit": "Conversion thresholds assume CPC actually0.15 and each conversion buys the specified basket; they are arithmetic requirements, not predicted store conversion rates.",
+  "remaining_gates": [
+    "Current quote and tax/fee/return/overhead scope",
+    "Original supplier measurement/material evidence where relied on",
+    "Permitted rendered product/cart/checkout journey after access gate",
+    "Qualified high-intent demand/CPC, no campaign overlap, accurate purchase capture",
+    "Operating Google account control and exact current launch authority"
+  ],
+  "external_mutations": "NONE"
+}

@@ -1,0 +1,75 @@
+{
+  "schema": "dlm.current_sales_checkpoint_checks.v1",
+  "verdict": "PASS",
+  "passed": 15,
+  "total": 15,
+  "checks": [
+    {
+      "id": "fresh_shop_identity_usd_ny",
+      "pass": true
+    },
+    {
+      "id": "outer_and_item_pagination_complete",
+      "pass": true
+    },
+    {
+      "id": "unique_in_memory_order_ids",
+      "pass": true
+    },
+    {
+      "id": "all_created_at_inside_exact_window",
+      "pass": true
+    },
+    {
+      "id": "all_shop_money_usd",
+      "pass": true
+    },
+    {
+      "id": "cohort_predicates_apply_to_all_included",
+      "pass": true
+    },
+    {
+      "id": "two_saved_baskets_uniquely_reidentified_without_saved_ids",
+      "pass": true
+    },
+    {
+      "id": "saved_basket_money_status_country_fulfillment_quantities_unchanged",
+      "pass": true
+    },
+    {
+      "id": "all_known_four_variant_joins_preserved",
+      "pass": true
+    },
+    {
+      "id": "zero_tax_refund_and_original_current_subtotal_equal",
+      "pass": true
+    },
+    {
+      "id": "no_additional_order_creation_after_saved_cutoff",
+      "pass": true
+    },
+    {
+      "id": "no_matches_to_old_sold_product_campaign_cohort",
+      "pass": true
+    },
+    {
+      "id": "independent_Decimal_aggregate_reconciliation",
+      "pass": true
+    },
+    {
+      "id": "all_frozen_input_hashes_and_query_pagination_preserved",
+      "pass": true
+    },
+    {
+      "id": "aggregate_report_excludes_identifying_fields_and_raw_order_ids",
+      "pass": true
+    }
+  ],
+  "artifact_sha256": {
+    "current_sales_checkpoint_20260908.json": "ffef9296dabd9144014d3270d3601996de3b0bc14dc1252f2956ace0209de25d",
+    "current_sales_checkpoint_20260908.md": "7662e6c7dc0430c91776c911093d10193bdc4c6aca8c598dafcae0ccf9c6af0b",
+    "current_sales_checkpoint_20260908_query.graphql": "82744dfe022f0268b1ba29dfb8e8abd58e880a81258f7d9f9da6fc988a14cdd8"
+  },
+  "external_order_query_calls": 1,
+  "scope": "12 read-time source/cohort checks plus3 independent local aggregate/hash/privacy checks. No raw source response persisted; local checks are not a second live read."
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "dlm.theme_publication_role_readback.v1",
+  "status": "VERIFIED_UNPUBLISHED_CANDIDATE__OWNER_PUBLICATION_STILL_REQUIRED",
+  "source": "Supported Shopify Admin GraphQL, read-only; exact current roles, not a source-file or browser replay.",
+  "source_live_evidence_as_of": "2026-09-14T07:31:49Z",
+  "query": "query GrowthPublicationRoleReceipt {\n shop { id name primaryDomain { host } }\n main: themes(first: 5, roles: [MAIN]) { nodes { id name role updatedAt } pageInfo { hasNextPage endCursor } }\n candidate: themes(first: 10, names: [\"DLM UX Performance QA 2026-09-10\"]) { nodes { id name role updatedAt } pageInfo { hasNextPage endCursor } }\n}",
+  "query_validation": {
+    "content": [
+      {
+        "type": "text",
+        "text": "## Validation Summary\n\n**Overall Status:** \u2705 VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-theme-publication-readback-20260914\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** \u2705 SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_themes\n\n"
+      }
+    ],
+    "isError": false
+  },
+  "shop": {
+    "id": "gid://shopify/Shop/15571635",
+    "name": "Dress Like Mommy",
+    "primaryDomain": {
+      "host": "www.dresslikemommy.com"
+    }
+  },
+  "main": {
+    "nodes": [
+      {
+        "id": "gid://shopify/OnlineStoreTheme/133290917985",
+        "name": "dresslikemommy/main",
+        "role": "MAIN",
+        "updatedAt": "2026-07-02T16:47:21Z"
+      }
+    ],
+    "hasNextPage": false
+  },
+  "candidate": {
+    "nodes": [
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137888792673",
+        "name": "DLM UX Performance QA 2026-09-10",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-11T23:12:13Z"
+      }
+    ],
+    "hasNextPage": false
+  },
+  "checks": {
+    "exact_shop": true,
+    "one_main": true,
+    "exact_existing_candidate": true,
+    "candidate_updated_at_matches_verified_release": true,
+    "pagination_complete": true
+  },
+  "limits": [
+    "Metadata confirms the current published theme and unpublished candidate. It does not independently recheck all527 source files or buyer paths.",
+    "The source/preview acceptance remains the dated verified-release-20260912.json receipt.",
+    "Publishing remains already authorized but the Shopify connector requires owner Admin publication; no workaround was attempted."
+  ],
+  "business_mutations": 0,
+  "one_owner_action": "Publish existing verified theme137888792673 in Shopify Admin, preserving current MAIN133290917985 for rollback."
+}

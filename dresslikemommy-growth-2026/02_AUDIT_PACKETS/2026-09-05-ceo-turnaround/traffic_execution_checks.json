@@ -1,0 +1,122 @@
+{
+  "checked_at_utc": "2026-09-06T02:41:27.384825+00:00",
+  "status": "PASS_LOCAL_PREPARATION_ONLY",
+  "anchor": "2026-09-05-ceo-turnaround-traffic-execution",
+  "compiler": {
+    "exit_code": 0,
+    "diagnostic_errors": [],
+    "selected_anchor": "2026-09-05-ceo-turnaround-traffic-execution"
+  },
+  "handoff_score": {
+    "score": "17/17",
+    "report": "traffic_execution_handoff_score.md"
+  },
+  "command_integration": {
+    "tracked": 25,
+    "integrated": 25,
+    "side_document_risks": 0,
+    "report": "ops/marketing/command_layer_integration_audit.md"
+  },
+  "final_checks": [
+    {
+      "check": "cockpit_regeneration",
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/render_marketing_cockpit.py"
+      ],
+      "exit_code": 0,
+      "output": "Rendered ops/marketing/operator_cockpit.html\n",
+      "stderr": ""
+    },
+    {
+      "check": "strict_continuity",
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/check_continuity_integrity.py",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "output": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 47227 lines; latest anchor 2026-09-05-ceo-turnaround-traffic-execution\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-05-ceo-turnaround-traffic-execution\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9008, root+paid-growth=15743 bytes)\n\nCONTINUITY_OK\n",
+      "stderr": ""
+    },
+    {
+      "check": "scoped_diff",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "locales/da.json",
+        "locales/nl.json",
+        "ops/AGENT_COORDINATION.md",
+        "ops/AGENT_WORKLOG.md",
+        "ops/PROBLEM_TRACKER.md",
+        "ops/marketing/current_marketing_state.md",
+        "ops/marketing/memory_digest.md",
+        "ops/marketing/operator_cockpit.md",
+        "ops/marketing/operator_cockpit.html",
+        "ops/marketing/action_queue.md",
+        "ops/marketing/blocker_board.md",
+        "ops/marketing/decision_log.md",
+        "ops/marketing/review_log.md",
+        "ops/marketing/command_layer_integration_audit.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround"
+      ],
+      "exit_code": 0,
+      "output": "",
+      "stderr": ""
+    }
+  ],
+  "frozen_sources_unchanged": {
+    "ops/scripts/compile_task_context.py": true,
+    "ops/scripts/score_paid_growth_handoff.py": true,
+    "ops/prompts/paid-growth-ai-army-continuation-prompt.md": true,
+    "ops/tests/test_compile_task_context.py": true,
+    "ops/tests/test_score_paid_growth_handoff.py": true,
+    "ops/tests/test_score_paid_growth_handoff_semantic.py": true,
+    "ops/tests/fixtures/paid_growth_handoff_capability/holdout_routine_local.md": true
+  },
+  "independent_review": {
+    "report": "traffic_seo_independent_review.md",
+    "seo": "PASS_WITH_RELEASE_GATES",
+    "paid": "PASS_LOCAL_REVIEW_ONLY",
+    "final_six_artifact_hashes_verified": true
+  },
+  "seo_validation_receipt": "traffic_seo_checks.json",
+  "preview": {
+    "rendered": true,
+    "last_readback": "iab4 confirmed unchanged accessibility tree at http://127.0.0.1:8770/traffic_seo_preview.html",
+    "optional_loopback_server": "session16933; static preview only; packet HTML persists independently"
+  },
+  "scope": {
+    "local_seo_values_changed": 4,
+    "locales": [
+      "da",
+      "nl"
+    ],
+    "current_main_theme_id": "133290917985",
+    "paid_assets": "6 exact starters, 2 held phrase replacements, 1 RSA; NOT_UPLOADED",
+    "external_mutations": 0,
+    "money_spent_by_this_turn": 0,
+    "traffic_or_sales_lift_observed": false,
+    "owner_seo_publication_question": "PENDING_NO_ANSWER",
+    "full_account_authority_unchanged": {
+      "approved_external_scope": "NONE",
+      "autonomous_action_ready": "false",
+      "control_as_of": "2026-09-05",
+      "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+      "live_readback_fresh_until": "EXPIRED",
+      "live_state_mode": "STALE_READBACK_REQUIRED",
+      "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+      "source_live_evidence_as_of": "2026-06-01",
+      "supersedes_execution_readiness_below": "true"
+    }
+  },
+  "limitations": [
+    "Actual cohort costs and paid profitability unverified.",
+    "Google operating account access remains unresolved.",
+    "Five public GETs returned 429; no rate-limit retry or bypass.",
+    "SEO release needs existing exact-scope owner approval and fresh before-state conflict check; live publication NOT RUN.",
+    "AI language review is not native-speaker certification."
+  ]
+}

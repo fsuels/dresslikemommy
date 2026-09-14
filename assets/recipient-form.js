@@ -42,7 +42,7 @@ if (!customElements.get('recipient-form')) {
           }
         });
 
-        this.cartUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.cartError, (event) => {
+        this.cartErrorUnsubscriber = subscribe(PUB_SUB_EVENTS.cartError, (event) => {
           if (event.source === 'product-form' && event.productVariantId.toString() === this.currentProductVariantId) {
             this.displayErrorMessage(event.message, event.errors);
           }
@@ -101,8 +101,10 @@ if (!customElements.get('recipient-form')) {
         if (typeof body === 'object') {
           this.errorMessage.innerText = this.defaultErrorHeader;
           return Object.entries(body).forEach(([key, value]) => {
+            const fieldKey = key === 'send_on' ? 'send-on' : key;
+            const inputProperty = key === 'send_on' ? 'sendonInput' : `${key}Input`;
             const errorMessageId = `RecipientForm-${key}-error-${this.dataset.sectionId}`;
-            const fieldSelector = `#Recipient-${key}-${this.dataset.sectionId}`;
+            const fieldSelector = `#Recipient-${fieldKey}-${this.dataset.sectionId}`;
             const message = `${value.join(', ')}`;
             const errorMessageElement = this.querySelector(`#${errorMessageId}`);
             const errorTextElement = errorMessageElement?.querySelector('.error-message');
@@ -115,7 +117,7 @@ if (!customElements.get('recipient-form')) {
             errorTextElement.innerText = `${message}.`;
             errorMessageElement.classList.remove('hidden');
 
-            const inputElement = this[`${key}Input`];
+            const inputElement = this[inputProperty];
             if (!inputElement) return;
 
             inputElement.setAttribute('aria-invalid', true);

@@ -1,0 +1,171 @@
+{
+  "schema": "dlm.google_ads_followup_evidence.v1",
+  "recorded_at_utc": "2026-09-12T10:56:05Z",
+  "trigger": {
+    "automation_id": "google-ads-markets-and-purchase-follow-up",
+    "fired_at_utc": "2026-09-12T10:48:47.319Z",
+    "earlier_delivered_wakes": [
+      "2026-09-12T02:46:45.268Z",
+      "2026-09-12T06:47:16.260Z"
+    ],
+    "coverage_limit": "Earlier delivered wakes are not claimed as completed checks; this receipt covers the current executed pass."
+  },
+  "decision": "PREPARED_LOCAL_GB_SOURCE_REFRESH_AND_RETAINED_LIVE_HOLD",
+  "ads": {
+    "customer_id_retained": "6509972886",
+    "campaign_id": "24247604341",
+    "asset_group_id": "6746545742",
+    "identity_basis": "Same assigned task IAB session1 and exact previously verified ocid8520129103 account URL; Campaign #1 sole current row.",
+    "status": "PAUSED",
+    "configured_average_daily_budget_usd": 5,
+    "today": {
+      "date": "2026-09-12",
+      "timezone": "America/New_York",
+      "partial": true,
+      "impressions": 0,
+      "clicks": 0,
+      "cost_usd": 0,
+      "conversions": 0,
+      "conversion_value": 0
+    },
+    "yesterday": {
+      "date": "2026-09-11",
+      "timezone": "America/New_York",
+      "impressions": 356,
+      "clicks": 5,
+      "cost_usd": 0.8,
+      "ctr_percent_displayed": 1.4,
+      "average_cpc_usd_calculated": 0.16,
+      "conversions": 0,
+      "conversion_value": 0,
+      "chart_campaign_view_account_totals_agree": true,
+      "previous_conflict": "Prior dated358/359 impression conflict is not present in this current report. Cause of the reporting revision is UNKNOWN; earlier receipts remain unchanged.",
+      "reporting_limit": "Completed date does not mean Google has finalized all processing or adjustments."
+    },
+    "channels": "NOT_REREAD",
+    "editor": {
+      "tab": "8",
+      "all_27_textbox_lines_equal_recovered_draft": true,
+      "ad_strength_displayed": "Poor",
+      "save_attempts": 0,
+      "identity_completion": "UNVERIFIED",
+      "saved_after_state": "NOT_REOPENED_NOT_CLAIMED"
+    },
+    "ui_warning": "Same Turn off ad blockers DOM dialog text exists; no settings changed. Normal report date Previous navigation succeeded; visible blocking status not separately asserted.",
+    "actions": "Fresh background report tab12, initial Today read, Previous date filter to Yesterday, readback, tab12closed. No campaign settings/budget/bid/status changes."
+  },
+  "shopify": {
+    "window": {
+      "from_inclusive": "2026-09-12T08:24:58Z",
+      "until_exclusive": "2026-09-12T10:49:23Z"
+    },
+    "query": "query AdsHeartbeatSep12NewOrders {\n shop { id name ianaTimezone }\n allNew: ordersCount(query:\"created_at:>='2026-09-12T08:24:58Z' created_at:<'2026-09-12T10:49:23Z'\",limit:null){count precision}\n webNonTest: ordersCount(query:\"created_at:>='2026-09-12T08:24:58Z' created_at:<'2026-09-12T10:49:23Z' source_name:web test:false\",limit:null){count precision}\n paidWebNonTest: ordersCount(query:\"created_at:>='2026-09-12T08:24:58Z' created_at:<'2026-09-12T10:49:23Z' source_name:web test:false financial_status:paid\",limit:null){count precision}\n}",
+    "result": {
+      "shop": {
+        "id": "gid://shopify/Shop/15571635",
+        "name": "Dress Like Mommy",
+        "ianaTimezone": "America/New_York"
+      },
+      "allNew": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "webNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "paidWebNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      }
+    },
+    "workflow": "QueryRoot/Count/Shop schema discovery; VALID operation; read-only query.",
+    "limits": [
+      "Creation-only delta after the parent full read; old payment/refund/fulfillment states are not reread.",
+      "No new order sample returned. This is not a tracking-failure diagnosis.",
+      "Customer identity, order ID, payment details, address, tokens and PII were not requested."
+    ]
+  },
+  "purchase_receiver": {
+    "new_GA4_read": "NOT_RUN",
+    "reason": "No new Shopify purchase candidate; retained existing GA4 report and parent receiver records. Repeating the same zero-transaction report would not validate purchase accuracy.",
+    "existing_handoff": "IAB tab9 preserved",
+    "GA4_property": "330266838",
+    "Ads_purchase_action": "7760272273",
+    "acceptance": "UNVERIFIED",
+    "synthetic_or_replayed_events": 0
+  },
+  "market_delta": {
+    "local_file": "research/SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+    "sha256_at_preparation": "99aad3484b86cf758412a037c9cdb0361da8800cebe781ec5ba1f54ac95218c8",
+    "baseline_preserved": true,
+    "GB_variant_joins": 24,
+    "GB_dress_price_fields_updated": 12,
+    "GB_cardigan_prices_unchanged": 12,
+    "US_AU_CA_variant_price_size_url_mismatches": 0,
+    "GB_type_size_url_mismatches": 0,
+    "independent_review": {
+      "verdict": "PASS_WITH_LIMITS",
+      "passed": 23,
+      "failed": 0,
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/GB_SOURCE_REFRESH_REVIEW_20260912.json",
+      "sha256": "e8e7cf38b91f793e431583c787054dd21ceadbadb27a9e0d610edc36bc7f1fc4",
+      "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE"
+    },
+    "current_google_receipt_or_approval_claimed": false,
+    "source_age_limit": "New draft references stored Shopify/feed snapshot completed2026-09-11T22:15:43.812Z. No new live product-price query or public storefront request.",
+    "local_status": "IMPLEMENTED_AND_VERIFIED_LOCAL_SOURCE_REFRESH_ONLY"
+  },
+  "parent_evidence_reused": {
+    "as_read": "September12 current command-layer section",
+    "US_AU": "4761 native source totals each; protected offers remain Not approved, all-account Not showing. Parent-owned receipt; no new Merchant check by this task.",
+    "CA_GB": "4761 each local; shipping/buyer gates open.",
+    "theme": "Verified existing unpublished137888792673 release remains owner Admin publication step; no root mutation or generic approval repeated.",
+    "sales_full_cutoff_utc": "2026-09-12T08:24:58Z"
+  },
+  "changes": {
+    "campaign_save_apply": 0,
+    "budget_bid_status_goal_changes": 0,
+    "keyword_negative_imports": 0,
+    "new_campaigns": 0,
+    "creative_uploads": 0,
+    "feed_mutations": 0,
+    "tracking_consent_changes": 0,
+    "public_storefront_requests": 0,
+    "purchases_payments": 0,
+    "shared_canonical_writes": 0
+  },
+  "browser_cleanup": {
+    "temporary_tab12_closed": true,
+    "editor8_handoff_preserved": true,
+    "GA4_tab9_handoff_preserved": true,
+    "user_tab4_untouched": true,
+    "native_Chrome_used": false
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-12T10:56:05Z",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "Normal owner Save/identity result, genuine transaction receiver match, qualified buyer/economics and exact paid authority.",
+    "if_evidence_supports_recommendation": "Resume only the corresponding authorized repair or preparation gate.",
+    "if_evidence_opposes_recommendation": "Preserve local drafts, source histories and live hold; no repeated unchanged authentication attempt."
+  },
+  "runtime_goal": {
+    "status_from_get_goal": "BLOCKED",
+    "new_goal_created": false,
+    "goal_status_changed": false,
+    "complete": false
+  },
+  "continuation_source": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "next_action": "Parent integrates the verified exact local GB source refresh during its owned canonical interval. Existing owner theme publication and separate pending Ads identity/Save result remain unchanged; no repeated request.",
+  "verification": {
+    "own_receipt_json_and_assertions": "PASS",
+    "independent_source_refresh": "PASS_23_OF_23_WITH_LIMITS",
+    "strict_continuity": "PASS_10_OF_10_CONTINUITY_OK",
+    "scope": "No live or paid acceptance claimed"
+  }
+}

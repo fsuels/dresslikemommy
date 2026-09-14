@@ -1,0 +1,129 @@
+{
+  "schema": "dlm.us_es_buyer_qualification_receipt.v1",
+  "action_id": "TA07-US-SPANISH-QUALIFY-20260914-1658",
+  "recorded_at_utc": "2026-09-14T18:28:17.530208+00:00",
+  "evidence_kind": "Executor observations from supported rendered UI; source values bound to the fresh snapshot and global Spanish supplement.",
+  "surface": {
+    "browser_id": "1",
+    "tab_id": "2",
+    "task_owned": true
+  },
+  "homepage": {
+    "url": "https://www.dresslikemommy.com/es",
+    "observed_window_utc": [
+      "2026-09-14T18:00:00Z",
+      "2026-09-14T18:01:00Z"
+    ],
+    "country_currency": "Estados Unidos | USD $",
+    "language": "Español",
+    "spanish_navigation_and_body": true,
+    "some_English_interface_text": true
+  },
+  "representatives": [
+    {
+      "product_id": "gid://shopify/Product/6718945034337",
+      "variant_id": "gid://shopify/ProductVariant/39756755861601",
+      "url": "https://www.dresslikemommy.com/es/products/mom-child-matching-two-piece-swimsuit?country=US&currency=USD&variant=39756755861601",
+      "source_title_es": "Traje de baño de dos piezas a juego para mamá e hijo",
+      "source_options": {
+        "Size": "Child 2-3 years",
+        "Color": "Black"
+      },
+      "source_price": "17.99 USD",
+      "source_available": true,
+      "initial_at_utc": "2026-09-14T18:12:00.931Z",
+      "settled_at_utc": "2026-09-14T18:12:58.554Z",
+      "settled_country_currency_language": "US / USD / Español",
+      "title_and_first_body_paragraph_match": true,
+      "variant_preselected": false,
+      "settled_role": "Mamá",
+      "size_selected": false,
+      "color_selected": false,
+      "settled_price": "$17.99 USD–$23.99 USD",
+      "settled_primary_button": "Elige una talla",
+      "settled_primary_button_enabled": false,
+      "manual_selection": [
+        {
+          "at_utc": "2026-09-14T18:13:42.951Z",
+          "action": "Select Niño"
+        },
+        {
+          "at_utc": "2026-09-14T18:13:52.556Z",
+          "action": "Select 2–3 años"
+        },
+        {
+          "at_utc": "2026-09-14T18:14:00.154Z",
+          "action": "Select Negro"
+        }
+      ],
+      "manual_result": {
+        "selection": "Niño - 2–3 años",
+        "price": "17,99 US$",
+        "matches_source_USD_price": true,
+        "add_button_text": "Add this piece to bag",
+        "add_button_enabled": true,
+        "cart_count": 0,
+        "add_clicked": false
+      },
+      "delivery_text_observed": "Entrega estimada a Estados Unidos: 26 de septiembre–30 de septiembre",
+      "delivery_claim_certified": false,
+      "qualification": "FAIL_DIRECT_VARIANT_PRESELECTION__PASS_MANUAL_OPTION_PRICE_CONTROLS"
+    },
+    {
+      "product_id": "gid://shopify/Product/7230336729185",
+      "variant_id": "gid://shopify/ProductVariant/41883237220449",
+      "url": "https://www.dresslikemommy.com/es/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?country=US&currency=USD&variant=41883237220449",
+      "source_title_es": "Conjunto de Camisetas Minimalistas con Corazón - Diseño de Amor Simple i... | DLM",
+      "rendered_H1": "Conjunto de Camisetas Minimalistas con Corazón - Diseño de Amor Simple i...",
+      "title_rendering_difference": "Brand suffix is omitted from the rendered heading.",
+      "source_options": {
+        "Size": "Adult 2XL",
+        "Color": "White"
+      },
+      "source_price": "22.99 USD",
+      "source_available": true,
+      "initial_at_utc": "2026-09-14T18:15:12.761Z",
+      "settled_at_utc": "2026-09-14T18:16:02.522Z",
+      "settled_country_currency_language": "US / USD / Español",
+      "first_body_paragraph_matches": true,
+      "variant_preselected": false,
+      "settled_role": "Adulto",
+      "size_selected": false,
+      "color_selected": false,
+      "settled_price": "$19.99 USD–$22.99 USD",
+      "settled_primary_button": "Elige una talla",
+      "settled_primary_button_enabled": false,
+      "manual_selection": [
+        {
+          "at_utc": "2026-09-14T18:16:09.247Z",
+          "action": "Select 2XL"
+        },
+        {
+          "at_utc": "2026-09-14T18:16:16.534Z",
+          "action": "Select Blanco"
+        }
+      ],
+      "manual_result": {
+        "selection": "Adulto - 2XL",
+        "price": "22,99 US$",
+        "matches_source_USD_price": true,
+        "add_button_text": "Add this piece to bag",
+        "add_button_enabled": true,
+        "add_clicked": false
+      },
+      "qualification": "FAIL_DIRECT_VARIANT_PRESELECTION__PASS_MANUAL_OPTION_PRICE_CONTROLS"
+    }
+  ],
+  "planned_but_not_run": [
+    "Dress representative",
+    "Pajama representative"
+  ],
+  "not_run_reason": "Two distinct products exhibited the same direct variant-entry failure; further candidate sampling would not clear the decisive release gate. Shared implementation cause remains unproven.",
+  "overall_landing_context_verified": false,
+  "cart_acceptance": "NOT_RUN",
+  "orders": "NOT_RUN",
+  "consent_interaction": "NOT_RUN",
+  "writes_to_store_or_theme": 0,
+  "first_decisive_release_dependency": "Exact Spanish variant URL must settle on the source role, size, color and USD price before the landing-context gate can pass.",
+  "smallest_remedy": "Route the two exact numeric variant URLs to the existing UX owner for a bounded localized variant-selection repair and readback. Do not authorize a theme deployment through this qualification packet."
+}

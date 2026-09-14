@@ -1,0 +1,70 @@
+{
+  "schema": "dlm.context.compact_id_parent_acceptance.v1",
+  "recorded_at_utc": "2026-09-14T11:58:17.596870+00:00",
+  "status": "PASS_WITH_LIMITS",
+  "source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/compact-ms-uet-context-repair-20260914.json",
+    "sha256": "412ac7bb9102f3d76d5912c8b86ce54ac8f1ecd4312b7c9aece4a990de6bdcf1"
+  },
+  "verified_file_hashes": {
+    "ops/scripts/compile_task_context.py": "a210e9d379cb29b843fccfac6e8ee6a49c3844a3474ca76af40d075c72639851",
+    "ops/tests/test_compile_task_context.py": "054334b471d9b21d5684b535c26219ccd962c583c771656e0f310277967a403f",
+    "ops/scripts/session_context.py": "29e8be4ce9616248827eaf7587b4f95ca4a54474958a7d45d27af8cedc02a83f",
+    "ops/tests/test_session_context.py": "ae3ffead070cb9c608590bf5b87f546c22a270a16d54653de5eb6cf5f6c6abc7"
+  },
+  "independent_verifier": "/root/continuity_audit",
+  "independence": {
+    "did_not_implement_change": true,
+    "read_only_verifier": true,
+    "repository_or_report_files_written": false
+  },
+  "accepted_counts": {
+    "frozen_candidate_tests_byte_identical": true,
+    "original_assertion_groups_source_identical": 10,
+    "original_fixture_functions_source_identical": 2,
+    "frozen_before_failing_groups_reproduced": 4,
+    "frozen_before_passing_holdouts": 3,
+    "final_compiler_groups_passed": 17,
+    "unchanged_session_tests_passed": 24,
+    "legacy_boundary_cases_unchanged": 150,
+    "additional_microsoft_uet_boundary_cases_passed": 9,
+    "numeric_compact_probes_passed_on_frozen_and_current_sources": 4,
+    "independently_compiled_frozen_payloads_match_saved_after_outputs": 11,
+    "source_text_records_verified": 116,
+    "anchor_ranges_verified": 4,
+    "other_channel_full_payloads_byte_identical": 6,
+    "current_anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+    "current_claim_line": 35,
+    "current_claim_owner": "root01a08703",
+    "dated_historical_claim_lines_retained_after_current": [
+      40,
+      54
+    ],
+    "uet_only_claim_lines": [
+      35
+    ],
+    "task_fields_owners_goals_gates_authority_retained_claim_dates_unchanged": true,
+    "explicit_intersection_mixed_task_date_and_purchase_holdouts_passed": true,
+    "legacy_thresholds_boundaries_and_single_numeric_capture_preserved": true
+  },
+  "root_tests": {
+    "compiler_groups": 17,
+    "compiler_chunk": "289bb8",
+    "compiler_exit": 0,
+    "session_tests": 24,
+    "session_chunk": "7f9762",
+    "session_exit": 0,
+    "original_current_query_chunk": "5a6a94",
+    "query_exit": 0,
+    "current_claim_first": 35,
+    "historical_claims_retained": [
+      40,
+      54
+    ],
+    "authority": "NONE",
+    "ready": "false"
+  },
+  "parent_guard_corrections": "An initial missing no-op diff lookup and a separate JavaScript string parse error stopped before writes. Corrected guard verifies stored changed diffs and empty unchanged diffs; all current hashes match.",
+  "limits": "Local retrieval only; not browser, account, purchase or profit acceptance.",
+  "rollback": "Verify current code/test hashes and ownership, then reverse only the captured compiler/test diff if a rollback is required. Preserve all earlier mixed-owner/date/X/Purchase fixes and unrelated changes. Do not restore the entire untracked files from Git or edit shared canonical records; parent owns integration."
+}

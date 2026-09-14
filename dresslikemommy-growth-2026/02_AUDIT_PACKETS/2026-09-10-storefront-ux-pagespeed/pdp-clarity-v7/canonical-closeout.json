@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-09-11T17:56:29.752260+00:00",
+  "status": "PASS",
+  "anchor": "2026-09-11-storefront-pdp-clarity-v7-preview-verified",
+  "scope": "Existing UX coordination row, two new problem entries and one worklog append only",
+  "commands": [
+    {
+      "command": "Bundled Python ops/scripts/check_continuity_integrity.py --strict",
+      "exitCode": 0,
+      "result": "CONTINUITY_OK",
+      "latestAnchor": "2026-09-11-storefront-pdp-clarity-v7-preview-verified"
+    },
+    {
+      "command": "Bundled Python ops/scripts/audit_marketing_command_integration.py --fail-on-risk",
+      "exitCode": 0,
+      "sideDocumentRisks": 0,
+      "writeReport": false
+    },
+    {
+      "command": "git diff --check -- owning canonical files, generator and UX packet",
+      "exitCode": 0
+    }
+  ],
+  "preservation": "canonical-preservation.json",
+  "noMarketingControlRewrite": true,
+  "previousRejectedBroadPlanApplied": false
+}

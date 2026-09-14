@@ -1,0 +1,55 @@
+{
+  "artifact_role": "BOUNDED_BROWSER_CHECK_RECEIPT",
+  "recorded_at_utc": "2026-09-06T03:01:30.133149+00:00",
+  "status": "BLOCKED_OS_LOCK",
+  "product_id": "7533081133153",
+  "canonical_product_url": "https://www.dresslikemommy.com/products/vintage-cottage-floral-mommy-and-me-pajama-set",
+  "requested_scope": "New Chrome test tab; inventory cart first; only if empty and US/USD verified add one Mother S and one Child 2 Years, inspect separate lines/subtotal and checkout entry without personal data/order/payment, then remove only test additions and verify empty cart.",
+  "expected_not_observed": {
+    "currency": "USD",
+    "items": [
+      {
+        "variant_label": "Mother S",
+        "quantity": 1,
+        "unit_price_usd": "34.99"
+      },
+      {
+        "variant_label": "Child 2 Years",
+        "quantity": 1,
+        "unit_price_usd": "31.99"
+      }
+    ],
+    "merchandise_subtotal_usd": "66.98"
+  },
+  "attempted_browser_call": "await cua.getState();",
+  "observed_tool_response": "The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing.",
+  "inventory_status": "BLOCKED",
+  "owned_tab_created": false,
+  "owned_tab_id": null,
+  "greek_existing_tab_id_to_preserve": "475224233",
+  "observed_cart_item_count_before": null,
+  "observed_cart_currency": null,
+  "existing_cart_status": "UNKNOWN_NOT_OBSERVED",
+  "observed_product_lines": null,
+  "observed_subtotal_usd": null,
+  "checkout_entry_status": "NOT_RUN",
+  "personal_data_entry": "NOT_RUN",
+  "order_or_payment_action": "NOT_RUN",
+  "test_items_added": 0,
+  "test_items_removed": 0,
+  "cart_mutations_performed": 0,
+  "cleanup_status": "NOT_APPLICABLE_NO_TEST_ADDITIONS",
+  "cart_restored_empty_verified": false,
+  "external_account_settings_or_market_changes": 0,
+  "checkout_url_tokens_saved": false,
+  "customer_data_saved": false,
+  "stop_reason": "OS lock requires manual unlock; no alternate automation, hidden API or unlock bypass attempted.",
+  "next_resume_action": "After manual Mac unlock, repeat documented browser inventory, create the assigned new Chrome test tab and observe the cart before any addition. Existing nonempty cart or unverified US/USD context remains a stop condition.",
+  "residual_gates": [
+    "Buyer path remains NOT_RUN",
+    "Genuine purchase-event coverage remains unresolved",
+    "Actual landed/settled costs and net profit remain UNKNOWN",
+    "Google Ads access, route/budget ownership and exact paid authority remain gated"
+  ],
+  "parent_owns_continuity_and_active_goal": true
+}

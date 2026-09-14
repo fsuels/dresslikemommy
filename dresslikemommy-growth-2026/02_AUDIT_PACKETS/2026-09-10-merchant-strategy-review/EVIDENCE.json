@@ -1,0 +1,295 @@
+{
+  "review_as_of_utc": "2026-09-10 21:43:06 UTC",
+  "scope": "User-requested strategy review and correction. Read-only Shopify and public documentation; no Google account/browser replay or external write.",
+  "connected_store": {
+    "name": "Dress Like Mommy",
+    "domain": "www.dresslikemommy.com",
+    "currency": "USD",
+    "plan": "Basic"
+  },
+  "sales": {
+    "query": "FROM sales SHOW orders, gross_sales, discounts, sales_reversals, net_sales, shipping_charges, taxes, total_sales, average_order_value SINCE 2026-08-11 UNTIL 2026-09-09",
+    "columns": [
+      {
+        "name": "orders",
+        "dataType": "INTEGER"
+      },
+      {
+        "name": "gross_sales",
+        "dataType": "MONEY"
+      },
+      {
+        "name": "discounts",
+        "dataType": "MONEY"
+      },
+      {
+        "name": "sales_reversals",
+        "dataType": "MONEY"
+      },
+      {
+        "name": "net_sales",
+        "dataType": "MONEY"
+      },
+      {
+        "name": "shipping_charges",
+        "dataType": "MONEY"
+      },
+      {
+        "name": "taxes",
+        "dataType": "MONEY"
+      },
+      {
+        "name": "total_sales",
+        "dataType": "MONEY"
+      },
+      {
+        "name": "average_order_value",
+        "dataType": "MONEY"
+      }
+    ],
+    "rows": [
+      [
+        "10",
+        "821.44",
+        "0",
+        "0",
+        "821.44",
+        "25.98",
+        "0",
+        "847.42",
+        "82.144"
+      ]
+    ],
+    "rowCount": 1,
+    "shopDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "product_sales": {
+    "query": "FROM sales SHOW net_sales, orders GROUP BY product_title SINCE 2026-08-11 UNTIL 2026-09-09 ORDER BY net_sales DESC LIMIT 20",
+    "columns": [
+      {
+        "name": "product_title",
+        "dataType": "STRING"
+      },
+      {
+        "name": "net_sales",
+        "dataType": "MONEY"
+      },
+      {
+        "name": "orders",
+        "dataType": "INTEGER"
+      }
+    ],
+    "rows": [
+      [
+        "",
+        "240.13",
+        "2"
+      ],
+      [
+        "Sunshine Stripe Family Matching Tops - Cotton Tee",
+        "118.95",
+        "1"
+      ],
+      [
+        "Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set",
+        "101.97",
+        "1"
+      ],
+      [
+        "Men’s & Kids’ Matching Hawaiian Shirt – Blue Tropical Cotton Short Sleeve Button-Up",
+        "86.31",
+        "1"
+      ],
+      [
+        "Vibrant Rainbow Mommy and Me Maxi Dresses",
+        "54.47",
+        "1"
+      ],
+      [
+        "Golden Daisy Mommy & Me Matching Separates",
+        "53.84",
+        "1"
+      ],
+      [
+        "Sky Blue Family Matching Set - Pleated Dress & Shirts",
+        "48.98",
+        "1"
+      ],
+      [
+        "Green Tropical Leaf Daddy and Me Matching Swim Shorts for Pool Days",
+        "47.83",
+        "1"
+      ],
+      [
+        "Tropical One-Shoulder Ruffle Swimsuit for Women and... | DLM",
+        "36.98",
+        "1"
+      ],
+      [
+        "Chic Pink Mermaid Scales Tankini Set for Mother and Daughter",
+        "31.98",
+        "1"
+      ]
+    ],
+    "rowCount": 10,
+    "chartHint": {
+      "type": "bar",
+      "xAxisColumnIndex": 0,
+      "yAxisColumnIndices": [
+        1
+      ],
+      "yAxisFormat": "money",
+      "currencyCode": "USD"
+    },
+    "summaryMetric": {
+      "label": "net_sales",
+      "value": "821.44"
+    },
+    "shopDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "product_samples": [
+    {
+      "id": "gid://shopify/Product/7536992976993",
+      "title": "Skyfade Family Matching Set - Dress & Shirt",
+      "status": "ACTIVE",
+      "total_variants": 54,
+      "returned_variants": 50,
+      "variant_garment_names": [
+        "Dress",
+        "Shirt"
+      ],
+      "variant_color_names": [
+        "Blue",
+        "Purple"
+      ],
+      "description_mentions_lavender": true,
+      "selected_examples": [
+        {
+          "id": "gid://shopify/ProductVariant/44083478069345",
+          "title": "Dress / Blue / Child 2 Years",
+          "price": "26.99"
+        },
+        {
+          "id": "gid://shopify/ProductVariant/44083478593633",
+          "title": "Dress / Blue / Mother M",
+          "price": "29.99"
+        },
+        {
+          "id": "gid://shopify/ProductVariant/44083479445601",
+          "title": "Shirt / Blue / Father M",
+          "price": "21.99"
+        }
+      ],
+      "limitation": "Shopify text and recorded quantities do not validate supplier material, measurements, stock or delivery; Danish source conflict is separately dated repository evidence."
+    },
+    {
+      "id": "gid://shopify/Product/7545279512673",
+      "title": "Sunshine Stripe Family Matching Tops - Cotton Tee",
+      "status": "ACTIVE",
+      "total_variants": 14,
+      "returned_variants": 14,
+      "description_states_individual_tee": true,
+      "description_states_composition": true,
+      "selected_examples": [
+        {
+          "id": "gid://shopify/ProductVariant/44116031373409",
+          "title": "Child 2 Years / Sunshine Stripe",
+          "price": "21.99"
+        },
+        {
+          "id": "gid://shopify/ProductVariant/44116031635553",
+          "title": "Adult M / Sunshine Stripe",
+          "price": "24.99"
+        }
+      ],
+      "limitation": "Description states fiber composition; this review did not independently verify original supplier evidence."
+    }
+  ],
+  "calculations": {
+    "net_merchandise_revenue": "821.44",
+    "marketing_fraction": "0.15",
+    "marketing_envelope_exact": "123.2160",
+    "marketing_envelope_rounded": "123.22",
+    "average_order_value": "82.144",
+    "per_order_marketing_allowance_exact": "12.32160",
+    "per_order_marketing_allowance_rounded": "12.32",
+    "new_google_budget_approved": false
+  },
+  "selection_correction": "Named product-sales rows contain Sky Blue Family Matching Set - Pleated Dress & Shirts, not Skyfade. Blank title row is 240.13 across two orders; cannot identify products without order-line join. This does not establish zero Skyfade sales.",
+  "query_caveats": [
+    "Reporting window 2026-08-11 through 2026-09-09 inclusive; aggregate sales report, not independently filtered paid/non-test order cohort.",
+    "Do not sum product-level order counts as unique orders across products.",
+    "Initial combined title search returned no matches; exact-id searches then confirmed both sampled products.",
+    "Named historical sales titles alone do not establish current product identity or current title."
+  ],
+  "repository_evidence": [
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "section": "Authoritative Execution Control",
+      "label": "REPO_KNOWN",
+      "approved_external_scope": "NONE",
+      "mode": "STALE_READBACK_REQUIRED"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/receiver_20260910/README.md",
+      "label": "REPO_KNOWN",
+      "as_of_utc": "2026-09-10 18:29:50–18:43:46 UTC",
+      "merchant": "513542500",
+      "source": "10014302986",
+      "received_products": 0,
+      "cause": "UNKNOWN"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/GA4_EXPERT_ACCEPTANCE_20260910.md",
+      "label": "REPO_KNOWN",
+      "result": "Migration and duplicate cleanup complete; bounded transport pass; receiver and genuine purchase remain unverified."
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "problem": "PROB-2026-09-06-SKYFADE-SIZE-SOURCE-CONFLICT",
+      "label": "REPO_KNOWN",
+      "result": "Eight substantive source conflicts recorded across six adult sizes; paid readiness held."
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/actual_cost_final_review.md",
+      "label": "REPO_KNOWN",
+      "result": "Six historical cost/fee matches; conditional Sunshine-first validation; future basket costs and retained profit still unresolved."
+    }
+  ],
+  "source_urls": [
+    "https://developers.google.com/shopping-content/guides/deprecation-and-sunset",
+    "https://support.google.com/tagmanager/answer/15642481?hl=en",
+    "https://support.google.com/google-ads/answer/10486938?hl=en",
+    "https://support.google.com/merchants/answer/16989427",
+    "https://support.google.com/merchants/answer/17085370?hl=en",
+    "https://help.shopify.com/en/manual/online-sales-channels/agentic-storefronts/google",
+    "https://support.google.com/merchants/answer/16986038?hl=en",
+    "https://support.google.com/merchants/answer/14743464?hl=en-GB",
+    "https://support.google.com/merchants/answer/6324415?hl=en",
+    "https://help.shopify.com/en/manual/online-sales-channels/marketplaces/google/requirements",
+    "https://support.google.com/merchants/answer/6324507?hl=en",
+    "https://support.google.com/merchants/answer/6324463?hl=en",
+    "https://support.google.com/merchants/answer/6324479?hl=en",
+    "https://support.google.com/merchants/answer/6324482?hl=en",
+    "https://support.google.com/merchants/answer/6324350?hl=en",
+    "https://support.google.com/merchants/answer/14620705?hl=en",
+    "https://support.google.com/merchants/answer/6098512?hl=en",
+    "https://support.google.com/merchants/answer/14261098?hl=en",
+    "https://support.google.com/merchants/answer/13889434?hl=en",
+    "https://support.google.com/google-ads/answer/11461796?hl=en",
+    "https://support.google.com/google-ads/answer/6386790?hl=en",
+    "https://support.google.com/google-ads/answer/7686280?hl=en",
+    "https://www.optmyzr.com/blog/google-ads-benchmark-report-q1-2026/"
+  ],
+  "verification_limits": [
+    "Merchant Center, Ads, GA4 receiver, Search Console, consent and checkout were not re-inspected in this review; existing dated receipts were reviewed.",
+    "The pasted attachment label and the exact April filename were not available as original attachments; their claimed historical provenance remains supplied context.",
+    "One identifier documentation URL failed with an automated challenge; no retry or bypass was attempted."
+  ],
+  "mutations": {
+    "external": 0,
+    "orders": 0,
+    "spend": 0,
+    "canonical_authority_changes": 0
+  }
+}

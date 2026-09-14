@@ -1,0 +1,9 @@
+# Rainbow dress:17localized titles repaired
+
+IMPLEMENTED and API VERIFIED: one Shopify translationsRegister corrected17 existing product-title translations on ACTIVE Rainbow7229023846497. The source had set/bundle framing, literal truncation, and mixed-language text. Exact reviewed titles now identify matching rainbow maxi/long dresses for mother and daughter. Seventeen locale mappings equal the candidates with outdated:false; all75 other translation rows/flags, source content and every returned product field remain unchanged. English/Dutch, absent ru/sv title rows and explicit SEO were preserved. One mutation, zero userErrors, unused exact value rollback. Do not reapply.
+
+This is a listing/buyer-clarity repair, not measured traffic, sales, rankings or profit. No new Ads account, campaign or organic post was created this turn. Prior8-order/USD734.99 baseline and separate2-order/USD86.45 cohort remain unchanged; actual profit is unresolved. The existing approval to create a new Google Ads account remains valid without a recovery loop or repeated approval. Native rendering/publication still cannot run: normal Finder app control also reported Mac locked and took1357.31seconds; read-only ioreg returned unavailable, not an unlocked-state finding. Do not repeat unchanged CUA probes or reset helpers/permissions without new evidence. The existing desktop-state clarification is the owner dependency. Goal status remains blocked/notcomplete and the existing4h heartbeat is unchanged; the newly confirmed source defect allowed this independent API repair.
+
+Evidence and exact rollback: rainbow_remaining_titles_execution_20260907.json; rainbow_remaining_titles_plan_20260907.json; rainbow_remaining_titles_review_20260907.json; rainbow_remaining_titles_postreview_20260907.json.
+
+Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md, anchor 2026-09-06-ceo-turnaround-rainbow-language-titles.

@@ -1,0 +1,431 @@
+{
+  "schema": "dlm.couples_render_diagnosis.v1",
+  "created_at_utc": "2026-09-11T23:04:17.431663+00:00",
+  "status": "SOURCE_CAUSE_VERIFIED__THREE_FILE_CANDIDATE_FIX_PROPOSED",
+  "scope": "Saved source analysis only for existing collection290635284577. UX is sole candidate writer; root owns claim/publication review. No new public/provider reads, theme/product/tag/collection/feed/canonical writes or harness.",
+  "source_identity": {
+    "MAIN_id": "133290917985",
+    "MAIN_files": 525,
+    "bound_at_utc": "2026-09-11T22:50:06.386Z",
+    "binding": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/final-release/complete-release-binding.json",
+      "sha256": "327fd58422a6dbd972dda778c3400f902ff68ed8ec9b6a143c9b5eca260f5ea0",
+      "bytes": 204264
+    },
+    "raw_snapshot": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/final-release/final-source.json",
+      "sha256": "5a2b8a654f1751f2a2de7934c614f92190488665bb9361afbf762dd955acaab7",
+      "bytes": 189873
+    },
+    "frozen_V7_id": "137888792673",
+    "frozen_V7_role": "UNPUBLISHED",
+    "limit": "Prior candidate-ready status is not acceptance of the now-known emptyCouples page. These3 files are identical in bound MAIN and V7."
+  },
+  "collection_source": {
+    "receipt": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/couples-theme-classification-readback-20260911.json",
+      "sha256": "b8171f366142e1a823e850af4f181cd68704faf57db3710ef6b3b557c5beecb0",
+      "bytes": 4785
+    },
+    "recorded_at_utc": "2026-09-11T22:57:03.663Z",
+    "id": "gid://shopify/Collection/290635284577",
+    "handle": "couples",
+    "templateSuffix": "",
+    "category1": null,
+    "template": "templates/collection.json",
+    "resolution": "Fresh literal empty suffix; only default collection template in525 inventory. Template enables description and includes banner/grid/lowerSEO sections.",
+    "deciding_predicate_replay": [
+      {
+        "product_id": "7230336729185",
+        "product_category1": "Family Matching",
+        "expected_category_key": "couples",
+        "product_category_key": "family",
+        "has_Couples_tag": false,
+        "MAIN_visible": false,
+        "proposed_membership_visible": true
+      },
+      {
+        "product_id": "7672336646241",
+        "product_category1": "Family Matching",
+        "expected_category_key": "couples",
+        "product_category_key": "family",
+        "has_Couples_tag": false,
+        "MAIN_visible": false,
+        "proposed_membership_visible": true
+      },
+      {
+        "product_id": "7505372282977",
+        "product_category1": "Family Matching",
+        "expected_category_key": "couples",
+        "product_category_key": "family",
+        "has_Couples_tag": false,
+        "MAIN_visible": false,
+        "proposed_membership_visible": true
+      }
+    ]
+  },
+  "findings": [
+    {
+      "id": "GRID",
+      "status": "VERIFIED_SOURCE_CAUSE",
+      "references": [
+        "sections/main-collection-product-grid.liquid:69",
+        "sections/main-collection-product-grid.liquid:111",
+        "sections/main-collection-product-grid.liquid:154",
+        "sections/main-collection-product-grid.liquid:366",
+        "snippets/collection-grid-product-visible.liquid:16",
+        "snippets/collection-grid-product-visible.liquid:63",
+        "snippets/collection-grid-product-visible.liquid:167"
+      ],
+      "cause": "Shopify supplies3 public members. Count/empty-state use raw collection counts. Normal loop calls a second category predicate and continues unless true. Missing collection.category derivesCouples from handle; all3 product categories areFamilyMatching and none hasCouples tag. All3 therefore skip the card renderer, leaving emptyul despite3count.",
+      "ruled_out": "Couples is absent from mommy/family interleave handle sets; bucket ordering is not the deciding path. No CSS/card-image theory or sourceabsence is needed."
+    },
+    {
+      "id": "HERO",
+      "status": "VERIFIED_SOURCE_CAUSE",
+      "references": [
+        "sections/main-collection-banner.liquid:10",
+        "sections/main-collection-banner.liquid:37",
+        "snippets/collection-seo-fallback.liquid:366",
+        "snippets/collection-seo-fallback.liquid:504"
+      ],
+      "cause": "Banner always prefers nonblank generatedhero before collection.description, even when force_theme_seo isfalse. The saved localized body is therefore overridden.",
+      "actual_MAIN_generated_body": "<p>Explore {{ title }} for date nights, vacations, holiday gifting, engagement photos, and everyday coordination. This page is designed for shoppers who want more than one matching top and need a broader starting point for coordinated looks.</p><p>Start with easy tees or lounge sets, then build a more complete outfit around the trip, occasion, or photo moment you are shopping for.</p>"
+    },
+    {
+      "id": "LOWER_BODY",
+      "status": "VERIFIED_SOURCE_CAUSE",
+      "references": [
+        "templates/collection.json:385",
+        "sections/main-collection-seo.liquid:27",
+        "sections/main-collection-seo.liquid:215",
+        "snippets/collection-seo-content.liquid:120"
+      ],
+      "cause": "Independent lower SEO section prioritizes rich_parts.couples. Changing only hero leaves this oldcopy visible. The quoted broad-keyword sentence is specifically rich_parts.couples.part_2, not the generatedhero firstsentence.",
+      "quoted_legacy_paragraph": "<p>The broad couple keyword family goes beyond tees alone. This page is designed as the main landing page for couples matching outfits and coordinated looks that can include tops, loungewear, vacation pieces, and casual sets for him and her.</p>"
+    },
+    {
+      "id": "META",
+      "status": "VERIFIED_SOURCE_PATH_PLUS_PARENT_PUBLIC_EVIDENCE",
+      "references": [
+        "snippets/collection-seo-fallback.liquid:197",
+        "baseline/main/layout/theme.liquid:113",
+        "baseline/main/layout/theme.liquid:177",
+        "snippets/meta-tags.liquid:50"
+      ],
+      "cause": "Couples is not in force_theme_seo list; nonblank nativepage_description survives in MAIN HTML/OG metadata. ParentUX separately observed correct new metadata inEN/FR/ES/AR. No metadata code change is warranted."
+    }
+  ],
+  "minimum_fix": {
+    "file_count": 3,
+    "target": "Existing unpublishedV7 only",
+    "stable_scope_guard": "Prefer numeric Liquid collection.id ==290635284577 (current_collection.id in visibility snippet), avoiding translated-handle sensitivity. Exact current handlecouples is not a reason to widen to matching-couples-t-shirts.",
+    "files": [
+      {
+        "filename": "snippets/collection-grid-product-visible.liquid",
+        "edit": "Before echo product_visible, set product_visible=true only for current_collection.id ==290635284577. Preserve all original predicates elsewhere.",
+        "purpose": "Trust current curated collection.products membership without changing product tags/category or other branches."
+      },
+      {
+        "filename": "sections/main-collection-banner.liquid",
+        "edit": "Inside show_collection_description, prioritize exactcollection.id ==290635284577 and nonblankcollection.description; assign the full localized sourcebody. Preserve original generatedhero priority for othercollections.",
+        "purpose": "Expose both saved sourceparagraphs in all21locales without copying text into theme."
+      },
+      {
+        "filename": "sections/main-collection-seo.liquid",
+        "edit": "Exclude exactcollection.id ==290635284577 from the existing outer renderingblock. Preserve all othercollection branches.",
+        "purpose": "Remove stale lower richSEO and avoid duplicating the authoritative hero body."
+      }
+    ],
+    "preserve": [
+      "templates/collection.json",
+      "grid loop/count/sorting/filtering",
+      "collection-seo-fallback/content generic behavior",
+      "locale files",
+      "layout/meta-tags/metadata/titles/handles",
+      "all product/tag/collection/feed source",
+      "existingV7 selector/cart fixes"
+    ],
+    "alternative": "Special-case generatedhero/body and rich-content outputs instead of the2sectionguards; still3files including visibility, but more sharedfallback coupling and duplicate-body risk. Producttag/category changes widen source/feed effects and are outside this task."
+  },
+  "regression_fixtures": [
+    {
+      "id": "actual3members",
+      "input": {
+        "collection_id": 290635284577,
+        "collection_category1": null,
+        "products": [
+          {
+            "product_id": "7230336729185",
+            "product_category1": "Family Matching",
+            "expected_category_key": "couples",
+            "product_category_key": "family",
+            "has_Couples_tag": false,
+            "MAIN_visible": false,
+            "proposed_membership_visible": true
+          },
+          {
+            "product_id": "7672336646241",
+            "product_category1": "Family Matching",
+            "expected_category_key": "couples",
+            "product_category_key": "family",
+            "has_Couples_tag": false,
+            "MAIN_visible": false,
+            "proposed_membership_visible": true
+          },
+          {
+            "product_id": "7505372282977",
+            "product_category1": "Family Matching",
+            "expected_category_key": "couples",
+            "product_category_key": "family",
+            "has_Couples_tag": false,
+            "MAIN_visible": false,
+            "proposed_membership_visible": true
+          }
+        ]
+      },
+      "before": {
+        "raw_count": 3,
+        "card_count": 0
+      },
+      "expected_after": {
+        "raw_count": 3,
+        "card_count": 3,
+        "product_ids": [
+          "7672336646241",
+          "7505372282977",
+          "7230336729185"
+        ]
+      },
+      "verification": "Exact deciding predicate replay passed locally; full Liquid rendering remains UX-owned."
+    },
+    {
+      "id": "membership_boundary",
+      "input": "17 archived Admin matches plus the3 current public ACTIVE members",
+      "expected": "Render only collection.products; no global product lookup, archive reactivation or product tags/category/variant changes."
+    },
+    {
+      "id": "other_branch_regression",
+      "input": [
+        "Family Matching product withoutCouples tag under matching-couples-t-shirts",
+        "Same product under family-matching-outfits",
+        "Unrelated Mommy and Me product under family-matching-outfits"
+      ],
+      "expected": [
+        "Remains hidden",
+        "Remains visible",
+        "Original branch predicate preserved"
+      ]
+    },
+    {
+      "id": "empty_sort_filter",
+      "input": "ExactCouples with0 public products; then3 members and sorted/filtered AJAX results",
+      "expected": "Existing empty state for0; card count agrees with returned membership for3/subsets; no new JS dependency."
+    },
+    {
+      "id": "all21_source_bodies",
+      "input": "21 locale_values.body_html from existing copy packet, exact collectionID",
+      "expected": "Full2paragraph source body appears once in hero, including second per-person paragraph. No lower legacy main-collection-seo output or old keyword-family text."
+    },
+    {
+      "id": "all21_metadata_unchanged",
+      "input": "21 current nonblank native page_description values; force_theme_seo remainsfalse forCouples",
+      "expected": "Native HTML/OG descriptions unchanged. No layout/meta-tags/title/meta_title/handle or locale source edits."
+    },
+    {
+      "id": "other_collection_body",
+      "input": "Non-Couples collection generatedhero and richSEO, including blank native description",
+      "expected": "Existing behavior unchanged; no global precedence reversal."
+    },
+    {
+      "id": "normal_preview_acceptance",
+      "input": "ExistingV7 with final exact hashes; ENdesktop/mobile and FR/ES/AR",
+      "expected": "3 actual product links, current source body, already-correct metadata, working target PDP links and preserved cart. Root reviews publication only after actual preview acceptance."
+    }
+  ],
+  "verification_limits": [
+    "Only exact deciding sourcepredicate replay was executed here; no full Liquid render or browser test by this subagent.",
+    "Root relayed ENdesktop/mobile/FR/ES/AR zero-card observations and correct newmeta descriptions; publicreceipt path was not yet supplied.",
+    "Theme fixes are NOT IMPLEMENTED by this task. Publishing known-empty MAIN/V7 is not justified.",
+    "No claims of recovered traffic, purchases or profit."
+  ],
+  "MAIN_file_bindings": [
+    {
+      "path": "snippets/collection-grid-product-visible.liquid",
+      "sha256": "e6cd0e290f4d8eb0395eb0c0f9b99b6b4daa9dffd7c131e8ecbdbcb5f1c5bf2b",
+      "bytes": 8526,
+      "filename": "snippets/collection-grid-product-visible.liquid",
+      "checksumMd5": "0adc965d23f1fa9b3352ac587c95fabc",
+      "MAIN_match": true,
+      "frozen_V7_match": true,
+      "patch_target": true
+    },
+    {
+      "path": "sections/main-collection-banner.liquid",
+      "sha256": "5d10ef1d8d6b480437c228620a2d971be595066b80ca072505153bee9c3abdef",
+      "bytes": 6009,
+      "filename": "sections/main-collection-banner.liquid",
+      "checksumMd5": "ac772ca4f1ed2aff97af9282542be929",
+      "MAIN_match": true,
+      "frozen_V7_match": true,
+      "patch_target": true
+    },
+    {
+      "path": "sections/main-collection-seo.liquid",
+      "sha256": "434cab5aee8fc898ca2881a5cbd37d57c63d4ccde2852818dadd7dcebdefd602",
+      "bytes": 11431,
+      "filename": "sections/main-collection-seo.liquid",
+      "checksumMd5": "b5cd8652ad8364cd69a6e77b61f1ce32",
+      "MAIN_match": true,
+      "frozen_V7_match": true,
+      "patch_target": true
+    },
+    {
+      "path": "sections/main-collection-product-grid.liquid",
+      "sha256": "3af548d6f710528cfd5fae2656025baaea5e51f0f483f8fcc869ee7a6e111b6f",
+      "bytes": 28987,
+      "filename": "sections/main-collection-product-grid.liquid",
+      "checksumMd5": "1699a1c050d5cf1cc0c95caa7d9e1594",
+      "MAIN_match": true,
+      "frozen_V7_match": true,
+      "patch_target": false
+    },
+    {
+      "path": "snippets/collection-seo-fallback.liquid",
+      "sha256": "9a7036c88e13ab1e14196e1c9ecdc208bbbbfe5b4caa79cb80d6278575e4113f",
+      "bytes": 40071,
+      "filename": "snippets/collection-seo-fallback.liquid",
+      "checksumMd5": "9ff6ec2d6f0911298e957f9d10bbd49c",
+      "MAIN_match": true,
+      "frozen_V7_match": true,
+      "patch_target": false
+    },
+    {
+      "path": "snippets/collection-seo-content.liquid",
+      "sha256": "50753a9d8cafe6d9ac6320a478ac573042f7ffbcc5529f43bd7a6b8f4eb29c06",
+      "bytes": 18644,
+      "filename": "snippets/collection-seo-content.liquid",
+      "checksumMd5": "ffbbbff081783360b392bc182694a69e",
+      "MAIN_match": true,
+      "frozen_V7_match": true,
+      "patch_target": false
+    },
+    {
+      "path": "snippets/collection-grid-product-bucket.liquid",
+      "sha256": "ea69f17bd5ba1acff3169e45dd6a0697754903b433c349ed21730be7139c2e2a",
+      "bytes": 8059,
+      "filename": "snippets/collection-grid-product-bucket.liquid",
+      "checksumMd5": "737f50ed14407a4a7bd61a8810a149e0",
+      "MAIN_match": true,
+      "frozen_V7_match": true,
+      "patch_target": false
+    },
+    {
+      "path": "templates/collection.json",
+      "sha256": "9330c0fa99bc3bbb8c0853b1b3e712e21a615e8063b215567fdd85386cb7c65a",
+      "bytes": 14077,
+      "filename": "templates/collection.json",
+      "checksumMd5": "3d95b22c3f8d954efda60814425c6c9f",
+      "MAIN_match": true,
+      "frozen_V7_match": true,
+      "patch_target": false
+    },
+    {
+      "path": "snippets/meta-tags.liquid",
+      "sha256": "0db75b7c3f643fd74586576270d6ad8a9bcca621abfb6ee33a982c7218baf8d9",
+      "bytes": 19282,
+      "filename": "snippets/meta-tags.liquid",
+      "checksumMd5": "6133be077f03f8dff2b1356103e421a6",
+      "MAIN_match": true,
+      "frozen_V7_match": true,
+      "patch_target": false
+    }
+  ],
+  "actual_MAIN_layout": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/baseline/main/layout/theme.liquid",
+    "sha256": "39962e58bdfa8ede189a82071ef5d2b164b66f7ec8b0a0f8de9e9e623dc00a49",
+    "bytes": 86980,
+    "checksumMd5": "cc22c0b1bae1461d872aed1bbf4944fd"
+  },
+  "actual_MAIN_English_locale": {
+    "source_artifact": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/footer-source-before.json",
+      "sha256": "eae98f9a7a7431c83a8afdeb59d83fde906bba8bad72c5c37a32cb52e12e7765",
+      "bytes": 552459
+    },
+    "body_selector": "data.main.files.nodes[filename=locales/en.default.json].body.content",
+    "original_capture_utc": "2026-09-10T01:50:24.075Z",
+    "current_MAIN_checksumMd5": "c0a74e332e2ddf3f389f7ba3730d3c31",
+    "body_sha256": "157c882921f311770951dfaf1766f3879bab36505a45d16d4dacbc5f8424db04",
+    "disposition": "Older cached body is exactly bound by freshMAIN checksum; root locale file is different and was not treated as live."
+  },
+  "repo_cautions": {
+    "root_locale_matches_MAIN": false,
+    "root_layout_matches_MAIN": false,
+    "resolution": "Used actual saved matching MAIN Englishlocale and baseline/main layout bodies, plus9 verifiedmatching repo files."
+  },
+  "checks": {
+    "complete_MAIN525_matches_saved_local_snapshot": true,
+    "all9_relevant_repo_files_match_MAIN": true,
+    "all3_proposed_targets_same_in_frozenV7": true,
+    "exact_collection_empty_templateSuffix_null_category": true,
+    "only_default_collection_template_in_MAIN": true,
+    "template_banner_grid_lowerSEO_bound": true,
+    "all3_exact_members_have_family_category_noCouples_tag": true,
+    "all3_source_visibility_predicates_false": true,
+    "source3ACTIVE_ids_equal_replayed_ids": true,
+    "proposed_membership_predicate_gives3_cards": true,
+    "actual_MAIN_locale_body_current_checksum_match": true,
+    "quoted_keyword_sentence_is_lower_richpart": true,
+    "Couples_not_force_theme_SEO": true,
+    "new_source_body_and_meta_nonblank": true,
+    "no_external_or_theme_writes": true
+  },
+  "checks_passed": 15,
+  "checks_total": 15,
+  "input_manifest": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/final-release/complete-release-binding.json",
+      "sha256": "327fd58422a6dbd972dda778c3400f902ff68ed8ec9b6a143c9b5eca260f5ea0",
+      "bytes": 204264
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/final-release/final-source.json",
+      "sha256": "5a2b8a654f1751f2a2de7934c614f92190488665bb9361afbf762dd955acaab7",
+      "bytes": 189873
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/couples-theme-classification-readback-20260911.json",
+      "sha256": "b8171f366142e1a823e850af4f181cd68704faf57db3710ef6b3b557c5beecb0",
+      "bytes": 4785
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/couples-collection-recovery-after-20260911.json",
+      "sha256": "fd9dfeea8a03be8544dd8ecf60a005661f363afed3ae2c15c6a1018760e2df75",
+      "bytes": 68361
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/couples-collection-copy-20260911.json",
+      "sha256": "caa886a7de0d92f44b7f51d625dc45b4d7b2c7c07b4c3abe452b1c5cc5fafcd7",
+      "bytes": 26079
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/footer-source-before.json",
+      "sha256": "eae98f9a7a7431c83a8afdeb59d83fde906bba8bad72c5c37a32cb52e12e7765",
+      "bytes": 552459
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/baseline/main/layout/theme.liquid",
+      "sha256": "39962e58bdfa8ede189a82071ef5d2b164b66f7ec8b0a0f8de9e9e623dc00a49",
+      "bytes": 86980
+    }
+  ],
+  "operations": {
+    "new_external_reads": 0,
+    "browser_calls": 0,
+    "theme_product_collection_tag_feed_writes": 0,
+    "shared_canonical_writes": 0,
+    "owned_artifact": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/couples-render-diagnosis-20260911.json"
+  },
+  "next_action": "UX implements3 scoped candidate changes and verifies actual normal previews; root rebinds completecandidate and reviews ownerpublication after acceptance."
+}

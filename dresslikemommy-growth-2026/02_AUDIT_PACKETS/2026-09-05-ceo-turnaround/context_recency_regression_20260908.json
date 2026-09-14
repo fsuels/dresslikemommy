@@ -1,0 +1,153 @@
+{
+  "worklog_before_sha256": "8cb35d1d46ce28b54103b1e064efd79e804a73f93e713acd3069f281e0b3e891",
+  "compiler_before_sha256": "b59503387361fb669c625231a9bfc73264a78f9617a8fedc680b59b98e56b554",
+  "tests_before_sha256": "d3dfb6c4663063298c609548be989a0321792a05fdf94e23f4e398f1cf8c38d1",
+  "cases": [
+    {
+      "name": "ga4_purchase",
+      "query": "Continue Analytics 330266838 purchase tracking",
+      "entities": [
+        "330266838"
+      ],
+      "expected": "2026-09-08-ceo-turnaround-merchant-link-cleanup-product-coverage",
+      "before": "2026-09-08-ceo-turnaround-google-cutover-goal-transfer",
+      "before_status": "OK",
+      "before_matches": false,
+      "paid_scope": "NONE",
+      "after": "2026-09-08-ceo-turnaround-merchant-link-cleanup-product-coverage",
+      "after_status": "OK",
+      "after_matches": true,
+      "after_paid_scope": "NONE"
+    },
+    {
+      "name": "ga4_reconnect",
+      "query": "Reconnect Google Analytics 330266838 purchase tracking",
+      "entities": [
+        "330266838"
+      ],
+      "expected": "2026-09-08-ceo-turnaround-merchant-link-cleanup-product-coverage",
+      "before": "2026-09-08-ceo-turnaround-google-cutover-goal-transfer",
+      "before_status": "OK",
+      "before_matches": false,
+      "paid_scope": "NONE",
+      "after": "2026-09-08-ceo-turnaround-merchant-link-cleanup-product-coverage",
+      "after_status": "OK",
+      "after_matches": true,
+      "after_paid_scope": "NONE"
+    },
+    {
+      "name": "ga4_mapping",
+      "query": "Verify Analytics property330266838 purchase conversion mapping",
+      "entities": [
+        "330266838"
+      ],
+      "expected": "2026-09-08-ceo-turnaround-merchant-link-cleanup-product-coverage",
+      "before": "2026-09-06-ceo-turnaround-purchase-capture",
+      "before_status": "OK",
+      "before_matches": false,
+      "paid_scope": "NONE",
+      "after": "2026-09-08-ceo-turnaround-merchant-link-cleanup-product-coverage",
+      "after_status": "OK",
+      "after_matches": true,
+      "after_paid_scope": "NONE"
+    },
+    {
+      "name": "merchant_ga4_holdout",
+      "query": "Continue selected Merchant setup, retain Analytics purchase tracking and verify completed catalog-link and local-retail repairs",
+      "entities": [
+        "513542500",
+        "330266838"
+      ],
+      "expected": "2026-09-08-ceo-turnaround-merchant-link-cleanup-product-coverage",
+      "before": "2026-09-08-ceo-turnaround-merchant-link-cleanup-product-coverage",
+      "before_status": "OK",
+      "before_matches": true,
+      "paid_scope": "NONE",
+      "after": "2026-09-08-ceo-turnaround-merchant-link-cleanup-product-coverage",
+      "after_status": "OK",
+      "after_matches": true,
+      "after_paid_scope": "NONE"
+    },
+    {
+      "name": "channels_holdout",
+      "query": "Continue Microsoft Ads and Pinterest execution using completed work and saved authorizations",
+      "entities": [
+        "477439",
+        "549756244483"
+      ],
+      "expected": "2026-09-08-ceo-turnaround-microsoft-pinterest-execution-priority",
+      "before": "2026-09-08-ceo-turnaround-microsoft-pinterest-execution-priority",
+      "before_status": "OK",
+      "before_matches": true,
+      "paid_scope": "NONE",
+      "after": "2026-09-08-ceo-turnaround-microsoft-pinterest-execution-priority",
+      "after_status": "OK",
+      "after_matches": true,
+      "after_paid_scope": "NONE"
+    }
+  ],
+  "verification": {
+    "status": "IMPLEMENTED_AND_INDEPENDENTLY_VERIFIED",
+    "checked_at": "2026-09-08T22:38:18.335920+00:00",
+    "failing_cases_fixed": 3,
+    "passing_holdouts_preserved": 2,
+    "frozen_worklog_unchanged_during_replay": true,
+    "focused_test_command": "python3 -B ops/tests/test_compile_task_context.py",
+    "focused_test_result": "PASS (ok)",
+    "compiler_after_sha256": "ee2451cdef200c237173191d1e759faec101e8b2992d661da766f0a43b19211a",
+    "tests_after_sha256": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943",
+    "paid_scope_preserved": "NONE",
+    "scope": "Choose the newest anchor within the same complete explicitly required entity hit set, after existing ambiguity checks. Implicit semantic selection and authority parsing are unchanged.",
+    "external_writes": 0,
+    "limitation": "This verifies continuity retrieval, not account connections, new traffic, sales, or profit.",
+    "independent_verifier": "/root/microsoft_growth",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "independent_verdict": "PASS",
+    "independent_checks": [
+      "Original three failures independently reproduced with frozen compiler",
+      "Five cases independently replayed against both versions; three fixed and two holdouts preserved",
+      "Focused suite returned ok",
+      "Compiler and test diffs inspected; guards and implicit selection preserved",
+      "Five before/after source hashes match and frozen worklog unchanged",
+      "All nine authority fields unchanged"
+    ],
+    "paid_control_bytes": 506,
+    "paid_control_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+    "replay_note": "The worklog was unchanged during root and independent replay. After append-only closeout, reconstruct its original prefix using worklog_before_bytes and verify worklog_before_sha256 before replaying the frozen expected anchors.",
+    "limitations": [
+      "Recency is worklog append order",
+      "Explicit broad entities favor newer same-hit-set state; implicit semantic behavior is unchanged",
+      "No current GA4/GSC report, account mutation, purchase verification or measured growth lift"
+    ]
+  },
+  "worklog_before_bytes": 3836192,
+  "worklog_before_lines": 48232,
+  "continuation": {
+    "anchor": "2026-09-08-ceo-turnaround-analytics-context-recency-repair",
+    "ga4_account": "88409806",
+    "ga4_property": "330266838",
+    "search_console_property": "https://www.dresslikemommy.com/",
+    "selected_merchant": "513542500",
+    "account_access": "Computer Use reports Mac locked; owner desktop-status clarification pending",
+    "if_locked": "Owner normal unlock, then fresh supported account readback",
+    "if_already_unlocked": "Investigate false computer-control error through the permitted recovery workflow",
+    "goal_runtime": "blocked",
+    "existing_four_hour_heartbeat": "ACTIVE",
+    "external_writes_this_pass": 0,
+    "next_work": "Merchant ingestion and multilingual coverage; Ads/retained GA4 links and purchase receipt; current GSC indexing; existing Pinterest release; Microsoft qualification",
+    "existing_authorizations_preserved": true,
+    "new_harness_created": false
+  },
+  "final_validation": {
+    "checked_at": "2026-09-08T22:44:55.024687+00:00",
+    "cockpit_render": "PASS: open_marketing_cockpit.py --no-open",
+    "command_layer_integration": "PASS: 25/25 files; 0 side-document risks",
+    "strict_continuity": "PASS: CONTINUITY_OK",
+    "tracked_scoped_diff_check": "PASS: exit0, no whitespace diagnostics",
+    "untracked_code_baseline_diff_check": "No whitespace diagnostics; --no-index exit1 reflects the intended differences",
+    "original_worklog_prefix_reconstructs_frozen_hash": true,
+    "post_closeout_recovery": "PASS: GA4 query now selects the new relevant closeout anchor",
+    "post_closeout_authority": "NONE; original506bytes unchanged",
+    "external_account_mutations": 0
+  }
+}

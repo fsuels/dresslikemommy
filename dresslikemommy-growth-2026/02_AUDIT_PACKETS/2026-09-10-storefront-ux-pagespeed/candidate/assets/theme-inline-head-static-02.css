@@ -1,0 +1,39 @@
+@media screen and (max-width: 749px) {
+  .template-product .product__description table,
+  .page-width--product-main .product__description table,
+  .page-width--product-main #size-chart {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+  }
+
+  .template-product .product__description table th,
+  .template-product .product__description table td,
+  .page-width--product-main .product__description table th,
+  .page-width--product-main .product__description table td,
+  .page-width--product-main #size-chart th,
+  .page-width--product-main #size-chart td {
+    white-space: nowrap !important;
+  }
+
+  .template-product .product__description table th:first-child,
+  .template-product .product__description table td:first-child,
+  .page-width--product-main .product__description table th:first-child,
+  .page-width--product-main .product__description table td:first-child,
+  .page-width--product-main #size-chart th:first-child,
+  .page-width--product-main #size-chart td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: #ffffff;
+    box-shadow: 1px 0 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .template-product .product__description table th:first-child,
+  .page-width--product-main .product__description table th:first-child,
+  .page-width--product-main #size-chart th:first-child {
+    z-index: 3;
+  }
+}

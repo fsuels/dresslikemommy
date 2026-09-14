@@ -1,0 +1,91 @@
+{
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewed_at_utc": "2026-09-10T00:51:23.694893+00:00",
+  "reviewer": "organic_plan_review",
+  "did_not_build_or_execute_release": true,
+  "independent_external_api_or_browser_replay": false,
+  "checks": {
+    "fresh_source_matches_all10_reviewed_fields": true,
+    "approved_variable_hash_unchanged": true,
+    "only_body_sent_to_exact_article": true,
+    "rollback_restores_fresh_before": true,
+    "mutation_response_user_errors_empty": true,
+    "mutation_response_matches_separate_after_record": true,
+    "eight_preservation_fields_exact": true,
+    "updated_at_matches_save_receipt": true,
+    "exactly_seven_LF_insertions_only_in_new_li_openings": true,
+    "bounded_reconstruction_matches_after": true,
+    "reversing_only_two_approved_edits_restores_every_original_byte": true,
+    "rollback_guard_binds_actual_server_body": true,
+    "36_unique_translation_rows_preserved": true,
+    "17_bodies_19_titles": true,
+    "all36_translation_hashes_and_lengths_equal": true,
+    "only_body_flags_and_timestamps_changed": true,
+    "all17_bodies_became_outdated": true,
+    "root_browser_record_targets_correct_article_and_products": true,
+    "root_browser_record_marks_all_credited_routes_published_context": true,
+    "root_browser_record_bounds_cart_checkout_and_business_proof": true,
+    "root_da_existing_body_pl_source_fallback_record_consistent": true,
+    "all19_title_source_fields_preserved": true
+  },
+  "passed": 22,
+  "failed": [],
+  "strict_payload_after_byte_equality": false,
+  "strict_difference_resolution": "Exactly seven server-inserted LF characters after seven new li openings; no blanket HTML normalization used.",
+  "normalization_payload_character_positions": [
+    842,
+    1012,
+    1239,
+    1426,
+    1662,
+    1890,
+    2147
+  ],
+  "normalization_after_character_positions": [
+    842,
+    1013,
+    1241,
+    1429,
+    1666,
+    1895,
+    2153
+  ],
+  "actual_server_body_sha256": "3684050d49c9f5a52c8c67106ffd1755990f57550ff4e49ddfa105dde2dff014",
+  "body_translation_timestamps_changed": 17,
+  "title_translation_timestamps_changed": 0,
+  "source_sha256": {
+    "article-before.json": "8a7c0ff2f68e60599e80f138b3f83ba690e156c801b38b2a4a2ff78bd8272735",
+    "article-after.json": "ed95c35d3e3aacfd7b6fdeca70e2980f2ef8d3c3a3b9ee66563ecb47fd2b3b53",
+    "mutation-result.json": "3bcd5b0e007242af7f2ca3bbf102c66658073381edb3d2bbba7e3cf3bee928af",
+    "translations-before.json": "964e33c6244a4853fda46809678349a0640f7c94c3ff18eebd8288b430a2e539",
+    "translations-after.json": "75f0af7b36057080548e6db6cb9dd398d1f4c66cb02472c0e7745e2df1b22669",
+    "publication-checks.json": "0cedaf4cd29f737f9c38d57bc9dd2770c753d604f617bdba104000b6750d88b5",
+    "rollback-guard.json": "17ec745d257bf3b10929e7a57dbb3f972ffe4b9be4b39c1c785ddc79d83132d7",
+    "buyer-route-readback.json": "6d70ee574bdeb13cab96f8c6611b2fe1102f569327b6f57870340feb4d0ba0a7",
+    "release-frame.json": "5d9f4b1546292c60c5f529c0ea43b3af0b0a62dcd6891495663c26bef19d0a5d",
+    "../article-before.json": "e31beee0a7ee642faf72dfc0a528361ddfae4ce92ee25c6a906e5e1bfc538cc0",
+    "../article-update-variables.json": "c509043c4c7027b40b2bec5a79420f2f8d7639645dbe3796bb5eaf1274e7f69f",
+    "../article-rollback-variables.json": "c6affceb4e3cf89214bdf7ccadc1eecacfa83e4761f79174285ce6cbf9e9b10f",
+    "../article-insertion.html": "840886cefee09dc67794e6179dcc917931ab2750c274094d8da1389e4d971f8d"
+  },
+  "limits": [
+    "Browser verdict reviews root recorded evidence only; screenshots were not independently replayed.",
+    "Only Danish existing-body and Polish fallback routes sampled; no full localization certification.",
+    "No checkout, acquisition, order, traffic or profit lift demonstrated.",
+    "No extra publication, translation rewrite, PDF upload, outreach or spending authority is granted."
+  ],
+  "translation_comparison_fields": [
+    "locale",
+    "key",
+    "outdated",
+    "updatedAt",
+    "value_sha256",
+    "value_chars"
+  ],
+  "translation_after_diagnostic_fields_excluded": [
+    "value_preserved",
+    "updatedAt_preserved",
+    "before_outdated"
+  ],
+  "publication_readback_status": "LIVE_SOURCE_AND_RENDERED_PATH_VERIFIED"
+}

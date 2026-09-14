@@ -1,0 +1,111 @@
+{
+  "verified_at_utc": "2026-09-10T00:47:28Z",
+  "verification_owner": "root01a0870a-e632-7773-ac5d-8ee2616b31bc",
+  "method": "CUA rendered browser, DOM readback and native link/size-selection clicks in this task's isolated in-app tab.",
+  "release_context": "Published storefront after normal Exit preview control; no preview bar in all credited checks. Earlier draft-preview observations are superseded and not credited as published-theme proof.",
+  "article": {
+    "url": "https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas",
+    "mobile": {
+      "viewport": [
+        390,
+        844
+      ],
+      "scroll_width": 375,
+      "visible_h1_count": 1,
+      "new_checklist_visible": true,
+      "new_timing_visible": true,
+      "old_two_week_timing_absent": true,
+      "sold_separately_disclosure": true,
+      "no_preview_bar": true,
+      "visual_check": "PASS: readable wrapping, checklist and table-of-contents entry; screenshots viewed in tool history."
+    },
+    "desktop": {
+      "viewport": [
+        1280,
+        720
+      ],
+      "scroll_width": 1265,
+      "visible_h1_count": 1,
+      "new_checklist_visible": true,
+      "no_preview_bar": true,
+      "visual_check": "PASS: title, table of contents and checklist readable; screenshots viewed in tool history."
+    },
+    "canonical_preserved": true
+  },
+  "destinations": [
+    {
+      "name": "Vibrant Rainbow Mommy and Me Maxi Dresses",
+      "url": "https://www.dresslikemommy.com/products/vibrant-rainbow-maxi-dress-set-for-mom-and-daughter-colorful-summer-matching-outfits",
+      "actual_article_link_click": "PASS",
+      "viewport": [
+        390,
+        844
+      ],
+      "scroll_width": 384,
+      "no_preview_bar": true,
+      "separate_sale_copy_visible": true,
+      "mother_m_selection": "PASS: selected and ADD THIS PIECE TO BAG enabled; button not clicked.",
+      "girl_selection": "PASS: separate 4-5 through 8-9 Years options; switching recipient requires a new size and disables the add button.",
+      "visual_check": "PASS: size card and add control readable."
+    },
+    {
+      "name": "Pastel Bloom Mommy and Me Dresses",
+      "url": "https://www.dresslikemommy.com/products/pastel-bloom-mommy-and-me-dresses",
+      "actual_article_link_click": "PASS on desktop after leaving preview",
+      "desktop_viewport": [
+        1280,
+        720
+      ],
+      "desktop_scroll_width": 1274,
+      "mobile_viewport": [
+        390,
+        844
+      ],
+      "mobile_scroll_width": 384,
+      "no_preview_bar": true,
+      "separate_sale_copy_visible": true,
+      "mother_m_selection": "PASS on published mobile page: selected and Add this piece to bag enabled; button not clicked.",
+      "girl_selection": "PASS: separate 3,4,5,6-7,8,9-10,12 Years options exposed.",
+      "visual_check": "PASS: mobile size controls and measurement card readable."
+    }
+  ],
+  "localization_samples": [
+    {
+      "locale": "da",
+      "url": "https://www.dresslikemommy.com/da/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas",
+      "observed_lang": "da",
+      "translated_heading_present": true,
+      "new_english_checklist_present": false,
+      "no_preview_bar": true,
+      "meaning": "Existing Danish body remains displayed; the new English source copy is not translated."
+    },
+    {
+      "locale": "pl",
+      "url": "https://www.dresslikemommy.com/pl/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas",
+      "observed_lang": "pl",
+      "translated_heading_present": true,
+      "new_english_checklist_present": true,
+      "new_english_timing_present": true,
+      "no_preview_bar": true,
+      "meaning": "Pre-existing missing body translation falls back to updated English source as disclosed in approval packet."
+    }
+  ],
+  "console": {
+    "check": "releasePage.dev.logs levels error limit10 at final navigation",
+    "returned_entries": 0,
+    "limit": "Bounded log snapshot, not comprehensive site-wide tracking or network certification."
+  },
+  "qa_cart_mutations": 0,
+  "checkout_test": "NOT RUN: article release verification stops at separate size selection and enabled add control.",
+  "browser_automation_exceptions": [
+    "Initial draft-context Playwright Rainbow click scrolled without navigation; native link click on published theme later passed.",
+    "Viewport reset did not change measured width; one attempted desktop scroll was outside the mobile viewport. Explicit 1280x720 set and measured width preceded successful desktop screenshots."
+  ],
+  "after_check": "Returned to English guide.",
+  "business_result": "Publication and buyer-route readiness verified. No acquisition, checkout-completion, order or profit lift measured.",
+  "remaining_limits": [
+    "17 translated bodies are preserved but now source-outdated; no translation rewrite was included.",
+    "Only Danish existing-body and Polish fallback routes were sampled in browser; other locales were not visually certified.",
+    "No new Pin, PDF upload or outreach sent in this release."
+  ]
+}

@@ -1,0 +1,133 @@
+--- v7/locales/de.json
++++ v8-local/locales/de.json
+@@ -586,9 +586,9 @@
+       "you_may_also_like": "You may also like"
+     },
+     "footer_headings": {
+-      "company_info": "Company info",
+-      "help_support": "Help & support",
+-      "customer_care": "Customer care"
++      "company_info": "Unternehmensinformationen",
++      "help_support": "Hilfe und Support",
++      "customer_care": "Kundenservice"
+     },
+     "breadcrumbs": {
+       "home": "Heim",
+--- v7/locales/el.json
++++ v8-local/locales/el.json
+@@ -586,9 +586,9 @@
+       "you_may_also_like": "You may also like"
+     },
+     "footer_headings": {
+-      "company_info": "Company info",
+-      "help_support": "Help & support",
+-      "customer_care": "Customer care"
++      "company_info": "Πληροφορίες εταιρείας",
++      "help_support": "Βοήθεια και υποστήριξη",
++      "customer_care": "Εξυπηρέτηση πελατών"
+     },
+     "breadcrumbs": {
+       "home": "Αρχική",
+--- v7/locales/fi.json
++++ v8-local/locales/fi.json
+@@ -586,9 +586,9 @@
+       "you_may_also_like": "You may also like"
+     },
+     "footer_headings": {
+-      "company_info": "Company info",
+-      "help_support": "Help & support",
+-      "customer_care": "Customer care"
++      "company_info": "Yritystiedot",
++      "help_support": "Ohjeet ja tuki",
++      "customer_care": "Asiakaspalvelu"
+     },
+     "breadcrumbs": {
+       "home": "Koti",
+--- v7/locales/nl.json
++++ v8-local/locales/nl.json
+@@ -586,9 +586,9 @@
+       "you_may_also_like": "You may also like"
+     },
+     "footer_headings": {
+-      "company_info": "Company info",
+-      "help_support": "Help & support",
+-      "customer_care": "Customer care"
++      "company_info": "Bedrijfsinformatie",
++      "help_support": "Hulp en ondersteuning",
++      "customer_care": "Klantenservice"
+     },
+     "breadcrumbs": {
+       "home": "Thuis",
+--- v7/locales/ro-RO.json
++++ v8-local/locales/ro-RO.json
+@@ -598,9 +598,9 @@
+       "you_may_also_like": "You may also like"
+     },
+     "footer_headings": {
+-      "company_info": "Company info",
+-      "help_support": "Help & support",
+-      "customer_care": "Customer care"
++      "company_info": "Informații despre companie",
++      "help_support": "Ajutor și asistență",
++      "customer_care": "Serviciu clienți"
+     },
+     "product_navigation": {
+       "back_to_results": "Înapoi la rezultate",
+--- v7/locales/ro.json
++++ v8-local/locales/ro.json
+@@ -278,19 +278,19 @@
+       "ships_to_default": "Livrăm în țara ta",
+       "change_short": "Schimbă",
+       "shipping_details_body": "Livrarea standard este inclusă în prețurile produselor unde este disponibilă. Opțiunile express și transportatorul exact sunt afișate înainte de plată.",
+-      "security_details_body": "Payments are encrypted and processed securely by our payment providers. We do not store your full card number.",
+-      "privacy_link_label": "View privacy policy",
++      "security_details_body": "Plățile sunt criptate și procesate în siguranță de furnizorii noștri de servicii de plată. Nu stocăm numărul complet al cardului.",
++      "privacy_link_label": "Vezi politica de confidențialitate",
+       "returns_headline": "Returul articolelor eligibile",
+       "returns_summary": "Solicitați returul sau schimbul articolelor eligibile în termen de 30 de zile de la livrare.",
+-      "returns_details_label": "Return policy",
++      "returns_details_label": "Politica de retur",
+       "returns_eligible": "Articolele eligibile trebuie să fie nepurtate, nespălate și returnate cu etichetele atașate.",
+       "returns_exclusions": "Costumele de baie, lenjeria intimă, articolele vândute fără drept de retur și cardurile cadou sunt excluse. Consultați politica integrală pentru condiții și excepții.",
+       "returns_damaged": "Articol deteriorat sau defect? Contactați serviciul de asistență în termen de 7 zile și atașați fotografii.",
+       "returns_shipping": "Transportul returului este plătit de client, cu excepția cazului în care articolul a sosit deteriorat sau defect.",
+-      "returns_full_link_label": "View full return policy",
+-      "security_headline": "Secure checkout",
+-      "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+-      "security_details_label": "Payment & privacy"
++      "returns_full_link_label": "Vezi politica completă de retur",
++      "security_headline": "Finalizare securizată a comenzii",
++      "security_summary": "Plată criptată. Sunt acceptate principalele carduri și opțiunile de plată expres.",
++      "security_details_label": "Plată și confidențialitate"
+     },
+     "shipping_card": {
+       "delivery_to": "Delivery to {{ country }}",
+--- v7/sections/footer.liquid
++++ v8-local/sections/footer.liquid
+@@ -69,6 +69,26 @@
+                     {%- when 'sektioner.fodtekst_overskrifter.firma_info' -%}
+                       {%- assign footer_block_heading = 't:sections.footer_headings.company_info' -%}
+                     {%- when 'sections.footer_headings.kundeservice' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.customer_care' -%}
++                    {%- when 'secțiuni.titluri_subsol.informații_companie' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.company_info' -%}
++                    {%- when 'secțiuni.titluri_subsol.ajutor_suport' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.help_support' -%}
++                    {%- when 'asistență_clienți' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.customer_care' -%}
++                    {%- when 'secties.voettekst_koppen.bedrijfsinformatie' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.company_info' -%}
++                    {%- when 'secties.voettekst_koppen.hulp_ondersteuning' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.help_support' -%}
++                    {%- when 'abschnitte.fußzeilen_überschriften.unternehmensinformationen' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.company_info' -%}
++                    {%- when 'abschnitte.footer_überschriften.hilfe_support' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.help_support' -%}
++                    {%- when 'τμήματα.υποσέλιδο_επικεφαλίδες.πληροφορίες_εταιρείας' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.company_info' -%}
++                    {%- when 'τμήματα.υποσέλιδο_επικεφαλίδες.εξυπηρέτηση_πελατών' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.customer_care' -%}
++                    {%- when 'sections.footer_headings.asiakaspalvelu' -%}
+                       {%- assign footer_block_heading = 't:sections.footer_headings.customer_care' -%}
+                   {%- endcase -%}
+                   {%- assign footer_block_heading_prefix = footer_block_heading | slice: 0, 2 -%}

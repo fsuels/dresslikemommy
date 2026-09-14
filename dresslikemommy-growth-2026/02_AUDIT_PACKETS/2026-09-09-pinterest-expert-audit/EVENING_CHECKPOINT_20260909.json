@@ -1,0 +1,108 @@
+{
+  "schema": "dlm.pinterest_evening_acceptance_checkpoint.v1",
+  "recordedAtUtc": "2026-09-10 00:40:58 UTC",
+  "anchor": "2026-09-09-pinterest-source-refresh-and-selected-tab-gate",
+  "status": "SOURCE_REVERIFIED__STABLE_SELECTED_PINTEREST_TAB_REQUIRED",
+  "authority": "Existing one-Sunshine-Pin authority and current repair scope persist. Full-paid authoritative scope NONE remains unchanged.",
+  "native": {
+    "requestedUrl": "https://ads.pinterest.com/advertiser/549756244483/conversions/health/",
+    "userConfirmedOpen": true,
+    "chromeProfile": "test",
+    "appRead": "SUCCEEDED_AFTER_CHANGED_OWNER_EVIDENCE",
+    "earlierMacLockGate": "SUPERSEDED_FOR_THE_SCOPED_APP_READ",
+    "pinterestTabSelectionAttempts": 2,
+    "selectionResult": "BOTH_INTERRUPTED_BY_USER_TAB_CHANGES",
+    "lastState": "UNRELATED_PRIVATE_SURFACE__STOPPED_WITHOUT_FURTHER_ACTION",
+    "unrelatedContentPersisted": false,
+    "accountHealthReadCompleted": false,
+    "directChromeAdapterAvailable": false,
+    "separateBrowserFallback": "REJECTED_BY_AUTOMATIC_APPROVAL_REVIEW",
+    "fallbackReason": "An unauthorized workaround around the private account access-control gate.",
+    "fallbackRetried": false,
+    "currentGate": "STABLE_SELECTED_PINTEREST_TAB_REQUIRED",
+    "pendingOwnerQuestion": "Select the Pinterest Event Quality tab in Chrome profile test, leave Chrome unused for 10 minutes, then reply Ready.",
+    "nativeLease": "SUSPENDED"
+  },
+  "connector": {
+    "productRead": "PASS",
+    "webPixel": {
+      "queryValidated": true,
+      "result": "ACCESS_DENIED",
+      "requiredScope": "read_pixels",
+      "settingsRead": false
+    },
+    "privacySettings": {
+      "queryValidated": true,
+      "result": "ACCESS_DENIED",
+      "requiredScope": "read_privacy_settings",
+      "settingsOrTranslationsRead": false
+    },
+    "scopeChanges": 0,
+    "pinterestApiConnection": "NO_USABLE_CONNECTION_FOUND_IN_ENABLED_TOOLS_OR_NARROW_CONFIG_ENV_AND_HELPER_CHECKS",
+    "secretValuesOutput": false
+  },
+  "sourceRefresh": "EVENING_SOURCE_REFRESH_20260909.json",
+  "productReadback": "EVENING_PRODUCT_READBACK_20260909.json",
+  "independentReview": "TRACKING_ACCEPTANCE_REVIEW_20260909_EVENING.md",
+  "clarifications": [
+    "Pinterest purchase value is purchased-item value before tax/shipping; discount, quantity, currency and genuine order parity remain unverified.",
+    "Managed privacy dialog translations are distinct from footer locale keys. Arabic is absent from Shopify professional default translations; actual banner configuration remains unread.",
+    "The old mommy-and-me-dresses URL redirects successfully to matching-outfits. Direct Sunshine destination and source match remain intact.",
+    "Combined unpublished theme137881223265 is the current release target owned by Merchant, not the older standalone consent preview."
+  ],
+  "verifiedThisContinuation": [
+    "Three public routes HTTP200",
+    "Exactly one expected Pinterest APP configuration per source page",
+    "Correct tag2620007050621, pixel22577249, strict sandbox and client3009811",
+    "No direct manual Pinterest emitters in sampled HTML",
+    "App source hash unchanged",
+    "Approved creative hash unchanged",
+    "Sunshine ACTIVE with fourteen current variants and one-shirt disclosure",
+    "Independent saved-source and product metadata consistency review"
+  ],
+  "notVerified": [
+    "Current Pinterest event-quality warnings",
+    "Tag/CAPI receiver deduplication and identifier coverage",
+    "Current catalog match",
+    "Genuine order/value/currency parity",
+    "Complete consent suppression/receiver delivery",
+    "Real Pinterest click-ID continuity",
+    "Native board/duplicate/Pin preview/publication",
+    "Paid campaign controls/cap/economics"
+  ],
+  "externalChanges": {
+    "themeWrites": 0,
+    "themePublications": 0,
+    "pixelWrites": 0,
+    "privacySettingsWrites": 0,
+    "catalogWrites": 0,
+    "pinUploads": 0,
+    "pinPublications": 0,
+    "campaignWrites": 0,
+    "spendInitiated": 0
+  },
+  "browserTestState": "Root performed no storefront browser JS/consent/cart mutation this continuation. Google task owns its separate public consent/cart QA and cleanup.",
+  "measurement": "No new traffic, leads, attributed purchases or profit result is claimed.",
+  "checks": {
+    "publicSourceAndHashAssertions": "PASS",
+    "productSourceChecks": "PASS_5",
+    "independentReview": "PASS_SAVED_SOURCE_WITH_OPEN_RECEIVER_GATES",
+    "canonicalDiff": "PASS",
+    "cockpitRender": "PASS_PACKET_OUTPUT",
+    "integrationAudit": "PASS_25_OF_25__ZERO_RISKS",
+    "strictContinuity": "PASS_10_CHECKS__CONTINUITY_OK"
+  },
+  "canonicalLease": "RELEASED_TO_MICROSOFT_AFTER_CHECKS",
+  "followupAvailabilityChecks": [
+    {
+      "recordedAtUtc": "2026-09-10T00:52:27.334799+00:00",
+      "trigger": "Owner requested continued Pinterest completion",
+      "method": "Existing native Chrome binding; accessibility output suppressed; only selected-window target match returned",
+      "requestedAdvertiser": "549756244483",
+      "requestedAdvertiserSelected": false,
+      "unrelatedContentDisplayedOrPersisted": false,
+      "uiActionsSent": 0,
+      "result": "Existing stable-selected-Pinterest readiness dependency remains unresolved; no fallback or repeated selection attempted"
+    }
+  ]
+}

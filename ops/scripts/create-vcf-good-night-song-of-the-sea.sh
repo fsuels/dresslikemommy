@@ -5,17 +5,18 @@ set -euo pipefail
 
 ENV_FILE="${SHOPIFY_ENV_FILE:-${HOME}/.config/dresslikemommy/shopify-admin.env}"
 if [ ! -f "$ENV_FILE" ]; then
-  # Sandbox fallback: cowork mount
   for CANDIDATE in \
-    "/sessions/kind-laughing-cerf/mnt/.config--dresslikemommy/shopify-admin.env" \
     "/Users/fsuels/.config/dresslikemommy/shopify-admin.env"; do
     [ -f "$CANDIDATE" ] && ENV_FILE="$CANDIDATE" && break
   done
 fi
-# shellcheck disable=SC1090
-source "$ENV_FILE"
+if [ -f "$ENV_FILE" ]; then
+  # shellcheck disable=SC1090
+  source "$ENV_FILE"
+fi
 
-: "${SHOPIFY_STORE_DOMAIN:?}"; : "${SHOPIFY_ADMIN_ACCESS_TOKEN:?}"
+: "${SHOPIFY_STORE_DOMAIN:=dresslikemommy-com.myshopify.com}"
+: "${SHOPIFY_ADMIN_ACCESS_TOKEN:?SHOPIFY_ADMIN_ACCESS_TOKEN not set}"
 API="https://${SHOPIFY_STORE_DOMAIN}/admin/api/2025-01/graphql.json"
 AUTH=( -H "X-Shopify-Access-Token: ${SHOPIFY_ADMIN_ACCESS_TOKEN}" -H "Content-Type: application/json" )
 
@@ -81,11 +82,11 @@ BODY_HTML=$(cat <<'EOF'
   <li><strong>Pull-on shorts:</strong> Soft elastic waistband for easy on-and-off and all-night comfort.</li>
   <li><strong>Inclusive sizing:</strong> Girls 2–10 Years and Mothers S–XL — add both to cart to complete the set.</li>
 </ul>
-<p>Add the mother size and the matching children's size to your cart to make every moment match — bedtime, brunch, and every snapshot in between.</p>
+<p>Add the mother size and the matching children&#39;s size to your cart to make every moment match — bedtime, brunch, and every snapshot in between.</p>
 EOF
 )
 
-TAGS='Mommy and Me, Pajamas, Matching Family Pajamas, Short Sleeve Pajamas, Summer, Cream, Ivory, Blue, Navy, Sea Print, Ocean Print, Whale Print, Jellyfish Print, Mermaid Print, Under the Sea, Nautical, Storybook, Whimsical, Good Night Song of the Sea, Child 2-3yr, Child 4-5yr, Child 6-8yr, Child 9-10yr, Mother S, Mother M, Mother L, Mother XL, https://detail.1688.com/offer/900601808231.html'
+TAGS='Mommy and Me, Pajamas, Matching Family Pajamas, Short Sleeve Pajamas, Summer, Cream, Ivory, Blue, Navy, Sea Print, Ocean Print, Whale Print, Jellyfish Print, Mermaid Print, Under the Sea, Nautical, Storybook, Whimsical, Good Night Song of the Sea, Child 2-3yr, Child 4-5yr, Child 6-8yr, Child 9-10yr, Mother S, Mother M, Mother L, Mother XL'
 
 ########################################
 # 5a: productCreate
@@ -107,7 +108,7 @@ VARS=$(jq -n --arg t "$TITLE" --arg h "$HANDLE" --arg b "$BODY_HTML" \
        {name:"Color", values:[{name:"Good Night Song of the Sea"}]}
      ],
      seo:{title:$st, description:$sd},
-     status:"ACTIVE",
+     status:"DRAFT",
      category:"gid://shopify/TaxonomyCategory/aa-1-17-4"
   }}')
 RESP=$(gql 'mutation($product: ProductCreateInput!){productCreate(product:$product){product{id handle onlineStoreUrl} userErrors{field message}}}' "$VARS")
@@ -178,21 +179,9 @@ RESP=$(gql 'mutation($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafield
 echo "$RESP" | jq '.data.metafieldsSet.userErrors, (.data.metafieldsSet.metafields|length)'
 
 ########################################
-# 5d: publishablePublish
+# 5d: publish is intentionally skipped
 ########################################
-echo "==> 5d publishablePublish"
-for PUB in \
-  "gid://shopify/Publication/55169925" \
-  "gid://shopify/Publication/21969633377" \
-  "gid://shopify/Publication/29172400225" \
-  "gid://shopify/Publication/76582879329" \
-  "gid://shopify/Publication/76604768353"
-do
-  VARS=$(jq -n --arg id "$PID" --arg pub "$PUB" \
-    '{id:$id, input:[{publicationId:$pub}]}')
-  RESP=$(gql 'mutation($id:ID!,$input:[PublicationInput!]!){publishablePublish(id:$id,input:$input){userErrors{field message}}}' "$VARS")
-  echo "  -> $PUB"; echo "$RESP" | jq '.data.publishablePublish.userErrors'
-done
+echo "==> 5d publish skipped: listing runners are draft-only unless a separate publish step is explicitly approved"
 
 ########################################
 # 6: verify

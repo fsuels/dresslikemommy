@@ -1,0 +1,7 @@
+query GuideSearchMeta($id: ID!) {
+  article(id: $id) {
+    id title handle body summary isPublished publishedAt updatedAt
+    descriptionTag: metafield(namespace: "global", key: "description_tag") { id namespace key type value compareDigest }
+    titleTag: metafield(namespace: "global", key: "title_tag") { id namespace key type value compareDigest }
+  }
+}

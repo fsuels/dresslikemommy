@@ -1,0 +1,118 @@
+{
+  "recordedAtUtc": "2026-09-06T04:31:18.787Z",
+  "decisionId": "DLM-DEC-2026-09-06-ORGANIC-URL-RECOVERY",
+  "previousGoalTurnClassification": "PROGRESS_ONE_DRAFT_FILE_MUTATION_VERIFIED",
+  "scope": "TA-05: four saved normalized GSC path leads only; no original query variants or 5xx examples",
+  "productStatusReadback": {
+    "checkedAtUtc": "2026-09-06T04:29:25.050Z",
+    "requestedHandles": [
+      "family-matching-hawaiian-shirt-and-floral-dress",
+      "matching-love-heart-printing-couple-t-shirts",
+      "couple-matching-shirts-mr-and-mrs-wedding-gift-anniversary",
+      "parent-child-one-piece-cut-out-bowknot-bathing-suit"
+    ],
+    "pageInfo": {
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjo3MDAwOTk3MTM0NDMzLCJsYXN0X3ZhbHVlIjoiNzAwMDk5NzEzNDQzMyJ9"
+    },
+    "products": [
+      {
+        "id": "gid://shopify/Product/6613920186465",
+        "title": "Parent-Child One-Piece Cut Out Bowknot Bathing Suit",
+        "handle": "parent-child-one-piece-cut-out-bowknot-bathing-suit",
+        "status": "ARCHIVED"
+      },
+      {
+        "id": "gid://shopify/Product/6826238607457",
+        "title": "Couple Matching Shirts Mr and Mrs Wedding Gift Anniversary",
+        "handle": "couple-matching-shirts-mr-and-mrs-wedding-gift-anniversary",
+        "status": "ARCHIVED"
+      },
+      {
+        "id": "gid://shopify/Product/6835971424353",
+        "title": "Matching Love Heart Printing Couple T-Shirts",
+        "handle": "matching-love-heart-printing-couple-t-shirts",
+        "status": "ARCHIVED"
+      },
+      {
+        "id": "gid://shopify/Product/7000997134433",
+        "title": "Family Matching Hawaiian Shirt and Floral Dress",
+        "handle": "family-matching-hawaiian-shirt-and-floral-dress",
+        "status": "ARCHIVED"
+      }
+    ],
+    "searchFilter": "handle exact OR query; compare exact returned handles separately"
+  },
+  "redirectReadbacks": [
+    {
+      "paths": [
+        "/fr/products/family-matching-hawaiian-shirt-and-floral-dress",
+        "/pt/products/matching-love-heart-printing-couple-t-shirts",
+        "/ru/products/couple-matching-shirts-mr-and-mrs-wedding-gift-anniversary",
+        "/ru/products/parent-child-one-piece-cut-out-bowknot-bathing-suit"
+      ],
+      "query": "query DlmOrganicRedirectRead($query: String!, $after: String) { urlRedirects(first: 50, after: $after, query: $query) { nodes { id path target } pageInfo { hasNextPage endCursor } } }",
+      "variables": {
+        "query": "path:\"/fr/products/family-matching-hawaiian-shirt-and-floral-dress\" OR path:\"/pt/products/matching-love-heart-printing-couple-t-shirts\" OR path:\"/ru/products/couple-matching-shirts-mr-and-mrs-wedding-gift-anniversary\" OR path:\"/ru/products/parent-child-one-piece-cut-out-bowknot-bathing-suit\""
+      },
+      "result": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      }
+    },
+    {
+      "paths": [
+        "/products/family-matching-hawaiian-shirt-and-floral-dress",
+        "/products/matching-love-heart-printing-couple-t-shirts",
+        "/products/couple-matching-shirts-mr-and-mrs-wedding-gift-anniversary",
+        "/products/parent-child-one-piece-cut-out-bowknot-bathing-suit"
+      ],
+      "query": "query DlmOrganicRedirectRead($query: String!, $after: String) { urlRedirects(first: 50, after: $after, query: $query) { nodes { id path target } pageInfo { hasNextPage endCursor } } }",
+      "variables": {
+        "query": "path:\"/products/family-matching-hawaiian-shirt-and-floral-dress\" OR path:\"/products/matching-love-heart-printing-couple-t-shirts\" OR path:\"/products/couple-matching-shirts-mr-and-mrs-wedding-gift-anniversary\" OR path:\"/products/parent-child-one-piece-cut-out-bowknot-bathing-suit\""
+      },
+      "result": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      }
+    }
+  ],
+  "publicEvidence": "organic_url_public_readback.json",
+  "publicMethodLimits": "Cookie-free GET, current point-in-time source check; not rendered user journey, Google crawl reproduction, entire GSC URL population or missing original variants",
+  "priorToolFailures": {
+    "webOpen": "Four non-retryable safe-open internal errors; no same-tool retry",
+    "shellSandbox": "Public DNS could not resolve; separate preserved organic_url_public_sandbox_failure.json; normal network escalation approved for the four credential-free GETs"
+  },
+  "observations": {
+    "fourPathsReturn404": true,
+    "allFourExactProductsArchived": true,
+    "localizedRedirectMatches": 0,
+    "rootRedirectMatches": 0,
+    "searchPaginationComplete": true,
+    "redirectCandidateQualified": 0
+  },
+  "unknowns": [
+    "Original full GSC error URLs and query strings",
+    "Last-crawl dates",
+    "Exact per-path clicks/impressions and external links",
+    "Reason/date each product was archived",
+    "Equivalent active purchasable replacements",
+    "Twelve reported 5xx example URLs and their current status"
+  ],
+  "action": "Do not restore products or create guessed redirects from this sample. Obtain exact dated GSC 404 and 5xx Examples exports after normal browser access; join demand and equivalent active destinations before scoped proposal.",
+  "authority": {
+    "externalMutations": 0,
+    "paidAuthorityChanged": false,
+    "unpublishedDraftChanged": false,
+    "liveThemeOrContentChanged": false,
+    "cartOrderOrPaymentAction": false,
+    "existingGreekApproval": "PENDING_UNCHANGED"
+  },
+  "goal": "ACTIVE_UNACHIEVED"
+}

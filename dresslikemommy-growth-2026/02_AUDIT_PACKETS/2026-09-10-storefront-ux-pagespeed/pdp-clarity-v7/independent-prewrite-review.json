@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "revision": 7,
+  "decision": "PASS",
+  "confidence": "H",
+  "reviewedAt": "2026-09-11T17:39:57.328948+00:00",
+  "reviewer": "/root/theme_audit_review",
+  "independence": "Did not build or execute the theme changes. Independently read source, recomputed preservation/payload/inverse bindings, and executed a narrow actual-global-helper counterexample. No browser or external action.",
+  "target": {
+    "id": "gid://shopify/OnlineStoreTheme/137888792673",
+    "role": "UNPUBLISHED"
+  },
+  "approvedSourceScope": {
+    "themeFiles": [
+      {
+        "filename": "assets/global.js",
+        "beforeMd5": "d8c9a52489db8532de327592e6a60f9d",
+        "afterMd5": "e0db5612c42f38798e6a9b27189fcb06",
+        "sha256": "8627c842b2bfb09c44b1bc712e70000ec7d7a79d7844c04ee6886bd283ed682d",
+        "size": 71580
+      },
+      {
+        "filename": "sections/main-product.liquid",
+        "beforeMd5": "b86926e39d85591ef15fa836dc05a9ee",
+        "afterMd5": "71ef37c28e45492bcc81639a629e4a40",
+        "sha256": "fadfb327ebbac92ee57c04cf146914d90518ef801626f62cb09c81a7ff52b7c8",
+        "size": 189652
+      },
+      {
+        "filename": "snippets/product-page-copy-map.liquid",
+        "beforeMd5": "01407ab58b8277d99e9a99e2c701bb69",
+        "afterMd5": "61d01d04cca85ec0d90bcb790054f2cf",
+        "sha256": "c9adb5f7153921e72dea40418884e6850e629a2525dbbd912eef871f108fbbe9",
+        "size": 209350
+      }
+    ],
+    "localGenerator": {
+      "file": "ops/scripts/build_product_page_copy_map.py",
+      "beforeSha256": "43c8d449962ea4cbf8d12b5d53be2cfcd5c048b9ac96f8a5aee1890de9ed0758",
+      "afterSha256": "b92b85aa18a23206b31c55d2384dce3fedb49ce69478c249dff972dab2b05f66",
+      "uploaded": false
+    }
+  },
+  "payloads": {
+    "apply": {
+      "file": "apply-variables.json",
+      "sha256": "d4ee468125758b592263e2635ab9dcda19821ad8ceced4d1eab4d358c891ac60"
+    },
+    "inverse": {
+      "file": "inverse-variables.json",
+      "sha256": "49ab5bf1d23cd4f63dc0dfbebc495360db1ff7360d648669c95072ab10fef487"
+    },
+    "exactBodiesAndBeforeBindingsVerified": true
+  },
+  "verification": {
+    "candidateFileCount": 527,
+    "changedFiles": 3,
+    "preservedFiles": 524,
+    "copyMapLocales": 35,
+    "changedContextTemplates": 105,
+    "otherCopyMapLeavesPreserved": 2206,
+    "changedKeys": [
+      "back_to_context",
+      "view_similar_styles_in",
+      "browse_more_from"
+    ],
+    "priceBlockByteIdentical": true,
+    "nativeRatingBlockByteIdentical": true,
+    "judgeMeTemplateAppBlocksPreserved": true,
+    "variantSelectionAssetAndDataSnippetPreserved": true,
+    "all527ThemeCheckCopyFilesEqualCandidate": true
+  },
+  "necessityAndAlternatives": {
+    "context": "Liquid rendering consumes raw double-brace placeholders before browser substitution. A JavaScript-only edit cannot restore the missing template variable. The three-key neutral token conversion preserves translated words and avoids unrelated size/price placeholders.",
+    "literalTitles": "Both the inline context translator and global back-navigation formatter require callback replacement to preserve literal JavaScript replacement tokens in collection names.",
+    "reviewTruth": "The removed component invents New arrival and store endorsement when reviews are absent; review count alone does not establish freshness or endorsement. Removing the sole render is narrower than inventing substitute copy. For positive review counts the old component emitted nothing. Native positive-rating markup, Judge.me preview/full-review blocks and lower review interaction remain intact.",
+    "generator": "Only the same three output keys are normalized after the unchanged locale fallback logic; this prevents later regeneration from restoring Liquid-interpreted placeholders."
+  },
+  "findings": [
+    {
+      "id": "V7-REVIEW-01",
+      "status": "RESOLVED",
+      "severity": "P2",
+      "file": "assets/global.js",
+      "line": 115,
+      "originalFinding": "Repairing the map activated replacement-string interpolation in formatBackToResultsLabel, corrupting literal dollar sequences; the inline callback alone did not cover back-navigation text/aria/title.",
+      "reproducedInput": "Family $& $$ Tops",
+      "originalCandidateOutput": "Back to Family __CONTEXT__ $ Tops",
+      "resolution": "The sole global replacement now uses () => sanitizedLabel. Independent execution of the actual function preserved $&, $$, $` and $' literally, while the rollback function failed.",
+      "scopeExpansion": "Root added only assets/global.js and its checksum-bound rollback; reviewer made no candidate edits."
+    }
+  ],
+  "checks": {
+    "recordedRootContextSuite": {
+      "passed": 51,
+      "failed": 0,
+      "scope": "Actual inline context and global back-navigation functions across35 locales, repeated applications, accessible attributes, generic/search/fallback cases, and literal dollar tokens. The Liquid missing-context stage is modeled, not rendered by a Liquid engine.",
+      "runBy": "root",
+      "fullSuiteRerunByReviewer": false
+    },
+    "reviewerActualGlobalProbe": {
+      "status": "PASS",
+      "baselineCounterexampleReproduced": true,
+      "correctedLiteralTokensPreserved": true,
+      "sourceFunctionsExecuted": true,
+      "networkOrBrowserUsed": false
+    },
+    "recordedThemeCheck": {
+      "exitCode": 0,
+      "diagnostics": 0,
+      "files": 527,
+      "sourceCopyIndependentlyMatched": true
+    },
+    "generator": {
+      "isolatedRegression": "Root-reported PASS; actual build_map with unchanged AST-extracted local JSON helpers, real105 templates and fallback/noncontext fixtures. Test source inspected.",
+      "normalCli": "BLOCKED by missing pre-existing deep_translator in the bundled Python; isolated execution does not certify normal CLI invocation."
+    },
+    "prewriteGuard": {
+      "status": "VERIFIED_SAVED_RECEIPT",
+      "checkedAt": "2026-09-11 17:37:51 UTC",
+      "unpublishedTarget": "137888792673",
+      "freshBeforeChanges": 0,
+      "mainChanges": 0,
+      "combinedChanges": 0,
+      "themeFileScope": [
+        "assets/global.js",
+        "sections/main-product.liquid",
+        "snippets/product-page-copy-map.liquid"
+      ]
+    }
+  },
+  "remainingAcceptance": [
+    "After staging, root verifies complete collection labels and accessible names/destinations in desktop/mobile and relevant locales, including the global back-navigation path.",
+    "Root verifies removal of unsupported zero-review labels and preservation of a nonzero-review product; review-holdout.json is a20-product sample, not authenticity or catalog-wide certification.",
+    "Root rechecks exact variant/price/add behavior and source readback; this prewrite review does not establish rendered postwrite acceptance."
+  ],
+  "limits": [
+    "No publication approval, product/translation/price/review-data mutation or paid/account action is authorized by this review.",
+    "No new price, policy, stock, arrival-date or customer-endorsement claim was added. Unchanged unrelated fallback content is outside this bounded review."
+  ],
+  "evidenceSha256": {
+    "before.json": "f0e48232f3ef1e6992b77fe53cb2965cb5b7d7f2c1cda1bfb60a52d7e64ec904",
+    "before-file-checksums.json": "3436a00fcaca41bdeca7edda0cef35ecc225ee160f307eabbed2abf9c8a2d32f",
+    "review-holdout.json": "f6aa85987e270e8d5637b9df16c23299160c36fcafdb9139209075953511b031",
+    "source-validation.json": "61d6d6b5a335fded47c1c2bd258099a8837dabe412f3ecf4373ce60ede26c5f4",
+    "theme-check-receipt.json": "f92c842d8d37e17fbf604ad9419b0a735d7ebabc649f7d6c7952c4db02d49379",
+    "apply-variables.json": "d4ee468125758b592263e2635ab9dcda19821ad8ceced4d1eab4d358c891ac60",
+    "inverse-variables.json": "49ab5bf1d23cd4f63dc0dfbebc495360db1ff7360d648669c95072ab10fef487",
+    "context-labels.test.mjs": "adaa5f676887423305c19763da9b93b0b3ca5c29977d599d80fd46de29d27aab",
+    "context-labels-results.txt": "8ec11c86582bf395393f30b15230035dbd40f3c1768347d6cf9d80303aad3265",
+    "prewrite-guard.json": "f8885947563cd39bb2232273fca6e3671d0c49653b94f9cb8d7e58eb74611582"
+  },
+  "reviewerWrites": [
+    "pdp-clarity-v7/independent-prewrite-review.json",
+    "pdp-clarity-v7/independent-prewrite-review.md"
+  ],
+  "updatedAt": "2026-09-11T17:41:12.156951+00:00"
+}

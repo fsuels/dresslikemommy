@@ -1,0 +1,128 @@
+{
+  "captured_at_utc": "2026-09-07 02:42:10 UTC",
+  "scope": "READ_ONLY_NEW_GOOGLE_NOTICES_AND_CONTINUITY",
+  "anchor": "2026-09-06-ceo-turnaround-new-indexing-notices",
+  "gmail": {
+    "query": "after:2026/09/06 before:2026/09/08 from:(google.com) {\"124884876\" \"399-097-6848\" \"3990976848\" \"700-107-9966\" \"7001079966\" \"Dress Like Mommy\" \"dresslikemommy\" \"Merchant Center\" \"Google Ads\"}",
+    "returned": 3,
+    "next_page_token": null,
+    "full_reads": 2,
+    "notices": [
+      {
+        "message_id": "1a078a7b99540edb",
+        "message_url": "https://mail.google.com/mail/#all/1a078a7b99540edb",
+        "received_at_utc": "2026-09-06T21:37:32.000Z",
+        "subject": "New reasons prevent pages in a sitemap from being indexed on site https://www.dresslikemommy.com/",
+        "authentication": [
+          {
+            "dkimPass": true,
+            "dmarcPass": true
+          },
+          {
+            "dkimPass": true,
+            "dmarcPass": true
+          }
+        ],
+        "reported_reasons": [
+          "Server error (5xx)",
+          "Not found (404)"
+        ],
+        "affected_urls_provided": 0,
+        "affected_counts_provided": false,
+        "crawl_dates_provided": false,
+        "source_body_retained": false
+      },
+      {
+        "message_id": "1a0788ec6436c5ef",
+        "message_url": "https://mail.google.com/mail/#all/1a0788ec6436c5ef",
+        "received_at_utc": "2026-09-06T21:10:17.000Z",
+        "subject": "New reasons prevent pages in a sitemap from being indexed on site dresslikemommy.com",
+        "authentication": [
+          {
+            "dkimPass": true,
+            "dmarcPass": true
+          },
+          {
+            "dkimPass": true,
+            "dmarcPass": true
+          }
+        ],
+        "reported_reasons": [
+          "Server error (5xx)",
+          "Not found (404)"
+        ],
+        "affected_urls_provided": 0,
+        "affected_counts_provided": false,
+        "crawl_dates_provided": false,
+        "source_body_retained": false
+      }
+    ],
+    "excluded_achievement_notice": {
+      "reason": "Separate non-www URL-prefix property and different window; do not replace sitewide or page-specific baselines.",
+      "reported_clicks": 5,
+      "reported_window_days": 28,
+      "achievement_date": "2026-09-04",
+      "message_id": "1a075a0f372cc805"
+    },
+    "ads_or_merchant_access_notice_found_in_returned_results": false
+  },
+  "outlook": {
+    "query": "received>=2026-09-06 received<2026-09-08 from:google.com",
+    "returned": 20,
+    "returned_dates_in_requested_utc_interval": 1,
+    "returned_dates_outside_interval": 19,
+    "has_more": true,
+    "status": "DATE_FILTER_NOT_RELIABLE_IN_RETURNED_RESULTS",
+    "conclusion": "No complete in-window absence claim. No full reads, pagination or alternate search attempted; irrelevant results not retained."
+  },
+  "interpretation": {
+    "verified": "Two Google-authenticated indexing notices were received after the previous native GSC read.",
+    "unknown": [
+      "Affected URLs, sitemap identity, counts and last crawl dates",
+      "Whether the two notices refer to the same underlying pages",
+      "Whether any currently active published-language shopping page is failing",
+      "Whether these overlap the twelve older examples already classified"
+    ],
+    "not_established": [
+      "New website outage",
+      "Regression of completed SEO work",
+      "Cause of Shopify Merchant Inactive or Ads account issue",
+      "Loss or gain in traffic, sales or profit"
+    ],
+    "event_counting": "Two property notifications do not count as two independent observed-outcome events."
+  },
+  "previous_evidence": {
+    "crawl_health": "gsc_crawl_health_current.json",
+    "crawl_health_captured_at_utc": "2026-09-06T07:39:57.651127+00:00",
+    "crawl_health_report_updated": "2026-09-03",
+    "examples": "gsc_server_error_examples_current.json",
+    "examples_report_updated": "2026-08-27",
+    "examples_count": 12,
+    "examples_last_crawl_dates": [
+      "2026-06-03",
+      "2026-06-24"
+    ]
+  },
+  "next_bounded_action": {
+    "task": "TA-05",
+    "dependency": "Normal native access; existing desktop-state clarification pending",
+    "action": "Open the current Page indexing report for the verified www property and record report date, submitted-sitemap scope, exact affected URLs/counts and crawl dates for 5xx/404; compare with saved twelve examples and active Shopify resources before any repair.",
+    "kill": "No blind redirect, restore, locale enablement, sitemap edit, live URL test or repetition of the gated Turkish public request."
+  },
+  "continuity": {
+    "google_creation_approval": "PRESERVED_NO_REPEAT_APPROVAL_OR_RECOVERY_LOOP",
+    "paid_controls": "UNCHANGED",
+    "goal_status": "BLOCKED_NOT_COMPLETE",
+    "heartbeat": "EXISTING_FOUR_HOUR_SAME_TASK_UNCHANGED",
+    "buyer_cua_retry": 0,
+    "external_mutations": 0,
+    "new_paid_or_organic_publication": 0,
+    "new_verified_sales_or_profit": "NOT_MEASURED"
+  },
+  "privacy": "No owner addresses, customers, full email bodies, authentication material or tracking/action URLs retained.",
+  "trigger": {
+    "automation_id": "dress-like-mommy-profitable-growth",
+    "observed_wakeup_utc": "2026-09-07T02:38:25.445Z",
+    "meaning": "Actual same-task scheduled continuation observed; not a business outcome."
+  }
+}

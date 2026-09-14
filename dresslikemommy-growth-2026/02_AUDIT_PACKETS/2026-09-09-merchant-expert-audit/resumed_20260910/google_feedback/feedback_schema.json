@@ -1,0 +1,295 @@
+{
+  "as_of_utc": "2026-09-10T00:31:02.186Z",
+  "source": "Shopify connector graphql_schema",
+  "resourceFeedback": {
+    "name": "ResourceFeedback",
+    "kind": "OBJECT",
+    "description": "Represents feedback from apps about a resource, and the steps required to set up the apps on the shop.",
+    "fields": [
+      {
+        "name": "details",
+        "description": "List of AppFeedback detailing issues regarding a resource.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "AppFeedback",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            }
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "summary",
+        "description": "Summary of resource feedback pertaining to the resource.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      }
+    ],
+    "inputFields": null,
+    "enumValues": null
+  },
+  "appFeedback": {
+    "name": "AppFeedback",
+    "kind": "OBJECT",
+    "description": "Reports the status of shops and their resources and displays this information\nwithin Shopify admin. AppFeedback is used to notify merchants about steps they need to take\nto set up an app on their store.",
+    "fields": [
+      {
+        "name": "app",
+        "description": "The application associated to the feedback.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "App",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "feedbackGeneratedAt",
+        "description": "The date and time when the app feedback was generated.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "link",
+        "description": "A link to where merchants can resolve errors.",
+        "type": {
+          "name": "Link",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "messages",
+        "description": "The feedback message presented to the merchant.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "UserError",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            }
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "state",
+        "description": "Conveys the state of the feedback and whether it requires merchant action or not.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ResourceFeedbackState",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        "args": []
+      }
+    ],
+    "inputFields": null,
+    "enumValues": null
+  },
+  "productFields": [
+    {
+      "name": "feedback",
+      "description": "The information that lets merchants know what steps they need to take\nto make sure that the app is set up correctly.\n\nFor example, if a merchant hasn't set up a product correctly in the app,\nthen the feedback might include a message that says \"You need to add a price\nto this product\".",
+      "type": {
+        "name": "ResourceFeedback",
+        "kind": "OBJECT",
+        "ofType": null
+      },
+      "args": []
+    },
+    {
+      "name": "id",
+      "description": "A globally-unique ID.",
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": "ID",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      "args": []
+    },
+    {
+      "name": "status",
+      "description": "The [product status](https://help.shopify.com/manual/products/details/product-details-page#product-status),\nwhich controls visibility across all sales channels.",
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": "ProductStatus",
+          "kind": "ENUM",
+          "ofType": null
+        }
+      },
+      "args": []
+    },
+    {
+      "name": "title",
+      "description": "The name for the product that displays to customers. The title is used to construct the product's handle.\nFor example, if a product is titled \"Black Sunglasses\", then the handle is `black-sunglasses`.",
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      "args": []
+    }
+  ],
+  "shopFields": [
+    {
+      "name": "id",
+      "description": "A globally-unique ID.",
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": "ID",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      "args": []
+    }
+  ],
+  "queryRootFields": [
+    {
+      "name": "products",
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": "ProductConnection",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      "args": [
+        {
+          "name": "first",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "after",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "last",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "before",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "reverse",
+          "type": {
+            "name": "Boolean",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "sortKey",
+          "type": {
+            "name": "ProductSortKeys",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "query",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "savedSearchId",
+          "type": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "shop",
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": "Shop",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      "args": []
+    }
+  ]
+}

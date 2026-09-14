@@ -479,6 +479,8 @@ var UI_LABELS_BY_LOCALE = {
     addRole: '+ Añadir {role}',
     addAnotherFamilyMember: 'Añadir otro familiar',
     customerPhotos: 'Fotos de clientes',
+    chooseRoleStep: 'Elige para quién es esta pieza',
+    chooseOptionsStep: 'Elige talla y opciones',
   },
   fr: {
     pieceOne: '1 pièce assortie',

@@ -1,0 +1,78 @@
+
+--- 2026-09-11T15:15:09.191Z debug
+🪵  Writing logs to "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-build/automation_release_v1/wrangler-log.txt/wrangler-2026-09-11_15-15-09_121.log"
+---
+
+--- 2026-09-11T15:15:09.191Z debug
+.env file not found at "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-build/automation_release_v1/.env". Continuing... For more details, refer to https://developers.cloudflare.com/workers/wrangler/system-environment-variables/
+---
+
+--- 2026-09-11T15:15:09.191Z debug
+.env file not found at "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-build/automation_release_v1/.env.local". Continuing... For more details, refer to https://developers.cloudflare.com/workers/wrangler/system-environment-variables/
+---
+
+--- 2026-09-11T15:15:09.194Z log
+
+ ⛅️ wrangler 4.86.0 (update available 4.131.1)
+──────────────────────────────────────────────
+---
+
+--- 2026-09-11T15:15:09.198Z debug
+Metrics dispatcher: Dispatching disabled - would have sent {"deviceId":"ac67743f-9494-4509-9502-a1f8455f1273","event":"wrangler command started","timestamp":1789139709198,"properties":{"amplitude_session_id":1789139709197,"amplitude_event_id":0,"wranglerVersion":"4.86.0","wranglerMajorVersion":4,"wranglerMinorVersion":86,"wranglerPatchVersion":0,"osPlatform":"Mac OS","osVersion":"Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132","nodeVersion":24,"isFirstUsage":false,"configFileType":"toml","isCI":false,"isPagesCI":false,"isWorkersCI":false,"isInteractive":false,"hasAssets":false,"agent":null,"argsUsed":["config","dryRun","outdir"],"argsCombination":"config, dryRun, outdir","sanitizedCommand":"deploy","sanitizedArgs":{"dryRun":true}}}.
+---
+
+--- 2026-09-11T15:15:09.202Z debug
+Metrics dispatcher: Dispatching disabled - would have sent {"deviceId":"ac67743f-9494-4509-9502-a1f8455f1273","event":"autoconfig_process_started","timestamp":1789139709202,"properties":{"amplitude_session_id":1789139709201,"amplitude_event_id":0,"wranglerVersion":"4.86.0","wranglerMajorVersion":4,"wranglerMinorVersion":86,"wranglerPatchVersion":0,"osPlatform":"Mac OS","osVersion":"Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132","nodeVersion":24,"isFirstUsage":false,"configFileType":"none","isCI":false,"isPagesCI":false,"isWorkersCI":false,"isInteractive":false,"hasAssets":false,"agent":null,"category":"Workers","os":"darwin:arm64","autoConfigId":"8a3765b3-108f-44f4-ac51-1987a863f20b","command":"wrangler deploy","dryRun":true}}.
+---
+
+--- 2026-09-11T15:15:09.202Z debug
+Running autoconfig detection in /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-build/automation_release_v1...
+---
+
+--- 2026-09-11T15:15:09.202Z debug
+Metrics dispatcher: Dispatching disabled - would have sent {"deviceId":"ac67743f-9494-4509-9502-a1f8455f1273","event":"autoconfig_detection_started","timestamp":1789139709202,"properties":{"amplitude_session_id":1789139709202,"amplitude_event_id":0,"wranglerVersion":"4.86.0","wranglerMajorVersion":4,"wranglerMinorVersion":86,"wranglerPatchVersion":0,"osPlatform":"Mac OS","osVersion":"Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132","nodeVersion":24,"isFirstUsage":false,"configFileType":"none","isCI":false,"isPagesCI":false,"isWorkersCI":false,"isInteractive":false,"hasAssets":false,"agent":null,"category":"Workers","os":"darwin:arm64","autoConfigId":"8a3765b3-108f-44f4-ac51-1987a863f20b","command":"wrangler deploy"}}.
+---
+
+--- 2026-09-11T15:15:09.202Z debug
+Metrics dispatcher: Dispatching disabled - would have sent {"deviceId":"ac67743f-9494-4509-9502-a1f8455f1273","event":"autoconfig_process_ended","timestamp":1789139709202,"properties":{"amplitude_session_id":1789139709202,"amplitude_event_id":0,"wranglerVersion":"4.86.0","wranglerMajorVersion":4,"wranglerMinorVersion":86,"wranglerPatchVersion":0,"osPlatform":"Mac OS","osVersion":"Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132","nodeVersion":24,"isFirstUsage":false,"configFileType":"none","isCI":false,"isPagesCI":false,"isWorkersCI":false,"isInteractive":false,"hasAssets":false,"agent":null,"category":"Workers","os":"darwin:arm64","autoConfigId":"8a3765b3-108f-44f4-ac51-1987a863f20b","command":"wrangler deploy","dryRun":true,"success":true}}.
+---
+
+--- 2026-09-11T15:15:09.239Z log
+Total Upload: 52.59 KiB / gzip: 14.61 KiB
+---
+
+--- 2026-09-11T15:15:09.240Z log
+Your Worker has access to the following bindings:
+---
+
+--- 2026-09-11T15:15:09.240Z log
+Binding                                                                      Resource                  
+---
+
+--- 2026-09-11T15:15:09.240Z log
+env.MERCHANT_REFRESH_QUEUE (dlm-merchant-feed-refresh)                       Queue                     
+---
+
+--- 2026-09-11T15:15:09.240Z log
+env.MERCHANT_FEED_BUCKET (dlm-merchant-feeds)                                R2 Bucket                 
+---
+
+--- 2026-09-11T15:15:09.240Z log
+env.MERCHANT_CONFIG_JSON ("{"shopId":"gid://shopify/Shop/1557163...")        Environment Variable      
+---
+
+--- 2026-09-11T15:15:09.240Z log
+
+---
+
+--- 2026-09-11T15:15:09.240Z log
+--dry-run: exiting now.
+---
+
+--- 2026-09-11T15:15:09.240Z debug
+Metrics dispatcher: Dispatching disabled - would have sent {"deviceId":"ac67743f-9494-4509-9502-a1f8455f1273","event":"deploy worker script","timestamp":1789139709240,"properties":{"amplitude_session_id":1789139709240,"amplitude_event_id":0,"wranglerVersion":"4.86.0","wranglerMajorVersion":4,"wranglerMinorVersion":86,"wranglerPatchVersion":0,"osPlatform":"Mac OS","osVersion":"Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132","nodeVersion":24,"isFirstUsage":false,"configFileType":"none","isCI":false,"isPagesCI":false,"isWorkersCI":false,"isInteractive":false,"hasAssets":false,"agent":null,"category":"Workers","os":"darwin:arm64","usesTypeScript":false,"durationMs":11}}.
+---
+
+--- 2026-09-11T15:15:09.240Z debug
+Metrics dispatcher: Dispatching disabled - would have sent {"deviceId":"ac67743f-9494-4509-9502-a1f8455f1273","event":"wrangler command completed","timestamp":1789139709240,"properties":{"amplitude_session_id":1789139709197,"amplitude_event_id":1,"wranglerVersion":"4.86.0","wranglerMajorVersion":4,"wranglerMinorVersion":86,"wranglerPatchVersion":0,"osPlatform":"Mac OS","osVersion":"Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132","nodeVersion":24,"isFirstUsage":false,"configFileType":"toml","isCI":false,"isPagesCI":false,"isWorkersCI":false,"isInteractive":false,"hasAssets":false,"agent":null,"argsUsed":["config","dryRun","outdir"],"argsCombination":"config, dryRun, outdir","sanitizedCommand":"deploy","sanitizedArgs":{"dryRun":true},"durationMs":49}}.
+---

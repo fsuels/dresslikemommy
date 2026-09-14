@@ -1,0 +1,628 @@
+{
+  "schema": "dlm.scheduled_order_fulfillment_checkpoint.v1",
+  "status": "LIVE_VERIFIED_PASS_WITH_LIMITS",
+  "source": "Fresh Shopify Admin GraphQL connector; exact saved operations freshly schema-discovered and revalidated. Root read-only provider owner.",
+  "source_live_evidence_as_of": "2026-09-12T20:41:48Z",
+  "order_read_window_utc": {
+    "started": "2026-09-12T20:41:48Z",
+    "completed": "2026-09-12T20:41:49Z",
+    "query_count": 1,
+    "clock_precision": "seconds"
+  },
+  "fulfillment_read_window_utc": {
+    "started": "2026-09-12T20:42:14Z",
+    "completed": "2026-09-12T20:42:15Z",
+    "query_count": 2,
+    "parallel_read_only": true
+  },
+  "observed_window": {
+    "start_inclusive": "2026-09-05T04:00:00Z",
+    "end_exclusive": "2026-09-12T20:41:48Z",
+    "filter": "created_at:>='2026-09-05T04:00:00Z' created_at:<'2026-09-12T20:41:48Z'",
+    "shop_calendar_start": "2026-09-05 00:00:00 America/New_York (UTC-04:00)"
+  },
+  "shop": {
+    "name": "Dress Like Mommy",
+    "ianaTimezone": "America/New_York",
+    "currencyCode": "USD",
+    "primaryDomain": {
+      "host": "www.dresslikemommy.com"
+    }
+  },
+  "cohort_definition": {
+    "server_filter": "Creation-time lower/upper bounds only; no financial/status exclusion.",
+    "local_inclusion": "displayFinancialStatus == PAID AND test == false AND cancelledAt == null AND sourceName == web",
+    "all_returned_orders": 2,
+    "qualifying_orders": 2,
+    "excluded_orders": 0,
+    "all_returned_financial_statuses": {
+      "PAID": 2
+    },
+    "currently_cancelled_count": 0,
+    "current_test_count": 0,
+    "non_web_count": 0,
+    "own_qa_exclusion": "Same two previously qualified genuine baskets; no new creations or QA orders returned."
+  },
+  "original_comparable_cohort": {
+    "creation_window": {
+      "start_inclusive": "2026-09-05T04:00:00Z",
+      "end_exclusive": "2026-09-08T19:10:23Z"
+    },
+    "recovered_order_count": 2,
+    "statuses_retained_even_if_no_longer_qualifying": true,
+    "current_all_status_totals": {
+      "orders": 2,
+      "current_units": 4,
+      "current_subtotal_usd": "86.45",
+      "current_total_usd": "86.45",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    },
+    "currently_qualifying_totals": {
+      "orders": 2,
+      "current_units": 4,
+      "current_subtotal_usd": "86.45",
+      "current_total_usd": "86.45",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    },
+    "identity_method": "Original frozen creation window and distinct saved public-product baskets; transient current-order joins to current fulfillment; no private identifiers persisted."
+  },
+  "totals": {
+    "orders": 2,
+    "current_units": 4,
+    "current_subtotal_usd": "86.45",
+    "current_total_usd": "86.45",
+    "current_tax_usd": "0.00",
+    "recorded_refunds_usd": "0.00",
+    "financial_status_counts": {
+      "PAID": 2
+    },
+    "fulfillment_status_counts": {
+      "FULFILLED": 1,
+      "UNFULFILLED": 1
+    }
+  },
+  "all_returned_order_totals": {
+    "orders": 2,
+    "current_units": 4,
+    "current_subtotal_usd": "86.45",
+    "current_total_usd": "86.45",
+    "current_tax_usd": "0.00",
+    "recorded_refunds_usd": "0.00"
+  },
+  "basket_aggregates": [
+    {
+      "basket": "Mermaid",
+      "financial_status": "PAID",
+      "order_fulfillment_status": "UNFULFILLED",
+      "current_units": 2,
+      "current_subtotal_usd": "31.98",
+      "recorded_refunds_usd": "0.00",
+      "cancelled": false,
+      "fulfillments_returned": 0,
+      "fulfillment_statuses": [],
+      "matched_variant_selections": 0,
+      "exact_current_basket_variant_quantity_match": false,
+      "fulfillment_lines_within_ordered_quantities": true,
+      "recorded_tracking_companies": [],
+      "delivered_at_present": false,
+      "in_transit_at_present": false,
+      "estimated_delivery_at_present": false,
+      "events_returned": 0,
+      "event_status_counts": {},
+      "events_since_previous_source_read": 0,
+      "event_pagination_complete": true,
+      "fulfillment_line_item_pagination_complete": true,
+      "carrier_acceptance_verified": false,
+      "delivery_verified": false
+    },
+    {
+      "basket": "Rainbow",
+      "financial_status": "PAID",
+      "order_fulfillment_status": "FULFILLED",
+      "current_units": 2,
+      "current_subtotal_usd": "54.47",
+      "recorded_refunds_usd": "0.00",
+      "cancelled": false,
+      "fulfillments_returned": 1,
+      "fulfillment_statuses": [
+        {
+          "status": "SUCCESS",
+          "display_status": "FULFILLED",
+          "total_quantity": 2
+        }
+      ],
+      "matched_variant_selections": 2,
+      "exact_current_basket_variant_quantity_match": true,
+      "fulfillment_lines_within_ordered_quantities": true,
+      "recorded_tracking_companies": [
+        "YunExpress"
+      ],
+      "delivered_at_present": false,
+      "in_transit_at_present": false,
+      "estimated_delivery_at_present": false,
+      "events_returned": 0,
+      "event_status_counts": {},
+      "events_since_previous_source_read": 0,
+      "event_pagination_complete": true,
+      "fulfillment_line_item_pagination_complete": true,
+      "carrier_acceptance_verified": false,
+      "delivery_verified": false
+    }
+  ],
+  "comparison_since_last_full_read": {
+    "start_inclusive": "2026-09-12T08:24:58Z",
+    "end_exclusive": "2026-09-12T20:41:48Z",
+    "all_order_creations": 0,
+    "qualifying_orders": 0,
+    "qualifying_totals": {
+      "orders": 0,
+      "current_units": 0,
+      "current_subtotal_usd": "0.00",
+      "current_total_usd": "0.00",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    },
+    "excluded_orders": 0,
+    "previous_order_capture": "2026-09-12T08:24:58Z",
+    "previous_fulfillment_capture": {
+      "started": "2026-09-12T08:25:20Z",
+      "completed": "2026-09-12T08:25:21Z",
+      "query_count": 2,
+      "clock_precision": "seconds"
+    },
+    "definition": "Creation delta over [previous full cutoff,current cutoff); original cohort states retained and compared separately.",
+    "totals_delta": {
+      "orders": 0,
+      "current_units": 0,
+      "current_subtotal_usd": "0.00",
+      "current_total_usd": "0.00",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    }
+  },
+  "trailing_24_hours": {
+    "start_inclusive": "2026-09-11T20:41:48Z",
+    "end_exclusive": "2026-09-12T20:41:48Z",
+    "all_order_creations": 0,
+    "qualifying_orders": 0,
+    "qualifying_totals": {
+      "orders": 0,
+      "current_units": 0,
+      "current_subtotal_usd": "0.00",
+      "current_total_usd": "0.00",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    },
+    "excluded_orders": 0
+  },
+  "previous_completed_shop_calendar_day": {
+    "start_inclusive": "2026-09-11T04:00:00Z",
+    "end_exclusive": "2026-09-12T04:00:00Z",
+    "all_order_creations": 0,
+    "qualifying_orders": 0,
+    "qualifying_totals": {
+      "orders": 0,
+      "current_units": 0,
+      "current_subtotal_usd": "0.00",
+      "current_total_usd": "0.00",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    },
+    "excluded_orders": 0,
+    "shop_date": "2026-09-11",
+    "timezone": "America/New_York",
+    "utc_offset": "-04:00"
+  },
+  "ga4_post_cutover_candidates": {
+    "start_inclusive": "2026-09-09T18:09:00Z",
+    "end_exclusive": "2026-09-12T20:41:48Z",
+    "all_order_creations": 0,
+    "qualifying_orders": 0,
+    "qualifying_totals": {
+      "orders": 0,
+      "current_units": 0,
+      "current_subtotal_usd": "0.00",
+      "current_total_usd": "0.00",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    },
+    "excluded_orders": 0,
+    "cutover_precision": "Approximate prior migration cutoff; no new GA4 receiver read.",
+    "candidate_baskets": [],
+    "purchase_receiver_ingestion": "UNKNOWN; no genuine new order exists for reconciliation."
+  },
+  "changes_from_previous_full_read": {
+    "new_order_creations": 0,
+    "new_qualifying_orders": 0,
+    "qualifying_totals_changed": false,
+    "all_returned_totals_changed": false,
+    "basket_payment_refund_cancellation_or_fulfillment_changed": false,
+    "new_carrier_events": 0
+  },
+  "baseline_evidence": {
+    "last_full_receipt": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260912_0824.json",
+    "last_full_sha256": "25d2d853de5bd8e0330190cda246db8c202180ad5a2eedfde39aa02a2a0f4d49",
+    "order_cutoff": "2026-09-12T08:24:58Z",
+    "fulfillment_completed": "2026-09-12T08:25:21Z",
+    "due_at_utc": "2026-09-12T20:24:58Z",
+    "immutable_prior_receipt_preserved": true
+  },
+  "frozen_28_day_baseline": {
+    "window": "2026-08-08 through 2026-09-04 inclusive, America/New_York",
+    "retained_paid_orders": 8,
+    "merchandise_usd": "734.99",
+    "total_usd": "760.97",
+    "refreshed": false,
+    "combined_with_current_cohort": false
+  },
+  "coverage": {
+    "order_pages": 1,
+    "order_first_limit": 50,
+    "order_returned": 2,
+    "order_has_next_page": false,
+    "line_item_pages_complete": true,
+    "order_line_items_returned": 4,
+    "fulfillment_orders_read": 2,
+    "fulfillment_first_limit": 50,
+    "fulfillment_limit_reached": false,
+    "fulfillment_line_pages_complete": true,
+    "fulfillment_event_pages_complete": true,
+    "count_precision": "EXACT_ENUMERATED in the bounded creation window.",
+    "money_precision": "USD shopMoney exact integer cents; no FX conversion or fee mixing.",
+    "sequential_non_atomic_snapshot": true,
+    "parallel_fulfillment_reads": true
+  },
+  "query_validation": {
+    "status": "VALID_BOTH_OPERATIONS",
+    "artifact_ids": [
+      "dlm-order-checkpoint-20260912-2039",
+      "dlm-fulfillment-checkpoint-20260912-2039"
+    ],
+    "revision": 1,
+    "schema_types": [
+      "QueryRoot",
+      "Order",
+      "Fulfillment"
+    ],
+    "operations": {
+      "order_operation": "query GrowthHeartbeatDelta($filter: String!, $after: String) {\n  shop { name ianaTimezone currencyCode primaryDomain { host } }\n  orders(first: 50, after: $after, query: $filter, sortKey: CREATED_AT) {\n    nodes {\n      id createdAt test cancelledAt sourceName\n      displayFinancialStatus displayFulfillmentStatus\n      currentSubtotalPriceSet { shopMoney { amount currencyCode } }\n      currentTotalPriceSet { shopMoney { amount currencyCode } }\n      currentTotalTaxSet { shopMoney { amount currencyCode } }\n      totalRefundedSet { shopMoney { amount currencyCode } }\n      lineItems(first:50) {\n        nodes { currentQuantity product { id } variant { id } }\n        pageInfo { hasNextPage endCursor }\n      }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+      "fulfillment_operation": "query ChangedBasketFulfillment($id: ID!) {\n  shop { name primaryDomain { host } currencyCode }\n  order(id: $id) {\n    displayFinancialStatus displayFulfillmentStatus\n    currentSubtotalPriceSet { shopMoney { amount currencyCode } }\n    totalRefundedSet { shopMoney { amount currencyCode } }\n    fulfillments(first:50) {\n      status displayStatus totalQuantity deliveredAt inTransitAt estimatedDeliveryAt\n      trackingInfo { company }\n      fulfillmentLineItems(first:50) {\n        nodes { quantity lineItem { product { id } variant { id } } }\n        pageInfo { hasNextPage endCursor }\n      }\n      events(first:50) {\n        nodes { status happenedAt }\n        pageInfo { hasNextPage endCursor }\n      }\n    }\n  }\n}"
+    }
+  },
+  "sanitized_source": {
+    "schema": "dlm.sanitized_order_source.v1",
+    "order_read_window": {
+      "started": "2026-09-12T20:41:48Z",
+      "completed": "2026-09-12T20:41:49Z",
+      "filter": "created_at:>='2026-09-05T04:00:00Z' created_at:<'2026-09-12T20:41:48Z'"
+    },
+    "fulfillment_read_window": {
+      "started": "2026-09-12T20:42:14Z",
+      "completed": "2026-09-12T20:42:15Z",
+      "query_count": 2,
+      "parallel_read_only": true
+    },
+    "shop": {
+      "name": "Dress Like Mommy",
+      "ianaTimezone": "America/New_York",
+      "currencyCode": "USD",
+      "primaryDomain": {
+        "host": "www.dresslikemommy.com"
+      }
+    },
+    "order_page": {
+      "first": 50,
+      "returned": 2,
+      "hasNextPage": false
+    },
+    "rows": [
+      {
+        "basket": "Rainbow",
+        "test": false,
+        "cancelled": false,
+        "source_name": "web",
+        "financial_status": "PAID",
+        "fulfillment_status": "FULFILLED",
+        "subtotal": {
+          "amount": "54.47",
+          "currencyCode": "USD"
+        },
+        "total": {
+          "amount": "54.47",
+          "currencyCode": "USD"
+        },
+        "tax": {
+          "amount": "0.0",
+          "currencyCode": "USD"
+        },
+        "refunds": {
+          "amount": "0.0",
+          "currencyCode": "USD"
+        },
+        "line_items": [
+          {
+            "line_ordinal": 1,
+            "current_quantity": 1
+          },
+          {
+            "line_ordinal": 2,
+            "current_quantity": 1
+          }
+        ],
+        "line_items_has_next_page": false,
+        "fulfillment_order_recheck": {
+          "financial_status": "PAID",
+          "fulfillment_status": "FULFILLED",
+          "subtotal": {
+            "amount": "54.47",
+            "currencyCode": "USD"
+          },
+          "refunds": {
+            "amount": "0.0",
+            "currencyCode": "USD"
+          }
+        },
+        "fulfillments": [
+          {
+            "status": "SUCCESS",
+            "display_status": "FULFILLED",
+            "total_quantity": 2,
+            "delivered_at": null,
+            "in_transit_at": null,
+            "estimated_delivery_at": null,
+            "tracking_companies": [
+              "YunExpress"
+            ],
+            "line_items": [
+              {
+                "line_ordinal": 1,
+                "quantity": 1
+              },
+              {
+                "line_ordinal": 2,
+                "quantity": 1
+              }
+            ],
+            "line_items_has_next_page": false,
+            "events": [],
+            "events_has_next_page": false
+          }
+        ],
+        "creation_window_membership": {
+          "full_observed_cohort": true,
+          "original_comparable_cohort": true,
+          "since_previous_full_read": false,
+          "trailing_24_hours": false,
+          "previous_completed_shop_day": false,
+          "after_approximate_GA4_cutover": false
+        }
+      },
+      {
+        "basket": "Mermaid",
+        "test": false,
+        "cancelled": false,
+        "source_name": "web",
+        "financial_status": "PAID",
+        "fulfillment_status": "UNFULFILLED",
+        "subtotal": {
+          "amount": "31.98",
+          "currencyCode": "USD"
+        },
+        "total": {
+          "amount": "31.98",
+          "currencyCode": "USD"
+        },
+        "tax": {
+          "amount": "0.0",
+          "currencyCode": "USD"
+        },
+        "refunds": {
+          "amount": "0.0",
+          "currencyCode": "USD"
+        },
+        "line_items": [
+          {
+            "line_ordinal": 1,
+            "current_quantity": 1
+          },
+          {
+            "line_ordinal": 2,
+            "current_quantity": 1
+          }
+        ],
+        "line_items_has_next_page": false,
+        "fulfillment_order_recheck": {
+          "financial_status": "PAID",
+          "fulfillment_status": "UNFULFILLED",
+          "subtotal": {
+            "amount": "31.98",
+            "currencyCode": "USD"
+          },
+          "refunds": {
+            "amount": "0.0",
+            "currencyCode": "USD"
+          }
+        },
+        "fulfillments": [],
+        "creation_window_membership": {
+          "full_observed_cohort": true,
+          "original_comparable_cohort": true,
+          "since_previous_full_read": false,
+          "trailing_24_hours": false,
+          "previous_completed_shop_day": false,
+          "after_approximate_GA4_cutover": false
+        }
+      }
+    ],
+    "privacy": {
+      "private_order_ids": "Transient current-order joins only; omitted",
+      "names_email_addresses_order_numbers_tracking_numbers_urls": "Not requested",
+      "per_order_creation_timestamps_product_variant_associations_and_private_cursors": "Transient source only; omitted from repository receipt",
+      "saved_reproducibility": "Global window boundaries and per-basket membership flags; within-basket line ordinals and quantities preserve aggregate arithmetic and fulfillment joins without identifiers.",
+      "redaction_revision": 2
+    },
+    "query_validation": {
+      "status": "VALID_BOTH_OPERATIONS",
+      "artifact_ids": [
+        "dlm-order-checkpoint-20260912-2039",
+        "dlm-fulfillment-checkpoint-20260912-2039"
+      ],
+      "revision": 1,
+      "schema_types": [
+        "QueryRoot",
+        "Order",
+        "Fulfillment"
+      ],
+      "operations": {
+        "order_operation": "query GrowthHeartbeatDelta($filter: String!, $after: String) {\n  shop { name ianaTimezone currencyCode primaryDomain { host } }\n  orders(first: 50, after: $after, query: $filter, sortKey: CREATED_AT) {\n    nodes {\n      id createdAt test cancelledAt sourceName\n      displayFinancialStatus displayFulfillmentStatus\n      currentSubtotalPriceSet { shopMoney { amount currencyCode } }\n      currentTotalPriceSet { shopMoney { amount currencyCode } }\n      currentTotalTaxSet { shopMoney { amount currencyCode } }\n      totalRefundedSet { shopMoney { amount currencyCode } }\n      lineItems(first:50) {\n        nodes { currentQuantity product { id } variant { id } }\n        pageInfo { hasNextPage endCursor }\n      }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+        "fulfillment_operation": "query ChangedBasketFulfillment($id: ID!) {\n  shop { name primaryDomain { host } currencyCode }\n  order(id: $id) {\n    displayFinancialStatus displayFulfillmentStatus\n    currentSubtotalPriceSet { shopMoney { amount currencyCode } }\n    totalRefundedSet { shopMoney { amount currencyCode } }\n    fulfillments(first:50) {\n      status displayStatus totalQuantity deliveredAt inTransitAt estimatedDeliveryAt\n      trackingInfo { company }\n      fulfillmentLineItems(first:50) {\n        nodes { quantity lineItem { product { id } variant { id } } }\n        pageInfo { hasNextPage endCursor }\n      }\n      events(first:50) {\n        nodes { status happenedAt }\n        pageInfo { hasNextPage endCursor }\n      }\n    }\n  }\n}"
+      }
+    },
+    "transient_identity_checks": {
+      "distinct_order_count": 2,
+      "all_fulfillment_joins_complete": true
+    }
+  },
+  "local_checks": {
+    "status": "PASS",
+    "count": 28,
+    "results": [
+      {
+        "id": "shop_identity",
+        "result": "PASS"
+      },
+      {
+        "id": "due_window_reached",
+        "result": "PASS"
+      },
+      {
+        "id": "bounded_filter",
+        "result": "PASS"
+      },
+      {
+        "id": "source_order_times",
+        "result": "PASS"
+      },
+      {
+        "id": "source_fulfillment_times",
+        "result": "PASS"
+      },
+      {
+        "id": "source_rows_in_window",
+        "result": "PASS"
+      },
+      {
+        "id": "order_pagination_complete",
+        "result": "PASS"
+      },
+      {
+        "id": "line_pagination_complete",
+        "result": "PASS"
+      },
+      {
+        "id": "distinct_transient_order_count",
+        "result": "PASS"
+      },
+      {
+        "id": "fulfillment_transient_joins_complete",
+        "result": "PASS"
+      },
+      {
+        "id": "all_money_usd_exact_cents",
+        "result": "PASS"
+      },
+      {
+        "id": "quantities_nonnegative_integers",
+        "result": "PASS"
+      },
+      {
+        "id": "fulfillment_array_below_cap",
+        "result": "PASS"
+      },
+      {
+        "id": "fulfillment_nested_pagination_complete",
+        "result": "PASS"
+      },
+      {
+        "id": "financial_and_fulfillment_rechecks_agree",
+        "result": "PASS"
+      },
+      {
+        "id": "monetary_rechecks_agree",
+        "result": "PASS"
+      },
+      {
+        "id": "quantity_bounds_Rainbow",
+        "result": "PASS"
+      },
+      {
+        "id": "fulfillment_declared_quantity_Rainbow",
+        "result": "PASS"
+      },
+      {
+        "id": "quantity_bounds_Mermaid",
+        "result": "PASS"
+      },
+      {
+        "id": "fulfillment_declared_quantity_Mermaid",
+        "result": "PASS"
+      },
+      {
+        "id": "original_baskets_retained",
+        "result": "PASS"
+      },
+      {
+        "id": "baseline_receipt_still_frozen",
+        "result": "PASS"
+      },
+      {
+        "id": "source_validation_two_operations",
+        "result": "PASS"
+      },
+      {
+        "id": "source_queries_reused_exactly",
+        "result": "PASS"
+      },
+      {
+        "id": "current_totals_reconcile",
+        "result": "PASS"
+      },
+      {
+        "id": "basket_lifecycle_unchanged",
+        "result": "PASS"
+      },
+      {
+        "id": "source_no_private_order_customer_or_fulfillment_ids",
+        "result": "PASS"
+      },
+      {
+        "id": "per_order_timestamps_and_product_variant_associations_omitted",
+        "result": "PASS"
+      }
+    ]
+  },
+  "unchanged_gates": {
+    "actual_delivered_item_service_freight_duty_costs": "UNKNOWN",
+    "settlement_and_retained_profit": "UNKNOWN",
+    "attribution_CPA_ROAS": "UNKNOWN",
+    "GA4_purchase_acceptance": "UNKNOWN",
+    "new_synthetic_events": 0,
+    "paid_scope": "NONE",
+    "one_owner_action": "Owner Admin publication of existing verified theme137888792673; unchanged.",
+    "account_cost_access_retry": false
+  },
+  "next_full_read_due_at_utc": "2026-09-13T08:41:48Z",
+  "earlier_read_trigger": "Meaningful order, payment, refund, fulfillment, invoice or genuine-purchase signal; no repeated unchanged access probe.",
+  "business_outcome": "NO_NEW_QUALIFYING_SALES_OBSERVED__PROFIT_UNKNOWN",
+  "created_at_utc": "2026-09-12T20:45:46.145968Z",
+  "redaction_history": {
+    "revision": 2,
+    "previous_receipt_sha256": "5530784b2e79c8eef27ed5e45b7f2ea89784200877ecff79cfd894376934c139",
+    "trigger": "Independent reviewer identified unnecessary per-order creation timestamps and variant associations in the initial repo receipt, plus ambiguous profit-outcome wording.",
+    "changes": "Removed those row fields; retained window-membership flags and within-basket line ordinals. Made profit UNKNOWN explicit. No source query or business totals changed.",
+    "root_equivalence_check": "PASS; all other source-derived totals, comparison windows, status/fulfillment aggregates and gate fields are unchanged.",
+    "independent_equivalence_review": "PENDING"
+  }
+}

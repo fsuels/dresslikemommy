@@ -1,0 +1,681 @@
+{
+  "provenance": "Fresh structured Shopify schema discovery during this bounded refresh; only selected field signatures retained.",
+  "types": {
+    "QueryRoot": {
+      "name": "QueryRoot",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "app",
+          "args": [
+            {
+              "name": "id",
+              "type": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "type": {
+            "name": "App",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "products",
+          "args": [
+            {
+              "name": "first",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "after",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "last",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "before",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "reverse",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "sortKey",
+              "type": {
+                "name": "ProductSortKeys",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            },
+            {
+              "name": "query",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "savedSearchId",
+              "type": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ProductConnection",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "productsCount",
+          "args": [
+            {
+              "name": "query",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "savedSearchId",
+              "type": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "limit",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "type": {
+            "name": "Count",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "publication",
+          "args": [
+            {
+              "name": "id",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "type": {
+            "name": "Publication",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "shop",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Shop",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "Product": {
+      "name": "Product",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "feedback",
+          "args": [],
+          "type": {
+            "name": "ResourceFeedback",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "id",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "publishedOnPublication",
+          "args": [
+            {
+              "name": "publicationId",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "status",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ProductStatus",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "variantsCount",
+          "args": [],
+          "type": {
+            "name": "Count",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        }
+      ]
+    },
+    "ResourceFeedback": {
+      "name": "ResourceFeedback",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "details",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "AppFeedback",
+                  "kind": "OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "summary",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "AppFeedback": {
+      "name": "AppFeedback",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "app",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "App",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "feedbackGeneratedAt",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "DateTime",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "link",
+          "args": [],
+          "type": {
+            "name": "Link",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "messages",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "UserError",
+                  "kind": "OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "state",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ResourceFeedbackState",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "Count": {
+      "name": "Count",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "count",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "precision",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CountPrecision",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "Publication": {
+      "name": "Publication",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "autoPublish",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "id",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "Shop": {
+      "name": "Shop",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "id",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "name",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "primaryDomain",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Domain",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "Domain": {
+      "name": "Domain",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "url",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "URL",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "Link": {
+      "name": "Link",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "label",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "url",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "URL",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "UserError": {
+      "name": "UserError",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "message",
+          "args": [],
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "App": {
+      "name": "App",
+      "kind": "OBJECT",
+      "all_discovered_field_names": [
+        "apiKey",
+        "appStoreAppUrl",
+        "appStoreDeveloperUrl",
+        "availableAccessScopes",
+        "banner",
+        "description",
+        "developerName",
+        "developerType",
+        "embedded",
+        "failedRequirements",
+        "features",
+        "feedback",
+        "handle",
+        "icon",
+        "id",
+        "installUrl",
+        "installation",
+        "isPostPurchaseAppInUse",
+        "optionalAccessScopes",
+        "previouslyInstalled",
+        "pricingDetails",
+        "pricingDetailsSummary",
+        "privacyPolicyUrl",
+        "publicCategory",
+        "published",
+        "requestedAccessScopes",
+        "screenshots",
+        "shopifyDeveloped",
+        "title",
+        "uninstallMessage",
+        "webhookApiVersion"
+      ],
+      "queried_fields": [
+        {
+          "name": "feedback",
+          "type": {
+            "name": "AppFeedback",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "handle",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "title",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    },
+    "ProductSortKeys": {
+      "name": "ProductSortKeys",
+      "kind": "ENUM",
+      "enumValues": [
+        {
+          "name": "CREATED_AT",
+          "description": "Sort by the `created_at` value."
+        },
+        {
+          "name": "ID",
+          "description": "Sort by the `id` value."
+        },
+        {
+          "name": "INVENTORY_TOTAL",
+          "description": "Sort by the `inventory_total` value."
+        },
+        {
+          "name": "PRODUCT_TYPE",
+          "description": "Sort by the `product_type` value."
+        },
+        {
+          "name": "PUBLISHED_AT",
+          "description": "Sort by the `published_at` value."
+        },
+        {
+          "name": "RELEVANCE",
+          "description": "Sort by relevance to the search terms when the `query` parameter is specified on the connection.\nDon't use this sort key when no search query is specified."
+        },
+        {
+          "name": "TITLE",
+          "description": "Sort by the `title` value."
+        },
+        {
+          "name": "UPDATED_AT",
+          "description": "Sort by the `updated_at` value."
+        },
+        {
+          "name": "VENDOR",
+          "description": "Sort by the `vendor` value."
+        }
+      ]
+    },
+    "CountPrecision": {
+      "name": "CountPrecision",
+      "kind": "ENUM",
+      "enumValues": [
+        {
+          "name": "EXACT",
+          "description": "The count is exactly the value. A write may not be reflected instantaneously."
+        },
+        {
+          "name": "AT_LEAST",
+          "description": "The count is at least the value. A limit was imposed and reached."
+        }
+      ]
+    }
+  }
+}

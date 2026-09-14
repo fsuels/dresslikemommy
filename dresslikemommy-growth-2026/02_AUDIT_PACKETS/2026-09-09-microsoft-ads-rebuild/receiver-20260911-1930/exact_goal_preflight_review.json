@@ -1,0 +1,300 @@
+{
+  "status": "PASS",
+  "scope": "Exact nonspend four-field goal correction only; not receiver/value/consent/deduplication or launch certification.",
+  "reviewer": "/root/international_campaign_build",
+  "independence": "Did not build or execute the installed tracking code, root's contract, native before-state capture, or staged native change. No browser/account/source/canonical writes by reviewer.",
+  "reviewed_at_utc": "2026-09-11T19:45:43.908948+00:00",
+  "checks": [
+    {
+      "check": "exact target account customer number and UET agree",
+      "passed": true
+    },
+    {
+      "check": "all five goal identities are distinct",
+      "passed": true
+    },
+    {
+      "check": "three edited goals are exact account-scoped active purchases",
+      "passed": true
+    },
+    {
+      "check": "primary trigger matches installed purchase event",
+      "passed": true
+    },
+    {
+      "check": "primary revenue remains variable USD fallback",
+      "passed": true
+    },
+    {
+      "check": "URL proxy triggers exactly frozen",
+      "passed": true
+    },
+    {
+      "check": "before field matches ('ShopifyCheckoutCompleteEventTracking', 'count')",
+      "passed": true
+    },
+    {
+      "check": "before field matches ('ShopifyCheckoutCompleteEventTracking', 'fallback_value')",
+      "passed": true
+    },
+    {
+      "check": "before field matches ('ShopifyCheckoutCompleteTracking', 'auto_bidding')",
+      "passed": true
+    },
+    {
+      "check": "before field matches ('Purchases', 'auto_bidding')",
+      "passed": true
+    },
+    {
+      "check": "exactly four approved field deltas with no extras",
+      "passed": true
+    },
+    {
+      "check": "expected state has one primary purchase All variable zero fallback",
+      "passed": true
+    },
+    {
+      "check": "whole before-state differs in exactly four goal leaves",
+      "passed": true
+    },
+    {
+      "check": "exact rollback restores complete before-state",
+      "passed": true
+    },
+    {
+      "check": "MSCLKID already enabled no automatic off-to-on delta",
+      "passed": true
+    },
+    {
+      "check": "automatic goal setup off and account options preserved",
+      "passed": true
+    },
+    {
+      "check": "all five Active states and secondary exclusions preserved",
+      "passed": true
+    },
+    {
+      "check": "eleven paused campaigns and configured budgets preserved",
+      "passed": true
+    },
+    {
+      "check": "no paid exposure or new spend scope introduced",
+      "passed": true
+    },
+    {
+      "check": "readback rollback and drift stops specified",
+      "passed": true
+    },
+    {
+      "check": "audited app and legacy sources remain byte-identical",
+      "passed": true
+    }
+  ],
+  "checks_passed": 21,
+  "contract_sha256": "a5b8b398e04fb3755e85304c711f81c32bed21e8495df00f82c508c1997cb1b7",
+  "before_sha256": "0c33c837f9d5802148ea81c181ab31fe23e3b5020825d622883e4a817b6f48e6",
+  "source_hashes": {
+    "microsoft_deployed_app_pixel.js": "bdf85b114cb9d9ef5c790dee198f38dd8032c46bc13bdf7ca9f4ee034abc7f29",
+    "microsoft_deployed_storefront_script.js": "171802eab48befd7660099e6ad8c6d0423c14bfeb2b866b14b30694d7f7bce3a"
+  },
+  "exact_changed_paths": [
+    "/goals/0/count",
+    "/goals/0/fallback_value",
+    "/goals/1/auto_bidding",
+    "/goals/2/auto_bidding"
+  ],
+  "expected_after_goals": [
+    {
+      "name": "ShopifyCheckoutCompleteEventTracking",
+      "historical_id": 163001526,
+      "id_evidence": "REPO_KNOWN; current dialog bound by unique exact name/account/tag/criteria",
+      "status": "Active",
+      "category": "Purchase",
+      "type": "Custom event",
+      "action_operator": "Equals to",
+      "action": "purchase",
+      "tag_id": 36005151,
+      "tag_name": "ShopifyImport",
+      "value_type": "Variable",
+      "fallback_value": "0.00",
+      "fallback_currency": "USD",
+      "auto_bidding": true,
+      "scope": "This account 477439 / X0875435",
+      "count": "All",
+      "click_window": {
+        "days": 30,
+        "hours": 0,
+        "minutes": 0
+      },
+      "view_window": {
+        "days": 1,
+        "hours": 0,
+        "minutes": 0
+      },
+      "attribution": "Last click",
+      "enhanced_conversions": false,
+      "tracking": "Manual",
+      "clarity": false
+    },
+    {
+      "name": "Purchases",
+      "historical_id": 56000751,
+      "id_evidence": "REPO_KNOWN; current dialog bound by unique exact name/account/tag/criteria",
+      "status": "Active",
+      "category": "Purchase",
+      "type": "Webpage visit",
+      "url_operator": "Contains",
+      "url_value": "thank_you",
+      "tag_id": 36005151,
+      "tag_name": "ShopifyImport",
+      "value_type": "Variable",
+      "fallback_value": "30.00",
+      "fallback_currency": "USD",
+      "auto_bidding": false,
+      "scope": "This account 477439 / X0875435",
+      "count": "All",
+      "click_window": {
+        "days": 35,
+        "hours": 0,
+        "minutes": 0
+      },
+      "view_window": {
+        "days": 1,
+        "hours": 0,
+        "minutes": 0
+      },
+      "attribution": "Last click",
+      "enhanced_conversions": false
+    },
+    {
+      "name": "ShopifyCheckoutCompleteTracking",
+      "status": "Active",
+      "category": "Purchase",
+      "type": "Webpage visit",
+      "url_operator": "Contains",
+      "url_value": "thank-you",
+      "tag_id": 36005151,
+      "tag_name": "ShopifyImport",
+      "value_type": "Variable",
+      "fallback_value": "1.00",
+      "fallback_currency": "USD",
+      "auto_bidding": false,
+      "scope": "This account 477439 / X0875435",
+      "count": "Unique",
+      "click_window": {
+        "days": 30,
+        "hours": 0,
+        "minutes": 0
+      },
+      "view_window": {
+        "days": 1,
+        "hours": 0,
+        "minutes": 0
+      },
+      "attribution": "Last click",
+      "enhanced_conversions": false
+    }
+  ],
+  "expected_preserved_goal_rows": [
+    {
+      "name": "Smart goal [X0875435]",
+      "status": "Active",
+      "auto_bidding": false,
+      "tag_id": 36000629
+    },
+    {
+      "name": "ShopifyAddToCart",
+      "status": "Active",
+      "auto_bidding": false,
+      "tag_id": 36005151,
+      "count": "All",
+      "scope": "Across all accounts"
+    }
+  ],
+  "account_options_before": {
+    "tracking_template": "",
+    "final_url_suffix": "",
+    "auto_retrieve_images": false,
+    "utm_auto_tagging": true,
+    "utm_mode": "Replace all existing tags",
+    "automatic_conversion_goal_setup": false,
+    "include_view_through_in_all_conversions": true,
+    "auto_multimedia_in_dynamic_adgroups": true,
+    "doubleverify_enabled": false
+  },
+  "mutations": [
+    {
+      "goal": "ShopifyCheckoutCompleteEventTracking",
+      "changes": [
+        {
+          "field": "count",
+          "from": "Unique",
+          "to": "All"
+        },
+        {
+          "field": "fallback_value",
+          "from": "1.00",
+          "to": "0.00"
+        }
+      ]
+    },
+    {
+      "goal": "ShopifyCheckoutCompleteTracking",
+      "changes": [
+        {
+          "field": "auto_bidding",
+          "from": true,
+          "to": false
+        }
+      ]
+    },
+    {
+      "goal": "Purchases",
+      "changes": [
+        {
+          "field": "auto_bidding",
+          "from": true,
+          "to": false
+        }
+      ]
+    }
+  ],
+  "rollback_validated": true,
+  "decision_amendment_sha256": "03dbb0269f79dc3a99a3db09025cb3c48d3e9aad829e9a21c80daaeaa49848e8",
+  "amendment_review": "PASS: selected existing-goal repair is smaller than a new-goal migration; exactly one selected option; uncertain current order/value mapping remains explicit; no extra write fields or spending scope.",
+  "decision_id": "DLM-DEC-2026-09-11-MICROSOFT-SINGLE-PURCHASE-GOAL",
+  "target": {
+    "account_id": 477439,
+    "customer_id": 770182,
+    "account_number": "X0875435",
+    "uet_id": 36005151
+  },
+  "execution_verdict": "Root may execute only the four frozen mutations after its final exact-target/staged-state guard, using one native Save per goal and the contract's stop/readback/rollback conditions. This technical PASS does not create owner authority or extend the saved scope.",
+  "extra_live_fields_permitted": [],
+  "no_new_tag_goal_sender_or_capi": true,
+  "preservation_interpretation": "Preserve reporting/history means keep goals Active and All reporting/history available, not promise unchanged Conversions/Revenue/ROAS numbers. Excluding a goal changes those standard columns and automated bidding eligibility; it does not prove historical order deduplication.",
+  "limitations": [
+    "Source evidence is root's fresh native receipt, independently compared locally; reviewer did not replay native inspection.",
+    "All counts multiple conversions per click; it does not supply order-ID deduplication.",
+    "Zero fallback prevents fabricated positive fallback value but does not fix missing dynamic values. Actual purchase amount/currency/order join still require functional evidence.",
+    "Dashboard94 and parameter labels are event diagnostics, not distinct paid orders. Healthy is seven-day valid-consent coverage, not every user's consent correctness.",
+    "Current goal IDs in live_before remain explicitly historical where indicated; execution uses exact unique account/name/type/scope/tag/criteria binding.",
+    "No claim of completed Save, fresh purchase, correctly deduplicated order, paid attribution or profit follows from this preflight."
+  ],
+  "post_save_requirements": [
+    "Reopen all three exact goals and verify four intended fields plus every preserved field; exactly one primary bidding-eligible purchase Event goal.",
+    "Read back MSCLKID and all captured account options unchanged; automatic goal setup remains off.",
+    "Verify all11 campaigns remain Paused and exact configured budgets remain unchanged;120USD configured daily sum is not approved spend.",
+    "Retain Smart and ShopifyAddToCart exclusions and all five Active goal states; preserve URL goals' original revenue/windows/counting.",
+    "Retain dated before/after and exact inverse. Stop for error, ambiguity or unlisted drift instead of broadening the change."
+  ],
+  "primary_source_urls": [
+    "https://learn.microsoft.com/en-us/advertising/campaign-management-service/eventgoal?view=bingads-13",
+    "https://learn.microsoft.com/en-us/advertising/campaign-management-service/conversiongoalcounttype?view=bingads-13",
+    "https://learn.microsoft.com/en-us/advertising/campaign-management-service/conversiongoalrevenue?view=bingads-13",
+    "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_BA_CONC_UETv2RevenueVariables",
+    "https://github.com/MicrosoftDocs/Advertising/blob/main/advertising/msa-help/hlp_BA_CONC_UET_Consent.md",
+    "https://shopify.dev/docs/api/web-pixels-api/standard-events/checkout_completed",
+    "https://learn.microsoft.com/en-us/advertising/guides/uet-conversion-api-integration?view=bingads-13"
+  ]
+}

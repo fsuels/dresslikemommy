@@ -1,0 +1,192 @@
+{%- liquid
+  assign section_enabled = true
+  assign restrict_handles = section.settings.restrict_handles | downcase | split: ','
+
+  if collection == blank
+    assign section_enabled = false
+  elsif section.settings.restrict_handles != blank
+    assign section_enabled = false
+    assign current_handle = collection.handle | downcase
+
+    for raw_handle in restrict_handles
+      assign target_handle = raw_handle | strip
+
+      if target_handle == current_handle
+        assign section_enabled = true
+        break
+      endif
+    endfor
+  endif
+
+  assign rendered_blocks = 0
+
+  if section_enabled
+    for block in section.blocks
+      assign article = block.settings.article
+
+      if article == blank and block.settings.article_handle != blank
+        assign article_key = 'news/' | append: block.settings.article_handle | strip
+        assign article = articles[article_key]
+      endif
+
+      if article != blank
+        assign rendered_blocks = rendered_blocks | plus: 1
+      endif
+    endfor
+  endif
+-%}
+
+{%- if rendered_blocks > 0 -%}
+  {{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    .section-{{ section.id }}-padding .collection-blog-links__cta {
+      display: inline-flex;
+      margin-top: 0.8rem;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: rgb(var(--color-foreground));
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+    @media screen and (min-width: 990px) {
+      .section-{{ section.id }}-padding .article-template__shop-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  {%- endstyle -%}
+
+  <section class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+    <div class="article-template__shop-links page-width">
+      <div class="article-template__shop-card">
+        <p class="article-template__shop-eyebrow">Style Journal</p>
+        <h2 class="article-template__shop-title">Styling Guide</h2>
+        <div class="article-template__shop-grid">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign article = block.settings.article
+
+              if article == blank and block.settings.article_handle != blank
+                assign article_key = 'news/' | append: block.settings.article_handle | strip
+                assign article = articles[article_key]
+              endif
+
+              if article == blank
+                continue
+              endif
+
+              assign article_title = block.settings.custom_title | default: article.title
+              assign article_description = block.settings.custom_description | strip
+
+              if article_description == blank
+                assign article_description = article.excerpt_or_content | strip_html | truncatewords: 24
+              endif
+
+              if article_description == blank
+                assign article_description = 'Get outfit ideas and matching inspiration before you shop.'
+              endif
+            -%}
+            <a
+              href="{{ article.url }}"
+              class="article-template__shop-link"
+              {{ block.shopify_attributes }}
+            >
+              <span class="article-template__shop-link-copy">
+                <span class="article-template__shop-link-title">{{ article_title | escape }}</span>
+                <span class="article-template__shop-link-caption">{{ article_description | escape }}</span>
+                <span class="collection-blog-links__cta">Read the guide &rarr;</span>
+              </span>
+            </a>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Collection blog links",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "restrict_handles",
+      "label": "Limit to collection handles",
+      "info": "Comma-separated collection handles. Leave blank to show on any collection."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "blog_link",
+      "name": "Blog link",
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "Article"
+        },
+        {
+          "type": "text",
+          "id": "article_handle",
+          "label": "Article handle override",
+          "info": "Optional. Use a news article handle when preconfiguring templates in code."
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom title override"
+        },
+        {
+          "type": "text",
+          "id": "custom_description",
+          "label": "Custom description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection blog links"
+    }
+  ]
+}
+{% endschema %}

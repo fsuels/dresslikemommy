@@ -1,0 +1,168 @@
+{
+  "schema": "dlm.merchant.resumed_final_handoff_review.v1",
+  "verdict": "PASS_WITH_GATES",
+  "confidence": "H",
+  "reviewed_at_utc": "2026-09-10T01:17:05.918Z",
+  "reviewer": "/root/merchant_landing_code_review",
+  "scope": "Bounded independent saved-evidence handoff review of four named artifacts, the owning Merchant state section, and worklog anchor 2026-09-09-merchant-free-listing-submission-checkpoint. No source rescans, browser/API calls, external writes or shared canonical edits.",
+  "checks_passed": 12,
+  "checks_failed": 0,
+  "contradictions": [],
+  "checks": [
+    {
+      "id": "parent_availability_not_variant_publication",
+      "status": "PASS",
+      "detail": "240 parent channel availabilities and exact total 4,945 variants remain separate; individual variant publication is explicitly unqueried."
+    },
+    {
+      "id": "merchant_receipt_and_old_source_history",
+      "status": "PASS",
+      "detail": "Merchant 513542500 receipt and country approval remain unobserved; old zero-count source is explicitly historical."
+    },
+    {
+      "id": "feedback_absence_not_approval",
+      "status": "PASS",
+      "detail": "163 recent + 6 historical + 71 absent feedback rows do not establish receiver identity or approval."
+    },
+    {
+      "id": "google_language_country_and_app_boundaries",
+      "status": "PASS",
+      "detail": "Recorded standards distinguish 21 languages, 36-country/63-pair app support, general documentation and unverified account eligibility; no web policy revalidation performed here."
+    },
+    {
+      "id": "translated_offer_identity_and_quota_gates",
+      "status": "PASS",
+      "detail": "103,845 theoretical variant/language pairs are planning arithmetic, not an instruction to duplicate country offers; source identity and organic quota checks remain prerequisites."
+    },
+    {
+      "id": "currency_conflict_remains_unresolved",
+      "status": "PASS",
+      "detail": "NO/RU menu-versus-Admin differences remain unresolved; no theme conversion or checkout/receiver proof is claimed."
+    },
+    {
+      "id": "theme_and_rendered_proof_dated",
+      "status": "PASS",
+      "detail": "The stored 00:29:11 UTC manifest and earlier 20 rendered cases are dated evidence; no new live publication or fresh rendered acceptance is asserted."
+    },
+    {
+      "id": "failed_logos_not_upload_ready",
+      "status": "PASS",
+      "detail": "Both generated checkerboard/no-alpha candidates are rejected; existing square padding risk and unknown Google logo/approval remain explicit."
+    },
+    {
+      "id": "current_access_gate_not_historical_mac_lock",
+      "status": "PASS",
+      "detail": "Current gate is a stable owner-selected Merchant tab. Automatic-review rejection is explained; later Pinterest readability does not establish Merchant access."
+    },
+    {
+      "id": "existing_nonspend_authority_and_paid_separation",
+      "status": "PASS",
+      "detail": "Current product/free-listing/setup/logo authorization persists; the access request is not a renewed scope approval and paid/connector constraints remain separate."
+    },
+    {
+      "id": "no_resume_write_or_business_result_claim",
+      "status": "PASS",
+      "detail": "Source repairs retain dated evidence; this resumed phase claims no external write, submission approval, traffic lift or profit outcome."
+    },
+    {
+      "id": "final_saved_canonical_receipts_and_scope",
+      "status": "PASS",
+      "detail": "Final checkpoint agrees with retained root closeout: renderer exit 0; integration 25/25 with zero risks; strict 10/10 plus final repeat CONTINUITY_OK; scoped diff exit 0; seven preservation checks true; paid-control receipt 506 bytes and fixed SHA-256. Reviewed these saved results, not independently rerun the commands. Owning Merchant section/worklog hashes remain unchanged."
+    }
+  ],
+  "artifact_bindings": {
+    "READINESS.md": {
+      "bytes": 7934,
+      "sha256": "400efa3de8a00beeeaf6a21748fe6688e2a896373600b417b9bea17e52c1f6ae"
+    },
+    "resume_checkpoint.json": {
+      "bytes": 5797,
+      "sha256": "ea8098e9409dc8332f77f1894ff8180a74e5fd98cc8cd4a5a2266d63353e77bc"
+    },
+    "canonical_scope_verification.json": {
+      "bytes": 1134,
+      "sha256": "0a24f0ecb3db80172e4fba4e60032dfeca1814e6124e6321af06a8870dcfee99"
+    },
+    "canonical_closeout.json": {
+      "bytes": 7543,
+      "sha256": "cd046e3d5117b3083786a72cecd2c56be5683c9bca47403fad923555bed3cb2c"
+    }
+  },
+  "scoped_canonical_bindings": [
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "scope": "Owning Merchant section only",
+      "start_line": 33,
+      "end_line": 51,
+      "sha256": "4601c108fa315758f71cfe4be2b5ca9afbe2429337fd4f0a050c1c2338b70cff",
+      "bytes": 4762
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "scope": "AGENT_CONTINUITY_ANCHOR: 2026-09-09-merchant-free-listing-submission-checkpoint",
+      "start_line": 48903,
+      "end_line": 48937,
+      "sha256": "fe0784da6705ce204230a9406f749276e731136217f8abee0b0e3b3e4bdb3499",
+      "bytes": 5348
+    }
+  ],
+  "final_closeout_receipt": {
+    "recorded_at_utc": "2026-09-10 01:13:18 UTC",
+    "status": "SOURCE_CHECKPOINT_VERIFIED__MERCHANT_RECEIVER_ACCESS_REQUIRED",
+    "strict_repeat": {
+      "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "checks_passed": 10,
+      "marker": "CONTINUITY_OK",
+      "completed_session_id": 15571
+    },
+    "scoped_diff_exit_code": 0,
+    "paid_control_bytes": 506,
+    "paid_control_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+    "canonical_interval": {
+      "status": "RELEASED",
+      "explicit_handback_receipt": "canonical_handback.json",
+      "native_lease": false
+    }
+  },
+  "scope_receipt_summary": {
+    "recorded_at_utc": "2026-09-10T01:13:18.745999+00:00",
+    "checks": {
+      "peer_state_bytes_preserved": true,
+      "peer_claim_bytes_preserved": true,
+      "prior_worklog_bytes_preserved": true,
+      "paid_control_byte_identical": true,
+      "own_anchor_unique": true,
+      "claim_columns_preserved": true,
+      "all_json_parse": true
+    },
+    "all_pass": true,
+    "paid_control_bytes": 506,
+    "paid_control_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+    "verification_method": "Reviewed retained root scope-preservation results; did not independently reconstruct peer files or rerun canonical commands.",
+    "recorded_reconstruction_note": "Original owning-section separator newline reconstructed; full before-state SHA matches exactly."
+  },
+  "conclusions": {
+    "parent_availability": "The stored 00:53:01–00:53:02 UTC query verifies availability of 240 ACTIVE parent products on Google & YouTube and Online Store. The exact 4,945 variant total does not establish individual variant publication; its query flag is false.",
+    "receiving_account": "Merchant 513542500 receipt and country-level approval remain NOT_OBSERVED; absent app feedback is not approval and historical zero-source observations are not current receiver evidence.",
+    "language_country_scope": "The recorded 21 supported languages are distinct from the Shopify app 36-country/63-pair intersection and the 26 general-table destinations plus SV beta plus 38 account-confirmation cases. No new policy lookup or account eligibility validation was performed in this review.",
+    "branding": "Both generated checkerboard/no-alpha candidates remain NOT_FOR_UPLOAD. No replacement is upload-ready and current Google logo/approval remain unknown.",
+    "access_and_authority": "The saved current gate is a stable owner-selected Merchant tab. Historical Mac-lock wording is superseded. Existing nonspend correction authority persists without duplicate scope approval; paid authority and connector MAIN/publish restrictions remain separate.",
+    "prepared_theme": "The saved 00:29:11 UTC manifest and earlier rendered checks remain dated evidence; this review does not refresh current live theme or buyer state."
+  },
+  "preserved_gates": [
+    "Stable owner-selected Merchant 513542500 Data sources tab under the existing access request.",
+    "Current receiver/source/domain, free-listing enrollment, quotas and actual country/language status before account corrections or missing-offer submission.",
+    "Actual variant/apparel field consumption and source identity reconciliation, without invented manufacturer or blanket adult attributes.",
+    "NO/RU selling/checkout/receiver currency conflict unresolved.",
+    "Current Google logo inspection and a quality-passing replacement before any necessary branding upload.",
+    "Combined release remains governed by its existing publication and fresh-conflict-check boundary; this review grants no release authority.",
+    "No new approval, serving, traffic or profit outcome follows from saved source availability."
+  ],
+  "corrected_review_assumption": {
+    "description": "A redundant local status-delta assertion assumed the previously hash-bound closeout was still RELEASING_AFTER_CHECKS. Inspection showed that the same saved hash already recorded RELEASED; the attempted reconstruction was based on an incorrect timing assumption.",
+    "resolution": "The final closeout bytes retain SHA-256 cd046e3d5117b3083786a72cecd2c56be5683c9bca47403fad923555bed3cb2c and RELEASED. No artifact drift or handoff contradiction was found."
+  },
+  "next_owner_action": "Use the existing stable Merchant 513542500 Data sources tab readiness request; once target access is established, continue the already-authorized nonspend receiving-source and submission work.",
+  "continuation": "Continue from 2026-09-09-merchant-free-listing-submission-checkpoint using current receiver evidence; preserve the recorded source/approval distinctions, rejected logo candidates, unpublished combined V2 and paid controls."
+}

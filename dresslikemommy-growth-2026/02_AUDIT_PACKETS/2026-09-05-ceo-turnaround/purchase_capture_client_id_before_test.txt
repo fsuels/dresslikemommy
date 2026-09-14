@@ -1,0 +1,93 @@
+✖ preserves the complete synthetic cookie GA1.1.123456789.1700000000 (2.980334ms)
+✖ preserves the complete synthetic cookie GA1.2.987654321.1700000001 (0.680583ms)
+✖ preserves the complete synthetic cookie GA1.1.111111111.1700000002 (0.3015ms)
+✖ preserves the complete synthetic cookie GA1.1.222222222.1700000003 (0.362958ms)
+✔ keeps the existing stored identifier when the cookie is unavailable (0.441792ms)
+✔ keeps the existing stored identifier when the cookie is empty (0.341458ms)
+✔ retains the fallback identifier behavior without a cookie or stored value (0.389209ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 3
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 69.069666
+
+✖ failing tests:
+
+test at pixels/tests/ga4-client-id.test.cjs:46:3
+✖ preserves the complete synthetic cookie GA1.1.123456789.1700000000 (2.980334ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '123456789'
+  - 'GA1.1.123456789.1700000000'
+  
+      at TestContext.<anonymous> (/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:48:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '123456789',
+    expected: 'GA1.1.123456789.1700000000',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at pixels/tests/ga4-client-id.test.cjs:46:3
+✖ preserves the complete synthetic cookie GA1.2.987654321.1700000001 (0.680583ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '987654321'
+  - 'GA1.2.987654321.1700000001'
+  
+      at TestContext.<anonymous> (/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:48:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '987654321',
+    expected: 'GA1.2.987654321.1700000001',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at pixels/tests/ga4-client-id.test.cjs:46:3
+✖ preserves the complete synthetic cookie GA1.1.111111111.1700000002 (0.3015ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '111111111'
+  - 'GA1.1.111111111.1700000002'
+  
+      at TestContext.<anonymous> (/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:48:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '111111111',
+    expected: 'GA1.1.111111111.1700000002',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at pixels/tests/ga4-client-id.test.cjs:46:3
+✖ preserves the complete synthetic cookie GA1.1.222222222.1700000003 (0.362958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '222222222'
+  - 'GA1.1.222222222.1700000003'
+  
+      at TestContext.<anonymous> (/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:48:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '222222222',
+    expected: 'GA1.1.222222222.1700000003',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,59 @@
+{
+  "status": "READY_CLAIM_AND_BEFORE_GUARD_VERIFIED",
+  "created_at_utc": "2026-09-11T21:55:06.716689+00:00",
+  "store_id": "gid://shopify/Shop/15571635",
+  "target_id": "gid://shopify/OnlineStoreTheme/137888792673",
+  "target_role_required": "UNPUBLISHED",
+  "mutation": "themeFilesUpsert",
+  "exact_files": [
+    {
+      "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "baseline_sha256": "e5a16e0cc2e9dca6cd5b40fce603b1cee54daa023943b1b5cd5033b401842438",
+      "proposed_sha256": "51aaa2d6492b65efe8132dd6f194a351b3a8106945616f4751a8beb00217bdab",
+      "baseline_bytes": 268875,
+      "proposed_bytes": 269917,
+      "baseline_md5": "522339c5825769c499e1ad1488b8a138",
+      "proposed_md5": "6dfb42b1b8db326ee276bc15f8ef2194",
+      "rollback_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/assets/product-desktop-ux-20260513-ruler-sync.js",
+      "apply_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/proposed/assets/product-desktop-ux-20260513-ruler-sync.js"
+    },
+    {
+      "filename": "assets/component-product-desktop-ux-ruler-sync.css",
+      "baseline_sha256": "ff26e2c07e837c404cb2171798ac4153762a7b4008b3f9a02f5d14d1ba357faf",
+      "proposed_sha256": "41c2cc05e469e33dc32da65357f21594d284f85d4e5608669b43f4224ee69497",
+      "baseline_bytes": 76494,
+      "proposed_bytes": 76575,
+      "baseline_md5": "a96ad974fd7f0cca5ad38996db513cb3",
+      "proposed_md5": "029c1976d556697b3761daad161a2ba5",
+      "rollback_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/assets/component-product-desktop-ux-ruler-sync.css",
+      "apply_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/proposed/assets/component-product-desktop-ux-ruler-sync.css"
+    },
+    {
+      "filename": "sections/main-product.liquid",
+      "baseline_sha256": "fadfb327ebbac92ee57c04cf146914d90518ef801626f62cb09c81a7ff52b7c8",
+      "proposed_sha256": "465f76abe0565ff88ffcc01ef3e0f187bece84a1f636cff4f19e75de82ce0c6e",
+      "baseline_bytes": 189652,
+      "proposed_bytes": 190561,
+      "baseline_md5": "71ef37c28e45492bcc81639a629e4a40",
+      "proposed_md5": "865200e2da003da2ab89bf32340fbd87",
+      "rollback_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/sections/main-product.liquid",
+      "apply_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/proposed/sections/main-product.liquid"
+    }
+  ],
+  "before_guard": "before-guard.json",
+  "review": "independent-review.json",
+  "expected_after": "527 files, exactly 3 changed, 524 preserved; MAIN 133290917985 all 525 unchanged; original frozen 527-file candidate intact",
+  "rollback": "Upsert only these three baseline files to this draft after fresh role/source guard. Do not perform automatic live rollback or publication.",
+  "publication": "Connector restriction; owner Shopify Admin only, after buyer verification.",
+  "out_of_scope": [
+    "MAIN writes",
+    "theme publishing",
+    "new theme creation",
+    "V8",
+    "product/source changes",
+    "payments",
+    "tracking",
+    "feeds"
+  ],
+  "claim": "ops/AGENT_COORDINATION.md Website UX and PageSpeed audit ACTIVE_REVIEWED_V7_SELECTOR_REPAIR__OWNER_PUBLICATION_REQUIRED"
+}

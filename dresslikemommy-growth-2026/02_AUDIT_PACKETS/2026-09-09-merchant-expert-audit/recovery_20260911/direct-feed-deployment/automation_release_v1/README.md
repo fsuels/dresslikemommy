@@ -1,0 +1,23 @@
+# Direct Google Merchant feed
+
+This isolated Worker reads Shopify Admin2026-07 and publishes a complete primary TSV for Merchant Center. It does not touch the Shopify Google app or Pinterest infrastructure. The public contract is `/feeds/us-en.tsv`, GET/HEAD only. AU, CA and GB placeholders stay disabled until actual localized landing/currency and market/catalog identities are verified.
+
+Eligible parents must be ACTIVE and published to the Online Store, country context and reviewed catalog. Only `availableForSale:true` variants appear. New eligible rows are added; deleted, archived, unpublished, country-excluded and unavailable rows disappear on the next complete refresh; returning buyable rows reappear. Shopify buyability is not owned physical inventory. Both parent/variant connections paginate completely and reconcile exact counts and a final publication manifest. US context binds Market544735329, catalog6881083489 and publication77106053217 before/after scans.
+
+Prices use country-contextual MoneyV2 and must match currency. Links select exact variants. No FX calculation, vendor-to-brand conversion, invented identifiers, sale price, quantity or shipping claim is emitted. Missing identifiers/apparel attributes stay in diagnostics. Initial files omit return labels entirely, retaining source-grounded exception diagnostics. Enabling labels requires a matching native policy and reviewed config. Merchant source destinations must separately be Free listings only; every row excludes `Shopping_ads`.
+
+Cron enqueues hourly. Queue `dlm-merchant-feed-refresh` handles one message at a time and at most20 new logical Admin queries (at most40 external fetches including one transient retry). Private R2 journals resume the same collector; obsolete/completed journals are cleaned up. Failed reads/validation preserve the previous complete feed. Redelivery repairs missed continuations; Cron is backup. Expired/configuration-changed jobs fail closed. TSV is serialized incrementally through Cloudflare `FixedLengthStream` and `crypto.DigestStream`, copied to its immutable SHA-256 key with R2 checksum validation, then promoted by a conditional current-pointer write. Public reads stream bytes after exact key/ETag/length/context checks and reject source data older than48hours.
+
+`src/host.js` is the first-release read-only host. **`src/automation.js` is the configured automatic entry.** `src/worker.js` contains shared CLI/test-compatible publisher helpers; its older monolithic scheduled entry is not deployed. No dependencies were added. Use Node20+; the workspace bundled Node works.
+
+```sh
+node --test test/*.test.mjs
+node bin/build.mjs --live --market us-en --out /private/tmp/merchant-us
+node bin/verify-queue.mjs --live --market us-en --out /private/tmp/merchant-queue-proof
+```
+
+CLI credentials follow existing private `~/.config/dresslikemommy/admin-api-token.json` keys `store_domain` and `access_token`; environment alternatives are `SHOPIFY_ADMIN_SHOP_DOMAIN`/`SHOPIFY_ADMIN_API_TOKEN`, legacy `SHOPIFY_STORE_DOMAIN`/`SHOPIFY_ADMIN_ACCESS_TOKEN`. Worker bindings: secret `SHOPIFY_ADMIN_ACCESS_TOKEN`, variable `MERCHANT_CONFIG_JSON`, R2 `MERCHANT_FEED_BUCKET`→`dlm-merchant-feeds`, Queue `MERCHANT_REFRESH_QUEUE`→`dlm-merchant-feed-refresh`. Never commit token values. Root uses the existing private Cloudflare auth environment, not Wrangler `--env-file` for CLI auth.
+
+Root owns deployment, secret insertion, production Queue completion, public/source-file receipt and Merchant ownership reconciliation. Local proofs do not certify a deployed schedule or Cloudflare memory/CPU. Hourly Worker refresh is not immediate Google processing: removal requires a successful primary fetch and can take24–48hours to stop serving. Rollback uses the frozen read-only host with no Cron and a retained verified complete manifest/object; snapshot the live pointer before upgrade. Older immutable feed-version retention needs root's bounded bucket policy; staging and consumed journals are deleted by the candidate.
+
+References: [primary sources](https://support.google.com/merchants/answer/14990942), [removal](https://support.google.com/merchants/answer/14996874), [optional return label](https://support.google.com/merchants/answer/9445425), [Queue limits](https://developers.cloudflare.com/queues/platform/limits/), [Queue Free allowance](https://developers.cloudflare.com/queues/platform/pricing/), [streaming digest](https://developers.cloudflare.com/workers/runtime-apis/web-crypto/), [fixed-length streams](https://developers.cloudflare.com/workers/runtime-apis/streams/transformstream/), [R2 conditional writes/checksums](https://developers.cloudflare.com/r2/api/workers/workers-api-reference/).

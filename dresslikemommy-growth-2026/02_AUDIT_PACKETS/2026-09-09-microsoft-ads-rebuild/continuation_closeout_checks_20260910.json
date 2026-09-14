@@ -1,0 +1,65 @@
+{
+  "as_of_utc": "2026-09-10T00:47:55.748849+00:00",
+  "anchor": "2026-09-09-microsoft-live-source-consent-access-checkpoint",
+  "control_before_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+  "control_after_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+  "files": {
+    "ops/marketing/current_marketing_state.md": {
+      "before_sha256": "5c1fd68b0d3bfc21711e1b475dc8580957d689d1bf7a1b02c95492ebcaa2507b",
+      "after_sha256": "2ac478ef750f847c284a36960db5a598ab863cd5c56e5ccff937247134f52c94"
+    },
+    "ops/marketing/action_queue.md": {
+      "before_sha256": "69c3aa2f8b24632a53b27a1a6b41002a827c8e2d73e3ddc6d2f0588caca9716b",
+      "after_sha256": "9669a375fdd8cff18b85a7e810ae58914247d4d5764fbb605f223cead399f890"
+    },
+    "ops/AGENT_COORDINATION.md": {
+      "before_sha256": "a0b9c21d322d2a6081a6fe6a9cdd0d127470afb1b67d79c33023994722b11359",
+      "after_sha256": "87bbd3f6cf9670f9c4a313ff3d239ee05521fae1fbbb6a294e901585a2e5c0ac"
+    },
+    "ops/PROBLEM_TRACKER.md": {
+      "before_sha256": "42a7c6aa26b55cf1d37b8742098dd32f66cb1914cd71f346d7af3db304e22478",
+      "after_sha256": "c383ef0c0ee3ee5503c06af0e3d71feeb3f983a0fbb92019a69ce373bb82b4ac"
+    },
+    "ops/AGENT_WORKLOG.md": {
+      "before_sha256": "e8c4f8e996a396993e7353f39b7ee8f5b1576aee738b6c89d7e551b7b5d3abac",
+      "after_sha256": "d8cdc41b70b59902281677d3c51194b8cc73b5be9e5778c1d23b298614375f05"
+    },
+    "ops/marketing/operator_cockpit.md": {
+      "before_sha256": "3b494f05e1310a7dff001b0844ddfb6609637664a656eb2ec6c6dba1818f8803",
+      "after_sha256": "0d8ba7bd702b653885e7e0fe0f0736c4d1cea876de04a8f3bb4e07b63a66e73a"
+    }
+  },
+  "runtime_source_review": "continuation_review_20260910.json",
+  "commands": [
+    {
+      "command": "python render_marketing_cockpit.py",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "python audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "exit_code": 0,
+      "integrated": 25,
+      "risks": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "python check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "checks": 10,
+      "result": "CONTINUITY_OK"
+    },
+    {
+      "command": "git diff --check -- scoped Microsoft/canonical paths",
+      "exit_code": 0,
+      "result": "PASS"
+    }
+  ],
+  "reviewed_packet_hashes_preserved": true,
+  "canonical_after_hashes_read_back": true,
+  "readback_subsection_hash_check": "PASS",
+  "runtime": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "completed_at_utc": "2026-09-10T00:50:11.506977+00:00",
+  "reviewed_readback_subsection_hash_preserved": true,
+  "subsection_hash_selection": "Exclude heading; split after heading then before newline##, without trimming. Reviewer confirmed2979UTF8bytes unchanged."
+}

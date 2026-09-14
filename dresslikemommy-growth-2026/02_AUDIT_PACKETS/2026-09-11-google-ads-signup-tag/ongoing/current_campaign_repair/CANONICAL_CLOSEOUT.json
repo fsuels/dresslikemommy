@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "anchor": "2026-09-11-google-ads-campaign-quality-identity-gated",
+  "checks": [
+    {
+      "name": "full_paid_control_byte_identical",
+      "pass": true
+    },
+    {
+      "name": "ops/marketing/current_marketing_state.md_parent_owner_action_exact",
+      "pass": true
+    },
+    {
+      "name": "ops/marketing/operator_cockpit.md_parent_owner_action_exact",
+      "pass": true
+    },
+    {
+      "name": "all_other_claim_rows_exact",
+      "pass": true
+    },
+    {
+      "name": "ops/AGENT_WORKLOG.md_append_only",
+      "pass": true
+    },
+    {
+      "name": "ops/marketing/decision_log.md_append_only",
+      "pass": true
+    },
+    {
+      "name": "campaign_metrics_arithmetic",
+      "pass": true
+    },
+    {
+      "name": "channel_cost_click_impression_reconcile",
+      "pass": true
+    },
+    {
+      "name": "three_accepted_files_exact_hash",
+      "pass": true
+    },
+    {
+      "name": "all_packet_json_parse",
+      "pass": true
+    },
+    {
+      "name": "scoped_git_diff_check",
+      "pass": true
+    }
+  ],
+  "checks_passed": 11,
+  "checks_total": 11,
+  "packet_json_files_parsed": 26,
+  "standard_checks": {
+    "render_marketing_cockpit": "PASS",
+    "audit_marketing_command_integration": "PASS25of25_ZERO_SIDE_DOCUMENT_RISKS",
+    "check_continuity_integrity_strict": "PASS10_CONTINUITY_OK",
+    "scoped_git_diff_check": "PASS"
+  },
+  "independent_canonical_review": {
+    "status": "PASS_WITH_LIMITS",
+    "checks": "39/39",
+    "path": "review/CANONICAL_INDEPENDENT_REVIEW.json",
+    "sha256": "353620fcbff4cf19994e35be23fa27925c870fdeaa62c6566c9c740db292a4de"
+  },
+  "shared_interval": "RELEASED_TO_MICROSOFT_01a08703_THEN_X_THEN_PINTEREST_PER_PARENT",
+  "campaign_write_success": false,
+  "released_at_utc": "2026-09-11T20:12:06.513269+00:00"
+}

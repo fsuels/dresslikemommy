@@ -1,0 +1,254 @@
+✔ frozen V7 local source and all ten failure cases are unchanged (5.684959ms)
+✖ canonical alias: secțiuni.titluri_subsol.informații_companie (0.494708ms)
+✖ canonical alias: secțiuni.titluri_subsol.ajutor_suport (0.132209ms)
+✖ canonical alias: asistență_clienți (0.081875ms)
+✖ canonical alias: secties.voettekst_koppen.bedrijfsinformatie (0.063333ms)
+✖ canonical alias: secties.voettekst_koppen.hulp_ondersteuning (0.065709ms)
+✖ canonical alias: Abschnitte.Fußzeilen_Überschriften.Unternehmensinformationen (0.056958ms)
+✖ canonical alias: Abschnitte.Footer_Überschriften.Hilfe_Support (0.052417ms)
+✖ canonical alias: τμήματα.υποσέλιδο_επικεφαλίδες.πληροφορίες_εταιρείας (0.066ms)
+✖ canonical alias: τμήματα.υποσέλιδο_επικεφαλίδες.εξυπηρέτηση_πελατών (0.099083ms)
+✖ canonical alias: sections.footer_headings.asiakaspalvelu (0.111ms)
+✔ holdout: Danish aliases and canonical translation inputs retain their existing paths (0.122ms)
+✔ holdout: English, Spanish, French, Dutch and intentional custom headings are unchanged (0.195916ms)
+✔ only the bounded alias case changes; disclosure, consent and all other logic remain byte-identical (0.079375ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 4
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55.757834
+
+✖ failing tests:
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:57:3
+✖ canonical alias: secțiuni.titluri_subsol.informații_companie (0.494708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'secțiuni.titluri_subsol.informații_companie'
+  - 't:sections.footer_headings.company_info'
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'secțiuni.titluri_subsol.informații_companie',
+    expected: 't:sections.footer_headings.company_info',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:57:3
+✖ canonical alias: secțiuni.titluri_subsol.ajutor_suport (0.132209ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'secțiuni.titluri_subsol.ajutor_suport'
+  - 't:sections.footer_headings.help_support'
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'secțiuni.titluri_subsol.ajutor_suport',
+    expected: 't:sections.footer_headings.help_support',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:57:3
+✖ canonical alias: asistență_clienți (0.081875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'asistență_clienți'
+  - 't:sections.footer_headings.customer_care'
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'asistență_clienți',
+    expected: 't:sections.footer_headings.customer_care',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:57:3
+✖ canonical alias: secties.voettekst_koppen.bedrijfsinformatie (0.063333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'secties.voettekst_koppen.bedrijfsinformatie'
+  - 't:sections.footer_headings.company_info'
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'secties.voettekst_koppen.bedrijfsinformatie',
+    expected: 't:sections.footer_headings.company_info',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:57:3
+✖ canonical alias: secties.voettekst_koppen.hulp_ondersteuning (0.065709ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'secties.voettekst_koppen.hulp_ondersteuning'
+  - 't:sections.footer_headings.help_support'
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'secties.voettekst_koppen.hulp_ondersteuning',
+    expected: 't:sections.footer_headings.help_support',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:57:3
+✖ canonical alias: Abschnitte.Fußzeilen_Überschriften.Unternehmensinformationen (0.056958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Abschnitte.Fußzeilen_Überschriften.Unternehmensinformationen'
+  - 't:sections.footer_headings.company_info'
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Abschnitte.Fußzeilen_Überschriften.Unternehmensinformationen',
+    expected: 't:sections.footer_headings.company_info',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:57:3
+✖ canonical alias: Abschnitte.Footer_Überschriften.Hilfe_Support (0.052417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Abschnitte.Footer_Überschriften.Hilfe_Support'
+  - 't:sections.footer_headings.help_support'
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Abschnitte.Footer_Überschriften.Hilfe_Support',
+    expected: 't:sections.footer_headings.help_support',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:57:3
+✖ canonical alias: τμήματα.υποσέλιδο_επικεφαλίδες.πληροφορίες_εταιρείας (0.066ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'τμήματα.υποσέλιδο_επικεφαλίδες.πληροφορίες_εταιρείας'
+  - 't:sections.footer_headings.company_info'
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'τμήματα.υποσέλιδο_επικεφαλίδες.πληροφορίες_εταιρείας',
+    expected: 't:sections.footer_headings.company_info',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:57:3
+✖ canonical alias: τμήματα.υποσέλιδο_επικεφαλίδες.εξυπηρέτηση_πελατών (0.099083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'τμήματα.υποσέλιδο_επικεφαλίδες.εξυπηρέτηση_πελατών'
+  - 't:sections.footer_headings.customer_care'
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'τμήματα.υποσέλιδο_επικεφαλίδες.εξυπηρέτηση_πελατών',
+    expected: 't:sections.footer_headings.customer_care',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:57:3
+✖ canonical alias: sections.footer_headings.asiakaspalvelu (0.111ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'sections.footer_headings.asiakaspalvelu'
+  - 't:sections.footer_headings.customer_care'
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/footer-localization.test.mjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'sections.footer_headings.asiakaspalvelu',
+    expected: 't:sections.footer_headings.customer_care',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

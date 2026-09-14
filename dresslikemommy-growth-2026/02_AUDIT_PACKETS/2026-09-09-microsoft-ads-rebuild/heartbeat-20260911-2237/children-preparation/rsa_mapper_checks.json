@@ -1,0 +1,168 @@
+{
+  "prepared_at": "2026-09-11T23:09:45.829038+00:00",
+  "status": "MAPPER_ONLY_NOT_IMPORT_READY",
+  "native_action": "NOT RUN",
+  "native_import_authorized": false,
+  "native_mapping_status": "NOT RUN",
+  "native_row_enum_acceptance": "UNPROVED",
+  "csv": "rsa_mapper_only_not_import_ready.csv",
+  "csv_sha256": "1a6525d2a6682474a826f08fc763604c47a830c43e68e94c0ec75d259dcc8926",
+  "row_count": 2,
+  "columns": [
+    "Type",
+    "Status",
+    "Campaign Name",
+    "Ad Group Name",
+    "Headline 1",
+    "Headline 2",
+    "Headline 3",
+    "Headline 4",
+    "Headline 5",
+    "Headline 6",
+    "Headline 7",
+    "Headline 8",
+    "Headline 9",
+    "Headline 10",
+    "Headline 11",
+    "Headline 12",
+    "Headline 13",
+    "Headline 14",
+    "Headline 15",
+    "Description 1 RSA",
+    "Description 2 RSA",
+    "Description 3",
+    "Description 4",
+    "Path 1",
+    "Path 2",
+    "Final URLs",
+    "Final Url Suffix"
+  ],
+  "checks_passed": 8,
+  "checks": [
+    {
+      "check": "two_rsa_records_only",
+      "result": "PASS",
+      "detail": "No Campaign, Ad Group, keyword, negative, extension or criterion records."
+    },
+    {
+      "check": "paused_status",
+      "result": "PASS",
+      "detail": "Two literal Paused values; no Active or status-default reliance."
+    },
+    {
+      "check": "exact_parent_bindings",
+      "result": "PASS",
+      "detail": "Exact reviewed campaign names bind to US506254907 / DE506254908 in manifest; ad group must exist and be freshly verified before any later import."
+    },
+    {
+      "check": "exact_copy_paths_urls_suffixes",
+      "result": "PASS",
+      "detail": "All16 headlines,6 descriptions,4 paths,2 final URLs and2 suffixes preserved byte-for-byte as decoded CSV string values."
+    },
+    {
+      "check": "empty_unprovided_assets_and_unpinned",
+      "result": "PASS",
+      "detail": "No new copy or pin columns; positions9–15 and description4 intentionally empty, not filler."
+    },
+    {
+      "check": "character_limits",
+      "result": "PASS",
+      "detail": "8 nonempty headlines/3 descriptions per ad, with 30/90/15 character maxima."
+    },
+    {
+      "check": "no_campaign_control_fields",
+      "result": "PASS",
+      "detail": "No financial, geography, language, network, strategy or campaign-status mutation rows."
+    },
+    {
+      "check": "source_and_completed_candidates_unchanged",
+      "result": "PASS",
+      "detail": "All5 main CSVs and5 completed preparation artifacts unchanged."
+    }
+  ],
+  "source_rows": [
+    {
+      "source_csv_row": 2,
+      "ad_key": "ms_us_en_202609_dresses_rsa_1",
+      "campaign_key": "ms_us_en_202609",
+      "campaign_id": "506254907",
+      "source_asset_fields": [
+        "headline_1",
+        "headline_2",
+        "headline_3",
+        "headline_4",
+        "headline_5",
+        "headline_6",
+        "headline_7",
+        "headline_8",
+        "description_1",
+        "description_2",
+        "description_3",
+        "path_1",
+        "path_2",
+        "final_url",
+        "final_url_suffix"
+      ],
+      "all_source_text_and_url_values_unchanged": true
+    },
+    {
+      "source_csv_row": 10,
+      "ad_key": "ms_de_de_202609_dresses_rsa_1",
+      "campaign_key": "ms_de_de_202609",
+      "campaign_id": "506254908",
+      "source_asset_fields": [
+        "headline_1",
+        "headline_2",
+        "headline_3",
+        "headline_4",
+        "headline_5",
+        "headline_6",
+        "headline_7",
+        "headline_8",
+        "description_1",
+        "description_2",
+        "description_3",
+        "path_1",
+        "path_2",
+        "final_url",
+        "final_url_suffix"
+      ],
+      "all_source_text_and_url_values_unchanged": true
+    }
+  ],
+  "main_source_sha256": {
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "ad_groups.csv": "dbf27dfc5ccd5cfb27c5aed898f202c76060b5b484ec353b3140ad701d950f92",
+    "keywords.csv": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012",
+    "responsive_search_ads.csv": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839"
+  },
+  "preserved_preparation_sha256": {
+    "paused_groups_keywords.ui_candidate.csv": "15287d329200ac4c62f4af9e6a0cdb15738240484694c83377a9213b53cee370",
+    "campaign_negatives.ui_candidate.csv": "b566c095bfc152088b88ee9f450a87a9f7a25ee41c953e35c66488f9c9f122ae",
+    "rsa_assets.awaiting_ui_schema.json": "9f30f70a51a3aa726acdb0587847cda991c0d39495d2b46182cd9f1b156838b1",
+    "source_selection.json": "6c0e892c9fc21212d518dd432a2cc727ea1f2817227513abfca31c20fb82b2cc",
+    "checks.json": "32fb7177c4b8d70e18ffadd39d8bbcdaac35cbabf39ff103c1aa6bb3bd479249"
+  },
+  "prior_manifest_sha256": "79edf60340684bff186ab7235d4668408bf8ea525cb7b43aad110b0157aad424",
+  "schema_provenance": {
+    "Type": "Exact documented Bulk record type Responsive Search Ad; native importer acceptance unproved.",
+    "individual_asset_headers": "Exact labels supplied by root from native mapper: Headline1–15 with spaces; Description1/2 RSA with spaces, Description3/4, Path1/2, FinalURLs, CampaignName, AdGroupName, Status.",
+    "Final Url Suffix": "Extra preservation column using exact documented Bulk header spelling. Root previously observed a FinalURLSuffix mapper field; spelling/matching must be verified in this preview. It is not asserted to be an already matched native column."
+  },
+  "constraints": [
+    "Only native column preview is in scope; no final Import.",
+    "Review all27 columns, including blank asset columns; none of the populated copy/URL/suffix columns may be dropped or mapped to legacy expanded-text assets.",
+    "The Type enum and empty unused assets need semantic validation; all-columns-matched does not establish row value or server acceptance.",
+    "Preview must retain both exact parent names and both Paused statuses. Confirm actual parent IDs and fresh child existence/absence before a separately reviewed import.",
+    "If any row was ever imported or result is uncertain, do not repeat create rows blindly; read current IDs/results first.",
+    "No schema helper, status label or source metadata was embedded as ad text.",
+    "All launch, tracking, consent, economics, cash, geography and network gates remain unchanged."
+  ],
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/advertising/bulk-service/responsive-search-ad?view=bingads-13",
+      "support": "Bulk Type and Paused enum, text limits, paths, final URLs/suffix; Bulk asset JSON is distinct from browser individual columns."
+    }
+  ]
+}

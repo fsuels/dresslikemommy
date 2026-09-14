@@ -1,0 +1,2841 @@
+{
+  "schema": "dlm.shopify.market-matrix-schema-proof.v1",
+  "observedAt": "2026-09-14T20:25:39.578Z",
+  "status": "VALIDATED_BEFORE_EXECUTION",
+  "types": [
+    {
+      "name": "QueryRoot",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "markets",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "MarketConnection",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [
+            {
+              "name": "type",
+              "type": {
+                "name": "MarketType",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            },
+            {
+              "name": "first",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "after",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "last",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "before",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "reverse",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "sortKey",
+              "type": {
+                "name": "MarketsSortKeys",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            },
+            {
+              "name": "query",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "Returns a paginated list of [`Market`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Market) objects configured for the shop. Markets match buyers based on defined conditions to deliver customized shopping experiences.\n\nFilter markets by [`MarketType`](https://shopify.dev/docs/api/admin-graphql/latest/enums/MarketType) and [`MarketStatus`](https://shopify.dev/docs/api/admin-graphql/latest/enums/MarketStatus), search by name, and control sort order. Retrieve market configurations including [`MarketCurrencySettings`](https://shopify.dev/docs/api/admin-graphql/latest/objects/MarketCurrencySettings), [`MarketWebPresence`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Mark"
+        },
+        {
+          "name": "marketsResolvedValues",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "MarketsResolvedValues",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [
+            {
+              "name": "buyerSignal",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "BuyerSignalInput",
+                  "kind": "INPUT_OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          ],
+          "description": "The resolved values for a buyer signal."
+        },
+        {
+          "name": "productsCount",
+          "type": {
+            "name": "Count",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [
+            {
+              "name": "query",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "savedSearchId",
+              "type": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "limit",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "Count of products. Limited to a maximum of 10000 by default."
+        },
+        {
+          "name": "publications",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "PublicationConnection",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [
+            {
+              "name": "catalogType",
+              "type": {
+                "name": "CatalogType",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            },
+            {
+              "name": "first",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "after",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "last",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "before",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "reverse",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "Returns a paginated list of [`Publication`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Publication).\n\nFilter publications by [`CatalogType`](https://shopify.dev/docs/api/admin-graphql/latest/enums/CatalogType)."
+        },
+        {
+          "name": "shop",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Shop",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "Returns the Shop resource corresponding to the access token used in the request. The Shop resource contains\nbusiness and store management settings for the shop."
+        },
+        {
+          "name": "shopLocales",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "ShopLocale",
+                  "kind": "OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": [
+            {
+              "name": "published",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "Returns the locales enabled on a shop. Each locale represents a language for translations and determines how content displays to customers in different markets.\n\nUse the optional `published` argument to filter for only the locales that are visible to customers. The response includes the ISO locale code, whether it's the shop's primary locale, and which [`MarketWebPresence`](https://shopify.dev/docs/api/admin-graphql/latest/objects/MarketWebPresence) objects use each locale."
+        }
+      ]
+    },
+    {
+      "name": "Market",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "catalogs",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "MarketCatalogConnection",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [
+            {
+              "name": "first",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "after",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "last",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "before",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "reverse",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "The catalogs that belong to the market."
+        },
+        {
+          "name": "catalogsCount",
+          "type": {
+            "name": "Count",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The number of catalogs that belong to the market."
+        },
+        {
+          "name": "conditions",
+          "type": {
+            "name": "MarketConditions",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The conditions under which a visitor is in the market."
+        },
+        {
+          "name": "currencySettings",
+          "type": {
+            "name": "MarketCurrencySettings",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The market\u2019s currency settings."
+        },
+        {
+          "name": "handle",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "A short, human-readable unique identifier for the market. This is changeable by the merchant."
+        },
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "A globally-unique ID."
+        },
+        {
+          "name": "name",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The name of the market. Not shown to customers."
+        },
+        {
+          "name": "status",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "MarketStatus",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "Status of the market. Replaces the enabled field."
+        },
+        {
+          "name": "type",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "MarketType",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The type of the market."
+        },
+        {
+          "name": "webPresences",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "MarketWebPresenceConnection",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [
+            {
+              "name": "first",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "after",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "last",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "before",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "reverse",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "The market\u2019s web presences, which defines its SEO strategy. This can be a different domain,\nsubdomain, or subfolders of the primary domain. Each web presence comprises one or more\nlanguage variants. If a market doesn't have any web presences, then the market is accessible on the\nprimary market's domains using [country\nselectors](https://shopify.dev/themes/internationalization/multiple-currencies-languages#the-country-selector)."
+        }
+      ]
+    },
+    {
+      "name": "MarketWebPresence",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "alternateLocales",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "ShopLocale",
+                  "kind": "OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": [],
+          "description": "The ShopLocale object for the alternate locales. When a domain is used, these locales will be\navailable as language-specific subfolders. For example, if English is an\nalternate locale, and `example.ca` is the market\u2019s domain, then\n`example.ca/en` will load in English."
+        },
+        {
+          "name": "defaultLocale",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ShopLocale",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The ShopLocale object for the default locale. When a domain is used, this is the locale that will\nbe used when the domain root is accessed. For example, if French is the default locale,\nand `example.ca` is the market\u2019s domain, then `example.ca` will load in French."
+        },
+        {
+          "name": "domain",
+          "type": {
+            "name": "Domain",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The web presence\u2019s domain.\nThis field will be null if `subfolderSuffix` isn't null."
+        },
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "A globally-unique ID."
+        },
+        {
+          "name": "markets",
+          "type": {
+            "name": "MarketConnection",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [
+            {
+              "name": "first",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "after",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "last",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "before",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "reverse",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "The associated markets for this web presence."
+        },
+        {
+          "name": "rootUrls",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "MarketWebPresenceRootUrl",
+                  "kind": "OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": [],
+          "description": "The list of root URLs for each of the web presence\u2019s locales. As of version `2024-04` this value will no longer have a trailing slash."
+        },
+        {
+          "name": "subfolderSuffix",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The market-specific suffix of the subfolders defined by the web presence. Example: in `/en-us` the subfolder suffix is `us`. This field will be null if `domain` isn't null."
+        }
+      ]
+    },
+    {
+      "name": "ShopLocale",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "locale",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The locale ISO code."
+        },
+        {
+          "name": "marketWebPresences",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "MarketWebPresence",
+                  "kind": "OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": [],
+          "description": "The market web presences that use the locale."
+        },
+        {
+          "name": "name",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The human-readable locale name."
+        },
+        {
+          "name": "primary",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "Whether the locale is the default locale for the shop."
+        },
+        {
+          "name": "published",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "Whether the locale is visible to buyers."
+        }
+      ]
+    },
+    {
+      "name": "MarketConditions",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "conditionTypes",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "MarketConditionType",
+                  "kind": "ENUM",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": [],
+          "description": "The set of condition types that are defined for the market."
+        },
+        {
+          "name": "regionsCondition",
+          "type": {
+            "name": "RegionsCondition",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The region conditions that determine whether a visitor is in the market."
+        }
+      ]
+    },
+    {
+      "name": "MarketCurrencySettings",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "baseCurrency",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CurrencySetting",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The currency which this market's customers must use if local currencies are disabled."
+        },
+        {
+          "name": "localCurrencies",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "Whether or not local currencies are enabled. If enabled, then prices will\nbe converted to give each customer the best experience based on their\nregion. If disabled, then all customers in this market will see prices\nin the market's base currency."
+        },
+        {
+          "name": "roundingEnabled",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "Whether or not rounding is enabled on multi-currency prices."
+        }
+      ]
+    },
+    {
+      "name": "MarketRegionCountry",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "code",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CountryCode",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The ISO code identifying the country."
+        },
+        {
+          "name": "currency",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CurrencySetting",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The currency which this country uses given its market settings."
+        },
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "A globally-unique ID."
+        },
+        {
+          "name": "name",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The name of the region."
+        }
+      ]
+    },
+    {
+      "name": "MarketCatalog",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "A globally-unique ID."
+        },
+        {
+          "name": "priceList",
+          "type": {
+            "name": "PriceList",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The price list associated with the catalog."
+        },
+        {
+          "name": "publication",
+          "type": {
+            "name": "Publication",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [],
+          "description": "A group of products and collections that's published to a catalog."
+        },
+        {
+          "name": "status",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CatalogStatus",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The status of the catalog."
+        },
+        {
+          "name": "title",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The name of the catalog."
+        }
+      ]
+    },
+    {
+      "name": "MarketWebPresenceRootUrl",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "locale",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The locale that the storefront loads in."
+        },
+        {
+          "name": "url",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "URL",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The URL."
+        }
+      ]
+    },
+    {
+      "name": "Domain",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "host",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The host name of the domain. For example, `example.com`."
+        },
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "A globally-unique ID."
+        },
+        {
+          "name": "localization",
+          "type": {
+            "name": "DomainLocalization",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The localization of the domain, if the domain doesn't redirect."
+        },
+        {
+          "name": "marketWebPresence",
+          "type": {
+            "name": "MarketWebPresence",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The web presence of the domain."
+        },
+        {
+          "name": "url",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "URL",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The URL of the domain (for example, `[DOCUMENTATION_EXAMPLE_URL]`)."
+        }
+      ]
+    },
+    {
+      "name": "Shop",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "countriesInShippingZones",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CountriesInShippingZones",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "Countries that have been defined in shipping zones for the shop."
+        },
+        {
+          "name": "currencyCode",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CurrencyCode",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The three letter code for the currency that the shop sells in."
+        },
+        {
+          "name": "enabledPresentmentCurrencies",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "CurrencyCode",
+                  "kind": "ENUM",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": [],
+          "description": "The presentment currencies enabled for the shop."
+        },
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "A globally-unique ID."
+        },
+        {
+          "name": "name",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The shop's name."
+        },
+        {
+          "name": "primaryDomain",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Domain",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The primary domain of the shop's online store."
+        },
+        {
+          "name": "shipsToCountries",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "CountryCode",
+                  "kind": "ENUM",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": [],
+          "description": "The list of countries that the shop ships to."
+        }
+      ]
+    },
+    {
+      "name": "RegionsCondition",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "applicationLevel",
+          "type": {
+            "name": "MarketConditionApplicationType",
+            "kind": "ENUM",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The application level for the condition."
+        },
+        {
+          "name": "regions",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "MarketRegionConnection",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [
+            {
+              "name": "first",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "after",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "last",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "before",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "reverse",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "The regions that comprise the market."
+        }
+      ]
+    },
+    {
+      "name": "CurrencySetting",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "currencyCode",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CurrencyCode",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The currency's ISO code."
+        },
+        {
+          "name": "enabled",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "Whether the currency is enabled or not. An enabled currency setting is visible to buyers and allows orders to be generated with that currency as presentment."
+        }
+      ]
+    },
+    {
+      "name": "CountriesInShippingZones",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "countryCodes",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "CountryCode",
+                  "kind": "ENUM",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": [],
+          "description": "The list of all the countries from all the combined shipping zones."
+        },
+        {
+          "name": "includeRestOfWorld",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "Whether 'Rest of World' has been defined in any of the shipping zones."
+        }
+      ]
+    },
+    {
+      "name": "DomainLocalization",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "alternateLocales",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": [],
+          "description": "The ISO codes for the domain\u2019s alternate locales. For example, `[\"en\"]`."
+        },
+        {
+          "name": "country",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The ISO code for the country assigned to the domain. For example, `\"CA\"` or \"*\" for a domain set to \"Rest of world\"."
+        },
+        {
+          "name": "defaultLocale",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The ISO code for the domain\u2019s default locale. For example, `\"en\"`."
+        }
+      ]
+    },
+    {
+      "name": "Publication",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "autoPublish",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "Whether new products are automatically published to this publication."
+        },
+        {
+          "name": "catalog",
+          "type": {
+            "name": "Catalog",
+            "kind": "INTERFACE",
+            "ofType": null
+          },
+          "args": [],
+          "description": "The catalog associated with the publication."
+        },
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "A globally-unique ID."
+        },
+        {
+          "name": "includedProductsCount",
+          "type": {
+            "name": "Count",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [
+            {
+              "name": "query",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "savedSearchId",
+              "type": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "limit",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "The count of products included in the publication. Limited to a maximum of 10000 by default."
+        }
+      ]
+    },
+    {
+      "name": "PriceList",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "currency",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CurrencyCode",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The currency for fixed prices associated with this price list."
+        },
+        {
+          "name": "fixedPricesCount",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The number of fixed prices on the price list."
+        },
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "A globally-unique ID."
+        },
+        {
+          "name": "name",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The unique name of the price list, used as a human-readable identifier."
+        }
+      ]
+    },
+    {
+      "name": "Count",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "count",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The count of elements."
+        },
+        {
+          "name": "precision",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CountPrecision",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The count's precision, or the exactness of the value."
+        }
+      ]
+    },
+    {
+      "name": "Catalog",
+      "kind": "INTERFACE",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "A globally-unique ID."
+        },
+        {
+          "name": "status",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CatalogStatus",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The status of the catalog."
+        },
+        {
+          "name": "title",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The name of the catalog."
+        }
+      ]
+    },
+    {
+      "name": "AppCatalog",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "apps",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "AppConnection",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [
+            {
+              "name": "first",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "after",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "last",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "before",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "reverse",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "The apps associated with the catalog."
+        }
+      ]
+    },
+    {
+      "name": "App",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "A globally-unique ID."
+        },
+        {
+          "name": "title",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "Name of the app."
+        }
+      ]
+    },
+    {
+      "name": "MarketsResolvedValues",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "catalogs",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "MarketCatalogConnection",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [
+            {
+              "name": "first",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "after",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "last",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "before",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "reverse",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "The resolved catalogs."
+        },
+        {
+          "name": "currencyCode",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CurrencyCode",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": [],
+          "description": "The resolved currency code."
+        },
+        {
+          "name": "webPresences",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "MarketWebPresenceConnection",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [
+            {
+              "name": "first",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "after",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "last",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "before",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "reverse",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ],
+          "description": "The resolved web presences ordered by priority."
+        }
+      ]
+    },
+    {
+      "name": "BuyerSignalInput",
+      "kind": "INPUT_OBJECT",
+      "fields": [
+        {
+          "name": "countryCode",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "CountryCode",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "description": "The country code of the buyer.",
+          "enumValues": [
+            {
+              "name": "AF",
+              "description": "Afghanistan."
+            },
+            {
+              "name": "AX",
+              "description": "\u00c5land Islands."
+            },
+            {
+              "name": "AL",
+              "description": "Albania."
+            },
+            {
+              "name": "DZ",
+              "description": "Algeria."
+            },
+            {
+              "name": "AD",
+              "description": "Andorra."
+            },
+            {
+              "name": "AO",
+              "description": "Angola."
+            },
+            {
+              "name": "AI",
+              "description": "Anguilla."
+            },
+            {
+              "name": "AG",
+              "description": "Antigua & Barbuda."
+            },
+            {
+              "name": "AR",
+              "description": "Argentina."
+            },
+            {
+              "name": "AM",
+              "description": "Armenia."
+            },
+            {
+              "name": "AW",
+              "description": "Aruba."
+            },
+            {
+              "name": "AC",
+              "description": "Ascension Island."
+            },
+            {
+              "name": "AU",
+              "description": "Australia."
+            },
+            {
+              "name": "AT",
+              "description": "Austria."
+            },
+            {
+              "name": "AZ",
+              "description": "Azerbaijan."
+            },
+            {
+              "name": "BS",
+              "description": "Bahamas."
+            },
+            {
+              "name": "BH",
+              "description": "Bahrain."
+            },
+            {
+              "name": "BD",
+              "description": "Bangladesh."
+            },
+            {
+              "name": "BB",
+              "description": "Barbados."
+            },
+            {
+              "name": "BY",
+              "description": "Belarus."
+            },
+            {
+              "name": "BE",
+              "description": "Belgium."
+            },
+            {
+              "name": "BZ",
+              "description": "Belize."
+            },
+            {
+              "name": "BJ",
+              "description": "Benin."
+            },
+            {
+              "name": "BM",
+              "description": "Bermuda."
+            },
+            {
+              "name": "BT",
+              "description": "Bhutan."
+            },
+            {
+              "name": "BO",
+              "description": "Bolivia."
+            },
+            {
+              "name": "BA",
+              "description": "Bosnia & Herzegovina."
+            },
+            {
+              "name": "BW",
+              "description": "Botswana."
+            },
+            {
+              "name": "BV",
+              "description": "Bouvet Island."
+            },
+            {
+              "name": "BR",
+              "description": "Brazil."
+            },
+            {
+              "name": "IO",
+              "description": "British Indian Ocean Territory."
+            },
+            {
+              "name": "BN",
+              "description": "Brunei."
+            },
+            {
+              "name": "BG",
+              "description": "Bulgaria."
+            },
+            {
+              "name": "BF",
+              "description": "Burkina Faso."
+            },
+            {
+              "name": "BI",
+              "description": "Burundi."
+            },
+            {
+              "name": "KH",
+              "description": "Cambodia."
+            },
+            {
+              "name": "CA",
+              "description": "Canada."
+            },
+            {
+              "name": "CV",
+              "description": "Cape Verde."
+            },
+            {
+              "name": "BQ",
+              "description": "Caribbean Netherlands."
+            },
+            {
+              "name": "KY",
+              "description": "Cayman Islands."
+            },
+            {
+              "name": "CF",
+              "description": "Central African Republic."
+            },
+            {
+              "name": "TD",
+              "description": "Chad."
+            },
+            {
+              "name": "CL",
+              "description": "Chile."
+            },
+            {
+              "name": "CN",
+              "description": "China."
+            },
+            {
+              "name": "CX",
+              "description": "Christmas Island."
+            },
+            {
+              "name": "CC",
+              "description": "Cocos (Keeling) Islands."
+            },
+            {
+              "name": "CO",
+              "description": "Colombia."
+            },
+            {
+              "name": "KM",
+              "description": "Comoros."
+            },
+            {
+              "name": "CG",
+              "description": "Congo - Brazzaville."
+            },
+            {
+              "name": "CD",
+              "description": "Congo - Kinshasa."
+            },
+            {
+              "name": "CK",
+              "description": "Cook Islands."
+            },
+            {
+              "name": "CR",
+              "description": "Costa Rica."
+            },
+            {
+              "name": "HR",
+              "description": "Croatia."
+            },
+            {
+              "name": "CU",
+              "description": "Cuba."
+            },
+            {
+              "name": "CW",
+              "description": "Cura\u00e7ao."
+            },
+            {
+              "name": "CY",
+              "description": "Cyprus."
+            },
+            {
+              "name": "CZ",
+              "description": "Czechia."
+            },
+            {
+              "name": "CI",
+              "description": "C\u00f4te d\u2019Ivoire."
+            },
+            {
+              "name": "DK",
+              "description": "Denmark."
+            },
+            {
+              "name": "DJ",
+              "description": "Djibouti."
+            },
+            {
+              "name": "DM",
+              "description": "Dominica."
+            },
+            {
+              "name": "DO",
+              "description": "Dominican Republic."
+            },
+            {
+              "name": "EC",
+              "description": "Ecuador."
+            },
+            {
+              "name": "EG",
+              "description": "Egypt."
+            },
+            {
+              "name": "SV",
+              "description": "El Salvador."
+            },
+            {
+              "name": "GQ",
+              "description": "Equatorial Guinea."
+            },
+            {
+              "name": "ER",
+              "description": "Eritrea."
+            },
+            {
+              "name": "EE",
+              "description": "Estonia."
+            },
+            {
+              "name": "SZ",
+              "description": "Eswatini."
+            },
+            {
+              "name": "ET",
+              "description": "Ethiopia."
+            },
+            {
+              "name": "FK",
+              "description": "Falkland Islands."
+            },
+            {
+              "name": "FO",
+              "description": "Faroe Islands."
+            },
+            {
+              "name": "FJ",
+              "description": "Fiji."
+            },
+            {
+              "name": "FI",
+              "description": "Finland."
+            },
+            {
+              "name": "FR",
+              "description": "France."
+            },
+            {
+              "name": "GF",
+              "description": "French Guiana."
+            },
+            {
+              "name": "PF",
+              "description": "French Polynesia."
+            },
+            {
+              "name": "TF",
+              "description": "French Southern Territories."
+            },
+            {
+              "name": "GA",
+              "description": "Gabon."
+            },
+            {
+              "name": "GM",
+              "description": "Gambia."
+            },
+            {
+              "name": "GE",
+              "description": "Georgia."
+            },
+            {
+              "name": "DE",
+              "description": "Germany."
+            },
+            {
+              "name": "GH",
+              "description": "Ghana."
+            },
+            {
+              "name": "GI",
+              "description": "Gibraltar."
+            },
+            {
+              "name": "GR",
+              "description": "Greece."
+            },
+            {
+              "name": "GL",
+              "description": "Greenland."
+            },
+            {
+              "name": "GD",
+              "description": "Grenada."
+            },
+            {
+              "name": "GP",
+              "description": "Guadeloupe."
+            },
+            {
+              "name": "GT",
+              "description": "Guatemala."
+            },
+            {
+              "name": "GG",
+              "description": "Guernsey."
+            },
+            {
+              "name": "GN",
+              "description": "Guinea."
+            },
+            {
+              "name": "GW",
+              "description": "Guinea-Bissau."
+            },
+            {
+              "name": "GY",
+              "description": "Guyana."
+            },
+            {
+              "name": "HT",
+              "description": "Haiti."
+            },
+            {
+              "name": "HM",
+              "description": "Heard & McDonald Islands."
+            },
+            {
+              "name": "VA",
+              "description": "Vatican City."
+            },
+            {
+              "name": "HN",
+              "description": "Honduras."
+            },
+            {
+              "name": "HK",
+              "description": "Hong Kong SAR."
+            },
+            {
+              "name": "HU",
+              "description": "Hungary."
+            },
+            {
+              "name": "IS",
+              "description": "Iceland."
+            },
+            {
+              "name": "IN",
+              "description": "India."
+            },
+            {
+              "name": "ID",
+              "description": "Indonesia."
+            },
+            {
+              "name": "IR",
+              "description": "Iran."
+            },
+            {
+              "name": "IQ",
+              "description": "Iraq."
+            },
+            {
+              "name": "IE",
+              "description": "Ireland."
+            },
+            {
+              "name": "IM",
+              "description": "Isle of Man."
+            },
+            {
+              "name": "IL",
+              "description": "Israel."
+            },
+            {
+              "name": "IT",
+              "description": "Italy."
+            },
+            {
+              "name": "JM",
+              "description": "Jamaica."
+            },
+            {
+              "name": "JP",
+              "description": "Japan."
+            },
+            {
+              "name": "JE",
+              "description": "Jersey."
+            },
+            {
+              "name": "JO",
+              "description": "Jordan."
+            },
+            {
+              "name": "KZ",
+              "description": "Kazakhstan."
+            },
+            {
+              "name": "KE",
+              "description": "Kenya."
+            },
+            {
+              "name": "KI",
+              "description": "Kiribati."
+            },
+            {
+              "name": "KP",
+              "description": "North Korea."
+            },
+            {
+              "name": "XK",
+              "description": "Kosovo."
+            },
+            {
+              "name": "KW",
+              "description": "Kuwait."
+            },
+            {
+              "name": "KG",
+              "description": "Kyrgyzstan."
+            },
+            {
+              "name": "LA",
+              "description": "Laos."
+            },
+            {
+              "name": "LV",
+              "description": "Latvia."
+            },
+            {
+              "name": "LB",
+              "description": "Lebanon."
+            },
+            {
+              "name": "LS",
+              "description": "Lesotho."
+            },
+            {
+              "name": "LR",
+              "description": "Liberia."
+            },
+            {
+              "name": "LY",
+              "description": "Libya."
+            },
+            {
+              "name": "LI",
+              "description": "Liechtenstein."
+            },
+            {
+              "name": "LT",
+              "description": "Lithuania."
+            },
+            {
+              "name": "LU",
+              "description": "Luxembourg."
+            },
+            {
+              "name": "MO",
+              "description": "Macao SAR."
+            },
+            {
+              "name": "MG",
+              "description": "Madagascar."
+            },
+            {
+              "name": "MW",
+              "description": "Malawi."
+            },
+            {
+              "name": "MY",
+              "description": "Malaysia."
+            },
+            {
+              "name": "MV",
+              "description": "Maldives."
+            },
+            {
+              "name": "ML",
+              "description": "Mali."
+            },
+            {
+              "name": "MT",
+              "description": "Malta."
+            },
+            {
+              "name": "MQ",
+              "description": "Martinique."
+            },
+            {
+              "name": "MR",
+              "description": "Mauritania."
+            },
+            {
+              "name": "MU",
+              "description": "Mauritius."
+            },
+            {
+              "name": "YT",
+              "description": "Mayotte."
+            },
+            {
+              "name": "MX",
+              "description": "Mexico."
+            },
+            {
+              "name": "MD",
+              "description": "Moldova."
+            },
+            {
+              "name": "MC",
+              "description": "Monaco."
+            },
+            {
+              "name": "MN",
+              "description": "Mongolia."
+            },
+            {
+              "name": "ME",
+              "description": "Montenegro."
+            },
+            {
+              "name": "MS",
+              "description": "Montserrat."
+            },
+            {
+              "name": "MA",
+              "description": "Morocco."
+            },
+            {
+              "name": "MZ",
+              "description": "Mozambique."
+            },
+            {
+              "name": "MM",
+              "description": "Myanmar (Burma)."
+            },
+            {
+              "name": "NA",
+              "description": "Namibia."
+            },
+            {
+              "name": "NR",
+              "description": "Nauru."
+            },
+            {
+              "name": "NP",
+              "description": "Nepal."
+            },
+            {
+              "name": "NL",
+              "description": "Netherlands."
+            },
+            {
+              "name": "AN",
+              "description": "Netherlands Antilles."
+            },
+            {
+              "name": "NC",
+              "description": "New Caledonia."
+            },
+            {
+              "name": "NZ",
+              "description": "New Zealand."
+            },
+            {
+              "name": "NI",
+              "description": "Nicaragua."
+            },
+            {
+              "name": "NE",
+              "description": "Niger."
+            },
+            {
+              "name": "NG",
+              "description": "Nigeria."
+            },
+            {
+              "name": "NU",
+              "description": "Niue."
+            },
+            {
+              "name": "NF",
+              "description": "Norfolk Island."
+            },
+            {
+              "name": "MK",
+              "description": "North Macedonia."
+            },
+            {
+              "name": "NO",
+              "description": "Norway."
+            },
+            {
+              "name": "OM",
+              "description": "Oman."
+            },
+            {
+              "name": "PK",
+              "description": "Pakistan."
+            },
+            {
+              "name": "PS",
+              "description": "Palestinian Territories."
+            },
+            {
+              "name": "PA",
+              "description": "Panama."
+            },
+            {
+              "name": "PG",
+              "description": "Papua New Guinea."
+            },
+            {
+              "name": "PY",
+              "description": "Paraguay."
+            },
+            {
+              "name": "PE",
+              "description": "Peru."
+            },
+            {
+              "name": "PH",
+              "description": "Philippines."
+            },
+            {
+              "name": "PN",
+              "description": "Pitcairn Islands."
+            },
+            {
+              "name": "PL",
+              "description": "Poland."
+            },
+            {
+              "name": "PT",
+              "description": "Portugal."
+            },
+            {
+              "name": "QA",
+              "description": "Qatar."
+            },
+            {
+              "name": "CM",
+              "description": "Cameroon."
+            },
+            {
+              "name": "RE",
+              "description": "R\u00e9union."
+            },
+            {
+              "name": "RO",
+              "description": "Romania."
+            },
+            {
+              "name": "RU",
+              "description": "Russia."
+            },
+            {
+              "name": "RW",
+              "description": "Rwanda."
+            },
+            {
+              "name": "BL",
+              "description": "St. Barth\u00e9lemy."
+            },
+            {
+              "name": "SH",
+              "description": "St. Helena."
+            },
+            {
+              "name": "KN",
+              "description": "St. Kitts & Nevis."
+            },
+            {
+              "name": "LC",
+              "description": "St. Lucia."
+            },
+            {
+              "name": "MF",
+              "description": "St. Martin."
+            },
+            {
+              "name": "PM",
+              "description": "St. Pierre & Miquelon."
+            },
+            {
+              "name": "WS",
+              "description": "Samoa."
+            },
+            {
+              "name": "SM",
+              "description": "San Marino."
+            },
+            {
+              "name": "ST",
+              "description": "S\u00e3o Tom\u00e9 & Pr\u00edncipe."
+            },
+            {
+              "name": "SA",
+              "description": "Saudi Arabia."
+            },
+            {
+              "name": "SN",
+              "description": "Senegal."
+            },
+            {
+              "name": "RS",
+              "description": "Serbia."
+            },
+            {
+              "name": "SC",
+              "description": "Seychelles."
+            },
+            {
+              "name": "SL",
+              "description": "Sierra Leone."
+            },
+            {
+              "name": "SG",
+              "description": "Singapore."
+            },
+            {
+              "name": "SX",
+              "description": "Sint Maarten."
+            },
+            {
+              "name": "SK",
+              "description": "Slovakia."
+            },
+            {
+              "name": "SI",
+              "description": "Slovenia."
+            },
+            {
+              "name": "SB",
+              "description": "Solomon Islands."
+            },
+            {
+              "name": "SO",
+              "description": "Somalia."
+            },
+            {
+              "name": "ZA",
+              "description": "South Africa."
+            },
+            {
+              "name": "GS",
+              "description": "South Georgia & South Sandwich Islands."
+            },
+            {
+              "name": "KR",
+              "description": "South Korea."
+            },
+            {
+              "name": "SS",
+              "description": "South Sudan."
+            },
+            {
+              "name": "ES",
+              "description": "Spain."
+            },
+            {
+              "name": "LK",
+              "description": "Sri Lanka."
+            },
+            {
+              "name": "VC",
+              "description": "St. Vincent & Grenadines."
+            },
+            {
+              "name": "SD",
+              "description": "Sudan."
+            },
+            {
+              "name": "SR",
+              "description": "Suriname."
+            },
+            {
+              "name": "SJ",
+              "description": "Svalbard & Jan Mayen."
+            },
+            {
+              "name": "SE",
+              "description": "Sweden."
+            },
+            {
+              "name": "CH",
+              "description": "Switzerland."
+            },
+            {
+              "name": "SY",
+              "description": "Syria."
+            },
+            {
+              "name": "TW",
+              "description": "Taiwan."
+            },
+            {
+              "name": "TJ",
+              "description": "Tajikistan."
+            },
+            {
+              "name": "TZ",
+              "description": "Tanzania."
+            },
+            {
+              "name": "TH",
+              "description": "Thailand."
+            },
+            {
+              "name": "TL",
+              "description": "Timor-Leste."
+            },
+            {
+              "name": "TG",
+              "description": "Togo."
+            },
+            {
+              "name": "TK",
+              "description": "Tokelau."
+            },
+            {
+              "name": "TO",
+              "description": "Tonga."
+            },
+            {
+              "name": "TT",
+              "description": "Trinidad & Tobago."
+            },
+            {
+              "name": "TA",
+              "description": "Tristan da Cunha."
+            },
+            {
+              "name": "TN",
+              "description": "Tunisia."
+            },
+            {
+              "name": "TR",
+              "description": "T\u00fcrkiye."
+            },
+            {
+              "name": "TM",
+              "description": "Turkmenistan."
+            },
+            {
+              "name": "TC",
+              "description": "Turks & Caicos Islands."
+            },
+            {
+              "name": "TV",
+              "description": "Tuvalu."
+            },
+            {
+              "name": "UG",
+              "description": "Uganda."
+            },
+            {
+              "name": "UA",
+              "description": "Ukraine."
+            },
+            {
+              "name": "AE",
+              "description": "United Arab Emirates."
+            },
+            {
+              "name": "GB",
+              "description": "United Kingdom."
+            },
+            {
+              "name": "US",
+              "description": "United States."
+            },
+            {
+              "name": "UM",
+              "description": "U.S. Outlying Islands."
+            },
+            {
+              "name": "UY",
+              "description": "Uruguay."
+            },
+            {
+              "name": "UZ",
+              "description": "Uzbekistan."
+            },
+            {
+              "name": "VU",
+              "description": "Vanuatu."
+            },
+            {
+              "name": "VE",
+              "description": "Venezuela."
+            },
+            {
+              "name": "VN",
+              "description": "Vietnam."
+            },
+            {
+              "name": "VG",
+              "description": "British Virgin Islands."
+            },
+            {
+              "name": "WF",
+              "description": "Wallis & Futuna."
+            },
+            {
+              "name": "EH",
+              "description": "Western Sahara."
+            },
+            {
+              "name": "YE",
+              "description": "Yemen."
+            },
+            {
+              "name": "ZM",
+              "description": "Zambia."
+            },
+            {
+              "name": "ZW",
+              "description": "Zimbabwe."
+            },
+            {
+              "name": "ZZ",
+              "description": "Unknown Region."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "validationReceipts": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "## Validation Summary\n\n**Overall Status:** \u2705 VALID\n**Total Code Blocks:** 2\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** 49b73f1a-09a6-4f96-8e72-dc431c6153bc\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** \u2705 SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_markets, write_markets, read_locales, read_markets_home, read_products\n\n### Code Block 2\n**Artifact ID:** ee53f62c-61a2-4d1d-87d0-19c4d841acfb\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** \u2705 SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_markets, write_markets, read_locales, read_markets_home, read_publications, read_products, read_product_listings\n\n"
+        }
+      ],
+      "isError": false
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "## Validation Summary\n\n**Overall Status:** \u2705 VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** 5ee851de-6a0d-434f-a46a-e7c4c35a68af\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** \u2705 SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_markets, write_markets, read_products, read_locales, read_markets_home\n\n"
+        }
+      ],
+      "isError": false
+    }
+  ],
+  "documentation": [
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/2026-07/queries/marketsResolvedValues",
+      "relevance": "Resolved country signal returns effective currency, catalogs and prioritized web presences; docs script and connector both read."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/MarketWebPresence",
+      "relevance": "Default/alternate languages and root URLs; fallback to primary domain when no explicit market presence; docs script and schema read."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/MarketRegionCountry",
+      "relevance": "currency is the currency given market settings, not necessarily domestic legal-tender currency; web and schema read."
+    }
+  ],
+  "cliValidation": {
+    "queryArtifactIds": [
+      "49b73f1a-09a6-4f96-8e72-dc431c6153bc",
+      "ee53f62c-61a2-4d1d-87d0-19c4d841acfb",
+      "5ee851de-6a0d-434f-a46a-e7c4c35a68af"
+    ],
+    "allPassed": true,
+    "scope": "Same exact three operations also passed installed skill validate.mjs; connector receipts preserved above."
+  },
+  "sanitization": "Generic non-store example URLs in schema descriptions replaced with DOCUMENTATION_EXAMPLE_URL; type/field/argument names and data unchanged."
+}

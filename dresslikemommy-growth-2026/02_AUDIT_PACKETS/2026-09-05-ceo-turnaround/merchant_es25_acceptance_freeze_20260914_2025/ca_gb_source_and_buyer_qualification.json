@@ -1,0 +1,96 @@
+{
+  "action": "TA07-CA-GB-QUALIFY-20260914-1917",
+  "validatedAt": "2026-09-14T19:39:48.845092+00:00",
+  "status": "COMPLETE_CURRENT_SOURCE_QUALIFIED__RELEASE_BLOCKED_BY_BUYER_AND_DELIVERY",
+  "markets": [
+    {
+      "market": "ca-en",
+      "sourceCompletedAt": "2026-09-14T19:22:54.827Z",
+      "sourceSha256": "91dc9a79e2a15ca335e3182f7a6d8d352a656c80569678504c9bd32d080e6e88",
+      "parents": 238,
+      "variants": 4925,
+      "partition": {
+        "potential_not_uploadable": 4741,
+        "unavailable": 22,
+        "existing_parent_hold": 162
+      },
+      "priceCurrencyValidated": 4925,
+      "pilotPrice": {
+        "amount": "26.0",
+        "currencyCode": "CAD"
+      },
+      "deltaVsStaleSep11": {
+        "added": 0,
+        "removed": 20,
+        "retained": 4741,
+        "price_changed": 350
+      },
+      "fileProduced": false,
+      "landingContextVerified": false,
+      "deliveryTruthVerified": false
+    },
+    {
+      "market": "gb-en",
+      "sourceCompletedAt": "2026-09-14T19:25:28.716Z",
+      "sourceSha256": "2b26be2a9db344a906b91cbf8b8c5042a01cf91def889e6e1093e266bf1bc12b",
+      "parents": 238,
+      "variants": 4925,
+      "partition": {
+        "potential_not_uploadable": 4741,
+        "unavailable": 22,
+        "existing_parent_hold": 162
+      },
+      "priceCurrencyValidated": 4925,
+      "pilotPrice": {
+        "amount": "14.0",
+        "currencyCode": "GBP"
+      },
+      "deltaVsStaleSep11": {
+        "added": 0,
+        "removed": 20,
+        "retained": 4741,
+        "price_changed": 1084
+      },
+      "fileProduced": false,
+      "landingContextVerified": false,
+      "deliveryTruthVerified": false
+    }
+  ],
+  "holdSourceSha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+  "holdScope": "Same six known parent holds conservatively preserved for qualification; original US/AU hold file unchanged. No new market upload or source created.",
+  "buyer": {
+    "variantId": "39756755861601",
+    "CA": {
+      "numericUrlPreselection": "FAILED: Mother default; size/color unselected;26–34CAD range",
+      "manualSelectionCart": "Child2–3yearsBlack/1quantity/26CAD",
+      "checkout": "Canada selected;26CAD;Free Standard Shipping;no delivery estimate",
+      "publishedPdpEstimate": "September26–30",
+      "merchantConfiguredDays": [
+        5,
+        6
+      ]
+    },
+    "GB": {
+      "checkout": "United Kingdom selected;14GBP;Free Standard Shipping;no delivery estimate",
+      "numericUrlPreselection": "Not newly tested; prior MAIN failure and separate UX draft evidence retained",
+      "merchantConfiguredDays": [
+        9,
+        15
+      ]
+    },
+    "testData": "Public nonpersonal test destinations; no email,name,phone or payment data entered; no order placed. Address/city/postcode cleared and country restored US. Final cart0 verified.",
+    "timeBasis": "Browser observations occurred during this source collection session; per-click timestamps were not captured."
+  },
+  "UX": {
+    "sourceReceipt": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/couples-grid-repair/US_SPANISH_VARIANTS-20260914.json",
+    "sha256": "e71282505d5cf241d500663d09bdddf13382a648529584cd37f11287eb84ca4b",
+    "browserObservedAt": [
+      "2026-09-14T18:39:40.473Z",
+      "2026-09-14T18:40:38.260Z"
+    ],
+    "scope": "Both exact US/es cases pass in existing unpublished theme137888792673. Not current MAIN or Canada/UK proof.",
+    "activationGate": "Owner Shopify Admin publication of already authorized existing candidate; connector blocks theme publishing and MAIN writes."
+  },
+  "requiredOwnerInformation": "Supplier-backed CA/UK standard transit business-day ranges asked asynchronously; answer pending.",
+  "nextAction": "Retain fresh source while resolving exact published buyer and actual delivery requirements; do not substitute stale files or assumed transit."
+}

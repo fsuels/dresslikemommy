@@ -1,0 +1,156 @@
+{
+  "schema": "dlm.microsoft.local_launch_contract.v1",
+  "decision_id": "DLM-DEC-2026-09-11-MICROSOFT-LAUNCH-RECONCILIATION",
+  "status": "NO_GO_FOR_ACTIVATION__LOCAL_REVIEW_ONLY",
+  "not_a_microsoft_import_file": true,
+  "user_research": {
+    "path": "/Users/fsuels/.codex/attachments/fcad2a44-3b3a-4a26-a400-6fc7e03183a9/pasted-text.txt",
+    "sha256": "a805de18e3f66af65454d633f9d93d5ee9cc2792e733ae744928a4e056af7a2b",
+    "research_date": "2026-09-10"
+  },
+  "existing_account": {
+    "account_id": "477439",
+    "customer_id": "770182",
+    "uet_id": "36005151",
+    "app_pixel_id": "931561569",
+    "current_native_readback": false,
+    "microsoft_merchant_store_id": null,
+    "catalog_id": null,
+    "primary_purchase_goal_id": null
+  },
+  "history": "Dated September6/9 account evidence and Smart163000100 exclusion preserved; account is not assumed new or history-free",
+  "selected_first_market": {
+    "country": "US",
+    "language": "en",
+    "currency": "USD",
+    "status": "PRIMARY_PREPARATION_CANDIDATE_NOT_APPROVED_ACTIVATION"
+  },
+  "selection": {
+    "first_paid_campaign_type": null,
+    "maximum_simultaneous_initial_paid_experiments": 1,
+    "shopping_branch": {
+      "name": "US_EN_Shopping_Core_Prospecting",
+      "type": "STANDARD_SHOPPING",
+      "subtype": "SEARCH",
+      "save_status": "Paused",
+      "approved_offer_ids": [],
+      "everything_else": "EXCLUDED",
+      "bid_strategy": null,
+      "bid_strategy_candidate": "Maximize Clicks only if current native Shopping supports and preserves effective0.15USD Max CPC; Enhanced CPC base bid is not a hard cap",
+      "daily_budget": null,
+      "conditional_gates": [
+        "Current correct Microsoft Merchant store and approved exact variant offer IDs",
+        "Actual item/size/purchase-unit/price/image and fulfillment qualification",
+        "Account-supported bid control satisfying owner0.15CPC constraint or explicit changed constraint",
+        "Effective geography/network/consent/purchase checks",
+        "Exact campaign review and owner cash/loss/activation approval"
+      ]
+    },
+    "search_branch": {
+      "source": "../campaign_plan.md and existing local USEN dress rows",
+      "save_status": "Paused",
+      "scope": "One USEN dress ad group; three existing exact keywords and one existing RSA after requalification",
+      "bid_strategy_candidate": "Maximize Clicks ONLY if native0.15USD Max CPC exists and persists; it optimizes clicks, not buyers",
+      "daily_budget": null,
+      "ai_max_and_expansion": {
+        "ai_max": "OFF; record current saved state",
+        "search_term_matching": "OFF; inspect dependent control",
+        "text_customization": "OFF; inspect dependent control",
+        "final_url_expansion": "OFF; inspect dependent control",
+        "scheduled_imports_and_auto_apply": "Inspect whether they can restore expansion; do not infer disablement from campaign status"
+      },
+      "conditional_gates": [
+        "Matched available landing and genuine purchase signal",
+        "Current query/native country/language/network/bid-control readback",
+        "Exact review and owner cash/loss/activation approval"
+      ]
+    },
+    "decision_rule": "Narrow US Search is the first preparation candidate; choose Standard Shopping instead only when approved exact offers and equivalent economics, measurement, landing and cost-control gates support it. No US winner or cheaper Shopping CPC inferred. Never enable both simply because both are prepared."
+  },
+  "international": {
+    "published_locales": [
+      "ar",
+      "cs",
+      "da",
+      "de",
+      "el",
+      "en",
+      "es",
+      "fi",
+      "fr",
+      "he",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "no",
+      "pl",
+      "pt-BR",
+      "ro",
+      "ru",
+      "sv"
+    ],
+    "active_markets": [
+      {
+        "id": "gid://shopify/Market/22986424417",
+        "name": "Australia",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Market/22986326113",
+        "name": "Canada",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Market/544800865",
+        "name": "Eurozone",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Market/544866401",
+        "name": "International",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Market/22986260577",
+        "name": "United Kingdom",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Market/544735329",
+        "name": "United States",
+        "status": "ACTIVE"
+      }
+    ],
+    "countries": "65distinct countries is September9 evidence, not refreshed by current market-names query",
+    "search_reserves": "Existing9-language/11design library preserved; Germany provisional next country, Denmark alternate; others local reserves. Choose only after current demand/fulfillment/CPC evidence.",
+    "shopify_channel_feed_language": "Official native integration documents English; this does not make all Shopify markets English or limit the integration to US",
+    "localized_shopping": "Separate supported Microsoft catalog/feed language and country/label mapping requires account verification; no automatic propagation from21Shopify locales inferred"
+  },
+  "measurement": {
+    "installed_source": "Last exact bundle verified2026-09-10T00:37:28Z; no new tag or code edit in this plan",
+    "event_source": "Current audited app uses checkout_completed; rawshop-wpa sends merchandise subtotal/currency; distinct legacy storefront source preserved pending receiver evidence",
+    "purchase_goal": "Choose one verified primary purchase goal after current receiver mapping; preserve secondary reporting and completed Smart exclusion",
+    "identity": "Stable logical order identity needed for reconciliation; bind any platform order/event identifier only to documented supported fields. Do not guess product offer ID shape.",
+    "pre_activation_gate": "Authorized functional purchase/value/currency/consent/repeat-delivery proof can be obtained without a prior ad click; use actual confirmed order evidence and permitted tests",
+    "post_activation_gate": "Legitimate paid-click attribution and spend/qualified-traffic monitoring after bounded activation; required before scale, never fabricate production events",
+    "refunds": "Business ledger adjusts actual refunds independently. Automatic Shopify-to-Microsoft refund sync is unverified.",
+    "publisher_cookie_defect": "Previously reproduced malformedmsclkid cookie with90daylocalStorage fallback; source remains publisher-managed, real loss unknown, no installed repair claimed"
+  },
+  "authority": {
+    "new_spend": false,
+    "numeric_launch_budget": null,
+    "owner_test_loss": null,
+    "manual_review_required_for_proposed_bids_budgets_targeting_goals_creative": true,
+    "current_nonspend_repair_request_preserved": true,
+    "full_paid_scope": "NONE"
+  },
+  "access": {
+    "status": "WAITING_EXACT_MICROSOFT_SELECTED_TAB_READINESS",
+    "today_native_calls": 0,
+    "owner_activity_preserved": true,
+    "prior_specific_auto_review_gate_preserved": true
+  },
+  "rollback": "No external mutation in this packet. Preserve old campaigns and sources. Before any later saved configuration bind exact before-state and inverse settings; new campaigns explicitly Paused."
+}

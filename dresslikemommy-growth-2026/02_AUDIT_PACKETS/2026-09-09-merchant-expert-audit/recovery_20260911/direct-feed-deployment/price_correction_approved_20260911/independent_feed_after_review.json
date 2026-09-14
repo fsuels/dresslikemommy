@@ -1,0 +1,170 @@
+{
+  "schema": "dlm.independent_approved_five_price_feed_review.v1",
+  "status": "PASS",
+  "reviewed_at_utc": "2026-09-11T17:19:53.992251+00:00",
+  "reviewer": "/root/together_heart_source",
+  "independence": "DID_NOT_BUILD_FEED_OR_EXECUTE_SHOPIFY_REPAIR",
+  "authority_provenance": "Parent reports current owner approval and successful five-price Shopify repair; this reviewer verifies only the two bound local feed versions. Merchant01a08706 remains sole shared/feed/R2 executor.",
+  "sources": {
+    "before": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-build/first_release_v2/us-en.tsv",
+      "sha256": "e96faeeb86a64898e3564581997ffde427bd593f061cf02a4dc19244520621c5",
+      "bytes": 17166462
+    },
+    "after": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/refreshed_feed/us-en.tsv",
+      "sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+      "bytes": 17166442
+    }
+  },
+  "checks_passed": 12,
+  "checks_total": 12,
+  "checks": [
+    {
+      "check": "Exact frozen and refreshed hashes",
+      "status": "PASS",
+      "detail": "Both file identities match the assignment; parser reads the actual TSV bytes."
+    },
+    {
+      "check": "Real TSV parse and4923 complete data records",
+      "status": "PASS",
+      "detail": "csv.DictReader over StringIO with strict parsing retains quoted newlines and exact field values."
+    },
+    {
+      "check": "All18 columns and order preserved",
+      "status": "PASS",
+      "detail": "Complete ordered header equality."
+    },
+    {
+      "check": "All4923 unique IDs and row order preserved",
+      "status": "PASS",
+      "detail": "Exact identifier equality, uniqueness and row ordering; no missing or added offer."
+    },
+    {
+      "check": "All240 parent groups and memberships preserved",
+      "status": "PASS",
+      "detail": "Group equals the exact product-ID component for every offer in both versions; parent membership unchanged."
+    },
+    {
+      "check": "Exact numeric variant links verified on every row",
+      "status": "PASS",
+      "detail": "All4923 links in each version contain exactly one variant query pair matching the full numeric Shopify variant suffix; no substring comparisons."
+    },
+    {
+      "check": "Exactly five approved offer records changed",
+      "status": "PASS",
+      "detail": "Changed records bind exactly to the five approved Adult2XL variant IDs under product7230336729185."
+    },
+    {
+      "check": "Only five price fields changed229918.99USD to22.99USD",
+      "status": "PASS",
+      "detail": "All17 non-price fields in affected rows remain exact; approved replacement price is22.99USD."
+    },
+    {
+      "check": "All4918 other rows identical",
+      "status": "PASS",
+      "detail": "Exact complete parsed-row equality for every unaffected offer, including descriptions, URLs and identifiers."
+    },
+    {
+      "check": "Paid exclusions and availability preserved",
+      "status": "PASS",
+      "detail": "All4923 rows retain Shopping_ads exclusion and their existing in_stock declaration."
+    },
+    {
+      "check": "Only approved raw byte replacements",
+      "status": "PASS",
+      "detail": "The entire byte stream differs solely through the five reviewed price replacements, with no formatting or other hidden changes; size reduces by20bytes."
+    },
+    {
+      "check": "No source drift during verification",
+      "status": "PASS",
+      "detail": "Both inspected files are unchanged at the final read."
+    }
+  ],
+  "counts": {
+    "data_rows_before": 4923,
+    "data_rows_after": 4923,
+    "unique_ids": 4923,
+    "parent_groups": 240,
+    "changed_rows": 5,
+    "changed_cells": 5,
+    "unchanged_other_rows": 4918,
+    "preserved_nonprice_cells_in_changed_rows": 85,
+    "variant_links_exact_before": 4923,
+    "variant_links_exact_after": 4923
+  },
+  "exact_deltas": [
+    {
+      "record_ordinal_including_header": 1844,
+      "id": "shopify_US_7230336729185_41883237220449",
+      "variant_id": "41883237220449",
+      "size": "Adult 2XL",
+      "color": "White",
+      "changed_fields": {
+        "price": {
+          "before": "229918.99 USD",
+          "after": "22.99 USD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1845,
+      "id": "shopify_US_7230336729185_41883237285985",
+      "variant_id": "41883237285985",
+      "size": "Adult 2XL",
+      "color": "Blue",
+      "changed_fields": {
+        "price": {
+          "before": "229918.99 USD",
+          "after": "22.99 USD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1846,
+      "id": "shopify_US_7230336729185_41883237318753",
+      "variant_id": "41883237318753",
+      "size": "Adult 2XL",
+      "color": "Pink",
+      "changed_fields": {
+        "price": {
+          "before": "229918.99 USD",
+          "after": "22.99 USD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1847,
+      "id": "shopify_US_7230336729185_41883238465633",
+      "variant_id": "41883238465633",
+      "size": "Adult 2XL",
+      "color": "Black",
+      "changed_fields": {
+        "price": {
+          "before": "229918.99 USD",
+          "after": "22.99 USD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1848,
+      "id": "shopify_US_7230336729185_41883238498401",
+      "variant_id": "41883238498401",
+      "size": "Adult 2XL",
+      "color": "Red",
+      "changed_fields": {
+        "price": {
+          "before": "229918.99 USD",
+          "after": "22.99 USD"
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "This verifies local rebuilt feed bytes only. No Shopify, R2 deployment, account, native browser or Google receiver call was made.",
+    "Google ingestion, processed offer price, account review, approval, serving, traffic, sales and profit remain separate checks.",
+    "Existing in_stock is a preserved feed declaration, not independent proof of current Shopify salability or owned physical inventory.",
+    "No price, title, description, identity, availability, exclusion or other source field was written by this reviewer; only this independent receipt was created."
+  ],
+  "next_action": "Merchant may use this exact reviewed feed hash for its currently authorized deployment and receiving readback; preserve separate approval and serving gates."
+}

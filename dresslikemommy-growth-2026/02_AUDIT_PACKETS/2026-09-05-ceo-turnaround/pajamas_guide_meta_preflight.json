@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS",
+  "reviewed_at_utc": "2026-09-06T17:51:06.327479+00:00",
+  "reviewer": "/root/historical_google_access_paths",
+  "execution_plan_builder_and_sole_external_writer": "/root",
+  "independence_boundary": "Reviewer previously drafted the151-character copy, but did not build this mutation/query/execution plan or execute it. This is the independent technical execution/guard review, not a claim of independent authorship of the copy.",
+  "source_hashes_sha256": {
+    "pajamas_guide_meta_before.json": "2165d2fa6e1bd304e149c5ae77a03f381769d8e9864d37cd91d12b7cd9a4bc02",
+    "pajamas_guide_meta_description_plan.json": "e7069427183cc2e9e24c9f9c39d7c4722fab23a3221855d949d360a5dc4a0805",
+    "pajamas_guide_meta_description_plan.md": "415d64119d47cae34d29f6aa1f8d417799b9755dae5a5c11cf36398e0be20a55",
+    "pajamas_guide_meta_mutation.graphql": "d6c0d99c08ef43b085ab79f5a84e36bc476b8bd6ac1f2f8c9ee275da71720482",
+    "pajamas_guide_meta_variables.json": "5b2216673fee8d2df932ed89b884b1a6dff668409b42070a85863773b4cc0c00",
+    "pajamas_guide_search_head_readback.json": "971448a9308790a6803aaa631cabc107d29f73bbb7bb65ee579030422edb6ba9",
+    "pajamas_guide_meta_execution_plan.json": "524baa55f3a65ae7aaccff7af6528b4703a4e6bb1587bec35896e9d4bcb2fd06",
+    "pajamas_guide_meta_query.graphql": "5c83e6c00e19224270cd825fac0818e44fae183479c34414cb2071f2a62c82da"
+  },
+  "checks": {
+    "frozen_execution_plan_hash": true,
+    "source_hash_pajamas_guide_meta_before.json": true,
+    "source_hash_pajamas_guide_meta_description_plan.json": true,
+    "source_hash_pajamas_guide_meta_description_plan.md": true,
+    "source_hash_pajamas_guide_meta_mutation.graphql": true,
+    "source_hash_pajamas_guide_meta_variables.json": true,
+    "source_hash_pajamas_guide_search_head_readback.json": true,
+    "candidate_equals_execution_variables": true,
+    "one_metafield_only": true,
+    "exact_owner": true,
+    "exact_reserved_seo_field_type": true,
+    "explicit_create_only_null_digest": true,
+    "no_extra_input_fields": true,
+    "description_and_title_absent": true,
+    "fixed_body_exact": true,
+    "preserved_title_matches_head": true,
+    "copy_exact151_single_line": true,
+    "copy_source_topics_present": true,
+    "single_set_mutation_no_article_update": true,
+    "response_retains_id_value_digest_errors": true,
+    "query_captures_exact_owner_and_both_seo_fields": true,
+    "fresh_entire_returned_state_guard": true,
+    "separate_source_and_main_render_required": true,
+    "rollback_restores_absence": true,
+    "rollback_cas_limit_and_stop_explicit": true,
+    "rollback_validation_required": true,
+    "no_paid_or_selfapproval_authority": true,
+    "parent_reports_both_validators_pass": true,
+    "no_quantitative_lift_or_sparse_click_rollback": true
+  },
+  "passed_count": 29,
+  "check_count": 29,
+  "exact_effect": "Create only absent Article559471886433 global.description_tag as single_line_text_field with the reviewed151-character description and explicit compareDigest:null. No title, body, summary, publication, handle, canonical or definition write.",
+  "docs_verified": [
+    {
+      "url": "https://shopify.dev/docs/apps/build/marketing/optimize-storefront-seo",
+      "supports": "Shopify SEO description_tag uses global namespace and single_line_text_field, including articles."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/mutations/metafieldsSet",
+      "supports": "Atomic operation; explicit null compareDigest guards absent-field creation, unlike omitted digest."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/input-objects/MetafieldIdentifierInput",
+      "supports": "Deletion identifies ownerId/namespace/key; no digest field exists."
+    }
+  ],
+  "skill_applied": "/Users/fsuels/.codex/plugins/cache/openai-curated-remote/shopify/4.0.1/skills/shopify-custom-data/SKILL.md",
+  "skill_scope": "The current task is a reserved Shopify SEO field, not a new app data model. Exact owner one-field scope and the official SEO-specific path govern; no new definition or app scaffolding is justified.",
+  "validator_provenance": "Local+connector validator success is parent-supplied and recorded in the bound plan. Reviewer checked local query/payload/hash consistency and primary docs; did not replay connector validators.",
+  "authority": "Current direct owner repair instruction authorizes this reviewed reversible organic correction; independent review does not create authority or broaden paid controls. Normal platform confirmation remains binding.",
+  "execution_conditions": [
+    "Immediately re-read the exact article; all returned fields and both absent SEO fields must still match the bound before-state.",
+    "Submit only the reviewed mutation/variables through the normal authorized tool; stop on conflict, permission/policy error or uncertain outcome before any retry.",
+    "Require zero userErrors, returned exact field/value/digest, separate source read and actual MAIN head equality, preserving title/body/summary/handle/publication and titleTag absence."
+  ],
+  "rollback_limit": "Deletion has no CAS. Restore absence only if needed after validating the deletion and fresh matching field ID/value/digest with sole-writer coordination. The read/delete gap remains non-atomic; any concurrent writer, drift or ambiguity stops deletion.",
+  "business_limits": [
+    "Complete helpful description replaces a verified midword excerpt; Google may display another snippet.",
+    "No ranking, traffic, sales or profit lift and no product compliance is established."
+  ],
+  "external_account_actions": 0,
+  "canonical_edits": 0,
+  "next_action": "Root may perform the immediately guarded one-field creation, then obtain independent after-state review."
+}

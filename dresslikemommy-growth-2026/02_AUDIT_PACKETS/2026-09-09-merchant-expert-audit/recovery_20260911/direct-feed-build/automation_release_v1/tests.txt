@@ -1,0 +1,47 @@
+✔ 240-parent complete refresh resumes below Free subrequest limit and promotes once (104.309083ms)
+✔ large nested variant pagination remains exact across checkpoint boundaries (5.025ms)
+✔ new, deleted, archived, unpublished, unavailable and returned variants reconcile on every successful run (3.267208ms)
+✔ partial source failure retains previous complete feed and records actionable failure (2.488375ms)
+✔ source mutation during paused read fails reconciliation and preserves old pointer (2.49125ms)
+✔ old delivery repairs a failed continuation send immediately; Cron also recovers a lost message (1.091083ms)
+✔ configuration changes abort in-flight journal without source reads or promotion (0.259625ms)
+✔ unsafe batch size retries without multiplying the per-invocation request budget (0.083917ms)
+✔ checkpoint data contains neither credentials nor URL-bearing source tags (0.931333ms)
+✔ a newer independent promotion wins against an older paused refresh (1.382541ms)
+✔ crash after feed promotion recovers idempotently without another source call (1.097042ms)
+✔ collects every parent and every nested variant page with final reconciliation (16.269959ms)
+✔ 240-parent read exposes its actual scheduled request requirement (4.770375ms)
+✔ country resolver binds exact active market/catalog/currency and catalog exclusion (1.501541ms)
+✔ incomplete variants never become a snapshot (0.127667ms)
+✔ duplicate and repeated pagination identifiers fail closed (0.127875ms)
+✔ changed parent or manifest prevents collection promotion (0.138041ms)
+✔ URL-bearing source tags are omitted without losing exact Final Sale fact (0.566791ms)
+✔ wrong identity, incomplete/future/stale snapshot and manifest mismatch reject (0.336208ms)
+✔ complete replacement removes deleted/unpublished/unavailable rows and readds when buyable (1.476792ms)
+✔ a malformed buyable row invalidates whole replacement, never partial deletes (0.621083ms)
+✔ USD/AUD/CAD/GBP retain exact contextual money, never convert or round (0.780667ms)
+✔ foreign content requires fresh translations and a verified localized landing context (0.479834ms)
+✔ variant identity/image/availability survive and optional identifiers are not invented (0.1605ms)
+✔ GTIN checksum validation preserves leading zeros and reports invalid source barcode (0.418417ms)
+✔ explicit identifier_exists conflict is disclosed and not propagated (0.240583ms)
+✔ child role never inherits adult age from parent or variant contradictory data (0.598583ms)
+✔ policy exceptions require exact source type/taxonomy/tag/gift-card facts (0.098959ms)
+✔ TSV has exact columns, free-listing exclusion, escaped controls and no paid allowlist claim (0.255167ms)
+✔ publish only switches pointer after complete object, and CAS retains newer file (9.447667ms)
+✔ native exception label must be confirmed before any R2 publication (0.865834ms)
+✔ first-file option omits return labels without losing exception diagnostics (0.289ms)
+✔ upstream errors and invalid currency leave previous complete pointer untouched (0.7495ms)
+✔ public endpoint serves exact complete bytes and rejects stale/tampered/disabled/method cases (2.090791ms)
+✔ first release exports only read-only serving and no scheduler (0.057333ms)
+✔ authenticated reader requests only configured Shopify endpoint and redacts upstream failures (0.300042ms)
+✔ streamed bytes, length and digest exactly equal the materialized reference TSV (16.397709ms)
+✔ incorrect declared length cannot promote a truncated stream (1.317167ms)
+✔ R2 immutable-copy failure preserves prior pointer and removes only private staging (0.571ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 166.422333

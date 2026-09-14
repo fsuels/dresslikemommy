@@ -42,7 +42,7 @@ PRINT_NAME = "Blue Daisy"
 SHORTCODE = "BDSY"
 COLOR_TOKEN = "BLUE"
 COLOR_NAME = "Blue Daisy"
-VENDOR_URL = "https://detail.1688.com/offer/1046962900946.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
@@ -315,7 +315,7 @@ def tags() -> list[str]:
         "Boy Shirt", "Father Shirt", "Blue Daisy", "Blue Daisy Floral", "Blue Floral",
         "Blue", "Yellow Floral", "Green", "Floral", "Multicolor", "Summer", "Vacation",
         "Resort", "Sleeveless Dress", "Strappy Dress", "Collared Shirt", "Short Sleeve Shirt",
-        "Dress Shirt Romper", VENDOR_URL,
+        "Dress Shirt Romper",
     ]
     values.extend(row["picker_label"] for row in SIZE_CHART)
     values.extend(row["role"] for row in SIZE_CHART)

@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-14T13:51:36.641340+00:00",
+  "verdict": "PASS_WITH_LIMITS__HOST_AND_GOOGLE_FETCH_RECOVERY_ACCEPTED__NATIVE_REMOVALS_OPEN",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE. Independent local comparison of saved actual execution receipts against exact prior approval, candidate bytes and current claim. No remote/API/browser replay, credentials, source/canonical/code writes or duplicate tests.",
+  "source_bindings": {
+    "approval": {
+      "path": "/private/tmp/dlm-us-freshness-promotion-review-20260914-1236.json",
+      "sha256": "10580fc050f86d61e15ecbcb196dbd9a21b0d603d52b37e2cc915f9e8aa59a51"
+    },
+    "candidate": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/candidate_review_packet.json",
+      "sha256": "6d4784b8526d08a35726988fb2eb6cb40f8c80c90622679c0643b16f8b57a27e"
+    },
+    "host": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/host_promotion_receipt.json",
+      "sha256": "d4377e1ef55e64f35bff178bbfd8b53dc11d6890aae941991280288e901578c6"
+    },
+    "guard": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/promotion_action_time_guard.json",
+      "sha256": "aa0531ce6dac70905d1c07a6787653b043d73dbf6239ab884b3c9b69baeab5b8"
+    },
+    "update_intent": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/native_google_update_intent.json",
+      "sha256": "e54d5c88969524ea56ddb879fc3f2817ebad2803b0bb71bff7617f73f89a49b3"
+    },
+    "google": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/native_google_receiving_result.json",
+      "sha256": "89704f41b7e10d9fa03374c0a337e1603b0b72ddfe5ee6e5320cb172f60c1dd3"
+    },
+    "intent": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/promote.intent.json",
+      "sha256": "d270d89c20df0620da1d13a466427350432637c00b931b5653f8e7186ba5619b"
+    },
+    "result": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/promote.result-20260914T133317275985Z.json",
+      "sha256": "2fc9307ac5db05eb9cdb1de71a36743ede7296432099513ec1a9e7add0dc15e9"
+    },
+    "protected": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/native_protected_after_readback.json",
+      "sha256": "5b027005590b986dcfa73d6a86a2b93cb22e3fcd2172a361a18d15f4074b05bc"
+    },
+    "handoff": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/release_execution_handoff.json",
+      "sha256": "e4e591455b31db4b5f84c3a454d8f8f40757d41df61d32dcab5cf63859fec7a6"
+    },
+    "executor_checks": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/release_receipt_checks.json",
+      "sha256": "88bae140f9f313cf828c8e9273893d5358eb73da26ef93475366dd3b1f38ebad"
+    },
+    "checkpoint_receipt": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/checkpoint_release_receipt.json",
+      "sha256": "f738208e41bdcf4f550c2fd16d3ee2b7bb7aaa85ba09d6075d13e5af6c2c7b35"
+    }
+  },
+  "check_counts": {
+    "total": 24,
+    "passed": 24,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "id": "A01",
+      "name": "All12 frozen source receipts hash-bound",
+      "status": "PASS",
+      "evidence": "Exact approval, candidate, eight execution/after receipts, executor check summary and own checkpoint receipt match their frozen hashes. No source rewritten."
+    },
+    {
+      "id": "A02",
+      "name": "Actual execution binds exact prior approval",
+      "status": "PASS",
+      "evidence": "Same independent26-check approval and all16 fields name this exact US candidate; original approval remains immutable and is not counted as new after-checks."
+    },
+    {
+      "id": "A03",
+      "name": "Claim newline mismatch is local guard history",
+      "status": "PASS",
+      "evidence": "Current exact line33 bytes match the approval; stripping the newline produces a different hash. Earlier preflight stop-before-API is owner-recorded provenance, not a new live replay or changed authorization."
+    },
+    {
+      "id": "A04",
+      "name": "Source-age and action order are valid",
+      "status": "PASS",
+      "evidence": "Guard age1016.603507seconds; committed13:33:17.275931UTC,1026.809931seconds after actual source completion and before the120-minute deadline; native Update followed host commit."
+    },
+    {
+      "id": "A05",
+      "name": "Exactly one saved commit path in this run",
+      "status": "PASS",
+      "evidence": "One promotion intent and one terminal result saved, agreeing with owner counts of one new immutable write/one pointer commit; no claim of system-wide independent network tracing."
+    },
+    {
+      "id": "A06",
+      "name": "Pointer serialization hash differs legitimately from file hash",
+      "status": "PASS",
+      "evidence": "Intent binds compact sorted pointer JSON4ad2a583\u2026; approved formatted manifest6084e8c5\u2026 represents the same parsed object, not an artifact substitution."
+    },
+    {
+      "id": "A07",
+      "name": "Actual committed result reports all guarded readbacks",
+      "status": "PASS",
+      "evidence": "Successful result came from the previously reviewed exact executable path: semantic pointer, complete immutable bytes and Worker metadata verified. This is saved execution evidence, not a second remote read by reviewer."
+    },
+    {
+      "id": "A08",
+      "name": "Hosted body/count/MD5/object binding exact",
+      "status": "PASS",
+      "evidence": "Exact16,504,238-byte body SHA b958ef\u2026/MD5 3a16d106\u2026 and4741 rows match the committed result and SHA-keyed US object."
+    },
+    {
+      "id": "A09",
+      "name": "Reviewed source/code/holds/config remain unchanged",
+      "status": "PASS",
+      "evidence": "All15 approval artifact hashes remain unchanged. Source timestamp/holds/frozen reader/uploader/config preserved; execution reports no credential, Worker or scheduler change."
+    },
+    {
+      "id": "A10",
+      "name": "Native exact source and free-listing identity",
+      "status": "PASS",
+      "evidence": "Exact existing US source10727274744/account513542500, US/en/US feed label and Free listings, with no new source or paid destination."
+    },
+    {
+      "id": "A11",
+      "name": "One enabled native Update after host receipt",
+      "status": "PASS",
+      "evidence": "Owner records one normal enabled Update after exact host commit and parent dispatch. No repeated Update or processing-in-progress click is evidenced."
+    },
+    {
+      "id": "A12",
+      "name": "Native time conversion stays qualified",
+      "status": "PASS",
+      "evidence": "Literal September14 9:34:09AM converts to13:34:09UTC using the stated New York context. This is not a separately verified Merchant account timezone or click timestamp."
+    },
+    {
+      "id": "A13",
+      "name": "Transient zero is preserved and superseded",
+      "status": "PASS",
+      "evidence": "Initial13:34:33 transient0/0 remains documented; later13:34:55 history result4741/0 controls. These are feed-processing counts, not orders or additions inferred from source totals."
+    },
+    {
+      "id": "A14",
+      "name": "Native fetch connection failure cleared in latest result",
+      "status": "PASS",
+      "evidence": "Before failure and after successful processing are explicit. No exact original network-root-cause proof or every-offer eligibility improvement is inferred."
+    },
+    {
+      "id": "A15",
+      "name": "Native source count gap remains unresolved",
+      "status": "PASS",
+      "evidence": "Source header/list still4761 through13:42:26UTC versus4741 processed. Full20 exact-ID native removals are not verified; possible lag is not proven or promised."
+    },
+    {
+      "id": "A16",
+      "name": "Second source tab is same-operator confirmation",
+      "status": "PASS",
+      "evidence": "The executor opened a separate task-owned tab for corroboration. The name independent_native_reopen does not mean an independent operator or this reviewer performed a live read."
+    },
+    {
+      "id": "A17",
+      "name": "Six completed protected offers match all candidate prices",
+      "status": "PASS",
+      "evidence": "Completed frozen six-offer receipt matches five corrected22.99USD variants and the17.99USD pilot, all distinct exact expected IDs; no partial receipt accepted."
+    },
+    {
+      "id": "A18",
+      "name": "Protected status and timestamp limits maintained",
+      "status": "PASS",
+      "evidence": "Allsix displayed Approved/In stock/Free listings/US after native processing. Last update33hrs ago remains: no proof each record was rewritten at13:34, no per-offer impressions/sales or blanket4741approval claim."
+    },
+    {
+      "id": "A19",
+      "name": "Refresh clocks derive from real source completion",
+      "status": "PASS",
+      "evidence": "Real source13:16:10.466 remains unchanged; host48hour limit isSep16 13:16:10.466UTC. No timestamp restamping or guaranteed producer uptime."
+    },
+    {
+      "id": "A20",
+      "name": "Existing future schedule is context-based, not executed",
+      "status": "PASS",
+      "evidence": "Next existing midnight schedule computesSep15 04:00UTC under retained New York context; future execution and account timezone independently unverified. No schedule change or automation created."
+    },
+    {
+      "id": "A21",
+      "name": "Rollback/byte/removal limits stay explicit",
+      "status": "PASS",
+      "evidence": "Before pointer was expired at promotion and never claimed healthy rollback. Hosted bytes are verified by execution; Google-received byte equality, full20 native removals and full162 native absence remain unproved."
+    },
+    {
+      "id": "A22",
+      "name": "No unrelated effect or public transport retry claimed",
+      "status": "PASS",
+      "evidence": "Scope remains existing US object/pointer plus one nativeUpdate. No AU/policy/StoreQuality/paid/Shopify/theme/security/credential changes. Pink loading timeout and one normal reload remain recorded; no secondUpdate."
+    },
+    {
+      "id": "A23",
+      "name": "Executor check and checkpoint receipts are qualified",
+      "status": "PASS",
+      "evidence": "Executor18 checks are not counted as independent live evidence. Its own checkpoint-addition receipt is bound; full checkpoint before/after preservation was not independently replayed in this narrow source review."
+    },
+    {
+      "id": "A24",
+      "name": "Final source stability and original approval preservation",
+      "status": "PASS",
+      "evidence": "All12 receipts and current claim33 remain unchanged at review close; prior approval preserved exactly."
+    }
+  ],
+  "source_completed_at": "2026-09-14T13:16:10.466Z",
+  "host_commit_at_utc": "2026-09-14T13:33:17.275931+00:00",
+  "native_history_time_literal": "Sep 14, 2026 9:34:09 AM",
+  "native_history_time_utc_from_NY_context": "2026-09-14T13:34:09Z",
+  "account_timezone_independently_verified": false,
+  "single_writer_claim": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/ops/AGENT_COORDINATION.md",
+    "line": 33,
+    "sha256_with_newline": "b58385f824d09e9f52695d45ee936f53cdd79fee3eb8c43c881750c0759dd943",
+    "stripped_newline_sha256": "d4846eadd189f6bf2bbfa239c57498c15ba527a9e2d22802f0ea052676340ab1",
+    "authority_changed": false
+  },
+  "accepted_outcome": {
+    "host_pointer_commits": 1,
+    "new_immutable_writes": 1,
+    "host_rows": 4741,
+    "host_feed_sha256": "b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571",
+    "google_update_clicks": 1,
+    "google_products_processed": 4741,
+    "google_new_products": 0,
+    "google_file_result": "Your products are updated / All recognized / No issues found",
+    "prior_connection_failed_cleared": true,
+    "protected_offer_count": 6,
+    "protected_prices_verified": "Five22.99USD; pilot17.99USD",
+    "protected_display_status": "Approved / In stock / Free listings / United States",
+    "protected_per_offer_rewrite_time_proved": false
+  },
+  "unresolved_findings": [],
+  "limited_acceptance": [
+    "Native source/header/filter remain4761 through13:42:26.174UTC. The20 exact native removals and complete162held absence remain unverified; do not promise processing-lag resolution.",
+    "Current protected Approved status is observed for six only; Last update33hrs ago limits rewrite claims. No all-offer approval, impressions, orders, paid attribution, ROAS or profit measured.",
+    "No independent Google file-byte comparison and no independent native replay. Second-tab native read was the same owner.",
+    "Native9:34:09AM conversion and next midnight schedule use retained New York context, not independently verified current account timezone.",
+    "Execution reports prove the scoped successful host/fetch path; the exact original connection-failure cause is not separately established.",
+    "Own checkpoint preservation is executor-reported and hash-bound; this review did not reread entire shared/canonical ledgers."
+  ],
+  "guard_failure_history": {
+    "event": "Earlier local preflight hashed a newline-stripped claim and stopped before lifecycle/API execution per saved owner receipt.",
+    "resolution": "Exact newline-preserving line matches existing approval and current claim. No authority change, bypass or failed remote retry inferred.",
+    "independent_reproduction": "Only the hash-convention mismatch was independently recomputed; no replay of the failed process."
+  },
+  "rollback": "Old pointer already expired; no restore or timestamp renewal was performed. Preserve old bytes for evidence; any necessary recovery requires fresh source-true contained data and exact reviewed readback.",
+  "next_action": "At the next existing parent follow-up, Merchant performs a bounded source-count/exact20-ID read without another Update; arrange a genuinely fresh reviewed source scan beforeSep16 13:16:10.466UTC.",
+  "production_authorization_granted": false,
+  "boundaries": {
+    "external_reads": 0,
+    "external_writes": 0,
+    "credential_reads": 0,
+    "source_or_code_edits": 0,
+    "canonical_edits": 0,
+    "new_tasks_agents_automations": 0
+  }
+}

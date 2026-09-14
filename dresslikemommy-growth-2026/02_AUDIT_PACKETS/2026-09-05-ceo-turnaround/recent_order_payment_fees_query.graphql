@@ -1,0 +1,15 @@
+query RecentGrowthOrderFees($filter: String!) {
+ shop { name currencyCode }
+ orders(first: 50, query: $filter) {
+  nodes {
+   createdAt test cancelledAt displayFinancialStatus displayFulfillmentStatus sourceName
+   currentTotalPriceSet { shopMoney { amount currencyCode } }
+   transactions {
+    kind status test gateway createdAt processedAt
+    amountSet { shopMoney { amount currencyCode } }
+    fees { type amount { amount currencyCode } taxAmount { amount currencyCode } }
+   }
+  }
+  pageInfo { hasNextPage endCursor }
+ }
+}

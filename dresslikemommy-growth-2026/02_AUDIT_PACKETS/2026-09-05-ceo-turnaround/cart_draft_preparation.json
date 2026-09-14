@@ -1,0 +1,379 @@
+{
+  "classification": "LOCAL_RECENTLY_VIEWED_CANDIDATE",
+  "before_api_receipt": "cart_draft_before.json",
+  "baseline_sha256": "6050b1dbcf8b64de7aa81714d25cb32ea5e87e2be33b6d65a51db1ace4781fd4",
+  "baseline_md5": "6303a25065e3d6757ea9dc9be25dac92",
+  "candidate_sha256": "e2fed4a6ae3abbba3b39d481dfee9eb755f623e7856b2d1c2a8747fe6c059cf7",
+  "candidate_md5": "61c560a479ad1e32ec4e84d4bf685f09",
+  "baseline_bytes": 22805,
+  "candidate_bytes": 24383,
+  "reviewed_patch_sha256": "64ef531dae5eb4b852a74826efcdd8f12a9890a372d2d3c0087b9b8dca2742fd",
+  "release_patch_sha256": "3f782948ba0526cebadf92fd9db3aaa92560975c57fb426db9f9164f9a654277",
+  "frozen_test_sha256": "1399787b95f13de129b290dbe829e24f21339d9ab5fe2439c0f7a705cb0fdc8f",
+  "zero_fuzz": true,
+  "hunks": [
+    {
+      "offset": 15233,
+      "old_start_line": 386,
+      "matched_line": 381,
+      "line_offset": -5,
+      "full_context_match_count": 1
+    },
+    {
+      "offset": 16551,
+      "old_start_line": 412,
+      "matched_line": 407,
+      "line_offset": -5,
+      "full_context_match_count": 1
+    },
+    {
+      "offset": 17593,
+      "old_start_line": 433,
+      "matched_line": 428,
+      "line_offset": -5,
+      "full_context_match_count": 1
+    },
+    {
+      "offset": 18589,
+      "old_start_line": 450,
+      "matched_line": 445,
+      "line_offset": -5,
+      "full_context_match_count": 1
+    }
+  ],
+  "scope_proof": {
+    "iife_before_start_line": 381,
+    "iife_before_end_line": 448,
+    "iife_after_end_line": 493,
+    "prefix_bytes": 15233,
+    "suffix_bytes": 4168,
+    "prefix_sha256": "ca8d9b133e92c349178c3d0af92416d6d0391d8a803a722a7046d0d0c7b6606d",
+    "suffix_sha256": "e212b44aa50b055806e074f32b089d1ef87b1926f2587b56d26fecaca24fd1a4",
+    "prefix_and_suffix_byte_identical": true
+  },
+  "temporary_equivalent_layouts": "/private/tmp/dlm-cart-draft-validation-y88l993t",
+  "external_writes": 0,
+  "authority": "LOCAL_PREPARATION_ONLY; NOT_STAGED",
+  "status": "IMPLEMENTED_LOCAL__15_RELEVANT_PASS__BASELINE_QUANTITY_TEST_FAILURE_PRESERVED",
+  "test_results": {
+    "baseline": {
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "ops/tests/test_cart_recently_viewed.mjs"
+      ],
+      "cwd": "/private/tmp/dlm-cart-draft-validation-y88l993t/baseline",
+      "exit_code": 1,
+      "log": "/private/tmp/dlm-cart-draft-validation-y88l993t/baseline.tap",
+      "tests": [
+        {
+          "number": 1,
+          "title": "Drawer: a cached DKK amount never appears as dollars or any stale price",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 2,
+          "title": "Page: a cached DKK amount never appears as dollars or any stale price",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 3,
+          "title": "switch from /da/products/skyfade-family-matching-set to /fr/ keeps exactly the current locale",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 4,
+          "title": "switch from /fr/products/skyfade-family-matching-set to /da/ keeps exactly the current locale",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 5,
+          "title": "switch from /da/products/skyfade-family-matching-set to / keeps exactly the current locale",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 6,
+          "title": "switch from /da/products/skyfade-family-matching-set to /da/ keeps exactly the current locale",
+          "status": "PASS"
+        },
+        {
+          "number": 7,
+          "title": "switch from /fr-ca/products/skyfade-family-matching-set?currency=CAD&country=CA to /da keeps exactly the current locale",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 8,
+          "title": "untrusted stored text remains text and image attributes cannot break out",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 9,
+          "title": "external, executable, invalid, and non-product links are not rendered",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 10,
+          "title": "unsafe image schemes are omitted while a valid product remains clickable",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 11,
+          "title": "malformed, non-array, or unavailable storage leaves the empty cart usable",
+          "status": "PASS"
+        },
+        {
+          "number": 12,
+          "title": "a localized product visit is tracked once and its empty-cart drawer renders",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 13,
+          "title": "a product visit recovers from non-array history and storage denial remains harmless",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 14,
+          "title": "history stays bounded, deduplicates past locales, and respects card limits",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 15,
+          "title": "DOM readiness and an empty-cart replacement both render history",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "|-",
+            "code": "ERR_ASSERTION",
+            "name": "AssertionError"
+          }
+        },
+        {
+          "number": 16,
+          "title": "the existing quantity count and subtotal refresh targets stay intact",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "Cannot read properties of undefined (reading 'selector')",
+            "code": "ERR_TEST_FAILURE",
+            "name": "TypeError"
+          }
+        }
+      ],
+      "passed": 2,
+      "failed": 14
+    },
+    "candidate": {
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "ops/tests/test_cart_recently_viewed.mjs"
+      ],
+      "cwd": "/private/tmp/dlm-cart-draft-validation-y88l993t/candidate",
+      "exit_code": 1,
+      "log": "/private/tmp/dlm-cart-draft-validation-y88l993t/candidate.tap",
+      "tests": [
+        {
+          "number": 1,
+          "title": "Drawer: a cached DKK amount never appears as dollars or any stale price",
+          "status": "PASS"
+        },
+        {
+          "number": 2,
+          "title": "Page: a cached DKK amount never appears as dollars or any stale price",
+          "status": "PASS"
+        },
+        {
+          "number": 3,
+          "title": "switch from /da/products/skyfade-family-matching-set to /fr/ keeps exactly the current locale",
+          "status": "PASS"
+        },
+        {
+          "number": 4,
+          "title": "switch from /fr/products/skyfade-family-matching-set to /da/ keeps exactly the current locale",
+          "status": "PASS"
+        },
+        {
+          "number": 5,
+          "title": "switch from /da/products/skyfade-family-matching-set to / keeps exactly the current locale",
+          "status": "PASS"
+        },
+        {
+          "number": 6,
+          "title": "switch from /da/products/skyfade-family-matching-set to /da/ keeps exactly the current locale",
+          "status": "PASS"
+        },
+        {
+          "number": 7,
+          "title": "switch from /fr-ca/products/skyfade-family-matching-set?currency=CAD&country=CA to /da keeps exactly the current locale",
+          "status": "PASS"
+        },
+        {
+          "number": 8,
+          "title": "untrusted stored text remains text and image attributes cannot break out",
+          "status": "PASS"
+        },
+        {
+          "number": 9,
+          "title": "external, executable, invalid, and non-product links are not rendered",
+          "status": "PASS"
+        },
+        {
+          "number": 10,
+          "title": "unsafe image schemes are omitted while a valid product remains clickable",
+          "status": "PASS"
+        },
+        {
+          "number": 11,
+          "title": "malformed, non-array, or unavailable storage leaves the empty cart usable",
+          "status": "PASS"
+        },
+        {
+          "number": 12,
+          "title": "a localized product visit is tracked once and its empty-cart drawer renders",
+          "status": "PASS"
+        },
+        {
+          "number": 13,
+          "title": "a product visit recovers from non-array history and storage denial remains harmless",
+          "status": "PASS"
+        },
+        {
+          "number": 14,
+          "title": "history stays bounded, deduplicates past locales, and respects card limits",
+          "status": "PASS"
+        },
+        {
+          "number": 15,
+          "title": "DOM readiness and an empty-cart replacement both render history",
+          "status": "PASS"
+        },
+        {
+          "number": 16,
+          "title": "the existing quantity count and subtotal refresh targets stay intact",
+          "status": "FAIL",
+          "fingerprint": {
+            "failureType": "testCodeFailure",
+            "error": "Cannot read properties of undefined (reading 'selector')",
+            "code": "ERR_TEST_FAILURE",
+            "name": "TypeError"
+          }
+        }
+      ],
+      "passed": 15,
+      "failed": 1
+    }
+  },
+  "syntax": {
+    "command": [
+      "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--check",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/cart_draft_candidate/assets/cart.js"
+    ],
+    "exit_code": 0
+  },
+  "zero_fuzz_patch_dry_run": {
+    "exit_code": 0,
+    "output": "patching file 'assets/cart.js'\n",
+    "command": [
+      "/usr/bin/patch",
+      "--dry-run",
+      "--fuzz=0",
+      "-p1",
+      "-i",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/cro_recently_viewed_only.patch"
+    ]
+  },
+  "baseline_failure_fingerprint_matches": true,
+  "new_candidate_failures": [],
+  "runner_note": "Initial default reporter was human-readable spec, so the TAP result parser could not assess it. Re-ran both unchanged suites with explicit --test-reporter=tap; no assertions changed.",
+  "limitations": [
+    "No browser/rendered preview or account/theme mutation.",
+    "Full frozen suite is not green: unrelated quantity/subtotal test16 fails identically on baseline and candidate.",
+    "Root must obtain independent review before any unpublished-only staging; no live publication authority."
+  ],
+  "dependency_evidence": {
+    "getLocaleAwareRoute": "Defined in fresh baseline assets/cart.js:16; unchanged.",
+    "subscribe_PUB_SUB_EVENTS": "Already used in fresh baseline assets/cart.js:54 and :252; unchanged.",
+    "local_definitions": "assets/pubsub.js:3; assets/constants.js:3.",
+    "local_load_order": "layout/theme.liquid:315\u2013316 loads constants.js/pubsub.js deferred; cart.js referenced by sections/main-cart-items.liquid:23 and snippets/cart-drawer.liquid:11. Local evidence, not an independent fresh API read of those files."
+  },
+  "preserved_frozen_sources": {
+    "reviewed_patch_unchanged": true,
+    "tests_unchanged": true,
+    "temporary_tests_verbatim": true
+  }
+}

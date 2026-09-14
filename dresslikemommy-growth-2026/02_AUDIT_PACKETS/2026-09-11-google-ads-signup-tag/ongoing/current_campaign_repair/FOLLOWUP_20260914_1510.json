@@ -1,0 +1,340 @@
+{
+  "schema": "dlm.google_ads_followup_evidence.v1",
+  "recorded_at_utc": "2026-09-14T15:20:18Z",
+  "trigger": {
+    "automation_id": "google-ads-markets-and-purchase-follow-up",
+    "fired_at_utc": "2026-09-14T15:10:48.211Z"
+  },
+  "observation_started_at_utc": "2026-09-14T15:11:05Z",
+  "status": "PARTIAL__LIVE_CAMPAIGN_REPAIR_BLOCKED_BY_NORMAL_IDENTITY_SAVE",
+  "decision": "RESTORED_MISSING_REVIEWED_DRAFT__NOT_SAVED",
+  "latest_relevant_anchor": "2026-09-14-ceo-merchant-eligibility-and-source-freshness",
+  "source_bindings": {
+    "previous_followup": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260914_1110.json",
+      "sha256": "d985511e967f9aaeefcf710e02bad1c9279ddc981cce1a9e84ba838073945e7f"
+    },
+    "latest_exact_editor_before_today": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260914_0656.json",
+      "sha256": "465e26121fbf1ae1c3aec1b1340fe89fb6dee9ccffd958b99bfb41e2e7c60b18"
+    },
+    "recovery_method": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/EDITOR_RECOVERY_20260911.json",
+      "sha256": "e01509a47ca795bb87b9adc6e233895258609c2a5f5917c9002d586e3fdda6b6"
+    },
+    "reviewed_copy": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/COPY_CHANGE_PLAN.json",
+      "sha256": "b1b7a7a475f6bec8beb7769dbcaf87981b83facb515635790bf449c9d0fa0a15"
+    },
+    "existing_copy_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/EXACT_COPY_PRE_SAVE_REVIEW.json",
+      "sha256": "ecc6ea17f713360efc31130b4dfc14d934b929db667a8a844c90b43209634b36"
+    },
+    "all_eighteen_local_completion": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_remaining_native_demand_20260914_1236/execution_checkpoint.json",
+      "sha256": "7a15e7145ae1d071c93f1591f2a5691f7076456b5b51ac8167b6f14ed16b2704"
+    }
+  },
+  "current_frame": {
+    "objective": "Preserve the exact reviewed campaign repair while checking current paused activity; overall operational success still needs accepted Save and independent saved-value readback.",
+    "chosen_action": "Restore the missing unsaved draft only after current task inventory absence and exact frozen before-state validation.",
+    "alternative": "Leave the user without a usable editor while retaining only local copy; restoration is the reversible authorized preparation.",
+    "falsifier": "Current editor found in the same task session, target/before-value drift, an interactive gate or unexpected broader scope. None observed during this restoration.",
+    "success": "Exactly18 restored fields, all27 text values equal the reviewed payload; media regions identical, new editor retained.",
+    "rollback": "No saved business write to reverse. Frozen original before-state remains available; do not discard an existing unsaved editor without authority.",
+    "overall_operational_status": "PARTIAL; normal identity/Save acceptance is still BLOCKED, never retried here."
+  },
+  "browser_reconciliation": {
+    "task_id": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+    "browser_id": "1",
+    "observed_browser_metadata_codexSessionId": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+    "initial_current_inventory": [
+      {
+        "id": "1",
+        "provider_tab_id": "browser-use:5942a620-c2f5-4f5c-9f45-0b22962dcd78",
+        "title": "Asset groups - DLM - Google Ads",
+        "path": "/aw/assetgroup",
+        "campaign_id": "24247604341",
+        "role": "new task-owned read-only report created this turn"
+      }
+    ],
+    "old_editor23_and_GA4_report25": "No matching editor or property-report URL in the current same-task browser inventory. Old numerical handles were not probed or assumed transferable.",
+    "missing_surface_cause": "UNKNOWN; no browser restart or lifecycle cause inferred.",
+    "GA4_report_recreation": "NOT_RUN; no new purchase/receiver signal requires repeating that completed report.",
+    "new_editor": {
+      "id": "2",
+      "provider_tab_id": "browser-use:1b82be59-d2fc-4d4e-ba0a-5368395f7611",
+      "title": "DLM - Google Ads",
+      "url": "https://ads.google.com/aw/assetgroup/edit?campaignId=24247604341&ocid=8520129103&assetgroupId=6746545742&returnTo=%2Faw%2Funifiedassetreport%2Fpmaxassetdetails%3FcampaignId%3D24247604341%26ocid%3D8520129103%26entityId%3D6746545742%26isPMax%3Dtrue%26assetGroupId%3D6746545742&euid=228618707&__u=2136917243&uscid=8520129103&__c=1852023447&authuser=0",
+      "mark_handoff_called": true
+    },
+    "temporary_report1_closed": true,
+    "retention_limit": "Current CUA documentation says handoff marks are turn-scoped: re-mark the exact currently resolved editor when it must survive a later turn. This is not a survival guarantee or an explanation of the prior disappearance."
+  },
+  "ads_readback": {
+    "selected_customer_id": "6509972886",
+    "selected_option_observed_on_report_and_editor": "DLM 650-997-2886 [selected]",
+    "routing_ocid": "8520129103",
+    "campaign_id": "24247604341",
+    "asset_group_id": "6746545742",
+    "current_report_url": "https://ads.google.com/aw/assetgroup?campaignId=24247604341&ocid=8520129103&assetGroupTableMode=true&euid=228618707&__u=2136917243&uscid=8520129103&__c=1852023447&authuser=0",
+    "campaign_state": "PAUSED",
+    "configured_budget_display": "$5.00/day",
+    "currency": "USD qualified historical same-account context; fresh native ISO not reread",
+    "saved_ad_strength": "Poor",
+    "period": {
+      "label": "Today; Sep14,2026",
+      "timezone_label": "(GMT-04:00) Eastern Time",
+      "partial": true,
+      "report_processing_finality": "UNVERIFIED_NOT_REAL_TIME"
+    },
+    "clicks": 0,
+    "impressions": 0,
+    "cost_display": "$0.00",
+    "conversions": 0,
+    "conversion_value": 0,
+    "native_fragments": [
+      "The target simulator is not available because this campaign is paused.",
+      "Asset Group1: Poor; Not eligible; Campaign is paused",
+      "Select all rows Status Asset Group Assets Ad Strength Status Audience signal Search themes Clicks Impr. CTR Avg. CPC Cost Conv. value Conv. value / cost Conv. rate Conversions Cost / conv.",
+      "Total: Asset groups More information 0 0 — — $0.00 0.00 0.00 0.00% 0.00 $0.00",
+      "Expand row Total: Campaign More information 0 0 — — $0.00 0.00 0.00 0.00% 0.00 $0.00",
+      "1 - 1 of 1"
+    ],
+    "asset_review_scope": "Visible original saved asset rows show Not eligible / Campaign is paused; no new disapproval or review acceptance inferred. Partial asset rows were not presented as a full policy audit.",
+    "source_kind": "Operator-transcribed selected native AX fragments and current editor DOM comparison; no independent live replay."
+  },
+  "editor_restoration": {
+    "current_before_field_count": 27,
+    "all27_before_equal_frozen_before": true,
+    "all18_change_before_values_equal": true,
+    "restored_field_count": 18,
+    "restored_fields": [
+      {
+        "field": "headlines",
+        "slot": 5,
+        "before": "Cute Daddy & Me Shirts",
+        "after": "Mother and Daughter Outfits",
+        "characters": 27
+      },
+      {
+        "field": "headlines",
+        "slot": 6,
+        "before": "Stylish Beach Chiffon Wear",
+        "after": "Mommy and Me Vacation Looks",
+        "characters": 27
+      },
+      {
+        "field": "headlines",
+        "slot": 7,
+        "before": "Standard Shipping Included",
+        "after": "Shop Dress Like Mommy",
+        "characters": 21
+      },
+      {
+        "field": "headlines",
+        "slot": 8,
+        "before": "Create Lasting Memories",
+        "after": "Match Your Mini",
+        "characters": 15
+      },
+      {
+        "field": "headlines",
+        "slot": 9,
+        "before": "Match Your Mini Me Today",
+        "after": "Choose Each Person's Size",
+        "characters": 25
+      },
+      {
+        "field": "headlines",
+        "slot": 10,
+        "before": "Get Helpful Sizing Support",
+        "after": "Choose Your Styles and Sizes",
+        "characters": 28
+      },
+      {
+        "field": "headlines",
+        "slot": 14,
+        "before": "Comfy Cotton Gauze Styles",
+        "after": "Explore Mommy and Me Styles",
+        "characters": 27
+      },
+      {
+        "field": "headlines",
+        "slot": 15,
+        "before": "Cute Birthday Matching Sets",
+        "after": "Matching Birthday Outfits",
+        "characters": 25
+      },
+      {
+        "field": "long_headlines",
+        "slot": 1,
+        "before": "Shop Airy Four-Layer Cotton Gauze Pajamas & Chiffon Mommy and Me Dresses Today",
+        "after": "Shop Mommy and Me Outfits for Family Photos, Birthdays and Vacation Days",
+        "characters": 72
+      },
+      {
+        "field": "long_headlines",
+        "slot": 2,
+        "before": "Keep the Whole Group in One Clear Color Story With Our Coordinated Family Matching Sets",
+        "after": "Choose Coordinated Styles and Sizes for Mom and Daughter at Dress Like Mommy",
+        "characters": 76
+      },
+      {
+        "field": "long_headlines",
+        "slot": 3,
+        "before": "Need the Right Match for Your Beach Vacation? Enjoy Thoughtful Sizing Support Online",
+        "after": "Find Mother and Daughter Outfits for Your Next Family Photo or Vacation",
+        "characters": 71
+      },
+      {
+        "field": "long_headlines",
+        "slot": 4,
+        "before": "Create Unforgettable Memories With Dress Like Mommy - Shop Coordinated Family Sets",
+        "after": "Explore Matching Mother and Daughter Looks at Dress Like Mommy",
+        "characters": 62
+      },
+      {
+        "field": "long_headlines",
+        "slot": 5,
+        "before": "Capture The Perfect Family Photos In Our Matching Mommy And Me Vacation Outfits",
+        "after": "Plan Your Family Photo Outfits With Coordinated Mommy and Me Styles",
+        "characters": 67
+      },
+      {
+        "field": "descriptions",
+        "slot": 1,
+        "before": "Keep the whole group in one clear color story with daddy and me shirts.",
+        "after": "Browse mommy and me outfits for birthdays, vacations and family photo days.",
+        "characters": 75
+      },
+      {
+        "field": "descriptions",
+        "slot": 2,
+        "before": "Get helpful sizing support from our family-owned team. Standard shipping included.",
+        "after": "Choose your styles and sizes to create a coordinated mother and daughter look.",
+        "characters": 78
+      },
+      {
+        "field": "descriptions",
+        "slot": 3,
+        "before": "Unlock the magic of matching for birthdays and cozy pajama moments. Shop now.",
+        "after": "Explore matching mother and daughter styles at Dress Like Mommy.",
+        "characters": 64
+      },
+      {
+        "field": "descriptions",
+        "slot": 4,
+        "before": "Create unforgettable memories with our stunning mommy and me dresses.",
+        "after": "Plan your next family photo with coordinated outfits for mom and daughter.",
+        "characters": 74
+      },
+      {
+        "field": "business_name",
+        "before": "DLM",
+        "after": "Dress Like Mommy",
+        "characters": 16
+      }
+    ],
+    "all27_after_equal_frozen_after": true,
+    "actual_after_textbox_values": {
+      "Final URL": "https://www.dresslikemommy.com/collections/mommy-and-me",
+      "Headline 1 of 15": "Mommy and Me Outfits",
+      "Headline 2 of 15": "Family Matching Clothing",
+      "Headline 3 of 15": "Shop Coordinated Dresses",
+      "Headline 4 of 15": "Perfect Looks for Photos",
+      "Headline 5 of 15": "Mother and Daughter Outfits",
+      "Headline 6 of 15": "Mommy and Me Vacation Looks",
+      "Headline 7 of 15": "Shop Dress Like Mommy",
+      "Headline 8 of 15": "Match Your Mini",
+      "Headline 9 of 15": "Choose Each Person's Size",
+      "Headline 10 of 15": "Choose Your Styles and Sizes",
+      "Headline 11 of 15": "Plan Your Next Vacation Look",
+      "Headline 12 of 15": "Adorable Matching Pajamas",
+      "Headline 13 of 15": "Tropical Family Outfits",
+      "Headline 14 of 15": "Explore Mommy and Me Styles",
+      "Headline 15 of 15": "Matching Birthday Outfits",
+      "Long headline 1 of 5": "Shop Mommy and Me Outfits for Family Photos, Birthdays and Vacation Days",
+      "Long headline 2 of 5": "Choose Coordinated Styles and Sizes for Mom and Daughter at Dress Like Mommy",
+      "Long headline 3 of 5": "Find Mother and Daughter Outfits for Your Next Family Photo or Vacation",
+      "Long headline 4 of 5": "Explore Matching Mother and Daughter Looks at Dress Like Mommy",
+      "Long headline 5 of 5": "Plan Your Family Photo Outfits With Coordinated Mommy and Me Styles",
+      "Description 1 of 5": "Browse mommy and me outfits for birthdays, vacations and family photo days.",
+      "Description 2 of 5": "Choose your styles and sizes to create a coordinated mother and daughter look.",
+      "Description 3 of 5": "Explore matching mother and daughter styles at Dress Like Mommy.",
+      "Description 4 of 5": "Plan your next family photo with coordinated outfits for mom and daughter.",
+      "Description 5 of 5": "Find coordinated family outfits for vacations, birthdays, and photo days.",
+      "Business name": "Dress Like Mommy"
+    },
+    "value_source": "Operator-transcribed current DOM values; live string comparison passed for all27 before and after fields. Complete raw DOM was not persisted.",
+    "protected_regions_dom_identical": {
+      "Images": true,
+      "Logos": true,
+      "Videos": true,
+      "Sitelinks": true
+    },
+    "media_count_labels": {
+      "Images": 20,
+      "Logos": 2,
+      "Videos": 0
+    },
+    "sitelink_control_label": "Add5more sitelinks",
+    "final_url_unchanged": true,
+    "save_control_visible": "Save this ad",
+    "save_attempts": 0,
+    "identity_attempts": 0,
+    "saved_after_state": "NOT_ESTABLISHED",
+    "identity_completion": "UNVERIFIED; absence of an old error on a fresh form is not acceptance",
+    "new_copy_generated": false
+  },
+  "peer_evidence_reused": {
+    "scope": "Newer parent canonical source read only; no Merchant, GA4, private order or organic report replay",
+    "Merchant": "Parent now records sampled US/AU Free listings Approved and US4741 source/header plus20/20 current-source-list omissions; not all-offer or paid eligibility. Return/market policy truth and AU synchronization remain separate.",
+    "TA10": "All18 original native hypotheses already integrated;17low-range andIT03higher-range candidate bins only. No repeated query or forecast.",
+    "TA02": "Existing genuine US GA4 report match and unresolved session/consent, payload, dedup, attribution, international and profit limits preserved; no new acceptance signal.",
+    "parent_full_sales_read_due_at_utc": "2026-09-14T19:04:53Z",
+    "owner_theme_publication_id": "137888792673",
+    "retained_MAIN_id": "133290917985",
+    "shared_canonical_integration_owner": "parent01a08223 only"
+  },
+  "actions": {
+    "campaign_save_apply": 0,
+    "spend_budget_bid_status_goal_changes": 0,
+    "keyword_negative_plan_imports": 0,
+    "new_campaigns": 0,
+    "asset_uploads": 0,
+    "feed_sharing_consent_changes": 0,
+    "auth_gate_retries": 0,
+    "editor_fills": 18,
+    "editor_reloads": 0,
+    "GA4_order_purchase_replays": 0,
+    "passive_traces": 0,
+    "native_personal_Chrome_actions": 0,
+    "shared_canonical_writes": 0,
+    "goals_or_schedulers_changed": 0
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-14T15:20:18Z; exact scoped Ads report and draft restoration only",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "independent_verifier": "NOT_RUN_NEW_INDEPENDENT_REVIEW; frozen copy review preserved; root operator compared current native before/after values to frozen input",
+    "verifier_independence": "Routine restoration of already-reviewed identical payload; no new copy or release decision",
+    "decision_changing_evidence": "Current same-task inventory absence justified restoration. Saved completion requires the existing normal owner identity/Save result.",
+    "if_evidence_supports_recommendation": "Preserve the restored editor; after normal acceptance, independently read back saved exact values within current scope.",
+    "if_evidence_opposes_recommendation": "Keep local payloads and exact blocker; no repeated unchanged authentication/Save or unapproved launch."
+  },
+  "preserved_constraints": {
+    "max_CPC_USD": 0.15,
+    "ROAS_target": 6.5,
+    "all_in_profit_target": 0.3,
+    "existing_goal": "BLOCKED_UNCHANGED",
+    "existing_Ads_heartbeat": "UNCHANGED"
+  },
+  "next_action": "Existing owner normal identity/Save result in current task IAB1/editor2, then saved-value readback. No duplicate question; preserve parent publication action and all measurement clocks.",
+  "continuation_source": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "verification_at_creation": "Native before27/after27 and protected-region equality PASS; local receipt checks follow separately."
+}

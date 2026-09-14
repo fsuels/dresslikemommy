@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "reviewer": "/root/international_campaign_build",
+  "independence": "Did not build the contract or collect/stage native settings. Read-only local comparison and bounded primary-document check; no native/account/source/canonical writes.",
+  "reviewed_at_utc": "2026-09-11T20:00:47.213337+00:00",
+  "checks_passed": 8,
+  "checks": [
+    {
+      "check": "exact account customer and native setting surfaces",
+      "passed": true
+    },
+    {
+      "check": "exact two true-to-false opt-outs only",
+      "passed": true
+    },
+    {
+      "check": "four other auto-apply choices remain off",
+      "passed": true
+    },
+    {
+      "check": "recorded account before matches goal postflight including MSCLKID",
+      "passed": true
+    },
+    {
+      "check": "only two corresponding persisted setting values differ",
+      "passed": true
+    },
+    {
+      "check": "exact two-field inverse restores all recorded settings",
+      "passed": true
+    },
+    {
+      "check": "saved goal repair and eleven paused campaigns remain execution guards",
+      "passed": true
+    },
+    {
+      "check": "bounded saves reload drift stops and no spend authority",
+      "passed": true
+    }
+  ],
+  "contract_sha256": "b4a00ad74ade466f34af5f62abff159b6658049b460ac37a0387ad54c09cf90d",
+  "goal_after_sha256": "916c73c0b5a9de4a8d369d848897c8362b4f9c665ccd29c8d008094a400e520a",
+  "exact_setting_changes": [
+    "auto_apply/Add responsive search ads",
+    "account_options/auto_multimedia_in_dynamic_adgroups"
+  ],
+  "expected_after_settings": {
+    "auto_apply": {
+      "Add responsive search ads": false,
+      "Fix your conversion goal setting": false,
+      "Fix missing keyword parameters issue": false,
+      "Create conversion goal": false,
+      "Remove negative keyword conflicts": false
+    },
+    "account_options": {
+      "tracking_template": "",
+      "final_url_suffix": "",
+      "auto_retrieve_images": false,
+      "utm_auto_tagging": true,
+      "utm_mode": "Replace all existing tags",
+      "automatic_conversion_goal_setup": false,
+      "include_view_through_in_all_conversions": true,
+      "auto_multimedia_in_dynamic_adgroups": false,
+      "doubleverify_enabled": false
+    },
+    "msclkid": true
+  },
+  "exact_rollback_settings": {
+    "auto_apply": {
+      "Add responsive search ads": true,
+      "Fix your conversion goal setting": false,
+      "Fix missing keyword parameters issue": false,
+      "Create conversion goal": false,
+      "Remove negative keyword conflicts": false
+    },
+    "account_options": {
+      "tracking_template": "",
+      "final_url_suffix": "",
+      "auto_retrieve_images": false,
+      "utm_auto_tagging": true,
+      "utm_mode": "Replace all existing tags",
+      "automatic_conversion_goal_setup": false,
+      "include_view_through_in_all_conversions": true,
+      "auto_multimedia_in_dynamic_adgroups": true,
+      "doubleverify_enabled": false
+    },
+    "msclkid": true
+  },
+  "target": {
+    "account_id": 477439,
+    "customer_id": 770182
+  },
+  "verdict": "Only the two frozen true-to-false opt-outs may be saved after the contract's fresh native/staged guards. Preserve all unlisted settings and the completed purchase-goal repair. This PASS does not authorize campaign activation, object removal or spending.",
+  "allowed_live_fields": [
+    "Auto-apply recommendation settings: Add responsive search ads",
+    "Account level options: Automatically create multimedia ads in my dynamic ad groups"
+  ],
+  "extra_live_fields_permitted": [],
+  "primary_document_findings": [
+    {
+      "topic": "Responsive search recommendation opt-out",
+      "source_url": "https://learn.microsoft.com/en-us/advertising/ad-insight-service/autoapplyrecommendationsinfo?view=bingads-13",
+      "access": "Fully opened primary Microsoft Learn page",
+      "finding": "False means opt-out for the specified recommendation type; ResponsiveSearchAdsOpportunity is supported. Other recommendation types are separate."
+    },
+    {
+      "topic": "Multimedia dynamic-ad-group opt-out",
+      "source_url": "https://help.ads.microsoft.com/apex/index/3/en/60107?t_id=2e734048-eacb-41b9-8c46-ded5b75fd815",
+      "access": "Primary Microsoft help article text retrieved through the web search result; direct base60107 route opened Oops/no match, so no claim of successful direct-page retrieval.",
+      "finding": "Opt-out stops new placeholder creation. Existing placeholders are not paused/deleted by this setting and can continue if their campaign is eligible; they cannot be edited/updated while opted out."
+    }
+  ],
+  "interpretation_limits": [
+    "This is two creation opt-outs, not complete elimination of automatic content, placements, existing placeholders or scheduled imports.",
+    "Existing generated ads were not inventoried or removed. All11 campaigns must remain Paused.",
+    "The contract field other_account_options_before includes the targeted multimedia key; that key intentionally changes tofalse, while its eight other captured account-option values remain unchanged.",
+    "Auto-apply before-values are root's fresh native observations recorded in the contract, not an independently replayed browser read. Account option values agree with the saved goal after-state.",
+    "Exact settings remain to be saved and independently read back. No improved CPC, CPA, sales, consent or profit is established."
+  ],
+  "post_save_requirements": [
+    "One normal Save per surface after staged readback; stop on drift,error,unlisted changes or new prompts.",
+    "Fully reopen both surfaces: both target opt-ins Off; four other captured auto-apply choices Off.",
+    "MSCLKIDOn, UTMOn/Replaceexisting, automatic image retrievalOff, automatic goal setupOff and all other captured account settings preserved.",
+    "Preserve one primary Event purchase All/variable USD0fallback, five Active goals and all11Paused campaign statuses."
+  ],
+  "issues": [],
+  "next_action": "Root may execute the exact two-field contract and capture fresh after-state; no broader account automation or campaign action is included."
+}

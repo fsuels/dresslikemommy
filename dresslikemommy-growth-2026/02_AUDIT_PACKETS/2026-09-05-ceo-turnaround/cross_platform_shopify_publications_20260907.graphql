@@ -1,0 +1,31 @@
+query DlmCrossPlatformCandidates($ids: [ID!]!) {
+  publications(first: 50, catalogType: APP) {
+    nodes {
+      id
+      autoPublish
+      catalog {
+        id
+        title
+        status
+        ... on AppCatalog {
+          apps(first: 20) {
+            nodes { id title handle }
+            pageInfo { hasNextPage endCursor }
+          }
+        }
+      }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+  nodes(ids: $ids) {
+    ... on Product {
+      id
+      title
+      status
+      resourcePublicationsV2(first: 50, onlyPublished: false) {
+        nodes { isPublished publication { id } }
+        pageInfo { hasNextPage endCursor }
+      }
+    }
+  }
+}

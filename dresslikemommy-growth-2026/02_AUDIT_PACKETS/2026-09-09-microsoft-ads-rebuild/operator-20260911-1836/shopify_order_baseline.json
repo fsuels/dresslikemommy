@@ -1,0 +1,450 @@
+{
+  "as_of_utc": "2026-09-11 18:43:46 UTC",
+  "query": "query MicrosoftOrderBaseline20260911 {\n shop { id myshopifyDomain currencyCode ianaTimezone }\n orders(first:100, sortKey:CREATED_AT, query:\"created_at:>=2026-08-12T04:00:00Z created_at:<2026-09-11T04:00:00Z\") {\n  nodes {\n   id createdAt test cancelledAt displayFinancialStatus taxesIncluded\n   currentSubtotalPriceSet { shopMoney { amount currencyCode } }\n   currentTotalPriceSet { shopMoney { amount currencyCode } }\n   totalRefundedSet { shopMoney { amount currencyCode } }\n   customerJourneySummary {\n    ready customerOrderIndex\n    firstVisit { occurredAt source sourceType utmParameters { source medium campaign } }\n    lastVisit { occurredAt source sourceType utmParameters { source medium campaign } }\n   }\n  }\n  pageInfo { hasNextPage endCursor }\n }\n}",
+  "query_validation": "microsoft-order-baseline-20260911 revision1 VALID",
+  "scope": "30 complete shop dates August12 through September10 America/New_York; first/last visit fields only; no customer contact/address or raw landing/referral URLs",
+  "data": {
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com",
+      "currencyCode": "USD",
+      "ianaTimezone": "America/New_York"
+    },
+    "orders": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Order/6768592191585",
+          "createdAt": "2026-08-14T05:43:37Z",
+          "test": false,
+          "cancelledAt": null,
+          "displayFinancialStatus": "PAID",
+          "taxesIncluded": false,
+          "currentSubtotalPriceSet": {
+            "shopMoney": {
+              "amount": "109.96",
+              "currencyCode": "USD"
+            }
+          },
+          "currentTotalPriceSet": {
+            "shopMoney": {
+              "amount": "122.95",
+              "currencyCode": "USD"
+            }
+          },
+          "totalRefundedSet": {
+            "shopMoney": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+            }
+          },
+          "customerJourneySummary": {
+            "ready": true,
+            "customerOrderIndex": 1,
+            "firstVisit": {
+              "occurredAt": "2026-08-14T05:25:04Z",
+              "source": "Google",
+              "sourceType": "SEO",
+              "utmParameters": null
+            },
+            "lastVisit": {
+              "occurredAt": "2026-08-14T05:25:04Z",
+              "source": "Google",
+              "sourceType": "SEO",
+              "utmParameters": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Order/6770433196129",
+          "createdAt": "2026-08-15T08:20:07Z",
+          "test": false,
+          "cancelledAt": null,
+          "displayFinancialStatus": "PAID",
+          "taxesIncluded": false,
+          "currentSubtotalPriceSet": {
+            "shopMoney": {
+              "amount": "53.84",
+              "currencyCode": "USD"
+            }
+          },
+          "currentTotalPriceSet": {
+            "shopMoney": {
+              "amount": "53.84",
+              "currencyCode": "USD"
+            }
+          },
+          "totalRefundedSet": {
+            "shopMoney": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+            }
+          },
+          "customerJourneySummary": {
+            "ready": true,
+            "customerOrderIndex": 1,
+            "firstVisit": {
+              "occurredAt": "2026-08-15T06:11:36Z",
+              "source": "Google",
+              "sourceType": "SEO",
+              "utmParameters": null
+            },
+            "lastVisit": {
+              "occurredAt": "2026-08-15T08:18:55Z",
+              "source": "direct",
+              "sourceType": null,
+              "utmParameters": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Order/6771205701729",
+          "createdAt": "2026-08-15T19:40:21Z",
+          "test": false,
+          "cancelledAt": null,
+          "displayFinancialStatus": "PAID",
+          "taxesIncluded": false,
+          "currentSubtotalPriceSet": {
+            "shopMoney": {
+              "amount": "47.83",
+              "currencyCode": "USD"
+            }
+          },
+          "currentTotalPriceSet": {
+            "shopMoney": {
+              "amount": "47.83",
+              "currencyCode": "USD"
+            }
+          },
+          "totalRefundedSet": {
+            "shopMoney": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+            }
+          },
+          "customerJourneySummary": {
+            "ready": true,
+            "customerOrderIndex": 1,
+            "firstVisit": {
+              "occurredAt": "2026-08-15T19:36:35Z",
+              "source": "Google",
+              "sourceType": "SEO",
+              "utmParameters": null
+            },
+            "lastVisit": {
+              "occurredAt": "2026-08-15T19:36:35Z",
+              "source": "Google",
+              "sourceType": "SEO",
+              "utmParameters": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Order/6771793494113",
+          "createdAt": "2026-08-16T05:16:34Z",
+          "test": false,
+          "cancelledAt": null,
+          "displayFinancialStatus": "PAID",
+          "taxesIncluded": false,
+          "currentSubtotalPriceSet": {
+            "shopMoney": {
+              "amount": "36.98",
+              "currencyCode": "USD"
+            }
+          },
+          "currentTotalPriceSet": {
+            "shopMoney": {
+              "amount": "36.98",
+              "currencyCode": "USD"
+            }
+          },
+          "totalRefundedSet": {
+            "shopMoney": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+            }
+          },
+          "customerJourneySummary": {
+            "ready": true,
+            "customerOrderIndex": 1,
+            "firstVisit": {
+              "occurredAt": "2026-08-16T04:14:42Z",
+              "source": "DuckDuckGo",
+              "sourceType": "SEO",
+              "utmParameters": null
+            },
+            "lastVisit": {
+              "occurredAt": "2026-08-16T05:03:02Z",
+              "source": "DuckDuckGo",
+              "sourceType": "SEO",
+              "utmParameters": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Order/6788993024097",
+          "createdAt": "2026-08-24T01:48:00Z",
+          "test": false,
+          "cancelledAt": null,
+          "displayFinancialStatus": "PAID",
+          "taxesIncluded": false,
+          "currentSubtotalPriceSet": {
+            "shopMoney": {
+              "amount": "118.95",
+              "currencyCode": "USD"
+            }
+          },
+          "currentTotalPriceSet": {
+            "shopMoney": {
+              "amount": "131.94",
+              "currencyCode": "USD"
+            }
+          },
+          "totalRefundedSet": {
+            "shopMoney": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+            }
+          },
+          "customerJourneySummary": {
+            "ready": true,
+            "customerOrderIndex": 1,
+            "firstVisit": {
+              "occurredAt": "2026-08-23T02:00:42Z",
+              "source": "direct",
+              "sourceType": null,
+              "utmParameters": null
+            },
+            "lastVisit": {
+              "occurredAt": "2026-08-24T01:02:33Z",
+              "source": "direct",
+              "sourceType": null,
+              "utmParameters": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Order/6792082784353",
+          "createdAt": "2026-08-25T04:36:29Z",
+          "test": false,
+          "cancelledAt": null,
+          "displayFinancialStatus": "PAID",
+          "taxesIncluded": false,
+          "currentSubtotalPriceSet": {
+            "shopMoney": {
+              "amount": "101.97",
+              "currencyCode": "USD"
+            }
+          },
+          "currentTotalPriceSet": {
+            "shopMoney": {
+              "amount": "101.97",
+              "currencyCode": "USD"
+            }
+          },
+          "totalRefundedSet": {
+            "shopMoney": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+            }
+          },
+          "customerJourneySummary": {
+            "ready": true,
+            "customerOrderIndex": 1,
+            "firstVisit": {
+              "occurredAt": "2026-08-25T04:29:29Z",
+              "source": "ChatGPT",
+              "sourceType": null,
+              "utmParameters": {
+                "source": "chatgpt.com",
+                "medium": null,
+                "campaign": null
+              }
+            },
+            "lastVisit": {
+              "occurredAt": "2026-08-25T04:29:29Z",
+              "source": "ChatGPT",
+              "sourceType": null,
+              "utmParameters": {
+                "source": "chatgpt.com",
+                "medium": null,
+                "campaign": null
+              }
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Order/6799698264161",
+          "createdAt": "2026-08-29T15:32:08Z",
+          "test": false,
+          "cancelledAt": null,
+          "displayFinancialStatus": "PAID",
+          "taxesIncluded": false,
+          "currentSubtotalPriceSet": {
+            "shopMoney": {
+              "amount": "216.48",
+              "currencyCode": "USD"
+            }
+          },
+          "currentTotalPriceSet": {
+            "shopMoney": {
+              "amount": "216.48",
+              "currencyCode": "USD"
+            }
+          },
+          "totalRefundedSet": {
+            "shopMoney": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+            }
+          },
+          "customerJourneySummary": {
+            "ready": true,
+            "customerOrderIndex": 1,
+            "firstVisit": {
+              "occurredAt": "2026-08-29T15:00:12Z",
+              "source": "direct",
+              "sourceType": null,
+              "utmParameters": null
+            },
+            "lastVisit": {
+              "occurredAt": "2026-08-29T15:00:12Z",
+              "source": "direct",
+              "sourceType": null,
+              "utmParameters": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Order/6803096076385",
+          "createdAt": "2026-08-31T20:49:32Z",
+          "test": false,
+          "cancelledAt": null,
+          "displayFinancialStatus": "PAID",
+          "taxesIncluded": false,
+          "currentSubtotalPriceSet": {
+            "shopMoney": {
+              "amount": "48.98",
+              "currencyCode": "USD"
+            }
+          },
+          "currentTotalPriceSet": {
+            "shopMoney": {
+              "amount": "48.98",
+              "currencyCode": "USD"
+            }
+          },
+          "totalRefundedSet": {
+            "shopMoney": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+            }
+          },
+          "customerJourneySummary": {
+            "ready": true,
+            "customerOrderIndex": 1,
+            "firstVisit": {
+              "occurredAt": "2026-08-31T20:43:48Z",
+              "source": "Google",
+              "sourceType": "SEO",
+              "utmParameters": null
+            },
+            "lastVisit": {
+              "occurredAt": "2026-08-31T20:43:48Z",
+              "source": "Google",
+              "sourceType": "SEO",
+              "utmParameters": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Order/6810971930721",
+          "createdAt": "2026-09-05T15:19:05Z",
+          "test": false,
+          "cancelledAt": null,
+          "displayFinancialStatus": "PAID",
+          "taxesIncluded": false,
+          "currentSubtotalPriceSet": {
+            "shopMoney": {
+              "amount": "54.47",
+              "currencyCode": "USD"
+            }
+          },
+          "currentTotalPriceSet": {
+            "shopMoney": {
+              "amount": "54.47",
+              "currencyCode": "USD"
+            }
+          },
+          "totalRefundedSet": {
+            "shopMoney": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+            }
+          },
+          "customerJourneySummary": {
+            "ready": true,
+            "customerOrderIndex": 1,
+            "firstVisit": {
+              "occurredAt": "2026-09-05T15:12:19Z",
+              "source": "Google",
+              "sourceType": "SEO",
+              "utmParameters": null
+            },
+            "lastVisit": {
+              "occurredAt": "2026-09-05T15:12:19Z",
+              "source": "Google",
+              "sourceType": "SEO",
+              "utmParameters": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Order/6813115056225",
+          "createdAt": "2026-09-06T21:31:05Z",
+          "test": false,
+          "cancelledAt": null,
+          "displayFinancialStatus": "PAID",
+          "taxesIncluded": false,
+          "currentSubtotalPriceSet": {
+            "shopMoney": {
+              "amount": "31.98",
+              "currencyCode": "USD"
+            }
+          },
+          "currentTotalPriceSet": {
+            "shopMoney": {
+              "amount": "31.98",
+              "currencyCode": "USD"
+            }
+          },
+          "totalRefundedSet": {
+            "shopMoney": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+            }
+          },
+          "customerJourneySummary": {
+            "ready": true,
+            "customerOrderIndex": 1,
+            "firstVisit": {
+              "occurredAt": "2026-09-06T20:47:11Z",
+              "source": "Google",
+              "sourceType": "SEO",
+              "utmParameters": null
+            },
+            "lastVisit": {
+              "occurredAt": "2026-09-06T20:47:11Z",
+              "source": "Google",
+              "sourceType": "SEO",
+              "utmParameters": null
+            }
+          }
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjo2ODEzMTE1MDU2MjI1LCJsYXN0X3ZhbHVlIjoiMjAyNi0wOS0wNiAyMTozMTowNS4yNjIwOTMifQ=="
+      }
+    }
+  }
+}

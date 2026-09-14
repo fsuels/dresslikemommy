@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "checkpoint": "2026-09-13 afternoon \u2014 R002 due publication verification",
+  "actual_heartbeat_utc": "2026-09-13T20:00:26.440Z",
+  "actual_heartbeat_local": "2026-09-13T16:00:26.440-04:00",
+  "automation_id": "run-dress-like-mommy-x-organic-pilot",
+  "overall_requested_outcome": "PARTIAL; R002 publication verification is BLOCKED on the missing supported connection/available platform receipt. Neither failure nor successful publication is inferred.",
+  "source_context": {
+    "task": "TA-24",
+    "owner": "root01a0915d-9105-7833-9d4b-eb467ab0ebbd",
+    "anchor": "2026-09-12-x-operation-context-and-morning-handoff-verified",
+    "retrieval": "continue X returned RetrievalOK; queue and claim agree on same owner and publisher hold. Full-paidNONE and false preserved."
+  },
+  "due_publication": {
+    "post_id": "DLM-X-202609-R002",
+    "planned_local": "2026-09-13T12:15:00-04:00",
+    "planned_utc": "2026-09-13T16:15:00Z",
+    "current_status": "DUE__PUBLICATION_UNVERIFIED",
+    "platform_post_id": null,
+    "platform_post_url": null,
+    "actual_published_at": null,
+    "evidence": "One native Save and exact body/date readback on September11. The planned time has now passed. No actual permitted post receipt was found.",
+    "current_native_pending_count": null,
+    "original_native_saved_count": 7,
+    "remaining_future_planned_count": 6,
+    "duplicate_or_backfill_attempts": 0,
+    "meaning": "Past planned time and missing indexed results prove neither success nor failure; preserve the original item without another submission."
+  },
+  "permitted_evidence": {
+    "api_publisher": "No X-capable publishing integration found in current enabled tool metadata. The existing question remains pending; no credentials/app-setup attempt.",
+    "public_search_queries": [
+      {
+        "query": "site:x.com/dresslikemommy \"Sizing check\" \"product\""
+      },
+      {
+        "query": "site:x.com \"family pictures\" \"outfits\" \"help\"",
+        "recency_days": 30
+      }
+    ],
+    "search_result": "Empty search results\nNo results were found for the provided queries",
+    "qualified_current_buyer_questions": 0,
+    "index_limit": "Fresh posts may not be indexed and search coverage is incomplete; no-result searches do not prove nonpublication or absent demand.",
+    "prior_direct_public_read": "September12 direct public post fetch returned403. Not repeated or bypassed through native/browser/cookie access."
+  },
+  "accepted_current_day_campaign_report": {
+    "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-13 UNTIL 2026-09-13",
+    "columns": [],
+    "rows": [],
+    "rowCount": 0,
+    "shopDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "measurement": {
+    "report_date": "2026-09-13",
+    "coverage": "Partial day as of this4PM check; morning shop-info confirmed EDT.",
+    "x_campaign_rows": 0,
+    "acquired_x_visits": null,
+    "confirmed_x_orders": null,
+    "supported_contribution": null,
+    "interpretation": "No X campaign row appeared, including no row for R002. This is not a platform publication receipt or proof of zero clicks/orders.",
+    "completed_day_baseline": "2026-09-13-morning.json covers complete September12; preserve separate clocks and known QA."
+  },
+  "opportunity_decision": "Today's reviewed sizing post is the next intended content test. Retain it as the baseline and keep R009/R010 as reviewed local candidates. No indexed buyer question or measured response supports adding copy or increasing cadence. The highest-value valid action is accurate due-status tracking without duplicate distribution.",
+  "next_action": "Keep the single supported-publisher question pending. Obtain an actual R002 platform receipt through permitted access when available; next9AM check can read completed September13 website reporting without treating analytics as publication proof.",
+  "modifications": {
+    "X_account_post_reply_schedule_writes": 0,
+    "other_platform_writes": 0,
+    "automation_changes": 0,
+    "new_drafts": 0,
+    "new_spend": 0,
+    "owner_questions_repeated": 0,
+    "tagged_QA_visits": 0,
+    "shared_canonical_writes": 0
+  },
+  "verification": {
+    "status": "PASS",
+    "scoped_git_diff_check": {
+      "exit_code": 0,
+      "output": "",
+      "scope": "Task-owned relaunch directory; no shared canonical edits."
+    },
+    "checks": {
+      "native_original_preserved": true,
+      "planned_time_has_passed": true,
+      "six_future_planned_dates": true,
+      "no_receipt_not_promoted": true,
+      "accepted_same_store_report": true,
+      "same_active_reviewed_automation": true,
+      "unknown_outcomes_preserved": true
+    },
+    "count": 7,
+    "strict_snapshot": {
+      "exit_code": 0,
+      "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 50974 lines; latest anchor 2026-09-13-ceo-pinterest-p1-publication-verified\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-13-ceo-pinterest-p1-publication-verified\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+      "stderr": "",
+      "scope": "Read-only current shared repository; no canonical changes claimed."
+    }
+  },
+  "parent_notification": {
+    "thread_id": "01a08223-036e-7fa3-8961-ecd297163fb5",
+    "delivery": "Tool accepted the internal checkpoint message and returned the matching thread ID; parent acknowledgement not inferred.",
+    "scope": "New R002 due-but-unverified status, reporting limits, task-owned evidence, and next scheduled check. Parent retains shared canonical ownership."
+  },
+  "completed_at_utc": "2026-09-13T20:06:09.128782+00:00",
+  "elapsed_wall_minutes": 5.71,
+  "effort_note": "Current recurring elapsed time recorded; setup and other run receipts remain separate. No complete weekly-cap compliance claim."
+}

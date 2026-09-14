@@ -72,7 +72,7 @@ Multi-color default:
 ```text
 LISTING REQUEST
 
-VENDOR_URL: https://detail.1688.com/offer/1234567890.html
+VENDOR_URL: [PRIVATE_SUPPLIER_URL]
 SIZE_CHART_SOURCE: attached image
 LISTING_MODE: Mommy and Me
 PRIMARY_CATEGORY: Dresses
@@ -90,7 +90,7 @@ FORCE_SPEC_PRICES: true
 ```text
 LISTING REQUEST
 
-VENDOR_URL: https://detail.1688.com/offer/1234567890.html
+VENDOR_URL: [PRIVATE_SUPPLIER_URL]
 SIZE_CHART_SOURCE: attached image
 LISTING_MODE: Daddy and Me
 PRIMARY_CATEGORY: Tops
@@ -108,7 +108,7 @@ FORCE_SPEC_PRICES: true
 ```text
 LISTING REQUEST
 
-VENDOR_URL: https://detail.1688.com/offer/1032088497889.html
+VENDOR_URL: [PRIVATE_SUPPLIER_URL]
 SIZE_CHART_SOURCE: attached image
 LISTING_MODE: Family Matching
 PRIMARY_CATEGORY: FamilySet
@@ -131,7 +131,7 @@ Expected option model for Example 3:
 ```text
 LISTING REQUEST
 
-VENDOR_URL: https://detail.1688.com/offer/1234567890.html
+VENDOR_URL: [PRIVATE_SUPPLIER_URL]
 SIZE_CHART_SOURCE: attached image
 LISTING_MODE: Mommy and Me
 PRIMARY_CATEGORY: Dresses
@@ -155,9 +155,9 @@ Cost rule for every generated or updated Shopify variant:
 
 Localized size-chart rule:
 
-- After creating or updating a product that contains a body size chart, the agent must register/refresh Shopify product translations for the handle, run `ops/scripts/repair_localized_product_size_charts.py --handles <handle> --execute`, then rerun the same script with `--fail-on-missing`.
-- The listing is not complete until the readback shows `products_with_missing_locale_size_chart=0`, `planned_translation_count=0`, and `error_count=0`.
-- The agent must also run `ops/scripts/audit_localized_size_chart_variant_mapping.py --handles <handle> --fail-on-unmatched`; the listing is not complete until `unmatched_variant_locale_count=0`.
+- Every generated listing runner must call `/usr/bin/python3 "$ROOT/ops/scripts/finalize_shopify_listing_localization.py" --handles "<handle>"` after the product create/update succeeds.
+- The shared closeout performs the immediate full-product translation refresh with no new-product delay, audits product translations before and after localized size-chart repair, and runs strict size-chart plus variant-row mapping readbacks.
+- The listing is not complete until the runner exits `0` and `ops/listings/<handle>-localization-closeout.json` reports `status=passed`.
 - This applies to drafts and active products; do not rely on English-only size tables when Shopify serves translated `body_html` on localized storefront routes.
 
 Expected option model for Example 4:

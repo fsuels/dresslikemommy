@@ -1,0 +1,76 @@
+{
+  "status": "CLOSEOUT_VERIFIED_READY_FOR_WRITER_RELEASE",
+  "at_utc": "2026-09-11T20:39:29.065257+00:00",
+  "anchor": "2026-09-11-microsoft-purchase-goals-and-ad-controls",
+  "root_after_checks": [
+    {
+      "check": "ops/AGENT_COORDINATION.md exact reviewed after hash",
+      "result": "PASS"
+    },
+    {
+      "check": "ops/marketing/action_queue.md exact reviewed after hash",
+      "result": "PASS"
+    },
+    {
+      "check": "ops/marketing/current_marketing_state.md exact reviewed after hash",
+      "result": "PASS"
+    },
+    {
+      "check": "ops/marketing/operator_cockpit.md exact reviewed after hash",
+      "result": "PASS"
+    },
+    {
+      "check": "ops/PROBLEM_TRACKER.md exact reviewed after hash",
+      "result": "PASS"
+    },
+    {
+      "check": "ops/marketing/blocker_board.md exact reviewed after hash",
+      "result": "PASS"
+    },
+    {
+      "check": "ops/marketing/daily_scorecard.md exact reviewed after hash",
+      "result": "PASS"
+    },
+    {
+      "check": "ops/marketing/decision_log.md exact reviewed after hash",
+      "result": "PASS"
+    },
+    {
+      "check": "ops/marketing/review_log.md exact reviewed after hash",
+      "result": "PASS"
+    },
+    {
+      "check": "ops/AGENT_WORKLOG.md exact reviewed after hash",
+      "result": "PASS"
+    },
+    {
+      "check": "Generated Microsoft card contains current repair checkpoint",
+      "result": "PASS"
+    },
+    {
+      "check": "Generated owner V7 dependency present; exact source guard preserved by application",
+      "result": "PASS"
+    }
+  ],
+  "checks_passed": 12,
+  "commands": {
+    "render_marketing_cockpit.py": "PASS rendered HTML",
+    "audit_marketing_command_integration.py --write-report --fail-on-risk": "PASS25/25 zero side-document risks",
+    "check_continuity_integrity.py --strict": "PASS10groups CONTINUITY_OK",
+    "git diff --check scoped15files": "PASS exit0"
+  },
+  "generated_files": {
+    "ops/marketing/operator_cockpit.html": "4e87a6fbd4f345ec886fe5378484fe499f836771b1339dbd40988193e1fd1144",
+    "ops/marketing/command_layer_integration_audit.md": "76b66df817f745e521f308c7ad0ec583133166bf123466b0b4d6e02c997b6f3c"
+  },
+  "external_result": "5 native Saves6 fields verified;11campaignsPaused;no activation",
+  "local_result": "14localCSVfields verified;10canonicalownfiles exact after",
+  "independent_final": {
+    "status": "PASS_EXACT_CANONICAL_POSTFLIGHT",
+    "checks": 8,
+    "file": "canonical_postflight_review.json",
+    "sha256": "b510350983f93ae33cca6e074cbb5cf01be942a38e76f9e9c503a6c97abc39be"
+  },
+  "writer_release": "Explicit release to X01a0915d then Pinterest; parent notified",
+  "completed_at_utc": "2026-09-11T20:43:24.411226+00:00"
+}

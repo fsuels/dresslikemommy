@@ -1,0 +1,22 @@
+query CurrentSalesCheckpoint20260908($filter: String!, $after: String) {
+  shop { name ianaTimezone currencyCode primaryDomain { host } }
+  orders(first: 50, after: $after, query: $filter, sortKey: CREATED_AT) {
+    nodes {
+      id createdAt test cancelledAt sourceName
+      displayFinancialStatus displayFulfillmentStatus
+      currencyCode presentmentCurrencyCode
+      subtotalPriceSet { shopMoney { amount currencyCode } presentmentMoney { amount currencyCode } }
+      currentSubtotalPriceSet { shopMoney { amount currencyCode } presentmentMoney { amount currencyCode } }
+      totalPriceSet { shopMoney { amount currencyCode } presentmentMoney { amount currencyCode } }
+      currentTotalPriceSet { shopMoney { amount currencyCode } presentmentMoney { amount currencyCode } }
+      currentTotalTaxSet { shopMoney { amount currencyCode } presentmentMoney { amount currencyCode } }
+      totalRefundedSet { shopMoney { amount currencyCode } presentmentMoney { amount currencyCode } }
+      shippingAddress { countryCodeV2 }
+      lineItems(first: 50) {
+        nodes { quantity currentQuantity product { id title handle } variant { id title } }
+        pageInfo { hasNextPage endCursor }
+      }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}

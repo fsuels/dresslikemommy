@@ -41,7 +41,7 @@ PRINT_NAME = "Sunny Citrus Beach"
 SHORTCODE = "SCBE"
 COLOR_TOKEN = "CIT"
 COLOR_NAME = "Sunny Citrus"
-VENDOR_URL = "https://detail.1688.com/offer/1041610755813.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Sets"
 CUSTOM_TYPE = "Two-Piece Set"
@@ -360,7 +360,7 @@ def tags() -> list[str]:
         "Aqua",
         "White",
         PRINT_NAME,
-        VENDOR_URL,
+
     ]
     values.extend(row["picker_label"] for row in SIZE_CHART)
     return sorted(dict.fromkeys(values))

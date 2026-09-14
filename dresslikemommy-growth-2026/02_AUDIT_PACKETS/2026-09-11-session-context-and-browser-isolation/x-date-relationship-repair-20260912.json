@@ -1,0 +1,266 @@
+{
+  "receipt_version": 1,
+  "captured_at": "2026-09-12T13:40:05.188886+00:00",
+  "status": "IMPLEMENTED_AND_LOCALLY_VERIFIED_ROOT_REVIEW_PENDING",
+  "correction_to_prior_receipt": "The prior duplicate-TA-24 explanation was incorrect. The canonical Couples row contains TA05 and no TA-24. It was linked to TA-24 solely by the extracted filename/directory date 20260911. The prior receipt remains unchanged as requested; this receipt supplies the corrected diagnosis and repair.",
+  "scope": "Only session_context.py, its existing focused test file, and this separate receipt changed. Root retains every canonical file and account surface.",
+  "root_cause": {
+    "source": "The X task references 2026-09-11-x-profile-review/relaunch/proactive-20260911/READBACK.md; automatic numeric extraction added 20260911 as an identity. Unrelated Couples receipt filenames contain the same date.",
+    "false_link_basis": {
+      "TA-24": {
+        "exact_entities": [
+          "20260911"
+        ],
+        "explicit_task_id": false
+      }
+    },
+    "canonical_duplicate_task_id": false
+  },
+  "fix": "Use contextual matching only for inferred session relationships: valid eight-digit calendar dates embedded in untyped resource names do not count as numeric identities. Apply it both when deriving task identities and matching target claims/related anchors. Exact full paths, typed accounts, standalone numeric IDs and numeric account directory components remain eligible. Global exact extraction, selection, explicit multi-entity intersection, authority and owner comparison semantics are unchanged.",
+  "source_sha256": {
+    "ops/scripts/session_context.py": {
+      "before": "6ac02d610a619c8e8f0feb2262568888f0c221ae9cdb1406b99f084156c2848c",
+      "after": "cde65ee2450348a6424e3eab89ac19b635fd9b21d233864008bf7b431e128f83"
+    },
+    "ops/tests/test_session_context.py": {
+      "before": "7ef0958988fc0c50ee19dcdff70e1cd3e838ac5439e7448e302465aa2cd9f855",
+      "after": "24f66fc3776a91785170c8fe39b99b763c8f0248885b3bffe13579e8fcae99a0"
+    },
+    "ops/scripts/compile_task_context.py": {
+      "before": "34d9bbfa6a5258ac31ee66eb4fc6dc3ba6a9bbc7885f3c19ab4b08e798c83a9d",
+      "after": "34d9bbfa6a5258ac31ee66eb4fc6dc3ba6a9bbc7885f3c19ab4b08e798c83a9d"
+    },
+    "ops/tests/test_compile_task_context.py": {
+      "before": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943",
+      "after": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943"
+    },
+    "ops/scripts/render_marketing_cockpit.py": {
+      "before": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0",
+      "after": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0"
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/x-operation-context-repair-20260912.json": {
+      "before": "75646d429ca16b53a9a161668510d2dfc5e46672a05a8ebc2ce951414fb44605",
+      "after": "75646d429ca16b53a9a161668510d2dfc5e46672a05a8ebc2ce951414fb44605"
+    }
+  },
+  "exact_production_diff": "--- before/ops/scripts/session_context.py\n+++ ops/scripts/session_context.py\n@@ -3,6 +3,7 @@\n from __future__ import annotations\n \n import re\n+from datetime import date\n from pathlib import Path\n from typing import Callable\n \n@@ -33,6 +34,30 @@\n DATE_RE = re.compile(r\"(?<!\\d)\\d{4}-\\d{2}-\\d{2}(?!\\d)\")\n TASK_ID_RE = re.compile(r\"\\bTA-\\d+\\b\")\n OWNER_ID_RE = re.compile(r\"\\b([0-9a-f]{8})(?![0-9a-f])\", re.IGNORECASE)\n+RESOURCE_REFERENCE_RE = re.compile(\n+    r\"(?<![A-Za-z0-9_.-])(?:(?:[A-Za-z0-9_.-]+/)+[A-Za-z0-9_.-]+|\"\n+    r\"[A-Za-z0-9_.-]+\\.[A-Za-z][A-Za-z0-9]*)(?![A-Za-z0-9_.-])\"\n+)\n+\n+\n+def contains_relationship_entity(text: str, entity: str, contains_entity: Callable) -> bool:\n+    \"\"\"A receipt date alone is not an account link; exact resource links survive.\"\"\"\n+    if entity.isdigit() and len(entity) == 8:\n+        try:\n+            date(int(entity[:4]), int(entity[4:6]), int(entity[6:]))\n+        except ValueError:\n+            pass\n+        else:\n+            occurrence = re.compile(rf\"(?<![A-Za-z0-9_]){re.escape(entity)}(?![A-Za-z0-9_])\")\n+\n+            def mask_resource_date(match):\n+                # Keep numeric account directories and typed IDs. Only an\n+                # untyped date embedded in a resource name loses ID status.\n+                return \"/\".join(part if part == entity else occurrence.sub(\" \", part)\n+                                for part in match.group().split(\"/\"))\n+\n+            text = RESOURCE_REFERENCE_RE.sub(mask_resource_date, text)\n+    return contains_entity(text, entity)\n \n \n def owner_ids(text: str) -> set[str]:\n@@ -165,7 +190,11 @@\n     if goal is None:\n         warnings.append(f\"sourced business goal unavailable: {format_path(goal_path)}\")\n     task_ids = {row[\"id\"] for row in current_tasks}\n-    entities_by_task = {row[\"id\"]: extract_entities(row[\"text\"]) for row in current_tasks}\n+    def relationship_entities(text):\n+        return [entity for entity in extract_entities(text)\n+                if contains_relationship_entity(text, entity, contains_entity)]\n+\n+    entities_by_task = {row[\"id\"]: relationship_entities(row[\"text\"]) for row in current_tasks}\n     for row in current_tasks:\n         # A queue card may name a problem rather than its product. Recover that\n         # identity from the latest explicitly linked metadata, with provenance;\n@@ -177,7 +206,7 @@\n                 contains_entity(metadata_text, entity) for entity in problem_ids\n             ):\n                 continue\n-            derived = extract_entities(metadata_text)\n+            derived = relationship_entities(metadata_text)\n             entities_by_task[row[\"id\"]] = sorted(set(entities_by_task[row[\"id\"]]) | set(derived))\n             row[\"identity_evidence\"] = {\n                 \"entities\": derived, \"anchor_id\": anchor[\"anchor_id\"],\n@@ -197,12 +226,14 @@\n             explicit_task_links = task_ids & set(TASK_ID_RE.findall(row[\"text\"]))\n             identity_subject = subject + \" \" + fields.get(\"Last Evidence / Handoff\", \"\")\n             entity_links = {\n-                task_id: [entity for entity in entities if contains_entity(identity_subject, entity)]\n+                task_id: [entity for entity in entities\n+                          if contains_relationship_entity(identity_subject, entity, contains_entity)]\n                 for task_id, entities in entities_by_task.items()\n             }\n             entity_links = {task_id: hits for task_id, hits in entity_links.items() if hits}\n             linked = sorted(explicit_task_links | set(entity_links))\n-            entity_match = any(contains_entity(subject, entity) for entity in task_entities)\n+            entity_match = any(contains_relationship_entity(subject, entity, contains_entity)\n+                               for entity in task_entities)\n             if not (linked or entity_match or channel_matches(channel, subject)):\n                 continue\n             row[\"linked_task_ids\"] = linked\n@@ -239,9 +270,11 @@\n         metadata = anchor[\"metadata\"]\n         subject = anchor[\"anchor_id\"] + \" \" + \" \".join(metadata.get(\"task_entities\", []))\n         linked = task_ids & set(TASK_ID_RE.findall(anchor[\"text\"]))\n-        if channel_matches(channel, subject) or any(contains_entity(subject, entity) for entity in primary_account_ids):\n+        if channel_matches(channel, subject) or any(\n+            contains_relationship_entity(subject, entity, contains_entity) for entity in primary_account_ids\n+        ):\n             direct_anchors.append(anchor)\n-        elif linked or any(contains_entity(subject, entity) for entity in task_entities):\n+        elif linked or any(contains_relationship_entity(subject, entity, contains_entity) for entity in task_entities):\n             related_anchors.append(anchor)\n     anchor_count = len(direct_anchors) + len(related_anchors)\n     # Keep the channel's own recent outcomes visible even when a shared account\n",
+  "exact_test_diff": {
+    "path": "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-date-rel-20260912-gmm8g5nq/test_session_context.py.diff",
+    "sha256": "311ffa820506a9e0a719c24ee5b699e295d64f91b7d0fbcd9a34e58971064a43",
+    "summary": "Add one five-case date-link regression method, one seven-case genuine relationship holdout, one explicit date-shaped numeric selector holdout, and their shared fixture helper; preserve all twelve existing tests."
+  },
+  "freeze": {
+    "source_snapshot_time": "2026-09-12T13:32:02.249663+00:00",
+    "fixtures_finalized_before_implementation_at": "2026-09-12T13:35:47.701461+00:00",
+    "frozen_manifest_sha256": "ed81625241c837220bc9edc26339035cd0c152cf4e7d95881b19be88647709c1",
+    "frozen_test_sha256": "24f66fc3776a91785170c8fe39b99b763c8f0248885b3bffe13579e8fcae99a0",
+    "before_state_sha256": "b380d5e3b4bd63d971810c86d1f51510afce56e3fb31dbe93f17e388e9be35b4",
+    "failing_cases": [
+      "Different receipt paths sharing only 20260911",
+      "Labeled date directory in receipt path versus unrelated receipt filename, matching current source shape",
+      "Different bare receipt filenames sharing only 20260911",
+      "Real typed numeric account 20260911 versus target receipt date only",
+      "Receipt date derived from linked anchor metadata versus unrelated numeric account"
+    ],
+    "baseline_result": "All five date-link cases failed; fourteen other test methods including the seven real relationship cases and explicit numeric selector passed. Original ten compatibility groups also passed.",
+    "after_result": "All fifteen test methods pass; frozen test bytes unchanged after implementation."
+  },
+  "frozen_cli_comparison": [
+    {
+      "query": "continue X",
+      "before_sha256": "e88d1c366698f135995c00d1832108ff91b7263b7c470621f1152cfc4f19f697",
+      "after_sha256": "193b3edde15c761a1a3c8f39166e1fa97d394cb25f797365da2843b1e1f9fa97",
+      "before_status": "OK",
+      "after_status": "OK",
+      "before_task_ids": [
+        "TA-24"
+      ],
+      "after_task_ids": [
+        "TA-24"
+      ],
+      "payload_byte_identical": false
+    },
+    {
+      "query": "continue Google Ads",
+      "before_sha256": "8c0d8132e0ca79b5451560d5201cbf3a2b5007eaa77d12781ab3e6497b148ee7",
+      "after_sha256": "8c0d8132e0ca79b5451560d5201cbf3a2b5007eaa77d12781ab3e6497b148ee7",
+      "before_status": "OK",
+      "after_status": "OK",
+      "before_task_ids": [
+        "TA-01",
+        "TA-09",
+        "TA-10"
+      ],
+      "after_task_ids": [
+        "TA-01",
+        "TA-09",
+        "TA-10"
+      ],
+      "payload_byte_identical": true
+    },
+    {
+      "query": "Xdresslikemommy",
+      "before_sha256": "3313bab76affc44e8601a70cc595ed02a077d015ac47b9b207e9ff612770b0d5",
+      "after_sha256": "3313bab76affc44e8601a70cc595ed02a077d015ac47b9b207e9ff612770b0d5",
+      "before_status": "OK",
+      "after_status": "OK",
+      "before_task_ids": [],
+      "after_task_ids": [],
+      "payload_byte_identical": true
+    }
+  ],
+  "x_claims_before": [
+    {
+      "workstream": "X profile relaunch and organic operation",
+      "linked_task_ids": [
+        "TA-24"
+      ],
+      "basis": {
+        "TA-24": {
+          "exact_entities": [
+            "2026-09-11-x-profile-review/relaunch/proactive-20260911/READBACK.md",
+            "20260911",
+            "AUTOMATION_APPLIED",
+            "INDEPENDENT_REVIEW",
+            "operations/2026-09-12-morning.json"
+          ],
+          "explicit_task_id": false
+        }
+      }
+    },
+    {
+      "workstream": "Couples collection recovery",
+      "linked_task_ids": [
+        "TA-24"
+      ],
+      "basis": {
+        "TA-24": {
+          "exact_entities": [
+            "20260911"
+          ],
+          "explicit_task_id": false
+        }
+      }
+    }
+  ],
+  "x_claims_after": [
+    {
+      "workstream": "X profile relaunch and organic operation",
+      "linked_task_ids": [
+        "TA-24"
+      ],
+      "basis": {
+        "TA-24": {
+          "exact_entities": [
+            "2026-09-11-x-profile-review/relaunch/proactive-20260911/READBACK.md",
+            "AUTOMATION_APPLIED",
+            "INDEPENDENT_REVIEW",
+            "operations/2026-09-12-morning.json"
+          ],
+          "explicit_task_id": false
+        }
+      }
+    }
+  ],
+  "fresh_current_source": {
+    "verified_at": "2026-09-12T13:37:59.034908+00:00",
+    "command": [
+      "/usr/bin/python3",
+      "ops/scripts/compile_task_context.py",
+      "--query",
+      "continue X"
+    ],
+    "exit_code": 0,
+    "brief_command": [
+      "/usr/bin/python3",
+      "ops/scripts/compile_task_context.py",
+      "--query",
+      "continue X",
+      "--format",
+      "brief"
+    ],
+    "brief_exit_code": 0,
+    "checks": {
+      "exit_zero": true,
+      "status_ok": true,
+      "only_ta24": true,
+      "only_x_claim": true,
+      "no_date_id_link": true,
+      "owner_preserved": true,
+      "scope_none": true,
+      "write_not_authorized": true,
+      "latest_x_handoff_included": true,
+      "brief_exit_zero": true,
+      "brief_has_no_couples": true
+    },
+    "claims": [
+      {
+        "workstream": "X profile relaunch and organic operation",
+        "owner": "root01a0915d-9105-7833-9d4b-eb467ab0ebbd sole X operator; independent prompt and draft review PASS",
+        "basis": {
+          "TA-24": {
+            "exact_entities": [
+              "2026-09-11-x-profile-review/relaunch/proactive-20260911/READBACK.md",
+              "AUTOMATION_APPLIED",
+              "INDEPENDENT_REVIEW",
+              "operations/2026-09-12-morning.json"
+            ],
+            "explicit_task_id": false
+          }
+        }
+      }
+    ],
+    "json_sha256": "1f6fe0edb0077cc44ee6ece2fa899f49f067d480c4bde5653a5f3d79388da8e8",
+    "brief_sha256": "b129897276104a96548426b9c29fb9d2e5d8ad2d78d5caea4d04962a6699d1eb",
+    "canonical_sha256": {
+      "ops/AGENT_WORKLOG.md": "7e1b354e0eb4c83a0efd548a047c79be3421a0ca43ce9e5efd4cfcf62c9b1374",
+      "ops/marketing/current_marketing_state.md": "2750169784125bb0bf046086fe02ccc8f4e56aeb72596efaa854099651e90295",
+      "ops/PROBLEM_TRACKER.md": "5f492f83a673af02a70369993e46fc4273a943824477f47f5c5a3fdc7a8dca0c",
+      "ops/AGENT_COORDINATION.md": "4541caea1f46cd458fa3ad089f55622c765bacb6d00320b419780b00c378f199",
+      "ops/marketing/action_queue.md": "18760428eee02f48f2a2174e720d1d67b1316f6ddbae2ebbd8e3fcea1c1005a1",
+      "ops/GROWTH_NORTH_STAR.md": "c864a0890c9e23f8fcadd1d851ae7f1c37a4c9c7c646c18959ef350bbc7a0c21"
+    }
+  },
+  "verification": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 ops/tests/test_session_context.py",
+      "exit_code": 0,
+      "result": "15 tests, including 5 repaired date cases, 7 genuine relationship cases, explicit numeric-ID selection and all previous X-operation cases"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 ops/tests/test_compile_task_context.py",
+      "exit_code": 0,
+      "result": "ok; original ten compatibility groups unchanged"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "result": "CONTINUITY_OK"
+    },
+    {
+      "check": "Exact diffs and scope",
+      "result": "Added-line whitespace assertions pass; captured original compiler, compatibility tests, renderer and prior receipt hashes are unchanged. git diff --check also exited 0, but untracked code content was verified using captured-before diffs."
+    },
+    {
+      "check": "Additional bounded edge checks",
+      "result": "Six checks passed: labeled dated directory rejected; typed ID in filename preserved; numeric account directory preserved; invalid calendar number preserved; leap-day receipt date rejected; standalone numeric ID preserved. Global extract_entities still returns the original exact numeric entities."
+    },
+    {
+      "check": "Frozen holdouts and current sources",
+      "result": "Google Ads and exact X-account CLI payloads byte-identical on frozen sources. Current canonical hashes equal frozen source hashes. Fresh JSON and brief both exit 0 with TA-24, existing sole owner, latest X handoff, only the justified X claim, approved scope NONE and external_write_authorized false."
+    }
+  ],
+  "raw_evidence": {
+    "directory": "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-date-rel-20260912-gmm8g5nq",
+    "tool_results_sha256": "525bad9e613f47d0eac627cdc05cbafe631ac3a51133b19b47001c4890a7dedd",
+    "production_diff_sha256": "f72c94802909ce40bd8953497b3ad5f9c2c76c18cee5b3ccf9816d011bc53275"
+  },
+  "limits": [
+    "This bounded rule addresses compact calendar dates embedded in resource names, including labeled directories. Bare numbers in prose and purely numeric directory components remain eligible because they may be real account IDs.",
+    "A date-shaped number confined to an untyped resource name cannot by itself establish an inferred account relationship; use an explicit typed/standalone account ID or exact full resource path for that link. Explicit numeric queries remain unchanged.",
+    "This verifies local retrieval, not external platform state or browser concurrency. No account/browser/global/prompt/schedule/paid/theme/canonical changes or X-task messages occurred.",
+    "Raw snapshots and the exact focused-test diff reside in a temporary local directory that may later be cleaned. Root independent review and canonical checkpoint integration remain pending."
+  ],
+  "rollback": "Review the captured source hashes, then apply the inverse production/test diffs only. Preserve the earlier X subject fix and all intervening edits; do not restore canonical files.",
+  "next_owner_action": "Root independently reviews the contextual relationship fix and receipts, then integrates the corrected diagnosis and checkpoint into its own canonical state."
+}

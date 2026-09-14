@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dress Like Mommy · Opportunity Scout</title>
+  <style>
+    :root {
+      --ink: #22312c;
+      --muted: #69746f;
+      --paper: #fffdf8;
+      --cream: #f5f0e6;
+      --coral: #ef755f;
+      --coral-dark: #c84f3c;
+      --sage: #dce8df;
+      --green: #2f6957;
+      --green-soft: #eaf3ed;
+      --gold: #b38a3d;
+      --rose: #f8e5df;
+      --line: #ddd8ce;
+      --shadow: 0 16px 42px rgba(41, 52, 46, .09);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #f5f2eb;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+    button, input, select, textarea { font: inherit; }
+    button, select, input[type="text"], textarea { min-height: 44px; }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible {
+      outline: 3px solid rgba(47,105,87,.28);
+      outline-offset: 2px;
+    }
+    button { cursor: pointer; }
+    button:disabled { cursor: wait; opacity: .62; }
+    .shell { width: min(1440px, calc(100% - 36px)); margin: 0 auto; padding: 22px 0 48px; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 18px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .mark {
+      width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center;
+      background: var(--green); color: white; font-family: Georgia, serif; font-size: 20px; box-shadow: var(--shadow);
+    }
+    .brand strong { font-family: Georgia, serif; font-size: 18px; display: block; }
+    .brand span { color: var(--muted); font-size: 12px; }
+    .auto-readout { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 13px; }
+    .dot { width: 9px; height: 9px; border-radius: 999px; background: #aaa; }
+    .dot.on { background: #55a578; box-shadow: 0 0 0 5px rgba(85,165,120,.12); }
+    .hero {
+      border: 1px solid rgba(221,216,206,.85); border-radius: 26px; box-shadow: var(--shadow);
+      background: rgba(255,253,248,.94); overflow: hidden; margin-bottom: 18px;
+    }
+    .hero-copy { padding: 30px 32px 20px; border-bottom: 1px solid var(--line); }
+    .eyebrow { color: var(--coral-dark); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: 11px; }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; margin: 0; font-weight: 600; }
+    h1 { font-size: clamp(32px, 5vw, 56px); line-height: 1.02; max-width: 900px; margin-top: 7px; }
+    .hero-copy p { max-width: 850px; color: var(--muted); line-height: 1.55; margin: 12px 0 0; }
+    .control-grid { display: grid; grid-template-columns: 1.2fr .8fr; }
+    .coverage { padding: 24px 30px 28px; border-right: 1px solid var(--line); }
+    .settings { padding: 24px 30px 28px; background: rgba(220,232,223,.42); }
+    .section-label { color: var(--muted); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+    .chip {
+      min-height: 44px; border: 1px solid var(--line); background: white; color: var(--ink); border-radius: 999px;
+      padding: 9px 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .chip::before { content: ""; width: 15px; height: 15px; border: 1.5px solid #aaa; border-radius: 5px; }
+    .chip.active { border-color: var(--coral); background: var(--rose); }
+    .chip.active::before { content: "✓"; display: grid; place-items: center; color: white; border-color: var(--coral); background: var(--coral); font-size: 11px; }
+    .market-row { margin-top: 18px; }
+    .market-chip.active { border-color: var(--green); background: var(--green-soft); }
+    .market-chip.active::before { border-color: var(--green); background: var(--green); }
+    .rule-note { margin-top: 18px; padding: 12px 14px; border-radius: 12px; background: #f8f5ee; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .rule-note strong { color: var(--ink); }
+    .switch-row { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 18px; }
+    .switch-row strong { display: block; }
+    .switch-row small { color: var(--muted); }
+    .switch { width: 60px; height: 44px; border: 0; padding: 5px; border-radius: 999px; background: #b7bdb9; min-height: 44px; }
+    .switch span { display: block; width: 34px; height: 34px; border-radius: 50%; background: white; transition: transform .18s; }
+    .switch.on { background: var(--green); }
+    .switch.on span { transform: translateX(16px); }
+    .primary, .secondary, .quiet {
+      border-radius: 12px; padding: 11px 16px; font-weight: 800; border: 1px solid transparent; min-height: 46px;
+    }
+    .primary { color: white; background: var(--coral); box-shadow: 0 8px 18px rgba(239,117,95,.22); }
+    .primary:hover { background: var(--coral-dark); }
+    .secondary { color: var(--green); background: white; border-color: rgba(47,105,87,.35); }
+    .quiet { color: var(--ink); background: transparent; border-color: var(--line); }
+    .settings-actions { display: grid; gap: 9px; }
+    .settings-actions .primary { width: 100%; }
+    .mini-status { margin-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    details.terms { border-top: 1px solid var(--line); }
+    details.terms > summary { list-style: none; cursor: pointer; padding: 18px 30px; font-weight: 800; display: flex; justify-content: space-between; align-items: center; }
+    details.terms > summary::-webkit-details-marker { display: none; }
+    details.terms > summary span { color: var(--muted); font-weight: 500; font-size: 13px; }
+    .term-panel { border-top: 1px solid var(--line); padding: 20px 30px 28px; background: #fff; }
+    .term-tools { display: grid; grid-template-columns: minmax(190px, .5fr) minmax(220px, 1fr) auto; gap: 10px; align-items: end; }
+    label.field { display: grid; gap: 6px; color: var(--muted); font-size: 12px; font-weight: 700; }
+    select, input[type="text"], textarea { width: 100%; border: 1px solid var(--line); border-radius: 11px; padding: 10px 12px; background: var(--paper); color: var(--ink); }
+    .term-help { margin: 12px 0; color: var(--muted); font-size: 13px; }
+    .term-list { max-height: 330px; overflow: auto; border: 1px solid var(--line); border-radius: 14px; }
+    .term-option { display: grid; grid-template-columns: 24px 1fr; gap: 10px; padding: 12px 14px; border-bottom: 1px solid #eeeae2; cursor: pointer; }
+    .term-option:last-child { border-bottom: 0; }
+    .term-option:hover { background: #faf7f0; }
+    .term-option input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--coral); }
+    .term-option strong { display: block; font-size: 14px; }
+    .term-option code { display: block; margin-top: 4px; white-space: normal; color: var(--green); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .term-option small { color: var(--muted); }
+    .progress-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px 24px; margin-bottom: 18px; }
+    .progress-head { display: flex; justify-content: space-between; gap: 16px; align-items: start; }
+    .progress-head h2 { font-size: 24px; }
+    .progress-head p { color: var(--muted); margin: 5px 0 0; }
+    .progress-meter { height: 9px; background: #e8e5dd; border-radius: 99px; overflow: hidden; margin: 17px 0; }
+    .progress-meter span { display: block; height: 100%; width: 0; background: var(--coral); transition: width .3s; }
+    .attention { display: none; align-items: center; justify-content: space-between; gap: 14px; border-radius: 13px; padding: 13px 14px; margin: 14px 0; background: #fff2d8; border: 1px solid #e5bf65; }
+    .attention.show { display: flex; }
+    .attention strong { display: block; }
+    .attention span { color: #765c26; font-size: 13px; }
+    .lane-progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+    .lane-row { border: 1px solid var(--line); border-radius: 12px; padding: 11px 12px; min-width: 0; background: white; }
+    .lane-row .lane-title { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 800; }
+    .lane-row .lane-state { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+    .lane-row p { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.35; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+    .stat { padding: 17px 19px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,253,248,.9); }
+    .stat strong { font-family: Georgia, serif; font-size: 29px; display: block; }
+    .stat span { color: var(--muted); font-size: 12px; }
+    .workspace { display: grid; grid-template-columns: minmax(390px, .9fr) minmax(520px, 1.1fr); border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); box-shadow: var(--shadow); overflow: hidden; min-height: 620px; }
+    .queue { border-right: 1px solid var(--line); min-width: 0; }
+    .queue-head { padding: 19px 20px 13px; border-bottom: 1px solid var(--line); }
+    .queue-head h2 { font-size: 24px; }
+    .queue-head p { margin: 4px 0 13px; color: var(--muted); font-size: 13px; }
+    .tabs { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 2px; }
+    .tab { white-space: nowrap; border: 0; min-height: 44px; background: transparent; color: var(--muted); border-radius: 9px; padding: 8px 10px; font-weight: 800; font-size: 12px; }
+    .tab.active { color: var(--green); background: var(--green-soft); }
+    .queue-search { margin-top: 10px; }
+    .card-list { max-height: 720px; overflow: auto; padding: 10px; }
+    .candidate-card { display: grid; grid-template-columns: 92px 1fr; gap: 12px; width: 100%; text-align: left; border: 1px solid transparent; border-radius: 13px; background: transparent; padding: 10px; min-height: 116px; color: inherit; }
+    .candidate-card:hover, .candidate-card.active { background: white; border-color: var(--line); }
+    .candidate-card.active { box-shadow: 0 6px 20px rgba(41,52,46,.08); }
+    .thumb { width: 92px; height: 92px; object-fit: cover; background: #eeeae2; border-radius: 11px; }
+    .card-copy { min-width: 0; }
+    .tier { display: inline-flex; align-items: center; min-height: 24px; border-radius: 999px; padding: 4px 8px; font-size: 9px; letter-spacing: .07em; text-transform: uppercase; font-weight: 900; }
+    .tier.verified { color: var(--green); background: var(--green-soft); }
+    .tier.promising { color: #8a6022; background: #fff1d1; }
+    .tier.rejected { color: #8c4c43; background: var(--rose); }
+    .candidate-card h3 { font-family: inherit; font-size: 14px; font-weight: 800; line-height: 1.35; margin: 6px 0; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .card-meta { display: flex; flex-wrap: wrap; gap: 5px 10px; color: var(--muted); font-size: 11px; }
+    .empty { padding: 38px 24px; text-align: center; color: var(--muted); }
+    .empty strong { display: block; color: var(--ink); font-family: Georgia, serif; font-size: 23px; margin-bottom: 8px; }
+    .inspector { min-width: 0; background: white; }
+    .inspect-empty { height: 100%; display: grid; place-items: center; text-align: center; padding: 40px; color: var(--muted); }
+    .detail-hero { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(300px, 1.2fr); min-height: 340px; }
+    .detail-image { width: 100%; height: 100%; min-height: 340px; object-fit: cover; background: #eeeae2; }
+    .detail-copy { padding: 25px; }
+    .detail-copy h2 { margin: 9px 0 10px; font-size: clamp(24px, 3vw, 35px); line-height: 1.05; }
+    .detail-copy > p { color: var(--muted); line-height: 1.5; }
+    .detail-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+    .evidence { padding: 22px 25px 28px; border-top: 1px solid var(--line); }
+    .evidence h3 { font-size: 20px; margin-bottom: 12px; }
+    .evidence-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .evidence-item { border: 1px solid var(--line); border-radius: 11px; padding: 10px; }
+    .evidence-item small { display: block; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; }
+    .evidence-item strong { display: block; font-size: 13px; margin-top: 4px; overflow-wrap: anywhere; }
+    .evidence-item.ok { border-color: #a8c8b6; background: var(--green-soft); }
+    .evidence-item.missing { background: #f8f6f1; }
+    .workflow { margin-top: 14px; border-radius: 12px; padding: 12px 14px; background: #f7f4ed; color: var(--muted); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+    .proof-editor { margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; }
+    .proof-editor summary { cursor: pointer; padding: 12px 14px; font-weight: 800; }
+    .proof-form { padding: 0 14px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .proof-form .wide { grid-column: 1 / -1; }
+    .proof-form textarea { min-height: 80px; }
+    .status-toast { position: fixed; z-index: 20; left: 50%; bottom: 20px; transform: translateX(-50%); max-width: min(720px, calc(100% - 30px)); background: var(--ink); color: white; border-radius: 12px; padding: 12px 16px; box-shadow: var(--shadow); display: none; }
+    .status-toast.show { display: block; }
+    .status-toast.good { background: var(--green); }
+    .status-toast.bad { background: #9b493f; }
+    .brief-head { padding: 30px 32px 18px; }
+    .brief-head-row { display: flex; justify-content: space-between; gap: 22px; align-items: end; }
+    .brief-head h1 { font-size: clamp(34px, 4.4vw, 54px); }
+    .brief-head p { color: var(--muted); line-height: 1.5; margin: 10px 0 0; max-width: 760px; }
+    .season-mode { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .mode-button { min-height: 44px; border: 1px solid var(--line); border-radius: 999px; background: white; color: var(--muted); padding: 9px 14px; font-weight: 800; }
+    .mode-button.active { border-color: var(--coral); background: var(--rose); color: var(--coral-dark); }
+    .season-area { padding: 0 32px 22px; }
+    .season-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .season-card { position: relative; min-height: 88px; border: 1px solid var(--coral); border-radius: 14px; background: #fffaf7; padding: 15px 40px 14px 16px; }
+    .season-card strong { display: block; font-size: 17px; }
+    .season-card span { display: block; margin-top: 4px; color: var(--coral-dark); }
+    .season-card::after { content: "✓"; position: absolute; right: 14px; top: 14px; width: 23px; height: 23px; border-radius: 50%; display: grid; place-items: center; background: var(--coral); color: white; font-weight: 900; font-size: 12px; }
+    .season-excluded { margin: 10px 0 0; color: var(--muted); font-size: 13px; }
+    .season-options { display: none; margin-top: 12px; padding: 14px; border: 1px dashed #cfc9bd; border-radius: 14px; background: #faf8f3; }
+    .season-options.show { display: block; }
+    .brief-fields { padding: 22px 32px 24px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1.2fr .9fr .9fr .65fr; gap: 20px; }
+    .brief-field .section-label { margin-bottom: 9px; }
+    .brief-field .chips { gap: 7px; }
+    .brief-field .chip { min-height: 44px; padding: 8px 12px; font-size: 13px; }
+    .brief-field .chip.deferred { border-style: dashed; color: #776f63; background: #f4f1ea; cursor: not-allowed; opacity: 1; }
+    .field-note { margin: 9px 0 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
+    .plan-board { border-top: 1px solid var(--line); padding: 22px 32px; display: grid; grid-template-columns: minmax(210px,.75fr) minmax(430px,1.5fr) minmax(210px,.7fr); gap: 18px; background: white; }
+    .plan-summary, .trust-callout { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fafaf6; }
+    .plan-summary { border-color: #bdd0c3; background: var(--green-soft); }
+    .plan-summary strong, .trust-callout strong { display: block; margin-bottom: 7px; }
+    .plan-summary p, .trust-callout p { color: var(--muted); font-size: 13px; line-height: 1.5; margin: 0; }
+    .fixed-note { margin-top: 10px; color: var(--green); font-size: 12px; font-weight: 800; }
+    .query-preview h2 { font-family: inherit; font-size: 15px; font-weight: 900; margin-bottom: 9px; }
+    .query-rows { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .query-row { display: grid; grid-template-columns: minmax(155px,.72fr) minmax(260px,1.28fr); border-bottom: 1px solid #ece8df; }
+    .query-row:last-child { border-bottom: 0; }
+    .query-row span, .query-row code { padding: 10px 12px; font-size: 12px; line-height: 1.35; }
+    .query-row span { font-weight: 800; border-right: 1px solid #ece8df; }
+    .query-row small { display: inline-block; margin-top: 4px; color: var(--muted); font-weight: 600; }
+    .query-row code { color: var(--green); white-space: normal; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .query-more { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+    .plan-actions { border-top: 1px solid var(--line); padding: 18px 32px 24px; display: grid; grid-template-columns: minmax(260px, 1fr) auto minmax(260px,.8fr); gap: 14px; align-items: center; }
+    .plan-actions .primary { min-height: 52px; font-size: 16px; }
+    .schedule-control { display: flex; align-items: center; gap: 11px; justify-content: flex-end; }
+    .schedule-control-copy { text-align: right; }
+    .schedule-control-copy strong { display: block; font-size: 13px; }
+    .schedule-control-copy small { display: block; color: var(--muted); margin-top: 2px; }
+    .advanced-copy { padding: 0 30px 16px; color: var(--muted); font-size: 13px; }
+    .advanced-query-list { max-height: 430px; overflow: auto; border: 1px solid var(--line); border-radius: 14px; }
+    .advanced-query { display: grid; grid-template-columns: 26px minmax(210px,.8fr) minmax(300px,1.2fr); gap: 10px; padding: 12px 14px; border-bottom: 1px solid #ece8df; align-items: start; cursor: pointer; }
+    .advanced-query:last-child { border-bottom: 0; }
+    .advanced-query input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--coral); }
+    .advanced-query strong { font-size: 13px; }
+    .advanced-query code { color: var(--green); white-space: normal; font-size: 12px; }
+    .advanced-query.deferred { background: #f5f2ec; cursor: not-allowed; }
+    .advanced-query.deferred code { color: var(--muted); text-decoration: line-through; }
+    .search-role { display: inline-flex; margin: 0 0 5px; border-radius: 999px; padding: 3px 7px; font-size: 9px; line-height: 1; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+    .search-role.replacement { color: #8a6022; background: #fff1d1; }
+    .search-role.control { color: var(--green); background: var(--green-soft); }
+    .search-role.deferred { color: #776f63; background: #e9e5dc; }
+    .query-evidence { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; line-height: 1.4; font-weight: 600; }
+    .review-gate { margin-top: 14px; border: 1px solid #dfc68e; border-radius: 14px; background: #fff8e9; padding: 14px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .review-gate.approved { border-color: #a8c8b6; background: var(--green-soft); }
+    .review-gate strong { display: block; }
+    .review-gate p { margin: 4px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .loading-line { color: var(--muted); font-size: 13px; padding: 14px; }
+    @media (max-width: 980px) {
+      .control-grid, .workspace { grid-template-columns: 1fr; }
+      .coverage { border-right: 0; border-bottom: 1px solid var(--line); }
+      .queue { border-right: 0; border-bottom: 1px solid var(--line); }
+      .card-list { max-height: 520px; }
+      .lane-progress { grid-template-columns: repeat(2, 1fr); }
+      .detail-hero { grid-template-columns: 1fr 1fr; }
+      .brief-fields { grid-template-columns: 1fr 1fr; }
+      .plan-board { grid-template-columns: 1fr 1fr; }
+      .trust-callout { grid-column: 1 / -1; }
+      .plan-actions { grid-template-columns: 1fr auto; }
+      .schedule-control { grid-column: 1 / -1; justify-content: flex-start; }
+      .schedule-control-copy { text-align: left; }
+    }
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 18px, 1440px); padding-top: 12px; }
+      .topbar { align-items: flex-start; }
+      .auto-readout { text-align: right; max-width: 140px; }
+      .hero-copy, .coverage, .settings, .term-panel { padding-left: 18px; padding-right: 18px; }
+      details.terms > summary { padding-left: 18px; padding-right: 18px; align-items: start; gap: 10px; }
+      details.terms > summary span { text-align: right; }
+      .term-tools { grid-template-columns: 1fr; }
+      .lane-progress, .stats, .evidence-grid { grid-template-columns: 1fr 1fr; }
+      .progress-head, .attention { flex-direction: column; align-items: stretch; }
+      .workspace { min-height: 0; }
+      .detail-hero { grid-template-columns: 1fr; }
+      .detail-image { min-height: 300px; height: 300px; }
+      .proof-form { grid-template-columns: 1fr; }
+      .proof-form .wide { grid-column: auto; }
+      .candidate-card { grid-template-columns: 80px 1fr; }
+      .thumb { width: 80px; height: 86px; }
+      h1 { font-size: 37px; }
+      .brief-head, .season-area, .brief-fields, .plan-board, .plan-actions { padding-left: 18px; padding-right: 18px; }
+      .brief-head-row { display: block; }
+      .season-mode { justify-content: flex-start; margin-top: 15px; }
+      .season-grid { gap: 6px; }
+      .season-card { min-height: 94px; padding: 11px 25px 10px 10px; }
+      .season-card strong { font-size: 13px; }
+      .season-card span { font-size: 12px; }
+      .season-card::after { width: 19px; height: 19px; right: 7px; top: 8px; }
+      .brief-fields, .plan-board, .plan-actions { grid-template-columns: 1fr; }
+      .trust-callout, .schedule-control { grid-column: auto; }
+      .plan-actions .primary { width: 100%; }
+      .plan-actions .quiet { width: 100%; }
+      .schedule-control { justify-content: space-between; }
+      .schedule-control-copy { text-align: left; }
+      .query-row { grid-template-columns: 1fr; }
+      .query-row span { border-right: 0; border-bottom: 1px solid #f0ede6; padding-bottom: 6px; }
+      .query-row code { padding-top: 7px; overflow-wrap: anywhere; }
+      .advanced-query { grid-template-columns: 24px 1fr; }
+      .advanced-query code { grid-column: 2; overflow-wrap: anywhere; }
+      .review-gate { align-items: stretch; flex-direction: column; }
+      .review-gate button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><div class="mark">D</div><div><strong>Dress Like Mommy</strong><span>Opportunity Scout</span></div></div>
+      <div class="auto-readout"><span id="auto-dot" class="dot"></span><span id="auto-copy">Loading automatic scout…</span></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="brief-head">
+          <div class="brief-head-row">
+            <div>
+              <div id="recommended-eyebrow" class="eyebrow">Recommended now</div>
+              <h1>Build this season's search plan</h1>
+              <p id="recommendation-reason">The scout is checking today's date and your markets before it builds the exact 1688 searches.</p>
+            </div>
+            <div class="season-mode" role="group" aria-label="Season selection mode">
+              <button id="use-recommended" class="mode-button active" type="button" aria-pressed="true">Recommended for today</button>
+              <button id="choose-seasons" class="mode-button" type="button" aria-pressed="false">Choose seasons</button>
+            </div>
+          </div>
+        </div>
+        <div class="season-area">
+          <div id="recommended-seasons" class="season-grid" aria-label="Selected seasons"></div>
+          <p id="season-excluded" class="season-excluded"></p>
+          <div id="season-options" class="season-options">
+            <div class="section-label">Select one or more seasons</div>
+            <div id="season-chips" class="chips" aria-label="Season choices"></div>
+          </div>
+        </div>
+        <div class="brief-fields">
+          <div class="brief-field">
+            <div class="section-label">1 · Matching group</div>
+            <div id="category-chips" class="chips" aria-label="Matching groups"></div>
+            <p id="category-note" class="field-note"></p>
+          </div>
+          <div class="brief-field">
+            <div class="section-label">2 · Product type</div>
+            <div id="product-chips" class="chips" aria-label="Product types"></div>
+          </div>
+          <div class="brief-field">
+            <div class="section-label">3 · Occasion</div>
+            <div id="occasion-chips" class="chips" aria-label="Occasions"></div>
+          </div>
+          <div class="brief-field">
+            <div class="section-label">4 · Market</div>
+            <div id="market-chips" class="chips" aria-label="Markets"></div>
+          </div>
+        </div>
+        <div class="plan-board" aria-live="polite" aria-busy="true" id="plan-board">
+          <div class="plan-summary">
+            <strong>Your fixed search plan</strong>
+            <p id="plan-summary">Building the plan…</p>
+            <div id="fixed-note" class="fixed-note">No random rotation.</div>
+          </div>
+          <div class="query-preview">
+            <h2>Short Chinese searches <span id="query-count"></span></h2>
+            <div id="query-preview" class="query-rows"><div class="loading-line">Building exact searches…</div></div>
+            <p id="query-more" class="query-more"></p>
+          </div>
+          <div class="trust-callout">
+            <strong>Search first. Prove second.</strong>
+            <p>1688 receives only the matching relationship, garment, season, and at most one occasion term. The app separately requires 5+ verified years, supplier identity/rating, current listing evidence, stock, dropshipping, dispatch, size chart, and usable images.</p>
+          </div>
+        </div>
+        <div class="plan-actions">
+          <button id="scan-now" class="primary" type="button">Review required before any run</button>
+          <button id="adjust-searches" class="quiet" type="button">Review 15 exact searches</button>
+          <div class="schedule-control">
+            <div class="schedule-control-copy"><strong>Automatic daily scouting</strong><small id="schedule-readout">Your plan is loading.</small></div>
+            <button id="auto-toggle" class="switch" type="button" role="switch" aria-checked="false" aria-label="Automatic daily scouting"><span></span></button>
+            <button id="save-plan" class="secondary" type="button">Save</button>
+          </div>
+        </div>
+        <details class="terms" id="term-settings">
+          <summary>Review and choose exact searches <span id="term-summary">Loading fixed searches…</span></summary>
+          <div class="term-panel">
+            <p class="advanced-copy">Review every active row before unlocking this exact plan. Each English meaning is paired with the complete short Chinese phrase that 1688 will receive. Unchecking a row removes only that search; deferred rows cannot be enabled. Stock, dropshipping, supplier age, reputation, and current-year evidence remain filters after discovery—not extra keywords.</p>
+            <div id="advanced-query-list" class="advanced-query-list"><div class="loading-line">Building exact searches…</div></div>
+            <div id="review-gate" class="review-gate">
+              <div><strong id="review-gate-title">Review required</strong><p id="review-gate-copy">Read all replacement and control searches before unlocking a run. Confirming does not contact 1688 or start scouting.</p></div>
+              <button id="confirm-search-review" class="secondary" type="button">I reviewed these exact searches</button>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="progress-card" aria-live="polite" aria-atomic="false">
+        <div class="progress-head">
+          <div><div class="eyebrow">Persistent progress</div><h2 id="progress-title">Scout ready</h2><p id="progress-message">Choose your coverage and start one scan.</p></div>
+          <div id="progress-count">0 of 0 lanes</div>
+        </div>
+        <div class="progress-meter" role="progressbar" aria-label="Opportunity Scout progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div>
+        <div id="attention" class="attention"><div><strong>One action needed</strong><span id="attention-copy">1688 needs attention.</span></div><button id="open-helper" class="secondary" type="button">Open 1688 once</button></div>
+        <div id="lane-progress" class="lane-progress"></div>
+      </section>
+
+      <section class="stats" aria-label="Opportunity counts">
+        <div class="stat"><strong id="count-verified">0</strong><span>all-time verified opportunities</span></div>
+        <div class="stat"><strong id="count-promising">0</strong><span>all-time promising history</span></div>
+        <div class="stat"><strong id="count-liked">0</strong><span>liked & preparing</span></div>
+        <div class="stat"><strong id="count-filtered">0</strong><span>filtered by evidence</span></div>
+      </section>
+
+      <section class="workspace">
+        <div class="queue">
+          <div class="queue-head">
+            <h2>Opportunity inbox</h2>
+            <p id="queue-caption">Verified products appear here only after supplier checks pass.</p>
+            <div class="tabs" role="tablist" aria-label="Opportunity inbox filters">
+              <button class="tab active" data-tab="current" role="tab" aria-selected="true">Current plan</button>
+              <button class="tab" data-tab="verified" role="tab" aria-selected="false">Verified</button>
+              <button class="tab" data-tab="promising" role="tab" aria-selected="false">All promising history</button>
+              <button class="tab" data-tab="liked" role="tab" aria-selected="false">Liked & preparing</button>
+              <button class="tab" data-tab="rejected" role="tab" aria-selected="false">Filtered</button>
+              <button class="tab" data-tab="history" role="tab" aria-selected="false">History</button>
+            </div>
+            <input id="queue-search" class="queue-search" type="text" placeholder="Search products, lanes, or suppliers" aria-label="Search opportunity inbox">
+          </div>
+          <div id="card-list" class="card-list"></div>
+        </div>
+        <aside id="inspector" class="inspector"><div class="inspect-empty"><div><h2>Select an opportunity</h2><p>Review the source evidence, then like one product to start its local listing-preparation workflow.</p></div></div></aside>
+      </section>
+    </main>
+  </div>
+  <div id="status" class="status-toast" role="status" aria-live="polite"></div>
+
+  <script>
+    'use strict';
+    var data = { categories: [], market_profiles: [], candidates: [], scout: {}, sourcing_guide: {}, opportunity_counts: {} };
+    var selectedCategories = new Set();
+    var selectedMarkets = new Set();
+    var selectedProducts = new Set();
+    var selectedOccasions = new Set();
+    var selectedSeasons = new Set();
+    var excludedQueryIds = new Set();
+    var seasonMode = 'recommended';
+    var reviewedPlanHash = '';
+    var planPreview = null;
+    var planPreviewTimer = null;
+    var activeTab = 'current';
+    var selectedKey = '';
+    var initialized = false;
+    var lastScoutSignature = '';
+
+    function escapeHtml(value) {
+      return String(value == null ? '' : value).replace(/[&<>'"]/g, function(character) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character];
+      });
+    }
+    async function api(url, options) {
+      var response = await fetch(url, Object.assign({ headers: { 'Content-Type': 'application/json' } }, options || {}));
+      var payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || payload.message || ('Request failed: ' + response.status));
+      return payload;
+    }
+    function setStatus(message, tone) {
+      var node = document.querySelector('#status');
+      node.textContent = message;
+      node.className = 'status-toast show ' + (tone || '');
+      clearTimeout(setStatus.timer);
+      setStatus.timer = setTimeout(function() { node.className = 'status-toast'; }, 6500);
+    }
+    function formatWhen(value) {
+      if (!value) return 'not scheduled yet';
+      var date = new Date(value);
+      return isNaN(date.getTime()) ? value : date.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
+    }
+    function schedulePayload() {
+      var guide = data.sourcing_guide || {};
+      return {
+        enabled: document.querySelector('#auto-toggle').classList.contains('on'),
+        interval_hours: 24,
+        category_ids: Array.from(selectedCategories),
+        market_targets: Array.from(selectedMarkets),
+        plan_as_of: guide.as_of_date,
+        query_budget_per_lane: 3,
+        pages_per_query: 1,
+        detail_limit_per_lane: 2,
+        reviewed_plan_hash: reviewedPlanHash,
+        sourcing_brief: {
+          season_mode: seasonMode,
+          season_ids: Array.from(selectedSeasons),
+          product_type_ids: Array.from(selectedProducts),
+          occasion_ids: Array.from(selectedOccasions),
+          excluded_query_ids: Array.from(excludedQueryIds),
+          max_queries_per_lane: 6
+        }
+      };
+    }
+    function initializePlan() {
+      if (initialized) return;
+      var schedule = (data.scout && data.scout.schedule) || {};
+      var guide = data.sourcing_guide || {};
+      var defaults = guide.defaults || {};
+      var brief = schedule.sourcing_brief || defaults;
+      (schedule.category_ids || data.categories.map(function(item) { return item.id; })).forEach(function(id) { selectedCategories.add(id); });
+      (schedule.market_targets || ['us', 'eu']).forEach(function(id) { selectedMarkets.add(id); });
+      (brief.product_type_ids || defaults.product_type_ids || ['dresses', 'sets']).forEach(function(id) { selectedProducts.add(id); });
+      (brief.occasion_ids || defaults.occasion_ids || ['casual', 'formal']).forEach(function(id) { selectedOccasions.add(id); });
+      seasonMode = brief.season_mode === 'manual' ? 'manual' : 'recommended';
+      var seasonIds = seasonMode === 'recommended'
+        ? (((guide.recommendation || {}).season_ids) || [])
+        : (brief.season_ids || []);
+      seasonIds.forEach(function(id) { selectedSeasons.add(id); });
+      (brief.excluded_query_ids || []).forEach(function(id) { excludedQueryIds.add(String(id)); });
+      reviewedPlanHash = String(schedule.reviewed_plan_hash || '');
+      initialized = true;
+    }
+    function chipMarkup(items, selected, className, idName) {
+      return (items || []).map(function(item) {
+        var active = selected.has(item.id);
+        var deferred = !!item.deferred;
+        var label = (item.short_label || item.label || item.id) + (deferred ? ' · deferred' : '');
+        return '<button class="chip ' + className + ' ' + (active ? 'active ' : '') + (deferred ? 'deferred' : '') + '" type="button" data-' + idName + '="' + escapeHtml(item.id) + '" aria-pressed="' + active + '" ' + (deferred ? 'disabled aria-disabled="true"' : '') + '>' + escapeHtml(label) + '</button>';
+      }).join('');
+    }
+    function toggleRequiredSelection(selection, id) {
+      if (selection.has(id) && selection.size > 1) selection.delete(id); else selection.add(id);
+    }
+    function renderControls() {
+      var schedule = (data.scout && data.scout.schedule) || {};
+      var guide = data.sourcing_guide || {};
+      var deferredCategories = new Set(guide.deferred_category_ids || []);
+      var categoryItems = (data.categories || []).map(function(item) {
+        return Object.assign({}, item, { deferred: deferredCategories.has(item.id) });
+      });
+      document.querySelector('#category-chips').innerHTML = chipMarkup(categoryItems, selectedCategories, 'category-chip', 'category');
+      document.querySelector('#category-note').textContent = guide.deferred_reason || '';
+      document.querySelector('#product-chips').innerHTML = chipMarkup(guide.product_types, selectedProducts, 'product-chip', 'product');
+      document.querySelector('#occasion-chips').innerHTML = chipMarkup(guide.occasions, selectedOccasions, 'occasion-chip', 'occasion');
+      var markets = (data.market_profiles || []).filter(function(profile) { return profile.id !== 'balanced'; });
+      if (!markets.length) markets = data.market_profiles || [];
+      document.querySelector('#market-chips').innerHTML = chipMarkup(markets, selectedMarkets, 'market-chip', 'market');
+      var toggle = document.querySelector('#auto-toggle');
+      toggle.classList.toggle('on', !!schedule.enabled);
+      toggle.setAttribute('aria-checked', schedule.enabled ? 'true' : 'false');
+      document.querySelector('#auto-dot').classList.toggle('on', !!schedule.enabled);
+      document.querySelector('#auto-copy').textContent = schedule.enabled ? 'Automatic scout on' : 'Automatic scout paused';
+      document.querySelector('#schedule-readout').textContent = schedule.enabled
+        ? 'Next: ' + formatWhen(schedule.next_run_at)
+        : (schedule.paused_reason ? 'Paused: ' + schedule.paused_reason : 'Paused; manual runs still work');
+      renderSeasonControls();
+      bindControlEvents();
+      queuePlanPreview();
+    }
+    function bindControlEvents() {
+      document.querySelectorAll('.category-chip').forEach(function(button) {
+        button.addEventListener('click', function() {
+          var id = button.getAttribute('data-category');
+          toggleRequiredSelection(selectedCategories, id);
+          renderControls();
+        });
+      });
+      document.querySelectorAll('.product-chip').forEach(function(button) {
+        button.addEventListener('click', function() {
+          toggleRequiredSelection(selectedProducts, button.getAttribute('data-product'));
+          renderControls();
+        });
+      });
+      document.querySelectorAll('.occasion-chip').forEach(function(button) {
+        button.addEventListener('click', function() {
+          toggleRequiredSelection(selectedOccasions, button.getAttribute('data-occasion'));
+          renderControls();
+        });
+      });
+      document.querySelectorAll('.market-chip').forEach(function(button) {
+        button.addEventListener('click', function() {
+          var id = button.getAttribute('data-market');
+          toggleRequiredSelection(selectedMarkets, id);
+          renderControls();
+        });
+      });
+      document.querySelectorAll('.season-chip').forEach(function(button) {
+        button.addEventListener('click', function() {
+          toggleRequiredSelection(selectedSeasons, button.getAttribute('data-season'));
+          renderControls();
+        });
+      });
+    }
+    function renderSeasonControls() {
+      var guide = data.sourcing_guide || {};
+      var recommendation = guide.recommendation || {};
+      var seasonLookup = {};
+      (guide.seasons || []).forEach(function(item) { seasonLookup[item.id] = item; });
+      var entries = seasonMode === 'recommended' ? (recommendation.entries || []) : Array.from(selectedSeasons).map(function(id) {
+        var item = seasonLookup[id] || { id: id, label: id };
+        return { season_id: id, label: item.label, year: new Date((guide.as_of_date || '') + 'T12:00:00').getFullYear(), phase_label: 'Owner selected' };
+      });
+      document.querySelector('#recommended-eyebrow').textContent = (seasonMode === 'recommended' ? 'Recommended now · ' : 'Manual season plan · ') + (guide.display_date || 'today');
+      document.querySelector('#recommendation-reason').textContent = seasonMode === 'recommended'
+        ? (recommendation.reason || 'Choose the products you want and the scout will build the exact searches.')
+        : 'Manual override is active. Your chosen seasons will remain visible and fixed until you change them.';
+      document.querySelector('#recommended-seasons').innerHTML = entries.map(function(item) {
+        return '<div class="season-card"><strong>' + escapeHtml(item.label + ' ' + item.year) + '</strong><span>' + escapeHtml(item.phase_label) + '</span></div>';
+      }).join('');
+      var summerExcluded = (recommendation.excluded || []).some(function(item) { return item.season_id === 'summer'; });
+      document.querySelector('#season-excluded').textContent = seasonMode === 'recommended' && summerExcluded
+        ? 'Summer is excluded from this plan. Select “Choose seasons” only if you want to add it.'
+        : 'Manual season choice is active. The selected seasons will stay fixed until you change them.';
+      document.querySelector('#season-options').classList.toggle('show', seasonMode === 'manual');
+      document.querySelector('#season-chips').innerHTML = chipMarkup(guide.seasons, selectedSeasons, 'season-chip', 'season');
+      document.querySelector('#use-recommended').classList.toggle('active', seasonMode === 'recommended');
+      document.querySelector('#use-recommended').setAttribute('aria-pressed', seasonMode === 'recommended' ? 'true' : 'false');
+      document.querySelector('#choose-seasons').classList.toggle('active', seasonMode === 'manual');
+      document.querySelector('#choose-seasons').setAttribute('aria-pressed', seasonMode === 'manual' ? 'true' : 'false');
+    }
+    function queuePlanPreview() {
+      clearTimeout(planPreviewTimer);
+      planPreviewTimer = setTimeout(refreshPlanPreview, 120);
+    }
+    async function refreshPlanPreview() {
+      var board = document.querySelector('#plan-board');
+      board.setAttribute('aria-busy', 'true');
+      document.querySelector('#scan-now').disabled = true;
+      try {
+        var payload = await api('/api/search-plan-preview', { method: 'POST', body: JSON.stringify(schedulePayload()) });
+        planPreview = payload.plan;
+        renderPlanPreview();
+      } catch (error) {
+        planPreview = null;
+        document.querySelector('#plan-summary').textContent = error.message;
+        document.querySelector('#query-preview').innerHTML = '<div class="loading-line">Choose at least one search.</div>';
+        setStatus(error.message, 'bad');
+      } finally {
+        board.setAttribute('aria-busy', 'false');
+        document.querySelector('#scan-now').disabled = !planPreview || !planPreview.execution_allowed;
+      }
+      return planPreview;
+    }
+    function renderPlanPreview() {
+      if (!planPreview) return;
+      var summary = planPreview.summary || {};
+      var review = planPreview.review || {};
+      var included = (planPreview.queries || []).filter(function(row) { return row.included; });
+      var summaryLines = [
+        (summary.matching_groups || []).join(', '),
+        Number(summary.replacement_count || 0) + ' replacements to review · ' + Number(summary.control_count || 0) + ' unchanged controls',
+        (summary.seasons || []).join(' + ') + ' · ' + (summary.markets || []).join(' + ')
+      ];
+      if ((summary.deferred_matching_groups || []).length) summaryLines.push((summary.deferred_matching_groups || []).join(', ') + ' deferred');
+      document.querySelector('#plan-summary').innerHTML = summaryLines.map(escapeHtml).join('<br>');
+      document.querySelector('#fixed-note').textContent = planPreview.frozen_message + ' Plan ' + planPreview.plan_hash + '.';
+      document.querySelector('#query-count').textContent = '· ' + included.length + ' selected';
+      document.querySelector('#query-preview').innerHTML = included.slice(0, 3).map(function(row) {
+        return '<div class="query-row"><span>' + escapeHtml(row.english) + '<br><small>' + escapeHtml((row.selection_label ? row.selection_label + ' · ' : '') + Number(row.query_term_count || 0) + ' terms · ' + Number(row.query_character_count || 0) + ' Chinese characters · search once for ' + row.market_label) + '</small></span><code>' + escapeHtml(row.chinese) + '</code></div>';
+      }).join('') || '<div class="loading-line">No exact searches selected.</div>';
+      document.querySelector('#query-more').textContent = included.length > 3
+        ? 'Showing 3 of ' + included.length + '. ' + planPreview.query_policy + ' Open Advanced exact search control to review every English/Chinese pair.'
+        : planPreview.query_policy;
+      document.querySelector('#term-summary').textContent = included.length + ' active · ' + Number(summary.deferred_count || 0) + ' deferred · ' + Number(summary.lane_count || 0) + ' lanes';
+      document.querySelector('#advanced-query-list').innerHTML = (planPreview.queries || []).map(function(row) {
+        var role = row.search_role || 'custom';
+        var roleLabel = role === 'control' ? 'Control · unchanged' : role === 'replacement' ? 'Replacement · review' : role === 'deferred' ? 'Deferred · will not run' : 'Custom · review';
+        var prior = row.previous_chinese ? 'Previously: ' + row.previous_chinese + (row.first_batch_match ? ' · ' + row.first_batch_match + ' combined-title matches.' : '.') + ' ' : '';
+        return '<label class="advanced-query ' + escapeHtml(role) + '"><input type="checkbox" data-query-id="' + escapeHtml(row.id) + '" ' + (row.included ? 'checked' : '') + ' ' + (row.deferred ? 'disabled aria-disabled="true"' : '') + '><strong><span class="search-role ' + escapeHtml(role) + '">' + escapeHtml(roleLabel) + '</span><br>' + escapeHtml(row.english) + '<br><small>' + escapeHtml((row.selection_label ? row.selection_label + ' · ' : '') + row.phase_label + ' · ' + Number(row.query_term_count || 0) + ' terms · ' + Number(row.query_character_count || 0) + ' characters · ' + row.market_label) + '</small><span class="query-evidence">' + escapeHtml(prior + (row.evidence_note || 'Review this exact search before running.')) + '</span></strong><code>' + escapeHtml(row.chinese) + '</code></label>';
+      }).join('');
+      document.querySelectorAll('[data-query-id]').forEach(function(box) {
+        box.addEventListener('change', function() {
+          var includedCount = (planPreview.queries || []).filter(function(row) { return row.included; }).length;
+          if (!box.checked && includedCount <= 1) {
+            box.checked = true;
+            setStatus('Keep at least one exact search in the plan.', 'bad');
+            return;
+          }
+          var id = box.getAttribute('data-query-id');
+          if (box.checked) excludedQueryIds.delete(id); else excludedQueryIds.add(id);
+          queuePlanPreview();
+        });
+      });
+      var gate = document.querySelector('#review-gate');
+      var approved = !!planPreview.execution_allowed;
+      gate.classList.toggle('approved', approved);
+      document.querySelector('#review-gate-title').textContent = approved ? 'Exact searches reviewed' : 'Review required before any 1688 run';
+      document.querySelector('#review-gate-copy').textContent = approved
+        ? 'Plan ' + planPreview.plan_hash + ' is unlocked. Automatic scouting remains off; a run still requires a separate click.'
+        : Number(summary.replacement_count || 0) + ' replacements need your review. ' + Number(summary.control_count || 0) + ' controls are unchanged, and ' + Number(summary.deferred_count || 0) + ' Maternity searches cannot run. Confirming only unlocks this exact plan; it does not open 1688.';
+      document.querySelector('#confirm-search-review').hidden = approved;
+      document.querySelector('#scan-now').textContent = approved ? 'Run this reviewed search plan' : 'Review required before any run';
+      document.querySelector('#scan-now').disabled = !approved;
+      document.querySelector('#adjust-searches').textContent = 'Review ' + included.length + ' exact searches';
+    }
+    function renderProgress() {
+      var scout = data.scout || {};
+      var job = scout.active_job || {};
+      var schedule = scout.schedule || {};
+      var jobPlanHash = String(((job.search_plan || {}).plan_hash) || '');
+      var currentPlanHash = String(schedule.plan_hash || '');
+      var isPreviousPlan = !!jobPlanHash && !!currentPlanHash && jobPlanHash !== currentPlanHash;
+      var lanes = job.lanes || [];
+      var complete = lanes.filter(function(lane) { return lane.status === 'complete'; }).length;
+      var percent = lanes.length ? Math.round(100 * complete / lanes.length) : 0;
+      var titles = { queued: 'Scout queued', running: 'Scout is working', waiting_for_user: 'Scout paused safely', complete: 'Latest scout complete', cancelled: 'Scout stopped for keyword review' };
+      document.querySelector('#progress-title').textContent = isPreviousPlan && job.status === 'complete' ? 'Previous scout complete' : (titles[job.status] || 'Scout ready');
+      document.querySelector('#progress-message').textContent = isPreviousPlan
+        ? 'This completed history used a different plan. Review plan ' + currentPlanHash + ' has not run.'
+        : (job.message || 'One click searches every selected lane with your saved terms.');
+      document.querySelector('#progress-count').textContent = complete + ' of ' + lanes.length + (isPreviousPlan ? ' previous lanes' : ' lanes');
+      document.querySelector('#progress-fill').style.width = percent + '%';
+      document.querySelector('.progress-meter').setAttribute('aria-valuenow', String(percent));
+      var attention = document.querySelector('#attention');
+      attention.classList.toggle('show', job.status === 'waiting_for_user');
+      document.querySelector('#attention-copy').textContent = job.status === 'waiting_for_user' ? (job.message || '1688 needs one login or browser check.') : '';
+      document.querySelector('#lane-progress').innerHTML = lanes.length ? lanes.map(function(lane) {
+        var status = String(lane.status || 'queued').replace(/_/g, ' ');
+        var counts = lane.counts || {};
+        return '<div class="lane-row"><div class="lane-title"><span>' + escapeHtml(lane.category_label) + ' · ' + escapeHtml(lane.market_label) + '</span><span class="lane-state">' + escapeHtml(status) + '</span></div><p>' + Number(lane.queries_attempted || 0) + ' / ' + Number(lane.queries_planned || 0) + ' fixed searches · ' + Number(counts.verified || 0) + ' verified · ' + Number(counts.promising || 0) + ' checking</p></div>';
+      }).join('') : '<div class="lane-row"><div class="lane-title"><span>Ready for this season\'s first plan</span></div><p>Your exact English/Chinese plan and progress will be saved locally.</p></div>';
+    }
+    function currentScanKeys() {
+      var job = (data.scout && data.scout.active_job) || {};
+      var keys = new Set();
+      (job.lanes || []).forEach(function(lane) {
+        (lane.new_offer_ids || []).concat(lane.detail_queue || []).forEach(function(key) { keys.add(String(key)); });
+      });
+      return keys;
+    }
+    function balanced(items) {
+      var sorted = items.slice().sort(function(a, b) {
+        var current = currentScanKeys();
+        var currentDelta = Number(current.has(String(b.key))) - Number(current.has(String(a.key)));
+        if (currentDelta) return currentDelta;
+        if (Number(b.evidence_confidence || 0) !== Number(a.evidence_confidence || 0)) return Number(b.evidence_confidence || 0) - Number(a.evidence_confidence || 0);
+        return Number(b.opportunity_score || 0) - Number(a.opportunity_score || 0);
+      });
+      var first = [], rest = [], seen = new Set();
+      sorted.forEach(function(item) {
+        if (!seen.has(item.category_id)) { seen.add(item.category_id); first.push(item); } else rest.push(item);
+      });
+      return first.concat(rest);
+    }
+    function filteredCandidates() {
+      var term = document.querySelector('#queue-search').value.trim().toLowerCase();
+      var job = (data.scout && data.scout.active_job) || {};
+      var current = currentScanKeys();
+      var hasSeasonalPlan = !!(job.search_plan && job.search_plan.plan_hash);
+      var items = data.candidates.filter(function(candidate) {
+        if (activeTab === 'current' && (!hasSeasonalPlan || !current.has(String(candidate.key)))) return false;
+        if (activeTab === 'verified' && candidate.opportunity_tier !== 'verified') return false;
+        if (activeTab === 'promising' && candidate.opportunity_tier !== 'promising') return false;
+        if (activeTab === 'liked' && candidate.decision !== 'keep') return false;
+        if (activeTab === 'rejected' && candidate.opportunity_tier !== 'rejected' && candidate.decision !== 'reject') return false;
+        if (term && String(candidate.search_text || '').toLowerCase().indexOf(term) < 0) return false;
+        return true;
+      });
+      return balanced(items);
+    }
+    function imageUrl(candidate) {
+      return candidate.image_url ? '/image?url=' + encodeURIComponent(candidate.image_url) : '';
+    }
+    function renderQueue() {
+      var items = filteredCandidates();
+      var captions = {
+        current: 'Only products discovered by the currently frozen seasonal plan appear here. Older summer results stay in History.',
+        verified: 'Only products that passed supplier, availability, dropship, age, and listing-readiness checks.',
+        promising: 'All prior promising results. Use Current plan for this season only.',
+        liked: 'Products you selected and their local listing-preparation state.',
+        rejected: 'Suppressed products and the evidence gate they failed.',
+        history: 'All locally remembered sourcing products, never mislabelled as new.'
+      };
+      document.querySelector('#queue-caption').textContent = captions[activeTab];
+      var list = document.querySelector('#card-list');
+      if (!items.length) {
+        var copy = activeTab === 'current'
+          ? '<strong>No current seasonal results yet</strong>Run the fixed plan above. New products will appear here as the selected searches finish; older summer products remain in History.'
+          : activeTab === 'verified'
+          ? '<strong>No verified opportunities yet</strong>The scout may still be checking promising products. If a completed scan has none, every candidate failed at least one required proof gate.'
+          : '<strong>Nothing in this view yet</strong>Run the saved all-lane plan or choose another inbox tab.';
+        list.innerHTML = '<div class="empty">' + copy + '</div>';
+        selectedKey = '';
+        renderInspector(null);
+        return;
+      }
+      if (!items.some(function(item) { return item.key === selectedKey; })) selectedKey = items[0].key;
+      list.innerHTML = items.slice(0, 80).map(function(candidate) {
+        return '<button class="candidate-card ' + (candidate.key === selectedKey ? 'active' : '') + '" type="button" data-key="' + escapeHtml(candidate.key) + '">' +
+          (candidate.image_url ? '<img class="thumb" src="' + escapeHtml(imageUrl(candidate)) + '" alt="">' : '<div class="thumb"></div>') +
+          '<div class="card-copy"><span class="tier ' + escapeHtml(candidate.opportunity_tier) + '">' + escapeHtml(candidate.opportunity_label) + '</span><h3>' + escapeHtml(candidate.display_title || candidate.title) + '</h3><div class="card-meta"><span>' + escapeHtml(candidate.category_label) + '</span><span>' + escapeHtml(candidate.supplier_years_label || 'Supplier years not verified') + '</span><span>' + escapeHtml(candidate.freshness_label) + '</span></div></div></button>';
+      }).join('');
+      document.querySelectorAll('.candidate-card').forEach(function(card) {
+        card.addEventListener('click', function() { selectedKey = card.getAttribute('data-key'); renderQueue(); });
+      });
+      renderInspector(items.find(function(item) { return item.key === selectedKey; }) || items[0]);
+    }
+    function evidenceItem(label, value, ok) {
+      return '<div class="evidence-item ' + (ok ? 'ok' : 'missing') + '"><small>' + escapeHtml(label) + '</small><strong>' + escapeHtml(value || 'Not verified') + '</strong></div>';
+    }
+    function proofField(name, label, value, wide) {
+      return '<label class="field ' + (wide ? 'wide' : '') + '">' + escapeHtml(label) + '<input data-evidence="' + name + '" type="text" value="' + escapeHtml(value || '') + '"></label>';
+    }
+    function renderInspector(candidate) {
+      var node = document.querySelector('#inspector');
+      if (!candidate) { node.innerHTML = '<div class="inspect-empty"><div><h2>No product selected</h2><p>Choose a different inbox tab or start a scout scan.</p></div></div>'; return; }
+      var confirmed = candidate.evidence_confirmed || {};
+      var evidence = candidate.evidence || {};
+      var workflow = candidate.workflow || {};
+      node.innerHTML = '<div class="detail-hero">' +
+        (candidate.image_url ? '<img class="detail-image" src="' + escapeHtml(imageUrl(candidate)) + '" alt="Selected product">' : '<div class="detail-image"></div>') +
+        '<div class="detail-copy"><span class="tier ' + escapeHtml(candidate.opportunity_tier) + '">' + escapeHtml(candidate.opportunity_label) + '</span><h2>' + escapeHtml(candidate.display_title || candidate.title) + '</h2><p>' + escapeHtml(candidate.opportunity_reason) + '</p><p><strong>' + escapeHtml(candidate.category_label) + '</strong> · ' + escapeHtml(candidate.market_label || '') + '<br>Evidence confidence: ' + Number(candidate.evidence_confidence || 0) + '% · Search-fit score: ' + Number(candidate.opportunity_score || 0) + '/100</p><div class="detail-actions"><button id="like-product" class="primary" type="button">' + (candidate.ready_for_draft ? 'Copy listing handoff' : 'Like & prepare listing') + '</button><button id="pass-product" class="quiet" type="button">' + (candidate.decision === 'reject' ? 'Restore' : 'Pass') + '</button><a class="secondary" style="text-decoration:none;display:inline-flex;align-items:center" href="' + escapeHtml(candidate.product_url) + '" target="_blank" rel="noreferrer">Open source</a></div></div></div>' +
+        '<div class="evidence"><h3>Why the scout does—or does not—trust it</h3><div class="evidence-grid">' +
+          evidenceItem('Supplier age · minimum 5', candidate.supplier_years_label, confirmed.supplier_age) +
+          evidenceItem('Supplier identity & rating', candidate.vendor_name ? candidate.vendor_name + ' · ' + candidate.supplier_rating_label : candidate.supplier_rating_label, confirmed.supplier_identity) +
+          evidenceItem('Listing year', candidate.listing_year_label, confirmed.current_year_claim) +
+          evidenceItem('Available now', confirmed.availability ? candidate.availability : '', confirmed.availability) +
+          evidenceItem('One-piece dropship', candidate.dropship_supported || evidence.dropship_confirmed, confirmed.dropship) +
+          evidenceItem('Dispatch', confirmed.dispatch ? (evidence.dispatch_confirmed || candidate.service_flags) : '', confirmed.dispatch) +
+          evidenceItem('Size chart', candidate.size_chart || evidence.size_chart_source, confirmed.size_chart) +
+          evidenceItem('Usable images', candidate.vendor_image_urls ? 'Supplier image set captured' : evidence.vendor_images_path, confirmed.images) +
+          evidenceItem('Found', candidate.freshness_label, true) +
+        '</div><div class="workflow"><strong>Preparation status:</strong> ' + escapeHtml(workflow.label || 'Not started') + '<br>' + escapeHtml(workflow.message || 'Like this product to begin its local, DRAFT-only listing package.') + (workflow.package_path ? '<br><strong>Local package:</strong> ' + escapeHtml(workflow.package_path) : '') + '</div>' +
+        (candidate.decision === 'keep' ? '<details class="proof-editor"><summary>Add only evidence the scout could not collect</summary><form id="proof-form" class="proof-form">' + proofField('size_chart_source', 'Size chart source', evidence.size_chart_source, false) + proofField('vendor_images_path', 'Vendor image folder', evidence.vendor_images_path, false) + proofField('dropship_confirmed', 'Dropship proof', evidence.dropship_confirmed, false) + proofField('dispatch_confirmed', 'Dispatch proof', evidence.dispatch_confirmed, false) + proofField('supplier_confirmed', 'Supplier proof', evidence.supplier_confirmed, true) + '<label class="field wide">Notes<textarea data-evidence="notes">' + escapeHtml(evidence.notes || '') + '</textarea></label><button class="secondary wide" type="submit">Save missing proof</button></form></details>' : '') + '</div>';
+      document.querySelector('#like-product').addEventListener('click', function() { startPrep(candidate); });
+      document.querySelector('#pass-product').addEventListener('click', function() { passCandidate(candidate); });
+      var proof = document.querySelector('#proof-form');
+      if (proof) proof.addEventListener('submit', function(event) { event.preventDefault(); saveProof(candidate, proof); });
+    }
+    async function savePlan() {
+      try {
+        await refreshPlanPreview();
+        var result = await api('/api/scout-schedule', { method: 'POST', body: JSON.stringify(schedulePayload()) });
+        data.scout.schedule = result.schedule;
+        setStatus('Seasonal plan saved. The English choices and exact Chinese searches will stay fixed for each run.', 'good');
+        renderControls();
+      } catch (error) { setStatus(error.message, 'bad'); }
+    }
+    async function startScout() {
+      var button = document.querySelector('#scan-now');
+      button.disabled = true;
+      try {
+        var currentPlan = await refreshPlanPreview();
+        if (!currentPlan) throw new Error('Choose at least one exact search before starting.');
+        if (!currentPlan.execution_allowed) {
+          var details = document.querySelector('#term-settings');
+          details.open = true;
+          details.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          throw new Error('Review and confirm every exact search before starting a 1688 run.');
+        }
+        var job = await api('/api/scout', { method: 'POST', body: JSON.stringify(schedulePayload()) });
+        data.scout.active_job = job;
+        renderProgress();
+        setStatus('Your fixed seasonal plan started. Every selected search will run automatically; you can leave this page.', 'good');
+      } catch (error) { setStatus(error.message, 'bad'); }
+      finally { button.disabled = !planPreview || !planPreview.execution_allowed; }
+    }
+    async function confirmSearchReview() {
+      var button = document.querySelector('#confirm-search-review');
+      button.disabled = true;
+      try {
+        var currentPlan = await refreshPlanPreview();
+        if (!currentPlan) throw new Error('The exact search plan is not ready for review.');
+        var result = await api('/api/search-plan-review', { method: 'POST', body: JSON.stringify(schedulePayload()) });
+        data.scout.schedule = result.schedule;
+        reviewedPlanHash = String(result.schedule.reviewed_plan_hash || '');
+        planPreview = result.plan;
+        renderControls();
+        renderPlanPreview();
+        setStatus('Exact plan ' + planPreview.plan_hash + ' reviewed and unlocked. No search was started; automatic scouting remains off.', 'good');
+      } catch (error) { setStatus(error.message, 'bad'); }
+      finally { button.disabled = false; }
+    }
+    async function openHelper() {
+      var job = (data.scout && data.scout.active_job) || {};
+      var lane = (job.lanes || [])[Number((job.cursor || {}).lane_index || 0)] || {};
+      var category = lane.category_id || Array.from(selectedCategories)[0] || 'family-matching';
+      var market = lane.market_target || Array.from(selectedMarkets)[0] || 'balanced';
+      var cursor = Number(lane.query_cursor || 0);
+      var exactQueries = lane.exact_queries || [];
+      var exactRow = exactQueries[Math.min(cursor, Math.max(0, exactQueries.length - 1))] || {};
+      var queryIndexes = lane.query_indexes || [];
+      var queryIndex = queryIndexes.length ? Number(queryIndexes[Math.min(cursor, queryIndexes.length - 1)]) : -1;
+      try {
+        var payload = await api('/api/open-1688-browser', { method: 'POST', body: JSON.stringify({ category_id: category, market_target: market, query_index: queryIndex, exact_query: exactRow.chinese || '' }) });
+        setStatus(payload.message, 'good');
+      } catch (error) { setStatus(error.message, 'bad'); }
+    }
+    async function startPrep(candidate) {
+      try {
+        var payload = await api('/api/workflow/start', { method: 'POST', body: JSON.stringify({ key: candidate.key }) });
+        setStatus(payload.message, payload.stage === 'needs_attention' ? 'bad' : 'good');
+        await loadData(candidate.key);
+      } catch (error) { setStatus(error.message, 'bad'); }
+    }
+    async function passCandidate(candidate) {
+      var action = candidate.decision === 'reject' ? 'clear' : 'reject';
+      try {
+        await api('/api/decision', { method: 'POST', body: JSON.stringify({ key: candidate.key, action: action, product_url: candidate.product_url, title: candidate.title, category_id: candidate.category_id, run_id: candidate.run_id, verdict: candidate.verdict, score: candidate.score }) });
+        setStatus(action === 'reject' ? 'Passed. This product will stay out of the active opportunity inbox.' : 'Product restored.', 'good');
+        await loadData('');
+      } catch (error) { setStatus(error.message, 'bad'); }
+    }
+    async function saveProof(candidate, form) {
+      function field(name) { var node = form.querySelector('[data-evidence="' + name + '"]'); return node ? node.value : ''; }
+      try {
+        await api('/api/evidence', { method: 'POST', body: JSON.stringify({ key: candidate.key, product_url: candidate.product_url, title: candidate.title, category_id: candidate.category_id, run_id: candidate.run_id, evidence: { size_chart_source: field('size_chart_source'), vendor_images_path: field('vendor_images_path'), dropship_confirmed: field('dropship_confirmed'), dispatch_confirmed: field('dispatch_confirmed'), supplier_confirmed: field('supplier_confirmed'), notes: field('notes') } }) });
+        setStatus('Missing proof saved and the local preparation package was refreshed.', 'good');
+        await loadData(candidate.key);
+      } catch (error) { setStatus(error.message, 'bad'); }
+    }
+    function renderStats() {
+      var counts = data.opportunity_counts || {};
+      document.querySelector('#count-verified').textContent = String(counts.verified || 0);
+      document.querySelector('#count-promising').textContent = String(counts.promising || 0);
+      document.querySelector('#count-liked').textContent = String(counts.liked || 0);
+      document.querySelector('#count-filtered').textContent = String(counts.filtered || 0);
+    }
+    async function loadData(preferredKey) {
+      data = await api('/api/data');
+      initializePlan();
+      if (preferredKey !== undefined) selectedKey = preferredKey;
+      renderControls();
+      renderProgress();
+      renderStats();
+      renderQueue();
+      lastScoutSignature = JSON.stringify(data.scout && data.scout.active_job || {});
+    }
+    async function refreshScout() {
+      try {
+        var scout = await api('/api/scout-status');
+        var signature = JSON.stringify(scout.active_job || {});
+        data.scout = scout;
+        renderProgress();
+        if (signature !== lastScoutSignature) {
+          lastScoutSignature = signature;
+          await loadData(selectedKey);
+        }
+      } catch (_error) {}
+    }
+
+    document.querySelector('#auto-toggle').addEventListener('click', function() {
+      var toggle = document.querySelector('#auto-toggle');
+      toggle.classList.toggle('on');
+      toggle.setAttribute('aria-checked', toggle.classList.contains('on') ? 'true' : 'false');
+      savePlan();
+    });
+    document.querySelector('#save-plan').addEventListener('click', savePlan);
+    document.querySelector('#scan-now').addEventListener('click', startScout);
+    document.querySelector('#confirm-search-review').addEventListener('click', confirmSearchReview);
+    document.querySelector('#open-helper').addEventListener('click', openHelper);
+    document.querySelector('#use-recommended').addEventListener('click', function() {
+      seasonMode = 'recommended';
+      selectedSeasons = new Set((((data.sourcing_guide || {}).recommendation || {}).season_ids || []));
+      renderControls();
+    });
+    document.querySelector('#choose-seasons').addEventListener('click', function() {
+      seasonMode = 'manual';
+      if (!selectedSeasons.size) selectedSeasons = new Set((((data.sourcing_guide || {}).recommendation || {}).season_ids || []));
+      renderControls();
+    });
+    document.querySelector('#adjust-searches').addEventListener('click', function() {
+      var details = document.querySelector('#term-settings');
+      details.open = true;
+      details.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.querySelector('#queue-search').addEventListener('input', renderQueue);
+    document.querySelectorAll('.tab').forEach(function(button) {
+      button.addEventListener('click', function() {
+        document.querySelectorAll('.tab').forEach(function(item) { item.classList.remove('active'); item.setAttribute('aria-selected', 'false'); });
+        button.classList.add('active'); button.setAttribute('aria-selected', 'true'); activeTab = button.getAttribute('data-tab'); selectedKey = ''; renderQueue();
+      });
+    });
+
+    loadData('').catch(function(error) { setStatus('Could not load Opportunity Scout: ' + error.message, 'bad'); });
+    setInterval(refreshScout, 4000);
+  </script>
+</body>
+</html>

@@ -1,7 +1,63 @@
 {
   "market": "canada",
   "output": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/feeds/pinterest_canada.tsv",
-  "row_count": 6969,
-  "unique_parents": 326,
-  "guardrail_item_group_id_present_on_every_row": true
+  "row_count": 4687,
+  "unique_parents": 223,
+  "guardrail_item_group_id_present_on_every_row": true,
+  "paid_lane_source_counts": {
+    "collection_counts": {
+      "mommy_and_me": {
+        "collection_handles": [
+          "mommy-and-me"
+        ],
+        "collection_counts": {
+          "mommy-and-me": 99
+        },
+        "unique_handles": 99
+      },
+      "family_matching": {
+        "collection_handles": [
+          "new-women-outfits"
+        ],
+        "collection_counts": {
+          "new-women-outfits": 77
+        },
+        "unique_handles": 77
+      },
+      "daddy_and_me": {
+        "collection_handles": [
+          "daddy-me-shirts",
+          "daddy-me-t-shirts"
+        ],
+        "collection_counts": {
+          "daddy-me-shirts": 23,
+          "daddy-me-t-shirts": 11
+        },
+        "unique_handles": 34
+      }
+    },
+    "overlaps": {
+      "mommy_and_me__family_matching": 0,
+      "family_matching__daddy_and_me": 0,
+      "mommy_and_me__daddy_and_me": 0
+    },
+    "primary_priority": [
+      "daddy_and_me",
+      "family_matching",
+      "mommy_and_me"
+    ],
+    "label_version": "collection_intent_v20260520"
+  },
+  "unique_parents_by_paid_lane": {
+    "daddy_and_me": 34,
+    "family_matching": 77,
+    "mommy_and_me": 99,
+    "unassigned": 13
+  },
+  "rows_by_paid_lane": {
+    "daddy_and_me": 522,
+    "family_matching": 2590,
+    "mommy_and_me": 1419,
+    "unassigned": 156
+  }
 }

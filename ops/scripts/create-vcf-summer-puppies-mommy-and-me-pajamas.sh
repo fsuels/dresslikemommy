@@ -40,7 +40,7 @@ cat > "$TMPDIR_LOCAL/productCreate.json" <<'JSON'
       "handle": "summer-puppies-mommy-and-me-pajamas",
       "vendor": "dresslikemommy.com",
       "productType": "Matching Family Pajamas",
-      "status": "ACTIVE",
+      "status": "DRAFT",
       "category": "gid://shopify/TaxonomyCategory/aa-1-17-4",
       "descriptionHtml": "__DESC_HTML__",
       "seo": {
@@ -72,7 +72,6 @@ cat > "$TMPDIR_LOCAL/productCreate.json" <<'JSON'
         "Mother M",
         "Mother L",
         "Mother XL",
-        "https://detail.1688.com/offer/900601808231.html"
       ],
       "productOptions": [
         { "name": "Size", "values": [
@@ -233,20 +232,9 @@ echo "==> metafieldsSet"
 MFRESP="$(gql "$TMPDIR_LOCAL/metafieldsSet.json")"
 echo "$MFRESP" | python3 -c "import json,sys; d=json.load(sys.stdin); ue=d.get('data',{}).get('metafieldsSet',{}).get('userErrors',[]); mfs=d.get('data',{}).get('metafieldsSet',{}).get('metafields',[]); print('wrote',len(mfs),'metafields'); [print(' -',m['namespace']+'.'+m['key'],'=',str(m['value'])[:80]) for m in mfs]; print('userErrors:',ue)"
 
-# ---------- 5d. publishablePublish (5 channels) ----------
-for PUB in \
-  "gid://shopify/Publication/55169925" \
-  "gid://shopify/Publication/21969633377" \
-  "gid://shopify/Publication/29172400225" \
-  "gid://shopify/Publication/76582879329" \
-  "gid://shopify/Publication/76604768353"
-do
-  cat > "$TMPDIR_LOCAL/publish.json" <<JSON
-{"query":"mutation pub(\$id:ID!,\$input:[PublicationInput!]!){ publishablePublish(id:\$id, input:\$input){ userErrors{ field message } } }","variables":{"id":"$PRODUCT_ID","input":[{"publicationId":"$PUB"}]}}
-JSON
-  echo "==> publish to $PUB"
-  gql "$TMPDIR_LOCAL/publish.json" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d)"
-done
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+echo "Sales-channel publication skipped; product remains a draft pending approval."
 
 echo ""
 echo "ALL DONE — product id: $PRODUCT_ID"

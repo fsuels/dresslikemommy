@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "status": "PASS_CURRENT_SOURCE_AND_EXACT_PREPARED_REQUEST__ROOT_NORMAL_CONNECTOR_REVIEW_REQUIRED",
+  "operator": "/root/shopify_merchant_connection_repair",
+  "root_execution_owner": "/root",
+  "scope": {
+    "resource_id": "gid://shopify/Article/559471329377",
+    "locale": "el",
+    "key": "body_html",
+    "operation": "replace_exactly_one_reviewed_paragraph_and_its_single_CTA",
+    "external_writes_by_this_agent": 0,
+    "browser_actions": 0,
+    "canonical_edits": 0
+  },
+  "readback_window": {
+    "start_utc": "2026-09-06 14:28:57 UTC",
+    "end_utc": "2026-09-06 14:28:59 UTC"
+  },
+  "authority": {
+    "current_scope_source": "Parent relays renewed direct owner instruction to implement traffic and sales improvements automatically; parent assigns this exact reviewed Greek repair for normal Shopify connector execution.",
+    "previous_rejection": {
+      "checked_at_utc": "2026-09-06T03:09:07.281Z",
+      "article_id": "gid://shopify/Article/559471329377",
+      "locale": "el",
+      "translation_key": "body_html",
+      "status": "AUTOMATIC_APPROVAL_REVIEW_REJECTED_NO_WRITE",
+      "review_reason": "The broad request to continue did not approve this exact publication; live customer-visible Shopify article changes require fresh exact approval.",
+      "attempted_operation": "translationsRegister one translated paragraph/link",
+      "after_rejection_unchanged": true,
+      "body_length": 7937,
+      "old_href_retained": true,
+      "new_href_written": false,
+      "independent_copy_review": "PASS_EXACT_PARAGRAPH_WITH_READBACK; review quality does not grant live authority",
+      "pending_user_question": "Exact one-paragraph Greek publication question sent; no answer at checkpoint.",
+      "no_retry_or_workaround": true,
+      "next_action": "Wait for exact owner approval; then fresh body/source digest check and same scoped mutation/readback. Continue other allowed local/read-only/draft lanes."
+    },
+    "interpretation": "Prior broad-Continue rejection is historical and preserved. This preflight is not an approval bypass or mutation. Root must present the renewed authority and exact unchanged scope through the normal connector; stop on any new rejection or auth/permission gate."
+  },
+  "queries": {
+    "preflight": {
+      "query": "query GreekTrafficPreflight($articleId: ID!) { shop { name myshopifyDomain } article(id: $articleId) { id handle title isPublished publishedAt } resource: translatableResource(resourceId: $articleId) { resourceId translatableContent { key digest locale } translations(locale: \"el\") { key locale value outdated updatedAt } } }",
+      "variables": {
+        "articleId": "gid://shopify/Article/559471329377"
+      }
+    },
+    "destination": {
+      "query": "query GreekTrafficDestination($collectionId: ID!, $after: String) { shop { name myshopifyDomain } collection(id: $collectionId) { id handle title products(first: 25, after: $after) { nodes { id handle status onlineStoreUrl } pageInfo { hasNextPage endCursor } } } }",
+      "variables": {
+        "collectionId": "gid://shopify/Collection/355463725153"
+      }
+    },
+    "proposed_mutation": {
+      "query": "mutation DlmGreekPajamaParagraph($resourceId:ID!,$translations:[TranslationInput!]!){translationsRegister(resourceId:$resourceId,translations:$translations){translations{key locale value}userErrors{field message}}}",
+      "variables": {
+        "resourceId": "gid://shopify/Article/559471329377",
+        "translations": [
+          {
+            "locale": "el",
+            "key": "body_html",
+            "value": "<p>Υπάρχει κάτι μαγικό στο να φοράτε ταιριαστά ρούχα με το μικρό σας. Είτε κάνετε δουλειές, είτε ποζάρετε για οικογενειακές φωτογραφίες, είτε απλά περνάτε μια διασκεδαστική μέρα μαζί, ο συντονισμός των εμφανίσεών σας δημιουργεί αναμνήσεις που διαρκούν μια ζωή — και φωτογραφίες που πραγματικά θα θέλετε να κορνιζάρετε.</p><p>Αλλά το να ταιριάζετε δεν σημαίνει ότι πρέπει να μοιάζετε σαν δίδυμοι με ίδια ρούχα. Οι καλύτερες εμφανίσεις μαμά και παιδί ισορροπούν τον συντονισμό με την ατομικότητα — ίδια παλέτα χρωμάτων, συμπληρωματικά σχέδια ή ταιριαστά μοτίβα σε στυλ κατάλληλα για την ηλικία.</p><p>Εδώ είναι οι αγαπημένες μας ιδέες για σύνολα μαμά και παιδί για κάθε περίσταση στο ημερολόγιό σας.</p><h2>1. Casual καθημερινά σύνολα</h2><p>Δεν χρειάζεται κάθε ταιριαστή στιγμή να είναι μια μεγάλη παραγωγή. Μερικές από τις πιο χαριτωμένες συντονισμένες εμφανίσεις είναι οι πιο απλές.</p><p><strong>Τι να δοκιμάσετε:</strong></p><ul>\n<li>Ταιριαστά graphic t-shirts με τζιν — σκεφτείτε διασκεδαστικά σχέδια ή γλυκές φράσεις</li>\n<li>Συντονισμένα μονόχρωμα — επιλέξτε μια απόχρωση που αγαπάτε και χτίστε σύνολα γύρω της</li>\n<li>Ταιριαστά κολάν με συμπληρωματικά τοπ</li>\n</ul><p>Το κλειδί για να πετύχετε το casual ταιριαστό; Κρατήστε το άνετο. Πηγαίνετε στο πάρκο, όχι στην πασαρέλα. <a href=\"/collections/tops\">Αγοράστε τη συλλογή μας με ταιριαστά τοπ →</a></p><h2>2. Ιδέες για οικογενειακά ρούχα για φωτογραφίες</h2><p>Οι οικογενειακές φωτογραφίες είναι όπου τα ταιριαστά ρούχα πραγματικά ξεχωρίζουν. Μια συντονισμένη εμφάνιση δένει τα πορτρέτα σας και τους δίνει αυτή την κομψή, ποιοτική αίσθηση περιοδικού.</p><p><strong>Τι λειτουργεί καλύτερα για φωτογραφίες:</strong></p><ul>\n<li>Τα μονόχρωμα φωτογραφίζονται καλύτερα από τα πολυάσχολα σχέδια — δοκιμάστε απαλό ροζ, ναυτικό μπλε ή φασκόμηλο πράσινο</li>\n<li>Φορέματα από το ίδιο ύφασμα δημιουργούν ένα εντυπωσιακό οπτικό αποτέλεσμα</li>\n<li>Προσθέστε τον μπαμπά και τα αδέρφια με συμπληρωματικά χρώματα για μια ολοκληρωμένη οικογενειακή εμφάνιση</li>\n<li>Τα λουλουδάτα σχέδια λειτουργούν υπέροχα για υπαίθριες φωτογραφήσεις την άνοιξη και το καλοκαίρι</li>\n</ul><p><strong>Επαγγελματική συμβουλή:</strong> Αποφύγετε τα νέον χρώματα και τις πολύ λεπτές ρίγες — μπορεί να φαίνονται παράξενα στην κάμερα. Επιλέξτε απαλούς, ζεστούς τόνους που συμπληρώνουν τον τόνο του δέρματός σας και το φόντο σας. <a href=\"/collections/dresses\">Δείτε τα φορέματα που ταιριάζουν →</a></p><h2>3. Συνοδευτικά σύνολα για τις γιορτές</h2><p>Οι γιορτές είναι ουσιαστικά φτιαγμένες για να ταιριάζουν. Από τις πιτζάμες της πρωτοχρονιάς μέχρι τα φορέματα της Ημέρας του Αγίου Βαλεντίνου, κάθε γιορτή είναι μια αφορμή για συντονισμό.</p><p><strong>Χριστούγεννα:</strong> Για τα γιορτινά πρωινά στο σπίτι, επιλέξτε ασορτί πιτζάμες για μαμά και παιδί. Επιλέξτε χωριστά το κομμάτι και το μέγεθος για κάθε άτομο και προσθέστε κάθε επιλογή ξεχωριστά στο καλάθι. <a href=\"/collections/new-pajama-drop\">Δείτε πιτζάμες για μαμά και παιδί →</a></p><p><strong>Ημέρα του Αγίου Βαλεντίνου:</strong> Κόκκινα και ροζ φορέματα, μπλούζες με καρδιές ή ασορτί ολόσωμα. Επιπλέον πόντοι αν συντονίσετε όλη την οικογένεια σε αποχρώσεις του ροζ και κόκκινου. <a href=\"/collections/dresses\">Δείτε τις επιλογές μας για τον Άγιο Βαλεντίνο →</a></p><p><strong>Πάσχα:</strong> Τα παστέλ είναι οι φίλοι σας. Ασορτί λουλουδάτα φορέματα σε λεβάντα, μέντα ή απαλό κίτρινο δημιουργούν υπέροχες εμφανίσεις για το πασχαλινό brunch.</p><p><strong>Τέταρτη Ιουλίου:</strong> Κόκκινα, λευκά και μπλε ασορτί σετ είναι απαραίτητα το καλοκαίρι. Αστέρια και ρίγες για όλη την οικογένεια.</p><h2>4. Εμφανίσεις για Διακοπές και Παραλία</h2><p>Πάτε διακοπές με το ασορτί στυλ σας; Συντονισμένα μαγιό και ρούχα για θέρετρο είναι απαραίτητα.</p><p><strong>Μέρες στην παραλία:</strong> Ασορτί μαγιό είναι μια από τις πιο δημοφιλείς εμφανίσεις μαμάς και παιδιού — και με το δίκιο τους. Δεν υπάρχει τίποτα πιο χαριτωμένο από το να παίζετε στα κύματα με συντονισμένα μαγιό. Διαθέτουμε πάνω από 80 επιλογές ασορτί μαγιό, από ολόσωμα μέχρι σετ μπικίνι. <a href=\"/collections/swimsuits\">Αγοράστε ασορτί μαγιό →</a></p><p><strong>Ρούχα για θέρετρο:</strong> Ασορτί καλοκαιρινά φορέματα, μάξι φορέματα ή καλύμματα λειτουργούν τέλεια για δείπνα στις διακοπές και βόλτες στην παραλία.</p><p><strong>Ρούχα ταξιδιού:</strong> Ασορτί σετ με φόρμες jogger ή άνετα ολόσωμα κάνουν τον συντονισμό στο αεροδρόμιο εύκολο και ιδανικό για Instagram.</p><h2>5. Φορέματα για Ειδικές Περιστάσεις</h2><p>Γάμοι, γενέθλια, brunch, εκκλησία — μερικές φορές χρειάζεστε ασορτί εμφανίσεις που ντύνονται λίγο πιο επίσημα.</p><p><strong>Τι να επιλέξετε:</strong></p><ul>\n<li>Ασορτί μίντι ή μάξι φορέματα από εκλεπτυσμένα υφάσματα</li>\n<li>Συντονισμένες λεπτομέρειες δαντέλας για μια κομψή πινελιά</li>\n<li>Ασορτί ολόσωμες φόρμες για μια μοντέρνα, προχωρημένη εμφάνιση</li>\n<li>Συμπληρωματικά χρώματα αν δεν θέλετε ακριβείς αντιστοιχίες — δοκιμάστε τη μαμά με ναυτικό μπλε και την κόρη με ανοιχτό μπλε</li>\n</ul><p>Η συλλογή μας με μάξι φορέματα έχει πολλές επιλογές που διατίθενται σε μεγέθη για γυναίκες και κορίτσια. <a href=\"/collections/maxi-dresses\">Περιηγηθείτε στα μάξι φορέματα →</a></p><h2>6. Μπαμπάς και Εγώ — Μην Αφήνεις τον Μπαμπά Έξω!</h2><p>Το ταιριαστό ντύσιμο δεν είναι μόνο για μαμάδες. Τα σύνολα μπαμπά-κόρης και μπαμπά-γιου έχουν μεγάλη απήχηση, και ειλικρινά, είναι υπέροχα.</p><p><strong>Δημοφιλή looks μπαμπά και παιδιού:</strong></p><ul>\n<li>Ταιριαστά graphic t-shirts (σκεφτείτε \"Big Man\" και \"Little Man\" ή \"Original\" και \"Remix\")</li>\n<li>Συντονισμένα χαβανέζικα πουκάμισα για το καλοκαίρι</li>\n<li>Ταιριαστά οικογενειακά σετ όπου ο καθένας έχει τη δική του εκδοχή</li>\n</ul><p>Η συμμετοχή όλης της οικογένειας μετατρέπει το ταιριαστό ντύσιμο από μια χαριτωμένη ιδέα σε οικογενειακή παράδοση. <a href=\"/collections/family-matching\">Αγόρασε οικογενειακά ταιριάσματα →</a></p><h2>7. Βασικά εποχιακά κομμάτια</h2><p>Κάθε εποχή φέρνει νέες ευκαιρίες για ταιριάσματα:</p><p><strong>Άνοιξη:</strong> Φλοράλ φορέματα, ελαφριά ζακέτες, ταιριαστά αδιάβροχα μποτάκια</p><p><strong>Καλοκαίρι:</strong> Φορέματα για ήλιο, μαγιό, ταιριαστά σετ σορτς</p><p><strong>Φθινόπωρο:</strong> Ταιριαστά πουλόβερ, καρό σύνολα, συντονισμένοι γήινοι τόνοι. <a href=\"/collections/sweaters\">Αγόρασε πουλόβερ →</a></p><p><strong>Χειμώνας:</strong> Χριστουγεννιάτικες πιτζάμες, ζεστά πλεκτά σετ, ταιριαστά κασκόλ και σκουφάκια</p><h2>Συμβουλές για να πετύχετε το ταιριαστό look</h2><ol>\n<li>\n<strong>Ξεκινήστε με ένα εντυπωσιακό κομμάτι</strong> — ένα ταιριαστό φόρεμα, τοπ ή σετ πιτζάμες — και χτίστε το υπόλοιπο σύνολο γύρω του.</li>\n<li>\n<strong>Συνδυάστε ακριβή ταιριάσματα με συντονισμένα κομμάτια.</strong> Η μαμά με ένα φλοράλ φόρεμα, η κόρη με το ίδιο μοτίβο σε ολόσωμη φόρμα; Τέλειο.</li>\n<li>\n<strong>Σκεφτείτε το περιβάλλον.</strong> Παραλία; Επιλέξτε έντονα και φωτεινά χρώματα. Οικογενειακές φωτογραφίες; Μείνετε σε απαλούς, συμπληρωματικούς τόνους.</li>\n<li>\n<strong>Αφήστε το μικρό σας να διαλέξει μερικές φορές.</strong> Όταν τα παιδιά βοηθούν να επιλέξουν το ταιριαστό σύνολο, ενθουσιάζονται πολύ περισσότερο να το φορέσουν.</li>\n<li>\n<strong>Πάρτε μεγαλύτερο μέγεθος όταν έχετε αμφιβολία.</strong> Τα παιδιά μεγαλώνουν γρήγορα. Αν είστε ανάμεσα σε μεγέθη, επιλέξτε το μεγαλύτερο — θα το φορέσουν καθώς μεγαλώνουν.</li>\n</ol><h2>Έτοιμοι να ξεκινήσετε να ταιριάζετε;</h2><p>Έχουμε βοηθήσει χιλιάδες οικογένειες να βρουν το τέλειο συντονισμένο look τους. Είτε ψωνίζετε για μια ειδική περίσταση είτε απλώς θέλετε να κάνετε μια Τρίτη στο Target πιο διασκεδαστική, η συλλογή μας έχει κάτι για κάθε στυλ και προϋπολογισμό.</p><p><a href=\"/collections/matching-outfits\">Αγόρασε όλα τα ταιριαστά σύνολα →</a></p><p>Κάθε παραγγελία αποστέλλεται δωρεάν, και συνεχώς προσθέτουμε νέα στυλ. Ακολουθήστε μας στο <a href=\"https://instagram.com/dresslikemommy\">Instagram</a> και στο <a href=\"https://pinterest.com/dresslikemommy\">Pinterest</a> για καθημερινή έμπνευση για ντύσιμο.</p>",
+            "translatableContentDigest": "f342ab3bd6e0eaf44570c452c4381face3d737c8aee41c60a939777e023f2a88"
+          }
+        ]
+      },
+      "executed": false
+    }
+  },
+  "validation": {
+    "schema_types": [
+      "QueryRoot",
+      "Mutation",
+      "TranslatableResource",
+      "TranslatableContent",
+      "Translation",
+      "Article",
+      "Shop",
+      "TranslationInput",
+      "TranslationsRegisterPayload",
+      "TranslationUserError",
+      "Collection",
+      "Product",
+      "ProductConnection",
+      "PageInfo"
+    ],
+    "structured_docs_search": "SUCCESS",
+    "skill_search_script": "FAILED: fetch failed (transport); structured official docs plus exact schema used",
+    "structured_validator": "VALID: three operations, revision1",
+    "skill_validator": "VALID: combined operations, revision1",
+    "artifact_id": "greek-traffic-preflight-8d1f9ef4-0b2b-4057-ac06-7b68b209655b",
+    "read_scopes": [
+      "read_content",
+      "read_online_store_pages",
+      "read_translations",
+      "read_products"
+    ],
+    "mutation_scopes": [
+      "write_translations",
+      "read_translations"
+    ],
+    "documentation_urls": [
+      "https://shopify.dev/docs/apps/build/markets/manage-translated-content",
+      "https://shopify.dev/docs/api/admin-graphql/latest/queries/translatableResource",
+      "https://shopify.dev/docs/api/admin-graphql/latest/mutations/translationsRegister"
+    ]
+  },
+  "source_hashes": {
+    "greek_pajama_paragraph_proposal.json": "19d5b4a4ef5cb7c3816e653be2f3bfda6fb10a16275e81659a88ce61fd0add06",
+    "continuous_growth_greek_execution.json": "d5d24c2c12c4d3dcac1e1e1cc7fc14b80fd37f7ca228845dbaff1491b178593d",
+    "continuous_growth_greek_mutation_variables.json": "8b959f2a92f1827e01abf79ae3807e804cf8da2666c95946f11ea4fc219bd9f9",
+    "continuous_growth_independent_review.md": "f84a33cd9180a98c6fe8fdbc851645de0fb54a22c1f7a720f0bbedd06b1bb08b",
+    "traffic_translation_before.json": "a7c78d61ca21bcb2a863f12b9e1fdb56574f917f2f8e6ad5166ec8df4617c634"
+  },
+  "current_source": {
+    "shop": {
+      "name": "Dress Like Mommy",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "article": {
+      "id": "gid://shopify/Article/559471329377",
+      "handle": "mommy-and-me-matching-outfit-ideas",
+      "title": "Mommy and Me Matching Outfits: Ideas for Every Occasion",
+      "isPublished": true,
+      "publishedAt": "2025-10-20T14:00:00Z"
+    },
+    "resource": {
+      "resourceId": "gid://shopify/Article/559471329377",
+      "translatableContent": [
+        {
+          "key": "title",
+          "digest": "a77b213e9c8bec5342fac095df991a8c86749efbef63b3f95f28455cce40890b",
+          "locale": "en"
+        },
+        {
+          "key": "body_html",
+          "digest": "f342ab3bd6e0eaf44570c452c4381face3d737c8aee41c60a939777e023f2a88",
+          "locale": "en"
+        },
+        {
+          "key": "summary_html",
+          "digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "locale": "en"
+        },
+        {
+          "key": "handle",
+          "digest": "4bf3d6f3ace5fff736b0fae199e15501c0535485be4989bdb6a3904caecedea3",
+          "locale": "en"
+        },
+        {
+          "key": "meta_description",
+          "digest": "7830daf37c0f141e45423cc425c911caa8f4d2b2bc2bbe381bc0220f4aa5f62e",
+          "locale": "en"
+        }
+      ],
+      "translations": [
+        {
+          "key": "title",
+          "locale": "el",
+          "value": "Σετ Ρούχων για Μαμά και Κόρη: Ιδέες για Κάθε Περίσταση",
+          "outdated": false,
+          "updatedAt": "2026-04-10T13:32:48Z"
+        },
+        {
+          "key": "body_html",
+          "locale": "el",
+          "value": "<p>Υπάρχει κάτι μαγικό στο να φοράτε ταιριαστά ρούχα με το μικρό σας. Είτε κάνετε δουλειές, είτε ποζάρετε για οικογενειακές φωτογραφίες, είτε απλά περνάτε μια διασκεδαστική μέρα μαζί, ο συντονισμός των εμφανίσεών σας δημιουργεί αναμνήσεις που διαρκούν μια ζωή — και φωτογραφίες που πραγματικά θα θέλετε να κορνιζάρετε.</p><p>Αλλά το να ταιριάζετε δεν σημαίνει ότι πρέπει να μοιάζετε σαν δίδυμοι με ίδια ρούχα. Οι καλύτερες εμφανίσεις μαμά και παιδί ισορροπούν τον συντονισμό με την ατομικότητα — ίδια παλέτα χρωμάτων, συμπληρωματικά σχέδια ή ταιριαστά μοτίβα σε στυλ κατάλληλα για την ηλικία.</p><p>Εδώ είναι οι αγαπημένες μας ιδέες για σύνολα μαμά και παιδί για κάθε περίσταση στο ημερολόγιό σας.</p><h2>1. Casual καθημερινά σύνολα</h2><p>Δεν χρειάζεται κάθε ταιριαστή στιγμή να είναι μια μεγάλη παραγωγή. Μερικές από τις πιο χαριτωμένες συντονισμένες εμφανίσεις είναι οι πιο απλές.</p><p><strong>Τι να δοκιμάσετε:</strong></p><ul>\n<li>Ταιριαστά graphic t-shirts με τζιν — σκεφτείτε διασκεδαστικά σχέδια ή γλυκές φράσεις</li>\n<li>Συντονισμένα μονόχρωμα — επιλέξτε μια απόχρωση που αγαπάτε και χτίστε σύνολα γύρω της</li>\n<li>Ταιριαστά κολάν με συμπληρωματικά τοπ</li>\n</ul><p>Το κλειδί για να πετύχετε το casual ταιριαστό; Κρατήστε το άνετο. Πηγαίνετε στο πάρκο, όχι στην πασαρέλα. <a href=\"/collections/tops\">Αγοράστε τη συλλογή μας με ταιριαστά τοπ →</a></p><h2>2. Ιδέες για οικογενειακά ρούχα για φωτογραφίες</h2><p>Οι οικογενειακές φωτογραφίες είναι όπου τα ταιριαστά ρούχα πραγματικά ξεχωρίζουν. Μια συντονισμένη εμφάνιση δένει τα πορτρέτα σας και τους δίνει αυτή την κομψή, ποιοτική αίσθηση περιοδικού.</p><p><strong>Τι λειτουργεί καλύτερα για φωτογραφίες:</strong></p><ul>\n<li>Τα μονόχρωμα φωτογραφίζονται καλύτερα από τα πολυάσχολα σχέδια — δοκιμάστε απαλό ροζ, ναυτικό μπλε ή φασκόμηλο πράσινο</li>\n<li>Φορέματα από το ίδιο ύφασμα δημιουργούν ένα εντυπωσιακό οπτικό αποτέλεσμα</li>\n<li>Προσθέστε τον μπαμπά και τα αδέρφια με συμπληρωματικά χρώματα για μια ολοκληρωμένη οικογενειακή εμφάνιση</li>\n<li>Τα λουλουδάτα σχέδια λειτουργούν υπέροχα για υπαίθριες φωτογραφήσεις την άνοιξη και το καλοκαίρι</li>\n</ul><p><strong>Επαγγελματική συμβουλή:</strong> Αποφύγετε τα νέον χρώματα και τις πολύ λεπτές ρίγες — μπορεί να φαίνονται παράξενα στην κάμερα. Επιλέξτε απαλούς, ζεστούς τόνους που συμπληρώνουν τον τόνο του δέρματός σας και το φόντο σας. <a href=\"/collections/dresses\">Δείτε τα φορέματα που ταιριάζουν →</a></p><h2>3. Συνοδευτικά σύνολα για τις γιορτές</h2><p>Οι γιορτές είναι ουσιαστικά φτιαγμένες για να ταιριάζουν. Από τις πιτζάμες της πρωτοχρονιάς μέχρι τα φορέματα της Ημέρας του Αγίου Βαλεντίνου, κάθε γιορτή είναι μια αφορμή για συντονισμό.</p><p><strong>Χριστούγεννα:</strong> Τίποτα δεν συγκρίνεται με τα ασορτί οικογενειακά πιτζάμες το πρωί των Χριστουγέννων. Καρό σχέδια, εκτυπώσεις με ελάφια ή κλασικό κόκκινο και πράσινο — η παράδοση φωτογραφίζεται σχεδόν από μόνη της. <a href=\"/collections/family-pajamas\">Αγοράστε οικογενειακές πιτζάμες →</a></p><p><strong>Ημέρα του Αγίου Βαλεντίνου:</strong> Κόκκινα και ροζ φορέματα, μπλούζες με καρδιές ή ασορτί ολόσωμα. Επιπλέον πόντοι αν συντονίσετε όλη την οικογένεια σε αποχρώσεις του ροζ και κόκκινου. <a href=\"/collections/dresses\">Δείτε τις επιλογές μας για τον Άγιο Βαλεντίνο →</a></p><p><strong>Πάσχα:</strong> Τα παστέλ είναι οι φίλοι σας. Ασορτί λουλουδάτα φορέματα σε λεβάντα, μέντα ή απαλό κίτρινο δημιουργούν υπέροχες εμφανίσεις για το πασχαλινό brunch.</p><p><strong>Τέταρτη Ιουλίου:</strong> Κόκκινα, λευκά και μπλε ασορτί σετ είναι απαραίτητα το καλοκαίρι. Αστέρια και ρίγες για όλη την οικογένεια.</p><h2>4. Εμφανίσεις για Διακοπές και Παραλία</h2><p>Πάτε διακοπές με το ασορτί στυλ σας; Συντονισμένα μαγιό και ρούχα για θέρετρο είναι απαραίτητα.</p><p><strong>Μέρες στην παραλία:</strong> Ασορτί μαγιό είναι μια από τις πιο δημοφιλείς εμφανίσεις μαμάς και παιδιού — και με το δίκιο τους. Δεν υπάρχει τίποτα πιο χαριτωμένο από το να παίζετε στα κύματα με συντονισμένα μαγιό. Διαθέτουμε πάνω από 80 επιλογές ασορτί μαγιό, από ολόσωμα μέχρι σετ μπικίνι. <a href=\"/collections/swimsuits\">Αγοράστε ασορτί μαγιό →</a></p><p><strong>Ρούχα για θέρετρο:</strong> Ασορτί καλοκαιρινά φορέματα, μάξι φορέματα ή καλύμματα λειτουργούν τέλεια για δείπνα στις διακοπές και βόλτες στην παραλία.</p><p><strong>Ρούχα ταξιδιού:</strong> Ασορτί σετ με φόρμες jogger ή άνετα ολόσωμα κάνουν τον συντονισμό στο αεροδρόμιο εύκολο και ιδανικό για Instagram.</p><h2>5. Φορέματα για Ειδικές Περιστάσεις</h2><p>Γάμοι, γενέθλια, brunch, εκκλησία — μερικές φορές χρειάζεστε ασορτί εμφανίσεις που ντύνονται λίγο πιο επίσημα.</p><p><strong>Τι να επιλέξετε:</strong></p><ul>\n<li>Ασορτί μίντι ή μάξι φορέματα από εκλεπτυσμένα υφάσματα</li>\n<li>Συντονισμένες λεπτομέρειες δαντέλας για μια κομψή πινελιά</li>\n<li>Ασορτί ολόσωμες φόρμες για μια μοντέρνα, προχωρημένη εμφάνιση</li>\n<li>Συμπληρωματικά χρώματα αν δεν θέλετε ακριβείς αντιστοιχίες — δοκιμάστε τη μαμά με ναυτικό μπλε και την κόρη με ανοιχτό μπλε</li>\n</ul><p>Η συλλογή μας με μάξι φορέματα έχει πολλές επιλογές που διατίθενται σε μεγέθη για γυναίκες και κορίτσια. <a href=\"/collections/maxi-dresses\">Περιηγηθείτε στα μάξι φορέματα →</a></p><h2>6. Μπαμπάς και Εγώ — Μην Αφήνεις τον Μπαμπά Έξω!</h2><p>Το ταιριαστό ντύσιμο δεν είναι μόνο για μαμάδες. Τα σύνολα μπαμπά-κόρης και μπαμπά-γιου έχουν μεγάλη απήχηση, και ειλικρινά, είναι υπέροχα.</p><p><strong>Δημοφιλή looks μπαμπά και παιδιού:</strong></p><ul>\n<li>Ταιριαστά graphic t-shirts (σκεφτείτε \"Big Man\" και \"Little Man\" ή \"Original\" και \"Remix\")</li>\n<li>Συντονισμένα χαβανέζικα πουκάμισα για το καλοκαίρι</li>\n<li>Ταιριαστά οικογενειακά σετ όπου ο καθένας έχει τη δική του εκδοχή</li>\n</ul><p>Η συμμετοχή όλης της οικογένειας μετατρέπει το ταιριαστό ντύσιμο από μια χαριτωμένη ιδέα σε οικογενειακή παράδοση. <a href=\"/collections/family-matching\">Αγόρασε οικογενειακά ταιριάσματα →</a></p><h2>7. Βασικά εποχιακά κομμάτια</h2><p>Κάθε εποχή φέρνει νέες ευκαιρίες για ταιριάσματα:</p><p><strong>Άνοιξη:</strong> Φλοράλ φορέματα, ελαφριά ζακέτες, ταιριαστά αδιάβροχα μποτάκια</p><p><strong>Καλοκαίρι:</strong> Φορέματα για ήλιο, μαγιό, ταιριαστά σετ σορτς</p><p><strong>Φθινόπωρο:</strong> Ταιριαστά πουλόβερ, καρό σύνολα, συντονισμένοι γήινοι τόνοι. <a href=\"/collections/sweaters\">Αγόρασε πουλόβερ →</a></p><p><strong>Χειμώνας:</strong> Χριστουγεννιάτικες πιτζάμες, ζεστά πλεκτά σετ, ταιριαστά κασκόλ και σκουφάκια</p><h2>Συμβουλές για να πετύχετε το ταιριαστό look</h2><ol>\n<li>\n<strong>Ξεκινήστε με ένα εντυπωσιακό κομμάτι</strong> — ένα ταιριαστό φόρεμα, τοπ ή σετ πιτζάμες — και χτίστε το υπόλοιπο σύνολο γύρω του.</li>\n<li>\n<strong>Συνδυάστε ακριβή ταιριάσματα με συντονισμένα κομμάτια.</strong> Η μαμά με ένα φλοράλ φόρεμα, η κόρη με το ίδιο μοτίβο σε ολόσωμη φόρμα; Τέλειο.</li>\n<li>\n<strong>Σκεφτείτε το περιβάλλον.</strong> Παραλία; Επιλέξτε έντονα και φωτεινά χρώματα. Οικογενειακές φωτογραφίες; Μείνετε σε απαλούς, συμπληρωματικούς τόνους.</li>\n<li>\n<strong>Αφήστε το μικρό σας να διαλέξει μερικές φορές.</strong> Όταν τα παιδιά βοηθούν να επιλέξουν το ταιριαστό σύνολο, ενθουσιάζονται πολύ περισσότερο να το φορέσουν.</li>\n<li>\n<strong>Πάρτε μεγαλύτερο μέγεθος όταν έχετε αμφιβολία.</strong> Τα παιδιά μεγαλώνουν γρήγορα. Αν είστε ανάμεσα σε μεγέθη, επιλέξτε το μεγαλύτερο — θα το φορέσουν καθώς μεγαλώνουν.</li>\n</ol><h2>Έτοιμοι να ξεκινήσετε να ταιριάζετε;</h2><p>Έχουμε βοηθήσει χιλιάδες οικογένειες να βρουν το τέλειο συντονισμένο look τους. Είτε ψωνίζετε για μια ειδική περίσταση είτε απλώς θέλετε να κάνετε μια Τρίτη στο Target πιο διασκεδαστική, η συλλογή μας έχει κάτι για κάθε στυλ και προϋπολογισμό.</p><p><a href=\"/collections/matching-outfits\">Αγόρασε όλα τα ταιριαστά σύνολα →</a></p><p>Κάθε παραγγελία αποστέλλεται δωρεάν, και συνεχώς προσθέτουμε νέα στυλ. Ακολουθήστε μας στο <a href=\"https://instagram.com/dresslikemommy\">Instagram</a> και στο <a href=\"https://pinterest.com/dresslikemommy\">Pinterest</a> για καθημερινή έμπνευση για ντύσιμο.</p>",
+          "outdated": false,
+          "updatedAt": "2026-04-10T13:32:53Z"
+        },
+        {
+          "key": "meta_description",
+          "locale": "el",
+          "value": "Ανακαλύψτε τα πιο χαριτωμένα σετ ρούχων μαμάς και παιδιού για κάθε περίσταση — καθημερινές στιγμές, οικογενειακές φωτογραφίες, γιορτές, διακοπές και πολλά άλλα. Αγοράστε τα σύνολα!",
+          "outdated": false,
+          "updatedAt": "2026-04-10T13:32:48Z"
+        }
+      ]
+    }
+  },
+  "destination_source": {
+    "shop": {
+      "name": "Dress Like Mommy",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "collection": {
+      "id": "gid://shopify/Collection/355463725153",
+      "handle": "new-pajama-drop",
+      "title": "New Pajama Drop",
+      "products": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Product/7533458194529",
+            "handle": "meow-star-garden-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/meow-star-garden-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533454655585",
+            "handle": "peter-rabbit-gauze-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/peter-rabbit-gauze-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533454426209",
+            "handle": "red-panda-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/red-panda-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533454393441",
+            "handle": "bamboo-garden-panda-cotton-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/bamboo-garden-panda-cotton-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533454098529",
+            "handle": "autumn-peter-rabbit-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/autumn-peter-rabbit-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533453934689",
+            "handle": "polar-adventure-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/polar-adventure-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533430440033",
+            "handle": "ladybug-dots-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/ladybug-dots-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533429358689",
+            "handle": "fluttering-butterflies-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/fluttering-butterflies-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533404291169",
+            "handle": "little-pear-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/little-pear-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533404192865",
+            "handle": "peach-sweetheart-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/peach-sweetheart-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533403799649",
+            "handle": "grape-vineyard-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/grape-vineyard-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533397835873",
+            "handle": "little-sheep-meadow-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/little-sheep-meadow-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533390856289",
+            "handle": "grapevine-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/grapevine-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533379059809",
+            "handle": "peter-rabbit-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/peter-rabbit-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533367296097",
+            "handle": "bamboo-garden-panda-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/bamboo-garden-panda-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533354975329",
+            "handle": "summer-puppies-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/summer-puppies-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533351272545",
+            "handle": "good-night-song-of-the-sea-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/good-night-song-of-the-sea-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533348618337",
+            "handle": "bird-chirping-mommy-and-me-pajamas",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/bird-chirping-mommy-and-me-pajamas"
+          },
+          {
+            "id": "gid://shopify/Product/7533081133153",
+            "handle": "vintage-cottage-floral-mommy-and-me-pajama-set",
+            "status": "ACTIVE",
+            "onlineStoreUrl": "https://www.dresslikemommy.com/products/vintage-cottage-floral-mommy-and-me-pajama-set"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo3NTMzMDgxMTMzMTUzLCJsYXN0X3ZhbHVlIjoiMjAyNi0wNC0yMCAyMDo0ODozNi4wMDAwMDAifQ=="
+        }
+      }
+    }
+  },
+  "exact_replacement": {
+    "before_paragraph": "<p><strong>Χριστούγεννα:</strong> Τίποτα δεν συγκρίνεται με τα ασορτί οικογενειακά πιτζάμες το πρωί των Χριστουγέννων. Καρό σχέδια, εκτυπώσεις με ελάφια ή κλασικό κόκκινο και πράσινο — η παράδοση φωτογραφίζεται σχεδόν από μόνη της. <a href=\"/collections/family-pajamas\">Αγοράστε οικογενειακές πιτζάμες →</a></p>",
+    "after_paragraph": "<p><strong>Χριστούγεννα:</strong> Για τα γιορτινά πρωινά στο σπίτι, επιλέξτε ασορτί πιτζάμες για μαμά και παιδί. Επιλέξτε χωριστά το κομμάτι και το μέγεθος για κάθε άτομο και προσθέστε κάθε επιλογή ξεχωριστά στο καλάθι. <a href=\"/collections/new-pajama-drop\">Δείτε πιτζάμες για μαμά και παιδί →</a></p>",
+    "before_raw_href": "/collections/family-pajamas",
+    "after_raw_href": "/collections/new-pajama-drop",
+    "expected_rendered_href": "/el/collections/new-pajama-drop",
+    "english_backtranslation": "Christmas: For holiday mornings at home, choose matching pajamas for mom and child. Select the piece and size separately for each person and add each selection to the cart separately. See pajamas for mom and child →"
+  },
+  "expected": {
+    "before_body_sha256": "a3f8c33f63d5c211ec00fc203d448a2d283b3695920f0303a7ae9d6f55faa703",
+    "after_body_sha256": "39c6250a26509b80ed65ed630fa205cc453f812c68f786656446725c9585f4a7",
+    "before_chars": 7937,
+    "after_chars": 7928,
+    "source_digest": "f342ab3bd6e0eaf44570c452c4381face3d737c8aee41c60a939777e023f2a88",
+    "href_changes": 1,
+    "other_collection_links_unchanged": 8,
+    "social_links_unchanged": 2,
+    "all_other_paragraphs_bytes_unchanged": true
+  },
+  "rollback": {
+    "query": "mutation DlmGreekPajamaParagraph($resourceId:ID!,$translations:[TranslationInput!]!){translationsRegister(resourceId:$resourceId,translations:$translations){translations{key locale value}userErrors{field message}}}",
+    "variables": {
+      "resourceId": "gid://shopify/Article/559471329377",
+      "translations": [
+        {
+          "locale": "el",
+          "key": "body_html",
+          "value": "<p>Υπάρχει κάτι μαγικό στο να φοράτε ταιριαστά ρούχα με το μικρό σας. Είτε κάνετε δουλειές, είτε ποζάρετε για οικογενειακές φωτογραφίες, είτε απλά περνάτε μια διασκεδαστική μέρα μαζί, ο συντονισμός των εμφανίσεών σας δημιουργεί αναμνήσεις που διαρκούν μια ζωή — και φωτογραφίες που πραγματικά θα θέλετε να κορνιζάρετε.</p><p>Αλλά το να ταιριάζετε δεν σημαίνει ότι πρέπει να μοιάζετε σαν δίδυμοι με ίδια ρούχα. Οι καλύτερες εμφανίσεις μαμά και παιδί ισορροπούν τον συντονισμό με την ατομικότητα — ίδια παλέτα χρωμάτων, συμπληρωματικά σχέδια ή ταιριαστά μοτίβα σε στυλ κατάλληλα για την ηλικία.</p><p>Εδώ είναι οι αγαπημένες μας ιδέες για σύνολα μαμά και παιδί για κάθε περίσταση στο ημερολόγιό σας.</p><h2>1. Casual καθημερινά σύνολα</h2><p>Δεν χρειάζεται κάθε ταιριαστή στιγμή να είναι μια μεγάλη παραγωγή. Μερικές από τις πιο χαριτωμένες συντονισμένες εμφανίσεις είναι οι πιο απλές.</p><p><strong>Τι να δοκιμάσετε:</strong></p><ul>\n<li>Ταιριαστά graphic t-shirts με τζιν — σκεφτείτε διασκεδαστικά σχέδια ή γλυκές φράσεις</li>\n<li>Συντονισμένα μονόχρωμα — επιλέξτε μια απόχρωση που αγαπάτε και χτίστε σύνολα γύρω της</li>\n<li>Ταιριαστά κολάν με συμπληρωματικά τοπ</li>\n</ul><p>Το κλειδί για να πετύχετε το casual ταιριαστό; Κρατήστε το άνετο. Πηγαίνετε στο πάρκο, όχι στην πασαρέλα. <a href=\"/collections/tops\">Αγοράστε τη συλλογή μας με ταιριαστά τοπ →</a></p><h2>2. Ιδέες για οικογενειακά ρούχα για φωτογραφίες</h2><p>Οι οικογενειακές φωτογραφίες είναι όπου τα ταιριαστά ρούχα πραγματικά ξεχωρίζουν. Μια συντονισμένη εμφάνιση δένει τα πορτρέτα σας και τους δίνει αυτή την κομψή, ποιοτική αίσθηση περιοδικού.</p><p><strong>Τι λειτουργεί καλύτερα για φωτογραφίες:</strong></p><ul>\n<li>Τα μονόχρωμα φωτογραφίζονται καλύτερα από τα πολυάσχολα σχέδια — δοκιμάστε απαλό ροζ, ναυτικό μπλε ή φασκόμηλο πράσινο</li>\n<li>Φορέματα από το ίδιο ύφασμα δημιουργούν ένα εντυπωσιακό οπτικό αποτέλεσμα</li>\n<li>Προσθέστε τον μπαμπά και τα αδέρφια με συμπληρωματικά χρώματα για μια ολοκληρωμένη οικογενειακή εμφάνιση</li>\n<li>Τα λουλουδάτα σχέδια λειτουργούν υπέροχα για υπαίθριες φωτογραφήσεις την άνοιξη και το καλοκαίρι</li>\n</ul><p><strong>Επαγγελματική συμβουλή:</strong> Αποφύγετε τα νέον χρώματα και τις πολύ λεπτές ρίγες — μπορεί να φαίνονται παράξενα στην κάμερα. Επιλέξτε απαλούς, ζεστούς τόνους που συμπληρώνουν τον τόνο του δέρματός σας και το φόντο σας. <a href=\"/collections/dresses\">Δείτε τα φορέματα που ταιριάζουν →</a></p><h2>3. Συνοδευτικά σύνολα για τις γιορτές</h2><p>Οι γιορτές είναι ουσιαστικά φτιαγμένες για να ταιριάζουν. Από τις πιτζάμες της πρωτοχρονιάς μέχρι τα φορέματα της Ημέρας του Αγίου Βαλεντίνου, κάθε γιορτή είναι μια αφορμή για συντονισμό.</p><p><strong>Χριστούγεννα:</strong> Τίποτα δεν συγκρίνεται με τα ασορτί οικογενειακά πιτζάμες το πρωί των Χριστουγέννων. Καρό σχέδια, εκτυπώσεις με ελάφια ή κλασικό κόκκινο και πράσινο — η παράδοση φωτογραφίζεται σχεδόν από μόνη της. <a href=\"/collections/family-pajamas\">Αγοράστε οικογενειακές πιτζάμες →</a></p><p><strong>Ημέρα του Αγίου Βαλεντίνου:</strong> Κόκκινα και ροζ φορέματα, μπλούζες με καρδιές ή ασορτί ολόσωμα. Επιπλέον πόντοι αν συντονίσετε όλη την οικογένεια σε αποχρώσεις του ροζ και κόκκινου. <a href=\"/collections/dresses\">Δείτε τις επιλογές μας για τον Άγιο Βαλεντίνο →</a></p><p><strong>Πάσχα:</strong> Τα παστέλ είναι οι φίλοι σας. Ασορτί λουλουδάτα φορέματα σε λεβάντα, μέντα ή απαλό κίτρινο δημιουργούν υπέροχες εμφανίσεις για το πασχαλινό brunch.</p><p><strong>Τέταρτη Ιουλίου:</strong> Κόκκινα, λευκά και μπλε ασορτί σετ είναι απαραίτητα το καλοκαίρι. Αστέρια και ρίγες για όλη την οικογένεια.</p><h2>4. Εμφανίσεις για Διακοπές και Παραλία</h2><p>Πάτε διακοπές με το ασορτί στυλ σας; Συντονισμένα μαγιό και ρούχα για θέρετρο είναι απαραίτητα.</p><p><strong>Μέρες στην παραλία:</strong> Ασορτί μαγιό είναι μια από τις πιο δημοφιλείς εμφανίσεις μαμάς και παιδιού — και με το δίκιο τους. Δεν υπάρχει τίποτα πιο χαριτωμένο από το να παίζετε στα κύματα με συντονισμένα μαγιό. Διαθέτουμε πάνω από 80 επιλογές ασορτί μαγιό, από ολόσωμα μέχρι σετ μπικίνι. <a href=\"/collections/swimsuits\">Αγοράστε ασορτί μαγιό →</a></p><p><strong>Ρούχα για θέρετρο:</strong> Ασορτί καλοκαιρινά φορέματα, μάξι φορέματα ή καλύμματα λειτουργούν τέλεια για δείπνα στις διακοπές και βόλτες στην παραλία.</p><p><strong>Ρούχα ταξιδιού:</strong> Ασορτί σετ με φόρμες jogger ή άνετα ολόσωμα κάνουν τον συντονισμό στο αεροδρόμιο εύκολο και ιδανικό για Instagram.</p><h2>5. Φορέματα για Ειδικές Περιστάσεις</h2><p>Γάμοι, γενέθλια, brunch, εκκλησία — μερικές φορές χρειάζεστε ασορτί εμφανίσεις που ντύνονται λίγο πιο επίσημα.</p><p><strong>Τι να επιλέξετε:</strong></p><ul>\n<li>Ασορτί μίντι ή μάξι φορέματα από εκλεπτυσμένα υφάσματα</li>\n<li>Συντονισμένες λεπτομέρειες δαντέλας για μια κομψή πινελιά</li>\n<li>Ασορτί ολόσωμες φόρμες για μια μοντέρνα, προχωρημένη εμφάνιση</li>\n<li>Συμπληρωματικά χρώματα αν δεν θέλετε ακριβείς αντιστοιχίες — δοκιμάστε τη μαμά με ναυτικό μπλε και την κόρη με ανοιχτό μπλε</li>\n</ul><p>Η συλλογή μας με μάξι φορέματα έχει πολλές επιλογές που διατίθενται σε μεγέθη για γυναίκες και κορίτσια. <a href=\"/collections/maxi-dresses\">Περιηγηθείτε στα μάξι φορέματα →</a></p><h2>6. Μπαμπάς και Εγώ — Μην Αφήνεις τον Μπαμπά Έξω!</h2><p>Το ταιριαστό ντύσιμο δεν είναι μόνο για μαμάδες. Τα σύνολα μπαμπά-κόρης και μπαμπά-γιου έχουν μεγάλη απήχηση, και ειλικρινά, είναι υπέροχα.</p><p><strong>Δημοφιλή looks μπαμπά και παιδιού:</strong></p><ul>\n<li>Ταιριαστά graphic t-shirts (σκεφτείτε \"Big Man\" και \"Little Man\" ή \"Original\" και \"Remix\")</li>\n<li>Συντονισμένα χαβανέζικα πουκάμισα για το καλοκαίρι</li>\n<li>Ταιριαστά οικογενειακά σετ όπου ο καθένας έχει τη δική του εκδοχή</li>\n</ul><p>Η συμμετοχή όλης της οικογένειας μετατρέπει το ταιριαστό ντύσιμο από μια χαριτωμένη ιδέα σε οικογενειακή παράδοση. <a href=\"/collections/family-matching\">Αγόρασε οικογενειακά ταιριάσματα →</a></p><h2>7. Βασικά εποχιακά κομμάτια</h2><p>Κάθε εποχή φέρνει νέες ευκαιρίες για ταιριάσματα:</p><p><strong>Άνοιξη:</strong> Φλοράλ φορέματα, ελαφριά ζακέτες, ταιριαστά αδιάβροχα μποτάκια</p><p><strong>Καλοκαίρι:</strong> Φορέματα για ήλιο, μαγιό, ταιριαστά σετ σορτς</p><p><strong>Φθινόπωρο:</strong> Ταιριαστά πουλόβερ, καρό σύνολα, συντονισμένοι γήινοι τόνοι. <a href=\"/collections/sweaters\">Αγόρασε πουλόβερ →</a></p><p><strong>Χειμώνας:</strong> Χριστουγεννιάτικες πιτζάμες, ζεστά πλεκτά σετ, ταιριαστά κασκόλ και σκουφάκια</p><h2>Συμβουλές για να πετύχετε το ταιριαστό look</h2><ol>\n<li>\n<strong>Ξεκινήστε με ένα εντυπωσιακό κομμάτι</strong> — ένα ταιριαστό φόρεμα, τοπ ή σετ πιτζάμες — και χτίστε το υπόλοιπο σύνολο γύρω του.</li>\n<li>\n<strong>Συνδυάστε ακριβή ταιριάσματα με συντονισμένα κομμάτια.</strong> Η μαμά με ένα φλοράλ φόρεμα, η κόρη με το ίδιο μοτίβο σε ολόσωμη φόρμα; Τέλειο.</li>\n<li>\n<strong>Σκεφτείτε το περιβάλλον.</strong> Παραλία; Επιλέξτε έντονα και φωτεινά χρώματα. Οικογενειακές φωτογραφίες; Μείνετε σε απαλούς, συμπληρωματικούς τόνους.</li>\n<li>\n<strong>Αφήστε το μικρό σας να διαλέξει μερικές φορές.</strong> Όταν τα παιδιά βοηθούν να επιλέξουν το ταιριαστό σύνολο, ενθουσιάζονται πολύ περισσότερο να το φορέσουν.</li>\n<li>\n<strong>Πάρτε μεγαλύτερο μέγεθος όταν έχετε αμφιβολία.</strong> Τα παιδιά μεγαλώνουν γρήγορα. Αν είστε ανάμεσα σε μεγέθη, επιλέξτε το μεγαλύτερο — θα το φορέσουν καθώς μεγαλώνουν.</li>\n</ol><h2>Έτοιμοι να ξεκινήσετε να ταιριάζετε;</h2><p>Έχουμε βοηθήσει χιλιάδες οικογένειες να βρουν το τέλειο συντονισμένο look τους. Είτε ψωνίζετε για μια ειδική περίσταση είτε απλώς θέλετε να κάνετε μια Τρίτη στο Target πιο διασκεδαστική, η συλλογή μας έχει κάτι για κάθε στυλ και προϋπολογισμό.</p><p><a href=\"/collections/matching-outfits\">Αγόρασε όλα τα ταιριαστά σύνολα →</a></p><p>Κάθε παραγγελία αποστέλλεται δωρεάν, και συνεχώς προσθέτουμε νέα στυλ. Ακολουθήστε μας στο <a href=\"https://instagram.com/dresslikemommy\">Instagram</a> και στο <a href=\"https://pinterest.com/dresslikemommy\">Pinterest</a> για καθημερινή έμπνευση για ντύσιμο.</p>",
+          "translatableContentDigest": "f342ab3bd6e0eaf44570c452c4381face3d737c8aee41c60a939777e023f2a88"
+        }
+      ]
+    },
+    "scope": "Only captured original el/body_html value. Require current English-source digest and no unrelated translation drift before any authorized rollback; no remove/unpublish/delete.",
+    "executed": false
+  },
+  "conflicts": [],
+  "checks": {
+    "correct_shop_both_queries": true,
+    "exact_article_source": true,
+    "article_published": true,
+    "current_greek_locale": true,
+    "current_body_exact_frozen_hash": true,
+    "current_body_exact_length": true,
+    "current_english_source_digest_unchanged": true,
+    "only_one_reviewed_paragraph": true,
+    "replacement_reproduces_candidate": true,
+    "candidate_hash_exact": true,
+    "candidate_length_exact": true,
+    "mutation_variables_exact_prior_reviewed": true,
+    "only_one_el_body_translation": true,
+    "all_link_counts_preserved": true,
+    "one_href_change_exact": true,
+    "nine_collection_links": true,
+    "two_other_links_preserved": true,
+    "exact_destination": true,
+    "nineteen_complete_unique_members": true,
+    "all_members_active_online_linked": true,
+    "rollback_exact_current_body": true,
+    "prior_rejection_recorded": true,
+    "no_external_execution": true,
+    "frozen_reference_hashes_unchanged": true
+  },
+  "remaining_verification": [
+    "Root action-time current authority and normal connector approval/review; do not bypass any rejection",
+    "Exact after-state el/body_html hash and unchanged other translation fields/source digest after successful mutation",
+    "Root rendered MAIN article target /el/collections/new-pajama-drop and anchor with other eight collection links preserved",
+    "Rendered destination and Greece-market checkout/fulfillment are not established by this Admin collection read"
+  ],
+  "limits": [
+    "Original family-pajamas empty-grid evidence is dated earlier September6; not freshly re-fetched here.",
+    "New-pajama-drop source is current: nineteen ACTIVE online-store-linked products; that is not Greek rendered-page, availability, fit, shipping or completed-checkout proof.",
+    "Prior English hero and Greek placeholder limitations remain separately tracked; no broad translation or product repair included.",
+    "No traffic, sales, attribution or profitability lift is claimed.",
+    "Frozen proposal/rejection files and canonical owner-approval states were not rewritten; root owns reconciliation with the renewed current instruction."
+  ],
+  "computed": {
+    "before_body_sha256": "a3f8c33f63d5c211ec00fc203d448a2d283b3695920f0303a7ae9d6f55faa703",
+    "after_body_sha256": "39c6250a26509b80ed65ed630fa205cc453f812c68f786656446725c9585f4a7",
+    "before_body_characters": 7937,
+    "after_body_characters": 7928,
+    "before_body_utf8_bytes": 13349,
+    "after_body_utf8_bytes": 13326,
+    "link_changes": [
+      {
+        "index_zero_based": 2,
+        "before": "/collections/family-pajamas",
+        "after": "/collections/new-pajama-drop"
+      }
+    ],
+    "destination_member_count": 19,
+    "destination_active_online_linked_count": 19,
+    "pagination_complete": true,
+    "source_lists_pagination": "translatableContent/translations are non-connection lists; no cursor required",
+    "proposed_variables_sha256_compact_sorted_utf8": "ba96040621a9eafd7f095ee8bef7cf81b1471cb384a445d2ad43569a81018adf"
+  }
+}

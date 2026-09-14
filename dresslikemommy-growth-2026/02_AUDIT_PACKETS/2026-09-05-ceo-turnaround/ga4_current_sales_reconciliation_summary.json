@@ -1,0 +1,226 @@
+{
+  "status": "LIVE_VERIFIED_GA4_READ_ONLY",
+  "task_stage": "VERIFY",
+  "readback_completed_utc": "2026-09-06T01:35:04.346698+00:00",
+  "identity": {
+    "account_id": "88409806",
+    "property_id": "330266838",
+    "property_name": "dresslikemommy.com - GA4",
+    "browser": "Chrome",
+    "profile": "test",
+    "browser_id": "2",
+    "tab_id": "475224120"
+  },
+  "reporting_timezone": {
+    "ui_value": "(GMT-04:00) New York Time",
+    "normalized": "America/New_York",
+    "settings_verified": true
+  },
+  "currency": {
+    "ui_value": "US Dollar ($)",
+    "reporting_currency": "USD",
+    "property_setting_verified": true,
+    "event_or_presentment_currency_verified": false
+  },
+  "report": {
+    "name": "Transactions: Transaction ID",
+    "report_id": "transaction-id-report",
+    "cohort": "All Users",
+    "comparison": "disabled",
+    "filters": "none",
+    "primary_dimension": "Transaction ID",
+    "secondary_dimensions_read_separately": [
+      "Date",
+      "Session source / medium",
+      "Session campaign ID"
+    ],
+    "metrics": [
+      "Ecommerce purchases",
+      "Purchase revenue"
+    ],
+    "rows_per_page": 50,
+    "coverage_90d": "1-36 of36",
+    "coverage_28d": "1-5 of5",
+    "sampled": false,
+    "available_data_percent": 100,
+    "data_source": "Reporting showing daily data",
+    "thresholding_warning_observed": false,
+    "api_queries_or_saved_explorations_used": false
+  },
+  "windows": [
+    {
+      "name": "28d",
+      "start": "20260808",
+      "end": "20260904",
+      "unique_transaction_ids": 5,
+      "ecommerce_purchases": 5,
+      "purchase_revenue_reported_usd": "432.20",
+      "purchase_revenue_raw_sum": "432.204968",
+      "sum_individually_rounded_transaction_values": "432.21",
+      "session_source_medium": {
+        "(direct) / (none)": {
+          "ecommerce_purchases": 1,
+          "purchase_revenue_raw": "118.95",
+          "purchase_revenue_display_usd": "118.95"
+        },
+        "google / organic": {
+          "ecommerce_purchases": 3,
+          "purchase_revenue_raw": "211.284968",
+          "purchase_revenue_display_usd": "211.28"
+        },
+        "chatgpt.com / ai-assistant": {
+          "ecommerce_purchases": 1,
+          "purchase_revenue_raw": "101.97",
+          "purchase_revenue_display_usd": "101.97"
+        }
+      },
+      "session_campaign_id": {
+        "(not set)": {
+          "ecommerce_purchases": 5,
+          "purchase_revenue_raw": "432.204968",
+          "purchase_revenue_display_usd": "432.20"
+        }
+      }
+    },
+    {
+      "name": "90d",
+      "start": "20260607",
+      "end": "20260904",
+      "unique_transaction_ids": 36,
+      "ecommerce_purchases": 36,
+      "purchase_revenue_reported_usd": "2612.69",
+      "purchase_revenue_raw_sum": "2612.691065",
+      "sum_individually_rounded_transaction_values": "2612.68",
+      "session_source_medium": {
+        "google / cpc": {
+          "ecommerce_purchases": 1,
+          "purchase_revenue_raw": "151.463786",
+          "purchase_revenue_display_usd": "151.46"
+        },
+        "google / organic": {
+          "ecommerce_purchases": 20,
+          "purchase_revenue_raw": "1500.444613",
+          "purchase_revenue_display_usd": "1500.44"
+        },
+        "(direct) / (none)": {
+          "ecommerce_purchases": 6,
+          "purchase_revenue_raw": "370.624198",
+          "purchase_revenue_display_usd": "370.62"
+        },
+        "chatgpt.com / ai-assistant": {
+          "ecommerce_purchases": 5,
+          "purchase_revenue_raw": "308.003487",
+          "purchase_revenue_display_usd": "308.00"
+        },
+        "yahoo / organic": {
+          "ecommerce_purchases": 1,
+          "purchase_revenue_raw": "99.96",
+          "purchase_revenue_display_usd": "99.96"
+        },
+        "google / product_sync": {
+          "ecommerce_purchases": 1,
+          "purchase_revenue_raw": "66.98",
+          "purchase_revenue_display_usd": "66.98"
+        },
+        "chatgpt.com / feed": {
+          "ecommerce_purchases": 1,
+          "purchase_revenue_raw": "64.97",
+          "purchase_revenue_display_usd": "64.97"
+        },
+        "uk.search.yahoo.com / referral": {
+          "ecommerce_purchases": 1,
+          "purchase_revenue_raw": "50.244981",
+          "purchase_revenue_display_usd": "50.24"
+        }
+      },
+      "session_campaign_id": {
+        "23866684201": {
+          "ecommerce_purchases": 1,
+          "purchase_revenue_raw": "151.463786",
+          "purchase_revenue_display_usd": "151.46"
+        },
+        "Shopping Free Listings": {
+          "ecommerce_purchases": 4,
+          "purchase_revenue_raw": "401.86",
+          "purchase_revenue_display_usd": "401.86"
+        },
+        "(not set)": {
+          "ecommerce_purchases": 31,
+          "purchase_revenue_raw": "2059.367279",
+          "purchase_revenue_display_usd": "2059.37"
+        }
+      }
+    }
+  ],
+  "quality": {
+    "date_and_source_reports": "100% of available data; Unsampled report",
+    "campaign_report": "mostly complete data; Missing session data; Unsampled report;100% of available data",
+    "campaign_not_set_rows": 31,
+    "campaign_not_set_percent": "86.11111111111111111111111111",
+    "missing_session_warning": "GA4 UI says many session_start events are missing because data stream sends event data before ad_user_data parameter. This is the platform diagnostic, not independent implementation proof.",
+    "item_id": "Visible but disabled in Transactions secondary-dimension selector; no item mapping available in this bounded report."
+  },
+  "campaign_candidate_result": {
+    "candidate_campaign_id": "23867953136",
+    "recorded_transactions_with_that_session_campaign_id": 0,
+    "observed_google_cpc_campaign_id": "23866684201",
+    "observed_google_cpc_purchase_date": "2026-07-23",
+    "caution": "Recorded session attribution only. Missing session data,31notset campaign values, absent Ads cost, and incomplete Shopify parity prevent causal no-sales or profitability claims."
+  },
+  "private_join": {
+    "file_basename": "ga4_transactions_with_campaign_90d.csv",
+    "directory_outside_repo": true,
+    "mode": "0600",
+    "unique_ids": 36,
+    "date_source_campaign_exact_key_count_value_join": "PASS",
+    "unmatched_between_ga4_exports": 0,
+    "ambiguous_between_ga4_exports": 0,
+    "transaction_identifiers_in_this_summary": false
+  },
+  "reconciliation_comparison_to_prior_ga4": {
+    "28d_purchase_delta": 0,
+    "28d_reported_revenue_delta_usd": "0.00",
+    "90d_purchase_delta": 0,
+    "90d_reported_revenue_delta_usd": "0.00"
+  },
+  "decision": {
+    "recommendation": "REROUTE_TO_SHOPIFY_ORDER_TRUTH_AND_FRESH_ADS_COST; prepare bounded read-only consent-ordering diagnosis",
+    "north_star": "Maximize profitable paid-growth sales at about650%ROAS",
+    "planning_target_cpa_usd": "10.77",
+    "paid_roas": null,
+    "paid_cpa": null,
+    "reason": "Current cost data absent; GA4 includes refunded/cancelled transactions per parent join; value/currency parity and session attribution are not yet complete.",
+    "high_intent_low_waste_supported": "NOT_ESTABLISHED by one CPC purchase",
+    "no_self_cannibalization": "UNKNOWN without fresh account/query inventory"
+  },
+  "daily_completed_day": {
+    "date": "2026-09-04",
+    "recorded_ga4_purchases": 0,
+    "recorded_ga4_purchase_revenue_usd": "0.00",
+    "previous_completed_day": "2026-09-03",
+    "previous_recorded_ga4_purchases": 0,
+    "progress_improved": false,
+    "current_partial_sept5": "EXCLUDED by task scope",
+    "today_action": "Complete parent Shopify join and prepare read-only session_start/ad_user_data sequencing diagnostic; do not scale from GA4 alone."
+  },
+  "external_writes": [],
+  "report_view_changes_only": true,
+  "unsaved_changes_risk": "NONE observed; no custom report/exploration or settings edit",
+  "authority_context": "Parent assigned read-only GA4; authoritative control STALE_READBACK_REQUIRED,approved_external_scope NONE",
+  "decision_changing_evidence": "Shopify retained-order and presentment/value join; fresh campaign spend; event-order/currency proof",
+  "if_evidence_supports_recommendation": "Use retained Shopify-linked purchases and current cost for bounded test/scale packet",
+  "if_evidence_opposes_recommendation": "Diagnose measurement or offer; hold scale and reroute independent safe work",
+  "material_decision": "NOT_MATERIAL",
+  "independent_verifier": "Parent independently read Shopify and joined transaction IDs; parent owns final integrated review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "current_url": "https://analytics.google.com/analytics/web/#/a88409806p330266838/reports/explorer?params=_u..nav%3Dmaui%26_r.explorerCard..seldim%3D%5B%22transactionId%22,%22sessionCampaignId%22%5D%26_u.dateOption%3Dlast90Days%26_u.comparisonOption%3Ddisabled%26_r.explorerCard..startRow%3D0%26_r.explorerCard..rowsPerPage%3D50&ruid=019f8def-dfd0-4785-a638-262fce4dc7be&collectionId=11131314159&r=transaction-id-report",
+  "limitations": [
+    "No fresh Google Ads spend,CPA,ROAS,serving state or bid data in assigned lane",
+    "No GA4 event-level original currency parameter or consent sequence trace",
+    "ItemID disabled in this report",
+    "GA4 purchase events do not certify retained paid/noncancelled orders",
+    "No test purchase,settings change,saved exploration,account switch or auth recovery"
+  ],
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md with parent reconciliation anchor",
+  "current_url_date_caution": "URL uses relative last90Days preset; future readbacks must explicitly select fixed Jun7-Sep4,2026 dates"
+}

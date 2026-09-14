@@ -1,0 +1,218 @@
+{
+  "task_id": "TA10-NATIVE-DEMAND-20260914-1032",
+  "status": "VERIFIED_DOCUMENTATION_WITH_SOURCE_LIMITS_NOT_ACCOUNT_VERIFICATION",
+  "recorded_at_utc": "2026-09-14T10:44:08+00:00",
+  "role": "Read-only method research; not independent final review of root native receipt.",
+  "scope": {
+    "candidate_source_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/INTERNATIONAL_PAID_CANDIDATES_20260908.csv",
+    "candidate_source_sha256": "fc397fecf28dd38221cae779d967b08a67b49ab243cb3fec62f3349f2700ded0",
+    "candidate_count": 9,
+    "candidate_bindings": [
+      {
+        "candidate_id": "DK-01",
+        "country": "DK",
+        "language": "da",
+        "match_type": "EXACT",
+        "parent_product_id": "7545279512673"
+      },
+      {
+        "candidate_id": "DK-02",
+        "country": "DK",
+        "language": "da",
+        "match_type": "EXACT",
+        "parent_product_id": "7545279512673"
+      },
+      {
+        "candidate_id": "DK-03",
+        "country": "DK",
+        "language": "da",
+        "match_type": "PHRASE",
+        "parent_product_id": "7545279512673"
+      },
+      {
+        "candidate_id": "DE-01",
+        "country": "DE",
+        "language": "de",
+        "match_type": "EXACT",
+        "parent_product_id": "7545279512673"
+      },
+      {
+        "candidate_id": "DE-02",
+        "country": "DE",
+        "language": "de",
+        "match_type": "EXACT",
+        "parent_product_id": "7545279512673"
+      },
+      {
+        "candidate_id": "DE-03",
+        "country": "DE",
+        "language": "de",
+        "match_type": "PHRASE",
+        "parent_product_id": "7545279512673"
+      },
+      {
+        "candidate_id": "CZ-01",
+        "country": "CZ",
+        "language": "cs",
+        "match_type": "EXACT",
+        "parent_product_id": "7545279512673"
+      },
+      {
+        "candidate_id": "CZ-02",
+        "country": "CZ",
+        "language": "cs",
+        "match_type": "EXACT",
+        "parent_product_id": "7545279512673"
+      },
+      {
+        "candidate_id": "CZ-03",
+        "country": "CZ",
+        "language": "cs",
+        "match_type": "PHRASE",
+        "parent_product_id": "7545279512673"
+      }
+    ],
+    "current_native_ui": "UNKNOWN_TO_RESEARCHER; parent owns Planner",
+    "external_actions_performed": "Official public documentation retrieval only",
+    "external_mutations": "NONE",
+    "new_keywords_or_campaign_drafts": "NONE",
+    "account_browser_storefront_private_data_calls": "NONE",
+    "canonical_integration_owner": "root"
+  },
+  "official_sources": [
+    {
+      "id": "G1",
+      "title": "About Keyword Planner forecasts",
+      "url": "https://support.google.com/google-ads/answer/3022575?hl=en-uk",
+      "retrieved_on": "2026-09-14",
+      "retrieval": "Official search-result extraction received before a separate full-page fetch failed; limited to the text actually returned.",
+      "definitions": [
+        "Average monthly searches includes the keyword and close variants, for the selected month range, location and Search Network. The default is a 12-month average, regardless of the term language.",
+        "Competition is relative advertiser participation, specific to the selected location and Search Network. It is not organic SEO difficulty or a profitability score.",
+        "Historical metrics and forecasts differ: forecasts incorporate bid, budget, seasonality and other factors; historical metrics do not."
+      ],
+      "limit": "Full-page fetch at the en URL returned HTTP 429. No retry, language-variant fetch or cached-copy workaround. The detailed historical match-type paragraph was not obtained and is not claimed as freshly verified."
+    },
+    {
+      "id": "G2",
+      "title": "Refine your new keywords in Keyword Planner",
+      "url": "https://support.google.com/google-ads/answer/6325025?hl=en",
+      "retrieved_on": "2026-09-14",
+      "retrieval": "READ_SUCCESSFULLY",
+      "definitions": [
+        "Location, language, network and date are separate research controls. Removing locations sets All locations.",
+        "Google selects Google Search ideas; Google and search partners expands the network. Language selects the languages for keyword ideas; it does not prove the counted people speak only that language.",
+        "Keyword text, categories and other filters can suppress rows. Record the applied controls instead of interpreting a missing row as zero demand."
+      ]
+    },
+    {
+      "id": "G3",
+      "title": "Use Keyword Planner",
+      "url": "https://support.google.com/google-ads/answer/7337243?hl=en",
+      "retrieved_on": "2026-09-14",
+      "retrieval": "READ_SUCCESSFULLY",
+      "definitions": [
+        "The documented forecast path adds selected keywords to Saved keywords and creates/adds to a plan, with a selected match type; another path pastes/uploads keywords and uses Get started under Create a keyword plan.",
+        "Forecasts are refreshed daily using the last 7–10 days with seasonal adjustment. They are conditional estimates, not observed results.",
+        "The help describes forecast bid-strategy, budget and date controls; it does not establish a nonpersistent native forecast with a USD0.15 maximum-CPC control.",
+        "Very low-volume or sensitive terms may be unavailable for discovery/forecasting. Account setup including billing is documented as an access prerequisite, not an action authorized by this task."
+      ]
+    },
+    {
+      "id": "G4",
+      "title": "Generate Historical Metrics — Google Ads API",
+      "url": "https://developers.google.com/google-ads/api/docs/keyword-planning/generate-historical-metrics",
+      "retrieved_on": "2026-09-14",
+      "retrieval": "READ_SUCCESSFULLY_DOCUMENTATION_ONLY_NO_API_ACCOUNT_CALL",
+      "definitions": [
+        "The historical response pairs a returned query with its close variants, average monthly searches, approximate month-level volume, competition and bid ranges.",
+        "Low/high top-of-page historical bids correspond to the 20th/80th percentiles. These are bid statistics, not this advertiser’s actual CPC, a future CPC guarantee or proof of delivery at the user ceiling.",
+        "The sample preserves absent averages, competition index and bid fields as null. Competition index is filled ad slots divided by available slots on a 0–100 scale; insufficient data can produce null.",
+        "API field nullability supports retaining missingness; this API guide does not independently establish the cause of every native UI dash or missing row."
+      ]
+    }
+  ],
+  "method_application": {
+    "country_language_pairs": [
+      {
+        "country": "DK",
+        "language": "da",
+        "display": "Denmark / Danish"
+      },
+      {
+        "country": "DE",
+        "language": "de",
+        "display": "Germany / German"
+      },
+      {
+        "country": "CZ",
+        "language": "cs",
+        "display": "Czechia / Czech"
+      }
+    ],
+    "settings_receipt": [
+      "exact existing candidate ID and input text, without new variants",
+      "selected country and language",
+      "network",
+      "historical date window",
+      "all filters and exclusions",
+      "account/display currency",
+      "returned row text and whether it exactly equals input",
+      "literal displayed metric or range, with missing-state reason if UI provides one"
+    ],
+    "historical_vs_match_type": {
+      "source_ids": [
+        "G1",
+        "G3",
+        "G4"
+      ],
+      "interpretation": "Historical keyword/close-variant demand is not literal-string-only demand, delivered search-term evidence or match-type-specific forecast traffic. Preserve the six EXACT and three PHRASE candidate identities; forecast match selection is a separate control.",
+      "non_additivity": "Inference from close-variant inclusion: do not sum related returned rows as independent demand or manufacture separate estimates for merged/unreturned candidate spellings."
+    },
+    "missing_metrics": {
+      "source_ids": [
+        "G2",
+        "G3",
+        "G4"
+      ],
+      "normalization": "Retain dash, blank, not-returned, error and explicit numeric zero as distinct raw states. Normalized unavailable numeric values remain null with status UNKNOWN_OR_NOT_REPORTED; an explicit range keeps both endpoints.",
+      "limits": "No row does not prove zero searches, zero competition, free clicks or availability at USD0.15. An unavailable bid or forecast cannot be replaced with the low end of a historical bid range. Do not diagnose the cause without the actual message."
+    }
+  },
+  "nonpersistent_ceiling_forecast": {
+    "source_ids": [
+      "G3"
+    ],
+    "availability": "NOT_ESTABLISHED_BY_REVIEWED_NATIVE_DOCUMENTATION",
+    "actual_forecast_at_or_below_usd_0_15": null,
+    "execution_status": "NOT_RUN_BY_RESEARCHER",
+    "current_scope": "Passive native research belongs to root; no Save, plan creation, keyword addition/import, campaign creation or billing change is authorized by this documentation task.",
+    "condition_for_any_in_scope_read": "Root must first observe an already accessible genuinely nonpersistent forecast surface and an explicit applicable maximum-CPC input in the correct currency. A budget-only chart or forecast average CPC of 0.15 is not proof of a 0.15 bid ceiling.",
+    "stop_boundary": "If obtaining the forecast requires saving/creating a plan, Add keywords, import, campaign or billing actions, retain FORECAST_NOT_RUN_UNDER_READ_ONLY_SCOPE. Do not perform the action merely because it would not enable a live campaign.",
+    "not_a_global_impossibility_claim": "This is a limit of the reviewed native workflow, not a claim that every Google API or every account UI lacks another capability."
+  },
+  "retrieval_limits": [
+    {
+      "url": "https://support.google.com/google-ads/answer/3022575?hl=en",
+      "status": "HTTP_429_STOPPED",
+      "attempts": 1,
+      "retries": 0
+    },
+    {
+      "url": "https://developers.google.com/tag-platform/security/guides/consent?consentmode=advanced1faq",
+      "status": "PRIOR_NONRETRYABLE_URL_SAFETY_BOUNDARY_PRESERVED",
+      "attempts_this_task": 0
+    },
+    {
+      "url": "https://support.google.com/analytics/answer/15598150",
+      "status": "PRIOR_NONRETRYABLE_URL_SAFETY_BOUNDARY_PRESERVED",
+      "attempts_this_task": 0
+    },
+    {
+      "url": "https://help.shopify.com/en/manual/reports-and-analytics/google-analytics/setting-up-google-analytics",
+      "status": "PRIOR_NONRETRYABLE_URL_SAFETY_BOUNDARY_PRESERVED",
+      "attempts_this_task": 0
+    }
+  ],
+  "handoff": "Root records only the nine existing candidates under their actual native settings. Separate reviewer validates the root receipt. No demand, CPC, profit or launch-readiness result is produced by this method document."
+}

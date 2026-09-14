@@ -1,0 +1,238 @@
+{
+  "schema": "dlm.google_ads_followup_evidence.v1",
+  "recorded_at_utc": "2026-09-13T22:58:57Z",
+  "trigger": {
+    "automation_id": "google-ads-markets-and-purchase-follow-up",
+    "fired_at_utc": "2026-09-13T22:54:27.201Z"
+  },
+  "decision": "HOLD_WITH_EVIDENCE_EDITOR_READ_TIMEOUT_NO_BUSINESS_STATE_CHANGE",
+  "baseline_receipt": {
+    "path": "FOLLOWUP_20260913_1854.json",
+    "sha256": "cab93b941f7eb8e3c4b1aa3924bd3e1952d85e4c342ab710f20b440b5389492e"
+  },
+  "latest_relevant_anchor": "2026-09-12-google-ads-editor-recovered-and-creation-delta-integrated",
+  "ads": {
+    "customer_id_retained": "6509972886",
+    "campaign_id": "24247604341",
+    "asset_group_id": "6746545742",
+    "account_ocid": "8520129103",
+    "fresh_surface": "Task-owned IAB1/tab21",
+    "status": "PAUSED",
+    "configured_average_daily_budget_usd": 5,
+    "ad_strength_displayed": "Poor",
+    "today": {
+      "date": "2026-09-13",
+      "timezone": "America/New_York",
+      "partial": true,
+      "impressions": 0,
+      "clicks": 0,
+      "cost_usd": 0,
+      "conversions": 0,
+      "conversion_value": 0
+    },
+    "sole_asset_group_and_campaign_totals_agree": true,
+    "current_eight_selected_report_lines_equal_previous_today": true,
+    "report_and_copy_reference": {
+      "path": "FOLLOWUP_20260912_1850.json",
+      "sha256": "0cd067ea854d019ecbab34f79049e60803716c028beaccc7d3d537f3e1089bb1",
+      "fields": [
+        "ads.report_evidence_lines",
+        "ads.editor.observed_textbox_lines"
+      ],
+      "today_date_difference_only": "Sep 13, 2026 Not applicable"
+    },
+    "editor": {
+      "browser_id": "1",
+      "tab_id": "13",
+      "provider_tab_id": "browser-use:c89eed6d-ae6a-470d-846b-36e8b2ae3008",
+      "present_in_fresh_inventory": true,
+      "current_inventory_title": "DLM - Google Ads",
+      "current_inventory_route": "Existing Campaign24247604341/Assetgroup6746545742 edit route",
+      "current_27_field_verification": "BLOCKED",
+      "read_attempts": 2,
+      "failed_command": "Emulation.setFocusEmulationEnabled",
+      "exact_error": "Timed out running CDP command \"Emulation.setFocusEmulationEnabled\" for tab 13",
+      "last_verified_fields": {
+        "path": "FOLLOWUP_20260913_1854.json",
+        "sha256": "cab93b941f7eb8e3c4b1aa3924bd3e1952d85e4c342ab710f20b440b5389492e",
+        "field": "ads.editor.observed_textbox_lines",
+        "as_of_utc": "2026-09-13T19:03:42Z",
+        "count": 27
+      },
+      "field_fills": 0,
+      "save_attempts": 0,
+      "identity_attempts": 0,
+      "reloaded": false,
+      "closed": false,
+      "mark_handoff_called": false,
+      "interpretation": "Current inventory proves only that the tab is listed. Current draft contents are unverified; timeout does not prove data loss, completed identity, account failure or a destroyed draft.",
+      "next_gate": "Normal owner verification/result or a materially changed working read surface. Do not repeat unchanged probes or reload the unsaved editor."
+    },
+    "saved_copy": "The fresh report still displays the original long-headline and description examples. Reviewed replacement copy is still unsaved.",
+    "identity_save_acceptance": "UNVERIFIED",
+    "yesterday": "NOT_REREAD; preserve the dated completed-September12 report from the prior pass.",
+    "limits": [
+      "Current campaign report is a fresh DOM read; there was no independent live replay.",
+      "Current editor contents could not be read. The previous 27-field evidence is historical, and its reviewed local payload remains intact.",
+      "September13 is partial and processing may be delayed. Saved report access does not establish Google identity, Save or genuine purchase acceptance."
+    ],
+    "report_evidence_lines": [
+      "- button \"Change status\":",
+      "  - generic: Paused",
+      "- link \"$5.00/day\"",
+      "- button \"Sep 13, 2026 Not applicable\":",
+      "    - row \"Select row Enabled Asset Group 1 Edit name Duplicate Image asset +19 images Mommy and Me Outfits +14 more Shop Airy Four-Layer Cotton Gauze Pajamas & Chiffon Mommy and Me Dresses Today +4 more Keep the whole group in one clear color story with daddy and me shirts. +4 more Poor Edit asset group Not eligible Campaign is paused No audience signals provided. Edit signals mommy and me dresses mother daughter matching outfits 0 0 — — $0.00 0.00 0.00 0.00% 0.00 $0.00\":",
+      "    - 'row \"Total: Asset groups More information 0 0 — — $0.00 0.00 0.00 0.00% 0.00 $0.00\"':",
+      "    - 'row \"Expand row Total: Campaign More information 0 0 — — $0.00 0.00 0.00 0.00% 0.00 $0.00\"':",
+      "  - text: \"Time zone for all dates and times: (GMT-04:00) Eastern Time.\""
+    ]
+  },
+  "shopify": {
+    "window": {
+      "from_inclusive": "2026-09-13T20:49:22Z",
+      "until_exclusive": "2026-09-13T22:56:45Z"
+    },
+    "query": "query AdsHeartbeatSep13LateOrderCounts {\n shop { id name ianaTimezone }\n allNew: ordersCount(query:\"created_at:>='2026-09-13T20:49:22Z' created_at:<'2026-09-13T22:56:45Z'\",limit:null) { count precision }\n webNonTest: ordersCount(query:\"created_at:>='2026-09-13T20:49:22Z' created_at:<'2026-09-13T22:56:45Z' source_name:web test:false\",limit:null) { count precision }\n paidWebNonTest: ordersCount(query:\"created_at:>='2026-09-13T20:49:22Z' created_at:<'2026-09-13T22:56:45Z' source_name:web test:false financial_status:paid\",limit:null) { count precision }\n}",
+    "result": {
+      "shop": {
+        "id": "gid://shopify/Shop/15571635",
+        "name": "Dress Like Mommy",
+        "ianaTimezone": "America/New_York"
+      },
+      "allNew": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "webNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "paidWebNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      }
+    },
+    "workflow": "Fresh QueryRoot/Count/Shop schema discovery; VALID operation; read-only count query.",
+    "continuity": "Starts at the newer parent full-order cutoff20:49:22UTC. Parent source covers the interval after this lane's prior19:01:29UTC count cutoff, so no duplicate full/lifecycle read was run.",
+    "limits": [
+      "New creations only. Older payment, cancellation, refund and fulfillment states were not reread.",
+      "No new genuine purchase candidate returned; GA4 report/replay/synthetic purchase was not run.",
+      "No customer identity, order ID, payment details or address requested."
+    ]
+  },
+  "parent_evidence_reused": {
+    "latest_parent_wake": "2026-09-13T22:23:27.118Z",
+    "latest_parent_recorded_at": "2026-09-13T22:25:20.472452+00:00",
+    "result": "EVIDENCE_BACKED_HOLD__NO_CHANGED_OWNER_EVIDENCE_OR_EXECUTABLE_STEP",
+    "order_cutoff": "2026-09-13T20:49:22Z",
+    "fulfillment_read_completed": "2026-09-13T20:49:50Z",
+    "source_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260913_2045.json",
+    "source_sha256": "d6ee2ceca2d70fc27f63e7cc1ae5a656c2bd17cb69d43fcc95d104b690e1869f",
+    "review_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260913_evening_review.json",
+    "review_sha256": "06a80b5dcfb15d513be18725d7473aef85939a0c8acf7a2f85da0dad84eeea8f",
+    "review_verdict": "PASS_WITH_LIMITS",
+    "review_checks": 85,
+    "independent_live_replay": false,
+    "retained_cohort": {
+      "orders": 2,
+      "units": 4,
+      "total_usd": "86.45",
+      "new_orders_since_previous_full": 0,
+      "ga4_post_cutover_candidates": 0
+    },
+    "next_full_sales_read_due_at_utc": "2026-09-14T08:49:22Z",
+    "owner_action": "Existing owner Admin publication of verified theme137888792673; unchanged.",
+    "interpretation": "Fresh source and matching review adopted. Actual costs, attribution and profit remain UNKNOWN; there is no qualified new purchase candidate."
+  },
+  "market_and_purchase_gates": {
+    "US_AU_GB_CA_campaign_drafts": "HELD_LOCAL_PREPARATION",
+    "frozen_source_payload": "research/SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+    "frozen_source_payload_sha256": "99aad3484b86cf758412a037c9cdb0361da8800cebe781ec5ba1f54ac95218c8",
+    "GA4_property": "330266838",
+    "Ads_purchase_action": "7760272273",
+    "purchase_acceptance": "UNVERIFIED",
+    "actual_costs_attribution_ROAS_retained_profit": "UNKNOWN",
+    "new_live_Merchant_or_market_read": false
+  },
+  "actions": {
+    "campaign_save_apply": 0,
+    "budget_bid_status_goal_changes": 0,
+    "keyword_negative_imports": 0,
+    "new_campaigns": 0,
+    "creative_uploads": 0,
+    "feed_mutations": 0,
+    "tracking_consent_changes": 0,
+    "public_storefront_requests": 0,
+    "purchases_payments": 0,
+    "editor_fills": 0,
+    "shared_canonical_writes": 0,
+    "report_date_filter_changes": 0,
+    "user_tab4_untouched": true,
+    "native_Chrome_used": false,
+    "GA4_report_read": "NOT_RUN",
+    "temporary_tab21_closed": true,
+    "editor13_not_modified_or_closed": true
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-13T22:58:57Z",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "material_decision": "NOT_MATERIAL",
+    "decision_depends_on_uncertain_state": true,
+    "independent_verifier": "NO_NEW_INDEPENDENT_LIVE_REPLAY",
+    "verifier_independence": "Root report/receipt comparison; current editor verification failed. No new independent live replay.",
+    "decision_changing_evidence": "Normal owner Save/identity result, restored permitted editor read, genuine purchase, qualified market/economic evidence or exact authority.",
+    "if_evidence_supports_recommendation": "Resume only the corresponding exact authorized repair or preparation gate.",
+    "if_evidence_opposes_recommendation": "Preserve paused state and reviewed payloads; no unchanged Save/authentication retry, duplicate full-cohort read or speculative launch."
+  },
+  "runtime_goal": {
+    "status_from_get_goal": "BLOCKED",
+    "new_goal_created": false,
+    "goal_status_changed": false,
+    "complete": false
+  },
+  "preservation": {
+    "existing_four_hour_heartbeat": "UNCHANGED",
+    "peer_claims": "UNCHANGED",
+    "CPC_USD": 0.15,
+    "ROAS_target": 6.5,
+    "all_in_profit_margin_target": 0.3
+  },
+  "next_action": "Hold Ads mutations for the existing normal owner verification/result and restored editor read. Preserve the new parent full-sales clock September14 08:49:22UTC; do not repeat the owner question.",
+  "continuation_source": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "verification": {
+    "current_editor_presence": "PASS_INVENTORY_ONLY",
+    "current_editor_27_fields": "BLOCKED_AFTER_TWO_TIMEOUTS",
+    "current_report_eight_lines": "PASS",
+    "receipt_and_frozen_file_checks": "PASS_20_OF_20",
+    "strict_continuity": "PASS_10_OF_10_CONTINUITY_OK"
+  },
+  "owner_notification": "NEW_FAILURE: Existing draft tab13 is listed but cannot be read after two CDP selection timeouts. No new order or paid-state change; parent full-sales source/clock refreshed.",
+  "browser_failure": {
+    "current_inventory": {
+      "tab_id": "4",
+      "title": "This page crashed",
+      "inventory_url_scheme": "https:",
+      "inspection_retried": false,
+      "reloaded": false,
+      "closed": false
+    },
+    "prior_policy_block": {
+      "receipt": "FOLLOWUP_20260913_1854.json",
+      "observed_at_utc": "2026-09-13T19:03:42Z",
+      "current_url_scheme_at_that_attempt": "data:",
+      "reason": "Blocked browser navigation by Browser Use URL policy: data:text/html",
+      "recovery_performed": false
+    },
+    "new_editor_failure": "Two read-only tab13 selection attempts timed out at Emulation.setFocusEmulationEnabled.",
+    "cause": "UNKNOWN",
+    "alternative_assessment": "The normal task-owned report remained readable. Reloading/navigating the unsaved editor risks discarding its contents, and another authentication surface is prohibited by the existing gate. No alternate personal browser or raw CDP/backend path used.",
+    "business_effect": "Cannot currently reverify the in-browser draft; frozen copy and reviewed market/creative payloads remain recoverable.",
+    "fix_verification": "A changed normal owner result or restored permitted read of the existing editor, followed by an exact field comparison and separately verified saved after-state.",
+    "reload_clicks": 0,
+    "native_external_browser_opened": false,
+    "policy_bypass_attempts": 0
+  }
+}

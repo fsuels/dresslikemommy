@@ -1,0 +1,2682 @@
+{
+  "schema_version": 1,
+  "dispatch": "CTX-COMPACT-MS-UET-20260914-1032",
+  "created_at": "2026-09-14T11:45:52.223605+00:00",
+  "status": "VERIFIED_LOCAL_COMPACT_IDENTITIES__PARENT_INTEGRATION_PENDING",
+  "parent_integrator_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "scope": "Only existing compiler, existing focused test file and own existing evidence packet. No shared canonical/checkpoint writer lease.",
+  "parent_authorization_reference": {
+    "actual_user_message_id": "msg_01a09166-0714-7c13-a037-4c22497b28e8",
+    "actual_user_turn_id": "01a09166-04eb-7d41-89d9-769742ca656f",
+    "as_supplied_by_parent": "2026-09-11T16:56:17.940Z",
+    "scope": "Recommended local changes for recent goal/context recovery and correct operation; bounded current compact-ID defect only."
+  },
+  "source_snapshot": {
+    "dispatch": "CTX-COMPACT-MS-UET-20260914-1032",
+    "captured_at": "2026-09-14T11:30:15.852995+00:00",
+    "source_sha256": {
+      "ops/scripts/compile_task_context.py": "e18cf818bd33a2965c1919da8bd87ff00b0a95abb4672a699e20eb429966b599",
+      "ops/tests/test_compile_task_context.py": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943",
+      "ops/scripts/session_context.py": "29e8be4ce9616248827eaf7587b4f95ca4a54474958a7d45d27af8cedc02a83f",
+      "ops/tests/test_session_context.py": "ae3ffead070cb9c608590bf5b87f546c22a270a16d54653de5eb6cf5f6c6abc7",
+      "ops/scripts/render_marketing_cockpit.py": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0",
+      "ops/AGENT_COORDINATION.md": "0996d483f837f18bcc2a7e84c0a5e69456d98479a39be9d97677553a8c65868b",
+      "ops/PROBLEM_TRACKER.md": "d978568e252d1bc9ce10b1315d74dd3d82cd4cfcc82a7e7e18f9740f0eea151d",
+      "ops/AGENT_WORKLOG.md": "9219981559fb9fbaf971ddc1da6c81c0341973c0f3729cb4dc8a02f5d3e7ede0",
+      "ops/marketing/current_marketing_state.md": "417924c65386a0be4f8034078d4667c829be2e2a144d370c13550b31fa00680a",
+      "ops/marketing/action_queue.md": "05c9cc197b59b28fc6313a05ba7fbd1ea97a24bf10a06665091c0193dc0ea9dd",
+      "ops/marketing/daily_scorecard.md": "cb8a1461e090aebe491cac94b0abc2bfd0d75e2667454d546681b0ad4f311b27",
+      "ops/marketing/operator_cockpit.html": "1e19646d148c34d42719376e48c6db54e53c7a197aed2ad7a9335ea29c5f26e0",
+      "ops/marketing/operator_cockpit.md": "d479fbcedace460230724512963f264347530ed9eeef4ada29e42a600a46cfb8",
+      "ops/marketing/spend_authorization.md": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+      "ops/marketing/memory_digest.md": "73e724495459a3cb0ce809a1a50f10feccc5896c91552c82ecdca1c6ed77f921",
+      "ops/marketing/blocker_board.md": "9410ef2bd96c983860105307792a6f4a8fe15ee18354e4ab7a19da09c6fccf86",
+      "ops/GROWTH_NORTH_STAR.md": "c864a0890c9e23f8fcadd1d851ae7f1c37a4c9c7c646c18959ef350bbc7a0c21",
+      "AGENTS.md": "b5558d89a44b54b9c97192540d9fd6546310fa2d57d144dd2da0c6983bf32a8c",
+      "CLAUDE.md": "b5558d89a44b54b9c97192540d9fd6546310fa2d57d144dd2da0c6983bf32a8c",
+      "ops/prompts/paid-growth-ai-army-continuation-prompt.md": "475eb926afd0e4cdb551844fdfb70b1c823c78883e9bba118bfefd35537090c0"
+    },
+    "parent_fixture_sha256": {
+      "context-microsoft-current-before.json": "50f0c6bc11cee78f1199f7725429a28d69b61abc2921959fdb1ee62b6cbfe9e0",
+      "context-microsoft.json": "af3f8b40c4d2fbc59b32b0d030c426383dc4f786d16c182b924116bc58898552",
+      "context-microsoft-explicit-identities.json": "d86a94e0a30a9ef30931380a8be7aaca6519e117a442248088485c59405e8c80"
+    },
+    "parent_source_sha256": {
+      "/Users/fsuels/Projects/dresslikemommy/ops/AGENT_WORKLOG.md": "9219981559fb9fbaf971ddc1da6c81c0341973c0f3729cb4dc8a02f5d3e7ede0",
+      "/Users/fsuels/Projects/dresslikemommy/ops/marketing/current_marketing_state.md": "417924c65386a0be4f8034078d4667c829be2e2a144d370c13550b31fa00680a",
+      "/Users/fsuels/Projects/dresslikemommy/ops/AGENT_COORDINATION.md": "0996d483f837f18bcc2a7e84c0a5e69456d98479a39be9d97677553a8c65868b",
+      "/private/tmp/dlm-hb1032-canonical/AGENT_WORKLOG.md.after.v2": "9219981559fb9fbaf971ddc1da6c81c0341973c0f3729cb4dc8a02f5d3e7ede0",
+      "/private/tmp/dlm-hb1032-canonical/current_marketing_state.md.after": "417924c65386a0be4f8034078d4667c829be2e2a144d370c13550b31fa00680a",
+      "/private/tmp/dlm-hb1032-canonical/AGENT_COORDINATION.md.after": "0996d483f837f18bcc2a7e84c0a5e69456d98479a39be9d97677553a8c65868b"
+    },
+    "prior_packet_sha256": {
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/browser-fixture.html": "12592ef33d7ea54397fa9a82f5c542feb6eaf862e23bcfba9a931704af4074e8",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/browser-test.json": "62494ac5252de9b2756b39f52e0772524f0405af2300c2e60b13e76cb5951bd3",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/x-date-relationship-repair-20260912.json": "e61cdfa4254c3cc957ffb25df4b0137dee59b9dcff998ab8a20864ea1812cd06",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/independent-review.json": "f7e3a9d60f209b2ba5af6ee4f719547a916ff8a9c71c3a769e8351addd748892",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/browser-continuous-review.json": "1f15778535137845a54a4aaacf829234997b40deaf8fcb6e793d0710430e1142",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/READBACK.md": "aa9b25ec597c161da76b8159d682b57188884886689300c85b53a0bbb0486d9d",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/implementation-verification.json": "dce33a1f5e53ae3190ed37fe02ffbdb08623b5fbd6f476d21d8ccf2ef2f82ebe",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/post-peer-refresh.json": "3ccf3a7f1194fcfeab95c743272b6b42b6d7f95b39534e707e83db987894de85",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/action-date-context-repair-20260914.json": "a33ebcdf8a52ce1e5bf607a22c25236f947f3ce662334b50609ea6045c150933",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/x-operation-context-repair-20260912.json": "75646d429ca16b53a9a161668510d2dfc5e46672a05a8ebc2ce951414fb44605",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/baseline.json": "d58cdc86a45e35c178828fcdafbe7e4f0e1f73977fb76b86c385538e45984dd7",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/instruction-changes.diff": "d4299c116f1fe5ca2b856f23df54b42655df6fc4a3f9a5ecccd8fb5308d19a5a",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/microsoft-claim-context-repair-20260914.json": "b9245e8a585d754ff68c48ff741bfc8f198a078b32c82f4edbf12e7c9fb7a2a6",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/validation.json": "1d251b7a56587519c1ffa4dd0fe8148c94d66b854478af70e2deeecee99c424e",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/canonical-preservation.json": "2768ee2884de06a948dc96989e9da23de1cdc5d8d143529d22d907c126cf651d",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/strict-continuity.txt": "bffee300d19b1e2c15d64d78d54d6ec6553ed05beafb1de1eb279aaf561527be",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/browser-continuous-test.json": "115f531855f0e2cc9dc8da2474c64ba97477f0a8a4c3da2fae8bfc4854220758",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/ACCEPTANCE.md": "86303e914ab0aab89b5db4fa926436129ed42118ead58be8ea92989447e0fd3d"
+    },
+    "shared_writer_lease": false
+  },
+  "defect": {
+    "mechanism": "COMPACT_ID_RE omitted Microsoft and UET and used one seven-digit minimum. Letter-adjacent digits are rejected by normal exact boundaries, leaving historical spaced477439 as the only matched claim.",
+    "distinction": "The explicit-ID fixture already selects the correct recent parent anchor. The defect is missing current coordination evidence, not a reason to change anchor ranking.",
+    "before_fixtures": {
+      "context-microsoft-current-before.json": "50f0c6bc11cee78f1199f7725429a28d69b61abc2921959fdb1ee62b6cbfe9e0",
+      "context-microsoft.json": "af3f8b40c4d2fbc59b32b0d030c426383dc4f786d16c182b924116bc58898552",
+      "context-microsoft-explicit-identities.json": "d86a94e0a30a9ef30931380a8be7aaca6519e117a442248088485c59405e8c80"
+    },
+    "root_before_probes": [
+      {
+        "name": "numeric-account",
+        "query": "TA-15 Microsoft477439 UET36005151 purchase receiver",
+        "explicit_entities": [
+          "477439"
+        ],
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "TA-15 Microsoft477439 UET36005151 purchase receiver",
+          "--format",
+          "json",
+          "--entity",
+          "477439",
+          "--worklog",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+          "--current-state",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+          "--problem-tracker",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+          "--coordination",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+          "--action-queue",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+          "--goal",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+        ],
+        "exit_code": 0,
+        "sha256": "94c3e4d2e62e0cece54dd4186aabe41eb17e64f3dbb2cb870cd8393eab08332a",
+        "status": "OK",
+        "entities": [
+          "477439"
+        ],
+        "selected_anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+        "claims": [
+          {
+            "line": 54,
+            "workstream": "Existing Microsoft Advertising identity and purchase measurement",
+            "matched_entities": [
+              "477439"
+            ],
+            "record_date": "2026-09-06"
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "name": "numeric-pair",
+        "query": "TA-15 Microsoft account 477439 UET tag 36005151 purchase receiver",
+        "explicit_entities": [
+          "477439",
+          "36005151"
+        ],
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "TA-15 Microsoft account 477439 UET tag 36005151 purchase receiver",
+          "--format",
+          "json",
+          "--entity",
+          "477439",
+          "--entity",
+          "36005151",
+          "--worklog",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+          "--current-state",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+          "--problem-tracker",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+          "--coordination",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+          "--action-queue",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+          "--goal",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+        ],
+        "exit_code": 0,
+        "sha256": "e93f4df99b8c1ba1a570987a8bde2fff12790ee224f646172a440849223696bf",
+        "status": "OK",
+        "entities": [
+          "36005151",
+          "477439"
+        ],
+        "selected_anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+        "claims": [
+          {
+            "line": 54,
+            "workstream": "Existing Microsoft Advertising identity and purchase measurement",
+            "matched_entities": [
+              "477439"
+            ],
+            "record_date": "2026-09-06"
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "name": "compact-query",
+        "query": "TA-15 Microsoft477439 UET36005151 purchase receiver",
+        "explicit_entities": [],
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "TA-15 Microsoft477439 UET36005151 purchase receiver",
+          "--format",
+          "json",
+          "--worklog",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+          "--current-state",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+          "--problem-tracker",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+          "--coordination",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+          "--action-queue",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+          "--goal",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+        ],
+        "exit_code": 1,
+        "sha256": "f8d691a6fe9faa4fec78df8e6cd3b9d1f451f63748b713bfb51c1aded76a533f",
+        "status": "FAILED_CLOSED",
+        "entities": [],
+        "selected_anchor": null,
+        "claims": [
+          {
+            "line": 35,
+            "workstream": "Current owner Microsoft Ads tracking and campaign rebuild",
+            "matched_entities": [],
+            "record_date": "2026-09-14"
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "name": "uet-identity",
+        "query": "Continue UET receiver",
+        "explicit_entities": [
+          "36005151"
+        ],
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "Continue UET receiver",
+          "--format",
+          "json",
+          "--entity",
+          "36005151",
+          "--worklog",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+          "--current-state",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+          "--problem-tracker",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+          "--coordination",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+          "--action-queue",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+          "--goal",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+        ],
+        "exit_code": 0,
+        "sha256": "238980d63fa7972c133cc957b4825636b3e7b8e232b8a623195e92e2f964af0d",
+        "status": "OK",
+        "entities": [
+          "36005151"
+        ],
+        "selected_anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+        "claims": [],
+        "stderr": ""
+      },
+      {
+        "name": "continue Microsoft Ads",
+        "query": "continue Microsoft Ads",
+        "explicit_entities": [],
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "continue Microsoft Ads",
+          "--format",
+          "json",
+          "--worklog",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+          "--current-state",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+          "--problem-tracker",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+          "--coordination",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+          "--action-queue",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+          "--goal",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+        ],
+        "exit_code": 0,
+        "sha256": "4b7dc7a88d7815eeadb6b0da960227e6e48d9f21ca99551f0dce064d97fa23e3",
+        "status": "OK",
+        "entities": [],
+        "selected_anchor": null,
+        "claims": [
+          {
+            "line": 35,
+            "workstream": "Current owner Microsoft Ads tracking and campaign rebuild",
+            "matched_entities": null,
+            "record_date": "2026-09-14"
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "name": "continue Google Analytics",
+        "query": "continue Google Analytics",
+        "explicit_entities": [],
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "continue Google Analytics",
+          "--format",
+          "json",
+          "--worklog",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+          "--current-state",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+          "--problem-tracker",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+          "--coordination",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+          "--action-queue",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+          "--goal",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+        ],
+        "exit_code": 0,
+        "sha256": "afe1089b377e0ee4cd7d4024ee112efa31418fb87515e49d5ac7f42923793240",
+        "status": "OK",
+        "entities": [],
+        "selected_anchor": null,
+        "claims": [
+          {
+            "line": 36,
+            "workstream": "Current owner Google tag migration",
+            "matched_entities": null,
+            "record_date": "2026-09-14"
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "name": "continue Google Ads",
+        "query": "continue Google Ads",
+        "explicit_entities": [],
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "continue Google Ads",
+          "--format",
+          "json",
+          "--worklog",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+          "--current-state",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+          "--problem-tracker",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+          "--coordination",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+          "--action-queue",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+          "--goal",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+        ],
+        "exit_code": 0,
+        "sha256": "f80e33de5a095dc3f921370dec3fbbbe344b9bd7970f589678d856ebc3f79596",
+        "status": "OK",
+        "entities": [],
+        "selected_anchor": null,
+        "claims": [
+          {
+            "line": 24,
+            "workstream": "Google Ads ongoing all-market optimization",
+            "matched_entities": null,
+            "record_date": "2026-09-14"
+          },
+          {
+            "line": 43,
+            "workstream": "International paid, SEO and market readiness",
+            "matched_entities": null,
+            "record_date": "2026-09-14"
+          },
+          {
+            "line": 44,
+            "workstream": "Google account connection and tracking cutover, replacement task",
+            "matched_entities": null,
+            "record_date": "2026-09-12"
+          },
+          {
+            "line": 23,
+            "workstream": "Google Ads cold-start research and local blueprint",
+            "matched_entities": null,
+            "record_date": "2026-09-11"
+          },
+          {
+            "line": 33,
+            "workstream": "Current owner Merchant Center international free-listing audit and repair",
+            "matched_entities": null,
+            "record_date": null
+          },
+          {
+            "line": 78,
+            "workstream": "Already-approved Google access recovery form",
+            "matched_entities": null,
+            "record_date": null
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "name": "continue Google Merchant",
+        "query": "continue Google Merchant",
+        "explicit_entities": [],
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "continue Google Merchant",
+          "--format",
+          "json",
+          "--worklog",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+          "--current-state",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+          "--problem-tracker",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+          "--coordination",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+          "--action-queue",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+          "--goal",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+        ],
+        "exit_code": 0,
+        "sha256": "33ac4cd0a6440f36b9cf34702766cb67f1c30155db48a0bb4e64ac98b3162066",
+        "status": "OK",
+        "entities": [],
+        "selected_anchor": null,
+        "claims": [
+          {
+            "line": 24,
+            "workstream": "Google Ads ongoing all-market optimization",
+            "matched_entities": null,
+            "record_date": "2026-09-14"
+          },
+          {
+            "line": 44,
+            "workstream": "Google account connection and tracking cutover, replacement task",
+            "matched_entities": null,
+            "record_date": "2026-09-12"
+          },
+          {
+            "line": 29,
+            "workstream": "Merchant strategy review and correction",
+            "matched_entities": null,
+            "record_date": "2026-09-10"
+          },
+          {
+            "line": 33,
+            "workstream": "Current owner Merchant Center international free-listing audit and repair",
+            "matched_entities": null,
+            "record_date": null
+          },
+          {
+            "line": 78,
+            "workstream": "Already-approved Google access recovery form",
+            "matched_entities": null,
+            "record_date": null
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "name": "continue Shopify",
+        "query": "continue Shopify",
+        "explicit_entities": [],
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "continue Shopify",
+          "--format",
+          "json",
+          "--worklog",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+          "--current-state",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+          "--problem-tracker",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+          "--coordination",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+          "--action-queue",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+          "--goal",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+        ],
+        "exit_code": 0,
+        "sha256": "8d614ad77e34cd6dae1d825e5e75fa22bfed7dcd97129a24bf68c8515d631cfc",
+        "status": "OK",
+        "entities": [],
+        "selected_anchor": null,
+        "claims": [
+          {
+            "line": 43,
+            "workstream": "International paid, SEO and market readiness",
+            "matched_entities": null,
+            "record_date": "2026-09-14"
+          },
+          {
+            "line": 31,
+            "workstream": "Website UX and PageSpeed audit",
+            "matched_entities": null,
+            "record_date": "2026-09-12"
+          },
+          {
+            "line": 44,
+            "workstream": "Google account connection and tracking cutover, replacement task",
+            "matched_entities": null,
+            "record_date": "2026-09-12"
+          },
+          {
+            "line": 47,
+            "workstream": "Couples collection recovery",
+            "matched_entities": null,
+            "record_date": "2026-09-12"
+          },
+          {
+            "line": 50,
+            "workstream": "Facebook organic release and Meta qualification",
+            "matched_entities": null,
+            "record_date": "2026-09-12"
+          },
+          {
+            "line": 28,
+            "workstream": "Minimalist Heart five-variant price correction",
+            "matched_entities": null,
+            "record_date": "2026-09-11"
+          },
+          {
+            "line": 30,
+            "workstream": "Together Heart source-backed sizing and buyer-copy correction",
+            "matched_entities": null,
+            "record_date": "2026-09-10"
+          },
+          {
+            "line": 41,
+            "workstream": "Finished-growth publication under explicit owner request",
+            "matched_entities": null,
+            "record_date": "2026-09-10"
+          },
+          {
+            "line": 53,
+            "workstream": "Rainbow dress English and Dutch titles",
+            "matched_entities": null,
+            "record_date": "2026-09-06"
+          },
+          {
+            "line": 65,
+            "workstream": "Sunshine mobile buyer/cart check",
+            "matched_entities": null,
+            "record_date": "2026-09-06"
+          },
+          {
+            "line": 69,
+            "workstream": "Exact installed GA4 helper binding",
+            "matched_entities": null,
+            "record_date": "2026-09-06"
+          },
+          {
+            "line": 70,
+            "workstream": "Exact missing-purchase capture diagnosis",
+            "matched_entities": null,
+            "record_date": "2026-09-06"
+          },
+          {
+            "line": 71,
+            "workstream": "Sunshine Stripe offer and basket economics",
+            "matched_entities": null,
+            "record_date": "2026-09-06"
+          },
+          {
+            "line": 72,
+            "workstream": "Actual fulfillment-cost source identification",
+            "matched_entities": null,
+            "record_date": "2026-09-06"
+          },
+          {
+            "line": 77,
+            "workstream": "Unpublished four-file storefront preview",
+            "matched_entities": null,
+            "record_date": "2026-09-06"
+          },
+          {
+            "line": 79,
+            "workstream": "Shopify Google connection repair",
+            "matched_entities": null,
+            "record_date": "2026-09-06"
+          },
+          {
+            "line": 83,
+            "workstream": "Organic URL recovery, TA-05",
+            "matched_entities": null,
+            "record_date": "2026-09-06"
+          },
+          {
+            "line": 33,
+            "workstream": "Current owner Merchant Center international free-listing audit and repair",
+            "matched_entities": null,
+            "record_date": null
+          },
+          {
+            "line": 48,
+            "workstream": "Rainbow remaining localized product titles",
+            "matched_entities": null,
+            "record_date": null
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "name": "continue X",
+        "query": "continue X",
+        "explicit_entities": [],
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "continue X",
+          "--format",
+          "json",
+          "--worklog",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+          "--current-state",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+          "--problem-tracker",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+          "--coordination",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+          "--action-queue",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+          "--goal",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+        ],
+        "exit_code": 0,
+        "sha256": "3d67f80b2704f2c7699b1432fd7501b85399cf2bca8a75f9b95493402ff31315",
+        "status": "OK",
+        "entities": [],
+        "selected_anchor": null,
+        "claims": [
+          {
+            "line": 27,
+            "workstream": "X profile relaunch and organic operation",
+            "matched_entities": null,
+            "record_date": "2026-09-13"
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "name": "continue Pinterest",
+        "query": "continue Pinterest",
+        "explicit_entities": [],
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "continue Pinterest",
+          "--format",
+          "json",
+          "--worklog",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+          "--current-state",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+          "--problem-tracker",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+          "--coordination",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+          "--action-queue",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+          "--goal",
+          "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+        ],
+        "exit_code": 0,
+        "sha256": "ad5ca2dd8ae63c1f6cbec6ce5a54cb66bce7a08ee2e4c3a8b24f0d76f43d8f69",
+        "status": "OK",
+        "entities": [],
+        "selected_anchor": null,
+        "claims": [
+          {
+            "line": 34,
+            "workstream": "Current owner Pinterest expert audit and growth setup",
+            "matched_entities": null,
+            "record_date": "2026-09-13"
+          },
+          {
+            "line": 41,
+            "workstream": "Finished-growth publication under explicit owner request",
+            "matched_entities": null,
+            "record_date": "2026-09-10"
+          },
+          {
+            "line": 52,
+            "workstream": "Sunshine product-detail organic creative",
+            "matched_entities": null,
+            "record_date": "2026-09-10"
+          },
+          {
+            "line": 80,
+            "workstream": "Pinterest organic distribution recovery",
+            "matched_entities": null,
+            "record_date": null
+          },
+          {
+            "line": 81,
+            "workstream": "Revenue-first organic buying guide and release priority",
+            "matched_entities": null,
+            "record_date": null
+          },
+          {
+            "line": 89,
+            "workstream": "Prior marketing execution and access reconciliation",
+            "matched_entities": null,
+            "record_date": null
+          }
+        ],
+        "stderr": ""
+      }
+    ]
+  },
+  "implementation": {
+    "writer": "/root/context_implementation",
+    "change": "Prefix-specific minimum lookaheads preserve a single numeric capture: Microsoft6+, UET7+, all15legacy prefixes7+. Existing boundaries, raw bare-number policy, sorting, schema and authority code unchanged.",
+    "alternative_considered": "Lowering the shared threshold to six digits would admit short legacy Ads/Merchant/GA4/Purchase and other prefixed values. The frozen legacy threshold holdout rejects that broader alternative.",
+    "only_changed_source_files": [
+      "ops/scripts/compile_task_context.py",
+      "ops/tests/test_compile_task_context.py"
+    ],
+    "bindings": {
+      "ops/scripts/compile_task_context.py": {
+        "before_sha256": "e18cf818bd33a2965c1919da8bd87ff00b0a95abb4672a699e20eb429966b599",
+        "after_sha256": "a210e9d379cb29b843fccfac6e8ee6a49c3844a3474ca76af40d075c72639851",
+        "diff_sha256": "63cb12f6a4a138afb2ab04e58256c9a2e9e53f4290a22b27495067afb6f1bec7",
+        "changed": true
+      },
+      "ops/tests/test_compile_task_context.py": {
+        "before_sha256": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943",
+        "after_sha256": "054334b471d9b21d5684b535c26219ccd962c583c771656e0f310277967a403f",
+        "diff_sha256": "b5358793d2846a0d4f13853433c6fb8a190d7bdccb3904686587b1b51b6701a8",
+        "changed": true
+      },
+      "ops/scripts/session_context.py": {
+        "before_sha256": "29e8be4ce9616248827eaf7587b4f95ca4a54474958a7d45d27af8cedc02a83f",
+        "after_sha256": "29e8be4ce9616248827eaf7587b4f95ca4a54474958a7d45d27af8cedc02a83f",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "changed": false
+      },
+      "ops/tests/test_session_context.py": {
+        "before_sha256": "ae3ffead070cb9c608590bf5b87f546c22a270a16d54653de5eb6cf5f6c6abc7",
+        "after_sha256": "ae3ffead070cb9c608590bf5b87f546c22a270a16d54653de5eb6cf5f6c6abc7",
+        "diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "changed": false
+      }
+    },
+    "diffs": {
+      "ops/scripts/compile_task_context.py": "--- before/ops/scripts/compile_task_context.py\n+++ ops/scripts/compile_task_context.py\n@@ -82,8 +82,10 @@\n ACTION_ID_RE = re.compile(r\"\\b[A-Z][A-Z0-9]+(?:_[A-Z0-9]+)+\\b\")\n LONG_NUMERIC_ID_RE = re.compile(r\"\\b\\d{7,}\\b\")\n COMPACT_ID_RE = re.compile(\n-    r\"(?i)(?<![A-Za-z0-9_])(?:Merchant|GA4|property|Ads|manager|Shopify|Product|\"\n-    r\"campaign|source|theme|advertiser|tag|pixel|variant|Purchase)(\\d{7,})(?![A-Za-z0-9_])\"\n+    # Prefix-specific minimums retain one numeric capture for findall callers.\n+    r\"(?i)(?<![A-Za-z0-9_])(?:(?:Merchant|GA4|property|Ads|manager|Shopify|Product|\"\n+    r\"campaign|source|theme|advertiser|tag|pixel|variant|Purchase|UET)(?=\\d{7})|\"\n+    r\"Microsoft(?=\\d{6}))(\\d+)(?![A-Za-z0-9_])\"\n )\n WORD_RE = re.compile(r\"[A-Za-z0-9]+\")\n \n",
+      "ops/tests/test_compile_task_context.py": "--- before/ops/tests/test_compile_task_context.py\n+++ ops/tests/test_compile_task_context.py\n@@ -15,6 +15,7 @@\n \n from compile_task_context import (  # noqa: E402\n     compile_task_context,\n+    contains_exact_entity,\n     extract_entities,\n )\n \n@@ -413,6 +414,166 @@\n     assert payload[\"task_kind\"] == \"local\"\n \n \n+COMPACT_MS_UET_WORKLOG = \"\"\"\\\n+AGENT_CONTINUITY_ANCHOR: 2026-01-01-ms-uet-spaced-history\n+task_entities: 654321,76543210\n+task_stage: DIAGNOSE\n+next_action_id: READ_ONLY_MARKETING_RECONCILIATION\n+Historical Microsoft account 654321 and UET tag 76543210 receiver diagnosis.\n+---\n+AGENT_CONTINUITY_ANCHOR: 2026-01-03-ms-uet-compact-current\n+task_entities: Microsoft654321,UET76543210\n+task_stage: VERIFY\n+next_action_id: READ_ONLY_MARKETING_RECONCILIATION\n+Current receiver checkpoint; preserve the unresolved acceptance gate and existing owner.\n+---\n+\"\"\"\n+\n+\n+def assert_compact_ms_uet_extraction() -> None:\n+    cases = (\n+        (\"Microsoft654321\", \"654321\"),\n+        (\"mIcRoSoFt7654321\", \"7654321\"),\n+        (\"UET76543210\", \"76543210\"),\n+        (\"uet7654321\", \"7654321\"),\n+        (\"Microsoft20260914\", \"20260914\"),\n+        (\"UET20260914\", \"20260914\"),\n+    )\n+    for text, expected in cases:\n+        entities = extract_entities(text)\n+        assert expected in entities, (text, entities)\n+        assert all(isinstance(entity, str) for entity in entities)\n+    assert extract_entities(\"Microsoft654321 UET76543210\") == [\"654321\", \"76543210\"]\n+\n+\n+def assert_compact_ms_uet_exact_matching() -> None:\n+    for text, expected in (\n+        (\"Microsoft654321\", \"654321\"),\n+        (\"microsoft7654321\", \"7654321\"),\n+        (\"UET76543210\", \"76543210\"),\n+        (\"uet7654321\", \"7654321\"),\n+        (\"Microsoft654321/customer123456; UET76543210/APP123456789\", \"654321\"),\n+        (\"Microsoft654321/customer123456; UET76543210/APP123456789\", \"76543210\"),\n+        (\"(Microsoft654321), `UET76543210`.\", \"654321\"),\n+        (\"(Microsoft654321), `UET76543210`.\", \"76543210\"),\n+        (\"Microsoft20260914\", \"20260914\"),\n+        (\"UET20260914\", \"20260914\"),\n+    ):\n+        assert contains_exact_entity(text, expected), (text, expected)\n+\n+\n+def assert_compact_ms_uet_current_coordination(tmpdir: Path) -> None:\n+    paths = write_fixture_set(tmpdir, COMPACT_MS_UET_WORKLOG)\n+    coordination = \"\"\"\\\n+# Coordination\n+## Active Workstreams\n+| Workstream | Surface | Status | Owner / Agent | Allowed Actions | Blocked Actions | Last Evidence / Handoff | Notes |\n+|---|---|---|---|---|---|---|---|\n+| Current Microsoft receiver | Microsoft654321/customer123456; UET76543210/APP123456789 | RECEIVER_ACCEPTANCE_GATED | current-fixture-owner | Read own receiver | No paid or campaign write | 2026-01-03-current-receipt.json | Preserve the present owner and unresolved receipt gate. |\n+| Historical Microsoft setup | Microsoft account 654321; UET tag 76543210 | HISTORICAL_SETUP | historical-fixture-owner | Historical context only | No current scope | 2026-01-01-old-receipt.json | Older spaced identity is not the current claim. |\n+\"\"\"\n+    paths[3].write_text(coordination, encoding=\"utf-8\")\n+    for required in ((\"654321\",), (\"76543210\",), (\"654321\", \"76543210\")):\n+        payload = compile_task_context(\n+            \"Continue Microsoft receiver\",\n+            explicit_entities=required,\n+            worklog_path=paths[0], current_state_path=paths[1],\n+            problem_tracker_path=paths[2], coordination_path=paths[3],\n+        )\n+        claims = [item for item in payload[\"evidence\"] if Path(item[\"source_path\"]).resolve() == paths[3].resolve()]\n+        assert claims, required\n+        assert claims[0][\"fields\"][\"Owner / Agent\"] == \"current-fixture-owner\", (required, claims)\n+        assert set(required) <= set(claims[0][\"matched_entities\"])\n+        assert claims[0][\"text\"] == coordination.splitlines()[4]\n+        assert claims[0][\"start_line\"] == claims[0][\"end_line\"] == 5\n+        assert payload[\"authority\"][\"fields\"][\"approved_external_scope\"] == \"NONE\"\n+\n+\n+def assert_compact_ms_uet_multi_identity_recency(tmpdir: Path) -> None:\n+    worklog = COMPACT_MS_UET_WORKLOG + \"\"\"\\\n+AGENT_CONTINUITY_ANCHOR: 2026-01-04-different-uet\n+task_entities: Microsoft654321,UET76543211\n+task_stage: HANDOFF\n+next_action_id: READ_ONLY_MARKETING_RECONCILIATION\n+Later record has the same account but a different tag; it is not the required pair.\n+---\n+\"\"\"\n+    for query in (\"Continue Microsoft receiver\", \"Continue Microsoft654321 UET76543210 receiver\"):\n+        payload = compile_fixture(tmpdir, worklog, query, entities=(\"654321\", \"76543210\"))\n+        assert payload[\"diagnostics\"][\"status\"] == \"OK\"\n+        assert payload[\"selected_anchor\"][\"anchor_id\"] == \"2026-01-03-ms-uet-compact-current\"\n+        assert set(payload[\"selected_anchor\"][\"entity_hits\"]) == {\"654321\", \"76543210\"}\n+        assert payload[\"task_stage\"] == \"VERIFY\"\n+\n+\n+def assert_compact_ms_uet_whole_identity_boundaries() -> None:\n+    for prefix, number in ((\"Microsoft\", \"654321\"), (\"UET\", \"76543210\")):\n+        for text in (\n+            f\"{prefix}1{number}\", f\"{prefix}{number}0\",\n+            f\"Other{prefix}{number}\", f\"_{prefix}{number}\",\n+            f\"{prefix}{number}x\", f\"{prefix}{number}_\",\n+        ):\n+            assert number not in extract_entities(text), (text, number)\n+            assert not contains_exact_entity(text, number), (text, number)\n+    for text, number in ((\"Microsoft65432\", \"65432\"), (\"UET654321\", \"654321\")):\n+        assert number not in extract_entities(text)\n+        assert not contains_exact_entity(text, number)\n+    assert \"654321\" not in extract_entities(\"654321\")\n+    assert contains_exact_entity(\"Microsoft account 654321\", \"654321\")\n+    assert contains_exact_entity(\"UET tag 76543210\", \"76543210\")\n+\n+\n+def assert_compact_legacy_threshold_and_date_account_holdouts() -> None:\n+    legacy_prefixes = (\n+        \"Merchant\", \"GA4\", \"property\", \"Ads\", \"manager\", \"Shopify\", \"Product\",\n+        \"campaign\", \"source\", \"theme\", \"advertiser\", \"tag\", \"pixel\", \"variant\", \"Purchase\",\n+    )\n+    for prefix in legacy_prefixes:\n+        assert \"654321\" not in extract_entities(f\"{prefix}654321\"), prefix\n+        assert not contains_exact_entity(f\"{prefix}654321\", \"654321\"), prefix\n+        for number in (\"7654321\", \"20260914\"):\n+            assert number in extract_entities(f\"{prefix}{number}\"), prefix\n+            assert contains_exact_entity(f\"{prefix}{number}\", number), prefix\n+    assert \"20260914\" in extract_entities(\"20260914\")\n+    assert contains_exact_entity(\"20260914\", \"20260914\")\n+    assert \"7760272273\" in extract_entities(\"Purchase7760272273\")\n+    assert contains_exact_entity(\"Purchase7760272273\", \"7760272273\")\n+\n+\n+def assert_compact_ms_uet_split_scope_fails_closed(tmpdir: Path) -> None:\n+    worklog = \"\"\"\\\n+AGENT_CONTINUITY_ANCHOR: account-only\n+task_entities: Microsoft654321\n+task_stage: DIAGNOSE\n+Only this account is present.\n+---\n+AGENT_CONTINUITY_ANCHOR: tag-only\n+task_entities: UET76543210\n+task_stage: VERIFY\n+Only this tag is present.\n+---\n+\"\"\"\n+    payload = compile_fixture(\n+        tmpdir, worklog, \"Continue Microsoft654321 UET76543210 receiver\",\n+        entities=(\"654321\", \"76543210\"),\n+    )\n+    assert payload[\"diagnostics\"][\"status\"] == \"FAILED_CLOSED\"\n+    assert \"REQUIRED_ENTITIES_NOT_COLOCATED\" in payload[\"diagnostics\"][\"errors\"]\n+    assert payload[\"selected_anchor\"] is None\n+\n+\n+def run_compact_ms_uet_checks() -> None:\n+    assert_compact_ms_uet_extraction()\n+    assert_compact_ms_uet_exact_matching()\n+    assert_compact_ms_uet_whole_identity_boundaries()\n+    assert_compact_legacy_threshold_and_date_account_holdouts()\n+    with tempfile.TemporaryDirectory() as tmp:\n+        tmpdir = Path(tmp)\n+        assert_compact_ms_uet_current_coordination(tmpdir)\n+        assert_compact_ms_uet_multi_identity_recency(tmpdir)\n+        assert_compact_ms_uet_split_scope_fails_closed(tmpdir)\n+\n+\n def main() -> None:\n     assert_exact_entity_extraction()\n     with tempfile.TemporaryDirectory() as tmp:\n@@ -426,6 +587,7 @@\n         assert_anchor_metadata_contradiction_fails_closed(tmpdir)\n         assert_stale_evidence_labels_and_determinism(tmpdir)\n         assert_local_task_does_not_require_marketing_authority(tmpdir)\n+    run_compact_ms_uet_checks()\n     print(\"ok\")\n \n \n"
+    }
+  },
+  "frozen_tests": {
+    "frozen_at": "2026-09-14T11:36:36.596319+00:00",
+    "test_sha256": "054334b471d9b21d5684b535c26219ccd962c583c771656e0f310277967a403f",
+    "compiler_before_sha256": "e18cf818bd33a2965c1919da8bd87ff00b0a95abb4672a699e20eb429966b599",
+    "original_functions_preserved": [
+      "write_fixture_set",
+      "compile_fixture",
+      "assert_exact_entity_extraction",
+      "assert_repeated_entity_selects_newest",
+      "assert_duplicate_anchor_dedupes_to_newest",
+      "assert_explicit_entity_recency_beats_prose",
+      "assert_explicit_entity_recency_preserves_scope",
+      "assert_no_global_fallback_or_ambiguous_guess",
+      "assert_authority_is_exact_and_fail_closed",
+      "assert_anchor_metadata_contradiction_fails_closed",
+      "assert_stale_evidence_labels_and_determinism",
+      "assert_local_task_does_not_require_marketing_authority"
+    ],
+    "group_results": [
+      {
+        "group": "assert_compact_ms_uet_extraction",
+        "result": "FAIL",
+        "failure": "('Microsoft654321', [])"
+      },
+      {
+        "group": "assert_compact_ms_uet_exact_matching",
+        "result": "FAIL",
+        "failure": "('Microsoft654321', '654321')"
+      },
+      {
+        "group": "assert_compact_ms_uet_current_coordination",
+        "result": "FAIL",
+        "failure": "(('654321',), [{'source_path': '/private/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/tmptdhoock_/AGENT_COORDINATION.md', 'start_line': 6, 'end_line': 6, 'text': '| Historical Microsoft setup | Microsoft account 654321; UET tag 76543210 | HISTORICAL_SETUP | historical-fixture-owner | Historical context only | No current scope | 2026-01-01-old-receipt.json | Older spaced identity is not the current claim. |', 'evidence_grade': 'REPO_KNOWN', 'fields': {'Workstream': 'Historical Microsoft setup', 'Surface': 'Microsoft account 654321; UET tag 76543210', 'Status': 'HISTORICAL_SETUP', 'Owner / Agent': 'historical-fixture-owner', 'Allowed Actions': 'Historical context only', 'Blocked Actions': 'No current scope', 'Last Evidence / Handoff': '2026-01-01-old-receipt.json', 'Notes': 'Older spaced identity is not the current claim.'}, 'record_date': '2026-01-01', 'line': 6, 'matched_entities': ['654321'], 'matched_tokens': ['microsoft']}])"
+      },
+      {
+        "group": "assert_compact_ms_uet_multi_identity_recency",
+        "result": "FAIL",
+        "failure": ""
+      },
+      {
+        "group": "assert_compact_ms_uet_whole_identity_boundaries",
+        "result": "PASS"
+      },
+      {
+        "group": "assert_compact_legacy_threshold_and_date_account_holdouts",
+        "result": "PASS"
+      },
+      {
+        "group": "assert_compact_ms_uet_split_scope_fails_closed",
+        "result": "PASS"
+      }
+    ],
+    "full_suite": {
+      "command": [
+        "/usr/bin/python3",
+        "ops/tests/test_compile_task_context.py"
+      ],
+      "exit_code": 1,
+      "output": "Traceback (most recent call last):\n  File \"/Users/fsuels/Projects/dresslikemommy/ops/tests/test_compile_task_context.py\", line 595, in <module>\n    main()\n  File \"/Users/fsuels/Projects/dresslikemommy/ops/tests/test_compile_task_context.py\", line 590, in main\n    run_compact_ms_uet_checks()\n  File \"/Users/fsuels/Projects/dresslikemommy/ops/tests/test_compile_task_context.py\", line 566, in run_compact_ms_uet_checks\n    assert_compact_ms_uet_extraction()\n  File \"/Users/fsuels/Projects/dresslikemommy/ops/tests/test_compile_task_context.py\", line 444, in assert_compact_ms_uet_extraction\n    assert expected in entities, (text, entities)\nAssertionError: ('Microsoft654321', [])\n",
+      "output_sha256": "4150417366785f8865f69a587ba412c81523b4370bc8932b77e25b5361ac7b5f"
+    }
+  },
+  "root_final_tests": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "ops/tests/test_compile_task_context.py"
+      ],
+      "exit_code": 0,
+      "output": "ok\n",
+      "output_sha256": "dc51b8c96c2d745df3bd5590d990230a482fd247123599548e0632fdbf97fc22"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "ops/tests/test_session_context.py"
+      ],
+      "exit_code": 0,
+      "output": "........................\n----------------------------------------------------------------------\nRan 24 tests in 0.167s\n\nOK\n",
+      "output_sha256": "4a42d0f5ccab8e17c81556f61669ae92359b591606073a268d23802b8fa118d9"
+    }
+  ],
+  "worker_validation_report": {
+    "focused_groups_passed": 17,
+    "unchanged_session_tests_passed": 24,
+    "runtimes": [
+      "system Python",
+      "bundled Python"
+    ],
+    "source_and_test_hashes_verified_by_root": true
+  },
+  "after_frozen_source_probes": [
+    {
+      "name": "numeric-account",
+      "query": "TA-15 Microsoft477439 UET36005151 purchase receiver",
+      "explicit_entities": [
+        "477439"
+      ],
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "TA-15 Microsoft477439 UET36005151 purchase receiver",
+        "--format",
+        "json",
+        "--entity",
+        "477439",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "sha256": "2978b716e83687b52eda5b20019a1ebc7a5b55b622a0a1be130764391c848c97",
+      "checks": {
+        "schema_preserved": true,
+        "authority_preserved": true,
+        "status_ok": true,
+        "retained_claim_fields_dates_preserved": true
+      },
+      "entities": [
+        "36005151",
+        "477439"
+      ],
+      "anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+      "claims": [
+        {
+          "line": 35,
+          "record_date": "2026-09-14",
+          "owner": "root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme",
+          "matched_entities": [
+            "36005151",
+            "477439"
+          ],
+          "basis": null
+        },
+        {
+          "line": 40,
+          "record_date": "2026-09-08",
+          "owner": "root 01a08223 parent coordination only; Microsoft 01a08703-644f-7940-8f67-9a2fa63722bb and Pinterest 01a08704-8176-7171-b6f5-928a09d7c3f9 retain their exact live surfaces",
+          "matched_entities": [
+            "477439"
+          ],
+          "basis": null
+        },
+        {
+          "line": 54,
+          "record_date": "2026-09-06",
+          "owner": "root sole browser/external writer; Analytics arithmetic review; Kant independent exact repair verifier; Feed Ops local source retrieval",
+          "matched_entities": [
+            "477439"
+          ],
+          "basis": null
+        }
+      ],
+      "added_claims": [
+        35,
+        40
+      ],
+      "removed_claims": []
+    },
+    {
+      "name": "numeric-pair",
+      "query": "TA-15 Microsoft account 477439 UET tag 36005151 purchase receiver",
+      "explicit_entities": [
+        "477439",
+        "36005151"
+      ],
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "TA-15 Microsoft account 477439 UET tag 36005151 purchase receiver",
+        "--format",
+        "json",
+        "--entity",
+        "477439",
+        "--entity",
+        "36005151",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "sha256": "678bbf13b82c7cc9e59ba9bf1da2cebd49850ea020d675adbf1fb5bf80fb13df",
+      "checks": {
+        "schema_preserved": true,
+        "authority_preserved": true,
+        "status_ok": true,
+        "retained_claim_fields_dates_preserved": true
+      },
+      "entities": [
+        "36005151",
+        "477439"
+      ],
+      "anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+      "claims": [
+        {
+          "line": 35,
+          "record_date": "2026-09-14",
+          "owner": "root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme",
+          "matched_entities": [
+            "36005151",
+            "477439"
+          ],
+          "basis": null
+        },
+        {
+          "line": 40,
+          "record_date": "2026-09-08",
+          "owner": "root 01a08223 parent coordination only; Microsoft 01a08703-644f-7940-8f67-9a2fa63722bb and Pinterest 01a08704-8176-7171-b6f5-928a09d7c3f9 retain their exact live surfaces",
+          "matched_entities": [
+            "477439"
+          ],
+          "basis": null
+        },
+        {
+          "line": 54,
+          "record_date": "2026-09-06",
+          "owner": "root sole browser/external writer; Analytics arithmetic review; Kant independent exact repair verifier; Feed Ops local source retrieval",
+          "matched_entities": [
+            "477439"
+          ],
+          "basis": null
+        }
+      ],
+      "added_claims": [
+        35,
+        40
+      ],
+      "removed_claims": []
+    },
+    {
+      "name": "compact-query",
+      "query": "TA-15 Microsoft477439 UET36005151 purchase receiver",
+      "explicit_entities": [],
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "TA-15 Microsoft477439 UET36005151 purchase receiver",
+        "--format",
+        "json",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "sha256": "2978b716e83687b52eda5b20019a1ebc7a5b55b622a0a1be130764391c848c97",
+      "checks": {
+        "schema_preserved": true,
+        "authority_preserved": true,
+        "status_ok": true,
+        "retained_claim_fields_dates_preserved": true
+      },
+      "entities": [
+        "36005151",
+        "477439"
+      ],
+      "anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+      "claims": [
+        {
+          "line": 35,
+          "record_date": "2026-09-14",
+          "owner": "root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme",
+          "matched_entities": [
+            "36005151",
+            "477439"
+          ],
+          "basis": null
+        },
+        {
+          "line": 40,
+          "record_date": "2026-09-08",
+          "owner": "root 01a08223 parent coordination only; Microsoft 01a08703-644f-7940-8f67-9a2fa63722bb and Pinterest 01a08704-8176-7171-b6f5-928a09d7c3f9 retain their exact live surfaces",
+          "matched_entities": [
+            "477439"
+          ],
+          "basis": null
+        },
+        {
+          "line": 54,
+          "record_date": "2026-09-06",
+          "owner": "root sole browser/external writer; Analytics arithmetic review; Kant independent exact repair verifier; Feed Ops local source retrieval",
+          "matched_entities": [
+            "477439"
+          ],
+          "basis": null
+        }
+      ],
+      "added_claims": [
+        40,
+        54
+      ],
+      "removed_claims": []
+    },
+    {
+      "name": "uet-identity",
+      "query": "Continue UET receiver",
+      "explicit_entities": [
+        "36005151"
+      ],
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "Continue UET receiver",
+        "--format",
+        "json",
+        "--entity",
+        "36005151",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "sha256": "b7407a3958028301a8cdeca75e64f35895cc80e5bc2724b806419467fa7a0594",
+      "checks": {
+        "schema_preserved": true,
+        "authority_preserved": true,
+        "status_ok": true,
+        "retained_claim_fields_dates_preserved": true
+      },
+      "entities": [
+        "36005151"
+      ],
+      "anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+      "claims": [
+        {
+          "line": 35,
+          "record_date": "2026-09-14",
+          "owner": "root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme",
+          "matched_entities": [
+            "36005151"
+          ],
+          "basis": null
+        }
+      ],
+      "added_claims": [
+        35
+      ],
+      "removed_claims": []
+    },
+    {
+      "name": "continue Microsoft Ads",
+      "query": "continue Microsoft Ads",
+      "explicit_entities": [],
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Microsoft Ads",
+        "--format",
+        "json",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "sha256": "224764a3506befa444c352bbbe58bf430ab0c47054970467f1a1f40732acab95",
+      "checks": {
+        "schema_preserved": true,
+        "authority_preserved": true,
+        "status_ok": true,
+        "task_fields_preserved": true,
+        "goal_preserved": true,
+        "external_write_false": true,
+        "owner_conflicts_preserved": true,
+        "retained_claim_fields_dates_preserved": true
+      },
+      "entities": [],
+      "anchor": null,
+      "claims": [
+        {
+          "line": 35,
+          "record_date": "2026-09-14",
+          "owner": "root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme",
+          "matched_entities": null,
+          "basis": {
+            "TA-15": {
+              "exact_entities": [
+                "2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/READBACK.md",
+                "2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-0643/readback.json",
+                "36005151",
+                "477439",
+                "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0239/READBACK.md",
+                "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0639/READBACK.md",
+                "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-1044/receiver_readback.json",
+                "review/receiver_review.json"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        }
+      ],
+      "added_claims": [],
+      "removed_claims": []
+    },
+    {
+      "name": "continue Google Analytics",
+      "query": "continue Google Analytics",
+      "explicit_entities": [],
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Google Analytics",
+        "--format",
+        "json",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "sha256": "afe1089b377e0ee4cd7d4024ee112efa31418fb87515e49d5ac7f42923793240",
+      "checks": {
+        "schema_preserved": true,
+        "authority_preserved": true,
+        "status_ok": true,
+        "task_fields_preserved": true,
+        "goal_preserved": true,
+        "external_write_false": true,
+        "owner_conflicts_preserved": true,
+        "retained_claim_fields_dates_preserved": true
+      },
+      "entities": [],
+      "anchor": null,
+      "claims": [
+        {
+          "line": 36,
+          "record_date": "2026-09-14",
+          "owner": "root01a086fc; tag_cleanup_verifier independent PASS; ga4_receipt_path read-only; native remains suspended",
+          "matched_entities": null,
+          "basis": {}
+        }
+      ],
+      "added_claims": [],
+      "removed_claims": []
+    },
+    {
+      "name": "continue Google Ads",
+      "query": "continue Google Ads",
+      "explicit_entities": [],
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Google Ads",
+        "--format",
+        "json",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "sha256": "f80e33de5a095dc3f921370dec3fbbbe344b9bd7970f589678d856ebc3f79596",
+      "checks": {
+        "schema_preserved": true,
+        "authority_preserved": true,
+        "status_ok": true,
+        "task_fields_preserved": true,
+        "goal_preserved": true,
+        "external_write_false": true,
+        "owner_conflicts_preserved": true,
+        "retained_claim_fields_dates_preserved": true
+      },
+      "entities": [],
+      "anchor": null,
+      "claims": [
+        {
+          "line": 24,
+          "record_date": "2026-09-14",
+          "owner": "root01a09194 sole Ads/canonical integrator; google_launch_research independent copy/strategy; tag_repair_review independent assets/settings; market_readback local creative",
+          "matched_entities": null,
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "6509972886",
+                "FOLLOWUP_20260913_2254",
+                "FOLLOWUP_20260914_0255"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 43,
+          "record_date": "2026-09-14",
+          "owner": "root canonical integration; international_paid_opportunities owns paid CSV/report; tracking_inventory owns SEO proposal; merchant_connection owns market/locale report",
+          "matched_entities": null,
+          "basis": {
+            "TA-10": {
+              "exact_entities": [
+                "INTERNATIONAL_MARKET_READINESS_20260908",
+                "INTERNATIONAL_PAID_OPPORTUNITIES_20260908",
+                "INTERNATIONAL_SEO_OPPORTUNITIES_20260908",
+                "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_native_demand_20260914_1032/QUALIFICATION.json"
+              ],
+              "explicit_task_id": true
+            }
+          }
+        },
+        {
+          "line": 44,
+          "record_date": "2026-09-12",
+          "owner": "root01a08223 parent integration/collection-only writer; existingMerchant01a08706, Ads01a09194, UX01a088c3 and originalGA4owner retain their surfaces",
+          "matched_entities": null,
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "513542500",
+                "6509972886"
+              ],
+              "explicit_task_id": false
+            },
+            "TA-10": {
+              "exact_entities": [
+                "513542500"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 23,
+          "record_date": "2026-09-11",
+          "owner": "root01a09180 integrator; platform_2026_research public research; report_verifier independent read-only review",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 33,
+          "record_date": null,
+          "owner": "root01a08706-c63a-7e01-ba48-7777bcb1788a sole Merchant/channel writer; Analytics independent afterreview",
+          "matched_entities": null,
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "513542500",
+                "international_candidate/us-au.final_release_receipts_20260911.json"
+              ],
+              "explicit_task_id": false
+            },
+            "TA-10": {
+              "exact_entities": [
+                "513542500"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 78,
+          "record_date": null,
+          "owner": "root sole form writer; independent verifier before any send",
+          "matched_entities": null,
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "3990976848"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        }
+      ],
+      "added_claims": [],
+      "removed_claims": []
+    },
+    {
+      "name": "continue Google Merchant",
+      "query": "continue Google Merchant",
+      "explicit_entities": [],
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Google Merchant",
+        "--format",
+        "json",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "sha256": "33ac4cd0a6440f36b9cf34702766cb67f1c30155db48a0bb4e64ac98b3162066",
+      "checks": {
+        "schema_preserved": true,
+        "authority_preserved": true,
+        "status_ok": true,
+        "task_fields_preserved": true,
+        "goal_preserved": true,
+        "external_write_false": true,
+        "owner_conflicts_preserved": true,
+        "retained_claim_fields_dates_preserved": true
+      },
+      "entities": [],
+      "anchor": null,
+      "claims": [
+        {
+          "line": 24,
+          "record_date": "2026-09-14",
+          "owner": "root01a09194 sole Ads/canonical integrator; google_launch_research independent copy/strategy; tag_repair_review independent assets/settings; market_readback local creative",
+          "matched_entities": null,
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "6509972886",
+                "FOLLOWUP_20260913_2254",
+                "FOLLOWUP_20260914_0255"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 44,
+          "record_date": "2026-09-12",
+          "owner": "root01a08223 parent integration/collection-only writer; existingMerchant01a08706, Ads01a09194, UX01a088c3 and originalGA4owner retain their surfaces",
+          "matched_entities": null,
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "513542500",
+                "6509972886"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 29,
+          "record_date": "2026-09-10",
+          "owner": "root01a08d40 strategy review; strategy_review_verifier independent read-only document reviewer",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 33,
+          "record_date": null,
+          "owner": "root01a08706-c63a-7e01-ba48-7777bcb1788a sole Merchant/channel writer; Analytics independent afterreview",
+          "matched_entities": null,
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "513542500",
+                "international_candidate/us-au.final_release_receipts_20260911.json"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 78,
+          "record_date": null,
+          "owner": "root sole form writer; independent verifier before any send",
+          "matched_entities": null,
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "3990976848"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        }
+      ],
+      "added_claims": [],
+      "removed_claims": []
+    },
+    {
+      "name": "continue Shopify",
+      "query": "continue Shopify",
+      "explicit_entities": [],
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Shopify",
+        "--format",
+        "json",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "sha256": "8d614ad77e34cd6dae1d825e5e75fa22bfed7dcd97129a24bf68c8515d631cfc",
+      "checks": {
+        "schema_preserved": true,
+        "authority_preserved": true,
+        "status_ok": true,
+        "task_fields_preserved": true,
+        "goal_preserved": true,
+        "external_write_false": true,
+        "owner_conflicts_preserved": true,
+        "retained_claim_fields_dates_preserved": true
+      },
+      "entities": [],
+      "anchor": null,
+      "claims": [
+        {
+          "line": 43,
+          "record_date": "2026-09-14",
+          "owner": "root canonical integration; international_paid_opportunities owns paid CSV/report; tracking_inventory owns SEO proposal; merchant_connection owns market/locale report",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 31,
+          "record_date": "2026-09-12",
+          "owner": "root01a088c3 sole theme/preview owner; theme_audit_review independent verifier; parent01a08223 canonical integrator",
+          "matched_entities": null,
+          "basis": {
+            "TA-06": {
+              "exact_entities": [
+                "BUYER_READBACK",
+                "couples-grid-repair/verified-release-20260912.json"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 44,
+          "record_date": "2026-09-12",
+          "owner": "root01a08223 parent integration/collection-only writer; existingMerchant01a08706, Ads01a09194, UX01a088c3 and originalGA4owner retain their surfaces",
+          "matched_entities": null,
+          "basis": {
+            "TA-23": {
+              "exact_entities": [
+                "513542500"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 47,
+          "record_date": "2026-09-12",
+          "owner": "root01a08223 solecollection/copywriter; au_full_cohort_map proposer; together_heart_runner independentverifier; UXowns theme/publicbuyer",
+          "matched_entities": null,
+          "basis": {
+            "TA-06": {
+              "exact_entities": [
+                "BUYER_READBACK",
+                "couples-grid-repair/verified-release-20260912.json"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 50,
+          "record_date": "2026-09-12",
+          "owner": "root01a08223 sole Meta/Facebook writer; order_delta_1934 independent receipt reviewer; other platform owners retain their surfaces",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 28,
+          "record_date": "2026-09-11",
+          "owner": "root01a08706 sole price executor and Merchant publisher; parent01a08223/Analytics independent verification",
+          "matched_entities": null,
+          "basis": {
+            "TA-23": {
+              "exact_entities": [
+                "7230336729185",
+                "price_correction_approved_20260911/google_price_receipt_20260911.json"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 30,
+          "record_date": "2026-09-10",
+          "owner": "root01a08223 parent sole external/canonical writer; together_heart_runner owns exact four product-local artifacts; together_heart_source and order_delta_1934 independent verification",
+          "matched_entities": null,
+          "basis": {
+            "TA-21": {
+              "exact_entities": [
+                "2026-09-10-together-heart-source-repair/READBACK.md",
+                "7672336646241",
+                "PROB-2026-09-10-TOGETHER-HEART-DERIVED-SIZING"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 41,
+          "record_date": "2026-09-10",
+          "owner": "root01a08223 historical preparation complete; UX01a088c3 owns current combined theme; Pinterest01a08704 owns completed Pin and tracking",
+          "matched_entities": null,
+          "basis": {
+            "TA-22": {
+              "exact_entities": [
+                "2026-09-10-storefront-ux-pagespeed/localized-pdp-v6/READBACK.md"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 53,
+          "record_date": "2026-09-06",
+          "owner": "root original writer complete; Feed Ops source/copy and Analytics original review retained; order_delta_1934 independent public-receipt reviewer",
+          "matched_entities": null,
+          "basis": {
+            "TA-17": {
+              "exact_entities": [
+                "7229023846497",
+                "PROB-2026-09-06-RAINBOW-TRUNCATED-TITLES"
+              ],
+              "explicit_task_id": true
+            }
+          }
+        },
+        {
+          "line": 65,
+          "record_date": "2026-09-06",
+          "owner": "root sole browser/test-cart owner COMPLETE; Analytics independent evidence review; Feed Ops local source review",
+          "matched_entities": null,
+          "basis": {
+            "TA-08": {
+              "exact_entities": [
+                "PROB-2026-09-06-CART-RETURN-DISPLAY"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 69,
+          "record_date": "2026-09-06",
+          "owner": "root source/candidate/canonical owner; Analytics independent reviewer COMPLETE",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 70,
+          "record_date": "2026-09-06",
+          "owner": "root sole browser/private-cohort/local-helper/canonical writer; Analytics inventory and independent code verifier; Feed Ops primary-platform requirements",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 71,
+          "record_date": "2026-09-06",
+          "owner": "root sole product/API/canonical writer; Feed Ops independent copy/static-path review; Analytics independent basket review",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 72,
+          "record_date": "2026-09-06",
+          "owner": "root sole browser operator/canonical writer; historical specialist local sanitized cost-worklist retrieval",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 77,
+          "record_date": "2026-09-06",
+          "owner": "root completed sole writer/browser work; Analytics and Feed Ops independent reviews complete",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 79,
+          "record_date": "2026-09-06",
+          "owner": "root owns UI/action after specialist handoff; specialist owns two diagnostic artifacts; historical specialist independently reviews exact action",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 83,
+          "record_date": "2026-09-06",
+          "owner": "root owns public/API reads and shared integration; Analytics source extraction complete; cart_market_fix independently reviewed",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 33,
+          "record_date": null,
+          "owner": "root01a08706-c63a-7e01-ba48-7777bcb1788a sole Merchant/channel writer; Analytics independent afterreview",
+          "matched_entities": null,
+          "basis": {
+            "TA-23": {
+              "exact_entities": [
+                "513542500"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 48,
+          "record_date": null,
+          "owner": "root original writer complete; original copy/reviews retained; order_delta_1934 independent public-receipt reviewer",
+          "matched_entities": null,
+          "basis": {
+            "TA-17": {
+              "exact_entities": [
+                "7229023846497"
+              ],
+              "explicit_task_id": true
+            }
+          }
+        }
+      ],
+      "added_claims": [],
+      "removed_claims": []
+    },
+    {
+      "name": "continue X",
+      "query": "continue X",
+      "explicit_entities": [],
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue X",
+        "--format",
+        "json",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "sha256": "3d67f80b2704f2c7699b1432fd7501b85399cf2bca8a75f9b95493402ff31315",
+      "checks": {
+        "schema_preserved": true,
+        "authority_preserved": true,
+        "status_ok": true,
+        "task_fields_preserved": true,
+        "goal_preserved": true,
+        "external_write_false": true,
+        "owner_conflicts_preserved": true,
+        "retained_claim_fields_dates_preserved": true
+      },
+      "entities": [],
+      "anchor": null,
+      "claims": [
+        {
+          "line": 27,
+          "record_date": "2026-09-13",
+          "owner": "root01a0915d-9105-7833-9d4b-eb467ab0ebbd sole X operator; independent prompt and draft review PASS",
+          "matched_entities": null,
+          "basis": {}
+        }
+      ],
+      "added_claims": [],
+      "removed_claims": []
+    },
+    {
+      "name": "continue Pinterest",
+      "query": "continue Pinterest",
+      "explicit_entities": [],
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Pinterest",
+        "--format",
+        "json",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "sha256": "ad5ca2dd8ae63c1f6cbec6ce5a54cb66bce7a08ee2e4c3a8b24f0d76f43d8f69",
+      "checks": {
+        "schema_preserved": true,
+        "authority_preserved": true,
+        "status_ok": true,
+        "task_fields_preserved": true,
+        "goal_preserved": true,
+        "external_write_false": true,
+        "owner_conflicts_preserved": true,
+        "retained_claim_fields_dates_preserved": true
+      },
+      "entities": [],
+      "anchor": null,
+      "claims": [
+        {
+          "line": 34,
+          "record_date": "2026-09-13",
+          "owner": "root01a08704 sole Pinterest owner; release_verifier independent receipt review; UX01a088c3 owns137888792673",
+          "matched_entities": null,
+          "basis": {
+            "TA-12": {
+              "exact_entities": [
+                "TRACKING_LIVE_READBACK_20260911"
+              ],
+              "explicit_task_id": false
+            },
+            "TA-25": {
+              "exact_entities": [
+                "NATIVE_SCHEDULED_READBACKS_20260911"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 41,
+          "record_date": "2026-09-10",
+          "owner": "root01a08223 historical preparation complete; UX01a088c3 owns current combined theme; Pinterest01a08704 owns completed Pin and tracking",
+          "matched_entities": null,
+          "basis": {
+            "TA-11": {
+              "exact_entities": [
+                "2026-09-09-pinterest-expert-audit/SUNSHINE_EXECUTION_20260910.json",
+                "SUNSHINE_EXECUTION_20260910"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 52,
+          "record_date": "2026-09-10",
+          "owner": "root01a08223 asset preparation complete; Pinterest01a08704 sole publication/repair operator; original copy/visual reviews and native execution receipts retained",
+          "matched_entities": null,
+          "basis": {
+            "TA-11": {
+              "exact_entities": [
+                "2026-09-09-pinterest-expert-audit/SUNSHINE_EXECUTION_20260910.json",
+                "SUNSHINE_EXECUTION_20260910"
+              ],
+              "explicit_task_id": true
+            }
+          }
+        },
+        {
+          "line": 80,
+          "record_date": null,
+          "owner": "root owns shared state and future separately authorized actions; historical_google_access_paths completed/released exact catalog tab475224128 source100 diagnosis; root organic destination tab475224352 is separate",
+          "matched_entities": null,
+          "basis": {}
+        },
+        {
+          "line": 81,
+          "record_date": null,
+          "owner": "root owns creative, exact Pin mapping and shared state; independent reviewer read-only",
+          "matched_entities": null,
+          "basis": {
+            "TA-11": {
+              "exact_entities": [
+                "7533081133153"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "line": 89,
+          "record_date": null,
+          "owner": "Codex `/root`, September5 EDT / September6 UTC; owner explicitly requests the earlier AI's access and marketing work",
+          "matched_entities": null,
+          "basis": {}
+        }
+      ],
+      "added_claims": [],
+      "removed_claims": []
+    }
+  ],
+  "current_source_readback": {
+    "results": [
+      {
+        "name": "numeric-pair",
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "TA-15 Microsoft account 477439 UET tag 36005151 purchase receiver",
+          "--format",
+          "json",
+          "--entity",
+          "477439",
+          "--entity",
+          "36005151"
+        ],
+        "exit_code": 0,
+        "sha256": "e4990f7245d9bfbacbb13a52b85701a637de45e152456fb3a70821023927ed07",
+        "status": "OK",
+        "entities": [
+          "36005151",
+          "477439"
+        ],
+        "anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+        "claims": [
+          {
+            "line": 35,
+            "record_date": "2026-09-14",
+            "owner": "root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme",
+            "matched_entities": [
+              "36005151",
+              "477439"
+            ],
+            "status": "`CUSTOM_PURCHASE_RECEIVED__EXACT_ORDER_AND_CONSENT_GATES_OPEN`"
+          },
+          {
+            "line": 40,
+            "record_date": "2026-09-08",
+            "owner": "root 01a08223 parent coordination only; Microsoft 01a08703-644f-7940-8f67-9a2fa63722bb and Pinterest 01a08704-8176-7171-b6f5-928a09d7c3f9 retain their exact live surfaces",
+            "matched_entities": [
+              "477439"
+            ],
+            "status": "`HANDOFF_TO_CURRENT_CHANNEL_OPERATORS`"
+          },
+          {
+            "line": 54,
+            "record_date": "2026-09-06",
+            "owner": "root sole browser/external writer; Analytics arithmetic review; Kant independent exact repair verifier; Feed Ops local source retrieval",
+            "matched_entities": [
+              "477439"
+            ],
+            "status": "`HANDOFF_SMART_GOAL_REPAIR_VERIFIED__AU_TEST_QUALIFICATION`"
+          }
+        ],
+        "authority_fields": {
+          "approved_external_scope": "NONE",
+          "autonomous_action_ready": "false",
+          "control_as_of": "2026-09-05",
+          "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+          "live_readback_fresh_until": "EXPIRED",
+          "live_state_mode": "STALE_READBACK_REQUIRED",
+          "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_live_evidence_as_of": "2026-06-01",
+          "supersedes_execution_readiness_below": "true"
+        },
+        "external_write_authorized": "not a session brief"
+      },
+      {
+        "name": "compact-query",
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "TA-15 Microsoft477439 UET36005151 purchase receiver",
+          "--format",
+          "json"
+        ],
+        "exit_code": 0,
+        "sha256": "8323f60954e41aeeb293ce3a2362e4ce9bab6d9056a5e58613c071cd5801c3ed",
+        "status": "OK",
+        "entities": [
+          "36005151",
+          "477439"
+        ],
+        "anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+        "claims": [
+          {
+            "line": 35,
+            "record_date": "2026-09-14",
+            "owner": "root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme",
+            "matched_entities": [
+              "36005151",
+              "477439"
+            ],
+            "status": "`CUSTOM_PURCHASE_RECEIVED__EXACT_ORDER_AND_CONSENT_GATES_OPEN`"
+          },
+          {
+            "line": 40,
+            "record_date": "2026-09-08",
+            "owner": "root 01a08223 parent coordination only; Microsoft 01a08703-644f-7940-8f67-9a2fa63722bb and Pinterest 01a08704-8176-7171-b6f5-928a09d7c3f9 retain their exact live surfaces",
+            "matched_entities": [
+              "477439"
+            ],
+            "status": "`HANDOFF_TO_CURRENT_CHANNEL_OPERATORS`"
+          },
+          {
+            "line": 54,
+            "record_date": "2026-09-06",
+            "owner": "root sole browser/external writer; Analytics arithmetic review; Kant independent exact repair verifier; Feed Ops local source retrieval",
+            "matched_entities": [
+              "477439"
+            ],
+            "status": "`HANDOFF_SMART_GOAL_REPAIR_VERIFIED__AU_TEST_QUALIFICATION`"
+          }
+        ],
+        "authority_fields": {
+          "approved_external_scope": "NONE",
+          "autonomous_action_ready": "false",
+          "control_as_of": "2026-09-05",
+          "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+          "live_readback_fresh_until": "EXPIRED",
+          "live_state_mode": "STALE_READBACK_REQUIRED",
+          "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_live_evidence_as_of": "2026-06-01",
+          "supersedes_execution_readiness_below": "true"
+        },
+        "external_write_authorized": "not a session brief"
+      },
+      {
+        "name": "bare-channel",
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "continue Microsoft Ads",
+          "--format",
+          "json"
+        ],
+        "exit_code": 0,
+        "sha256": "78132cf95ff1ca2efa54f3c9ee6f0e70bea18ea303bbf2b00c4d03a218591fd7",
+        "status": "OK",
+        "entities": [],
+        "anchor": null,
+        "claims": [
+          {
+            "line": 35,
+            "record_date": "2026-09-14",
+            "owner": "root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme",
+            "matched_entities": null,
+            "status": "`CUSTOM_PURCHASE_RECEIVED__EXACT_ORDER_AND_CONSENT_GATES_OPEN`"
+          }
+        ],
+        "authority_fields": {
+          "approved_external_scope": "NONE",
+          "autonomous_action_ready": "false",
+          "control_as_of": "2026-09-05",
+          "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+          "live_readback_fresh_until": "EXPIRED",
+          "live_state_mode": "STALE_READBACK_REQUIRED",
+          "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_live_evidence_as_of": "2026-06-01",
+          "supersedes_execution_readiness_below": "true"
+        },
+        "external_write_authorized": false
+      }
+    ],
+    "numeric_pair_payload": {
+      "authority": {
+        "end_line": 18,
+        "evidence_grade": "LIVE_READBACK_REQUIRED",
+        "fields": {
+          "approved_external_scope": "NONE",
+          "autonomous_action_ready": "false",
+          "control_as_of": "2026-09-05",
+          "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+          "live_readback_fresh_until": "EXPIRED",
+          "live_state_mode": "STALE_READBACK_REQUIRED",
+          "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_live_evidence_as_of": "2026-06-01",
+          "supersedes_execution_readiness_below": "true"
+        },
+        "source_path": "ops/marketing/current_marketing_state.md",
+        "start_line": 8
+      },
+      "diagnostics": {
+        "duplicate_anchor_ids": [
+          "2026-04-30-google-ads-standard-shopping-activation-gate",
+          "2026-05-09-paid-growth-fr-be-checkout-safe-advance",
+          "2026-05-09-paid-growth-nl-checkout-standard-metrics-safe-advance",
+          "2026-05-10-google-ads-non-us-search-paused-build-8-applied-fr-be-blocked",
+          "2026-05-10-localized-shipping-info-link-repair-live",
+          "2026-05-12-controlled-measurement-pinterest-build",
+          "2026-05-13-pdp-step-builder-price-range-live",
+          "2026-05-15-merchant-shopify-prune-merchant-after-export-failed",
+          "2026-05-15-pinterest-exact-product-group-imported-no-launch",
+          "2026-05-15-pinterest-validation-only-product-group-scope-stop",
+          "2026-05-18-pinterest-gate-b3-repaired-ingestion-clean-no-launch",
+          "2026-05-18-pinterest-gate-b3-repaired-r2-uploaded-reingestion-processing",
+          "2026-05-18-pinterest-review-exact-groups-selected-publish-stopped",
+          "2026-05-19-google-ads-api-basic-access-approved-us-search-020-export-complete",
+          "2026-05-20-google-shopping-merchant-feed-gate-failed-closed",
+          "2026-05-20-pinterest-corrected-label-product-groups-no-restart",
+          "2026-05-20-pinterest-parent-paid-source-processing-no-restart",
+          "2026-05-20-pinterest-source-complete-selector-count-gate-failed-no-restart",
+          "2026-05-21-google-shopping-parent-outfit-eligibility-diagnostic-done",
+          "2026-05-21-google-shopping-remaining-repair-upload-blocked",
+          "2026-05-21-google-shopping-unresolved-offer-exclusion-packet-ready",
+          "2026-05-21-shopify-sold-product-retest-approval-packet",
+          "2026-06-22-feature-story-content-gift-password-static-fixes",
+          "2026-06-22-feature-story-current-state-six-fix-evidence-finalized",
+          "2026-06-22-feature-story-node-command-docs-closed",
+          "2026-06-29-coral-blossom-mommy-and-me-dresses-draft-listing",
+          "2026-06-29-green-botanical-ruffle-mommy-and-me-dresses-draft-listing",
+          "2026-06-29-ocean-bloom-mommy-and-me-dresses-draft-listing",
+          "2026-06-29-pink-resort-ruffle-mommy-and-me-dresses-draft-listing"
+        ],
+        "errors": [],
+        "ranked_anchor_candidates": [
+          {
+            "anchor_id": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+            "entity_hits": [
+              "36005151",
+              "477439"
+            ],
+            "relevance_score": 206,
+            "start_line": 51266,
+            "token_hits": [
+              "account",
+              "microsoft",
+              "purchase",
+              "receiver",
+              "tag",
+              "uet"
+            ]
+          },
+          {
+            "anchor_id": "2026-09-12-microsoft-standard-uet-consent-gap-verified",
+            "entity_hits": [
+              "36005151",
+              "477439"
+            ],
+            "relevance_score": 204,
+            "start_line": 50625,
+            "token_hits": [
+              "microsoft",
+              "purchase",
+              "receiver",
+              "uet"
+            ]
+          },
+          {
+            "anchor_id": "2026-09-11-microsoft-launch-plan-reconciled",
+            "entity_hits": [
+              "36005151",
+              "477439"
+            ],
+            "relevance_score": 204,
+            "start_line": 49647,
+            "token_hits": [
+              "account",
+              "microsoft",
+              "purchase",
+              "receiver"
+            ]
+          },
+          {
+            "anchor_id": "2026-09-09-microsoft-native-resume-approval-gate",
+            "entity_hits": [
+              "36005151",
+              "477439"
+            ],
+            "relevance_score": 204,
+            "start_line": 48967,
+            "token_hits": [
+              "account",
+              "microsoft",
+              "receiver",
+              "uet"
+            ]
+          },
+          {
+            "anchor_id": "2026-09-09-microsoft-live-source-consent-access-checkpoint",
+            "entity_hits": [
+              "36005151",
+              "477439"
+            ],
+            "relevance_score": 204,
+            "start_line": 48812,
+            "token_hits": [
+              "microsoft",
+              "purchase",
+              "receiver",
+              "uet"
+            ]
+          }
+        ],
+        "status": "OK",
+        "warnings": []
+      },
+      "entities": [
+        "36005151",
+        "477439"
+      ],
+      "evidence": [
+        {
+          "evidence_grade": "LIVE_READBACK_REQUIRED",
+          "line": 8,
+          "source_path": "ops/marketing/current_marketing_state.md",
+          "text": "Authoritative Execution Control"
+        },
+        {
+          "evidence_grade": "REPO_KNOWN",
+          "line": 51266,
+          "source_path": "ops/AGENT_WORKLOG.md",
+          "text": "AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-international-demand-and-receiver-evidence"
+        },
+        {
+          "evidence_grade": "REPO_KNOWN",
+          "line": 279,
+          "matched_entities": [
+            "36005151",
+            "477439"
+          ],
+          "matched_tokens": [
+            "microsoft",
+            "purchase",
+            "receiver",
+            "uet"
+          ],
+          "source_path": "ops/PROBLEM_TRACKER.md",
+          "text": "- September14 receipt subproblem VERIFIED_WITH_LIMITS; full purchase/consent problem remains ACTIVE_SOLVING. Microsoft477439/customer770182/UET36005151 now shows one Custom purchase under selectedSeptember13. The parameter popup exposes GoalValue, Currency, PageType and ProductId names only, with no values or transaction identity. Last Received says7hours ago, but its window and exact UET timezone/timestamp are unproved. Healthy explicitly means no EEA/UK/Swiss events detected in that tooltip, n"
+        },
+        {
+          "evidence_grade": "REPO_KNOWN",
+          "line": 285,
+          "matched_entities": [
+            "36005151",
+            "477439"
+          ],
+          "matched_tokens": [
+            "microsoft",
+            "purchase",
+            "receiver",
+            "uet"
+          ],
+          "source_path": "ops/PROBLEM_TRACKER.md",
+          "text": "- September12 10:38 continuation — standard consent repair remains ACTIVE_SOLVING; outbound support step OWNER_APPROVAL_REQUIRED. TA-15 / Microsoft477439 / UET36005151: the September12 10:38 scheduled continuation verified a fresh standard UET consent-signal gap. A controlled USFL session had effective Shopify analytics=false and marketing=false before and after reload. At10:43:06.879UTC its standard pageLoad request for the exact test URL omitted asc; the native receiver showed three matching t"
+        },
+        {
+          "evidence_grade": "REPO_KNOWN",
+          "line": 291,
+          "matched_entities": [
+            "36005151"
+          ],
+          "matched_tokens": [
+            "microsoft",
+            "receiver"
+          ],
+          "source_path": "ops/PROBLEM_TRACKER.md",
+          "text": "- September10 00:37UTC / September9 evening continuation: LIVE_SOURCE_VERIFIED; receiver and native paused stage remain BLOCKED_STABLE_SELECTED_MICROSOFT_TAB_REQUIRED. Public MAIN133290917985 retains APP931561569/UET36005151 and exact audited source hash;47independent saved-evidence checksPASS. Root made0native probes after initial shared automatic-review rejection. A later authorized Pinterest-only attempt found Chrome readable but stopped after2user-driven target changes; it is not Microsoft a"
+        },
+        {
+          "evidence_grade": "REPO_KNOWN",
+          "line": 4993,
+          "matched_entities": [
+            "477439"
+          ],
+          "matched_tokens": [
+            "microsoft"
+          ],
+          "source_path": "ops/PROBLEM_TRACKER.md",
+          "text": "September8 Microsoft/Pinterest continuation: one fresh normal inventory again reports Mac locked / automatic unlock unsuccessful. No dependent browser retry. Existing unlock request now gates Microsoft477439/770182 and the authorized Sunshine Pinterest publication as well as Google. Exact targets and specialist findings are saved; no new paid launch or goal-status update. Anchor 2026-09-08-ceo-turnaround-microsoft-pinterest-execution-priority."
+        },
+        {
+          "end_line": 35,
+          "evidence_grade": "REPO_KNOWN",
+          "fields": {
+            "Allowed Actions": "Current owner ongoing nonspend tracking repair and qualified paused USEN/DEDE preparation; existing every4h heartbeat delivered; completed TA15-ASSETS-20260912-1438 shared interval, explicitly RELEASED in parent_handback_receipt.json at15:10:56UTC",
+            "Blocked Actions": "No paid activation, numeric spend allocation, billing/security/account switch, fake purchase, consent workaround or theme publication; preserve peers and frozen inputs",
+            "Last Evidence / Handoff": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0239/READBACK.md and dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0639/READBACK.md; 2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/READBACK.md; review/; anchor2026-09-12-microsoft-rsa-assets-and-url-tests-verified; 2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-0643/readback.json; parent TA15-COMPLETED-DAY-20260914-0643; dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-1044/receiver_readback.json; review/receiver_review.json; parent TA15-PURCHASE-RECEIPT-20260914-1044",
+            "Notes": "September14 06:43UTC owner receipt: completedSeptember13 CSV13current Paused rows/455cells unchanged from partial export; five aggregate rows now numeric0, earlier unavailable cells preserved. Reporting lag and undefined zero-denominator ratios retained. Existing-task Microsoft lookup and browser1/tab7/account477439 confirmed, without broader concurrency acceptance. No source/shared/business write or new order read. Parent19saved-source checks pass; owner/contact/paidNONE and08:49:22full-sales clock unchanged. Prior dated evidence: Three imports created2campaigns/2groups/6Exactkeywords/2RSAs/14Phrasenegatives; zero syncs/deletes; both child imports zero errors. Two country Saves and one DE group language repair reopened verified. All13Paused; original11 settings preserved. USEN/DEDE presence-only, MaxClicks0.15cap, configured5/3USD, four expansionsOff, selecttraffic network. Purchase/consent/source/economics/whole-ad editorial/paidlaunch open.22asset associationsPolicyApproved/PinNone;2nativeURLTests pass with automatic campaign/adgroup tags, no duplicate defect;0Saves this checkpoint. No reimport; parent theme action and fullpaidNONE preserved. New USFL denied-session standard pageLoad has no asc/receiver Not present, with recorded attribution/capture limits. Support report unsent and exact question pending. TA15-ASSETS-20260912-1438 shared interval RELEASED; Microsoft retains sole account/own-packet ownership, root accepted the handback September13 root parent indexes the completed14Exact/8Phrase qualification and generic-settings readback. Reviews35/35 and31/31PASS_WITH_LIMITS, no independent live replay. US0.10weekly estimates unchanged; DE0.08nearcap not an exact0.15 point. No causal gain, useful-volume, purchase or profit claim. No repeated inputs/import/bid increase. Microsoft retains sole account/own-packet ownership; parent performed only this shared documentation integration. September14 10:56 source supersedes receipt-unknown only: one Custom purchase, parameter names without values/identity. Healthy is no regional sample; exact order, sender consent/dedup, attribution and profit remain open. Two export attempts failed; no unchanged retry. Parent integrates27-check saved-source review; source owner holds no shared lease and retains sole account/packet ownership. Current full-sales clock19:04:53UTC; earlier clock remains dated history.",
+            "Owner / Agent": "root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme",
+            "Status": "`CUSTOM_PURCHASE_RECEIVED__EXACT_ORDER_AND_CONSENT_GATES_OPEN`",
+            "Surface": "Microsoft477439/customer770182; UET36005151/APP931561569; US506254907/DE506254908 and exact saved children",
+            "Workstream": "Current owner Microsoft Ads tracking and campaign rebuild"
+          },
+          "line": 35,
+          "matched_entities": [
+            "36005151",
+            "477439"
+          ],
+          "matched_tokens": [
+            "microsoft",
+            "purchase",
+            "receiver"
+          ],
+          "record_date": "2026-09-14",
+          "source_path": "ops/AGENT_COORDINATION.md",
+          "start_line": 35,
+          "text": "| Current owner Microsoft Ads tracking and campaign rebuild | Microsoft477439/customer770182; UET36005151/APP931561569; US506254907/DE506254908 and exact saved children | `CUSTOM_PURCHASE_RECEIVED__EXACT_ORDER_AND_CONSENT_GATES_OPEN` | root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme | Current owner ongoing nonspend tracking repair and qualified paused USEN/DEDE preparation; existing every4h heartbeat delivered; completed TA15-ASSETS-20260912-1438 shared interval, explicitly RELEASED in parent_handback_receipt.json at15:10:56UTC | No paid activation, numeric spend allocation, billing/security/account switch, fake purchase, consent workaround or theme publication; preserve peers and frozen inputs | dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0239/READBACK.md and dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0639/READBACK.md; 2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/READBACK.md; review/; anchor2026-09-12-microsoft-rsa-assets-and-url-tests-verified; 2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-0643/readback.json; parent TA15-COMPLETED-DAY-20260914-0643; dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-1044/receiver_readback.json; review/receiver_review.json; parent TA15-PURCHASE-RECEIPT-20260914-1044 | September14 06:43UTC owner receipt: completedSeptember13 CSV13current Paused rows/455cells unchanged from partial export; five aggregate rows now numeric0, earlier unavailable cells preserved. Reporting lag and undefined zero-denominator ratios retained. Existing-task Microsoft lookup and browser1/tab7/account477439 confirmed, without broader concurrency acceptance. No source/shared/business write or new order read. Parent19saved-source checks pass; owner/contact/paidNONE and08:49:22full-sales clock unchanged. Prior dated evidence: Three imports created2campaigns/2groups/6Exactkeywords/2RSAs/14Phrasenegatives; zero syncs/deletes; both child imports zero errors. Two country Saves and one DE group language repair reopened verified. All13Paused; original11 settings preserved. USEN/DEDE presence-only, MaxClicks0.15cap, configured5/3USD, four expansionsOff, selecttraffic network. Purchase/consent/source/economics/whole-ad editorial/paidlaunch open.22asset associationsPolicyApproved/PinNone;2nativeURLTests pass with automatic campaign/adgroup tags, no duplicate defect;0Saves this checkpoint. No reimport; parent theme action and fullpaidNONE preserved. New USFL denied-session standard pageLoad has no asc/receiver Not present, with recorded attribution/capture limits. Support report unsent and exact question pending. TA15-ASSETS-20260912-1438 shared interval RELEASED; Microsoft retains sole account/own-packet ownership, root accepted the handback September13 root parent indexes the completed14Exact/8Phrase qualification and generic-settings readback. Reviews35/35 and31/31PASS_WITH_LIMITS, no independent live replay. US0.10weekly estimates unchanged; DE0.08nearcap not an exact0.15 point. No causal gain, useful-volume, purchase or profit claim. No repeated inputs/import/bid increase. Microsoft retains sole account/own-packet ownership; parent performed only this shared documentation integration. September14 10:56 source supersedes receipt-unknown only: one Custom purchase, parameter names without values/identity. Healthy is no regional sample; exact order, sender consent/dedup, attribution and profit remain open. Two export attempts failed; no unchanged retry. Parent integrates27-check saved-source review; source owner holds no shared lease and retains sole account/packet ownership. Current full-sales clock19:04:53UTC; earlier clock remains dated history. |"
+        },
+        {
+          "end_line": 40,
+          "evidence_grade": "REPO_KNOWN",
+          "fields": {
+            "Allowed Actions": "Preserve this historical preparation and saved authority; current channel operators execute their bounded repairs and existing Pin release after current gates. Parent may reconcile dated evidence read-only.",
+            "Blocked Actions": "No new paid launch/budget/bids or unproved goal/feed/availability changes; no blocked endpoint/desktop bypass, credential disclosure or new draft/harness",
+            "Last Evidence / Handoff": "cross_platform_restart_plan_20260907.json September8 extension; 2026-09-08-ceo-turnaround-microsoft-pinterest-execution-priority",
+            "Notes": "September9 later channel claims supersede this earlier root execution claim. Preserve completed buyer-copy/consent work and pending access questions; no duplicate operator, draft, request or paid authority.",
+            "Owner / Agent": "root 01a08223 parent coordination only; Microsoft 01a08703-644f-7940-8f67-9a2fa63722bb and Pinterest 01a08704-8176-7171-b6f5-928a09d7c3f9 retain their exact live surfaces",
+            "Status": "`HANDOFF_TO_CURRENT_CHANNEL_OPERATORS`",
+            "Surface": "Microsoft477439/customer770182; Pinterest549756244483/catalog3041764155561548387; existing Sunshine product-detail release",
+            "Workstream": "Microsoft and Pinterest priority continuation"
+          },
+          "line": 40,
+          "matched_entities": [
+            "477439"
+          ],
+          "matched_tokens": [
+            "microsoft"
+          ],
+          "record_date": "2026-09-08",
+          "source_path": "ops/AGENT_COORDINATION.md",
+          "start_line": 40,
+          "text": "| Microsoft and Pinterest priority continuation | Microsoft477439/customer770182; Pinterest549756244483/catalog3041764155561548387; existing Sunshine product-detail release | `HANDOFF_TO_CURRENT_CHANNEL_OPERATORS` | root 01a08223 parent coordination only; Microsoft 01a08703-644f-7940-8f67-9a2fa63722bb and Pinterest 01a08704-8176-7171-b6f5-928a09d7c3f9 retain their exact live surfaces | Preserve this historical preparation and saved authority; current channel operators execute their bounded repairs and existing Pin release after current gates. Parent may reconcile dated evidence read-only. | No new paid launch/budget/bids or unproved goal/feed/availability changes; no blocked endpoint/desktop bypass, credential disclosure or new draft/harness | cross_platform_restart_plan_20260907.json September8 extension; 2026-09-08-ceo-turnaround-microsoft-pinterest-execution-priority | September9 later channel claims supersede this earlier root execution claim. Preserve completed buyer-copy/consent work and pending access questions; no duplicate operator, draft, request or paid authority. |"
+        },
+        {
+          "end_line": 54,
+          "evidence_grade": "REPO_KNOWN",
+          "fields": {
+            "Allowed Actions": "Direct owner automatic repair authority: uncheck only Include in Conversions on existing Smart goal163000100, preserve Active and All reporting; normal Save and separate readback. Continue read-only campaign/query/currency qualification",
+            "Blocked Actions": "No other goal, tag, privacy, consent, account, login, campaign status, create/import/enable/pause, budget/bid/billing or spend write. Nine full paid controls unchanged; no launch authority",
+            "Last Evidence / Handoff": "microsoft_smart_goal_repair_plan.json; microsoft_smart_goal_before.json; microsoft_smart_goal_execution.json; independentpostreviewPASS26/26; anchor 2026-09-06-ceo-turnaround-microsoft-purchase-truth",
+            "Notes": "Current owner instruction covers reviewed reversible marketing repair, not agent self-approval. One Save17:04:31UTC completed; Active/No and reopenedcheckbox0, fourothergoals/11pausedcampaignsettingspreserved. Exactinverseunused. No reapplication. Root retains read-only qualification ownership:AU402056810 revenuequeries/currency/currentcost; browserTest475224305",
+            "Owner / Agent": "root sole browser/external writer; Analytics arithmetic review; Kant independent exact repair verifier; Feed Ops local source retrieval",
+            "Status": "`HANDOFF_SMART_GOAL_REPAIR_VERIFIED__AU_TEST_QUALIFICATION`",
+            "Surface": "TA-15; account 477439; customer 770182; goal 163000100; PROB-2026-09-06-MICROSOFT-PURCHASE-TRUTH; Chrome Test tab 475224305; DLM identity verified",
+            "Workstream": "Existing Microsoft Advertising identity and purchase measurement"
+          },
+          "line": 54,
+          "matched_entities": [
+            "477439"
+          ],
+          "matched_tokens": [
+            "account",
+            "microsoft",
+            "purchase"
+          ],
+          "record_date": "2026-09-06",
+          "source_path": "ops/AGENT_COORDINATION.md",
+          "start_line": 54,
+          "text": "| Existing Microsoft Advertising identity and purchase measurement | TA-15; account 477439; customer 770182; goal 163000100; PROB-2026-09-06-MICROSOFT-PURCHASE-TRUTH; Chrome Test tab 475224305; DLM identity verified | `HANDOFF_SMART_GOAL_REPAIR_VERIFIED__AU_TEST_QUALIFICATION` | root sole browser/external writer; Analytics arithmetic review; Kant independent exact repair verifier; Feed Ops local source retrieval | Direct owner automatic repair authority: uncheck only Include in Conversions on existing Smart goal163000100, preserve Active and All reporting; normal Save and separate readback. Continue read-only campaign/query/currency qualification | No other goal, tag, privacy, consent, account, login, campaign status, create/import/enable/pause, budget/bid/billing or spend write. Nine full paid controls unchanged; no launch authority | microsoft_smart_goal_repair_plan.json; microsoft_smart_goal_before.json; microsoft_smart_goal_execution.json; independentpostreviewPASS26/26; anchor 2026-09-06-ceo-turnaround-microsoft-purchase-truth | Current owner instruction covers reviewed reversible marketing repair, not agent self-approval. One Save17:04:31UTC completed; Active/No and reopenedcheckbox0, fourothergoals/11pausedcampaignsettingspreserved. Exactinverseunused. No reapplication. Root retains read-only qualification ownership:AU402056810 revenuequeries/currency/currentcost; browserTest475224305 |"
+        }
+      ],
+      "newer_same_entity_records": [],
+      "next_action": {
+        "id": "READ_ONLY_MARKETING_RECONCILIATION",
+        "source_path": "ops/marketing/current_marketing_state.md"
+      },
+      "query": "TA-15 Microsoft account 477439 UET tag 36005151 purchase receiver",
+      "schema_version": "1.0",
+      "selected_anchor": {
+        "anchor_id": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+        "end_line": 51281,
+        "entity_hits": [
+          "36005151",
+          "477439"
+        ],
+        "metadata": {
+          "next_action_id": "READ_ONLY_MARKETING_RECONCILIATION",
+          "task_entities": [
+            "36005151",
+            "477439",
+            "559471329377",
+            "6509972886",
+            "TA-10",
+            "TA-13",
+            "TA-15",
+            "TA10-GREEK-SEO-WINDOW-20260914-1032",
+            "TA10-NATIVE-DEMAND-20260914-1032",
+            "TA13-CADENCE-LABEL-20260914-1032",
+            "TA15-PURCHASE-RECEIPT-20260914-1044"
+          ],
+          "task_stage": "HANDOFF"
+        },
+        "relevance_score": 206,
+        "source_path": "ops/AGENT_WORKLOG.md",
+        "start_line": 51266,
+        "token_hits": [
+          "account",
+          "microsoft",
+          "purchase",
+          "receiver",
+          "tag",
+          "uet"
+        ]
+      },
+      "session_brief": null,
+      "task_kind": "paid-growth",
+      "task_stage": "HANDOFF"
+    }
+  },
+  "source_preservation": {
+    "checked_at": "2026-09-14T11:41:15.474412+00:00",
+    "protected_sources": {
+      "ops/scripts/session_context.py": {
+        "before_sha256": "29e8be4ce9616248827eaf7587b4f95ca4a54474958a7d45d27af8cedc02a83f",
+        "after_sha256": "29e8be4ce9616248827eaf7587b4f95ca4a54474958a7d45d27af8cedc02a83f",
+        "byte_identical": true
+      },
+      "ops/tests/test_session_context.py": {
+        "before_sha256": "ae3ffead070cb9c608590bf5b87f546c22a270a16d54653de5eb6cf5f6c6abc7",
+        "after_sha256": "ae3ffead070cb9c608590bf5b87f546c22a270a16d54653de5eb6cf5f6c6abc7",
+        "byte_identical": true
+      },
+      "ops/scripts/render_marketing_cockpit.py": {
+        "before_sha256": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0",
+        "after_sha256": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0",
+        "byte_identical": true
+      },
+      "ops/AGENT_COORDINATION.md": {
+        "before_sha256": "0996d483f837f18bcc2a7e84c0a5e69456d98479a39be9d97677553a8c65868b",
+        "after_sha256": "0996d483f837f18bcc2a7e84c0a5e69456d98479a39be9d97677553a8c65868b",
+        "byte_identical": true
+      },
+      "ops/PROBLEM_TRACKER.md": {
+        "before_sha256": "d978568e252d1bc9ce10b1315d74dd3d82cd4cfcc82a7e7e18f9740f0eea151d",
+        "after_sha256": "d978568e252d1bc9ce10b1315d74dd3d82cd4cfcc82a7e7e18f9740f0eea151d",
+        "byte_identical": true
+      },
+      "ops/AGENT_WORKLOG.md": {
+        "before_sha256": "9219981559fb9fbaf971ddc1da6c81c0341973c0f3729cb4dc8a02f5d3e7ede0",
+        "after_sha256": "9219981559fb9fbaf971ddc1da6c81c0341973c0f3729cb4dc8a02f5d3e7ede0",
+        "byte_identical": true
+      },
+      "ops/marketing/current_marketing_state.md": {
+        "before_sha256": "417924c65386a0be4f8034078d4667c829be2e2a144d370c13550b31fa00680a",
+        "after_sha256": "417924c65386a0be4f8034078d4667c829be2e2a144d370c13550b31fa00680a",
+        "byte_identical": true
+      },
+      "ops/marketing/action_queue.md": {
+        "before_sha256": "05c9cc197b59b28fc6313a05ba7fbd1ea97a24bf10a06665091c0193dc0ea9dd",
+        "after_sha256": "05c9cc197b59b28fc6313a05ba7fbd1ea97a24bf10a06665091c0193dc0ea9dd",
+        "byte_identical": true
+      },
+      "ops/marketing/daily_scorecard.md": {
+        "before_sha256": "cb8a1461e090aebe491cac94b0abc2bfd0d75e2667454d546681b0ad4f311b27",
+        "after_sha256": "cb8a1461e090aebe491cac94b0abc2bfd0d75e2667454d546681b0ad4f311b27",
+        "byte_identical": true
+      },
+      "ops/marketing/operator_cockpit.html": {
+        "before_sha256": "1e19646d148c34d42719376e48c6db54e53c7a197aed2ad7a9335ea29c5f26e0",
+        "after_sha256": "ec7e5ea2978b9b28ad906615eeb425752aa72c276a678d22c3f050ec1ebd4e4f",
+        "byte_identical": false
+      },
+      "ops/marketing/operator_cockpit.md": {
+        "before_sha256": "d479fbcedace460230724512963f264347530ed9eeef4ada29e42a600a46cfb8",
+        "after_sha256": "d479fbcedace460230724512963f264347530ed9eeef4ada29e42a600a46cfb8",
+        "byte_identical": true
+      },
+      "ops/marketing/spend_authorization.md": {
+        "before_sha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+        "after_sha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+        "byte_identical": true
+      },
+      "ops/marketing/memory_digest.md": {
+        "before_sha256": "73e724495459a3cb0ce809a1a50f10feccc5896c91552c82ecdca1c6ed77f921",
+        "after_sha256": "73e724495459a3cb0ce809a1a50f10feccc5896c91552c82ecdca1c6ed77f921",
+        "byte_identical": true
+      },
+      "ops/marketing/blocker_board.md": {
+        "before_sha256": "9410ef2bd96c983860105307792a6f4a8fe15ee18354e4ab7a19da09c6fccf86",
+        "after_sha256": "9410ef2bd96c983860105307792a6f4a8fe15ee18354e4ab7a19da09c6fccf86",
+        "byte_identical": true
+      },
+      "ops/GROWTH_NORTH_STAR.md": {
+        "before_sha256": "c864a0890c9e23f8fcadd1d851ae7f1c37a4c9c7c646c18959ef350bbc7a0c21",
+        "after_sha256": "c864a0890c9e23f8fcadd1d851ae7f1c37a4c9c7c646c18959ef350bbc7a0c21",
+        "byte_identical": true
+      },
+      "AGENTS.md": {
+        "before_sha256": "b5558d89a44b54b9c97192540d9fd6546310fa2d57d144dd2da0c6983bf32a8c",
+        "after_sha256": "b5558d89a44b54b9c97192540d9fd6546310fa2d57d144dd2da0c6983bf32a8c",
+        "byte_identical": true
+      },
+      "CLAUDE.md": {
+        "before_sha256": "b5558d89a44b54b9c97192540d9fd6546310fa2d57d144dd2da0c6983bf32a8c",
+        "after_sha256": "b5558d89a44b54b9c97192540d9fd6546310fa2d57d144dd2da0c6983bf32a8c",
+        "byte_identical": true
+      },
+      "ops/prompts/paid-growth-ai-army-continuation-prompt.md": {
+        "before_sha256": "475eb926afd0e4cdb551844fdfb70b1c823c78883e9bba118bfefd35537090c0",
+        "after_sha256": "475eb926afd0e4cdb551844fdfb70b1c823c78883e9bba118bfefd35537090c0",
+        "byte_identical": true
+      }
+    },
+    "shared_docs_writer_lease": false,
+    "shared_docs_written": false,
+    "external_cockpit_timestamp_change": true,
+    "prior_packet_files_unchanged": 18,
+    "nine_authority_fields": {
+      "approved_external_scope": "NONE",
+      "autonomous_action_ready": "false",
+      "control_as_of": "2026-09-05",
+      "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+      "live_readback_fresh_until": "EXPIRED",
+      "live_state_mode": "STALE_READBACK_REQUIRED",
+      "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+      "source_live_evidence_as_of": "2026-06-01",
+      "supersedes_execution_readiness_below": "true"
+    },
+    "complete_one_owner_action": {
+      "sha256": "4e6d282da8d1e3768b7119436039ff58f5171501216914fec91d564b95effb88",
+      "characters": 733
+    },
+    "protected_full_sales_clock_utc": "19:04:53",
+    "source_and_measurement_clocks_preserved_by_full_file_hashes": true
+  },
+  "strict_continuity": {
+    "command": [
+      "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "ops/scripts/check_continuity_integrity.py",
+      "--strict"
+    ],
+    "exit_code": 0,
+    "output": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 51281 lines; latest anchor 2026-09-14-ceo-international-demand-and-receiver-evidence\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-14-ceo-international-demand-and-receiver-evidence\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+    "output_sha256": "b36d30905ec1065b1801312cc6b4044547641ae77283d81e839f332969a1cbc8"
+  },
+  "whitespace_checks": {
+    "scoped_git_diff_check_exit_code": 0,
+    "scope": [
+      "ops/scripts/compile_task_context.py",
+      "ops/tests/test_compile_task_context.py"
+    ],
+    "dispatch_added_lines_check": "PASS",
+    "limitation": "Source/test files were already untracked, so exact captured diffs were separately checked rather than relying on Git alone."
+  },
+  "independent_review": {
+    "status": "PASS_WITH_LIMITS",
+    "verifier": "/root/continuity_audit",
+    "independence": {
+      "did_not_implement_change": true,
+      "read_only_verifier": true,
+      "repository_or_report_files_written": false
+    },
+    "received_at": "2026-09-14T11:50:17.564653+00:00",
+    "actionable_defects": [],
+    "verified": {
+      "frozen_candidate_tests_byte_identical": true,
+      "original_assertion_groups_source_identical": 10,
+      "original_fixture_functions_source_identical": 2,
+      "frozen_before_failing_groups_reproduced": 4,
+      "frozen_before_passing_holdouts": 3,
+      "final_compiler_groups_passed": 17,
+      "unchanged_session_tests_passed": 24,
+      "legacy_boundary_cases_unchanged": 150,
+      "additional_microsoft_uet_boundary_cases_passed": 9,
+      "numeric_compact_probes_passed_on_frozen_and_current_sources": 4,
+      "independently_compiled_frozen_payloads_match_saved_after_outputs": 11,
+      "source_text_records_verified": 116,
+      "anchor_ranges_verified": 4,
+      "other_channel_full_payloads_byte_identical": 6,
+      "current_anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+      "current_claim_line": 35,
+      "current_claim_owner": "root01a08703",
+      "dated_historical_claim_lines_retained_after_current": [
+        40,
+        54
+      ],
+      "uet_only_claim_lines": [
+        35
+      ],
+      "task_fields_owners_goals_gates_authority_retained_claim_dates_unchanged": true,
+      "explicit_intersection_mixed_task_date_and_purchase_holdouts_passed": true,
+      "legacy_thresholds_boundaries_and_single_numeric_capture_preserved": true
+    },
+    "runtime": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "commands": [
+      "ops/tests/test_compile_task_context.py",
+      "ops/tests/test_session_context.py"
+    ],
+    "additional_read_only_checks": [
+      "Frozen-before failures",
+      "Current and frozen compilation",
+      "Boundary probes",
+      "Source provenance",
+      "Source preservation",
+      "Candidate and diff hashes"
+    ],
+    "verified_final_sha256": {
+      "ops/scripts/compile_task_context.py": "a210e9d379cb29b843fccfac6e8ee6a49c3844a3474ca76af40d075c72639851",
+      "ops/tests/test_compile_task_context.py": "054334b471d9b21d5684b535c26219ccd962c583c771656e0f310277967a403f",
+      "ops/scripts/session_context.py": "29e8be4ce9616248827eaf7587b4f95ca4a54474958a7d45d27af8cedc02a83f",
+      "ops/tests/test_session_context.py": "ae3ffead070cb9c608590bf5b87f546c22a270a16d54653de5eb6cf5f6c6abc7"
+    },
+    "verified_compiler_diff_sha256": "63cb12f6a4a138afb2ab04e58256c9a2e9e53f4290a22b27495067afb6f1bec7",
+    "limits": [
+      "Local retrieval verification only.",
+      "Reviewer did not run strict continuity; root separately ran it and passed all ten checks.",
+      "No browser isolation or live account state verification in this dispatch."
+    ]
+  },
+  "shared_records": {
+    "writer_lease": false,
+    "files_written": [],
+    "parent_checkpoint_written": false,
+    "parent_alone_integrates_reviewed_result": true
+  },
+  "limits": [
+    "Local context retrieval only; no new browser/account/business action, purchase/consent verification or growth outcome is established.",
+    "Separate user-created-task/browser acceptance remains independently pending.",
+    "Exact searches preserve historical40/54 as dated evidence behind current35; they do not erase history or grant its old execution authority."
+  ],
+  "rollback": "Verify current code/test hashes and ownership, then reverse only the captured compiler/test diff if a rollback is required. Preserve all earlier mixed-owner/date/X/Purchase fixes and unrelated changes. Do not restore the entire untracked files from Git or edit shared canonical records; parent owns integration.",
+  "next_action": "Parent integrates only the independently reviewed result in its existing checkpoint/canonical records; no generic approval or new harness is required.",
+  "temporary_evidence_directory": "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-compact-ms-uet-20260914-rd5nxfuc",
+  "verified_at": "2026-09-14T11:50:17.564653+00:00",
+  "final_source_recheck": {
+    "checked_at": "2026-09-14T11:50:17.564653+00:00",
+    "sha256": {
+      "ops/scripts/compile_task_context.py": "a210e9d379cb29b843fccfac6e8ee6a49c3844a3474ca76af40d075c72639851",
+      "ops/tests/test_compile_task_context.py": "054334b471d9b21d5684b535c26219ccd962c583c771656e0f310277967a403f",
+      "ops/scripts/session_context.py": "29e8be4ce9616248827eaf7587b4f95ca4a54474958a7d45d27af8cedc02a83f",
+      "ops/tests/test_session_context.py": "ae3ffead070cb9c608590bf5b87f546c22a270a16d54653de5eb6cf5f6c6abc7",
+      "ops/scripts/render_marketing_cockpit.py": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0",
+      "ops/AGENT_COORDINATION.md": "0996d483f837f18bcc2a7e84c0a5e69456d98479a39be9d97677553a8c65868b",
+      "ops/PROBLEM_TRACKER.md": "d978568e252d1bc9ce10b1315d74dd3d82cd4cfcc82a7e7e18f9740f0eea151d",
+      "ops/AGENT_WORKLOG.md": "9219981559fb9fbaf971ddc1da6c81c0341973c0f3729cb4dc8a02f5d3e7ede0",
+      "ops/marketing/current_marketing_state.md": "417924c65386a0be4f8034078d4667c829be2e2a144d370c13550b31fa00680a",
+      "ops/marketing/action_queue.md": "05c9cc197b59b28fc6313a05ba7fbd1ea97a24bf10a06665091c0193dc0ea9dd",
+      "ops/marketing/daily_scorecard.md": "cb8a1461e090aebe491cac94b0abc2bfd0d75e2667454d546681b0ad4f311b27",
+      "ops/marketing/operator_cockpit.html": "ec7e5ea2978b9b28ad906615eeb425752aa72c276a678d22c3f050ec1ebd4e4f",
+      "ops/marketing/operator_cockpit.md": "d479fbcedace460230724512963f264347530ed9eeef4ada29e42a600a46cfb8",
+      "ops/marketing/spend_authorization.md": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+      "ops/marketing/memory_digest.md": "73e724495459a3cb0ce809a1a50f10feccc5896c91552c82ecdca1c6ed77f921",
+      "ops/marketing/blocker_board.md": "9410ef2bd96c983860105307792a6f4a8fe15ee18354e4ab7a19da09c6fccf86",
+      "ops/GROWTH_NORTH_STAR.md": "c864a0890c9e23f8fcadd1d851ae7f1c37a4c9c7c646c18959ef350bbc7a0c21",
+      "AGENTS.md": "b5558d89a44b54b9c97192540d9fd6546310fa2d57d144dd2da0c6983bf32a8c",
+      "CLAUDE.md": "b5558d89a44b54b9c97192540d9fd6546310fa2d57d144dd2da0c6983bf32a8c",
+      "ops/prompts/paid-growth-ai-army-continuation-prompt.md": "475eb926afd0e4cdb551844fdfb70b1c823c78883e9bba118bfefd35537090c0"
+    },
+    "unexpected_source_drift": false,
+    "cockpit_difference": "Only the build timestamp changed externally from 07:29 EDT to 07:31 EDT; actor unknown; preserved without modification.",
+    "cockpit_timestamp_masked_byte_identical": true,
+    "prior_packet_files_unchanged": 18,
+    "complete_one_owner_action_preserved_by_current_state_full_file_hash": true,
+    "protected_full_sales_clock_utc": "19:04:53",
+    "shared_writer_lease_held": false,
+    "shared_canonical_or_checkpoint_files_written": false
+  }
+}

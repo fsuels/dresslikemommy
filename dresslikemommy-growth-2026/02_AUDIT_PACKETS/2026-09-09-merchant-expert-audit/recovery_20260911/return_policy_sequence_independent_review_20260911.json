@@ -1,0 +1,354 @@
+{
+  "schema": "dlm.return_policy_sequence_independent_review.v1",
+  "reviewed_at_utc": "2026-09-11T20:14:50.152403+00:00",
+  "reviewer": "/root/order_delta_1934",
+  "independence": "Read-only code, frozen source, current owner artifacts and official documentation; did not build classifier, inspect native UI or implement return policies/feeds.",
+  "verdict": "MECHANISM_VERIFIED__HOLD_BLANKET_DEFAULT_EXPANSION_PENDING_ALL_SOURCE_COUNTRY_COVERAGE",
+  "target": {
+    "merchant": "513542500",
+    "controlled_primary_source": "10727274744",
+    "discovered_source": "10728396934",
+    "destinations": "Free listings only; paid authority unchanged",
+    "production_writer": "01a08706-c63a-7e01-ba48-7777bcb1788a"
+  },
+  "authorization": "Current owner explicitly requested market coverage and StoreQuality setup; direct nonspend setup/feed corrections are authorized. No fresh generic return-policy approval is requested; remaining gates are accurate source facts, affected-source scope and safe sequencing.",
+  "supersessions": [
+    "Old Shopify Google & YouTube10014302986 label mapping uncertainty is not the active direct-feed mechanism blocker. Current direct builder can emit return_policy_label.",
+    "Old unsaved-only candidate state is superseded by one saved Verified Austria-only policy9309759641. This review does not recreate it or assume it covers US/AU/CA/GB.",
+    "Historical720 count was recomputed against the newer19:21:32 source and joined to current4,923US rows; it is not carried forward untested."
+  ],
+  "current_native_evidence": {
+    "artifact": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/all-markets.execution_checkpoint.json",
+    "first_execution_clock_after_owner_request": "2026-09-11T20:01:48Z",
+    "timestamp_limit": "This bounds the current execution, not an exact per-control observation or user-send timestamp. Reviewer did not operate native UI.",
+    "default": {
+      "id": "9309759641",
+      "countries": [
+        "AT"
+      ],
+      "policy_url": "https://www.dresslikemommy.com/pages/return-policy",
+      "standard_returns": true,
+      "exchanges": true,
+      "condition": "New only",
+      "days": 30,
+      "method": "By mail",
+      "return_label": "Customer responsibility",
+      "restocking": "No cost",
+      "refund_processing_days": null,
+      "status": "Verified",
+      "exceptions": []
+    },
+    "store_quality": {
+      "overall_score": "No score",
+      "reason": "Missing information or insufficient qualifying activity; no score improvement is verified."
+    }
+  },
+  "source_policy_facts": {
+    "as_of_utc": "2026-09-10T18:49:51Z",
+    "source_page_hash": "6f63f061500595080c381f33b3bccc90264b13f7bc2f7d6ebbf3770a170f44b5",
+    "refund_body_hash": "a0e7f90e201df7169edf00073d48b47aa58afc69ae7b6003ee8b93720e58d7fb",
+    "return_window": "30 days from delivery to request return/exchange",
+    "condition": "Unworn, unwashed, original condition/packaging/tags; other printed eligibility conditions preserved",
+    "ordinary_method": "Mail; customer pays return shipping except stated damaged/defective handling",
+    "restocking": "None; previous explicit owner confirmation and current native No cost preserved",
+    "exceptions": [
+      "Swimwear and intimates",
+      "Explicit Final Sale markings",
+      "Gift cards"
+    ],
+    "damage_remedy": "Contact within7days; replacement or full refund with no physical return required. A no_returns label must not be represented as removing this remedy.",
+    "processing": "5–10 business days after receipt/inspection, plus possible2–5 additional bank business days; no numeric calendar conversion inferred.",
+    "optional_refund_processing_field": "Leave blank; do not use5,10,15,0 or UI defaults. If actual required form blocks blank, obtain exact truthful field interpretation/value before Save.",
+    "terms_conflict": "Terms broadly excludes sale/personalized items and uses a different shipping-cost exception. Preserve and escalate business-truth reconciliation; do not silently call all discounted items Final Sale or rewrite Terms."
+  },
+  "current_controlled_coverage": {
+    "source_completed_at": "2026-09-11T19:21:32.262Z",
+    "classification_recorded_at": "2026-09-11T20:07:42.145Z",
+    "parents": 240,
+    "source_variants": 4945,
+    "available_feed_variants": 4923,
+    "unavailable_omitted_variants": 22,
+    "exact_US_variant_ID_set_matches_newer_source": true,
+    "exception_parents": 48,
+    "exception_US_offer_rows": 720,
+    "no_explicit_exception_rows": 4203,
+    "exception_evidence_counts": {
+      "Swimwear_taxonomy_parents": 48,
+      "also_exact_Swimwear_product_type": 46,
+      "gift_card_parents": 0,
+      "exact_FinalSale_tag_parents": 0,
+      "intimates_or_lingerie_matches": 0
+    },
+    "lexical_risk_flags": "Merchant report0; not a proof that all unlabelled goods are legally or operationally returnable.",
+    "current_US_columns": 18,
+    "current_US_return_policy_label_column_present": false,
+    "google_received_file_timestamp": "2026-09-11T19:45:38Z",
+    "google_received_hash": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+    "classification_only_not_assignment": true,
+    "no_catalog_wide_terms_resolution_implied": true,
+    "nonempty_labels_in_current_received_file": 0
+  },
+  "builder_mechanism": {
+    "classification_source": "automation_release_v1/src/generator.js lines66–75: isGiftCard flag, case-insensitive exact productType, exact taxonomy path segments and exact approved FinalSale tags; no title-only classification.",
+    "emission": "Lines236,249–256: emitLabels=false writes no return_policy_label column; otherwise classified rows take exact configured label and ordinary rows remain blank.",
+    "native_gate": "returnPolicyLabelsConfirmed equals true when emission is disabled, when no exceptions exist, or when nativeLabelConfirmed is true. It is not a Google policy readback. Publisher uses this gate, but the flag itself is not country-aware.",
+    "binding_requirement": "Before nativeLabelConfirmed=true for a build, externally bind exact saved policyID/label/country and affected source/offer set. A Verified AT policy cannot authorize the global flag for US or all countries.",
+    "current_mode": {
+      "emitLabels": false,
+      "nativeLabelConfirmed": false,
+      "candidate_label_only": "no_returns",
+      "diagnostic_returnPolicyLabelsConfirmed": true
+    },
+    "future_lifecycle": "Rebuild removes labels when exact classifications cease to match; prove classification-change/new/removal processing in live receiver separately. No hourly runtime or credential change is authorized by this review."
+  },
+  "discovered_source_gap": {
+    "inventory_artifact": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.google_submission_checkpoint.json",
+    "inventory_at_utc": "2026-09-11T19:45:34.644818+00:00",
+    "source": {
+      "id": "10728396934",
+      "active_products": 1981,
+      "archived_products": 1,
+      "countries": "Automatic",
+      "language": "Multiple",
+      "feed_label": "Multiple",
+      "frequency": "Every 24 hours"
+    },
+    "coverage": "These1,981active/1archived Google-found records are not classified by the controlled4,923-row export. Native country=Automatic, language/feed_label=Multiple is not an exact country/offer/policy manifest.",
+    "parent_report": "Parent reports offer identities outside controlled ID set; reviewer has not seen a complete discovered ID export, so no independent disjointness or physical-product count is asserted.",
+    "missing": "Exact currently eligible countries, effective return policies/labels, source-attributed offer IDs, product/variant mappings, ordinary/exception classification and a supported persistent assignment method for every affected discovered offer.",
+    "scope_rule": "Do not add1,981to4,923 as a unique-product count, copy720labels to guessed IDs, disable discovered products, create a duplicate publisher, or treat unclassified as ordinary."
+  },
+  "sequence": [
+    {
+      "step": 1,
+      "status": "READ_ONLY_NEXT",
+      "action": "Complete one source-by-country exception matrix using current Merchant inventory, direct offer IDs and discovered source10728396934. Capture9309759641 and any other policies, labels, country sets, status, current received feed/hash and every affected product assignment; preserve the current4,923offer IDs and five corrected prices."
+    },
+    {
+      "step": 2,
+      "status": "TRUTH_PREREQUISITE",
+      "action": "Resolve only decision-critical gaps: country applicability to the proposed ordinary/excluded cohorts; exact discovered-product classification and supported assignment path; Terms/refund inconsistency where active offers are implicated; native no-return exception representation without erasing damaged/defective remedies. Keep optional processing days blank and retain owner-confirmed zero restocking."
+    },
+    {
+      "step": 3,
+      "status": "PREPARE_THEN_INDEPENDENT_REVIEW",
+      "action": "Prepare the exact country-bound exception policy and complete next feed with720controlled US labels/4,203unlabelled rows only if current source confirms the same cohort; separately prepare discovered mappings. Bind label to actual saved/native country policy, not guessed no_returns or the AT default. Diff all other fields/IDs/prices/destinations and freeze inverse."
+    },
+    {
+      "step": 4,
+      "status": "CONDITIONAL_EXISTING_COUNTRY_REPAIR",
+      "action": "For Austria, standard policy already exists. Once its affected offer matrix and truthful exact exception are ready, Merchant can create/read back the AT exception, then apply the reviewed assignments immediately and verify effective policy per affected source. Adding an exception does not itself label products. Do not recreate the existing default or call the whole country accurate before coverage closes."
+    },
+    {
+      "step": 5,
+      "status": "HOLD_NEW_COUNTRY_DEFAULT_EXPANSION",
+      "action": "For US/AU/CA/GB or other countries without a default, Google documents standard then exception then labels. This is not atomic. Before starting, establish a verified, explicitly scoped non-serving stage for every affected offer, or a separately reviewed product-level override path with complete truthful fields. Current account review/zero impressions are not operator-controlled containment. Without such a mechanism, no sequence here guarantees absence of a transient incorrect default, so stop before expanding default country scope."
+    },
+    {
+      "step": 6,
+      "status": "CONDITIONAL_SUPPORTED_UI_SEQUENCE",
+      "action": "After step5 containment and all-source coverage are verified, create exact country default, create/read back matching exception, build with emission enabled and country-bound native confirmation, publish/upload through the existing source once, and verify Google processed assignments. Keep containment until ordinary and exception effective policies are correct across direct and discovered sources; preserve AT/unrelated countries."
+    },
+    {
+      "step": 7,
+      "status": "RECEIVER_ACCEPTANCE_REQUIRED",
+      "action": "Download or inspect processed input plus effective product return-policy assignment by source and country. Reconcile row counts, IDs,720(or fresh recomputed) exceptions, ordinary holdouts, country matches and unknown-label errors. Only then state synchronized; policy Verified, StoreQuality score, impressions, orders and profit are separate outcomes."
+    }
+  ],
+  "alternatives_assessed": [
+    {
+      "alternative": "Upload label first, then create default/exception",
+      "verdict": "NOT_A_SAFE_CONTAINMENT_METHOD",
+      "reason": "Missing and unmatched labels fall back to default; preloading no_returns without a matching country policy cannot protect a new standard-first interval."
+    },
+    {
+      "alternative": "Use product-level returns attribute without account policy",
+      "verdict": "DOCUMENTED_BUT_NOT_IMPLEMENTED_OR_READY",
+      "reason": "Current Google docs allow product overrides, but this builder emits return_policy_label only. Exact fee representation is unresolved and omitted shipping fee becomes0. New parser/serializer review plus complete source facts would be required; do not guess zero customer-paid return postage or silently replace the approved mechanism."
+    },
+    {
+      "alternative": "Use website product/organization return markup to override saved native policy",
+      "verdict": "NOT_A_PROVEN_FIX_FOR_THE_CURRENT_NATIVE_DEFAULT",
+      "reason": "Merchant account settings outrank website markup; crawled discovery and reprocessing are unverified. This task authorizes no theme change."
+    },
+    {
+      "alternative": "Save a universal no-returns default temporarily",
+      "verdict": "REJECTED_AS_INACCURATE",
+      "reason": "It would understate ordinary30-day return rights and may misrepresent defect remedies. A supposedly conservative false policy is not a safe staging value."
+    }
+  ],
+  "readback_requirements": [
+    "Exact account513542500, policyID/label/countries/status and every entered field; no new processing days, postal fees, physical return locations or altered refund rights.",
+    "Actual published/received TSV header includes return_policy_label, labels exactly match saved exception policy within each country, all nonlabel columns/IDs/prices/Shopping_ads exclusions preserved, and all expected rows processed.",
+    "Effective exception and ordinary treatment across each controlled and discovered source, not just the file download or policy list. Review count mismatch as an error, never silently reduce cohort.",
+    "Current source/default/exception ownership and country scope preserved; no second primary publisher, unexplained offer disappearance, duplicate source or expansion to paid destinations.",
+    "A label leaving the exception cohort must be removed on subsequent full-file processing; new products/removals must follow the same mapping. Ongoing automatic lifecycle remains separately unverified."
+  ],
+  "rollback": [
+    "Freeze exact before native policy records/country sets, source assignments, current received TSV/hash and configuration. Rollback is scoped to the specific new exception/label/source update and must preserve US corrected prices and unrelated sources.",
+    "Do not delete an exception policy while live offers still depend on its label: unmatched labels can fall back to default. Migrate or contain affected offers, verify correct effective policy, then remove only the exact new policy if needed.",
+    "Do not blindly restore the18-column file after a broader default is active: removing exception labels could recreate the false blanket30-day promise. Hold the affected release and repair or restore a fully coherent policy+binding state.",
+    "No destructive discovered-source removal, default-country expansion/reversal, paid status change or policy text rewrite is an automatic rollback. Stop at an unexpected control/permission/policy condition and report exact evidence."
+  ],
+  "checks": {
+    "current_source_hash_matches_classification": true,
+    "source240parents4945variants": true,
+    "available4923_exact_US_offer_join": true,
+    "classification240parents_complete": true,
+    "classification_facts_and_variant_sets_exact": true,
+    "current48exceptionparents720offers": true,
+    "all48exceptions_include_swimwear_taxonomy": true,
+    "ordinary4203_rows_only_no_explicit_exception": true,
+    "no_actual_gift_card_or_FinalSale_matches": true,
+    "US_and_Google_received_same_current_bytes": true,
+    "US_sha_exact_current_corrected_release": true,
+    "both_current_US_headers18_without_return_label": true,
+    "all4923_paid_exclusions_preserved": true,
+    "emission_disabled_despite_diagnostic_confirmation": true,
+    "native_AT_saved_verified_only": true,
+    "native_refund_days_blank_no_restocking": true,
+    "policy_body_hashes_match_saved_source": true,
+    "latest_source_pagination_complete": true
+  },
+  "checks_passed": 18,
+  "checks_total": 18,
+  "official_sources": [
+    {
+      "url": "https://support.google.com/merchants/answer/14011730?hl=en",
+      "retrieval": "Current official indexed text retrieved September11; direct open hit a non-retryable Google challenge and was not retried.",
+      "finding": "Documented UI sequence is standard policy, exception policy, product label assignment. One policy can select one or more countries; adding countries must respect other existing country policies. Verified uploaded policies take precedence over website extraction. Policy verification is separate from product serving."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/9445425?hl=en",
+      "retrieval": "Live official page read September11.",
+      "finding": "Product return_policy_label selects a non-default policy. Absent values inherit default. UTF-8, non-repeated value, at most100characters in feed specification. The local proposed no_returns string is format-valid but not an actual saved policy."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/15092880?hl=en",
+      "retrieval": "Live official page read September11.",
+      "finding": "Empty, missing and unmatched labels use default policy. Changing default affects every product using it; unmatched-label-first upload does not prevent default fallback."
+    },
+    {
+      "url": "https://developers.google.com/merchant/api/reference/rest/accounts_v1/accounts.onlineReturnPolicies",
+      "retrieval": "Current v1 reference read September11.",
+      "finding": "Default and exception labels are country-bound; absent label denotes country default, label uniqueness is per country. Country values are ISO2 sale countries. processRefundDays is optional and described as processing days without a business-day conversion rule. Return shipping fee is conditional on download/print labels; no numeric fee need be invented for customer responsibility. API label limit50 is distinct from the feed100 limit."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/12472394?hl=en",
+      "retrieval": "Official indexed text retrieved September11.",
+      "finding": "Sales country support must be confirmed against Merchant supported countries. Policy country selection is not automatic all-market expansion; AT does not mean AU, and UK is GB."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/17081382?hl=en",
+      "retrieval": "Live official page read September11.",
+      "finding": "Current product-level returns attribute can override account-level policies and avoid requiring account policies for covered offers. It is a different complex attribute from return_policy_label; current builder does not emit it. Omitted shipping fee defaults to zero, so it is not a safe shortcut for unquantified customer-paid return shipping."
+    },
+    {
+      "url": "https://developers.google.com/search/docs/appearance/structured-data/merchant-listing",
+      "retrieval": "Official indexed text retrieved September11.",
+      "finding": "Product-level feeds take precedence over account configuration; account settings take precedence over website markup. Product markup can override organization markup but is not a proven override of this saved Merchant default."
+    },
+    {
+      "url": "https://developers.google.com/search/docs/appearance/structured-data/return-policy?hl=en",
+      "retrieval": "Official indexed text retrieved September11.",
+      "finding": "Merchant/Search Console return settings outrank website product and organization markup; markup is not an immediate account-policy synchronization mechanism."
+    }
+  ],
+  "input_manifest": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/return_label_mechanism.json": {
+      "sha256": "6789a22384312f8f2996301481720da8a2c05f3c5635336b68f8df1b4ffacafb",
+      "bytes": 6262
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/return_label_mechanism.md": {
+      "sha256": "050420c0040b4a870fa3f9a246af4039c3edc30694b8d5cec8dc6ff205402209",
+      "bytes": 3091
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/return_candidate_review.json": {
+      "sha256": "6f4768f9d929cbd25aed34df57bb1c607151525d858adfaa764fd0d2aaced9bc",
+      "bytes": 5739
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/return_candidate_review.md": {
+      "sha256": "f3e320d802f80be1c5bdaeb862f68ff68ba83bcea1c088a61450ab43f6dc5e6c",
+      "bytes": 2076
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/receiver_20260910/return_policy_reconciliation.json": {
+      "sha256": "d6ea283a1e9ac159e0545e582bf82daadc5f91fc8fad0e65357d93b60f2221f7",
+      "bytes": 44019
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/receiver_20260910/return_policy_reconciliation.md": {
+      "sha256": "61d7645e974343a2dadbf82c25a6bba6ed304ba69c8047f11e89f89659542190",
+      "bytes": 2933
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js": {
+      "sha256": "7eed96af11540a1b455b006fc04ccf51c268d8b674e35696a1f32a8a24957d84",
+      "bytes": 19653
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/first_release_v2/build_source/src/generator.js": {
+      "sha256": "123d6f4f4ad88c974499d43ee38ebbb7a5542b7b380b0de7bc930e83ab4f1d0f",
+      "bytes": 18298
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/first_release_v2/build_source/src/worker.js": {
+      "sha256": "2bdbc7f06e81318871bc36baf26287d2c3a0b71944e49d725c4647eddcc46f2c",
+      "bytes": 7627
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/first_release_v2/config.json": {
+      "sha256": "8c95d603932be3b8ea1d70c8ee0a4799c3ca42065acf454755c09971bd7c8c2f",
+      "bytes": 1870
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate_config.json": {
+      "sha256": "6be63f2712324d9a3d0bddf750b1f46616e5e910e9cecb15073c3b17754163ed",
+      "bytes": 3020
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/return_classification_current_20260911.json": {
+      "sha256": "6310ad95ce4202e72040a64a623a7892aebcd7ab1fbc65d1ebb2a0cb3efea51e",
+      "bytes": 418548
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.snapshot.json": {
+      "sha256": "6b3ea0331cf140c0cd7ddfb88ad1c17a1d4ab831f46dcf676000bac76491dc56",
+      "bytes": 6786949
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/refreshed_feed/us-en.tsv": {
+      "sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+      "bytes": 17166442
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/google_received_us-en_20260911_194538.tsv": {
+      "sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+      "bytes": 17166442
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/refreshed_feed/us-en.diagnostics.json": {
+      "sha256": "0bc13d8d7df49b1969e566b78eac6f3c2a27a6b7ae812e735fa1eff12e1466f4",
+      "bytes": 968257
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/all-markets.execution_checkpoint.json": {
+      "sha256": "8cc3930ab7fabcc756839016f1fee94d7f0e63f8e5015e06d94f89857d3a1a1f",
+      "bytes": 3675
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.google_submission_checkpoint.json": {
+      "sha256": "c8dfc71b8dcb4beebceb7e893e0b7e6c72060414c2c7a0d0efea6afd2fabfbe2",
+      "bytes": 14353
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/google_price_receipt_20260911.json": {
+      "sha256": "7cbb9ef49c9c809735d3b1780a5766bf4de20ef55190af2ed7efee410b527702",
+      "bytes": 6372
+    }
+  },
+  "execution": {
+    "external_mutations": 0,
+    "native_or_browser_calls": 0,
+    "Shopify_or_Merchant_API_calls": 0,
+    "public_storefront_retries": 0,
+    "shared_canonical_edits": 0,
+    "paid_actions": 0,
+    "only_write": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/return_policy_sequence_independent_review_20260911.json",
+    "local_reader_issue": "One range-printing command hit IndexError after reading requested classification. Corrected bounded reads completed; no source change or test failure."
+  },
+  "limitations": [
+    "Independent local evidence/primary-doc review; native observations are Merchant-owned receipts, not independent account inspection.",
+    "Policy source snapshot datesSeptember10; no new source-policy query or public-storefront retry in this review. Fresh source equality must be checked by the owner if values may have changed.",
+    "Current classification0lexicalrisk is not a legal eligibility decision or proof of discovered-source coverage.",
+    "No supported atomic native standard/exception/product-binding transaction was established.",
+    "No policy saved, label uploaded, StoreQuality improved, serving or profitable sales claimed."
+  ],
+  "next_owner_action": "Merchant should finish the exact discovered-source country/offer/return-policy mapping before any default expansion; it determines which promises and assignment path the change would affect.",
+  "continuation": "Resume only the existing Merchant return-policy lane from this matrix and its named gaps; preserve peer owners and full-paid NONE."
+}

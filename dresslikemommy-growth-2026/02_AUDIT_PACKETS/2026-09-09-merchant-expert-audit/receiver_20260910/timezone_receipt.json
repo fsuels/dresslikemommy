@@ -1,0 +1,20 @@
+{
+  "schema":"dlm.merchant.timezone_execution.v1",
+  "status":"IMPLEMENTED_AND_ROOT_RELOAD_VERIFIED",
+  "recorded_at_utc":"2026-09-10 18:51:58 UTC",
+  "execution_window_utc":"After preflight at18:50:00.604412UTC and before18:51:58UTC; individual click timestamps not separately recorded",
+  "target":"Merchant Center513542500 / General / Account setup / Time zone",
+  "before":"(GMT-04:00) Atlantic Standard Time (Blanc-Sablon)",
+  "after":"(GMT-05:00) Eastern Standard Time (New York)",
+  "source_iana_timezone":"America/New_York",
+  "actions":["Selected the single exact New York dropdown result after fresh account/before-state checks","UI displayed New York with separate Save and Cancel controls","Clicked the unique Save in Account language and time zone","After save, New York remained and Save/Cancel disappeared","Reloaded current Merchant page with Cmd+R","Fresh complete account513 read still showed New York"],
+  "controls_after_reload":{"account":"Dresslikemommy, 513542500","language":"English (United States)","product_protection":"Off; checkbox0"},
+  "settings_saved":1,
+  "source_or_product_changes":0,
+  "sync_navigation_clicks":0,
+  "paid_or_billing_changes":0,
+  "before_plan_sha_at_preflight":"cae36d4c3a9c931a82368b443e146d912be2da2772a4ef176ee93a03c1310f94",
+  "metadata_correction":"Plan query-time upper bound was widened to the actual observed18:51:58 clock; earlier18:48:15 upper bound had not been separately clocked. Facts and intended setting unchanged.",
+  "rollback":"Restore Blanc-Sablon via this same dropdown and Save. Future configuration is reversible; previously calculated metrics are not recalculated by this rollback.",
+  "limits":["Saved native UI verification, not independent API timezone readback","No claim that timezone alignment repairs zero-product submission or generates traffic or profit","The separate Product sync On approval-review rejection remains pending and was not bypassed"]
+}

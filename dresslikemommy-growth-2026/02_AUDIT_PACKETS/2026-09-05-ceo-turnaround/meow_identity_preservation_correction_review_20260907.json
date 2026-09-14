@@ -1,0 +1,102 @@
+{
+  "schema": "dlm.meow_identity_preservation_correction_review.v1",
+  "verdict": "PASS_WITH_GATES",
+  "reviewed_at_utc": "2026-09-07T03:20:50.989113+00:00",
+  "reviewer": "/root/historical_google_access_paths",
+  "independence": "Local independent review of parent-collected mutation and separate readback evidence. Did not author, execute, or externally verify either operation. Prior preflight remains unchanged.",
+  "product_id": "gid://shopify/Product/7533458194529",
+  "source_sha256": {
+    "meow_identity_before_20260907.json": "a489805319317e5e49dc46cc240960242758d16db4a9ede0d13fc70bc40237f9",
+    "meow_identity_translations_before_20260907.json": "2b2f2d982d17e2f47d7e022bb8fd0b5165093806e543e0eb5a1a2e7810111066",
+    "meow_identity_copy_20260907.json": "02cd3e2e6c51c0d5228f8322a75d3f37cbfffc7d6bc886d372a0223ff954ba69",
+    "meow_identity_primary_variables_20260907.json": "fffa4f353bf6e1f5303ccdba6e88a6b03ee4a78b1660286259231852d76bdf81",
+    "meow_identity_primary_mutation_20260907.graphql": "2024dafe7d41f9444b23a7d0f39c11476d54df6eb9bdb5ad523bc1305d27d3a0",
+    "meow_identity_primary_mutation_result_20260907.json": "8394302dbd5ae80f1e0681b73d4e98aaa1efc4ce1ac46a23e3bbf87b989fa9b9",
+    "meow_identity_intermediate_source_20260907.json": "41570d4f88754563f649c07224122388e1e8ad1fbc9f17037d5363ef62f061f2",
+    "meow_identity_intermediate_diff_20260907.json": "5ce52ea9a49bee56a0275da4dcb7bb3cdb213758bab54a018f5e9309703b5715",
+    "meow_identity_independent_review_20260907.json": "e7af43dc3bf853e0a98bfb65cf4b45a6e277f406f1f251e79a9c273ffc6ad00c",
+    "meow_identity_rollback_20260907.json": "314bf901b9c1f924173b26d23b53a5411fa8b73da2b1cc645c8e52f0b2e749c5",
+    "meow_identity_preservation_correction_20260907.json": "e3311c95917797b483f346d7a6274e65a66f2c2e64a4d3a822187fdac57b02d3",
+    "meow_identity_preservation_restore_variables_20260907.json": "8e20f58ea220aef66c6056434180bd54833f41132a5e6bbd6bc9e22a41e6dd5f",
+    "meow_identity_rollback_v2_20260907.json": "e924e565b3d5ac7051ae7180b770dd0950a8b4ecf81f6e35f6099bba0c874e51",
+    "meow_identity_intermediate_translations_20260907.json": "8cc3d1c5445509741efd0172459a4ad5fc1eba52145100fd9b91c45753e3d064"
+  },
+  "checks": {
+    "exact_identity_in_before_result_intermediate": true,
+    "captured_original_payload_title_only": true,
+    "mutation_result_no_user_errors": true,
+    "result_and_separate_read_agree_new_title_description_null": true,
+    "original_description_product_source_digest_agree": true,
+    "intermediate_description_source_null_empty_string_hash": true,
+    "independent_recursive_diff_matches_saved_six_changes": true,
+    "all_changes_limited_to_title_description_and_corresponding_source_values_digests": true,
+    "downstream_stop_recorded": true,
+    "prior_review_already_required_stop_on_nontarget_drift": true,
+    "correction_exact_approved_title_plus_original_description_only": true,
+    "simulated_correction_restores_original_description_digest": true,
+    "simulated_remaining_source_deltas_only_intended_title": true,
+    "complete_100_row_original_translation_baseline_present": true,
+    "safe_rollback_includes_original_title_and_description": true,
+    "prior_title_only_rollback_detected_as_unsafe_to_reuse": true,
+    "manual_scope_restores_own_side_effect_without_new_copy": true,
+    "manual_no_live_preservation_or_api_behavior_generalization": true,
+    "root_restore_variables_exact_reviewed_candidate": true,
+    "root_correction_plan_exact_reviewed_candidate": true,
+    "rollback_v2_primary_exact_safe_inverse": true,
+    "rollback_v2_preserves_exact20_inverse_values": true,
+    "rollback_v2_explicitly_supersedes_title_only_payload": true,
+    "full_intermediate100_values_unchanged_only20_title_and20_description_flags_true": true
+  },
+  "checks_passed": 24,
+  "checks_failed": 0,
+  "finding": "Prior title-only preservation assumption failed in this actual execution despite zero userErrors. The required separate non-target gate caught the description loss and stopped localized registration. This evidence does not establish a universal API replacement rule.",
+  "approved_bounded_correction_candidate": {
+    "product": {
+      "id": "gid://shopify/Product/7533458194529",
+      "seo": {
+        "title": "Meow Star Garden Mommy & Me Pajamas | Dress Like Mommy",
+        "description": "Shop our Meow Star Garden matching mommy-and-me pajamas — soft cotton short-sleeve set for mom + daughter. Sizes 2Y–10Y & Mom S–XL."
+      }
+    }
+  },
+  "expected_after_correction": {
+    "remaining_source_change_paths": [
+      ".product.seo.title",
+      ".translatableResource.translatableContent.4.value",
+      ".translatableResource.translatableContent.4.digest"
+    ],
+    "meta_description_sha256_utf8": "ef93dc4c064e624e6e0c73bbf5b42d3491c122ef68a76864c9db12bdc9b540fe",
+    "translation_registration": "STILL_STOPPED_UNTIL_FULL_AFTER_READ_PASSES"
+  },
+  "rollback_guard_correction": {
+    "instruction": "Do not reuse the previous title-only rollback payload. Any subsequent primary title restoration must include the exact original SEO description explicitly, followed by fresh source digest read before guarded localized inverse registration.",
+    "safe_primary_inverse_candidate": {
+      "product": {
+        "id": "gid://shopify/Product/7533458194529",
+        "seo": {
+          "title": "Cat Meadow Mommy & Me Pajamas — Set | Dress Like Mommy",
+          "description": "Shop our Meow Star Garden matching mommy-and-me pajamas — soft cotton short-sleeve set for mom + daughter. Sizes 2Y–10Y & Mom S–XL."
+        }
+      }
+    },
+    "bound_safe_rollback_file": "meow_identity_rollback_v2_20260907.json",
+    "status": "ROOT_PREPARED_AND_LOCALLY_VERIFIED; original failed-plan file preserved."
+  },
+  "execution_gates": [
+    "Root must freshly confirm the same exact failed intermediate state and no unrelated source drift, then use one normal productUpdate carrying only id plus the approved new title and exact original description. Normal mutation permission/confirmation remains binding.",
+    "Require a separate full primary/source and100-row translation read. Description value and original digest must be restored; all other source/product differences must be limited to intended title. Preserve all80 non-target translation values AND flags; do not infer flags automatically recovered.",
+    "Only after that complete guard passes, use the actual new meta_title digest for the exact20 reviewed translations. If non-target values/flags still differ, or any mutation/read is ambiguous, stop; no registration, extra repairs, or blind retry.",
+    "After title registration require a separate full after-state review. Restoration does not validate pre-existing material/sizing claims in the old description, native rendering, search performance, sales or profit."
+  ],
+  "current_translation_state": "Independently compared parent-collected intermediate100 rows to original: all100 values and all remaining row fields unchanged; only20 meta_title and20 meta_description outdated flags became true. Description flags must return to their original state before localized title registration.",
+  "commands_actually_run": [
+    "Local Python JSON inspection, source SHA256, independent full recursive before/intermediate diff, exact correction/inverse construction and expected-state simulation, source stability reread, output JSON/whitespace checks."
+  ],
+  "actions": {
+    "external_calls": 0,
+    "browser_calls": 0,
+    "mutation_calls": 0,
+    "canonical_or_prior_artifact_edits": 0,
+    "new_owned_review_files": 2
+  }
+}

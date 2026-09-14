@@ -1,0 +1,36 @@
+{
+  "schema": "dlm.microsoft.independent_review.v1",
+  "phase": "FINAL",
+  "verifier": "/root/microsoft_plan_independent_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "scope": "Independent offline code review, adversarial probes, full revised test run and final diagnostic-diff verification; no implementation or live execution by verifier",
+  "verdict": "PASS_WITH_GATES",
+  "deployment": "NO_GO",
+  "required_local_corrections_remaining": 0,
+  "tests": {
+    "passed": 28,
+    "failed": 0,
+    "command": "Bundled Node --test purchase-contract.test.mjs"
+  },
+  "reviewed_sha256": {
+    "purchase-contract.mjs": "e1af89e03de25cc356a28214c51753ed62b86803554e80a95dece236ad6e440a",
+    "purchase-contract.test.mjs": "962c506aa37187e20077030b441fc4276ee98124af98ab715d147dd152ee36f6",
+    "REPAIR_CANDIDATE.md": "dea88222becebf4c554baa7e2b476e4cf6329857e0f18b9925b7c82647a51563"
+  },
+  "verified_corrections": [
+    "Stored digest types checked before regex validation",
+    "Pending work and operation deadlines bounded",
+    "Expired ledger holds all orders",
+    "Late storage completions cannot dispatch and uncertain reservations remain preserved",
+    "Waiting calls after storage timeout report storage uncertainty rather than a false consent change"
+  ],
+  "unresolved_deployment_gates": [
+    "Reproduced cross-tab duplicate dispatch and reservation loss",
+    "Authoritative deduplication and single-sender cutover",
+    "Supported correction of installed standard pageLoad sender",
+    "Live runtime consent behavior and receiver/order reconciliation"
+  ],
+  "files_edited": 0,
+  "external_mutations": 0,
+  "provenance": "Root persisted the independent verifier's returned final messages. The verifier did not build the candidate. Local verification tests are distinct from live implementation."
+}

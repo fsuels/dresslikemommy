@@ -1,0 +1,43 @@
+{
+  "schema": "dlm.submission.independent_verification.v1",
+  "reviewed_at_utc": "2026-09-10T00:54:41.463543+00:00",
+  "source_started_utc": "2026-09-10 00:53:01 UTC",
+  "source_ended_utc": "2026-09-10 00:53:02 UTC",
+  "verdict": "PASS",
+  "did_not_build_or_execute_source_read": true,
+  "method": "Independent local parse, exact query-target binding, recalculation, ID-set comparison and coverage-matrix boundary checks only. No new source/API/browser calls.",
+  "checks": {
+    "shop_id_15571635": true,
+    "domain_www_dresslikemommy_com": true,
+    "google_alias_binds_publication_21969633377": true,
+    "online_alias_binds_publication_55169925": true,
+    "parents_240_unique": true,
+    "all_240_active": true,
+    "all_240_google_published": true,
+    "all_240_online_published": true,
+    "variant_total_4945": true,
+    "all_variant_counts_exact": true,
+    "terminal_has_next_page_false": true,
+    "no_response_graphql_errors": true,
+    "same_240_feedback_product_set": true,
+    "root_summary_matches_recalculation": true,
+    "coverage_21_supported_languages_theory": true,
+    "coverage_all_65_country_account_eligibilities_unknown": true,
+    "coverage_1365_unique_country_language_cells": true
+  },
+  "checks_passed": 17,
+  "checks_total": 17,
+  "result": "PASS: Saved evidence verifies Shop 15571635/www.dresslikemommy.com, 240 unique ACTIVE parents published to Google publication 21969633377 and Online Store publication 55169925, 4,945 EXACT variant counts, complete pagination and the same product-ID set as the fresh feedback snapshot. Parent channel publication does not prove per-variant country eligibility or Merchant 513542500 submission/approval. The 21-language matrix describes supported coverage in theory; it does not establish submission readiness. No external call or mutation occurred.",
+  "input_sha256": {
+    "submission_availability.json": "f7fa7705cb9df7369a062a07858f932982a800d6378dedf8d3265e01e9251a34",
+    "submission_availability_summary.json": "1394c5432d5a0a7328467f5bba7382998a11b6fc0b56e06c36084add8d641e71",
+    "google_feedback/product_feedback_current.json": "bb52925c80634e6f56daabcc02a4394885e46ec52d4bf6f4b1137581aa30f96d",
+    "coverage_standards/coverage_matrix.json": "0330f5d7cd624be07ca8fa093a74eb2c54f9cde9868bc37616d079766641ff3e"
+  },
+  "remaining_unknown": [
+    "per_variant_country_eligibility",
+    "Merchant513_receipt",
+    "Merchant513_approval",
+    "country_language_submission_readiness"
+  ]
+}

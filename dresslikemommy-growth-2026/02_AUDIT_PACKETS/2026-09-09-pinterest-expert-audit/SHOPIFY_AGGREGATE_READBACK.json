@@ -1,0 +1,443 @@
+{
+  "schema": "dlm.pinterest_shopify_aggregate_receipt.v1",
+  "read_at_utc": "2026-09-09 16:47:13 UTC",
+  "shopDomain": "dresslikemommy-com.myshopify.com",
+  "source_currency_receipt": {
+    "source": "Shopify analytics response structuredContent.chartHint.currencyCode",
+    "value": "USD"
+  },
+  "exact_window": {
+    "start_inclusive": "2026-08-10",
+    "end_inclusive": "2026-09-09",
+    "calendar_dates": 31,
+    "limit": "Native Pinterest showed Last30days; exact boundary and timezone still need confirmation"
+  },
+  "queries": [
+    "FROM sales SHOW orders, gross_sales, discounts, sales_reversals, net_sales, shipping_charges, taxes, total_sales TIMESERIES day SINCE 2026-08-10 UNTIL 2026-09-09",
+    "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE referrer_source = 'social' GROUP BY referrer_name SINCE 2026-08-10 UNTIL 2026-09-09"
+  ],
+  "sales_columns": [
+    {
+      "name": "day",
+      "dataType": "DAY_TIMESTAMP"
+    },
+    {
+      "name": "orders",
+      "dataType": "INTEGER"
+    },
+    {
+      "name": "gross_sales",
+      "dataType": "MONEY"
+    },
+    {
+      "name": "discounts",
+      "dataType": "MONEY"
+    },
+    {
+      "name": "sales_reversals",
+      "dataType": "MONEY"
+    },
+    {
+      "name": "net_sales",
+      "dataType": "MONEY"
+    },
+    {
+      "name": "shipping_charges",
+      "dataType": "MONEY"
+    },
+    {
+      "name": "taxes",
+      "dataType": "MONEY"
+    },
+    {
+      "name": "total_sales",
+      "dataType": "MONEY"
+    }
+  ],
+  "sales_rows": [
+    [
+      "2026-08-10",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-11",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-12",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-13",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-14",
+      "1",
+      "109.96",
+      "0",
+      "0",
+      "109.96",
+      "12.99",
+      "0",
+      "122.95"
+    ],
+    [
+      "2026-08-15",
+      "2",
+      "101.67",
+      "0",
+      "0",
+      "101.67",
+      "0",
+      "0",
+      "101.67"
+    ],
+    [
+      "2026-08-16",
+      "1",
+      "36.98",
+      "0",
+      "0",
+      "36.98",
+      "0",
+      "0",
+      "36.98"
+    ],
+    [
+      "2026-08-17",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-18",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-19",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-20",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-21",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-22",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-23",
+      "1",
+      "118.95",
+      "0",
+      "0",
+      "118.95",
+      "12.99",
+      "0",
+      "131.94"
+    ],
+    [
+      "2026-08-24",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-25",
+      "1",
+      "101.97",
+      "0",
+      "0",
+      "101.97",
+      "0",
+      "0",
+      "101.97"
+    ],
+    [
+      "2026-08-26",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-27",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-28",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-29",
+      "1",
+      "216.48",
+      "0",
+      "0",
+      "216.48",
+      "0",
+      "0",
+      "216.48"
+    ],
+    [
+      "2026-08-30",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-08-31",
+      "1",
+      "48.98",
+      "0",
+      "0",
+      "48.98",
+      "0",
+      "0",
+      "48.98"
+    ],
+    [
+      "2026-09-01",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-09-02",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-09-03",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-09-04",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-09-05",
+      "1",
+      "54.47",
+      "0",
+      "0",
+      "54.47",
+      "0",
+      "0",
+      "54.47"
+    ],
+    [
+      "2026-09-06",
+      "1",
+      "31.98",
+      "0",
+      "0",
+      "31.98",
+      "0",
+      "0",
+      "31.98"
+    ],
+    [
+      "2026-09-07",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-09-08",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "2026-09-09",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ]
+  ],
+  "sales_aggregate": {
+    "orders": 10,
+    "gross_sales_usd": 821.44,
+    "discounts_usd": 0,
+    "sales_reversals_usd": 0,
+    "net_sales_usd": 821.44,
+    "shipping_usd": 25.98,
+    "taxes_usd": 0,
+    "total_sales_usd": 847.42
+  },
+  "pinterest_session_columns": [
+    {
+      "name": "referrer_name",
+      "dataType": "STRING"
+    },
+    {
+      "name": "sessions",
+      "dataType": "INTEGER"
+    },
+    {
+      "name": "sessions_with_cart_additions",
+      "dataType": "INTEGER"
+    },
+    {
+      "name": "sessions_that_reached_checkout",
+      "dataType": "INTEGER"
+    },
+    {
+      "name": "sessions_that_completed_checkout",
+      "dataType": "INTEGER"
+    }
+  ],
+  "pinterest_session_rows": [
+    [
+      "pinterest",
+      "3",
+      "1",
+      "0",
+      "0"
+    ]
+  ],
+  "interpretation": "Only Shopify-recognized Pinterest social referrals; unattributed sessions and other attribution models may differ. No Pinterest-attributed purchase or profit claim. Store aggregate order count agreeing numerically with10 native Checkout receipts does not certify event-ID/order/value/dedup parity.",
+  "pii": "No customer or order identifiers/contacts included"
+}

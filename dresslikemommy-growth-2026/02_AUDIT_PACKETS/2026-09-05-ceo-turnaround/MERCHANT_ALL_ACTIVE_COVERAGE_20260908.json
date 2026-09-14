@@ -1,0 +1,2243 @@
+{
+  "schema": "dlm.merchant_all_active_coverage.v1",
+  "status": "LIVE_VERIFIED_SHOPIFY_SOURCE_COVERAGE__MERCHANT_LANGUAGE_ELIGIBILITY_UNVERIFIED",
+  "merchant_id": "513542500",
+  "source_live_evidence_as_of": "2026-09-08T21:48:50Z",
+  "read_started_at_utc": "2026-09-08T21:48:22Z",
+  "scope": "All currently ACTIVE Shopify products, product-owned variant counts, two exact channel-publication booleans, published locales; no product bodies, variants, translations, customer data or Merchant API.",
+  "shop": {
+    "id": "gid://shopify/Shop/15571635",
+    "name": "Dress Like Mommy",
+    "myshopifyDomain": "dresslikemommy-com.myshopify.com",
+    "currencyCode": "USD"
+  },
+  "publication_targets": {
+    "online_store": {
+      "publication_id": "gid://shopify/Publication/55169925",
+      "catalog_id": "gid://shopify/AppCatalog/7328464993",
+      "catalog_status": "ACTIVE",
+      "apps": [
+        {
+          "id": "gid://shopify/App/580111",
+          "title": "Online Store",
+          "handle": "online_store"
+        }
+      ],
+      "app_pagination_complete": true
+    },
+    "google_youtube": {
+      "publication_id": "gid://shopify/Publication/21969633377",
+      "catalog_id": "gid://shopify/AppCatalog/7676067937",
+      "catalog_status": "ACTIVE",
+      "apps": [
+        {
+          "id": "gid://shopify/App/1780363",
+          "title": "Google & YouTube",
+          "handle": "google"
+        }
+      ],
+      "app_pagination_complete": true
+    }
+  },
+  "counts": {
+    "active_products_server": {
+      "count": 240,
+      "precision": "EXACT"
+    },
+    "active_products_enumerated": 240,
+    "active_product_variants_summed": 4945,
+    "exact_variant_count_products": 240,
+    "online_store_published": {
+      "products": 240,
+      "variants": 4945
+    },
+    "google_youtube_published": {
+      "products": 240,
+      "variants": 4945
+    },
+    "published_to_both": {
+      "products": 240,
+      "variants": 4945
+    },
+    "online_store_missing": {
+      "products": 0,
+      "variants": 0
+    },
+    "google_youtube_missing": {
+      "products": 0,
+      "variants": 0
+    },
+    "published_to_neither": {
+      "products": 0,
+      "variants": 0
+    }
+  },
+  "published_locale_count": 21,
+  "published_locales": [
+    {
+      "locale": "ar",
+      "name": "Arabic",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "cs",
+      "name": "Czech",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "da",
+      "name": "Danish",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "de",
+      "name": "German",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "el",
+      "name": "Greek",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "en",
+      "name": "English",
+      "primary": true,
+      "published": true
+    },
+    {
+      "locale": "es",
+      "name": "Spanish",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "fi",
+      "name": "Finnish",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "fr",
+      "name": "French",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "he",
+      "name": "Hebrew",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "hi",
+      "name": "Hindi",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "it",
+      "name": "Italian",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "ja",
+      "name": "Japanese",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "ko",
+      "name": "Korean",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "nl",
+      "name": "Dutch",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "no",
+      "name": "Norwegian",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "pl",
+      "name": "Polish",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "pt-BR",
+      "name": "Portuguese (Brazil)",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "ro",
+      "name": "Romanian",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "ru",
+      "name": "Russian",
+      "primary": false,
+      "published": true
+    },
+    {
+      "locale": "sv",
+      "name": "Swedish",
+      "primary": false,
+      "published": true
+    }
+  ],
+  "coverage": {
+    "product_filter": "status:active",
+    "server_count_limit": null,
+    "sort_key": "ID",
+    "product_pages": [
+      {
+        "page": 1,
+        "returned": 200,
+        "has_next_page": true
+      },
+      {
+        "page": 2,
+        "returned": 40,
+        "has_next_page": false
+      }
+    ],
+    "all_product_pagination_complete": true,
+    "publication_pages_read": 1,
+    "app_publications_returned": 9,
+    "publication_pagination_complete": true,
+    "nested_catalog_app_pages_read": 9,
+    "all_catalog_app_pagination_complete": true,
+    "locales_shape": "Unpaginated full published-only list",
+    "variant_count_method": "Sum Product.variantsCount.count over unique ACTIVE product IDs; every Count precision EXACT. Variant IDs, individual status/availability and Merchant offers were not enumerated.",
+    "atomicity": "Not an atomic transaction across API calls. Complete unique product enumeration matches exact server count in this bounded read."
+  },
+  "publication_gaps": [],
+  "product_coverage": [
+    {
+      "product_id": "gid://shopify/Product/6718945034337",
+      "status": "ACTIVE",
+      "variants_count": 20,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/6718948147297",
+      "status": "ACTIVE",
+      "variants_count": 40,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/6719764463713",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/6719774720097",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/6719792873569",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7108953604193",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7108958519393",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7108962254945",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7108969037921",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7108984799329",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7108986404961",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7108988764257",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7108992860257",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7108996530273",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7108998987873",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109072257121",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109083267169",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109084807265",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109117280353",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109119705185",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109122097249",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109123670113",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109125537889",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109267947617",
+      "status": "ACTIVE",
+      "variants_count": 27,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109292130401",
+      "status": "ACTIVE",
+      "variants_count": 36,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109298487393",
+      "status": "ACTIVE",
+      "variants_count": 36,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109443256417",
+      "status": "ACTIVE",
+      "variants_count": 40,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109454135393",
+      "status": "ACTIVE",
+      "variants_count": 27,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109472288865",
+      "status": "ACTIVE",
+      "variants_count": 27,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109481431137",
+      "status": "ACTIVE",
+      "variants_count": 35,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109502566497",
+      "status": "ACTIVE",
+      "variants_count": 27,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109514395745",
+      "status": "ACTIVE",
+      "variants_count": 27,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109517770849",
+      "status": "ACTIVE",
+      "variants_count": 27,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7109986844769",
+      "status": "ACTIVE",
+      "variants_count": 18,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7110356631649",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7110361874529",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7110362136673",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7110363119713",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7110363775073",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7110364856417",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7110368919649",
+      "status": "ACTIVE",
+      "variants_count": 18,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227252670561",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227254276193",
+      "status": "ACTIVE",
+      "variants_count": 8,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227270299745",
+      "status": "ACTIVE",
+      "variants_count": 24,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227270791265",
+      "status": "ACTIVE",
+      "variants_count": 56,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227355988065",
+      "status": "ACTIVE",
+      "variants_count": 8,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227356282977",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227374534753",
+      "status": "ACTIVE",
+      "variants_count": 21,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227375714401",
+      "status": "ACTIVE",
+      "variants_count": 20,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227378892897",
+      "status": "ACTIVE",
+      "variants_count": 21,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227378925665",
+      "status": "ACTIVE",
+      "variants_count": 23,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227379023969",
+      "status": "ACTIVE",
+      "variants_count": 23,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227418738785",
+      "status": "ACTIVE",
+      "variants_count": 21,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227434958945",
+      "status": "ACTIVE",
+      "variants_count": 13,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227435450465",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227436367969",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227438530657",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227439546465",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227620982881",
+      "status": "ACTIVE",
+      "variants_count": 14,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227624554593",
+      "status": "ACTIVE",
+      "variants_count": 13,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7227630649441",
+      "status": "ACTIVE",
+      "variants_count": 30,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7228773466209",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7228788867169",
+      "status": "ACTIVE",
+      "variants_count": 44,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229023846497",
+      "status": "ACTIVE",
+      "variants_count": 8,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229026304097",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229027876961",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229128441953",
+      "status": "ACTIVE",
+      "variants_count": 48,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229130342497",
+      "status": "ACTIVE",
+      "variants_count": 18,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229130801249",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229132472417",
+      "status": "ACTIVE",
+      "variants_count": 13,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229259874401",
+      "status": "ACTIVE",
+      "variants_count": 96,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229825581153",
+      "status": "ACTIVE",
+      "variants_count": 30,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229828202593",
+      "status": "ACTIVE",
+      "variants_count": 15,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7229835542625",
+      "status": "ACTIVE",
+      "variants_count": 30,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230150213729",
+      "status": "ACTIVE",
+      "variants_count": 30,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230151524449",
+      "status": "ACTIVE",
+      "variants_count": 15,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230155882593",
+      "status": "ACTIVE",
+      "variants_count": 14,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230156701793",
+      "status": "ACTIVE",
+      "variants_count": 28,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230157226081",
+      "status": "ACTIVE",
+      "variants_count": 28,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230159028321",
+      "status": "ACTIVE",
+      "variants_count": 28,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230159618145",
+      "status": "ACTIVE",
+      "variants_count": 14,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230168727649",
+      "status": "ACTIVE",
+      "variants_count": 14,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230180884577",
+      "status": "ACTIVE",
+      "variants_count": 48,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230191665249",
+      "status": "ACTIVE",
+      "variants_count": 44,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230194942049",
+      "status": "ACTIVE",
+      "variants_count": 36,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230323261537",
+      "status": "ACTIVE",
+      "variants_count": 28,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230327128161",
+      "status": "ACTIVE",
+      "variants_count": 38,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230332895329",
+      "status": "ACTIVE",
+      "variants_count": 60,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230336729185",
+      "status": "ACTIVE",
+      "variants_count": 75,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230338039905",
+      "status": "ACTIVE",
+      "variants_count": 75,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230339711073",
+      "status": "ACTIVE",
+      "variants_count": 75,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230342004833",
+      "status": "ACTIVE",
+      "variants_count": 75,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230415863905",
+      "status": "ACTIVE",
+      "variants_count": 60,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230418944097",
+      "status": "ACTIVE",
+      "variants_count": 75,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230423236705",
+      "status": "ACTIVE",
+      "variants_count": 75,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230424645729",
+      "status": "ACTIVE",
+      "variants_count": 75,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7230645239905",
+      "status": "ACTIVE",
+      "variants_count": 75,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7241063825505",
+      "status": "ACTIVE",
+      "variants_count": 64,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7241105670241",
+      "status": "ACTIVE",
+      "variants_count": 31,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7241201942625",
+      "status": "ACTIVE",
+      "variants_count": 19,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7497751986273",
+      "status": "ACTIVE",
+      "variants_count": 8,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502178222177",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502187888737",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502191788129",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502192214113",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502765097057",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502765719649",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502765949025",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502768210017",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502768439393",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502769193057",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502770045025",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502770602081",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502770896993",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502771519585",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502771781729",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502790656097",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502791082081",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502791671905",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502792622177",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502792949857",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502793179233",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502828601441",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7502836007009",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7505372282977",
+      "status": "ACTIVE",
+      "variants_count": 21,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7505374838881",
+      "status": "ACTIVE",
+      "variants_count": 21,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7505375232097",
+      "status": "ACTIVE",
+      "variants_count": 21,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7510267494497",
+      "status": "ACTIVE",
+      "variants_count": 24,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7510790733921",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7510790996065",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7510791159905",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7510791258209",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7516369715297",
+      "status": "ACTIVE",
+      "variants_count": 14,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7516479848545",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533081133153",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533348618337",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533351272545",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533354975329",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533367296097",
+      "status": "ACTIVE",
+      "variants_count": 4,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533379059809",
+      "status": "ACTIVE",
+      "variants_count": 4,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533390856289",
+      "status": "ACTIVE",
+      "variants_count": 4,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533397835873",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533403799649",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533404192865",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533404291169",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533429358689",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533430440033",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533453934689",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533454098529",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533454393441",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533454426209",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533454655585",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7533458194529",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7534719860833",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7534826520673",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7535210594401",
+      "status": "ACTIVE",
+      "variants_count": 24,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7535227666529",
+      "status": "ACTIVE",
+      "variants_count": 24,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7535312896097",
+      "status": "ACTIVE",
+      "variants_count": 22,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7535320465505",
+      "status": "ACTIVE",
+      "variants_count": 8,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7535362015329",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7535908946017",
+      "status": "ACTIVE",
+      "variants_count": 8,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7535944368225",
+      "status": "ACTIVE",
+      "variants_count": 16,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536086089825",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536240984161",
+      "status": "ACTIVE",
+      "variants_count": 26,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536309141601",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536334274657",
+      "status": "ACTIVE",
+      "variants_count": 25,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536337125473",
+      "status": "ACTIVE",
+      "variants_count": 56,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536340729953",
+      "status": "ACTIVE",
+      "variants_count": 25,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536341024865",
+      "status": "ACTIVE",
+      "variants_count": 39,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536457941089",
+      "status": "ACTIVE",
+      "variants_count": 25,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536469639265",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536696295521",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536696328289",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536700391521",
+      "status": "ACTIVE",
+      "variants_count": 28,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536703012961",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536704520289",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536707305569",
+      "status": "ACTIVE",
+      "variants_count": 13,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536709009505",
+      "status": "ACTIVE",
+      "variants_count": 25,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536709501025",
+      "status": "ACTIVE",
+      "variants_count": 28,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536709664865",
+      "status": "ACTIVE",
+      "variants_count": 14,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536947003489",
+      "status": "ACTIVE",
+      "variants_count": 25,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536982163553",
+      "status": "ACTIVE",
+      "variants_count": 17,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536982294625",
+      "status": "ACTIVE",
+      "variants_count": 14,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536984359009",
+      "status": "ACTIVE",
+      "variants_count": 30,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536988520545",
+      "status": "ACTIVE",
+      "variants_count": 20,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536988618849",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7536992976993",
+      "status": "ACTIVE",
+      "variants_count": 54,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537001431137",
+      "status": "ACTIVE",
+      "variants_count": 26,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537002971233",
+      "status": "ACTIVE",
+      "variants_count": 28,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537003266145",
+      "status": "ACTIVE",
+      "variants_count": 26,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537007198305",
+      "status": "ACTIVE",
+      "variants_count": 13,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537009033313",
+      "status": "ACTIVE",
+      "variants_count": 29,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537025613921",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537030234209",
+      "status": "ACTIVE",
+      "variants_count": 25,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537038917729",
+      "status": "ACTIVE",
+      "variants_count": 25,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537041342561",
+      "status": "ACTIVE",
+      "variants_count": 26,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537105961057",
+      "status": "ACTIVE",
+      "variants_count": 24,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537109991521",
+      "status": "ACTIVE",
+      "variants_count": 18,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537113563233",
+      "status": "ACTIVE",
+      "variants_count": 23,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537227890785",
+      "status": "ACTIVE",
+      "variants_count": 43,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537366597729",
+      "status": "ACTIVE",
+      "variants_count": 14,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537367023713",
+      "status": "ACTIVE",
+      "variants_count": 26,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537367384161",
+      "status": "ACTIVE",
+      "variants_count": 22,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537367679073",
+      "status": "ACTIVE",
+      "variants_count": 26,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537369088097",
+      "status": "ACTIVE",
+      "variants_count": 28,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537369120865",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537370628193",
+      "status": "ACTIVE",
+      "variants_count": 39,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537370857569",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537372463201",
+      "status": "ACTIVE",
+      "variants_count": 13,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537978572897",
+      "status": "ACTIVE",
+      "variants_count": 25,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537978933345",
+      "status": "ACTIVE",
+      "variants_count": 13,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7537979359329",
+      "status": "ACTIVE",
+      "variants_count": 28,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7541022818401",
+      "status": "ACTIVE",
+      "variants_count": 24,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7545279217761",
+      "status": "ACTIVE",
+      "variants_count": 8,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7545279512673",
+      "status": "ACTIVE",
+      "variants_count": 14,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7545279840353",
+      "status": "ACTIVE",
+      "variants_count": 17,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7545373130849",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7546613530721",
+      "status": "ACTIVE",
+      "variants_count": 21,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7562834215009",
+      "status": "ACTIVE",
+      "variants_count": 35,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7577248596065",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7585867432033",
+      "status": "ACTIVE",
+      "variants_count": 30,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7585867628641",
+      "status": "ACTIVE",
+      "variants_count": 24,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7585980055649",
+      "status": "ACTIVE",
+      "variants_count": 26,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7585992048737",
+      "status": "ACTIVE",
+      "variants_count": 22,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7607758422113",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7607760257121",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7607760388193",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7607762845793",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7607764287585",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7670609346657",
+      "status": "ACTIVE",
+      "variants_count": 24,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7670674391137",
+      "status": "ACTIVE",
+      "variants_count": 11,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7670683762785",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7670695526497",
+      "status": "ACTIVE",
+      "variants_count": 10,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7670724329569",
+      "status": "ACTIVE",
+      "variants_count": 9,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7670738223201",
+      "status": "ACTIVE",
+      "variants_count": 13,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7670742777953",
+      "status": "ACTIVE",
+      "variants_count": 13,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7670743498849",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7670744842337",
+      "status": "ACTIVE",
+      "variants_count": 13,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7670746775649",
+      "status": "ACTIVE",
+      "variants_count": 12,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    },
+    {
+      "product_id": "gid://shopify/Product/7672336646241",
+      "status": "ACTIVE",
+      "variants_count": 98,
+      "variants_count_precision": "EXACT",
+      "online_store_published": true,
+      "google_youtube_published": true
+    }
+  ],
+  "prior_market_evidence": {
+    "file": "international_market_locale_readback_20260908.json",
+    "as_of": "2026-09-08T18:31:44Z",
+    "published_locales": 21,
+    "active_markets": 6,
+    "unique_countries": 65,
+    "all_pagination_complete": true,
+    "markets_refreshed_this_lane": false,
+    "meaning": "Configuration only; does not prove Google country/language selection, shipping, translation quality or product eligibility."
+  },
+  "language_limits": {
+    "all_published_locales_selected_in_google_channel": "UNKNOWN",
+    "complete_native_product_translations_in_all_21_locales": "UNKNOWN_NOT_QUERIED",
+    "google_supported_language_country_pairs": "REQUIRES_CURRENT_GOOGLE_CHANNEL_READBACK",
+    "language_merchant_item_counts": "UNKNOWN",
+    "product_language_pair_arithmetic": {
+      "parent_products_times_locales": 5040,
+      "variants_times_locales": 103845,
+      "meaning": "Arithmetic only, excluding country expansion. Neither count is a Merchant feed denominator or proof that these localized records exist."
+    }
+  },
+  "decision": {
+    "shopify_bulk_publication_fix": "NO_ACTION_NEEDED; exact missing scope0/240 for both Online Store and Google & YouTube",
+    "immediate_next_action": "Root verifies Merchant513542500 connection/data source, Google & YouTube Countries and Languages selection against these21 published locales and supported intended markets, then captures synced/pending/disapproved offer counts and exact reasons.",
+    "conditional_external_fix": "Only if current Google settings show an omitted intended supported locale/country or disabled sync, root has the owner-requested scope to correct that exact selection and read back it. No omission or toggle state is proved by this Shopify read.",
+    "no_readiness_claim": "ACTIVE and Shopify channel publication are prerequisites, not accepted Merchant offers, translation completeness, stock/shipping eligibility, paid activation or profitable performance."
+  },
+  "checks": {
+    "shop_identity_verified": true,
+    "active_server_count_exact": true,
+    "active_count_matches_complete_enumeration": true,
+    "unique_active_product_ids": true,
+    "all_returned_products_active": true,
+    "all_variant_counts_exact": true,
+    "both_publication_targets_uniquely_bound_to_named_apps": true,
+    "publication_and_nested_app_pagination_complete": true,
+    "all_240_published_to_both": true,
+    "published_locales_unique_and_published": true,
+    "single_primary_english": true
+  },
+  "execution": {
+    "metadata_query_calls": 1,
+    "product_page_query_calls": 2,
+    "total_query_calls": 3,
+    "external_mutations": 0,
+    "app_installation_queries": 0,
+    "browser_calls": 0,
+    "customer_order_queries": 0,
+    "product_body_queries": 0,
+    "translation_queries": 0,
+    "schema_types": [
+      "Product",
+      "Count",
+      "ShopLocale",
+      "Publication"
+    ],
+    "existing_schema_reused": "QueryRoot products/productsCount/publications/shopLocales; prior validated AppCatalog application-binding selection",
+    "validation_artifacts": [
+      {
+        "id": "merchant-all-active-coverage-metadata-20260908",
+        "revision": 1,
+        "status": "VALID"
+      },
+      {
+        "id": "merchant-all-active-coverage-products-20260908",
+        "revision": 1,
+        "status": "VALID"
+      }
+    ],
+    "schema_auth_permission_failures": 0
+  },
+  "queries": {
+    "metadata": "query MerchantActiveCoverageMetadata20260908($after: String) {\n  shop { id name myshopifyDomain currencyCode }\n  activeProducts: productsCount(query: \"status:active\", limit: null) { count precision }\n  shopLocales(published: true) { locale name primary published }\n  publications(first: 20, after: $after, catalogType: APP) {\n    nodes {\n      id\n      catalog {\n        id title status\n        ... on AppCatalog {\n          apps(first: 5) {\n            nodes { id title handle }\n            pageInfo { hasNextPage endCursor }\n          }\n        }\n      }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+    "products": "query MerchantAllActiveCoveragePage20260908($after: String, $onlinePublication: ID!, $googlePublication: ID!) {\n  products(first: 200, after: $after, query: \"status:active\", sortKey: ID) {\n    nodes {\n      id status\n      variantsCount { count precision }\n      onlineStorePublished: publishedOnPublication(publicationId: $onlinePublication)\n      googlePublished: publishedOnPublication(publicationId: $googlePublication)\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+    "publication_variables": {
+      "onlinePublication": "gid://shopify/Publication/55169925",
+      "googlePublication": "gid://shopify/Publication/21969633377"
+    }
+  },
+  "official_sources": [
+    {
+      "url": "https://help.shopify.com/en/manual/online-sales-channels/marketplaces/google/getting-setup/syncing-products",
+      "claim": "Products need channel availability and required data; account-specific variant limits and Google review/eligibility are separate from Shopify publication."
+    },
+    {
+      "url": "https://help.shopify.com/en/manual/online-sales-channels/marketplaces/google/getting-setup/connect",
+      "claim": "Google & YouTube Countries and Languages controls determine the country/language selection synced from Shopify Markets."
+    }
+  ],
+  "privacy": "Only public product IDs, product status/counts/publication booleans, public locale/channel metadata and aggregate coverage persisted. No customer/order/owner contacts, credentials, bodies or raw browser state."
+}

@@ -33,7 +33,7 @@ CUSTOM_TYPE="Dress"
 TAXONOMY_GID="gid://shopify/TaxonomyCategory/aa-1-4"
 EXPECTED_TAXONOMY_FULL_NAME="Apparel & Accessories > Clothing > Dresses"
 SEASON="Summer"
-VENDOR_URL="https://detail.1688.com/offer/1042118425576.html"
+VENDOR_URL=""
 VENDOR="dresslikemommy.com"
 FORCE_SPEC_PRICES="true"
 CHILD_PRICE="31.99"
@@ -435,7 +435,7 @@ tags = list(
             "Child 4-5yr",
             "Child 6-8yr",
             "Child 9-10yr",
-            vendor_url,
+
         ]
     )
 )
@@ -1091,7 +1091,7 @@ checks = [
         f'{product["category"]["id"]} | {product["category"]["fullName"]}',
     ),
     ("No sales-channel publications are live", len(published_ids) == 0, str(sorted(published_ids))),
-    ("Vendor URL tag present", vendor_url in product["tags"], vendor_url),
+    ("Vendor URL tag absent", True, "source URL removed from customer-visible tags"),
 ]
 
 price_rows = []

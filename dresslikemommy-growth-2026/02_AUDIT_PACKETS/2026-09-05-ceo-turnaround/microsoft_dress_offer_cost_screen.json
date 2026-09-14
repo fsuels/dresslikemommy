@@ -1,0 +1,315 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at_utc": "2026-09-06T17:29:23.906075+00:00",
+  "status": "NO_SOURCE_AND_COST_QUALIFIED_AU_DRESS_OFFER",
+  "scope": "Two targeted local retrieval passes; existing sanitized CEO packet evidence only. First MD glob command returned no-match and produced no evidence; second pass used exact filenames. No browser, API, raw order export, external write or additional catalog search.",
+  "source_cost_as_of_utc": "2026-09-06T10:17:07Z",
+  "source_freshness": "Historical order/funding data in Sep5 reconciliation packet and Sep6 fee/source receipts; no fresh live product or AU-market read. Old candidate CSV has no intrinsic capture timestamp.",
+  "currencies": {
+    "screen_revenue_and_recorded_fees": "USD",
+    "provider": "CNY",
+    "funding_endpoints_usd_per_cny": [
+      "0.16247",
+      "0.164265"
+    ],
+    "microsoft_account_reporting_currency": "UNKNOWN from parent context; not re-read here",
+    "australian_storefront_currency_and_prices": "NOT_VERIFIED"
+  },
+  "formula": "CPA <= min(R/6.5, 0.70R-C*k-F-E), with E actual disjoint remaining expenses; no actual-net-margin claim. Each fee counted once. Priority shipping revenue excluded from R while full recorded costs/fees retained.",
+  "funding_lot_basis": "UNKNOWN; endpoints are observed funding ratios, not allocated order settlement",
+  "basket_screens": [
+    {
+      "alias": "COST_01",
+      "source_candidate": "Skyfade mixed Italian basket; Ivory Meadow lines canceled in provider",
+      "historical_market": "IT",
+      "merchandise_usd": "151.25",
+      "provider_cny": "277.97",
+      "recorded_payment_fees_usd": "9.16",
+      "actual_net_margin": null,
+      "australian_quote": null,
+      "future_smaller_basket_cost": null,
+      "exact_wearer_variant_composition": "NOT_VERIFIED_IN_THIS_SCOPED_PASS",
+      "source_classification": "WITHHOLD_REVENUE_FULFILLMENT_CONFLICT",
+      "economics": "WITHHELD: mixed fulfilled/unfulfilled and provider-cancelled lines; no per-product allocation or corrected revenue inferred.",
+      "dress_intent_status": "MIXED_DRESS_AND_SHIRT_TITLE_ONLY; source chart and fulfillment conflicts"
+    },
+    {
+      "alias": "COST_02",
+      "source_candidate": "Skyfade and Sky Blue mixed US basket",
+      "historical_market": "US",
+      "merchandise_usd": "99.96",
+      "provider_cny": "288.84",
+      "recorded_payment_fees_usd": "3.20",
+      "actual_net_margin": null,
+      "australian_quote": null,
+      "future_smaller_basket_cost": null,
+      "exact_wearer_variant_composition": "NOT_VERIFIED_IN_THIS_SCOPED_PASS",
+      "source_classification": "COST_SCREEN_ROOM_ONLY__NOT_LAUNCH_READY",
+      "conditional_endpoints": [
+        {
+          "funding_endpoint": "low",
+          "usd_per_cny": "0.16247",
+          "conditional_provider_and_fees_usd": "50.13",
+          "conditional_ad_room_before_unknown_expenses_usd": "19.84",
+          "ad_cost_at_6_5x_usd": "15.38",
+          "remaining_unknown_expense_room_at_6_5x_usd": "4.47",
+          "optimistic_margin_at_exact_6_5x_percent": "34.47",
+          "required_roas_for_30_percent_if_unknown_expenses_zero": "5.04"
+        },
+        {
+          "funding_endpoint": "high",
+          "usd_per_cny": "0.164265",
+          "conditional_provider_and_fees_usd": "50.65",
+          "conditional_ad_room_before_unknown_expenses_usd": "19.33",
+          "ad_cost_at_6_5x_usd": "15.38",
+          "remaining_unknown_expense_room_at_6_5x_usd": "3.95",
+          "optimistic_margin_at_exact_6_5x_percent": "33.95",
+          "required_roas_for_30_percent_if_unknown_expenses_zero": "5.17"
+        }
+      ],
+      "passes_exact_6_5x_with_E_zero": true,
+      "dress_intent_status": "MIXED_SKYFADE_AND_SKY_BLUE; no pure dress-pair allocation"
+    },
+    {
+      "alias": "COST_04",
+      "source_candidate": "Sunshine Stripe tops",
+      "historical_market": "US",
+      "merchandise_usd": "118.95",
+      "provider_cny": "244.44",
+      "recorded_payment_fees_usd": "4.13",
+      "actual_net_margin": null,
+      "australian_quote": null,
+      "future_smaller_basket_cost": null,
+      "exact_wearer_variant_composition": "NOT_VERIFIED_IN_THIS_SCOPED_PASS",
+      "source_classification": "COST_SCREEN_ROOM_ONLY__NOT_LAUNCH_READY",
+      "conditional_endpoints": [
+        {
+          "funding_endpoint": "low",
+          "usd_per_cny": "0.16247",
+          "conditional_provider_and_fees_usd": "43.84",
+          "conditional_ad_room_before_unknown_expenses_usd": "39.42",
+          "ad_cost_at_6_5x_usd": "18.30",
+          "remaining_unknown_expense_room_at_6_5x_usd": "21.12",
+          "optimistic_margin_at_exact_6_5x_percent": "47.76",
+          "required_roas_for_30_percent_if_unknown_expenses_zero": "3.02"
+        },
+        {
+          "funding_endpoint": "high",
+          "usd_per_cny": "0.164265",
+          "conditional_provider_and_fees_usd": "44.28",
+          "conditional_ad_room_before_unknown_expenses_usd": "38.98",
+          "ad_cost_at_6_5x_usd": "18.30",
+          "remaining_unknown_expense_room_at_6_5x_usd": "20.68",
+          "optimistic_margin_at_exact_6_5x_percent": "47.39",
+          "required_roas_for_30_percent_if_unknown_expenses_zero": "3.05"
+        }
+      ],
+      "passes_exact_6_5x_with_E_zero": true,
+      "dress_intent_status": "EXCLUDED: tops, not dresses"
+    },
+    {
+      "alias": "COST_05",
+      "source_candidate": "Vintage Cottage pajamas",
+      "historical_market": "US",
+      "merchandise_usd": "101.97",
+      "provider_cny": "375.74",
+      "recorded_payment_fees_usd": "3.26",
+      "actual_net_margin": null,
+      "australian_quote": null,
+      "future_smaller_basket_cost": null,
+      "exact_wearer_variant_composition": "NOT_VERIFIED_IN_THIS_SCOPED_PASS",
+      "source_classification": "6_5X_SCREEN_FAILS_BEFORE_OTHER_EXPENSES",
+      "conditional_endpoints": [
+        {
+          "funding_endpoint": "low",
+          "usd_per_cny": "0.16247",
+          "conditional_provider_and_fees_usd": "64.31",
+          "conditional_ad_room_before_unknown_expenses_usd": "7.07",
+          "ad_cost_at_6_5x_usd": "15.69",
+          "remaining_unknown_expense_room_at_6_5x_usd": "-8.62",
+          "optimistic_margin_at_exact_6_5x_percent": "21.55",
+          "required_roas_for_30_percent_if_unknown_expenses_zero": "14.42"
+        },
+        {
+          "funding_endpoint": "high",
+          "usd_per_cny": "0.164265",
+          "conditional_provider_and_fees_usd": "64.98",
+          "conditional_ad_room_before_unknown_expenses_usd": "6.40",
+          "ad_cost_at_6_5x_usd": "15.69",
+          "remaining_unknown_expense_room_at_6_5x_usd": "-9.29",
+          "optimistic_margin_at_exact_6_5x_percent": "20.89",
+          "required_roas_for_30_percent_if_unknown_expenses_zero": "15.94"
+        }
+      ],
+      "passes_exact_6_5x_with_E_zero": false,
+      "dress_intent_status": "EXCLUDED: source-verified pajamas, not dresses"
+    },
+    {
+      "alias": "COST_06",
+      "source_candidate": "Sky Blue pleated family set",
+      "historical_market": "US",
+      "merchandise_usd": "48.98",
+      "provider_cny": "166.37",
+      "recorded_payment_fees_usd": "1.72",
+      "actual_net_margin": null,
+      "australian_quote": null,
+      "future_smaller_basket_cost": null,
+      "exact_wearer_variant_composition": "NOT_VERIFIED_IN_THIS_SCOPED_PASS",
+      "source_classification": "6_5X_SCREEN_FAILS_BEFORE_OTHER_EXPENSES",
+      "conditional_endpoints": [
+        {
+          "funding_endpoint": "low",
+          "usd_per_cny": "0.16247",
+          "conditional_provider_and_fees_usd": "28.75",
+          "conditional_ad_room_before_unknown_expenses_usd": "5.54",
+          "ad_cost_at_6_5x_usd": "7.54",
+          "remaining_unknown_expense_room_at_6_5x_usd": "-2.00",
+          "optimistic_margin_at_exact_6_5x_percent": "25.92",
+          "required_roas_for_30_percent_if_unknown_expenses_zero": "8.85"
+        },
+        {
+          "funding_endpoint": "high",
+          "usd_per_cny": "0.164265",
+          "conditional_provider_and_fees_usd": "29.05",
+          "conditional_ad_room_before_unknown_expenses_usd": "5.24",
+          "ad_cost_at_6_5x_usd": "7.54",
+          "remaining_unknown_expense_room_at_6_5x_usd": "-2.30",
+          "optimistic_margin_at_exact_6_5x_percent": "25.31",
+          "required_roas_for_30_percent_if_unknown_expenses_zero": "9.35"
+        }
+      ],
+      "passes_exact_6_5x_with_E_zero": false,
+      "dress_intent_status": "DRESS_AND_SHIRT_TITLE_ONLY; actual wearer/sold-unit truth not established"
+    }
+  ],
+  "old_candidate_dress_title_subset": [
+    {
+      "rank_in_old_packet": "1",
+      "product_id": "7516479848545",
+      "title": "Lavender Mommy and Me Floral Applique Sleeveless Ruffle Dress",
+      "orders_90d": "0",
+      "orders_28d": "0",
+      "retained_merchandise_usd_90d": "0.00",
+      "retained_merchandise_usd_28d": "0.00",
+      "countries_90d": "[]",
+      "exact_old_variant_count": "2",
+      "current_available_variants": "2",
+      "current_product_statuses": "[\"ACTIVE\"]",
+      "exact_variant_units_sold_90d": "0",
+      "exact_variant_merchandise_usd_90d": "0.00",
+      "exact_variant_us_units_90d": "0"
+    },
+    {
+      "rank_in_old_packet": "3",
+      "product_id": "7537025613921",
+      "title": "Ivory Dot Mommy and Me Dresses - Puff Sleeve Sundress",
+      "orders_90d": "0",
+      "orders_28d": "0",
+      "retained_merchandise_usd_90d": "0.00",
+      "retained_merchandise_usd_28d": "0.00",
+      "countries_90d": "[]",
+      "exact_old_variant_count": "2",
+      "current_available_variants": "2",
+      "current_product_statuses": "[\"ACTIVE\"]",
+      "exact_variant_units_sold_90d": "0",
+      "exact_variant_merchandise_usd_90d": "0.00",
+      "exact_variant_us_units_90d": "0"
+    },
+    {
+      "rank_in_old_packet": "4",
+      "product_id": "7536696295521",
+      "title": "Pink Lace Garden Mommy and Me Dresses - Puff Sleeve Sundress",
+      "orders_90d": "0",
+      "orders_28d": "0",
+      "retained_merchandise_usd_90d": "0.00",
+      "retained_merchandise_usd_28d": "0.00",
+      "countries_90d": "[]",
+      "exact_old_variant_count": "2",
+      "current_available_variants": "2",
+      "current_product_statuses": "[\"ACTIVE\"]",
+      "exact_variant_units_sold_90d": "0",
+      "exact_variant_merchandise_usd_90d": "0.00",
+      "exact_variant_us_units_90d": "0"
+    },
+    {
+      "rank_in_old_packet": "5",
+      "product_id": "7536988520545",
+      "title": "Polka Dot Mommy and Me Dresses - Puff Sleeve Sundress",
+      "orders_90d": "1",
+      "orders_28d": "0",
+      "retained_merchandise_usd_90d": "68.00",
+      "retained_merchandise_usd_28d": "0.00",
+      "countries_90d": "[\"CZ\"]",
+      "exact_old_variant_count": "2",
+      "current_available_variants": "2",
+      "current_product_statuses": "[\"ACTIVE\"]",
+      "exact_variant_units_sold_90d": "0",
+      "exact_variant_merchandise_usd_90d": "0.00",
+      "exact_variant_us_units_90d": "0"
+    },
+    {
+      "rank_in_old_packet": "6",
+      "product_id": "7535362015329",
+      "title": "Blue Tie-Dye Butterfly Mommy and Me Dresses — Tiered Sleeveless Dress",
+      "orders_90d": "0",
+      "orders_28d": "0",
+      "retained_merchandise_usd_90d": "0.00",
+      "retained_merchandise_usd_28d": "0.00",
+      "countries_90d": "[]",
+      "exact_old_variant_count": "2",
+      "current_available_variants": "2",
+      "current_product_statuses": "[\"ACTIVE\"]",
+      "exact_variant_units_sold_90d": "0",
+      "exact_variant_merchandise_usd_90d": "0.00",
+      "exact_variant_us_units_90d": "0"
+    }
+  ],
+  "australian_sales_rows_in_supplied_product_aggregate": [],
+  "source_qualification_gaps": [
+    "No current exact dress-only Mother/Child pair with verified photos/title/sold unit, clean source-facing copy, chart and Australian purchasability is established by these receipts.",
+    "Skyfade retains PROB-2026-09-06-SKYFADE-SIZE-SOURCE-CONFLICT; this is not a new Italian/Australian rendered defect diagnosis.",
+    "Mixed US/Italian basket costs cannot be assigned to one dress product; Italian revenue-dependent ceilings withheld.",
+    "No Australian destination-specific fulfillment quote, settled funding allocation, actual disjoint taxes/returns/app allocations or delivery evidence.",
+    "Historical basket freight cannot be divided per unit or transplanted to a smaller future basket.",
+    "Modeled product costs are not procurement or fulfillment proof."
+  ],
+  "next_read_only_qualification": {
+    "product_id": "7536988520545",
+    "title": "Polka Dot Mommy and Me Dresses - Puff Sleeve Sundress",
+    "reason": "Only dress-titled member of the old exact campaign candidate cohort with an observed 90d sale; not a selected paid winner.",
+    "known_sale": "One CZ order, 2 units, USD68 merchandise on 2026-07-11; none of the two old exact target variants sold in the scoped 90d join.",
+    "needed": "Bind one exact Mother/Child dress pair to current buyer-facing source, chart and Australian availability; obtain corresponding AU delivered-cost and remaining-expense evidence before any price/CPA/launch recommendation.",
+    "eligible_for_paid": false
+  },
+  "validation": {
+    "status": "PASS_FOR_SCOPED_ARITHMETIC_AND_JOINS",
+    "initial_check_correction": "Initial generic funding_rows lookup selected the hash metadata string. It was replaced with the exact sanitized_source_sequences.funding_rows array before any artifact was created.",
+    "checks": [
+      "funding_data_bound_to_sanitized_source_sequences_not_hash_metadata",
+      "8_observed_funding_rows_reproduce_endpoints",
+      "COST_02:low:ad_room_matches_fee_receipt",
+      "COST_02:high:ad_room_matches_fee_receipt",
+      "COST_04:low:ad_room_matches_fee_receipt",
+      "COST_04:high:ad_room_matches_fee_receipt",
+      "COST_05:low:ad_room_matches_fee_receipt",
+      "COST_05:high:ad_room_matches_fee_receipt",
+      "COST_06:low:ad_room_matches_fee_receipt",
+      "COST_06:high:ad_room_matches_fee_receipt",
+      "5_title_matched_dresses_in_8_prior_candidates",
+      "only_Polka_Dot_has_90d_sale_in_that_dress_subset",
+      "Polka_Dot_exact_old_variant_sales_zero",
+      "no_AU_revenue_key_in_existing_aggregate"
+    ]
+  },
+  "source_sha256": {
+    "current_sold_campaign_candidates.csv": "05e245ff0a206b7b163c269dcbdb5af76b0442980f8248dfa7c5854d3f22d20a",
+    "current_product_sales_and_modeled_costs.csv": "7d9528ac0d526c09ae495af6b83e7400a9af6e3ed200cacf0dd3bd26fd1933c7",
+    "candidate_actual_cost_requirements.csv": "e08f5e8df8665690eddabd9ab7a6e50c2836a9ebc3727faa3a4e9101a2018d8e",
+    "actual_cost_after_payment_fees.json": "b21386c5e256e02dfb85102dbd506d8d65bee3a7c46a6e4e8a930cb1baab970d",
+    "actual_cost_source_bindings.json": "0c6e670b9d9e8e1831ea29e19942964e0698e2c96398e4bb413b166300977fe4",
+    "actual_cost_final_review.md": "943afa0a48b7a146c315895603b60d990d503547993ac641b8d3783ca104775e",
+    "actual_fulfillment_cost_independent_review.md": "6879fa4bceb653e10facc92649639a7742d45c1a44a52f2b71ef45291fb18885",
+    "pin2_current_product_readback.md": "35fccdba2df5ab0388ef6968faffa6c23eaa11b939a4caf7a86e89512808f946",
+    "italian_search_landing_source.md": "4bee32bd900bbded403b70d79de783c989044c83e07f4cb790dc86dbad797154"
+  }
+}

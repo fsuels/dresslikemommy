@@ -1,0 +1,7 @@
+# NOT RUN. Candidate rejected by independent technical review for AppCatalog target.
+mutation MerchantEnableFutureProductInclusion($id: ID!, $input: PublicationUpdateInput!) {
+  publicationUpdate(id: $id, input: $input) {
+    publication { id autoPublish catalog { __typename id title } }
+    userErrors { code field message }
+  }
+}

@@ -34,7 +34,7 @@ HANDLE = "picnic-plaid-family-matching-set"
 TITLE = "Picnic Plaid Family Matching Set - Dress & Shirt"
 SEO_TITLE = "Picnic Plaid Family Set | Dress Like Mommy"
 SEO_DESCRIPTION = "Lightweight plaid family matching set in blue or red for mom, dad, girls & boys. Dress sizes 2Y-3XL and shirt sizes 2Y-4XL."
-VENDOR_URL = "https://detail.1688.com/offer/914314067847.html"
+VENDOR_URL = ""
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
 EXPECTED_TAXONOMY = "Apparel & Accessories > Clothing > Outfit Sets"
@@ -386,7 +386,7 @@ tags = sorted(set([
     "Matching Family Dress", "Matching Family Shirt", "Sets", "Summer", "Beach", "Vacation", "Resort",
     "Picnic Plaid", "Plaid", "Gingham", "Checkered", "Blue", "Red", "White", "Lace Panel Dress",
     "Girl Dress", "Mother Dress", "Boy Shirt", "Father Shirt", "Short Sleeve Shirt", "Strappy Dress",
-    "Four-Role Matching", VENDOR_URL, *size_values,
+    "Four-Role Matching", *size_values,
     "Mother S", "Mother M", "Mother L", "Mother XL", "Mother 2XL", "Mother 3XL",
     "Father S", "Father M", "Father L", "Father XL", "Father 2XL", "Father 3XL", "Father 4XL",
 ]))
@@ -398,7 +398,7 @@ product_input = {
     "vendor": "dresslikemommy.com",
     "productType": PRODUCT_TYPE,
     "tags": tags,
-    "status": "ACTIVE",
+    "status": "DRAFT",
     "category": TAXONOMY_GID,
     "seo": {"title": SEO_TITLE, "description": SEO_DESCRIPTION},
 }
@@ -461,8 +461,9 @@ publications = [{"publicationId": gid} for gid in [
     "gid://shopify/Publication/76582879329",
     "gid://shopify/Publication/76604768353",
 ]]
-out = gql("mutation($id:ID!,$input:[PublicationInput!]!){publishablePublish(id:$id,input:$input){userErrors{field message}}}", {"id": product_id, "input": publications})
-user_errors(out, "data.publishablePublish.userErrors")
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+print("Sales-channel publication skipped; product remains a draft pending approval.")
 
 existing_media = gql("query($id:ID!){product(id:$id){media(first:100){nodes{... on MediaImage{id alt image{url}}}}}}", {"id": product_id})["data"]["product"]["media"]["nodes"]
 existing_alts = {node.get("alt") for node in existing_media}
@@ -517,7 +518,7 @@ checks = [
     ("Each size table has 10 headers", table_headers == [10, 10], str(table_headers)),
     ("Forced price/inventory parity", price_ok, "FORCE_SPEC_PRICES true"),
     ("Taxonomy fullName matches", product["category"]["fullName"] == EXPECTED_TAXONOMY, product["category"]["fullName"]),
-    ("Required publications are live", expected_publications.issubset(published_ids), str(sorted(published_ids))),
+    ("No sales-channel publications are live", len(published_ids) == 0, str(sorted(published_ids))),
     ("Online store URL populated", bool(product["onlineStoreUrl"]), product["onlineStoreUrl"] or ""),
 ]
 if not all(ok for _label, ok, _detail in checks):

@@ -1,0 +1,86 @@
+{
+  "schema": "dlm.canonical-application.v1",
+  "applied_at_utc": "2026-09-14T08:03:24.212422+00:00",
+  "status": "VERIFIED_WITH_LIMITS",
+  "anchor": "2026-09-14-ceo-real-purchase-and-context-recovery",
+  "plan": {
+    "path": "/private/tmp/dlm-sale-and-context-20260914-canonical-plan-r2.json",
+    "sha256": "e9d3a4637507bf3738602cec2422e7ccd6b0e01db26832180a1f22019fcc3a4b",
+    "operations": 23,
+    "applied_once": true
+  },
+  "before_snapshot": {
+    "path": "/private/tmp/dlm-sale-and-context-20260914-canonical-before.json",
+    "sha256": "be3a2b131489dfa5a36024901ebb2cf714f5e07626d9c79ab3887fe48cc51303"
+  },
+  "independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/canonical_sales_context_review_20260914.json",
+    "sha256": "6c00d40d4ccdb0ccff8ded77e721ce2002956316bff5e1fe3185d0311d2a5e94",
+    "verdict": "PASS_WITH_LIMITS",
+    "check_counts": {
+      "original_structural_executed": 96,
+      "original_structural_passed": 95,
+      "original_structural_failed": 1,
+      "original_source_wording_executed": 18,
+      "original_source_wording_passed": 18,
+      "original_total_executed": 114,
+      "original_total_passed": 113,
+      "r2_correction_executed": 25,
+      "r2_correction_passed": 25,
+      "total_checks_executed": 139,
+      "passed_executions": 138,
+      "initial_failed_checks_resolved": 1,
+      "unresolved": 0
+    }
+  },
+  "final_GA4_condition": {
+    "status": "MET",
+    "reviewed_source_sha256": "3f829246566c87089456d80ae355d6b5be8c4ea85dbd988a964081737c1c33a1",
+    "independent_review_sha256": "61e0283b8879aa1ba6050ebc1b58610a2d0d956fafbb7c4999cf40cc320162d6",
+    "independent_review": "PASS_WITH_LIMITS,43/43 local checks, six matching source hashes,0 material unresolved contradictions; no private or native replay",
+    "operator_checks": "48/48 and strict10 are source-reported; their bound48-check artifact was hashed, not rerun.",
+    "interpretation": "R2's preparation-time pending labels remain frozen. The matched completed final source/review supplied later satisfy that application prerequisite; they do not broaden paid or tracking authority."
+  },
+  "before_hashes": {
+    "ops/marketing/current_marketing_state.md": "245b48c3ad7b606af215ac893ca98e6f15eb145ce3b4187407e5627a7da6412e",
+    "ops/marketing/daily_scorecard.md": "dc2345e0cb4dcf897f21e7b2442a8e59b6ed198c5b3a0b790d819d3f8c3e0fcf",
+    "ops/marketing/action_queue.md": "d399d839620ddf8d20043efb3f6ec065b3b327f28c6257ab3279a22ab2b5bc35",
+    "ops/marketing/blocker_board.md": "c7b4785792919d33c9601fef1ebd0a3e19a3485496f9c7604193b400a4b76223",
+    "ops/marketing/operator_cockpit.md": "a5904fb0ffcd1e859240b9c472b048fa8b7fc6fdbbd782f6095e66b9afae0427",
+    "ops/marketing/memory_digest.md": "81057bdc448235f80749e60dfcd183e8569715955362ed57c0dd67a4efb1f6f6",
+    "ops/AGENT_COORDINATION.md": "2fd63ad0fef86dc9c39b8d4c709209788b9984a2322c3ffa84c68b3af051b552",
+    "ops/PROBLEM_TRACKER.md": "3ba3d7835643291c31d5aba0a1e37b2204b193a484db59b410f52f6e15bd4656",
+    "ops/AGENT_WORKLOG.md": "5b0b4785237c6bbe24069e5868a2837b9f3c3caf4f663bdab209be0bc3de9770"
+  },
+  "after_hashes": {
+    "ops/marketing/current_marketing_state.md": "18189dad59ebd3f9bea4810ef788ab5364c35e2e822a0d67d71c783ad2dd7f53",
+    "ops/marketing/daily_scorecard.md": "724a633357db6f2f2529176ca518a308e15a1bb9ebc2c64d1fb9caaec39019a2",
+    "ops/marketing/action_queue.md": "dcee2243e79527e65e017858a4974ac6df48b4cae79ce093323e0cdf581e5e81",
+    "ops/marketing/blocker_board.md": "9410ef2bd96c983860105307792a6f4a8fe15ee18354e4ab7a19da09c6fccf86",
+    "ops/marketing/operator_cockpit.md": "dd07c8ca52ad5d8b5a9e2706416a1c443db47b823b3cca894dfe787bdb48067d",
+    "ops/marketing/memory_digest.md": "73e724495459a3cb0ce809a1a50f10feccc5896c91552c82ecdca1c6ed77f921",
+    "ops/AGENT_COORDINATION.md": "6b8d91b76ab2d54afba631bc3b22367d0ba2b5e9e5bb106dfe9874f8c67fcea2",
+    "ops/PROBLEM_TRACKER.md": "b83778b2d65b158a2addd1301db04ce7aaabcffa004c551be6dbc32d76185902",
+    "ops/AGENT_WORKLOG.md": "65616ec19e0f78f80b1c0eac1f6c8a45f7f2e0b103b274bf730b6146634325da"
+  },
+  "all_before_and_after_hashes_verified": true,
+  "exact_inverse_verified": true,
+  "one_owner_action_preserved": true,
+  "paid_controls_preserved": true,
+  "external_writes": 0,
+  "limitations": [
+    "One US purchase is received at report level; raw event currency/items/value, consent/session ordering, sender deduplication, paid attribution, international accuracy and actual profit remain open.",
+    "Metadata confirms candidate theme remains UNPUBLISHED; existing owner Admin publication is still required.",
+    "Local generated-text checks are not a new live storefront/browser buyer replay."
+  ],
+  "status_at_application": "APPLIED__FINAL_VALIDATION_PENDING",
+  "verified_at_utc": "2026-09-14T08:14:40.113940+00:00",
+  "application_time_limits": [
+    "Creation-time pending labels in frozen R2 are resolved only by its matched final GA4 source and independent review.",
+    "Render, integration, strict continuity and fresh context semantics remain pending in this application receipt."
+  ],
+  "final_validation": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/canonical_sales_context_validation_20260914.json",
+    "sha256": "31be9c60c2fdcd316b0256f9aa05d4b9ad5fa5fa0862509c8616af52d0c1af2e"
+  }
+}

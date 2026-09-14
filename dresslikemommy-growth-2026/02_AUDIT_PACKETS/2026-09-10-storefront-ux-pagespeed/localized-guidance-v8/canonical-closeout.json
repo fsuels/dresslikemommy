@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-09-11T19:45:18.581478+00:00",
+  "status": "PASS",
+  "anchor": "2026-09-11-storefront-v7-publication-gate-and-v8-local-review",
+  "authorizedScope": [
+    "one existing UX coordination row",
+    "two additive existing-problem annotations",
+    "one worklog append"
+  ],
+  "commands": [
+    {
+      "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/check_continuity_integrity.py --strict",
+      "exitCode": 0
+    },
+    {
+      "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/audit_marketing_command_integration.py --fail-on-risk",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check -- ops/AGENT_COORDINATION.md ops/PROBLEM_TRACKER.md ops/AGENT_WORKLOG.md dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed",
+      "exitCode": 0
+    }
+  ],
+  "continuity": "CONTINUITY_OK_10_PASS",
+  "integration": "25_OF_25__ZERO_RISKS__READ_ONLY",
+  "whitespace": "PASS",
+  "preservation": {
+    "otherCoordinationBytesExact": true,
+    "allPriorProblemBytesExact": true,
+    "allPriorWorklogBytesExact": true,
+    "marketingFilesExact": 26,
+    "parentOneOwnerActionUnchanged": true,
+    "paidControlsUnchanged": true
+  },
+  "noMarketingControlRewrite": true,
+  "publicationExecuted": false,
+  "v8Uploaded": false,
+  "overallLiveUxOutcome": "UNFINISHED",
+  "interval": "RELEASED_TO_SCHEDULER_AND_PARENT",
+  "nextCanonicalOwner": "01a091be-65bc-70a0-954c-0a3544c22ce8",
+  "releasedAt": "2026-09-11 19:45:52 UTC",
+  "releaseRecipients": [
+    "01a091be-65bc-70a0-954c-0a3544c22ce8",
+    "01a08223-036e-7fa3-8961-ecd297163fb5"
+  ]
+}

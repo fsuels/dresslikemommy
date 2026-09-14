@@ -37,7 +37,7 @@ CUSTOM_TYPE="Two-Piece Pajama Set"
 TAXONOMY_GID="gid://shopify/TaxonomyCategory/aa-1-17-4"
 GOOGLE_PRODUCT_CATEGORY="2580"
 SHOPIFY_CATEGORY_PATH="Apparel & Accessories > Clothing > Sleepwear & Loungewear > Pajamas"
-VENDOR_URL="https://detail.1688.com/offer/1026510859610.html"
+VENDOR_URL=""
 VENDOR_TITLE_CN="安旦26新品春夏竹棉纱布亲子家居服甜美荷叶边短袖长裤居家套装 - 阿里巴巴"
 VENDOR_TITLE_EN="Andan 26 new spring/summer bamboo-cotton gauze family homewear sweet ruffle-trim short-sleeve long-pants lounge set."
 DESIGNS_TO_LIST="蝴蝶飞飞（成人款）, 蝴蝶飞飞（儿童款）"
@@ -508,7 +508,7 @@ if [[ -z "$PRODUCT_ID" ]]; then
         vendor: $vendor,
         productType: $product_type,
         tags: $tags,
-        status: "ACTIVE",
+        status: "DRAFT",
         category: $category,
         seo: {title: $seo_title, description: $seo_description},
         productOptions: [
@@ -561,7 +561,7 @@ PRODUCT_UPDATE_VARS="$(jq -nc \
       vendor: $vendor,
       productType: $product_type,
       tags: $tags,
-      status: "ACTIVE",
+      status: "DRAFT",
       category: $category,
       seo: {title: $seo_title, description: $seo_description}
     }
@@ -657,24 +657,9 @@ METAFIELDS_SET_RESPONSE="$(gql "$METAFIELDS_SET_MUTATION" "$METAFIELDS_SET_VARS"
 check_graphql_errors "$METAFIELDS_SET_RESPONSE" "metafieldsSet"
 check_user_errors "$METAFIELDS_SET_RESPONSE" '.data.metafieldsSet.userErrors' "metafieldsSet"
 
-PUBLICATIONS_JSON='[
-  {"publicationId":"gid://shopify/Publication/55169925"},
-  {"publicationId":"gid://shopify/Publication/21969633377"},
-  {"publicationId":"gid://shopify/Publication/29172400225"},
-  {"publicationId":"gid://shopify/Publication/76582879329"},
-  {"publicationId":"gid://shopify/Publication/76604768353"}
-]'
-
-PUBLISH_MUTATION='mutation PublishablePublish($id: ID!, $input: [PublicationInput!]!) {
-  publishablePublish(id: $id, input: $input) {
-    publishable { availablePublicationsCount { count } }
-    userErrors { field message }
-  }
-}'
-
-PUBLISH_RESPONSE="$(gql "$PUBLISH_MUTATION" "$(jq -nc --arg id "$PRODUCT_ID" --argjson input "$PUBLICATIONS_JSON" '{id:$id, input:$input}')")"
-check_graphql_errors "$PUBLISH_RESPONSE" "publishablePublish"
-check_user_errors "$PUBLISH_RESPONSE" '.data.publishablePublish.userErrors' "publishablePublish"
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+echo "Sales-channel publication skipped; product remains a draft pending approval."
 
 mkdir -p "$UPLOAD_DIR"
 
@@ -886,7 +871,7 @@ CONTEXT_JSON="$(jq -nc \
     handle: $handle,
     shortcode: $shortcode,
     print_name: $print_name,
-    vendor_url: $vendor_url,
+    vendor_url: $
     vendor_title_cn: $vendor_title_cn,
     vendor_title_en: $vendor_title_en,
     designs_to_list: $designs_to_list,
@@ -1000,7 +985,7 @@ publication_map = {
     node["publication"]["id"]: {"name": node["publication"]["name"], "isPublished": node["isPublished"], "publishDate": node["publishDate"]}
     for node in verify_payload["resourcePublicationsV2"]["nodes"]
 }
-all_publications_ok = all(publication_map.get(pub["publicationId"], {}).get("isPublished") is True for pub in context["publications"])
+all_publications_ok = not any(publication_map.get(pub["publicationId"], {}).get("isPublished") is True for pub in context["publications"])
 
 smart_collections = [
     {
@@ -1170,7 +1155,7 @@ size_recap_lines = [
 
 listing_md = f"""# {context['title']}
 
-**Status:** Live (ACTIVE, published to all 5 required sales channels)
+**Status:** Draft (DRAFT, not published to sales channels)
 **Admin URL:** {admin_url}
 **Live URL:** {live_url}
 **Product ID:** {verify_payload['id']}

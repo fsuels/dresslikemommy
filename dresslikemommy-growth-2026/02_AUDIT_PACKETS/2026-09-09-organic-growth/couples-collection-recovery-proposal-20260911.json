@@ -1,0 +1,552 @@
+{
+  "schema": "dlm.couples_collection_recovery_proposal.v1",
+  "created_at_utc": "2026-09-11T22:03:20.692835+00:00",
+  "status": "LOCAL_PROPOSAL_VERIFIED__ROOT_COLLECTION_WRITE_NOT_RUN",
+  "task_stage": "HANDOFF",
+  "scope": "Narrow existing collection recovery. Root owns collection mutation and current before/after receipt; this subagent performs saved-source analysis only and writes this single proposed-recovery packet. No product reactivation, product tags/data, feeds, theme, canonical files, harness or external operation.",
+  "target": {
+    "collection_id": "gid://shopify/Collection/290635284577",
+    "handle": "couples",
+    "current_title": "Matching Couples Outfits",
+    "public_path": "/collections/couples"
+  },
+  "root_reported_before": {
+    "provenance": "Parent current-session Shopify collection read, supplied in assignment; raw collection snapshot not independently available in this packet. Root must freeze exact current before-state for write/rollback.",
+    "ruleSet": {
+      "appliedDisjunctively": false,
+      "rules": [
+        {
+          "column": "TAG",
+          "relation": "EQUALS",
+          "condition": "Couples"
+        }
+      ]
+    },
+    "matched_products_count": 17,
+    "matched_products_status": "ALL ARCHIVED",
+    "updated_at_description": "July8 per parent report; exact timestamp and17 IDs require saved root before-state.",
+    "public_shoppable_status": "Expected empty active catalog from0 ACTIVE exact-tag matches; public current DOM not inspected by this subagent."
+  },
+  "root_reported_GSC_opportunity": {
+    "provenance": "Root fresh GSC exact /collections/couples comparison; not independently fetched.",
+    "current_period": "2026-09-02 through2026-09-08",
+    "previous_period": "2026-08-26 through2026-09-01",
+    "clicks": {
+      "current": 1,
+      "previous": 0
+    },
+    "impressions": {
+      "current_display": "1.26K",
+      "previous": 248,
+      "display_limit": "Current number rounded in GSC display; do not treat1260 as exact."
+    },
+    "current_CTR_display": "0.1%",
+    "average_position": {
+      "current": 39.3,
+      "previous": 45.9
+    },
+    "query_examples": [
+      {
+        "query": "men and women matching outfits",
+        "impressions": 123
+      },
+      {
+        "query": "his and hers matching clothes",
+        "impressions": 123
+      },
+      {
+        "query": "matching couple outfits",
+        "impressions": 105
+      }
+    ],
+    "interpretation": "Existing indexed URL has matching query demand and presently lacks an ACTIVE assortment under its tag rule. Restore shoppability before expanding copy/content; no traffic, rank, purchase or profit lift promised."
+  },
+  "fresh_source_clock_utc": "2026-09-11T21:48:12.073Z",
+  "products": [
+    {
+      "id": "gid://shopify/Product/7230336729185",
+      "title_exact": "Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM",
+      "handle": "matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors",
+      "status": "ACTIVE",
+      "updatedAt": "2026-09-11T17:12:39Z",
+      "source_all_variants": 75,
+      "source_available_variants": 75,
+      "adult_all_variants": 40,
+      "adult_available_variants": 40,
+      "adult_role_evidence": {
+        "Adult": {
+          "all_variants": 40,
+          "available_variants": 40,
+          "source_size_labels": [
+            "Adult 2XL",
+            "Adult 3XL",
+            "Adult 4XL",
+            "Adult 5XL",
+            "Adult L",
+            "Adult M",
+            "Adult S",
+            "Adult XL"
+          ],
+          "garment_types": [
+            "Family Matching"
+          ]
+        }
+      },
+      "online_published": true,
+      "AU_published": true,
+      "catalog_published": true,
+      "exact_title_matches_in_all240_ACTIVE": 1,
+      "NFKC_casefold_whitespace_title_matches_in_all240_ACTIVE": 1,
+      "exact_Couples_tag_currently_present": false,
+      "current_six_parent_source_selector_media_hold": false,
+      "buyer_evidence": {
+        "case": "AU-M2",
+        "status": "VERIFIED_SCOPED",
+        "market": "AU/en/AUD",
+        "MAIN": "133290917985",
+        "viewport_css_px": [
+          1280,
+          720
+        ],
+        "adult_selected_states": [
+          {
+            "source_bound_variant_id": "41883237220449",
+            "source_options": [
+              {
+                "name": "Size",
+                "value": "Adult 2XL"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "visible_role": "Adult",
+            "visible_size": "2XL",
+            "visible_selected_price": "33.00 AUD",
+            "ready_to_add": true,
+            "at_utc": "2026-09-11T21:22:07.774Z"
+          },
+          {
+            "source_bound_variant_id": "41883237285985",
+            "source_options": [
+              {
+                "name": "Size",
+                "value": "Adult 2XL"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "visible_role": "Adult",
+            "visible_size": "2XL",
+            "visible_selected_price": "33.00 AUD",
+            "ready_to_add": true,
+            "at_utc": "2026-09-11T21:22:14.873Z"
+          },
+          {
+            "source_bound_variant_id": "41883237318753",
+            "source_options": [
+              {
+                "name": "Size",
+                "value": "Adult 2XL"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "visible_role": "Adult",
+            "visible_size": "2XL",
+            "visible_selected_price": "33.00 AUD",
+            "ready_to_add": true,
+            "at_utc": "2026-09-11T21:22:15.478Z"
+          },
+          {
+            "source_bound_variant_id": "41883238465633",
+            "source_options": [
+              {
+                "name": "Size",
+                "value": "Adult 2XL"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "visible_role": "Adult",
+            "visible_size": "2XL",
+            "visible_selected_price": "33.00 AUD",
+            "ready_to_add": true,
+            "at_utc": "2026-09-11T21:22:16.087Z"
+          },
+          {
+            "source_bound_variant_id": "41883238498401",
+            "source_options": [
+              {
+                "name": "Size",
+                "value": "Adult 2XL"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "visible_role": "Adult",
+            "visible_size": "2XL",
+            "visible_selected_price": "33.00 AUD",
+            "ready_to_add": true,
+            "at_utc": "2026-09-11T21:22:16.696Z"
+          }
+        ],
+        "actual_cart_variant_id": "41883238498401",
+        "actual_cart_total": "33.00 AUD",
+        "cart_removed_at_utc": "2026-09-11T21:23:27.899Z",
+        "cart_was_adult": true,
+        "limit": "Source confirms adult options; visible selected prices bind the sampled adult selections. Tropical actual cart was Girl1-2T, not an adult or pair cart. No pair checkout, universal size fit, source material, delivery or return promise is inferred."
+      }
+    },
+    {
+      "id": "gid://shopify/Product/7672336646241",
+      "title_exact": "Together Heart Family Matching Sweaters — Crewneck Tops",
+      "handle": "together-heart-family-matching-sweaters",
+      "status": "ACTIVE",
+      "updatedAt": "2026-09-10T15:57:05Z",
+      "source_all_variants": 98,
+      "source_available_variants": 96,
+      "adult_all_variants": 49,
+      "adult_available_variants": 47,
+      "adult_role_evidence": {
+        "Adult": {
+          "all_variants": 49,
+          "available_variants": 47,
+          "source_size_labels": [
+            "Adult 2XL",
+            "Adult 3XL",
+            "Adult 4XL",
+            "Adult L",
+            "Adult M",
+            "Adult S",
+            "Adult XL"
+          ],
+          "garment_types": [
+            "Matching Family Sweaters"
+          ]
+        }
+      },
+      "online_published": true,
+      "AU_published": true,
+      "catalog_published": true,
+      "exact_title_matches_in_all240_ACTIVE": 1,
+      "NFKC_casefold_whitespace_title_matches_in_all240_ACTIVE": 1,
+      "exact_Couples_tag_currently_present": false,
+      "current_six_parent_source_selector_media_hold": false,
+      "buyer_evidence": {
+        "case": "AU-M1",
+        "status": "VERIFIED_SCOPED",
+        "market": "AU/en/AUD",
+        "MAIN": "133290917985",
+        "viewport_css_px": [
+          390,
+          844
+        ],
+        "adult_selected_states": [
+          {
+            "source_bound_variant_id": "46512188719201",
+            "source_options": [
+              {
+                "name": "Size",
+                "value": "Adult S"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "visible_role": "Adult",
+            "visible_size": "S",
+            "visible_selected_price": "39.00 AUD",
+            "ready_to_add": true,
+            "at_utc": "2026-09-11T21:20:39.446Z"
+          }
+        ],
+        "actual_cart_variant_id": "46512188719201",
+        "actual_cart_total": "39.00 AUD",
+        "cart_removed_at_utc": "2026-09-11T21:21:25.232Z",
+        "cart_was_adult": true,
+        "limit": "Source confirms adult options; visible selected prices bind the sampled adult selections. Tropical actual cart was Girl1-2T, not an adult or pair cart. No pair checkout, universal size fit, source material, delivery or return promise is inferred."
+      }
+    },
+    {
+      "id": "gid://shopify/Product/7505372282977",
+      "title_exact": "Tropical Floral Family Matching Shirt and Dress Outfit Set",
+      "handle": "tropical-floral-family-matching-shirt-and-dress-outfit-set",
+      "status": "ACTIVE",
+      "updatedAt": "2026-09-07T18:16:41Z",
+      "source_all_variants": 21,
+      "source_available_variants": 21,
+      "adult_all_variants": 9,
+      "adult_available_variants": 9,
+      "adult_role_evidence": {
+        "Father": {
+          "all_variants": 4,
+          "available_variants": 4,
+          "source_size_labels": [
+            "Father 3XL",
+            "Father L",
+            "Father XL",
+            "Father XXL"
+          ],
+          "garment_types": [
+            "T-Shirt"
+          ]
+        },
+        "Mother": {
+          "all_variants": 5,
+          "available_variants": 5,
+          "source_size_labels": [
+            "Mother 2XL",
+            "Mother L",
+            "Mother M",
+            "Mother S",
+            "Mother XL"
+          ],
+          "garment_types": [
+            "Dress"
+          ]
+        }
+      },
+      "online_published": true,
+      "AU_published": true,
+      "catalog_published": true,
+      "exact_title_matches_in_all240_ACTIVE": 1,
+      "NFKC_casefold_whitespace_title_matches_in_all240_ACTIVE": 1,
+      "exact_Couples_tag_currently_present": false,
+      "current_six_parent_source_selector_media_hold": false,
+      "buyer_evidence": {
+        "case": "AU-M4",
+        "status": "VERIFIED_SCOPED",
+        "market": "AU/en/AUD",
+        "MAIN": "133290917985",
+        "viewport_css_px": [
+          1280,
+          720
+        ],
+        "adult_selected_states": [
+          {
+            "source_bound_variant_id": "43740358377569",
+            "source_options": [
+              {
+                "name": "Type",
+                "value": "T-Shirt"
+              },
+              {
+                "name": "Size",
+                "value": "Father L"
+              }
+            ],
+            "visible_role": "Father",
+            "visible_size": "L",
+            "visible_selected_price": "39.00 AUD",
+            "ready_to_add": true,
+            "at_utc": "2026-09-11T21:28:02.031Z"
+          },
+          {
+            "source_bound_variant_id": "43740358705249",
+            "source_options": [
+              {
+                "name": "Type",
+                "value": "Dress"
+              },
+              {
+                "name": "Size",
+                "value": "Mother S"
+              }
+            ],
+            "visible_role": "Mother",
+            "visible_size": "S",
+            "visible_selected_price": "50.00 AUD",
+            "ready_to_add": true,
+            "at_utc": "2026-09-11T21:28:16.102Z"
+          }
+        ],
+        "actual_cart_variant_id": "43740358869089",
+        "actual_cart_total": "46.00 AUD",
+        "cart_removed_at_utc": "2026-09-11T21:28:35.627Z",
+        "cart_was_adult": false,
+        "limit": "Source confirms adult options; visible selected prices bind the sampled adult selections. Tropical actual cart was Girl1-2T, not an adult or pair cart. No pair checkout, universal size fit, source material, delivery or return promise is inferred."
+      }
+    }
+  ],
+  "recommendation": {
+    "choice": "Collection-only OR expansion using preserved TAG rule plus three exact TITLE EQUALS rules; replace English body only.",
+    "why_smallest": "One existing collection changes; no archived-product reactivation or product/tag/feed source mutation. Exact current ACTIVE title uniqueness gives three intended sellable matches.",
+    "ruleSet": {
+      "appliedDisjunctively": true,
+      "rules": [
+        {
+          "column": "TAG",
+          "relation": "EQUALS",
+          "condition": "Couples"
+        },
+        {
+          "column": "TITLE",
+          "relation": "EQUALS",
+          "condition": "Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM"
+        },
+        {
+          "column": "TITLE",
+          "relation": "EQUALS",
+          "condition": "Together Heart Family Matching Sweaters — Crewneck Tops"
+        },
+        {
+          "column": "TITLE",
+          "relation": "EQUALS",
+          "condition": "Tropical Floral Family Matching Shirt and Dress Outfit Set"
+        }
+      ]
+    },
+    "descriptionHtml": "<p>Explore matching couple outfits with coordinating heart T-shirts, crewneck sweaters, and a tropical shirt-and-dress look.</p>\n<p>Each piece is sold separately. Choose a style, select an available adult size and color or garment type for one person, then repeat for the other. Review each item in your bag before ordering.</p>",
+    "root_mutation_input_candidate": {
+      "id": "gid://shopify/Collection/290635284577",
+      "ruleSet": {
+        "appliedDisjunctively": true,
+        "rules": [
+          {
+            "column": "TAG",
+            "relation": "EQUALS",
+            "condition": "Couples"
+          },
+          {
+            "column": "TITLE",
+            "relation": "EQUALS",
+            "condition": "Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM"
+          },
+          {
+            "column": "TITLE",
+            "relation": "EQUALS",
+            "condition": "Together Heart Family Matching Sweaters — Crewneck Tops"
+          },
+          {
+            "column": "TITLE",
+            "relation": "EQUALS",
+            "condition": "Tropical Floral Family Matching Shirt and Dress Outfit Set"
+          }
+        ]
+      },
+      "descriptionHtml": "<p>Explore matching couple outfits with coordinating heart T-shirts, crewneck sweaters, and a tropical shirt-and-dress look.</p>\n<p>Each piece is sold separately. Choose a style, select an available adult size and color or garment type for one person, then repeat for the other. Review each item in your bag before ordering.</p>"
+    },
+    "rule_API_validation": "Proposed collection rule column/relation fields must be accepted by the current supported Shopify collectionUpdate interface; no external schema or mutation was called here. A refusal or changed before-state is a stop for this exact payload, not a reason to silently mutate products.",
+    "no_other_fields_in_payload": true,
+    "friendly_reference_names": [
+      "Minimalist Heart T-Shirts",
+      "Together Heart Family Matching Sweaters",
+      "Tropical Floral Family Matching Shirt and Dress Outfit Set"
+    ],
+    "literal_title_warning": "7230336729185 is literally Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM in fresh source. Do not replace the condition with handle-derived/full descriptive text; it would not match. Do not repair product title in this collection-only task."
+  },
+  "expected_result_not_yet_observed": {
+    "active_rule_matches": 3,
+    "active_product_ids": [
+      "7230336729185",
+      "7672336646241",
+      "7505372282977"
+    ],
+    "available_variants_among_three": 192,
+    "available_adult_variants_among_three": 96,
+    "existing17_archived_records": "Preserve17 IDs and ARCHIVED statuses unchanged. The originalTAG rule remains; root readback determines whether Admin reports20 total matching members or excludes archived records from its count. Public expected assortment is3 ACTIVE products, not20 buyable products.",
+    "collection_identity_title_handle_SEO_sort_image_publications": "Preserve existing fields; no new collection or URL.",
+    "product_fields_tags_status_variants_prices_feeds": "No product mutation proposed."
+  },
+  "known_limits_and_risks": [
+    "Title rules bind mutable text rather than immutable product IDs. Product retitles can remove intended matches; future ACTIVE duplicate titles can add unintended matches. Compare exact intended IDs immediately after rule processing and track this dependency when these3 titles change.",
+    "All240 ACTIVE titles checked exact and normalized. Draft/archived title uniqueness was not queried; those states must not be reactivated by this work. Original17 archived statuses and identities require exact root before/after equality.",
+    "Collection rule processing may be asynchronous; a successful mutation is not proof that products appear. Wait for actual three-ID membership and ordinary public collection cards.",
+    "Changing English body may mark existing translations outdated. Do not overwrite/delete translations or claim localized recovery; root captures translation state and retains follow-up scope. No all-language or cross-market shoppability certification here.",
+    "Buyer cases are AU/en/AUD MAIN. They include8 adult selected-price states and2 exact adult carts; Tropical adult FatherL/MotherS selection was ready, but its actual tested cart was a Girl dress. No two-adult/pair checkout was tested.",
+    "No material, fit, gender-cut, bundle discount, shipping or return claims. Adult role options support coordinating separate pieces without claiming every size/color fits or is universally available.",
+    "Initial deep-link preselection/range issue remains; no theme change or V7 acceptance claimed.",
+    "Collection recovery creates access to existing products, not verified incremental sales or profit."
+  ],
+  "root_execution_and_validation": [
+    {
+      "step": 1,
+      "action": "Freeze current collection290635284577 ID/handle/title/ruleSet/Englishbody/digest/SEO/sort/image/publication/translation state and all17 member IDs/statuses. Reconcile exact3 source IDs/titles/statuses and publication at action time. If original rule is not exactly the supplied singleCouples tag rule, adapt preservation before writing."
+    },
+    {
+      "step": 2,
+      "action": "Apply only proposed ruleSet(appliedDisjunctively=true;4rules) and English descriptionHtml to this existing collection using supported collection update. Root owns current authority, exact surface claim and before-state; no product mutation."
+    },
+    {
+      "step": 3,
+      "action": "Read back accepted rules/body and userErrors; wait for actual membership processing. Require intended3 ACTIVE IDs, unchanged17 archived IDs/statuses and no extra ACTIVE matches. Check same handle/title/publication/SEO/sort/image, and no product updatedAt/tag/status/variant changes caused by this action."
+    },
+    {
+      "step": 4,
+      "action": "UX normal public preview of /collections/couples desktop and narrow viewport: three active cards, working links to exact products, new separate-piece copy, usable available adult selection path. Exclude archived products from buyable cards; preserve user cart and existing storefront behavior. Report actual price currency by current market; no hard-coded AU prices in English body."
+    },
+    {
+      "step": 5,
+      "action": "Root records verified release with one dated measurement cohort for this exact collection URL; compare subsequent GSC clicks/query mix and properly attributed purchase results without attributing old traffic/orders to this release."
+    }
+  ],
+  "rollback": {
+    "target": "same collection290635284577",
+    "method": "Restore exact frozen before ruleSet and descriptionHtml only, using root before-state. Do not alter17 archived statuses or any products. Verify same collection identity and restored fields.",
+    "before_state_not_present": "Root must save actual before snapshot; this packet cannot supply exact old body or17 IDs."
+  },
+  "fallback_if_title_rules_unsupported": {
+    "action": "Do not write product tags during this collection scope. Prepare a separately bounded addition of onlyCouples to the3 exact ACTIVE product IDs, preserving all other tags, after assessing source/feed freshness effects and authorizing product writes.",
+    "why_not_primary": "Product tag updates change product source and may affect other smart collections/feeds, while exact-title collection rules avoid that broader scope."
+  },
+  "checks": {
+    "source_complete_240_ACTIVE": true,
+    "three_unique_exact_and_normalized_titles": true,
+    "all_three_online_and_AU_published": true,
+    "all_three_currently_ACTIVE": true,
+    "no_active_Couples_tag_match": true,
+    "OR_rules_match_exactly_requested3_active_ids": true,
+    "preserved_TAG_Couples_plus3_TITLE_EQUALS": true,
+    "194_all_192_available_variants": true,
+    "98_adult_all_96_adult_available": true,
+    "three_current_six_parent_holds_absent": true,
+    "all_three_buyer_cases_VERIFIED_SCOPED": true,
+    "8_adult_selected_states_and2_adult_carts": true,
+    "truthful_separate_piece_disclosure": true,
+    "no_price_material_fit_shipping_return_bundle_claims": true
+  },
+  "checks_passed": 14,
+  "checks_total": 14,
+  "input_manifest": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.fresh_containment_source_20260911/au-en.snapshot.json",
+      "sha256": "cd08a7c5d54871ad9db1e6c31da1da70269006d0ac8b6bc590e285a966ebe915",
+      "bytes": 6786947
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/au-buyer-matrix-20260911/READBACK.json",
+      "sha256": "6b0a5a43fb095f9b266f95f405d2978170d4a1522dbaf0ecc55e5707b0762e3b",
+      "bytes": 36100
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.full_cohort_qualification_20260911.json",
+      "sha256": "7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a",
+      "bytes": 221676
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.sku-template-binding_20260911.json",
+      "sha256": "0b984b5a72b7374b88cdb43f81231c257c42575d52939b4a5e1631cf31c6c59d",
+      "bytes": 2064967
+    }
+  ],
+  "operations": {
+    "new_external_reads": 0,
+    "public_requests": 0,
+    "browser_calls": 0,
+    "external_writes": 0,
+    "source_product_feed_theme_canonical_writes": 0,
+    "local_owned_packet_only": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/couples-collection-recovery-proposal-20260911.json"
+  },
+  "next_action": "Root freezes exact before-state and applies the collection-only OR rules plus truthful English copy, then verifies the three active cards; this repairs an indexed page with existing matching demand."
+}

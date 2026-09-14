@@ -1,0 +1,77 @@
+{
+  "schema": "dlm.pinterest_traffic_calibration.v1",
+  "status": "LOCAL_REVIEW_SPEC_NOT_LAUNCH_READY",
+  "created_on": "2026-09-09",
+  "decision_id": "DLM-DEC-2026-09-09-PINTEREST-TRAFFIC-QUALITY",
+  "advertiser_id": "549756244483",
+  "verified_account": "dresslikemommy.com",
+  "campaign": {
+    "proposed_name": "DLM_US_EN_SUNSHINE_TRAFFIC_CAL_20260909",
+    "objective": "Consideration",
+    "intended_state_if_saved": "PAUSED",
+    "market": "US",
+    "language": "English",
+    "format": "Standard image ad",
+    "ad_groups": 1,
+    "ads": 1,
+    "proposed_total_exposure_usd": 15,
+    "maximum_duration_hours": 72,
+    "absolute_start_and_end": null,
+    "budget_enforcement": "Require a native lifetime budget or equivalent hard total cap plus fixed end; daily budget times duration is insufficient proof",
+    "platform_campaign_id": null,
+    "platform_ad_group_id": null,
+    "platform_ad_id": null
+  },
+  "creative": {
+    "existing_asset": "../2026-09-05-ceo-turnaround/sunshine_product_detail_v1.png",
+    "sha256": "751f8636c646032f88d975759a199885bd3e7237c000b6237328ee1121cb44f9",
+    "title": "Sunshine Stripe Family Matching T-Shirts",
+    "description": "Yellow, red and blue stripes for a coordinated family look. Each T-shirt is sold separately. Choose a child or adult size and select one tee for each person. See the product details at Dress Like Mommy.",
+    "landing_url": "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops?utm_source=pinterest&utm_medium=paid_social&utm_campaign=dlm_us_en_sunshine_traffic_cal_20260909&utm_content=product_detail_01",
+    "reuse_existing_organic_pin_for_paid": "Only if the native promotion path permits the separately tagged paid destination; preserve organic UTMs and existing public Pin",
+    "ai_modified": true,
+    "ai_person_generated": false
+  },
+  "audience_hypotheses_not_applied": {
+    "audience": "Adult shoppers planning coordinated family outfits",
+    "query_themes": ["matching family shirts", "family matching t shirts", "mommy and me shirts", "matching family vacation outfits", "family photo shirts"],
+    "selection": "Use one tightly related theme supported by current Pinterest Trends and native audience controls; do not import a Search keyword universe",
+    "expansion_and_retargeting": "No full Performance+ campaign bundle, catalog expansion or remarketing is authorized by this proposal"
+  },
+  "bidding_decision_unresolved": {
+    "custom_option": "Maximum USD0.15 per billed in-grid Pin click if current interface permits it",
+    "custom_limit": "Does not cap cost per website visit or outbound click at USD0.15",
+    "outbound_alternative": "Manual campaign with outbound-click optimization and Performance+ bidding if current interface permits it",
+    "outbound_limit": "Variable CPC; incompatible with a strict USD0.15 per-outbound-click guarantee",
+    "required_owner_decision": "Exact maximum total spend and acceptance of billed-click metric versus variable outbound CPC",
+    "approved": false
+  },
+  "measurement": {
+    "primary": ["outbound clicks", "tagged landing sessions", "qualified session cost", "distinct paid orders", "net order value", "CPA", "ROAS", "retained profit"],
+    "secondary": ["impressions", "Pin clicks", "Pin CPC", "saves", "add to cart", "checkout start"],
+    "qualification": "A tagged session that records a product interaction or add-to-cart; do not equate this operational metric with a lead or sale",
+    "attribution": "Preserve and report Pinterest attribution window; separate click-through from view-through credit; reconcile Shopify order truth without double counting other channels",
+    "readback_schedule": "After 24 hours, at any stop trigger and at fixed end; no recurring automation is created by this spec"
+  },
+  "gates": [
+    "Uninterrupted exact-account native session; existing campaign anti-overlap review",
+    "Event quality warning details and test results; browser/API overlap and consent",
+    "Real Checkout value/currency/order reconciliation; no synthetic sale",
+    "Current product route and mobile purchasing clarity",
+    "Actual exact-basket costs support CPA and retained-profit targets",
+    "Exact cap, dates, metric and scope agreement; platform total-spend enforcement",
+    "Independent prewrite and after-state review"
+  ],
+  "success": "Diagnostic evidence supports affordable qualified site visits and a plausible path to purchase economics; no guaranteed CPC or sales",
+  "kill": ["Tracking or landing failure", "Unapproved scope or budget change", "Lifetime or end-date cap reached", "Poor outbound economics after an explicitly approved sampling window"],
+  "zero_impressions_24h": "Inspect serving, policy, audience, creative and bid floor; do not raise bids automatically",
+  "rollback": "Before launch leave the campaign paused or retain this local specification. After launch use authorized exact campaign pause if a stop rule triggers; never delete historic reporting",
+  "external_writes": 0,
+  "spend_executed": 0,
+  "source_notes": [
+    "https://help.pinterest.com/en/business/article/campaign-objectives",
+    "https://help.pinterest.com/en/business/article/set-your-bid",
+    "STRATEGY_AND_ASSET_READINESS.md",
+    "NATIVE_READBACK.md"
+  ]
+}

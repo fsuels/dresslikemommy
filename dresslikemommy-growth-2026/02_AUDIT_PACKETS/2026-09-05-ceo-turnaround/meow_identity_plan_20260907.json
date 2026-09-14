@@ -1,0 +1,77 @@
+{
+  "decision_id": "DLM-DEC-2026-09-06-MEOW-SEARCH-IDENTITY",
+  "as_of": "2026-09-07 03:06:20 UTC",
+  "evidence_grade": "LIVE_VERIFIED",
+  "objective": "Remove a confirmed product-name mismatch from existing search metadata on a previously sold product; business outcome remains qualified retained organic orders, not metadata writes.",
+  "product_id": "gid://shopify/Product/7533458194529",
+  "permitted_fields": [
+    "product.seo.title",
+    "20 existing translated meta_title values"
+  ],
+  "authority": {
+    "source": "User explicitly requested automatic implementation of reviewed marketing repairs and renewed profitable-growth execution; persists across turns.",
+    "paid_control_exception": "Narrow reviewed reversible product metadata repair only; all nine full-paid control fields remain unchanged.",
+    "not_authorized": [
+      "Ad spending or activation",
+      "Account/billing/claim transfer",
+      "Theme publication",
+      "Product status/handle/price/variant/image/body/description/tag edits"
+    ]
+  },
+  "baseline": {
+    "primary_title": "Meow Star Garden Mommy and Me Pajamas — Short-Sleeve Set",
+    "seo_title": "Cat Meadow Mommy & Me Pajamas — Set | Dress Like Mommy",
+    "translated_meta_titles": 20,
+    "all_translation_rows": 100,
+    "product_status": "ACTIVE",
+    "historical_sale": {
+      "window": "Saved90-day product-sales extract; not the current28-day baseline",
+      "date": "2026-07-23",
+      "orders": 1,
+      "units": 2,
+      "merchandise_usd": 75.98
+    },
+    "current_query_attribution": "UNKNOWN",
+    "observed_lift": "NOT_MEASURED"
+  },
+  "options": [
+    "Correct primary and all20 existing SEO titles with canonical product/store names and reviewed native pajama wording",
+    "Preserve all mismatched titles",
+    "Correct English only and leave all20 localized identity defects"
+  ],
+  "hypothesis": "Consistent names improve search-result-to-product identity clarity; no CTR, ranking or sales improvement is guaranteed.",
+  "main_uncertainty": "Actual Google-displayed titles, future crawl timing and effect on qualified visits remain unknown.",
+  "falsifier": "Current guarded source differs, canonical product identity is not Meow Star Garden, copy introduces unsupported claims, or an exact field write affects other data.",
+  "success": [
+    "Exactly21 reviewed SEO titles saved and independently read back",
+    "All80 non-target translation values and flags preserved",
+    "Product source other than meta_title and returned non-SEO-title fields preserved",
+    "All20 corrected titles use fresh source digest and return outdated:false"
+  ],
+  "kill": [
+    "Source drift before mutation",
+    "Tool/permission/userError failure",
+    "Unexpected non-target after-state change",
+    "Unreviewed copy or false product claim"
+  ],
+  "sequence": [
+    "Independent source/copy/guard review",
+    "Fresh primary+alltranslations guard",
+    "One productUpdate with only id and seo.title",
+    "Separate primary/source read; require only meta_title change; obtain new digest",
+    "One translationsRegister with exactly20 existing meta_title rows",
+    "Separate full primary and translation reads; compare alltarget/non-target values and flags"
+  ],
+  "rollback": "Restore captured English SEO title first, read its digest, then restore exact20 old translated values with that digest after an appropriate no-drift guard. No promise to restore timestamps/system flags. Rollback is prepared, not automatic on ambiguous failures.",
+  "validation": "Schema discovery and connector validation passed; bundled local validation passed for both mutation operations. CLI documentation search failed fetch; structured official Shopify documentation search succeeded. No system runtime/install repair.",
+  "independent_verifier": "/root/historical_google_access_paths (Kant), source/copy/prewrite and separate postwrite review; did not build or execute.",
+  "native_verification": "Existing desktop-access dependency; no retry of known locked tool path. A single web open of the exact Meow product URL returned not safe to open (non-retryable error), ref turn105view0. No alternate fetch/route to bypass. API verification is not native/SERP/traffic proof.",
+  "scope_exclusions": [
+    "Vendor-facing body wording",
+    "Garment material/measurements/care certification",
+    "Translated H1/product titles",
+    "Translated meta descriptions",
+    "Legacy tags/feed labels",
+    "Paid eligibility/profit"
+  ]
+}

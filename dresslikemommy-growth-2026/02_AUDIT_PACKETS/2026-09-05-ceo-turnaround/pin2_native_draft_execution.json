@@ -1,0 +1,123 @@
+{
+  "recorded_at_utc": "2026-09-06T08:13:18.924641+00:00",
+  "task": "TA-11",
+  "decision_id": "DLM-DEC-2026-09-06-VINTAGE-ORGANIC-PAIR",
+  "status": "NATIVE_RENDER_VERIFIED__DRAFT_PERSISTENCE_FAILED__NOT_PUBLISHED",
+  "scope": "One exact VC_ORGANIC_02 private preparation; no publication or scheduling",
+  "account": {
+    "profile": "dresslikemommy",
+    "business_id": "343118202768859516",
+    "browser": "Chrome test",
+    "browser_id": "2",
+    "tab_id": "475224128"
+  },
+  "frozen_plan_sha256": "3f0e543091b9cacfa63e06cdaf5451639070c272a81611f626d7dbe807d3835b",
+  "prewrite_review_sha256": "974e251f7f9e013a06122b5f22dba6de85ebff9bce8e4d096c6983c820d3ff15",
+  "product_readback": "pin2_current_product_readback.json",
+  "product_readback_sha256": "6291c92be90fb74cdc48f302c022fd37101770376c0191ea7971ed1563c790a4",
+  "pin1_before_sha256": "55d7978cf72e494efc9e9c153692dfbaee4d1291675a8d6dccd1c1d8d3d34d08",
+  "image": {
+    "absolute_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/vintage_pinterest_size_guide_v1.png",
+    "sha256": "c7aaa94cbdd8118ec4617f06cdad13016c7b1e7507cbe18470d5f2c198ccbcec",
+    "bytes": 1663621,
+    "width": 1024,
+    "height": 1536,
+    "root_visual_check": "PASS; legible intact guide, separate-person disclosure, no garment or person depicted"
+  },
+  "events": [
+    {
+      "order": 1,
+      "action": "Read existing empty builder in Chrome test",
+      "result": "Correct DLM profile; existing board Family Matching Pajamas selected; all text/image empty",
+      "draft_dom_id": "0753f750-cb89-45b0-91ba-063a2b113c39"
+    },
+    {
+      "order": 2,
+      "action": "Documented filechooser setFiles with exactly the frozen PNG",
+      "result": "Succeeded without permission/safety rejection; native Uploaded image and one Image Pin thumbnail appeared",
+      "filechooser_uploads": 1
+    },
+    {
+      "order": 3,
+      "action": "Fill exact title/description/link/alt; AI-modified on",
+      "result": "DOM readback matches every exact field; board Family Matching Pajamas; Ad-only false; AI-person false (enabled after AI-modified on)",
+      "fields": {
+        "title": "Choose Mother & Child Pajama Sizes | Each Set Sold Separately",
+        "description": "Mother S–XL and Child 2–10 Years are separate size choices for Vintage Cottage floral pajamas. Each person's set is sold separately. See the options and choose each person's size on the product page.",
+        "link": "https://www.dresslikemommy.com/products/vintage-cottage-floral-mommy-and-me-pajama-set?utm_source=pinterest&utm_medium=social&utm_campaign=dlm_vintage_organic_20260906&utm_content=size_pairing",
+        "alt_text": "Shopping guide for matching mom-and-child pajamas: choose mom's size, choose your child's size, then add each set separately. Each person's set is sold separately.",
+        "board_name": "Family Matching Pajamas",
+        "board_id": "343118134050368775",
+        "ai_modified": true,
+        "ai_person": false,
+        "ad_only": false
+      }
+    },
+    {
+      "order": 4,
+      "action": "Screenshot and DOM visual review after blur",
+      "result": "PASS in native desktop editor. Entire original 2:3 guide visible; title, buying steps, separate-person disclosure, description and alt legible. Editor controls partly overlay the image edge; not a published-Pin or mobile render."
+    },
+    {
+      "order": 5,
+      "action": "Navigate via Your profile, then reopen observed /pin-builder/ URL in same tab/profile",
+      "result": "FAILED persistence. One Empty Pin, no image/title/description/link/alt, default Mother Daughter Dresses board and AI-modified off. No save confirmation or unsaved-change prompt observed.",
+      "new_empty_draft_dom_id": "706ab3d3-9843-4f61-a2b1-22e199b2e95b"
+    },
+    {
+      "order": 6,
+      "action": "Inspect native Options menu",
+      "result": "Only Delete and Duplicate; no Save or drafts-list control. No item selected."
+    },
+    {
+      "order": 7,
+      "action": "Inspect alternate normal profile > Create > Pin entry",
+      "result": "Returned same empty Pin Builder. No new upload/refill, publication, schedule or confirmed saved draft."
+    }
+  ],
+  "native_render": {
+    "status": "VERIFIED_BOUNDED_DESKTOP_EDITOR",
+    "fields_match_plan": true,
+    "image_match_visual": true,
+    "board_match": true,
+    "ai_modified": true,
+    "ai_person": false,
+    "ad_only": false,
+    "public_pin_render": "NOT_RUN",
+    "mobile": "NOT_RUN"
+  },
+  "persistence": {
+    "status": "FAILED",
+    "test": "Leave editor via profile and reopen same builder in same browser/device",
+    "saved_draft_id": null,
+    "end_state": "EMPTY_BUILDER",
+    "root_cause": "UNKNOWN; do not infer session, storage or account cause",
+    "remote_image_retention": "UNKNOWN; one accepted upload does not prove a retained platform asset",
+    "initial_dom_id_is_verified_persistent_id": false,
+    "remote_draft_retention": "UNKNOWN; empty reopen does not prove remote deletion or absence."
+  },
+  "counts": {
+    "filechooser_uploads": 1,
+    "content_filled_editor_items": 1,
+    "verified_saved_drafts": 0,
+    "publish_clicks": 0,
+    "scheduled_pins": 0,
+    "new_boards": 0,
+    "paid_actions": 0,
+    "catalog_or_feed_writes": 0,
+    "public_dlm_retry_after_429": 0
+  },
+  "no_repeat": "Do not re-upload/refill the same builder to test unchanged persistence. Do not use Publish or scheduling as a save workaround.",
+  "next": "Keep versioned local copy/image as continuity source. Resume native entry only with a supported persistent-draft path or an exact approved publication stage after remaining release gates.",
+  "business_outcome": "No public Pin, attributable traffic, order or profit improvement; native-render prerequisite improved, persistence failed.",
+  "official_guidance": {
+    "url": "https://help.pinterest.com/en/article/create-a-pin-from-an-image-or-video",
+    "read_at_utc": "2026-09-06T08:13:18.924641+00:00",
+    "scope": "Desktop saved drafts are described separately from Publish. The observed builder lacks the documented saved-draft list. Guidance does not prove this draft was saved."
+  },
+  "limits": [
+    "Browser observations and screenshot supplied by root; independent reviewer can inspect local receipts, not recreate this historical UI state.",
+    "Current listed product sizes verified separately; no new public storefront request, availability guarantee, mobile checkout or profit assertion.",
+    "No public-Pin ID created or inferred. All full-account spend gates remain unchanged."
+  ]
+}

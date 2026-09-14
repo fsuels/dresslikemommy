@@ -1,0 +1,104 @@
+{
+  "recorded_at_utc": "2026-09-06T09:04:48.330206+00:00",
+  "status": "PASS",
+  "checks": {
+    "frozen_evaluator_prompt_holdout_hashes": true,
+    "four_paid_artifact_hashes": true,
+    "unrelated_dirty_root_hashes": true,
+    "guide_hash": true,
+    "pin2_and_pin1_evidence_unchanged": true,
+    "root_guides_mirror": true,
+    "nine_control_fields_unchanged": true,
+    "compiler_selects_new_anchor": true,
+    "native_receipt_bound_to_review": true,
+    "cost_receipt_bound_to_review": true,
+    "frozen_interpretation": true,
+    "unsupported_other_target_removed": true,
+    "separate_dimension_namespaces": true,
+    "exact_date_windows": true,
+    "exact_account_and_purchase_filter": true,
+    "cost_totals_reconcile": true,
+    "revenue_and_purchase_totals_reconcile": true,
+    "roas_rounding_reconciles": true,
+    "average_cpc_reconciles": true,
+    "conditional_margin_not_net_profit": true,
+    "latest_day_provisional": true,
+    "no_spend_mutation_or_lift": true,
+    "private_exploration_separate": true,
+    "scoped_whitespace": true,
+    "new_receipt_private_id_exclusion": true,
+    "scoped_diff": true
+  },
+  "passed": 26,
+  "total": 26,
+  "whitespace_failures": [],
+  "diff_exit_code": 0,
+  "diff_output": "",
+  "anchor": "2026-09-06-ceo-turnaround-ga4-ads-cost",
+  "protected_baseline": "draft_render_checks.json + pin2_native_draft_checks.json; comparison is local preservation, not a new external theme readback",
+  "evidence_hashes": {
+    "ITALIAN_SEARCH_COST_DECISION.md": "ba9badd3d3ee1821df23ec8d51cac5bce1ba13533cc2ddf114900b82ba5019cc",
+    "italian_ga4_native_interpretation.md": "54c5b441767a248098120394703bb112e4d054562fa50322e5f9d455dfa0a020",
+    "italian_ga4_native_readback.json": "aed1b1e036081583014b5b34d425b5da6dd900b4a6a4369423ae15d48d1e10f4",
+    "italian_ga4_native_postreview.md": "51923a76e30d12c53221dac8280c058dae772bc136d50615e2998ce28535cffd",
+    "italian_ga4_campaign_cost_readback.json": "c3a12cec7d333669bd11f8bcefb373b2ff44094daaa5cbba47aa34d6b6bd645a",
+    "italian_ga4_campaign_cost_review.md": "5b696dea6bad29583dcabe836b9ddc6950215716598108e248bb57d28a2442cf"
+  },
+  "browser_handoff": "VERIFIED existing GA4 tab475224120, exact account/purchase/June7-Sep4 numeric campaign-ID report",
+  "private_exploration": "SAVED_UNSHARED_AND_REOPENED_VERIFIED",
+  "goal": "ACTIVE, no measured traffic/purchase/profit lift",
+  "initial_issues": [
+    {
+      "issue": "Compiler initially selected the prior Pin2 anchor",
+      "cause": "New worklog heading omitted ISO date prefix",
+      "correction": "Fixed only the new heading to existing YYYY-MM-DD convention; compiler now selects new anchor, evaluator unchanged"
+    },
+    {
+      "issue": "Independent cost review included an unbound USD10.77 target",
+      "correction": "Reviewer removed only that unrelated comparison; receipt unchanged"
+    }
+  ],
+  "operational_limits": [
+    "Cockpit HTML regenerated; automatic opener failed with documented LaunchServices/AppleScript errors; Codex file fallback queued, not claimed visible",
+    "Exact Shopify owner publication and Google support/Greek validation or approval gates unchanged except evidence-driven owner priority",
+    "Private report quality is unsampled available data, not complete capture; September5 report is intraday/provisional"
+  ],
+  "completed_at_utc": "2026-09-06T09:06:46.145299+00:00",
+  "canonical_commands": {
+    "render_marketing_cockpit.py": {
+      "exit_code": 0,
+      "result": "HTML regenerated"
+    },
+    "compile_task_context.py": {
+      "exit_code": 0,
+      "selected_anchor": "2026-09-06-ceo-turnaround-ga4-ads-cost",
+      "diagnostics": "OK"
+    },
+    "score_paid_growth_handoff.py": {
+      "exit_code": 0,
+      "score": "17/17",
+      "passing_files": 1,
+      "failing_files": 0
+    },
+    "audit_marketing_command_integration.py": {
+      "exit_code": 0,
+      "tracked": 25,
+      "integrated": 25,
+      "side_document_risks": 0
+    },
+    "check_continuity_integrity.py --strict": {
+      "exit_code": 0,
+      "result": "CONTINUITY_OK",
+      "includes_pinterest_grouping_guard": true
+    },
+    "git diff --check (scoped)": {
+      "exit_code": 0
+    }
+  },
+  "one_owner_action": "Existing Google support Contact validation correction for original Ads control; already-approved exact send remains NOT_SUBMITTED",
+  "next_operator_action": "READ_ONLY_MARKETING_RECONCILIATION: exact Italian campaign keyword/query diagnosis through existing GA4 report",
+  "independent_reviews": {
+    "native": "PASS receipt consistency; did not execute UI",
+    "cost": "PASS after removing unrelated CPA threshold; did not execute UI"
+  }
+}

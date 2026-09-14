@@ -1,0 +1,1 @@
+query DlmOrganicRedirectRead($query: String!, $after: String) { urlRedirects(first: 50, after: $after, query: $query) { nodes { id path target } pageInfo { hasNextPage endCursor } } }

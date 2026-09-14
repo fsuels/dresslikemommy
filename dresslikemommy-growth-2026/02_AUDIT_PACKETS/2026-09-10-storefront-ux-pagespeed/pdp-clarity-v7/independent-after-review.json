@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "revision": 7,
+  "decision": "PASS",
+  "confidence": "H",
+  "reviewedAt": "2026-09-11T17:54:57.693574+00:00",
+  "reviewer": "theme_audit_review",
+  "reviewScope": "Independent source and saved after-state evidence review for the scoped V7 unpublished preview repair; not publication approval.",
+  "independence": {
+    "builtOrStagedCandidate": false,
+    "browserReplayByReviewer": false,
+    "externalActionsByReviewer": false,
+    "candidateOrCanonicalEditsByReviewer": false,
+    "method": "Recomputed local byte hashes, compared complete saved API before/after manifests and payloads, checked rollback bindings, then inspected root-performed browser receipts and report consistency. No test suite rerun."
+  },
+  "target": {
+    "id": "gid://shopify/OnlineStoreTheme/137888792673",
+    "role": "UNPUBLISHED",
+    "name": "DLM UX Performance QA 2026-09-10",
+    "sourceReadbackAt": "2026-09-11 17:41:01 UTC"
+  },
+  "exactChangedFiles": [
+    {
+      "filename": "assets/global.js",
+      "beforeMd5": "d8c9a52489db8532de327592e6a60f9d",
+      "afterMd5": "e0db5612c42f38798e6a9b27189fcb06",
+      "sha256": "8627c842b2bfb09c44b1bc712e70000ec7d7a79d7844c04ee6886bd283ed682d",
+      "size": 71580
+    },
+    {
+      "filename": "sections/main-product.liquid",
+      "beforeMd5": "b86926e39d85591ef15fa836dc05a9ee",
+      "afterMd5": "71ef37c28e45492bcc81639a629e4a40",
+      "sha256": "fadfb327ebbac92ee57c04cf146914d90518ef801626f62cb09c81a7ff52b7c8",
+      "size": 189652
+    },
+    {
+      "filename": "snippets/product-page-copy-map.liquid",
+      "beforeMd5": "01407ab58b8277d99e9a99e2c701bb69",
+      "afterMd5": "61d01d04cca85ec0d90bcb790054f2cf",
+      "sha256": "c9adb5f7153921e72dea40418884e6850e629a2525dbbd912eef871f108fbbe9",
+      "size": 209350
+    }
+  ],
+  "payloads": {
+    "apply": {
+      "file": "apply-variables.json",
+      "sha256": "d4ee468125758b592263e2635ab9dcda19821ad8ceced4d1eab4d358c891ac60",
+      "bodyMatchesCandidateAndApi": true
+    },
+    "incrementalInverse": {
+      "file": "inverse-variables.json",
+      "sha256": "49ab5bf1d23cd4f63dc0dfbebc495360db1ff7360d648669c95072ab10fef487",
+      "allThreeBodiesMatchV6BeforeState": true
+    },
+    "cumulativeInverse": {
+      "file": "../final-release-rollback.json",
+      "sha256": "0808f52c27e98aceb2364fd47b748495249aac8e59801b8fb5dd53a763559f40",
+      "files": 19,
+      "allBodiesMatchPredecessorApiChecksumsAndSizes": true
+    },
+    "rollbackExecuted": false
+  },
+  "independentlyVerifiedSource": {
+    "completePagination": true,
+    "previewFiles": 527,
+    "candidateFilesMatchedApi": 527,
+    "themeCheckCopyFilesMatchedApi": 527,
+    "incrementalChangedFiles": 3,
+    "incrementalPreservedFiles": 524,
+    "cumulativeChangedFromPredecessor": 19,
+    "preservedFromPredecessor": 508,
+    "fullDifferencesFromMain": 61,
+    "mainFiles": 525,
+    "predecessorFiles": 527,
+    "mainFilesAndRolePreserved": true,
+    "predecessorFilesAndRolePreserved": true,
+    "upsertUserErrors": [],
+    "upsertJob": null,
+    "manifestReadbackAndValidationAgree": true,
+    "reviewedMutationScope": "Only the three theme files; no product, price, review or source translation record payloads."
+  },
+  "browserEvidence": {
+    "performedBy": "root",
+    "status": "PASS_FOR_SCOPED_PREVIEW_REPAIRS",
+    "desktopEnglish": "Complete collection heading and similar-link text/aria/title; unsupported social-proof wrapper absent; Adult / 4XL / Green, $26.99 and enabled Add retained.",
+    "mobileEnglish": "390px without overflow; same exact variant, price and enabled Add retained.",
+    "realCart": "One actual mobile Add recorded variant 46512190292065, Adult 4XL / Green, quantity 1, $26.99; only test item removed, final cart 0 and zero rows.",
+    "collectionJourney": "Actual click confirmed family-tops URL and heading; return retained destination and generic Back to results fallback. The initial no-navigation click was not counted as pass.",
+    "positiveReviewHoldout": "Before and after receipts retain one existing 5.00 / 1-review badge; actual badge click scrolled Customer Reviews to 29.8125px from viewport top. No review authenticity inference.",
+    "localized": "Spanish, Japanese and Arabic mobile receipts show complete context labels, localized collection paths, absent unsupported fallback and no overflow; Arabic desktop receipt records no overflow or visible broken images.",
+    "cleanup": {
+      "checkedAt": "2026-09-11T17:50:25.139Z",
+      "exitMethod": "Shopify preview-bar Exit preview",
+      "mainAssetPath": "/cdn/shop/t/100/",
+      "previewFramePresent": false,
+      "language": "en",
+      "cart": 0,
+      "viewportReset": true,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "ownedTabId": "6",
+      "ownedTabClosed": true,
+      "merchantBrowserIntervalReleased": true,
+      "nativeChromeUsed": false
+    },
+    "consoleLimit": "Browser log samples, not server or payment-provider telemetry.",
+    "checkoutOrPaymentSubmission": "NOT_RUN in V7"
+  },
+  "recordedChecks": {
+    "contextRegression": {
+      "passed": 51,
+      "failed": 0,
+      "runBy": "root",
+      "rerunByReviewer": false
+    },
+    "themeCheck": {
+      "files": 527,
+      "exitCode": 0,
+      "diagnostics": 0,
+      "checkedCopyIndependentlyMatched": true
+    },
+    "generator": {
+      "isolatedActualBuildMap": "PASS for 105 real templates, missing/raw fallback and unrelated placeholders.",
+      "normalCli": "BLOCKED by pre-existing missing deep_translator in bundled Python; isolated test does not certify normal CLI."
+    }
+  },
+  "findings": [
+    {
+      "id": "V7-REVIEW-01",
+      "status": "RESOLVED",
+      "severity": "P2",
+      "file": "assets/global.js",
+      "line": 115,
+      "originalFinding": "Repairing the map activated replacement-string interpolation in formatBackToResultsLabel, corrupting literal dollar sequences; the inline callback alone did not cover back-navigation text/aria/title.",
+      "reproducedInput": "Family $& $$ Tops",
+      "originalCandidateOutput": "Back to Family __CONTEXT__ $ Tops",
+      "resolution": "The sole global replacement now uses () => sanitizedLabel. Independent execution of the actual function preserved $&, $$, $` and $' literally, while the rollback function failed.",
+      "scopeExpansion": "Root added only assets/global.js and its checksum-bound rollback; reviewer made no candidate edits."
+    }
+  ],
+  "newBlockingFindings": [],
+  "reportConsistency": "READBACK and current V7 source summaries agree on three incremental files, 19 cumulative files, 508 preserved predecessor files, 61 MAIN differences, preview-only acceptance and stated limits. No reliance on interim final-check or canonical status.",
+  "remainingLimits": [
+    "Existing Japanese and Arabic size hints still include English; Arabic collection translations retain underscore punctuation. Broader localization and collection classification remain open.",
+    "Positive-review buyer acceptance covers one existing product, not catalog-wide review quality or authenticity.",
+    "Provider acceptance remains unverified; V7 performed no checkout or payment submission.",
+    "Publication, published buyer acceptance, post-release PageSpeed and conversion uplift are not established by this preview review.",
+    "Root owns pending canonical integration and final continuity checks; this verdict does not claim they passed."
+  ],
+  "nextAction": "Root completes pending canonical/final validation and hands off the exact preview release. Owner Shopify Admin publication remains a separate prerequisite for live acceptance.",
+  "evidenceSha256": {
+    "pdp-clarity-v7/before.json": "f0e48232f3ef1e6992b77fe53cb2965cb5b7d7f2c1cda1bfb60a52d7e64ec904",
+    "pdp-clarity-v7/source-readback.json": "c9c28e45c37ebd65b63114392a8b61f558e2672dcf88f1338e6421684df13b55",
+    "pdp-clarity-v7/after.json": "9f0806be8b8ed1d068599a9c6bab2ded46da41b84e6d4ccfe4c922506ef7d6a7",
+    "pdp-clarity-v7/apply-readback.json": "23a1e6ff955479c29a84a15c156abf21f051965d3ace4717749cdca0c002b40f",
+    "pdp-clarity-v7/apply-variables.json": "d4ee468125758b592263e2635ab9dcda19821ad8ceced4d1eab4d358c891ac60",
+    "pdp-clarity-v7/inverse-variables.json": "49ab5bf1d23cd4f63dc0dfbebc495360db1ff7360d648669c95072ab10fef487",
+    "pdp-clarity-v7/browser-before.json": "8325e6e06c00ae64964ecfd206d77ff3085c2d0fd5f8eb667d7c6aaac63e4292",
+    "pdp-clarity-v7/browser-after.json": "b54a1621abd8f3afc398799e4287904de0fb802a040c65e8ba9c6c3136cd1906",
+    "pdp-clarity-v7/restoration.json": "1419af8514c78923cf05b8e6efd2d820966a035704acf50ae28f49c7ba90c2a8",
+    "pdp-clarity-v7/review-holdout.json": "f6aa85987e270e8d5637b9df16c23299160c36fcafdb9139209075953511b031",
+    "pdp-clarity-v7/READBACK.md": "2737285a1d2370908e4e78f239f56ad6beb16032c2e360a586e6ac7bfd223009",
+    "pdp-clarity-v7/context-labels-results.txt": "8ec11c86582bf395393f30b15230035dbd40f3c1768347d6cf9d80303aad3265",
+    "pdp-clarity-v7/theme-check-receipt.json": "f92c842d8d37e17fbf604ad9419b0a735d7ebabc649f7d6c7952c4db02d49379",
+    "pdp-clarity-v7/theme-check.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "pdp-clarity-v7/generator-regression-results.json": "adb169128fb317b62c4008ff0233e026cb509bf6adc662cf9cd20932b4282be1",
+    "pdp-clarity-v7/independent-prewrite-review.json": "018c8332cd767d66a84ce69f1eaa9fb3a0a8455d701fa54b051e4029718ede79",
+    "final-release-manifest.json": "bb56268777cea883e7a127bda24a25391831a05ca5ca414f0d188229afcff291",
+    "final-release-readback.json": "1def707fb18bb99a0f61b3b8eab717392b2a26e4e970d9a08b7ecb9ff5833345",
+    "final-release-rollback.json": "0808f52c27e98aceb2364fd47b748495249aac8e59801b8fb5dd53a763559f40",
+    "candidate-source-validation.json": "88cfa9770728f8d1aebc96430ce26be0bc67416a7b0795963da2bad7660b9715"
+  },
+  "reviewerWrites": [
+    "pdp-clarity-v7/independent-after-review.json",
+    "pdp-clarity-v7/independent-after-review.md"
+  ]
+}

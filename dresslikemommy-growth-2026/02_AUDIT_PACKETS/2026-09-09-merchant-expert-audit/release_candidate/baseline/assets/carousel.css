@@ -1,0 +1,45 @@
+@media (max-width: 768px) {
+    .desktop-menu {
+        display: none;
+    }
+    .carousel-container {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding: 5px 0; /* Adjusted top and bottom padding */
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+    }
+    .carousel-item {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 0; /* Remove padding */
+        text-align: center;
+        background: none; /* No background */
+        line-height: 1; /* Ensure line height matches text */
+    }
+    .carousel-item a {
+        text-decoration: none;
+        color: #333; /* Ensure this matches the text color of your website */
+        font-size: 14px; /* Adjust font size if needed */
+        padding: 0; /* Remove padding to fit text height */
+        display: inline-block; /* Keep the link inline-block */
+        line-height: 1; /* Ensure line height matches text */
+    }
+    .carousel-item a.active {
+        font-weight: bold; /* Bold the active category */
+    }
+    .scrolled-past-header .carousel-container {
+        border-bottom: none; /* Remove border on scroll */
+    }
+}
+
+@media (min-width: 769px) {
+    .carousel-container {
+        display: none;
+    }
+    .desktop-menu {
+        display: block;
+    }
+}

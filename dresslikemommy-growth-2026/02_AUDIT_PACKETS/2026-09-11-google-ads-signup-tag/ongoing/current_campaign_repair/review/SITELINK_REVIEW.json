@@ -1,0 +1,133 @@
+{
+  "verdict": "PASS_WITH_GATES",
+  "reviewed_at_utc": "2026-09-11 19:49:29 UTC",
+  "reviewer": "tag_repair_review",
+  "builder": "google_launch_research",
+  "independent_of_sitelink_builder": true,
+  "native_readback_by_reviewer": "NOT RUN",
+  "payload_sha256": "790e29e8fdef1a1d261a34cae58606ed817628f313c361d963b1004f5929619e",
+  "reviewed_scope": "Six total sitelinks for current campaign: preserve Buy Pajamas text/URL with two descriptions; add five listed destinations.",
+  "material_copy_corrections_requested": [],
+  "checks": {
+    "status": "PASS_WITH_GATES",
+    "checks": {
+      "exact_target": true,
+      "six_total_one_description_edit_five_additions": true,
+      "distinct_link_texts": true,
+      "distinct_destination_urls": true,
+      "same_verified_store_origin": true,
+      "all_labels_le25_desc_lines_le35": true,
+      "existing_link_preserved_descriptions_blank_before": true,
+      "fresh_correct_shop": true,
+      "all_three_exact_products_active_published": true,
+      "exact_pajamas_collection_publication_query": true,
+      "neutral_current_meow_copy": true,
+      "all_six_frozen_exact_url_200": true,
+      "golden_daisy_separates_supported": true,
+      "returns_label_supported": true,
+      "source_hashes_match": true,
+      "shared_asset_and_campaign_only_gate": true,
+      "identity_and_native_dedup_gates": true,
+      "fresh_http_and_render_not_claimed": true
+    },
+    "checks_passed": 18,
+    "checks_total": 18,
+    "payload_sha256": "790e29e8fdef1a1d261a34cae58606ed817628f313c361d963b1004f5929619e",
+    "metadata_sha256": "1f209b9538d507ab72a6e0bae8eaadf98990a68920ddcd2086c3502d15b7f76d",
+    "evidence_sha256": "d8d31bcdece25de7efe2567b1141e1600b8e5744a638331d4de4ad513a92c87a",
+    "source_hashes": {
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/cro_public_readback.json": "4e6266d2af2f5e362982c57f2438b0b5c87446dd8291245aa2ca4e109c3d632f",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/landing_qa/source_collection_en.json": "e37d918bcf88f40bd7fc4e016409d82f777bc505be5f7e63aa9b652d42713be1",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/receiver_20260910/return_policy_reconciliation.json": "d6ea283a1e9ac159e0545e582bf82daadc5f91fc8fad0e65357d93b60f2221f7",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/landing_qa/source_product_en.json": "42759316b4de5fc7faa23f0c21d571c66d1a41ca6de72b5beaf90ea47f2bd791"
+    },
+    "lengths": [
+      {
+        "text": "Buy Pajamas",
+        "label": 11,
+        "description_1": 20,
+        "description_2": 32
+      },
+      {
+        "text": "Golden Daisy Separates",
+        "label": 22,
+        "description_1": 31,
+        "description_2": 32
+      },
+      {
+        "text": "Navy Sprig Dresses",
+        "label": 18,
+        "description_1": 29,
+        "description_2": 32
+      },
+      {
+        "text": "Mommy & Me Pajamas",
+        "label": 18,
+        "description_1": 27,
+        "description_2": 32
+      },
+      {
+        "text": "Shipping Information",
+        "label": 20,
+        "description_1": 25,
+        "description_2": 29
+      },
+      {
+        "text": "Returns & Exchanges",
+        "label": 19,
+        "description_1": 25,
+        "description_2": 28
+      }
+    ],
+    "frozen_http_as_of_utc": "2026-09-05T22:45:20.555614+00:00",
+    "frozen_http_rows": [
+      {
+        "url": "https://www.dresslikemommy.com/collections/pajamas",
+        "status": 200
+      },
+      {
+        "url": "https://www.dresslikemommy.com/products/golden-daisy-mommy-and-me-set",
+        "status": 200
+      },
+      {
+        "url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses",
+        "status": 200
+      },
+      {
+        "url": "https://www.dresslikemommy.com/products/meow-star-garden-mommy-and-me-pajamas",
+        "status": 200
+      },
+      {
+        "url": "https://www.dresslikemommy.com/policies/shipping-policy",
+        "status": 200
+      },
+      {
+        "url": "https://www.dresslikemommy.com/pages/return-policy",
+        "status": 200
+      }
+    ],
+    "no_external_calls": true
+  },
+  "semantic_review": [
+    "Golden Daisy Separates matches current title and frozen separate Top/Pants selectors.",
+    "Navy Sprig Dresses matches current published product identity; it does not imply cardigan inclusion.",
+    "Neutral Mommy and me pajama options avoids the historical Cat Meadow/Meow Star Garden naming conflict.",
+    "Shipping and Returns & Exchanges links describe policy information without promising free/fast shipping, unconditional refunds or free returns.",
+    "Six distinct labels and URLs do not establish native existing-asset dedup; that remains an action-time check."
+  ],
+  "remaining_gates": [
+    "Google identity verification must be completed through normal flow before any Save; no workaround or repeated bypass attempt.",
+    "Read exact existing asset IDs, campaign/account associations and current descriptions. Do not edit a shared global Buy Pajamas asset blindly.",
+    "If shared, use the plan's campaign-specific replacement branch without changing unrelated/global associations; confirm resulting current-campaign dedup before Save.",
+    "Capture the chosen branch and exact before-state. Preserve Paused and all budget/bid/location/goal/automation settings.",
+    "Fresh public buyer-flow/render acceptance remains NOT RUN after429; saved200 responses are datedSeptember5, supplemented by September11 metadata, not current HTTP proof."
+  ],
+  "after_state_acceptance": [
+    "Reload the current campaign's sitelink view and compare all six labels, exact URLs and both descriptions.",
+    "Record resulting asset and campaign-association IDs; verify no extra duplicate or unrelated account-level change.",
+    "If rollout needs reversal, detach only newly added campaign associations; restore prior descriptions only on the exact unshared asset and only if still unchanged by others."
+  ],
+  "evidence_limit": "ACTIVE/publication metadata does not prove current stock, checkout, Merchant approval or profit. Reviewer performed no new network research and preserved the429 stop.",
+  "external_actions": "NOT RUN",
+  "next_step": "After normal Google identity verification, root reads actual sitelink scope/dedup and selects the explicit safe branch before any mutation."
+}

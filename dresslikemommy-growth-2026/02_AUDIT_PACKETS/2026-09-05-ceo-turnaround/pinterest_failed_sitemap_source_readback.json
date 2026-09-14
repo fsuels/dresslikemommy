@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-09-06T06:31:33Z",
+  "observer": "historical_google_access_paths",
+  "verificationClass": "LIVE_VERIFIED_UI_WITH_BLOCKED_PUBLIC_CONTENT_READ",
+  "verdict": "HOLD_SOURCE_MUTATION_DOWNLOAD_AND_FORMAT_UNRESOLVED",
+  "catalogId": "3041764155561548387",
+  "subjectBusinessId": "343118202768859516",
+  "sourceId": "3041760916127467912",
+  "browser": {
+    "family": "Chrome",
+    "profile": "test",
+    "tabId": "475224128",
+    "assignedRuntimeBrowserId": "2",
+    "observedRuntimeBrowserId": "1",
+    "bindingResolution": "ID 2 unavailable; documented inventory identified the exact same tab, profile and catalog under ID 1. No account switch.",
+    "finalUrl": "https://www.pinterest.com/business/catalogs/3041764155561548387/diagnosticsv2/?dataSourceId=3041760916127467912&subjectBusinessId=343118202768859516",
+    "finalSourceSelectionVerified": true,
+    "handoffMarked": true
+  },
+  "sourceDetails": {
+    "name": "dresslikemommy.com",
+    "country": "United States",
+    "language": "English (US)",
+    "sourceType": "URL",
+    "configuredPublicHost": "www.dresslikemommy.com",
+    "configuredPublicPath": "/sitemap_collections_1.xml",
+    "declaredFileFormat": null,
+    "declaredFileFormatStatus": "UNKNOWN_EDIT_FORM_NOT_OPENED",
+    "detailUrl": "https://www.pinterest.com/business/catalogs/3041764155561548387/data-sources/3041760916127467912/detail?subjectBusinessId=343118202768859516",
+    "currentIngestionDisplay": "No upcoming ingestions. Schedule automatic ingestions or manually start a new one.",
+    "scheduleConfiguration": "UNKNOWN_NOT_INSPECTED"
+  },
+  "latestIngestion": {
+    "dateDisplay": "Sep 5 at 3:30 AM EDT",
+    "status": "Failed",
+    "successfulUploads": 0,
+    "failedItemUploads": 0,
+    "warnings": 0,
+    "videos": 0,
+    "errorCode": 100,
+    "errorDescription": "Pinterest couldn't download your product data source",
+    "uiRemediationSummary": "Check the source URL and password; contact Pinterest if the issue persists. No credential inspection was performed.",
+    "errorOccurrences": 1,
+    "issueDrawerPreviewShown": 0,
+    "issueDrawerPreviewDenominator": 1,
+    "itemIdsReturned": [],
+    "sourceProductCount": null,
+    "countLimit": "Zero item upload counters and one error occurrence do not establish the source's historical product count."
+  },
+  "visibleHistory": {
+    "rowCount": 10,
+    "dateDisplaysDescending": [
+      "Sep 5 at 3:30 AM EDT",
+      "Sep 4 at 3:30 AM EDT",
+      "Sep 3 at 3:30 AM EDT",
+      "Sep 2 at 3:30 AM EDT",
+      "Sep 1 at 3:30 AM EDT",
+      "Aug 31 at 3:30 AM EDT",
+      "Aug 30 at 3:30 AM EDT",
+      "Aug 29 at 3:30 AM EDT",
+      "Aug 28 at 3:30 AM EDT",
+      "Aug 27 at 3:30 AM EDT"
+    ],
+    "allRowsStatus": "Failed",
+    "allRowsSuccessfulUploads": 0,
+    "allRowsFailedItemUploads": 0,
+    "allRowsWarnings": 0,
+    "allRowsVideos": 0,
+    "allSourceDownloadButtonsDisabled": true,
+    "lastSuccessfulIngestion": null,
+    "lastSuccessfulIngestionStatus": "UNKNOWN_NONE_IN_TEN_VISIBLE_ROWS",
+    "historyBeforeAug27": "UNKNOWN_NOT_OBSERVED",
+    "limit": "Visible history only; not proof that the source never uploaded products."
+  },
+  "expectedRetailFeed": {
+    "verificationClass": "LIVE_VERIFIED_OFFICIAL_PINTEREST_GUIDANCE",
+    "formatSource": "https://help.pinterest.com/en/business/article/before-you-get-started-with-catalogs",
+    "hostingSource": "https://help.pinterest.com/en/business/article/data-source-ingestion",
+    "supportedFormats": ["TSV", "CSV", "XML RSS 2.0", "XML ATOM 1.0", "Google Sheets"],
+    "requiredProductFields": ["id", "title", "description", "link", "image_link", "price", "availability"],
+    "conditionalField": "item_group_id when products have multiple variants",
+    "hostingRequirementSummary": "The hosted file must be directly accessible to the user agent without extra navigation or IP/SSH-key whitelisting.",
+    "interpretation": "A filename ending in .xml does not establish a supported RSS/Atom product feed. A collection URL sitemap would require different product data."
+  },
+  "publicContentRead": {
+    "attempts": 1,
+    "mechanism": "Documented browser goto in the assigned tab to the exact observed public host/path",
+    "status": "BLOCKED",
+    "browserError": "net::ERR_BLOCKED_BY_CLIENT",
+    "responseBodyRead": false,
+    "httpStatus": null,
+    "rootElement": null,
+    "schema": "UNKNOWN",
+    "itemCount": null,
+    "retryOrAlternatePathUsed": false,
+    "causalLimit": "This current browser refusal does not explain or reproduce Pinterest's earlier downloader failure."
+  },
+  "unresolvedLinkage": {
+    "stale420SourceJoin": "UNKNOWN_NO_ITEM_IDS",
+    "historicalProductsGroupsCampaignDependencies": "UNKNOWN_NOT_INSPECTED",
+    "limit": "Do not attribute the 420 stale items to this source or infer any 2x210 relationship."
+  },
+  "decision": {
+    "actionNow": "Hold this source unchanged; no exact correction is executable from the available evidence.",
+    "smallestConditionalCorrection": "Correct only this source's input URL/declared format to a validated accessible product feed if an allowed content read establishes incompatible sitemap data and source-history/dependency review supports the replacement.",
+    "replacementFeedSelected": false,
+    "requiredEvidence": ["Actual allowed endpoint response/root schema", "Intended source product identities and historical product/group/campaign impact"],
+    "deletionJustifiedByTenFailedRuns": false,
+    "nextRead": "Resume the exact endpoint schema check only after ordinary permitted access is available; do not bypass the current browser block."
+  },
+  "executionBoundary": {
+    "externalMutationCount": 0,
+    "sourceEditOrRefresh": "NOT_RUN",
+    "downloadOrExportRequest": "NOT_RUN",
+    "downloadsPageOrAlternateDownloadAccess": "NOT_RUN",
+    "accountPermissionBillingActions": "NOT_RUN",
+    "sharedCanonicalEdits": "NOT_RUN"
+  },
+  "localContextInputs": [
+    "pinterest_distribution_current_readback.json",
+    "pinterest_distribution_history_trace.md",
+    "pinterest_distribution_independent_review.md"
+  ]
+}

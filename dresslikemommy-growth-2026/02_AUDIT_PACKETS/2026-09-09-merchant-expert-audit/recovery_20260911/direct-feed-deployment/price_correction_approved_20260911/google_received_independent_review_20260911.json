@@ -1,0 +1,233 @@
+{
+  "schema": "dlm.google_received_file_independent_review.v1",
+  "status": "PASS_GOOGLE_RECEIVED_FILE_IDENTITY__EFFECTIVE_PRICE_AND_SERVING_NOT_VERIFIED",
+  "reviewed_at_utc": "2026-09-11T19:53:01.002166+00:00",
+  "reviewer": "/root/together_heart_source",
+  "independence": "DID_NOT_EXECUTE_SHOPIFY_REPAIR_FEED_DEPLOYMENT_OR_GOOGLE_UPDATE_DOWNLOAD",
+  "scope": "Local independent verification of actual operator-downloaded Google received-source file against authorized corrected and original frozen US files; one new independent receipt only.",
+  "checks_passed": 14,
+  "checks_total": 14,
+  "checks": [
+    {
+      "check": "Exact downloaded bytes equal authorized corrected file",
+      "status": "PASS",
+      "detail": "All17,166,442bytes match the previously authorized corrected US feed, SHA2566ce440…5be4a5."
+    },
+    {
+      "check": "Real TSV parse and4923 complete18-column rows",
+      "status": "PASS",
+      "detail": "Strict CSV parsing over StringIO preserves quoted newlines and exact complete field values."
+    },
+    {
+      "check": "Every unique identity and order preserved",
+      "status": "PASS",
+      "detail": "No added, omitted, duplicate or reordered offer ID."
+    },
+    {
+      "check": "Exactly five approved price-only deltas from original frozen file",
+      "status": "PASS",
+      "detail": "The exact five approved Adult2XL variants have22.99USD; no other changed cell."
+    },
+    {
+      "check": "All4918 other rows and affected nonprice fields exact",
+      "status": "PASS",
+      "detail": "All4918 unaffected rows and85 nonprice cells across target rows are unchanged."
+    },
+    {
+      "check": "Original raw byte difference limited to five corrections",
+      "status": "PASS",
+      "detail": "The entire original-to-received byte transformation contains only five approved price replacements."
+    },
+    {
+      "check": "All240 groups and numeric variant links exact",
+      "status": "PASS",
+      "detail": "Full numeric variant parameter equals each ID suffix; parent grouping is exact."
+    },
+    {
+      "check": "Existing availability and paid exclusions preserved",
+      "status": "PASS",
+      "detail": "The file retains4923 in_stock declarations and Shopping_ads exclusions; no paid or owned-inventory inference."
+    },
+    {
+      "check": "Exact native provenance account source and downloaded batch",
+      "status": "PASS",
+      "detail": "Operator receipt identifies one authorized Update on existing source10727274744 and the downloaded19:45:38UTC history file; this reviewer did not replay native controls."
+    },
+    {
+      "check": "Receipt assertions reconcile to independently parsed data",
+      "status": "PASS",
+      "detail": "Saved receipt hashes, counts and exact target fields match the real file, not just operator assertions."
+    },
+    {
+      "check": "Counter and issue facts preserved without inflation",
+      "status": "PASS",
+      "detail": "Updated0, New0, source link4923 and No issues found are recorded separately; file receipt is not a claim that4923 offers were effectively updated or approved."
+    },
+    {
+      "check": "Prior independent correction proof matches this approved version",
+      "status": "PASS",
+      "detail": "Prior12/12 local correction review binds the same original and corrected file identities."
+    },
+    {
+      "check": "Native batch time converts exactly toEDT",
+      "status": "PASS",
+      "detail": "Google batch time19:45:38UTC equals15:45:38EDT. Later triggered_at is preserved as recorded; exact click instant is not established by that field."
+    },
+    {
+      "check": "All five reviewed inputs unchanged during verification",
+      "status": "PASS",
+      "detail": "Received file, authorized file, original frozen file, provenance receipt and prior independent review retain their read hashes."
+    }
+  ],
+  "input_manifest": {
+    "received": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/google_received_us-en_20260911_194538.tsv",
+      "sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+      "bytes": 17166442
+    },
+    "authorized": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/refreshed_feed/us-en.tsv",
+      "sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+      "bytes": 17166442
+    },
+    "original_frozen": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-build/first_release_v2/us-en.tsv",
+      "sha256": "e96faeeb86a64898e3564581997ffde427bd593f061cf02a4dc19244520621c5",
+      "bytes": 17166462
+    },
+    "operator_provenance": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/google_price_receipt_20260911.json",
+      "sha256": "7cbb9ef49c9c809735d3b1780a5766bf4de20ef55190af2ed7efee410b527702",
+      "bytes": 6372
+    },
+    "prior_independent_feed_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/independent_feed_after_review.json",
+      "sha256": "62abf50464f177a1bf006f5bcc93c120b4cab3e3fe457493c16b109b13c92508",
+      "bytes": 6494
+    }
+  },
+  "counts": {
+    "received_rows": 4923,
+    "unique_ids": 4923,
+    "parent_groups": 240,
+    "columns": 18,
+    "changed_rows_from_original": 5,
+    "changed_price_cells": 5,
+    "other_original_rows_unchanged": 4918,
+    "affected_nonprice_cells_unchanged": 85,
+    "numeric_variant_links_verified": 4923
+  },
+  "exact_authorized_deltas": [
+    {
+      "record_ordinal_including_header": 1844,
+      "id": "shopify_US_7230336729185_41883237220449",
+      "size": "Adult 2XL",
+      "color": "White",
+      "changed_fields": {
+        "price": {
+          "before": "229918.99 USD",
+          "after": "22.99 USD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1845,
+      "id": "shopify_US_7230336729185_41883237285985",
+      "size": "Adult 2XL",
+      "color": "Blue",
+      "changed_fields": {
+        "price": {
+          "before": "229918.99 USD",
+          "after": "22.99 USD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1846,
+      "id": "shopify_US_7230336729185_41883237318753",
+      "size": "Adult 2XL",
+      "color": "Pink",
+      "changed_fields": {
+        "price": {
+          "before": "229918.99 USD",
+          "after": "22.99 USD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1847,
+      "id": "shopify_US_7230336729185_41883238465633",
+      "size": "Adult 2XL",
+      "color": "Black",
+      "changed_fields": {
+        "price": {
+          "before": "229918.99 USD",
+          "after": "22.99 USD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1848,
+      "id": "shopify_US_7230336729185_41883238498401",
+      "size": "Adult 2XL",
+      "color": "Red",
+      "changed_fields": {
+        "price": {
+          "before": "229918.99 USD",
+          "after": "22.99 USD"
+        }
+      }
+    }
+  ],
+  "google_native_receipt_facts": {
+    "account": "513542500",
+    "source_id": "10727274744",
+    "source_name": "PRODUCTS SOURCE 3",
+    "native_update_time": "Sep11,2026 3:45:38PM EDT",
+    "downloaded_history_update_time_utc": "2026-09-11T19:45:38Z",
+    "operator_trigger_count": 1,
+    "native_updated_products_counter": 0,
+    "native_new_products_counter": 0,
+    "native_source_total_link": 4923,
+    "native_file_issues": "No issues found",
+    "country_language_label": {
+      "country": "US",
+      "language": "en",
+      "feed_label": "US"
+    },
+    "before_marketing_methods": [
+      "Free listings"
+    ],
+    "provenance_limit": "Google download origin and native UI facts come from the exact operator execution receipt; this independent pass verified its local downloaded bytes and records, not a second native retrieval."
+  },
+  "timestamp_precision": {
+    "native_batch_time_utc": "2026-09-11T19:45:38Z",
+    "receipt_preparation_at_utc": "2026-09-11T19:45:34.644818+00:00",
+    "recorded_triggered_at_utc": "2026-09-11T19:45:49.711103+00:00",
+    "receipt_updated_at_utc": "2026-09-11T19:50:42.117584+00:00",
+    "recorded_trigger_minus_native_batch_seconds": 11.711103,
+    "interpretation": "The native update-history time identifies the downloaded batch. triggered_at was recorded11.711103seconds later; this review preserves both and does not treat it as independently proven click-start time."
+  },
+  "evidence_boundaries": {
+    "downloaded_google_source_contains_corrected_prices": "VERIFIED_FILE_RECEIPT",
+    "native_updated_counter": 0,
+    "effective_individual_google_offer_prices": "NOT_VERIFIED_IN_THIS_REVIEW",
+    "processing_completion": "NOT_ESTABLISHED_BY_DOWNLOAD_OR_ZERO_COUNTER",
+    "offer_or_account_approval": "NOT_VERIFIED",
+    "serving_traffic_sales_profit": "NOT_VERIFIED"
+  },
+  "actions_by_reviewer": {
+    "local_report_writes": 1,
+    "external_mutations": 0,
+    "native_or_public_browser_calls": 0,
+    "source_or_hosted_fetches": 0,
+    "other_artifact_writes": 0
+  },
+  "limits": [
+    "No claim that Updated0 means4923 newly effective updates; source total and file row count are different evidence.",
+    "No Google effective product-detail price, final processing, offer/account approval or serving inference.",
+    "No individual AU/CA/GB file, builder, source, publisher, Shopify, credential or paid state changed.",
+    "Availability is a preserved file declaration, not independent current salability or owned physical inventory."
+  ],
+  "next_action": "Merchant finishes the existing exact five effective Google offer-price/source readbacks; preserve separate account-review and serving gates without another speculative Update."
+}

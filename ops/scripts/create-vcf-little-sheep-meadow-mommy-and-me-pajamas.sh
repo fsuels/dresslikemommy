@@ -2,7 +2,7 @@
 # ============================================================================
 #  VCF — Little Sheep Meadow Mommy-and-Me Pajama Listing (Shopify Admin 2025-01)
 #
-#  Vendor source: https://detail.1688.com/offer/1028115745039.html
+#  Vendor source: redacted from repo; see local operator evidence.
 #
 #  DESIGN PRINCIPLE — single source of truth: the VENDOR_SIZE_CHART JSON block
 #  below drives EVERYTHING downstream (option values, variants, SKUs, body
@@ -49,7 +49,7 @@ VENDOR="dresslikemommy.com"
 PTYPE="Matching Family Pajamas"
 SEO_TITLE="Lamb Mommy & Me Pajamas — Matching Set | Dress Like Mommy"
 CATEGORY_GID="gid://shopify/TaxonomyCategory/aa-1-17-4"
-VENDOR_URL="https://detail.1688.com/offer/1028115745039.html"
+VENDOR_URL=""
 
 SHORTCODE="VCF"
 COLOR_TOKEN="CREAM"
@@ -255,7 +255,7 @@ CREATE_VARS=$(jq -nc \
       productType: $ptype,
       descriptionHtml: $body,
       tags: $tags,
-      status: "ACTIVE",
+      status: "DRAFT",
       seo: $seo,
       category: $cat,
       productOptions: [
@@ -357,29 +357,9 @@ check_user_errors "$MF_RESP" '.data.metafieldsSet.userErrors' "metafieldsSet"
 # ============================================================================
 #  STEP 4 — publishablePublish (all sales channels)
 # ============================================================================
-PUB_QUERY='mutation PublishablePublish($id: ID!, $input: [PublicationInput!]!) {
-  publishablePublish(id: $id, input: $input) {
-    userErrors { field message }
-    publishable { availablePublicationsCount { count } }
-  }
-}'
-
-PUB_VARS=$(jq -nc --arg pid "$PRODUCT_ID" '
-  {
-    id: $pid,
-    input: [
-      {publicationId: "gid://shopify/Publication/55169925"},
-      {publicationId: "gid://shopify/Publication/21969633377"},
-      {publicationId: "gid://shopify/Publication/29172400225"},
-      {publicationId: "gid://shopify/Publication/76582879329"},
-      {publicationId: "gid://shopify/Publication/76604768353"}
-    ]
-  }')
-
-echo ">>> publishablePublish" >&2
-PUB_RESP=$(gql "$PUB_QUERY" "$PUB_VARS")
-echo "$PUB_RESP" | jq . >&2
-check_user_errors "$PUB_RESP" '.data.publishablePublish.userErrors' "publishablePublish"
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+echo "Sales-channel publication skipped; product remains a draft pending approval."
 
 # ============================================================================
 #  STEP 5 — media attach (if local images exist)

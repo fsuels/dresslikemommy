@@ -19,7 +19,7 @@ HANDLE='skyfade-family-matching-set'
 TITLE='Skyfade Family Matching Set - Dress & Shirt'
 SEO_TITLE='Skyfade Family Matching Set | Dress Like Mommy'
 SEO_DESCRIPTION='Airy ombre family matching set in blue or lavender for mom, dad, girls & boys. Dress and shirt sizes 2Y-10Y, Mother S-3XL, Father S-4XL.'
-VENDOR_URL='https://detail.1688.com/offer/893219853492.html'
+VENDOR_URL=''
 PRODUCT_TYPE='Matching Family Sets'
 TAXONOMY_GID='gid://shopify/TaxonomyCategory/aa-1-11'
 EXPECTED_TAXONOMY='Apparel & Accessories > Clothing > Outfit Sets'
@@ -90,7 +90,7 @@ size_values=[]
 for r in chart:
     if r['picker_label'] not in size_values: size_values.append(r['picker_label'])
 options=[{'name':'Type','values':[{'name':'Dress'},{'name':'Shirt'}]},{'name':'Size','values':[{'name':x} for x in size_values]},{'name':'Color','values':[{'name':'Blue'},{'name':'Lavender'}]}]
-tags=sorted(set(['Family Matching','Mommy and Me','Daddy and Me','Matching Family Set','Matching Family Outfits','Matching Family Dress','Matching Family Shirt','Dress & Shirt','Sets','Summer','Beach','Vacation','Resort','Ombre','Gradient','Blue','Lavender','Purple','White','Skyfade','Girls Dress','Mother Dress','Boy Shirt','Father Shirt','Short Sleeve Shirt','Sleeveless Dress','Spaghetti Strap Dress','Crewneck Shirt','Four-Role Matching',VENDOR_URL]+size_values+['Mother S','Mother M','Mother L','Mother XL','Mother 2XL','Mother 3XL','Father S','Father M','Father L','Father XL','Father 2XL','Father 3XL','Father 4XL']))
+tags=sorted(set(['Family Matching','Mommy and Me','Daddy and Me','Matching Family Set','Matching Family Outfits','Matching Family Dress','Matching Family Shirt','Dress & Shirt','Sets','Summer','Beach','Vacation','Resort','Ombre','Gradient','Blue','Lavender','Purple','White','Skyfade','Girls Dress','Mother Dress','Boy Shirt','Father Shirt','Short Sleeve Shirt','Sleeveless Dress','Spaghetti Strap Dress','Crewneck Shirt','Four-Role Matching']+size_values+['Mother S','Mother M','Mother L','Mother XL','Mother 2XL','Mother 3XL','Father S','Father M','Father L','Father XL','Father 2XL','Father 3XL','Father 4XL']))
 def gql(query,variables=None):
     data=json.dumps({'query':query,'variables':variables or {}}).encode()
     req=urllib.request.Request(API,data=data,headers={'X-Shopify-Access-Token':TOKEN,'Content-Type':'application/json'})
@@ -106,7 +106,7 @@ def user_errors(out,path):
 node=gql('query($id:ID!){node(id:$id){... on TaxonomyCategory{id fullName}}}',{'id':TAXONOMY_GID})['data']['node']
 assert node['fullName']==EXPECTED_TAXONOMY
 existing=gql('query($handle:String!){productByHandle(handle:$handle){id variants(first:100){nodes{id sku}}}}',{'handle':HANDLE})['data']['productByHandle']
-product_input={'handle':HANDLE,'title':TITLE,'descriptionHtml':body,'vendor':'dresslikemommy.com','productType':PRODUCT_TYPE,'tags':tags,'status':'ACTIVE','category':TAXONOMY_GID,'seo':{'title':SEO_TITLE,'description':SEO_DESCRIPTION}}
+product_input={'handle':HANDLE,'title':TITLE,'descriptionHtml':body,'vendor':'dresslikemommy.com','productType':PRODUCT_TYPE,'tags':tags,'status':'DRAFT','category':TAXONOMY_GID,'seo':{'title':SEO_TITLE,'description':SEO_DESCRIPTION}}
 if existing:
     pid=existing['id']
     out=gql('mutation($product:ProductUpdateInput!){productUpdate(product:$product){product{id} userErrors{field message}}}',{'product':{'id':pid,**product_input}}); user_errors(out,'data.productUpdate.userErrors')
@@ -131,8 +131,10 @@ metas=[
 for i in range(0,len(metas),25):
     out=gql('mutation($metafields:[MetafieldsSetInput!]!){metafieldsSet(metafields:$metafields){userErrors{field message}}}',{'metafields':metas[i:i+25]}); user_errors(out,'data.metafieldsSet.userErrors')
 pubs=[{'publicationId':x} for x in ['gid://shopify/Publication/55169925','gid://shopify/Publication/21969633377','gid://shopify/Publication/29172400225','gid://shopify/Publication/76582879329','gid://shopify/Publication/76604768353']]
-out=gql('mutation($product:ProductUpdateInput!){productUpdate(product:$product){product{id status} userErrors{field message}}}',{'product':{'id':pid,'status':'ACTIVE'}}); user_errors(out,'data.productUpdate.userErrors')
-out=gql('mutation($id:ID!,$input:[PublicationInput!]!){publishablePublish(id:$id,input:$input){userErrors{field message}}}',{'id':pid,'input':pubs}); user_errors(out,'data.publishablePublish.userErrors')
+out=gql('mutation($product:ProductUpdateInput!){productUpdate(product:$product){product{id status} userErrors{field message}}}',{'product':{'id':pid,'status':'DRAFT'}}); user_errors(out,'data.productUpdate.userErrors')
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+print("Sales-channel publication skipped; product remains a draft pending approval.")
 # media upload local assets, if present
 media=gql('query($id:ID!){product(id:$id){media(first:50){nodes{... on MediaImage{id alt image{url}}}}}}',{'id':pid})['data']['product']['media']['nodes']
 alts={m.get('alt') for m in media}
@@ -147,14 +149,16 @@ for image_path in sorted(list(UPLOAD_DIR.glob('*.png'))+list(UPLOAD_DIR.glob('*.
     args += ['-F',f'file=@{image_path}']
     subprocess.run(args,check=True,stdout=subprocess.DEVNULL)
     out=gql('mutation($productId:ID!,$media:[CreateMediaInput!]!){productCreateMedia(productId:$productId,media:$media){userErrors{field message}}}',{'productId':pid,'media':[{'originalSource':target['resourceUrl'],'mediaContentType':'IMAGE','alt':alt}]}); user_errors(out,'data.productCreateMedia.userErrors')
-out=gql('mutation($product:ProductUpdateInput!){productUpdate(product:$product){product{id status} userErrors{field message}}}',{'product':{'id':pid,'status':'ACTIVE'}}); user_errors(out,'data.productUpdate.userErrors')
-out=gql('mutation($id:ID!,$input:[PublicationInput!]!){publishablePublish(id:$id,input:$input){userErrors{field message}}}',{'id':pid,'input':pubs}); user_errors(out,'data.publishablePublish.userErrors')
+out=gql('mutation($product:ProductUpdateInput!){productUpdate(product:$product){product{id status} userErrors{field message}}}',{'product':{'id':pid,'status':'DRAFT'}}); user_errors(out,'data.productUpdate.userErrors')
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+print("Sales-channel publication skipped; product remains a draft pending approval.")
 time.sleep(3)
 verify=gql('query($id:ID!){product(id:$id){id title handle status publishedAt onlineStoreUrl descriptionHtml tags seo{title description} category{id fullName} options{name values} variants(first:100){nodes{id sku title price compareAtPrice inventoryPolicy selectedOptions{name value} inventoryItem{tracked requiresShipping}}} collections(first:50){nodes{title handle}} metafields(first:100){nodes{namespace key type value}} resourcePublicationsV2(first:20){nodes{isPublished publication{id name}}}}}',{'id':pid})
 VERIFY_JSON_OUT.write_text(json.dumps(verify,indent=2))
 p=verify['data']['product']; live=p['variants']['nodes']; live_skus=sorted(v['sku'] for v in live); spec_skus=sorted(v['inventoryItem']['sku'] for v in variants)
 checks=[]
-checks.append(('title length',len(p['title'])<=70,len(p['title']))); checks.append(('seo title length',len(p['seo']['title'])<=60,len(p['seo']['title']))); checks.append(('seo description length',len(p['seo']['description'])<=155,len(p['seo']['description']))); checks.append(('variant count',len(live)==len(variants),f"{len(live)} vs {len(variants)}")); checks.append(('sku parity',live_skus==spec_skus,', '.join(live_skus))); checks.append(('taxonomy',p['category']['fullName']==EXPECTED_TAXONOMY,p['category']['fullName'])); checks.append(('status active',p['status']=='ACTIVE',p['status'])); checks.append(('published',bool(p['publishedAt']),p['publishedAt'])); checks.append(('online url',bool(p['onlineStoreUrl']),p['onlineStoreUrl']))
+checks.append(('title length',len(p['title'])<=70,len(p['title']))); checks.append(('seo title length',len(p['seo']['title'])<=60,len(p['seo']['title']))); checks.append(('seo description length',len(p['seo']['description'])<=155,len(p['seo']['description']))); checks.append(('variant count',len(live)==len(variants),f"{len(live)} vs {len(variants)}")); checks.append(('sku parity',live_skus==spec_skus,', '.join(live_skus))); checks.append(('taxonomy',p['category']['fullName']==EXPECTED_TAXONOMY,p['category']['fullName'])); checks.append(('status draft',p['status']=='DRAFT',p['status'])); checks.append(('not published',not bool(p['publishedAt']),p['publishedAt'])); checks.append(('online url absent',not bool(p['onlineStoreUrl']),p['onlineStoreUrl']))
 price_ok=all(v['price']==next(x['price'] for x in variants if x['inventoryItem']['sku']==v['sku']) and v['compareAtPrice']==next(x['compareAtPrice'] for x in variants if x['inventoryItem']['sku']==v['sku']) and v['inventoryPolicy']=='DENY' and v['inventoryItem']['tracked'] and v['inventoryItem']['requiresShipping'] for v in live)
 checks.append(('price/inventory parity',price_ok,'FORCE_SPEC_PRICES true'))
 if not all(c[1] for c in checks): raise SystemExit('verification failed '+repr(checks))

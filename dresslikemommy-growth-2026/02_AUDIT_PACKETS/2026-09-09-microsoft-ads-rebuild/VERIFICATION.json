@@ -1,0 +1,140 @@
+{
+  "as_of": "2026-09-09 18:42:38 UTC",
+  "status": "IMPLEMENTED_COPY_REPAIR__MICROSOFT_NATIVE_EXECUTION_BLOCKED",
+  "authority": {
+    "current_user_request": "Microsoft tracking repair, US/international campaign rebuild, continue working fix everything",
+    "numeric_launch_budget_authorized": false,
+    "full_paid_control_preserved": true,
+    "full_paid_scope": "NONE"
+  },
+  "implemented": {
+    "shopify_source_body": 1,
+    "shopify_translated_bodies": 20,
+    "microsoft_configuration_writes": 0,
+    "native_campaign_creations": 0,
+    "new_spend": 0,
+    "root_theme_writes": 0
+  },
+  "checks": [
+    {
+      "name": "Fresh source and20-locale after-read",
+      "status": "PASS",
+      "evidence": "coral_copy_after.json"
+    },
+    {
+      "name": "Independent Coral plan and post-write review",
+      "status": "PASS",
+      "checks": 295,
+      "evidence": "coral_copy_independent_review.md"
+    },
+    {
+      "name": "Public copy render",
+      "status": "PASS",
+      "locales": [
+        "en",
+        "es",
+        "de"
+      ],
+      "mobile": "es390x844",
+      "evidence": "coral_rendered_after.json"
+    },
+    {
+      "name": "Actual paired-cart buttons and exact cleanup",
+      "status": "PASS",
+      "currency": "USD",
+      "two_item_total": 66.98,
+      "cleanup_item_count": 0,
+      "evidence": "coral_rendered_after.json"
+    },
+    {
+      "name": "Checkout-page continuation",
+      "status": "BLOCKED_AUTO_REVIEW",
+      "reason": "Classified as purchase staging",
+      "permission_question": "PENDING",
+      "workaround_attempted": false
+    },
+    {
+      "name": "Microsoft pageLoad endpoint transport",
+      "status": "PASS_LIMITED",
+      "tag": "36005151",
+      "http_status": 204,
+      "trace_truncated": false,
+      "strict_worker_network_captured": false
+    },
+    {
+      "name": "Offline Microsoft app source scenarios",
+      "status": "PASS",
+      "checks": 12,
+      "evidence": "deployed_pixel_offline_test.json"
+    },
+    {
+      "name": "Independent20-locale five-label payload",
+      "status": "PASS",
+      "structural_checks": 324,
+      "delta_checks": 129,
+      "evidence": "buy_button_locale_review.md"
+    },
+    {
+      "name": "Local candidate JavaScript syntax",
+      "status": "PASS",
+      "files": 3,
+      "command": "node --check on each buy_button_candidate_product-desktop-ux*.js"
+    },
+    {
+      "name": "Candidate changes confined to missing dictionary entries",
+      "status": "PASS",
+      "inserted_per_candidate": 98,
+      "evidence": "buy_button_patch_receipt.json",
+      "integration_owner": "Merchant task01a08706, fresh MAIN candidate",
+      "live_release_verified": false
+    },
+    {
+      "name": "Campaign package",
+      "status": "PASS",
+      "checks": 5185,
+      "evidence": "campaign_validation.json",
+      "native_acceptance": false
+    },
+    {
+      "name": "Cockpit renderer",
+      "status": "PASS"
+    },
+    {
+      "name": "Marketing command integration",
+      "status": "PASS",
+      "integrated": 25,
+      "risks": 0
+    },
+    {
+      "name": "Strict continuity",
+      "status": "PASS",
+      "checks": 10,
+      "result": "CONTINUITY_OK"
+    }
+  ],
+  "blocked_or_unverified": [
+    "Stable native Microsoft tab required for current UET/goal reads and paused staging",
+    "Genuine purchase receipt/value/currency/consent/goal-overlap unverified",
+    "Publisher-managed click-ID cookie defect not repaired; fallback prevents attribution-loss claim",
+    "Shipping/duties/actual delivered contribution economics unqualified",
+    "No live keyword forecasts, native geography IDs or CPC-control acceptance",
+    "No native campaign create/import; all11 designs remain local",
+    "Translated CTA/RTL/live theme behavior awaits Merchant candidate integration/release"
+  ],
+  "next_owner_action": "Leave the signed-in Microsoft477439 tab unchanged for10minutes and confirm readiness",
+  "continuation": {
+    "prompt": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+    "anchor": "2026-09-09-microsoft-coral-copy-repair-verified",
+    "task": "TA-15"
+  },
+  "continuation_checkpoint": {
+    "as_of_utc": "2026-09-10T00:39:49.823260+00:00",
+    "status": "LIVE_SOURCE_REFRESH_VERIFIED__RECEIVER_AND_NATIVE_STAGE_BLOCKED",
+    "receipt": "consent_and_access_checkpoint_20260910.json",
+    "independent_review": "microsoft_consent_assessment.md",
+    "native_or_spend_writes": 0,
+    "previous_checks_remain_dated": "2026-09-09 18:42:38 UTC",
+    "next_owner_action": "Select the supplied Microsoft477439 tab, leave Chrome unused for10minutes and confirm readiness",
+    "anchor": "2026-09-09-microsoft-live-source-consent-access-checkpoint"
+  }
+}

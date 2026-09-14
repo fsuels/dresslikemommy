@@ -1,0 +1,126 @@
+{
+  "action": "TA07-ES-TRANSLATION-REPAIR-20260914-1925",
+  "reviewer": "/root/merchant_translation_review",
+  "reviewed_at_utc": "2026-09-14T19:55:35.155272+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "independence": {
+    "did_not_author_proposal": true,
+    "did_not_execute_registration": true,
+    "external_reads": 0,
+    "external_writes": 0,
+    "scope": "Read-only review of saved local operation evidence; wrote only this independent_after_review.json."
+  },
+  "bindings": [
+    {
+      "file": "proposal.json",
+      "sha256": "8f4fee9765c5b4ec4a5943955959c51d55ec4c4da2e85c8b2f89b2295f1241e6"
+    },
+    {
+      "file": "register.variables.json",
+      "sha256": "7d4e64cdf9aa3d6483829eb227808a997f9d894bd66ffcbd76a4554ee87411ac"
+    },
+    {
+      "file": "register.graphql",
+      "sha256": "f4ef73abcfe23791913ec8bfa97cbc08186fee41a8e7ae26d546d06805edb3ae"
+    },
+    {
+      "file": "mutation_receipt.json",
+      "sha256": "f0f8b921eed053fee1b9598014f8d8a1433277cfec4682299c65db3f3c111dda"
+    },
+    {
+      "file": "before.json",
+      "sha256": "8d86c055e54ad1119ef1624cf6d4f586939ee25fdcc519a920c674629efa0b65"
+    },
+    {
+      "file": "after.json",
+      "sha256": "b0e6c54ddf0c5500692be8065a0564ec0ca1d74fcf086377d625fc50f87742c5"
+    },
+    {
+      "file": "prewrite_verification.json",
+      "sha256": "cc26d31682316f454a04a9b507a45c8631b562625fb617e22dda13e00d9f79b7"
+    },
+    {
+      "file": "after_verification.json",
+      "sha256": "bac703e757cb93b6ce0b4af352553c14bc1b61b0b2822270c0ebea6d0669093a"
+    },
+    {
+      "file": "independent_prewrite_review.json",
+      "sha256": "2f0e2d8870cad48fbabec75a4e0cbc78b2c8656eddc24a0b3f37ad7d182a2bbc"
+    }
+  ],
+  "reviewed_proposal_sha256": "8f4fee9765c5b4ec4a5943955959c51d55ec4c4da2e85c8b2f89b2295f1241e6",
+  "operation": {
+    "locale": "es",
+    "market_scope": "global; no marketId is supplied in any TranslationInput",
+    "captured_mutation_batches": 1,
+    "aliases": 10,
+    "products_targeted": 10,
+    "fields_targeted": 25,
+    "user_errors": 0,
+    "mutation_completed_at": "2026-09-14T19:51:32.659Z",
+    "after_read_completed_at": "2026-09-14T19:52:11.677Z",
+    "source_guard_completed_at": "2026-09-14T19:49:35.636Z",
+    "guard_to_mutation_start_seconds": 113.985
+  },
+  "checks": [
+    {
+      "name": "Exact approved candidate and review binding",
+      "status": "PASS",
+      "detail": "Proposal and prior independent review hashes exactly match both prewrite and after verification records."
+    },
+    {
+      "name": "Exact mutation variable scope",
+      "status": "PASS",
+      "detail": "Ten unique resource variables and ten translation arrays contain exactly the 25 approved resource/key pairs, each with exact Spanish value and current source digest. No duplicate or extra target, input field, locale, or market-specific override."
+    },
+    {
+      "name": "Mutation document/receipt match",
+      "status": "PASS",
+      "detail": "The bound document contains exactly 10 translationsRegister aliases. Every corresponding saved response returned the exact requested keys, locale es, outdated false and empty userErrors; no top-level response error."
+    },
+    {
+      "name": "Independent destination value readback",
+      "status": "PASS",
+      "detail": "All 25 after values match the approved proposal byte-for-byte and all 25 outdated flags changed from true to false."
+    },
+    {
+      "name": "Untargeted Spanish preservation",
+      "status": "PASS",
+      "detail": "All 30 untargeted Spanish field values and flags remain unchanged. Two redacted untargeted Spanish values were compared using matching original-value SHA256 bindings."
+    },
+    {
+      "name": "English source preservation",
+      "status": "PASS",
+      "detail": "All 66 English translatable source fields/digests across all 11 resources remain unchanged; redacted source values were compared using original-value SHA256 bindings."
+    },
+    {
+      "name": "Complete resource and field reconciliation",
+      "status": "PASS",
+      "detail": "Both snapshots contain the exact same 11 unique resources and same Spanish/source keys; pagination hasNextPage false. Spanish outdated count changed from 26 to 1, exactly matching 25 reviewed changes."
+    },
+    {
+      "name": "Tropical body hold preservation",
+      "status": "PASS",
+      "detail": "Product 7227378925665/body_html was absent from mutation targets; its Spanish value hash and outdated true remain unchanged."
+    },
+    {
+      "name": "Chronology and saved verification consistency",
+      "status": "PASS",
+      "detail": "Source guard, validation, mutation, destination read and after validation timestamps are correctly ordered. Reported counts, query hash and private source bindings reconcile with the independently checked evidence."
+    }
+  ],
+  "blocked_field": {
+    "resourceId": "gid://shopify/Product/7227378925665",
+    "key": "body_html",
+    "status": "UNCHANGED_OUTDATED_SOURCE_VERIFICATION_REQUIRED"
+  },
+  "findings": [],
+  "limits": [
+    "This independently verifies the saved operation evidence, without a new authenticated API read or a separate transport audit of execution history.",
+    "Raw private full responses were not opened; hashes bind sanitized fields to private evidence. Redacted unchanged fields were compared via their original-value hashes.",
+    "Other locales, variant prices, status and publication fields were not directly reread in this translation-only evidence. The reviewed operation contains only exact global Spanish translation registrations, with no mutation input capable of editing those product fields.",
+    "Source sizing/material claims were preserved, not independently reverified from supplier evidence. Tropical remains blocked for source measurement verification.",
+    "This repair is complete within its 25-field scope. Language-feed preparation/submission, variant landing correctness, Merchant receipt/approval/exposure, ratings, traffic and sales remain separate work and are not claimed by this verdict."
+  ],
+  "next_action": "Parent may close this exact translation repair and integrate the verified result; retain the independent Tropical source hold and continue the separately owned language-feed/landing work."
+}

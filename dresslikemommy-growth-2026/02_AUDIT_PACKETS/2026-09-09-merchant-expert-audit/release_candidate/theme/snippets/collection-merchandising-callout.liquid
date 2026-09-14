@@ -1,0 +1,144 @@
+{%- liquid
+  assign collection_handle = collection.handle | default: ''
+  assign show_callout = false
+  assign callout_eyebrow = ''
+  assign callout_title = ''
+  assign callout_body = ''
+  assign primary_label = 'Shop the collection'
+  assign primary_url = '#product-grid'
+  assign secondary_label = ''
+  assign secondary_url = ''
+  assign tertiary_label = ''
+  assign tertiary_url = ''
+  assign callout_media = blank
+  assign callout_media_source_product = blank
+  assign callout_media_alt = collection.title | default: 'Matching collection'
+  assign collection_live_count = collection.all_products_count | default: collection.products_count
+
+  case collection_handle
+    when 'matching-couples-t-shirts'
+      assign show_callout = true
+      assign callout_eyebrow = 'Shop faster'
+      assign callout_title = 'Compare the couple tees here, then branch into broader matching looks'
+      assign callout_body = 'Keep shoppers on the grid first so they can scan the strongest couple graphics side by side, then widen out into family matching if they want more than tees.'
+      assign primary_label = 'Shop the tee grid'
+      assign primary_url = '#product-grid'
+      assign secondary_label = 'Browse family matching'
+      assign secondary_url = '/collections/matching-outfits'
+    when 'mommy-and-me'
+      assign show_callout = true
+      assign callout_eyebrow = 'Shop faster'
+      assign callout_title = 'Browse the full Mommy & Me collection, then jump to the newest pajamas'
+      assign callout_body = 'Use this page as the broad matching browse first. When the shopper already knows she wants sleepwear, the dedicated pajama drop is the clean next step instead of the starting point.'
+      assign primary_label = 'Browse this collection'
+      assign primary_url = '#product-grid'
+      assign secondary_label = 'Shop new pajamas'
+      assign secondary_url = '/collections/new-pajama-drop'
+      assign tertiary_label = 'Browse all pajamas'
+      assign tertiary_url = '/collections/pajamas'
+    when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits'
+      assign show_callout = true
+      assign callout_eyebrow = 'Shop faster'
+      assign callout_title = 'Start with the family grid, then use the pajama launch as the focused edit'
+      assign callout_body = 'The broad family collection should stay easy to scan above the fold. When the shopper wants the newest sleepwear specifically, route her into the pajama drop as the tighter follow-on path.'
+      assign primary_label = 'Browse this collection'
+      assign primary_url = '#product-grid'
+      assign secondary_label = 'Shop new pajamas'
+      assign secondary_url = '/collections/new-pajama-drop'
+      assign tertiary_label = 'Browse all pajamas'
+      assign tertiary_url = '/collections/pajamas'
+    when 'pajamas'
+      assign show_callout = true
+      assign callout_eyebrow = 'Shop faster'
+      assign callout_title = 'See the full pajama grid first, then jump to the newest drop'
+      assign callout_body = 'This collection works best as the main browse. Let shoppers compare every live pajama style right here, then offer the new-arrivals edit for anyone who wants the freshest prints first.'
+      assign primary_label = 'Shop the pajamas below'
+      assign primary_url = '#product-grid'
+      assign secondary_label = 'Newest arrivals'
+      assign secondary_url = '/collections/new-pajama-drop'
+      assign tertiary_label = 'Browse Mommy & Me'
+      assign tertiary_url = '/collections/mommy-and-me'
+    when 'new-pajama-drop'
+      assign show_callout = true
+      assign callout_eyebrow = 'Just added'
+      assign callout_title = 'Fresh matching pajamas, all in one focused edit'
+      assign callout_body = 'Keep the newest prints grouped together here for a tighter browse, then let shoppers widen back out into the full pajama collection when they want every live option.'
+      assign primary_label = 'Shop new arrivals'
+      assign primary_url = '#product-grid'
+      assign secondary_label = 'Browse all pajamas'
+      assign secondary_url = '/collections/pajamas'
+    when 'new-matching-outfits'
+      assign show_callout = true
+      assign callout_eyebrow = 'Fresh arrivals'
+      assign callout_title = 'See the latest matching looks without losing the main grid'
+      assign callout_body = 'This page should still feel easy to scan. Keep the newest arrivals visible here first, then use the broader Mommy & Me collection as the backup path when shoppers want more depth.'
+      assign primary_label = 'Shop new arrivals'
+      assign primary_url = '#product-grid'
+      assign secondary_label = 'Browse Mommy & Me'
+      assign secondary_url = '/collections/mommy-and-me'
+  endcase
+
+  if collection.image != blank
+    assign callout_media = collection.image
+  elsif collection.products_count > 0 and collection.products.first.featured_media != blank
+    assign callout_media = collection.products.first.featured_media.preview_image
+    assign callout_media_source_product = collection.products.first
+  endif
+  if callout_media != blank
+    capture callout_media_alt
+      render 'product-image-alt', product: callout_media_source_product, media: callout_media, collection: collection, fallback_title: callout_media_alt
+    endcapture
+    assign callout_media_alt = callout_media_alt | strip
+  endif
+-%}
+
+{%- if show_callout -%}
+  <div class="collection-merchandising-callout">
+    <div class="collection-merchandising-callout__content">
+      <div class="collection-merchandising-callout__intro">
+        {%- if callout_eyebrow != blank -%}
+          <p class="collection-merchandising-callout__eyebrow">{{ callout_eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="collection-merchandising-callout__title">{{ callout_title }}</h2>
+        <p class="collection-merchandising-callout__body">{{ callout_body }}</p>
+      </div>
+      <div class="collection-merchandising-callout__utility">
+        <ul class="collection-merchandising-callout__meta" role="list">
+          <li>{{ collection_live_count }} live styles</li>
+          <li>Standard shipping included</li>
+          <li>30-day return window</li>
+        </ul>
+        <div class="collection-merchandising-callout__actions">
+          <a href="{{ primary_url }}" class="button">{{ primary_label }}</a>
+          {%- if secondary_url != blank and secondary_label != blank -%}
+            <a href="{{ secondary_url }}" class="button button--secondary">{{ secondary_label }}</a>
+          {%- endif -%}
+        </div>
+        {%- if tertiary_url != blank and tertiary_label != blank -%}
+          <a href="{{ tertiary_url }}" class="collection-merchandising-callout__text-link">{{ tertiary_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if callout_media != blank -%}
+      <div class="collection-merchandising-callout__media media">
+        <img
+          srcset="
+            {%- if callout_media.width >= 360 -%}{{ callout_media | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if callout_media.width >= 535 -%}{{ callout_media | image_url: width: 535 }} 535w,{%- endif -%}
+            {%- if callout_media.width >= 750 -%}{{ callout_media | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if callout_media.width >= 990 -%}{{ callout_media | image_url: width: 990 }} 990w,{%- endif -%}
+            {{ callout_media | image_url }} {{ callout_media.width }}w
+          "
+          src="{{ callout_media | image_url: width: 750 }}"
+          sizes="(min-width: 990px) 24rem, 100vw"
+          alt="{{ callout_media_alt | escape }}"
+          loading="lazy"
+          decoding="async"
+          width="{{ callout_media.width }}"
+          height="{{ callout_media.height }}"
+        >
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "scope": "One CSS selector amendment; unpublished staging only; rendered after-state still required.",
+  "reviewer": "merchant_landing_code_review",
+  "independent_of_builder_and_executor": true,
+  "reviewed_at_utc": "2026-09-09T20:10:10.844Z",
+  "external_writes": 0,
+  "owned_artifacts_only": [
+    "independent_review.json",
+    "independent_review.md"
+  ],
+  "target_theme_id": "gid://shopify/OnlineStoreTheme/137881223265",
+  "requires_unpublished_target": true,
+  "hashes": {
+    "payload": "e97ace48d341776e0ef8697bcbc1ecb28af70e1894b9c2d7adc18b9a76a4db9e",
+    "patch": "383e06ca80b9c1a5bd73ddf10d6f163da0759dd08619f8f56b0f5178fa021677",
+    "rollback": "a141dcb359bb531e42f28ac4be645ad5e5e44904d009e81aad72f80826137d23",
+    "resulting_manifest": "a182a69685fce3b2b95ec61ca9c973402954818843897709233fa923b8822985"
+  },
+  "source_binding": {
+    "file": "assets/theme-inline-body-static-04.css",
+    "baseline_md5": "a27b45937f8d10c47a761a903868bc70",
+    "baseline_sha256": "73e6b5bb56d18020a682981f8b4ea1808721348bf5d8f1c68a8b0b73f9e2c3b4",
+    "baseline_bytes": 18339,
+    "candidate_md5": "ec036a8da2c7bacabd239bada8cde919",
+    "candidate_sha256": "532fc7346a84cb2d723a0c594372507bb8b77c06716ac9880ef74f4b97f861ca",
+    "candidate_bytes": 18322,
+    "base_release_payload_sha256": "3b32bf05196772f7a1939c95f39c1f89601c54ee8bf5a36f0681e5c72c87cf60",
+    "prior_independent_live_read_completed_utc": "2026-09-09 19:43:49 UTC",
+    "root_prewrite_evidence_sha256": "7a218bd5761dfd10d3cfb67881b6678b823cec8119bb0c966322160f0522bb41",
+    "root_prewrite_status": "PASS",
+    "root_prewrite_as_of": "2026-09-09 20:08:32 UTC"
+  },
+  "checks": {
+    "exact_one_selector_replacement": "PASS",
+    "one_payload_file": "PASS",
+    "embedded_body_equals_candidate": "PASS",
+    "rollback_exact_before_guarded_by_after_md5": "PASS",
+    "expected_527_file_overlay": "PASS",
+    "other_526_manifest_rows_unchanged": "PASS",
+    "existing_46_release_changes_preserved": "PASS",
+    "main_difference_count": 47,
+    "css_product_template_only": "PASS layout/theme.liquid:1321",
+    "body_class_source_has_no_template_product": "PASS layout/theme.liquid:1122",
+    "viewport_boundary_749px_preserved": "PASS",
+    "measured_offset_producer_and_hidden_cleanup_preserved": "PASS main-product.liquid:1990-2007",
+    "safe_area_formula_preserved": "PASS",
+    "focused_regressions": {
+      "command": "bundled Node --test --test-reporter=tap mobile_footer_spacing.test.mjs",
+      "passed": 6,
+      "failed": 0,
+      "independently_replayed": true,
+      "test_sha256": "5adf94c5a7d6ff425e2716e829f0e33e84af605fc0d1e6e09064a5f30c0edc89"
+    },
+    "worker_theme_check": {
+      "files": 1,
+      "diagnostics": 0,
+      "independently_replayed": false,
+      "evidence_reviewed": true,
+      "cached_schema_after_network_lookup_failure": true
+    }
+  },
+  "findings": [],
+  "limits": [
+    "CSSOM selectors, extracted real offset function and geometry arithmetic are tested; no browser layout or hit-test after-state was produced by this reviewer.",
+    "Height tests manually invoke the existing producer; resizing/font wrapping and nonzero device safe-area behavior require rendered verification.",
+    "The retained offsetHeight plus safe-area expression can reserve extra inset because measured bar height includes its padding; it is unchanged and conservatively clears the bar.",
+    "No JS, consent decisions, footer markup, locale strings, cart behavior or publication change is authorized by this report."
+  ],
+  "next_gate": "Root stages exact one-file payload, validates max-scroll visible cookie control and actual hit target at390x844 plus hidden-bar/desktop behavior. Reviewer waits for root upload message before fresh full-manifest post-verification."
+}

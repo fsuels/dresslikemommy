@@ -1,0 +1,11 @@
+query MerchantLifecycleCatalogs($after: String) {
+  shop { id name }
+  catalogs(first: 50, after: $after) {
+    nodes {
+      __typename id title status
+      publication { id autoPublish }
+      ... on MarketCatalog { markets(first: 50) { nodes { id name status } pageInfo { hasNextPage endCursor } } }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}

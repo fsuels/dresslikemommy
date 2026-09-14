@@ -1,0 +1,283 @@
+{
+  "schema": "dlm.microsoft.independent_reconciliation_review.v1",
+  "reviewed_at_utc": "2026-09-11T17:04:28.714Z",
+  "review_status": "PASS",
+  "activation_status": "HOLD",
+  "issues": [],
+  "independent_method": "Read root builder without executing it; independently recomputed with integer/rational arithmetic from frozen receipt rows and variant prices; reviewed semantic gates against prior primary-document review.",
+  "status": "PASS_LOCAL_RECONCILIATION__HOLD_ACTIVATION",
+  "method": "Independent integer/rational arithmetic and cross-file checks; builder parsed/reviewed but never executed",
+  "august": {
+    "gross": "887.37",
+    "discounts": "0",
+    "reversals": "-136.71",
+    "net": "750.66",
+    "shipping": "39.53",
+    "total": "790.19",
+    "envelope_exact": "112.599",
+    "ceiling_cents": 11259
+  },
+  "sessions": {
+    "country_rows": 129,
+    "sessions": 22294,
+    "completed_checkout_sessions": 36,
+    "us_sessions": 14996,
+    "us_completed_checkout_sessions": 21,
+    "rate_percent": {
+      "overall": "0.1615",
+      "us": "0.1400"
+    },
+    "all_129_country_rates_match": true
+  },
+  "baskets": [
+    {
+      "basket": "Coral child dress, one piece",
+      "revenue": "31.99",
+      "ratio_ceiling_cents": 479,
+      "required_cvr_percent": "3.1315"
+    },
+    {
+      "basket": "Coral mother dress, one piece",
+      "revenue": "34.99",
+      "ratio_ceiling_cents": 524,
+      "required_cvr_percent": "2.8626"
+    },
+    {
+      "basket": "Coral mother + child, two separate pieces",
+      "revenue": "66.98",
+      "ratio_ceiling_cents": 1004,
+      "required_cvr_percent": "1.4940"
+    },
+    {
+      "basket": "Sunshine child tee, one piece",
+      "revenue": "21.99",
+      "ratio_ceiling_cents": 329,
+      "required_cvr_percent": "4.5593"
+    },
+    {
+      "basket": "Sunshine adult tee, one piece",
+      "revenue": "24.99",
+      "ratio_ceiling_cents": 374,
+      "required_cvr_percent": "4.0107"
+    },
+    {
+      "basket": "Sunshine adult + child, two separate pieces",
+      "revenue": "46.98",
+      "ratio_ceiling_cents": 704,
+      "required_cvr_percent": "2.1307"
+    }
+  ],
+  "local_links": [
+    {
+      "target": "launch_contract.json",
+      "resolved": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/launch-plan-20260911/launch_contract.json"
+    },
+    {
+      "target": "platform_review.md",
+      "resolved": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/launch-plan-20260911/platform_review.md"
+    },
+    {
+      "target": "basket_economics.csv",
+      "resolved": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/launch-plan-20260911/basket_economics.csv"
+    },
+    {
+      "target": "analytics_readback.json",
+      "resolved": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/launch-plan-20260911/analytics_readback.json"
+    },
+    {
+      "target": "economics.json",
+      "resolved": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/launch-plan-20260911/economics.json"
+    },
+    {
+      "target": "shopify_candidate_readback.json",
+      "resolved": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/launch-plan-20260911/shopify_candidate_readback.json"
+    },
+    {
+      "target": "platform_review.md",
+      "resolved": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/launch-plan-20260911/platform_review.md"
+    },
+    {
+      "target": "../../../../ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+      "resolved": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+    }
+  ],
+  "protected_hashes": {
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "ad_groups.csv": "448a80f4b78fd0fdc5f94a557e2c512f0959f7d2390743923e4f365eb6b868d8",
+    "keywords.csv": "658a8fef354ae4a299b2692d0dfda50f8c08a9d5f0c2d4fceb0c78351e53e94e",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839",
+    "responsive_search_ads.csv": "0f8e442dbc8e7d5fc8e5424892ee4a357bf412edd0afdf843eac04c97f000eaa",
+    "market_readiness.json": "ed40c844704be5b3715ce0f43ec7dc5ac13bc1c9ba2940fecab6176bac990201",
+    "microsoft_deployed_app_pixel.js": "bdf85b114cb9d9ef5c790dee198f38dd8032c46bc13bdf7ca9f4ee034abc7f29",
+    "microsoft_deployed_storefront_script.js": "171802eab48befd7660099e6ad8c6d0423c14bfeb2b866b14b30694d7f7bce3a",
+    "campaign_plan.md": "1a4356562e4881cfff0a045d1b29b5f893ba04c321af0e068e765bf04e880734"
+  },
+  "reviewed_file_hashes": {
+    "RECONCILIATION.md": "35c083d01befd4a133c63db9b51eccc9b9849588353398c40a0c4c4fbff929db",
+    "build_reconciliation.py": "85bc37e2902e57dac78795e63c3c0e84fa35b3ee563de88342c7c9977914149d",
+    "economics.json": "8b7d7a873ba09b27ad767b7ec422797964fac4c610b97d72b6b1f45ddc1889a6",
+    "basket_economics.csv": "efa2919c8b2bf2a02f18e2b9fbf2991e548394c38a17c023453ee93302d258d1",
+    "launch_contract.json": "06c9a560060b9d46048b50d5ee829a538d2512ed7f8cad39be718c523a8181b1",
+    "analytics_readback.json": "43fecf783e2a3807fe226e75499450d38c288c0f4e53ce0169cbadede2984d30",
+    "shopify_candidate_readback.json": "53716ee712fbbb7f3ca187ffdf8176ecf7503cbf9e3de82e8f9f39874a1e393d",
+    "build_receipt.json": "2a9f434758599ca53c58f153c627aeba63ee97decd303d530992726a60cb747a",
+    "platform_review.md": "53c33f64cae08445317736136ee7e7607729fe37c166984288dcb985044b6b42",
+    "platform_review.json": "f917e1237c699ef9b36c554e14e569fa8f0d4297aa9413d01e467feea42e3781"
+  },
+  "proposed_initial_stage": {
+    "currency": "USD",
+    "us_daily_budget": 5,
+    "germany_daily_budget": 3,
+    "nominal_days": 3,
+    "nominal_total": 24,
+    "hard_lifetime_cap": false,
+    "approved": false,
+    "all_rows_paused": true,
+    "selection": "Exactly U.S. English matching dresses and Germany German matching dresses for both minimal paused staging and the provisional two-country launch proposal; no other campaign is included.",
+    "staging_campaign_keys": [
+      "ms_us_en_202609",
+      "ms_de_de_202609"
+    ],
+    "staging_ad_group_keys": [
+      "ms_us_en_202609_dresses",
+      "ms_de_de_202609_dresses"
+    ],
+    "staging_ad_keys": [
+      "ms_us_en_202609_dresses_rsa_1",
+      "ms_de_de_202609_dresses_rsa_1"
+    ],
+    "staging_keyword_keys": [
+      "ms_us_en_202609_dresses_exact_1",
+      "ms_us_en_202609_dresses_exact_2",
+      "ms_us_en_202609_dresses_exact_3",
+      "ms_de_de_202609_dresses_exact_1",
+      "ms_de_de_202609_dresses_exact_2",
+      "ms_de_de_202609_dresses_exact_3"
+    ],
+    "staging_negative_proposal_count": 14,
+    "next_paused_reserve": "ms_us_es_202609_dresses",
+    "local_reserve_campaign_keys": [
+      "ms_us_es_202609",
+      "ms_es_es_202609",
+      "ms_fr_fr_202609",
+      "ms_dk_da_202609",
+      "ms_nl_nl_202609",
+      "ms_it_it_202609",
+      "ms_cz_cs_202609",
+      "ms_ro_ro_202609",
+      "ms_au_en_202609"
+    ],
+    "germany_selection_basis": "Provisional preparation choice supported by the fresh German collection source receipt. No verified conversion, country superiority or cheap-CPC advantage.",
+    "denmark_alternate": "Denmark remains local only. Buyer, auction and economic evidence must support and record replacement of Germany before it joins staging or the launch proposal.",
+    "historical_country_caveat": "DK4 and DE3 historical all-channel orders do not establish superiority, present demand, causal paid results or lower CPC.",
+    "us_keyword_caveat": "The first three U.S. exacts are close synonyms with likely semantic overlap; no tested low-CPC long-tail claim. The photo-intent candidate remains for forecast/search-term review."
+  },
+  "scope": {
+    "root_artifacts_edited": false,
+    "canonical_files_edited": false,
+    "generator_executed": false,
+    "native_calls": 0,
+    "external_reads": 0,
+    "external_writes": 0,
+    "review_outputs_only": [
+      "independent_reconciliation_review.md",
+      "independent_reconciliation_review.json"
+    ]
+  },
+  "semantic_checks": {
+    "actual_costs_not_inferred_from_model": "PASS",
+    "unknown_contribution_cac_and_budget_fail_closed": "PASS",
+    "refund_double_count_and_owned_inventory_claims_avoided": "PASS",
+    "one_paid_experiment_distinct_from_preserved_two_country_paused_library": "PASS",
+    "ecpc_not_hard_cap_and_ai_max_feed_dedup_cautions_preserved": "PASS",
+    "functional_purchase_before_activation_without_required_ad_click": "PASS",
+    "legitimate_paid_attribution_after_activation_before_scale": "PASS",
+    "current_native_and_spend_gates_preserved": "PASS",
+    "dated_source_evidence_not_current_receiver_proof": "PASS"
+  },
+  "remaining_activation_gates": [
+    "Existing exact selected-Microsoft-tab readiness and serialized native access",
+    "Correct receiving account, goals, effective CPC/expansion/distribution controls",
+    "Functional purchase/value/currency/consent/repeat-delivery acceptance",
+    "Actual contribution and fulfillment economics for the selected offer",
+    "For Shopping: correct approved exact variant offer cohort and catalog mapping",
+    "Exact current owner cash/loss/activation authority after other commitments"
+  ],
+  "limitations": [
+    "Independently verifies frozen local receipts and calculations, not a new external Shopify query or current Microsoft account state.",
+    "Available-for-sale configuration is not supplier inventory or delivery proof.",
+    "Preservation checks compare against root build receipt and the prior platform-review campaign-plan hash; final readback must retain the recorded hashes."
+  ],
+  "next_action": "Root integrates this PASS without clearing activation HOLD; resolve existing native access gate before receiving-account validation.",
+  "final_validation": {
+    "review_word_count": 441,
+    "maximum_words": 450,
+    "all_10_reviewed_files_unchanged": true,
+    "all_9_protected_files_unchanged": true,
+    "json_roundtrip": "PASS",
+    "markdown_trailing_whitespace": "PASS",
+    "review_md_sha256": "b3a356d3dd708ac75438e06c8ecf332d77af2ca65cc9071bbcd758c86d920904",
+    "checked_at_utc": "2026-09-11T17:12:18.993406+00:00",
+    "initial_nine_protected_hash_check_date_note": "The initial nine-file preservation check preceded root canonical application; later campaign_plan.md change is explicitly reviewed in the addendum."
+  },
+  "canonical_scope_addendum": {
+    "status": "PASS_WITH_SUBSEQUENT_SHARED_FILE_LIMITATION",
+    "checked_at_utc": "2026-09-11T17:12:18.993218+00:00",
+    "plan_sha256": "77eaa1d44ec6168a303dc4201008bed71897e978526f3f78ad838fe6ee1ab946",
+    "plan_changes_reviewed": 14,
+    "at_write_preservation": {
+      "status": "PASS_RECORDED_IN_ROOT_RECEIPT",
+      "receipt_sha256": "254c3eee112b9ebaedf4b2d20ce0986118e5ee8d72c92c6a62a7c6bd87880648",
+      "applied_at_utc": "2026-09-11T17:05:49.170132+00:00",
+      "expected_after_states": 12,
+      "provenance": "Root application receipt; not an independent observation of all twelve files at that historical instant"
+    },
+    "independent_first_postwrite_pass": {
+      "after_state_and_reconstructed_before_matches": 11,
+      "excluded": "ops/AGENT_COORDINATION.md already had a subsequent peer change",
+      "peer_queue_rows_preserved": 130,
+      "evidence": "Independent read-only inverse reconstruction in this review, after root application and before further peer edits"
+    },
+    "latest_expected_after_hash_matches": [
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/READBACK.md",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/campaign_plan.md",
+      "ops/AGENT_WORKLOG.md",
+      "ops/marketing/action_queue.md",
+      "ops/marketing/blocker_board.md",
+      "ops/marketing/current_marketing_state.md",
+      "ops/marketing/daily_scorecard.md",
+      "ops/marketing/decision_log.md",
+      "ops/marketing/operator_cockpit.md",
+      "ops/marketing/review_log.md"
+    ],
+    "later_shared_file_hash_differences": [
+      {
+        "path": "ops/AGENT_COORDINATION.md",
+        "observed_sha256": "83071501b6695dbe9444d587ad4ee5fc5181e614ec6b8359758064e78a1dd35d",
+        "expected_at_apply_sha256": "71ad56fa49db7c5fb2d09a32b73a4309998df0e76b257b9deb4f06eacefb4513"
+      },
+      {
+        "path": "ops/PROBLEM_TRACKER.md",
+        "observed_sha256": "486a67f633631bcde6e86136748e0dc4ba354f7699e545164553f043a71931a5",
+        "expected_at_apply_sha256": "a667b529632bb95f8f13a05435460cf3a8a2bd1f8f2cbd98a9f94df94f674255"
+      }
+    ],
+    "all_fourteen_reviewed_new_segments_still_present_exactly_once": true,
+    "paid_control_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+    "paid_control_hash_selection": "Inclusive MARKETING_AUTHORITATIVE_CONTROL START and END comments, without following newline",
+    "owner_action_sha256": "8f64478e6e9da6957b1f3864216e966a3b4127ca877dde7b279cf50f5bea203a",
+    "owner_action_hash_selection": "From ## One Owner Action through the byte before the next newline followed by ## heading",
+    "peer_claim_rows_at_write_reported_by_root": 292,
+    "current_global_shared_file_byte_preservation_claimed": false,
+    "subsequent_edit_limitation": "Parent reports unrelated X/Merchant coordination after root application. Later registry and problem-ledger changes are preserved, not overwritten; full current peer content is outside this Microsoft review. All fourteen Microsoft replacement/appended segments remain exact.",
+    "protected_eight_campaign_source_files_still_match_build_receipt": true,
+    "campaign_plan_intentionally_updated": {
+      "initial_hash": "1a4356562e4881cfff0a045d1b29b5f893ba04c321af0e068e765bf04e880734",
+      "expected_and_observed_current_hash": "1617edecc07323215c080245930d051a8e5e7017fdc216d20f73d4cf843a58f0",
+      "reason": "Root planned September11 controlling header, functional purchase acceptance correction and next-action replacement"
+    },
+    "authority_promotion": false,
+    "reviewer_canonical_or_root_artifact_writes": 0,
+    "release_condition": "Local review complete; activation HOLD remains. Root owns final strict/renderer checks and canonical lease release."
+  }
+}

@@ -1,0 +1,952 @@
+{
+  "schema": "dlm.merchant.resumed-currency-source.v1",
+  "captured_date_utc": "2026-09-10",
+  "source_read_time_precision": "Root reads occurred before this persistence; an exact query timestamp was not captured.",
+  "persisted_at": "2026-09-10 00:34:05 UTC",
+  "shop_id": "15571635",
+  "query_provenance": {
+    "market_query": "query MarketAudit($after: String) {\nmarkets(first: 10, after: $after) {\nnodes { id name handle status\nconditions { conditionTypes regionsCondition { regions(first: 250) { nodes { __typename ... on MarketRegionCountry { code name currency { currencyCode enabled } } } pageInfo { hasNextPage endCursor } } } }\ncurrencySettings { baseCurrency { currencyCode enabled } localCurrencies }\nwebPresences(first: 10) { nodes { id defaultLocale { locale published } alternateLocales { locale published } rootUrls { locale url } } pageInfo { hasNextPage endCursor } }\ncatalogs(first: 10) { nodes { id title status publication { id autoPublish includedProductsCount(query: \"status:active\") { count precision } } } pageInfo { hasNextPage endCursor } }\n} pageInfo { hasNextPage endCursor } }\n}",
+    "currency_query": "query MerchantPreviewCurrencyTruth($id:ID!){productVariant(id:$id){id title us:contextualPricing(context:{country:US}){price{amount currencyCode}}es:contextualPricing(context:{country:ES}){price{amount currencyCode}}no:contextualPricing(context:{country:NO}){price{amount currencyCode}}}}"
+  },
+  "markets": {
+    "markets": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Market/22986424417",
+          "name": "Australia",
+          "handle": "australia",
+          "status": "ACTIVE",
+          "conditions": {
+            "conditionTypes": [
+              "REGION"
+            ],
+            "regionsCondition": {
+              "regions": {
+                "nodes": [
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "AU",
+                    "name": "Australia",
+                    "currency": {
+                      "currencyCode": "AUD",
+                      "enabled": true
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoxMDQ1ODY3MDM2NzY5LCJsYXN0X3ZhbHVlIjoiMTA0NTg2NzAzNjc2OSJ9"
+                }
+              }
+            }
+          },
+          "currencySettings": {
+            "baseCurrency": {
+              "currencyCode": "AUD",
+              "enabled": true
+            },
+            "localCurrencies": false
+          },
+          "webPresences": {
+            "nodes": [],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": null
+            }
+          },
+          "catalogs": {
+            "nodes": [],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Market/22986326113",
+          "name": "Canada",
+          "handle": "canada",
+          "status": "ACTIVE",
+          "conditions": {
+            "conditionTypes": [
+              "REGION"
+            ],
+            "regionsCondition": {
+              "regions": {
+                "nodes": [
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "CA",
+                    "name": "Canada",
+                    "currency": {
+                      "currencyCode": "CAD",
+                      "enabled": true
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoxMDQ1ODY0OTA2ODQ5LCJsYXN0X3ZhbHVlIjoiMTA0NTg2NDkwNjg0OSJ9"
+                }
+              }
+            }
+          },
+          "currencySettings": {
+            "baseCurrency": {
+              "currencyCode": "CAD",
+              "enabled": true
+            },
+            "localCurrencies": false
+          },
+          "webPresences": {
+            "nodes": [],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": null
+            }
+          },
+          "catalogs": {
+            "nodes": [],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Market/544800865",
+          "name": "Eurozone",
+          "handle": "eu",
+          "status": "ACTIVE",
+          "conditions": {
+            "conditionTypes": [
+              "REGION"
+            ],
+            "regionsCondition": {
+              "regions": {
+                "nodes": [
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "AX",
+                    "name": "Åland Islands",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "AD",
+                    "name": "Andorra",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "CY",
+                    "name": "Cyprus",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "FI",
+                    "name": "Finland",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "GF",
+                    "name": "French Guiana",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "TF",
+                    "name": "French Southern Territories",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "GP",
+                    "name": "Guadeloupe",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "IT",
+                    "name": "Italy",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "XK",
+                    "name": "Kosovo",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "LV",
+                    "name": "Latvia",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "LT",
+                    "name": "Lithuania",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "LU",
+                    "name": "Luxembourg",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "MT",
+                    "name": "Malta",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "MQ",
+                    "name": "Martinique",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "YT",
+                    "name": "Mayotte",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "MC",
+                    "name": "Monaco",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "ME",
+                    "name": "Montenegro",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "NL",
+                    "name": "Netherlands",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "PT",
+                    "name": "Portugal",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "RE",
+                    "name": "Réunion",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "SM",
+                    "name": "San Marino",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "SK",
+                    "name": "Slovakia",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "SI",
+                    "name": "Slovenia",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "ES",
+                    "name": "Spain",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "AT",
+                    "name": "Austria",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "BE",
+                    "name": "Belgium",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "HR",
+                    "name": "Croatia",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "BG",
+                    "name": "Bulgaria",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "CZ",
+                    "name": "Czechia",
+                    "currency": {
+                      "currencyCode": "CZK",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "DK",
+                    "name": "Denmark",
+                    "currency": {
+                      "currencyCode": "DKK",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "FR",
+                    "name": "France",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "DE",
+                    "name": "Germany",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "GR",
+                    "name": "Greece",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "IS",
+                    "name": "Iceland",
+                    "currency": {
+                      "currencyCode": "ISK",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "IE",
+                    "name": "Ireland",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "NO",
+                    "name": "Norway",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "PL",
+                    "name": "Poland",
+                    "currency": {
+                      "currencyCode": "PLN",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "RO",
+                    "name": "Romania",
+                    "currency": {
+                      "currencyCode": "RON",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "RU",
+                    "name": "Russia",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "RS",
+                    "name": "Serbia",
+                    "currency": {
+                      "currencyCode": "RSD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "SE",
+                    "name": "Sweden",
+                    "currency": {
+                      "currencyCode": "SEK",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "CH",
+                    "name": "Switzerland",
+                    "currency": {
+                      "currencyCode": "CHF",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "GB",
+                    "name": "United Kingdom",
+                    "currency": {
+                      "currencyCode": "GBP",
+                      "enabled": true
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo3MTczMjc4NTk4MDksImxhc3RfdmFsdWUiOiI3MTczMjc4NTk4MDkifQ=="
+                }
+              }
+            }
+          },
+          "currencySettings": {
+            "baseCurrency": {
+              "currencyCode": "EUR",
+              "enabled": true
+            },
+            "localCurrencies": true
+          },
+          "webPresences": {
+            "nodes": [],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": null
+            }
+          },
+          "catalogs": {
+            "nodes": [
+              {
+                "id": "gid://shopify/MarketCatalog/6880723041",
+                "title": "Eurozone",
+                "status": "ACTIVE",
+                "publication": {
+                  "id": "gid://shopify/Publication/77105660001",
+                  "autoPublish": true,
+                  "includedProductsCount": {
+                    "count": 240,
+                    "precision": "EXACT"
+                  }
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo2ODgwNzIzMDQxLCJsYXN0X3ZhbHVlIjo2ODgwNzIzMDQxfQ=="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Market/544866401",
+          "name": "International",
+          "handle": "international",
+          "status": "ACTIVE",
+          "conditions": {
+            "conditionTypes": [
+              "REGION"
+            ],
+            "regionsCondition": {
+              "regions": {
+                "nodes": [
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "AI",
+                    "name": "Anguilla",
+                    "currency": {
+                      "currencyCode": "XCD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "BM",
+                    "name": "Bermuda",
+                    "currency": {
+                      "currencyCode": "USD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "BS",
+                    "name": "Bahamas",
+                    "currency": {
+                      "currencyCode": "BSD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "CK",
+                    "name": "Cook Islands",
+                    "currency": {
+                      "currencyCode": "NZD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "FJ",
+                    "name": "Fiji",
+                    "currency": {
+                      "currencyCode": "FJD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "GL",
+                    "name": "Greenland",
+                    "currency": {
+                      "currencyCode": "DKK",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "KY",
+                    "name": "Cayman Islands",
+                    "currency": {
+                      "currencyCode": "KYD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "MX",
+                    "name": "Mexico",
+                    "currency": {
+                      "currencyCode": "USD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "NZ",
+                    "name": "New Zealand",
+                    "currency": {
+                      "currencyCode": "NZD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "SV",
+                    "name": "El Salvador",
+                    "currency": {
+                      "currencyCode": "USD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "TC",
+                    "name": "Turks & Caicos Islands",
+                    "currency": {
+                      "currencyCode": "USD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "TV",
+                    "name": "Tuvalu",
+                    "currency": {
+                      "currencyCode": "AUD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "UM",
+                    "name": "U.S. Outlying Islands",
+                    "currency": {
+                      "currencyCode": "USD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "VG",
+                    "name": "British Virgin Islands",
+                    "currency": {
+                      "currencyCode": "USD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "WF",
+                    "name": "Wallis & Futuna",
+                    "currency": {
+                      "currencyCode": "XPF",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "WS",
+                    "name": "Samoa",
+                    "currency": {
+                      "currencyCode": "WST",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "CA",
+                    "name": "Canada",
+                    "currency": {
+                      "currencyCode": "CAD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "AU",
+                    "name": "Australia",
+                    "currency": {
+                      "currencyCode": "AUD",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "MF",
+                    "name": "St. Martin",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "BL",
+                    "name": "St. Barthélemy",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  },
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "PM",
+                    "name": "St. Pierre & Miquelon",
+                    "currency": {
+                      "currencyCode": "EUR",
+                      "enabled": true
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjo3MTczMjUwMDg5OTMsImxhc3RfdmFsdWUiOiI3MTczMjUwMDg5OTMifQ=="
+                }
+              }
+            }
+          },
+          "currencySettings": {
+            "baseCurrency": {
+              "currencyCode": "USD",
+              "enabled": true
+            },
+            "localCurrencies": true
+          },
+          "webPresences": {
+            "nodes": [],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": null
+            }
+          },
+          "catalogs": {
+            "nodes": [
+              {
+                "id": "gid://shopify/MarketCatalog/910622817",
+                "title": "International",
+                "status": "ACTIVE",
+                "publication": {
+                  "id": "gid://shopify/Publication/77105823841",
+                  "autoPublish": true,
+                  "includedProductsCount": {
+                    "count": 240,
+                    "precision": "EXACT"
+                  }
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo5MTA2MjI4MTcsImxhc3RfdmFsdWUiOjkxMDYyMjgxN30="
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Market/22986260577",
+          "name": "United Kingdom",
+          "handle": "united-kingdom",
+          "status": "ACTIVE",
+          "conditions": {
+            "conditionTypes": [
+              "REGION"
+            ],
+            "regionsCondition": {
+              "regions": {
+                "nodes": [
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "GB",
+                    "name": "United Kingdom",
+                    "currency": {
+                      "currencyCode": "GBP",
+                      "enabled": true
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoxMDQ1ODYzODI1NTA1LCJsYXN0X3ZhbHVlIjoiMTA0NTg2MzgyNTUwNSJ9"
+                }
+              }
+            }
+          },
+          "currencySettings": {
+            "baseCurrency": {
+              "currencyCode": "GBP",
+              "enabled": true
+            },
+            "localCurrencies": false
+          },
+          "webPresences": {
+            "nodes": [],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": null
+            }
+          },
+          "catalogs": {
+            "nodes": [],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": null
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/Market/544735329",
+          "name": "United States",
+          "handle": "us",
+          "status": "ACTIVE",
+          "conditions": {
+            "conditionTypes": [
+              "REGION"
+            ],
+            "regionsCondition": {
+              "regions": {
+                "nodes": [
+                  {
+                    "__typename": "MarketRegionCountry",
+                    "code": "US",
+                    "name": "United States",
+                    "currency": {
+                      "currencyCode": "USD",
+                      "enabled": true
+                    }
+                  }
+                ],
+                "pageInfo": {
+                  "hasNextPage": false,
+                  "endCursor": "eyJsYXN0X2lkIjoyMjcwOTY2NTg4OSwibGFzdF92YWx1ZSI6IjIyNzA5NjY1ODg5In0="
+                }
+              }
+            }
+          },
+          "currencySettings": {
+            "baseCurrency": {
+              "currencyCode": "USD",
+              "enabled": true
+            },
+            "localCurrencies": false
+          },
+          "webPresences": {
+            "nodes": [],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": null
+            }
+          },
+          "catalogs": {
+            "nodes": [
+              {
+                "id": "gid://shopify/MarketCatalog/6881083489",
+                "title": "United States",
+                "status": "ACTIVE",
+                "publication": {
+                  "id": "gid://shopify/Publication/77106053217",
+                  "autoPublish": true,
+                  "includedProductsCount": {
+                    "count": 240,
+                    "precision": "EXACT"
+                  }
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo2ODgxMDgzNDg5LCJsYXN0X3ZhbHVlIjo2ODgxMDgzNDg5fQ=="
+            }
+          }
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjo1NDQ3MzUzMjksImxhc3RfdmFsdWUiOiJVbml0ZWQgU3RhdGVzIn0="
+      }
+    }
+  },
+  "contextual_pricing": {
+    "productVariant": {
+      "id": "gid://shopify/ProductVariant/41498026442849",
+      "title": "Mother S / Pink",
+      "us": {
+        "price": {
+          "amount": "19.99",
+          "currencyCode": "USD"
+        }
+      },
+      "es": {
+        "price": {
+          "amount": "17.95",
+          "currencyCode": "EUR"
+        }
+      },
+      "no": {
+        "price": {
+          "amount": "17.95",
+          "currencyCode": "EUR"
+        }
+      }
+    }
+  },
+  "scope": "Structured Shopify source read only. No Merchant receiver, browser price, payment-provider or checkout read is implied."
+}

@@ -1,0 +1,282 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign visible_collection_count = 0
+  for block in section.blocks
+    if block.settings.collection != blank and block.settings.collection.all_products_count > 0
+      assign visible_collection_count = visible_collection_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if visible_collection_count > 0 -%}
+<div class="color-{{ section.settings.color_scheme }} isolate gradient">
+  <div class="collection section-{{ section.id }}-padding" id="collection-{{ section.id }}" data-id="{{ section.id }}">
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if section.settings.swipe_on_mobile %} title-wrapper--self-padded-tablet-down{% endif %}">
+      {%- if section.settings.title != blank -%}
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.title }}
+        </h2>
+      {%- endif -%}
+    </div>
+
+    <slider-component class="slider-mobile-gutter{% if section.settings.swipe_on_mobile == false %} page-width{% endif %} page-width-desktop{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <ul id="Slider-{{ section.id }}" data-id="{{ section.id }}" class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %}" role="list" aria-label="{{ 'general.slider.name' | t }}">
+
+        {%- assign render_count = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- assign col = collections[block.settings.collection] -%}
+          {%- if col == blank or col.products_count == 0 -%}
+            {%- continue -%}
+          {%- endif -%}
+
+          {%- assign render_count = render_count | plus: 1 -%}
+          {% comment %}theme-check-disable UnusedAssign{% endcomment %}
+          {%- liquid
+            assign collection_card_lazy_load = true
+            if section.index == 1 and render_count <= 2
+              assign collection_card_lazy_load = false
+            endif
+          -%}
+
+          <li id="Slide-{{ section.id }}-{{ render_count }}" class="grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {% if settings.animations_reveal_on_scroll %}data-cascade style="--animation-order: {{ render_count }};"{% endif %} {{ block.shopify_attributes }}>
+            {% render 'card-collection',
+              card_collection: col,
+              media_aspect_ratio: section.settings.image_ratio,
+              columns: section.settings.columns_desktop,
+              lazy_load: collection_card_lazy_load,
+              use_homepage_collection_image_strategy: request.page_type == 'index'
+            %}
+            {% comment %}theme-check-enable UnusedAssign{% endcomment %}
+          </li>
+        {%- endfor -%}
+
+      </ul>
+      {%- if section.settings.swipe_on_mobile -%}
+        <div class="slider-buttons collection-carousel__slider-buttons">
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}" aria-controls="Slider-{{ section.id }}">
+            {% render 'icon-caret' %}
+          </button>
+          <div class="slider-page-dots collection-carousel__page-dots" role="tablist" aria-label="{{ 'general.slider.name' | t }}"></div>
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}" aria-controls="Slider-{{ section.id }}">
+            {% render 'icon-caret' %}
+          </button>
+        </div>
+      {%- endif -%}
+    </slider-component>
+
+    {%- if section.settings.show_view_all -%}
+      <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <a href="{{ section.settings.view_all_link }}" class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}">
+          {{ 'sections.featured_collection.view_all' | t }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "New Arrivals (Mixed)",
+  "tag": "section",
+  "class": "section-new-arrivals-mixed",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "New Arrivals",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h2",
+      "label": "Heading size"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "default": 8,
+      "label": "Products to show"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Desktop columns"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        { "value": "1", "label": "1 column" },
+        { "value": "2", "label": "2 columns" }
+      ],
+      "default": "2",
+      "label": "Mobile columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "default": true,
+      "label": "Enable swipe on mobile"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Adapt" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "portrait",
+      "label": "Image ratio"
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "arch", "label": "Arch" },
+        { "value": "blob", "label": "Blob" },
+        { "value": "chevronleft", "label": "Chevron left" },
+        { "value": "chevronright", "label": "Chevron right" },
+        { "value": "diamond", "label": "Diamond" },
+        { "value": "parallelogram", "label": "Parallelogram" },
+        { "value": "round", "label": "Round" }
+      ],
+      "default": "default",
+      "label": "Image shape"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": true,
+      "label": "Show secondary image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "Show rating"
+    },
+    {
+      "type": "select",
+      "id": "quick_add",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "standard", "label": "Standard" },
+        { "value": "bulk", "label": "Bulk" }
+      ],
+      "default": "none",
+      "label": "Quick add"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Show view all button"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View all link"
+    },
+    {
+      "type": "select",
+      "id": "view_all_style",
+      "options": [
+        { "value": "solid", "label": "Solid button" },
+        { "value": "outline", "label": "Outline button" },
+        { "value": "link", "label": "Link" }
+      ],
+      "default": "solid",
+      "label": "View all style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 28,
+      "unit": "px",
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 28,
+      "unit": "px",
+      "label": "Bottom padding"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_source",
+      "name": "Collection source",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Arrivals (Mixed)",
+      "blocks": [
+        { "type": "collection_source", "settings": { "collection": "dresses" } },
+        { "type": "collection_source", "settings": { "collection": "swimsuits" } },
+        { "type": "collection_source", "settings": { "collection": "pajamas" } },
+        { "type": "collection_source", "settings": { "collection": "tops" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

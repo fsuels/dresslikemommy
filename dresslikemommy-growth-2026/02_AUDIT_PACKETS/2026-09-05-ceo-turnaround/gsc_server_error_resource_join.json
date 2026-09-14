@@ -1,0 +1,909 @@
+{
+  "captured_at_utc": "2026-09-06 07:31:33 UTC",
+  "operator": "shopify_merchant_connection_repair",
+  "task_stage": "VERIFY",
+  "status": "PASS_COMPLETE_SOURCE_JOIN__CURRENT_HTTP_ROOT_OWNED",
+  "source": {
+    "file": "gsc_server_error_examples_current.json",
+    "captured_at_utc": "2026-09-06T07:28:59.241371+00:00",
+    "property": "https://www.dresslikemommy.com/",
+    "report_last_updated": "2026-08-27",
+    "source_example_count": 12,
+    "example_table_complete": true,
+    "sha256": "1e0fb86bdca2af29c1ea037769f6beed98ba8f009e03be484e9f14f3b906e1cf"
+  },
+  "shop": {
+    "name": "Dress Like Mommy",
+    "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "scope": {
+    "exact_gsc_urls": 12,
+    "unique_product_handles": 8,
+    "unique_article_handles": 2,
+    "derived_collection_handles": 1,
+    "previous_four_archived_404_sample_rerun": false
+  },
+  "query": "query GscServerErrorResourceJoin($p0: String!, $p1: String!, $p2: String!, $p3: String!, $p4: String!, $p5: String!, $p6: String!, $p7: String!, $articlesQuery: String!, $articlesAfter: String, $collectionHandle: String!, $publishedCollectionQuery: String!, $collectionsAfter: String) {\n shop { name myshopifyDomain }\n p0: productByIdentifier(identifier: {handle: $p0}) { id handle title status onlineStoreUrl }\n p1: productByIdentifier(identifier: {handle: $p1}) { id handle title status onlineStoreUrl }\n p2: productByIdentifier(identifier: {handle: $p2}) { id handle title status onlineStoreUrl }\n p3: productByIdentifier(identifier: {handle: $p3}) { id handle title status onlineStoreUrl }\n p4: productByIdentifier(identifier: {handle: $p4}) { id handle title status onlineStoreUrl }\n p5: productByIdentifier(identifier: {handle: $p5}) { id handle title status onlineStoreUrl }\n p6: productByIdentifier(identifier: {handle: $p6}) { id handle title status onlineStoreUrl }\n p7: productByIdentifier(identifier: {handle: $p7}) { id handle title status onlineStoreUrl }\n articles(first: 20, after: $articlesAfter, query: $articlesQuery) { nodes { id handle title isPublished blog { id handle } } pageInfo { hasNextPage endCursor } }\n collection: collectionByIdentifier(identifier: {handle: $collectionHandle}) { id handle title updatedAt }\n collectionOnlineStorePublished: collections(first: 10, after: $collectionsAfter, query: $publishedCollectionQuery) { nodes { id handle } pageInfo { hasNextPage endCursor } }\n}",
+  "variables": {
+    "p0": "mommy-me-flamingo-print-striped-swimsuit",
+    "p1": "mommy-me-matching-solid-long-dress",
+    "p2": "matching-family-red-stripe-knit-sweaters-half-zip-pullover-for-mom-dad-and-kids",
+    "p3": "cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+    "p4": "couple-matching-t-shirt-funny-beard-butt",
+    "p5": "family-matching-first-time-t-shirts",
+    "p6": "family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun",
+    "p7": "matching-hand-painted-family-four-t-shirt",
+    "articlesQuery": "handle:\"best-matching-swimsuits-for-the-whole-family\" OR handle:\"matching-outfit-sizing-guide-right-fit-for-everyone\"",
+    "collectionHandle": "matching-family-vacation-outfits",
+    "publishedCollectionQuery": "handle:\"matching-family-vacation-outfits\" AND published_status:published"
+  },
+  "validation": {
+    "schema_types": [
+      "QueryRoot",
+      "Product",
+      "ProductIdentifierInput",
+      "Article",
+      "Blog",
+      "Collection",
+      "CollectionIdentifierInput"
+    ],
+    "structured_graphql_validation": "VALID",
+    "skill_validation_script": "VALID",
+    "skill_search_script": "fetch failed; official structured search and schema succeeded",
+    "artifact_id": "gsc-resource-join-29b5b798-9a0d-43ef-bb86-d77c7ea115e5",
+    "revision": 1
+  },
+  "raw_scoped_readback": {
+    "shop": {
+      "name": "Dress Like Mommy",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "p0": {
+      "id": "gid://shopify/Product/6723038609505",
+      "handle": "mommy-me-flamingo-print-striped-swimsuit",
+      "title": "Mommy & Me Flamingo Print Striped Swimsuit",
+      "status": "ARCHIVED",
+      "onlineStoreUrl": null
+    },
+    "p1": {
+      "id": "gid://shopify/Product/6639695331425",
+      "handle": "mommy-me-matching-solid-long-dress",
+      "title": "Matching Mommy & Me Sleeveless Ruffle Dresses - Sof... | DLM",
+      "status": "ARCHIVED",
+      "onlineStoreUrl": null
+    },
+    "p2": {
+      "id": "gid://shopify/Product/7227429126241",
+      "handle": "matching-family-red-stripe-knit-sweaters-half-zip-pullover-for-mom-dad-and-kids",
+      "title": "Red Stripe Knit Sweaters Half-Zip Pullover for Mom,... | DLM",
+      "status": "ARCHIVED",
+      "onlineStoreUrl": null
+    },
+    "p3": {
+      "id": "gid://shopify/Product/7228788867169",
+      "handle": "cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+      "title": "Cute Matching Cartoon Pajama Set - Fun and Cozy Sle... | DLM",
+      "status": "ACTIVE",
+      "onlineStoreUrl": "https://www.dresslikemommy.com/products/cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear"
+    },
+    "p4": {
+      "id": "gid://shopify/Product/6841759727713",
+      "handle": "couple-matching-t-shirt-funny-beard-butt",
+      "title": "Couple Matching T-shirt Funny BEARD BUTT",
+      "status": "ARCHIVED",
+      "onlineStoreUrl": null
+    },
+    "p5": {
+      "id": "gid://shopify/Product/4727863869537",
+      "handle": "family-matching-first-time-t-shirts",
+      "title": "Family Matching First Time T-shirts",
+      "status": "ARCHIVED",
+      "onlineStoreUrl": null
+    },
+    "p6": {
+      "id": "gid://shopify/Product/7001406832737",
+      "handle": "family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun",
+      "title": "Outfits - Floral Dresses and Shorts with a Touch of... | DLM",
+      "status": "ARCHIVED",
+      "onlineStoreUrl": null
+    },
+    "p7": {
+      "id": "gid://shopify/Product/4605568483425",
+      "handle": "matching-hand-painted-family-four-t-shirt",
+      "title": "Matching Hand-Painted Family Four T-Shirt",
+      "status": "ARCHIVED",
+      "onlineStoreUrl": null
+    },
+    "articles": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Article/559662071905",
+          "handle": "best-matching-swimsuits-for-the-whole-family",
+          "title": "Best Matching Swimsuits for the Whole Family",
+          "isPublished": true,
+          "blog": {
+            "id": "gid://shopify/Blog/41450437",
+            "handle": "news"
+          }
+        },
+        {
+          "id": "gid://shopify/Article/559700574305",
+          "handle": "matching-outfit-sizing-guide-right-fit-for-everyone",
+          "title": "Matching Outfit Sizing Guide: How to Get the Right Fit for Everyone",
+          "isPublished": true,
+          "blog": {
+            "id": "gid://shopify/Blog/41450437",
+            "handle": "news"
+          }
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjo1NTk3MDA1NzQzMDUsImxhc3RfdmFsdWUiOiI1NTk3MDA1NzQzMDUifQ=="
+      }
+    },
+    "collection": {
+      "id": "gid://shopify/Collection/353856880737",
+      "handle": "matching-family-vacation-outfits",
+      "title": "Matching Family Vacation Outfits",
+      "updatedAt": "2026-09-04T19:06:35Z"
+    },
+    "collectionOnlineStorePublished": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Collection/353856880737",
+          "handle": "matching-family-vacation-outfits"
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjozNTM4NTY4ODA3MzcsImxhc3RfdmFsdWUiOiIzNTM4NTY4ODA3MzcifQ=="
+      }
+    }
+  },
+  "pagination": {
+    "products": "Eight exact single-resource identifier lookups; pagination not applicable",
+    "articles": {
+      "returned_count": 2,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjo1NTk3MDA1NzQzMDUsImxhc3RfdmFsdWUiOiI1NTk3MDA1NzQzMDUifQ=="
+    },
+    "online_store_published_collection_filter": {
+      "returned_count": 1,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjozNTM4NTY4ODA3MzcsImxhc3RfdmFsdWUiOiIzNTM4NTY4ODA3MzcifQ=="
+    },
+    "all_connections_complete": true
+  },
+  "graphql_errors": [],
+  "products": [
+    {
+      "requested_handle": "mommy-me-flamingo-print-striped-swimsuit",
+      "match": {
+        "id": "gid://shopify/Product/6723038609505",
+        "handle": "mommy-me-flamingo-print-striped-swimsuit",
+        "title": "Mommy & Me Flamingo Print Striped Swimsuit",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      }
+    },
+    {
+      "requested_handle": "mommy-me-matching-solid-long-dress",
+      "match": {
+        "id": "gid://shopify/Product/6639695331425",
+        "handle": "mommy-me-matching-solid-long-dress",
+        "title": "Matching Mommy & Me Sleeveless Ruffle Dresses - Sof... | DLM",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      }
+    },
+    {
+      "requested_handle": "matching-family-red-stripe-knit-sweaters-half-zip-pullover-for-mom-dad-and-kids",
+      "match": {
+        "id": "gid://shopify/Product/7227429126241",
+        "handle": "matching-family-red-stripe-knit-sweaters-half-zip-pullover-for-mom-dad-and-kids",
+        "title": "Red Stripe Knit Sweaters Half-Zip Pullover for Mom,... | DLM",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      }
+    },
+    {
+      "requested_handle": "cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+      "match": {
+        "id": "gid://shopify/Product/7228788867169",
+        "handle": "cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+        "title": "Cute Matching Cartoon Pajama Set - Fun and Cozy Sle... | DLM",
+        "status": "ACTIVE",
+        "onlineStoreUrl": "https://www.dresslikemommy.com/products/cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear"
+      }
+    },
+    {
+      "requested_handle": "couple-matching-t-shirt-funny-beard-butt",
+      "match": {
+        "id": "gid://shopify/Product/6841759727713",
+        "handle": "couple-matching-t-shirt-funny-beard-butt",
+        "title": "Couple Matching T-shirt Funny BEARD BUTT",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      }
+    },
+    {
+      "requested_handle": "family-matching-first-time-t-shirts",
+      "match": {
+        "id": "gid://shopify/Product/4727863869537",
+        "handle": "family-matching-first-time-t-shirts",
+        "title": "Family Matching First Time T-shirts",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      }
+    },
+    {
+      "requested_handle": "family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun",
+      "match": {
+        "id": "gid://shopify/Product/7001406832737",
+        "handle": "family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun",
+        "title": "Outfits - Floral Dresses and Shorts with a Touch of... | DLM",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      }
+    },
+    {
+      "requested_handle": "matching-hand-painted-family-four-t-shirt",
+      "match": {
+        "id": "gid://shopify/Product/4605568483425",
+        "handle": "matching-hand-painted-family-four-t-shirt",
+        "title": "Matching Hand-Painted Family Four T-Shirt",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      }
+    }
+  ],
+  "articles": [
+    {
+      "requested_blog_handle": "news",
+      "requested_article_handle": "best-matching-swimsuits-for-the-whole-family",
+      "match": {
+        "id": "gid://shopify/Article/559662071905",
+        "handle": "best-matching-swimsuits-for-the-whole-family",
+        "title": "Best Matching Swimsuits for the Whole Family",
+        "isPublished": true,
+        "blog": {
+          "id": "gid://shopify/Blog/41450437",
+          "handle": "news"
+        }
+      }
+    },
+    {
+      "requested_blog_handle": "news",
+      "requested_article_handle": "matching-outfit-sizing-guide-right-fit-for-everyone",
+      "match": {
+        "id": "gid://shopify/Article/559700574305",
+        "handle": "matching-outfit-sizing-guide-right-fit-for-everyone",
+        "title": "Matching Outfit Sizing Guide: How to Get the Right Fit for Everyone",
+        "isPublished": true,
+        "blog": {
+          "id": "gid://shopify/Blog/41450437",
+          "handle": "news"
+        }
+      }
+    }
+  ],
+  "derived_collection": {
+    "original_atom_url": "https://www.dresslikemommy.com/pt/collections/matching-family-vacation-outfits.atom",
+    "derived_base_handle": "matching-family-vacation-outfits",
+    "resource": {
+      "id": "gid://shopify/Collection/353856880737",
+      "handle": "matching-family-vacation-outfits",
+      "title": "Matching Family Vacation Outfits",
+      "updatedAt": "2026-09-04T19:06:35Z"
+    },
+    "base_collection_published_filter_match": true
+  },
+  "rows": [
+    {
+      "url": "https://www.dresslikemommy.com/fi/products/mommy-me-flamingo-print-striped-swimsuit",
+      "locale": "fi",
+      "path": "/fi/products/mommy-me-flamingo-print-striped-swimsuit",
+      "last_crawled": "2026-06-24",
+      "query_string": "",
+      "resource_type": "product",
+      "identifier_derivation": "Exact path segment after /products/; locale prefix does not alter source handle",
+      "requested_handle": "mommy-me-flamingo-print-striped-swimsuit",
+      "resource": {
+        "id": "gid://shopify/Product/6723038609505",
+        "handle": "mommy-me-flamingo-print-striped-swimsuit",
+        "title": "Mommy & Me Flamingo Print Striped Swimsuit",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      },
+      "publication_indicator": {
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null,
+        "null_url_documented_meaning": "Not published to Online Store sales channel"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "fi",
+        "returned_in_enabled_locale_list": true,
+        "current_exact_locale": {
+          "locale": "fi",
+          "primary": false,
+          "published": true
+        },
+        "interpretation": "Published enabled locale",
+        "market_or_url_reachability": "NOT_VERIFIED"
+      }
+    },
+    {
+      "url": "https://www.dresslikemommy.com/hi/products/mommy-me-matching-solid-long-dress",
+      "locale": "hi",
+      "path": "/hi/products/mommy-me-matching-solid-long-dress",
+      "last_crawled": "2026-06-24",
+      "query_string": "",
+      "resource_type": "product",
+      "identifier_derivation": "Exact path segment after /products/; locale prefix does not alter source handle",
+      "requested_handle": "mommy-me-matching-solid-long-dress",
+      "resource": {
+        "id": "gid://shopify/Product/6639695331425",
+        "handle": "mommy-me-matching-solid-long-dress",
+        "title": "Matching Mommy & Me Sleeveless Ruffle Dresses - Sof... | DLM",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      },
+      "publication_indicator": {
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null,
+        "null_url_documented_meaning": "Not published to Online Store sales channel"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "hi",
+        "returned_in_enabled_locale_list": true,
+        "current_exact_locale": {
+          "locale": "hi",
+          "primary": false,
+          "published": true
+        },
+        "interpretation": "Published enabled locale",
+        "market_or_url_reachability": "NOT_VERIFIED"
+      }
+    },
+    {
+      "url": "https://www.dresslikemommy.com/ja/products/matching-family-red-stripe-knit-sweaters-half-zip-pullover-for-mom-dad-and-kids",
+      "locale": "ja",
+      "path": "/ja/products/matching-family-red-stripe-knit-sweaters-half-zip-pullover-for-mom-dad-and-kids",
+      "last_crawled": "2026-06-24",
+      "query_string": "",
+      "resource_type": "product",
+      "identifier_derivation": "Exact path segment after /products/; locale prefix does not alter source handle",
+      "requested_handle": "matching-family-red-stripe-knit-sweaters-half-zip-pullover-for-mom-dad-and-kids",
+      "resource": {
+        "id": "gid://shopify/Product/7227429126241",
+        "handle": "matching-family-red-stripe-knit-sweaters-half-zip-pullover-for-mom-dad-and-kids",
+        "title": "Red Stripe Knit Sweaters Half-Zip Pullover for Mom,... | DLM",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      },
+      "publication_indicator": {
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null,
+        "null_url_documented_meaning": "Not published to Online Store sales channel"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "ja",
+        "returned_in_enabled_locale_list": true,
+        "current_exact_locale": {
+          "locale": "ja",
+          "primary": false,
+          "published": true
+        },
+        "interpretation": "Published enabled locale",
+        "market_or_url_reachability": "NOT_VERIFIED"
+      }
+    },
+    {
+      "url": "https://www.dresslikemommy.com/vi/products/cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+      "locale": "vi",
+      "path": "/vi/products/cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+      "last_crawled": "2026-06-24",
+      "query_string": "",
+      "resource_type": "product",
+      "identifier_derivation": "Exact path segment after /products/; locale prefix does not alter source handle",
+      "requested_handle": "cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+      "resource": {
+        "id": "gid://shopify/Product/7228788867169",
+        "handle": "cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+        "title": "Cute Matching Cartoon Pajama Set - Fun and Cozy Sle... | DLM",
+        "status": "ACTIVE",
+        "onlineStoreUrl": "https://www.dresslikemommy.com/products/cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear"
+      },
+      "publication_indicator": {
+        "status": "ACTIVE",
+        "onlineStoreUrl": "https://www.dresslikemommy.com/products/cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+        "null_url_documented_meaning": "Not published to Online Store sales channel"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "vi",
+        "returned_in_enabled_locale_list": false,
+        "current_exact_locale": null,
+        "interpretation": "Exact code not returned as an enabled shop locale",
+        "market_or_url_reachability": "NOT_VERIFIED"
+      }
+    },
+    {
+      "url": "https://www.dresslikemommy.com/th/products/cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+      "locale": "th",
+      "path": "/th/products/cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+      "last_crawled": "2026-06-24",
+      "query_string": "",
+      "resource_type": "product",
+      "identifier_derivation": "Exact path segment after /products/; locale prefix does not alter source handle",
+      "requested_handle": "cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+      "resource": {
+        "id": "gid://shopify/Product/7228788867169",
+        "handle": "cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+        "title": "Cute Matching Cartoon Pajama Set - Fun and Cozy Sle... | DLM",
+        "status": "ACTIVE",
+        "onlineStoreUrl": "https://www.dresslikemommy.com/products/cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear"
+      },
+      "publication_indicator": {
+        "status": "ACTIVE",
+        "onlineStoreUrl": "https://www.dresslikemommy.com/products/cute-matching-mom-and-daughter-cartoon-pajama-set-fun-and-cozy-sleepwear",
+        "null_url_documented_meaning": "Not published to Online Store sales channel"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "th",
+        "returned_in_enabled_locale_list": false,
+        "current_exact_locale": null,
+        "interpretation": "Exact code not returned as an enabled shop locale",
+        "market_or_url_reachability": "NOT_VERIFIED"
+      }
+    },
+    {
+      "url": "https://www.dresslikemommy.com/id/products/couple-matching-t-shirt-funny-beard-butt",
+      "locale": "id",
+      "path": "/id/products/couple-matching-t-shirt-funny-beard-butt",
+      "last_crawled": "2026-06-03",
+      "query_string": "",
+      "resource_type": "product",
+      "identifier_derivation": "Exact path segment after /products/; locale prefix does not alter source handle",
+      "requested_handle": "couple-matching-t-shirt-funny-beard-butt",
+      "resource": {
+        "id": "gid://shopify/Product/6841759727713",
+        "handle": "couple-matching-t-shirt-funny-beard-butt",
+        "title": "Couple Matching T-shirt Funny BEARD BUTT",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      },
+      "publication_indicator": {
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null,
+        "null_url_documented_meaning": "Not published to Online Store sales channel"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "id",
+        "returned_in_enabled_locale_list": false,
+        "current_exact_locale": null,
+        "interpretation": "Exact code not returned as an enabled shop locale",
+        "market_or_url_reachability": "NOT_VERIFIED"
+      }
+    },
+    {
+      "url": "https://www.dresslikemommy.com/th/products/family-matching-first-time-t-shirts",
+      "locale": "th",
+      "path": "/th/products/family-matching-first-time-t-shirts",
+      "last_crawled": "2026-06-03",
+      "query_string": "",
+      "resource_type": "product",
+      "identifier_derivation": "Exact path segment after /products/; locale prefix does not alter source handle",
+      "requested_handle": "family-matching-first-time-t-shirts",
+      "resource": {
+        "id": "gid://shopify/Product/4727863869537",
+        "handle": "family-matching-first-time-t-shirts",
+        "title": "Family Matching First Time T-shirts",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      },
+      "publication_indicator": {
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null,
+        "null_url_documented_meaning": "Not published to Online Store sales channel"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "th",
+        "returned_in_enabled_locale_list": false,
+        "current_exact_locale": null,
+        "interpretation": "Exact code not returned as an enabled shop locale",
+        "market_or_url_reachability": "NOT_VERIFIED"
+      }
+    },
+    {
+      "url": "https://www.dresslikemommy.com/tr/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun",
+      "locale": "tr",
+      "path": "/tr/products/family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun",
+      "last_crawled": "2026-06-03",
+      "query_string": "",
+      "resource_type": "product",
+      "identifier_derivation": "Exact path segment after /products/; locale prefix does not alter source handle",
+      "requested_handle": "family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun",
+      "resource": {
+        "id": "gid://shopify/Product/7001406832737",
+        "handle": "family-matching-outfits-floral-dresses-and-shorts-with-a-touch-of-fun",
+        "title": "Outfits - Floral Dresses and Shorts with a Touch of... | DLM",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      },
+      "publication_indicator": {
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null,
+        "null_url_documented_meaning": "Not published to Online Store sales channel"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "tr",
+        "returned_in_enabled_locale_list": false,
+        "current_exact_locale": null,
+        "interpretation": "Exact code not returned as an enabled shop locale",
+        "market_or_url_reachability": "NOT_VERIFIED"
+      }
+    },
+    {
+      "url": "https://www.dresslikemommy.com/tr/blogs/news/best-matching-swimsuits-for-the-whole-family",
+      "locale": "tr",
+      "path": "/tr/blogs/news/best-matching-swimsuits-for-the-whole-family",
+      "last_crawled": "2026-06-03",
+      "query_string": "",
+      "resource_type": "article",
+      "identifier_derivation": "Exact /blogs/{blog_handle}/{article_handle}; both handles matched",
+      "resource": {
+        "id": "gid://shopify/Article/559662071905",
+        "handle": "best-matching-swimsuits-for-the-whole-family",
+        "title": "Best Matching Swimsuits for the Whole Family",
+        "isPublished": true,
+        "blog": {
+          "id": "gid://shopify/Blog/41450437",
+          "handle": "news"
+        }
+      },
+      "publication_indicator": {
+        "isPublished": true,
+        "meaning": "Shopify article visibility; not a localized HTTP/indexing check"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "tr",
+        "returned_in_enabled_locale_list": false,
+        "current_exact_locale": null,
+        "interpretation": "Exact code not returned as an enabled shop locale",
+        "market_or_url_reachability": "NOT_VERIFIED"
+      }
+    },
+    {
+      "url": "https://www.dresslikemommy.com/sv/products/matching-hand-painted-family-four-t-shirt",
+      "locale": "sv",
+      "path": "/sv/products/matching-hand-painted-family-four-t-shirt",
+      "last_crawled": "2026-06-03",
+      "query_string": "",
+      "resource_type": "product",
+      "identifier_derivation": "Exact path segment after /products/; locale prefix does not alter source handle",
+      "requested_handle": "matching-hand-painted-family-four-t-shirt",
+      "resource": {
+        "id": "gid://shopify/Product/4605568483425",
+        "handle": "matching-hand-painted-family-four-t-shirt",
+        "title": "Matching Hand-Painted Family Four T-Shirt",
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null
+      },
+      "publication_indicator": {
+        "status": "ARCHIVED",
+        "onlineStoreUrl": null,
+        "null_url_documented_meaning": "Not published to Online Store sales channel"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "sv",
+        "returned_in_enabled_locale_list": true,
+        "current_exact_locale": {
+          "locale": "sv",
+          "primary": false,
+          "published": true
+        },
+        "interpretation": "Published enabled locale",
+        "market_or_url_reachability": "NOT_VERIFIED"
+      }
+    },
+    {
+      "url": "https://www.dresslikemommy.com/tr/blogs/news/matching-outfit-sizing-guide-right-fit-for-everyone",
+      "locale": "tr",
+      "path": "/tr/blogs/news/matching-outfit-sizing-guide-right-fit-for-everyone",
+      "last_crawled": "2026-06-03",
+      "query_string": "",
+      "resource_type": "article",
+      "identifier_derivation": "Exact /blogs/{blog_handle}/{article_handle}; both handles matched",
+      "resource": {
+        "id": "gid://shopify/Article/559700574305",
+        "handle": "matching-outfit-sizing-guide-right-fit-for-everyone",
+        "title": "Matching Outfit Sizing Guide: How to Get the Right Fit for Everyone",
+        "isPublished": true,
+        "blog": {
+          "id": "gid://shopify/Blog/41450437",
+          "handle": "news"
+        }
+      },
+      "publication_indicator": {
+        "isPublished": true,
+        "meaning": "Shopify article visibility; not a localized HTTP/indexing check"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "tr",
+        "returned_in_enabled_locale_list": false,
+        "current_exact_locale": null,
+        "interpretation": "Exact code not returned as an enabled shop locale",
+        "market_or_url_reachability": "NOT_VERIFIED"
+      }
+    },
+    {
+      "url": "https://www.dresslikemommy.com/pt/collections/matching-family-vacation-outfits.atom",
+      "locale": "pt",
+      "path": "/pt/collections/matching-family-vacation-outfits.atom",
+      "last_crawled": "2026-06-03",
+      "query_string": "",
+      "resource_type": "collection_atom_feed_example",
+      "original_feed_url_preserved": true,
+      "identifier_derivation": {
+        "original_path": "/pt/collections/matching-family-vacation-outfits.atom",
+        "original_collection_segment": "matching-family-vacation-outfits.atom",
+        "derived_collection_handle": "matching-family-vacation-outfits",
+        "derivation": "Remove terminal .atom only to identify the base Shopify collection; original requested URL remains unchanged",
+        "join_scope": "Base collection only, not a feed-response or product lookup"
+      },
+      "resource": {
+        "id": "gid://shopify/Collection/353856880737",
+        "handle": "matching-family-vacation-outfits",
+        "title": "Matching Family Vacation Outfits",
+        "updatedAt": "2026-09-04T19:06:35Z"
+      },
+      "publication_indicator": {
+        "base_collection_matches_online_store_published_filter": true,
+        "filter": "handle:\"matching-family-vacation-outfits\" AND published_status:published",
+        "feed_status": "NOT_CHECKED"
+      },
+      "shop_locale_indicator": {
+        "exact_requested_locale": "pt",
+        "returned_in_enabled_locale_list": false,
+        "current_exact_locale": null,
+        "interpretation": "Exact code not returned as an enabled shop locale",
+        "market_or_url_reachability": "NOT_VERIFIED",
+        "related_pt_BR": {
+          "locale": "pt-BR",
+          "primary": false,
+          "published": true
+        },
+        "pt_alias_confirmed": false
+      }
+    }
+  ],
+  "summary": {
+    "archived_unique_products": 7,
+    "active_unique_products": 1,
+    "archived_product_urls": 7,
+    "active_product_urls": 2,
+    "published_article_urls": 2,
+    "base_collection_publication_matches": 1,
+    "unmatched_source_rows": 0
+  },
+  "publication_indicator_provenance": {
+    "product_onlineStoreUrl": "Observed Product schema: null means not published to the Online Store sales channel",
+    "article_isPublished": "Observed Article schema: whether the article is visible; matched blog handle independently",
+    "collection_published_filter": "Observed QueryRoot collections documentation: published_status:published means published to the online store; exact returned collection ID and handle matched"
+  },
+  "limits": [
+    "Admin resource presence or publication does not prove exact localized HTTP response, purchasability, indexing, canonical eligibility, buyer demand or a recovered sale",
+    "GSC report date Aug27 and June crawl dates describe earlier observations, not current server status",
+    "Archived product status does not establish intent, justify restoration, or identify an equivalent redirect destination",
+    "The .atom request is preserved; only its derived base collection was looked up",
+    "No images, prices, variants, shipping, supplier-clean landing fit, paid readiness or feed mutation recommendation assessed",
+    "Locale enabled/published state does not establish market web presence, domain/subfolder aliases, localized resource availability, or the historical cause of a5xx response"
+  ],
+  "excluded_fields_and_actions": [
+    "No customer or order query",
+    "No credentials, vendor, supplier/source fields",
+    "No browser or public HTTP request",
+    "No content or publication mutation",
+    "No redirect, feed or source repair"
+  ],
+  "external_mutations": [],
+  "browser_actions": [],
+  "official_references": [
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/Product",
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/Article",
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/queries/collections",
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/ShopLocale"
+  ],
+  "locale_publication_readback": {
+    "captured_at_utc": "2026-09-06 07:34:07 UTC",
+    "query": "query GscServerErrorLocalePublication {\n shop { name myshopifyDomain }\n shopLocales { locale primary published }\n}",
+    "data": {
+      "shop": {
+        "name": "Dress Like Mommy",
+        "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "shopLocales": [
+        {
+          "locale": "ar",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "cs",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "da",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "de",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "el",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "en",
+          "primary": true,
+          "published": true
+        },
+        {
+          "locale": "es",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "fi",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "fr",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "he",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "hi",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "it",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ja",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ko",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "nl",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "no",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "pl",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "pt-BR",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ro",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ru",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "sv",
+          "primary": false,
+          "published": true
+        }
+      ]
+    },
+    "validation": "Schema discovery and both validators VALID",
+    "scope": "Unfiltered enabled-locale list, locale/primary/published only; no market routing or public request",
+    "enabled_locale_count": 21,
+    "primary_locales": [
+      "en"
+    ],
+    "requested_exact_codes": [
+      "fi",
+      "hi",
+      "id",
+      "ja",
+      "pt",
+      "sv",
+      "th",
+      "tr",
+      "vi"
+    ],
+    "exact_requested_code_matches": {
+      "fi": {
+        "locale": "fi",
+        "primary": false,
+        "published": true
+      },
+      "hi": {
+        "locale": "hi",
+        "primary": false,
+        "published": true
+      },
+      "id": null,
+      "ja": {
+        "locale": "ja",
+        "primary": false,
+        "published": true
+      },
+      "pt": null,
+      "sv": {
+        "locale": "sv",
+        "primary": false,
+        "published": true
+      },
+      "th": null,
+      "tr": null,
+      "vi": null
+    },
+    "related_code_not_alias_proof": {
+      "requested_path_prefix": "pt",
+      "related_enabled_code": {
+        "locale": "pt-BR",
+        "primary": false,
+        "published": true
+      },
+      "alias_or_market_reachability_verified": false
+    },
+    "pagination": "Not applicable: shopLocales returns an unpaginated list",
+    "graphql_errors": []
+  },
+  "root_reported_public_followup": {
+    "provenance": "Parent agent message; not independently requested by this subagent",
+    "first_ten_original_urls": "HTTP404",
+    "eleventh_url": "HTTP429 Verifying your connection; root stopped",
+    "twelfth_atom_url": "NOT_RUN after verification response",
+    "no_public_retry_by_subagent": true
+  },
+  "checks": {
+    "twelve_original_url_rows_unchanged": true,
+    "original_querystrings_and_dates_unchanged": true,
+    "eight_unique_product_handle_matches": true,
+    "two_article_and_blog_handle_matches": true,
+    "collection_only_explicitly_derived_from_atom": true,
+    "no_unmatched_resources": true,
+    "all_connections_complete": true,
+    "nine_exact_locale_codes_classified": true,
+    "no_external_mutations": true,
+    "no_browser_actions": true
+  }
+}

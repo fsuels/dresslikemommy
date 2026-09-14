@@ -115,6 +115,7 @@ Option-axis rule:
 - `Rompers`
 - `Tops`
 - `Bottoms`
+- `Skirts`
 - `Sets`
 - `Outerwear`
 - `FamilySet`
@@ -152,6 +153,7 @@ Determine prices in this order:
 | Rompers | 28.99 | 31.99 |
 | Tops | 24.99 | 28.99 |
 | Bottoms | 24.99 | 28.99 |
+| Skirts | use `Bottoms` fallback if no live precedent exists |
 | Sets | 31.99 | 36.99 |
 | Outerwear | 34.99 | 39.99 |
 | FamilySet | use `Sets` fallback if no live precedent exists |
@@ -177,7 +179,8 @@ Compare-at price:
 | Swimsuits | Matching Family Swimwear | `gid://shopify/TaxonomyCategory/aa-1-13-15` | Swimsuit | swimsuit | per role |
 | Rompers | Matching Family Rompers | `gid://shopify/TaxonomyCategory/aa-1-13-11` | Romper | romper | per role |
 | Tops | Matching Family Tops | `gid://shopify/TaxonomyCategory/aa-1-13-16` | Top | top | per role |
-| Bottoms | Matching Family Bottoms | `gid://shopify/TaxonomyCategory/aa-1-13-2` | Bottoms | bottoms | per role |
+| Bottoms | Matching Family Bottoms | resolve exact current leaf at runtime | Bottoms | bottoms | per role |
+| Skirts | Matching Family Skirts | `gid://shopify/TaxonomyCategory/aa-1-15` | Skirt | skirt | per role |
 | Sets | Matching Family Sets | `gid://shopify/TaxonomyCategory/aa-1-11` | Two-Piece Set | set | per role |
 | Outerwear | Matching Family Outerwear | `gid://shopify/TaxonomyCategory/aa-1-13-9` | Jacket | jacket | per role |
 | FamilySet | Matching Family Sets | `gid://shopify/TaxonomyCategory/aa-1-11` | Two-Piece Set | family matching set | per role |
@@ -187,6 +190,7 @@ Taxonomy guard:
 - Before any Admin API write, resolve the chosen taxonomy GID through Shopify `node(id: ...)`.
 - The returned `fullName` must match the resolved category family exactly, or the run must halt and fix the map before writing the draft.
 - Example: `Dresses` must resolve to `Apparel & Accessories > Clothing > Dresses`, not any `Clothing Tops` child.
+- For generic `Bottoms`, use Shopify taxonomy search to resolve the exact current leaf, such as `Skirts` -> `Apparel & Accessories > Clothing > Skirts`. Do not use `gid://shopify/TaxonomyCategory/aa-1-13-2` for generic bottoms; current Shopify resolves that GID to `Apparel & Accessories > Clothing > Clothing Tops > Bodysuits`.
 
 ## Size Scheme Rules
 
@@ -311,12 +315,13 @@ Re-query the product and halt on mismatch:
 - each size table has exactly 10 `<th>` columns
 - every live variant price matches the derived price when `FORCE_SPEC_PRICES=true` and this run is explicitly creating/enforcing prices
 - when current live/draft prices differ because the operator changed them manually, every Cost per item matches 50% of those current prices
-- for every product whose body contains a size-chart table, published-locale `body_html` translations must preserve size-chart coverage:
-  - run `python3 ops/scripts/poll_shopify_product_translations.py --handles <handle> --execute --force-refresh` after the product create/update unless this session already registered fresh translations for that handle
-  - run `python3 ops/scripts/repair_localized_product_size_charts.py --handles <handle> --execute`
-  - rerun `python3 ops/scripts/repair_localized_product_size_charts.py --handles <handle> --fail-on-missing` as the readback and require `planned_translation_count=0`, `products_with_missing_locale_size_chart=0`, and `error_count=0`
-  - run `python3 ops/scripts/audit_localized_size_chart_variant_mapping.py --handles <handle> --fail-on-unmatched` and require `unmatched_variant_locale_count=0`
-  - if any published locale is still missing a size chart or any available variant cannot map to a localized size-chart row/card, keep the product draft/unpublished, document the failing locale(s)/variant(s), and do not mark the listing complete
+- every generated listing runner must synchronously close out all published-locale product translations before it can exit successfully:
+  - after the create/update heredoc, call `/usr/bin/python3 "$ROOT/ops/scripts/finalize_shopify_listing_localization.py" --handles "<handle>"`
+  - do not leave translation commands as `pending current-session run` notes; the runner itself must execute the closeout
+  - the closeout deliberately passes `--min-age-seconds 0` so a brand-new product cannot be deferred by the background worker's normal five-minute stabilization delay
+  - require `ops/listings/<handle>-localization-closeout.json` to return `status=passed`
+  - any full-product translation, source-language body, localized size-chart, or variant-row mapping failure must keep the runner nonzero and the product draft/unpublished
+  - use the individual translation/audit scripts only for diagnosis after the shared closeout reports the exact failed step
 
 ## Store Rules
 
@@ -622,6 +627,8 @@ Do not finish until all of these pass:
 - every size table first column matches the picker labels exactly
 - each size table has 10 headers
 - every published non-primary locale has PDP size-chart coverage for this product; the readback from `ops/scripts/repair_localized_product_size_charts.py --handles <handle> --fail-on-missing` must pass with `0` missing locale size charts, and `ops/scripts/audit_localized_size_chart_variant_mapping.py --handles <handle> --fail-on-unmatched` must pass with `unmatched_variant_locale_count=0`
+- every published non-primary locale passes `ops/scripts/audit_shopify_product_translation_completeness.py --handles <handle> --fail-on-issues` with no missing, outdated, source-equal, or source-language product-body translation findings
+- the generated runner called `ops/scripts/finalize_shopify_listing_localization.py`, exited `0`, and wrote `ops/listings/<handle>-localization-closeout.json` with `status=passed`; a background worker run by itself is not sufficient evidence for normal listing-workflow closeout
 - waist populated for every row
 - every variant has SKU, price, compare-at, `DENY`, `tracked=true`, and Cost per item equal to the current final price * `0.50`
 - no variant is missing or stale Cost per item; if any cost is missing or stale, fix it to 50% of the current price, or report `paid_eligible=false` and call it out if the fix is blocked

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/x_independent_review",
+  "checked_at_utc": "2026-09-14T18:56:20.539660Z",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "H_FOR_INTERNAL_CONSISTENCY_AND_CONSERVATIVE_DECISION",
+  "source_path": "operations/2026-09-14-goal-attribution.json",
+  "source_sha256": "fcb7514f7285f7fd7598ce95a120bd1519a026397f9596b14f5e4e22f045a32c",
+  "summary": "The retained evidence supports withholding X order, revenue and profit credit. Both retained order records satisfy every supplied eligibility flag, but neither supplies a recorded X signal. One journey contains one returned direct-visit moment without UTM/referrer evidence; the other is ready with zero visit moments. Unrecorded attribution remains unknown. The calendar sales total cannot be assigned to X or treated as profit, and its scope is not reconciled to the exact order-creation window. No correction is required to the decision or its stated limits.",
+  "independence": {
+    "authored_or_executed_source_queries": false,
+    "fresh_shopify_or_customer_queries": 0,
+    "browser_or_account_access": false,
+    "external_mutations": 0,
+    "shared_canonical_writes": 0,
+    "files_written": ["operations/2026-09-14-goal-attribution-review.json"],
+    "evidence_level": "Independent consistency review of frozen root-supplied schema validation, server readback and privacy-reduced classifications; not a new live source."
+  },
+  "checks": {
+    "passed": 12,
+    "total": 12,
+    "method": "Local Python JSON, SHA-256, UTC-date, Decimal arithmetic and explicit field/predicate checks.",
+    "results": [
+      {"id":"C01","status":"PASS","check":"Final source hash matches; both ShopifyQL reports and reduced order readback name the same expected shop."},
+      {"id":"C02","status":"PASS","check":"Order search uses inclusive exact launch/cutoff timestamps; current-day sessions and September 11-14 calendar sales are explicitly separate scopes."},
+      {"id":"C03","status":"PASS","check":"Read-only query selects the order eligibility, journey, source/referrer/landing-UTM and pagination fields needed for the stated reduction; root validation is VALID and root readback has no errors."},
+      {"id":"C04","status":"PASS","check":"Two retained rows equal reported order count, reported distinct count and eligible count; both rows have all five inclusion flags true. Distinct IDs themselves were not retained for independent deduplication."},
+      {"id":"C05","status":"PASS","check":"Outer and both moment hasNextPage flags are false; retained moment arrays match counts of one and zero. This does not prove complete attribution capture."},
+      {"id":"C06","status":"PASS","check":"Boundary-inclusive observations equal moment count plus present first/last fields: three and zero. Source explicitly excludes interpreting these as unique acquired visitors."},
+      {"id":"C07","status":"PASS","check":"All retained X classifiers and per-order signals are false/zero; boundary visits are classified Direct without UTM/referrer, and the sole retained moment has no pilot landing UTM."},
+      {"id":"C08","status":"PASS","check":"Both journeys are present and ready, but the second has no visits; attribution decision explicitly preserves unknown unrecorded sources and rejects a zero-buyers inference."},
+      {"id":"C09","status":"PASS","check":"Sessions report contains no rows/columns; sales rows sum to two orders and displayed total_sales 152.78. Source expressly declines amount/order reconciliation across scopes."},
+      {"id":"C10","status":"PASS","check":"Retained order records contain no raw order IDs, customer identity, full URLs, exact order timestamps, line items or amounts. No such values were reproduced in this review."},
+      {"id":"C11","status":"PASS","check":"Decision assigns neither order/revenue/profit to X, leaves goal unachieved and overall outcome partial, requires actual costs before success, and preserves other sales clocks."},
+      {"id":"C12","status":"PASS","check":"All source mutation counters are zero; unchanged publisher question is not repeated, and identical reports/journeys are not scheduled for an immediate repeat absent changed evidence."}
+    ]
+  },
+  "inclusion_and_count_review": {
+    "search_window_utc": {
+      "start_inclusive": "2026-09-11T18:41:00Z",
+      "cutoff_inclusive": "2026-09-14T18:45:49Z"
+    },
+    "filter_application": "GraphQL search filters creation time. PAID, non-test, noncancelled and web eligibility are represented by the root's post-read reduction of fields selected by the query; they are not server-side search clauses.",
+    "retained_rows": 2,
+    "reported_distinct_orders": 2,
+    "rows_passing_all_retained_flags": 2,
+    "returned_customer_visit_moments": 1,
+    "diagnostic_observations_including_first_last": 3,
+    "reported_orders_with_recorded_x_signal": 0,
+    "scope_limit": "Creation-window candidates are not a payment-time or full-sales reconciliation. A matching aggregate count does not prove the two report populations are identical."
+  },
+  "decision_review": {
+    "withhold_x_credit": "SUPPORTED",
+    "true_x_origin_absent": "NOT_ESTABLISHED",
+    "positive_x_contribution": "NOT_ESTABLISHED",
+    "reason": "No retained positive X evidence supports either order, and actual costs were not selected. Missing signals and a Direct label cannot establish that X played no role. Calendar total_sales is not attributed contribution.",
+    "adversarial_challenge": "Ready journeys and exhausted cursors can look complete while source capture is missing. Treating them as proof of no X influence, or counting first/last repeats as extra buyers, would overstate the evidence.",
+    "credible_alternative": "Reopen this branch only when a new order, changed journey data or a permitted X receipt provides decision-changing evidence; then reconcile QA and actual costs before assigning credit."
+  },
+  "limitations": [
+    "Schema discovery, validation success and server responses are root-supplied; the reviewer made no independent live request.",
+    "Discarded IDs and raw fields prevent independent re-derivation of distinct-ID count, source-is-web/date/financial predicates and the X-normalization classifier. This review verifies retained arithmetic and decision consistency, not the original reducer implementation.",
+    "First/last-to-moment identity is not independently established from the reduced record. Three observations are explicitly diagnostic and are not promoted to three visits or buyers.",
+    "False pagination flags prove no next page was reported for the selected connections; ready status and empty visits do not prove all acquisition touchpoints were captured.",
+    "The partial-day sessions report has no rows, not proven zero activity. Sales report currency, amounts-to-order reconciliation and actual costs are not established here.",
+    "Root-reported disposal of transient private values was not independently audited; the retained artifact itself contains no such order/customer values.",
+    "Root command receipts, media-origin inspection, runtime goal administration and future X execution are outside this bounded attribution review."
+  ],
+  "required_corrections": [],
+  "next_action": "Root may index this review and retain unknown X attribution/profit; reopen the candidate-order branch only upon new permitted evidence, while preserving the existing publisher gate and uncertain post states."
+}

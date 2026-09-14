@@ -1,0 +1,264 @@
+{
+  "schema": "dlm.facebook_sunshine_buyer_readback.v1",
+  "created_at_utc": "2026-09-12T14:53:26.541224+00:00",
+  "task_id": "TA-18",
+  "phase": "VERIFY",
+  "status": "BLOCKED_ASSIGNED_SUBAGENT_BROWSER_UNAVAILABLE",
+  "owner_at_creation": "/root/au_full_cohort_map",
+  "product": {
+    "id": "gid://shopify/Product/7545279512673",
+    "handle": "sunshine-stripe-family-matching-tops",
+    "requested_bare_url": "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops"
+  },
+  "scope": {
+    "allowed": "One task-owned hidden IAB public tab; title/image/options/disclosure and one child plus one adult cart path, followed by removal of only own additions.",
+    "excluded": [
+      "Facebook publishing or account access",
+      "root and other task tabs",
+      "personal or native browsers",
+      "theme or product writes",
+      "checkout or orders",
+      "credentials",
+      "paid systems",
+      "canonical files"
+    ]
+  },
+  "attempt": {
+    "time_bound_utc": "Attempt completed before the independently read clock at 2026-09-12 14:52:28 UTC; exact per-call start time was not captured.",
+    "surface": "iab",
+    "visible": false,
+    "api": "cua.createBrowserTab(\"iab\", \"https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops\", {visible:false})",
+    "observed_error": "Browser is not available: iab",
+    "result": "NO_TAB_HANDLE_RETURNED",
+    "attempt_count": 1,
+    "retry_count": 0,
+    "interpretation": "This subagent could not obtain the assigned browser surface. This is not evidence that the storefront is down, that root has no browser access, or that another session is unavailable."
+  },
+  "current_public_checks": {
+    "page_loaded": "NOT RUN",
+    "title_image_fit": "NOT RUN",
+    "child_adult_options": "NOT RUN",
+    "one_shirt_per_selection_disclosure": "NOT RUN",
+    "initial_cart_empty": "NOT RUN",
+    "child_variant_cart_path": "NOT RUN",
+    "adult_variant_cart_path": "NOT RUN",
+    "mobile_layout": "NOT RUN",
+    "cleanup_readback": "NOT RUN"
+  },
+  "historical_context": {
+    "reviewed_creative": {
+      "file": "sunshine_product_detail_v1.png",
+      "sha256": "751f8636c646032f88d975759a199885bd3e7237c000b6237328ee1121cb44f9",
+      "meaning": "Sep 7 independent review passed the single yellow/red/blue striped shirt image and child/adult/separate-shirt creative disclosure; not reinspected as current storefront evidence."
+    },
+    "saved_post": {
+      "status": "REVIEW_DRAFT_NOT_UPLOADED_NOT_PUBLISHED",
+      "meaning": "Existing caption describes yellow/red/blue stripes, child/adult sizes, and one tee per person. No post or tagged destination was opened in this attempt."
+    },
+    "saved_variant_candidates": [
+      {
+        "variant_id": "44116031373409",
+        "options": "Child 2 Years / Sunshine Stripe",
+        "historical_price": "21.99 USD",
+        "evidence_date": "2026-09-06",
+        "current_acceptance": "UNKNOWN"
+      },
+      {
+        "variant_id": "44116031602785",
+        "options": "Adult S / Sunshine Stripe",
+        "historical_price": "24.99 USD",
+        "evidence_date": "2026-09-06",
+        "current_acceptance": "UNKNOWN"
+      }
+    ],
+    "source_limit": "Historical 14-variant source and prior cart observations identify candidates only. Current sizes, prices, options, disclosure, image, cart state, availability and theme remain unverified in this attempt.",
+    "sources": [
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/cross_platform_facebook_post_20260907.json",
+        "sha256": "3a8bd75026846b5b315478182adf7732cd7def87b5f5ff284730c920f1623e91",
+        "bytes": 2779,
+        "authority": "HISTORICAL_CONTEXT_ONLY_NOT_CURRENT_BUYER_PROOF"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sunshine_product_detail_review.json",
+        "sha256": "39d18f287212af4cfbb3506cbf2892245382743beb5812f7e0dd4af470613a5e",
+        "bytes": 8532,
+        "authority": "HISTORICAL_CONTEXT_ONLY_NOT_CURRENT_BUYER_PROOF"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sunshine_product_detail_v1.png",
+        "sha256": "751f8636c646032f88d975759a199885bd3e7237c000b6237328ee1121cb44f9",
+        "bytes": 1506739,
+        "authority": "HISTORICAL_CONTEXT_ONLY_NOT_CURRENT_BUYER_PROOF"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sunshine_mobile_cart_readback.json",
+        "sha256": "ffc0bf2efac52220f17882841d6781cfcf5baae4346ea0c7e29f3f077f014309",
+        "bytes": 4542,
+        "authority": "HISTORICAL_CONTEXT_ONLY_NOT_CURRENT_BUYER_PROOF"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sunshine_stripe_current_offer.json",
+        "sha256": "d81646293a2693e028ac6b630ddcdfeacd40b9c56a4622af9d6f9377e77d53d3",
+        "bytes": 8599,
+        "authority": "HISTORICAL_CONTEXT_ONLY_NOT_CURRENT_BUYER_PROOF"
+      }
+    ]
+  },
+  "test_effects": {
+    "facebook_utm_used": false,
+    "qa_visit_status": "NO_PUBLIC_NAVIGATION_CONFIRMED",
+    "analytics_event_receipt": "UNKNOWN_NOT_INSPECTED",
+    "cart_additions": 0,
+    "cart_removals": 0,
+    "checkout_entered": false,
+    "order_created": false,
+    "facebook_post_sent": false,
+    "tab_created": false,
+    "tab_closed": false,
+    "tab_cleanup_reason": "No tab handle was returned, so no owned tab existed to close.",
+    "unrelated_cart_touched": false
+  },
+  "conclusion": {
+    "qualification": "BLOCKED",
+    "public_failure_proven": false,
+    "buyer_pass_proven": false,
+    "publication_proven": false,
+    "sales_or_profit_proven": false
+  },
+  "handoff": {
+    "next_owner": "/root",
+    "artifact_ownership_transferred_to_root": true,
+    "instruction": "Preserve this original blocked subagent attempt. Root may append a separate serial_fallback section after operating a new root-owned hidden public tab; do not reinterpret this attempt as a buyer pass.",
+    "parent_reported_capability": "Root reports its IAB1 remains available. This is parent-reported context, not a subagent browser observation. No root tab ID was supplied or used.",
+    "next_action": "Root runs the current bare-URL buyer check in a new root-owned hidden tab, then appends separately dated observations and exact cart cleanup proof."
+  },
+  "local_validation": {
+    "json_roundtrip": true,
+    "receipt_created_exclusively": true,
+    "historical_context_labeled": true,
+    "no_current_buyer_or_publication_claim": true,
+    "no_facebook_utm_in_attempt": true,
+    "no_other_file_written": true
+  },
+  "serial_fallback": {
+    "owner": "/root",
+    "ownership_handoff": "Original author explicitly finished and transferred this receipt to root; no concurrent writer.",
+    "status": "READ_ONLY_PRODUCT_QUALIFICATION_PASSED__CART_TEST_AUTO_REVIEW_BLOCKED",
+    "observation_window_utc": {
+      "start": "2026-09-12T14:49:53Z",
+      "end": "2026-09-12T14:57:07Z",
+      "precision": "Clock bounds, not per-action timestamps."
+    },
+    "surface": {
+      "root_thread_id": "01a08223-036e-7fa3-8961-ecd297163fb5",
+      "browser_id": "1",
+      "browser_type": "iab",
+      "tab_id": "13",
+      "task_owned_hidden": true,
+      "public_url": "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops",
+      "country": "United States",
+      "currency": "USD",
+      "language": "English",
+      "preview_parameter_present": false
+    },
+    "current_readonly_checks": {
+      "public_title": "Sunshine Stripe Family Matching Tops | Dress Like Mommy",
+      "visible_heading": "Sunshine Stripe Family Matching Tops - Cotton Tee",
+      "image_observation": "Visible yellow shirts with red and blue horizontal stripes; child and adult styling agrees with the existing reviewed shirt creative. This is visual fit, not new supplier/material/measurement proof.",
+      "child_options": [
+        "2 Years",
+        "3 Years",
+        "4 Years",
+        "5 Years",
+        "6-7 Years",
+        "8 Years",
+        "9-10 Years"
+      ],
+      "adult_options": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL",
+        "4XL"
+      ],
+      "disclosure": "Each selection is one T-shirt. Choose a child or adult size and add one tee for each person you want to match.",
+      "selector_disclosure": "Add matching family sizes below — each selection is sold separately.",
+      "adult_s_selected": true,
+      "adult_s_ready_label": "Ready to add Adult - S - $24.99",
+      "child_2_years_selected": true,
+      "child_2_years_ready_label": "Ready to add Child - 2 Years - $21.99",
+      "current_numeric_variant_ids_verified": false,
+      "cart_acceptance_verified": false,
+      "mobile_or_other_locale_coverage": "NOT RUN",
+      "full_purchasable_buyer_pass": false
+    },
+    "automatic_approval_review": {
+      "status": "REJECTED",
+      "action": "Click ADD THIS PIECE TO BAG after selecting Adult S.",
+      "stated_reason": "The reviewer treated adding to the bag as staging a purchase prohibited by the financial-action policy and lacking specific user authorization; it directed a non-cart read-only alternative.",
+      "action_executed": false,
+      "retry_or_workaround_attempted": false,
+      "safe_alternative_completed": "Read-only adult/child option selection, displayed price and one-shirt disclosure checks; separate return-policy comparison.",
+      "approval_question_asked_once": true,
+      "approval_question": "Do you authorize adding one Adult S and one Child 2 Years Sunshine T-shirt to an empty QA bag, then removing both, without entering checkout or placing an order?",
+      "answer_status": "PENDING",
+      "dependency_rule": "No further cart test without new exact authorization and an allowed tool path. Elapsed time is not approval; do not use another API or browser to bypass the rejection."
+    },
+    "cart_and_qa_effects": {
+      "initial_header": "Cart 0 items",
+      "after_rejection_header": "Cart 0 items",
+      "final_return_page_header": "Cart 0 items",
+      "actual_additions": 0,
+      "actual_removals": 0,
+      "unrelated_items_touched": false,
+      "checkout_entered": false,
+      "order_created": false,
+      "qa_navigation_urls": [
+        "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops",
+        "https://www.dresslikemommy.com/pages/return-policy"
+      ],
+      "facebook_utm_used": false,
+      "traffic_interpretation": "Operator QA visits only; analytics event counts/receipt were not measured and must not be reported as acquired Facebook traffic or customer demand.",
+      "own_tab_closed": true,
+      "cleanup_limit": "No bag cleanup mutation was needed because the attempted addition was rejected and both subsequent visible headers remained empty."
+    },
+    "return_setting_comparison": {
+      "status": "CONFLICTED_DISPLAYED_POLICY",
+      "meta_settings_source": "facebook_native_qualification_20260912.json",
+      "meta_label": "Returns not accepted",
+      "sunshine_pdp_labels": [
+        "30-day returns & exchanges",
+        "This item is returnable if unworn, unwashed, and tags are attached."
+      ],
+      "public_policy_url": "https://www.dresslikemommy.com/pages/return-policy",
+      "public_policy_heading": "Returns & Exchanges",
+      "public_policy_window": "30 days from date of delivery to request a return or exchange",
+      "public_policy_conditions": [
+        "Unworn, unwashed, original condition",
+        "Original packaging and all tags attached",
+        "No stains, pet hair, perfume or signs of wear"
+      ],
+      "public_policy_exclusions": [
+        "Swimwear and intimates",
+        "Final Sale items",
+        "Gift cards",
+        "Items returned after 30 days"
+      ],
+      "policy_page_updated_label": "Last updated: January 2026",
+      "interpretation": "Current Meta settings disagree with the currently displayed Sunshine PDP and linked returns page. The underlying legal policy, separate /policies/refund-policy content, Meta catalog exceptions and downstream display were not independently validated.",
+      "mutation": false,
+      "next_action": "Read the supported Meta return-rule scope and existing official store policy, then qualify the smallest consistent correction with current authority. Do not blindly enable returns for excluded categories or invent return addresses."
+    },
+    "handoff": {
+      "paid_scope": "NONE",
+      "facebook_publication": false,
+      "new_creative_or_schedule": false,
+      "next_for_ta18": "Restore exact Page publishing access; preserve one pending cart-QA approval and qualify the policy inconsistency. Duplicate and native composer checks remain open.",
+      "original_subagent_receipt_preserved": true,
+      "prior_sha256": "745be8be64dd7c77a4fee49158db91e429461e1564cdbf3b0ed1dbf01ca00858"
+    }
+  }
+}

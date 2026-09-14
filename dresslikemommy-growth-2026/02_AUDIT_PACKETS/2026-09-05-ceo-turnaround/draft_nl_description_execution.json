@@ -1,0 +1,107 @@
+{
+  "captured_at_utc": "2026-09-06 07:04:17 UTC",
+  "status": "IMPLEMENTED_SCOPED_SOURCE_VERIFIED",
+  "mutation": {
+    "data": {
+      "themeFilesUpsert": {
+        "upsertedThemeFiles": [
+          {
+            "filename": "locales/nl.json"
+          }
+        ],
+        "job": null,
+        "userErrors": []
+      }
+    }
+  },
+  "validation": "Mutation and query VALID",
+  "independent_review": "draft_nl_description_review.md; prewrite PASS",
+  "external_mutations": 1,
+  "checks": {
+    "targetUnpublished": true,
+    "mainRolePreserved": true,
+    "allFourMainChecksumsUnchanged": true,
+    "otherThreeDraftChecksumsUnchanged": true,
+    "candidateChecksumMatches": true,
+    "returnedNlBodyExactlyPayload": true,
+    "completeScopedRead": true
+  },
+  "after": {
+    "shop": {
+      "name": "Dress Like Mommy",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "themes": {
+      "main": {
+        "id": "gid://shopify/OnlineStoreTheme/133290917985",
+        "name": "dresslikemommy/main",
+        "role": "MAIN",
+        "updatedAt": "2026-07-02T16:47:21Z",
+        "files": [
+          {
+            "filename": "assets/cart.js",
+            "checksumMd5": "6303a25065e3d6757ea9dc9be25dac92",
+            "size": "22805",
+            "updatedAt": "2026-04-29T08:15:28Z"
+          },
+          {
+            "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+            "checksumMd5": "61ded53111ee5002eb5c37b42a2c4b3f",
+            "size": "258347",
+            "updatedAt": "2026-07-02T16:47:21Z"
+          },
+          {
+            "filename": "locales/da.json",
+            "checksumMd5": "9b050ed146a416020a0263972f5909a3",
+            "size": "69691",
+            "updatedAt": "2026-05-12T03:23:55Z"
+          },
+          {
+            "filename": "locales/nl.json",
+            "checksumMd5": "496897e8c972ba3685ece34aba094e4f",
+            "size": "72312",
+            "updatedAt": "2026-05-12T03:23:56Z"
+          }
+        ]
+      },
+      "draft": {
+        "id": "gid://shopify/OnlineStoreTheme/137782591585",
+        "name": "DLM SEO DA NL 2026-09-06",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-06T07:03:53Z",
+        "files": [
+          {
+            "filename": "assets/cart.js",
+            "checksumMd5": "61c560a479ad1e32ec4e84d4bf685f09",
+            "size": "24383",
+            "updatedAt": "2026-09-06T04:06:14Z"
+          },
+          {
+            "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+            "checksumMd5": "379cc0f86d1ed46e357ceca745687c3e",
+            "size": "258613",
+            "updatedAt": "2026-09-06T05:06:58Z"
+          },
+          {
+            "filename": "locales/da.json",
+            "checksumMd5": "f501252517157f8ed92ca59a347b46e5",
+            "size": "69730",
+            "updatedAt": "2026-09-06T02:58:15Z"
+          },
+          {
+            "filename": "locales/nl.json",
+            "checksumMd5": "5d5cfd654711de81c47a8a0d178d5a12",
+            "size": "72353",
+            "updatedAt": "2026-09-06T07:03:53Z"
+          }
+        ]
+      }
+    }
+  },
+  "limits": [
+    "Only four specified files per theme read; full525-file current comparison NOT RUN",
+    "Unpublished staging only; publication and sales/profit lift not established",
+    "Rendered outputs require fresh browser verification"
+  ],
+  "rollback": "draft_nl_description_before.json"
+}

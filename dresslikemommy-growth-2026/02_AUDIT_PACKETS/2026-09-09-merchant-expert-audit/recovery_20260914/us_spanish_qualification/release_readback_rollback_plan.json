@@ -1,0 +1,51 @@
+{
+  "schema": "dlm.us_es_conditional_release_plan.v1",
+  "action_id": "TA07-US-SPANISH-QUALIFY-20260914-1658",
+  "status": "WITHHELD__NO_EXECUTABLE_TSV",
+  "currently_authorized": "Read-only qualification and local preparation only. Parent must independently review and dispatch an exact reviewed release; no additional owner approval question is requested here.",
+  "source_identity": {
+    "merchant_account": "513542500",
+    "contentLanguage": "es",
+    "feedLabel": "US",
+    "targetCountries": [
+      "US"
+    ],
+    "currency": "USD",
+    "offerId": "shopify_US_<product_id>_<variant_id>",
+    "composite_example": "es~US~shopify_US_6718945034337_39756755861601",
+    "new_source_id": null,
+    "intended_name": "DLM US Spanish Free Listings"
+  },
+  "current_artifact": "potential_candidate_manifest_NOT_UPLOADABLE.csv",
+  "current_artifact_is_Google_feed": false,
+  "current_potential_rows": 4552,
+  "count_is_future_upload_commitment": false,
+  "prerequisites": [
+    "Existing UX owner corrects and reads back the documented localized numeric-variant entry behavior.",
+    "A bounded existing-pipeline change implements separately timestamped global translation fallback and explicit translation-only partition without weakening source/identity/error gates.",
+    "Independent review accepts the exact complete candidate, 11-parent translation rejection list, six existing holds, all 22 unavailable variants and actual destination identity.",
+    "Source freshness is evaluated at the eventual action time; do not restamp the 18:04:07.475Z source or 18:07:06.528Z supplement. Refresh only if needed by the established source-age contract.",
+    "A native capacity or ingestion rejection, if returned on the separately dispatched submission, is a stop condition. Numeric account headroom remains unknown."
+  ],
+  "conditional_submission_sequence": [
+    "Reconfirm the exact US/es identity still has no current source immediately before a separately dispatched creation to avoid duplicates. Reuse a newly existing exact Spanish source if discovered and authorized.",
+    "Create only a US / Spanish / US feed-label primary source with the reviewed frozen file or already-authorized hosting method. Explicitly change the wizard default 31 countries to US only and all marketing methods to free listings only; retain Shopping_ads exclusion in generated rows.",
+    "Do not insert the same en/US/offerId identity into the Spanish source, change the US or AU English sources, or create a speculative source for every language/country.",
+    "Record native source ID, language/feed-label/country/method, input processing timestamp, row count, issues and received offer samples against the exact uploaded file SHA. Input receipt does not establish approval or serving.",
+    "Read back destination approval/rejection and representative Spanish language, country, currency, numeric variant landing price and availability. Keep source receipt, approval, actual exposure and traffic/orders as separate claims.",
+    "Enable unattended lifecycle only under an exact later dispatch using the existing pipeline and supported hosting/scheduling, then verify additions/removals, failure behavior and current source freshness. No scheduler, hosting, token or service change is authorized by this packet."
+  ],
+  "readback_must_preserve": [
+    "US English source10727274744 identity and existing cohort",
+    "AU English source10727245667 identity and existing cohort",
+    "Six exact parent holds",
+    "No false in-stock values, translated content freshness or storefront facts"
+  ],
+  "rollback": {
+    "current": "No external change occurred; withhold local derived inputs and manifest. Checkpoint addition can be removed alone after its before/after receipt is verified.",
+    "future_new_source": "If a separately authorized new Spanish source causes a proven issue, isolate only that new Spanish source using supported UI under the action-time rollback authority; never delete or alter English identities. Capture before/after evidence. A source removal is consequential and is not authorized by this qualification.",
+    "future_existing_source": "Retain exact prior Spanish source input and settings so an authorized rollback can restore that source only."
+  },
+  "optional_returns": "Accepted return mapping is retained. Effective US/AU return assignment remains UNKNOWN; optional return-label coverage is not promoted into a blanket language-feed prerequisite.",
+  "broader_store_quality": "NOT_AUDITED_IN_THIS_QUALIFICATION; no rating, performance, eligibility or all-market completion claim."
+}

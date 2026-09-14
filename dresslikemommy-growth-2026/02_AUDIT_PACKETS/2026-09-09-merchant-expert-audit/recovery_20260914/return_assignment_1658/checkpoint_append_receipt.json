@@ -1,0 +1,33 @@
+{
+  "schema": "dlm.return_assignment_checkpoint_append.v1",
+  "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/all-markets.execution_checkpoint.json",
+  "added_key": "latest_return_assignment_20260914",
+  "before_sha256": "2d695e4af6e1372aa1de6b1de013681fa3a9ea705d1f11f2aa8cc55effc8986e",
+  "after_sha256": "b26944a2b9b0b6736c0f3edcfb2a2669eb489bd8a11f3a4daadd5d77e75b618a",
+  "prior_keys_unchanged": true,
+  "prior_key_count": 36,
+  "added_entry": {
+    "action": "TA07-RETURN-ASSIGNMENT-20260914-1658",
+    "recorded_at_utc": "2026-09-14T17:27:34.574625+00:00",
+    "status": "PARTIAL__LOCAL_SOURCE_MAPPING_COMPLETE__GOOGLE_EFFECTIVE_ASSIGNMENT_INCOMPLETE",
+    "account_id": "513542500",
+    "source_ids": [
+      "10727274744",
+      "10727245667"
+    ],
+    "handoff_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/return_assignment_1658/execution_handoff.json",
+    "handoff_sha256": "834a889dee5b762b2f8cf92b7c3209c0c3496b1bb3bf27966db56406ef991df0",
+    "local_mapping_rows": 9482,
+    "per_country_source_nondefective_exceptions": 700,
+    "per_country_ordinary_eligibility_unknown": 4041,
+    "native_effective_assignments_verified": 0,
+    "native_effective_assignment_unknown": 9482,
+    "held_available_offers_per_country": 162,
+    "external_writes": 0,
+    "independent_parent_review": "PENDING",
+    "broader_all_market_status": "PARTIAL",
+    "next_owner_action": "Resolve the sale/personalized exclusion and postage/defective-remedy conflict between Terms14695813 and Refund14695685/Page161929989 as one policy-truth decision; it goes first because a country default or blanket no_returns exception could otherwise misstate customer eligibility."
+  },
+  "rollback_scope": "Remove only the added top-level key; restore the prior final root closing brace/newline. No prior key may be modified.",
+  "shared_canonical_files_changed": []
+}

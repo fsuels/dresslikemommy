@@ -1,0 +1,33 @@
+✔ collects every parent and every nested variant page with final reconciliation (15.752ms)
+✔ 240-parent read exposes its actual scheduled request requirement (4.825208ms)
+✔ incomplete variants never become a snapshot (0.252958ms)
+✔ duplicate and repeated pagination identifiers fail closed (0.111541ms)
+✔ changed parent or manifest prevents collection promotion (0.135375ms)
+✔ URL-bearing source tags are omitted without losing exact Final Sale fact (0.747125ms)
+✔ wrong identity, incomplete/future/stale snapshot and manifest mismatch reject (0.219792ms)
+✔ complete replacement removes deleted/unpublished/unavailable rows and readds when buyable (1.407334ms)
+✔ a malformed buyable row invalidates whole replacement, never partial deletes (0.162167ms)
+✔ USD/AUD/CAD/GBP retain exact contextual money, never convert or round (0.625166ms)
+✔ foreign content requires fresh translations and a verified localized landing context (0.382375ms)
+✔ variant identity/image/availability survive and optional identifiers are not invented (0.143542ms)
+✔ GTIN checksum validation preserves leading zeros and reports invalid source barcode (0.253958ms)
+✔ explicit identifier_exists conflict is disclosed and not propagated (0.169208ms)
+✔ child role never inherits adult age from parent or variant contradictory data (0.307ms)
+✔ policy exceptions require exact source type/taxonomy/tag/gift-card facts (0.131917ms)
+✔ TSV has exact columns, free-listing exclusion, escaped controls and no paid allowlist claim (0.269625ms)
+✔ publish only switches pointer after complete object, and CAS retains newer file (8.702375ms)
+✔ native exception label must be confirmed before any R2 publication (0.893083ms)
+✔ first-file option omits return labels without losing exception diagnostics (0.277208ms)
+✔ upstream errors and invalid currency leave previous complete pointer untouched (0.672209ms)
+✔ public endpoint serves exact complete bytes and rejects stale/tampered/disabled/method cases (2.17575ms)
+✔ first release exports only read-only serving and no scheduler (0.075167ms)
+✔ authenticated reader requests only configured Shopify endpoint and redacts upstream failures (0.292542ms)
+✔ test/fixtures.js (21.524375ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77.672209

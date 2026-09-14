@@ -1,0 +1,14 @@
+{
+  "checked_at_utc": "2026-09-11T14:41:53.561685+00:00",
+  "account_id": "6b1df53f8a1ce4b5b5312f833a2cd966",
+  "target_bucket": "dlm-merchant-feeds",
+  "effect": "Create isolated Merchant feed storage only; existing Pinterest bucket untouched.",
+  "before_target_exists": false,
+  "after": {
+    "name": "dlm-merchant-feeds",
+    "creation_date": "2026-09-11T14:41:55.062Z",
+    "location": null
+  },
+  "status": "IMPLEMENTED_AND_VERIFIED",
+  "rollback": "Delete only dlm-merchant-feeds after verifying it is still empty, or remove only this task objects first after review."
+}

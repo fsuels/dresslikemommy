@@ -1,0 +1,43 @@
+{
+  "schema": "dlm.artifact-freeze.v1",
+  "created_at_utc": "2026-09-14T20:36:56.683621+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3096,
+      "sha256": "c46524586e1e0f42240bdd11bf337a03695124d13fcf89ab6770d96ea56aac25"
+    },
+    {
+      "path": "coverage_requirements.json",
+      "bytes": 81514,
+      "sha256": "6e5c61af54053bba0481f8154a52ddc92444b63e584807f9b5b435cd6671e104"
+    },
+    {
+      "path": "country_intersection.csv",
+      "bytes": 6384,
+      "sha256": "5b9d4a2328139b48a8c27387c24a5131c5c60b6987a9b62682888c4802563c1a"
+    },
+    {
+      "path": "language_intersection.csv",
+      "bytes": 3723,
+      "sha256": "779b600e1e89c3378ab07e7afe5372b07d6a3b415d7720ec3ced9b2b6da6f981"
+    }
+  ],
+  "checks": {
+    "65_unique_countries": true,
+    "21_unique_supported_languages": true,
+    "valid_observed_landing_roots": true,
+    "country_partition": true,
+    "beta_is_SV": true,
+    "app_contradiction_nine": true,
+    "no_organic_cap_assumed": true,
+    "no_merchant_eligibility_claims": true,
+    "only_primary_source_domains": true,
+    "current_read_date": true,
+    "fresh_source_unchanged": true,
+    "country_intersection.csv_row_count": true,
+    "language_intersection.csv_row_count": true
+  },
+  "status": "PASS",
+  "scope": "Documentation research only; no account or storefront actions."
+}

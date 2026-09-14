@@ -1,0 +1,153 @@
+{
+  "schema": "dlm.pinterest_manual_sales_pilot.v2",
+  "status": "LOCAL_PROPOSAL_NOT_LAUNCH_READY",
+  "reconciled_at_utc": "2026-09-11T16:58:58.023143+00:00",
+  "decision_id": "DLM-DEC-2026-09-11-PINTEREST-MANUAL-SALES-PLAN",
+  "owner_input": "September10 Pinterest growth plan supplied September11; source hash in PLAN_DECISION_FRAME_20260911.json",
+  "advertiser_id": "549756244483",
+  "account_availability": "NOT_REVERIFIED_BY_PUBLIC_DOCUMENTATION",
+  "supersedes": {
+    "path": "PAID_CAMPAIGN_SPEC_20260909_ARCHIVE.json",
+    "sha256": "00d0a5ce1e816159d155302e6995051879e052d2d64ac7a0b6ffdb8aae7968d1",
+    "meaning": "Consideration traffic calibration remains a dated optional diagnostic, not the primary launch recommendation. Its USD15/72-hour proposal was never executed or approved by this reconciliation."
+  },
+  "campaign": {
+    "proposed_name": "DLM_US_EN_SUNSHINE_SALES_PILOT_20260911",
+    "objective": "Sales",
+    "creative_source": "Pins",
+    "campaign_mode": "Manual / traditional",
+    "optimization_event": "Checkout",
+    "optimization_event_meaning": "Completed purchase; explicitly inspect the saved selection, not merely the Sales label. Initiate checkout and AddToCart are distinct.",
+    "intended_state_if_saved": "PAUSED",
+    "market": "US",
+    "market_status": "PROVISIONAL_PLANNING_CHOICE_REQUIRES_CURRENT_QUALIFICATION",
+    "language": "English",
+    "audience": "Adult shoppers coordinating family outfits; no women-only restriction without evidence",
+    "ad_groups": 1,
+    "planned_creatives": 2,
+    "optional_third_creative": "Only a distinct supported buying demonstration, within the same approved budget",
+    "absolute_start_and_end": null,
+    "platform_campaign_id": null,
+    "platform_ad_group_id": null,
+    "platform_ad_ids": []
+  },
+  "budget": {
+    "recommended_planning_start_daily_usd": 5,
+    "currently_approved_spend_usd": 0,
+    "daily_budget_mode_to_verify": "Fixed Daily in the actual traditional-campaign interface; if unavailable do not substitute Average Daily silently",
+    "total_test_cap_usd": null,
+    "maximum_test_loss_usd": null,
+    "maximum_duration_hours": null,
+    "end_timestamp": null,
+    "cap_enforcement": "Before launch verify the actual native budget mode, total allocation/end and all existing campaign overlap. A lifetime budget governs total allocation but not a fixed daily maximum. Do not assume the separate video-view campaign spend-limit feature applies to Sales. If both daily and total bounds cannot be enforced, hold and obtain an exact revised scope.",
+    "average_daily_warning": "USD5 average daily and a best-effort125percent daily guideline are not a strict USD5/day or USD6.25/day ceiling.",
+    "edit_warning": "Midday/midweek changes can alter spend calculations; do not repeatedly edit/unpause to recreate a cap.",
+    "historical_combined_daily_ceiling_usd": 80,
+    "historical_ceiling_is_current_authority": false,
+    "user_plan_150_and_900_monthly_scenarios": "Illustrations only, not approved allocations"
+  },
+  "bidding": {
+    "chosen_strategy": null,
+    "permitted_design": "Evaluate available traditional-campaign automatic/Performance+ bidding only after verified Checkout values and approved economic limits",
+    "full_performance_plus_campaign": false,
+    "roas_target_if_qualified": 6.5,
+    "roas_target_is_guarantee": false,
+    "strict_outbound_cpc_ceiling_guaranteed": false,
+    "historical_usd_0_15_pin_cpc": "Billed in-grid click constraint belongs to the archived Consideration option; it must not be carried over as a guaranteed website-click or Sales CPA control."
+  },
+  "creative_candidates": [
+    {
+      "id": "sales_product_detail_01",
+      "status": "EXISTING_ASSET_NATIVE_PAID_REVIEW_REQUIRED",
+      "asset": "../2026-09-05-ceo-turnaround/sunshine_product_detail_v1.png",
+      "sha256": "751f8636c646032f88d975759a199885bd3e7237c000b6237328ee1121cb44f9",
+      "title": "Sunshine Stripe Family Matching T-Shirts",
+      "description": "Yellow, red and blue stripes for a coordinated family look. Each T-shirt is sold separately. Choose a child or adult size and select one tee for each person. See the product details at Dress Like Mommy.",
+      "ai_modified": true,
+      "ai_person_generated": false,
+      "paid_destination": "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops?utm_source=pinterest&utm_medium=paid_social&utm_campaign=dlm_us_en_sunshine_sales_pilot_20260911&utm_content=product_detail_01"
+    },
+    {
+      "id": "sales_lifestyle_02",
+      "status": "SOURCE_AND_PAID_ASSET_REVIEW_REQUIRED",
+      "existing_organic_pin_id": "343118065386636484",
+      "asset": null,
+      "hypothesis": "A verified coordinated family image helps shoppers understand which separate garments to select.",
+      "paid_destination": "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops?utm_source=pinterest&utm_medium=paid_social&utm_campaign=dlm_us_en_sunshine_sales_pilot_20260911&utm_content=lifestyle_02"
+    }
+  ],
+  "organic_pin_preservation": "Do not alter published Pin343118065387544334 or its social UTMs. Promote only if an independently tagged paid destination is supported; otherwise use a separately reviewed paid creative after exact authority.",
+  "targeting": {
+    "intent_candidates": [
+      "matching family shirts",
+      "family photo outfits",
+      "matching family t shirts"
+    ],
+    "demand_status": "HYPOTHESES_NOT_TRENDS_VERIFIED",
+    "match_types_and_expansion": "Inspect available exact/phrase controls and whether targeting is restrictive or advisory; do not call it keyword-only without saved proof",
+    "retargeting": "No separate retargeting or full Performance+ automatic retargeting in the initial proposal",
+    "customer_lists": "No upload or exclusion list authorized; matched-size and permitted-use checks required if later proposed",
+    "negative_keywords": "Use actual irrelevant search evidence; no blanket free/DIY exclusions from guesses"
+  },
+  "launch_product_gate": "Fresh adult-plus-child selectable/fulfillable combination, source-truthful images/units, exact mobile cart/checkout price and delivery, allowed return terms, current item-ID/currency match; product salability is not supplier fulfillment proof.",
+  "measurement": {
+    "primary": [
+      "Shopify-reconciled completed purchases",
+      "first-time buyers",
+      "net realized revenue",
+      "variable-cost contribution",
+      "purchase CPA/new-customer CAC",
+      "6.5x target on an explicitly aligned revenue basis",
+      "retained contribution after media and production allocation"
+    ],
+    "diagnostic": [
+      "outbound clicks",
+      "tagged sessions",
+      "product progression",
+      "carts",
+      "Pin CPC",
+      "search/saves"
+    ],
+    "revenue_contract": "Record app Checkout value definition; compare before tax/shipping as documented, discounts/refunds separately. Never substitute the illustrative USD90 basket for actual store economics.",
+    "attribution": "Freeze click-only7/30day views where available and show view-assisted credit separately; match time zone and conversion-date versus interaction-date settings. Never add cross-platform attributed revenue.",
+    "qa": "Exclude identifiable QA, test/unpaid/cancelled orders and this browser test; a helper callback is not a recipient acknowledgment.",
+    "order_acceptance": "A genuine completed order joins once by identity/items/quantity/value/currency, with browser/server dedup and repeat-order-status behavior inspected; no fabricated test sale.",
+    "consent": "Existing temporary grant approval remains PENDING; loaded/awaiting sequence CONFLICTED. A helper grant is not customer-banner enforcement proof."
+  },
+  "economics": {
+    "source": "../2026-09-05-ceo-turnaround/sunshine_stripe_basket_ceilings.json",
+    "status": "ACTUAL_CURRENT_BASKET_COSTS_AND_APPROVED_CPA_MISSING",
+    "working_sheet": "PILOT_ECONOMICS_20260911.json",
+    "approved_cpa_usd": null,
+    "new_customer_cac_ceiling_usd": null,
+    "use_speculative_ltv": false
+  },
+  "gates": [
+    "Stable exact-account native handback; current campaign/budget overlap",
+    "Consent/restoration and current Tag/CAPI receiver acceptance",
+    "Checkout identity/value/currency/dedup from a genuine order",
+    "Actual basket costs, refunds, fees, fulfillment and approved maximum loss",
+    "Reviewed2distinct actual assets and adult-child mobile buying path",
+    "Native Sales/Pins/Checkout/mode/budget controls, start/end and exact current spend authority",
+    "Independent before/write/after review with preserved rollback"
+  ],
+  "zero_impressions_24h": "Diagnose eligibility, tracking, products, audience, bids and budget; do not increase bids automatically.",
+  "stop_rules": [
+    "Wrong market/destination or misleading price/units",
+    "Unavailable advertised size combination",
+    "Broken tracking or consent enforcement",
+    "Approved exposure/time/loss bound reached",
+    "Unauthorized setting/scope drift"
+  ],
+  "scale_rule": "Only a separately approved step after mature positive first-order economics, return/stock and new-customer evidence; measure marginal economics.",
+  "external_writes": 0,
+  "spend_executed": 0,
+  "native_draft_saved": false,
+  "source_notes": [
+    "PLAN_SOURCE_CHECK_20260911.md",
+    "https://help.pinterest.com/en/business/article/simplified-objectives",
+    "https://help.pinterest.com/en/business/article/set-up-campaign-budgets",
+    "https://help.pinterest.com/en/business/article/set-your-bid",
+    "https://help.pinterest.com/en/business/article/pinterest-performance-plus"
+  ]
+}

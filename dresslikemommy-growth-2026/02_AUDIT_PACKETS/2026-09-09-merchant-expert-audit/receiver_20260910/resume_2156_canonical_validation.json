@@ -1,0 +1,63 @@
+{
+  "schema": "dlm.merchant.resume_validation.v1",
+  "recorded_at_utc": "2026-09-10T22:00:40.400036+00:00",
+  "anchor": "2026-09-10-merchant-receipt-resume-mac-lock",
+  "commands": {
+    "render_marketing_cockpit.py": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "audit_marketing_command_integration.py --write-report --fail-on-risk": {
+      "status": "PASS",
+      "exit_code": 0,
+      "integrated": 25,
+      "tracked": 25,
+      "risks": 0
+    },
+    "check_continuity_integrity.py --strict": {
+      "status": "PASS",
+      "exit_code": 0,
+      "checks": 10,
+      "result": "CONTINUITY_OK"
+    },
+    "scoped_git_diff_check": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "resume_json_parse": {
+      "status": "PASS",
+      "checks": 2
+    },
+    "no_receipt_no_write_consistency": {
+      "status": "PASS",
+      "checks": 5
+    }
+  },
+  "canonical_review": {
+    "status": "PASS",
+    "checks": 12,
+    "scope": "Saved-evidence and exact inverse preservation; no live replay",
+    "files": {
+      "resume_2156_review.json": "15b75bd6cec8ff2c5bd47dec7d3248140a023c0a388b751872773bc6b41c7a7e",
+      "resume_2156_review.md": "ab1218b1a3ae41e5faef7f3783e8941bcb3ba0156e15dc6d2e1b275d85ea0b67"
+    }
+  },
+  "native_result": "One fresh normal read blocked by Maclock/automaticunlockfailure; no receiver content, no retry, no mutation",
+  "bindings": {
+    "resume_2156.json": {
+      "sha256": "3def91b9ae09f9aba50f96535052122a9eb87d6e4e3936a0853be3999df67b61",
+      "bytes": 3885
+    },
+    "RESUME_2156.md": {
+      "sha256": "ecf7c7ea5cdb0945f100492d1139d994626b0002bb1a3c4f25146ea6b07b0822",
+      "bytes": 1815
+    },
+    "resume_2156_canonical_patch.json": {
+      "sha256": "89b4d08fa857cadc98e9dd838a64cd050eb184674ab493aa36d7ed19e45f274f",
+      "bytes": 12596
+    }
+  },
+  "finalized_at_utc": "2026-09-10T22:02:44.310237+00:00",
+  "shared_interval": "RELEASED after required checks; parent notified",
+  "native": "Explicitly held but paused with Merchant pending existing owner unlock or explicit handback; no in-flight call or unsaved form"
+}

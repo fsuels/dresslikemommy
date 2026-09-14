@@ -1,0 +1,23 @@
+query DlmTrafficSeoReadback {
+ shop { id name primaryDomain { url } currencyCode }
+ collections(first:10, query:"handle:dresses OR handle:mommy-and-me OR handle:matching-pajamas OR handle:pajamas") {
+  nodes { id handle title descriptionHtml seo { title description } updatedAt
+   translations(locale:"da") { key value outdated }
+   nl: translations(locale:"nl") { key value outdated }
+   products(first:4) { nodes { id title handle status } pageInfo { hasNextPage } }
+  }
+  pageInfo { hasNextPage }
+ }
+ nodes(ids:["gid://shopify/Product/7533081133153","gid://shopify/Product/7545279512673"]) {
+  ... on Product { id title handle status onlineStoreUrl descriptionHtml seo {title description} updatedAt
+   options { name values }
+   variants(first:30) { nodes { id title price availableForSale } pageInfo { hasNextPage } }
+  }
+ }
+}
+
+query DlmArticleTrafficReadback { articles(first:5, query:"handle:mommy-and-me-matching-outfit-ideas") { nodes {id handle title body isPublished updatedAt blog {id handle} translations(locale:"el"){key value outdated}} pageInfo{hasNextPage} } }
+
+query DlmSeoTranslationDigests { dresses:translatableResource(resourceId:"gid://shopify/Collection/240127941"){resourceId translatableContent{key value digest locale} translations(locale:"nl"){key value outdated}} article:translatableResource(resourceId:"gid://shopify/Article/559471329377"){resourceId translatableContent{key digest locale} translations(locale:"el"){key value outdated}} }
+
+query DlmMainThemeSeoReadback { themes(first:1,roles:[MAIN]) { nodes {id name role files(first:4,filenames:["locales/nl.json","locales/da.json","snippets/collection-seo-fallback.liquid","sections/main-article.liquid"]) { nodes {filename checksumMd5 body {... on OnlineStoreThemeFileBodyText {content}}} pageInfo{hasNextPage} } } } }

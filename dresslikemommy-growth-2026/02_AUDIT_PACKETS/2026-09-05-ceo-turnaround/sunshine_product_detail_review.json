@@ -1,0 +1,137 @@
+{
+  "schema": "dlm.sunshine_product_detail_independent_review.v1",
+  "reviewed_at_utc": "2026-09-07T00:47:32.483779+00:00",
+  "verdict": "LOCAL_READY__NATIVE_PUBLICATION_BLOCKED_MAC_LOCKED",
+  "independence": "Reviewer did not author copy, generate image, inspect live source or execute any upload/publication. Independently viewed three local images and checked local source/payload consistency.",
+  "source_sha256": {
+    "sunshine_product_detail_release_plan.json": "03b852ec1246f1943a9be638a760f65de7563764540feed4fac104e4415c1943",
+    "sunshine_product_detail_pin_copy.json": "bc2b047b7b391b7552ed611e3b428593138fe244e2d658394e37f6ff89f6bdcc",
+    "sunshine_product_detail_current.json": "33e52374f0e3fe4341df6912d91f4824865052dceea71b819b9bef9d502361b6",
+    "sunshine_product_detail_reference.png": "00fb5280f92a003fb3878824fe5accd62ec9e254d0c072ef8a827692577f1ca5",
+    "sunshine_product_detail_v1.png": "751f8636c646032f88d975759a199885bd3e7237c000b6237328ee1121cb44f9",
+    "sunshine_product_detail_prompt.txt": "18261deace8107dfdbf51743414f6e617b060a4dd5a7bcab4d68853cf4134357",
+    "sunshine_pin_public_after.png": "e231eb91a88dd7ab2c6d0176a710fe684dc9efaacb28cb17af1e2ce64f3200a2",
+    "sunshine_pin_copy_release.json": "a638ae562fbb65675a864797b9b398b9d113dd6e3ee18edb42e4ba7abee83f94"
+  },
+  "check_count": 12,
+  "passed_count": 12,
+  "failed_checks": [],
+  "checks": [
+    {
+      "check": "source and asset bindings match exact active product",
+      "pass": true,
+      "method": "local hash/JSON comparison",
+      "evidence": "Current source captured 2026-09-07T00:38:31.711Z; the reference is the exact source-listed media image. API observations are operator-supplied."
+    },
+    {
+      "check": "generated file PNG 1024x1536 and under20MB",
+      "pass": true,
+      "method": "PNG signature/IHDR and byte count",
+      "evidence": "1024x1536, 2:3, 1,506,739 bytes; no upload performed."
+    },
+    {
+      "check": "material shirt design fidelity",
+      "pass": true,
+      "method": "independent view_image inspection of reference and generated asset",
+      "evidence": "One yellow shirt; yellow ribbed crew neckline, short sleeves, straight body, five red horizontal body bands with blue bands beneath, pale thin dividers and corresponding sleeve/shoulder stripes are retained. Minor rendering/proportion differences are not a material design change; no pixel-identical claim."
+    },
+    {
+      "check": "all intended image text exact and no extra written claim",
+      "pass": true,
+      "method": "independent image reading plus prompt comparison",
+      "evidence": "Exact visible transcription: Sunshine Stripe | MATCHING | FAMILY TOPS | Child & adult sizes | Each T-shirt sold separately | DressLikeMommy.com. The red heart/divider is decorative."
+    },
+    {
+      "check": "spelling readability disclosure prominence and clear shirt view",
+      "pass": true,
+      "method": "independent view_image inspection",
+      "evidence": "All six text lines/phrases are legible in the viewed 1024x1536 file; text stays outside the garment. The separate-shirt disclosure is prominent near the bottom with safe margins. Native phone/Pinterest rendering is not certified."
+    },
+    {
+      "check": "adult and child size statement supported",
+      "pass": true,
+      "method": "current local source fields",
+      "evidence": "Seven child and seven adult options are present. This is range/option evidence, not stock or shipping availability proof."
+    },
+    {
+      "check": "final title description and single-shirt purchase scope match source",
+      "pass": true,
+      "method": "independent semantic review and exact-string comparison",
+      "evidence": "The wording and single-shirt image do not promise a bundled family outfit. The product details CTA fits the direct shirt destination."
+    },
+    {
+      "check": "no new offer material stock shipping measurement or fit claims",
+      "pass": true,
+      "method": "independent review of final title/description/alt and image text",
+      "evidence": "The creative/copy describes stripes, child/adult options and separate shirt selection. It adds no price, discount, urgency, material percentage, inventory, delivery, measurement, fit guarantee or profitability promise."
+    },
+    {
+      "check": "final alt describes actual image and all meaningful image text",
+      "pass": true,
+      "method": "independent visual/semantic comparison",
+      "evidence": "The root-updated alt accurately describes the shirt/background and readable text; headline capitalization and the line break are normalized without losing meaning. Decorative heart need not be announced."
+    },
+    {
+      "check": "direct current product destination and exact four UTM fields",
+      "pass": true,
+      "method": "URL parsing and current source mapping",
+      "evidence": "First-party direct Sunshine product route; four unique UTMs only. This does not establish redirect behavior, native landing success or tracking receipt."
+    },
+    {
+      "check": "distinct from saved existing Sunshine lifestyle creative",
+      "pass": true,
+      "method": "independent view_image comparison with saved public screenshot",
+      "evidence": "The saved Pin shows two adults and two children in a lifestyle setting. This graphic shows one isolated shirt with a buying disclosure and no people. Different presentation/intent is established; account-wide duplicate absence or incremental reach is not."
+    },
+    {
+      "check": "local-only readiness provenance and remaining native gates preserved",
+      "pass": true,
+      "method": "plan and final source hash consistency",
+      "evidence": "AI modification is operator-documented and no person is visible. Board/account/duplicates/tagged shopper checks and intentional publication/readback remain unrun; no spend authority or existing Pin alteration."
+    }
+  ],
+  "asset": {
+    "file": "sunshine_product_detail_v1.png",
+    "sha256": "751f8636c646032f88d975759a199885bd3e7237c000b6237328ee1121cb44f9",
+    "format": "PNG",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 1506739
+  },
+  "visible_image_text": [
+    "Sunshine Stripe",
+    "MATCHING",
+    "FAMILY TOPS",
+    "Child & adult sizes",
+    "Each T-shirt sold separately",
+    "DressLikeMommy.com"
+  ],
+  "final_pin_fields": {
+    "title": "Sunshine Stripe Family Matching T-Shirts",
+    "description": "Yellow, red and blue stripes for a coordinated family look. Each T-shirt is sold separately. Choose a child or adult size and select one tee for each person. See the product details at Dress Like Mommy.",
+    "alt_text": "A yellow T-shirt with red and blue horizontal stripes on an off-white background. Text reads Sunshine Stripe, Matching Family Tops, Child & adult sizes, Each T-shirt sold separately, and DressLikeMommy.com.",
+    "destination_url": "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops?utm_source=pinterest&utm_medium=social&utm_campaign=dlm_sunshine_organic_20260907&utm_content=product_detail_01",
+    "board_name": "Mommy & Me Matching Outfits",
+    "board_reference_url": "https://www.pinterest.com/dresslikemommy/mommy-me-matching-outfits/",
+    "board_identity_status": "HISTORICAL_REFERENCE_REQUIRES_FRESH_NATIVE_CHECK",
+    "ad_only": false
+  },
+  "product_id": "gid://shopify/Product/7545279512673",
+  "existing_pin_id_to_preserve": "343118065386636484",
+  "limits": [
+    "Visual material fidelity is established against the supplied store reference, not pixel identity, original photography provenance or a physical garment inspection.",
+    "No native phone/Pinterest rendering, fresh account/board/duplicate check, buyer route, consent/tracking receipt, upload or publication was performed.",
+    "Stored API option range and ACTIVE status do not prove stock, delivery or every size being purchasable now.",
+    "Distinct creative treatment does not establish unique reach, incremental clicks, retained purchases, profitable CPA or ROAS. Existing lifestyle screenshot metrics are outside this review and are not performance evidence for the new asset."
+  ],
+  "next_action": "After normal unlock, perform the planned exact account/board/duplicate and tagged buyer-route checks before one intentional organic publication, if those checks pass.",
+  "external_calls": 0,
+  "uploads": 0,
+  "publications": 0,
+  "external_writes": 0,
+  "other_files_modified": false,
+  "written_files": [
+    "sunshine_product_detail_review.json",
+    "sunshine_product_detail_review.md"
+  ]
+}

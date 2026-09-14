@@ -349,7 +349,7 @@ tags = sorted(
             "Child 4-5yr",
             "Child 6-8yr",
             "Child 9-10yr",
-            VENDOR_URL,
+
         ]
     )
 )
@@ -361,7 +361,7 @@ product_input = {
     "vendor": "dresslikemommy.com",
     "productType": PRODUCT_TYPE,
     "tags": tags,
-    "status": "ACTIVE",
+    "status": "DRAFT",
     "category": TAXONOMY_GID,
     "seo": {"title": SEO_TITLE, "description": SEO_DESCRIPTION},
 }
@@ -454,18 +454,9 @@ for index in range(0, len(metafields), 25):
     )
     user_errors(output, "data.metafieldsSet.userErrors")
 
-publications = [
-    {"publicationId": "gid://shopify/Publication/55169925"},
-    {"publicationId": "gid://shopify/Publication/21969633377"},
-    {"publicationId": "gid://shopify/Publication/29172400225"},
-    {"publicationId": "gid://shopify/Publication/76582879329"},
-    {"publicationId": "gid://shopify/Publication/76604768353"},
-]
-output = gql(
-    "mutation($id:ID!,$input:[PublicationInput!]!){publishablePublish(id:$id,input:$input){userErrors{field message}}}",
-    {"id": product_id, "input": publications},
-)
-user_errors(output, "data.publishablePublish.userErrors")
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+print("Sales-channel publication skipped; product remains a draft pending approval.")
 
 media = gql(
     "query($id:ID!){product(id:$id){media(first:50){nodes{... on MediaImage{id alt image{url}}}}}}",
@@ -543,8 +534,8 @@ checks = [
     ("size table row count", len(tbody_rows) == len(chart), str(len(tbody_rows))),
     ("size table headers", th_count == 10, str(th_count)),
     ("taxonomy", product["category"]["fullName"] == EXPECTED_TAXONOMY, product["category"]["fullName"]),
-    ("published", bool(product["publishedAt"]), str(product["publishedAt"])),
-    ("online url", bool(product["onlineStoreUrl"]), str(product["onlineStoreUrl"])),
+    ("not published", not bool(product["publishedAt"]), str(product["publishedAt"])),
+    ("online url absent", not bool(product["onlineStoreUrl"]), str(product["onlineStoreUrl"])),
 ]
 price_ok = all(
     variant["price"] == next(item["price"] for item in variants if item["inventoryItem"]["sku"] == variant["sku"])

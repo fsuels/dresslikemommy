@@ -1,0 +1,15 @@
+{
+  "status": "SCHEMA_VALIDATED__NOT_EXECUTED",
+  "query": "mutation MerchantFrenchTitleRepair($resourceId: ID!, $translations: [TranslationInput!]!) { translationsRegister(resourceId: $resourceId, translations: $translations) { translations { key value locale outdated } userErrors { field message } } }",
+  "variables": {
+    "resourceId": "gid://shopify/Product/7229130801249",
+    "translations": [
+      {
+        "locale": "fr",
+        "key": "title",
+        "value": "Robes d’été assorties mère-fille en mousseline beige",
+        "translatableContentDigest": "7dacef21b53e25f3f466cf071a6940aaaef7a2332c29f5973b9d9df14adf9062"
+      }
+    ]
+  }
+}

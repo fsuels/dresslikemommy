@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "status": "IMPLEMENTED_CONFIGURATION_VERIFIED",
+  "observed_after_utc": "2026-09-11 19:51:00 UTC",
+  "source": "Root native Save; separate reopened full goal editors; final grid; reloaded account options; all11 campaign settings rows",
+  "account_id": 477439,
+  "customer_id": 770182,
+  "goals": [
+    {
+      "name": "ShopifyCheckoutCompleteEventTracking",
+      "historical_id": 163001526,
+      "id_evidence": "REPO_KNOWN; current dialog bound by unique exact name/account/tag/criteria",
+      "status": "Active",
+      "category": "Purchase",
+      "type": "Custom event",
+      "action_operator": "Equals to",
+      "action": "purchase",
+      "tag_id": 36005151,
+      "tag_name": "ShopifyImport",
+      "value_type": "Variable",
+      "fallback_value": "0.00",
+      "fallback_currency": "USD",
+      "auto_bidding": true,
+      "scope": "This account 477439 / X0875435",
+      "count": "All",
+      "click_window": {
+        "days": 30,
+        "hours": 0,
+        "minutes": 0
+      },
+      "view_window": {
+        "days": 1,
+        "hours": 0,
+        "minutes": 0
+      },
+      "attribution": "Last click",
+      "enhanced_conversions": false,
+      "tracking": "Manual",
+      "clarity": false
+    },
+    {
+      "name": "Purchases",
+      "historical_id": 56000751,
+      "id_evidence": "REPO_KNOWN; current dialog bound by unique exact name/account/tag/criteria",
+      "status": "Active",
+      "category": "Purchase",
+      "type": "Webpage visit",
+      "url_operator": "Contains",
+      "url_value": "thank_you",
+      "tag_id": 36005151,
+      "tag_name": "ShopifyImport",
+      "value_type": "Variable",
+      "fallback_value": "30.00",
+      "fallback_currency": "USD",
+      "auto_bidding": false,
+      "scope": "This account 477439 / X0875435",
+      "count": "All",
+      "click_window": {
+        "days": 35,
+        "hours": 0,
+        "minutes": 0
+      },
+      "view_window": {
+        "days": 1,
+        "hours": 0,
+        "minutes": 0
+      },
+      "attribution": "Last click",
+      "enhanced_conversions": false
+    },
+    {
+      "name": "ShopifyCheckoutCompleteTracking",
+      "status": "Active",
+      "category": "Purchase",
+      "type": "Webpage visit",
+      "url_operator": "Contains",
+      "url_value": "thank-you",
+      "tag_id": 36005151,
+      "tag_name": "ShopifyImport",
+      "value_type": "Variable",
+      "fallback_value": "1.00",
+      "fallback_currency": "USD",
+      "auto_bidding": false,
+      "scope": "This account 477439 / X0875435",
+      "count": "Unique",
+      "click_window": {
+        "days": 30,
+        "hours": 0,
+        "minutes": 0
+      },
+      "view_window": {
+        "days": 1,
+        "hours": 0,
+        "minutes": 0
+      },
+      "attribution": "Last click",
+      "enhanced_conversions": false
+    }
+  ],
+  "preserved_goal_rows": [
+    {
+      "name": "Smart goal [X0875435]",
+      "status": "Active",
+      "auto_bidding": false,
+      "tag_id": 36000629
+    },
+    {
+      "name": "ShopifyAddToCart",
+      "status": "Active",
+      "auto_bidding": false,
+      "tag_id": 36005151,
+      "count": "All",
+      "scope": "Across all accounts"
+    }
+  ],
+  "campaigns": {
+    "count": 11,
+    "banner": "None of your ads are running, because you have paused your campaigns.",
+    "status": "All 11 Paused verified on settings grid",
+    "daily_budgets": [
+      {
+        "id": 291532658,
+        "usd": 10
+      },
+      {
+        "id": 291536445,
+        "usd": 15
+      },
+      {
+        "id": 291766575,
+        "usd": 15
+      },
+      {
+        "id": 291766588,
+        "usd": 15
+      },
+      {
+        "id": 291767149,
+        "usd": 15
+      },
+      {
+        "id": 291767159,
+        "usd": 15
+      },
+      {
+        "id": 291767342,
+        "usd": 15
+      },
+      {
+        "id": 402056808,
+        "usd": 5
+      },
+      {
+        "id": 402056809,
+        "usd": 5
+      },
+      {
+        "id": 402056810,
+        "usd": 5
+      },
+      {
+        "id": 402056811,
+        "usd": 5
+      }
+    ],
+    "sum_configured_daily_usd": 120,
+    "spend_changes_authorized": false
+  },
+  "msclkid_auto_tagging": {
+    "enabled": true,
+    "source": "Native Account level options checkbox Value1",
+    "url": "https://ui.ads.microsoft.com/campaign/vnext/accountsettings?aid=477439&cid=770182&uid=2290164"
+  },
+  "account_options": {
+    "tracking_template": "",
+    "final_url_suffix": "",
+    "auto_retrieve_images": false,
+    "utm_auto_tagging": true,
+    "utm_mode": "Replace all existing tags",
+    "automatic_conversion_goal_setup": false,
+    "include_view_through_in_all_conversions": true,
+    "auto_multimedia_in_dynamic_adgroups": true,
+    "doubleverify_enabled": false
+  }
+}

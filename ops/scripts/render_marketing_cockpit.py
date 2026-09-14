@@ -14,6 +14,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 MARKETING = ROOT / "ops" / "marketing"
+MARKETING_CONTROL_START = "<!-- MARKETING_AUTHORITATIVE_CONTROL:START -->"
+MARKETING_CONTROL_END = "<!-- MARKETING_AUTHORITATIVE_CONTROL:END -->"
 
 
 @dataclass(frozen=True)
@@ -32,6 +34,22 @@ def strip_inline_markdown(value: str) -> str:
     value = re.sub(r"\*\*([^*]+)\*\*", r"\1", value)
     value = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", value)
     return value.strip()
+
+
+def parse_authoritative_control(text: str) -> dict[str, str]:
+    start = text.find(MARKETING_CONTROL_START)
+    end = text.find(MARKETING_CONTROL_END)
+    if start == -1 or end == -1 or end <= start:
+        return {}
+    block = text[start + len(MARKETING_CONTROL_START) : end]
+    return {
+        key: value
+        for key, value in re.findall(
+            r"^-\s+`([a-z_]+)`:\s+`([^`\n]+)`\s*$",
+            block,
+            re.MULTILINE,
+        )
+    }
 
 
 def split_sections(markdown: str) -> dict[str, str]:
@@ -205,7 +223,7 @@ def render_detail_list(items: list[str]) -> str:
     return "<ul>" + "".join(f"<li>{h(item)}</li>" for item in items) + "</ul>"
 
 
-def render_campaign_explorer(data: dict) -> str:
+def render_campaign_explorer(data: dict, *, historical: bool = False) -> str:
     channels = data.get("channels", [])
     campaigns = data.get("campaigns", [])
     tabs = []
@@ -221,6 +239,8 @@ def render_campaign_explorer(data: dict) -> str:
         channel = campaign.get("channel", "")
         campaign_id = campaign.get("id", "")
         status = campaign.get("status_label", "")
+        if historical:
+            status = f"Historical: {status}"
         first_active = index == 0
         cards.append(
             f"""
@@ -237,7 +257,7 @@ def render_campaign_explorer(data: dict) -> str:
             <article class="campaign-detail{' active' if first_active else ''}" data-campaign-panel="{h(campaign_id)}">
               <div class="detail-head">
                 <div>
-                  <span class="eyebrow">{h(campaign.get("status_label", ""))}</span>
+                  <span class="eyebrow">{h(status)}</span>
                   <h3>{h(campaign.get("name", ""))}</h3>
                   <p>{h(campaign.get("running_state", ""))}</p>
                   <div class="decision-summary">
@@ -262,7 +282,7 @@ def render_campaign_explorer(data: dict) -> str:
                   {render_detail_list(campaign.get("test_clock", []))}
                 </section>
                 <section class="detail-box">
-                  <h4>Today / Yesterday Metrics</h4>
+                  <h4>{'Snapshot Metrics (Historical)' if historical else 'Today / Yesterday Metrics'}</h4>
                   {render_detail_list(campaign.get("metrics_snapshot", []))}
                 </section>
                 <section class="detail-box">
@@ -363,11 +383,11 @@ def render_campaign_explorer(data: dict) -> str:
             </article>
             """
         )
-    return f"""
+    explorer = f"""
     <section class="panel span-12 campaign-explorer" data-filter-scope>
       <div class="section-head">
         <div>
-          <h2>Campaign Explorer</h2>
+          <h2>{'Historical Campaign Snapshots' if historical else 'Campaign Explorer'}</h2>
           <p>Pick Google Ads or Pinterest, then click a campaign to inspect the test clock, metrics, improvement triggers, active objects, targeting, anti-cannibalization, expert strategy, quality, evidence, and next checks.</p>
         </div>
         <div class="channel-tabs" role="tablist" aria-label="Marketing channels">
@@ -384,6 +404,18 @@ def render_campaign_explorer(data: dict) -> str:
       </div>
     </section>
     """
+    if historical:
+        return f"""
+        <details class="panel span-12 historical-campaigns">
+          <summary>Historical campaign snapshots — expand for reference only</summary>
+          <p class="risk-line">Current campaign reconciliation is incomplete. These saved
+          snapshots do not establish what is enabled, serving, spending, or approved now.
+          Their status labels, budgets, metrics, and deadlines are historical. Use the
+          dated current scorecard and authoritative control for present decisions.</p>
+          {explorer}
+        </details>
+        """
+    return explorer
 
 
 def find_table(path: Path, header: str) -> Table | None:
@@ -393,6 +425,372 @@ def find_table(path: Path, header: str) -> Table | None:
     return None
 
 
+def current_task_rows(markdown: str) -> list[dict[str, str]]:
+    """Read the current task section, including table rows after blank lines.
+
+    Historical tables and readiness colors must not become current task state.
+    Missing presentation fields remain visibly unknown, never inferred as done.
+    """
+    if len(re.findall(r"^## Current turnaround tasks[^\n]*$", markdown, re.MULTILINE)) != 1:
+        raise ValueError("Expected exactly one current turnaround task section")
+    sections = split_sections(markdown)
+    matches = [body for title, body in sections.items() if title.startswith("Current turnaround tasks")]
+    if len(matches) != 1:
+        raise ValueError("Expected exactly one current turnaround task section")
+    headers: list[str] = []
+    tasks: dict[str, dict[str, str]] = {}
+    for line in matches[0].splitlines():
+        if not line.startswith("|"):
+            continue
+        cells = [strip_inline_markdown(c) for c in line.strip().strip("|").split("|")]
+        if "Action" in cells and "Owner agent" in cells:
+            headers = cells
+            continue
+        if not headers or not re.search(r"\bTA-\d+\b", line):
+            continue
+        if len(cells) != len(headers):
+            raise ValueError("Current task row has a mismatched column count")
+        row = dict(zip(headers, cells))
+        match = re.match(r"(TA-\d+)\b", row.get("Action", ""))
+        if not match:
+            raise ValueError("Current task action must start with a task ID")
+        task_id = match.group(1)
+        if task_id in tasks:
+            raise ValueError(f"Duplicate current task: {task_id}")
+        row["id"] = task_id
+        tasks[task_id] = row
+    if not tasks:
+        raise ValueError("Current task section has no readable tasks")
+    return sorted(tasks.values(), key=lambda r: (r.get("Priority", "P9"), int(r["id"].split("-")[1])))
+
+
+def source_links(value: str) -> str:
+    """Link only existing task evidence files; never synthesize external URLs."""
+    packet = ROOT / "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround"
+    links = []
+    for name in dict.fromkeys(re.findall(r"[A-Za-z0-9_-]+\.(?:md|json|csv)", value)):
+        candidates = [MARKETING / name, packet / name]
+        found = next((p for p in candidates if p.is_file()), None)
+        if found is not None:
+            rel = "../../" + found.relative_to(ROOT).as_posix()
+            links.append(f'<a href="{h(rel)}">{h(name)}</a>')
+    links.append('<a href="action_queue.md">Canonical task record</a>')
+    return " ".join(links)
+
+
+OWNER_STYLE = """
+    .owner-desk { --accent: #205e51; color: #203d36; }
+    .live-panel { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; border: 1px solid #cbd8d1; border-radius: 12px; background: #fff; padding: 12px 16px; margin: 0 0 22px; }
+    .live-status { font-size: 12px; font-weight: 800; color: #766d53; }
+    .live-status[data-state="online"] { color: #216b47; }
+    .live-status[data-state="offline"], .live-status[data-state="error"] { color: #a43526; }
+    .live-status::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: currentColor; margin-right: 7px; }
+    .live-detail { flex: 1 1 240px; font-size: 12px; color: #61746b; }
+    .live-controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .live-controls label { font-size: 12px; display: flex; gap: 6px; align-items: center; min-height: 44px; }
+    .live-handoffs { margin-top: 20px; border-top: 1px solid #d5ded6; padding-top: 10px; }
+    .live-handoffs summary { cursor: pointer; min-height: 44px; padding: 12px 0; font-weight: 750; }
+    .live-handoffs ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .live-handoffs li { border-left: 2px solid #c1d5c5; padding: 8px 12px; margin: 0; }
+    .live-handoffs li strong { display: block; font-size: 13px; }
+    .live-handoffs li span { display: block; font-size: 11px; color: #6b7c70; margin-top: 4px; overflow-wrap: anywhere; }
+    #taskBoardStart { scroll-margin-top: 115px; }
+    .owner-desk h2 { text-transform: none; letter-spacing: -.025em; font-size: 23px; color: #203d36; }
+    .desk-eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; color: #63746d; }
+    .desk-intro { display: flex; justify-content: space-between; gap: 24px; align-items: flex-end; margin: 6px 0 22px; }
+    .desk-intro h2 { font-size: clamp(27px, 3vw, 40px); margin: 9px 0 8px; }
+    .desk-intro p { color: #61746b; margin: 6px 0; max-width: 720px; }
+    .desk-link, .desk-button { border: 1px solid #cbd8d1; border-radius: 9px; background: #fff; padding: 10px 14px; color: #244d40; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; min-height: 44px; }
+    .desk-button.primary { background: #205e51; color: #fff; border-color: #205e51; }
+    .desk-button:hover, .desk-link:hover { background: #edf3ef; }
+    .desk-button.primary:hover { background: #194c41; }
+    .owner-desk :focus-visible, #resumeDialog :focus-visible { outline: 3px solid #bc6319; outline-offset: 3px; }
+    .desk-results { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 12px; }
+    .desk-result { border: 1px solid #d9e1da; background: #fff; border-radius: 13px; padding: 18px; min-width: 0; }
+    .desk-result:first-child { background: #eaf2e9; border-color: #c8d9c6; }
+    .desk-result h3 { font-size: 12px; color: #67796f; margin: 0 0 10px; }
+    .desk-result strong { display: block; font-size: 23px; letter-spacing: -.035em; line-height: 1.12; overflow-wrap: anywhere; }
+    .desk-result p { font-size: 12px; color: #536b5f; line-height: 1.5; margin: 10px 0; }
+    .desk-result small, .desk-meta { font-size: 11px; color: #6c7a74; overflow-wrap: anywhere; }
+    .desk-note { color: #69776e; font-size: 12px; margin: 12px 0 22px; }
+    .desk-next { background: #fff8e9; border: 1px solid #ebd8b5; border-radius: 13px; padding: 18px 20px; margin: 20px 0; display: grid; grid-template-columns: 150px 1fr auto; gap: 18px; align-items: center; }
+    .desk-next h3 { margin: 4px 0; font-size: 15px; }
+    .desk-next p { margin: 0; font-size: 14px; line-height: 1.55; }
+    .desk-toolbar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 24px 0 14px; }
+    .desk-tabs { display: flex; flex-wrap: wrap; gap: 5px; flex: 1 1 500px; }
+    .desk-tabs button { background: transparent; border: 1px solid transparent; }
+    .desk-tabs button[aria-pressed="true"] { background: #205e51; color: white; }
+    .desk-inputs { display: flex; flex-wrap: wrap; gap: 10px; }
+    .desk-inputs label { display: grid; gap: 4px; font-size: 11px; font-weight: 700; color: #61736b; }
+    .desk-inputs input, .desk-inputs select { min-height: 44px; border: 1px solid #ced8d1; background: white; border-radius: 9px; padding: 10px 12px; font: inherit; font-size: 13px; max-width: 100%; }
+    .desk-board { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; align-items: start; }
+    .desk-task { background: #fff; border: 1px solid #d9e1da; border-radius: 13px; padding: 19px; min-width: 0; scroll-margin-top: 20px; }
+    .desk-task[data-owner="Manual action"] { border-top: 3px solid #b87823; }
+    .desk-task[data-stage="Verification remaining"] { border-top: 3px solid #589681; }
+    .desk-task h3 { font-size: 16px; line-height: 1.4; letter-spacing: -.015em; margin: 12px 0; color: #233e33; overflow-wrap: anywhere; }
+    .desk-task p { font-size: 13px; line-height: 1.6; margin: 8px 0; overflow-wrap: anywhere; }
+    .desk-task-top { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+    .desk-id { font-size: 11px; font-weight: 800; color: #597267; }
+    .desk-badge { display: inline-flex; font-size: 10px; font-weight: 750; border-radius: 5px; padding: 4px 7px; background: #edf2ee; color: #476350; }
+    .desk-badge.attention { background: #fff0d8; color: #865b1e; }
+    .desk-progress { border-left: 2px solid #b8d1bf; padding-left: 12px; margin: 15px 0; }
+    .desk-progress strong, .desk-nextstep strong { font-size: 10px; color: #657b6d; letter-spacing: .04em; text-transform: uppercase; }
+    .desk-progress p { color: #496653; }
+    .desk-board[data-view="milestones"] .desk-nextstep { display: none; }
+    .desk-board[data-view="milestones"] .desk-progress { background: #f0f5ef; border-radius: 6px; padding: 12px; }
+    .desk-nextstep { background: #f6f7f2; padding: 12px; border-radius: 8px; }
+    .desk-task summary { cursor: pointer; min-height: 44px; padding: 13px 0; color: #476c59; font-size: 12px; font-weight: 700; }
+    .desk-task details { font-size: 12px; }
+    .desk-task details p { font-size: 12px; }
+    .desk-sources { display: grid; gap: 6px; padding: 9px 0; }
+    .desk-sources a { font-size: 11px; color: #205e51; overflow-wrap: anywhere; }
+    .desk-footer-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 15px; }
+    .desk-empty { border: 1px dashed #bdcabc; padding: 30px; border-radius: 12px; color: #576d5d; }
+    .desk-team { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin: 15px 0; }
+    .desk-team article { border: 1px solid #d9e1da; background: #fff; border-radius: 12px; padding: 17px; }
+    .desk-team h3 { margin: 0 0 8px; font-size: 15px; }
+    .desk-team p { font-size: 13px; line-height: 1.6; }
+    .desk-method { margin-top: 28px; padding: 0; }
+    .desk-method summary { cursor: pointer; min-height: 44px; font-size: 15px; font-weight: 700; padding: 14px 0; }
+    .desk-method ol { max-width: 1000px; font-size: 14px; line-height: 1.7; }
+    .legacy { margin-top: 25px; border-top: 1px solid #cbd6cb; padding-top: 18px; }
+    .legacy > summary { cursor: pointer; min-height: 44px; font-weight: 700; color: #536b5c; }
+    .legacy-controls { padding: 12px 0 22px; }
+    #resumeDialog { width: min(720px,calc(100vw - 32px)); max-height: calc(100vh - 40px); border: 1px solid #b6cbbc; border-radius: 16px; padding: 24px; color: #244436; }
+    #resumeDialog::backdrop { background: #152f2670; }
+    #resumeDialog textarea { display: block; width: 100%; min-height: 270px; max-height: 50vh; margin: 14px 0; border: 1px solid #bbcfc1; border-radius: 8px; padding: 12px; font-size: 13px; line-height: 1.5; }
+    #resumeDialog .dialog-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .owner-desk [hidden] { display: none !important; }
+    @media(max-width: 1120px) { .desk-results { grid-template-columns: repeat(3,minmax(0,1fr)); } .desk-board { grid-template-columns: repeat(2,minmax(0,1fr)); } .desk-team { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+    @media(max-width: 720px) { .desk-intro { display: block; } .desk-intro .desk-link { display: inline-block; margin-top: 10px; } .desk-results { grid-template-columns: repeat(2,minmax(0,1fr)); } .desk-result:first-child { grid-column: 1 / -1; } .desk-board,.desk-team { grid-template-columns: 1fr; } .desk-next { grid-template-columns: 1fr; gap: 10px; } .desk-next .desk-button { justify-self: start; } .desk-inputs { width: 100%; } .desk-inputs label { flex: 1 1 130px; min-width: 0; } .desk-inputs input { width: 100%; } .desk-result { padding: 14px; } .desk-tabs { gap: 2px; } .desk-tabs .desk-button { font-size: 12px; padding: 10px; } }
+"""
+
+
+LIVE_SCRIPT = """
+(() => {
+  const badge = document.getElementById('liveStatus');
+  const detail = document.getElementById('liveDetail');
+  const auto = document.getElementById('liveAuto');
+  const check = document.getElementById('liveCheck');
+  const updates = document.getElementById('liveHandoffs');
+  const localService = location.protocol === 'http:' && location.hostname === '127.0.0.1';
+  let pageRevision = document.querySelector('meta[name="dlm-dashboard-revision"]')?.content || '';
+  let busy = false, timer, lastGoodCheck = null;
+  const when = value => { const date = new Date(value); return Number.isFinite(date.getTime()) ? date.toLocaleString() : 'not recorded'; };
+  try {
+    auto.checked = localStorage.getItem('dlm-live-auto') !== 'false';
+    const saved = JSON.parse(sessionStorage.getItem('dlm-live-position') || 'null');
+    sessionStorage.removeItem('dlm-live-position');
+    if (saved) {
+      for (const id of saved.openTasks || []) document.querySelector(`#${CSS.escape(id)} details`)?.setAttribute('open', '');
+      if (saved.handoffsOpen) document.getElementById('teamHandoffs').open = true;
+      requestAnimationFrame(() => window.scrollTo(0, Number(saved.y) || 0));
+    }
+  } catch {}
+  if (!localService) {
+    badge.textContent = 'Saved file';
+    detail.textContent = 'Open the live dashboard for automatic updates.';
+    auto.disabled = true;
+    check.textContent = 'Open live dashboard';
+    check.addEventListener('click', () => location.assign('http://127.0.0.1:8767/'));
+    return;
+  }
+  function keepPositionAndReload() {
+    try { sessionStorage.setItem('dlm-live-position', JSON.stringify({y:scrollY, openTasks:[...document.querySelectorAll('.desk-task details[open]')].map(d=>d.closest('.desk-task').id),handoffsOpen:document.getElementById('teamHandoffs').open})); } catch {}
+    location.reload();
+  }
+  function showHandoffs(items) {
+    const nodes = (Array.isArray(items) ? items : []).slice(0, 6).map(item => {
+      const row = document.createElement('li');
+      const title = document.createElement('strong');
+      title.textContent = String(item.title || 'Recorded handoff');
+      const evidence = document.createElement('span');
+      evidence.textContent = [item.date, ...(Array.isArray(item.task_ids) ? item.task_ids : []), item.anchor].filter(Boolean).join(' · ');
+      row.append(title, evidence); return row;
+    });
+    if (!nodes.length) { const row = document.createElement('li'); row.textContent = 'No recent handoffs recorded.'; nodes.push(row); }
+    updates.replaceChildren(...nodes);
+  }
+  async function poll(forceRefresh = false) {
+    if (busy) return;
+    busy = true; clearTimeout(timer);
+    try {
+      const response = await fetch('/api/status', {cache:'no-store',signal:AbortSignal.timeout(4000)});
+      if (!response.ok) throw new Error('Status unavailable');
+      const status = await response.json();
+      if (status.service !== 'dlm-growth-dashboard' || !status.online) throw new Error('Unexpected service');
+      lastGoodCheck = new Date();
+      if (status.content_error) {
+        badge.dataset.state = 'error'; badge.textContent = 'Source needs attention';
+        detail.textContent = 'The last good view is retained. A source record could not be rendered; current updates are not confirmed.';
+        return;
+      }
+      if (typeof status.revision !== 'string' || !status.revision) throw new Error('Invalid source revision');
+      badge.dataset.state = 'online'; badge.textContent = 'Live view connected';
+      detail.textContent = `Checked ${lastGoodCheck.toLocaleTimeString()} · Latest record change ${when(status.last_source_change_at)}. Business evidence keeps its own dates.`;
+      showHandoffs(status.recent_handoffs);
+      if (!pageRevision || status.revision !== pageRevision) {
+        const interaction = document.getElementById('resumeDialog').open || ['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName);
+        if ((auto.checked || forceRefresh) && !interaction) { keepPositionAndReload(); return; }
+        badge.textContent = 'Updates ready';
+        detail.textContent = 'New source changes are ready. Finish the open control or click Check for updates to refresh the view.';
+      }
+    } catch {
+      badge.dataset.state = 'offline'; badge.textContent = 'Connection interrupted';
+      detail.textContent = `Showing the saved view. ${lastGoodCheck ? 'Last connected '+lastGoodCheck.toLocaleTimeString()+'. ' : ''}Retrying automatically; this does not indicate whether agents or campaigns stopped.`;
+    } finally {
+      busy = false;
+      timer = setTimeout(() => poll(), document.hidden ? 15000 : 5000);
+    }
+  }
+  auto.addEventListener('change', () => { try { localStorage.setItem('dlm-live-auto',String(auto.checked)); } catch {} poll(); });
+  check.addEventListener('click', () => poll(true));
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) poll(); });
+  window.addEventListener('focus', () => poll());
+  poll();
+})();
+"""
+
+
+OWNER_SCRIPT = """
+(() => {
+  const cards = [...document.querySelectorAll('.desk-task')];
+  const buttons = [...document.querySelectorAll('[data-desk-view]')];
+  const query = document.getElementById('taskSearch');
+  const lane = document.getElementById('taskLane');
+  const count = document.getElementById('taskCount');
+  let view = 'all';
+  const matchesView = (card, target) => {
+    if (target === 'owner') return ['Access','Manual action','Information','Revision'].includes(card.dataset.owner);
+    if (target === 'blocked') return ['Needs access','Needs evidence','Waiting on dependency','Needs owner information'].includes(card.dataset.stage);
+    if (target === 'verify') return card.dataset.stage === 'Verification remaining';
+    if (target === 'milestones') return card.dataset.milestone === 'yes';
+    return true;
+  };
+  function filter() {
+    let visible = 0;
+    cards.forEach(card => {
+      const show = matchesView(card, view) && (!query.value || card.textContent.toLowerCase().includes(query.value.toLowerCase())) && (!lane.value || card.dataset.lane.includes(lane.value));
+      card.hidden = !show;
+      if (show) visible++;
+    });
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.deskView === view)));
+    count.textContent = `${visible} of ${cards.length} tasks · ${view === 'milestones' ? 'Recorded milestones; parent tasks still have remaining work.' : 'Saved checkpoints; assigned roles do not indicate running agents.'}`;
+    document.querySelector('.desk-board').dataset.view = view;
+    document.getElementById('ownerInputHelp').hidden = view !== 'owner';
+    document.getElementById('taskEmpty').hidden = visible > 0;
+    try { localStorage.setItem('dlm-owner-view', JSON.stringify({ view, query: query.value, lane: lane.value })); } catch {}
+  }
+  buttons.forEach(button => button.addEventListener('click', () => { view = button.dataset.deskView; filter(); }));
+  query.addEventListener('input', filter);
+  lane.addEventListener('change', filter);
+  document.getElementById('taskReset').addEventListener('click', () => { query.value = ''; lane.value = ''; view = 'all'; filter(); });
+  document.querySelectorAll('[data-owner-jump]').forEach(button => button.addEventListener('click', () => { view = 'owner'; query.value = ''; lane.value = ''; filter(); document.getElementById('taskBoardStart').scrollIntoView({behavior:'smooth'}); }));
+  try {
+    const saved = JSON.parse(localStorage.getItem('dlm-owner-view') || '{}');
+    if (buttons.some(b => b.dataset.deskView === saved.view)) view = saved.view;
+    query.value = typeof saved.query === 'string' ? saved.query : '';
+    lane.value = [...lane.options].some(o => o.value === saved.lane) ? saved.lane : '';
+  } catch {}
+  filter();
+  const payload = JSON.parse(document.getElementById('deskHandoffData').textContent);
+  const dialog = document.getElementById('resumeDialog');
+  const textarea = document.getElementById('resumeText');
+  let trigger;
+  document.querySelectorAll('[data-resume-task]').forEach(button => button.addEventListener('click', () => {
+    trigger = button;
+    const id = button.dataset.resumeTask;
+    document.getElementById('resumeTitle').textContent = `Continue ${id}`;
+    textarea.value = payload.prompt + '\\n\\nTask context: ' + id + '. Use its current row in ops/marketing/action_queue.md and current evidence. Preserve completed milestones. The dashboard is a saved checkpoint, not authority or a fresh account readback.';
+    document.getElementById('copyResult').textContent = 'Paste into the existing Dress Like Mommy growth task. This does not start an agent or approve an action.';
+    dialog.showModal();
+    textarea.focus();
+    textarea.setSelectionRange(0, 0);
+    textarea.scrollTop = 0;
+  }));
+  document.getElementById('closeResume').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => trigger?.focus());
+  document.getElementById('copyResume').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(textarea.value);
+      document.getElementById('copyResult').textContent = 'Copied. Paste into your existing growth task to continue.';
+    } catch {
+      textarea.focus(); textarea.select();
+      document.getElementById('copyResult').textContent = 'Text selected. Use your usual Copy shortcut; clipboard access is unavailable here.';
+    }
+  });
+})();
+"""
+
+
+def render_owner_view(tasks: list[dict[str, str]], sections: dict[str, str], updated: str) -> str:
+    cards = []
+    counts = {
+        "all": len(tasks),
+        "owner": sum(t.get("Owner input") in {"Access", "Manual action", "Information", "Revision"} for t in tasks),
+        "blocked": sum(t.get("Checkpoint") in {"Needs access", "Needs evidence", "Waiting on dependency", "Needs owner information"} for t in tasks),
+        "verify": sum(t.get("Checkpoint") == "Verification remaining" for t in tasks),
+        "milestones": sum(bool(t.get("Completed milestone")) for t in tasks),
+    }
+    for task in tasks:
+        get = lambda key: task.get(key) or "Not recorded — inspect canonical task"
+        needs = get("Owner input")
+        title = task.get("Task title") or re.sub(r"^TA-\d+\s*", "", get("Action"))
+        business_result = task.get("Business result") or "No measured task-level traffic, sales or retained-profit effect is recorded in this row."
+        cards.append(f'''<article class="desk-task" id="{h(task['id'])}" data-stage="{h(get('Checkpoint'))}" data-owner="{h(needs)}" data-lane="{h(get('Lane').lower())}" data-milestone="{'yes' if task.get('Completed milestone') else 'no'}">
+          <div class="desk-task-top"><span class="desk-id">{h(task['id'])} · {h(get('Priority'))}</span><span class="desk-badge">{h(get('Checkpoint'))}</span></div>
+          <h3>{h(title)}</h3><span class="desk-meta">{h(get('Lane'))}</span>
+          <div class="desk-progress"><strong>Recorded milestone</strong><p>{h(get('Completed milestone'))}</p></div>
+          <div class="desk-nextstep"><strong>Next / still missing</strong><p>{h(get('Next step'))}</p></div>
+          <p><span class="desk-badge {'attention' if needs != 'None' else ''}">Owner input: {h(needs)}</span></p>
+          <details><summary>Owner, evidence &amp; finish conditions</summary>
+            <p><b>Responsible:</b> {h(get('Owner agent'))}</p>
+            <p><b>Remaining conditions:</b> {h(get('Gate'))}</p>
+            <p><b>Execution gate:</b> {h(get('Status'))}. Task progress does not grant live authority.</p>
+            <p><b>Business impact:</b> {h(business_result)}</p>
+            <div class="desk-sources">{source_links(get('Evidence/source'))}</div>
+          </details>
+          <div class="desk-footer-row"><span class="desk-meta">Recorded {h(get('Checkpoint date'))}</span><button class="desk-button" data-resume-task="{h(task['id'])}">Continue {h(task['id'])}</button></div>
+        </article>''')
+    results = []
+    result_table = find_table(MARKETING / "daily_scorecard.md", "Metric")
+    if result_table:
+        for cells in result_table.rows:
+            row = dict(zip(result_table.headers, cells))
+            results.append(f'''<article class="desk-result"><h3>{h(row.get('Metric','Unknown'))}</h3><strong>{h(row.get('Value','UNKNOWN'))}</strong><p>{h(row.get('Meaning',''))}</p><small>{h(row.get('Evidence as of','Date unavailable'))}</small></article>''')
+    else:
+        results.append('<p class="desk-empty">Current results are not recorded. Inspect the dated scorecard; no zero or profit estimate is inferred.</p>')
+    prompt_source = read_text(ROOT / "ops/prompts/paid-growth-ai-army-continuation-prompt.md")
+    prompt_match = re.search(r"```text\n(.*?)\n```", prompt_source, re.DOTALL)
+    if not prompt_match:
+        raise ValueError("Canonical continuation prompt is missing")
+    payload = json.dumps({"prompt": prompt_match.group(1)}).replace("<", "\\u003c")
+    tabs = "".join(f'<button class="desk-button" data-desk-view="{key}" aria-pressed="{str(key == "all").lower()}">{label} <span>{counts[key]}</span></button>' for key, label in [('all','All tasks'),('owner','Needs you'),('blocked','Blocked / dependencies'),('verify','Verify next'),('milestones','Milestones')])
+    owner_action = extract_first_paragraph(sections.get("One Owner Action", ""))
+    owner_counts = {kind: sum(t.get("Owner input") == kind for t in tasks) for kind in ['Access', 'Manual action', 'Information', 'Revision', 'Future approval']}
+    owner_help = ' · '.join(f'{kind}: {amount}' for kind, amount in owner_counts.items()) + '. Shared access can unblock several tasks. Future approvals still depend on preparation; inspect the exact record before requesting a decision.'
+    return f'''<div class="owner-desk">
+      <div class="live-panel" aria-label="Live dashboard connection"><span id="liveStatus" class="live-status" data-state="waiting" aria-live="polite">Connecting to local view</span><span id="liveDetail" class="live-detail">Checking service and source freshness…</span><div class="live-controls"><label><input id="liveAuto" type="checkbox" checked> Auto-update view</label><button id="liveCheck" class="desk-button">Check for updates</button></div></div>
+      <div class="desk-intro"><div><span class="desk-eyebrow">Dress Like Mommy / Owner workspace</span><h2>See the work. Grow the profit.</h2><p>Free traffic, paid traffic and the steps that turn visits into profitable orders.</p></div><a class="desk-link" href="daily_scorecard.md">Read the result evidence</a></div>
+      <div class="desk-results">{''.join(results)}</div>
+      <p class="desk-note">Task changes update automatically in the live view. Business metrics use the dated evidence shown above. Page built {h(updated)}. Task milestones do not establish traffic or profit lift. Target: 30% retained profit, with paid ROAS as a supporting measure.</p>
+      <div class="desk-next"><div><span class="desk-eyebrow">First unblock</span><h3>Next owner action</h3></div><p>{h(owner_action or 'No owner action recorded; inspect current task evidence.')} <span class="desk-meta">Saved owner request; this dashboard does not recheck its live status.</span></p><button id="showOwner" data-owner-jump class="desk-button primary">See what needs me</button></div>
+      <div id="taskBoardStart"><h2>Your growth work</h2><p class="desk-note">A completed step stays visible even when publication, verification or measurement is still missing. No completion percentages are guessed.</p></div>
+      <div class="desk-toolbar"><div class="desk-tabs" aria-label="Task views">{tabs}</div><div class="desk-inputs"><label>Find a task<input id="taskSearch" type="search" placeholder="Task, channel or blocker"></label><label>Growth lane<select id="taskLane"><option value="">All lanes</option><option value="free">Free traffic</option><option value="paid">Paid traffic</option><option value="store">Store conversion</option><option value="measurement">Measurement &amp; profit</option><option value="coordination">Coordination</option></select></label></div></div>
+      <p id="taskCount" class="desk-note" aria-live="polite"></p><p id="ownerInputHelp" class="desk-note" hidden>{h(owner_help)}</p><div id="taskEmpty" class="desk-empty" hidden>No tasks match this view. <button id="taskReset" class="desk-button">Clear filters</button></div>
+      <div class="desk-board">{''.join(cards)}</div>
+      <details id="teamHandoffs" class="live-handoffs"><summary>Team handoffs and recent progress</summary><p class="desk-note">Updates come from the shared worklog and task records. Internal agent messages stay with the agents; decisions and results are preserved here. Running-agent status is not connected to this view.</p><ol id="liveHandoffs"><li>Connect to the live service to see recent recorded handoffs.</li></ol></details>
+      <details class="desk-method"><summary>How we work toward sales and profit</summary>
+        <p>Recommended trial: one accountable growth lead, specialists on demand, and at most two active execution items. Start with a free-traffic deliverable and a paid/measurement prerequisite. These are assigned roles, not always-running agents.</p>
+        <div class="desk-team"><article><h3>Free acquisition</h3><p>SEO, free product listings and organic posts. Finish at a verified customer entry point, then measure qualified visits and orders.</p></article><article><h3>Paid acquisition</h3><p>Google, Microsoft and Pinterest operators. Qualify an offer and its measurement before an exact bounded test.</p></article><article><h3>Store conversion</h3><p>Product clarity, localization and cart journeys. Fix a demonstrated buying obstacle and verify the shopper path.</p></article><article><h3>Measurement &amp; profit</h3><p>Same-window orders, expenses and channel performance. Reconcile actual retained profit and decide hold, stop or scale.</p></article></div>
+        <ol><li>Pick a small deliverable with a finish line, owner and dated baseline.</li><li>Finish preparation, execute within existing authority, and verify the actual result. Preserve missing steps in the same task.</li><li>Request a concrete decision only when needed. Manual publication, access and missing facts stay distinct from approval.</li><li>Measure purchases and retained profit in a declared window. Published work is an operational milestone; profit remains a separate result.</li><li>At handoff update the existing task row and worklog. The local service refreshes this view. Continue from the task ID and its evidence.</li></ol>
+        <p><a href="operator_cockpit.md">Full working proposal and Zenith assessment</a> · <a href="team_registry.md">Existing specialist roles</a> · <a href="../prompts/paid-growth-ai-army-continuation-prompt.md">Canonical continuation prompt</a></p>
+      </details>
+      <dialog id="resumeDialog" aria-labelledby="resumeTitle"><h2 id="resumeTitle">Continue task</h2><p id="copyResult" aria-live="polite"></p><label for="resumeText">Canonical continuation prompt with task context</label><textarea id="resumeText" readonly></textarea><div class="dialog-actions"><button id="copyResume" class="desk-button primary">Copy continuation</button><button id="closeResume" class="desk-button">Close</button></div></dialog>
+      <script type="application/json" id="deskHandoffData">{payload}</script>
+    </div>'''
+
+
 def build_html() -> str:
     cockpit_md = read_text(MARKETING / "operator_cockpit.md")
     sections = split_sections(cockpit_md)
@@ -400,11 +798,17 @@ def build_html() -> str:
     action_table = find_table(MARKETING / "action_queue.md", "Action")
     blocker_table = find_table(MARKETING / "blocker_board.md", "Blocker")
     spend_text = read_text(MARKETING / "spend_authorization.md")
-    review_text = read_text(MARKETING / "review_log.md")
+    state_text = read_text(MARKETING / "current_marketing_state.md")
+    authoritative_control = parse_authoritative_control(state_text)
     campaign_data = json.loads(read_text(MARKETING / "campaign_explorer.json"))
     updated = dt.datetime.now().astimezone().strftime("%Y-%m-%d %H:%M %Z")
+    owner_tasks = current_task_rows(read_text(MARKETING / "action_queue.md"))
+    owner_view = render_owner_view(owner_tasks, sections, updated)
+    if action_table:
+        action_table = Table(action_table.headers, [[task.get(key, "") for key in action_table.headers] for task in owner_tasks])
 
     current_goal = extract_first_paragraph(sections.get("Current Goal", ""))
+    owner_action = extract_first_paragraph(sections.get("One Owner Action", ""))
     success_measure = extract_first_paragraph(sections.get("Success Measure", ""))
     expert_standard = extract_first_paragraph(sections.get("Expert Strategy Standard", ""))
     done_today = extract_bullets(sections.get("Done Today", ""))
@@ -419,14 +823,39 @@ def build_html() -> str:
         spend_status = "PENDING_OWNER_APPROVAL"
     else:
         spend_status = "CHECK FILE"
-    reviewer_verdict = "PASS_WITH_GATES" if "PASS_WITH_GATES" in review_text else "CHECK REVIEW LOG"
+    # A historical verdict in the append-only log is not a current-scope review.
+    reviewer_verdict = "SEE LATEST DATED REVIEW"
+    live_state_mode = authoritative_control.get("live_state_mode", "MISSING_CONTROL")
+    effective_approval_policy = authoritative_control.get(
+        "effective_approval_policy",
+        "CHECK_CURRENT_MARKETING_STATE",
+    )
+    authoritative_next = authoritative_control.get(
+        "next_best_action",
+        next_tasks[0] if next_tasks else "CHECK_CURRENT_MARKETING_STATE",
+    )
+    fail_closed = live_state_mode != "LIVE_CURRENT"
+    control_class = "danger" if fail_closed else "good"
+    approval_class = (
+        "danger"
+        if effective_approval_policy == "FRESH_ACTION_TIME_APPROVAL_REQUIRED"
+        else status_class(effective_approval_policy)
+    )
+    spend_class = "neutral" if fail_closed else status_class(spend_status)
+    authoritative_risk = (
+        "Historical readiness is not current action authority; complete read-only reconciliation first."
+        if fail_closed
+        else (risks[0] if risks else "No risk captured")
+    )
 
-    return f"""<!doctype html>
+    output = f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dress Like Mommy Marketing Cockpit</title>
+  <meta name="theme-color" content="#205e51">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23205e51'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='24' fill='white'%3EDLM%3C/text%3E%3C/svg%3E">
+  <title>Dress Like Mommy · Growth Dashboard</title>
   <style>
     :root {{
       color-scheme: light;
@@ -925,6 +1354,7 @@ def build_html() -> str:
       section {{ padding: 14px; }}
       .score-grid, .metric-grid {{ grid-template-columns: 1fr; }}
     }}
+    {OWNER_STYLE}
   </style>
 </head>
 <body>
@@ -932,16 +1362,20 @@ def build_html() -> str:
     <header>
       <div class="topbar">
         <div class="brand">
-          <h1>Dress Like Mommy Marketing Cockpit</h1>
-          <p>One-screen operator view generated from the paid-growth command layer. Rendered {h(updated)}.</p>
+          <h1>Growth dashboard</h1>
+          <p>Dress Like Mommy · One task queue across sessions</p>
         </div>
         <div class="controls">
-          <input class="search" id="search" type="search" placeholder="Search campaigns, blockers, tasks...">
-          <label class="toggle"><input id="needsAction" type="checkbox"> Needs action only</label>
+          <a class="desk-link" href="#taskBoardStart">View tasks</a>
+          <button class="desk-button primary" data-owner-jump>Needs your input</button>
         </div>
       </div>
     </header>
     <main>
+      {owner_view}
+      <details class="legacy"><summary>Account history and detailed operator records</summary>
+      <p class="desk-note">The sections below preserve dated records across sessions. They do not establish current serving, spending, account access or new sales.</p>
+      <div class="controls legacy-controls"><input class="search" id="search" type="search" aria-label="Search operator history" placeholder="Search operator history"><label class="toggle"><input id="needsAction" type="checkbox"> Flagged records only</label></div>
       <div class="hero">
         <section class="goal panel">
           <div>
@@ -949,9 +1383,11 @@ def build_html() -> str:
             <p class="big">{h(current_goal)}</p>
           </div>
           <div class="chips">
-            <span class="chip {status_class(spend_status)}">Spend: {h(spend_status)}</span>
-            <span class="chip warn">Reviewer: {h(reviewer_verdict)}</span>
-            <span class="chip neutral">Live writes: none in this pass</span>
+            <span class="chip {control_class}">State: {h(live_state_mode)}</span>
+            <span class="chip {approval_class}">Effective authority: {h(effective_approval_policy)}</span>
+            <span class="chip {spend_class}">Standing spend record: {h(spend_status)}</span>
+            <span class="chip warn">Review log: {h(reviewer_verdict)}</span>
+            <span class="chip neutral">Full-paid controls; exact nonspend permissions are separate</span>
           </div>
         </section>
         <aside class="status-board panel">
@@ -965,11 +1401,15 @@ def build_html() -> str:
           </div>
           <div class="status-tile">
             <span>Next Best Move</span>
-            <strong>{h(next_tasks[0] if next_tasks else "Check action queue")}</strong>
+            <strong>{h(authoritative_next)}</strong>
+          </div>
+          <div class="status-tile">
+            <span>One Owner Action</span>
+            <strong>{h(owner_action or authoritative_next)}</strong>
           </div>
           <div class="status-tile">
             <span>Main Risk</span>
-            <strong>{h(risks[0] if risks else "No risk captured")}</strong>
+            <strong>{h(authoritative_risk)}</strong>
           </div>
           <div class="status-tile">
             <span>Human Check</span>
@@ -979,12 +1419,12 @@ def build_html() -> str:
       </div>
 
       <div class="grid">
-        {render_campaign_explorer(campaign_data)}
+        {render_campaign_explorer(campaign_data, historical=fail_closed)}
 
         <section class="panel span-12" data-filter-scope>
           <div class="section-head">
-            <h2>Live Scorecard</h2>
-            <p>Current readback decisions by surface</p>
+            <h2>Historical Channel Scorecard</h2>
+            <p>Saved channel evidence; not a current performance window</p>
           </div>
           <div class="score-grid">
             {render_score_rows(score_table)}
@@ -993,8 +1433,8 @@ def build_html() -> str:
 
         <section class="panel span-7" data-filter-scope>
           <div class="section-head">
-            <h2>Action Queue</h2>
-            <p>Green is safe, yellow is prepare/read back, red needs a gate.</p>
+            <h2>Operator Readiness Detail</h2>
+            <p>Original readiness fields; all current tasks appear in the owner board above. Colors are not action authority.</p>
           </div>
           <div class="queue-stack">
             {render_action_rows(action_table)}
@@ -1043,7 +1483,7 @@ def build_html() -> str:
 
         <section class="panel span-7">
           <div class="section-head">
-            <h2>Done Today</h2>
+            <h2>Recorded Work Across Sessions</h2>
           </div>
           <div class="compact-list">{render_list(done_today)}</div>
         </section>
@@ -1055,12 +1495,15 @@ def build_html() -> str:
           <div class="compact-list">{render_list(assumptions)}</div>
         </section>
       </div>
+      </details>
     </main>
     <footer>
-      Source files: ops/marketing/operator_cockpit.md, daily_scorecard.md, action_queue.md, blocker_board.md, spend_authorization.md, review_log.md.
+      Source records: <a href="operator_cockpit.md">Operating proposal</a> · <a href="action_queue.md">Task queue</a> · <a href="daily_scorecard.md">Scorecard</a> · <a href="current_marketing_state.md">Current authority and evidence</a> · <a href="review_log.md">Review log</a>.
     </footer>
   </div>
   <script>
+    {OWNER_SCRIPT}
+    {LIVE_SCRIPT}
     const search = document.getElementById('search');
     const needsAction = document.getElementById('needsAction');
     const cards = Array.from(document.querySelectorAll('.metric-card, .queue-row, .blocker-card, .campaign-card'));
@@ -1112,6 +1555,8 @@ def build_html() -> str:
 </html>
 """
 
+    return "\n".join(line.rstrip() for line in output.splitlines()) + "\n"
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -1122,7 +1567,7 @@ def main() -> None:
         help="HTML file to write.",
     )
     args = parser.parse_args()
-    html_output = "\n".join(line.rstrip() for line in build_html().splitlines()) + "\n"
+    html_output = build_html()
     args.output.write_text(html_output, encoding="utf-8")
     print(f"Rendered {args.output.relative_to(ROOT)}")
 

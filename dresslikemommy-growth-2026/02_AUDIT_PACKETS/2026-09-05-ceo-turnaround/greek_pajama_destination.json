@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet": "2026-09-05-ceo-turnaround",
+  "task": "Verify one same-anchor URL-only Greek pajama destination",
+  "read_at_utc": "2026-09-06T02:58:00Z",
+  "status": "NO_ELIGIBLE_REPLACEMENT_VERIFIED",
+  "completion": "Bounded read-only investigation complete. URL replacement is blocked by destination fit/availability, not an access failure.",
+  "authority": {
+    "external_writes": false,
+    "owner": "/root",
+    "artifact_owner": "/root/current_ga4_sales_reconciliation",
+    "browser_routes_allowed": 4,
+    "browser_routes_opened": 3,
+    "extension": "Parent extended original two-route scope to Christmas collection plus one active representative Christmas PDP; no active PDP existed."
+  },
+  "identity": {
+    "name": "Dress Like Mommy",
+    "domain": "www.dresslikemommy.com",
+    "admin_currency": "USD",
+    "admin_timezone_returned": "EDT",
+    "browser": "Chrome",
+    "profile": "test",
+    "tab_id": "475224233",
+    "buyer_country": "United States",
+    "buyer_currency": "USD",
+    "buyer_language": "el"
+  },
+  "article": {
+    "id": "gid://shopify/Article/559471329377",
+    "url": "https://www.dresslikemommy.com/el/blogs/news/mommy-and-me-matching-outfit-ideas",
+    "translation_locale": "el",
+    "translation_key": "body_html",
+    "translation_outdated": false,
+    "raw_existing_anchor": "<a href=\"/collections/family-pajamas\">Αγοράστε οικογενειακές πιτζάμες →</a>",
+    "rendered_existing_href": "/el/collections/family-pajamas",
+    "anchor_text": "Αγοράστε οικογενειακές πιτζάμες →",
+    "raw_href_occurrences": 1,
+    "paragraph_context": "Christmas paragraph specifically describes matching Christmas-morning pajamas with plaid, reindeer, or classic red/green.",
+    "source": "traffic_translation_before.json",
+    "source_read_at_utc": "2026-09-06T02:17:24.682Z",
+    "source_english_body_digest": "f342ab3bd6e0eaf44570c452c4381face3d737c8aee41c60a939777e023f2a88",
+    "apply_digest_policy": "Reference only; root owns fresh digest and any exact mutation.",
+    "proposed_replacement": null,
+    "preserve_other_anchors": true
+  },
+  "prior_evidence": {
+    "file": "traffic_public_routes.json",
+    "empty_original_url": "https://www.dresslikemommy.com/el/collections/family-pajamas",
+    "original_public_status": 200,
+    "original_grid_unique_product_count": 0,
+    "original_not_reopened": true,
+    "caution": "Admin collection search counts 57 total products; this does not establish active published stock.",
+    "rate_limited_route": "https://www.dresslikemommy.com/el/collections/pajamas",
+    "rate_limited_route_retried": false
+  },
+  "seo_context": {
+    "source": "gsc_traffic_priority.md",
+    "window_start": "2026-08-07",
+    "window_end": "2026-09-03",
+    "article_clicks": 66,
+    "article_impressions": 657,
+    "article_average_position": 9.1,
+    "scope": "Page totals, not Christmas/pajama demand or attributable sales. No new GSC readback in this subtask."
+  },
+  "structured_lookup": {
+    "collection_search": "title:pajama* OR handle:pajama* OR title:pyjama* OR handle:pyjama*",
+    "collections_returned": 4,
+    "has_next_page": false,
+    "collections": [
+      {
+        "id": "240129605",
+        "handle": "pajamas",
+        "admin_products_count": 53,
+        "disposition": "No public retry; prior exact Greek route returned 429."
+      },
+      {
+        "id": "140957614177",
+        "handle": "family-pajamas",
+        "admin_products_count": 57,
+        "disposition": "Existing original destination; prior public grid 0."
+      },
+      {
+        "id": "321563557985",
+        "handle": "christmas-pajamas",
+        "admin_products_count": 41,
+        "disposition": "Fits Christmas copy; active count 0, public grid 0."
+      },
+      {
+        "id": "355463725153",
+        "handle": "new-pajama-drop",
+        "admin_products_count": 19,
+        "disposition": "19 active and rendered products; rejected seasonal mismatch."
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "rank": null,
+      "id": "gid://shopify/Collection/355463725153",
+      "url": "https://www.dresslikemommy.com/el/collections/new-pajama-drop",
+      "decision": "REJECT_SEASONAL_MISMATCH",
+      "admin_active_query": "collection_id:355463725153 AND status:active",
+      "admin_active_returned": 19,
+      "admin_has_next_page": false,
+      "product_type_counts": {
+        "Matching Family Pajamas": 19
+      },
+      "public": {
+        "lang": "el",
+        "canonical": "https://www.dresslikemommy.com/el/collections/new-pajama-drop",
+        "unique_grid_products": 19,
+        "visible_count": "19 ΠΡΟΪΟΝΤΑ",
+        "h1": "New Pajama Drop",
+        "localization": "Greek controls/product cards; custom hero and descriptive copy remain English.",
+        "theme_role_directly_read": false
+      },
+      "relevance": "New summer/floral/animal mommy-and-child assortment does not fulfill unchanged Christmas/plaid/reindeer/red-green paragraph.",
+      "representative": {
+        "id": "gid://shopify/Product/7533081133153",
+        "url": "https://www.dresslikemommy.com/el/products/vintage-cottage-floral-mommy-and-me-pajama-set",
+        "canonical": "https://www.dresslikemommy.com/el/products/vintage-cottage-floral-mommy-and-me-pajama-set",
+        "lang": "el",
+        "h1": "Vintage Cottage Floral Πυτζάμες Mommy and Me — Σετ κοντομάνικο",
+        "admin_status": "ACTIVE",
+        "role_selected": "Mother",
+        "size_selected": "M",
+        "variant_id": "gid://shopify/ProductVariant/44044346064993",
+        "price": "34.99",
+        "currency": "USD",
+        "button_label": "ADD THIS PIECE TO BAG",
+        "button_enabled": true,
+        "cart_mutated": false,
+        "checkout_not_run": true,
+        "separate_pieces_notice_visible": true,
+        "theme_marker": {
+          "id": 133290917985,
+          "name": "dresslikemommy/main",
+          "role": "main"
+        },
+        "localization_defects": [
+          "English buy-box controls remain.",
+          "Visible QZ012QZ0 and QZXTOKEN0001 placeholder fragments in Greek body copy."
+        ],
+        "proof_limit": "Enabled purchase UI and Admin ACTIVE variant only; no cart/checkout/order test, supplier stock or fulfillment proof."
+      }
+    },
+    {
+      "rank": null,
+      "id": "gid://shopify/Collection/321563557985",
+      "url": "https://www.dresslikemommy.com/el/collections/christmas-pajamas",
+      "decision": "REJECT_EMPTY",
+      "admin_products_count": 41,
+      "admin_detail_sample_size": 20,
+      "admin_detail_sample_status_counts": {
+        "ARCHIVED": 20
+      },
+      "admin_active_query": "collection_id:321563557985 AND status:active",
+      "admin_active_returned": 0,
+      "admin_has_next_page": false,
+      "public": {
+        "lang": "el",
+        "canonical": "https://www.dresslikemommy.com/el/collections/christmas-pajamas",
+        "unique_grid_products": 0,
+        "visible_count": "0 ΠΡΟΪΟΝΤΑ",
+        "h1": "Χριστουγεννιάτικες ασορτί πιτζάμες",
+        "empty_message": "This collection is empty right now",
+        "theme_marker": {
+          "id": 133290917985,
+          "role": "main"
+        }
+      },
+      "relevance": "Exact seasonal fit but no active purchasable product in the collection.",
+      "representative_pdp_status": "SKIPPED",
+      "representative_pdp_reason": "No active Christmas product returned by the exact collection query; public grid empty."
+    }
+  ],
+  "buyer_path": {
+    "existing": "Greek article Christmas CTA → /el/collections/family-pajamas → prior observed zero-product grid",
+    "tested_alternate": "/el/collections/new-pajama-drop → Greek Vintage Cottage Floral PDP → Mother M → enabled add button at USD34.99; no add clicked",
+    "tested_seasonal": "/el/collections/christmas-pajamas → zero-product grid → no representative purchasable item"
+  },
+  "next_owner_action": "Do not apply a URL-only patch from this lane. Continue the validated Danish/Dutch title work; revisit this Christmas CTA only with a populated seasonal destination or a separately scoped exact paragraph-and-link revision.",
+  "uncertainty": [
+    "No eligible URL verified among the bounded existing pajama collections; this is not a claim that no unsearched product anywhere could fit Christmas.",
+    "Country remained United States; Greek locale does not prove Greece-market delivery.",
+    "No fresh auth, policy, rate-limit, or unsaved-change blocker occurred.",
+    "No settings/content/cart writes were made."
+  ],
+  "handoff": {
+    "browser_lane_released": true,
+    "last_url": "https://www.dresslikemommy.com/el/collections/christmas-pajamas",
+    "unsaved_risk": false,
+    "tab_left_open": true
+  },
+  "validation": {
+    "json_parse": "PENDING",
+    "whitespace": "PENDING"
+  }
+}

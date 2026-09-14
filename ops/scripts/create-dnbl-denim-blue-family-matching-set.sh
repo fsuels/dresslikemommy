@@ -37,7 +37,7 @@ SETTINGS_JSON=$(cat <<'JSON'
   "merch_style": "Matching Family Set",
   "merch_type": "Two-Piece Set",
   "season": "Summer",
-  "vendor_url": "https://detail.1688.com/offer/708209996925.html",
+  "vendor_url": "",
   "vendor": "dresslikemommy.com",
   "force_spec_prices": true,
   "child_price": "28.99",
@@ -111,7 +111,6 @@ SETTINGS_JSON=$(cat <<'JSON'
     "Child 5 Years",
     "Child 6-7 Years",
     "Child 8 Years",
-    "https://detail.1688.com/offer/708209996925.html"
   ]
 }
 JSON
@@ -491,7 +490,7 @@ tags = sorted(
         "Child 5 Years",
         "Child 6-7 Years",
         "Child 8 Years",
-        settings["vendor_url"],
+
     }
 )
 
@@ -556,7 +555,7 @@ if create_new_product:
             "vendor": settings["vendor"],
             "productType": settings["product_type"],
             "tags": tags,
-            "status": "ACTIVE",
+            "status": "DRAFT",
             "category": settings["taxonomy_gid"],
             "seo": {
                 "title": settings["seo_title"],
@@ -613,7 +612,7 @@ update_result = gql(
             "vendor": settings["vendor"],
             "productType": settings["product_type"],
             "tags": tags,
-            "status": "ACTIVE",
+            "status": "DRAFT",
             "category": settings["taxonomy_gid"],
             "seo": {
                 "title": settings["seo_title"],
@@ -796,31 +795,9 @@ if metafields_result["data"]["metafieldsSet"]["userErrors"]:
         f"metafieldsSet userErrors: {json.dumps(metafields_result['data']['metafieldsSet']['userErrors'], ensure_ascii=False)}"
     )
 
-publish_result = gql(
-    """
-    mutation PublishablePublish($id: ID!, $input: [PublicationInput!]!) {
-      publishablePublish(id: $id, input: $input) {
-        publishable {
-          availablePublicationsCount {
-            count
-          }
-        }
-        userErrors {
-          field
-          message
-        }
-      }
-    }
-    """,
-    {
-        "id": product_id,
-        "input": [{"publicationId": item["publicationId"]} for item in settings["publications"]],
-    },
-)
-if publish_result["data"]["publishablePublish"]["userErrors"]:
-    raise RuntimeError(
-        f"publishablePublish userErrors: {json.dumps(publish_result['data']['publishablePublish']['userErrors'], ensure_ascii=False)}"
-    )
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+print("Sales-channel publication skipped; product remains a draft pending approval.")
 
 media_lookup = gql(
     """
@@ -1088,7 +1065,7 @@ publication_map = {
     node["publication"]["id"]: node
     for node in product["resourcePublicationsV2"]["nodes"]
 }
-all_publications_ok = all(
+all_publications_ok = not any(
     publication_map.get(item["publicationId"], {}).get("isPublished") is True
     for item in settings["publications"]
 )
@@ -1263,7 +1240,7 @@ listing_md = "\n".join(
     [
         f"# {settings['title']}",
         "",
-        "**Status:** Live (ACTIVE, published to all 5 required sales channels)",
+        "**Status:** Draft (DRAFT, not published to sales channels)",
         f"**Admin URL:** {admin_url}",
         f"**Live URL:** {live_url}",
         f"**Product ID:** {product['id']}",

@@ -1,0 +1,37 @@
+{
+  "started": "2026-09-10 00:42:30 UTC",
+  "ended": "2026-09-10 00:42:31 UTC",
+  "query": "query MerchantExistingLogo { files(first:20,query:\"filename:dress-like-mommy-logo-final.png\"){nodes{__typename ... on MediaImage{id fileStatus image{url width height altText}}}pageInfo{hasNextPage endCursor}}}",
+  "response": {
+    "data": {
+      "files": {
+        "nodes": [
+          {
+            "__typename": "MediaImage",
+            "id": "gid://shopify/MediaImage/28100817256545",
+            "fileStatus": "READY",
+            "image": {
+              "url": "https://cdn.shopify.com/s/files/1/1557/1635/files/dress-like-mommy-logo-final.png?v=1728086720",
+              "width": 779,
+              "height": 317,
+              "altText": ""
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyODEwMDgxNzI1NjU0NSwibGFzdF92YWx1ZSI6MjgxMDA4MTcyNTY1NDV9"
+        }
+      }
+    }
+  },
+  "mainThemeConfig": "current.logo=shopify://shop_images/dress-like-mommy-logo-final.png",
+  "publicFavicon": [
+    {
+      "href": "//www.dresslikemommy.com/cdn/shop/files/dress-like-mommy-logo-final.png?crop=center&height=32&v=1728086720&width=32",
+      "rel": "icon",
+      "sizes": null
+    }
+  ],
+  "merchantLogoStatus": "UNKNOWN_CURRENT_ACCOUNT_READBACK_REQUIRED"
+}

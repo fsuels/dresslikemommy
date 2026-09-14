@@ -67,7 +67,7 @@ SEO_DESC='Shop our Peter Rabbit matching mommy-and-me pajamas — cotton gauze l
 COLOR_NAME='Peter Rabbit Meadow'
 COLOR_TOKEN='CREAM'
 SHORTCODE='VCF'
-VENDOR_URL='https://detail.1688.com/offer/828526529351.html'
+VENDOR_URL=''
 DESC_HTML_FILE="$SCRIPT_DIR/peter-rabbit-gauze-description.html"
 
 # -------------------------------------------------------------------
@@ -148,7 +148,7 @@ python3 - "$TMPDIR_LOCAL/productCreate.json" \
          "$PRODUCT_TITLE" "$PRODUCT_HANDLE" "$SEO_TITLE" "$SEO_DESC" \
          "$COLOR_NAME" "$VENDOR_URL" <<'PY'
 import json, sys
-out, chart_p, derived_p, desc_p, title, handle, seo_t, seo_d, color_name, vendor_url = sys.argv[1:11]
+out, chart_p, derived_p, desc_p, title, handle, seo_t, seo_d, color_name = sys.argv[1:11]
 chart   = json.load(open(chart_p))
 derived = json.load(open(derived_p))
 desc    = open(desc_p).read()
@@ -186,7 +186,7 @@ product = {
     "handle": handle,
     "vendor": "dresslikemommy.com",
     "productType": "Matching Family Pajamas",
-    "status": "ACTIVE",
+    "status": "DRAFT",
     "category": "gid://shopify/TaxonomyCategory/aa-1-17-4",
     "descriptionHtml": desc,
     "seo": { "title": seo_t, "description": seo_d },
@@ -329,21 +329,9 @@ if ue: print('userErrors:',json.dumps(ue,indent=2))
 "
 
 # -------------------------------------------------------------------
-# 5d. publishablePublish — 5 channels
-# -------------------------------------------------------------------
-for PUB in \
-  "gid://shopify/Publication/55169925"      \
-  "gid://shopify/Publication/21969633377"   \
-  "gid://shopify/Publication/29172400225"   \
-  "gid://shopify/Publication/76582879329"   \
-  "gid://shopify/Publication/76604768353"
-do
-  cat > "$TMPDIR_LOCAL/publish.json" <<JSON
-{"query":"mutation pub(\$id:ID!,\$input:[PublicationInput!]!){ publishablePublish(id:\$id, input:\$input){ userErrors{ field message } } }","variables":{"id":"$PRODUCT_ID","input":[{"publicationId":"$PUB"}]}}
-JSON
-  echo "==> publish to $PUB"
-  gql "$TMPDIR_LOCAL/publish.json" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d)"
-done
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+echo "Sales-channel publication skipped; product remains a draft pending approval."
 
 # -------------------------------------------------------------------
 # 5e. Media (idempotent — only if images present)

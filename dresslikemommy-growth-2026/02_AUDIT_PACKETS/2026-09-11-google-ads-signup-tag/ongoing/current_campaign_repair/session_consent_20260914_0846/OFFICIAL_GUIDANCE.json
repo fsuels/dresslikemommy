@@ -1,0 +1,211 @@
+{
+  "schema": "dlm.official_session_consent_guidance.v1",
+  "task": "TA02-SESSION-CONSENT-20260914-0846",
+  "recorded_at_utc": "2026-09-14T08:56:47.811975+00:00",
+  "status": "PRIMARY_DOCUMENTATION_REVIEW_COMPLETE_RUNTIME_CAUSE_NOT_VERIFIED",
+  "scope": "Official public documentation only; root owns sender inspection and any subsequent test. This is not independent verification of root causal findings.",
+  "findings": [
+    {
+      "id": "F1",
+      "question": "Does Session campaign ID (not set) prove missing session_start?",
+      "answer": "No. It identifies missing campaign-ID information, not a direct observation of event collection. Missing session_start is one documented cause for a different dimension, Session source/medium. Incomplete campaign tagging/linkage can also yield missing campaign dimensions.",
+      "sources": [
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "inference": "Noncampaign/direct traffic need not have a campaign ID, so a missing ID is compatible with that traffic. The reviewed docs do not guarantee one display placeholder across every reporting surface. Do not infer that the particular store row is direct without source/medium/channel and event evidence.",
+      "cause_status": "UNDETERMINED"
+    },
+    {
+      "id": "F2",
+      "question": "What establishes or falsifies consent ordering problems?",
+      "answer": "Use a time-ordered trace of the actual sender: defaults before consent is read or updated; subsequent user interaction produces an update; named ad_user_data and the other consent states reflect that choice when events execute. A captured event using consent before a default, or a wrong/missing update in a complete trace, supports a scoped failure. Correct ordering and matching named states falsify that failure hypothesis for the captured path, not every visitor or sender.",
+      "sources": [
+        "S2",
+        "S5",
+        "S6",
+        "S7"
+      ],
+      "uncertainty": "A page_view, HTTP success, cookie state, empty diagnostics panel or aggregate report alone is not this trace. Consent denied can still permit limited/cookieless behavior; a network request alone does not prove an improper grant. No gcs/gcd decoding or cross-purpose consent inference is supplied."
+    },
+    {
+      "id": "F3",
+      "question": "What is the Shopify integration boundary; is reopening preferences enough?",
+      "answer": "Use the supported Google & YouTube integration and Shopify Customer Privacy API boundary; do not infer a need for an added theme/custom sender. Shopify permission state, the actual Google consent state and receiver events are separate observations. A successful preferences reopening confirms the UI operation only; even a persisted Shopify choice does not by itself establish GA4 event sequencing or ad_user_data delivery.",
+      "sources": [
+        "S8",
+        "S9"
+      ],
+      "diagnostic_limit": "Shopify warns that converted custom pixels can mislead Tag Assistant/Tag Diagnostics. Verify which implementation the trace actually covers; a nonvisible sandboxed sender is UNKNOWN, not absent."
+    },
+    {
+      "id": "F4",
+      "question": "Does Optimized / Access on establish consent order or historical purchase-session access?",
+      "answer": "No. Optimized can pause/resume marketing sharing using activity signals. Shopify says standalone analytics events remain unaffected, including within mixed-use apps. Current Access on is a current access observation, not earlier session history, consent sequencing or receiver delivery.",
+      "sources": [
+        "S11"
+      ],
+      "root_reported_native_context": {
+        "provenance": "Root-reported current native read; not independently observed by this researcher",
+        "app": "Google & YouTube",
+        "app_id": "1780363",
+        "transport": "Server/Web",
+        "data_access_setting": "Optimized",
+        "current_access": "Access on",
+        "settings_changed": false
+      },
+      "next_read_only_discriminator": "Inspect the app activity log over the relevant purchase window: grant/pause status, timestamp and automated/manual reason. An access pause could support a scoped access hypothesis; uninterrupted granted access weakens it. Neither proves which event reached GA4.",
+      "limit": "Do not attribute missing GA4 events to optimization without identifying the affected app event/use case and reconciling Shopify’s analytics exemption.",
+      "Always_on_recommendation": "NOT_RECOMMENDED_WITHOUT_CAUSAL_EVIDENCE"
+    }
+  ],
+  "next_permitted_test": {
+    "status": "FUTURE_QA_REQUIRES_SEPARATELY_PERMITTED_SCOPE",
+    "owner": "Original owner 01a086fc-0bf7-71a2-ba21-aa3564fafe30; future consent QA only after separately permitted scope",
+    "steps": [
+      "Read the exact report/API dimension together with source/medium/channel and compare the same time window. Separate lack of campaign ID from evidence about session_start.",
+      "FUTURE QA ONLY, requiring separately permitted scope from the original owner; not authorized or run in this delegation: In an identifiable, genuinely new owner-controlled test session, observe initial consent and the existing sender with Tag Assistant; use ordinary banner choices to grant or decline, then reopen and change the choice. Record timestamps, destination identity, four named defaults/updates and tag/event execution without changing production configuration.",
+      "Where the existing privacy/diagnostic configuration permits observation, correlate session_start, page_view and session parameters for that device in receiver DebugView. A visible session_start falsifies the claim that this sampled session lacks it; absence alone is inconclusive if privacy, active-session reuse, filtering or instrumentation visibility prevents the observation.",
+      "FUTURE QA ONLY, requiring separately permitted scope from the original owner; not authorized or run in this delegation: Compare Shopify processing permissions/consent-change notification to downstream named Google states. Opening a modal without changing consent need not emit visitorConsentCollected. Retain separate before-choice, grant and withdrawal evidence; stop on access or tool-safety gates."
+    ],
+    "sources": [
+      "S1",
+      "S4",
+      "S5",
+      "S6",
+      "S8",
+      "S9",
+      "S10",
+      "S11"
+    ],
+    "no_inference": "No claim of purchase acceptance, campaign attribution repair, all-region compliance or sender repair follows from documentation alone.",
+    "data_access_supplement": "Root may inspect the existing app access-change log for the exact historical window before deciding whether optimization is relevant. Do not change the data-access setting as a diagnostic shortcut.",
+    "current_execution_scope": "PASSIVE_READ_ONLY_OBSERVATION_ONLY",
+    "consent_choice_changes": "NOT_AUTHORIZED_NOT_RUN_IN_THIS_DELEGATION"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "API dimensions and metrics",
+      "url": "https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema",
+      "retrieved_date": "2026-09-14",
+      "retrieval_status": "READ_SUCCESSFULLY",
+      "supported_scope": "sessionCampaignId is a marketing campaign identifier. sessionManualCampaignId comes from utm_id; these are distinct from session source/medium."
+    },
+    {
+      "id": "S2",
+      "title": "What the value (not set) means in your reports",
+      "url": "https://support.google.com/analytics/answer/13504892",
+      "retrieved_date": "2026-09-14",
+      "retrieval_status": "READ_SUCCESSFULLY",
+      "supported_scope": "Dimension information can be absent for several reasons. Missing session_start is discussed specifically under Session source/medium. The consent section documents misuse of default for updates and later denied events after an initial grant."
+    },
+    {
+      "id": "S3",
+      "title": "Collect campaign data with custom URLs",
+      "url": "https://support.google.com/analytics/answer/10917952",
+      "retrieved_date": "2026-09-14",
+      "retrieval_status": "READ_SUCCESSFULLY",
+      "supported_scope": "utm_id supplies a campaign identifier; missing relevant UTM parameters can produce not-set report values."
+    },
+    {
+      "id": "S4",
+      "title": "About Analytics sessions",
+      "url": "https://support.google.com/analytics/answer/9191807",
+      "retrieved_date": "2026-09-14",
+      "retrieval_status": "READ_SUCCESSFULLY",
+      "supported_scope": "New sessions normally collect session_start and session identifiers. Session attribution carries campaign/referrer information. Existing sessions and filtered events require interpretation."
+    },
+    {
+      "id": "S5",
+      "title": "Verify consent mode implementation",
+      "url": "https://support.google.com/tagmanager/answer/14218557",
+      "retrieved_date": "2026-09-14",
+      "retrieval_status": "READ_SUCCESSFULLY",
+      "supported_scope": "Tag Assistant exposes earliest defaults, later updates, all four named consent parameters and tag behavior. Google Ads status can lag a working implementation."
+    },
+    {
+      "id": "S6",
+      "title": "Troubleshoot consent mode",
+      "url": "https://support.google.com/tagmanager/answer/14522438",
+      "retrieved_date": "2026-09-14",
+      "retrieval_status": "READ_SUCCESSFULLY",
+      "supported_scope": "Defaults must precede code that uses or updates consent; banner choices should produce updates. Empty Consent tabs can also result from blocked tags."
+    },
+    {
+      "id": "S7",
+      "title": "Consent mode reference",
+      "url": "https://support.google.com/tagmanager/answer/13802165",
+      "retrieved_date": "2026-09-14",
+      "retrieval_status": "READ_SUCCESSFULLY",
+      "supported_scope": "ad_user_data, ad_personalization, ad_storage and analytics_storage have distinct functions. This does not document an opaque gcs/gcd-to-ad_user_data decoder."
+    },
+    {
+      "id": "S8",
+      "title": "Migrating pixels",
+      "url": "https://help.shopify.com/en/manual/promoting-marketing/pixels/pixel-migration",
+      "retrieved_date": "2026-09-14",
+      "retrieval_status": "READ_SUCCESSFULLY",
+      "supported_scope": "Shopify recommends the Google & YouTube channel for Google Analytics. Banner integration with Customer Privacy API matters. Converted custom pixels can impair measurement and diagnostics; an app pixel without added code is maintained by its developer."
+    },
+    {
+      "id": "S9",
+      "title": "Customer Privacy API",
+      "url": "https://shopify.dev/docs/api/customer-privacy",
+      "retrieved_date": "2026-09-14",
+      "retrieval_status": "READ_SUCCESSFULLY",
+      "supported_scope": "Shopify exposes current processing permissions and visitorConsentCollected when consent changes. Showing preferences is separate from registering a user choice. The API applies choices to Shopify-managed surfaces."
+    },
+    {
+      "id": "S10",
+      "title": "Monitor events in DebugView",
+      "url": "https://support.google.com/analytics/answer/7201382",
+      "retrieved_date": "2026-09-14",
+      "retrieval_status": "READ_SUCCESSFULLY",
+      "supported_scope": "Personal-device debugging shows events, parameters and timestamps. Privacy controls or denied Analytics-cookie consent can hide events. Attribution in DebugView is limited."
+    },
+    {
+      "id": "S11",
+      "title": "App pixels — Optimizing data access and activity log",
+      "url": "https://help.shopify.com/en/manual/promoting-marketing/pixels/app-pixels",
+      "sections": [
+        "optimize-data-access",
+        "view-activity-log"
+      ],
+      "retrieved_date": "2026-09-14",
+      "retrieval_status": "READ_SUCCESSFULLY",
+      "supported_scope": "Optimization controls marketing data sharing separately from privacy; standalone analytics events are excluded from optimization. The access-change log begins June 3, 2026."
+    }
+  ],
+  "blocked_sources": [
+    {
+      "url": "https://developers.google.com/tag-platform/security/guides/consent?consentmode=advanced1faq",
+      "status": "PRIOR_NON_RETRYABLE_URL_SAFETY_DENIAL",
+      "attempts_this_pass": 0
+    },
+    {
+      "url": "https://support.google.com/analytics/answer/15598150",
+      "status": "PRIOR_NON_RETRYABLE_URL_SAFETY_DENIAL",
+      "attempts_this_pass": 0
+    },
+    {
+      "url": "https://help.shopify.com/en/manual/reports-and-analytics/google-analytics/setting-up-google-analytics",
+      "status": "NON_RETRYABLE_URL_SAFETY_DENIAL_THIS_PASS",
+      "attempts_this_pass": 1
+    }
+  ],
+  "boundary_validation": {
+    "blocked_URL_retries": 0,
+    "alternate_variants_or_cached_copy_workarounds": 0,
+    "account_browser_storefront_access": 0,
+    "private_order_or_credential_access": 0,
+    "production_or_canonical_writes": 0,
+    "opaque_consent_decoding": false,
+    "runtime_cause_verified": false,
+    "independent_cause_review_performed": false,
+    "only_owned_JSON_written": true
+  },
+  "supplemented_at_utc": "2026-09-14T08:58:30.468224+00:00"
+}

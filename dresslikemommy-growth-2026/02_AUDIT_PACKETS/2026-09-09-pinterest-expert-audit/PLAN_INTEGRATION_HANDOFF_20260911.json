@@ -1,0 +1,112 @@
+{
+  "status": "LOCAL_REVIEW_PASS__CANONICAL_HANDOFF_PENDING",
+  "classification": "DATED_EVIDENCE_RECEIPT_NOT_A_SECOND_COMMAND_LAYER",
+  "as_of_utc": "2026-09-11T17:28:55.478174+00:00",
+  "independent_review": "PLAN_IMPLEMENTATION_REVIEW_20260911.md;42 initial checks and final correction/updater recheck PASS",
+  "root_checks": "PLAN_ROOT_CHECKS_20260911.json;19 initial checks PASS; final P1 instruction and14 artifact hashes checked here",
+  "artifacts": [
+    {
+      "path": "PAID_CAMPAIGN_SPEC.json",
+      "sha256": "ca4a0b956a6745c4ea4116ee9130cd19c4d89f447561c12581dd66b1b29a4674",
+      "bytes": 9621
+    },
+    {
+      "path": "PAID_CAMPAIGN_SPEC_20260909_ARCHIVE.json",
+      "sha256": "00d0a5ce1e816159d155302e6995051879e052d2d64ac7a0b6ffdb8aae7968d1",
+      "bytes": 5260
+    },
+    {
+      "path": "PLAN_DECISION_FRAME_20260911.json",
+      "sha256": "e695f33c9bd46fff89d169ff2abbeb1e77386a2513e014798e352d5f7cf3a0e6",
+      "bytes": 1939
+    },
+    {
+      "path": "CONTENT_REGISTER_20260911.json",
+      "sha256": "204a786dc02cdaa38a234babaca2d07dfdcfa179e686b2bff08993388738114f",
+      "bytes": 8361
+    },
+    {
+      "path": "PILOT_ECONOMICS_20260911.json",
+      "sha256": "1e49a09c6dc645f4eb11e5cd71378c56317a68d2ee555653161443704e568100",
+      "bytes": 3061
+    },
+    {
+      "path": "P1_RELEASE_PACKET_20260911.json",
+      "sha256": "5392542edea0dcfc8dac5e73b018fea5ef854799eeaa032822c6173e3d3414f4",
+      "bytes": 3648
+    },
+    {
+      "path": "PLAN_RECONCILIATION_20260911.md",
+      "sha256": "bfb65391dc0707daf6bb541aefd9edff9c08624041b1e44583c644b85b054fb6",
+      "bytes": 7661
+    },
+    {
+      "path": "PLAN_SOURCE_CHECK_20260911.md",
+      "sha256": "5ea77d39d7b04f54fbbd90b4020b745bd3efad20f3e2d8e38d87206e8183efc2",
+      "bytes": 5515
+    },
+    {
+      "path": "PLAN_IMPLEMENTATION_REVIEW_20260911.md",
+      "sha256": "afd2611c67d68c6a28a4a99a27b8ea71a914406b312d20056e61a4c18e333a15",
+      "bytes": 6411
+    },
+    {
+      "path": "PLAN_ROOT_CHECKS_20260911.json",
+      "sha256": "294c4a140d2ac9a54d8026e7c968d71a161ea1723fb4a4a726a3be1c862e18fc",
+      "bytes": 835
+    },
+    {
+      "path": "STRATEGY_AND_ASSET_READINESS.md",
+      "sha256": "bccac4658220d57b1fffb2bb0bc017142ad0655cd3214f9c237835d0d71a1cac",
+      "bytes": 9329
+    },
+    {
+      "path": "AUDIT_REPORT.md",
+      "sha256": "53e355f76e45fcd9d47a044a12421b359089d76e3a2ff2147a29bca62a9f8026",
+      "bytes": 13339
+    },
+    {
+      "path": "creative/p1_family_photo_checklist_v1.png",
+      "sha256": "c0735e50a8760c74899ed5c32469f3233b46a7e67d369e137d1628d59d76826b",
+      "bytes": 1445911
+    },
+    {
+      "path": "creative/p1_family_photo_checklist_v1_prompt.txt",
+      "sha256": "6ae2e35535d26e66062286877353aa5cb7a63b7c8d492e0d27b15a04bc117e32",
+      "bytes": 1464
+    }
+  ],
+  "reviewed_updater": {
+    "path": "PLAN_CANONICAL_UPDATER_20260911.py",
+    "sha256": "bfa551997e276a19c6cd958a8ff7055369c96ee7387efe39652323c7bc10b240",
+    "scope": "Ten own-entry canonical edits only; full paid control remains506 bytes unchanged",
+    "apply_status": "NOT RUN",
+    "apply_requirement": "Explicit Merchant shared-file release first; preserve current peer edits; fresh dry run before one --apply execution"
+  },
+  "required_after_apply": [
+    "render_marketing_cockpit.py",
+    "audit_marketing_command_integration.py --write-report --fail-on-risk",
+    "check_continuity_integrity.py --strict",
+    "scoped git diff --check",
+    "Write PLAN_INTEGRATION_VERIFICATION_20260911.json and explicitly release shared interval to Organic"
+  ],
+  "finalizer_prepared": "/private/tmp/dlm-pinterest-finalize-plan-20260911.py",
+  "full_paid_control_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+  "pending_anchor": "2026-09-11-pinterest-owner-plan-and-guide-creative",
+  "latest_applied_pinterest_anchor": "2026-09-11-pinterest-pixel-callback-and-consent-conflict",
+  "canonical_apply_commands_and_post_apply_checks": "NOT RUN; Merchant owns the shared interval under parent priority and has not yet released it",
+  "native_or_new_external_writes": 0,
+  "remaining_live_gates": [
+    "Existing temporary-consent test question unanswered",
+    "Normal native browser handback and controlled cleanup",
+    "Genuine purchase/receiver/dedup/catalog proof",
+    "Actual basket economics and exact future publication/spend scope"
+  ],
+  "continuation": "Use ops/prompts/paid-growth-ai-army-continuation-prompt.md, the latest applied Pinterest anchor and this dated handoff. Resume canonical integration on explicit Merchant release; no native or spend authority follows from that release.",
+  "final_local_checks": {
+    "scoped_git_diff_check": "PASS",
+    "reviewed_updater_ast_parse": "PASS",
+    "owner_report_whitespace": "PASS",
+    "handoff_json_parse": "PASS"
+  }
+}

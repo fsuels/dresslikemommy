@@ -1,0 +1,94 @@
+{
+  "status": "PREPARED_NOT_APPLIED",
+  "article_id": "gid://shopify/Article/559471886433",
+  "article_url": "https://www.dresslikemommy.com/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+  "authority": "Current owner automatic implementation of reviewed reversible marketing repairs; root sole external writer. No repeated permission question; normal platform review remains binding.",
+  "before_sha256": "a45f781b4239d58505bd6ea934c42902a44dd7fcb4e2a8a15b02f2452300652c",
+  "candidate_sha256": "01c2e9ab6b5c02346c0653bcc526205b5d52c856679e4f8446698999ba53522d",
+  "replacements": [
+    {
+      "id": "nightgown_destination",
+      "before": "<h3>Nightgown Matching Sets</h3>\n<p>For mommy and daughter specifically, matching <a href=\"/collections/dresses\">nightgowns</a> are a sweet alternative to traditional PJ sets. Soft, flowy, and perfect for those mother-daughter bedtime routines that make childhood magical.</p>",
+      "after": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>"
+    },
+    {
+      "id": "children_fit_guidance",
+      "before": "<p><strong>For kids:</strong> Always check that pajamas are either snug-fitting or flame-resistant (required by US safety standards). Snug-fit cotton is the most popular choice for children’s sleepwear.</p>",
+      "after": "<p><strong>For kids:</strong> Choose size-appropriate sleepwear and follow its safety label and intended fit. Check the product details rather than assuming that a fabric or a daytime outfit is suitable for sleeping. The <a href=\"https://www.cpsc.gov/s3fs-public/5132.pdf\">CPSC children’s sleepwear guide</a> explains why oversized, loose-fitting cotton sleepwear can be a hazard.</p>"
+    },
+    {
+      "id": "empty_christmas_destination",
+      "before": "<p>The #1 reason families buy matching PJs. <a href=\"/collections/christmas-pajamas\">Christmas matching pajamas</a> in classic plaid, reindeer prints, or “Merry Christmas” designs are a holiday staple. Pro tip: buy them early (October-November) before the best designs sell out.</p>",
+      "after": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>"
+    },
+    {
+      "id": "child_size",
+      "before": "<strong>Kids:</strong> Size up slightly — cotton PJs shrink, and kids grow fast",
+      "after": "<strong>Kids:</strong> Compare current measurements with the product’s size chart and follow the intended fit and safety label. Do not automatically size up"
+    },
+    {
+      "id": "baby_size",
+      "before": "<strong>Babies:</strong> Buy the next size up so they can grow into them",
+      "after": "<strong>Babies:</strong> Choose sleepwear that fits now, using the size chart and label guidance; do not buy oversized sleepwear to grow into"
+    },
+    {
+      "id": "availability_check",
+      "before": "<strong>Order early:</strong> Popular sizes sell out fast, especially before holidays",
+      "after": "<strong>Before ordering:</strong> Check that every person’s size is available and select each wearer’s option separately"
+    },
+    {
+      "id": "shopping_cta",
+      "before": "<p>Ready to start the tradition? Browse our <a href=\"/collections/pajamas\">matching pajama collection</a> with styles for mom, dad, and kids. Looking for holiday-specific sets? Check out our <a href=\"/collections/christmas-pajamas\">Christmas pajamas</a> and <a href=\"/collections/family-pajamas\">family matching pajamas</a>.</p>",
+      "after": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>"
+    },
+    {
+      "id": "closing_assortment",
+      "before": "<p>From cozy flannel to soft cotton, we have matching sets that’ll make every family night feel like a special occasion. Because the family that matches together, stays together. 😊</p>",
+      "after": "<p>Start with a design you both like, then use the product details and size chart to plan your matching look.</p>"
+    }
+  ],
+  "scope": "Only article body; preserve title, handle, blog, publication status/date and all unspecified fields. No theme, product, collection, translation, paid, account or financial change.",
+  "expected_mechanism": "Existing search-exposed guide sends shoppers to available pajamas and clarifies sizing and wearer selections. No ranking, click, sale, or profit increase claimed.",
+  "source_evidence": [
+    "pajamas_guide_source.json",
+    "pajamas_guide_public_before.json",
+    "pajamas_guide_destination_reads.json",
+    "pajamas_guide_gsc_readback.json"
+  ],
+  "primary_sizing_sources": [
+    "https://www.cpsc.gov/s3fs-public/5132.pdf",
+    "https://www.canada.ca/en/health-canada/services/safe-sleep/children-sleepwear.html"
+  ],
+  "prewrite_guards": [
+    "Fresh exact store/article identity and full before body hash/publication fields equal frozen source",
+    "Independent source and exact replacement review PASS",
+    "GraphQL schema and validation PASS"
+  ],
+  "after_plan": [
+    "Separate API query exact body and preserved returned identity/title/handle/blog/publication fields",
+    "Normal MAIN desktop and 390x844 render corrected sections and direct shopping link click reaches existing available pajamas; cart remains0",
+    "Independent execution/evidence review"
+  ],
+  "rollback": "Only after fresh live body equals candidate, restore exact frozen body with same body-only mutation. Stop and reconcile any intervening change. No rollback requested or executed.",
+  "local_checks": {
+    "eight_unique_replacements": true,
+    "inverse_exact": true,
+    "no_direct_empty_christmas_link": true,
+    "no_direct_dresses_or_family_redirect": true,
+    "no_blanket_upsizing": true,
+    "unmodified_content_preserved": true
+  },
+  "workflow": {
+    "mutation": "mutation RepairPajamasGuide($id: ID!, $article: ArticleUpdateInput!) {\n  articleUpdate(id: $id, article: $article) {\n    article { id body updatedAt }\n    userErrors { code field message }\n  }\n}",
+    "artifact_id": "0f03a9fa-35f5-4d6b-b1b2-e585037c82f2",
+    "revision": 1,
+    "source_query": "query PajamasGuideSource($query: String!, $first: Int!, $after: String) {\n  shop { name myshopifyDomain }\n  articles(first: $first, after: $after, query: $query) {\n    nodes { id title handle body isPublished publishedAt updatedAt blog { id handle title } }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+    "source_variables": {
+      "query": "handle:family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "first": 3,
+      "after": null
+    },
+    "required_skill_search_script": "FAILED fetch failed; supported docs connector SUCCESS articleUpdate 2026-07",
+    "validation": "NOT_RUN"
+  }
+}

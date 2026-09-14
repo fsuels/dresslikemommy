@@ -65,7 +65,11 @@
               {%- if field == 'form' -%}
                 {{ form.errors.messages[field] }}
               {%- else -%}
-                <a href="#Recipient-{{ field }}-{{ section.id }}">
+                {%- assign field_anchor = field -%}
+                {%- if field == 'send_on' -%}
+                  {%- assign field_anchor = 'send-on' -%}
+                {%- endif -%}
+                <a href="#Recipient-{{ field_anchor }}-{{ section.id }}">
                   {{ form.errors.messages[field] }}
                 </a>
               {%- endif -%}

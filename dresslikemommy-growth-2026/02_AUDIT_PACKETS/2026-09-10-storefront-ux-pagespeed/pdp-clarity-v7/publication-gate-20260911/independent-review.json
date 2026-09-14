@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-11T19:36:10.158Z",
+  "reviewer": "theme_audit_review",
+  "decision": "PASS",
+  "confidence": "H",
+  "reviewScope": "Independent saved-source, publication-restriction and exact owner-handoff review. This verdict is not publication execution, a platform override or live buyer acceptance.",
+  "independence": {
+    "candidateBuiltByReviewer": false,
+    "candidateOrCanonicalEdited": false,
+    "browserOrPublicHttpUsed": false,
+    "apiQueryOrMutationCalled": false,
+    "reviewerWrites": [
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/INDEPENDENT_REVIEW.md",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/independent-review.json"
+    ],
+    "method": "Recomputed local file hashes against complete saved Admin receipts; inspected current enabled mutation-tool metadata; compared exact saved rule; inspected prior buyer receipts and OWNER_ACTION.md."
+  },
+  "sourceReadAt": "2026-09-11 19:30:09 UTC",
+  "comparisonReadAt": "2026-09-11 19:01:42 UTC",
+  "verifiedSource": {
+    "onlyPublishedTheme": {
+      "id": "gid://shopify/OnlineStoreTheme/133290917985",
+      "name": "dresslikemommy/main",
+      "role": "MAIN",
+      "processing": false,
+      "updatedAt": "2026-07-02T16:47:21Z"
+    },
+    "target": {
+      "id": "gid://shopify/OnlineStoreTheme/137888792673",
+      "name": "DLM UX Performance QA 2026-09-10",
+      "role": "UNPUBLISHED",
+      "processing": false,
+      "updatedAt": "2026-09-11T17:40:34Z"
+    },
+    "completeFileCounts": {
+      "preview": 527,
+      "main": 525,
+      "combined": 527
+    },
+    "candidateFilesMatched": 527,
+    "sourceDriftSince1901OrV7": 0,
+    "protectedV7FilesUnchanged": 5,
+    "v7Release": {
+      "revision": 7,
+      "changedFromPredecessor": 19,
+      "preservedFromPredecessor": 508,
+      "fullDifferencesFromMain": 61
+    },
+    "v8SeparateLocalProposalNotPromoted": true,
+    "selectedVariantField": {
+      "ownerActionPath": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/OWNER_ACTION.md",
+      "ownerActionSha256": "941196b8fc607c1e3b325940d6b61bf12756397a7923944c29b11149bf51e9b9",
+      "mainSnapshotHashStillBinds": true,
+      "mainLacksSelectedVariantField": true,
+      "candidateSelectedVariantFieldPresent": true
+    }
+  },
+  "platformRestriction": {
+    "tool": "mcp__codex_apps__shopify_graphql_mutation",
+    "currentEnabledDescriptionEqualsSavedRule": true,
+    "observedRule": "Create and manage your store\n\nExecute a GraphQL mutation against the Shopify Admin API.\nThe Shopify Admin API supports hundreds of mutations. Built-in tools cover common write operations, but when the user asks to modify a resource that has no dedicated tool (e.g. metafields, metaobjects, pages, blogs, translations, publications, etc.), use this tool.\nNote: Some dangerous mutations are blocked for safety (e.g. refunds, gift card writes, staff management, theme deletion, theme publishing). Theme file writes (themeFilesCopy, themeFilesUpsert) are allowed on unpublished themes only — writes that target the live/MAIN theme are blocked. If a mutation is blocked, inform the user and suggest they perform the action in Shopify admin.\nThe host app will prompt the user for confirmation before executing.\n\nBefore calling this tool, follow the GraphQL Workflow:\n1. Use graphql_schema to look up the exact mutation name (type_name='Mutation') and input type fields — do NOT guess.\n2. You can also use search_docs_chunks to find mutation examples in Shopify documentation.\n3. Construct the operation.\n4. Call validate_graphql_codeblocks to verify the operation — do NOT skip validation.\n5. Only then call this tool to execute the mutation.\n\nIMPORTANT: After executing, present the results clearly to the user. Do NOT dump raw JSON — summarize what changed in a helpful, readable way. This tool is part of plugin `Shopify`.\n\nexec tool declaration:\n```ts\ndeclare const tools: { mcp__codex_apps__shopify_graphql_mutation(args: {\n  // GraphQL mutation string\n  query: string;\n  // GraphQL variables object\n  variables?: { [key: string]: unknown; };\n}): Promise<CallToolResult>; };\n```",
+    "savedEvidence": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/publication-restriction.json",
+    "themePublishingBlocked": true,
+    "mainFileWritesBlocked": true,
+    "mutationAttempted": false,
+    "actualMutationRejectionClaim": false,
+    "workaroundPermitted": false,
+    "interpretation": "The owner's fresh completion intent is understood, but it does not remove the platform restriction. The documented supported handoff is owner publication in Shopify Admin, not a browser/CLI/alternate-API workaround or another generic approval request."
+  },
+  "ownerAction": {
+    "status": "REQUIRED_FOR_LIVE_OUTCOME",
+    "storeId": "15571635",
+    "storeName": "Dress Like Mommy",
+    "myshopifyDomain": "dresslikemommy-com.myshopify.com",
+    "adminThemesUrl": "https://dresslikemommy-com.myshopify.com/admin/themes",
+    "targetThemeId": "137888792673",
+    "targetThemeName": "DLM UX Performance QA 2026-09-10",
+    "action": "Publish this existing V7 theme in Shopify Admin. Preserve theme 133290917985, dresslikemommy/main, in the theme library for rollback.",
+    "rollback": "Owner can republish preserved 133290917985; no deletion or source overwrite required.",
+    "newCloneRequired": false,
+    "repeatedUploadRequired": false,
+    "v8Included": false,
+    "sourceConflictCondition": "Recheck exact source/role changes if the source or target changes before owner execution.",
+    "ownerActionDocumentReviewed": true,
+    "ownerActionDocumentSha256": "941196b8fc607c1e3b325940d6b61bf12756397a7923944c29b11149bf51e9b9"
+  },
+  "buyerProof": {
+    "priorTogetherHeartProof": "UNPUBLISHED_PREVIEW_ONLY",
+    "variantId": "46512190292065",
+    "variant": "Adult / 4XL / Green",
+    "price": "USD 26.99",
+    "quantity": 1,
+    "cartCleanup": 0,
+    "evidenceDate": "2026-09-11",
+    "rootBuyerV7CartAt": "2026-09-11T17:43:05.384Z",
+    "independentBrowserReplay": false,
+    "priorMainFailure": "Saved buyer receipt returned to MAIN with Add disabled; current MAIN snippet checksum still binds the captured body without selected_variant_id.",
+    "fiveMinimalistHeartAuLinks": {
+      "uxIndependentRenderedAcceptance": "NOT_VERIFIED",
+      "basis": "The current handoff identifies these five links as pending. Inspected UX buyer receipts cover Together Heart, not this five-link AU set.",
+      "sourceFeedPriceInference": "Source/feed corrections do not establish landing selection, country/currency or cart acceptance; no reassessment of Merchant's source repair is claimed."
+    }
+  },
+  "tests": {
+    "freshRerun": "SKIPPED: no candidate code or source changes; reused original dated V7 evidence.",
+    "v7ContextRegressions": {
+      "passed": 51,
+      "failed": 0,
+      "originalRunBy": "root"
+    },
+    "v7FullThemeCheck": {
+      "files": 527,
+      "diagnostics": 0,
+      "originalRunBy": "root"
+    },
+    "currentIndependentChecks": "Complete source checksum/size/pagination/role comparisons; protected release bindings; exact tool-description equality; owner-action wording."
+  },
+  "findings": [],
+  "blockingInconsistencies": [],
+  "openGates": {
+    "overallLiveUxOutcome": "UNFINISHED",
+    "publication": "OWNER_SHOPIFY_ADMIN_ACTION_REQUIRED",
+    "afterPublicationPrivateCheck": "Verify new MAIN identity and complete source.",
+    "publicAfterVerification": "BLOCKED_PUBLIC_HTTP_429_STOP; elapsed time alone is not clearance.",
+    "fiveAuBuyerAcceptance": "After publication and actual access clearance, test exact five links in intended AU/currency context, selected variant, displayed price and cart before Merchant's production AU submission.",
+    "merchantWriteOwnership": "Preserved; UX review grants no feed action.",
+    "publishedPageSpeed": "NOT_RUN",
+    "paymentAcceptance": "UNVERIFIED",
+    "conversionImpact": "NOT_MEASURED",
+    "canonicalCloseout": "Root-owned and waiting for parent coordination interval; no canonical edits by reviewer."
+  },
+  "nextOwnerAction": "Publish existing DLM UX Performance QA 2026-09-10 (137888792673) in Shopify Admin while preserving old MAIN for rollback.",
+  "continuationPrompt": "Check owner publication of existing V7 theme 137888792673, verify exact MAIN identity/source privately, and only after actual HTTP 429 clearance complete the five AU buyer checks and published PageSpeed. Keep V8 local and preserve Merchant ownership.",
+  "evidenceSha256": {
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/source-readback.json": "ff0f5ec5480764cfdd9af0d72dfbfc3f66b4c22a020e35735ac7bec9d8aa4483",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/source-validation.json": "a5aaa2e9ab57a5043597a5b51fa3eebfa0a28058d818d845a66ee679011790a1",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/publication-restriction.json": "533bf1b86ce05f77273cfa30827153a581865dd4b10741b47859114380fb3ce9",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/query.graphql": "ae8ff02b473be5fe1171ca6bfab3526a938b01a26cdc4e0a96e1f0fe1eb82e07",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/source-before.json": "64d0d970ca457ef683d86029ca4e704f93192ae11003710532fb0900685d22fc",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/protected-v7-files.json": "7540ca0dc532488d5ffa41ccae47f92a257cfef34a3e3e23b38a9fc78e511f18",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/final-release-manifest.json": "bb56268777cea883e7a127bda24a25391831a05ca5ca414f0d188229afcff291",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/final-release-readback.json": "1def707fb18bb99a0f61b3b8eab717392b2a26e4e970d9a08b7ecb9ff5833345",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/final-release-rollback.json": "0808f52c27e98aceb2364fd47b748495249aac8e59801b8fb5dd53a763559f40",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate-source-validation.json": "88cfa9770728f8d1aebc96430ce26be0bc67416a7b0795963da2bad7660b9715",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/final-checks.json": "7d8ffd109a89282c9aac716a781d81a21451e76a69428165fb89de339b94c3ca",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/variant-deep-link-20260911/buyer-verification.json": "1ba6b2754596c3d473a2d1afdb2499ee097816cca08eb2067afbe5c653758f0a",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/browser-after.json": "b54a1621abd8f3afc398799e4287904de0fb802a040c65e8ba9c6c3136cd1906",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/independent-after-review.json": "2464e71a5512594109dac588711bb3369b2d3fb00dcb693922f533bc0706e7bf",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/context-labels-results.txt": "8ec11c86582bf395393f30b15230035dbd40f3c1768347d6cf9d80303aad3265",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/theme-check-receipt.json": "f92c842d8d37e17fbf604ad9419b0a735d7ebabc649f7d6c7952c4db02d49379",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/OWNER_ACTION.md": "941196b8fc607c1e3b325940d6b61bf12756397a7923944c29b11149bf51e9b9"
+  }
+}

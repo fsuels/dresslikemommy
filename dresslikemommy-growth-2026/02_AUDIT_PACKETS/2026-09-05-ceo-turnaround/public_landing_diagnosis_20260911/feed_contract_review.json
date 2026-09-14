@@ -1,0 +1,208 @@
+{
+  "schema": "dlm.frozen_feed_contract_independent_review.v1",
+  "status": "STRUCTURAL_PASS__PRICE_SOURCE_REVIEW_REQUIRED",
+  "reviewed_at_utc": "2026-09-11T16:05:24.837111+00:00",
+  "reviewer": "/root/together_heart_source",
+  "source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-build/first_release_v2/us-en.tsv",
+    "sha256": "e96faeeb86a64898e3564581997ffde427bd593f061cf02a4dc19244520621c5",
+    "bytes": 17166462,
+    "encoding": "UTF-8; TSV parsed with csv.DictReader over StringIO, retaining quoted newlines",
+    "data_rows": 4923,
+    "columns": 18
+  },
+  "checks": {
+    "exact_expected_hash": true,
+    "rows_exactly_4923": true,
+    "all_unique_exact_Shopify_US_IDs": true,
+    "all_unique_variant_suffixes": true,
+    "parent_group_matches_ID_parent": true,
+    "all_numeric_variant_query_values_match_ID_suffix": true,
+    "all_parent_paths_consistent": true,
+    "core_required_fields_nonblank": true,
+    "all_prices_positive_numeric_USD": true,
+    "all_public_product_links_https_valid_shape": true,
+    "no_extra_query_parameters_or_fragments": true,
+    "all_image_links_https_valid_shape": true,
+    "all_tsv_records_structurally_complete": true
+  },
+  "counts": {
+    "unique_ids": 4923,
+    "duplicate_ids": 0,
+    "unique_variant_suffixes": 4923,
+    "parent_groups": 240,
+    "variants_per_parent_min": 4,
+    "variants_per_parent_max": 96,
+    "parent_path_conflicts": 0,
+    "availability": {
+      "in_stock": 4923
+    },
+    "currency": {
+      "USD": 4923
+    },
+    "excluded_destination": {
+      "Shopping_ads": 4923
+    },
+    "condition": {
+      "": 2976,
+      "new": 1947
+    }
+  },
+  "field_completeness": {
+    "core_required_fields_checked": [
+      "id",
+      "title",
+      "description",
+      "link",
+      "image_link",
+      "availability",
+      "price"
+    ],
+    "core_rows_with_blank_required_value": 0,
+    "all_column_blank_counts": {
+      "id": 0,
+      "item_group_id": 0,
+      "title": 0,
+      "description": 0,
+      "link": 0,
+      "image_link": 0,
+      "availability": 0,
+      "price": 0,
+      "condition": 2976,
+      "brand": 4923,
+      "gtin": 4798,
+      "mpn": 4923,
+      "identifier_exists": 4923,
+      "age_group": 180,
+      "gender": 192,
+      "color": 1027,
+      "size": 0,
+      "excluded_destination": 0
+    },
+    "rows_missing_at_least_one_age_gender_color_size": 1349,
+    "interpretation": "Zero blanks in the seven core fields; item_group_id and size are also complete. Condition is new or blank; its omission is not declared a violation for new merchandise. Age, gender, color and identifier gaps require product/category/manufacturer applicability; do not turn all blank fields into violations or fabricate values. This review did not query current Google requirements or account diagnostics."
+  },
+  "identifiers": {
+    "nonblank_gtin_rows": 125,
+    "distinct_nonblank_gtins": 123,
+    "invalid_gtin_length_or_checksum": 0,
+    "limit": "Checksum validity does not prove authentic assignment, product correspondence or Google acceptance."
+  },
+  "price_review": {
+    "threshold_usd": 1000,
+    "rows_at_or_above_threshold": 5,
+    "outlier_rows": [
+      {
+        "record_ordinal_including_header": 1844,
+        "id": "shopify_US_7230336729185_41883237220449",
+        "item_group_id": "shopify_US_7230336729185",
+        "title": "Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM",
+        "link": "https://www.dresslikemommy.com/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?variant=41883237220449",
+        "price": "229918.99 USD",
+        "size": "Adult 2XL",
+        "color": "White"
+      },
+      {
+        "record_ordinal_including_header": 1845,
+        "id": "shopify_US_7230336729185_41883237285985",
+        "item_group_id": "shopify_US_7230336729185",
+        "title": "Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM",
+        "link": "https://www.dresslikemommy.com/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?variant=41883237285985",
+        "price": "229918.99 USD",
+        "size": "Adult 2XL",
+        "color": "Blue"
+      },
+      {
+        "record_ordinal_including_header": 1846,
+        "id": "shopify_US_7230336729185_41883237318753",
+        "item_group_id": "shopify_US_7230336729185",
+        "title": "Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM",
+        "link": "https://www.dresslikemommy.com/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?variant=41883237318753",
+        "price": "229918.99 USD",
+        "size": "Adult 2XL",
+        "color": "Pink"
+      },
+      {
+        "record_ordinal_including_header": 1847,
+        "id": "shopify_US_7230336729185_41883238465633",
+        "item_group_id": "shopify_US_7230336729185",
+        "title": "Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM",
+        "link": "https://www.dresslikemommy.com/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?variant=41883238465633",
+        "price": "229918.99 USD",
+        "size": "Adult 2XL",
+        "color": "Black"
+      },
+      {
+        "record_ordinal_including_header": 1848,
+        "id": "shopify_US_7230336729185_41883238498401",
+        "item_group_id": "shopify_US_7230336729185",
+        "title": "Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM",
+        "link": "https://www.dresslikemommy.com/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?variant=41883238498401",
+        "price": "229918.99 USD",
+        "size": "Adult 2XL",
+        "color": "Red"
+      }
+    ],
+    "largest_distinct_prices_and_counts": [
+      {
+        "price": "229918.99 USD",
+        "rows": 5
+      },
+      {
+        "price": "39.99 USD",
+        "rows": 43
+      },
+      {
+        "price": "37.99 USD",
+        "rows": 8
+      },
+      {
+        "price": "36.99 USD",
+        "rows": 38
+      },
+      {
+        "price": "35.99 USD",
+        "rows": 81
+      },
+      {
+        "price": "34.99 USD",
+        "rows": 200
+      },
+      {
+        "price": "33.99 USD",
+        "rows": 37
+      },
+      {
+        "price": "32.99 USD",
+        "rows": 50
+      },
+      {
+        "price": "31.99 USD",
+        "rows": 384
+      },
+      {
+        "price": "29.99 USD",
+        "rows": 165
+      }
+    ],
+    "affected_parent_price_distribution": {
+      "shopify_US_7230336729185": {
+        "19.99 USD": 35,
+        "22.99 USD": 35,
+        "229918.99 USD": 5
+      }
+    },
+    "decision_changing_issue": "Five Adult 2XL variants of product7230336729185 literally declare229918.99 USD. All other feed rows are at or below39.99 USD. Compare these exact variant records with current Shopify/public source before deciding any correction; no parsing error or intended replacement price is assumed."
+  },
+  "limits": [
+    "Frozen-file review only; no browser, network, native, Shopify API, account/feed/theme or production action.",
+    "in_stock is the file declaration, not current Shopify salability or physical owned inventory.",
+    "Structural validity, identifier checks and Shopping_ads exclusion do not prove Merchant ingestion, approval, serving, account-review outcome or cause of account restriction.",
+    "No inference about UX-owned variant preselection defect or current price correctness.",
+    "Do not treat all18 schema columns as universally required.",
+    "No source values changed or offers excluded by this reviewer."
+  ],
+  "next_action": "Root compares the exact five price outliers with current public/Shopify evidence and coordinates any source-backed action with Merchant; UX retains the separate preselection defect.",
+  "checks_passed": 13,
+  "checks_total": 13
+}

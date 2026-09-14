@@ -1,0 +1,535 @@
+{
+  "schema_version": 1,
+  "status": "LIVE_VERIFIED_BOUNDED_SOURCE_REPAIR_PREPARATION_ONLY",
+  "task": "Exact existing pajamas guide source and actual linked destinations",
+  "owner": "/root/shopify_merchant_connection_repair",
+  "execution_owner": "/root",
+  "claim": "ACTIVE_GUIDE_SOURCE_AND_DEMAND_QUALIFICATION",
+  "store": {
+    "name": "Dress Like Mommy",
+    "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "article": {
+    "id": "gid://shopify/Article/559471886433",
+    "title": "Family Matching Pajamas: Our Top Picks for Cozy Nights",
+    "handle": "family-matching-pajamas-our-top-picks-for-cozy-nights",
+    "isPublished": true,
+    "publishedAt": "2024-12-08T13:00:00Z",
+    "updatedAt": "2026-03-25T08:33:18Z",
+    "blog": {
+      "id": "gid://shopify/Blog/41450437",
+      "handle": "news",
+      "title": "News"
+    },
+    "known_root_observed_url": "https://www.dresslikemommy.com/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+    "body_file": "pajamas_guide_extracted_before.html",
+    "body_unicode_codepoints": 6521,
+    "body_javascript_utf16_units": 6522,
+    "body_bytes": 6608,
+    "body_sha256": "a45f781b4239d58505bd6ea934c42902a44dd7fcb4e2a8a15b02f2452300652c",
+    "body_encoding": "UTF-8 exact captured string, no added terminal newline; final emoji makes JS UTF-16 length one larger than Unicode codepoint count."
+  },
+  "source_read": {
+    "start": "2026-09-06 16:07:14 UTC",
+    "end": "2026-09-06 16:07:15 UTC",
+    "tool": "mcp__codex_apps__shopify_graphql_query",
+    "query": "query PajamasGuideSource($query: String!, $first: Int!, $after: String) {\n  shop { name myshopifyDomain }\n  articles(first: $first, after: $after, query: $query) {\n    nodes { id title handle body isPublished publishedAt updatedAt blog { id handle title } }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+    "variables": {
+      "query": "handle:family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "first": 3,
+      "after": null
+    },
+    "returned_articles": 1,
+    "pageInfo": {
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjo1NTk0NzE4ODY0MzMsImxhc3RfdmFsdWUiOiI1NTk0NzE4ODY0MzMifQ=="
+    },
+    "graphql_errors": [],
+    "resource_fields": "Only shop name/domain and article ID/title/handle/body/publication/timestamps/blog identity; no author, comments, private orders, customers, supplier or credential fields."
+  },
+  "workflow": {
+    "skill": "/Users/fsuels/.codex/plugins/cache/openai-curated-remote/shopify/4.0.1/skills/shopify-admin/SKILL.md",
+    "schema_types": [
+      "QueryRoot",
+      "Article",
+      "Blog",
+      "Shop",
+      "ArticleConnection",
+      "PageInfo"
+    ],
+    "schema_field_verification": "Discovered articles.handle filter, Article.body/isPublished/publishedAt/updatedAt/blog and Shop identity fields before authoring.",
+    "skill_search_script": {
+      "command_query": "Article query handle blog body isPublished publishedAt updatedAt",
+      "result": "Search failed: fetch failed",
+      "exit_code": 1
+    },
+    "supported_connector_docs": {
+      "tool": "mcp__codex_apps__shopify_search_docs_chunks",
+      "prompt": "articles query handle filter Article body blog isPublished publishedAt updatedAt",
+      "result": "SUCCESS",
+      "primary_urls": [
+        "https://shopify.dev/docs/api/admin-graphql/2026-07/queries/articles",
+        "https://shopify.dev/docs/api/admin-graphql/2026-07/connections/ArticleConnection"
+      ]
+    },
+    "validation": {
+      "artifact_id": "8d027f61-d720-44ac-bbc5-0d963e20dfa4",
+      "revision": 1,
+      "structured": {
+        "tool": "mcp__codex_apps__shopify_validate_graphql_codeblocks",
+        "api": "admin",
+        "result": "VALID SUCCESS",
+        "required_scopes": [
+          "read_content",
+          "read_online_store_pages"
+        ]
+      },
+      "skill_script": {
+        "tool": "scripts/validate.mjs",
+        "model": "gpt-6",
+        "client": "codex",
+        "client_version": "unknown",
+        "result": "VALID SUCCESS",
+        "exit_code": 0
+      }
+    },
+    "failure_handling": "No browser, raw HTTP/storefront fetch, account, credential, proxy or authorization workaround. Schema, documentation and business reads used supported Shopify connector tools. The skill documentation search transport failure was recorded; query validation succeeded independently by both required validators before the one source query."
+  },
+  "linked_product_qualification": {
+    "distinct_product_links": 0,
+    "dedicated_product_reads": 0,
+    "result": "NOT_APPLICABLE_NO_PRODUCTS_LINKED",
+    "reason": "Article body contains collection links only. Root's independent rendered observation agrees. Do not invent products or expand to six unlinked products."
+  },
+  "collection_followup": [
+    {
+      "observation": {
+        "start": "2026-09-06 16:08:08 UTC",
+        "end": "2026-09-06 16:08:09 UTC"
+      },
+      "tool": "mcp__codex_apps__shopify_get_collection",
+      "arguments": {
+        "id": "gid://shopify/Collection/140957614177"
+      },
+      "source": {
+        "id": "gid://shopify/Collection/140957614177",
+        "title": "Family matching Pajamas",
+        "handle": "family-pajamas",
+        "collectionType": "smart",
+        "productsCount": 57,
+        "updatedAt": "2026-07-08T20:28:54Z",
+        "rules": {
+          "appliedDisjunctively": false,
+          "rules": [
+            {
+              "column": "TYPE",
+              "relation": "EQUALS",
+              "condition": "Family Matching"
+            },
+            {
+              "column": "TAG",
+              "relation": "EQUALS",
+              "condition": "Pajamas"
+            }
+          ]
+        },
+        "returned_sample_count": 20,
+        "products": [
+          {
+            "title": "Christmas Pajamas - Festive \"Joy, Love, Peace\" Pola... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Black"
+          },
+          {
+            "title": "Christmas Pajamas - Fun Grinch-Inspired Holiday Set | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Black"
+          },
+          {
+            "title": "Christmas Pajamas - Festive Christmas Tree & Holida... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Pajamas - Polar Bear & Santa Holiday Set | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Pajamas - \"Ho Ho Ho\" Santa Holiday Set | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Family Christmas Pajamas - Festive Dancing Santa Ma... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Green"
+          },
+          {
+            "title": "Christmas Pajamas - \"We Are Family\" Plaid Holiday Set | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Black"
+          },
+          {
+            "title": "Christmas Pajama Set - Festive Santa Gnome Print in... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Pajama Set - Festive \"Happy Holidays\" Sno... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Pajama Set - Cute Santa & Reindeer Print ... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / White"
+          },
+          {
+            "title": "Christmas Pajama Set - Red Buffalo Plaid with Reind... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Black"
+          },
+          {
+            "title": "Winter Pajama Set - \"Chill Out\" Snowman Print with ... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Blue"
+          },
+          {
+            "title": "Christmas Pajama Set - Naughty or Nice Grinch Desig... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Elf Pajama Set - Festive Green & Red Stri... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Green"
+          },
+          {
+            "title": "Christmas Pajama Set - Red & Green Plaid Reindeer P... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / White"
+          },
+          {
+            "title": "Christmas Pajama Set - Plaid Pants with Cute Reinde... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / White"
+          },
+          {
+            "title": "Christmas Pajama Set - Plaid Pants with Adorable Re... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / White"
+          },
+          {
+            "title": "Christmas Pajama Set - Festive Santa & \"Ho Ho Ho\" P... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Green"
+          },
+          {
+            "title": "Christmas Pajama Set - Festive Santa & Reindeer Pri... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Pajama Set - Santa & Reindeer Print in Cr... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S"
+          }
+        ]
+      },
+      "limitation": "Dedicated collection tool returns a bounded sample without a cursor. Counts include all statuses. Twenty ARCHIVED sample products do not establish status of the remainder, current public emptiness, or purchasability. No product GIDs returned, and no inferred ID matching or product lookups performed."
+    },
+    {
+      "observation": {
+        "start": "2026-09-06 16:08:08 UTC",
+        "end": "2026-09-06 16:08:09 UTC"
+      },
+      "tool": "mcp__codex_apps__shopify_get_collection",
+      "arguments": {
+        "id": "gid://shopify/Collection/321563557985"
+      },
+      "source": {
+        "id": "gid://shopify/Collection/321563557985",
+        "title": "Christmas Pajamas",
+        "handle": "christmas-pajamas",
+        "collectionType": "smart",
+        "productsCount": 41,
+        "updatedAt": "2026-07-08T20:28:55Z",
+        "rules": {
+          "appliedDisjunctively": false,
+          "rules": [
+            {
+              "column": "TAG",
+              "relation": "EQUALS",
+              "condition": "Christmas Pajamas"
+            }
+          ]
+        },
+        "returned_sample_count": 20,
+        "products": [
+          {
+            "title": "Christmas Pajamas - Festive \"Joy, Love, Peace\" Pola... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Black"
+          },
+          {
+            "title": "Christmas Pajamas - Fun Grinch-Inspired Holiday Set | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Black"
+          },
+          {
+            "title": "Christmas Pajamas - Festive Christmas Tree & Holida... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Pajamas - Polar Bear & Santa Holiday Set | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Pajamas - \"Ho Ho Ho\" Santa Holiday Set | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Family Christmas Pajamas - Festive Dancing Santa Ma... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Green"
+          },
+          {
+            "title": "Christmas Pajamas - \"We Are Family\" Plaid Holiday Set | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Black"
+          },
+          {
+            "title": "Christmas Pajama Set - Festive Santa Gnome Print in... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Pajama Set - Festive \"Happy Holidays\" Sno... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Pajama Set - Cute Santa & Reindeer Print ... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / White"
+          },
+          {
+            "title": "Christmas Pajama Set - Red Buffalo Plaid with Reind... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Black"
+          },
+          {
+            "title": "Winter Pajama Set - \"Chill Out\" Snowman Print with ... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Blue"
+          },
+          {
+            "title": "Christmas Pajama Set - Naughty or Nice Grinch Desig... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Elf Pajama Set - Festive Green & Red Stri... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Green"
+          },
+          {
+            "title": "Christmas Pajama Set - Red & Green Plaid Reindeer P... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / White"
+          },
+          {
+            "title": "Christmas Pajama Set - Plaid Pants with Cute Reinde... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / White"
+          },
+          {
+            "title": "Christmas Pajama Set - Plaid Pants with Adorable Re... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / White"
+          },
+          {
+            "title": "Christmas Pajama Set - Festive Santa & \"Ho Ho Ho\" P... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Green"
+          },
+          {
+            "title": "Christmas Pajama Set - Festive Santa & Reindeer Pri... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S / Red"
+          },
+          {
+            "title": "Christmas Pajama Set - Santa & Reindeer Print in Cr... | DLM",
+            "status": "ARCHIVED",
+            "representative_variant_title": "Mother S"
+          }
+        ]
+      },
+      "limitation": "Dedicated collection tool returns a bounded sample without a cursor. Counts include all statuses. Twenty ARCHIVED sample products do not establish status of the remainder, current public emptiness, or purchasability. No product GIDs returned, and no inferred ID matching or product lookups performed."
+    }
+  ],
+  "findings": [
+    {
+      "id": "GUIDE-SIZE-UP-CONFLICT",
+      "status": "VERIFIED_SOURCE_TEXT_AND_ROOT_RENDERED",
+      "evidence": [
+        "Kids: Size up slightly — cotton PJs shrink, and kids grow fast",
+        "Babies: Buy the next size up so they can grow into them"
+      ],
+      "assessment": "Blanket upsizing advice appears in the same article as snug-fit caution. Root separately reviews primary sleepwear guidance; this subagent makes no independent legal or product-compliance determination.",
+      "minimum_action": "Replace these two bullets with item-specific sizing/fit guidance reviewed against root's primary safety sources; preserve the rest unless the exact link repair is separately included."
+    },
+    {
+      "id": "GUIDE-NIGHTGOWN-DRESS-LINK",
+      "status": "VERIFIED_SOURCE_ANCHOR_AND_DESTINATION",
+      "evidence": "Anchor nightgowns points to /collections/dresses.",
+      "assessment": "The article directs sleepwear shoppers to the dress collection; suitability of dresses for sleepwear is not established. Do not claim a nightgown offer from this URL.",
+      "minimum_action": "After root's current destination verification, replace this paragraph with a truthful mother/daughter pajama description linked to the already observed /collections/pajamas; no nightgown, material or sleepwear-compliance promise."
+    },
+    {
+      "id": "GUIDE-HOLIDAY-FAMILY-DESTINATIONS",
+      "status": "BOUNDED_SOURCE_QUALIFICATION_ONLY",
+      "evidence": "Article links to family-pajamas once and christmas-pajamas twice. Both dedicated collections have twenty ARCHIVED items in the returned sample.",
+      "assessment": "Root must establish current public destination/assortment before changing or preserving these paths; do not equate member count with sellable products or declare all members archived.",
+      "minimum_action": "No automatic reroute or deletion on these samples alone."
+    },
+    {
+      "id": "GUIDE-BROAD-ROLE-MATERIAL-PROMISES",
+      "status": "UNVERIFIED_ARTICLE_CLAIMS",
+      "evidence": [
+        "Shop paragraph says styles for mom, dad, and kids.",
+        "Shop paragraph says matching sets from cozy flannel to soft cotton."
+      ],
+      "assessment": "No linked-product or supplier proof establishes these current offer claims. Preserve as recorded source for root's exact content decision; do not repeat them in proposed new copy.",
+      "minimum_action": "Do not broaden the release; root may constrain the offer paragraph only if current destination/source evidence warrants it."
+    }
+  ],
+  "root_supplied_evidence": {
+    "current_browser": "Root reports normal collection-to-guide click; the same eight broad shopping paths and both size-up clauses are visibly rendered. Subagent did not replay browser.",
+    "primary_guidance": "Root reports official CPSC and Health Canada primary guidance supporting size-appropriate sleepwear against blanket child upsizing. Root owns verification and any resulting exact copy; subagent did not browse these pages or certify DLM products.",
+    "guide_demand": "Analytics owns the independent exact-page GSC read. No guide demand is inferred from collection307 impressions."
+  },
+  "activity": {
+    "business_graphql_queries": 1,
+    "dedicated_collection_reads": 2,
+    "dedicated_product_reads": 0,
+    "browser_actions": 0,
+    "public_http_requests": 0,
+    "external_mutations": 0,
+    "canonical_edits": 0
+  },
+  "limits": [
+    "Complete article source and all body links were read; this is not a whole-store, template-injected-link or product-catalog audit.",
+    "No product URL occurs in article.body. General style examples are not source-qualified current inventory.",
+    "Published=true does not prove search indexing, ranking, any market checkout, product-safety certification or fulfillment capability.",
+    "Collection product samples are incomplete and offer no pagination cursor; no expansion was attempted.",
+    "Current guide image and actual product images were not independently audited here.",
+    "No safety/legal compliance, material/fiber, delivery, inventory, bestseller, scarcity, sales or profitability claim is verified by this source audit."
+  ],
+  "internal_links": [
+    {
+      "href": "/collections/pajamas",
+      "text": "family matching pajamas",
+      "ordinal": 1,
+      "internal": true,
+      "path": "/collections/pajamas",
+      "kind": "collection",
+      "source": "article.body"
+    },
+    {
+      "href": "/collections/pajamas",
+      "text": "pajama collection",
+      "ordinal": 2,
+      "internal": true,
+      "path": "/collections/pajamas",
+      "kind": "collection",
+      "source": "article.body"
+    },
+    {
+      "href": "/collections/dresses",
+      "text": "nightgowns",
+      "ordinal": 3,
+      "internal": true,
+      "path": "/collections/dresses",
+      "kind": "collection",
+      "source": "article.body"
+    },
+    {
+      "href": "/collections/christmas-pajamas",
+      "text": "Christmas matching pajamas",
+      "ordinal": 4,
+      "internal": true,
+      "path": "/collections/christmas-pajamas",
+      "kind": "collection",
+      "source": "article.body"
+    },
+    {
+      "href": "/collections/matching-outfits",
+      "text": "matching outfits",
+      "ordinal": 5,
+      "internal": true,
+      "path": "/collections/matching-outfits",
+      "kind": "collection",
+      "source": "article.body"
+    },
+    {
+      "href": "/collections/pajamas",
+      "text": "matching pajama collection",
+      "ordinal": 6,
+      "internal": true,
+      "path": "/collections/pajamas",
+      "kind": "collection",
+      "source": "article.body"
+    },
+    {
+      "href": "/collections/christmas-pajamas",
+      "text": "Christmas pajamas",
+      "ordinal": 7,
+      "internal": true,
+      "path": "/collections/christmas-pajamas",
+      "kind": "collection",
+      "source": "article.body"
+    },
+    {
+      "href": "/collections/family-pajamas",
+      "text": "family matching pajamas",
+      "ordinal": 8,
+      "internal": true,
+      "path": "/collections/family-pajamas",
+      "kind": "collection",
+      "source": "article.body"
+    }
+  ],
+  "link_summary": {
+    "anchors": 8,
+    "unique_destinations": 5,
+    "by_href_count": {
+      "/collections/pajamas": 3,
+      "/collections/dresses": 1,
+      "/collections/christmas-pajamas": 2,
+      "/collections/matching-outfits": 1,
+      "/collections/family-pajamas": 1
+    },
+    "distinct_products": 0,
+    "distinct_guides": 0,
+    "all_directly_in_article_body": true
+  },
+  "local_validation": {
+    "result": "PASS",
+    "checks": [
+      "exact store/article/blog identity",
+      "one exact article and complete pagination",
+      "8 HTMLParser anchor links",
+      "5 distinct internal collection destinations",
+      "zero product and guide URLs",
+      "all link text/source captured",
+      "6521 Unicode codepoints / 6522 UTF-16 units / 6608 UTF-8 bytes",
+      "no external URL or script persisted",
+      "exact UTF-8 body bytes saved without added newline"
+    ]
+  }
+}

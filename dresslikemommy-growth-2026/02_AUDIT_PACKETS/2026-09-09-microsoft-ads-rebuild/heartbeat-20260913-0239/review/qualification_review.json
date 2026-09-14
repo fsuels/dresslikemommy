@@ -1,0 +1,444 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-13T03:07:51.349509+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "classification": "VERIFY",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewed_decision": "HOLD_WITH_EVIDENCE_NO_CAMPAIGN_CHANGE",
+  "input_sha256": {
+    "READBACK.md": "f3c2cf4b0709c076c38425e3080b8fee7451a0d788af210de0ffab30768b97a2",
+    "native_scenarios.json": "83413a896d3c6d0435920c4f41b4450b75078e1f712eae6afc663087de31fa43",
+    "download_manifest.json": "77a86e5f77a79e949d6f3ffb180e3f2cf83102ce6dc81375c97129cee62c9252"
+  },
+  "raw_csv_checks": [
+    {
+      "file": "us_broad_probe.csv",
+      "sha256": "b94f42ecc9cafb0f3ff65bbcdc28d696ebdb0b6aa914a8320c62b33804ab685d",
+      "bytes": 471,
+      "rows": 3,
+      "pass": true
+    },
+    {
+      "file": "us_mixed_match_probe.csv",
+      "sha256": "bd56e20c819e4c997812d0c0a1bd1c1247df95d5577cb2c73ff600d8a57f1cda",
+      "bytes": 824,
+      "rows": 6,
+      "pass": true
+    },
+    {
+      "file": "us_exact_forecast.csv",
+      "sha256": "fd4ce7ad899e67db770e274593099fafaceecdd8cdecf128eae81370dd43fe1a",
+      "bytes": 477,
+      "rows": 3,
+      "pass": true
+    },
+    {
+      "file": "de_exact_forecast.csv",
+      "sha256": "d9ede968efe60ad3f86605ff720505636c194bc56254798397209b312ea93eb5",
+      "bytes": 431,
+      "rows": 3,
+      "pass": true
+    },
+    {
+      "file": "de_saved_keyword_history.csv",
+      "sha256": "5795223ff0436f43cf3e52828f0580bfb1017b5950f5a393c39bcce89aa11209",
+      "bytes": 751,
+      "rows": 3,
+      "pass": true
+    },
+    {
+      "file": "us_saved_keyword_history.csv",
+      "sha256": "ca4d1c0ffb246b0c90ad6aee120bc8d4a5672c924c225f88c4a0abbf80046057",
+      "bytes": 1003,
+      "rows": 3,
+      "pass": true
+    },
+    {
+      "file": "us_reserve_keyword_history.csv",
+      "sha256": "b66aeb465ab45bee52063faab65eb29a83a8226da7dda1fb842cebe766453147",
+      "bytes": 1019,
+      "rows": 4,
+      "pass": true
+    },
+    {
+      "file": "us_reserve_exact_forecast.csv",
+      "sha256": "e0c00f90d7a1e9876268f7d86f37c7c76686e40658f924bae395374dd99c4452",
+      "bytes": 565,
+      "rows": 4,
+      "pass": true
+    },
+    {
+      "file": "de_reserve_keyword_history.csv",
+      "sha256": "beee4a6e4cf61fb54c3a40acc7350702b9131162a40ee43202f6818f84bdb3c2",
+      "bytes": 861,
+      "rows": 4,
+      "pass": true
+    },
+    {
+      "file": "de_reserve_exact_forecast.csv",
+      "sha256": "837f7f431a59f7ad328f40d78bf6b3b2bf460d3c0881a3d4fe8990f9c788e1ae",
+      "bytes": 583,
+      "rows": 4,
+      "pass": true
+    }
+  ],
+  "selected_library_lines_sha256": {
+    "5": "96f4c5a956f74bd08b9b99854067270e64010247ea0576bfe926ea4277108fbe",
+    "6": "24dac9d4efbf51c68ef934a3dd932fc75ea86b3a2503c9b1f0965097e54c36bc",
+    "7": "ca5fb93477948ce83b37be11c13ece789294940613e8000a444a5886d291511f",
+    "8": "03b4b9fbfe3c3f71602a7e572bcebe01e1f9eabf119785960b418affe947f0af",
+    "61": "a6ac0847b1e41782652321f2c7b0e5468f931d45363d68e4e047cba2682d4e26",
+    "62": "0a4a5c24e1304cbbcdede507eaf9ba26420df280c85968dd33f03196ee54d311",
+    "63": "86785b1d1df2a26e6f22a70d08e6dced7cda5833b3471eeb9fc94bd540c7005c",
+    "64": "0ca6d75c5db6a053af78ea0cd6589bf5c2684a12dc0ee11b24a6f1bb25eba9fa"
+  },
+  "check_count": 35,
+  "checks": [
+    {
+      "name": "three_frozen_input_hashes",
+      "pass": true,
+      "evidence": {
+        "READBACK.md": "f3c2cf4b0709c076c38425e3080b8fee7451a0d788af210de0ffab30768b97a2",
+        "native_scenarios.json": "83413a896d3c6d0435920c4f41b4450b75078e1f712eae6afc663087de31fa43",
+        "download_manifest.json": "77a86e5f77a79e949d6f3ffb180e3f2cf83102ce6dc81375c97129cee62c9252"
+      }
+    },
+    {
+      "name": "target_and_transcribed_provenance",
+      "pass": true,
+      "evidence": "Root native CUA AX observations and ten unmodified native CSV downloads; independent review is separate and is not an independent live replay."
+    },
+    {
+      "name": "ten_unique_native_csv_files",
+      "pass": true,
+      "evidence": "Ten manifest entries equal all ten CSVs in the packet."
+    },
+    {
+      "name": "raw_hash_bytes_rows_us_broad_probe.csv",
+      "pass": true,
+      "evidence": {
+        "file": "us_broad_probe.csv",
+        "sha256": "b94f42ecc9cafb0f3ff65bbcdc28d696ebdb0b6aa914a8320c62b33804ab685d",
+        "bytes": 471,
+        "rows": 3,
+        "pass": true
+      }
+    },
+    {
+      "name": "raw_hash_bytes_rows_us_mixed_match_probe.csv",
+      "pass": true,
+      "evidence": {
+        "file": "us_mixed_match_probe.csv",
+        "sha256": "bd56e20c819e4c997812d0c0a1bd1c1247df95d5577cb2c73ff600d8a57f1cda",
+        "bytes": 824,
+        "rows": 6,
+        "pass": true
+      }
+    },
+    {
+      "name": "raw_hash_bytes_rows_us_exact_forecast.csv",
+      "pass": true,
+      "evidence": {
+        "file": "us_exact_forecast.csv",
+        "sha256": "fd4ce7ad899e67db770e274593099fafaceecdd8cdecf128eae81370dd43fe1a",
+        "bytes": 477,
+        "rows": 3,
+        "pass": true
+      }
+    },
+    {
+      "name": "raw_hash_bytes_rows_de_exact_forecast.csv",
+      "pass": true,
+      "evidence": {
+        "file": "de_exact_forecast.csv",
+        "sha256": "d9ede968efe60ad3f86605ff720505636c194bc56254798397209b312ea93eb5",
+        "bytes": 431,
+        "rows": 3,
+        "pass": true
+      }
+    },
+    {
+      "name": "raw_hash_bytes_rows_de_saved_keyword_history.csv",
+      "pass": true,
+      "evidence": {
+        "file": "de_saved_keyword_history.csv",
+        "sha256": "5795223ff0436f43cf3e52828f0580bfb1017b5950f5a393c39bcce89aa11209",
+        "bytes": 751,
+        "rows": 3,
+        "pass": true
+      }
+    },
+    {
+      "name": "raw_hash_bytes_rows_us_saved_keyword_history.csv",
+      "pass": true,
+      "evidence": {
+        "file": "us_saved_keyword_history.csv",
+        "sha256": "ca4d1c0ffb246b0c90ad6aee120bc8d4a5672c924c225f88c4a0abbf80046057",
+        "bytes": 1003,
+        "rows": 3,
+        "pass": true
+      }
+    },
+    {
+      "name": "raw_hash_bytes_rows_us_reserve_keyword_history.csv",
+      "pass": true,
+      "evidence": {
+        "file": "us_reserve_keyword_history.csv",
+        "sha256": "b66aeb465ab45bee52063faab65eb29a83a8226da7dda1fb842cebe766453147",
+        "bytes": 1019,
+        "rows": 4,
+        "pass": true
+      }
+    },
+    {
+      "name": "raw_hash_bytes_rows_us_reserve_exact_forecast.csv",
+      "pass": true,
+      "evidence": {
+        "file": "us_reserve_exact_forecast.csv",
+        "sha256": "e0c00f90d7a1e9876268f7d86f37c7c76686e40658f924bae395374dd99c4452",
+        "bytes": 565,
+        "rows": 4,
+        "pass": true
+      }
+    },
+    {
+      "name": "raw_hash_bytes_rows_de_reserve_keyword_history.csv",
+      "pass": true,
+      "evidence": {
+        "file": "de_reserve_keyword_history.csv",
+        "sha256": "beee4a6e4cf61fb54c3a40acc7350702b9131162a40ee43202f6818f84bdb3c2",
+        "bytes": 861,
+        "rows": 4,
+        "pass": true
+      }
+    },
+    {
+      "name": "raw_hash_bytes_rows_de_reserve_exact_forecast.csv",
+      "pass": true,
+      "evidence": {
+        "file": "de_reserve_exact_forecast.csv",
+        "sha256": "837f7f431a59f7ad328f40d78bf6b3b2bf460d3c0881a3d4fe8990f9c788e1ae",
+        "bytes": 583,
+        "rows": 4,
+        "pass": true
+      }
+    },
+    {
+      "name": "isolated_exact_US_SAVED",
+      "pass": true,
+      "evidence": {
+        "file": "us_exact_forecast.csv",
+        "keywords": [
+          "mother daughter matching dresses",
+          "mother daughter dresses that match",
+          "mommy and me matching dresses"
+        ],
+        "rows": 3
+      }
+    },
+    {
+      "name": "isolated_exact_DE_SAVED",
+      "pass": true,
+      "evidence": {
+        "file": "de_exact_forecast.csv",
+        "keywords": [
+          "mama tochter kleider",
+          "gleiche kleider mutter tochter",
+          "partnerlook kleider mutter tochter"
+        ],
+        "rows": 3
+      }
+    },
+    {
+      "name": "isolated_exact_US_RESERVE",
+      "pass": true,
+      "evidence": {
+        "file": "us_reserve_exact_forecast.csv",
+        "keywords": [
+          "mother daughter matching dresses for photos",
+          "mommy and me dresses for pictures",
+          "mom and daughter matching dresses",
+          "mommy and me dresses"
+        ],
+        "rows": 4
+      }
+    },
+    {
+      "name": "isolated_exact_DE_RESERVE",
+      "pass": true,
+      "evidence": {
+        "file": "de_reserve_exact_forecast.csv",
+        "keywords": [
+          "mutter tochter kleider fotoshooting",
+          "mama und tochter partnerlook kleider",
+          "kleider für mutter und tochter",
+          "passende kleider mutter tochter"
+        ],
+        "rows": 4
+      }
+    },
+    {
+      "name": "four_final_scenarios_fourteen_rows",
+      "pass": true,
+      "evidence": "3 US saved + 3 DE saved + 4 US reserve + 4 DE reserve; only final Exact files included."
+    },
+    {
+      "name": "country_budget_and_negative_scenario_inputs",
+      "pass": true,
+      "evidence": "Country/budget/quoted exclusions are native AX transcriptions; negative match-type metadata is unproved."
+    },
+    {
+      "name": "language_presence_strategy_network_limits",
+      "pass": true,
+      "evidence": "Forecast is not a recreation of saved language, presence-only, bidding strategy, or Audience exclusion."
+    },
+    {
+      "name": "broad_and_mixed_probes_excluded",
+      "pass": true,
+      "evidence": "3 Broad diagnostic rows and 6 mixed diagnostic rows remain separate from 14 final rows."
+    },
+    {
+      "name": "history_month_columns_de_saved_keyword_history.csv",
+      "pass": true,
+      "evidence": [
+        "Sep 2025",
+        "Oct 2025",
+        "Nov 2025",
+        "Dec 2025",
+        "Jan 2026",
+        "Feb 2026",
+        "Mar 2026",
+        "Apr 2026",
+        "May 2026",
+        "Jun 2026",
+        "Jul 2026",
+        "Aug 2026"
+      ]
+    },
+    {
+      "name": "history_month_columns_us_saved_keyword_history.csv",
+      "pass": true,
+      "evidence": [
+        "Sep 2025",
+        "Oct 2025",
+        "Nov 2025",
+        "Dec 2025",
+        "Jan 2026",
+        "Feb 2026",
+        "Mar 2026",
+        "Apr 2026",
+        "May 2026",
+        "Jun 2026",
+        "Jul 2026",
+        "Aug 2026"
+      ]
+    },
+    {
+      "name": "history_month_columns_us_reserve_keyword_history.csv",
+      "pass": true,
+      "evidence": [
+        "Sep 2025",
+        "Oct 2025",
+        "Nov 2025",
+        "Dec 2025",
+        "Jan 2026",
+        "Feb 2026",
+        "Mar 2026",
+        "Apr 2026",
+        "May 2026",
+        "Jun 2026",
+        "Jul 2026",
+        "Aug 2026"
+      ]
+    },
+    {
+      "name": "history_month_columns_de_reserve_keyword_history.csv",
+      "pass": true,
+      "evidence": [
+        "Sep 2025",
+        "Oct 2025",
+        "Nov 2025",
+        "Dec 2025",
+        "Jan 2026",
+        "Feb 2026",
+        "Mar 2026",
+        "Apr 2026",
+        "May 2026",
+        "Jun 2026",
+        "Jul 2026",
+        "Aug 2026"
+      ]
+    },
+    {
+      "name": "fourteen_historical_terms_match_forecasts",
+      "pass": true,
+      "evidence": "14 terms, each with September 2025 through August 2026 columns."
+    },
+    {
+      "name": "seven_available_and_seven_unavailable_monthly_ranges",
+      "pass": true,
+      "evidence": "All seven summarized monthly ranges match CSVs; seven remaining average-volume values are literal dashes."
+    },
+    {
+      "name": "unavailable_and_rounding_not_coerced",
+      "pass": true,
+      "evidence": "Literal dash, NaN and NaN% preserved. This verifier does not numerically sum missing or non-finite values."
+    },
+    {
+      "name": "us_fractional_chart_versus_rounded_csv",
+      "pass": true,
+      "evidence": "AX chart 0.10 weekly clicks and exported row 0 clicks / USD0.01 coexist; neither is measured traffic or exact zero demand."
+    },
+    {
+      "name": "suggested_bid_and_competition_not_cpc_floor_or_authority",
+      "pass": true,
+      "evidence": "Only mommy and me dresses has a finite suggested bid, USD0.50; index and bid are separate fields. UI High/Medium labels are root transcriptions, not independently derived thresholds."
+    },
+    {
+      "name": "eight_selected_library_rows_and_four_phrase_variants",
+      "pass": true,
+      "evidence": "Exact model variants do not change the four Phrase library records. All eight source URLs are broader mommy-and-me collections, not reviewed dresses destinations."
+    },
+    {
+      "name": "history_not_exact_volume_or_paid_performance",
+      "pass": true,
+      "evidence": "Historical ranges, weekly models and measured economics remain separate."
+    },
+    {
+      "name": "planner_actions_and_no_production_action",
+      "pass": true,
+      "evidence": "11 planner Saves, 4 temporary-row Deletes and 10 exports; zero production/contact/order/purchase actions as root recorded, not independently live certified."
+    },
+    {
+      "name": "hold_and_authority_remain_qualified",
+      "pass": true,
+      "evidence": "No import, enablement or higher live bid follows from this research; existing parent owner action is untouched."
+    },
+    {
+      "name": "input_whitespace_and_parse",
+      "pass": true,
+      "evidence": "Three frozen input files parse/read without trailing whitespace."
+    }
+  ],
+  "findings": [
+    "All ten raw CSV hashes, byte counts and row counts match the manifest: 37 downloaded rows = 9 diagnostic + 14 final forecast + 14 historical rows.",
+    "Four final scenarios contain only 14 Exact keywords at the USD0.15 modelling input. Four history files contain the same 14 terms and 12 monthly columns.",
+    "The US reserve chart reports a fractional forecast while the CSV rounds clicks to zero and retains USD0.01 estimated spend. Missing/non-finite fields do not prove zero demand.",
+    "All languages, absent presence controls, estimator strategy, quoted-negative metadata and the network label prevent exact saved-campaign or Audience-exclusion certification.",
+    "Four reserve Phrase rows were modelled as Exact variants; the broader library URLs would need destination qualification before any future import."
+  ],
+  "adverse_alternative": {
+    "premise_challenged": "A weak USD0.15 Exact planner forecast proves the saved campaigns or markets cannot work.",
+    "credible_alternative": "An additional planner-only sensitivity scenario at a different modelling bid or match type could show a materially different volume curve. Different language/presence/strategy settings and Exact narrowing may also change actual eligibility. The current packet did not test those counterfactuals.",
+    "decision": "This uncertainty supports a bounded hold, not a declaration of zero demand, a USD0.50 auction floor, automatic bid increases, market abandonment or reserve imports. Any future paid experiment still needs measurement, economics and exact authority."
+  },
+  "limits": [
+    "Independent verification is local file/hash/identity/arithmetic/interpretation review only. Root native AX observations and action counts were not independently replayed live.",
+    "Official-document URLs in the packet were not reopened in this bounded review; no new primary-source verification is claimed.",
+    "Monthly ranges are historical demand rather than Exact forecasts; no current auction, conversion, CPA, ROAS, profit or purchase acceptance is established.",
+    "No broader source library, canonical files, automation state or live account preservation was reread in this assignment.",
+    "No external action is approved by this review."
+  ],
+  "next_action": "Retain the scoped hold; follow the existing supported consent/purchase/economics qualification path. Reconsider only on decision-changing evidence; no new owner question."
+}

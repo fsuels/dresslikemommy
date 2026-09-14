@@ -1,0 +1,86 @@
+{
+  "decision_id": "DLM-DEC-2026-09-06-GUIDE-LOCALIZED-SEO",
+  "supersedes": "pajamas_guide_meta_execution_plan.json for execution only; earlier source/copy/technical reviews preserved. English-only release not executed because independent review and fresh French source revealed locale-fallback risk.",
+  "created_at": "2026-09-06T18:01:35.380234+00:00",
+  "scope": {
+    "article": "gid://shopify/Article/559471886433",
+    "primary_field": "global.description_tag",
+    "primary_candidate": {
+      "metafields": [
+        {
+          "ownerId": "gid://shopify/Article/559471886433",
+          "namespace": "global",
+          "key": "description_tag",
+          "type": "single_line_text_field",
+          "value": "Explore family matching pajama styles and sizing tips. Browse mommy-and-me pajamas, check each person's size, and confirm what each selection includes.",
+          "compareDigest": null
+        }
+      ]
+    },
+    "localized_field": "meta_description on same Article, ONLY if exact translatableResource after primary creation exposes this key with its live digest",
+    "localized_candidate_file": "pajamas_guide_meta_localized_candidate.json",
+    "release_locales": [
+      "ar",
+      "cs",
+      "da",
+      "de",
+      "el",
+      "es",
+      "fi",
+      "fr",
+      "he",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "no",
+      "pt-BR",
+      "ro"
+    ],
+    "held_locales": [
+      "pl",
+      "ru",
+      "sv"
+    ],
+    "held_meaning": "No new localized description for pl/ru/sv because their body is English; these routes deliberately use the new primary English fallback. Native-language guide-content implication is avoided.",
+    "preserve": "All title/body/summary/handle/publication values and existing translations, title_tag absence, all other resources and paid controls."
+  },
+  "authority": "Direct current owner automatic implementation of reviewed reversible sales-moving organic marketing repair. Root sole writer; independent review is verification, not approval or spend authority. No repeated owner permission needed.",
+  "source_fields": "All20nonprimary locales currently have zero meta_description overrides.17have translatedbody;2titleonly;1no translation. Fresh21normalMAINhead baselines captured.",
+  "sequence": [
+    "Freeze candidate/hash/review; confirm exact current article and all locale source unchanged, no concurrentwriter.",
+    "Create primary global.description_tag via reviewed schema-validated metafieldsSet with compareDigest:null. Onefield only.",
+    "Immediately requery Article and translatableResource. Require exact primary value, preserved old fields and fresh meta_description key/digest. No guessed digest or alternatefield path.",
+    "Register exactly17 reviewed meta_description translations on sameArticle, using live digest; no market-specific override and no existing translation overwrite.",
+    "Separate fullAPI after read verifies17exactnewmetadata translations, alloldtranslationsunchanged and primary/sourcefields preserved.",
+    "Read all21normalMAINroute heads:17matchinglocalizeddescriptions,4Englishdescription, alltitles/canonicals/language attributes identical. Stop and restore on wrong render."
+  ],
+  "validators": "Same exactprimary mutation already passed local+connector. Full-locale query, translationregister and two rollback paths schema-discovered and validated. Local4validator receipt retained.",
+  "rollback": {
+    "when": "Any failed mutation/verification before complete release, wrong-language/default fallback, misleading copy or unintended source change.",
+    "method": [
+      "Read exact added fields and currentvalues/digests; stop on drift or concurrentwriter.",
+      "Remove only actually added meta_description translations, only submitted release locales, via validated translationsRemove when any exist.",
+      "Delete only newly created primary global.description_tag via validated metafieldsDelete to restore absent/default.",
+      "Separate source and normal affectedlocale head readbacks restore exact before."
+    ],
+    "atomicity": "translationsRegister and delete lack compare-and-set on prior translation values/deletion. Solewriter plus immediate source guard; never overwrite/delete on ambiguity. Primary creation itself uses compareDigest:null.",
+    "prohibited": "Never remove existing title/body or othertranslationkeys. Never write a guessed320character source field. No bypass of platform refusal; if rollback is blocked report exactpartial state."
+  },
+  "independent_verifier": "/root/current_ga4_sales_reconciliation did not author copy or build/execute mutation",
+  "hypothesis": "Accurate complete summaries may increase qualified organic click-through to an existing shopping guide. Publication/metadata does not prove Google snippet, ranking, visits or sales.",
+  "measure": "Firstfullweek September7–13,2026 with exactGSCcutoff/page/query and downstreamretainedpurchases. BaselineAug7–Sep3:223impressions,0clicks,position13.3; prior121/0/16.9. No guaranteed statistical lift.",
+  "sources": {
+    "pajamas_guide_meta_localized_candidate.json": "c199ad6c58f1a40d78ee268335528ac86542fbed393d30eb8f3cb73d9ba984c1",
+    "pajamas_guide_meta_all_locale_before.json": "5cf39cda08f8232b3056ca41e822d70135e56c8d19a5560692a3a9dee05011be",
+    "pajamas_guide_meta_locale_heads_before.json": "f2788c7a5968b8447f53ed6015c5e5c8be632c3cf80c989ad2cbd63e032ee850",
+    "pajamas_guide_meta_variables.json": "5b2216673fee8d2df932ed89b884b1a6dff668409b42070a85863773b4cc0c00",
+    "pajamas_guide_meta_mutation.graphql": "d6c0d99c08ef43b085ab79f5a84e36bc476b8bd6ac1f2f8c9ee275da71720482",
+    "pajamas_guide_meta_localized_mutation.graphql": "6a257ee6cc1cfa82c8411ac9a6931da4029d61e01ebcb1646cde959ce7bcf289",
+    "pajamas_guide_meta_localized_rollback.graphql": "1408fdc46c671bc43a722eda1909d8445c4ff531590d6c2bc6a6a70925fdfb5b",
+    "pajamas_guide_meta_rollback.json": "7fb79656711e04e7078e3e7729e0834ee9b49ebcad413ca0de4b7dd0736c502b",
+    "pajamas_guide_meta_localized_validators.json": "26faa534f144c5d09678015207e9696479bf087bfc97f8196ba227ba4afdc487",
+    "pajamas_guide_meta_independent_review.json": "8b263e64733a87d33ee2df94828f6a6fdedd79f8488dd536ada64b7cc62c62c2"
+  }
+}

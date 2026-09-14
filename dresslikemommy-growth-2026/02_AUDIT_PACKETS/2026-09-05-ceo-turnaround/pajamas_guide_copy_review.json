@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/historical_google_access_paths",
+  "status": "PASS_PREWRITE",
+  "article_id": "gid://shopify/Article/559471886433",
+  "scope": "Eight exact article-body replacements only; no external mutation performed by reviewer.",
+  "checks": {
+    "eight_distinct_replacements": true,
+    "all_before_unique": true,
+    "all_after_unique": true,
+    "original_ranges_disjoint": true,
+    "forward_exact": true,
+    "inverse_exact": true,
+    "unmodified_spans_exact": true,
+    "before_plan_hash": true,
+    "candidate_plan_hash": true,
+    "source_body_hash": true,
+    "source_body_filename": true,
+    "source_byte_and_unicode_lengths": true,
+    "exact_article_identity": true,
+    "source_published": true,
+    "public_url_matches": true,
+    "public_wrong_nightgown_route": true,
+    "public_child_upsizing": true,
+    "public_baby_upsizing": true,
+    "public_empty_route_link": true,
+    "christmas_currently_empty": true,
+    "family_redirect_to_pajamas": true,
+    "pajamas_populated": true,
+    "candidate_removes_wrong_direct_routes": true,
+    "candidate_no_blanket_upsizing": true,
+    "cpsc_primary_link": true,
+    "html_balanced": true,
+    "article_gsc_identity": true,
+    "article_metrics_not_collection": true,
+    "body_only_scope": true,
+    "rollback_conflict_guard": true,
+    "skill_validator_pass": true
+  },
+  "check_count": 31,
+  "checks_passed": 31,
+  "replacement_receipts": [
+    {
+      "id": "nightgown_destination",
+      "before_occurrences": 1,
+      "after_occurrences": 1
+    },
+    {
+      "id": "children_fit_guidance",
+      "before_occurrences": 1,
+      "after_occurrences": 1
+    },
+    {
+      "id": "empty_christmas_destination",
+      "before_occurrences": 1,
+      "after_occurrences": 1
+    },
+    {
+      "id": "child_size",
+      "before_occurrences": 1,
+      "after_occurrences": 1
+    },
+    {
+      "id": "baby_size",
+      "before_occurrences": 1,
+      "after_occurrences": 1
+    },
+    {
+      "id": "availability_check",
+      "before_occurrences": 1,
+      "after_occurrences": 1
+    },
+    {
+      "id": "shopping_cta",
+      "before_occurrences": 1,
+      "after_occurrences": 1
+    },
+    {
+      "id": "closing_assortment",
+      "before_occurrences": 1,
+      "after_occurrences": 1
+    }
+  ],
+  "bytes": {
+    "before": 6608,
+    "candidate": 6931,
+    "unchanged_outside_replacements": 5083
+  },
+  "hashes": {
+    "pajamas_guide_copy_plan.json": "7b58186f4fb6556f4800a81791e1bea7064dadb585ed6102b95a9a573dd5ca1b",
+    "pajamas_guide_extracted_before.html": "a45f781b4239d58505bd6ea934c42902a44dd7fcb4e2a8a15b02f2452300652c",
+    "pajamas_guide_candidate.html": "01c2e9ab6b5c02346c0653bcc526205b5d52c856679e4f8446698999ba53522d",
+    "pajamas_guide_source.json": "dd88364bd82ef3c1bfdfc3250f51fc0c3dd7d630cf8079f69051d776ebc0ae22",
+    "pajamas_guide_destination_reads.json": "e4d0b313880bbc58ca67e026fbb15ed0d7f7ced8a9edfae123e673cddbf1e602",
+    "pajamas_guide_public_before.json": "c7387ae29fe1d5e5f5a973311be776640264be2d07c761585102512cfe3582cb",
+    "pajamas_guide_gsc_readback.json": "800869b7c4b93ac7f026408e7593aa59b823ed4a2a470012c575ac395ceec926",
+    "pajamas_guide_skill_validation.json": "394436fb51f00d5506e6c74dc752b7b0ee9167ee5d42d07bfbfe73c1bdfec4f7"
+  },
+  "primary_source_review": {
+    "method": "Independent read-only web retrieval of the two exact public primary sources; no browser/account or external mutation.",
+    "cpsc": {
+      "url": "https://www.cpsc.gov/s3fs-public/5132.pdf",
+      "support": "Warns against oversized loose-fitting cotton/cotton-blend daywear for sleep; explains intended tight fit and labels. Includes age-specific rule exceptions, so no blanket legal-compliance claim is made."
+    },
+    "health_canada": {
+      "url": "https://www.canada.ca/en/health-canada/services/safe-sleep/children-sleepwear.html",
+      "support": "Recommends actual, size-appropriate sleepwear; oversized sleepwear can increase ignition exposure. Supports removal of automatic upsizing advice."
+    },
+    "does_not_establish": "Any DLM product safety certification, material composition, regulatory compliance or suitable garment fit."
+  },
+  "validation_provenance": {
+    "skill_receipt": "Independently read; exit 0, VALID SUCCESS for same mutation artifact/revision.",
+    "structured_validator": "Root reports VALID SUCCESS for same artifact/revision; not independently replayed.",
+    "fresh_source": "Root reports 16:22:58 UTC exact unchanged body/updatedAt; root must retain the action-time guard.",
+    "plan_NOT_RUN": "Frozen preparation history; superseded for execution readiness by later validation receipts."
+  },
+  "limits": [
+    "Saved browser and Shopify source observations were supplied by root/Feed Ops; no independent replay.",
+    "Article GSC evidence is 223 impressions/0 clicks/position 13.3 in fixed Aug7-Sep3 window, not collection307 or proof of human purchase intent.",
+    "Collection has 22 rendered products; every wearer size is not certified in stock, and article instructs checking availability.",
+    "Remaining generic pre-existing fabric/style/popularity prose is not certified by this bounded review.",
+    "No product certification, new material/measurement/fulfillment claim, ranking forecast or measured traffic/sales/profit lift."
+  ],
+  "execution_conditions": [
+    "Fresh full source and preserved identity/title/handle/blog/publication equality immediately before single body-only articleUpdate.",
+    "Separate API after-state and MAIN desktop/narrow route/link verification; cart zero.",
+    "Independent execution review; rollback only if live body exactly equals candidate, otherwise stop."
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "status": "FAIR_WITH_SPECIFIC_PRODUCT_ID_MATCH_DIAGNOSIS",
+  "observed_at_utc": "2026-09-14T18:52:45.420750+00:00",
+  "advertiser_id": "549756244483",
+  "account_display": "Dress Like Mommy | Matching Family Outfits / dresslikemommy.com",
+  "url": "https://ads.pinterest.com/advertiser/549756244483/conversions/health/",
+  "source": "Root CUA native accessibility and DOM readback; independent account replay not performed",
+  "native_updated": "9/12/2026",
+  "date_range": "Last 14 days",
+  "CAPI": {
+    "managed_by": "Shopify",
+    "score": "Fair",
+    "AddPaymentInfo_ProductID": {
+      "coverage_percent": 0,
+      "issue": "Product ID not set up"
+    },
+    "SearchQuery": {
+      "coverage_percent": 0,
+      "issue": "Search Query not set up"
+    }
+  },
+  "Tag": {
+    "managed_by": "Shopify",
+    "score": "Fair",
+    "AddPaymentInfo_ProductID": {
+      "coverage_percent": 100,
+      "issue": "Low Product ID match rate",
+      "match_rate_numeric": null
+    },
+    "SearchQuery": {
+      "coverage_percent": 70,
+      "issue": "Low Search Query coverage"
+    }
+  },
+  "diagnosis": "Product ID presence is not catalog-ID agreement. The native troubleshooting panel says some sent Product IDs do not match uploaded catalog Product IDs for Add Payment Info. Exact affected IDs and cause are still UNKNOWN. Do not infer a new tag-installation failure or rewrite identifiers without a current sample/catalog join.",
+  "comparison_to_20260911": "The current Tag diagnostic explicitly identifies low catalog match at100% coverage; the earlier record described100% as good. Tag SearchQuery is now70% vs62% in the earlier different14-day window. This is a changed observation, not proven improvement caused by our work.",
+  "download_attempt": {
+    "action": "Clicked Download low catalog match rate data once with supported waitForEvent(download)",
+    "result": "Timed out after10000ms; subsequent current UI remains the same guide and no new tab or file receipt was exposed.",
+    "sample_file_received": "UNVERIFIED",
+    "retry_count": 0,
+    "pii_downloaded_or_persisted": "No sample file was exposed or read; no customer data persisted."
+  },
+  "reference": {
+    "url": "https://help.pinterest.com/en/business/article/eqs",
+    "verified_on": "2026-09-14",
+    "relevance": "Official guidance separates customer information, product metadata and duplicate events, describes14-day average and1-day comparison, and recommends sample-level parameter diagnosis."
+  },
+  "business_or_privacy_writes": 0,
+  "consent_test": "Existing exact rejected action not retried; no new consent or test event",
+  "paid_state": "Not reread in this check; no paid mutation",
+  "next_action": "Retrieve a supported current AddPaymentInfo low-match sample and join only the affected product identifiers against the correct current catalog before proposing a managed integration repair. Independently continue native organic publication/content; preserve existing consent/receiver acceptance gates."
+}

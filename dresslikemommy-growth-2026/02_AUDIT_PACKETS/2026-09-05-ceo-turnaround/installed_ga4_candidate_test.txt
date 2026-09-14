@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: preserves the complete synthetic cookie GA1.1.123456789.1700000000
+ok 1 - preserves the complete synthetic cookie GA1.1.123456789.1700000000
+  ---
+  duration_ms: 1.030625
+  type: 'test'
+  ...
+# Subtest: preserves the complete synthetic cookie GA1.2.987654321.1700000001
+ok 2 - preserves the complete synthetic cookie GA1.2.987654321.1700000001
+  ---
+  duration_ms: 0.37525
+  type: 'test'
+  ...
+# Subtest: preserves the complete synthetic cookie GA1.1.111111111.1700000002
+ok 3 - preserves the complete synthetic cookie GA1.1.111111111.1700000002
+  ---
+  duration_ms: 0.90625
+  type: 'test'
+  ...
+# Subtest: preserves the complete synthetic cookie GA1.1.222222222.1700000003
+ok 4 - preserves the complete synthetic cookie GA1.1.222222222.1700000003
+  ---
+  duration_ms: 0.316583
+  type: 'test'
+  ...
+# Subtest: keeps the existing stored identifier when the cookie is unavailable
+ok 5 - keeps the existing stored identifier when the cookie is unavailable
+  ---
+  duration_ms: 0.341833
+  type: 'test'
+  ...
+# Subtest: keeps the existing stored identifier when the cookie is empty
+ok 6 - keeps the existing stored identifier when the cookie is empty
+  ---
+  duration_ms: 0.311459
+  type: 'test'
+  ...
+# Subtest: retains the fallback identifier behavior without a cookie or stored value
+ok 7 - retains the fallback identifier behavior without a cookie or stored value
+  ---
+  duration_ms: 0.352042
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 40.775084

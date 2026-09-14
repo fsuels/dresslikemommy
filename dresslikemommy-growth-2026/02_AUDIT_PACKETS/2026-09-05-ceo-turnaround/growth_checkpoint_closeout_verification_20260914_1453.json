@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "verified_at_utc": "2026-09-14T16:26:45.675302+00:00",
+  "status": "PASS",
+  "checkpoint_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+  "before_sha256": "73acdccda91eec757b04b50f1dbae007d98dd87d889b153536f3fe4b1dc9850d",
+  "after_sha256": "83b49032dc4f99ccecad096d6687c6d394a9e5d491559b390182130210da3f59",
+  "before_snapshot_path": "/private/tmp/dlm-hb1453-final-checkpoint-before.json",
+  "closeout": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_closeout_20260914_1453.json",
+    "sha256": "5dd63e977214ac1958cc30b6868f8f441df63029cb3a01a37db2ef78528dd4f9"
+  },
+  "target_wake": "2026-09-14T14:53:18.679Z",
+  "canonical_anchor": "2026-09-14-ceo-au-source-prices-and-channel-handoffs",
+  "scheduled_wakes_preserved_count": 58,
+  "owner_records_preserved_count": 38,
+  "updated_owner_indices": [
+    35,
+    36,
+    37
+  ],
+  "all_previous_wakes_unchanged": true,
+  "first35_owner_records_unchanged": true,
+  "all_non_target_checkpoint_fields_unchanged": true,
+  "all_ancestor_and_sibling_fields_unchanged": true,
+  "previous_canonical_chain_preserved": true,
+  "json_after_readback_equal": true,
+  "runtime_goal_heartbeat_and_original_business_clocks_unchanged": true,
+  "post_checkpoint_strict_continuity": {
+    "checked_at_utc": "2026-09-14T16:27:27.021227+00:00",
+    "command": [
+      "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "ops/scripts/check_continuity_integrity.py",
+      "--strict"
+    ],
+    "exit_code": 0,
+    "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 51381 lines; latest anchor 2026-09-14-ceo-au-source-prices-and-channel-handoffs\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-14-ceo-au-source-prices-and-channel-handoffs\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+    "stderr": ""
+  }
+}

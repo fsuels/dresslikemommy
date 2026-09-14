@@ -1,0 +1,101 @@
+{
+  "schema": "dlm.codex.keep_awake_independent_preflight.v1",
+  "verdict": "PASS",
+  "confidence": "H",
+  "reviewer": "/root/merchant_landing_code_review",
+  "scope": "Read-only local payload/manual/syntax review. Writes restricted to /private/tmp/codex-keep-awake-review.md and .json.",
+  "candidate": {
+    "path": "/private/tmp/com.fsuels.codex-keep-awake.plist",
+    "sha256": "572e7b451fa9c4f8ecbbd4fe124e890f545aced4e7aca95244d0da95ad6ced6b",
+    "bytes": 649,
+    "contents": {
+      "Label": "com.fsuels.codex-keep-awake",
+      "ProgramArguments": [
+        "/usr/bin/caffeinate",
+        "-d",
+        "-i",
+        "-u",
+        "-t",
+        "86400"
+      ],
+      "RunAtLoad": true,
+      "KeepAlive": true,
+      "LimitLoadToSessionType": "Aqua",
+      "ThrottleInterval": 10
+    }
+  },
+  "installation_allowlist": {
+    "file": "/Users/fsuels/Library/LaunchAgents/com.fsuels.codex-keep-awake.plist",
+    "bootstrap_domain": "gui/501",
+    "service": "gui/501/com.fsuels.codex-keep-awake",
+    "existing_destination_observed": false,
+    "observed_uid": 501
+  },
+  "checks": {
+    "plist_syntax_valid": true,
+    "exact_payload_and_key_allowlist": true,
+    "absolute_system_executable_no_shell": true,
+    "user_aqua_session_scope": true,
+    "current_uid_matches_target": true,
+    "target_path_absent_at_review": true,
+    "caffeinate_flags_supported_by_local_manual": true,
+    "keepalive_restart_supported_by_local_manual": true,
+    "rollback_scoped_to_exact_service_and_hash": true
+  },
+  "authority": "Root supplied the current user's explicit request for durable prevention of idle Mac unavailability. This covers the new user LaunchAgent; it does not grant unrelated production/account/security changes.",
+  "manual_evidence": [
+    {
+      "source": "Local caffeinate(8), /usr/bin/caffeinate",
+      "read": "MANPAGER=cat man caffeinate",
+      "findings": [
+        "-d prevents display sleep.",
+        "-i prevents system idle sleep.",
+        "-u declares active user, may turn a dark display on; -t supplies the assertion timeout instead of its five-second default.",
+        "-t uses seconds; the payload requests 86400."
+      ]
+    },
+    {
+      "source": "Local launchd.plist(5)",
+      "read": "Targeted sections of MANPAGER=cat man launchd.plist",
+      "findings": [
+        "KeepAlive true requests continuous running and restart; rapid failures are throttled.",
+        "KeepAlive implies RunAtLoad; explicit RunAtLoad is redundant but valid.",
+        "LimitLoadToSessionType applies to user agents.",
+        "ThrottleInterval 10 matches the documented default."
+      ]
+    }
+  ],
+  "execution_status": "NOT RUN by reviewer",
+  "installation_conditions": [
+    "Recheck that only the allowlisted destination and label are being installed and that neither already exists as another owner's file/service. Do not overwrite, replace or boot out an existing unrelated job.",
+    "Install exactly the reviewed payload into the current user's LaunchAgents folder; do not create a system daemon or use root credentials.",
+    "Use normal platform approval flow if needed; no workaround for rejection.",
+    "After bootstrap, verify the loaded service's actual arguments/PID and PreventUserIdleDisplaySleep, PreventUserIdleSystemSleep and UserIsActive assertions attributed to that PID, not merely aggregate assertions supplied by the temporary process.",
+    "Treat successful next-login start and 24-hour renewal as EXPECTED until observed, not tested guarantees."
+  ],
+  "operational_effects": [
+    "Continuously suppresses idle display/system sleep and declares user activity while the agent runs in the logged-in GUI session. The screen may remain lit and the unattended desktop may stay available.",
+    "The payload is not AC-only. It can increase battery use and keep the display awake on battery.",
+    "This does not promise to defeat manual lock, lid-close sleep, logout, reboot/login barriers, power loss, MDM/security policy or unrelated browser/tool/authentication failures."
+  ],
+  "excluded_changes": [
+    "Passwords or authentication requirements",
+    "TCC permissions",
+    "FileVault settings",
+    "Remote access",
+    "Manual lock or lid behavior",
+    "Merchant/Shopify/paid settings",
+    "Existing agents or other owners' files"
+  ],
+  "rollback": {
+    "first": "launchctl bootout gui/501/com.fsuels.codex-keep-awake",
+    "second": "Confirm this exact installed file remains a regular file with SHA-256 572e7b451fa9c4f8ecbbd4fe124e890f545aced4e7aca95244d0da95ad6ced6b, then remove only /Users/fsuels/Library/LaunchAgents/com.fsuels.codex-keep-awake.plist. Preserve the file if its identity or hash differs.",
+    "limit": "KeepAlive means killing the child alone is not durable rollback. Other assertions, including the separately running temporary caffeinate, are not removed by this rollback."
+  },
+  "material_issues": [],
+  "limits": [
+    "No service bootstrap, assertion creation, native interaction or 24-hour/relogin test performed by this reviewer.",
+    "The root's temporary assertions are reported context, not independently verified here."
+  ]
+}
+

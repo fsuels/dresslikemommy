@@ -1,0 +1,297 @@
+{
+  "schema": "dlm.google_ads_followup_evidence.v1",
+  "recorded_at_utc": "2026-09-14T03:02:41Z",
+  "trigger": {
+    "automation_id": "google-ads-markets-and-purchase-follow-up",
+    "fired_at_utc": "2026-09-14T02:55:28.441Z"
+  },
+  "decision": "REVIEWED_DRAFT_RESTORED_AFTER_CONFIRMED_ABSENCE_SAVE_GATE_UNCHANGED",
+  "baseline_receipt": {
+    "path": "FOLLOWUP_20260913_2254.json",
+    "sha256": "539670a16e3a501184b8ab0cc5bfceaa9116d729513b7e4e37237cbde239ca3f"
+  },
+  "latest_relevant_anchor": "2026-09-13-ceo-ads-draft-read-failure-and-late-channel-receipts",
+  "ads": {
+    "customer_id_retained": "6509972886",
+    "campaign_id": "24247604341",
+    "asset_group_id": "6746545742",
+    "account_ocid": "8520129103",
+    "fresh_surface": "Task-owned IAB1/tab22",
+    "status": "PAUSED",
+    "configured_average_daily_budget_usd": 5,
+    "ad_strength_displayed": "Poor",
+    "today": {
+      "date": "2026-09-13",
+      "timezone": "America/New_York",
+      "partial": true,
+      "impressions": 0,
+      "clicks": 0,
+      "cost_usd": 0,
+      "conversions": 0,
+      "conversion_value": 0
+    },
+    "sole_asset_group_and_campaign_totals_agree": true,
+    "current_eight_selected_report_lines_equal_previous_today": "PASS after removing the focus-only [active] annotation.",
+    "report_and_copy_reference": {
+      "path": "FOLLOWUP_20260912_1850.json",
+      "sha256": "0cd067ea854d019ecbab34f79049e60803716c028beaccc7d3d537f3e1089bb1",
+      "fields": [
+        "ads.report_evidence_lines",
+        "ads.editor.observed_textbox_lines"
+      ],
+      "today_date_difference_only": "Sep 13, 2026 Not applicable"
+    },
+    "editor": {
+      "browser_id": "1",
+      "tab_id": "23",
+      "provider_tab_id": "browser-use:e9197309-c7b0-469a-9992-be1f11d82c0a",
+      "present_in_fresh_inventory": true,
+      "route": "https://ads.google.com/aw/assetgroup/edit?campaignId=24247604341&ocid=8520129103&assetgroupId=6746545742&returnTo=/aw/assetgroup?campaignId%3D24247604341%26ocid%3D8520129103%26assetGroupTableMode%3Dtrue&authuser=0&__u=2136917243&__c=1852023447",
+      "recovery_trigger": {
+        "former_tab_id": "13",
+        "current_inventory": "Only original crashed user tab4 remained before recovery.",
+        "former_tab_absent": true,
+        "cause": "UNKNOWN",
+        "prior_timeout_receipt": "FOLLOWUP_20260913_2254.json",
+        "retry_same_failed_handle": false,
+        "interpretation": "Recovery followed a newly confirmed absence, not a repeat of the unchanged timeout or authentication attempt."
+      },
+      "expected_before_fields_matched": 18,
+      "reviewed_fields_restored": 18,
+      "all_27_after_fields_match_frozen_plan": true,
+      "observed_textbox_lines": [
+        "- textbox \"Final URL\": https://www.dresslikemommy.com/collections/mommy-and-me",
+        "- textbox \"Headline 1 of 15\": Mommy and Me Outfits",
+        "- textbox \"Headline 2 of 15\": Family Matching Clothing",
+        "- textbox \"Headline 3 of 15\": Shop Coordinated Dresses",
+        "- textbox \"Headline 4 of 15\": Perfect Looks for Photos",
+        "- textbox \"Headline 5 of 15\": Mother and Daughter Outfits",
+        "- textbox \"Headline 6 of 15\": Mommy and Me Vacation Looks",
+        "- textbox \"Headline 7 of 15\": Shop Dress Like Mommy",
+        "- textbox \"Headline 8 of 15\": Match Your Mini",
+        "- textbox \"Headline 9 of 15\": Choose Each Person's Size",
+        "- textbox \"Headline 10 of 15\": Choose Your Styles and Sizes",
+        "- textbox \"Headline 11 of 15\": Plan Your Next Vacation Look",
+        "- textbox \"Headline 12 of 15\": Adorable Matching Pajamas",
+        "- textbox \"Headline 13 of 15\": Tropical Family Outfits",
+        "- textbox \"Headline 14 of 15\": Explore Mommy and Me Styles",
+        "- textbox \"Headline 15 of 15\": Matching Birthday Outfits",
+        "- textbox \"Long headline 1 of 5\": Shop Mommy and Me Outfits for Family Photos, Birthdays and Vacation Days",
+        "- textbox \"Long headline 2 of 5\": Choose Coordinated Styles and Sizes for Mom and Daughter at Dress Like Mommy",
+        "- textbox \"Long headline 3 of 5\": Find Mother and Daughter Outfits for Your Next Family Photo or Vacation",
+        "- textbox \"Long headline 4 of 5\": Explore Matching Mother and Daughter Looks at Dress Like Mommy",
+        "- textbox \"Long headline 5 of 5\": Plan Your Family Photo Outfits With Coordinated Mommy and Me Styles",
+        "- textbox \"Description 1 of 5\": Browse mommy and me outfits for birthdays, vacations and family photo days.",
+        "- textbox \"Description 2 of 5\": Choose your styles and sizes to create a coordinated mother and daughter look.",
+        "- textbox \"Description 3 of 5\": Explore matching mother and daughter styles at Dress Like Mommy.",
+        "- textbox \"Description 4 of 5\": Plan your next family photo with coordinated outfits for mom and daughter.",
+        "- textbox \"Description 5 of 5\": Find coordinated family outfits for vacations, birthdays, and photo days.",
+        "- textbox \"Business name\": Dress Like Mommy"
+      ],
+      "copy_plan": {
+        "path": "COPY_CHANGE_PLAN.json",
+        "sha256": "b1b7a7a475f6bec8beb7769dbcaf87981b83facb515635790bf449c9d0fa0a15"
+      },
+      "copy_review": {
+        "path": "review/EXACT_COPY_PRE_SAVE_REVIEW.json",
+        "sha256": "ecc6ea17f713360efc31130b4dfc14d934b929db667a8a844c90b43209634b36",
+        "verdict": "PASS_WITH_LIMITS",
+        "checks": 15
+      },
+      "protected_asset_count_headers_identical": true,
+      "protected_counts": {
+        "images": 20,
+        "logos": 2,
+        "videos": 0,
+        "sitelinks": 1
+      },
+      "protected_check_limit": "Rendered region/count labels matched before and after; not an independent asset-ID replay.",
+      "field_fills": 18,
+      "save_attempts": 0,
+      "identity_attempts": 0,
+      "mark_handoff_called": true,
+      "final_url_unchanged": true,
+      "saved_after_state": "NOT_SAVED; original copy shown by the fresh report and fresh editor before restoration.",
+      "interpretation": "The replacement editor working does not prove Google identity completion or accepted Save. Existing reviewed local payload restored without new wording, creative or settings."
+    },
+    "saved_copy": "The fresh report still displays the original long-headline and description examples. Reviewed replacement copy is still unsaved.",
+    "identity_save_acceptance": "UNVERIFIED",
+    "yesterday": "NOT_REREAD; preserve the dated completed-September12 report from the prior pass.",
+    "limits": [
+      "Fresh report and restored editor were verified by root DOM reads, not a new independent live replay.",
+      "Current replacement23 is verified; absent prior13 and its two timeout failures remain dated history.",
+      "September13 is still partial in account Eastern Time. Reporting delay can occur; there is no new purchase, attribution or profit proof."
+    ],
+    "report_evidence_lines": [
+      "- button \"Change status\":",
+      "  - generic: Paused",
+      "- link \"$5.00/day\"",
+      "- button \"Sep 13, 2026 Not applicable\" [active]:",
+      "    - row \"Select row Enabled Asset Group 1 Edit name Duplicate Image asset +19 images Mommy and Me Outfits +14 more Shop Airy Four-Layer Cotton Gauze Pajamas & Chiffon Mommy and Me Dresses Today +4 more Keep the whole group in one clear color story with daddy and me shirts. +4 more Poor Edit asset group Not eligible Campaign is paused No audience signals provided. Edit signals mommy and me dresses mother daughter matching outfits 0 0 — — $0.00 0.00 0.00 0.00% 0.00 $0.00\":",
+      "    - 'row \"Total: Asset groups More information 0 0 — — $0.00 0.00 0.00 0.00% 0.00 $0.00\"':",
+      "    - 'row \"Expand row Total: Campaign More information 0 0 — — $0.00 0.00 0.00 0.00% 0.00 $0.00\"':",
+      "  - text: \"Time zone for all dates and times: (GMT-04:00) Eastern Time.\""
+    ],
+    "initial_loaded_date_range": {
+      "label": "Last 7 days",
+      "start": "2026-09-06",
+      "end": "2026-09-12",
+      "impressions": 356,
+      "clicks": 5,
+      "cost_usd": 0.8,
+      "average_cpc_displayed_usd": 0.16,
+      "conversions": 0,
+      "conversion_value": 0,
+      "interpretation": "Fully loaded DOM changed from the initial loading-state Today label to Last7days. This historical range includes previously recorded September11 activity; not new spend since the last check. Cause of report-preset change UNKNOWN."
+    },
+    "report_date_selection": "Selected Today via the observed Date range selector menuitemradio; actual final date September13 in Eastern Time."
+  },
+  "shopify": {
+    "window": {
+      "from_inclusive": "2026-09-13T22:56:45Z",
+      "until_exclusive": "2026-09-14T03:00:36Z"
+    },
+    "query": "query AdsHeartbeatSep14EarlyOrderCounts {\n shop { id name ianaTimezone }\n allNew: ordersCount(query:\"created_at:>='2026-09-13T22:56:45Z' created_at:<'2026-09-14T03:00:36Z'\",limit:null) { count precision }\n webNonTest: ordersCount(query:\"created_at:>='2026-09-13T22:56:45Z' created_at:<'2026-09-14T03:00:36Z' source_name:web test:false\",limit:null) { count precision }\n paidWebNonTest: ordersCount(query:\"created_at:>='2026-09-13T22:56:45Z' created_at:<'2026-09-14T03:00:36Z' source_name:web test:false financial_status:paid\",limit:null) { count precision }\n}",
+    "result": {
+      "shop": {
+        "id": "gid://shopify/Shop/15571635",
+        "name": "Dress Like Mommy",
+        "ianaTimezone": "America/New_York"
+      },
+      "allNew": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "webNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "paidWebNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      }
+    },
+    "workflow": "Fresh QueryRoot/Count/Shop schema discovery; VALID operation; read-only count query.",
+    "continuity": "Starts exactly at this lane's preceding22:56:45UTC creation-count cutoff. Parent full source remains20:49:22UTC, with next full/lifecycle read September14 08:49:22UTC.",
+    "limits": [
+      "New creations only. Older payment, cancellation, refund and fulfillment states were not reread.",
+      "No new genuine purchase candidate returned; GA4 report/replay/synthetic purchase was not run.",
+      "No customer identity, order ID, payment details or address requested."
+    ]
+  },
+  "parent_evidence_reused": {
+    "latest_parent_wake": "2026-09-14T00:20:27.606Z",
+    "latest_parent_recorded_at": "2026-09-14T00:22:30.956489+00:00",
+    "result": "EVIDENCE_BACKED_HOLD__NO_CHANGED_OWNER_EVIDENCE_OR_EXECUTABLE_STEP",
+    "order_cutoff": "2026-09-13T20:49:22Z",
+    "fulfillment_read_completed": "2026-09-13T20:49:50Z",
+    "source_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260913_2045.json",
+    "source_sha256": "d6ee2ceca2d70fc27f63e7cc1ae5a656c2bd17cb69d43fcc95d104b690e1869f",
+    "review_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260913_evening_review.json",
+    "review_sha256": "06a80b5dcfb15d513be18725d7473aef85939a0c8acf7a2f85da0dad84eeea8f",
+    "review_verdict": "PASS_WITH_LIMITS",
+    "review_checks": 85,
+    "independent_live_replay": false,
+    "retained_cohort": {
+      "orders": 2,
+      "units": 4,
+      "total_usd": "86.45",
+      "new_orders_since_previous_full": 0,
+      "ga4_post_cutover_candidates": 0
+    },
+    "next_full_sales_read_due_at_utc": "2026-09-14T08:49:22Z",
+    "owner_action": "Existing owner Admin publication of verified theme137888792673; unchanged.",
+    "interpretation": "Reused the previously verified evening source and matching review. No new full-order or lifecycle query was run. Actual costs, attribution and profit remain UNKNOWN."
+  },
+  "market_and_purchase_gates": {
+    "US_AU_GB_CA_campaign_drafts": "HELD_LOCAL_PREPARATION",
+    "frozen_source_payload": "research/SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+    "frozen_source_payload_sha256": "99aad3484b86cf758412a037c9cdb0361da8800cebe781ec5ba1f54ac95218c8",
+    "GA4_property": "330266838",
+    "Ads_purchase_action": "7760272273",
+    "purchase_acceptance": "UNVERIFIED",
+    "actual_costs_attribution_ROAS_retained_profit": "UNKNOWN",
+    "new_live_Merchant_or_market_read": false
+  },
+  "actions": {
+    "campaign_save_apply": 0,
+    "budget_bid_status_goal_changes": 0,
+    "keyword_negative_imports": 0,
+    "new_campaigns": 0,
+    "creative_uploads": 0,
+    "feed_mutations": 0,
+    "tracking_consent_changes": 0,
+    "public_storefront_requests": 0,
+    "purchases_payments": 0,
+    "editor_fills": 18,
+    "shared_canonical_writes": 0,
+    "report_date_filter_changes": 1,
+    "user_tab4_untouched": true,
+    "native_Chrome_used": false,
+    "GA4_report_read": "NOT_RUN",
+    "temporary_tab22_closed": true,
+    "replacement_editor23_preserved": true,
+    "editor13_absent_not_probed": true
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-14T03:02:41Z",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "material_decision": "NOT_MATERIAL",
+    "decision_depends_on_uncertain_state": true,
+    "independent_verifier": "NO_NEW_INDEPENDENT_LIVE_REPLAY",
+    "verifier_independence": "Existing exact-copy review retained. Root verified restored text and protected count labels; no new independent live replay or new copy.",
+    "decision_changing_evidence": "New inventory absence permitted replacement of the missing unsaved draft. Saved publication still depends on the normal owner identity/Save result; launch remains separately gated.",
+    "if_evidence_supports_recommendation": "Resume only the corresponding exact authorized repair or preparation gate.",
+    "if_evidence_opposes_recommendation": "Preserve frozen local payloads; do not repeat unchanged Save/authentication or timeout probes."
+  },
+  "runtime_goal": {
+    "status_from_get_goal": "blocked",
+    "new_goal_created": false,
+    "goal_status_changed": false,
+    "complete": false
+  },
+  "preservation": {
+    "existing_four_hour_heartbeat": "UNCHANGED",
+    "peer_claims": "UNCHANGED",
+    "CPC_USD": 0.15,
+    "ROAS_target": 6.5,
+    "all_in_profit_margin_target": 0.3
+  },
+  "next_action": "Existing normal owner Google identity/Save result in replacement editor23 remains the Ads prerequisite; independently verify saved values after acceptance. Preserve parent September14 08:49:22UTC full-sales clock and existing question.",
+  "continuation_source": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "verification": {
+    "current_editor_before_18_fields": "PASS",
+    "current_editor_after_27_fields": "PASS",
+    "protected_asset_count_headers": "PASS",
+    "current_report_eight_lines": "PASS_AFTER_FOCUS_ANNOTATION_NORMALIZATION",
+    "receipt_and_frozen_file_checks": "PASS_22_OF_22",
+    "strict_continuity": "PASS_10_OF_10_CONTINUITY_OK"
+  },
+  "owner_notification": "MEANINGFUL_RECOVERY: Missing reviewed draft restored and verified in editor23. Saved copy/Google identity gate unchanged; no new order or paid-state change.",
+  "browser_failure": {
+    "original_tab4": {
+      "current_inventory_title": "This page crashed",
+      "untouched": true,
+      "prior_policy_receipt": "FOLLOWUP_20260913_1854.json",
+      "recovery_not_attempted": true
+    },
+    "previous_editor13": {
+      "present": false,
+      "cause": "UNKNOWN",
+      "prior_timeouts_retained": true,
+      "read_attempts_this_turn": 0
+    },
+    "replacement_editor23": {
+      "created": true,
+      "before_values_read": true,
+      "after_values_verified": 27,
+      "unsaved": true
+    },
+    "alternate_authentication_surface_used": false,
+    "raw_CDP_backend_used": false,
+    "policy_bypass_attempts": 0
+  }
+}

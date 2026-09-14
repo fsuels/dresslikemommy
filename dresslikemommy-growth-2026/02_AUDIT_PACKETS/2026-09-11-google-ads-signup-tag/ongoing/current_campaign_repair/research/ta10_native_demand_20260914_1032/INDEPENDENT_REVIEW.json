@@ -1,0 +1,508 @@
+{
+  "schema": "dlm.ta10.native_demand_independent_review.v1",
+  "delegation": "TA10-NATIVE-DEMAND-20260914-1032",
+  "recorded_at_utc": "2026-09-14T11:06:43Z",
+  "reviewer": "/root/tag_repair_review",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "HIGH_FOR_SAVED_SOURCE_CONSISTENCY",
+  "scope": "Independent local source review of the frozen corrected qualification, native fragments, method guidance and exactly three bound historical sources. No new account, browser, storefront, private-data or documentation access; no keyword generation, campaign drafting or earlier purchase/consent replay.",
+  "source_hashes": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_native_demand_20260914_1032/QUALIFICATION.json",
+      "sha256": "cc07fd002fc6fa1eef209d860bcca82f1e9cc8b5592b1d8aa0f0fefac7a74d11"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_native_demand_20260914_1032/NATIVE_SOURCE_FRAGMENTS.json",
+      "sha256": "9e2844ddf0d0cf72030519f9b72ea63e99d4828e0fd9ca030e4527fafbaa706b"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_native_demand_20260914_1032/PLANNER_METHOD_GUIDANCE.json",
+      "sha256": "0533415c7c02a4321dfc2c6dad93439c7c68ac8f879e6a4f02d5439b7339ca8c"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/INTERNATIONAL_PAID_CANDIDATES_20260908.csv",
+      "sha256": "fc397fecf28dd38221cae779d967b08a67b49ab243cb3fec62f3349f2700ded0"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/INTERNATIONAL_PAID_OPPORTUNITIES_20260908.md",
+      "sha256": "9973a81fb9235c0c8f6b5fedef1f9c087313d7bf483b0a5c822fbec7cc688b08"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+      "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad"
+    }
+  ],
+  "check_summary": {
+    "passed": 38,
+    "failed": 0,
+    "total": 38,
+    "source_files_hashed": 6,
+    "original_candidates_joined": 9,
+    "independent_native_replays": 0
+  },
+  "checks": [
+    {
+      "id": "LOCAL-01",
+      "name": "Frozen source: QUALIFICATION.json",
+      "status": "PASS",
+      "basis": "SHA-256 computed from assigned exact local bytes."
+    },
+    {
+      "id": "LOCAL-02",
+      "name": "Frozen source: NATIVE_SOURCE_FRAGMENTS.json",
+      "status": "PASS",
+      "basis": "SHA-256 computed from assigned exact local bytes."
+    },
+    {
+      "id": "LOCAL-03",
+      "name": "Frozen source: PLANNER_METHOD_GUIDANCE.json",
+      "status": "PASS",
+      "basis": "SHA-256 computed from assigned exact local bytes."
+    },
+    {
+      "id": "LOCAL-04",
+      "name": "Frozen source: INTERNATIONAL_PAID_CANDIDATES_20260908.csv",
+      "status": "PASS",
+      "basis": "SHA-256 computed from assigned exact local bytes."
+    },
+    {
+      "id": "LOCAL-05",
+      "name": "Frozen source: INTERNATIONAL_PAID_OPPORTUNITIES_20260908.md",
+      "status": "PASS",
+      "basis": "SHA-256 computed from assigned exact local bytes."
+    },
+    {
+      "id": "LOCAL-06",
+      "name": "Frozen source: NARROW_KEYWORD_READBACK.json",
+      "status": "PASS",
+      "basis": "SHA-256 computed from assigned exact local bytes."
+    },
+    {
+      "id": "LOCAL-07",
+      "name": "Final qualification changes only publication-ID formatting",
+      "status": "PASS",
+      "basis": "Reconstructing the pre-correction serialization reproduces its original hash. No substantive candidate/decision delta is present."
+    },
+    {
+      "id": "LOCAL-08",
+      "name": "Source cross-bindings and separate verifier are coherent",
+      "status": "PASS",
+      "basis": "The method researcher is not treated as this independent reviewer."
+    },
+    {
+      "id": "LOCAL-09",
+      "name": "Native evidence timing and provenance stay bounded",
+      "status": "PASS",
+      "basis": "Task-window, operator-transcribed native fragments only; reviewer did not replay UI or inspect complete raw snapshots."
+    },
+    {
+      "id": "LOCAL-10",
+      "name": "Exactly nine original candidates and six EXACT/three PHRASE proposals",
+      "status": "PASS",
+      "basis": "Only DK-01..03, DE-01..03 and CZ-01..03 selected from the unchanged 18-row source."
+    },
+    {
+      "id": "LOCAL-11",
+      "name": "Independent input/native join CZ-01",
+      "status": "PASS",
+      "basis": "Joined by the original CSV text with only native hyphen-to-space normalization, not by trusting the native candidate_id field. Czech accents/text are unchanged."
+    },
+    {
+      "id": "LOCAL-12",
+      "name": "Independent input/native join CZ-02",
+      "status": "PASS",
+      "basis": "Joined by the original CSV text with only native hyphen-to-space normalization, not by trusting the native candidate_id field. Czech accents/text are unchanged."
+    },
+    {
+      "id": "LOCAL-13",
+      "name": "Independent input/native join CZ-03",
+      "status": "PASS",
+      "basis": "Joined by the original CSV text with only native hyphen-to-space normalization, not by trusting the native candidate_id field. Czech accents/text are unchanged."
+    },
+    {
+      "id": "LOCAL-14",
+      "name": "Independent input/native join DE-01",
+      "status": "PASS",
+      "basis": "Joined by the original CSV text with only native hyphen-to-space normalization, not by trusting the native candidate_id field. Czech accents/text are unchanged."
+    },
+    {
+      "id": "LOCAL-15",
+      "name": "Independent input/native join DE-02",
+      "status": "PASS",
+      "basis": "Joined by the original CSV text with only native hyphen-to-space normalization, not by trusting the native candidate_id field. Czech accents/text are unchanged."
+    },
+    {
+      "id": "LOCAL-16",
+      "name": "Independent input/native join DE-03",
+      "status": "PASS",
+      "basis": "Joined by the original CSV text with only native hyphen-to-space normalization, not by trusting the native candidate_id field. Czech accents/text are unchanged."
+    },
+    {
+      "id": "LOCAL-17",
+      "name": "Independent input/native join DK-01",
+      "status": "PASS",
+      "basis": "Joined by the original CSV text with only native hyphen-to-space normalization, not by trusting the native candidate_id field. Czech accents/text are unchanged."
+    },
+    {
+      "id": "LOCAL-18",
+      "name": "Independent input/native join DK-02",
+      "status": "PASS",
+      "basis": "Joined by the original CSV text with only native hyphen-to-space normalization, not by trusting the native candidate_id field. Czech accents/text are unchanged."
+    },
+    {
+      "id": "LOCAL-19",
+      "name": "Independent input/native join DK-03",
+      "status": "PASS",
+      "basis": "Joined by the original CSV text with only native hyphen-to-space normalization, not by trusting the native candidate_id field. Czech accents/text are unchanged."
+    },
+    {
+      "id": "LOCAL-20",
+      "name": "Country and language are separate and exact",
+      "status": "PASS",
+      "basis": "Three independent sole-country discovery queries; language labels are idea-research settings, not evidence of speakers-only volume or localized buyer quality."
+    },
+    {
+      "id": "LOCAL-21",
+      "name": "Google network and historical month window are consistent",
+      "status": "PASS",
+      "basis": "Twelve displayed months; no exact daily boundaries/timezone or partner-network inference. The unsaved workspace heading timezone is not the metric-table timezone."
+    },
+    {
+      "id": "LOCAL-22",
+      "name": "Seeds, website and filter limits are preserved",
+      "status": "PASS",
+      "basis": "No additional result rows, website seed or broadened suggestions are credited. Germany filter label was not separately opened; its one-filter/start-end context remains qualified."
+    },
+    {
+      "id": "LOCAL-23",
+      "name": "Literal ranges and all missing metric states are retained",
+      "status": "PASS",
+      "basis": "0–10 is a displayed range, not exact zero. Six dash columns retain missingness; blank account status is distinct. No cause, free clicks or numeric CPC is manufactured."
+    },
+    {
+      "id": "LOCAL-24",
+      "name": "Proposed match types are not historical delivery/forecast controls",
+      "status": "PASS",
+      "basis": "Six EXACT and three PHRASE are original proposals, not an observed match-type-specific forecast or literal-string search-term report."
+    },
+    {
+      "id": "LOCAL-25",
+      "name": "Related rows are not summed into demand or forecast",
+      "status": "PASS",
+      "basis": "Close-variant overlap prevents claiming nine independent demand buckets or a combined traffic forecast."
+    },
+    {
+      "id": "LOCAL-26",
+      "name": "Forecast Save gate stopped the observed path",
+      "status": "PASS",
+      "basis": "No forecast was generated and no maximum-CPC input was observed. The USD0.15 value is the required ceiling, not returned CPC or a forecast result."
+    },
+    {
+      "id": "LOCAL-27",
+      "name": "Saved-plan tables remain empty in recorded before/after views",
+      "status": "PASS",
+      "basis": "Operator records an unsaved workspace heading and empty saved-plan tables; this reviewer did not inspect native/backend plan state."
+    },
+    {
+      "id": "LOCAL-28",
+      "name": "Three location Save controls are distinguished from persistent plan saves",
+      "status": "PASS",
+      "basis": "Parent delegation authorized each country query. These three Save controls apply discovery filters; they do not create campaign/keyword plans. No blanket claim of zero UI preference effects is made."
+    },
+    {
+      "id": "LOCAL-29",
+      "name": "Selected account matches before and after; old account is historical",
+      "status": "PASS",
+      "basis": "Current selected-label/account evidence is root-transcribed. The September 8 report reference to account4683483813 is explicitly excluded from current targeting."
+    },
+    {
+      "id": "LOCAL-30",
+      "name": "Currency is a qualified inference, not fresh native ISO proof",
+      "status": "PASS",
+      "basis": "USD inference depends on accepted same-account September 11 context plus the official immutability search excerpt. A dollar sign and blocked full-page fetch do not provide native ISO proof."
+    },
+    {
+      "id": "LOCAL-31",
+      "name": "No monetary conversion or actual-CPC claim follows from currency inference",
+      "status": "PASS",
+      "basis": "All returned bid/CPC fields are unavailable. No exchange rate, zero-cost assumption or claim of achievable USD0.15 traffic is introduced."
+    },
+    {
+      "id": "LOCAL-32",
+      "name": "Method documentation retains excerpt, full-read and 429 distinctions",
+      "status": "PASS",
+      "basis": "Official document summaries are saved research evidence. This reviewer made no new requests and does not promote excerpt-only material or a blocked page into full-page verification."
+    },
+    {
+      "id": "LOCAL-33",
+      "name": "Historical bid statistics and API nulls are not native price/cause proof",
+      "status": "PASS",
+      "basis": "The forecast limitation belongs to the inspected workflow. API missingness definitions do not identify why these nine native rows have dashes."
+    },
+    {
+      "id": "LOCAL-34",
+      "name": "DEFER is limited to the nine paid qualifications",
+      "status": "PASS",
+      "basis": "Insufficient evidence to fund these nine is defensible. It is not proof that the countries have no buyers, no broader product demand or no viable alternative keywords."
+    },
+    {
+      "id": "LOCAL-35",
+      "name": "Historical orders do not qualify phrase-specific paid economics",
+      "status": "PASS",
+      "basis": "Adversarial alternative: earlier country orders could motivate research, but they do not establish current tee-query CPC, route quality or profit. DEFER does not declare the candidates economically impossible."
+    },
+    {
+      "id": "LOCAL-36",
+      "name": "Preserved owner artifacts, 27 values and sales clock are labeled without refresh",
+      "status": "PASS",
+      "basis": "Preservation is operator-reported; reviewer did not reread editor values, report25, publication state or sales data. The parent-provided next-read clock is unchanged in this packet."
+    },
+    {
+      "id": "LOCAL-37",
+      "name": "Read scope does not confer paid or shared-write authority",
+      "status": "PASS",
+      "basis": "Fresh scoped demand/account observations do not refresh stale paid authority or authorize plans, launches, billing, keyword generation, shared integration or publication."
+    },
+    {
+      "id": "LOCAL-38",
+      "name": "Next action avoids repeated queries or speculative expansion",
+      "status": "PASS",
+      "basis": "Parent can integrate the result and continue its existing separately authorized sales-moving lane; no new candidate generation or campaign draft follows from this review."
+    }
+  ],
+  "candidate_reconciliation": [
+    {
+      "candidate_id": "CZ-01",
+      "country": "CZ",
+      "language": "cs",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_keyword": "stejná pruhovaná trička pro maminku a dceru",
+      "native_returned_keyword": "stejná pruhovaná trička pro maminku a dceru",
+      "literal_search_range": "0 – 10",
+      "numeric_exact_searches": null,
+      "competition": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "qualification": "DEFER",
+      "join_status": "PASS"
+    },
+    {
+      "candidate_id": "CZ-02",
+      "country": "CZ",
+      "language": "cs",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_keyword": "sladěná pruhovaná trička pro rodinu",
+      "native_returned_keyword": "sladěná pruhovaná trička pro rodinu",
+      "literal_search_range": "0 – 10",
+      "numeric_exact_searches": null,
+      "competition": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "qualification": "DEFER",
+      "join_status": "PASS"
+    },
+    {
+      "candidate_id": "CZ-03",
+      "country": "CZ",
+      "language": "cs",
+      "source_match_type": "PHRASE",
+      "parent_product_id": "7545279512673",
+      "original_keyword": "stejná trička pro rodiče a děti",
+      "native_returned_keyword": "stejná trička pro rodiče a děti",
+      "literal_search_range": "0 – 10",
+      "numeric_exact_searches": null,
+      "competition": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "qualification": "DEFER",
+      "join_status": "PASS"
+    },
+    {
+      "candidate_id": "DE-01",
+      "country": "DE",
+      "language": "de",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_keyword": "gestreifte t-shirts mutter tochter partnerlook",
+      "native_returned_keyword": "gestreifte t shirts mutter tochter partnerlook",
+      "literal_search_range": "0 – 10",
+      "numeric_exact_searches": null,
+      "competition": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "qualification": "DEFER",
+      "join_status": "PASS"
+    },
+    {
+      "candidate_id": "DE-02",
+      "country": "DE",
+      "language": "de",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_keyword": "familien partnerlook gestreifte t-shirts",
+      "native_returned_keyword": "familien partnerlook gestreifte t shirts",
+      "literal_search_range": "0 – 10",
+      "numeric_exact_searches": null,
+      "competition": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "qualification": "DEFER",
+      "join_status": "PASS"
+    },
+    {
+      "candidate_id": "DE-03",
+      "country": "DE",
+      "language": "de",
+      "source_match_type": "PHRASE",
+      "parent_product_id": "7545279512673",
+      "original_keyword": "partnerlook t-shirts eltern kinder",
+      "native_returned_keyword": "partnerlook t shirts eltern kinder",
+      "literal_search_range": "0 – 10",
+      "numeric_exact_searches": null,
+      "competition": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "qualification": "DEFER",
+      "join_status": "PASS"
+    },
+    {
+      "candidate_id": "DK-01",
+      "country": "DK",
+      "language": "da",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_keyword": "ens stribede t-shirts til mor og datter",
+      "native_returned_keyword": "ens stribede t shirts til mor og datter",
+      "literal_search_range": "0 – 10",
+      "numeric_exact_searches": null,
+      "competition": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "qualification": "DEFER",
+      "join_status": "PASS"
+    },
+    {
+      "candidate_id": "DK-02",
+      "country": "DK",
+      "language": "da",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_keyword": "matchende stribede t-shirts til familien",
+      "native_returned_keyword": "matchende stribede t shirts til familien",
+      "literal_search_range": "0 – 10",
+      "numeric_exact_searches": null,
+      "competition": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "qualification": "DEFER",
+      "join_status": "PASS"
+    },
+    {
+      "candidate_id": "DK-03",
+      "country": "DK",
+      "language": "da",
+      "source_match_type": "PHRASE",
+      "parent_product_id": "7545279512673",
+      "original_keyword": "matchende t-shirts til familiefoto",
+      "native_returned_keyword": "matchende t shirts til familiefoto",
+      "literal_search_range": "0 – 10",
+      "numeric_exact_searches": null,
+      "competition": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "qualification": "DEFER",
+      "join_status": "PASS"
+    }
+  ],
+  "decision_review": {
+    "verdict": "DEFER_SUPPORTED_FOR_THE_NINE_PAID_QUALIFICATIONS_ONLY",
+    "reason": "Each original candidate has a literal 0–10 historical range, missing competition/bid fields and no permitted ceiling-constrained forecast. None presently demonstrates attainable profitable paid traffic at the required ceiling.",
+    "adversarial_challenge": "Prior country order totals and promising product intent are insufficient to fund these particular phrases: they are not current keyword CPC, localized buyer-path, attribution or cost evidence. Conversely, these nine ranges are not grounds to reject entire countries or infer zero demand.",
+    "not_established": [
+      "Exact zero searches",
+      "Numeric or free CPC",
+      "Achievable USD0.15 delivery",
+      "Combined nine-row independent demand",
+      "Any generated forecast",
+      "Country-wide rejection",
+      "Current product/localized-route quality",
+      "Profit or paid-launch readiness"
+    ]
+  },
+  "currency_review": {
+    "status": "QUALIFIED_INFERENCE_NOT_FRESH_NATIVE_ISO_VERIFICATION",
+    "current_selected_account": "6509972886",
+    "accepted_historical_context": "September 11 same-account receipt: USD_ACCOUNT",
+    "support": "Recorded official account-currency immutability search excerpt; full-page fetch returned HTTP429 and stopped.",
+    "fresh_native_ISO_code": "NOT_OBSERVED",
+    "dollar_symbol_sufficient": false,
+    "numeric_bid_or_CPC_used": false,
+    "limitation": "The inference depends on the correctness of the accepted historical USD context. This reviewer did not independently retrieve the documentation or native currency metadata; no monetary evidence was converted or fabricated."
+  },
+  "save_and_forecast_review": {
+    "query_location_Save_controls": 3,
+    "authority": "Per-country discovery-query filtering was explicitly within the parent delegation. Query preferences may retain last-used values.",
+    "persistent_plan_save": "NOT_PERFORMED_IN_RECORDED_ACTIONS",
+    "saved_plan_table": "Operator records empty before research and after each country.",
+    "forecast": "NOT_RUN_SAVE_KEYWORDS_DEPENDENCY",
+    "max_CPC_input": "NOT_OBSERVED",
+    "limit": "These are scoped UI-action and table readbacks, not an independent backend replay or a claim that all Google interfaces lack another forecast path."
+  },
+  "resolved_pre_freeze_formatting": {
+    "raised_by": "Root static check",
+    "initial_qualification_sha256": "24e0fb9219df1ffde7be993b80198729768f466b73cc82eebb82008f5b27ae87",
+    "final_qualification_sha256": "cc07fd002fc6fa1eef209d860bcca82f1e9cc8b5592b1d8aa0f0fefac7a74d11",
+    "correction": "Exact owner_publication_theme ID is now separate from explanatory owner_publication_action text.",
+    "verification": "Reconstructing the original field/value and serialization reproduces the initial hash exactly; no substantive candidate or decision change."
+  },
+  "material_unresolved_defects": [],
+  "limitations": [
+    "Native fragments are operator-transcribed, not complete raw snapshots. No independent live account, plan-table, currency or candidate-query replay occurred.",
+    "Historical month ranges may include close variants and do not represent exact literal-string, language-speaker-only, match-type-specific or additive demand. Germany filter-label observation was not separately repeated.",
+    "Dash/null fields retain unknown cause. Search-result excerpts, successful document reads and stopped HTTP429 fetches remain distinct; no blocked URL was retried by this reviewer.",
+    "Historical CSV product, route, order and cost hypotheses remain dated. The September 11 Planner source was used only for same-account currency context, not its old seeds or market metrics.",
+    "Editor23/report25, all 27 unsaved values, owner publication theme, parent sales clock and canonical authority were checked for preservation in supplied evidence, not independently refreshed from live or shared canonical state."
+  ],
+  "next_action": {
+    "owner": "Parent integrator",
+    "action": "Integrate the bounded nine-candidate DEFER and continue the existing separately authorized sales-moving lane and owner publication action.",
+    "why_first": "The inspected path supplies no additional permitted forecast evidence; repeating the same nine queries would not resolve the remaining delivery, buyer-path, cost or measurement gates.",
+    "paid_scope": "NONE",
+    "parent_sales_next_read_utc": "2026-09-14T19:04:53Z",
+    "owner_publication_theme": "137888792673",
+    "new_authority_created": false
+  },
+  "reviewer_actions": {
+    "source_reads": "Six exact local files only",
+    "files_written": [
+      "research/ta10_native_demand_20260914_1032/INDEPENDENT_REVIEW.json"
+    ],
+    "built_or_executed_native_research": false,
+    "account_browser_storefront_calls": 0,
+    "private_or_credential_reads": 0,
+    "documentation_requests": 0,
+    "new_keywords_or_campaign_drafts": 0,
+    "production_changes": 0,
+    "shared_canonical_worklog_queue_cockpit_writes": 0
+  }
+}

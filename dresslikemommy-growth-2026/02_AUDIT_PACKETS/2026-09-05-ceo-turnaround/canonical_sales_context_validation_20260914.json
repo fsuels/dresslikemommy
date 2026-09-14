@@ -1,0 +1,186 @@
+{
+  "schema": "dlm.canonical-sales-context-validation.v1",
+  "verified_at_utc": "2026-09-14T08:14:40.113940+00:00",
+  "status": "PASS_WITH_LIMITS",
+  "anchor": "2026-09-14-ceo-real-purchase-and-context-recovery",
+  "application_time_receipt_sha256": "03714b06764d9ecb4cd5c3e6372f7caa96c54f483193a9ad2003a39e3028efad",
+  "canonical_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/canonical_sales_context_review_20260914.json",
+    "sha256": "6c00d40d4ccdb0ccff8ded77e721ce2002956316bff5e1fe3185d0311d2a5e94",
+    "status": "PASS_WITH_LIMITS",
+    "resolved_original_plan_failure": true
+  },
+  "semantic_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/canonical_sales_context_semantic_review_20260914.json",
+    "sha256": "cd5773ff73cc51a82ab1393d9b526d7faee76e1dfc3e458e592327a3327e06a6",
+    "status": "PASS_WITH_LIMITS",
+    "checks": {
+      "total": 40,
+      "passed": 40,
+      "failed": 0
+    },
+    "conclusion": "Analytics did not lose the root-to-TA-02 relationship. Row44 moved from current coordination_claims to older_coordination_claims and retains the exact property330266838 linkage. Its recorded September12 date precedes the rewritten TA-02 September14 checkpoint. It remains a current row under the Google brief, and its owner/scope/status fields are unchanged. This is a saved-context historical reclassification, not an ownership revocation or missing relationship."
+  },
+  "rendered_text_readback": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/canonical_sales_context_cockpit_readback_20260914.json",
+    "sha256": "f1a82151ddfc6574437dc9a1ec3ec695a6e99b3332affa0c1b1dbbb853985066",
+    "checks": 8,
+    "status": "PASS_WITH_LIMITS",
+    "method": "Local generated HTML text and source-block comparison, not a visual browser or live storefront test."
+  },
+  "commands": [
+    {
+      "command": "render_marketing_cockpit.py",
+      "chunk": "2e9680",
+      "exit_code": 0,
+      "result": "Rendered existing cockpit"
+    },
+    {
+      "command": "audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "chunk": "7eabca",
+      "exit_code": 0,
+      "tracked": 25,
+      "integrated": 25,
+      "side_document_risks": 0
+    },
+    {
+      "command": "check_continuity_integrity.py --strict",
+      "chunk": "e3d7ba",
+      "exit_code": 0,
+      "groups_passed": 10,
+      "result": "CONTINUITY_OK"
+    },
+    {
+      "command": "git diff --check -- affected canonical and context files",
+      "chunk": "b01215",
+      "exit_code": 0
+    },
+    {
+      "command": "compile_task_context.py --query <Microsoft Ads|Google Analytics|Google Ads> --format json",
+      "chunks": [
+        "a15734",
+        "7014fa",
+        "bc73e9"
+      ],
+      "exit_codes": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "current_source_queries": {
+    "microsoft": {
+      "path": "/private/tmp/dlm-20260914-final-microsoft-context.json",
+      "sha256": "1b8df0d7ce5d69f552427337c008928728287ce4d41918bab75c597443121e94",
+      "task_ids": [
+        "TA-15"
+      ],
+      "current_claim_lines": [
+        35
+      ],
+      "older_root_claim44_retained": false,
+      "authority": {
+        "approved_external_scope": "NONE",
+        "autonomous_action_ready": "false",
+        "control_as_of": "2026-09-05",
+        "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+        "live_readback_fresh_until": "EXPIRED",
+        "live_state_mode": "STALE_READBACK_REQUIRED",
+        "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+        "source_live_evidence_as_of": "2026-06-01",
+        "supersedes_execution_readiness_below": "true"
+      },
+      "conflicts": []
+    },
+    "analytics": {
+      "path": "/private/tmp/dlm-20260914-final-analytics-context.json",
+      "sha256": "7ac9c1b48817ae4a8490c02fc923f9089843c5f3879f65e684e0eddda31f01e5",
+      "task_ids": [
+        "TA-02"
+      ],
+      "current_claim_lines": [
+        24
+      ],
+      "older_root_claim44_retained": true,
+      "authority": {
+        "approved_external_scope": "NONE",
+        "autonomous_action_ready": "false",
+        "control_as_of": "2026-09-05",
+        "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+        "live_readback_fresh_until": "EXPIRED",
+        "live_state_mode": "STALE_READBACK_REQUIRED",
+        "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+        "source_live_evidence_as_of": "2026-06-01",
+        "supersedes_execution_readiness_below": "true"
+      },
+      "conflicts": []
+    },
+    "google": {
+      "path": "/private/tmp/dlm-20260914-final-google-context.json",
+      "sha256": "822d2acaa00a844252f1d4d2e8618dc48403ece33b0087e3a2527a2fe9f33e7a",
+      "task_ids": [
+        "TA-01",
+        "TA-09",
+        "TA-10"
+      ],
+      "current_claim_lines": [
+        24,
+        44,
+        23,
+        42,
+        43,
+        33,
+        78,
+        86
+      ],
+      "older_root_claim44_retained": false,
+      "authority": {
+        "approved_external_scope": "NONE",
+        "autonomous_action_ready": "false",
+        "control_as_of": "2026-09-05",
+        "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+        "live_readback_fresh_until": "EXPIRED",
+        "live_state_mode": "STALE_READBACK_REQUIRED",
+        "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+        "source_live_evidence_as_of": "2026-06-01",
+        "supersedes_execution_readiness_below": "true"
+      },
+      "conflicts": []
+    }
+  },
+  "context_repair_parent_acceptance": {
+    "path": "/private/tmp/dlm-context-action-date-20260914-parent-acceptance.json",
+    "sha256": "6b57868524924840f122372ade6b53f73b211163dc9805869f800caeaed7dd99",
+    "checks": 18
+  },
+  "context_code_hashes_verified": {
+    "ops/scripts/session_context.py": "29e8be4ce9616248827eaf7587b4f95ca4a54474958a7d45d27af8cedc02a83f",
+    "ops/tests/test_session_context.py": "ae3ffead070cb9c608590bf5b87f546c22a270a16d54653de5eb6cf5f6c6abc7",
+    "ops/scripts/compile_task_context.py": "e18cf818bd33a2965c1919da8bd87ff00b0a95abb4672a699e20eb429966b599",
+    "ops/tests/test_compile_task_context.py": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943"
+  },
+  "canonical_after_hashes_verified": {
+    "ops/marketing/current_marketing_state.md": "18189dad59ebd3f9bea4810ef788ab5364c35e2e822a0d67d71c783ad2dd7f53",
+    "ops/marketing/daily_scorecard.md": "724a633357db6f2f2529176ca518a308e15a1bb9ebc2c64d1fb9caaec39019a2",
+    "ops/marketing/action_queue.md": "dcee2243e79527e65e017858a4974ac6df48b4cae79ce093323e0cdf581e5e81",
+    "ops/marketing/blocker_board.md": "9410ef2bd96c983860105307792a6f4a8fe15ee18354e4ab7a19da09c6fccf86",
+    "ops/marketing/operator_cockpit.md": "dd07c8ca52ad5d8b5a9e2706416a1c443db47b823b3cca894dfe787bdb48067d",
+    "ops/marketing/memory_digest.md": "73e724495459a3cb0ce809a1a50f10feccc5896c91552c82ecdca1c6ed77f921",
+    "ops/AGENT_COORDINATION.md": "6b8d91b76ab2d54afba631bc3b22367d0ba2b5e9e5bb106dfe9874f8c67fcea2",
+    "ops/PROBLEM_TRACKER.md": "b83778b2d65b158a2addd1301db04ce7aaabcffa004c551be6dbc32d76185902",
+    "ops/AGENT_WORKLOG.md": "65616ec19e0f78f80b1c0eac1f6c8a45f7f2e0b103b274bf730b6146634325da"
+  },
+  "generated_files": {
+    "ops/marketing/operator_cockpit.html": "686ee6f3a3e64a7d2367f7361ff25ed89d858167da6fb501989fbf8ad7e08ab6",
+    "ops/marketing/command_layer_integration_audit.md": "86fefe054718942ccd8cae51ed72d57b682c84898463a80b345289a4b465197d"
+  },
+  "owner_action_and_paid_controls_preserved": true,
+  "private_raw_files_deleted_verified": true,
+  "limits": [
+    "One US purchase is received at report level; raw event currency/items/value, consent/session ordering, sender deduplication, paid attribution, international accuracy and actual profit remain open.",
+    "Metadata confirms candidate theme remains UNPUBLISHED; existing owner Admin publication is still required.",
+    "Local generated-text checks are not a new live storefront/browser buyer replay."
+  ],
+  "final_post_checkpoint_continuity_receipt": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/canonical_sales_context_post_handoff_check_20260914.json"
+}

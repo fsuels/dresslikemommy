@@ -1,0 +1,16 @@
+# Sunshine product-detail Pin ready for native checks
+
+Latest relevant anchor: `2026-09-06-ceo-turnaround-sunshine-creative-access-block`. LOCAL READY: one distinct Sunshine Stripe product-detail Pin creative, 1024x1536 PNG/1,506,739 bytes, with complete title, description, image-matching alt text and four-UTM direct product destination. The built-in image tool used the current store's standalone shirt image; independent visual/source review passes12/12. The single shirt, stripe pattern and offer disclosures are materially consistent with the reference, without claiming pixel identity. The graphic explicitly says each T-shirt is sold separately. It is distinct from the existing four-person lifestyle Pin343118065386636484, which remains untouched.
+
+NOT_UPLOADED / NOT_PUBLISHED: current cua.getState at2026-09-07 00:29UTC again reports the Mac locked and automatic unlock unsuccessful. The normal owner unlock request is pending. Native account/board/duplicate/tagged buyer-route checks and publication remain unrun. The same access condition is recorded in the immediately preceding guide-buying-guidance and Rainbow-title goal turns; both made useful API progress. This turn completed the creative and its review. A bounded independent queue review finds no already-qualified material sales action available after that integration without normal unlock or another existing external dependency. Goal completion remains unproved; runtime goal status is recorded in sunshine_growth_access_checkpoint.json. Do not keep substituting more audits or cosmetic copy waves for actual distribution.
+
+No new public traffic exposure, campaign, product/theme/feed/price change, financial action or attributable sales result occurred this turn. The eight-order/USD734.99 prior28-day baseline and separate two recent paid orders/USD86.45 remain unchanged; actual delivery costs, retained profit and paid-versus-organic classification are still unknown. All nine full-paid controls and the existing heartbeat configuration are preserved. Existing Google permission/support, MAIN theme and paid cost/CPC/authority gates remain distinct from the Mac lock; no bypass or new generic permission request.
+
+Evidence: sunshine_product_detail_v1.png, current.json, prompt.txt, release_plan.json, independent review; sunshine_blocked_lane_assessment.json; SUNSHINE_PRODUCT_DETAIL_READY.md. After normal unlock, verify the intended existing Pinterest board, absence of a duplicate product-detail Pin and the exact tagged Sunshine buyer route, then publish this one reviewed Pin if those checks pass. Reuse the completed asset; do not regenerate it or repeat earlier repairs.
+
+
+One owner action: Unlock the Mac through the normal owner flow. This enables the exact board, duplicate and tagged-product checks needed to publish the finished Sunshine Pin, and the pending buyer/provider-cost checks. The later unlock request is already pending; saved marketing approvals remain valid within scope.
+
+Asset: [finished PNG](sunshine_product_detail_v1.png). Built-in image generation; [exact prompt](sunshine_product_detail_prompt.txt).
+
+Continuation: [canonical growth prompt](../../../../ops/prompts/paid-growth-ai-army-continuation-prompt.md).

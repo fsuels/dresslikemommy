@@ -1,0 +1,26 @@
+# Pinterest and Merchant readback — September 5, 2026
+
+Root read-only browser audit, Chrome profile test. Current tool-observed evidence below is scoped to the named accounts and filters. No campaign, catalog, feed, tag, account permission, or billing write occurred.
+
+## Pinterest: preserve the usable infrastructure
+
+- Business profile Dress Like Mommy, advertiser `549756244483`, catalog `3041764155561548387`. Business Hub: merchant Approved, Shopify Connected, VMP under review. The hub's Good setup link is distinct from detailed Event Quality.
+- Campaign report, August 6–September 5 inclusive, UTC, campaign filter running/paused/not-started/completed, conversion setting displayed 7/7: one campaign `626758581530`, Paused; account says 0 currently being served. Row: USD0 spend, 2 impressions, 0 Pin clicks, 0 outbound clicks, 0 Checkout conversions, USD0 Checkout value, ROAS shown as dash. Zero spend does not have a meaningful ROAS.
+- Events overview, Last30days, post-deduplication: PageVisit26,870; ViewCategory4,728; AddToCart338; InitiateCheckout45; AddPaymentInfo21; Search18; Checkout9. Checkout source Api + Tag, last received September5 at15:19UTC. These are site events from all sources, not ad-attributed purchases or nine Pinterest sales.
+- Detailed Event Quality updated September4, last14days: **Fair for CAPI and Tag**, both through Shopify. CAPI top items: AddToCart email, AddPaymentInfo product ID, Checkout click ID. Tag top items: AddToCart email, Checkout click ID, InitiateCheckout email. Do not copy customer-data samples or add more personal fields merely to improve a badge. Match purchase IDs, value/currency and event deduplication before paid optimization. No recent paid clicks means missing click IDs alone cannot establish a broken integration.
+- Isolated source `3041760890485574219`, DLM US Paid Parent Isolated2026-05-21:210 successful,0 failed,0 metadata warnings; last ingestion September4 9:18PMEDT. Informational Warning2 says ingestion completed early because content was unchanged. This confirms ingestion only; product groups, current product availability and UTM/click preservation still require exact-scope checks.
+- Distribution Issues, all sources: displayed116.56K approved (99.22%),500 not approved (0.43%) due to availability,420 limited to ads (0.36%) because product data is7days old. These are catalog item rows, not distinct styles. Do not falsify stock or bulk-delete sources. Identify whether the420 stale rows include useful organic candidates; repair only exact source scope after review.
+
+Evidence URLs: [campaign reporting](https://ads.pinterest.com/advertiser/549756244483/reporting/campaigns/), [event quality](https://ads.pinterest.com/advertiser/549756244483/conversions/health/), [catalog diagnostics](https://www.pinterest.com/business/catalogs/3041764155561548387/diagnosticsv2/).
+
+Official interpretation: [Pinterest Event Quality](https://help.pinterest.com/en/business/article/eqs) describes matching, metadata and deduplication quality; it does not certify profitable attribution. [Conversions API](https://help.pinterest.com/en/business/article/the-pinterest-api-for-conversions) requires event-ID deduplication when used with the tag. Preserve the existing integration pending a specific demonstrated defect; a new pixel is not the default repair.
+
+## Merchant: identified permission gate
+
+Initial user-opened tab `475224135` was another store, account513542500. Root stopped inspecting it and requested the intended account. Owner directed use of project history. The documented Dress Like Mommy account is `124884876`.
+
+One exact navigation to [Dress Like Mommy Merchant](https://merchants.google.com/mc/overview?a=124884876) returned `/noaccess/` and a visible message that the signed-in Google account does not have access. No identity switch or permission change was attempted. This is `PERMISSION_REQUIRED`, not evidence of a suspended store or absent products.
+
+Current product totals, capacity, eligible countries/currencies, free-listing status, shipping settings and destination-specific issues remain **LIVE_READBACK_REQUIRED**. Old351,007-row capacity exports are historical; do not rerun old cleanup from them. [Google free-listing guidance](https://support.google.com/merchants/answer/13889434?hl=en) makes accurate product, shipping and return data the relevant prerequisites. Eligibility does not guarantee exposure.
+
+Access recommendation superseded later September 5: the initial suggestion to use a different Google identity was withdrawn. The same current identity had documented May access; Business Manager now shows Super admin while the exact Merchant app denies access and the Ads manager has no linked clients. Cause remains UNKNOWN. The exact Google support request is already owner-authorized but NOT SUBMITTED after inconsistent field validation and automatic approval-review rejection. Pending owner input is manual Contact email/optional CC correction, followed by a consistent current readback before the approved send. See `google_access_recovery.md` and `LOCAL_VERIFICATION_AND_HANDOFF.md`; do not restart the wrong-login request or repeat support approval. Independent local SEO/CRO work can continue.

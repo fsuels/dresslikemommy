@@ -1,0 +1,214 @@
+{
+  "schema": "dlm.exact_price_proposal_independent_review.v1",
+  "reviewed_at_utc": "2026-09-11T16:18:41.616992+00:00",
+  "reviewer": "/root/order_delta_1934",
+  "status": "BLOCKED_AUTO_REVIEW",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "not_live_authorization": true,
+  "scope": "Exact proposed five variant price fields for product7230336729185; independent file-only source/proposal/provenance review and local simulation. No API, browser, live mutation, feed build or other file edit.",
+  "input_sha256": {
+    "price_correction_proposal.json": "6ab8e0b591e5a2b7440314ce58336ad2bf8673aa3014e3b27fa9b9202e686df9",
+    "price_live_source_before.json": "c4bcda37456f306fa3be2e4f31e29d43b5d41ad6202771f8bd2bf45b7786add4",
+    "public_readback.json": "22f5b07f9045385aa4da3067edf7d1500a0730cd083b2f3271197904bbd211ea",
+    "feed_contract_review.json": "86d93bbf98eac20f0b6fa189afc2122ca6ab3d96f2068c7690bfa9815c92ad87",
+    "price_provenance.json": "3250673e616d68f46e43357f96b7ffb83d2c4c8c60166a7ed790fa154fd8114d"
+  },
+  "historical_source_sha256": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-06-live-visual-qa-merchant-age-group-gate/shopify_products_readonly.json": "b0b3cec6b7d606c7016f730ffe3c7d3ef858e01301745fa9dbc6de73db1bedc6",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-shopify-margin-cac-export-pack/active_variants_cost_basis.csv": "bda854d60b457c9aa595addf98ce3ca67cb411092bcfa1603b9f8ed86afaed92"
+  },
+  "frozen_feed_sha256": "e96faeeb86a64898e3564581997ffde427bd593f061cf02a4dc19244520621c5",
+  "authority_reference": {
+    "current_gate": "Automatic approval review requires fresh exact22.99price approval before the five-only mutation.",
+    "action_time": "2026-09-11T16:22:33Z",
+    "approval_question_needed_for_this_price_choice": true,
+    "approval_question_already_sent": true,
+    "owner_answer": "PENDING",
+    "do_not_repeat_question_or_retry": true,
+    "earlier_source_authority_evidence": "Preserved in authority_assessment_history as dated evidence; no automatic permission inference overrides the rejection."
+  },
+  "checks": {
+    "identity_shop_usd": true,
+    "identity_product_exact_active": true,
+    "complete_75_unique_variants": true,
+    "current_source_12_scoped_checks_pass": true,
+    "five_exact_target_ids": true,
+    "five_adult_2xl_colors_exact": true,
+    "exactly_five_current_outliers": true,
+    "current_price_distribution_exact": true,
+    "other_35_adults_currently_2299": true,
+    "payload_only_product_and_variants": true,
+    "payload_exact_five_id_price_fields": true,
+    "inverse_exact_five_source_prices": true,
+    "mutation_explicit_all_or_nothing": true,
+    "simulation_only_five_price_fields": true,
+    "simulation_preserves_other70_variants_exactly": true,
+    "simulation_inverse_restores_exact_before": true,
+    "compare_at_prices_preserved_in_simulation": true,
+    "feed_target_ids_source_prices_match": true,
+    "frozen_feed_hash_matches_independent_contract": true,
+    "public_sample_identity_price_currency_match": true,
+    "public_claim_scoped_to_sample_and_range": true,
+    "historical_two_source_hashes_exact": true,
+    "historical_parent_and_five_1899_exact": true,
+    "historical_other35_adults_also_1899": true,
+    "historical_csv_five_ids_prices_ordinals_match": true,
+    "recommendation_not_historical_restoration": true,
+    "full_paid_scope_none_preserved": true,
+    "fresh_full_preservation_snapshot_gate_explicit": true,
+    "fresh_drift_and_competing_writer_gate": true,
+    "independent_all75_price_readback_planned": true,
+    "public_and_existing_merchant_receiver_readback_planned": true,
+    "known_broken_inverse_not_automatic": true,
+    "no_executed_mutation_or_profit_claim": true,
+    "saved_direct_owner_reversible_repair_authority_explicit": true,
+    "later_repair_reuses_saved_user_authority": true,
+    "current_state_preserves_user_authorized_repair_execution": true,
+    "saved_authority_keeps_paid_platform_financial_privacy_gates": true
+  },
+  "checks_passed": 37,
+  "checks_total": 37,
+  "failed_checks": [],
+  "verified_counts": {
+    "source_variants": 75,
+    "affected_adult2xl_variants": 5,
+    "simulated_changed_fields": 5,
+    "other_variants_preserved": 70,
+    "current_other_adults_at2299": 35,
+    "historical_exact_targets_at1899": 5,
+    "independently_matched_frozen_feed_rows": 5,
+    "public_variant_offers_recorded": 1
+  },
+  "findings": [
+    "USD22.99 is supported as a current-price recommendation matching the35other adults, not verified owner intent, historical restoration, margin certification or profitability proof.",
+    "Current five source prices and the five frozen-feed rows are229918.99USD. Published MAIN evidence covers the White sample offer plus visible range; it does not separately verify allfive public variants.",
+    "Exact historical five prices were raw18.99 in two hash-matched historical artifacts. All35other adults also historically18.99 but currently22.99; prior history does not authorize restoring18.99 now.",
+    "The payload has exactlyfive{id,price} entries; simulation changes only thosefivepricefields, preserves other70returned variants and compareAtPrice, and exact inverse reconstructs the saved before-state. This is a simulation, not live preservation proof.",
+    "Dated pre-action authority interpretation is preserved in authority_assessment_history. Automatic approval review subsequently required exact22.99approval and blocked execution before any mutation; current question is already pending."
+  ],
+  "resolved_corrections": [
+    {
+      "initial_proposal_sha256": "f5c7b6a9a3257bb5bb1fd1bba66bb02a40a3925ddbd1727e88d4a37d28143fc7",
+      "issue": "Overbroad allfive MAIN claim",
+      "resolution": "Parent narrowed proposal to sampled White offer and visible range, explicitly disclosing otherfourpublicpages not checked."
+    },
+    {
+      "issue": "Current diagnostic query omits some promised preservation fields",
+      "resolution": "Parent added explicit fresh full before-state fields and prohibition on attesting unqueried preservation."
+    }
+  ],
+  "execution_gates": [
+    "Await the answer to the one exact five-variant22.99USD approval question already sent by root. Do not repeat the question, retry the rejected operation or use a workaround while pending.",
+    "If the required exact authorization arrives, root rechecks current claim/source drift and follows normal validation and automatic approval review; the earlier inference is not a bypass.",
+    "After any permitted execution, independent full before/after preservation and public/feed receiver verification remain required. The known-broken inverse is audit evidence, not an automatic rollback."
+  ],
+  "limitations": [
+    "No independent live API/browser replay or current account read was performed. Source freshness is16:05:25UTC and public evidence is the16:01–16:07:34UTC recorded window.",
+    "Diagnostic snapshot only has product identity/status and variant ID/title/price/compareAtPrice/updatedAt. Full SKU, options, availability, content, translation and publication preservation has not yet been verified.",
+    "Historical rows do not carry an explicit currency field; historical18.99 is reported as raw value only.",
+    "The saved mutation validation is reviewed as evidence; this agent did not call a validation or mutation API.",
+    "No claim of Merchant acceptance, restriction cause, paid eligibility, conversion lift or profit."
+  ],
+  "single_next_action": "Await the existing exact owner price-approval answer; continue independent authorized work without retrying or bypassing the rejected mutation.",
+  "revision_history": [
+    {
+      "reviewed_at_utc": "2026-09-11T16:16:28.215397+00:00",
+      "status": "PASS_PREPARED_ONLY__OWNER_PRICE_AND_FRESH_EXECUTION_GATES_PENDING",
+      "report_sha256": "45fadc3f4281d10e2696c7b2c8ecfe1235801ac53cbb5823705bdf1894fd95bf",
+      "checks_passed": 34,
+      "checks_total": 34,
+      "subsequently_corrected_interpretation": "The first review treated generic older Shopify price-approval guidance as requiring a new owner price choice. Exact newer saved direct-owner authority was then retrieved and independently assessed; that duplicate approval gate is superseded for this narrow repair."
+    },
+    {
+      "reviewed_at_utc": "2026-09-11T16:18:41.616992+00:00",
+      "status": "PASS_PREPARED_ONLY__SAVED_OWNER_REPAIR_AUTHORITY_RECOGNIZED__FRESH_SOURCE_GATES_PENDING",
+      "report_sha256": "81e9bfecc317c476daa1a95fd4cbbd861400eb555061f56f6d86d02c23c12c8f",
+      "checks_passed": 37,
+      "checks_total": 37,
+      "subsequently_corrected_interpretation": "Prepared source/payload checks remain valid, but action-time automatic approval review rejected execution and requires fresh exact22.99price approval. Earlier no-duplicate-question inference is now historical and not current execution authority."
+    }
+  ],
+  "revision": 3,
+  "authority_reassessment": {
+    "current_execution_status": "BLOCKED_AUTO_REVIEW",
+    "prepared_price_recommendation": "Five-only22.99 recommendation and37/37prepared checks remain intact.",
+    "current_authority": "Fresh exact owner price answer is required by action-time review; current answer pending.",
+    "earlier_assessment": "Preserved with its timestamp and original report hash under authority_assessment_history; superseded for execution."
+  },
+  "authority_assessment_history": [
+    {
+      "assessed_at_utc": "2026-09-11T16:18:41.616992+00:00",
+      "report_sha256": "81e9bfecc317c476daa1a95fd4cbbd861400eb555061f56f6d86d02c23c12c8f",
+      "status": "PASS_PREPARED_ONLY__SAVED_OWNER_REPAIR_AUTHORITY_RECOGNIZED__FRESH_SOURCE_GATES_PENDING",
+      "authority_reference": {
+        "current_scope_sources": [
+          {
+            "path": "ops/marketing/action_queue.md",
+            "lines": "97-99",
+            "sha256": "91d4a5173ed32b14bf43549a818eb0564a741326d8ba34ed71ffbd52fba54161"
+          },
+          {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/LIVE_PIXEL_AND_SUNSHINE_REPAIRS.md",
+            "lines": "3,9",
+            "sha256": "7052471f9812f3f0739c155daaf60579b4f2971d88b197ee7e66cb3520d48d34"
+          },
+          {
+            "path": "ops/marketing/current_marketing_state.md",
+            "lines": "368,382",
+            "sha256": "18592474baef513571cf18624941e606ea4ce4f8e1a50c45d1e3bd553d0f5e05"
+          }
+        ],
+        "older_generic_rule": {
+          "path": "ops/marketing/spend_authorization.md",
+          "lines": "52-61",
+          "sha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+          "treatment": "Preserved as general pricing guidance. The current user instruction plus later explicit saved authority for reviewed reversible repairs controls this exact bounded nonspend repair; no general price, paid, billing, account or financial authority is expanded."
+        },
+        "direct_user_context": "The current user asks the parent to take full control and complete the tasks needed for growth, with actual completed repairs rather than unresolved drafts. Existing exact saved repair authorization is consistent with that instruction.",
+        "approval_question_needed_for_this_price_choice": false,
+        "approval_is_not_generated_by_reviewer": true
+      },
+      "authority_reassessment": {
+        "recommendation": "Five-only22.99 is justified as a deliberate reversible correction matching the current35otheradultvariants, including sizes larger than2XL. The anomalous229918.99 remains source-verified; historical18.99 is context, not the selected current target.",
+        "scope": "Only the five already-reviewed ProductVariant IDs on product7230336729185, price field22.99. Preserve every other field and all70othervariants. No discount, broad repricing, paid activation or feed-only override.",
+        "why_no_duplicate_owner_question": "Exact later saved direct-owner authority expressly authorizes later reviewed reversible sales-moving repairs without another approval request. No specific higher-priority rule was identified that forbids this narrow retail-price correction; it moves no funds and does not alter billing/account access.",
+        "uncertainty_retained": "Current22.99 owner intent and profit are not asserted as facts. It is the parent decision supported by uniform currentadultpricing under delegated repair authority.",
+        "execution_readiness": "NOT VERIFIED by this reassessment; full fresh before-state and current drift/preservation gates remain pending. This review neither executes nor grants live mutation approval."
+      },
+      "execution_gates": [
+        "Parent claims only the five exact variants and completes the fresh full before-state/preservation query currently being prepared; stop on drift or a competing price writer.",
+        "Keep the reviewed five-only22.99 input and all-or-nothing behavior. Revalidate if the payload changes; preserve compare-at prices, IDs, options, SKU, availability-related fields, content, translations, status and publications.",
+        "Obtain proportionate independent review of any new decision-changing source or payload evidence before the consequential write, then independently read back all75variants and the promised non-target fields.",
+        "Verify the affected MAIN prices/JSON-LD/range without an order/payment. The existing Merchant owner retains feed refresh and receiving-evidence responsibility.",
+        "Retain the known-broken-price inverse only for audit; never automatically restore229918.99 after failed verification."
+      ],
+      "single_next_action": "Parent completes the fresh full execution before-state and exact preservation review for the already-reviewed five-price22.99 correction; do not ask a duplicate price-approval question solely from the superseded generic rule.",
+      "authority_finding": "Authority reassessment: the later explicit saved user repair scope supports choosing22.99 for the exact five corrupt prices without another owner price-choice question, subject to the untouched fresh source, independent review, after-state and rollback gates.",
+      "superseded_by": "Action-time automatic approval review rejection at2026-09-11T16:22:33Z; inference does not override the reviewer gate."
+    }
+  ],
+  "updated_at_utc": "2026-09-11T16:24:39.497337+00:00",
+  "execution_status": "BLOCKED_AUTO_REVIEW",
+  "prepared_review_status": "PASS_PREPARED_ONLY",
+  "action_time_outcome": {
+    "source": "Parent/root current task message; this reviewer did not execute the attempted mutation or replay the post-attempt source read.",
+    "attempted_at_utc": "2026-09-11T16:22:33Z",
+    "target": "Exact five Adult2XL price-only22.99USD mutation for product7230336729185",
+    "automatic_approval_review": "REJECTED_BEFORE_EXECUTION",
+    "stated_reason": "Fresh approval for the exact22.99price change is required.",
+    "external_mutation_executed": false,
+    "retry_or_workaround": false,
+    "owner_question": "Root already asked one exact question covering22.99USD for allfiveaffectedvariants; answer pending. Do not ask again.",
+    "post_attempt_readback": {
+      "source_live_evidence_as_of": "2026-09-11T16:23:18Z",
+      "reported_by": "Parent/root",
+      "variants": 75,
+      "publication_relationships": 9,
+      "source_digests": 6,
+      "entire_before_manifest_equal": true,
+      "source_changes": 0,
+      "independently_replayed_in_this_append": false
+    },
+    "effect": "This action-time rejection controls current execution. The earlier saved-authority interpretation remains dated history only;37prepared checks are preserved."
+  }
+}

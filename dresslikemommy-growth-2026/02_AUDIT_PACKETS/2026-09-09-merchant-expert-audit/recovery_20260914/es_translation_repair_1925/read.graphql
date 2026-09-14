@@ -1,0 +1,10 @@
+query MerchantSpanishRepairSources($ids: [ID!]!, $after: String) {
+  translatableResourcesByIds(resourceIds: $ids, first: 20, after: $after) {
+    nodes {
+      resourceId
+      translatableContent { key value locale digest }
+      translations(locale: "es", marketId: null) { key value locale outdated }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}

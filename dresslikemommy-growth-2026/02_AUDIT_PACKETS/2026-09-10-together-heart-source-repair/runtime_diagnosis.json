@@ -1,0 +1,608 @@
+{
+  "schema": "dlm-together-heart-arabic-selector-diagnosis.v1",
+  "createdAt": "2026-09-10T04:18:15.146Z",
+  "status": "DIAGNOSED_TWO_PREEXISTING_THEME_DEFECTS__UX_OWNER_HANDOFF",
+  "owner": "UX operator 01a088c3",
+  "productId": "7672336646241",
+  "permissions": {
+    "repositoryWrites": 0,
+    "externalWrites": 0,
+    "browserNetworkApiCalls": 0,
+    "onlyOutput": "/private/tmp/dlm-together-heart-arabic-selector-diagnosis-20260910.json"
+  },
+  "scope": "Narrow read-only local code diagnosis. Public symptoms supplied by root; this agent did not replay the browser. The latest saved theme checksum readback binds both local MAIN and UX candidate sources.",
+  "sourceBindings": {
+    "main:assets/product-desktop-ux-20260513-ruler-sync.js": {
+      "localPath": "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "sha256": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+      "localMd5": "61ded53111ee5002eb5c37b42a2c4b3f",
+      "readbackMd5": "61ded53111ee5002eb5c37b42a2c4b3f",
+      "matched": true,
+      "readbackAt": "2026-09-10T02:05:01.439Z"
+    },
+    "preview:assets/product-desktop-ux-20260513-ruler-sync.js": {
+      "localPath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/assets/product-desktop-ux-20260513-ruler-sync.js",
+      "sha256": "73bdae076525f091b3e4b1f63d0f387ce4cb06075fab88a870ec661b85ca70ab",
+      "localMd5": "1d3544d25d247e50b862a089c9249e9a",
+      "readbackMd5": "1d3544d25d247e50b862a089c9249e9a",
+      "matched": true,
+      "readbackAt": "2026-09-10T02:05:01.439Z"
+    },
+    "main:snippets/pdp-description-copy-cleanup.liquid": {
+      "localPath": "snippets/pdp-description-copy-cleanup.liquid",
+      "sha256": "b41938fa72d38d6212e3c2cd8964cc853e8fc1147b751135df173708f1579e35",
+      "localMd5": "44243cbf23a0b608fe400a5c5a48db2b",
+      "readbackMd5": "44243cbf23a0b608fe400a5c5a48db2b",
+      "matched": true,
+      "readbackAt": "2026-09-10T02:05:01.439Z"
+    },
+    "preview:snippets/pdp-description-copy-cleanup.liquid": {
+      "localPath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/snippets/pdp-description-copy-cleanup.liquid",
+      "sha256": "b41938fa72d38d6212e3c2cd8964cc853e8fc1147b751135df173708f1579e35",
+      "localMd5": "44243cbf23a0b608fe400a5c5a48db2b",
+      "readbackMd5": "44243cbf23a0b608fe400a5c5a48db2b",
+      "matched": true,
+      "readbackAt": "2026-09-10T02:05:01.439Z"
+    }
+  },
+  "checks": {
+    "all4SourceBindingsMatch": true,
+    "arabicLabelsUnchanged": true,
+    "mainDrops49ArabicChildOffers": true,
+    "candidateDrops49ArabicChildOffers": true,
+    "English98OffersBothRoles": true,
+    "noBeforeAfterArabicGuideGrouping": true,
+    "aliasCounterfactualRestores98": true,
+    "aliasCounterfactualRestores2Guides": true,
+    "keyClassifierFunctionsUnchanged": true,
+    "cleanupSnippetUnchanged": true,
+    "japaneseExactFailureReproduced": true,
+    "frenchOnlySpacePunctuationNormalization": true
+  },
+  "checkCount": 12,
+  "identicalClassifierFunctions": {
+    "parseRoleFromSizeLabel": true,
+    "inferRoleKeyFromSku": true,
+    "inferBaseRoleKeyFromStandaloneSize": true,
+    "getRoleInfoForVariant": true,
+    "buildRoleGroups": true,
+    "buildSizeGuideGroups": true
+  },
+  "arabic": {
+    "rootObserved": "Arabic public selector shows only adult and seven adult sizes; English exposes Child and Adult. Table has14 rows. API preserves98 variants.",
+    "cause": "Observed prefix «للأولاد» is absent from role aliases. KID fallback is absent. Therefore each of49 child variants is skipped at if (!roleInfo) return. The standalone fallback only recognizes English age words, and ADT is also absent from the SKU parser. Adult Arabic labels still match the explicit للكبار alias.",
+    "exactCausePlain": "Observed prefix «للأولاد» is absent from role aliases. KID fallback is absent. Therefore each of49 child variants is skipped at if (!roleInfo) return.",
+    "references": [
+      {
+        "path": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "lines": "705-726",
+        "symbol": "ROLE_DEFINITIONS"
+      },
+      {
+        "path": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "lines": "1113-1125",
+        "symbol": "inferRoleKeyFromSku"
+      },
+      {
+        "path": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "lines": "1141-1158",
+        "symbol": "inferBaseRoleKeyFromStandaloneSize"
+      },
+      {
+        "path": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "lines": "1184-1194",
+        "symbol": "getRoleInfoForVariant"
+      },
+      {
+        "path": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "lines": "1318-1351",
+        "symbol": "parseRoleFromSizeLabel"
+      },
+      {
+        "path": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "lines": "1469-1471",
+        "symbol": "buildRoleGroups"
+      },
+      {
+        "path": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "lines": "6137-6181",
+        "symbol": "buildSizeGuideGroups"
+      },
+      {
+        "path": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "lines": "5749-5754",
+        "symbol": "renderGuide fallback"
+      }
+    ],
+    "guideExplanation": "Only adult rows receive a role. buildSizeGuideGroups returns row groups only when more than one role exists; generic headers offer no alternate role groups, so it returns[] and renderGuide renders the original14-row combined table. This occurs before and after the28dash repair.",
+    "fixtureProvenance": "Constructed local fixture uses the actual98 API SKU/price/Size/Color records, replacing English Size labels with their exact before/after Arabic table labels. availability=true deliberately isolates classification from stock filtering. Root must confirm native embedded productData option labels match this fixture before mutation.",
+    "results": {
+      "main": {
+        "classification": [
+          {
+            "label": "للأولاد عمر سنتين",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID2Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 3 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID3Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 4 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID4Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 5 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID5Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 6-7 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID67Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 8 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID8Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 9-10 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID910Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار S",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-S-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار M",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-M-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار L",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-L-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار XL",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-XL-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار 2XL",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-2XL-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار 3XL",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-3XL-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار 4XL",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-4XL-WHT",
+            "skuFallback": ""
+          }
+        ],
+        "arabicGroups": [
+          {
+            "key": "adult",
+            "roleKey": "adult",
+            "offerCount": 49,
+            "distinctSizes": [
+              "للكبار S",
+              "للكبار M",
+              "للكبار L",
+              "للكبار XL",
+              "للكبار 2XL",
+              "للكبار 3XL",
+              "للكبار 4XL"
+            ]
+          }
+        ],
+        "englishGroups": [
+          {
+            "key": "child",
+            "roleKey": "child",
+            "offerCount": 49,
+            "distinctSizes": [
+              "Child 2 Years",
+              "Child 3 Years",
+              "Child 4 Years",
+              "Child 5 Years",
+              "Child 6-7 Years",
+              "Child 8 Years",
+              "Child 9-10 Years"
+            ]
+          },
+          {
+            "key": "adult",
+            "roleKey": "adult",
+            "offerCount": 49,
+            "distinctSizes": [
+              "Adult S",
+              "Adult M",
+              "Adult L",
+              "Adult XL",
+              "Adult 2XL",
+              "Adult 3XL",
+              "Adult 4XL"
+            ]
+          }
+        ],
+        "guideGroupsBefore": [],
+        "guideGroupsAfter": [],
+        "englishGuideGroups": [
+          {
+            "key": "child",
+            "rows": 7
+          },
+          {
+            "key": "adult",
+            "rows": 7
+          }
+        ],
+        "aliasOnlyCounterfactual": {
+          "roles": [
+            {
+              "key": "child",
+              "roleKey": "child",
+              "offerCount": 49,
+              "distinctSizes": [
+                "للأولاد عمر سنتين",
+                "للأولاد عمر 3 سنوات",
+                "للأولاد عمر 4 سنوات",
+                "للأولاد عمر 5 سنوات",
+                "للأولاد عمر 6-7 سنوات",
+                "للأولاد عمر 8 سنوات",
+                "للأولاد عمر 9-10 سنوات"
+              ]
+            },
+            {
+              "key": "adult",
+              "roleKey": "adult",
+              "offerCount": 49,
+              "distinctSizes": [
+                "للكبار S",
+                "للكبار M",
+                "للكبار L",
+                "للكبار XL",
+                "للكبار 2XL",
+                "للكبار 3XL",
+                "للكبار 4XL"
+              ]
+            }
+          ],
+          "guideGroups": [
+            {
+              "key": "child",
+              "rowCount": 7
+            },
+            {
+              "key": "adult",
+              "rowCount": 7
+            }
+          ]
+        }
+      },
+      "candidate": {
+        "classification": [
+          {
+            "label": "للأولاد عمر سنتين",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID2Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 3 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID3Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 4 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID4Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 5 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID5Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 6-7 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID67Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 8 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID8Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للأولاد عمر 9-10 سنوات",
+            "parsedRole": null,
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-KID-KID910Y-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار S",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-S-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار M",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-M-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار L",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-L-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار XL",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-XL-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار 2XL",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-2XL-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار 3XL",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-3XL-WHT",
+            "skuFallback": ""
+          },
+          {
+            "label": "للكبار 4XL",
+            "parsedRole": "adult",
+            "standaloneFallback": "",
+            "canonicalSku": "DLM-THRT-ADT-4XL-WHT",
+            "skuFallback": ""
+          }
+        ],
+        "arabicGroups": [
+          {
+            "key": "adult",
+            "roleKey": "adult",
+            "offerCount": 49,
+            "distinctSizes": [
+              "للكبار S",
+              "للكبار M",
+              "للكبار L",
+              "للكبار XL",
+              "للكبار 2XL",
+              "للكبار 3XL",
+              "للكبار 4XL"
+            ]
+          }
+        ],
+        "englishGroups": [
+          {
+            "key": "child",
+            "roleKey": "child",
+            "offerCount": 49,
+            "distinctSizes": [
+              "Child 2 Years",
+              "Child 3 Years",
+              "Child 4 Years",
+              "Child 5 Years",
+              "Child 6-7 Years",
+              "Child 8 Years",
+              "Child 9-10 Years"
+            ]
+          },
+          {
+            "key": "adult",
+            "roleKey": "adult",
+            "offerCount": 49,
+            "distinctSizes": [
+              "Adult S",
+              "Adult M",
+              "Adult L",
+              "Adult XL",
+              "Adult 2XL",
+              "Adult 3XL",
+              "Adult 4XL"
+            ]
+          }
+        ],
+        "guideGroupsBefore": [],
+        "guideGroupsAfter": [],
+        "englishGuideGroups": [
+          {
+            "key": "child",
+            "rows": 7
+          },
+          {
+            "key": "adult",
+            "rows": 7
+          }
+        ],
+        "aliasOnlyCounterfactual": {
+          "roles": [
+            {
+              "key": "child",
+              "roleKey": "child",
+              "offerCount": 49,
+              "distinctSizes": [
+                "للأولاد عمر سنتين",
+                "للأولاد عمر 3 سنوات",
+                "للأولاد عمر 4 سنوات",
+                "للأولاد عمر 5 سنوات",
+                "للأولاد عمر 6-7 سنوات",
+                "للأولاد عمر 8 سنوات",
+                "للأولاد عمر 9-10 سنوات"
+              ]
+            },
+            {
+              "key": "adult",
+              "roleKey": "adult",
+              "offerCount": 49,
+              "distinctSizes": [
+                "للكبار S",
+                "للكبار M",
+                "للكبار L",
+                "للكبار XL",
+                "للكبار 2XL",
+                "للكبار 3XL",
+                "للكبار 4XL"
+              ]
+            }
+          ],
+          "guideGroups": [
+            {
+              "key": "child",
+              "rowCount": 7
+            },
+            {
+              "key": "adult",
+              "rowCount": 7
+            }
+          ]
+        }
+      }
+    },
+    "proposedFix": "UX owner should handle exact Arabic alias recognition without changing Shopify variant labels or measurements, and consider canonical hyphen-delimited KID/ADT SKU fallbacks as resilience. A pure alias-only counterfactual restores both49-offer groups and two7-row guide groups, establishing the minimal causal surface. Arabic boy-versus-child ambiguity requires existing source role/SKU truth, not a blanket substring rule.",
+    "falsifier": "If the affected browser embeds different option labels, omits the49 child variants, lacks the expected KID SKU fields or loads a different asset hash, this exact classifier reproduction is insufficient. Check actual embedded productData and asset identity first; re-evaluate availability/option filtering only if they differ.",
+    "minimalRegression": "Freeze all14 English labels, all14 exact Arabic labels and98 canonical SKUs/options. Expect Child49 and Adult49 in both languages, seven distinct sizes each. Expect two seven-row role guide groups. Preserve all98 IDs/options and all140 source table cells. Verify explicit Boy/Mother/Father controls are not recategorized and unrelated tokens such as KIDNEY do not match KID. Include Arabic dual-year سنتين and numeric ranges6-7/9-10."
+  },
+  "japanese": {
+    "rootObserved": {
+      "sourceParagraphsCorrect": true,
+      "publicParagraphs": [
+        "Together。。",
+        "11。。。",
+        "、、、。。"
+      ],
+      "tableCellsExact": 140,
+      "browserReproducedByRootInSecondTab": true
+    },
+    "sourceParagraphs": [
+      "ハート柄とTogetherの文字が入った長袖クルーネックセーター。子ども用と大人用のサイズがあります。",
+      "1点の選択につきセーター1着です。一人ずつサイズと色を選んでください。写真に写っているその他の衣類や小物は含まれません。",
+      "胸囲、袖丈、着丈を、お手持ちのサイズが合うセーターと比べてください。ヒップとウエストの寸法は不明です。"
+    ],
+    "pureFunctionOutput": [
+      "Together。。",
+      "11。。。",
+      "、、、。。"
+    ],
+    "cause": "stripVendorLanguage removes all Japanese/CJK runs without inspecting the storefront locale. rewriteNode calls it on every p and li. Japanese letters disappear while Together, ASCII digits and punctuation remain; td cells are untouched, explaining the intact table.",
+    "references": [
+      {
+        "path": "snippets/pdp-description-copy-cleanup.liquid",
+        "lines": "28-47",
+        "symbol": "CJK regex constants"
+      },
+      {
+        "path": "snippets/pdp-description-copy-cleanup.liquid",
+        "lines": "52-69",
+        "symbol": "stripVendorLanguage"
+      },
+      {
+        "path": "snippets/pdp-description-copy-cleanup.liquid",
+        "lines": "163-181",
+        "symbol": "paragraph rewriteNode pass"
+      },
+      {
+        "path": "sections/main-product.liquid",
+        "lines": "1537",
+        "symbol": "cleanup snippet inclusion"
+      }
+    ],
+    "candidateSameDefect": true,
+    "proposedFix": "UX owner must preserve legitimate localized text. Disable broad CJK stripping for Japanese/Chinese/Korean storefront locales at minimum; preferably restrict removals to specifically verified supplier artifacts instead of deleting scripts globally. Keep exact locale-sensitive regression fixtures and do not rewrite the correct API translations.",
+    "falsifier": "If the served cleanup snippet differs from the bound source or does not run, inspect another DOM writer. Here the existing pure function reproduces all three reported outputs exactly, strongly supporting this cause.",
+    "minimalRegression": "Run the exact three Japanese approved paragraphs through the cleanup path under ja and require byte-preserved text. Preserve the140 table cells. Add English supplier-artifact positive fixture to retain explicitly intended removal, clean English holdout, legitimate Japanese/Chinese/Korean text holdouts, and the French punctuation case. Normal source cleanup must not invent fabric or other customer claims."
+  },
+  "french": {
+    "sourceParagraphs": [
+      "Pull à manches longues et col rond, avec un cœur et le mot Together, disponible en tailles enfant et adulte.",
+      "Chaque sélection comprend un pull. Choisissez séparément la taille et la couleur de chaque personne ; les autres vêtements et accessoires présentés ne sont pas inclus.",
+      "Comparez les mesures de poitrine, de manche et de longueur du vêtement avec celles d’un pull qui vous va bien. Les mesures des hanches et de la taille ne sont pas disponibles."
+    ],
+    "pureFunctionOutput": [
+      "Pull à manches longues et col rond, avec un cœur et le mot Together, disponible en tailles enfant et adulte.",
+      "Chaque sélection comprend un pull. Choisissez séparément la taille et la couleur de chaque personne; les autres vêtements et accessoires présentés ne sont pas inclus.",
+      "Comparez les mesures de poitrine, de manche et de longueur du vêtement avec celles d’un pull qui vous va bien. Les mesures des hanches et de la taille ne sont pas disponibles."
+    ],
+    "cause": "STRAY_SPACE_PUNCT at cleanup snippet line49/68 removes spaces before semicolons.",
+    "classification": "Benign normalization in this root readback; not exact byte equality."
+  },
+  "publicAcceptanceAccounting": {
+    "reportedByRoot": {
+      "exactLocaleCopies": 19,
+      "FrenchWhitespaceNormalized": 1,
+      "JapaneseFailed": 1
+    },
+    "all21PublicCopiesPass": false
+  },
+  "causality": "Arabic first-column labels and SKU/parser inputs are unchanged by the28dash repair; both before and after fixtures fail. Japanese sanitizer is unchanged in MAIN/UX candidate and independently destroys correct source text. Neither defect is evidence that the source measurement repair changed variants or translations incorrectly.",
+  "nextAction": "Root hands both narrowly reproduced defects and this hash-bound report to existing UX owner01a088c3 for a reviewed fix in the current release candidate. No new writer, theme, global helper or product data rewrite.",
+  "inputEvidence": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/plan.json": "4ca4598c855c4d4b07c1cd00e69504faf7f4ea0cfdaaccd1f67689a300c78dc1",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/after.json": "3e8ed7ccbba3c4a89f251d433e81452488391b9fc93a0d470921ed538d5594d8",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/buyer_copy.json": "4c050aea0ae73a34359d4e7ce62708aef9c3b49c27b67af9535b40fd8110c1da",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/final-release-readback.json": "14f65bc83c2b4f6f47655b60112d9869388b0031032193cff0c5f2ad0f0b643e"
+  }
+}

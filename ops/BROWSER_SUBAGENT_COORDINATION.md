@@ -2,7 +2,19 @@
 
 Purpose: let multiple agents work quickly in the logged-in ChatGPT Atlas / in-app browser without colliding in Shopify Admin, Google Ads, Merchant Center, GA4, Search Console, Pinterest, or other paid-growth surfaces.
 
-This file supplements `ops/AGENT_COORDINATION.md`. It does not replace the one-writer rule.
+This file supplements `ops/AGENT_COORDINATION.md`. It applies to separate Codex tasks as well as child agents and does not replace the one-writer rule.
+
+## Background Routing And Personal Computer Use
+
+Use a structured connector/API for supported data and actions. When rendered UI is needed, create or reuse a task-owned background browser surface and address that exact tab handle. With the currently exposed CUA API, a new in-app page can be requested with `cua.createBrowserTab("iab", exactUrl, {visible:false})`; check the tool's current documentation and actual availability before relying on it. Other tasks need their own supported surface, not the same selected tab.
+
+The owner's personal browser/desktop is not a shared automation pool. Do not inventory unrelated personal tabs, select the foreground browser, or fall back to native keyboard/mouse, clipboard paste, account switching or browser-wide settings to recover an unavailable background surface. If the exact necessary action requires an interactive surface, record the blocked action and request that specific handoff only when current authorization does not cover it. Keep other connector, research and local work moving. This routing never bypasses authentication, tool restrictions or automatic approval review.
+
+Tab IDs are handles scoped to their tool/browser session, not globally unique identities. Record the owning Codex task, browser/session identity when exposed, exact URL and business entity together. Read back that identity at startup and after reconnecting; never copy another task's bare tab ID into a new session. Tabs can share login/cookie state: a separate tab is not proof of an isolated browser profile or virtual computer.
+
+Check lifetime and concurrency empirically. A handoff marker does not guarantee that a browser survives another agent turn. If a surface disappears, one supported targeted recovery is reasonable; persistent unavailability is a lane blocker, not permission to control the owner's desktop. Close only the task's disposable test tabs after verification; retain a business handoff tab only when the runtime supports it and the handoff is intentional.
+
+This is a cooperative routing contract, not an OS lock or a cloud runtime. It cannot force already-running tasks to reread instructions, guarantee simultaneous authenticated browser capacity, or keep local agents running while the Mac sleeps. Record actual test results separately from expected capability. Full desktop isolation or an always-on remote worker requires separately configured infrastructure.
 
 ## Standing Owner Preference
 
@@ -38,8 +50,8 @@ Read `ops/ACCOUNT_ACCESS_PROTOCOL.md` before declaring any Google Ads, Merchant 
 
 A login screen in a fresh tab is not enough evidence for a blocker. The parent or surface owner must first:
 
-1. Inventory existing authenticated tabs/sessions and claim the matching one.
-2. Check configured connectors or local secure credential sources without exposing secret values.
+1. Check configured connectors and the task's assigned background session without exposing secrets or inspecting unrelated personal tabs.
+2. Claim an available task-owned surface; reuse authenticated access only within the assigned boundary. A new dedicated tab is allowed when required for isolation.
 3. Navigate from an authenticated surface to the exact account, advertiser, property, store, repository, or mailbox.
 4. Use owner-provided current-session credentials only transiently when the target site and account are clear.
 5. Stop only for CAPTCHA, MFA/2FA, account chooser ambiguity, permission denial, billing/payment prompts, policy prompts, destructive-change prompts, or no available credential/session after the ladder is complete.
@@ -48,7 +60,7 @@ Record the result as `ACCESS_RECOVERY_REQUIRED`, `MFA_OR_CAPTCHA_REQUIRED`, `PER
 
 ## Atlas Browser Tab Pattern
 
-When logged-in ChatGPT Atlas / in-app browser access exists, use it instead of asking the owner to log in again.
+When authenticated access exists in the assigned background browser, reuse it within that boundary. A logged-in personal Chrome tab is not automatically assigned to an agent.
 
 Preferred tab naming/session naming pattern:
 
@@ -70,8 +82,8 @@ Each subagent should:
 2. Confirm the account/store/advertiser before reading or editing.
 3. Save screenshots/downloads to its own evidence packet.
 4. Avoid navigating away from another agent's page.
-5. Leave the tab open at a useful readback page when handing off.
-6. Report current URL, account ID, readback state, and any unsaved-change risk.
+5. Leave a business tab at a useful readback page only if the runtime supports the intended handoff; close disposable tests.
+6. Report owning task and browser identity, current URL, account ID, readback state and any unsaved-change risk. The receiving task must verify availability rather than trust an old handle.
 
 ## Suggested Parallel Paid-Growth Lanes
 

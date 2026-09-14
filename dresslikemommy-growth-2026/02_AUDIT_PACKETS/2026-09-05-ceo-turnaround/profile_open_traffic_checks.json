@@ -1,0 +1,66 @@
+{
+  "recordedAtUtc": "2026-09-06T06:40:26.811407+00:00",
+  "status": "PASS",
+  "checks": {
+    "frozenEvaluatorHashesUnchanged": true,
+    "fourPaidArtifactsUnchanged": true,
+    "unrelatedDirtyRootThemeHashesUnchanged": true,
+    "ninePaidControlFieldsUnchanged": true,
+    "guideHashUnchanged": true,
+    "rootGuidesByteIdentical": true,
+    "fiveChangedJsonArtifactsParse": true,
+    "pin2UrlAgreement": true,
+    "pin2NoCartOrPublication": true,
+    "supportNotSubmitted": true,
+    "sourceHoldRetained": true,
+    "compilerSelectsCurrentAnchor": true,
+    "scopedGitDiffCheck": true,
+    "changedLocalArtifactWhitespace": true
+  },
+  "handoffScore": "17/17",
+  "commandIntegration": {
+    "integrated": 25,
+    "tracked": 25,
+    "sideDocumentRisks": 0
+  },
+  "strictContinuity": "CONTINUITY_OK",
+  "selectedAnchor": "2026-09-06-ceo-turnaround-profile-open-traffic",
+  "frozenEvaluatorHashesAfter": {
+    "ops/scripts/compile_task_context.py": "b59503387361fb669c625231a9bfc73264a78f9617a8fedc680b59b98e56b554",
+    "ops/scripts/score_paid_growth_handoff.py": "a5a095d596101b8fe3881f1ee1cf99b725e609a69d0b0df1f5ecf6a15c80fc35",
+    "ops/prompts/paid-growth-ai-army-continuation-prompt.md": "475eb926afd0e4cdb551844fdfb70b1c823c78883e9bba118bfefd35537090c0",
+    "ops/tests/test_compile_task_context.py": "d3dfb6c4663063298c609548be989a0321792a05fdf94e23f4e398f1cf8c38d1",
+    "ops/tests/test_score_paid_growth_handoff.py": "a310ea8d1ca362f4661d80bad67871d306aebf259fd18d9daba6d88fa6716244",
+    "ops/tests/test_score_paid_growth_handoff_semantic.py": "b0ad3dfbd7fb99c376e1f215d574a7269d7676c6ef2d79a5b919b159677474b6",
+    "ops/tests/fixtures/paid_growth_handoff_capability/holdout_routine_local.md": "083580210495efbeb6b1f00f5986a221b42e1f5b8c1f0dee0f4985ac9a1432ad"
+  },
+  "paidArtifactHashesAfter": {
+    "focused_paid_test.md": "ec700254101c3092df718faf3c141dd34ccedebcd716c83855af798604d5d527",
+    "focused_paid_test_keywords.csv": "d2ddc2b661235bca60b6f0cb05d7e294b717782173ba001ae2d524b2c020cd9a",
+    "focused_paid_test_ads.csv": "429dd983edc5f3a3f66edbdf3813583d9b3e6ab1ad5feed4c5f5d4ae48f87693",
+    "focused_paid_test_settings.json": "2f357100edd3d1b8a7e54c6051a16517191b10385c9a55a5b244ce575bed32ab"
+  },
+  "rootFileHashesAfter": {
+    "assets/product-desktop-ux-20260513-ruler-sync.js": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+    "sections/main-product.liquid": "6ab7ac0a8d9a68df637a35a5f900217b372ef6704a12232935f1651fb2c18fcd",
+    "assets/cart.js": "3e56046d72019380c0d48ecbd7ec5c12473813278eaeff90090fcec4124955be"
+  },
+  "guideSha256": "c7aaa94cbdd8118ec4617f06cdad13016c7b1e7507cbe18470d5f2c198ccbcec",
+  "independentReviewSha256": "b000e52d39ac4b9af44ad376bae796cb26ebffef4d522bb83ac459e5e5a59df1",
+  "scopedDiffExitCode": 0,
+  "whitespaceFailures": [],
+  "externalMutationsThisPass": 0,
+  "commandsActuallyRun": [
+    "open_marketing_cockpit.py --no-open",
+    "compile_task_context.py --query Continue the September 5 CEO turnaround --task-kind paid-growth --entity 2026-09-05-ceo-turnaround",
+    "score_paid_growth_handoff.py LOCAL_VERIFICATION_AND_HANDOFF.md --task-query Continue the September 5 CEO turnaround --task-entity 2026-09-05-ceo-turnaround --fail-on-issues",
+    "audit_marketing_command_integration.py --write-report --fail-on-risk",
+    "check_continuity_integrity.py --strict",
+    "git diff --check -- scoped changed files"
+  ],
+  "limits": [
+    "No Pin, feed, campaign, support or account mutation this pass",
+    "No mobile/checkout/actual Pin or HTML render verification",
+    "No actual sales or profit lift measured"
+  ]
+}

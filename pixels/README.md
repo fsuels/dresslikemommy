@@ -1,19 +1,23 @@
 # `pixels/` — Shopify Custom Pixels for GA4 + Google Ads
 
-This directory holds the two Shopify Customer Events scripts that replace the broken purchase tracking on `www.dresslikemommy.com`.
+> **ARCHIVE_REFERENCE — NOT AN EXECUTION RUNBOOK.** The historical installation, consent, Primary/Paused, purchase/refund and rollback recipes below are retained as evidence only. Do not execute them for the current migration. Use the [current Google cutover packet](../dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/GOOGLE_CONNECTION_AND_TRACKING_CUTOVER_20260908.md) and [canonical continuation prompt](../ops/prompts/paid-growth-ai-army-continuation-prompt.md).
+
+Current design preserves GA4 property `330266838`, stream `G-N4EQNK0MMB`, historical Ads reporting links and the existing scripts. Google recommends its Google & YouTube app for Shopify measurement and does not support Google tags installed in custom pixels. Verify the replacement sender and receiver before disconnecting exact superseded emitters; no live cutover is established by this documentation change. [Current Google guidance](https://support.google.com/analytics/answer/15642481?hl=en)
+
+This directory preserves two historical Shopify Customer Events templates and the completed client-ID helper repair. Their existence does not prove current installation, purchase receipt or attribution.
 
 | File | Purpose | Where it runs | Endpoint it hits |
 | --- | --- | --- | --- |
 | `ga4-custom-pixel.js` | Sends `page_view`, `view_item`, `add_to_cart`, `begin_checkout`, `purchase`, `search` to GA4 | Shopify Custom Pixel sandbox | `https://www.google-analytics.com/mp/collect` |
 | `google-ads-custom-pixel.js` | Sends a native Google Ads conversion on every completed checkout | Shopify Custom Pixel sandbox | `https://www.googleadservices.com/pagead/conversion/<AW_ID>/` |
 
-The install runbook is `docs/tracking-setup.md`. Read it before pasting either script into Shopify. The tracked files are templates only: leave placeholder IDs/secrets in the repo, and replace them only in Shopify's Custom Pixel editor or a non-repo temporary copy.
+The former install runbook, `docs/tracking-setup.md`, is archived with the same current-migration warning. The tracked files are templates only: leave placeholder IDs/secrets in the repo, and replace them only in Shopify's Custom Pixel editor or a non-repo temporary copy.
 
-## Why these are Custom Pixels (and not theme code)
+## Historical reference — Why these are Custom Pixels (and not theme code)
 
-The new Shopify Checkout Extensibility thank-you page does **not** allow arbitrary `<script>` injection. The Customer Events API (`analytics.subscribe(...)`) inside a Custom Pixel is the only first-party path to fire analytics on the thank-you page in 2026. Theme-level `gtag` snippets and `additional_scripts.liquid` no longer execute on the checkout/thank-you steps, which is why the existing Google & YouTube App pixel has been silently missing `purchase` events.
+The May 2026 investigation proposed custom pixels after observing missing purchases. It did not establish that the Google & YouTube app caused the missing receiver events. The earlier claim that custom pixels were the only supported purchase path was incorrect; use the current Google guidance above.
 
-## Why Measurement Protocol for GA4 (not gtag.js in the sandbox)
+## Historical reference — Why Measurement Protocol for GA4 (not gtag.js in the sandbox)
 
 The Custom Pixel sandbox:
 
@@ -23,13 +27,13 @@ The Custom Pixel sandbox:
 
 So `ga4-custom-pixel.js` constructs the GA4 Measurement Protocol payload itself and POSTs it with `navigator.sendBeacon(...)`, falling back to `fetch(..., { mode: "no-cors" })`. Do not change this to a normal JSON `fetch()`: the Shopify sandbox has an opaque/null origin, and GA4's MP endpoint does not allow the browser preflight, so ordinary JSON fetches fail before GA4 receives the event. We persist a client ID and rolling session ID via `browser.localStorage` so GA4 can stitch the pixel's own events across visits. The sandbox usually cannot read the storefront `_ga` cookie, so do not expect the GA4 client ID to match older theme/app-tag sessions.
 
-## Why a direct conversion beacon for Google Ads (not gtag.js either)
+## Historical reference — Why a direct conversion beacon for Google Ads (not gtag.js either)
 
 Same sandbox constraint. The legacy image-pixel form of the Ads conversion request is a GET to `googleadservices.com/pagead/conversion/<AW_ID>/?label=...&value=...&oid=...`. `google-ads-custom-pixel.js` builds that URL directly and fires it with `fetch(..., { mode: "no-cors", credentials: "include", keepalive: true })`. The current template also starts an image backup beacon with the same `oid` / `transaction_id` so a sandbox transport miss is easier to detect and Google Ads can dedupe duplicate same-action fires by order ID.
 
 Because the sandbox cannot read the storefront `_gcl_aw` linker cookie, the pixel captures `gclid`, `gbraid`, and `wbraid` from consented `page_viewed` URLs and stores them in `browser.localStorage` for 90 days. If the buyer arrived from a Google ad URL, those click IDs are attached to the purchase beacon. If no click ID exists, the conversion still fires with value/currency/order ID, but Ads attribution may be modeled or absent. This is a v1 bridge, not the full Google Ads API upload path.
 
-## Native Ads diagnostic mode
+## Historical reference — Native Ads diagnostic mode
 
 The native Ads template intentionally leaves sanitized diagnostic logging on. The logs are there because a completed Shopify order did not appear in the native Google Ads action after delayed API/UI readback, so the next live Customer Events edit must prove three separate gates:
 
@@ -43,24 +47,24 @@ The live-edit approval packet is:
 
 `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-google-ads-native-customer-events-diagnostic-fix/SHOPIFY_CUSTOMER_EVENTS_NATIVE_ADS_DIAGNOSTIC_FIX_PACKET.md`
 
-## Deduplication strategy
+## Historical reference — Deduplication strategy
 
 There are three potential conversion paths from this store into Google Ads:
 
-1. **The existing GA4-imported action** — `dresslikemommy.com - GA4 (web) purchase`. Source: Google Analytics (GA4). Currently broken because GA4 is not receiving `purchase`.
+1. **The existing GA4-imported action** — `dresslikemommy.com - GA4 (web) purchase`. Source: Google Analytics (GA4). This was a historical candidate path; current receiver state needs verification.
 2. **The new native Ads action** — `Purchase — Shopify Custom Pixel (native)`. Source: this repo's `google-ads-custom-pixel.js`.
-3. **The Google & YouTube app pixel** — Shopify's built-in pixel, which has its own GA4 + Ads conversion paths. Today it is the only thing running, and it is the thing that is silently missing purchases.
+3. **The Google & YouTube app pixel** — Shopify's app integration, with its own GA4 and Ads paths. The old installation/cause assertions were not current-state proof; current destinations and receipt need verification.
 
 Without coordination, an order could trigger all three at once, and Google Ads would inflate `Conversions` by 2–3x. The plan:
 
-### Phase 1 — install (Day 0)
+### Historical reference — Phase 1 — install (Day 0)
 
 - Native Ads pixel: live as **Secondary** at first (`Include in "Conversions"` = No) unless the owner explicitly wants to switch bidding immediately. Watch it in `All conversions` and Diagnostics during validation.
 - GA4-imported Ads action: leave **as is** (still Primary) during the first validation window. The new GA4 pixel should also start feeding this action again through GA4 import, with normal GA4/Ads lag.
 - G&YT app pixel: turn off only the GA4 sub-toggle if the app exposes it. Leave the Ads sub-toggle alone for now.
 - GA4 Custom Pixel: live. Now GA4 is receiving `purchase` from two paths (the new pixel + whatever G&YT was sending). They share `transaction_id`, so GA4 dedupes them server-side within ~24h.
 
-### Phase 2 — validate (Day 0 → Day 2)
+### Historical reference — Phase 2 — validate (Day 0 → Day 2)
 
 For ~48h, monitor:
 
@@ -70,7 +74,7 @@ For ~48h, monitor:
 
 If counts on both Ads actions are within ±5% of each other (after the GA4 import lag), the native action is ready to promote. If counts diverge significantly, do not proceed to Phase 3 — investigate first.
 
-### Phase 3 — prune (Day 2+)
+### Historical reference — Phase 3 — prune (Day 2+)
 
 - Google Ads → `Purchase — Shopify Custom Pixel (native)` → `Include in "Conversions"` → **Yes** (Primary).
 - Google Ads → `dresslikemommy.com - GA4 (web) purchase` → `Include in "Conversions"` → **No** (Secondary). Wait 24h to confirm Smart Bidding picks up the native action.
@@ -80,18 +84,18 @@ If counts on both Ads actions are within ±5% of each other (after the GA4 impor
 
 End state: one Primary Ads conversion action, fed by one Shopify Custom Pixel. No double counting. Merchant Center feed untouched.
 
-### Why not "run both in parallel forever with `transaction_id` dedup"
+### Historical reference — Why not "run both in parallel forever with `transaction_id` dedup"
 
 Google Ads `transaction_id` dedup works **per conversion action**, not across actions. Two distinct conversion actions firing with the same `transaction_id` will each count once — the dedup only prevents the same action from firing twice for the same order. So leaving both Primary forever would permanently double the conversions column. The clean fix is to keep exactly one action Primary at a time.
 
-## What this does NOT cover
+## Historical reference — What this does NOT cover
 
 - **Refunds.** A `refund` in Shopify does not cancel a GA4 purchase or an Ads conversion automatically. If refund accuracy is important for ROAS, the next step is a server-side webhook (Shopify `orders/refunded`) that POSTs a `refund` event via GA4 Measurement Protocol and adjusts the Ads conversion via the Google Ads API. Out of scope here.
 - **Enhanced Conversions for Ads.** Possible — would hash the buyer's email and send it with the conversion. Higher match rate, but pulls PII into the pixel, which raises consent/legal questions. Add later if Smart Bidding is starved for signal.
 - **Server-side GTM.** Possible — would consolidate everything behind a single tagging server. Bigger lift; revisit only if multi-touch attribution requirements grow.
 - **Cross-domain or app tracking.** Not applicable — single Shopify storefront on `www.dresslikemommy.com`.
 
-## Quick-reference: what fires on what
+## Historical reference — Quick-reference: what fires on what
 
 | Shopify event | GA4 event (via this pixel) | Ads event (via this pixel) |
 | --- | --- | --- |

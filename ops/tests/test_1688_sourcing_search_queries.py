@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import sys
+import tempfile
 import urllib.parse
 from pathlib import Path
 
@@ -61,6 +63,21 @@ def main() -> None:
                 "父子新年装",
             ],
         },
+        "siblings-matching": {
+            "minimum": 30,
+            "identity_terms": ("姐妹", "兄弟", "兄妹", "姐弟"),
+            "phrases": [
+                "姐妹装",
+                "姐妹连衣裙",
+                "姐妹沙滩裙",
+                "兄弟同款童装",
+                "兄弟西装",
+                "兄妹度假装",
+                "兄妹圣诞装",
+                "姐弟同款童装",
+                "姐弟新年装",
+            ],
+        },
         "family-matching": {
             "minimum": 21,
             "identity_terms": ("全家", "家庭", "亲子", "一家"),
@@ -114,9 +131,8 @@ def main() -> None:
         assert len(queries) >= expected["minimum"]
         assert any("夏季" in query for query in queries)
         assert any("冬季" in query for query in queries)
-        assert all("2026" in query for query in queries)
-        assert all("新款" in query for query in queries)
-        assert all("一件代发" in query for query in queries)
+        assert all("2026" not in query and "新款" not in query and "一件代发" not in query for query in queries)
+        assert all(len(query.split()) <= 4 and len(query.replace(" ", "")) <= 18 for query in queries)
         assert all(any(term in query for term in expected["identity_terms"]) for query in queries)
         assert dashboard.configured_queries(category_id) == queries
         us_queries = collector.normalize_queries(
@@ -131,23 +147,122 @@ def main() -> None:
         )
         assert dashboard.configured_queries(category_id, "us") == us_queries
         assert dashboard.configured_queries(category_id, "eu") == eu_queries
-        assert all("美国站" in query and "跨境" in query and "外贸" in query for query in us_queries)
-        assert all("欧洲站" in query and "跨境" in query and "外贸" in query for query in eu_queries)
+        assert us_queries == queries == eu_queries, "market fit is checked after one concise product search"
+        assert all(not any(term in query for term in ("美国站", "欧洲站", "欧美", "跨境", "外贸")) for query in queries)
         for phrase in expected["phrases"]:
             assert any(phrase in query for query in queries), f"missing {category_id} search phrase: {phrase}"
 
-    sample = "母女晚礼服 2026 春夏 新款 高端 气质 一件代发"
+    sample = "母女晚礼服 春夏"
     url = collector.search_url(sample, page=2)
     assert decoded_keywords(url) == sample
     assert collector.decoded_search_keywords(url) == sample
     assert collector.search_page_matches(url, url)
     plus_url = url.replace("%20", "+")
     assert collector.search_page_matches(url, plus_url)
-    mismatch_url = collector.search_url("孕妇写真裙 2026 春夏 新款 影楼 一件代发")
+    mismatch_url = collector.search_url("孕妇写真裙 春夏")
     assert not collector.search_page_matches(url, mismatch_url)
     assert "beginPage=2" in url
     assert collector.search_history_key("mommy-and-me", "us") == "mommy-and-me:us"
     assert collector.search_history_key("mommy-and-me", "balanced") == "mommy-and-me"
+
+    assert (
+        collector.category_match_score(
+            {
+                "title": "2026 brother and sister matching kids vacation shirt and dress set",
+                "raw_card_text": "siblings coordinated outfits, in stock",
+            },
+            "siblings-matching",
+        )
+        == "5"
+    )
+    assert (
+        collector.category_match_score(
+            {"title": "2026 women's satin evening dress", "raw_card_text": "adult formalwear, in stock"},
+            "siblings-matching",
+        )
+        == "2"
+    )
+    assert (
+        collector.category_match_score(
+            {"title": "women's sexy lingerie set", "raw_card_text": "intimates in stock"},
+            "couples",
+        )
+        == "1"
+    )
+    assert (
+        collector.category_match_score(
+            {"title": "women's satin evening dress", "raw_card_text": "Response Rate 90%"},
+            "couples",
+        )
+        == "2"
+    )
+    assert (
+        collector.category_match_score(
+            {"title": "women's satin evening dress", "raw_card_text": "Response Rate 90%"},
+            "daddy-and-me",
+        )
+        == "2"
+    ), "the letters 'son' inside 'Response' must not create a Daddy & Me match"
+    assert (
+        collector.category_match_score(
+            {"title": "father and son matching winter suits", "raw_card_text": "coordinated outfits"},
+            "daddy-and-me",
+        )
+        == "5"
+    )
+    assert (
+        collector.category_match_score(
+            {"title": "pregnant mom and daughter matching dresses", "raw_card_text": "maternity family outfit"},
+            "maternity",
+        )
+        == "5"
+    )
+    assert (
+        collector.category_match_score(
+            {"title": "maternity evening gown", "raw_card_text": "pregnancy formalwear"},
+            "maternity",
+        )
+        == "2"
+    )
+
+    original_history_path = collector.SEARCH_HISTORY_PATH
+    try:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            collector.SEARCH_HISTORY_PATH = Path(temp_dir) / "search-history.json"
+            rotating_queries = ["q0", "q1", "q2", "q3"]
+            first_batch = collector.queries_for_run(
+                "siblings-matching",
+                rotating_queries,
+                query_index=-1,
+                target_reviewable=4,
+                max_queries=2,
+            )
+            assert first_batch == ["q0", "q1"]
+            collector.update_search_history(
+                category_id="siblings-matching",
+                queries=rotating_queries,
+                attempted_queries=first_batch,
+                collected_pages=[],
+                rows=[],
+            )
+            history = json.loads(collector.SEARCH_HISTORY_PATH.read_text(encoding="utf-8"))
+            assert history["categories"]["siblings-matching"]["next_query_index"] == 2
+            assert collector.queries_for_run(
+                "siblings-matching",
+                rotating_queries,
+                query_index=-1,
+                target_reviewable=4,
+                max_queries=2,
+            ) == ["q2", "q3"]
+            assert collector.queries_for_run(
+                "siblings-matching",
+                rotating_queries,
+                query_index=-1,
+                target_reviewable=4,
+                max_queries=0,
+            ) == ["q2", "q3", "q0", "q1"]
+    finally:
+        collector.SEARCH_HISTORY_PATH = original_history_path
 
     print("ok")
 

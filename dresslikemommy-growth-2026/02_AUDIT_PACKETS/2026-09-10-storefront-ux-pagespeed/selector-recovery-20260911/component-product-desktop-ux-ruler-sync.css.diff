@@ -1,0 +1,12 @@
+--- frozen-v7/assets/component-product-desktop-ux-ruler-sync.css
++++ proposed/assets/component-product-desktop-ux-ruler-sync.css
+@@ -941,7 +941,8 @@
+ /* Make sure the matching-set block paints — historically it ships
+    hidden until JS unhides; on matching-set products we want it
+    prominently visible. */
+-.product__info-container--matching-set .product-desktop-ux {
++.product__info-container--matching-set .product-desktop-ux,
++.product__info-container[data-matching-set-fallback="true"] .product-desktop-ux {
+   display: block;
+ }
+ 

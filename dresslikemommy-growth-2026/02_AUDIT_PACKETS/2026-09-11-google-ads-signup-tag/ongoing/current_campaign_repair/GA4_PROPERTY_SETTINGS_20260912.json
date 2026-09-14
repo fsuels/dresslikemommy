@@ -1,0 +1,111 @@
+{
+  "schema": "dlm.ga4_property_settings_readback.v1",
+  "action_id": "TA02-GA4-PROPERTY-20260912-1144",
+  "recorded_at_utc": "2026-09-12T11:51:23.097276+00:00",
+  "native_read_window_utc": {
+    "not_before": "2026-09-12T11:49:04Z",
+    "not_after": "2026-09-12T11:51:23.097276+00:00",
+    "basis": "Task clock before navigation and receipt creation after native DOM and accessibility readback; not a server change timestamp."
+  },
+  "status": "VERIFIED_READ_ONLY_PROPERTY_TIME_ZONE_AND_CURRENCY",
+  "identity": {
+    "analytics_account_id": "88409806",
+    "property_id": "330266838",
+    "property_name": "dresslikemommy.com - GA4",
+    "account_label": "dresslikemommy.com",
+    "identity_basis": "Exact account/property URL and native PROPERTY ID330266838 plus property name; no account switch."
+  },
+  "surface": {
+    "owning_task": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+    "browser": "1 / task-owned Codex In-app Browser",
+    "tab": "9",
+    "provider_tab_id": "browser-use:626170ef-d94b-476f-b96e-45e8a5411aea",
+    "url": "https://analytics.google.com/analytics/web/#/a88409806p330266838/admin/property/settings",
+    "path_taken": [
+      "Existing owned Analytics tab9",
+      "Admin",
+      "Property details"
+    ],
+    "prompt_state": "Authenticated normally; no login, verification, permission or billing prompt."
+  },
+  "configured_values": {
+    "reporting_country_native_label": "United States",
+    "reporting_time_zone_native_label": "(GMT-04:00) New York Time",
+    "reporting_time_zone_iana": "America/New_York",
+    "time_zone_code_basis": "Normalized from the exact native New York Time label; IANA code was not displayed literally.",
+    "currency_native_label": "US Dollar ($)",
+    "currency_iso_4217": "USD",
+    "currency_code_basis": "ISO4217 normalization of the explicit US Dollar currency name; native UI displays the name/symbol, not the literal USD code.",
+    "save_button_native_state": "DISABLED"
+  },
+  "native_evidence_excerpt": [
+    "- heading \"Property details\"",
+    "- generic: \"PROPERTY ID: 330266838\"",
+    "- textbox \"Property name (required)\": dresslikemommy.com - GA4",
+    "- generic \"Reporting time zone\": button \"United States\"; button \"(GMT-04:00) New York Time\"",
+    "- generic \"Currency displayed as\": button \"US Dollar ($)\"",
+    "- button \"Save\" [disabled]"
+  ],
+  "corroboration": "DOM-backed snapshot and separate native accessibility readback agree on property ID/name, time zone, currency and disabled Save. No hidden application state or private API.",
+  "september11_property_day": {
+    "local_start_inclusive": "2026-09-11T00:00:00-04:00",
+    "local_end_exclusive": "2026-09-12T00:00:00-04:00",
+    "utc_start_inclusive": "2026-09-11T04:00:00Z",
+    "utc_end_exclusive": "2026-09-12T04:00:00Z",
+    "duration_seconds": 86400,
+    "method": "Python zoneinfo America/New_York, resolved from native New York Time label; both dates use UTC-04:00."
+  },
+  "prior_receiver_receipt": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/GA4_RECEIVER_READBACK_20260911.json",
+    "sha256_preserved": "b56f97dfcf7dedb1c765ce981c903c05318a6bd7b94355473868668e38b5eda1",
+    "disposition": "Preserved byte-for-byte. Only its NOT_REREAD property-timezone/currency gaps are now superseded by this current settings evidence; transaction/count and other acceptance statements remain dated."
+  },
+  "limits": [
+    "Current property settings are verified. Property change history was not read, so this does not prove that these settings were unchanged historically throughout September11.",
+    "The UTC boundary is calculated under the currently verified New York reporting setting. It is not a new query or count for the September11 reporting day.",
+    "Settings do not prove purchase ingestion, transaction/value/currency/items accuracy, event deduplication, consent correctness, Ads Purchase7760272273 acceptance or paid attribution.",
+    "Reporting currency does not prove the currency supplied by purchase events or the conversion/exchange-rate treatment of an individual purchase.",
+    "Reporting identity and data streams were not reopened because exact property/account identity was unambiguous.",
+    "No zero-transaction report was re-queried and no new Shopify sales/fulfillment query ran; parent20:24:58UTC full-sales clock remains unchanged."
+  ],
+  "actions": {
+    "settings_filled_or_selected": 0,
+    "settings_save_clicks": 0,
+    "synthetic_events": 0,
+    "tracking_or_consent_writes": 0,
+    "campaign_or_goal_changes": 0,
+    "Ads_identity_or_Save_retries": 0,
+    "account_switches": 0,
+    "new_browser_tabs": 0,
+    "public_storefront_requests": 0,
+    "shared_canonical_writes": 0
+  },
+  "handoff": {
+    "GA4_tab9": "Retain on exact Property details readback; no unsaved changes.",
+    "Ads_editor8": "Preserved and untouched throughout this action.",
+    "user_tab4": "Untouched.",
+    "reporting_identity_stream_mapping": "NOT_NEEDED_NOT_RUN"
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-12T11:51:23.097276+00:00",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "read_only_authority": "Exact parent delegation TA02-GA4-PROPERTY-20260912-1144",
+    "autonomous_action_ready": false,
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "A genuine purchase and corresponding receiver record bound to the verified reporting window and currency.",
+    "if_evidence_supports_recommendation": "Continue the existing read-only purchase acceptance join; no automatic paid release.",
+    "if_evidence_opposes_recommendation": "Diagnose the demonstrated discrepancy without synthetic events, consent changes or repeated migration."
+  },
+  "verification": {
+    "exact_native_property_id": "PASS",
+    "native_time_zone_and_currency": "PASS",
+    "separate_AX_and_DOM_agree": "PASS",
+    "derived_UTC_boundary": "PASS",
+    "prior_receiver_receipt_preserved": "PASS"
+  },
+  "next_action": "Parent integrates these exact settings and UTC boundary into TA-02, then matches the next genuine purchase to receiver evidence. Shared canonical files remain parent-owned.",
+  "continuation_source": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

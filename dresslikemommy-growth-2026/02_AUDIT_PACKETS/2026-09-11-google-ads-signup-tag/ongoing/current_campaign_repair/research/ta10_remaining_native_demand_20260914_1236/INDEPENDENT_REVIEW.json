@@ -1,0 +1,609 @@
+{
+  "schema": "dlm.ta10.remaining_native_demand_independent_review.v1",
+  "delegation": "TA10-REMAINING-NATIVE-DEMAND-20260914-1236",
+  "recorded_at_utc": "2026-09-14T13:00:34Z",
+  "reviewer": "/root/tag_repair_review",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "HIGH_FOR_BOUNDED_LOCAL_SOURCE_RECONCILIATION",
+  "scope": "Independent saved-source review of the current RO/IT/NL qualification and native fragments, original CSV/opportunity report, accepted prior nine qualification/review and bound method guidance. No operator-check result was used as a substitute for the independent joins or arithmetic.",
+  "source_hashes": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_remaining_native_demand_20260914_1236/QUALIFICATION.json",
+      "sha256": "7ac580266430d1197e3a36aa8da368bb5ad88c504af34f4c704e5ff2c537eba9"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_remaining_native_demand_20260914_1236/NATIVE_SOURCE_FRAGMENTS.json",
+      "sha256": "971000e580659383cbdbc11b41f77508e55013e16e6492bc07ee776149ee2357"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/INTERNATIONAL_PAID_CANDIDATES_20260908.csv",
+      "sha256": "fc397fecf28dd38221cae779d967b08a67b49ab243cb3fec62f3349f2700ded0"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/INTERNATIONAL_PAID_OPPORTUNITIES_20260908.md",
+      "sha256": "9973a81fb9235c0c8f6b5fedef1f9c087313d7bf483b0a5c822fbec7cc688b08"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_native_demand_20260914_1032/QUALIFICATION.json",
+      "sha256": "cc07fd002fc6fa1eef209d860bcca82f1e9cc8b5592b1d8aa0f0fefac7a74d11"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_native_demand_20260914_1032/INDEPENDENT_REVIEW.json",
+      "sha256": "8498998695a7eca71fefbc3855a702726d9324aac2a70779df17af53c76ece10"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_native_demand_20260914_1032/PLANNER_METHOD_GUIDANCE.json",
+      "sha256": "0533415c7c02a4321dfc2c6dad93439c7c68ac8f879e6a4f02d5439b7339ca8c"
+    }
+  ],
+  "check_summary": {
+    "passed": 41,
+    "failed": 0,
+    "total": 41,
+    "source_files_hashed": 7,
+    "current_original_candidate_joins": 9,
+    "current_EXACT_proposals": 6,
+    "current_PHRASE_proposals": 3,
+    "independent_native_replays": 0
+  },
+  "checks": [
+    {
+      "id": "LOCAL-01",
+      "name": "Frozen hash: QUALIFICATION.json",
+      "status": "PASS",
+      "basis": "Exact local SHA-256; no referenced live, private or unbound source was opened."
+    },
+    {
+      "id": "LOCAL-02",
+      "name": "Frozen hash: NATIVE_SOURCE_FRAGMENTS.json",
+      "status": "PASS",
+      "basis": "Exact local SHA-256; no referenced live, private or unbound source was opened."
+    },
+    {
+      "id": "LOCAL-03",
+      "name": "Frozen hash: INTERNATIONAL_PAID_CANDIDATES_20260908.csv",
+      "status": "PASS",
+      "basis": "Exact local SHA-256; no referenced live, private or unbound source was opened."
+    },
+    {
+      "id": "LOCAL-04",
+      "name": "Frozen hash: INTERNATIONAL_PAID_OPPORTUNITIES_20260908.md",
+      "status": "PASS",
+      "basis": "Exact local SHA-256; no referenced live, private or unbound source was opened."
+    },
+    {
+      "id": "LOCAL-05",
+      "name": "Frozen hash: QUALIFICATION.json",
+      "status": "PASS",
+      "basis": "Exact local SHA-256; no referenced live, private or unbound source was opened."
+    },
+    {
+      "id": "LOCAL-06",
+      "name": "Frozen hash: INDEPENDENT_REVIEW.json",
+      "status": "PASS",
+      "basis": "Exact local SHA-256; no referenced live, private or unbound source was opened."
+    },
+    {
+      "id": "LOCAL-07",
+      "name": "Frozen hash: PLANNER_METHOD_GUIDANCE.json",
+      "status": "PASS",
+      "basis": "Exact local SHA-256; no referenced live, private or unbound source was opened."
+    },
+    {
+      "id": "LOCAL-08",
+      "name": "Current and accepted prior bindings are coherent",
+      "status": "PASS",
+      "basis": "Prior acceptance is used only for its frozen candidate coverage, method/currency context and boundaries; no prior native task is repeated."
+    },
+    {
+      "id": "LOCAL-09",
+      "name": "Recorded query clocks fit the operator observation window",
+      "status": "PASS",
+      "basis": "Per-query readback clocks are operator as-of times, not timestamps of searches or Google metric events."
+    },
+    {
+      "id": "LOCAL-10",
+      "name": "Exactly the remaining nine original IDs and proposal types",
+      "status": "PASS",
+      "basis": "Six EXACT and three PHRASE original proposals; no replacement or newly generated candidate."
+    },
+    {
+      "id": "LOCAL-11",
+      "name": "Exact source-to-native join IT-01",
+      "status": "PASS",
+      "basis": "Joined by original CSV text and the correct query, not by accepting the transcribed candidate ID alone. No text normalization needed."
+    },
+    {
+      "id": "LOCAL-12",
+      "name": "Exact source-to-native join IT-02",
+      "status": "PASS",
+      "basis": "Joined by original CSV text and the correct query, not by accepting the transcribed candidate ID alone. No text normalization needed."
+    },
+    {
+      "id": "LOCAL-13",
+      "name": "Exact source-to-native join IT-03",
+      "status": "PASS",
+      "basis": "Joined by original CSV text and the correct query, not by accepting the transcribed candidate ID alone. No text normalization needed."
+    },
+    {
+      "id": "LOCAL-14",
+      "name": "Exact source-to-native join NL-01",
+      "status": "PASS",
+      "basis": "Joined by original CSV text and the correct query, not by accepting the transcribed candidate ID alone. No text normalization needed."
+    },
+    {
+      "id": "LOCAL-15",
+      "name": "Exact source-to-native join NL-02",
+      "status": "PASS",
+      "basis": "Joined by original CSV text and the correct query, not by accepting the transcribed candidate ID alone. No text normalization needed."
+    },
+    {
+      "id": "LOCAL-16",
+      "name": "Exact source-to-native join NL-03",
+      "status": "PASS",
+      "basis": "Joined by original CSV text and the correct query, not by accepting the transcribed candidate ID alone. No text normalization needed."
+    },
+    {
+      "id": "LOCAL-17",
+      "name": "Exact source-to-native join RO-01",
+      "status": "PASS",
+      "basis": "Joined by original CSV text and the correct query, not by accepting the transcribed candidate ID alone. No text normalization needed."
+    },
+    {
+      "id": "LOCAL-18",
+      "name": "Exact source-to-native join RO-02",
+      "status": "PASS",
+      "basis": "Joined by original CSV text and the correct query, not by accepting the transcribed candidate ID alone. No text normalization needed."
+    },
+    {
+      "id": "LOCAL-19",
+      "name": "Exact source-to-native join RO-03",
+      "status": "PASS",
+      "basis": "Joined by original CSV text and the correct query, not by accepting the transcribed candidate ID alone. No text normalization needed."
+    },
+    {
+      "id": "LOCAL-20",
+      "name": "Sole country and language settings are separately bound",
+      "status": "PASS",
+      "basis": "Location reach counters are raw UI context, not national population or qualified demand estimates. Language controls do not certify native copy or speakers-only volume."
+    },
+    {
+      "id": "LOCAL-21",
+      "name": "Google and the displayed historical month window are preserved",
+      "status": "PASS",
+      "basis": "The Italian isolated pair retained its country/language/network/month controls. No current or future demand window is invented."
+    },
+    {
+      "id": "LOCAL-22",
+      "name": "Website, active-filter and isolated-query limits are visible",
+      "status": "PASS",
+      "basis": "The isolated Italy filter label was not freshly reopened; the one-active-filter and no-edit context is explicitly retained."
+    },
+    {
+      "id": "LOCAL-23",
+      "name": "Initial Italy counter is not an exhaustive row audit",
+      "status": "PASS",
+      "basis": "One original row plus four visible suggestions explains only five exposed rows. The remaining initial eight-row table coverage remains unknown."
+    },
+    {
+      "id": "LOCAL-24",
+      "name": "Isolated query resolves only IT-01 and IT-02",
+      "status": "PASS",
+      "basis": "A bounded extra query returned the two same original inputs, both 0–10. IT-03 was not rerun; this resolves candidate coverage without pretending the original table became complete."
+    },
+    {
+      "id": "LOCAL-25",
+      "name": "Four queries and eleven submissions contain nine distinct originals",
+      "status": "PASS",
+      "basis": "Only the unresolved Italian original pair was repeated; no earlier-country or newly generated seed was submitted."
+    },
+    {
+      "id": "LOCAL-26",
+      "name": "Incidental suggestions are excluded from all selected inputs and decisions",
+      "status": "PASS",
+      "basis": "Four visible generated suggestions are provenance only. Their ranges, growth and competition do not become additional candidates or market demand."
+    },
+    {
+      "id": "LOCAL-27",
+      "name": "Eight low ranges preserve missingness rather than numeric zeros",
+      "status": "PASS",
+      "basis": "The zero lower endpoint is not an exact zero search count, growth value, competition score or CPC."
+    },
+    {
+      "id": "LOCAL-28",
+      "name": "IT-03 preserves observed range, zero-percent changes and High competition",
+      "status": "PASS",
+      "basis": "The two literal 0% values are observed changes, not missingness. High is an advertiser-competition category, not a numeric bid, SEO score or proof of expensive/unprofitable clicks."
+    },
+    {
+      "id": "LOCAL-29",
+      "name": "All selected bid, share, actual-CPC and forecast values remain unavailable",
+      "status": "PASS",
+      "basis": "No USD conversion, free-click estimate, midpoint, forecast or achievable bid-ceiling claim is supplied."
+    },
+    {
+      "id": "LOCAL-30",
+      "name": "Historical ranges and proposed match types are not additive forecasts",
+      "status": "PASS",
+      "basis": "Retain six EXACT/three PHRASE proposal labels without implying campaign match controls or independent literal-string demand."
+    },
+    {
+      "id": "LOCAL-31",
+      "name": "Combined eighteen coverage is only a count of candidate bins",
+      "status": "PASS",
+      "basis": "Accepted prior nine plus current nine cover all original IDs. Seventeen low-range labels and one higher-range label are counts of records, not 17×volume or a six-country traffic estimate."
+    },
+    {
+      "id": "LOCAL-32",
+      "name": "Selected account is coherent; USD stays qualified and unretried",
+      "status": "PASS",
+      "basis": "Same-account identity is root-observed; USD remains earlier historical/documentary inference, not a new native ISO label. No fresh currency/document route was used."
+    },
+    {
+      "id": "LOCAL-33",
+      "name": "Known forecast and document barriers are not retried",
+      "status": "PASS",
+      "basis": "The accepted Save-keywords dependency is reused without reopening it or treating earlier missing forecast evidence as a new zero result."
+    },
+    {
+      "id": "LOCAL-34",
+      "name": "Query-location Saves are not persistent campaign/plan saves",
+      "status": "PASS",
+      "basis": "Three location Save controls apply permitted query filters. Before/after empty-plan state is operator-recorded; no blanket assertion of zero persistent UI preferences or independent backend replay is made."
+    },
+    {
+      "id": "LOCAL-35",
+      "name": "All nine DEFER decisions retain IT-03 historical interest",
+      "status": "PASS",
+      "basis": "Deferral is evidence insufficiency for funding under current gates. It neither denies IT-03 historical interest nor rejects the countries."
+    },
+    {
+      "id": "LOCAL-36",
+      "name": "Italy financial and fulfillment limits are preserved without transfer",
+      "status": "PASS",
+      "basis": "The historical Italy issue is a separate unresolved cost/fulfillment gate, not a newly observed Sunshine fulfillment failure. Past dress clicks/orders do not validate this tee phrase or profit."
+    },
+    {
+      "id": "LOCAL-37",
+      "name": "Buyer-path, language, cost and measurement gaps remain open",
+      "status": "PASS",
+      "basis": "An observed demand bin alone cannot qualify a route, native ad, affordable auction, retained margin or launch."
+    },
+    {
+      "id": "LOCAL-38",
+      "name": "Protected editor/report, sales clock and publication ownership are preserved",
+      "status": "PASS",
+      "basis": "These are preserved parent/operator assertions, not a live readback of the 27 values, report, themes, rollback validity or sales ledger by this reviewer."
+    },
+    {
+      "id": "LOCAL-39",
+      "name": "Paid constraints and expired authority remain unchanged",
+      "status": "PASS",
+      "basis": "Fresh scoped historical-demand readback grants no paid, publishing or shared-write authority; the CPC, ROAS and profit constraints are not relaxed."
+    },
+    {
+      "id": "LOCAL-40",
+      "name": "Recorded actions stay within this delegation",
+      "status": "PASS",
+      "basis": "Operator action counts are source evidence, not independent native replay. Reviewer separately makes zero external calls and writes only this assigned receipt."
+    },
+    {
+      "id": "LOCAL-41",
+      "name": "Next step is parent integration, not automatic expansion",
+      "status": "PASS",
+      "basis": "Parent can integrate completed original-candidate coverage while preserving the existing independently owned publication action and qualification gates."
+    }
+  ],
+  "candidate_reconciliation": [
+    {
+      "candidate_id": "IT-01",
+      "country": "IT",
+      "language": "it",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_and_returned_text": "magliette a righe uguali mamma e figlia",
+      "source_query": "IT isolated original two",
+      "query_readback_as_of_utc": "2026-09-14T12:48:10Z",
+      "literal_monthly_range": "0 – 10",
+      "range_endpoints_only": [
+        0,
+        10
+      ],
+      "exact_average_monthly_searches": null,
+      "competition": null,
+      "three_month_change_percent": null,
+      "yoy_change_percent": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "paid_qualification": "DEFER"
+    },
+    {
+      "candidate_id": "IT-02",
+      "country": "IT",
+      "language": "it",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_and_returned_text": "magliette uguali famiglia a righe",
+      "source_query": "IT isolated original two",
+      "query_readback_as_of_utc": "2026-09-14T12:48:10Z",
+      "literal_monthly_range": "0 – 10",
+      "range_endpoints_only": [
+        0,
+        10
+      ],
+      "exact_average_monthly_searches": null,
+      "competition": null,
+      "three_month_change_percent": null,
+      "yoy_change_percent": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "paid_qualification": "DEFER"
+    },
+    {
+      "candidate_id": "IT-03",
+      "country": "IT",
+      "language": "it",
+      "source_match_type": "PHRASE",
+      "parent_product_id": "7545279512673",
+      "original_and_returned_text": "magliette uguali mamma e figlia",
+      "source_query": "IT initial",
+      "query_readback_as_of_utc": "2026-09-14T12:47:26Z",
+      "literal_monthly_range": "10 – 100",
+      "range_endpoints_only": [
+        10,
+        100
+      ],
+      "exact_average_monthly_searches": null,
+      "competition": "High",
+      "three_month_change_percent": 0,
+      "yoy_change_percent": 0,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "paid_qualification": "DEFER"
+    },
+    {
+      "candidate_id": "NL-01",
+      "country": "NL",
+      "language": "nl",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_and_returned_text": "matching gestreepte shirts moeder dochter",
+      "source_query": "NL initial",
+      "query_readback_as_of_utc": "2026-09-14T12:49:44Z",
+      "literal_monthly_range": "0 – 10",
+      "range_endpoints_only": [
+        0,
+        10
+      ],
+      "exact_average_monthly_searches": null,
+      "competition": null,
+      "three_month_change_percent": null,
+      "yoy_change_percent": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "paid_qualification": "DEFER"
+    },
+    {
+      "candidate_id": "NL-02",
+      "country": "NL",
+      "language": "nl",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_and_returned_text": "dezelfde t shirts ouders en kinderen",
+      "source_query": "NL initial",
+      "query_readback_as_of_utc": "2026-09-14T12:49:44Z",
+      "literal_monthly_range": "0 – 10",
+      "range_endpoints_only": [
+        0,
+        10
+      ],
+      "exact_average_monthly_searches": null,
+      "competition": null,
+      "three_month_change_percent": null,
+      "yoy_change_percent": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "paid_qualification": "DEFER"
+    },
+    {
+      "candidate_id": "NL-03",
+      "country": "NL",
+      "language": "nl",
+      "source_match_type": "PHRASE",
+      "parent_product_id": "7545279512673",
+      "original_and_returned_text": "familie shirts voor fotoshoot",
+      "source_query": "NL initial",
+      "query_readback_as_of_utc": "2026-09-14T12:49:44Z",
+      "literal_monthly_range": "0 – 10",
+      "range_endpoints_only": [
+        0,
+        10
+      ],
+      "exact_average_monthly_searches": null,
+      "competition": null,
+      "three_month_change_percent": null,
+      "yoy_change_percent": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "paid_qualification": "DEFER"
+    },
+    {
+      "candidate_id": "RO-01",
+      "country": "RO",
+      "language": "ro",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_and_returned_text": "tricouri asortate mamă fiică cu dungi",
+      "source_query": "RO initial",
+      "query_readback_as_of_utc": "2026-09-14T12:44:56Z",
+      "literal_monthly_range": "0 – 10",
+      "range_endpoints_only": [
+        0,
+        10
+      ],
+      "exact_average_monthly_searches": null,
+      "competition": null,
+      "three_month_change_percent": null,
+      "yoy_change_percent": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "paid_qualification": "DEFER"
+    },
+    {
+      "candidate_id": "RO-02",
+      "country": "RO",
+      "language": "ro",
+      "source_match_type": "EXACT",
+      "parent_product_id": "7545279512673",
+      "original_and_returned_text": "tricouri de familie asortate cu dungi",
+      "source_query": "RO initial",
+      "query_readback_as_of_utc": "2026-09-14T12:44:56Z",
+      "literal_monthly_range": "0 – 10",
+      "range_endpoints_only": [
+        0,
+        10
+      ],
+      "exact_average_monthly_searches": null,
+      "competition": null,
+      "three_month_change_percent": null,
+      "yoy_change_percent": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "paid_qualification": "DEFER"
+    },
+    {
+      "candidate_id": "RO-03",
+      "country": "RO",
+      "language": "ro",
+      "source_match_type": "PHRASE",
+      "parent_product_id": "7545279512673",
+      "original_and_returned_text": "tricouri asortate părinți copii",
+      "source_query": "RO initial",
+      "query_readback_as_of_utc": "2026-09-14T12:44:56Z",
+      "literal_monthly_range": "0 – 10",
+      "range_endpoints_only": [
+        0,
+        10
+      ],
+      "exact_average_monthly_searches": null,
+      "competition": null,
+      "three_month_change_percent": null,
+      "yoy_change_percent": null,
+      "bid_low": null,
+      "bid_high": null,
+      "actual_cpc": null,
+      "forecast": null,
+      "paid_qualification": "DEFER"
+    }
+  ],
+  "italy_coverage_review": {
+    "initial_native_counter": 8,
+    "initial_exposed_rows": 5,
+    "initial_original_candidates_exposed": [
+      "IT-03"
+    ],
+    "initial_visible_incidental_suggestions": 4,
+    "initial_full_table_and_total_suggestion_coverage": "UNKNOWN",
+    "isolated_original_inputs": [
+      "IT-01",
+      "IT-02"
+    ],
+    "isolated_returned_original_rows": 2,
+    "isolated_result_range_each": "0 – 10",
+    "IT03_repeated": false,
+    "resolution": "All three original Italian candidates now have independently joined saved native rows. The isolated-pair result does not retroactively establish the unseen initial rows or exhaustive generated-suggestion coverage.",
+    "incidental_suggestions_used_as_inputs_or_candidates": false
+  },
+  "query_accounting": {
+    "discovery_queries": 4,
+    "total_seed_submissions": 11,
+    "distinct_original_seeds": 9,
+    "only_repeated_originals": [
+      "IT-01",
+      "IT-02"
+    ],
+    "query_location_Save_controls": 3,
+    "recorded_persistent_plan_saves": 0,
+    "saved_plan_state": "Operator records empty before research and after all three country passes, including both Italy queries.",
+    "preference_limit": "Last-used query preferences can persist; query-filter Save is not a campaign/keyword-plan Save."
+  },
+  "decision_review": {
+    "paid_qualification": "DEFER_ALL_NINE_SUPPORTED",
+    "IT03": "Retain the 10–100 historical interest signal, two observed 0% changes and High competition. No bid/CPC or ceiling-delivery proof follows.",
+    "adversarial_challenge": "IT-03 being higher-volume does not establish affordable or profitable delivery, and High competition does not itself prove expensive clicks. Deferral rests on missing delivery, buyer/cost/measurement evidence and the separate unresolved Italy gate, not a country-wide rejection.",
+    "cross_batch_original_coverage": 18,
+    "cross_batch_candidate_bin_counts": {
+      "0–10": 17,
+      "10–100": 1
+    },
+    "search_volume_sum": "NOT_COMPUTED_NOT_VALIDATED",
+    "exact_zero_demand_claim": false,
+    "whole_country_rejection": false,
+    "new_keywords_or_campaign_drafts": false
+  },
+  "currency_and_forecast_limits": {
+    "current_native_ISO_currency": "NOT_OBSERVED_NOT_RETRIED",
+    "USD_basis": "Previously accepted same-account historical/documentary inference only; no new billing/account/document currency route.",
+    "monetary_values_available": false,
+    "actual_CPC_or_ceiling_forecast": null,
+    "forecast_requests_this_pass": 0,
+    "known_barrier_retries": 0,
+    "statement": "Earlier stopped forecast/currency/document paths remain closed. Method documentation and API missingness do not establish native dash causes, achievable bids or another currently permitted forecast capability."
+  },
+  "material_unresolved_defects": [],
+  "limits": [
+    "Native fragments are operator-transcribed DOM/AX excerpts, not complete byte-identical snapshots or independently replayed account observations.",
+    "Original candidate coverage is complete across the two accepted batches; total initial Italy suggestion/table coverage remains unknown. Four visible suggestions are excluded, not promoted.",
+    "Historical ranges can include overlapping close variants. Proposed match types, language settings, UI reach counts and historical bins are not current unique demand, forecasts or native-ad/customer-path acceptance.",
+    "The Italy fulfillment/cost issue remains a dated independent gate; no private order or current fulfillment inquiry was performed. Historical dress CPC and all-channel orders were not reused as tee CPC or profit.",
+    "Current USD, protected 27 editor values, GA4 report, parent sales clock, themes and canonical authority were not independently refreshed. The supplied records preserve these states and authority limits.",
+    "The reviewer did not build or execute the native queries, rely on operator pass counts, fetch documents, retry blocked routes, or revisit purchase/consent work."
+  ],
+  "preservation": {
+    "editor_tab": "23",
+    "unsaved_values": 27,
+    "GA4_report_tab": "25",
+    "sales_next_read_utc": "2026-09-14T19:04:53Z",
+    "owner_publication_theme": "137888792673",
+    "retained_MAIN_id": "133290917985",
+    "max_CPC_USD_constraint": 0.15,
+    "ROAS_constraint": 6.5,
+    "all_in_profit_margin_constraint": 0.3,
+    "paid_authority": "NONE",
+    "verification_level": "PRESERVED_IN_SUPPLIED_RECORDS_NOT_INDEPENDENT_LIVE_READBACK"
+  },
+  "next_action": {
+    "owner": "Parent integrator",
+    "action": "Integrate the remaining-nine paid deferral and the completed 18-original-candidate historical coverage; preserve the existing owner publication action and parent sales clock.",
+    "why_first": "The historical read objective is satisfied. Paid funding still lacks the required delivery, buyer, cost and measurement evidence, so this review does not authorize another query or launch.",
+    "new_authority_created": false
+  },
+  "reviewer_actions": {
+    "source_files_read": 7,
+    "files_written": [
+      "research/ta10_remaining_native_demand_20260914_1236/INDEPENDENT_REVIEW.json"
+    ],
+    "account_browser_storefront_calls": 0,
+    "private_order_or_credential_calls": 0,
+    "document_requests_or_known_path_retries": 0,
+    "new_keywords_or_campaign_drafts": 0,
+    "production_changes": 0,
+    "shared_canonical_worklog_queue_cockpit_writes": 0
+  }
+}

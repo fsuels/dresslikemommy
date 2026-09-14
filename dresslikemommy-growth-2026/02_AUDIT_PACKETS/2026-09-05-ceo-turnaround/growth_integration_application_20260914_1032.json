@@ -1,0 +1,74 @@
+{
+  "schema": "dlm.growth.integration.application.v1",
+  "action_id": "GROWTH-INTEGRATE-20260914-1032",
+  "anchor": "2026-09-14-ceo-international-demand-and-receiver-evidence",
+  "applied_at_utc": "2026-09-14T11:19:46.175269+00:00",
+  "status": "APPLIED_EXACT__STANDARD_POSTFLIGHT_PENDING",
+  "manifest": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1032_v2.json",
+    "sha256": "1823bbf9b886c0540d54b668ca55aff90472dfcf948e43f00fdd77fae875e4b4"
+  },
+  "independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_review_20260914_1032.json",
+    "sha256": "5b9112cdf6b2b719a0ec28ab19c4c3e7770e10a26c3d987ca9029ad1563f2f56"
+  },
+  "source_acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1032.json",
+    "sha256": "b2eafebd1efc4bbd2c2bacd88f062fb4f9088b209f5815172d56fa35208e2d1f"
+  },
+  "files": [
+    {
+      "path": "ops/marketing/action_queue.md",
+      "before_sha256": "618990493a4554371c9dc23e070b1c21605fd160c91d8485ee15f1c0c7a00982",
+      "after_sha256": "05c9cc197b59b28fc6313a05ba7fbd1ea97a24bf10a06665091c0193dc0ea9dd",
+      "after_readback": "EXACT_MATCH"
+    },
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "before_sha256": "18189dad59ebd3f9bea4810ef788ab5364c35e2e822a0d67d71c783ad2dd7f53",
+      "after_sha256": "417924c65386a0be4f8034078d4667c829be2e2a144d370c13550b31fa00680a",
+      "after_readback": "EXACT_MATCH"
+    },
+    {
+      "path": "ops/marketing/daily_scorecard.md",
+      "before_sha256": "724a633357db6f2f2529176ca518a308e15a1bb9ebc2c64d1fb9caaec39019a2",
+      "after_sha256": "cb8a1461e090aebe491cac94b0abc2bfd0d75e2667454d546681b0ad4f311b27",
+      "after_readback": "EXACT_MATCH"
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "before_sha256": "f83dab19fb8c9a93eb03bd8728cbecbb43c04b96303f97c6e492035cf8a3b1b5",
+      "after_sha256": "d479fbcedace460230724512963f264347530ed9eeef4ada29e42a600a46cfb8",
+      "after_readback": "EXACT_MATCH"
+    },
+    {
+      "path": "ops/marketing/decision_log.md",
+      "before_sha256": "26710e6eb29b3c44a3a5d2ffa36e48de77c2a4c8a65905f0b32d9ba8d4337326",
+      "after_sha256": "2fa749797455a8f5f3d48b1ffdd3f5deea39ae83e19e05f2c29b898061aebed1",
+      "after_readback": "EXACT_MATCH"
+    },
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "before_sha256": "368c6258be1c65df5cfa1950e79918ca44a94bf441eabdbf08d931ea75f978e0",
+      "after_sha256": "0996d483f837f18bcc2a7e84c0a5e69456d98479a39be9d97677553a8c65868b",
+      "after_readback": "EXACT_MATCH"
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "before_sha256": "63a4f431930d371044ac56035a2e7ae9474c4587bd7a84eeb36647ef2e09930b",
+      "after_sha256": "d978568e252d1bc9ce10b1315d74dd3d82cd4cfcc82a7e7e18f9740f0eea151d",
+      "after_readback": "EXACT_MATCH"
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "before_sha256": "f548fdebe45900426fa9a2d7e4f48f73409a8044d29d789c80e3e501e2d2a938",
+      "after_sha256": "9219981559fb9fbaf971ddc1da6c81c0341973c0f3729cb4dc8a02f5d3e7ede0",
+      "after_readback": "EXACT_MATCH"
+    }
+  ],
+  "operations": 11,
+  "business_writes": 0,
+  "new_harness_goal_task_scheduler": 0,
+  "local_correction_history": "Original19-check review had one missing-metadata finding; v2 resolves it with three lines and4passing correction checks. Original manifest/candidate/failure retained.",
+  "rollback": "Guard each current after hash and reverse only the exact manifest changes; preserve any subsequent peer change."
+}

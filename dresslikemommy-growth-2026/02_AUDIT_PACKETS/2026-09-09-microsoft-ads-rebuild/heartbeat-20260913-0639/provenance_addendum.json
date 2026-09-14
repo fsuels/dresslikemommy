@@ -1,0 +1,49 @@
+{
+  "purpose": "Clarify the provenance of the DE retained Exact chart; do not alter the frozen input files.",
+  "affected_file": "native_scenarios.json",
+  "affected_sha256": "ad4aaeae6fc2dc7bd2f369a4a1d8249deebec88a67764c9ee4edf928a62d1314",
+  "source": "This wake initial native CUA getTab7 readback at approximately2026-09-13 06:46UTC, before any Phrase match change. The retained Exact UI is root-observed, not an independent live replay or a newly requested Exact estimate.",
+  "retained_parameters": {
+    "bid_usd": "0.15",
+    "daily_budget_input_usd": "3",
+    "country": "Germany",
+    "language": "All languages",
+    "network": "Microsoft sites and select traffic",
+    "rows": 4,
+    "display_match": "Four bracketed Exact keyword rows",
+    "negative_keywords": "Seven quoted German saved campaign negatives"
+  },
+  "retained_chart": {
+    "series": "Clicks",
+    "label": "Weekly estimates",
+    "data_point_count": 6,
+    "points": [
+      {
+        "x_bid_usd": "0",
+        "y_weekly_clicks": "0.00"
+      },
+      {
+        "x_bid_usd": "0.07",
+        "y_weekly_clicks": "0.00"
+      },
+      {
+        "x_bid_usd": "0.08",
+        "y_weekly_clicks": "0.00"
+      },
+      {
+        "x_bid_usd": "0.1",
+        "y_weekly_clicks": "0.00"
+      },
+      {
+        "x_bid_usd": "0.12",
+        "y_weekly_clicks": "0.00"
+      },
+      {
+        "x_bid_usd": "15.58",
+        "y_weekly_clicks": "0.00"
+      }
+    ]
+  },
+  "limitation": "The earlier02:39 native_scenarios.json does not contain DE chart points. The zero-chart comparison in this packet derives from the retained native UI seen this wake. It is not a same-instant causal control and cannot independently prove a match-type gain.",
+  "decision_effect": "No change. The no-campaign-change hold does not depend on proving a DE click increase. Current Phrase results alone remain insufficient qualification."
+}

@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "task": "TA-15",
+  "classification": "VERIFY",
+  "observer": "root01a08703",
+  "source_live_evidence_as_of": "2026-09-14 10:56:08 UTC",
+  "status": "PURCHASE_EVENT_RECEIPT_VERIFIED__EXACT_ORDER_MATCH_UNVERIFIED",
+  "root_thread_id": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "source_kind": "Root-observed native Microsoft Advertising UI; sanitized transcriptions, not an independent live replay or raw event export.",
+  "account": {
+    "account_id": "477439",
+    "customer_id": "770182",
+    "uet_tag_id": "36005151",
+    "tag_name": "ShopifyImport"
+  },
+  "browser": {
+    "browser_id": "1",
+    "tab_id": "7",
+    "provider_tab_id": "browser-use:7a2e27da-1295-467c-b4f0-5b23ab611945",
+    "task_owned": true
+  },
+  "urls": {
+    "settings": "https://ui.ads.microsoft.com/campaign/vnext/accountsettings?aid=477439&cid=770182&uid=2290164",
+    "receiver": "https://ui.ads.microsoft.com/campaign/vnext/uettag?tagId=36005151&aid=477439&cid=770182&uid=2290164",
+    "test_form": "https://ui.ads.microsoft.com/campaign/vnext/uettagtest?tagId=36005151&aid=477439&cid=770182&uid=2290164"
+  },
+  "user_requested_settings": {
+    "verified": true,
+    "tracking_template": "Blank",
+    "final_url_suffix": "Blank",
+    "msclkid_auto_tagging": true,
+    "utm_auto_tagging": true,
+    "utm_mode": "Replace all existing tags",
+    "auto_retrieve_domain_images": false,
+    "simplified_conversion_setup": false,
+    "include_view_through_in_all_conversions": true,
+    "automatic_multimedia_dynamic_ads": false,
+    "doubleverify_measurement_for_new_campaigns": false,
+    "business_settings_written": false,
+    "auto_apply_rsa_setting": "NOT_REOPENED_THIS_CHECKPOINT"
+  },
+  "consent_notice": {
+    "observed": true,
+    "heading": "Adopt Consent Mode for UET immediately",
+    "region_names": [
+      "EEA",
+      "United Kingdom",
+      "Switzerland"
+    ],
+    "closed_without_continue_or_declaration": true,
+    "interpretation": "Generic account notice; its presence alone does not prove a specific source defect. The earlier independently reviewed September12 standard UET trace remains separately dated evidence."
+  },
+  "receiver": {
+    "selected_date_range": "Yesterday: 9/13/2026 - 9/13/2026",
+    "date": "2026-09-13",
+    "timezone_evidence": "Campaign report footer in this same task/account displays '(GMT-05:00) Eastern Time (U.S. & Canada)'. UET page does not separately display timezone or an exact event timestamp. Do not convert its relative Last Received into an exact UTC receipt.",
+    "observed_event_rows": [
+      {
+        "event": "page view",
+        "type": "Page Load",
+        "total_events": 533,
+        "last_received_final": "0 minutes ago",
+        "consent_label": "Moderate"
+      },
+      {
+        "event": "purchase",
+        "type": "Custom",
+        "total_events": 1,
+        "last_received_final": "7 hours ago",
+        "consent_label": "Healthy"
+      },
+      {
+        "event": "begin_checkout",
+        "type": "Custom",
+        "total_events": 1,
+        "last_received_final": "7 hours ago",
+        "consent_label": "Healthy"
+      },
+      {
+        "event": "add_to_cart",
+        "type": "Custom",
+        "total_events": 14,
+        "last_received_final": "7 hours ago",
+        "consent_label": "Missing"
+      },
+      {
+        "event": "view_item",
+        "type": "Custom",
+        "total_events": 86,
+        "last_received_final": "9 minutes ago",
+        "consent_label": "Missing"
+      },
+      {
+        "event": "home",
+        "type": "Custom",
+        "total_events": 11,
+        "last_received_final": "8 minutes ago",
+        "consent_label": "Missing"
+      }
+    ],
+    "initial_receipt_excerpt": "purchase Custom 1 GoalValue and 3 others 7 hours ago Healthy Export data",
+    "parameters_popup": {
+      "heading": "Parameters (4)",
+      "description": "View the parameters received with your recent event",
+      "names": [
+        "GoalValue",
+        "Currency",
+        "PageType",
+        "ProductId"
+      ],
+      "values_exposed": false,
+      "transaction_identity_exposed": false
+    },
+    "purchase_consent_popup": "No events from EEA, UK, or Switzerland detected so no action is needed. UET Consent Mode helps comply with regulations in these areas.",
+    "purchase_consent_interpretation": "Healthy is a no-regional-sample state in this tooltip, not verified regional consent. The tooltip does not expose its date window.",
+    "last_received_help": "This is the time when the last event was received.",
+    "date_scope_limit": "Totals are shown under the selected September13 date; Last Received may reflect events outside that selected date. No exact timestamp, timezone or date-window inference is used to identify the order.",
+    "raw_value": "UNKNOWN",
+    "raw_currency": "UNKNOWN",
+    "product_id_values": "UNKNOWN",
+    "quantities": "UNKNOWN",
+    "transaction_id_match": "UNKNOWN",
+    "repeated_main_view_confirmed_same_six_totals": true
+  },
+  "export_attempts": {
+    "native_purchase_export_clicks": 2,
+    "first_result": "No download receipt or changed native view observed.",
+    "second_result": "Registered supported download listener before clicking the same native export link; timed out after15000ms.",
+    "downloaded_file_available": false,
+    "root_observed_download_error": "Timed out after 15000ms waiting for download.",
+    "root_cause": "UNKNOWN",
+    "same_path_not_repeated_again": true,
+    "native_action_help": "What it is: Selecting export data will download an excel or csv file with event details by data, event name, event type, and number of events (received count.)",
+    "scope_limit": "Native help describes aggregate event counts; it does not promise transaction identity or parameter values. No export was accepted as evidence."
+  },
+  "alternate_history_path": {
+    "test_your_tag_opened_read_only": true,
+    "observed": "Test form requests Website URL and Open website URL; interaction-generated events appear there.",
+    "website_url_entered": false,
+    "website_opened": false,
+    "new_test_event": false,
+    "explanation": "The exposed page did not provide historical purchase values. No customer checkout/order was reopened or staged."
+  },
+  "genuine_purchase_source": {
+    "prerequisites": "review/purchase_source_prerequisites.json",
+    "sha256": "1e3458bd01c2ffa1a723da14ee314c28a26896b922e992ed6cdebef1e431ef30",
+    "source_reported_value": "111.96",
+    "source_reported_currency": "USD",
+    "source_reported_units": 4,
+    "created_at_utc": "2026-09-14T03:39:45Z",
+    "created_at_new_york": "2026-09-13T23:39:45-04:00",
+    "private_identifier_accessed": false,
+    "new_shopify_query": false,
+    "microsoft_correlation": "One September13 purchase event with relative last receipt of seven hours is consistent with the candidate timing; this is a candidate correlation only. The Microsoft UI did not reveal111.96/USD, the four variant values or transaction identity."
+  },
+  "acceptance": {
+    "actual_microsoft_purchase_event_receipt": "VERIFIED",
+    "exact_genuine_shopify_order_join": "UNVERIFIED",
+    "microsoft_purchase_value_currency_items": "UNVERIFIED",
+    "consent_denied_granted_revoked_behavior": "UNVERIFIED",
+    "regional_purchase_consent": "NO_SAMPLE_IN_TOOLTIP",
+    "sender_level_deduplication": "UNVERIFIED",
+    "microsoft_paid_attribution": "UNVERIFIED",
+    "actual_retained_profit": "UNKNOWN",
+    "paid_launch_readiness": "NOT_ACCEPTED"
+  },
+  "preserved": {
+    "all_campaigns_paused_banner_observed": true,
+    "settings_saves": 0,
+    "campaign_writes": 0,
+    "goal_writes": 0,
+    "shopify_writes": 0,
+    "imports": 0,
+    "support_contacted": false,
+    "support_question": "Existing question remains pending; not re-asked.",
+    "existing_support_source_files_modified": false,
+    "existing_automation_modified": false
+  },
+  "authority": {
+    "authority_context": "Canonical Microsoft claim35 and current owner tracking-repair scope; parent retains shared integration.",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "Supported app-source correction or existing support-contact authorization, plus supported exact genuine purchase payload/identity evidence.",
+    "if_evidence_supports_recommendation": "Verify the supported correction against consent behavior and a genuine purchase before proposing an exact measured paid test.",
+    "if_evidence_opposes_recommendation": "Keep the exact order/payload/consent gates open; do not infer receipt failure from zero ad-attributed conversions.",
+    "independent_verifier": "/root/paused_import_verifier",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE"
+  },
+  "next_action": "Use the existing supported publisher/support path when the pending contact answer or source change arrives. Include this unsent addendum. Do not repeat the unchanged event export, live test form or generic settings read for this same order.",
+  "parent_sales_clock": {
+    "next_full_read_utc": "2026-09-14T19:04:53Z",
+    "source": "current_marketing_state.md September14 real purchase and context recovery",
+    "other_clocks_preserved": true
+  },
+  "documentation_integration": "Root owns this packet only. Parent canonical integration to be requested after independent review."
+}

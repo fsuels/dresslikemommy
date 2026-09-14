@@ -1,0 +1,3969 @@
+{
+  "schema": "dlm.search_campaign_local_drafts.v1",
+  "status": "PREPARED_LOCAL_BUILD_NOT_LAUNCH_READY",
+  "prepared_at_utc": "2026-09-11T20:27:07.964621+00:00",
+  "owner": "root owns account integration; google_launch_research owns only these two local draft files",
+  "new_account_campaigns": 0,
+  "new_account_keywords": 0,
+  "external_writes": 0,
+  "canonical_writes": 0,
+  "public_storefront_http_requests": 0,
+  "authority_and_budget": {
+    "existing_pmax_campaign": "24247604341",
+    "existing_pmax_preserved_status": "PAUSED",
+    "existing_configured_average_daily_budget_usd": 5,
+    "new_budget_allocated_usd": 0,
+    "campaign_budgets_all_null": true,
+    "launch_authorized_by_this_manifest": false,
+    "cutover": "No concurrent new spend; root must reconcile existing campaign and bind current exact spend authority/loss allowance before selecting one paid cohort. Four drafts are preparation alternatives, not four simultaneous launches.",
+    "build_execution": "This local manifest is not an import payload. Resolve native identity gate and required budget/auction/measurement/route/cost inputs before root creates or enables any account record."
+  },
+  "shared_economics": {
+    "R": "Retained merchandise after discounts/refunds plus retained shipping excluding tax",
+    "V": "Disjoint actual variable costs net of evidenced recoveries",
+    "H": "Allocated overhead/other costs excluded from V",
+    "CM": "R-V",
+    "profit": "R-V-H-A",
+    "ad_capacity": "min(R/6.5, CM-H-0.30*R, authorized cash/loss allowance)",
+    "all_in_profit_margin_min": 0.3,
+    "business_roas_min": 6.5,
+    "hard_media_cpc_ceiling_usd": 0.15,
+    "unknown_or_nonpositive_capacity": "HELD",
+    "currency_rule": "Keep each local-currency basket intact; convert actual settlement/ad costs using supported FX to a common reporting currency. Never treat USD Planner bids as AUD/GBP/CAD product prices.",
+    "no_LTV_assumption": true
+  },
+  "common_launch_gates": [
+    "Normal Google identity verification and exact current account scope",
+    "Actual purchase acceptance for7760272273: dynamic value/currency/transaction identity, same-action dedup, selected-primary reconciliation and consent",
+    "Qualified exact offered basket costs/settlement/fees and explicit unresolved refunds/returns",
+    "Current buyer US/AU/GB/CA product, country, currency, size/type, cart and checkout acceptance without violating429stop or peer UX ownership",
+    "Current native exact-keyword eligibility/forecast atUSD0.15, Manual CPC/no-increase exception controls, inherited-negative and account-overlap readback",
+    "Root binds exact authorized cumulative exposure and one-cohort cutover; no extra budget allocation"
+  ],
+  "campaign_drafts": [
+    {
+      "lane": "US_EN",
+      "status": "LOCAL_BUILD_PREPARED_LAUNCH_HELD",
+      "campaign": {
+        "proposed_name": "DLM | US | EN | Search | Navy Sprig | HOLD",
+        "existing_or_created_campaign_id": null,
+        "channel": "SEARCH",
+        "proposed_initial_status": "PAUSED",
+        "account_id": "6509972886",
+        "budget_id": null,
+        "budget_amount": null,
+        "budget_currency": "USD",
+        "total_loss_allowance_usd": null,
+        "bidding": "MANUAL_CPC",
+        "default_max_cpc_usd": 0.15,
+        "keyword_max_cpc_usd": 0.15,
+        "upward_bid_adjustments": false,
+        "search_partners": false,
+        "display_network": false,
+        "ai_max": false,
+        "dynamic_search_ads": false,
+        "final_url_expansion": false,
+        "auto_apply_keyword_or_bidding_recommendations": false,
+        "target_country_only": "US",
+        "location_option": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+        "creative_language": "en",
+        "language_setting_if_available": "English; respect September2026 rollout, verify actual creative/queries, not selector alone",
+        "configured_target_roas": null,
+        "business_roas_gate": 6.5
+      },
+      "ad_group": {
+        "proposed_name": "Navy Sprig | Mother Daughter Matching Dresses | Exact",
+        "product_id": "7670609346657",
+        "product_handle": "navy-sprig-mommy-and-me-dresses",
+        "intent": "Finished mother-daughter matching dresses",
+        "reserve_not_in_first_group": [
+          {
+            "source_candidate_id": "US_EN-04",
+            "text": "family matching striped t shirts",
+            "match_type": "PHRASE",
+            "notation": "\"family matching striped t shirts\"",
+            "source_status": "HELD",
+            "draft_status": "HELD_NOT_AUCTION_OR_PROFIT_QUALIFIED",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "exclude_from_first_group_reason": "PHRASE alternative overlaps exact intent and is not a second initial group."
+          },
+          {
+            "source_candidate_id": "US_EN-05",
+            "text": "matching t shirts for family photos",
+            "match_type": "PHRASE",
+            "notation": "\"matching t shirts for family photos\"",
+            "source_status": "HELD",
+            "draft_status": "HELD_NOT_AUCTION_OR_PROFIT_QUALIFIED",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "exclude_from_first_group_reason": "PHRASE alternative overlaps exact intent and is not a second initial group."
+          },
+          {
+            "source_candidate_id": "US_EN-06",
+            "text": "mommy and me dresses for pictures",
+            "match_type": "EXACT",
+            "notation": "[mommy and me dresses for pictures]",
+            "source_status": "HELD",
+            "draft_status": "HELD_NOT_AUCTION_OR_PROFIT_QUALIFIED",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "exclude_from_first_group_reason": "Different garment/occasion; do not send dress or wedding intent to a tee PDP."
+          },
+          {
+            "source_candidate_id": "US_EN-07",
+            "text": "mother daughter wedding guest dresses",
+            "match_type": "EXACT",
+            "notation": "[mother daughter wedding guest dresses]",
+            "source_status": "HELD",
+            "draft_status": "HELD_NOT_AUCTION_OR_PROFIT_QUALIFIED",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "exclude_from_first_group_reason": "Different garment/occasion; do not send dress or wedding intent to a tee PDP."
+          }
+        ],
+        "product_scope_warning": "No separate dress/swim/pajama/wedding ad group created; no broad or phrase expansion in the first cohort.",
+        "keyword_records_role": "PROSPECTIVE_RESEARCH_CANDIDATES_HELD_NOT_INITIAL_LAUNCH_SET",
+        "qualified_initial_keywords": [],
+        "low_volume_reserve_keywords": [
+          {
+            "source_candidate_id": "US_EN-01",
+            "text": "family matching striped t shirts",
+            "match_type": "EXACT",
+            "notation": "[family matching striped t shirts]",
+            "source_status": "PREPARED",
+            "draft_status": "LOW_VOLUME_RESERVE_HELD",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "source_binding": "Existing exact Sunshine candidate unchanged.",
+            "native_seed_state": "RETURNED_0_TO_10_MONTHLY_NO_BID_ESTIMATES",
+            "prior_native_seed_state": {
+              "state": "NOT_RETURNED_IN_US_PROVIDED_SECTION",
+              "status": "HISTORICAL_SUPERSEDED_BY_NARROW_READBACK",
+              "original_draft_prepared_at_utc": "2026-09-11T20:27:07.964621+00:00"
+            },
+            "native_readback": {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+              "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad",
+              "recorded_at_utc": "2026-09-11T20:33:59.779677+00:00",
+              "observation_time_bounds_utc": [
+                "2026-09-11T20:27:58Z",
+                "2026-09-11T20:33:59.779677+00:00"
+              ],
+              "source_method": "Root rendered Keyword Planner UI; one country at a time, same six sole seeds, country results read after settling.",
+              "country": "US",
+              "provided_row": {
+                "keyword": "family matching striped t shirts",
+                "monthly_searches_displayed": "0 – 10",
+                "competition": null,
+                "three_month_change": null,
+                "year_over_year_change": null,
+                "top_of_page_bid_low_usd": null,
+                "top_of_page_bid_high_usd": null,
+                "ad_impression_share": null
+              },
+              "qualification": "LOW_VOLUME_RESERVE_HELD",
+              "sufficient_initial_coverage": false
+            }
+          },
+          {
+            "source_candidate_id": "US_EN-02",
+            "text": "mother daughter striped t shirts",
+            "match_type": "EXACT",
+            "notation": "[mother daughter striped t shirts]",
+            "source_status": "PREPARED",
+            "draft_status": "LOW_VOLUME_RESERVE_HELD",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "source_binding": "Existing exact Sunshine candidate unchanged.",
+            "native_seed_state": "RETURNED_0_TO_10_MONTHLY_NO_BID_ESTIMATES",
+            "prior_native_seed_state": {
+              "state": "NOT_RETURNED_IN_US_PROVIDED_SECTION",
+              "status": "HISTORICAL_SUPERSEDED_BY_NARROW_READBACK",
+              "original_draft_prepared_at_utc": "2026-09-11T20:27:07.964621+00:00"
+            },
+            "native_readback": {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+              "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad",
+              "recorded_at_utc": "2026-09-11T20:33:59.779677+00:00",
+              "observation_time_bounds_utc": [
+                "2026-09-11T20:27:58Z",
+                "2026-09-11T20:33:59.779677+00:00"
+              ],
+              "source_method": "Root rendered Keyword Planner UI; one country at a time, same six sole seeds, country results read after settling.",
+              "country": "US",
+              "provided_row": {
+                "keyword": "mother daughter striped t shirts",
+                "monthly_searches_displayed": "0 – 10",
+                "competition": null,
+                "three_month_change": null,
+                "year_over_year_change": null,
+                "top_of_page_bid_low_usd": null,
+                "top_of_page_bid_high_usd": null,
+                "ad_impression_share": null
+              },
+              "qualification": "LOW_VOLUME_RESERVE_HELD",
+              "sufficient_initial_coverage": false
+            }
+          },
+          {
+            "source_candidate_id": "US_EN-03",
+            "text": "matching t shirts for family photos",
+            "match_type": "EXACT",
+            "notation": "[matching t shirts for family photos]",
+            "source_status": "PREPARED",
+            "draft_status": "LOW_VOLUME_RESERVE_HELD",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "source_binding": "Existing exact Sunshine candidate unchanged.",
+            "native_seed_state": "RETURNED_0_TO_10_MONTHLY_NO_BID_ESTIMATES",
+            "prior_native_seed_state": {
+              "state": "NOT_RETURNED_IN_US_PROVIDED_SECTION",
+              "status": "HISTORICAL_SUPERSEDED_BY_NARROW_READBACK",
+              "original_draft_prepared_at_utc": "2026-09-11T20:27:07.964621+00:00"
+            },
+            "native_readback": {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+              "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad",
+              "recorded_at_utc": "2026-09-11T20:33:59.779677+00:00",
+              "observation_time_bounds_utc": [
+                "2026-09-11T20:27:58Z",
+                "2026-09-11T20:33:59.779677+00:00"
+              ],
+              "source_method": "Root rendered Keyword Planner UI; one country at a time, same six sole seeds, country results read after settling.",
+              "country": "US",
+              "provided_row": {
+                "keyword": "matching t shirts for family photos",
+                "monthly_searches_displayed": "0 – 10",
+                "competition": null,
+                "three_month_change": null,
+                "year_over_year_change": null,
+                "top_of_page_bid_low_usd": null,
+                "top_of_page_bid_high_usd": null,
+                "ad_impression_share": null
+              },
+              "qualification": "LOW_VOLUME_RESERVE_HELD",
+              "sufficient_initial_coverage": false
+            }
+          }
+        ],
+        "low_volume_reserve_origin": {
+          "product_id": "7545279512673",
+          "product_handle": "sunshine-stripe-family-matching-tops",
+          "intent": "Finished striped tees for family/mother-child photos",
+          "final_url_candidate": "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops?country=US&currency=USD",
+          "scope": "Original product/cohort association is preserved. These keywords are not assigned to the new prospective Navy cohort or an activation set."
+        },
+        "reserve_not_in_first_group_context": {
+          "original_product_id": "7545279512673",
+          "original_product_handle": "sunshine-stripe-family-matching-tops",
+          "scope": "Historical reserve exclusions retain their original cohort meaning; no record is activated or remapped merely because the prepared cohort changes."
+        },
+        "keywords": [
+          {
+            "source_candidate_id": "US_EN-RESEARCH-02-01",
+            "text": "mother and daughter same dress",
+            "match_type": "EXACT",
+            "notation": "[mother and daughter same dress]",
+            "source_status": "RESEARCH_CANDIDATE_NAVY_SPRIG_UNIT_AND_VARIANT_FIT_REQUIRED",
+            "draft_status": "RESEARCH_CANDIDATE_HELD",
+            "prospective_max_cpc_usd": 0.15,
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "native_seed_state": "REPORTED_HISTORICAL_DISCOVERY_ROW_NOT_NATIVE_EXACT_KEYWORD_ELIGIBILITY",
+            "native_readback": {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/BROADER_KEYWORD_OPPORTUNITIES.json",
+              "sha256": "3dacf157a2ab6129a937bdf579a984adeb8d47e1f77d2cc754f1e6c165fb95ff",
+              "recorded_at_utc": "2026-09-11T20:42:47.761596+00:00",
+              "observation_time_bounds_utc": [
+                "2026-09-11T20:32:06Z",
+                "2026-09-11T20:42:47.761596+00:00"
+              ],
+              "country": "US",
+              "provided_row": {
+                "keyword": "mother and daughter same dress",
+                "monthly_searches_displayed": "10 – 100",
+                "competition": "High",
+                "three_month_change": "0%",
+                "year_over_year_change": "-90%",
+                "top_of_page_bid_low_usd": 0.15,
+                "top_of_page_bid_high_usd": 0.57,
+                "disposition": "RESEARCH_CANDIDATE_NAVY_SPRIG_UNIT_AND_VARIANT_FIT_REQUIRED",
+                "actual_cpc_usd": null,
+                "forecast_at_015": null
+              }
+            },
+            "product_fit_basis": "Navy Sprig offers separate mother/child Dress selections. This is source-based garment fit, not buyer/auction/profit acceptance.",
+            "sufficient_initial_coverage": null,
+            "launch_qualified": false
+          }
+        ],
+        "initial_research_selection_status": "ONE_CANONICAL_RESEARCH_TERM_HELD"
+      },
+      "landing": {
+        "final_url_candidate": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=US&currency=USD",
+        "locale_root": "https://www.dresslikemommy.com/",
+        "expected_country": "US",
+        "expected_currency": "USD",
+        "country_market_memberships": [
+          "gid://shopify/Market/544735329"
+        ],
+        "existing_overlap": "False",
+        "route_basis": "Exact Shopify US product URL is source-verified. Added country=US&currency=USD context is a reviewable route proposal; existing US feed links contain numeric variant only, and buyer acceptance has not run.",
+        "fresh_public_http": "NOT_RUN_429_STOP",
+        "market_currency_cart_checkout": "NOT_RUN",
+        "variant_selection": "REQUIRED_NATIVE_ACCEPTANCE; existing UX numeric-variant repair gate preserved",
+        "price_in_ad": null
+      },
+      "rsa": {
+        "status": "PREPARED_LOCAL_COPY_NOT_ACCOUNT_ASSET",
+        "template_id": "DLM_FINISHED_MATCHING_APPAREL_EN_V1",
+        "business_name": "Dress Like Mommy",
+        "headlines": [
+          "Dress Like Mommy",
+          "Matching Dresses for Mom",
+          "Navy Sprig Matching Dresses",
+          "Choose Each Person's Size",
+          "Outfits for Family Photos",
+          "Explore Matching Styles",
+          "View Sizes and Options",
+          "Choose Your Matching Look"
+        ],
+        "descriptions": [
+          "Choose Dress or Cardigan by type and size. Each Navy Sprig piece is selected separately.",
+          "Plan a coordinated look for family photos. View the product's available options.",
+          "Explore matching styles at Dress Like Mommy. Select each person's garment and size."
+        ],
+        "display_path": [
+          "navy-sprig",
+          "dress-options"
+        ],
+        "pinning": null,
+        "character_counts": {
+          "headlines": [
+            16,
+            24,
+            27,
+            25,
+            25,
+            23,
+            22,
+            25
+          ],
+          "descriptions": [
+            88,
+            80,
+            83
+          ]
+        },
+        "copy_limits": "No price, full-family bundle, material, stock, shipping, returns, discount or deadline claim. Each selected item is separately chosen.",
+        "local_vocabulary": {
+          "parent_word": "Mom",
+          "sleepwear_reserve": "pajamas",
+          "sleepwear_in_this_group": false,
+          "native_language_review": "HELD"
+        }
+      },
+      "negative_group_ids": [
+        "SEWING_PATTERNS",
+        "SEWING_TUTORIALS"
+      ],
+      "planner_context": {
+        "provenance": "Root saved US_KEYWORD_PLANNER.json",
+        "source_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/US_KEYWORD_PLANNER.json",
+        "source_file_present_at_build": true,
+        "report_period": "2025-09/2026-08",
+        "country": "US",
+        "language": "English",
+        "network": "Google",
+        "bid_currency": "USD_ACCOUNT_NOT_LOCAL_SHOPPER_CURRENCY",
+        "row": {
+          "keyword": "mother daughter matching outfits",
+          "monthly_searches_displayed": "10K – 100K",
+          "competition": "High",
+          "top_of_page_bid_low_usd": 0.36,
+          "top_of_page_bid_high_usd": 1.46
+        },
+        "interpretation": "Broad research term only, not selected product-cohort keyword or match-type proof. Historical top-of-page bid low exceeds0.15 but is neither actual CPC nor a hard auction floor. Selected exacts remain unqualified.",
+        "comparison_receipt": {
+          "source_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/INTERNATIONAL_KEYWORD_COMPARISON.json",
+          "sha256": "f772b6d8f83adc311886bf5355f5768ffa47be55434964b47f160ee9e0342ea3",
+          "recorded_at_utc": "2026-09-11T20:27:58Z",
+          "observation_time_bounds_utc": [
+            "2026-09-11T19:51:59Z",
+            "2026-09-11T20:27:58Z"
+          ],
+          "country_row": "US",
+          "source_file_present_at_refreeze": true,
+          "scope": "Core research phrase only; selected narrow exact candidates remain unqualified."
+        },
+        "prospective_research_receipt": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/BROADER_KEYWORD_OPPORTUNITIES.json",
+          "sha256": "3dacf157a2ab6129a937bdf579a984adeb8d47e1f77d2cc754f1e6c165fb95ff",
+          "recorded_at_utc": "2026-09-11T20:42:47.761596+00:00",
+          "observation_time_bounds_utc": [
+            "2026-09-11T20:32:06Z",
+            "2026-09-11T20:42:47.761596+00:00"
+          ],
+          "country": "US",
+          "sampled_rows": 4,
+          "selected_text": "mother and daughter same dress",
+          "scope": "Root discovery UI sample with positive historical low-bid filter; not an actual-CPC result, exact-keyword eligibility or launch forecast."
+        }
+      },
+      "economics": {
+        "retained_R": null,
+        "actual_V": null,
+        "allocated_H": null,
+        "max_allowable_CPA": null,
+        "retained_profit": null,
+        "qualification": "HELD_UNKNOWN_ACTUAL_COSTS_REFUNDS_AND_ATTRIBUTION"
+      },
+      "product_source": {
+        "evidence_as_of_utc": "2026-09-11T17:15:54.083Z",
+        "later_metadata_as_of_utc": "2026-09-11 19:40:00 UTC",
+        "source_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/US_NAVY_SOURCE_READBACK.json",
+        "source_sha256": "510e9650d3d1f421d7dd6e0e3625e0ae37622026a2fd0881abe60ad9872c92c5",
+        "product_id": "gid://shopify/Product/7670609346657",
+        "product_title": "Navy Sprig Mommy and Me Dresses — Dress & Cardigan",
+        "source_status": "ACTIVE",
+        "onlinePublished": true,
+        "countryPublished": true,
+        "catalogPublished": true,
+        "available_variant_count_in_local_feed": 24,
+        "purchase_unit": "ONE_SELECTED_GARMENT_PER_TYPE_AND_SIZE",
+        "options": [
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139349601",
+            "type": "Dress",
+            "size": "Child 2 Years",
+            "price": {
+              "amount": "23.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139349601"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139382369",
+            "type": "Dress",
+            "size": "Child 3 Years",
+            "price": {
+              "amount": "23.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139382369"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139415137",
+            "type": "Dress",
+            "size": "Child 4 Years",
+            "price": {
+              "amount": "23.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139415137"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139447905",
+            "type": "Dress",
+            "size": "Child 5 Years",
+            "price": {
+              "amount": "23.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139447905"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139480673",
+            "type": "Dress",
+            "size": "Child 6-7 Years",
+            "price": {
+              "amount": "23.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139480673"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139513441",
+            "type": "Dress",
+            "size": "Child 8 Years",
+            "price": {
+              "amount": "23.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139513441"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139546209",
+            "type": "Dress",
+            "size": "Child 9-10 Years",
+            "price": {
+              "amount": "23.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139546209"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139578977",
+            "type": "Dress",
+            "size": "Mother S",
+            "price": {
+              "amount": "27.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139578977"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139611745",
+            "type": "Dress",
+            "size": "Mother M",
+            "price": {
+              "amount": "27.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139611745"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139644513",
+            "type": "Dress",
+            "size": "Mother L",
+            "price": {
+              "amount": "27.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139644513"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139677281",
+            "type": "Dress",
+            "size": "Mother XL",
+            "price": {
+              "amount": "27.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139677281"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139710049",
+            "type": "Dress",
+            "size": "Mother 2XL",
+            "price": {
+              "amount": "27.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139710049"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139742817",
+            "type": "Cardigan",
+            "size": "Child 2 Years",
+            "price": {
+              "amount": "17.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139742817"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139775585",
+            "type": "Cardigan",
+            "size": "Child 3 Years",
+            "price": {
+              "amount": "17.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139775585"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139808353",
+            "type": "Cardigan",
+            "size": "Child 4 Years",
+            "price": {
+              "amount": "17.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139808353"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139841121",
+            "type": "Cardigan",
+            "size": "Child 5 Years",
+            "price": {
+              "amount": "17.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139841121"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139873889",
+            "type": "Cardigan",
+            "size": "Child 6-7 Years",
+            "price": {
+              "amount": "17.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139873889"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139906657",
+            "type": "Cardigan",
+            "size": "Child 8 Years",
+            "price": {
+              "amount": "17.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139906657"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139939425",
+            "type": "Cardigan",
+            "size": "Child 9-10 Years",
+            "price": {
+              "amount": "17.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139939425"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139972193",
+            "type": "Cardigan",
+            "size": "Mother S",
+            "price": {
+              "amount": "19.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501139972193"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140004961",
+            "type": "Cardigan",
+            "size": "Mother M",
+            "price": {
+              "amount": "19.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501140004961"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140037729",
+            "type": "Cardigan",
+            "size": "Mother L",
+            "price": {
+              "amount": "19.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501140037729"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140070497",
+            "type": "Cardigan",
+            "size": "Mother XL",
+            "price": {
+              "amount": "19.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501140070497"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140103265",
+            "type": "Cardigan",
+            "size": "Mother 2XL",
+            "price": {
+              "amount": "19.99",
+              "currencyCode": "USD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?variant=46501140103265"
+          }
+        ],
+        "source_scope": "US contextual Shopify snapshot and hash-matching local feed as17:15:54UTC. Later19:40metadata did not query prices. Not public/buyer/Google approval/supplier availability proof.",
+        "known_description_variant_mismatch": {
+          "description_mentions": "Mother S-3XL",
+          "actual_returned_mother_sizes": [
+            "Mother S",
+            "Mother M",
+            "Mother L",
+            "Mother XL",
+            "Mother 2XL"
+          ],
+          "mother_3XL_variant_present": false,
+          "handling": "Do not advertise 3XL or claim size-chart measurements/fit are independently verified. Preserve the existing local/current chart QA gate."
+        }
+      },
+      "initial_launch_keyword_set_qualified": false,
+      "reserve_negative_group_ids": [
+        "KNIT_CROCHET_PATTERNS"
+      ],
+      "historical_preparation": {
+        "status": "SUPERSEDED_PREPARATION_ONLY_NOT_ACCOUNT_STATE",
+        "campaign_proposed_name": "DLM | US | EN | Search | Sunshine Stripe | HOLD",
+        "ad_group_product_id": "7545279512673",
+        "ad_group_product_handle": "sunshine-stripe-family-matching-tops",
+        "ad_group_proposed_name": "Sunshine Stripe | Striped Tees | Exact",
+        "intent": "Finished striped tees for family/mother-child photos",
+        "landing": {
+          "final_url_candidate": "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops?country=US&currency=USD",
+          "locale_root": "https://www.dresslikemommy.com/",
+          "expected_country": "US",
+          "expected_currency": "USD",
+          "country_market_memberships": [
+            "gid://shopify/Market/544735329"
+          ],
+          "existing_overlap": "False",
+          "route_basis": "Verified English root convention and historical product route; country/currency parameters are a reviewable proposal.",
+          "fresh_public_http": "NOT_RUN_429_STOP",
+          "market_currency_cart_checkout": "NOT_RUN",
+          "variant_selection": "REQUIRED_NATIVE_ACCEPTANCE; existing UX numeric-variant repair gate preserved",
+          "price_in_ad": null
+        },
+        "rsa": {
+          "status": "PREPARED_LOCAL_COPY_NOT_ACCOUNT_ASSET",
+          "template_id": "DLM_FINISHED_MATCHING_APPAREL_EN_V1",
+          "business_name": "Dress Like Mommy",
+          "headlines": [
+            "Dress Like Mommy",
+            "Matching Tees for Mom & Child",
+            "Sunshine Stripe T-Shirts",
+            "Choose Each Person's Size",
+            "Outfits for Family Photos",
+            "Explore Matching Styles",
+            "View Sizes and Options",
+            "Choose Your Matching Look"
+          ],
+          "descriptions": [
+            "Choose a child or adult size. Each Sunshine Stripe selection is one T-shirt.",
+            "Plan a coordinated look for family photos. View the product's available options.",
+            "Explore matching styles at Dress Like Mommy. Select each person's garment and size."
+          ],
+          "display_path": [
+            "sunshine-stripe",
+            "t-shirts"
+          ],
+          "pinning": null,
+          "character_counts": {
+            "headlines": [
+              16,
+              29,
+              24,
+              25,
+              25,
+              23,
+              22,
+              25
+            ],
+            "descriptions": [
+              76,
+              80,
+              83
+            ]
+          },
+          "copy_limits": "No price, full-family bundle, material, stock, shipping, returns, discount or deadline claim. Each selected item is separately chosen.",
+          "local_vocabulary": {
+            "parent_word": "Mom",
+            "sleepwear_reserve": "pajamas",
+            "sleepwear_in_this_group": false,
+            "native_language_review": "HELD"
+          }
+        },
+        "product_source": {
+          "source_as_of": "2026-09-06T10:37:11Z/2026-09-06T10:49:00Z",
+          "source_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/SUNSHINE_STRIPE_OFFER_QUALIFICATION.md",
+          "observed_child_price_usd": 21.99,
+          "observed_adult_price_usd": 24.99,
+          "price_freshness": "HISTORICAL_NOT_CURRENT_AD_PRICE",
+          "purchase_unit": "One T-shirt per selected child/adult variant",
+          "current_US_product_price_and_route": "REQUIRES_CURRENT_VERIFICATION"
+        },
+        "reason": "Original Sunshine long tails are low-volume reserve; current US Navy source supports a separate matching-dress research alternative. No actual campaign or ad was changed."
+      }
+    },
+    {
+      "lane": "AU_EN",
+      "status": "LOCAL_BUILD_PREPARED_LAUNCH_HELD",
+      "campaign": {
+        "proposed_name": "DLM | AU | EN | Search | Navy Sprig | HOLD",
+        "existing_or_created_campaign_id": null,
+        "channel": "SEARCH",
+        "proposed_initial_status": "PAUSED",
+        "account_id": "6509972886",
+        "budget_id": null,
+        "budget_amount": null,
+        "budget_currency": "USD",
+        "total_loss_allowance_usd": null,
+        "bidding": "MANUAL_CPC",
+        "default_max_cpc_usd": 0.15,
+        "keyword_max_cpc_usd": 0.15,
+        "upward_bid_adjustments": false,
+        "search_partners": false,
+        "display_network": false,
+        "ai_max": false,
+        "dynamic_search_ads": false,
+        "final_url_expansion": false,
+        "auto_apply_keyword_or_bidding_recommendations": false,
+        "target_country_only": "AU",
+        "location_option": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+        "creative_language": "en",
+        "language_setting_if_available": "English; respect September2026 rollout, verify actual creative/queries, not selector alone",
+        "configured_target_roas": null,
+        "business_roas_gate": 6.5
+      },
+      "ad_group": {
+        "proposed_name": "Navy Sprig | Mother Daughter Matching Dresses | Exact",
+        "product_id": "7670609346657",
+        "product_handle": "navy-sprig-mommy-and-me-dresses",
+        "intent": "Finished mother-daughter matching dresses",
+        "reserve_not_in_first_group": [
+          {
+            "source_candidate_id": "AU_EN-02",
+            "text": "mum daughter beach dresses",
+            "match_type": "EXACT",
+            "notation": "[mum daughter beach dresses]",
+            "source_status": "HELD",
+            "draft_status": "HELD_NOT_AUCTION_OR_PROFIT_QUALIFIED",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "exclude_from_first_group_reason": "Beach occasion is outside the first family-photo dress cohort; season/fit/delivery unqualified."
+          },
+          {
+            "source_candidate_id": "AU_EN-03",
+            "text": "mummy and me dresses for family photos",
+            "match_type": "PHRASE",
+            "notation": "\"mummy and me dresses for family photos\"",
+            "source_status": "HELD",
+            "draft_status": "HELD_NOT_AUCTION_OR_PROFIT_QUALIFIED",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "exclude_from_first_group_reason": "PHRASE alternative overlaps exact intent and is not a second initial group."
+          }
+        ],
+        "product_scope_warning": "No separate dress/swim/pajama/wedding ad group created; no broad or phrase expansion in the first cohort.",
+        "keyword_records_role": "PROSPECTIVE_RESEARCH_CANDIDATES_HELD_NOT_INITIAL_LAUNCH_SET",
+        "qualified_initial_keywords": [],
+        "low_volume_reserve_keywords": [
+          {
+            "source_candidate_id": "AU_EN-01",
+            "text": "mummy and me dresses for family photos",
+            "match_type": "EXACT",
+            "notation": "[mummy and me dresses for family photos]",
+            "source_status": "HELD",
+            "draft_status": "LOW_VOLUME_RESERVE_HELD",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "source_binding": "Existing exact candidate; broad collection route replaced locally by one product candidate after title/options/contextual-price source review.",
+            "native_seed_state": "RETURNED_0_TO_10_MONTHLY_NO_BID_ESTIMATES",
+            "prior_native_seed_state": {
+              "state": "THIS_EXACT_PRODUCT_INTENT_NOT_YET_NATIVE_VALIDATED",
+              "status": "HISTORICAL_SUPERSEDED_BY_NARROW_READBACK",
+              "original_draft_prepared_at_utc": "2026-09-11T20:27:07.964621+00:00"
+            },
+            "native_readback": {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+              "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad",
+              "recorded_at_utc": "2026-09-11T20:33:59.779677+00:00",
+              "observation_time_bounds_utc": [
+                "2026-09-11T20:27:58Z",
+                "2026-09-11T20:33:59.779677+00:00"
+              ],
+              "source_method": "Root rendered Keyword Planner UI; one country at a time, same six sole seeds, country results read after settling.",
+              "country": "AU",
+              "provided_row": {
+                "keyword": "mummy and me dresses for family photos",
+                "monthly_searches_displayed": "0 – 10",
+                "competition": null,
+                "three_month_change": null,
+                "year_over_year_change": null,
+                "top_of_page_bid_low_usd": null,
+                "top_of_page_bid_high_usd": null,
+                "ad_impression_share": null
+              },
+              "qualification": "LOW_VOLUME_RESERVE_HELD",
+              "sufficient_initial_coverage": false
+            }
+          }
+        ],
+        "low_volume_reserve_origin": {
+          "product_id": "7670609346657",
+          "product_handle": "navy-sprig-mommy-and-me-dresses",
+          "intent": "Finished mother-daughter matching dresses for family photos",
+          "final_url_candidate": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD",
+          "scope": "Original product/cohort association is preserved. These keywords are not assigned to the new prospective Navy cohort or an activation set."
+        },
+        "reserve_not_in_first_group_context": {
+          "original_product_id": "7670609346657",
+          "original_product_handle": "navy-sprig-mommy-and-me-dresses",
+          "scope": "Historical reserve exclusions retain their original cohort meaning; no record is activated or remapped merely because the prepared cohort changes."
+        },
+        "keywords": [
+          {
+            "source_candidate_id": "AU_EN-RESEARCH-02-01",
+            "text": "mommy and me dresses",
+            "match_type": "EXACT",
+            "notation": "[mommy and me dresses]",
+            "source_status": "RESEARCH_CANDIDATE_NAVY_SPRIG_NATIVE_QUERY_OBSERVED",
+            "draft_status": "RESEARCH_CANDIDATE_HELD",
+            "prospective_max_cpc_usd": 0.15,
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "native_seed_state": "REPORTED_HISTORICAL_DISCOVERY_ROW_NOT_NATIVE_EXACT_KEYWORD_ELIGIBILITY",
+            "native_readback": {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/BROADER_KEYWORD_OPPORTUNITIES.json",
+              "sha256": "3dacf157a2ab6129a937bdf579a984adeb8d47e1f77d2cc754f1e6c165fb95ff",
+              "recorded_at_utc": "2026-09-11T20:42:47.761596+00:00",
+              "observation_time_bounds_utc": [
+                "2026-09-11T20:32:06Z",
+                "2026-09-11T20:42:47.761596+00:00"
+              ],
+              "country": "AU",
+              "provided_row": {
+                "keyword": "mommy and me dresses",
+                "monthly_searches_displayed": "10 – 100",
+                "competition": "High",
+                "three_month_change": "0%",
+                "year_over_year_change": "0%",
+                "top_of_page_bid_low_usd": 0.1,
+                "top_of_page_bid_high_usd": 0.6,
+                "disposition": "RESEARCH_CANDIDATE_NAVY_SPRIG_NATIVE_QUERY_OBSERVED",
+                "actual_cpc_usd": null,
+                "forecast_at_015": null
+              }
+            },
+            "product_fit_basis": "Navy Sprig offers separate mother/child Dress selections. This is source-based garment fit, not buyer/auction/profit acceptance.",
+            "sufficient_initial_coverage": null,
+            "launch_qualified": false
+          }
+        ],
+        "initial_research_selection_status": "ONE_CANONICAL_RESEARCH_TERM_HELD"
+      },
+      "landing": {
+        "final_url_candidate": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD",
+        "locale_root": "https://www.dresslikemommy.com/",
+        "expected_country": "AU",
+        "expected_currency": "AUD",
+        "country_market_memberships": [
+          "gid://shopify/Market/22986424417",
+          "gid://shopify/Market/544866401"
+        ],
+        "existing_overlap": "True",
+        "route_basis": "Verified English root convention plus exact contextual feed country/currency route with variant omitted for buyer selection.",
+        "fresh_public_http": "NOT_RUN_429_STOP",
+        "market_currency_cart_checkout": "NOT_RUN",
+        "variant_selection": "REQUIRED_NATIVE_ACCEPTANCE; existing UX numeric-variant repair gate preserved",
+        "price_in_ad": null
+      },
+      "rsa": {
+        "status": "PREPARED_LOCAL_COPY_NOT_ACCOUNT_ASSET",
+        "template_id": "DLM_FINISHED_MATCHING_APPAREL_EN_V1",
+        "business_name": "Dress Like Mommy",
+        "headlines": [
+          "Dress Like Mommy",
+          "Matching Dresses for Mum",
+          "Navy Sprig Matching Dresses",
+          "Choose Each Person's Size",
+          "Outfits for Family Photos",
+          "Explore Matching Styles",
+          "View Sizes and Options",
+          "Choose Your Matching Look"
+        ],
+        "descriptions": [
+          "Choose Dress or Cardigan by type and size. Each Navy Sprig piece is selected separately.",
+          "Plan a coordinated look for family photos. View the product's available options.",
+          "Explore matching styles at Dress Like Mommy. Select each person's garment and size."
+        ],
+        "display_path": [
+          "navy-sprig",
+          "dress-options"
+        ],
+        "pinning": null,
+        "character_counts": {
+          "headlines": [
+            16,
+            24,
+            27,
+            25,
+            25,
+            23,
+            22,
+            25
+          ],
+          "descriptions": [
+            88,
+            80,
+            83
+          ]
+        },
+        "copy_limits": "No price, full-family bundle, material, stock, shipping, returns, discount or deadline claim. Each selected item is separately chosen.",
+        "local_vocabulary": {
+          "parent_word": "Mum",
+          "sleepwear_reserve": "pyjamas",
+          "sleepwear_in_this_group": false,
+          "native_language_review": "HELD",
+          "observed_query_word": "mommy",
+          "query_copy_distinction": "The historical Australian Keyword Planner row is mommy and me dresses. Preserve that discovery wording while the prepared ad uses Mum. This is not a delivered paid search-term report or buyer-acceptance proof.",
+          "delivered_search_term_report": "NOT_READ_NO_DELIVERED_PAID_QUERY_CLAIM"
+        }
+      },
+      "negative_group_ids": [
+        "SEWING_PATTERNS",
+        "SEWING_TUTORIALS"
+      ],
+      "planner_context": {
+        "provenance": "Root saved INTERNATIONAL_KEYWORD_COMPARISON.json; rendered same10-seed single-country Keyword Planner read. Independent native replay NOT_RUN.",
+        "source_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/INTERNATIONAL_KEYWORD_COMPARISON.json",
+        "source_file_present_at_build": false,
+        "report_period": "2025-09/2026-08",
+        "country": "AU",
+        "language": "English",
+        "network": "Google",
+        "bid_currency": "USD_ACCOUNT_NOT_LOCAL_SHOPPER_CURRENCY",
+        "row": {
+          "keyword": "mother daughter matching outfits",
+          "monthly_searches_displayed": "1K – 10K",
+          "competition": "High",
+          "top_of_page_bid_low_usd": 0.26,
+          "top_of_page_bid_high_usd": 1.23,
+          "filtered_ideas": 93,
+          "unfiltered_ideas": 2516
+        },
+        "interpretation": "Broad research term only, not selected product-cohort keyword or match-type proof. Historical top-of-page bid low exceeds0.15 but is neither actual CPC nor a hard auction floor. Selected exacts remain unqualified.",
+        "comparison_receipt": {
+          "source_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/INTERNATIONAL_KEYWORD_COMPARISON.json",
+          "sha256": "f772b6d8f83adc311886bf5355f5768ffa47be55434964b47f160ee9e0342ea3",
+          "recorded_at_utc": "2026-09-11T20:27:58Z",
+          "observation_time_bounds_utc": [
+            "2026-09-11T19:51:59Z",
+            "2026-09-11T20:27:58Z"
+          ],
+          "country_row": "AU",
+          "source_file_present_at_refreeze": true,
+          "scope": "Core research phrase only; selected narrow exact candidates remain unqualified."
+        },
+        "prospective_research_receipt": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/BROADER_KEYWORD_OPPORTUNITIES.json",
+          "sha256": "3dacf157a2ab6129a937bdf579a984adeb8d47e1f77d2cc754f1e6c165fb95ff",
+          "recorded_at_utc": "2026-09-11T20:42:47.761596+00:00",
+          "observation_time_bounds_utc": [
+            "2026-09-11T20:32:06Z",
+            "2026-09-11T20:42:47.761596+00:00"
+          ],
+          "country": "AU",
+          "sampled_rows": 6,
+          "selected_text": "mommy and me dresses",
+          "scope": "Root discovery UI sample with positive historical low-bid filter; not an actual-CPC result, exact-keyword eligibility or launch forecast."
+        }
+      },
+      "economics": {
+        "retained_R": null,
+        "actual_V": null,
+        "allocated_H": null,
+        "max_allowable_CPA": null,
+        "retained_profit": null,
+        "qualification": "HELD_UNKNOWN_ACTUAL_COSTS_REFUNDS_AND_ATTRIBUTION"
+      },
+      "product_source": {
+        "evidence_as_of_utc": "2026-09-11T18:53:09.071Z",
+        "product_id": "gid://shopify/Product/7670609346657",
+        "product_title": "Navy Sprig Mommy and Me Dresses — Dress & Cardigan",
+        "source_status": "ACTIVE",
+        "onlinePublished": true,
+        "countryPublished": true,
+        "catalogPublished": true,
+        "available_variant_count_in_local_feed": 24,
+        "options": [
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139349601",
+            "type": "Dress",
+            "size": "Child 2 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139349601"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139382369",
+            "type": "Dress",
+            "size": "Child 3 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139382369"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139415137",
+            "type": "Dress",
+            "size": "Child 4 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139415137"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139447905",
+            "type": "Dress",
+            "size": "Child 5 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139447905"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139480673",
+            "type": "Dress",
+            "size": "Child 6-7 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139480673"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139513441",
+            "type": "Dress",
+            "size": "Child 8 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139513441"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139546209",
+            "type": "Dress",
+            "size": "Child 9-10 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139546209"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139578977",
+            "type": "Dress",
+            "size": "Mother S",
+            "price": {
+              "amount": "40.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139578977"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139611745",
+            "type": "Dress",
+            "size": "Mother M",
+            "price": {
+              "amount": "40.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139611745"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139644513",
+            "type": "Dress",
+            "size": "Mother L",
+            "price": {
+              "amount": "40.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139644513"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139677281",
+            "type": "Dress",
+            "size": "Mother XL",
+            "price": {
+              "amount": "40.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139677281"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139710049",
+            "type": "Dress",
+            "size": "Mother 2XL",
+            "price": {
+              "amount": "40.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139710049"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139742817",
+            "type": "Cardigan",
+            "size": "Child 2 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139742817"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139775585",
+            "type": "Cardigan",
+            "size": "Child 3 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139775585"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139808353",
+            "type": "Cardigan",
+            "size": "Child 4 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139808353"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139841121",
+            "type": "Cardigan",
+            "size": "Child 5 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139841121"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139873889",
+            "type": "Cardigan",
+            "size": "Child 6-7 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139873889"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139906657",
+            "type": "Cardigan",
+            "size": "Child 8 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139906657"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139939425",
+            "type": "Cardigan",
+            "size": "Child 9-10 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139939425"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139972193",
+            "type": "Cardigan",
+            "size": "Mother S",
+            "price": {
+              "amount": "29.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501139972193"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140004961",
+            "type": "Cardigan",
+            "size": "Mother M",
+            "price": {
+              "amount": "29.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501140004961"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140037729",
+            "type": "Cardigan",
+            "size": "Mother L",
+            "price": {
+              "amount": "29.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501140037729"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140070497",
+            "type": "Cardigan",
+            "size": "Mother XL",
+            "price": {
+              "amount": "29.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501140070497"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140103265",
+            "type": "Cardigan",
+            "size": "Mother 2XL",
+            "price": {
+              "amount": "29.0",
+              "currencyCode": "AUD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD&variant=46501140103265"
+          }
+        ],
+        "source_scope": "Country contextual Shopify snapshot and matching local Merchant candidate; not public/runtime/Google approval/supplier stock proof."
+      },
+      "initial_launch_keyword_set_qualified": false,
+      "reserve_negative_group_ids": [
+        "KNIT_CROCHET_PATTERNS"
+      ]
+    },
+    {
+      "lane": "GB_EN",
+      "status": "LOCAL_BUILD_PREPARED_LAUNCH_HELD",
+      "campaign": {
+        "proposed_name": "DLM | GB | EN | Search | Navy Sprig | HOLD",
+        "existing_or_created_campaign_id": null,
+        "channel": "SEARCH",
+        "proposed_initial_status": "PAUSED",
+        "account_id": "6509972886",
+        "budget_id": null,
+        "budget_amount": null,
+        "budget_currency": "USD",
+        "total_loss_allowance_usd": null,
+        "bidding": "MANUAL_CPC",
+        "default_max_cpc_usd": 0.15,
+        "keyword_max_cpc_usd": 0.15,
+        "upward_bid_adjustments": false,
+        "search_partners": false,
+        "display_network": false,
+        "ai_max": false,
+        "dynamic_search_ads": false,
+        "final_url_expansion": false,
+        "auto_apply_keyword_or_bidding_recommendations": false,
+        "target_country_only": "GB",
+        "location_option": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+        "creative_language": "en",
+        "language_setting_if_available": "English; respect September2026 rollout, verify actual creative/queries, not selector alone",
+        "configured_target_roas": null,
+        "business_roas_gate": 6.5
+      },
+      "ad_group": {
+        "proposed_name": "Navy Sprig | Mother Daughter Photo Dresses | Exact",
+        "product_id": "7670609346657",
+        "product_handle": "navy-sprig-mommy-and-me-dresses",
+        "intent": "Finished mother-daughter matching dresses for family photos",
+        "reserve_not_in_first_group": [
+          {
+            "source_candidate_id": "GB_EN-03",
+            "text": "mum and daughter dresses for photos",
+            "match_type": "PHRASE",
+            "notation": "\"mum and daughter dresses for photos\"",
+            "source_status": "HELD",
+            "draft_status": "HELD_NOT_AUCTION_OR_PROFIT_QUALIFIED",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "exclude_from_first_group_reason": "PHRASE alternative overlaps exact intent and is not a second initial group."
+          }
+        ],
+        "product_scope_warning": "No separate dress/swim/pajama/wedding ad group created; no broad or phrase expansion in the first cohort.",
+        "keyword_records_role": "PROSPECTIVE_RESEARCH_CANDIDATES_HELD_NOT_INITIAL_LAUNCH_SET",
+        "qualified_initial_keywords": [],
+        "low_volume_reserve_keywords": [
+          {
+            "source_candidate_id": "GB_EN-01",
+            "text": "mum and daughter dresses for photos",
+            "match_type": "EXACT",
+            "notation": "[mum and daughter dresses for photos]",
+            "source_status": "HELD",
+            "draft_status": "LOW_VOLUME_RESERVE_HELD",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "source_binding": "Existing exact candidate; broad collection route replaced locally by one product candidate after title/options/contextual-price source review.",
+            "native_seed_state": "RETURNED_0_TO_10_MONTHLY_NO_BID_ESTIMATES",
+            "prior_native_seed_state": {
+              "state": "THIS_EXACT_PRODUCT_INTENT_NOT_YET_NATIVE_VALIDATED",
+              "status": "HISTORICAL_SUPERSEDED_BY_NARROW_READBACK",
+              "original_draft_prepared_at_utc": "2026-09-11T20:27:07.964621+00:00"
+            },
+            "native_readback": {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+              "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad",
+              "recorded_at_utc": "2026-09-11T20:33:59.779677+00:00",
+              "observation_time_bounds_utc": [
+                "2026-09-11T20:27:58Z",
+                "2026-09-11T20:33:59.779677+00:00"
+              ],
+              "source_method": "Root rendered Keyword Planner UI; one country at a time, same six sole seeds, country results read after settling.",
+              "country": "GB",
+              "provided_row": {
+                "keyword": "mum and daughter dresses for photos",
+                "monthly_searches_displayed": "0 – 10",
+                "competition": null,
+                "three_month_change": null,
+                "year_over_year_change": null,
+                "top_of_page_bid_low_usd": null,
+                "top_of_page_bid_high_usd": null,
+                "ad_impression_share": null
+              },
+              "qualification": "LOW_VOLUME_RESERVE_HELD",
+              "sufficient_initial_coverage": false
+            }
+          },
+          {
+            "source_candidate_id": "GB_EN-02",
+            "text": "mummy and me dresses for family photos",
+            "match_type": "EXACT",
+            "notation": "[mummy and me dresses for family photos]",
+            "source_status": "HELD",
+            "draft_status": "LOW_VOLUME_RESERVE_HELD",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "source_binding": "Existing exact candidate; broad collection route replaced locally by one product candidate after title/options/contextual-price source review.",
+            "native_seed_state": "RETURNED_0_TO_10_MONTHLY_NO_BID_ESTIMATES",
+            "prior_native_seed_state": {
+              "state": "THIS_EXACT_PRODUCT_INTENT_NOT_YET_NATIVE_VALIDATED",
+              "status": "HISTORICAL_SUPERSEDED_BY_NARROW_READBACK",
+              "original_draft_prepared_at_utc": "2026-09-11T20:27:07.964621+00:00"
+            },
+            "native_readback": {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+              "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad",
+              "recorded_at_utc": "2026-09-11T20:33:59.779677+00:00",
+              "observation_time_bounds_utc": [
+                "2026-09-11T20:27:58Z",
+                "2026-09-11T20:33:59.779677+00:00"
+              ],
+              "source_method": "Root rendered Keyword Planner UI; one country at a time, same six sole seeds, country results read after settling.",
+              "country": "GB",
+              "provided_row": {
+                "keyword": "mummy and me dresses for family photos",
+                "monthly_searches_displayed": "0 – 10",
+                "competition": null,
+                "three_month_change": null,
+                "year_over_year_change": null,
+                "top_of_page_bid_low_usd": null,
+                "top_of_page_bid_high_usd": null,
+                "ad_impression_share": null
+              },
+              "qualification": "LOW_VOLUME_RESERVE_HELD",
+              "sufficient_initial_coverage": false
+            }
+          }
+        ],
+        "low_volume_reserve_origin": {
+          "product_id": "7670609346657",
+          "product_handle": "navy-sprig-mommy-and-me-dresses",
+          "intent": "Finished mother-daughter matching dresses for family photos",
+          "final_url_candidate": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP",
+          "scope": "Original product/cohort association is preserved. These keywords are not assigned to the new prospective Navy cohort or an activation set."
+        },
+        "reserve_not_in_first_group_context": {
+          "original_product_id": "7670609346657",
+          "original_product_handle": "navy-sprig-mommy-and-me-dresses",
+          "scope": "Historical reserve exclusions retain their original cohort meaning; no record is activated or remapped merely because the prepared cohort changes."
+        },
+        "keywords": [],
+        "initial_research_selection_status": "NO_INITIAL_RESEARCH_KEYWORD_QUALIFIED",
+        "research_hold_reason": "Keep UK structure prepared while exact initial purchase-intent/product/timing coverage is unresolved; do not force a marginal keyword merely to populate every country."
+      },
+      "landing": {
+        "final_url_candidate": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP",
+        "locale_root": "https://www.dresslikemommy.com/",
+        "expected_country": "GB",
+        "expected_currency": "GBP",
+        "country_market_memberships": [
+          "gid://shopify/Market/544800865",
+          "gid://shopify/Market/22986260577"
+        ],
+        "existing_overlap": "True",
+        "route_basis": "Verified English root convention plus exact contextual feed country/currency route with variant omitted for buyer selection.",
+        "fresh_public_http": "NOT_RUN_429_STOP",
+        "market_currency_cart_checkout": "NOT_RUN",
+        "variant_selection": "REQUIRED_NATIVE_ACCEPTANCE; existing UX numeric-variant repair gate preserved",
+        "price_in_ad": null
+      },
+      "rsa": {
+        "status": "PREPARED_LOCAL_COPY_NOT_ACCOUNT_ASSET",
+        "template_id": "DLM_FINISHED_MATCHING_APPAREL_EN_V1",
+        "business_name": "Dress Like Mommy",
+        "headlines": [
+          "Dress Like Mommy",
+          "Matching Dresses for Mum",
+          "Navy Sprig Matching Dresses",
+          "Choose Each Person's Size",
+          "Outfits for Family Photos",
+          "Explore Matching Styles",
+          "View Sizes and Options",
+          "Choose Your Matching Look"
+        ],
+        "descriptions": [
+          "Choose Dress or Cardigan by type and size. Each Navy Sprig piece is selected separately.",
+          "Plan a coordinated look for family photos. View the product's available options.",
+          "Explore matching styles at Dress Like Mommy. Select each person's garment and size."
+        ],
+        "display_path": [
+          "navy-sprig",
+          "dress-options"
+        ],
+        "pinning": null,
+        "character_counts": {
+          "headlines": [
+            16,
+            24,
+            27,
+            25,
+            25,
+            23,
+            22,
+            25
+          ],
+          "descriptions": [
+            88,
+            80,
+            83
+          ]
+        },
+        "copy_limits": "No price, full-family bundle, material, stock, shipping, returns, discount or deadline claim. Each selected item is separately chosen.",
+        "local_vocabulary": {
+          "parent_word": "Mum",
+          "sleepwear_reserve": "pyjamas",
+          "sleepwear_in_this_group": false,
+          "native_language_review": "HELD"
+        }
+      },
+      "negative_group_ids": [
+        "SEWING_PATTERNS",
+        "SEWING_TUTORIALS"
+      ],
+      "planner_context": {
+        "provenance": "Root saved INTERNATIONAL_KEYWORD_COMPARISON.json; rendered same10-seed single-country Keyword Planner read. Independent native replay NOT_RUN.",
+        "source_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/INTERNATIONAL_KEYWORD_COMPARISON.json",
+        "source_file_present_at_build": false,
+        "report_period": "2025-09/2026-08",
+        "country": "GB",
+        "language": "English",
+        "network": "Google",
+        "bid_currency": "USD_ACCOUNT_NOT_LOCAL_SHOPPER_CURRENCY",
+        "row": {
+          "keyword": "mother daughter matching outfits",
+          "monthly_searches_displayed": "1K – 10K",
+          "competition": "High",
+          "top_of_page_bid_low_usd": 0.32,
+          "top_of_page_bid_high_usd": 1.11,
+          "filtered_ideas": 74,
+          "unfiltered_ideas": 2276
+        },
+        "interpretation": "Broad research term only, not selected product-cohort keyword or match-type proof. Historical top-of-page bid low exceeds0.15 but is neither actual CPC nor a hard auction floor. Selected exacts remain unqualified.",
+        "comparison_receipt": {
+          "source_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/INTERNATIONAL_KEYWORD_COMPARISON.json",
+          "sha256": "f772b6d8f83adc311886bf5355f5768ffa47be55434964b47f160ee9e0342ea3",
+          "recorded_at_utc": "2026-09-11T20:27:58Z",
+          "observation_time_bounds_utc": [
+            "2026-09-11T19:51:59Z",
+            "2026-09-11T20:27:58Z"
+          ],
+          "country_row": "GB",
+          "source_file_present_at_refreeze": true,
+          "scope": "Core research phrase only; selected narrow exact candidates remain unqualified."
+        },
+        "prospective_research_receipt": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/BROADER_KEYWORD_OPPORTUNITIES.json",
+          "sha256": "3dacf157a2ab6129a937bdf579a984adeb8d47e1f77d2cc754f1e6c165fb95ff",
+          "recorded_at_utc": "2026-09-11T20:42:47.761596+00:00",
+          "observation_time_bounds_utc": [
+            "2026-09-11T20:32:06Z",
+            "2026-09-11T20:42:47.761596+00:00"
+          ],
+          "country": "GB",
+          "sampled_rows": 5,
+          "selected_text": null,
+          "scope": "Root discovery UI sample with positive historical low-bid filter; not an actual-CPC result, exact-keyword eligibility or launch forecast."
+        }
+      },
+      "economics": {
+        "retained_R": null,
+        "actual_V": null,
+        "allocated_H": null,
+        "max_allowable_CPA": null,
+        "retained_profit": null,
+        "qualification": "HELD_UNKNOWN_ACTUAL_COSTS_REFUNDS_AND_ATTRIBUTION"
+      },
+      "product_source": {
+        "evidence_as_of_utc": "2026-09-11T22:15:43.812Z",
+        "product_id": "gid://shopify/Product/7670609346657",
+        "product_title": "Navy Sprig Mommy and Me Dresses — Dress & Cardigan",
+        "source_status": "ACTIVE",
+        "onlinePublished": true,
+        "countryPublished": true,
+        "catalogPublished": true,
+        "available_variant_count_in_local_feed": 24,
+        "options": [
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139349601",
+            "type": "Dress",
+            "size": "Child 2 Years",
+            "price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139349601"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139382369",
+            "type": "Dress",
+            "size": "Child 3 Years",
+            "price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139382369"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139415137",
+            "type": "Dress",
+            "size": "Child 4 Years",
+            "price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139415137"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139447905",
+            "type": "Dress",
+            "size": "Child 5 Years",
+            "price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139447905"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139480673",
+            "type": "Dress",
+            "size": "Child 6-7 Years",
+            "price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139480673"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139513441",
+            "type": "Dress",
+            "size": "Child 8 Years",
+            "price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139513441"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139546209",
+            "type": "Dress",
+            "size": "Child 9-10 Years",
+            "price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139546209"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139578977",
+            "type": "Dress",
+            "size": "Mother S",
+            "price": {
+              "amount": "21.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139578977"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139611745",
+            "type": "Dress",
+            "size": "Mother M",
+            "price": {
+              "amount": "21.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139611745"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139644513",
+            "type": "Dress",
+            "size": "Mother L",
+            "price": {
+              "amount": "21.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139644513"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139677281",
+            "type": "Dress",
+            "size": "Mother XL",
+            "price": {
+              "amount": "21.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139677281"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139710049",
+            "type": "Dress",
+            "size": "Mother 2XL",
+            "price": {
+              "amount": "21.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139710049"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139742817",
+            "type": "Cardigan",
+            "size": "Child 2 Years",
+            "price": {
+              "amount": "14.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139742817"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139775585",
+            "type": "Cardigan",
+            "size": "Child 3 Years",
+            "price": {
+              "amount": "14.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139775585"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139808353",
+            "type": "Cardigan",
+            "size": "Child 4 Years",
+            "price": {
+              "amount": "14.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139808353"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139841121",
+            "type": "Cardigan",
+            "size": "Child 5 Years",
+            "price": {
+              "amount": "14.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139841121"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139873889",
+            "type": "Cardigan",
+            "size": "Child 6-7 Years",
+            "price": {
+              "amount": "14.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139873889"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139906657",
+            "type": "Cardigan",
+            "size": "Child 8 Years",
+            "price": {
+              "amount": "14.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139906657"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139939425",
+            "type": "Cardigan",
+            "size": "Child 9-10 Years",
+            "price": {
+              "amount": "14.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139939425"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139972193",
+            "type": "Cardigan",
+            "size": "Mother S",
+            "price": {
+              "amount": "15.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501139972193"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140004961",
+            "type": "Cardigan",
+            "size": "Mother M",
+            "price": {
+              "amount": "15.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501140004961"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140037729",
+            "type": "Cardigan",
+            "size": "Mother L",
+            "price": {
+              "amount": "15.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501140037729"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140070497",
+            "type": "Cardigan",
+            "size": "Mother XL",
+            "price": {
+              "amount": "15.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501140070497"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140103265",
+            "type": "Cardigan",
+            "size": "Mother 2XL",
+            "price": {
+              "amount": "15.0",
+              "currencyCode": "GBP"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=GB&currency=GBP&variant=46501140103265"
+          }
+        ],
+        "source_scope": "GB contextual Shopify snapshot completed September11 22:15:43UTC and hash-bound qualified local feed; read/reconciled September12. All24 exact variant IDs/type/size/URL/price join. Local preparation only; not new live Shopify read, buyer acceptance, Google receipt/approval, shipping promise or supplier cost proof.",
+        "source_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.contained_local_prep_20260911/gb-en.snapshot.json",
+        "source_sha256": "cfc7ad13b7d25518439f0c4c21ad185d848119b1ae8e2843bccf3c7d6e122412",
+        "source_refresh_changes": [
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139349601",
+            "type": "Dress",
+            "size": "Child 2 Years",
+            "old_price": {
+              "amount": "19.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            }
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139382369",
+            "type": "Dress",
+            "size": "Child 3 Years",
+            "old_price": {
+              "amount": "19.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            }
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139415137",
+            "type": "Dress",
+            "size": "Child 4 Years",
+            "old_price": {
+              "amount": "19.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            }
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139447905",
+            "type": "Dress",
+            "size": "Child 5 Years",
+            "old_price": {
+              "amount": "19.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            }
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139480673",
+            "type": "Dress",
+            "size": "Child 6-7 Years",
+            "old_price": {
+              "amount": "19.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            }
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139513441",
+            "type": "Dress",
+            "size": "Child 8 Years",
+            "old_price": {
+              "amount": "19.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            }
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139546209",
+            "type": "Dress",
+            "size": "Child 9-10 Years",
+            "old_price": {
+              "amount": "19.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "18.0",
+              "currencyCode": "GBP"
+            }
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139578977",
+            "type": "Dress",
+            "size": "Mother S",
+            "old_price": {
+              "amount": "22.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "21.0",
+              "currencyCode": "GBP"
+            }
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139611745",
+            "type": "Dress",
+            "size": "Mother M",
+            "old_price": {
+              "amount": "22.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "21.0",
+              "currencyCode": "GBP"
+            }
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139644513",
+            "type": "Dress",
+            "size": "Mother L",
+            "old_price": {
+              "amount": "22.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "21.0",
+              "currencyCode": "GBP"
+            }
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139677281",
+            "type": "Dress",
+            "size": "Mother XL",
+            "old_price": {
+              "amount": "22.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "21.0",
+              "currencyCode": "GBP"
+            }
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139710049",
+            "type": "Dress",
+            "size": "Mother 2XL",
+            "old_price": {
+              "amount": "22.0",
+              "currencyCode": "GBP"
+            },
+            "updated_price": {
+              "amount": "21.0",
+              "currencyCode": "GBP"
+            }
+          }
+        ]
+      },
+      "initial_launch_keyword_set_qualified": false,
+      "reserve_negative_group_ids": [
+        "KNIT_CROCHET_PATTERNS"
+      ]
+    },
+    {
+      "lane": "CA_EN",
+      "status": "LOCAL_BUILD_PREPARED_LAUNCH_HELD",
+      "campaign": {
+        "proposed_name": "DLM | CA | EN | Search | Navy Sprig | HOLD",
+        "existing_or_created_campaign_id": null,
+        "channel": "SEARCH",
+        "proposed_initial_status": "PAUSED",
+        "account_id": "6509972886",
+        "budget_id": null,
+        "budget_amount": null,
+        "budget_currency": "USD",
+        "total_loss_allowance_usd": null,
+        "bidding": "MANUAL_CPC",
+        "default_max_cpc_usd": 0.15,
+        "keyword_max_cpc_usd": 0.15,
+        "upward_bid_adjustments": false,
+        "search_partners": false,
+        "display_network": false,
+        "ai_max": false,
+        "dynamic_search_ads": false,
+        "final_url_expansion": false,
+        "auto_apply_keyword_or_bidding_recommendations": false,
+        "target_country_only": "CA",
+        "location_option": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+        "creative_language": "en",
+        "language_setting_if_available": "English; respect September2026 rollout, verify actual creative/queries, not selector alone",
+        "configured_target_roas": null,
+        "business_roas_gate": 6.5
+      },
+      "ad_group": {
+        "proposed_name": "Navy Sprig | Mother Daughter Matching Dresses | Exact",
+        "product_id": "7670609346657",
+        "product_handle": "navy-sprig-mommy-and-me-dresses",
+        "intent": "Finished mother-daughter matching dresses",
+        "reserve_not_in_first_group": [
+          {
+            "source_candidate_id": "CA_EN-02",
+            "text": "mother daughter outfits for family pictures",
+            "match_type": "PHRASE",
+            "notation": "\"mother daughter outfits for family pictures\"",
+            "source_status": "HELD",
+            "draft_status": "HELD_NOT_AUCTION_OR_PROFIT_QUALIFIED",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "exclude_from_first_group_reason": "PHRASE alternative overlaps exact intent and is not a second initial group."
+          }
+        ],
+        "product_scope_warning": "No separate dress/swim/pajama/wedding ad group created; no broad or phrase expansion in the first cohort.",
+        "keyword_records_role": "PROSPECTIVE_RESEARCH_CANDIDATES_HELD_NOT_INITIAL_LAUNCH_SET",
+        "qualified_initial_keywords": [],
+        "low_volume_reserve_keywords": [
+          {
+            "source_candidate_id": "CA_EN-01",
+            "text": "mother daughter outfits for family pictures",
+            "match_type": "EXACT",
+            "notation": "[mother daughter outfits for family pictures]",
+            "source_status": "HELD",
+            "draft_status": "LOW_VOLUME_RESERVE_HELD",
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "source_binding": "Existing exact candidate; broad collection route replaced locally by one product candidate after title/options/contextual-price source review.",
+            "native_seed_state": "RETURNED_0_TO_10_MONTHLY_NO_BID_ESTIMATES",
+            "prior_native_seed_state": {
+              "state": "THIS_EXACT_PRODUCT_INTENT_NOT_YET_NATIVE_VALIDATED",
+              "status": "HISTORICAL_SUPERSEDED_BY_NARROW_READBACK",
+              "original_draft_prepared_at_utc": "2026-09-11T20:27:07.964621+00:00"
+            },
+            "native_readback": {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+              "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad",
+              "recorded_at_utc": "2026-09-11T20:33:59.779677+00:00",
+              "observation_time_bounds_utc": [
+                "2026-09-11T20:27:58Z",
+                "2026-09-11T20:33:59.779677+00:00"
+              ],
+              "source_method": "Root rendered Keyword Planner UI; one country at a time, same six sole seeds, country results read after settling.",
+              "country": "CA",
+              "provided_row": {
+                "keyword": "mother daughter outfits for family pictures",
+                "monthly_searches_displayed": "0 – 10",
+                "competition": null,
+                "three_month_change": null,
+                "year_over_year_change": null,
+                "top_of_page_bid_low_usd": null,
+                "top_of_page_bid_high_usd": null,
+                "ad_impression_share": null
+              },
+              "qualification": "LOW_VOLUME_RESERVE_HELD",
+              "sufficient_initial_coverage": false
+            }
+          }
+        ],
+        "low_volume_reserve_origin": {
+          "product_id": "7670609346657",
+          "product_handle": "navy-sprig-mommy-and-me-dresses",
+          "intent": "Finished mother-daughter matching dresses for family photos",
+          "final_url_candidate": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD",
+          "scope": "Original product/cohort association is preserved. These keywords are not assigned to the new prospective Navy cohort or an activation set."
+        },
+        "reserve_not_in_first_group_context": {
+          "original_product_id": "7670609346657",
+          "original_product_handle": "navy-sprig-mommy-and-me-dresses",
+          "scope": "Historical reserve exclusions retain their original cohort meaning; no record is activated or remapped merely because the prepared cohort changes."
+        },
+        "keywords": [
+          {
+            "source_candidate_id": "CA_EN-RESEARCH-02-01",
+            "text": "mother and daughter same dress",
+            "match_type": "EXACT",
+            "notation": "[mother and daughter same dress]",
+            "source_status": "RESEARCH_CANDIDATE_NAVY_SPRIG",
+            "draft_status": "RESEARCH_CANDIDATE_HELD",
+            "prospective_max_cpc_usd": 0.15,
+            "current_actual_cpc_usd": null,
+            "current_forecast_at_015": null,
+            "native_seed_state": "REPORTED_HISTORICAL_DISCOVERY_ROW_NOT_NATIVE_EXACT_KEYWORD_ELIGIBILITY",
+            "native_readback": {
+              "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/BROADER_KEYWORD_OPPORTUNITIES.json",
+              "sha256": "3dacf157a2ab6129a937bdf579a984adeb8d47e1f77d2cc754f1e6c165fb95ff",
+              "recorded_at_utc": "2026-09-11T20:42:47.761596+00:00",
+              "observation_time_bounds_utc": [
+                "2026-09-11T20:32:06Z",
+                "2026-09-11T20:42:47.761596+00:00"
+              ],
+              "country": "CA",
+              "provided_row": {
+                "keyword": "mother and daughter same dress",
+                "monthly_searches_displayed": "10 – 100",
+                "competition": "High",
+                "three_month_change": "0%",
+                "year_over_year_change": "0%",
+                "top_of_page_bid_low_usd": 0.08,
+                "top_of_page_bid_high_usd": 0.31,
+                "disposition": "RESEARCH_CANDIDATE_NAVY_SPRIG",
+                "actual_cpc_usd": null,
+                "forecast_at_015": null
+              }
+            },
+            "product_fit_basis": "Navy Sprig offers separate mother/child Dress selections. This is source-based garment fit, not buyer/auction/profit acceptance.",
+            "sufficient_initial_coverage": null,
+            "launch_qualified": false
+          }
+        ],
+        "initial_research_selection_status": "ONE_CANONICAL_RESEARCH_TERM_HELD"
+      },
+      "landing": {
+        "final_url_candidate": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD",
+        "locale_root": "https://www.dresslikemommy.com/",
+        "expected_country": "CA",
+        "expected_currency": "CAD",
+        "country_market_memberships": [
+          "gid://shopify/Market/22986326113",
+          "gid://shopify/Market/544866401"
+        ],
+        "existing_overlap": "True",
+        "route_basis": "Verified English root convention plus exact contextual feed country/currency route with variant omitted for buyer selection.",
+        "fresh_public_http": "NOT_RUN_429_STOP",
+        "market_currency_cart_checkout": "NOT_RUN",
+        "variant_selection": "REQUIRED_NATIVE_ACCEPTANCE; existing UX numeric-variant repair gate preserved",
+        "price_in_ad": null
+      },
+      "rsa": {
+        "status": "PREPARED_LOCAL_COPY_NOT_ACCOUNT_ASSET",
+        "template_id": "DLM_FINISHED_MATCHING_APPAREL_EN_V1",
+        "business_name": "Dress Like Mommy",
+        "headlines": [
+          "Dress Like Mommy",
+          "Matching Dresses for Mom",
+          "Navy Sprig Matching Dresses",
+          "Choose Each Person's Size",
+          "Outfits for Family Photos",
+          "Explore Matching Styles",
+          "View Sizes and Options",
+          "Choose Your Matching Look"
+        ],
+        "descriptions": [
+          "Choose Dress or Cardigan by type and size. Each Navy Sprig piece is selected separately.",
+          "Plan a coordinated look for family photos. View the product's available options.",
+          "Explore matching styles at Dress Like Mommy. Select each person's garment and size."
+        ],
+        "display_path": [
+          "navy-sprig",
+          "dress-options"
+        ],
+        "pinning": null,
+        "character_counts": {
+          "headlines": [
+            16,
+            24,
+            27,
+            25,
+            25,
+            23,
+            22,
+            25
+          ],
+          "descriptions": [
+            88,
+            80,
+            83
+          ]
+        },
+        "copy_limits": "No price, full-family bundle, material, stock, shipping, returns, discount or deadline claim. Each selected item is separately chosen.",
+        "local_vocabulary": {
+          "parent_word": "Mom",
+          "sleepwear_reserve": "pajamas/pyjamas requires Canadian native review",
+          "sleepwear_in_this_group": false,
+          "native_language_review": "HELD"
+        }
+      },
+      "negative_group_ids": [
+        "SEWING_PATTERNS",
+        "SEWING_TUTORIALS"
+      ],
+      "planner_context": {
+        "provenance": "Root saved INTERNATIONAL_KEYWORD_COMPARISON.json; rendered same10-seed single-country Keyword Planner read. Independent native replay NOT_RUN.",
+        "source_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/INTERNATIONAL_KEYWORD_COMPARISON.json",
+        "source_file_present_at_build": false,
+        "report_period": "2025-09/2026-08",
+        "country": "CA",
+        "language": "English",
+        "network": "Google",
+        "bid_currency": "USD_ACCOUNT_NOT_LOCAL_SHOPPER_CURRENCY",
+        "row": {
+          "keyword": "mother daughter matching outfits",
+          "monthly_searches_displayed": "1K – 10K",
+          "competition": "High",
+          "top_of_page_bid_low_usd": 0.19,
+          "top_of_page_bid_high_usd": 0.76,
+          "filtered_ideas": 88,
+          "unfiltered_ideas": 2522
+        },
+        "interpretation": "Broad research term only, not selected product-cohort keyword or match-type proof. Historical top-of-page bid low exceeds0.15 but is neither actual CPC nor a hard auction floor. Selected exacts remain unqualified.",
+        "comparison_receipt": {
+          "source_file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/INTERNATIONAL_KEYWORD_COMPARISON.json",
+          "sha256": "f772b6d8f83adc311886bf5355f5768ffa47be55434964b47f160ee9e0342ea3",
+          "recorded_at_utc": "2026-09-11T20:27:58Z",
+          "observation_time_bounds_utc": [
+            "2026-09-11T19:51:59Z",
+            "2026-09-11T20:27:58Z"
+          ],
+          "country_row": "CA",
+          "source_file_present_at_refreeze": true,
+          "scope": "Core research phrase only; selected narrow exact candidates remain unqualified."
+        },
+        "prospective_research_receipt": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/BROADER_KEYWORD_OPPORTUNITIES.json",
+          "sha256": "3dacf157a2ab6129a937bdf579a984adeb8d47e1f77d2cc754f1e6c165fb95ff",
+          "recorded_at_utc": "2026-09-11T20:42:47.761596+00:00",
+          "observation_time_bounds_utc": [
+            "2026-09-11T20:32:06Z",
+            "2026-09-11T20:42:47.761596+00:00"
+          ],
+          "country": "CA",
+          "sampled_rows": 4,
+          "selected_text": "mother and daughter same dress",
+          "scope": "Root discovery UI sample with positive historical low-bid filter; not an actual-CPC result, exact-keyword eligibility or launch forecast."
+        }
+      },
+      "economics": {
+        "retained_R": null,
+        "actual_V": null,
+        "allocated_H": null,
+        "max_allowable_CPA": null,
+        "retained_profit": null,
+        "qualification": "HELD_UNKNOWN_ACTUAL_COSTS_REFUNDS_AND_ATTRIBUTION"
+      },
+      "product_source": {
+        "evidence_as_of_utc": "2026-09-11T19:17:27.347Z",
+        "product_id": "gid://shopify/Product/7670609346657",
+        "product_title": "Navy Sprig Mommy and Me Dresses — Dress & Cardigan",
+        "source_status": "ACTIVE",
+        "onlinePublished": true,
+        "countryPublished": true,
+        "catalogPublished": true,
+        "available_variant_count_in_local_feed": 24,
+        "options": [
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139349601",
+            "type": "Dress",
+            "size": "Child 2 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139349601"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139382369",
+            "type": "Dress",
+            "size": "Child 3 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139382369"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139415137",
+            "type": "Dress",
+            "size": "Child 4 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139415137"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139447905",
+            "type": "Dress",
+            "size": "Child 5 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139447905"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139480673",
+            "type": "Dress",
+            "size": "Child 6-7 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139480673"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139513441",
+            "type": "Dress",
+            "size": "Child 8 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139513441"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139546209",
+            "type": "Dress",
+            "size": "Child 9-10 Years",
+            "price": {
+              "amount": "34.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139546209"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139578977",
+            "type": "Dress",
+            "size": "Mother S",
+            "price": {
+              "amount": "40.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139578977"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139611745",
+            "type": "Dress",
+            "size": "Mother M",
+            "price": {
+              "amount": "40.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139611745"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139644513",
+            "type": "Dress",
+            "size": "Mother L",
+            "price": {
+              "amount": "40.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139644513"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139677281",
+            "type": "Dress",
+            "size": "Mother XL",
+            "price": {
+              "amount": "40.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139677281"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139710049",
+            "type": "Dress",
+            "size": "Mother 2XL",
+            "price": {
+              "amount": "40.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139710049"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139742817",
+            "type": "Cardigan",
+            "size": "Child 2 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139742817"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139775585",
+            "type": "Cardigan",
+            "size": "Child 3 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139775585"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139808353",
+            "type": "Cardigan",
+            "size": "Child 4 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139808353"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139841121",
+            "type": "Cardigan",
+            "size": "Child 5 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139841121"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139873889",
+            "type": "Cardigan",
+            "size": "Child 6-7 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139873889"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139906657",
+            "type": "Cardigan",
+            "size": "Child 8 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139906657"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139939425",
+            "type": "Cardigan",
+            "size": "Child 9-10 Years",
+            "price": {
+              "amount": "26.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139939425"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501139972193",
+            "type": "Cardigan",
+            "size": "Mother S",
+            "price": {
+              "amount": "29.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501139972193"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140004961",
+            "type": "Cardigan",
+            "size": "Mother M",
+            "price": {
+              "amount": "29.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501140004961"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140037729",
+            "type": "Cardigan",
+            "size": "Mother L",
+            "price": {
+              "amount": "29.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501140037729"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140070497",
+            "type": "Cardigan",
+            "size": "Mother XL",
+            "price": {
+              "amount": "29.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501140070497"
+          },
+          {
+            "variant_id": "gid://shopify/ProductVariant/46501140103265",
+            "type": "Cardigan",
+            "size": "Mother 2XL",
+            "price": {
+              "amount": "29.0",
+              "currencyCode": "CAD"
+            },
+            "exact_local_feed_url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD&variant=46501140103265"
+          }
+        ],
+        "source_scope": "Country contextual Shopify snapshot and matching local Merchant candidate; not public/runtime/Google approval/supplier stock proof."
+      },
+      "initial_launch_keyword_set_qualified": false,
+      "reserve_negative_group_ids": [
+        "KNIT_CROCHET_PATTERNS"
+      ]
+    }
+  ],
+  "negative_groups": [
+    {
+      "id": "SEWING_PATTERNS",
+      "intent": "Instructions/patterns for making apparel, rather than buying the finished garment",
+      "status": "HELD_PREVENTIVE_REVIEW_AND_INHERITED_DEDUP_REQUIRED",
+      "scope": "ONLY_THIS_FINISHED_APPAREL_CAMPAIGN",
+      "evidence_type": "PREVENTIVE_INTENT_JUDGEMENT_NOT_OBSERVED_WASTE",
+      "keywords": [
+        {
+          "text": "sewing pattern",
+          "match_type": "PHRASE",
+          "notation": "\"sewing pattern\""
+        },
+        {
+          "text": "sewing patterns",
+          "match_type": "PHRASE",
+          "notation": "\"sewing patterns\""
+        }
+      ],
+      "condition": "Apply only after confirming the advertised offer sells finished apparel and does not sell patterns or lessons; inspect inherited/shared negatives and add only missing nonredundant rows.",
+      "initial_proposal": true
+    },
+    {
+      "id": "SEWING_TUTORIALS",
+      "intent": "Learning how to sew",
+      "status": "HELD_PREVENTIVE_REVIEW_AND_INHERITED_DEDUP_REQUIRED",
+      "scope": "ONLY_THIS_FINISHED_APPAREL_CAMPAIGN",
+      "evidence_type": "PREVENTIVE_INTENT_JUDGEMENT_NOT_OBSERVED_WASTE",
+      "keywords": [
+        {
+          "text": "how to sew",
+          "match_type": "PHRASE",
+          "notation": "\"how to sew\""
+        },
+        {
+          "text": "sewing tutorial",
+          "match_type": "PHRASE",
+          "notation": "\"sewing tutorial\""
+        }
+      ],
+      "condition": "Apply only after confirming the advertised offer sells finished apparel and does not sell patterns or lessons; inspect inherited/shared negatives and add only missing nonredundant rows.",
+      "initial_proposal": true
+    },
+    {
+      "id": "KNIT_CROCHET_PATTERNS",
+      "intent": "Patterns for making garments; do not exclude knit/crochet garment searches",
+      "status": "RESERVE_HELD_QUERY_FALSE_POSITIVE_EVIDENCE_REQUIRED",
+      "scope": "ONLY_THIS_FINISHED_APPAREL_CAMPAIGN",
+      "evidence_type": "PREVENTIVE_INTENT_JUDGEMENT_NOT_OBSERVED_WASTE",
+      "keywords": [
+        {
+          "text": "knitting pattern",
+          "match_type": "PHRASE",
+          "notation": "\"knitting pattern\""
+        },
+        {
+          "text": "crochet pattern",
+          "match_type": "PHRASE",
+          "notation": "\"crochet pattern\""
+        }
+      ],
+      "condition": "Keep outside the initial proposed set. Review actual query meaning and finished-garment false positives before any separate inclusion; crochet pattern cardigan can describe finished apparel. Inherited/shared negative deduplication remains required. Negative close variants are not automatically excluded.",
+      "initial_proposal": false
+    }
+  ],
+  "protected_negative_intents": [
+    "free",
+    "free shipping",
+    "shipping",
+    "pattern as a garment print/design",
+    "adult",
+    "pajamas",
+    "pyjamas",
+    "wedding",
+    "whole apparel categories"
+  ],
+  "competitor_brand_exclusions": {
+    "status": "NOT_PREPARED",
+    "reason": "No blanket whole-brand exclusion without separate current brand/intent rationale and scope review; no observed competitor waste is claimed."
+  },
+  "country_queue": [
+    {
+      "country_code": "AD",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "AI",
+      "configured_currency": "XCD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "AT",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "AU",
+      "configured_currency": "AUD",
+      "status": "LOCAL_DRAFT_HELD",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/22986424417",
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "AX",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "BE",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "BG",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "BL",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "BM",
+      "configured_currency": "USD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "BS",
+      "configured_currency": "BSD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "CA",
+      "configured_currency": "CAD",
+      "status": "LOCAL_DRAFT_HELD",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/22986326113",
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "CH",
+      "configured_currency": "CHF",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "CK",
+      "configured_currency": "NZD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "CY",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "CZ",
+      "configured_currency": "CZK",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "DE",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "DK",
+      "configured_currency": "DKK",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "ES",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "FI",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "FJ",
+      "configured_currency": "FJD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "FR",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "GB",
+      "configured_currency": "GBP",
+      "status": "LOCAL_DRAFT_HELD",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865",
+        "gid://shopify/Market/22986260577"
+      ]
+    },
+    {
+      "country_code": "GF",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "GL",
+      "configured_currency": "DKK",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "GP",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "GR",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "HR",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "IE",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "IS",
+      "configured_currency": "ISK",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "IT",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "KY",
+      "configured_currency": "KYD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "LT",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "LU",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "LV",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "MC",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "ME",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "MF",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "MQ",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "MT",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "MX",
+      "configured_currency": "USD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "NL",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "NO",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "NZ",
+      "configured_currency": "NZD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "PL",
+      "configured_currency": "PLN",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "PM",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "PT",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "RE",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "RO",
+      "configured_currency": "RON",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "RS",
+      "configured_currency": "RSD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "RU",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "SE",
+      "configured_currency": "SEK",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "SI",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "SK",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "SM",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "SV",
+      "configured_currency": "USD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "TC",
+      "configured_currency": "USD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "TF",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "TV",
+      "configured_currency": "AUD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "UM",
+      "configured_currency": "USD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "US",
+      "configured_currency": "USD",
+      "status": "LOCAL_DRAFT_HELD",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544735329"
+      ]
+    },
+    {
+      "country_code": "VG",
+      "configured_currency": "USD",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "WF",
+      "configured_currency": "XPF",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "WS",
+      "configured_currency": "WST",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ]
+    },
+    {
+      "country_code": "XK",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    },
+    {
+      "country_code": "YT",
+      "configured_currency": "EUR",
+      "status": "QUEUED_COUNTRY_QUALIFICATION",
+      "campaign_created": false,
+      "google_readiness": "NOT_ESTABLISHED_BY_SHOPIFY_CONFIGURATION",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ]
+    }
+  ],
+  "country_language_queue": [
+    {
+      "scope": "AU_EN",
+      "country": "AU",
+      "language": "en",
+      "status": "LOCAL_DRAFT_HELD"
+    },
+    {
+      "scope": "BE_FR",
+      "country": "BE",
+      "language": "fr",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "BE_NL",
+      "country": "BE",
+      "language": "nl",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "CA_EN",
+      "country": "CA",
+      "language": "en",
+      "status": "LOCAL_DRAFT_HELD"
+    },
+    {
+      "scope": "CA_FR",
+      "country": "CA",
+      "language": "fr",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "CH_DE",
+      "country": "CH",
+      "language": "de",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "CH_FR",
+      "country": "CH",
+      "language": "fr",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "CH_IT",
+      "country": "CH",
+      "language": "it",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "CZ_CS",
+      "country": "CZ",
+      "language": "cs",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "DE_DE",
+      "country": "DE",
+      "language": "de",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "DK_DA",
+      "country": "DK",
+      "language": "da",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "ES_ES",
+      "country": "ES",
+      "language": "es",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "FR_FR",
+      "country": "FR",
+      "language": "fr",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "GB_EN",
+      "country": "GB",
+      "language": "en",
+      "status": "LOCAL_DRAFT_HELD"
+    },
+    {
+      "scope": "GR_EL",
+      "country": "GR",
+      "language": "el",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "IT_IT",
+      "country": "IT",
+      "language": "it",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "NL_NL",
+      "country": "NL",
+      "language": "nl",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "PL_PL",
+      "country": "PL",
+      "language": "pl",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "PT_PT",
+      "country": "PT",
+      "language": "pt",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "RO_RO",
+      "country": "RO",
+      "language": "ro",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "SE_SV",
+      "country": "SE",
+      "language": "sv",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    },
+    {
+      "scope": "US_EN",
+      "country": "US",
+      "language": "en",
+      "status": "LOCAL_DRAFT_HELD"
+    },
+    {
+      "scope": "US_ES",
+      "country": "US",
+      "language": "es",
+      "status": "QUEUED_LANGUAGE_AND_MARKET_QUALIFICATION"
+    }
+  ],
+  "counts": {
+    "shopify_countries": 65,
+    "first_local_drafts": 4,
+    "remaining_country_queue": 61,
+    "existing_country_language_scopes": 23,
+    "remaining_scope_queue": 19,
+    "selected_exact_keyword_candidates": 3,
+    "negative_groups": 3,
+    "negative_phrase_candidates_per_campaign": 6,
+    "qualified_initial_keywords": 0,
+    "low_volume_reserve_keyword_records": 7,
+    "initial_proposed_negative_phrases_per_campaign": 4,
+    "reserve_negative_phrases_per_campaign": 2,
+    "original_narrow_exact_keyword_candidates": 7,
+    "prospective_plus_original_low_volume_records": 10,
+    "countries_with_prospective_research_candidate": 3
+  },
+  "source_hashes": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/markets/active_country_inventory.csv",
+      "sha256": "54c26aca0d196adb5ccd274a473a1408ad159f6d93ce70639908e3e75289fd8a"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/markets/locale_routes.csv",
+      "sha256": "008bbcf8432e31e6ce98912cc01df0193dddfe43d6f9bd57c4054c201fd05f9d"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/country_language_scopes.csv",
+      "sha256": "d83e9ebe1594764c0b385dfb81db84de49540055b7777b235bcd1f1ed92b4485"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/US_KEYWORD_PLANNER.json",
+      "sha256": "424490edebe434e6a030901e2da12b929cbbbd3abb0051e7fe02f6b726b74979"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/STRATEGY_FIT_REVIEW.json",
+      "sha256": "a7488db4d5d910147641a98c2546f305cb8b86a629aedf7a3d4e147a5e184c35"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/SHOPIFY_CURRENT_METADATA.json",
+      "sha256": "1f209b9538d507ab72a6e0bae8eaadf98990a68920ddcd2086c3502d15b7f76d"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/measurement_economics/READINESS.md",
+      "sha256": "8b69941eb88ed3d9314d49d571a710acc5b45851f2284ea6f8fe93be6871002b"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/APPLICATION_RECEIPT.json",
+      "sha256": "6a846863ddbc5e5b3e93929dda497e3094076a0e064205526fb842e4575ff1da"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/SUNSHINE_STRIPE_OFFER_QUALIFICATION.md",
+      "sha256": "d4f4bb635fd125e9c4a72a8636d7ee1db5855247cf8c3e5b0bb5dfee3fee36f2"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/markets/US_EN.csv",
+      "sha256": "21839c6c11d6578e5cc937bb529b7d9421bbf1c45496bb8b55e8487f821592b7"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/markets/AU_EN.csv",
+      "sha256": "971fd92cb7cb2a3425cc7b6be44e588420d7ab18080658557af1852e61d2cebb"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/markets/GB_EN.csv",
+      "sha256": "a929cc4c7f84586f1caa723efd122b65a2f7eb6e399c8f39f6a8dc9fdd615704"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/markets/CA_EN.csv",
+      "sha256": "751ffef213dee0bde2304f4cbf8bb7ff36a9fa127a0186ed12e62f084fa8b37b"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.snapshot.json",
+      "sha256": "bf2aadd8cf9cefdb387b8fe6b704420492b526905681182cd6ac08218b0cab4b"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.tsv",
+      "sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.manifest.json",
+      "sha256": "83c8e8f6043f44cefe982c7637a20f3f5322e8b8f08878f3190f91ade0f4478d"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.snapshot.json",
+      "sha256": "6b3ea0331cf140c0cd7ddfb88ad1c17a1d4ab831f46dcf676000bac76491dc56"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.tsv",
+      "sha256": "6c5e86a09cc91baf37ff9705a4511b6f3076a8d23ba8381b7dc02ed55f864e87"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.manifest.json",
+      "sha256": "f5e539e6bff161e435e6a3f59b46cb44deb26b9900cbde0f5816002009c1d325"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/ca-en.snapshot.json",
+      "sha256": "c925871d94876ebe93b9a3a3612f32eb35d36506d5d169c3faf03c97107fac4f"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/ca-en.tsv",
+      "sha256": "2bd7ea6c66e36e557f66a0de1e6335aea5b589d146f87daa9c71ce549547d861"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/ca-en.manifest.json",
+      "sha256": "32e483bc33953bb91b5a1569cb50963cb0b79dacab5dafd176d457cde3bc0b9f"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/INTERNATIONAL_KEYWORD_COMPARISON.json",
+      "sha256": "f772b6d8f83adc311886bf5355f5768ffa47be55434964b47f160ee9e0342ea3"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+      "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/BROADER_KEYWORD_OPPORTUNITIES.json",
+      "sha256": "3dacf157a2ab6129a937bdf579a984adeb8d47e1f77d2cc754f1e6c165fb95ff"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/US_NAVY_SOURCE_READBACK.json",
+      "sha256": "510e9650d3d1f421d7dd6e0e3625e0ae37622026a2fd0881abe60ad9872c92c5"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/refreshed_feed/us-en.snapshot.json",
+      "sha256": "f4890d66fd397217e8d31f2cb9b7a242e236ffc3914a39741ea3b781364fb20b"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/refreshed_feed/us-en.manifest.json",
+      "sha256": "b61e14d9ea54399adc000e26ac76957357b8d009f3fc91f73a6c49087132d5d9"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/refreshed_feed/us-en.tsv",
+      "sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.contained_local_prep_20260911/gb-en.snapshot.json",
+      "sha256": "cfc7ad13b7d25518439f0c4c21ad185d848119b1ae8e2843bccf3c7d6e122412"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.contained_local_prep_20260911/gb-en.tsv",
+      "sha256": "c32c827692510ad8170ae56d0f163571da7a076f725a759d38fd2de34f91253f"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.contained_local_prep_20260911/candidate_receipt.json",
+      "sha256": "92043fbd8b205dd47edd4763fdc9623d8c43795ff37f44912793ab7249e92776"
+    }
+  ],
+  "validation": {
+    "prior_frozen_validation": {
+      "status": "PASS_LOCAL_STRUCTURE",
+      "rsa_headlines_at_most30": true,
+      "rsa_descriptions_at_most90": true,
+      "rsa_display_paths_at_most15": true,
+      "one_product_intent_adgroup_per_draft": true,
+      "budgets_and_loss_allowances_null": true,
+      "all_keyword_activations_HELD": true,
+      "within_lane_exact_duplicates": [],
+      "cross_country_same_text": [
+        {
+          "match_type": "EXACT",
+          "text": "mother and daughter same dress",
+          "lanes": [
+            "US_EN",
+            "CA_EN"
+          ],
+          "handling": "Separate country-presence research alternatives; not additive audiences or simultaneous launch approval."
+        }
+      ],
+      "source_feed_hashes_match": true,
+      "source24NavyVariantsEachCountry": true,
+      "no_unsupported_price_or_service_ad_claim": true,
+      "known_size_chart_and_source_limits_not_promoted": true,
+      "final_checked_at_utc": "2026-09-11T20:48:21.939612+00:00",
+      "source_hashes_current_match": true,
+      "exact_route_country_currency_pairs": true,
+      "headline_count_3_to15_description_count_2_to4": true,
+      "all_seven_candidate_rows_exact_and_held": true,
+      "all_six_negative_phrases_explicit_and_scoped": true,
+      "within_RSA_duplicate_headlines": 0,
+      "canonical_and_external_changes": 0,
+      "scoped_git_diff_check": "PASS",
+      "markdown_words": 526,
+      "markdown_sha256": "b4c0ff81bd569ce4641e33102f86b3524a74b4a3b3aafdb1f38c063d81408602",
+      "international_native_receipt_limit": "Bound root UI receipt confirms all four broad core-term figures and provenance. No independent native replay; no actual CPC, narrow-keyword qualification or auction floor claim.",
+      "international_comparison_receipt_hash_verified": true,
+      "international_four_core_rows_match": true,
+      "international_receipt_bound_at_utc": "2026-09-11T20:30:25.843111+00:00",
+      "narrow_receipt_sha256_verified": true,
+      "narrow_receipt_country_phrase_observations": 24,
+      "all_seven_original_records_preserved_as_low_volume_reserve": true,
+      "initial_launch_keyword_set_qualified": false,
+      "missing_bid_competition_and_actual_CPC_not_coerced_to_zero": true,
+      "four_initial_proposed_sewing_negatives_and_two_reserve_knit_crochet_negatives": true,
+      "narrow_native_source_limit": "Root UI receipt independently hash/row matched; no native replay, actual CPC, keyword eligibility or USD0.15 forecast.",
+      "all_source_hashes_current_match": true,
+      "source_hash_count": 29,
+      "broader_receipt_hash_and19_rows_verified": true,
+      "three_canonical_research_candidates_in_three_countries": true,
+      "preservation_scope": "Country/auction/budget/economics/negative controls and all original reserves unchanged; US product/landing/copy intentionally changes to source-supported Navy, with full original Sunshine preparation preserved as historical. AU query-vocabulary annotation added; no other RSA strings changed.",
+      "promotion_scope": "Three local prospective research alternatives prepared; zero account or launch promotion. Prior narrow-reserve review covers its historical hashes only.",
+      "US_Navy24source_options_matched": true,
+      "new_research_keywords_actual_CPC_and_forecast_remain_unknown": true,
+      "one_candidate_per_selected_country_no_additive_wording_volumes": true,
+      "UK_initial_research_keyword_set_empty": true,
+      "source_local_price_not_buyer_acceptance": true,
+      "independent_delta_review": "PENDING_REVIEWER_FROZEN_HASH_CHECK",
+      "country_budget_economics_negative_and_reserve_controls_unchanged": true,
+      "source_supported_US_Navy_preparation_delta_preserves_Sunshine_history": true,
+      "AU_Planner_discovery_distinguished_from_delivered_paid_search_terms": true
+    },
+    "source_refresh": {
+      "exact_gb_variant_type_size_url_price_joins": 24,
+      "changed_dress_prices": 12,
+      "keyword_copy_negative_budget_authority_changes": 0,
+      "independent_review": "PENDING"
+    }
+  },
+  "initial_launch_keyword_set_qualified": false,
+  "keyword_selection": {
+    "status": "THREE_RESEARCH_CANDIDATES_HELD_INITIAL_LAUNCH_SET_UNQUALIFIED",
+    "qualified_initial_keyword_count": 0,
+    "prospective_research_candidate_count": 3,
+    "retained_low_volume_reserve_records": 7,
+    "unique_reserve_texts": 6,
+    "record_placement": "ad_group.keywords contains at most one prospective exact research candidate per selected country. Original seven records remain unchanged in low_volume_reserve_keywords, with original product context. None is an upload or activation set.",
+    "decision": "US and CA each retain one canonical same-dress research term; AU retains the actually observed mommy wording. UK has no new initial research candidate. Discovery bids and volume do not establish CPC, delivery, sufficient initial coverage or retained profit.",
+    "country_profit_ranking": "NOT_ESTABLISHED",
+    "simultaneous_launches_authorized": false
+  },
+  "narrow_keyword_readback": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+    "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad",
+    "recorded_at_utc": "2026-09-11T20:33:59.779677+00:00",
+    "observation_time_bounds_utc": [
+      "2026-09-11T20:27:58Z",
+      "2026-09-11T20:33:59.779677+00:00"
+    ],
+    "source_method": "Root rendered Keyword Planner UI; one country at a time, same six sole seeds, country results read after settling.",
+    "account_id": "6509972886",
+    "period": "2025-09/2026-08",
+    "language": "English",
+    "network": "Google",
+    "currency": "USD_ACCOUNT",
+    "filters": [
+      "Exclude adult ideas"
+    ],
+    "previous_core_phrase_text_filter": "REMOVED_BEFORE_RESULT_READBACK",
+    "country_phrase_observations": 24,
+    "selected_lane_records_matched": 7,
+    "unique_phrase_count": 6,
+    "interpretation": "Every supplied phrase has a displayed 0–10 monthly range in each of four countries. This is not zero proven demand, native keyword-status eligibility, a forecast at USD0.15, actual CPC, or proof of free traffic. Missing bids and competition remain unknown.",
+    "independent_native_replay": "NOT_RUN; this packet binds root-rendered UI evidence."
+  },
+  "prepared_revision_at_utc": "2026-09-12T10:54:17.360058+00:00",
+  "revision_history": [
+    {
+      "revision": "NARROW_RESERVE_20260911",
+      "draft_json_sha256": "d55dd69b5bc3b7fc98c13b8b6295630e32389d31a5205205737cbfb1a861c1a5",
+      "draft_markdown_sha256": "dabe32f8a7c8ff41898a96c5bacc7bff3cc40da86f4a7fdf9a28680547864c5e",
+      "independent_review_verdict": "PASS_WITH_LIMITS_LOCAL_DRAFT_ONLY",
+      "independent_review_json_sha256_at_release": "852c49285f0119ea3de3016e9204da6e3724247b887406e376becda081cdb4a6",
+      "scope": "Historical review of narrow-reserve version; not approval or independent review of this new broader-candidate delta."
+    },
+    {
+      "revision": "BASELINE_BEFORE_GB_SOURCE_REFRESH_20260912",
+      "draft_json_sha256": "962486705f12e585f03717712aec164ec28617df0143d9d363fc66a41a8d7792",
+      "scope": "Preserved complete prior reviewed draft as dated baseline; its independent review does not cover the later source refresh."
+    }
+  ],
+  "broader_keyword_readback": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/BROADER_KEYWORD_OPPORTUNITIES.json",
+    "sha256": "3dacf157a2ab6129a937bdf579a984adeb8d47e1f77d2cc754f1e6c165fb95ff",
+    "recorded_at_utc": "2026-09-11T20:42:47.761596+00:00",
+    "observation_time_bounds_utc": [
+      "2026-09-11T20:32:06Z",
+      "2026-09-11T20:42:47.761596+00:00"
+    ],
+    "account_id": "6509972886",
+    "period": "2025-09/2026-08",
+    "language": "English",
+    "network": "Google",
+    "currency": "USD_ACCOUNT",
+    "filters": [
+      "Exclude adult ideas",
+      "Top of page bid (low range) >= USD0.01"
+    ],
+    "sort": "Top of page bid (low range) ascending",
+    "seed_count": 8,
+    "representative_rows": 19,
+    "selected_candidate_count": 3,
+    "sample_scope": "Read rendered rows after each single-country result settled; used normal grid PageDown to inspect more rows. This is a bounded sample, not an exhaustive keyword export.",
+    "time_bound_note": "Start is a conservative session capture bound, not a precise per-row timestamp.",
+    "limitations": [
+      "Positive-bid filter counts are neither affordable-keyword counts nor count of selected relevant ideas.",
+      "Historical low-range bids are not actual CPC, a hard auction floor, or assured delivery at the retainedUSD0.15 ceiling.",
+      "The selected terms are prospective exact keyword candidates; discovery does not establish account match type or exact eligibility. Exact positives can include close variants.",
+      "The three research candidates still need actual basket economics, real purchase acceptance, buyer-route proof, inherited-negative/overlap checks and existing exact spend authority.",
+      "No country is ranked profitable from this evidence; UK has no selected new initial candidate in this bounded sample.",
+      "The seven earlier narrow phrases remain low-volume reserve, preserved in NARROW_KEYWORD_READBACK.json."
+    ],
+    "nonselected_sample_dispositions": [
+      {
+        "country": "US",
+        "keyword": "fall outfits for mom and daughter",
+        "disposition": "RESERVE_SEASONAL_BROADER_INTENT_NOT_INITIAL_DRESS_KEYWORD"
+      },
+      {
+        "country": "US",
+        "keyword": "mom and daughter shirt ideas",
+        "disposition": "RESERVE_IDEATION_INTENT_NOT_INITIAL_PURCHASE_KEYWORD"
+      },
+      {
+        "country": "US",
+        "keyword": "matching rompers for mom and daughter",
+        "disposition": "EXCLUDED_FROM_SELECTED_DRESS_AND_TEE_COHORTS_PRODUCT_TYPE_MISMATCH"
+      },
+      {
+        "country": "CA",
+        "keyword": "twinning dress for mom and daughter",
+        "disposition": "RESERVE_SAME_PRODUCT_INTENT_OVERLAP_NOT_SEPARATE_INITIAL_AD_GROUP"
+      },
+      {
+        "country": "CA",
+        "keyword": "mother daughter matching fall dresses",
+        "disposition": "RESERVE_SEASONAL_PRODUCT_AND_TIMING_FIT_REQUIRED"
+      },
+      {
+        "country": "CA",
+        "keyword": "mommy and me shirts",
+        "disposition": "RESERVE_DIFFERENT_GARMENT_AND_LOW_BID_ABOVE_CEILING"
+      },
+      {
+        "country": "GB",
+        "keyword": "matching wedding outfits for mother and daughter",
+        "disposition": "RESERVE_OCCASION_FIT_UNQUALIFIED_NOT_INITIAL_PHOTO_DRESS_KEYWORD"
+      },
+      {
+        "country": "GB",
+        "keyword": "mother daughter matching holiday outfits",
+        "disposition": "RESERVE_HOLIDAY_MEANING_AND_PRODUCT_FIT_UNQUALIFIED"
+      },
+      {
+        "country": "GB",
+        "keyword": "mother and infant daughter matching outfits",
+        "disposition": "REJECT_FOR_NAVY_SPRIG_CHILD_SIZES_START_AT2YEARS_NOT_INFANT"
+      },
+      {
+        "country": "GB",
+        "keyword": "mother and daughter summer dresses",
+        "disposition": "RESERVE_SEASONAL_TIMING_NOT_AN_INITIAL_SEPTEMBER_UK_LAUNCH_SET"
+      },
+      {
+        "country": "GB",
+        "keyword": "mother and daughter party dresses",
+        "disposition": "RESERVE_OCCASION_FIT_UNQUALIFIED_LOW_BID_ABOVE_CEILING"
+      },
+      {
+        "country": "AU",
+        "keyword": "twinning dress for mom and daughter",
+        "disposition": "RESERVE_SAME_PRODUCT_INTENT_NOT_SEPARATE_INITIAL_AD_GROUP"
+      },
+      {
+        "country": "AU",
+        "keyword": "mommy infant daughter matching outfits",
+        "disposition": "REJECT_FOR_NAVY_SPRIG_CHILD_SIZES_START_AT2YEARS_NOT_INFANT"
+      },
+      {
+        "country": "AU",
+        "keyword": "mommy and me outfits",
+        "disposition": "RESERVE_BROADER_GARMENT_INTENT"
+      },
+      {
+        "country": "AU",
+        "keyword": "matching dresses mum and daughter",
+        "disposition": "RESERVE_LOW_BID_ABOVE_CEILING"
+      },
+      {
+        "country": "AU",
+        "keyword": "mum and daughter dresses",
+        "disposition": "RESERVE_LOW_BID_ABOVE_CEILING"
+      }
+    ],
+    "demand_aggregation": "Do not sum close wording ranges as independent demand or infer exact-match-specific volume from historical keyword discovery."
+  },
+  "source_refresh": {
+    "revision": "GB_CONTEXTUAL_PRICE_REFRESH_20260912",
+    "baseline_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/SEARCH_CAMPAIGN_DRAFTS.json",
+    "baseline_sha256": "962486705f12e585f03717712aec164ec28617df0143d9d363fc66a41a8d7792",
+    "local_variant_joins": 24,
+    "changed_price_fields": 12,
+    "unchanged_cardigan_prices": 12,
+    "other_country_drafts_byte_equivalent": true,
+    "keywords_rsa_negatives_budgets_gates_unchanged": true,
+    "changes": [
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139349601",
+        "type": "Dress",
+        "size": "Child 2 Years",
+        "old_price": {
+          "amount": "19.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "18.0",
+          "currencyCode": "GBP"
+        }
+      },
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139382369",
+        "type": "Dress",
+        "size": "Child 3 Years",
+        "old_price": {
+          "amount": "19.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "18.0",
+          "currencyCode": "GBP"
+        }
+      },
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139415137",
+        "type": "Dress",
+        "size": "Child 4 Years",
+        "old_price": {
+          "amount": "19.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "18.0",
+          "currencyCode": "GBP"
+        }
+      },
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139447905",
+        "type": "Dress",
+        "size": "Child 5 Years",
+        "old_price": {
+          "amount": "19.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "18.0",
+          "currencyCode": "GBP"
+        }
+      },
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139480673",
+        "type": "Dress",
+        "size": "Child 6-7 Years",
+        "old_price": {
+          "amount": "19.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "18.0",
+          "currencyCode": "GBP"
+        }
+      },
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139513441",
+        "type": "Dress",
+        "size": "Child 8 Years",
+        "old_price": {
+          "amount": "19.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "18.0",
+          "currencyCode": "GBP"
+        }
+      },
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139546209",
+        "type": "Dress",
+        "size": "Child 9-10 Years",
+        "old_price": {
+          "amount": "19.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "18.0",
+          "currencyCode": "GBP"
+        }
+      },
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139578977",
+        "type": "Dress",
+        "size": "Mother S",
+        "old_price": {
+          "amount": "22.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "21.0",
+          "currencyCode": "GBP"
+        }
+      },
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139611745",
+        "type": "Dress",
+        "size": "Mother M",
+        "old_price": {
+          "amount": "22.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "21.0",
+          "currencyCode": "GBP"
+        }
+      },
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139644513",
+        "type": "Dress",
+        "size": "Mother L",
+        "old_price": {
+          "amount": "22.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "21.0",
+          "currencyCode": "GBP"
+        }
+      },
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139677281",
+        "type": "Dress",
+        "size": "Mother XL",
+        "old_price": {
+          "amount": "22.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "21.0",
+          "currencyCode": "GBP"
+        }
+      },
+      {
+        "variant_id": "gid://shopify/ProductVariant/46501139710049",
+        "type": "Dress",
+        "size": "Mother 2XL",
+        "old_price": {
+          "amount": "22.0",
+          "currencyCode": "GBP"
+        },
+        "updated_price": {
+          "amount": "21.0",
+          "currencyCode": "GBP"
+        }
+      }
+    ],
+    "cause_limit": "Newer stored contextual prices differ by GBP1 for all12 dress variants. Underlying reason for the price change was not established.",
+    "source_label": "REPO_KNOWN",
+    "independent_review": "PENDING",
+    "source_hashes": {
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.contained_local_prep_20260911/gb-en.snapshot.json": "cfc7ad13b7d25518439f0c4c21ad185d848119b1ae8e2843bccf3c7d6e122412",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.contained_local_prep_20260911/gb-en.tsv": "c32c827692510ad8170ae56d0f163571da7a076f725a759d38fd2de34f91253f",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.contained_local_prep_20260911/candidate_receipt.json": "92043fbd8b205dd47edd4763fdc9623d8c43795ff37f44912793ab7249e92776"
+    }
+  }
+}

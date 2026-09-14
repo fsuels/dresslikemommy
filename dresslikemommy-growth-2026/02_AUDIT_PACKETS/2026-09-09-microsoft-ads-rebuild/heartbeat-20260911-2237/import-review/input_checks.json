@@ -1,0 +1,30 @@
+{
+  "reviewed_at_utc": "2026-09-11T22:52:31.555055+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "status": "INPUT_CHECKS_PASS__AWAIT_FINAL_OPTIONS_AND_CONTRACT",
+  "input_sha256": {
+    "paused_shell_mapper_probe.csv": "27262e4bdc410afdf875257dcc0f36d7a897cf987ec23f1685af4cfbfff8964e",
+    "mapper_probe_contract.json": "f033c1ef1ff60d30a3a647b4d60725017ec797ba77346876f74058b78508eb80",
+    "campaign_before.json": "cbea9554ab3e23202318522970629c2c524422fd2e7c6f7d3b48d4865445adda",
+    "native_import_discovery.json": "468a4bd9f7a295f0232d37d5edaede4cef572611ce312705b981410443a971b5",
+    "schema-review/import_schema_review.json": "407e12a962826e0d1e80cea5ce85460174c49ee019fc0bc73a97cba61cbd1ba8"
+  },
+  "checks": {
+    "csv_sha_matches_exact_assignment": true,
+    "csv_headers_and_rows_equal_contract": true,
+    "two_rows_nine_columns": true,
+    "all_rows_campaign_paused_search_daily": true,
+    "languages_english_german": true,
+    "exact_maxclicks_cap": true,
+    "proposed_budget_config_only": true,
+    "no_existing_campaign_names": true,
+    "fresh_before_all_eleven_paused": true,
+    "existing_config_budget_120": true,
+    "correct_target_account_customer": true,
+    "no_id_or_child_or_geo_columns": true
+  },
+  "checks_passed": 12,
+  "limitation": "Independent inspection of root receipts and exact local payload only. No independent browser replay, server acceptance or campaign creation is claimed. Native mapping/options and final mutation contract remain pending.",
+  "external_writes_by_reviewer": 0
+}

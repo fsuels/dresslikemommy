@@ -1,0 +1,100 @@
+{
+  "schema": "dlm.merchant_eligibility_return_decision.v1",
+  "task_id": "TA07-ELIGIBILITY-RETURN-COVERAGE-20260914-1236",
+  "stage": "HANDOFF",
+  "bounded_read_status": "COMPLETED_WITH_LIMITS",
+  "operational_all_market_outcome": "PARTIAL",
+  "external_writes": 0,
+  "verified_outcomes": [
+    "Prior account setup/policy issue is absent on current native accountissues page.",
+    "US and AU source headers each4761; four protected US/AU representativesApproved/InStock/FreeListings with correctprices and native showing statement.",
+    "US latest scheduledSep14midnightfetchfailedConnectionfailed; retained offers are not proof of current successful sync.",
+    "Current configured returnpolicy9309759641 remainsVerifiedAustria-only, noexceptions; US/AUselection exists in Addreturnpolicy flow.",
+    "Current savedrefund14695685 and linked Page161929989 conditional30dayterms read; public /pages/return-policy rendered currentUS/en.",
+    "Current Terms retain broader sale/personalized finalsale language.",
+    "US StoreQualityNoScore/MissingInformation; exactcause not isolated."
+  ],
+  "smallest_supported_correction_candidate": {
+    "state": "SOURCE_QUALIFIED_PARTIALLY__NOT_RELEASE_READY",
+    "destination": "Merchant513542500; onlyUS/AU return coverage for current controlled offers",
+    "approach": "After truth and assignment gaps resolve, add only justifiedUS/AU standard coverage and country-bound product exceptions using supported account policy and return_policy_label mechanism. Preserve existingATpolicy, IDs, prices and paid scope. Exact create/update sequence is not approved by this source-only packet.",
+    "standard_values_supported": {
+      "return_window": 30,
+      "window_origin": "delivery date",
+      "condition": "New only",
+      "method": "By mail",
+      "customer_responsibility_for_ordinary_return_postage": true,
+      "restocking_fee": 0,
+      "refund_processing_days": null
+    },
+    "exception_definitions_supported": [
+      "Swimwear/intimates",
+      "Explicit Final Sale",
+      "Gift cards"
+    ],
+    "exclusion_note": "Do not treat every discounted product as Final Sale or every unmatched product as ordinary. Damaged/defective replacement/refund without physical return must not be erased by a no-returns representation.",
+    "authorization": "Saved current nonspend Merchant setup correction authority exists; this packet does not ask for a duplicate generic approval or no-restocking answer.",
+    "exact_unmet_dependencies": [
+      "Reconcile current sale/personalized and postage exception wording between Terms and the saved refund policy/linked page for the affected cohorts; no policy text rewrite authorized by this qualification.",
+      "Obtain a current complete source-country-offer-exception manifest and supported effective assignment readback for every record affected by US/AU default policy coverage. September11 classification is historical; missing or unmatched labels may fall back to default.",
+      "Qualify a truthful native exception representation that preserves the seven-day damaged/defective remedy without inventing a physical return requirement, exchange policy or label fee.",
+      "Freeze exact candidate/before-state/after-state/rollback and independent review before a material policy or feed write."
+    ],
+    "optional_field_not_a_blocker": "Refund processing Days is blank and not markedrequired. Preserve blank until source5–10business days plus banktime maps truthfully to its customer-receipt/day semantics; do not manufacture a number."
+  },
+  "adversarial_challenge": {
+    "attempted_shortcut": "Expand a standard30day policy now, then add product exceptions later.",
+    "failure": "Unlabelled or unmatched excluded products could inherit the standard return promise, including source records outside the controlled classifier. This is customer-truth risk, not a missing generic permission.",
+    "result": "Hold expansion and label writes; retain source qualification and exact dependencies."
+  },
+  "alternative_considered": {
+    "name": "Product-level returns attribute",
+    "official_support": "Google documents returns(country:...) overrides and up to100overrides peroffer.",
+    "reason_not_selected": "It still requires exact current peroffer classification/country truth. Documentation makes omitted shippingfee default to0 while the source uses variable customer-paid postage; a numeric0 must not be invented as a shortcut. No current builder support or Google effective readback was established.",
+    "production_use": "NOT_IMPLEMENTED_OR_APPROVED"
+  },
+  "next_owner_action": {
+    "id": "TA07-US-SCHEDULED-FETCH-CONNECTION-FAILURE",
+    "action": "Diagnose and correct the failed existingUS scheduled fetch through the supported current source path, preserving the received/approved cohort.",
+    "why_first": "Account visibility has improved, while failed fetching threatens ongoing catalog freshness and the owner's automatic add/remove requirement.",
+    "boundary": "This wake did not retry Update, download, publicWorker access or change sources/security. Parent owns next exact dispatch and canonical integration."
+  },
+  "return_lane_next_action": "Resolve the actual policy wording conflict and current exception assignment evidence; then independently review the smallestUS/AU-only correction.",
+  "independent_review": {
+    "status": "REQUIRED_NOT_YET_RETURNED",
+    "existing_children": "All3existingreviewer children stillerrored with quota resetSep14 22:45; no retries/substitutes/creditredemption.",
+    "parent_review_requested": true
+  },
+  "continuity": {
+    "parent": "01a08223-036e-7fa3-8961-ecd297163fb5",
+    "shared_canonical_edits": 0,
+    "claim33_preserved": true,
+    "source_holds_preserved": "6parents/162offers",
+    "theme_owner_publication": "137888792673 preserved",
+    "paid_scope": "NONE",
+    "sales_clock_and_content_review_dates": "Unchanged; no sales/order reads",
+    "continuation_prompt": "ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+  },
+  "documentation": [
+    {
+      "url": "https://support.google.com/merchants/answer/14011730?hl=en",
+      "finding": "Policies are country scoped; groups use exceptions with feed labels. Verified submitted policies can supersede website-derived information; website and Merchant policy must agree."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/9445425?hl=en",
+      "finding": "Missing return_policy_label uses the configured default; the attribute links products to nondefault policies."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/15092880?hl=en",
+      "finding": "Unmatched labels also fall back to the default; changing a shared policy affects its assigned products."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/17081382?hl=en",
+      "finding": "Country-specific product-level returns are documented; missing shipping fee defaults to zero. Accurate website-matching values remain required."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/14261098?hl=en",
+      "finding": "StoreQuality follows approved offers and measured experience; policy improvements can take time to enter the score. A missing score does not by itself establish a single cause or approval failure."
+    }
+  ]
+}

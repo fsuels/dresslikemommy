@@ -1,0 +1,1 @@
+query DlmItalianReferralDetail($id:ID!,$after:String){order(id:$id){customerJourneySummary{ready momentsCount{count precision} moments(first:50,after:$after){nodes{__typename ... on CustomerVisit{referralInfoHtml marketingEvent{marketingChannelType type sourceAndMedium remoteId utmCampaign utmMedium utmSource}}}pageInfo{hasNextPage endCursor}}}}}

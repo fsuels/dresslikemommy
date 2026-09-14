@@ -1,0 +1,31 @@
+{
+  "schema": "dlm.return_assignment_completion_validation.v1",
+  "recorded_at_utc": "2026-09-14T17:29:03.662365+00:00",
+  "status": "PASS",
+  "standard_checks": [
+    {
+      "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "result": "CONTINUITY_OK",
+      "latest_worklog_anchor_observed": "2026-09-14-ceo-au-source-prices-and-channel-handoffs",
+      "shared_canonical_edits_by_this_assignment": false
+    },
+    {
+      "command": "git diff --check -- <new bounded return_assignment_1658 packet> <executor all-markets.execution_checkpoint.json>",
+      "exit_code": 0,
+      "output": "",
+      "scope": "Tracked diff only; new JSON/Markdown files additionally parsed and checked for trailing whitespace."
+    }
+  ],
+  "saved_packet_json_readback": "PASS",
+  "new_packet_json_markdown_whitespace_check": "PASS",
+  "all_handoff_receipt_hashes_match": "PASS",
+  "checkpoint_added_key_binds_exact_handoff": "PASS",
+  "checkpoint_readback_sha256": "b26944a2b9b0b6736c0f3edcfb2a2669eb489bd8a11f3a4daadd5d77e75b618a",
+  "local_mapping_checks_passed": 9983,
+  "separate_saved_artifact_checks_passed": 26,
+  "independent_parent_review": "PENDING",
+  "external_write_count": 0,
+  "complete_effective_google_assignment_readback": false,
+  "broader_all_market_status": "PARTIAL"
+}

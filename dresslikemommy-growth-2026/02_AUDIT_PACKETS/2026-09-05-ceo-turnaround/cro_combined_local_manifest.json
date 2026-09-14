@@ -1,0 +1,29 @@
+{
+  "status": "LOCAL_REVIEW_ONLY_NOT_LIVE_BASELINE_OR_DEPLOYMENT_AUTHORITY",
+  "recorded_at": "2026-09-05",
+  "earlier_snapshot": "cro_existing_patch_manifest.json (preserved; superseded for final local file hashes only)",
+  "scope": [
+    "assets/cart.js",
+    "sections/main-cart-items.liquid",
+    "sections/main-cart-footer.liquid",
+    "sections/hero-banner.liquid",
+    "snippets/home-spotlight-card.liquid"
+  ],
+  "files": {
+    "assets/cart.js": "3e56046d72019380c0d48ecbd7ec5c12473813278eaeff90090fcec4124955be",
+    "sections/main-cart-items.liquid": "2e98d0814483c05ecf947e57dc3482484a90908017c6d38543b6c6708bc19842",
+    "sections/main-cart-footer.liquid": "89712b8893fdca9cbc3f0bc335f986b0b218ba8fb3b1aa0aeff5602408470865",
+    "sections/hero-banner.liquid": "02e64cc06378bf972ed77078b69d63c8774745b55d150709383ac233cd051722",
+    "snippets/home-spotlight-card.liquid": "61febe2c738010c60e4d77ff0df9d63dec4e2aa28989bcf2a0c3edabade3f1c3"
+  },
+  "patches": {
+    "cro_combined_local_review.patch": "e96c7038ebe0438c907cea6eabc7b42dbd60496cef0b8ca0ce1cf32a79a58079",
+    "cro_recently_viewed_only.patch": "64ef531dae5eb4b852a74826efcdd8f12a9890a372d2d3c0087b9b8dca2742fd"
+  },
+  "notes": [
+    "Combined patch includes existing June quantity/subtotal/homepage/accessibility changes plus new September recently-viewed correction.",
+    "The September-only patch is relative to the pre-edit working copy, not a fresh Shopify live-theme export.",
+    "Do not upload the dirty theme wholesale. Retrieve current live baseline, apply only approved hunks in isolated preview, inspect and obtain scoped publication authority.",
+    "Fixture uses actual cart.js and existing CSS with placeholder images/local product targets; it does not validate Shopify section endpoints or live release."
+  ]
+}

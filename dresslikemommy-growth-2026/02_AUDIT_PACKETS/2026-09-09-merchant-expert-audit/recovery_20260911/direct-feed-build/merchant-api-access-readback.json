@@ -1,0 +1,65 @@
+{
+  "schema": "dlm.merchant.api_access_readback.v1",
+  "started_at_utc": "2026-09-11T15:09:10.928616+00:00",
+  "target_account_id": "513542500",
+  "credential_source": "/opt/homebrew/bin/gcloud auth print-access-token",
+  "credential_obtained": false,
+  "token_recorded_or_printed": false,
+  "account_access": "NOT_RUN",
+  "data_sources_access": "NOT_RUN",
+  "requests": [],
+  "docs_retrieved_date_utc": "2026-09-11",
+  "official_sources": [
+    "https://developers.google.com/merchant/api/reference/rest/accounts_v1/accounts/get",
+    "https://developers.google.com/merchant/api/reference/rest/datasources_v1/accounts.dataSources/list"
+  ],
+  "required_scope": "https://www.googleapis.com/auth/content",
+  "limits": {
+    "only_account_513542500_requested": true,
+    "legacy_exporter_executed": false,
+    "unrelated_accounts_or_projects_listed": false,
+    "login_or_scope_change_performed": false,
+    "api_mutations_performed": false,
+    "native_browser_control_used": false,
+    "same_source_writes_verified_or_authorized_by_this_probe": false
+  },
+  "credential_command_exit_code": 1,
+  "verdict": "BLOCKED_FILESYSTEM_OR_SANDBOX_PERMISSION",
+  "credential_error_details": "Suppressed to avoid unrelated identity or credential disclosure",
+  "finished_at_utc": "2026-09-11T15:14:10.911762+00:00",
+  "local_runtime_diagnostic": {
+    "command": "/opt/homebrew/bin/gcloud --version",
+    "exit_code": 0,
+    "classification": "LOCAL_VERSION_COMMAND_SUCCEEDED",
+    "sanitized_pattern_checks": {
+      "dynamic_library_or_runtime_failure": false,
+      "sandbox_or_filesystem_permission": false,
+      "authentication_or_login": false,
+      "traceback_present": false
+    },
+    "raw_output_persisted": false,
+    "token_requested": false
+  },
+  "classification_attempt": {
+    "started_at_utc": "2026-09-11T15:14:10.170894+00:00",
+    "purpose": "One unchanged noninteractive credential attempt to safely classify the previously discarded stderr",
+    "command": "/opt/homebrew/bin/gcloud auth print-access-token --quiet",
+    "interpreter_override_applied": false,
+    "credential_obtained": false,
+    "token_recorded_or_printed": false,
+    "requests": [],
+    "credential_command_exit_code": 1,
+    "sanitized_pattern_checks": {
+      "authentication_or_login": false,
+      "filesystem_or_sandbox_permission": true,
+      "runtime_or_python": false,
+      "network_or_tls": false,
+      "traceback_present": false
+    },
+    "classification": "FILESYSTEM_OR_SANDBOX_PERMISSION",
+    "raw_output_persisted": false,
+    "finished_at_utc": "2026-09-11T15:14:10.911753+00:00"
+  },
+  "initial_probe_verdict": "BLOCKED_EXISTING_CREDENTIAL_UNAVAILABLE",
+  "official_runtime_source": "https://docs.cloud.google.com/sdk/gcloud/reference/topic/startup"
+}

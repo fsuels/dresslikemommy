@@ -1,0 +1,50 @@
+{
+  "fixture": {
+    "url": "http://127.0.0.1:49564/?lane=shopify",
+    "data": "Synthetic only; no business account/session data",
+    "persistence": "sessionStorage, not cookie/profile isolation",
+    "server_cleanup": "STOPPED: owned exec session75463 ended with exit130 after requested Ctrl-C; no server intentionally left running",
+    "reusable_copy": "browser-fixture.html preserves the synthetic interaction design; it was saved after the initial run and is not claimed as a byte-identical original server source"
+  },
+  "root": {
+    "tool": "mcp__cua_repl.js",
+    "mode": "iab visible:false; exact tab handle",
+    "task": "01a090d4-41cf-7472-9553-17631cf1f937",
+    "tab_handle": "1 (session-scoped)",
+    "started_at_epoch_ms": 1789146413276,
+    "ended_at_epoch_ms": 1789146430112,
+    "iterations_completed": 20,
+    "expected_and_observed": "Lane: shopify | Saved: shopify-20 | Steps: 20",
+    "reload_persistence": "PASS",
+    "final_independent_readback": "PASS",
+    "owned_tab_closed": true
+  },
+  "peer": {
+    "agent": "browser_pilot",
+    "initial_create": "PASS hidden Merchant fixture; empty/0 readback",
+    "tab_handle": "1 (different session-scoped handle)",
+    "first_reuse": "FAILED browser 1 unavailable before iteration 1",
+    "targeted_reacquisition": "FAILED in-app browser unavailable",
+    "reset_and_fresh_creation": "FAILED in-app browser unavailable",
+    "iterations_completed": 0,
+    "failure_at_epoch_ms": 1789146464973,
+    "cleanup": "No new tab created after reset; original surface unavailable; final original-tab closure unverified"
+  },
+  "conclusions": {
+    "single_background_input_and_reload": "VERIFIED",
+    "concurrent_agent_browser_operation": "BLOCKED_AVAILABILITY",
+    "cause_of_peer_unavailability": "UNKNOWN",
+    "personal_desktop_noninterference": "NOT independently observed; user feedback requested",
+    "separate_account_authentication": "NOT RUN",
+    "cookie_or_security_profile_isolation": "NOT RUN",
+    "mac_sleep_or_remote_operation": "NOT RUN"
+  },
+  "actions_absent": [
+    "native controls",
+    "personal tab access",
+    "clipboard",
+    "global browser settings",
+    "business account writes",
+    "credentials or login changes"
+  ]
+}

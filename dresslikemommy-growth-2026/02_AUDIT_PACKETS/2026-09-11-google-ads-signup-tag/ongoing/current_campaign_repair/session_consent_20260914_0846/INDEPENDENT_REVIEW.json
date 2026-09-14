@@ -1,0 +1,309 @@
+{
+  "schema": "dlm.session_consent_independent_review.v1",
+  "recorded_at_utc": "2026-09-14T09:17:18Z",
+  "delegation": "TA02-SESSION-CONSENT-20260914-0846",
+  "reviewer": "/root/tag_repair_review",
+  "verdict": "PASS_WITH_LIMITS",
+  "scope": "Independent saved-evidence review of DIAGNOSIS, SENDER_READBACK, OFFICIAL_GUIDANCE and their five exact existing evidence sources. No live verification, documentation retrieval or private purchase replay.",
+  "source_hashes": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/session_consent_20260914_0846/DIAGNOSIS.json",
+      "sha256": "bf7e867de57c067254a6347304b7164d2dde60aecafae99fb8a0d43836004df0"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/session_consent_20260914_0846/SENDER_READBACK.json",
+      "sha256": "36619b54f7aa42f1ff8dc86f0da0533d876825dc9e4c05eef03f54fe6efd9242"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/session_consent_20260914_0846/OFFICIAL_GUIDANCE.json",
+      "sha256": "6d7ec182ea0dc225c175bf37f2e22fb86879224a4392db86b73d415bd1783c25"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/GA4_REAL_PURCHASE_RECEIVER_20260914_0718_v2.json",
+      "sha256": "3f829246566c87089456d80ae355d6b5be8c4ea85dbd988a964081737c1c33a1"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/MIGRATION_READBACK.md",
+      "sha256": "e3a0de990563fd0912d0710c002f04f0f434c00ec9355e094f3e945c5202d107"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/CLEANUP_VERIFICATION.json",
+      "sha256": "ad68808a76de344b3fe79de5d0352334a84c23a7950e6025492a867e221d15d0"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/GA4_EXPERT_ACCEPTANCE_20260910.json",
+      "sha256": "6559c4784098069b8b641de02351e829d513b82ea153b1c86a6f76c7efc6827f"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/execution_receipt.json",
+      "sha256": "473528af33306d272124af45d8a2194819b70cd6f10446dd2ae608ac92045d22"
+    }
+  ],
+  "check_summary": {
+    "passed": 34,
+    "failed": 0,
+    "total": 34,
+    "source_files_hashed": 8,
+    "independent_live_checks": 0
+  },
+  "checks": [
+    {
+      "id": "LOCAL-01",
+      "name": "Frozen file hash: DIAGNOSIS.json",
+      "status": "PASS",
+      "basis": "SHA-256 computed from exact local bytes; no referenced private source opened."
+    },
+    {
+      "id": "LOCAL-02",
+      "name": "Frozen file hash: SENDER_READBACK.json",
+      "status": "PASS",
+      "basis": "SHA-256 computed from exact local bytes; no referenced private source opened."
+    },
+    {
+      "id": "LOCAL-03",
+      "name": "Frozen file hash: OFFICIAL_GUIDANCE.json",
+      "status": "PASS",
+      "basis": "SHA-256 computed from exact local bytes; no referenced private source opened."
+    },
+    {
+      "id": "LOCAL-04",
+      "name": "Frozen file hash: GA4_REAL_PURCHASE_RECEIVER_20260914_0718_v2.json",
+      "status": "PASS",
+      "basis": "SHA-256 computed from exact local bytes; no referenced private source opened."
+    },
+    {
+      "id": "LOCAL-05",
+      "name": "Frozen file hash: MIGRATION_READBACK.md",
+      "status": "PASS",
+      "basis": "SHA-256 computed from exact local bytes; no referenced private source opened."
+    },
+    {
+      "id": "LOCAL-06",
+      "name": "Frozen file hash: CLEANUP_VERIFICATION.json",
+      "status": "PASS",
+      "basis": "SHA-256 computed from exact local bytes; no referenced private source opened."
+    },
+    {
+      "id": "LOCAL-07",
+      "name": "Frozen file hash: GA4_EXPERT_ACCEPTANCE_20260910.json",
+      "status": "PASS",
+      "basis": "SHA-256 computed from exact local bytes; no referenced private source opened."
+    },
+    {
+      "id": "LOCAL-08",
+      "name": "Frozen file hash: execution_receipt.json",
+      "status": "PASS",
+      "basis": "SHA-256 computed from exact local bytes; no referenced private source opened."
+    },
+    {
+      "id": "LOCAL-09",
+      "name": "Diagnosis binds final guidance and unchanged sender",
+      "status": "PASS",
+      "basis": "Final source bindings are internally consistent after the authority correction."
+    },
+    {
+      "id": "LOCAL-10",
+      "name": "Delegation and independent roles are explicit",
+      "status": "PASS",
+      "basis": "The documentation researcher and sender operator are not substituted for this separate reviewer."
+    },
+    {
+      "id": "LOCAL-11",
+      "name": "Current configuration time is qualified",
+      "status": "PASS",
+      "basis": "Task-level observation window only; the report and historical sources retain distinct dates."
+    },
+    {
+      "id": "LOCAL-12",
+      "name": "Native readback is a transcribed operator observation",
+      "status": "PASS",
+      "basis": "No independent browser replay or claim to inspect retained full DOM/screenshots."
+    },
+    {
+      "id": "LOCAL-13",
+      "name": "Exact legacy pixel disconnection is consistently bounded",
+      "status": "PASS",
+      "basis": "Current Connect control agrees with prior exact-pixel cleanup. This does not establish whole-store sender inventory or deduplication."
+    },
+    {
+      "id": "LOCAL-14",
+      "name": "Google app state is configuration, not event sequence",
+      "status": "PASS",
+      "basis": "Access on/Connected/measurement On cannot prove prior purchaser access, named consent states or receiver delivery."
+    },
+    {
+      "id": "LOCAL-15",
+      "name": "Current destination-list failure is not replaced by historical proof",
+      "status": "PASS",
+      "basis": "The saved September 11 mapping is retained; exact current destinations were not expanded successfully. Two locator failures stopped that optional path."
+    },
+    {
+      "id": "LOCAL-16",
+      "name": "Activity-log date and coverage remain unknown",
+      "status": "PASS",
+      "basis": "A June 2 initial row and documentation June 3 start date do not establish a chronological defect or uninterrupted purchase-session access."
+    },
+    {
+      "id": "LOCAL-17",
+      "name": "Hidden generic permissions and outside-scope counters are excluded",
+      "status": "PASS",
+      "basis": "Preloaded DOM text is not promoted to active consent state; app overview counters do not refresh ads/feed state."
+    },
+    {
+      "id": "LOCAL-18",
+      "name": "Report diagnostic retains its date and scope",
+      "status": "PASS",
+      "basis": "The accepted report warning is reused; no purchaser session or private transaction was replayed. Prior intraday processing limits remain relevant."
+    },
+    {
+      "id": "LOCAL-19",
+      "name": "Campaign ID is not consent or session-start evidence",
+      "status": "PASS",
+      "basis": "Source/medium/session and campaign-ID dimensions are distinguished; no direct-traffic or individual-consent conclusion is inferred from this value."
+    },
+    {
+      "id": "LOCAL-20",
+      "name": "Historical Tag Assistant disagreement is preserved",
+      "status": "PASS",
+      "basis": "The contradictory historical views are not treated as a complete startup sequence, customer choice or reproduced current fault."
+    },
+    {
+      "id": "LOCAL-21",
+      "name": "Historical QA dispatch is not new runtime or universal consent proof",
+      "status": "PASS",
+      "basis": "September 10 QA choices and bounded transport evidence remain historical; opaque gcs/gcd fields are not decoded into named ad_user_data states."
+    },
+    {
+      "id": "LOCAL-22",
+      "name": "Stored official guidance provenance is coherent",
+      "status": "PASS",
+      "basis": "Eleven primary-source summaries were reported retrieved by the researcher. This reviewer checks the saved guidance and references, not fresh documentation retrieval."
+    },
+    {
+      "id": "LOCAL-23",
+      "name": "Documentation failures and visibility limits are retained",
+      "status": "PASS",
+      "basis": "No blocked URL retries, cached alternatives, opaque consent decoding or sandbox-absence inference are endorsed or performed by this reviewer."
+    },
+    {
+      "id": "LOCAL-24",
+      "name": "Standalone analytics exemption limits the optimization hypothesis",
+      "status": "PASS",
+      "basis": "Optimization is not an established cause or a safe Always on repair target. The exemption cannot be assigned to an unidentified app event by assumption."
+    },
+    {
+      "id": "LOCAL-25",
+      "name": "Causal hypotheses and repair conclusion remain unproven",
+      "status": "PASS",
+      "basis": "Purchase receipt and present connection/access settings neither identify the affected sender/session nor reproduce ordering. No exact production repair is justified yet."
+    },
+    {
+      "id": "LOCAL-26",
+      "name": "Current trace authority is passive and belongs to the original owner",
+      "status": "PASS",
+      "basis": "A normal permitted observation may proceed under its owning scope; this review creates no choice-change, production or paid authority."
+    },
+    {
+      "id": "LOCAL-27",
+      "name": "Future QA choice transitions are explicitly outside current delegation",
+      "status": "PASS",
+      "basis": "The initial guidance contradiction was corrected: grant/decline/withdrawal steps are future QA, not the current executable trace."
+    },
+    {
+      "id": "LOCAL-28",
+      "name": "Trace requires actual sender provenance and named sequence",
+      "status": "PASS",
+      "basis": "Capture a complete clearly scoped new-session path when observable. No forced consent, fabricated session_start, raw order replay or universal acceptance is implied."
+    },
+    {
+      "id": "LOCAL-29",
+      "name": "Observation failure and correct-path branches fail safely",
+      "status": "PASS",
+      "basis": "Receiver/Tag Assistant invisibility is inconclusive when observability is limited. A correct trace verifies that path only; it does not erase historical report warnings."
+    },
+    {
+      "id": "LOCAL-30",
+      "name": "Potential remedy stays with owning layer and later exact authorization",
+      "status": "PASS",
+      "basis": "Supported app-setting/support escalation follows a reproduced failure; no speculative code injection, reconnection, migration or paid diagnostics."
+    },
+    {
+      "id": "LOCAL-31",
+      "name": "Recorded actions preserve bounded read-only scope",
+      "status": "PASS",
+      "basis": "These are operator-declared actions; reviewer separately performed only local source reads and this assigned review write."
+    },
+    {
+      "id": "LOCAL-32",
+      "name": "Campaign, publication and sales cadence are preserved without refreshing claims",
+      "status": "PASS",
+      "basis": "Cadence is carried forward, not an instruction to reread early. Cohort totals/publication state are parent-provided and are not independently audited here; the older enabled campaign source is explicitly historical."
+    },
+    {
+      "id": "LOCAL-33",
+      "name": "Canonical status vocabulary and authority separation are corrected",
+      "status": "PASS",
+      "basis": "The fresh Shopify configuration timestamp does not refresh expired canonical authority. These fields are verified in this packet only; shared canonical files were not opened."
+    },
+    {
+      "id": "LOCAL-34",
+      "name": "Privacy and independence boundaries are explicit",
+      "status": "PASS",
+      "basis": "No private order/account/browser/credential/document URL calls or canonical writes were made by this reviewer; accepted purchase evidence was not replayed."
+    }
+  ],
+  "supported_conclusion": "The report-level warning identifies a specific observation need. It does not reproduce current consent/event ordering or justify an exact production repair. Current disconnected legacy pixel, app Optimized/Access on and measurement On are configuration evidence only.",
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "raised_by": "Independent reviewer",
+      "initial_guidance_sha256": "4f87accaa9a43532e43b6d2cdca9ca9cc31cd42d10cb5cf57ea1bd4d8cc7b930",
+      "defect": "Guidance called grant/decline/withdrawal steps a permitted test owned by root under existing scope, contradicting this delegation prohibition on consent changes.",
+      "resolution": "Final guidance assigns the original owner, marks choice transitions FUTURE_QA_REQUIRES_SEPARATELY_PERMITTED_SCOPE, prefixes steps 2/4 as not authorized here, and restricts current execution to passive read-only observation.",
+      "status": "RESOLVED_BEFORE_APPROVAL"
+    },
+    {
+      "id": "R2",
+      "raised_by": "Root before final freeze; verified by independent reviewer",
+      "initial_diagnosis_sha256": "aefa310bd59cc656eb7c6f5afad5336619d1e3423609091ef26c279efbda8206",
+      "defect": "Initial live_state_mode used the next-action classification rather than STALE_READBACK_REQUIRED.",
+      "resolution": "Final diagnosis separates live state from next_best_action, retains the canonical source date 2026-06-01, sets autonomous_action_ready false, and keeps current Shopify timing scoped to configuration.",
+      "status": "RESOLVED_BEFORE_APPROVAL"
+    }
+  ],
+  "material_unresolved_defects": [],
+  "limitations": [
+    "Current Shopify observations are transcribed by the operator without full saved DOM or screenshots. This reviewer did not independently inspect runtime settings, sender provenance or consent sequencing.",
+    "Historical Tag Assistant default/Consent-tab disagreement and later QA transport remain dated, incomplete evidence. QA choices, G111/gcd fields, HTTP success and purchase reporting do not establish the real purchaser named consent state or current startup order.",
+    "Optimized data access does not affect standalone analytics according to the stored Shopify guidance. Applicability to a specific mixed-use app event requires identifying that event/use case; Access on now is not historical access proof.",
+    "Exact current tag destinations were not expanded successfully. September 11 tag mappings and older enabled campaign state remain historical and do not refresh the current account.",
+    "The eleven official summaries and three blocked-source dispositions were reviewed locally. No documentation URLs were requested, retried or independently revalidated; document research is not independent causal verification.",
+    "The accepted purchase/report evidence is reused within its prior report-level, intraday, private-join and raw-event limitations. No new Ads read, private transaction match, purchaser consent determination, sender deduplication, profit or other-market acceptance follows.",
+    "Parent cohort totals, paused baseline, publication ownership and canonical fields were checked only for preservation and labeling in supplied sources. No shared canonical audit or live refresh occurred."
+  ],
+  "next_action": {
+    "owner": "01a086fc-0bf7-71a2-ba21-aa3564fafe30",
+    "action": "Capture one complete nonpurchase new-session trace of the actual installed sender through a normal permitted diagnostic surface, observing the existing choice and named default/update/event sequence without changing consent.",
+    "scope": "Current delegation permits passive observation only; choice-transition QA requires separately permitted scope. No workaround if access or runtime observability is unavailable.",
+    "why_first": "The actual sender sequence is the missing evidence that can distinguish an implementation failure from historical/reporting or visibility limits.",
+    "if_unavailable": "Record the exact capability dependency and stop that trace path; retain current tracking and paid gates."
+  },
+  "cadence_preservation": {
+    "next_full_parent_read_utc": "2026-09-14T19:04:53Z",
+    "changed_by_reviewer": false,
+    "full_cohort_requery": "NOT_RUN"
+  },
+  "independence": {
+    "built_or_executed_diagnosis": false,
+    "research_agent_used_as_verifier": false,
+    "browser_account_storefront_calls": 0,
+    "documentation_requests_or_retries": 0,
+    "private_order_or_credential_access": 0,
+    "runtime_trace_replay": 0,
+    "production_changes": 0,
+    "shared_canonical_worklog_queue_cockpit_writes": 0,
+    "writes": [
+      "session_consent_20260914_0846/INDEPENDENT_REVIEW.json"
+    ]
+  }
+}

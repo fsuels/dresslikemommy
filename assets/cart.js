@@ -114,6 +114,11 @@ class CartItems extends HTMLElement {
         selector: '.js-contents',
       },
       {
+        id: 'main-cart-title',
+        section: document.getElementById('main-cart-items').dataset.id,
+        selector: '#main-cart-title',
+      },
+      {
         id: 'cart-icon-bubble',
         section: 'cart-icon-bubble',
         selector: '.shopify-section',
@@ -126,7 +131,7 @@ class CartItems extends HTMLElement {
       {
         id: 'main-cart-footer',
         section: document.getElementById('main-cart-footer').dataset.id,
-        selector: '.js-contents',
+        selector: '#main-cart-footer-subtotal',
       },
     ];
   }
@@ -382,22 +387,65 @@ customElements.define('cart-items', CartItems);
   const STORAGE_KEY = 'dlm_recently_viewed';
   const MAX_ITEMS = 6;
 
+  function productPath(value) {
+    if (typeof value !== 'string' || !value.startsWith('/')) return '';
+    try {
+      const url = new URL(value, window.location.origin);
+      if (url.origin !== window.location.origin) return '';
+      // Remove a previous language/market prefix before applying the active route root.
+      const match = url.pathname.match(/^(?:\/[a-z]{2}(?:-[a-z]{2})?)?(\/products\/[^/]+)\/?$/i);
+      return match ? match[1] : '';
+    } catch (e) {
+      return '';
+    }
+  }
+
+  function imageUrl(value) {
+    if (typeof value !== 'string' || !value.trim()) return '';
+    try {
+      const url = new URL(value, window.location.origin);
+      return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : '';
+    } catch (e) {
+      return '';
+    }
+  }
+
+  function escapeHtml(value) {
+    return value.replace(/[&<>"']/g, function(character) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character];
+    });
+  }
+
+  function readRecentlyViewed() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      if (!Array.isArray(stored)) return [];
+      const seen = new Set();
+      return stored.reduce(function(viewed, item) {
+        const url = item && productPath(item.url);
+        if (!url || typeof item.title !== 'string' || !item.title.trim() || seen.has(url)) return viewed;
+        seen.add(url);
+        viewed.push({ url, title: item.title, image: imageUrl(item.image), time: item.time });
+        return viewed;
+      }, []).slice(0, MAX_ITEMS);
+    } catch (e) {
+      return []; // Unavailable or malformed storage must not interrupt the cart.
+    }
+  }
+
   // Track current product page (lightweight — just localStorage write)
-  if (window.location.pathname.startsWith('/products/')) {
+  const currentProductPath = productPath(window.location.pathname);
+  if (currentProductPath) {
     try {
       const titleTag = document.querySelector('meta[property="og:title"]');
       const imageTag = document.querySelector('meta[property="og:image"]');
-      const priceTag = document.querySelector('meta[property="product:price:amount"]');
 
       if (titleTag) {
-        const viewed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        const url = window.location.pathname;
-        const filtered = viewed.filter(item => item.url !== url);
-        filtered.unshift({ url, title: titleTag.content || '', image: imageTag ? imageTag.content : '', price: priceTag ? priceTag.content : '', time: Date.now() });
+        const filtered = readRecentlyViewed().filter(item => item.url !== currentProductPath);
+        filtered.unshift({ url: currentProductPath, title: titleTag.content || '', image: imageTag ? imageUrl(imageTag.content) : '', time: Date.now() });
         localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered.slice(0, MAX_ITEMS)));
       }
     } catch(e) { /* localStorage not available */ }
-    return; // Exit early — no rendering needed on product pages
   }
 
   // Only render if empty-cart containers exist on page
@@ -407,17 +455,17 @@ customElements.define('cart-items', CartItems);
     if (!drawerContainer && !pageContainer) return; // No containers — skip entirely
 
     try {
-      const viewed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      const viewed = readRecentlyViewed();
       if (viewed.length === 0) return;
 
+      // Cached prices have no reliable currency/market context. The linked PDP owns current pricing.
       if (drawerContainer) {
         const drawerGrid = document.getElementById('CartDrawer-RecentlyViewedGrid');
         if (drawerGrid) {
           drawerGrid.innerHTML = viewed.slice(0, 3).map(function(item) {
-            return '<a href="' + item.url + '" class="cart-drawer__upsell-item">' +
-              (item.image ? '<img src="' + item.image + '" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img">' : '') +
-              '<div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">' + item.title.split(' | ')[0] + '</span>' +
-              (item.price ? '<span class="cart-drawer__upsell-price">$' + item.price + '</span>' : '') +
+            return '<a href="' + escapeHtml(getLocaleAwareRoute(item.url)) + '" class="cart-drawer__upsell-item">' +
+              (item.image ? '<img src="' + escapeHtml(item.image) + '" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img">' : '') +
+              '<div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">' + escapeHtml(item.title.split(' | ')[0]) + '</span>' +
               '</div></a>';
           }).join('');
           drawerContainer.style.display = '';
@@ -428,10 +476,9 @@ customElements.define('cart-items', CartItems);
         const pageGrid = document.getElementById('CartPage-RecentlyViewedGrid');
         if (pageGrid) {
           pageGrid.innerHTML = viewed.slice(0, 4).map(function(item) {
-            return '<a href="' + item.url + '" class="cart-page__cross-sell-item">' +
-              (item.image ? '<div class="cart-page__cross-sell-img-wrap"><img src="' + item.image + '" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div>' : '') +
-              '<div class="cart-page__cross-sell-info"><span class="cart-page__cross-sell-name">' + item.title.split(' | ')[0] + '</span>' +
-              (item.price ? '<span class="cart-page__cross-sell-price">$' + item.price + '</span>' : '') +
+            return '<a href="' + escapeHtml(getLocaleAwareRoute(item.url)) + '" class="cart-page__cross-sell-item">' +
+              (item.image ? '<div class="cart-page__cross-sell-img-wrap"><img src="' + escapeHtml(item.image) + '" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div>' : '') +
+              '<div class="cart-page__cross-sell-info"><span class="cart-page__cross-sell-name">' + escapeHtml(item.title.split(' | ')[0]) + '</span>' +
               '</div></a>';
           }).join('');
           pageContainer.style.display = '';
@@ -445,6 +492,9 @@ customElements.define('cart-items', CartItems);
   } else {
     renderRecentlyViewed();
   }
+
+  // Quantity removal can replace the empty-cart markup after the initial page render.
+  subscribe(PUB_SUB_EVENTS.cartUpdate, renderRecentlyViewed);
 })();
 
 /* ── Swipe-to-remove on mobile — only init on touch devices with cart items ── */

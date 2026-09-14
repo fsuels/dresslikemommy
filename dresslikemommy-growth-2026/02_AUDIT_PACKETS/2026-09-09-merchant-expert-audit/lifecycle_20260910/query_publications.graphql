@@ -1,0 +1,17 @@
+query MerchantLifecyclePublications($after: String) {
+  shop { id name }
+  publications(first: 50, after: $after) {
+    nodes {
+      id autoPublish
+      catalog {
+        __typename id title status
+        ... on AppCatalog { apps(first: 20) { nodes { id title } pageInfo { hasNextPage endCursor } } }
+      }
+      includedProductsCount(limit: null) { count precision }
+      active: includedProductsCount(query: "status:active", limit: null) { count precision }
+      draft: includedProductsCount(query: "status:draft", limit: null) { count precision }
+      archived: includedProductsCount(query: "status:archived", limit: null) { count precision }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "schema": "dlm.heartbeat_trigger_delta.v1",
+  "status": "READBACK_COMPLETE__NO_QUALIFIED_NEW_ACTION",
+  "trigger_at_utc": "2026-09-10T23:42:39.501Z",
+  "source_live_evidence_as_of": "2026-09-10T23:43:57Z",
+  "read_completed_at_utc": "2026-09-10T23:43:57Z",
+  "new_order_window": {
+    "start_inclusive": "2026-09-10T19:51:08Z",
+    "end_exclusive": "2026-09-10T23:43:56Z",
+    "all_order_creations": 0,
+    "pagination_complete": true
+  },
+  "shop": {
+    "name": "Dress Like Mommy",
+    "ianaTimezone": "America/New_York",
+    "currencyCode": "USD",
+    "primaryDomain": {
+      "host": "www.dresslikemommy.com"
+    }
+  },
+  "themes": {
+    "nodes": [
+      {
+        "id": "gid://shopify/OnlineStoreTheme/133290917985",
+        "name": "dresslikemommy/main",
+        "role": "MAIN",
+        "updatedAt": "2026-07-02T16:47:21Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137782591585",
+        "name": "DLM SEO DA NL 2026-09-06",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-06T07:03:53Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137850814561",
+        "name": "DLM DA NL SEO only 2026-09-08",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-08T19:01:09Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137880666209",
+        "name": "DLM Consent Preferences 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T18:58:13Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137881223265",
+        "name": "DLM Merchant Landing Fixes 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T20:10:58Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137888792673",
+        "name": "DLM UX Performance QA 2026-09-10",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-10T04:34:55Z"
+      }
+    ],
+    "pageInfo": {
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjoxMzc4ODg3OTI2NzMsImxhc3RfdmFsdWUiOjEzNzg4ODc5MjY3M30="
+    }
+  },
+  "source": "Previously discovered Shopify schema and exact documented query, freshly validated and executed read-only.",
+  "query": "query HeartbeatTriggerDelta($createdWindow:String!,$after:String){shop{name ianaTimezone currencyCode primaryDomain{host}} orders(first:50,after:$after,query:$createdWindow){nodes{test} pageInfo{hasNextPage endCursor}} themes(first:50){nodes{id name role updatedAt} pageInfo{hasNextPage endCursor}}}",
+  "checks": {
+    "shop_name": true,
+    "shop_domain": true,
+    "shop_timezone": true,
+    "shop_currency": true,
+    "order_pagination_complete": true,
+    "no_new_order_creations": true,
+    "theme_pagination_complete": true,
+    "one_expected_main": true,
+    "current_ux_unpublished": true
+  },
+  "checks_passed": 9,
+  "latest_full_order_fulfillment_receipt": {
+    "path": "growth_heartbeat_trigger_20260910_1942.json",
+    "field": "post_trigger_full_cohort_followup.source_receipt",
+    "orders_as_of": "2026-09-10T19:51:08Z",
+    "fulfillments_as_of": "2026-09-10T19:51:27Z",
+    "status": "Historical at this trigger; not re-read"
+  },
+  "latest_merchant_anchor": "2026-09-10-merchant-receipt-resume-mac-lock",
+  "latest_root_anchor": "2026-09-10-ceo-turnaround-2342-trigger-check",
+  "decision_frame": {
+    "objective": "Detect a genuine order or reviewed-theme publication that qualifies the next growth or receiver-acceptance action.",
+    "chosen_action": "Read-only trigger; preserve dependent holds with evidence.",
+    "alternative": "Repeat native access probes or earlier completed fixes.",
+    "alternative_rejected": "No changed access evidence or new source defect; Merchant retains the paused native lease.",
+    "success_or_kill": "Any nonempty order result, changed theme role, owner access update or source conflict triggers bounded qualification; otherwise no external action.",
+    "deadline": "Current scheduled turn"
+  },
+  "live_state_mode": "STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+  "approved_external_scope": "NONE",
+  "authority_context": "READ_ONLY_SCHEDULED_TRIGGER_AND_PARENT_OWN_CANONICAL_NOTE",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "New genuine order, publication of current combined theme or changed authorized access reported by its existing owner.",
+  "if_evidence_supports_recommendation": "Continue the matching qualified task with its current owner.",
+  "if_evidence_opposes_recommendation": "Preserve exact gates and completed work; no repeat probe, reset, publication or invented cost.",
+  "material_decision": "NOT_MATERIAL",
+  "dashboard_status": "EXISTING_SERVICE_HEALTHY",
+  "execution": {
+    "external_mutations": 0,
+    "browser_calls": 0,
+    "account_probes": 0,
+    "new_goal_or_automation": 0
+  },
+  "coordination": {
+    "parent_shared_interval": "RELEASED_AFTER_CHECKS",
+    "parent_native_lease": "NONE",
+    "merchant_native_lease": "HELD_PAUSED_WITH_MERCHANT",
+    "pinterest": "No routine wake; no owned record or decision changed.",
+    "organic": "Reconciliation complete and interval explicitly released.",
+    "merchant_followup": "Owner notified of stale TA-07 operative row; local alignment only after parent release. No account reprobe or duplicate question."
+  },
+  "limits": [
+    "Order/refund/fulfillment followup remains separately dated19:51UTC; no fresh settlement, delivery, fees, full costs or profit proof.",
+    "This trigger checks theme roles, not source-file conflicts or buyer acceptance.",
+    "Latest Merchant21:55\u201321:56UTC attempt returned only Mac lock; receiving-source0 is still the dated18:29\u201318:43UTC read.",
+    "No organic outcome review is due yet; article and Pin complete-date windows remain separate."
+  ],
+  "owner_action": "Existing Merchant Mac-unlock question; Product sync exact-click gate remains separate.",
+  "internal_queue": [
+    "Merchant receiving/setup after existing unlock; reconcile its stale TA-07 row locally",
+    "Pinterest supported app-pixel/Tag-CAPI comparison after explicit native handback",
+    "Current UX owner publication and buyer readback; qualified organic measurement when due"
+  ],
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "before_snapshot": "/private/tmp/dlm-heartbeat-2342-before-20260910",
+  "before_manifest": {
+    "ops/AGENT_COORDINATION.md": {
+      "sha256": "95561f381cb9923a7137574e3ad759c644a81cae8a101c235caf060cd1467c89",
+      "bytes": 398202
+    },
+    "ops/marketing/operator_cockpit.md": {
+      "sha256": "cc8a7d159d8d3833622fc37abb8d19c149417ad7f4b8d39ca91b29670c9c4581",
+      "bytes": 106661
+    },
+    "ops/AGENT_WORKLOG.md": {
+      "sha256": "5cbdf421f638bba3af539629e82751668b0b8d143ba258612b382a876f00a82a",
+      "bytes": 4014841
+    },
+    "ops/marketing/current_marketing_state.md": {
+      "sha256": "502aedafa5f4da85394e13d9aa5a3b219053e0a633b0d84c8748009d036ee5b6",
+      "bytes": 231349
+    },
+    "ops/marketing/action_queue.md": {
+      "sha256": "0819f41f0d8c7cf56eb24f9450f3c13983d3f01a0f5b46ee5cf533c3c01f96ee",
+      "bytes": 151374
+    },
+    "ops/marketing/blocker_board.md": {
+      "sha256": "f265a0f4815915d3947f578983907af2bbcebb741b66edf02655c590bdcd4eb0",
+      "bytes": 59548
+    },
+    "ops/marketing/decision_log.md": {
+      "sha256": "61681a20fb0cf4219ddadcb4464f7e87a6697b205dbdf0139af4d33f2ebc3bbd",
+      "bytes": 203257
+    },
+    "ops/marketing/spend_authorization.md": {
+      "sha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+      "bytes": 5950
+    },
+    "ops/PROBLEM_TRACKER.md": {
+      "sha256": "5d0bc4e5c2a9e732ad385704ce4ab9401729c8f5c6211e56f8189544e30e4877",
+      "bytes": 857394
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json": {
+      "sha256": "64a85a444b45932f93d33d4366c4cc8cab750b5064401dfbf6da55d86c31cb64",
+      "bytes": 83356
+    }
+  },
+  "local_preservation_checks": {
+    "three_owned_inverses_exact": true,
+    "seven_protected_files_exact": true,
+    "worklog_append_only": true,
+    "only_one_parent_row_changed": true,
+    "cockpit_single_paragraph_changed": true,
+    "after_readback_exact": true
+  },
+  "local_preservation_checks_passed": 6,
+  "exact_local_scope": {
+    "parent_coordination_rows": 1,
+    "scheduled_cockpit_notes": 1,
+    "worklog_appends": 1,
+    "peer_rows_changed": 0,
+    "protected_files_changed": 0
+  },
+  "checks_pending": [],
+  "closeout": {
+    "cockpit_render": {
+      "exit_code": 0
+    },
+    "integration_audit": {
+      "exit_code": 0,
+      "tracked_files": 25,
+      "side_document_risks": 0
+    },
+    "strict_continuity": {
+      "exit_code": 0,
+      "checks_passed": 10,
+      "result": "CONTINUITY_OK",
+      "pinterest_limit": "Historical grouping snapshot guard; not fresh receiver proof."
+    },
+    "scoped_git_diff_check": {
+      "exit_code": 0,
+      "diagnostics": 0
+    },
+    "shared_interval": "RELEASED_TO_MERCHANT_FOR_EXACT_TA07_LOCAL_RECONCILIATION",
+    "released_at_utc": "2026-09-10T23:47:22Z"
+  },
+  "notification_decision": "DONT_NOTIFY: no new order or publication trigger, and no additional owner action."
+}

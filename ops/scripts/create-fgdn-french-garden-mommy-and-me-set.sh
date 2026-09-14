@@ -48,7 +48,7 @@ CATEGORY = "Sets"
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
 EXPECTED_TAXONOMY_FULL_NAME = "Apparel & Accessories > Clothing > Outfit Sets"
-VENDOR_URL = "https://detail.1688.com/offer/1045719394654.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 CHILD_PRICE = "31.99"
 ADULT_PRICE = "36.99"
@@ -325,7 +325,7 @@ def build_derived() -> dict[str, Any]:
         "Mom Size S",
         "Mom Size M",
         "Mom Size L",
-        VENDOR_URL,
+
     ]))
 
     return {

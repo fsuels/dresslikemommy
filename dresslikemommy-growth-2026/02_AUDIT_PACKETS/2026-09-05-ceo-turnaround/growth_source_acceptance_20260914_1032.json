@@ -1,0 +1,146 @@
+{
+  "schema": "dlm.growth.source_acceptance.v1",
+  "recorded_at_utc": "2026-09-14T11:09:26.890458+00:00",
+  "status": "PASS_WITH_LIMITS",
+  "check_counts": {
+    "total": 16,
+    "passed": 16,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "Ads final independent verdict",
+      "pass": true
+    },
+    {
+      "name": "Ads six reviewed sources unchanged",
+      "pass": true
+    },
+    {
+      "name": "Ads target scope exact",
+      "pass": true
+    },
+    {
+      "name": "Nine ranges not exact numeric demand",
+      "pass": true
+    },
+    {
+      "name": "No numeric bids or computed CPC",
+      "pass": true
+    },
+    {
+      "name": "Scoped defer no forecast or Save",
+      "pass": true
+    },
+    {
+      "name": "Greek independent review accepted",
+      "pass": true
+    },
+    {
+      "name": "Greek source and exact release hashes",
+      "pass": true
+    },
+    {
+      "name": "Microsoft final review accepted",
+      "pass": true
+    },
+    {
+      "name": "Microsoft four source bindings unchanged",
+      "pass": true
+    },
+    {
+      "name": "Microsoft target and event receipt",
+      "pass": true
+    },
+    {
+      "name": "Microsoft exact order and consent not accepted",
+      "pass": true
+    },
+    {
+      "name": "Microsoft names not parameter values",
+      "pass": true
+    },
+    {
+      "name": "Two failed exports and no new event",
+      "pass": true
+    },
+    {
+      "name": "Existing blocked goal and active cadence distinct",
+      "pass": true
+    },
+    {
+      "name": "Scheduler files unchanged",
+      "pass": true
+    }
+  ],
+  "sources": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_native_demand_20260914_1032/QUALIFICATION.json",
+      "sha256": "cc07fd002fc6fa1eef209d860bcca82f1e9cc8b5592b1d8aa0f0fefac7a74d11"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_native_demand_20260914_1032/INDEPENDENT_REVIEW.json",
+      "sha256": "8498998695a7eca71fefbc3855a702726d9324aac2a70779df17af53c76ece10"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_native_demand_20260914_1032/NATIVE_SOURCE_FRAGMENTS.json",
+      "sha256": "9e2844ddf0d0cf72030519f9b72ea63e99d4828e0fd9ca030e4527fafbaa706b"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/greek_seo_window_20260914.json",
+      "sha256": "352dc7db47c9d2c1535c3bd40c20064d1dc2af82ef2d4e8045d96b11b17239fe"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/greek_seo_window_20260914_source.json",
+      "sha256": "8a8552c79d3d42a5db137146b1800897b999a62a4ec61dcd896b91e149f060b3"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/greek_seo_window_20260914_review.json",
+      "sha256": "a499579265b8c95713bf48ae4535f91f9581bf0e3eb3f164b4a1e32fa19637bb"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/greek_traffic_release_execution.json",
+      "sha256": "d0e483618789ba7e8ae248d45bc9c37d9019fb93e13971d465dea543bead6296"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-1044/receiver_readback.json",
+      "sha256": "827b9b549e50f3e29177578acacf513af85b34cef6ee8c8006676f638c069041"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-1044/review/receiver_review.json",
+      "sha256": "e18e7d90a981b6e9abfa9038db92d6d76efa8648fe61b9f1d02c5c79b11042af"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/goal_continuation_readback_20260914_1032.json",
+      "sha256": "a5682f94454d4d755d6a6b78c5d644b80c03625ab445ef29d19092aa03b4583d"
+    }
+  ],
+  "acceptance": {
+    "TA10_NATIVE": "Nine candidate native historical ranges verified via matching saved-source review; DEFER paid qualification for this scope only.",
+    "TA10_GREEK": "Exact article page/current-day headline and first-week comparison accepted with unresolved country reconciliation, finality, prior-release-day and sales limits.",
+    "TA15": "One Microsoft Custom purchase event received; exact Shopify join/payload, consent, dedup, goal attribution and profit remain open.",
+    "TA13": "Correct stale current-row cadence only; goal badge remains BLOCKED and existing30-minute heartbeat ACTIVE."
+  },
+  "review_limits": "Root validates saved source bindings and interpretation; no root repeat of Ads/Microsoft live reads. Greek independent verifier did not replay the browser. Historical/pending-at-creation labels are superseded only by their exact matched separate final reviews.",
+  "source_owner_completion": "Source acceptance does not imply native-owner runtime turn completion; persist actual task status separately.",
+  "parent_counts": {
+    "business_writes": 0,
+    "private_order_queries": 0,
+    "owner_dispatches_this_wake": 1
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-06-01",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "MATERIAL",
+    "decision_changing_evidence": "New demand/delivery evidence, supported contact/source change and exact buyer/purchase/economics acceptance.",
+    "if_evidence_supports_recommendation": "Retain scoped defer and continue valid independent work.",
+    "if_evidence_opposes_recommendation": "Reassess only contradicted source within exact authority.",
+    "independent_verifier": "Matching per-lane independent reviews plus /root/order_delta_1934 for canonical integration",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE"
+  }
+}

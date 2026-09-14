@@ -1,0 +1,332 @@
+{
+  "failed_step": "",
+  "handles": [
+    "playful-cat-parade-family-matching-tops"
+  ],
+  "status": "passed",
+  "steps": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/fsuels/Projects/dresslikemommy/ops/scripts/poll_shopify_product_translations.py",
+        "--handles",
+        "playful-cat-parade-family-matching-tops",
+        "--min-age-seconds",
+        "0",
+        "--execute",
+        "--force-refresh"
+      ],
+      "exit_code": 0,
+      "name": "translate_full_product",
+      "report": null,
+      "stderr_tail": "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(",
+      "stdout_tail": "[progress] product=playful-cat-parade-family-matching-tops locale=fr oversized=1/1 completed=1/2 cache=873\n[progress] product=playful-cat-parade-family-matching-tops locale=fr batch=1/1 completed=2/2 cache=874\n[progress] product=playful-cat-parade-family-matching-tops locale=he oversized=1/1 completed=1/1 cache=874\n[progress] product=playful-cat-parade-family-matching-tops locale=no oversized=1/1 completed=1/1 cache=867\n[progress] product=playful-cat-parade-family-matching-tops locale=pl oversized=1/1 completed=1/1 cache=867\n{\n  \"store_domain\": \"dresslikemommy-com.myshopify.com\",\n  \"locales\": [\n    \"ar\",\n    \"cs\",\n    \"da\",\n    \"de\",\n    \"el\",\n    \"es\",\n    \"fi\",\n    \"fr\",\n    \"he\",\n    \"hi\",\n    \"it\",\n    \"ja\",\n    \"ko\",\n    \"nl\",\n    \"no\",\n    \"pl\",\n    \"pt-BR\",\n    \"ro\",\n    \"ru\",\n    \"sv\"\n  ],\n  \"candidate_products\": 1,\n  \"processed_products\": 1,\n  \"finalized_product_ids\": [],\n  \"blocked_by_error\": false,\n  \"execute\": true,\n  \"option_resources_only\": false,\n  \"deterministic_repairs_only\": false,\n  \"state_path\": \"/Users/fsuels/.config/dresslikemommy/shopify-product-translation-state.json\",\n  \"cache_path\": \"/Users/fsuels/Projects/dresslikemommy/ops/content/shopify-product-translation-live-cache.json\"\n}"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/fsuels/Projects/dresslikemommy/ops/scripts/audit_shopify_product_translation_completeness.py",
+        "--handles",
+        "playful-cat-parade-family-matching-tops",
+        "--report-json",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/admin_translation_before_size_repair.json",
+        "--report-csv",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/admin_translation_before_size_repair.csv",
+        "--fail-on-issues"
+      ],
+      "exit_code": 0,
+      "name": "audit_full_product_before_size_repair",
+      "report": {
+        "issues": [],
+        "summary": {
+          "body_language_issue_count": 0,
+          "eligible_translation_slots": 680,
+          "issue_count": 0,
+          "locales": [
+            "ar",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "es",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "it",
+            "ja",
+            "ko",
+            "nl",
+            "no",
+            "pl",
+            "pt-BR",
+            "ro",
+            "ru",
+            "sv"
+          ],
+          "locales_checked": 20,
+          "missing_count": 0,
+          "outdated_count": 0,
+          "products": [
+            {
+              "created_at": "2026-08-31T21:27:23Z",
+              "handle": "playful-cat-parade-family-matching-tops",
+              "issue_count": 0,
+              "product_id": "7670746775649",
+              "resource_count": 33,
+              "status": "ACTIVE",
+              "updated_at": "2026-09-02T15:31:18Z"
+            }
+          ],
+          "products_checked": 1,
+          "products_with_issues": 0,
+          "source_equal_count": 0,
+          "store_domain": "dresslikemommy-com.myshopify.com"
+        }
+      },
+      "stderr_tail": "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(",
+      "stdout_tail": "{\n  \"store_domain\": \"dresslikemommy-com.myshopify.com\",\n  \"products_checked\": 1,\n  \"locales_checked\": 20,\n  \"locales\": [\n    \"ar\",\n    \"cs\",\n    \"da\",\n    \"de\",\n    \"el\",\n    \"es\",\n    \"fi\",\n    \"fr\",\n    \"he\",\n    \"hi\",\n    \"it\",\n    \"ja\",\n    \"ko\",\n    \"nl\",\n    \"no\",\n    \"pl\",\n    \"pt-BR\",\n    \"ro\",\n    \"ru\",\n    \"sv\"\n  ],\n  \"eligible_translation_slots\": 680,\n  \"missing_count\": 0,\n  \"outdated_count\": 0,\n  \"source_equal_count\": 0,\n  \"body_language_issue_count\": 0,\n  \"issue_count\": 0,\n  \"products_with_issues\": 0,\n  \"products\": [\n    {\n      \"product_id\": \"7670746775649\",\n      \"handle\": \"playful-cat-parade-family-matching-tops\",\n      \"status\": \"ACTIVE\",\n      \"created_at\": \"2026-08-31T21:27:23Z\",\n      \"updated_at\": \"2026-09-02T15:31:18Z\",\n      \"resource_count\": 33,\n      \"issue_count\": 0\n    }\n  ]\n}"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/fsuels/Projects/dresslikemommy/ops/scripts/repair_localized_product_size_charts.py",
+        "--handles",
+        "playful-cat-parade-family-matching-tops",
+        "--execute",
+        "--report-json",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/size_chart_execute.json",
+        "--report-csv",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/size_chart_execute.csv"
+      ],
+      "exit_code": 0,
+      "name": "repair_localized_size_charts",
+      "report": {
+        "rows": [
+          {
+            "already_ok_locales": [
+              "ar",
+              "cs",
+              "da",
+              "de",
+              "el",
+              "es",
+              "fi",
+              "fr",
+              "he",
+              "hi",
+              "it",
+              "ja",
+              "ko",
+              "nl",
+              "no",
+              "pl",
+              "pt-BR",
+              "ro",
+              "ru",
+              "sv"
+            ],
+            "errors": [],
+            "fallback_source_locales": [],
+            "handle": "playful-cat-parade-family-matching-tops",
+            "locales_checked": 20,
+            "missing_locales": [],
+            "planned_translation_count": 0,
+            "product_gid": "gid://shopify/Product/7670746775649",
+            "product_id": "7670746775649",
+            "registered_translation_count": 0,
+            "source_body_length": 4877,
+            "source_has_size_chart": true,
+            "source_table_count": 1,
+            "status": "ACTIVE",
+            "title": "Playful Cat Parade Family Matching Tops — Button-Up Shirt",
+            "updated_at": "2026-09-02T15:31:18Z"
+          }
+        ],
+        "summary": {
+          "error_count": 0,
+          "planned_translation_count": 0,
+          "products_scanned": 1,
+          "products_with_missing_locale_size_chart": 0,
+          "products_with_source_size_chart": 1,
+          "registered_translation_count": 0
+        }
+      },
+      "stderr_tail": "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(",
+      "stdout_tail": "[progress] 1/1 scanned planned=0 registered=0\n{\n  \"products_scanned\": 1,\n  \"products_with_source_size_chart\": 1,\n  \"products_with_missing_locale_size_chart\": 0,\n  \"planned_translation_count\": 0,\n  \"registered_translation_count\": 0,\n  \"error_count\": 0,\n  \"store_domain\": \"dresslikemommy-com.myshopify.com\",\n  \"locales\": [\n    \"ar\",\n    \"cs\",\n    \"da\",\n    \"de\",\n    \"el\",\n    \"es\",\n    \"fi\",\n    \"fr\",\n    \"he\",\n    \"hi\",\n    \"it\",\n    \"ja\",\n    \"ko\",\n    \"nl\",\n    \"no\",\n    \"pl\",\n    \"pt-BR\",\n    \"ro\",\n    \"ru\",\n    \"sv\"\n  ],\n  \"execute\": true,\n  \"report_json\": \"/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/size_chart_execute.json\",\n  \"report_csv\": \"/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/size_chart_execute.csv\"\n}"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/fsuels/Projects/dresslikemommy/ops/scripts/audit_shopify_product_translation_completeness.py",
+        "--handles",
+        "playful-cat-parade-family-matching-tops",
+        "--report-json",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/admin_translation_after_size_repair.json",
+        "--report-csv",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/admin_translation_after_size_repair.csv",
+        "--fail-on-issues"
+      ],
+      "exit_code": 0,
+      "name": "audit_full_product_after_size_repair",
+      "report": {
+        "issues": [],
+        "summary": {
+          "body_language_issue_count": 0,
+          "eligible_translation_slots": 680,
+          "issue_count": 0,
+          "locales": [
+            "ar",
+            "cs",
+            "da",
+            "de",
+            "el",
+            "es",
+            "fi",
+            "fr",
+            "he",
+            "hi",
+            "it",
+            "ja",
+            "ko",
+            "nl",
+            "no",
+            "pl",
+            "pt-BR",
+            "ro",
+            "ru",
+            "sv"
+          ],
+          "locales_checked": 20,
+          "missing_count": 0,
+          "outdated_count": 0,
+          "products": [
+            {
+              "created_at": "2026-08-31T21:27:23Z",
+              "handle": "playful-cat-parade-family-matching-tops",
+              "issue_count": 0,
+              "product_id": "7670746775649",
+              "resource_count": 33,
+              "status": "ACTIVE",
+              "updated_at": "2026-09-02T15:31:18Z"
+            }
+          ],
+          "products_checked": 1,
+          "products_with_issues": 0,
+          "source_equal_count": 0,
+          "store_domain": "dresslikemommy-com.myshopify.com"
+        }
+      },
+      "stderr_tail": "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(",
+      "stdout_tail": "{\n  \"store_domain\": \"dresslikemommy-com.myshopify.com\",\n  \"products_checked\": 1,\n  \"locales_checked\": 20,\n  \"locales\": [\n    \"ar\",\n    \"cs\",\n    \"da\",\n    \"de\",\n    \"el\",\n    \"es\",\n    \"fi\",\n    \"fr\",\n    \"he\",\n    \"hi\",\n    \"it\",\n    \"ja\",\n    \"ko\",\n    \"nl\",\n    \"no\",\n    \"pl\",\n    \"pt-BR\",\n    \"ro\",\n    \"ru\",\n    \"sv\"\n  ],\n  \"eligible_translation_slots\": 680,\n  \"missing_count\": 0,\n  \"outdated_count\": 0,\n  \"source_equal_count\": 0,\n  \"body_language_issue_count\": 0,\n  \"issue_count\": 0,\n  \"products_with_issues\": 0,\n  \"products\": [\n    {\n      \"product_id\": \"7670746775649\",\n      \"handle\": \"playful-cat-parade-family-matching-tops\",\n      \"status\": \"ACTIVE\",\n      \"created_at\": \"2026-08-31T21:27:23Z\",\n      \"updated_at\": \"2026-09-02T15:31:18Z\",\n      \"resource_count\": 33,\n      \"issue_count\": 0\n    }\n  ]\n}"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/fsuels/Projects/dresslikemommy/ops/scripts/repair_localized_product_size_charts.py",
+        "--handles",
+        "playful-cat-parade-family-matching-tops",
+        "--report-json",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/size_chart_readback.json",
+        "--report-csv",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/size_chart_readback.csv",
+        "--fail-on-missing"
+      ],
+      "exit_code": 0,
+      "name": "audit_localized_size_charts",
+      "report": {
+        "rows": [
+          {
+            "already_ok_locales": [
+              "ar",
+              "cs",
+              "da",
+              "de",
+              "el",
+              "es",
+              "fi",
+              "fr",
+              "he",
+              "hi",
+              "it",
+              "ja",
+              "ko",
+              "nl",
+              "no",
+              "pl",
+              "pt-BR",
+              "ro",
+              "ru",
+              "sv"
+            ],
+            "errors": [],
+            "fallback_source_locales": [],
+            "handle": "playful-cat-parade-family-matching-tops",
+            "locales_checked": 20,
+            "missing_locales": [],
+            "planned_translation_count": 0,
+            "product_gid": "gid://shopify/Product/7670746775649",
+            "product_id": "7670746775649",
+            "registered_translation_count": 0,
+            "source_body_length": 4877,
+            "source_has_size_chart": true,
+            "source_table_count": 1,
+            "status": "ACTIVE",
+            "title": "Playful Cat Parade Family Matching Tops — Button-Up Shirt",
+            "updated_at": "2026-09-02T15:31:18Z"
+          }
+        ],
+        "summary": {
+          "error_count": 0,
+          "planned_translation_count": 0,
+          "products_scanned": 1,
+          "products_with_missing_locale_size_chart": 0,
+          "products_with_source_size_chart": 1,
+          "registered_translation_count": 0
+        }
+      },
+      "stderr_tail": "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(",
+      "stdout_tail": "[progress] 1/1 scanned planned=0 registered=0\n{\n  \"products_scanned\": 1,\n  \"products_with_source_size_chart\": 1,\n  \"products_with_missing_locale_size_chart\": 0,\n  \"planned_translation_count\": 0,\n  \"registered_translation_count\": 0,\n  \"error_count\": 0,\n  \"store_domain\": \"dresslikemommy-com.myshopify.com\",\n  \"locales\": [\n    \"ar\",\n    \"cs\",\n    \"da\",\n    \"de\",\n    \"el\",\n    \"es\",\n    \"fi\",\n    \"fr\",\n    \"he\",\n    \"hi\",\n    \"it\",\n    \"ja\",\n    \"ko\",\n    \"nl\",\n    \"no\",\n    \"pl\",\n    \"pt-BR\",\n    \"ro\",\n    \"ru\",\n    \"sv\"\n  ],\n  \"execute\": false,\n  \"report_json\": \"/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/size_chart_readback.json\",\n  \"report_csv\": \"/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/size_chart_readback.csv\"\n}"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "/Users/fsuels/Projects/dresslikemommy/ops/scripts/audit_localized_size_chart_variant_mapping.py",
+        "--handles",
+        "playful-cat-parade-family-matching-tops",
+        "--report-json",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/variant_mapping_readback.json",
+        "--report-csv",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-listing-localization-b__dym7c/variant_mapping_readback.csv",
+        "--fail-on-unmatched"
+      ],
+      "exit_code": 0,
+      "name": "audit_variant_size_chart_mapping",
+      "report": {
+        "rows": [
+          {
+            "available_variants": 12,
+            "handle": "playful-cat-parade-family-matching-tops",
+            "product_id": "7670746775649",
+            "source_has_size_chart": true,
+            "title": "Playful Cat Parade Family Matching Tops — Button-Up Shirt",
+            "unmatched": [],
+            "unmatched_count": 0,
+            "variant_locale_checks": 240,
+            "variants_checked": 12
+          }
+        ],
+        "summary": {
+          "products_scanned": 1,
+          "products_with_source_size_chart": 1,
+          "products_with_unmatched_variants": 0,
+          "unmatched_variant_locale_count": 0,
+          "variant_locale_checks": 240,
+          "variants_checked": 12
+        }
+      },
+      "stderr_tail": "/Users/fsuels/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(",
+      "stdout_tail": "[progress] 1/1 scanned\n{\n  \"products_scanned\": 1,\n  \"products_with_source_size_chart\": 1,\n  \"variants_checked\": 12,\n  \"variant_locale_checks\": 240,\n  \"products_with_unmatched_variants\": 0,\n  \"unmatched_variant_locale_count\": 0\n}"
+    }
+  ]
+}

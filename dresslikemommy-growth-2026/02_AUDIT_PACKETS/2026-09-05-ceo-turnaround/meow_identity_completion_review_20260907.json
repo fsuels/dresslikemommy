@@ -1,0 +1,75 @@
+{
+  "schema": "dlm.meow_identity_completion_review.v1",
+  "verdict": "GO_PASS_WITH_GATES",
+  "reviewed_at_utc": "2026-09-07T03:25:57.131828+00:00",
+  "reviewer": "/root/historical_google_access_paths",
+  "independence": "Local independent verification of parent-collected restored source and100-row receipt plus exact proposal. Reviewer did not author or execute mutations.",
+  "product_id": "gid://shopify/Product/7533458194529",
+  "source_sha256": {
+    "meow_identity_completion_addendum_20260907.json": "099a0091be15f1380f6dabe04f7dd34a988a06f43e99d14ce72bc74b238ba7aa",
+    "meow_identity_completion_variables_20260907.json": "bc4296d3b95bfad6ecdd5b1411602a440c19ca0acfc18f2ad3fa92e4e2c9aa3a",
+    "meow_identity_restored_source_20260907.json": "32e14879d6ffd17dfb52f1908aa8cf6e52502564851ce28052615803190b2e6b",
+    "meow_identity_restored_translations_20260907.json": "8cc3d1c5445509741efd0172459a4ad5fc1eba52145100fd9b91c45753e3d064",
+    "meow_identity_restored_translation_diff_20260907.json": "d81e5e107d009d74cb56734f7c3d4f343e46364d8f303dcca1473810829ae6a4",
+    "meow_identity_restoration_checks_20260907.json": "e2b98ea8b0911bdf6c12902ffdf9454f9e1f0580ca8839039ce5e186a7f83784",
+    "meow_identity_before_20260907.json": "a489805319317e5e49dc46cc240960242758d16db4a9ede0d13fc70bc40237f9",
+    "meow_identity_translations_before_20260907.json": "2b2f2d982d17e2f47d7e022bb8fd0b5165093806e543e0eb5a1a2e7810111066",
+    "meow_identity_copy_20260907.json": "02cd3e2e6c51c0d5228f8322a75d3f37cbfffc7d6bc886d372a0223ff954ba69",
+    "meow_identity_translation_mutation_20260907.graphql": "035e7a0cf9df4f19458bf799880b6bf1ee4ff2bb123039b80041be6541f7303c",
+    "meow_identity_rollback_v2_20260907.json": "e924e565b3d5ac7051ae7180b770dd0950a8b4ecf81f6e35f6099bba0c874e51",
+    "meow_identity_rollback_v3_20260907.json": "a3b772b2ccb6a3fad3c87c419ac51cf3efff447e84df033910a174cfe21f6488"
+  },
+  "checks": {
+    "exact_product_resource_identity": true,
+    "source_description_and_original_digest_restored": true,
+    "all_other_source_product_fields_except_intended_title_exact": true,
+    "current_english_title_exact_reviewed_value": true,
+    "full_current100_rows_only40_expected_stale_flags_changed": true,
+    "recorded_failed_flag_gate_honest": true,
+    "payload_exact40_unique_existing_rows": true,
+    "payload_only_resourceId_and_translations": true,
+    "all20_title_values_exact_independently_reviewed_copy": true,
+    "all20_descriptions_byte_identical_original_and_current": true,
+    "all40_respective_digests_match_restored_source": true,
+    "two_source_digests_recompute_from_exact_values": true,
+    "all40_before_values_still_original": true,
+    "simulation_all20_approved_titles_and_flags_false": true,
+    "simulation_all80_nontarget_rows_including_flags_original": true,
+    "simulation_preserves_other60_rows_exact_current": true,
+    "rollback_v2_keeps_both_original_primary_seo_fields": true,
+    "existing_mutation_is_single_translationsRegister_with_userErrors": true,
+    "manual_scope_reaffirms_old_descriptions_only_to_repair_own_flags": true,
+    "manual_single_guarded_attempt_and_independent_after_read_required": true,
+    "rollback_v3_both_original_primary_seo_fields": true,
+    "rollback_v3_exact40_original_unique_translation_values": true,
+    "rollback_v3_current_digest_by_key_and_no_blind_retry_guard": true
+  },
+  "checks_passed": 23,
+  "checks_failed": 0,
+  "scope": {
+    "new_localized_title_values": 20,
+    "byte_identical_original_description_values_reaffirmed": 20,
+    "new_locales": 0,
+    "other_rows_untouched": 60,
+    "final_non_target_translation_rows_required_exact_original": 80
+  },
+  "observed": "Description value/source digest restored;20 description stale flags remain true alongside20 title flags. Prior preservation gates correctly failed and remain recorded. All100 translation values are still original.",
+  "expected_not_executed": "Re-register40 existing rows with their exact respective current digests; only20 title content values change. All40 target flags should become false, returning the80 non-title rows to their original complete state. This is a simulated expectation, not a live after-state.",
+  "gates": [
+    "Fresh source/product and all100 translations must match the bound restored receipts immediately before one normal translationsRegister. Normal action-time confirmation remains binding.",
+    "Use exact payload SHA256 bc4296d3b95bfad6ecdd5b1411602a440c19ca0acfc18f2ad3fa92e4e2c9aa3a; no new locale/key/value or primary product mutation. Reaffirmed description text is preserved, not newly substantiated or certified.",
+    "After the single mutation, separately read full primary/source and100 translations. Require21 intended titles exact,20 title flags false,80 non-target translation values/flags original, and all other source/product fields preserved.",
+    "Stop on mutation errors, ambiguous response or unexpected after-state; no blind retry or expansion. Any needed rollback uses both original primary SEO fields in verified v3, fresh digests and exact original translation values; preserve all failed-stage receipts.",
+    "No native rendering, Google-selected titles, indexing, sales, profit or paid-readiness claim follows from this write."
+  ],
+  "commands_actually_run": [
+    "Local Python JSON parsing, full source/100-row comparisons, exact40-row values/digests/scope checks, expected after-state simulation, SHA256/source-stability and output whitespace checks."
+  ],
+  "actions": {
+    "external_calls": 0,
+    "mutation_calls": 0,
+    "browser_calls": 0,
+    "canonical_or_prior_review_edits": 0
+  },
+  "operational_rollback": "meow_identity_rollback_v3_20260907.json"
+}

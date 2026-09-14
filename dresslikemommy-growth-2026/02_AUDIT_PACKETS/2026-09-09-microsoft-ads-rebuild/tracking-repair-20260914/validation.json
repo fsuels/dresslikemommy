@@ -1,0 +1,55 @@
+{
+  "schema": "dlm.microsoft.local_tracking_validation.v1",
+  "classification": "VERIFY_LOCAL_CANDIDATE",
+  "recorded_at_utc": "2026-09-14T19:36:49.183289+00:00",
+  "files_sha256": {
+    "purchase-contract.mjs": "e1af89e03de25cc356a28214c51753ed62b86803554e80a95dece236ad6e440a",
+    "purchase-contract.test.mjs": "962c506aa37187e20077030b441fc4276ee98124af98ab715d147dd152ee36f6",
+    "REPAIR_CANDIDATE.md": "dea88222becebf4c554baa7e2b476e4cf6329857e0f18b9925b7c82647a51563"
+  },
+  "root_tests": {
+    "result": "PASS",
+    "tests": 28,
+    "passed": 28,
+    "failed": 0,
+    "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node --test dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/tracking-repair-20260914/purchase-contract.test.mjs"
+  },
+  "syntax_check": "PASS; bundled Node --check purchase-contract.mjs",
+  "new_file_whitespace_check": "PASS; all three files scanned directly, no trailing whitespace and final newline present",
+  "git_diff_check": "PASS; git diff --check returned 0 for packet scope; untracked files additionally scanned directly",
+  "strict_continuity": "CONTINUITY_OK after final candidate and handoff creation, before parent integration; 0 reported side-document risks",
+  "known_guarantee_failures": [
+    {
+      "guarantee": "cross-tab same-order at-most-once enqueue",
+      "result": "FAILED",
+      "evidence": "Two synthetic instances both queued the same stable event ID"
+    },
+    {
+      "guarantee": "cross-tab distinct-order reservation preservation",
+      "result": "FAILED",
+      "evidence": "Two synthetic distinct orders queued; final ledger retained one record"
+    }
+  ],
+  "external_mutations": 0,
+  "sdk_loads": 0,
+  "microsoft_requests": 0,
+  "real_order_fixtures": 0,
+  "installed_standard_sender_repaired": false,
+  "production_deployment": "NO_GO",
+  "independent_verification": {
+    "verdict": "PASS_WITH_GATES",
+    "test_passed": 28,
+    "test_failed": 0,
+    "source": "review_final.json",
+    "reviewed_hashes_match": true
+  },
+  "shared_canonical_edits": 0,
+  "interpretation": "Local tests validate this bounded contract and reproduce two architecture limitations. They do not validate a live Shopify pixel, UET receipt, attribution, deduplication or profit.",
+  "initial_independent_review": "BLOCK_LOCAL_CORRECTIONS; saved in review_initial.json",
+  "local_corrections": [
+    "Strict stored key/fingerprint types",
+    "Bounded pending work and deadlines with late-dispatch invalidation",
+    "Ledger-wide expiry hold",
+    "Accurate storage-failure diagnostic for already-admitted work"
+  ]
+}

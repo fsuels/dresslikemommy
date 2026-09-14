@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-12T19:07:13.628376+00:00",
+  "reviewer": "/root/international_campaign_build",
+  "reviewer_role": "Independent document reviewer; did not build or execute the native readback",
+  "verdict": "PASS_WITH_LIMITS",
+  "supported_decision": "HOLD_WITH_EVIDENCE_NO_EXTERNAL_CHANGE",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "campaign_ids": [
+    "506254907",
+    "506254908"
+  ],
+  "input_hashes_sha256": {
+    "READBACK.md": "ff5c60a4cdc4afe7bd211f58e98964c67b2d1e2addd07e6741fd364d5a015e6d",
+    "extensions_readback.json": "27458483d28665b59d0dcd7e0438e8718d6aa5387365581680979762b8cb24f5"
+  },
+  "hash_validation": "Both inputs matched the requested frozen SHA256 values at the single review read. Inputs were not modified or reread.",
+  "checks": [
+    {
+      "id": "frozen_inputs",
+      "result": "PASS",
+      "detail": "Both requested input hashes match exactly."
+    },
+    {
+      "id": "manual_scope_counts",
+      "result": "PASS",
+      "detail": "Nine empty records: five account types (sitelink, callout, promotion, location, review) and four sitelink views (campaign plus ad-group level for each new campaign)."
+    },
+    {
+      "id": "manual_scope_limits",
+      "result": "PASS",
+      "detail": "All but deleted extension filter is recorded. Ad-group level was a view within campaign scope, not a individually scoped group. Uninspected types, virtualized legacy rows, unexpanded legacy URLs, and missing separate selected-tab DOM lines for two condensed account records are explicitly qualified."
+    },
+    {
+      "id": "automated_category_counts",
+      "result": "PASS",
+      "detail": "Thirteen distinct exposed opt-out categories; nine historical report categories are separately labeled. Exposure and historical reporting are not asserted as present eligibility or rendering."
+    },
+    {
+      "id": "cancel_preservation",
+      "result": "PASS_ON_ROOT_RECEIPT",
+      "detail": "Use all selected before and after cancel/reopen; zero saves reported. No category was selected. This supports cancellation preservation within the condensed observation record."
+    },
+    {
+      "id": "official_guidance",
+      "result": "PASS",
+      "detail": "The hold is consistent with previously retrieved Microsoft guidance: manual association differs from library storage; higher-level manual assets may co-serve; automatic extensions are separately enabled; opt-out is account-wide by category; dynamic sitelinks add site-page destinations without proving replacement of the saved RSA URL."
+    },
+    {
+      "id": "claim_limits_and_hold",
+      "result": "PASS",
+      "detail": "No wrong automatic asset, destination, language or promotion is claimed observed. No active paid experiment or demonstrated defect requires an account-wide change. Dynamic Sitelinks-only alternative explicitly affects legacy campaigns and does not certify all copy/media as manual."
+    },
+    {
+      "id": "no_authority_promotion",
+      "result": "PASS",
+      "detail": "Zero external saves, imports, messages, consent declarations and test events are reported. Paid scope remains NONE; purchase acceptance, economics, consent repair and profit remain open. Existing automation/configuration references are root assertions, not independently fetched here."
+    },
+    {
+      "id": "local_links",
+      "result": "PASS",
+      "detail": "All three relative Markdown link targets exist. Linked contents were not opened: prior support packet, local JSON evidence, and canonical continuation prompt."
+    },
+    {
+      "id": "input_consistency",
+      "result": "PASS",
+      "detail": "READBACK agrees with the condensed JSON on nine views, thirteen categories, cancellation, account options, historical-data limitations and the no-change decision."
+    }
+  ],
+  "evidence_limits": [
+    "Source evidence is root's condensed native observations, not an independent live browser verification, screenshot archive or complete account export.",
+    "This review verifies document consistency, frozen hashes, count/scope qualifications and link existence; it does not independently verify the account state or absence of all writes.",
+    "Current ad-group identifiers, generated assets that would serve, uninspected manual categories, correct localized rendering and purchase/consent/profit outcomes remain unverified by this review.",
+    "No new web research was performed; official-source interpretation uses the bounded primary documentation already retrieved by this reviewer.",
+    "No peer/canonical preservation assertion beyond the reviewer's own one-file write is independently established."
+  ],
+  "issues": [],
+  "next_action": "Keep this extension checkpoint on hold. Reopen only upon a qualified experiment requiring fixed extra destinations or new native evidence of an incorrect automatic asset; the separate consent repair remains dependent on its recorded access/permission path.",
+  "reviewer_actions": {
+    "native_calls": 0,
+    "external_writes": 0,
+    "canonical_edits": 0,
+    "input_edits": 0,
+    "review_files_written": 1
+  }
+}

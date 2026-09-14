@@ -1,0 +1,114 @@
+{
+  "schema": "dlm.rainbow_remaining_titles_independent_postreview.v1",
+  "reviewed_at_utc": "2026-09-07T02:30:30.241572+00:00",
+  "verdict": "PASS_API_AFTER_STATE__NATIVE_UNVERIFIED",
+  "independence": "Reviewer did not author or execute the repair. Local exact mapping/hash/source comparisons only; root supplied the API observations and action summary.",
+  "source_sha256": {
+    "rainbow_remaining_titles_review_20260907.json": "8949d8d8bf2bfeb7e153f16e5f11562fce34985bed38683507672932c2d03c64",
+    "rainbow_remaining_titles_review_20260907.md": "d1c1b494d2a0f0ec3253edfb6d198123246c31a383793e22a702d0a3f39a918c",
+    "rainbow_remaining_titles_before_20260907.json": "ad0242b660e63f491b433909e837f4f467e3920c7116b5233dab99fff611f4f7",
+    "rainbow_title_source_query.graphql": "4bc6127a9bed841596ab5acf3647dd7e0273c6bf56ed6329ae6b74c5142eb789",
+    "rainbow_remaining_title_copy_20260907.json": "1852c7c6c51e2ec45e525a04465560fae99ad941395509e9789233bbf515ff8b",
+    "rainbow_remaining_titles_plan_20260907.json": "cd2b7cdab8c507f58e76a6423ff1fdb0c21f3bd3a8c3b9f860fae18d9d53e571",
+    "rainbow_remaining_titles_variables_20260907.json": "f546609163e22c84081f828d04e6a02660fc94bb07dcff31488d86048bdeb9f9",
+    "rainbow_remaining_titles_rollback_20260907.json": "87623c4bc8592fe801a4037754364ba8bce0ccad33b0acbfc8ca56082dbeda3f",
+    "rainbow_remaining_titles_mutation_20260907.graphql": "865b936fe497722b7eb3951b8d221cdc66b0111c1b6adc0ddd4413e2e811a3af",
+    "rainbow_remaining_titles_execution_20260907.json": "33bed36b94e3450f3635e46e19abfabc1cf88cc8f691409fd8db386552c58131",
+    "rainbow_remaining_titles_after_20260907.json": "c69e61e4a3ad2582c23bcb96c5c5bba0cb8435ffaf1c7967b7cab9ee121f62d5"
+  },
+  "check_count": 12,
+  "passed_count": 12,
+  "failed_checks": [],
+  "checks": [
+    {
+      "check": "frozen preflight and exact input hashes unchanged",
+      "pass": true,
+      "evidence": "The reviewed before/copy/plan/forward/rollback/mutation/query files remain byte-bound to preflight. No previous review was edited."
+    },
+    {
+      "check": "same DLM shop active product and resource identity",
+      "pass": true,
+      "evidence": "Both saved source snapshots identify the same product and shop; reviewer did not independently query the account."
+    },
+    {
+      "check": "twenty locale aliases and ninety-two record keys preserved",
+      "pass": true,
+      "evidence": "API array order may differ; comparison is by exact locale alias/key, preserving each record value and flags."
+    },
+    {
+      "check": "all seventeen actual locale values equal exact approved payload and hashes",
+      "pass": true,
+      "evidence": "The independent alias-based after-query resolves all17 locale mappings even though the mutation document returns no locale field."
+    },
+    {
+      "check": "exact seventeen title flags true-to-false and no other flag changes",
+      "pass": true,
+      "evidence": "Current title flags are recorded only; no full locale/body parity claim follows."
+    },
+    {
+      "check": "seventy-five other records including all non-title records preserved exactly",
+      "pass": true,
+      "evidence": "Exact75 record values/flags match;74 are non-title and one is the repaired Dutch title."
+    },
+    {
+      "check": "all queried product fields and complete English source content/digests unchanged",
+      "pass": true,
+      "evidence": "Includes queried English title, body, explicit SEO, handle, status, URL and updatedAt. Variant arrays were not selected by this source query; no fresh native availability proof is claimed."
+    },
+    {
+      "check": "English Dutch and absent Russian Swedish title cases preserved",
+      "pass": true,
+      "evidence": "No new ru/sv title rows; body-only containers remain part of the unchanged75 records."
+    },
+    {
+      "check": "execution target summary exactly agrees with separate observed source",
+      "pass": true,
+      "evidence": "All execution target and preservation assertions recompute from the separate after-source. The raw mutation response is not embedded in this summary; action count/errors remain operator-supplied."
+    },
+    {
+      "check": "one reported mutation no reported errors and guard before after-read",
+      "pass": true,
+      "evidence": "Prewrite02:27:11 and after02:27:54UTC. The full action-time guard/raw call were not provided here; these guard/count statements are not an independent account-wide audit."
+    },
+    {
+      "check": "current digest and exact content inverse still bind with rollback unused",
+      "pass": true,
+      "evidence": "Content inverse matches every previous value. Target flags/time are not restored by this simulation; any actual rollback still needs a fresh candidate/no-drift guard."
+    },
+    {
+      "check": "native and business limitations preserved with every input frozen",
+      "pass": true,
+      "evidence": "No native H1, event receipt, indexed result, incremental traffic, retained sales or profit was observed by this reviewer. Only two new review files are written."
+    }
+  ],
+  "scope": {
+    "product_id": "gid://shopify/Product/7229023846497",
+    "title_value_changes": 17,
+    "target_outdated_true_to_false": 17,
+    "total_translation_rows": 92,
+    "preserved_other_records": 75,
+    "preserved_other_non_title_records": 74,
+    "queried_product_fields_changed": 0,
+    "english_source_changed": false,
+    "dutch_changed": false,
+    "ru_sv_title_rows_created": 0,
+    "reported_mutation_calls": 1,
+    "reported_user_errors": 0,
+    "rollback_used": false
+  },
+  "after_source_captured_at_utc": "2026-09-07 02:27:54 UTC",
+  "source_title_digest": "eb15a0ec0f786866886b10446c4a7c4856abf442fe02907c93096e1aa656a385",
+  "limits": [
+    "Fresh after-state mapping and preservation are independently recomputed from saved source. Mutation call count/error list and02:27:11 no-drift guard are operator summaries; the full raw action/guard responses are not embedded in the two supplied execution artifacts.",
+    "Query-selected product and translation fields are unchanged except17title values/flags. This source query does not select variant arrays or provide native product, stock or checkout proof.",
+    "Title outdated=false does not certify whole translated bodies, SEO parity, human linguistic acceptance, indexing or conversion effects.",
+    "Normal native verification remains blocked by the tool-reported lock. No event, traffic, sales, net-profit or new paid authority is established."
+  ],
+  "next_action": "Preserve the implemented repair and complete bounded rendered title checks once normal computer access works.",
+  "external_calls": 0,
+  "external_writes": 0,
+  "written_files": [
+    "rainbow_remaining_titles_postreview_20260907.json",
+    "rainbow_remaining_titles_postreview_20260907.md"
+  ]
+}

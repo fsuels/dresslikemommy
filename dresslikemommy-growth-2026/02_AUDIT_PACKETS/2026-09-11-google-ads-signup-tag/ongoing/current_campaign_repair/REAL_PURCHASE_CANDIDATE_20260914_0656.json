@@ -1,0 +1,265 @@
+{
+  "schema": "dlm.google_ads_real_purchase_candidate.v1",
+  "recorded_at_utc": "2026-09-14T07:05:53Z",
+  "status": "SHOPIFY_PAID_WEB_CANDIDATE_VERIFIED__RECEIVER_ACCEPTANCE_PENDING",
+  "shop_id": "gid://shopify/Shop/15571635",
+  "source": "Shopify Admin API via schema-discovered and validated read-only query",
+  "window": {
+    "from_inclusive": "2026-09-14T03:00:36Z",
+    "until_exclusive": "2026-09-14T06:59:06Z"
+  },
+  "query": "query AdsNewPurchaseCandidateSep14 {\n orders(first:5,query:\"created_at:>='2026-09-14T03:00:36Z' created_at:<'2026-09-14T06:59:06Z'\") {\n  nodes {\n   id name createdAt processedAt test sourceName cancelledAt displayFinancialStatus displayFulfillmentStatus currencyCode presentmentCurrencyCode\n   currentTotalPriceSet { ...PurchaseMoney }\n   totalPriceSet { ...PurchaseMoney }\n   currentSubtotalPriceSet { ...PurchaseMoney }\n   currentTotalTaxSet { ...PurchaseMoney }\n   currentShippingPriceSet { ...PurchaseMoney }\n   totalRefundedSet { ...PurchaseMoney }\n   shippingAddress { countryCodeV2 }\n   lineItems(first:50) {\n    nodes { title sku quantity currentQuantity product { id } variant { id } discountedTotalSet(withCodeDiscounts:true) { ...PurchaseMoney } originalTotalSet { ...PurchaseMoney } }\n    pageInfo { hasNextPage endCursor }\n   }\n   customerJourneySummary {\n    ready daysToConversion\n    firstVisit { occurredAt source sourceType utmParameters { source medium campaign } }\n    lastVisit { occurredAt source sourceType utmParameters { source medium campaign } }\n   }\n  }\n  pageInfo { hasNextPage endCursor }\n }\n}\nfragment PurchaseMoney on MoneyBag {\n shopMoney { amount currencyCode }\n presentmentMoney { amount currencyCode }\n}",
+  "pagination": {
+    "order_count": 1,
+    "orders_has_next_page": false,
+    "line_item_count": 4,
+    "items_has_next_page": false
+  },
+  "order": {
+    "created_at_utc": "2026-09-14T03:39:45Z",
+    "created_at_new_york": "2026-09-13T23:39:45-04:00",
+    "processed_at_utc": "2026-09-14T03:39:38Z",
+    "test": false,
+    "source": "web",
+    "cancelled_at": null,
+    "financial_status": "PAID",
+    "fulfillment_status": "UNFULFILLED",
+    "shipping_country_code": "US",
+    "shop_currency": "USD",
+    "presentment_currency": "USD",
+    "total": {
+      "shopMoney": {
+        "amount": "111.96",
+        "currencyCode": "USD"
+      },
+      "presentmentMoney": {
+        "amount": "111.96",
+        "currencyCode": "USD"
+      }
+    },
+    "original_total": {
+      "shopMoney": {
+        "amount": "111.96",
+        "currencyCode": "USD"
+      },
+      "presentmentMoney": {
+        "amount": "111.96",
+        "currencyCode": "USD"
+      }
+    },
+    "subtotal": {
+      "shopMoney": {
+        "amount": "111.96",
+        "currencyCode": "USD"
+      },
+      "presentmentMoney": {
+        "amount": "111.96",
+        "currencyCode": "USD"
+      }
+    },
+    "tax": {
+      "shopMoney": {
+        "amount": "0.0",
+        "currencyCode": "USD"
+      },
+      "presentmentMoney": {
+        "amount": "0.0",
+        "currencyCode": "USD"
+      }
+    },
+    "shipping": {
+      "shopMoney": {
+        "amount": "0.0",
+        "currencyCode": "USD"
+      },
+      "presentmentMoney": {
+        "amount": "0.0",
+        "currencyCode": "USD"
+      }
+    },
+    "refund": {
+      "shopMoney": {
+        "amount": "0.0",
+        "currencyCode": "USD"
+      },
+      "presentmentMoney": {
+        "amount": "0.0",
+        "currencyCode": "USD"
+      }
+    }
+  },
+  "items": [
+    {
+      "title": "Tropical Palm Floral Family Matching Shirt and Dress Set",
+      "product_id": "gid://shopify/Product/7505374838881",
+      "variant_id": "gid://shopify/ProductVariant/43740397928545",
+      "original_quantity": 1,
+      "current_quantity": 1,
+      "discounted_total": {
+        "shopMoney": {
+          "amount": "24.99",
+          "currencyCode": "USD"
+        },
+        "presentmentMoney": {
+          "amount": "24.99",
+          "currencyCode": "USD"
+        }
+      },
+      "original_total": {
+        "shopMoney": {
+          "amount": "24.99",
+          "currencyCode": "USD"
+        },
+        "presentmentMoney": {
+          "amount": "24.99",
+          "currencyCode": "USD"
+        }
+      }
+    },
+    {
+      "title": "Tropical Palm Floral Family Matching Shirt and Dress Set",
+      "product_id": "gid://shopify/Product/7505374838881",
+      "variant_id": "gid://shopify/ProductVariant/43740397863009",
+      "original_quantity": 1,
+      "current_quantity": 1,
+      "discounted_total": {
+        "shopMoney": {
+          "amount": "24.99",
+          "currencyCode": "USD"
+        },
+        "presentmentMoney": {
+          "amount": "24.99",
+          "currencyCode": "USD"
+        }
+      },
+      "original_total": {
+        "shopMoney": {
+          "amount": "24.99",
+          "currencyCode": "USD"
+        },
+        "presentmentMoney": {
+          "amount": "24.99",
+          "currencyCode": "USD"
+        }
+      }
+    },
+    {
+      "title": "Tropical Palm Floral Family Matching Shirt and Dress Set",
+      "product_id": "gid://shopify/Product/7505374838881",
+      "variant_id": "gid://shopify/ProductVariant/43740397797473",
+      "original_quantity": 1,
+      "current_quantity": 1,
+      "discounted_total": {
+        "shopMoney": {
+          "amount": "26.99",
+          "currencyCode": "USD"
+        },
+        "presentmentMoney": {
+          "amount": "26.99",
+          "currencyCode": "USD"
+        }
+      },
+      "original_total": {
+        "shopMoney": {
+          "amount": "26.99",
+          "currencyCode": "USD"
+        },
+        "presentmentMoney": {
+          "amount": "26.99",
+          "currencyCode": "USD"
+        }
+      }
+    },
+    {
+      "title": "Tropical Palm Floral Family Matching Shirt and Dress Set",
+      "product_id": "gid://shopify/Product/7505374838881",
+      "variant_id": "gid://shopify/ProductVariant/43740398125153",
+      "original_quantity": 1,
+      "current_quantity": 1,
+      "discounted_total": {
+        "shopMoney": {
+          "amount": "34.99",
+          "currencyCode": "USD"
+        },
+        "presentmentMoney": {
+          "amount": "34.99",
+          "currencyCode": "USD"
+        }
+      },
+      "original_total": {
+        "shopMoney": {
+          "amount": "34.99",
+          "currencyCode": "USD"
+        },
+        "presentmentMoney": {
+          "amount": "34.99",
+          "currencyCode": "USD"
+        }
+      }
+    }
+  ],
+  "shopify_journey": {
+    "ready": true,
+    "daysToConversion": 1,
+    "firstVisit": {
+      "occurredAt": "2026-09-14T03:33:38Z",
+      "source": "direct",
+      "sourceType": null,
+      "utmParameters": null
+    },
+    "lastVisit": {
+      "occurredAt": "2026-09-14T03:33:38Z",
+      "source": "direct",
+      "sourceType": null,
+      "utmParameters": null
+    }
+  },
+  "qualification": {
+    "non_test_paid_web_positive_value_and_no_cancellation_or_refund": true,
+    "unit_count": 4,
+    "line_amounts_usd": [
+      "24.99",
+      "24.99",
+      "26.99",
+      "34.99"
+    ],
+    "calculated_sum_usd": "111.96",
+    "tracking_date_under_last_verified_GA4_settings_20260912": "2026-09-13 America/New_York; property settings were not reread in this pass",
+    "relevant_post_cutover_real_purchase_candidate": true,
+    "genuine_receiver_ingestion": "UNVERIFIED",
+    "transaction_id_match": "NOT_RUN",
+    "value_currency_items_consent_dedup_match": "NOT_RUN",
+    "google_ads_attribution": "UNVERIFIED",
+    "actual_supplier_freight_payment_acquisition_costs": "UNKNOWN",
+    "retained_profit": "UNKNOWN"
+  },
+  "limits": [
+    "PAID is financial status, not paid-media attribution.",
+    "Shopify ready journey reports first/last source direct and no UTM parameters. This does not establish or exclude Google Ads attribution under another attribution model.",
+    "One order does not establish campaign effectiveness, a profitable product, fulfillment success or eligibility in other markets.",
+    "Google Ads campaign24247604341 remains paused. Do not change status, budgets, goals, tags, imports, feeds or billing based on this candidate.",
+    "Previous full-cohort records were not reread and must not be silently combined into a claimed current full-cohort total."
+  ],
+  "privacy": {
+    "customer_name_email_phone_address_not_requested": true,
+    "country_only_shipping_field_requested": true,
+    "raw_order_id_and_name_not_persisted": true,
+    "raw_identifiers_temporarily_retained_in_tool_memory_for_matching": false,
+    "raw_result_runtime_copy_cleared_after_redaction_check": true,
+    "raw_customer_or_order_identifiers_not_sent_in_task_handoff": true
+  },
+  "handoff": {
+    "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+    "parent_notified": true,
+    "GA4_property": "330266838",
+    "Ads_purchase_action": "7760272273",
+    "receiver_owner": "Existing GA4 owner coordinated by parent; ownership unchanged",
+    "next_action": "Match the real transaction, value USD111.96, currency USD, four items, consent and dedup in receiver evidence. Retrieve matching identifiers through the exact one-order query if needed; do not fabricate or replay a purchase."
+  },
+  "external_business_writes": 0,
+  "verification": {
+    "schema_and_query_validation": "PASS",
+    "receipt_arithmetic_and_privacy": "PASS_20_OF_20: 19 Python checks plus one transient raw-identifier exclusion check",
+    "independent_live_replay": "NOT_RUN"
+  }
+}

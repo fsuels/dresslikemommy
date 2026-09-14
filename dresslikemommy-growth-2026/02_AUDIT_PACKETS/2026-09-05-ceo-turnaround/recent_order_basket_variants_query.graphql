@@ -1,0 +1,17 @@
+query RecentSoldBasketVariants($filter: String!) {
+  orders(first: 50, query: $filter) {
+    nodes {
+      createdAt
+      lineItems(first: 20) {
+        nodes {
+          quantity currentQuantity
+          discountedTotalSet { shopMoney { amount currencyCode } presentmentMoney { amount currencyCode } }
+          product { id title }
+          variant { id title price inventoryItem { unitCost { amount currencyCode } } }
+        }
+        pageInfo { hasNextPage }
+      }
+    }
+    pageInfo { hasNextPage }
+  }
+}

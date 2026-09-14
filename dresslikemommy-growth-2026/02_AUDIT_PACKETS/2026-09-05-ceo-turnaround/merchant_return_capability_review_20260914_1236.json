@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-14T12:50:20.086950+00:00",
+  "verdict": "CAPABILITIES_QUALIFIED_WITH_LIMITS__NO_LIVE_CHANGE_APPROVED",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE. Current public Google documentation and bounded saved policy/claim review only; no live Merchant/Shopify account, source product query, private customer/order/credential read or peer/canonical write.",
+  "official_source_count": 4,
+  "official_sources": [
+    {
+      "id": "G1",
+      "title": "Set up your return policies for Shopping ads and free listings",
+      "url": "https://support.google.com/merchants/answer/14011730?hl=en",
+      "accessed_utc_date": "2026-09-14",
+      "evidence_locations": [
+        "lines23-46: country policies and exceptions",
+        "lines121-144: processing-time field and label assignment",
+        "lines145-151: verification states"
+      ],
+      "supported_facts": [
+        "A policy may cover one or multiple countries. Additional countries can be added if not already included in a different policy.",
+        "A standard policy plus product-specific exception policies is supported. Exception labels must be applied to the intended feed products.",
+        "Default or blank labels select the default policy. Policies must agree with an accessible website and be verified before Google uses them.",
+        "The setup guide describes refund-processing time in days until the customer receives a refund; it does not identify business versus calendar days."
+      ],
+      "unknowns": [
+        "Actual US/AU country choices, overlaps and exception-country inheritance in Merchant513542500 require current native evidence.",
+        "No explicit business/calendar unit or safe value conversion is established."
+      ]
+    },
+    {
+      "id": "G2",
+      "title": "Return policy label [return_policy_label]",
+      "url": "https://support.google.com/merchants/answer/9445425?hl=en",
+      "accessed_utc_date": "2026-09-14",
+      "evidence_locations": [
+        "lines21-48: non-default policy assignment and default fallback"
+      ],
+      "supported_facts": [
+        "The attribute assigns a non-default policy to a product/group; absence uses the configured default.",
+        "The field is not repeated, supports up to100 characters and must be encoded appropriately."
+      ],
+      "review_implication": "Check exact recognized labels on every affected exception offer; category wording or saved local labels alone do not prove effective Google policy."
+    },
+    {
+      "id": "G3",
+      "title": "Returns [returns]",
+      "url": "https://support.google.com/merchants/answer/17081382?hl=en",
+      "accessed_utc_date": "2026-09-14",
+      "evidence_locations": [
+        "lines19-45: offer overrides, country and window type",
+        "lines51-59: fee defaults and policy URL",
+        "lines88-100: accurate values and scope"
+      ],
+      "supported_facts": [
+        "Product-level returns can override account policies, with country-specific details.",
+        "The specification includes NO_RETURNS and DEFECTIVE_ONLY options; applicability to this store must follow its actual policy.",
+        "Omitted shipping/restocking amounts can imply zero in this offer-level format, so blanks are not a harmless substitute for unknown fees."
+      ],
+      "review_implication": "Inventory effective offer-level overrides as well as labels; do not introduce this separate mechanism merely because it exists."
+    },
+    {
+      "id": "G4",
+      "title": "Create and manage your online return policies",
+      "url": "https://developers.google.com/merchant/api/guides/online-return-policies/overview",
+      "accessed_utc_date": "2026-09-14",
+      "page_last_updated": "2026-09-01 UTC",
+      "evidence_locations": [
+        "lines128-228: policy readback and processRefundDays",
+        "lines262: policy-review delay"
+      ],
+      "supported_facts": [
+        "The guide shows policy IDs, country lists, labels and processing fields available in policy readbacks.",
+        "Its processRefundDays explanation describes seller processing in days, without specifying business versus calendar units.",
+        "The separate policy-review period may take up to10 business days; that review period does not define refund-processing units."
+      ],
+      "review_implication": "Native helper text or an authoritative field definition must resolve the unit and start/end milestone before choosing a number."
+    }
+  ],
+  "local_source": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/facebook_return_policy_source_20260912.json",
+    "sha256": "c1ec12832cafaaef009145134013bad2c59b90396dab871c425766c1d9715f60",
+    "captured_window_utc": {
+      "from": "2026-09-12T16:00:48.710Z",
+      "through": "2026-09-12T16:10:13Z",
+      "limit": "Clock bounds for this collection; per-action timestamps were not captured."
+    },
+    "shop_id": "15571635",
+    "policy_id": "14695685",
+    "policy_updated_at": "2026-01-26T14:46:23-05:00"
+  },
+  "saved_policy_facts": {
+    "return_request_window": "30 days from delivery; new/unworn/unwashed/original packaging/tags and additional stated condition requirements.",
+    "excluded_categories": [
+      "Swimwear and intimates",
+      "Final Sale",
+      "Gift cards"
+    ],
+    "refund_processing": "After receipt/inspection and approval,5–10 business days to original payment method; bank posting may take an additional2–5 business days. These milestones must not be collapsed into an invented Merchant number.",
+    "shipping": "Customer return-shipping responsibility except damaged/defective; original shipping nonrefundable. No explicit restocking amount is supplied by this saved text.",
+    "defective_limit": "Saved policy separately describes damaged/defective replacement or full refund without return. Broad no-return labels must not be represented as removal of every defective-item remedy."
+  },
+  "current_local_ownership": {
+    "claim_source": "ops/AGENT_COORDINATION.md",
+    "claim_line": 33,
+    "claim_row_sha256": "d4846eadd189f6bf2bbfa239c57498c15ba527a9e2d22802f0ea052676340ab1",
+    "TA07_source": "ops/marketing/action_queue.md",
+    "TA07_line": 172,
+    "TA07_row_sha256": "f10a842b605d847feb5a0aa719e31afdcf34ee9fd2ea815d0d97be4044c8ab9d",
+    "owner": "01a08706-c63a-7e01-ba48-7777bcb1788a sole Merchant/channel writer",
+    "scope": "Merchant513542500; existing US10727274744/AU10727245667; free-listing scope and exact return/delivery gates retained"
+  },
+  "parent_supplied_native_target": {
+    "policy_id": "9309759641",
+    "reported_current_country_scope": "Austria only",
+    "evidence_grade": "PARENT_SUPPLIED_TARGET_NOT_LIVE_VERIFIED_BY_THIS_REVIEW"
+  },
+  "refund_day_unit_answer": {
+    "status": "UNRESOLVED_IN_FOUR_REVIEWED_PRIMARY_SOURCES",
+    "business_days_proved": false,
+    "calendar_days_proved": false,
+    "reason": "UI help describes days to customer refund receipt; API guide describes days for seller refund processing. Neither reviewed definition states business or calendar days. Policy-review business days are a separate clock.",
+    "proposed_numeric_value": null
+  },
+  "independent_prechange_criteria": [
+    {
+      "id": "R1",
+      "test": "Bind the fresh native before-state",
+      "required_evidence": "Merchant513542500, exact9309759641, current country list/status, all other relevant standard and exception policies, their labels/countries and any existing US/AU conflicts. Record whether changing a standard country list also changes exception country scope; do not infer inheritance.",
+      "clears_when": "The intended US/AU change is an exact allowed delta with Austria and unrelated policies preserved."
+    },
+    {
+      "id": "R2",
+      "test": "Match actual current written and displayed policy",
+      "required_evidence": "Fresh accessible US/AU policy/PDP wording and authoritative Shopify policy source, including delivery/request-window meaning, condition, exclusions, damaged/defective remedy, exchanges, return-label responsibility and fees. The Sep12 source is dated evidence, not a Sep14 website check.",
+      "clears_when": "Every proposed field agrees; no new restocking amount, return address, promise, country restriction or unqualified no-remedy statement is invented."
+    },
+    {
+      "id": "R3",
+      "test": "Resolve refund-processing unit and milestone",
+      "required_evidence": "Exact native field/helper and, if still ambiguous, authoritative Google clarification defining business/calendar days and seller-processing versus customer-receipt endpoint. Reconcile receipt/inspection/approval and separately stated bank posting.",
+      "clears_when": "A truthful exact value is supported. Do not substitute10 calendar days, add bank ranges mechanically, or use zero/another default for an unknown. If optional, preserve/omit only after proving omission semantics."
+    },
+    {
+      "id": "R4",
+      "test": "Cover the complete currently affected offer population",
+      "required_evidence": "Current US/AU effective-policy matrix across direct feeds, discovered/other sources and any offer-level returns overrides. Match all swimwear/intimates, Final Sale and gift-card exceptions that are present; enumerate excluded/held/offered rows and unknown classification separately.",
+      "clears_when": "Every affected exception offer has the intended recognized country-policy binding; default-eligible products remain default. Do not substitute older720,4923 or4761 counts for a fresh current classification."
+    },
+    {
+      "id": "R5",
+      "test": "Prove truthful sequencing and rollback before release",
+      "required_evidence": "Frozen exact country/policy/feed-label before-state, candidate field diff and staged order of operations showing no interval when excluded offers inherit an incorrect blanket return promise. Country expansion must not outrun recognized applicable exceptions/received labels.",
+      "clears_when": "Each intermediate state and the rollback preserve truthful coverage; otherwise retain the exact unresolved gate. Rollback restores only changed policy-country/label/override fields and preserves Austria, source identities/prices/holds and peers."
+    },
+    {
+      "id": "R6",
+      "test": "Define independent after-state evidence and limits",
+      "required_evidence": "Reopened native country/policy/exception/status readback plus Google-received attributes/effective policy for normal and excluded offers in each target country; full reconciliation counts and negative checks for missing/incorrect labels.",
+      "clears_when": "Saved configuration, policy verification, offer ingestion, eligibility/serving and sales/profit are reported separately. This review does not approve the proposed change or infer StoreQuality improvement."
+    }
+  ],
+  "local_verification": {
+    "actual_checks": 6,
+    "passed": 6,
+    "checks": {
+      "shop_and_policy": true,
+      "written_window_and_exclusions": true,
+      "processing_and_bank_distinct": true,
+      "current_sole_owner_and_US_AU_scope": true,
+      "TA07_remains_qualified": true,
+      "local_source_unchanged": true
+    }
+  },
+  "boundaries": {
+    "live_account_reads": 0,
+    "production_changes": 0,
+    "canonical_edits": 0,
+    "source_edits": 0,
+    "new_tasks_agents_automations": 0,
+    "numeric_policy_values_proposed": 0
+  },
+  "limitations": [
+    "The four selected official pages are current browsed documentation; incidental search results were not adopted as additional authorities.",
+    "Documentation availability is not exact current account capability, policy-country coverage, product classification, atomic deployment or permission proof.",
+    "No public store revisit, current offer enumeration, actual refund operation or legal-rights interpretation was performed.",
+    "Old policy/contact/access/cohort clocks in the Sep12 source remain historical; no other lane or measurement deadline is reset."
+  ],
+  "next_action": "Merchant owner completes its already-running native policy-country, exception and processing-field readback. Parent can then bind an exact truthful proposal and have the six criteria reviewed; this capability review itself authorizes no Save or feed change."
+}

@@ -17,7 +17,7 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const PORT = process.env.PORT || 3000;
 const STORE_DOMAIN = process.env.SHOPIFY_STORE_DOMAIN; // e.g. dresslikemommy.myshopify.com
 const SF_TOKEN = process.env.SHOPIFY_STOREFRONT_TOKEN; // Storefront API public token
-const APP_PROXY_SECRET = process.env.SHOPIFY_APP_PROXY_SECRET; // TODO: verify signature
+const APP_PROXY_SECRET = process.env.SHOPIFY_APP_PROXY_SECRET; // required for production app-proxy signature checks
 const DEFAULT_PINTEREST_FEED_PATH = path.join(
   REPO_ROOT,
   'dresslikemommy-growth-2026',
@@ -39,7 +39,6 @@ function pinterestFeedPath() {
   return path.isAbsolute(configured) ? configured : path.resolve(REPO_ROOT, configured);
 }
 
-// TODO: Implement App Proxy signature verification
 function verifyAppProxy(req) {
   if (isDev()) return true;
   try {

@@ -1,0 +1,937 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:dlm:google-ads:measurement-economics:acceptance:v1",
+  "title": "DLM exact Ads measurement and market economics acceptance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "generated_at_utc",
+    "scope",
+    "identities",
+    "authority",
+    "source_evidence",
+    "baseline_reports",
+    "worked_existing_data",
+    "market_economics",
+    "measurement",
+    "readiness"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "dlm.measurement_economics.acceptance.v1"
+    },
+    "generated_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scope": {
+      "const": "DERIVED_REVIEW_NOT_AUTHORITY; no PII; no external writes"
+    },
+    "identities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "store",
+        "ads_customer",
+        "purchase_action",
+        "new_destination",
+        "ga4",
+        "merchant_tag",
+        "legacy_pixel",
+        "legacy_destination"
+      ],
+      "properties": {
+        "store": {
+          "const": "dresslikemommy-com"
+        },
+        "ads_customer": {
+          "const": "6509972886"
+        },
+        "purchase_action": {
+          "const": "7760272273"
+        },
+        "new_destination": {
+          "const": "AW-18433316477/DTaoCJG3sfQcEP2s2NVE"
+        },
+        "ga4": {
+          "const": "G-N4EQNK0MMB"
+        },
+        "merchant_tag": {
+          "const": "GT-T5R7JFVL"
+        },
+        "legacy_pixel": {
+          "const": "111214689"
+        },
+        "legacy_destination": {
+          "const": "AW-853411529/kZ_RCN-T3K0cEMmN-JYD"
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "standing_paid_scope",
+        "pause_campaign",
+        "pause_decision",
+        "new_spend_authorized",
+        "authorization_refs"
+      ],
+      "properties": {
+        "standing_paid_scope": {
+          "type": "string"
+        },
+        "pause_campaign": {
+          "const": "24247604341"
+        },
+        "pause_decision": {
+          "enum": [
+            "PENDING_OWNER_ANSWER",
+            "EXPLICITLY_APPROVED",
+            "DECLINED",
+            "SUPERSEDED_WITH_EVIDENCE"
+          ]
+        },
+        "new_spend_authorized": {
+          "type": "boolean"
+        },
+        "authorization_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "new_spend_authorized": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "authorization_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "source_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "baseline_reports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "period",
+          "grain",
+          "orders",
+          "net_merchandise",
+          "total_sales",
+          "currency_basis",
+          "source_refs",
+          "limitations"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          },
+          "grain": {
+            "type": "string"
+          },
+          "orders": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "net_merchandise": {
+            "$ref": "#/$defs/money"
+          },
+          "total_sales": {
+            "$ref": "#/$defs/money"
+          },
+          "currency_basis": {
+            "type": "string"
+          },
+          "source_refs": {
+            "$ref": "#/$defs/refs"
+          },
+          "limitations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "worked_existing_data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "alias",
+          "shipping_market",
+          "sample_scope",
+          "provider_charge",
+          "recorded_fee",
+          "recorded_payout_net",
+          "actual_provider_settlement_usd",
+          "actual_net_profit_usd",
+          "actual_max_cac_usd",
+          "source_refs",
+          "limitations"
+        ],
+        "properties": {
+          "alias": {
+            "type": "string",
+            "pattern": "^(COST|RECENT)_[0-9]{2}$"
+          },
+          "shipping_market": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          },
+          "sample_scope": {
+            "type": "string"
+          },
+          "provider_charge": {
+            "$ref": "#/$defs/money"
+          },
+          "recorded_fee": {
+            "$ref": "#/$defs/money"
+          },
+          "recorded_payout_net": {
+            "$ref": "#/$defs/money"
+          },
+          "actual_provider_settlement_usd": {
+            "$ref": "#/$defs/money"
+          },
+          "actual_net_profit_usd": {
+            "$ref": "#/$defs/money"
+          },
+          "actual_max_cac_usd": {
+            "$ref": "#/$defs/money"
+          },
+          "source_refs": {
+            "$ref": "#/$defs/refs"
+          },
+          "limitations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "market_economics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "market",
+          "eligible_complete_order_cohort",
+          "actual_cost_basis_complete",
+          "retained_revenue_usd",
+          "variable_cost_usd",
+          "overhead_other_cost_usd",
+          "matched_ad_spend_usd",
+          "attributed_new_customers",
+          "actual_all_in_profit_usd",
+          "max_first_order_cac_usd",
+          "qualified_for_spend",
+          "missing_inputs"
+        ],
+        "properties": {
+          "market": {
+            "type": "string"
+          },
+          "eligible_complete_order_cohort": {
+            "type": "boolean"
+          },
+          "actual_cost_basis_complete": {
+            "type": "boolean"
+          },
+          "retained_revenue_usd": {
+            "$ref": "#/$defs/money"
+          },
+          "variable_cost_usd": {
+            "$ref": "#/$defs/money"
+          },
+          "overhead_other_cost_usd": {
+            "$ref": "#/$defs/money"
+          },
+          "matched_ad_spend_usd": {
+            "$ref": "#/$defs/money"
+          },
+          "attributed_new_customers": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "actual_all_in_profit_usd": {
+            "$ref": "#/$defs/money"
+          },
+          "max_first_order_cac_usd": {
+            "$ref": "#/$defs/money"
+          },
+          "qualified_for_spend": {
+            "type": "boolean"
+          },
+          "missing_inputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "qualified_for_spend": {
+                  "const": true
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "eligible_complete_order_cohort": {
+                  "const": true
+                },
+                "actual_cost_basis_complete": {
+                  "const": true
+                },
+                "missing_inputs": {
+                  "maxItems": 0
+                },
+                "max_first_order_cac_usd": {
+                  "properties": {
+                    "amount": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "const": "CALCULATED_FROM_VERIFIED_COMPONENTS"
+                    }
+                  }
+                },
+                "retained_revenue_usd": {
+                  "properties": {
+                    "amount": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "VERIFIED_SOURCE_COMPONENT",
+                        "CALCULATED_FROM_VERIFIED_COMPONENTS"
+                      ]
+                    }
+                  }
+                },
+                "variable_cost_usd": {
+                  "properties": {
+                    "amount": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "VERIFIED_SOURCE_COMPONENT",
+                        "CALCULATED_FROM_VERIFIED_COMPONENTS"
+                      ]
+                    }
+                  }
+                },
+                "overhead_other_cost_usd": {
+                  "properties": {
+                    "amount": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "VERIFIED_SOURCE_COMPONENT",
+                        "CALCULATED_FROM_VERIFIED_COMPONENTS"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "configuration",
+        "base_tag_detector",
+        "passive_page",
+        "app_callback",
+        "new_ads_dispatch",
+        "ga4_receiver",
+        "consent_transitions",
+        "genuine_purchase",
+        "ads_receiver",
+        "same_action_dedup",
+        "paid_attribution",
+        "last_passive_observation",
+        "transaction_match"
+      ],
+      "properties": {
+        "configuration": {
+          "$ref": "#/$defs/gate"
+        },
+        "base_tag_detector": {
+          "$ref": "#/$defs/gate"
+        },
+        "passive_page": {
+          "$ref": "#/$defs/gate"
+        },
+        "app_callback": {
+          "$ref": "#/$defs/gate"
+        },
+        "new_ads_dispatch": {
+          "$ref": "#/$defs/gate"
+        },
+        "ga4_receiver": {
+          "$ref": "#/$defs/gate"
+        },
+        "consent_transitions": {
+          "$ref": "#/$defs/gate"
+        },
+        "genuine_purchase": {
+          "$ref": "#/$defs/gate"
+        },
+        "ads_receiver": {
+          "$ref": "#/$defs/gate"
+        },
+        "same_action_dedup": {
+          "$ref": "#/$defs/gate"
+        },
+        "paid_attribution": {
+          "$ref": "#/$defs/gate"
+        },
+        "last_passive_observation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "document_tags",
+            "selected_events",
+            "truncated",
+            "google_events_observed",
+            "worker_capture",
+            "consent_choice",
+            "limits"
+          ],
+          "properties": {
+            "document_tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "selected_events": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "truncated": {
+              "type": "boolean"
+            },
+            "google_events_observed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "worker_capture": {
+              "enum": [
+                "CAPABILITY_LIMIT",
+                "COMPLETE",
+                "NOT_RUN"
+              ]
+            },
+            "consent_choice": {
+              "enum": [
+                "UNKNOWN",
+                "DENIED_OBSERVED",
+                "GRANTED_OBSERVED"
+              ]
+            },
+            "limits": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "transaction_match": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "protected_alias",
+            "genuine_order",
+            "id_matches",
+            "value_matches",
+            "currency_matches",
+            "items_match",
+            "raw_customer_data_retained"
+          ],
+          "properties": {
+            "protected_alias": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "genuine_order": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "id_matches": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "value_matches": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "currency_matches": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "items_match": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "raw_customer_data_retained": {
+              "const": false
+            }
+          }
+        }
+      }
+    },
+    "readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "measurement_ready",
+        "financially_qualified",
+        "launch_authorized",
+        "next_safe_check",
+        "owner_handoff_required"
+      ],
+      "properties": {
+        "measurement_ready": {
+          "type": "boolean"
+        },
+        "financially_qualified": {
+          "type": "boolean"
+        },
+        "launch_authorized": {
+          "type": "boolean"
+        },
+        "next_safe_check": {
+          "type": "string"
+        },
+        "owner_handoff_required": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "path",
+        "sha256",
+        "scope"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "scope": {
+          "type": "string"
+        }
+      }
+    },
+    "money": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "amount",
+        "currency",
+        "status"
+      ],
+      "properties": {
+        "amount": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+        },
+        "currency": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Z]{3}$"
+        },
+        "status": {
+          "enum": [
+            "REPO_REPORTED",
+            "VERIFIED_SOURCE_COMPONENT",
+            "CALCULATED_FROM_VERIFIED_COMPONENTS",
+            "CONFLICTED",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "UNKNOWN"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "amount": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "REPO_REPORTED",
+                  "VERIFIED_SOURCE_COMPONENT",
+                  "CALCULATED_FROM_VERIFIED_COMPONENTS"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "currency": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "evidence_refs",
+        "reason"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS_ROOT_REPORTED",
+            "PASS_INDEPENDENT",
+            "PARTIAL",
+            "CAPABILITY_LIMIT",
+            "NOT_RUN",
+            "UNKNOWN",
+            "CONFLICTED",
+            "FAIL"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "PASS_ROOT_REPORTED",
+                  "PASS_INDEPENDENT"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidence_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "readiness": {
+            "properties": {
+              "measurement_ready": {
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "measurement": {
+            "properties": {
+              "configuration": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS_ROOT_REPORTED",
+                      "PASS_INDEPENDENT"
+                    ]
+                  }
+                }
+              },
+              "base_tag_detector": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS_ROOT_REPORTED",
+                      "PASS_INDEPENDENT"
+                    ]
+                  }
+                }
+              },
+              "app_callback": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS_ROOT_REPORTED",
+                      "PASS_INDEPENDENT"
+                    ]
+                  }
+                }
+              },
+              "new_ads_dispatch": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS_ROOT_REPORTED",
+                      "PASS_INDEPENDENT"
+                    ]
+                  }
+                }
+              },
+              "ga4_receiver": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS_ROOT_REPORTED",
+                      "PASS_INDEPENDENT"
+                    ]
+                  }
+                }
+              },
+              "consent_transitions": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS_ROOT_REPORTED",
+                      "PASS_INDEPENDENT"
+                    ]
+                  }
+                }
+              },
+              "genuine_purchase": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS_ROOT_REPORTED",
+                      "PASS_INDEPENDENT"
+                    ]
+                  }
+                }
+              },
+              "ads_receiver": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS_ROOT_REPORTED",
+                      "PASS_INDEPENDENT"
+                    ]
+                  }
+                }
+              },
+              "same_action_dedup": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "PASS_ROOT_REPORTED",
+                      "PASS_INDEPENDENT"
+                    ]
+                  }
+                }
+              },
+              "transaction_match": {
+                "properties": {
+                  "protected_alias": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "genuine_order": {
+                    "const": true
+                  },
+                  "id_matches": {
+                    "const": true
+                  },
+                  "value_matches": {
+                    "const": true
+                  },
+                  "currency_matches": {
+                    "const": true
+                  },
+                  "items_match": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "readiness": {
+            "properties": {
+              "financially_qualified": {
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "market_economics": {
+            "contains": {
+              "properties": {
+                "qualified_for_spend": {
+                  "const": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "readiness": {
+            "properties": {
+              "launch_authorized": {
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "authority": {
+            "properties": {
+              "new_spend_authorized": {
+                "const": true
+              }
+            }
+          },
+          "readiness": {
+            "properties": {
+              "measurement_ready": {
+                "const": true
+              },
+              "financially_qualified": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "schema": "dlm.us_es_official_language_identity_review.v1",
+  "reviewed_at_utc": "2026-09-14T17:59:56.236Z",
+  "reviewer": "/root/claim_lookup_cause",
+  "confidence": "H",
+  "verdict": "DOCUMENTED_US_SPANISH_USD_SUPPORT__ACCOUNT_AND_CANDIDATE_QUALIFICATION_PENDING",
+  "scope": "Current official Google documentation for Spanish content on the existing US/USD online product cohort only. No account/browser access, candidate build, source choice or release authorization.",
+  "sources": {
+    "supported_languages_currency": {
+      "title": "Supported languages and currencies",
+      "url": "https://support.google.com/merchants/answer/160637?hl=en",
+      "sections": [
+        "Supported languages and countries",
+        "Supported countries and currencies"
+      ]
+    },
+    "stable_offer_id": {
+      "title": "ID [id]",
+      "url": "https://support.google.com/merchants/answer/6324405?hl=en",
+      "sections": [
+        "Minimum requirements"
+      ]
+    },
+    "product_identity": {
+      "title": "Add and manage products",
+      "url": "https://developers.google.com/merchant/api/guides/products/add-manage",
+      "sections": [
+        "Special considerations",
+        "Add a product"
+      ]
+    },
+    "file_source_identity": {
+      "title": "REST Resource: accounts.dataSources",
+      "url": "https://developers.google.com/merchant/api/reference/rest/datasources_v1/accounts.dataSources",
+      "sections": [
+        "PrimaryProductDataSource",
+        "FileInput",
+        "FetchSettings"
+      ]
+    },
+    "file_delivery": {
+      "title": "Add products from a file to Merchant Center",
+      "url": "https://support.google.com/merchants/answer/12158380?hl=en",
+      "sections": [
+        "Quick answers",
+        "On the Add product source page",
+        "Next steps"
+      ]
+    },
+    "checkout_language": {
+      "title": "Checkout requirements and best practices",
+      "url": "https://support.google.com/merchants/answer/9158778?hl=en",
+      "sections": [
+        "Be consistent with currency",
+        "Use language consistently"
+      ]
+    },
+    "landing_page": {
+      "title": "About landing page requirements",
+      "url": "https://support.google.com/merchants/answer/4752265",
+      "sections": [
+        "Minimum requirements",
+        "Best practices"
+      ]
+    },
+    "same_key_transfer": {
+      "title": "Migrate products",
+      "url": "https://developers.google.com/merchant/api/guides/compatibility/products",
+      "sections": [
+        "Data source guidelines during migration",
+        "Identifiers"
+      ]
+    },
+    "source_settings": {
+      "title": "Use feed labels to advertise products from specific product data sources",
+      "url": "https://support.google.com/merchants/answer/14994087?hl=en",
+      "sections": [
+        "Step 1 of 3"
+      ]
+    },
+    "duplicate_source_identity": {
+      "title": "Update of multi-channel product system",
+      "url": "https://support.google.com/merchants/answer/16529073?hl=en",
+      "sections": [
+        "Multiple products with the same ID, content language, and feed label"
+      ]
+    }
+  },
+  "documented_requirements": [
+    {
+      "topic": "Country/language/currency",
+      "status": "DOCUMENTED",
+      "requirement": "Spanish is a supported Merchant language. Supported languages can target supported countries; the United States supports USD and free listings. Data and buyer-facing currency must remain consistent; country shipping data uses the submitted product currency.",
+      "sources": [
+        "supported_languages_currency",
+        "checkout_language"
+      ]
+    },
+    {
+      "topic": "Offer ID stability",
+      "status": "DOCUMENTED",
+      "requirement": "Keep the same stable offer ID for the same product across languages within a country. Different variants require their own IDs; language expansion is not a reason to invent replacement offer IDs.",
+      "sources": [
+        "stable_offer_id"
+      ]
+    },
+    {
+      "topic": "Current product identity",
+      "status": "DOCUMENTED",
+      "requirement": "Within an account, current Merchant product identity combines contentLanguage, feedLabel and offerId, rendered logically as contentLanguage~feedLabel~offerId. Legacy Content API examples include channel; that legacy representation must not replace the current logical key.",
+      "sources": [
+        "product_identity",
+        "same_key_transfer"
+      ]
+    },
+    {
+      "topic": "File-source identity",
+      "status": "DOCUMENTED",
+      "requirement": "For a file primary source, contentLanguage and feedLabel are both required and immutable; it accepts that combination. Content language uses two-letter ISO639-1. Target countries and marketing destinations are separate settings. Unrestricted-language API-source examples do not relax the file-source constraint.",
+      "sources": [
+        "file_source_identity",
+        "source_settings"
+      ]
+    },
+    {
+      "topic": "Duplicate/collision risk",
+      "status": "DOCUMENTED_WITH_INTERFACE_LIMIT",
+      "requirement": "Google warns against supplying the same ID/language/feed-label combination through multiple sources. Merchant API migration documentation explains that inserting the same key into another primary source can transfer ownership from the prior source; do not assume a particular collision error or transfer result for this account's file workflow.",
+      "sources": [
+        "duplicate_source_identity",
+        "same_key_transfer"
+      ]
+    },
+    {
+      "topic": "Language matching",
+      "status": "DOCUMENTED",
+      "requirement": "Product data and key landing-page elements should match the selected language. A majority mismatch may cause disapproval; other key mismatches may limit performance. Checkout navigation and information needed to decide a purchase must use the feed language. Relevant pages include cart, checkout, Terms, refund/return policy, and About/contact information.",
+      "sources": [
+        "supported_languages_currency",
+        "checkout_language"
+      ]
+    },
+    {
+      "topic": "Landing and price",
+      "status": "DOCUMENTED",
+      "requirement": "The linked live product page must show the same product/variant, matching price, currency and availability, with a usable buying route and the claimed domain. A locale-looking URL does not prove compliance. Google lists default selection of the matching variant as a best practice, distinct from the minimum product-match requirements.",
+      "sources": [
+        "landing_page"
+      ]
+    },
+    {
+      "topic": "Manual file delivery",
+      "status": "DOCUMENTED",
+      "requirement": "Google accepts TXT, XML and TSV product files up to4GB. Direct manual upload does not synchronize later file changes; each changed file needs resubmission. The content/format must satisfy the product-data specification.",
+      "sources": [
+        "file_delivery"
+      ]
+    },
+    {
+      "topic": "Scheduled file delivery",
+      "status": "DOCUMENTED",
+      "requirement": "A scheduled source uses a direct, accessible HTTP/HTTPS/SFTP file URL and permissions that let Google retrieve it. Google documents a24-hour default, adjustable schedule. That default does not verify the actual account schedule, endpoint durability, successful fetch or local lifecycle freshness.",
+      "sources": [
+        "file_delivery"
+      ]
+    },
+    {
+      "topic": "Maintenance and approval",
+      "status": "DOCUMENTED_WITH_SCOPE_LIMIT",
+      "requirement": "The Products API guide advises refresh at least every30days to prevent expiration; this is not an allowance to leave changed product data stale or override stricter local deadlines. Upload/processing is followed by product completeness/policy review; receipt success alone does not certify approval or serving.",
+      "sources": [
+        "product_identity",
+        "file_delivery"
+      ]
+    }
+  ],
+  "derived_conditions": [
+    {
+      "status": "INFERENCE_FROM_DOCUMENTED_IDENTITY",
+      "condition": "For the same verified feed label and existing offer ID, es and en produce distinct logical product keys. Use the existing stable US product/variant IDs, not fabricated Spanish ID suffixes. No actual feed label, product key or new source ID is selected in this review."
+    },
+    {
+      "status": "INFERENCE_FROM_SOURCE_AND_COLLISION_RULES",
+      "condition": "The owner first qualifies any already-existing Spanish primary source/product keys, country targets, rules and input method. If none exists, only a separately reviewed Spanish file source can be proposed; uploading Spanish content into the English source or creating a duplicate Spanish key is not a safe language-isolation plan."
+    },
+    {
+      "status": "REVIEW_BOUNDARY",
+      "condition": "Preserve the existing English source identity, rows, rules and delivery configuration. File-source creation or upload requires the parent's exact later release decision. This documentation review grants neither source-write nor paid authority."
+    }
+  ],
+  "material_failure_conditions": [
+    "Identical full language/feed-label/offer-ID key already owned by a different source, or a mismatched source language/label.",
+    "Predominantly wrong-language product data, buyer-decision information or checkout that falls back to English, or unverified Spanish variants.",
+    "Wrong product/variant, unavailable buying route, broken/unclaimed-domain landing link, or price/currency/availability disagreement.",
+    "Unsupported/malformed/oversize file, unreadable scheduled endpoint, failed fetch, or manual data allowed to become stale.",
+    "Source processing success treated as whole-cohort approval, current English preservation assumed without a receiving comparison, or new-source defaults treated as proof of free-listings-only destinations."
+  ],
+  "account_facts_not_verified": [
+    "Any current US/es source or product-key inventory, including automatic sources, and which exact source owns each full key.",
+    "Actual existing feed label, source ID, editable native controls, quotas/permissions, destination participation, and input method.",
+    "Spanish data completeness and actual Spanish US/USD landing/cart/checkout/Terms/refund/contact presentation.",
+    "Current product/variant availability, holds, price/shipping truth, approved offer counts or receiving results.",
+    "Actual fetch timing, hostname durability or operational freshness; no endpoint/network checks were run."
+  ],
+  "bounded_next_step": "Existing Merchant owner completes its already-dispatched read-only US/es source-key inventory and Spanish buyer-path qualification, then freezes one exact candidate/source plan for parent review. No submission is authorized by this report.",
+  "activity": {
+    "official_google_web_reads_only": true,
+    "non_google_sources_relied_on": false,
+    "account_browser_credentials_private_order_calls": 0,
+    "source_canonical_or_peer_edits": 0,
+    "candidate_builds": 0,
+    "new_tools_runtimes_or_agents": 0,
+    "reviewer_owned_output": "/private/tmp/dlm-us-es-language-identity-review-20260914.json",
+    "source_or_paid_release_authority": "NONE"
+  },
+  "freeze_note": "This JSON freezes the documented requirements, official links and distinctions as read on the recorded date; it is not a complete archived copy of the web pages or account evidence."
+}

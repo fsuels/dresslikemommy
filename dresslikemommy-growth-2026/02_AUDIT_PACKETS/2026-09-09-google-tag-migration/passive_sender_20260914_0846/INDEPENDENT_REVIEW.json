@@ -1,0 +1,96 @@
+{
+  "schema": "dlm.passive_sender_independent_review.v1",
+  "action": "TA02-PASSIVE-SENDER-20260914-0846",
+  "recorded_at_utc": "2026-09-14T09:39:25.817042Z",
+  "reviewer": "/root/tag_cleanup_verifier",
+  "verdict": "PASS_FOR_CORRECTED_EVIDENCE_REPORTING_WITH_LIMITS",
+  "runtime_acceptance": "NOT_ACCEPTED__COLLECTOR_SUMMARY_COVERAGE_FAILED__CONSENT_SESSION_SEQUENCE_UNKNOWN",
+  "scope": "Independent saved-source review of the two exact corrected operator artifacts. No independent live replay, documentation retrieval, private transaction replay or production action.",
+  "source_hashes": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/OBSERVATION.json",
+      "sha256": "3fab3be81f3f184ec10a4cb69730e8c041e586e383b637fd5224a2b305c26181"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/READBACK.md",
+      "sha256": "b672e4f0836ed6f3c20b099385ee47ecb5b82dea0e3fb53ceb00be127bd4eac7"
+    }
+  ],
+  "review_basis": "Operator-reported observations were checked for internal consistency, scope, privacy and evidence-to-conclusion restraint. Source hashes bind the reviewed bytes; they do not independently validate browser events.",
+  "checks": [
+    {
+      "id": "R1",
+      "status": "PASS",
+      "finding": "Both corrected source hashes match the supplied final versions; JSON event-count arithmetic is consistent: 253 request records + 253 response records + 2 failure records = 508 debugger records, not 508 analytics events."
+    },
+    {
+      "id": "R2",
+      "status": "PASS",
+      "finding": "The actual matcher omission of analytics.google.com/g/collect is explicit. Zero matches are limited to the incomplete filter. Retained collector presence, destination transport, page_view and session evidence are unknown."
+    },
+    {
+      "id": "R3",
+      "status": "PASS",
+      "finding": "Cleared raw arrays and the closed tab prevent local reprocessing. The operator analysis defect is distinguished from single-context and named-consent observability limits; no browser network-capability failure is claimed."
+    },
+    {
+      "id": "R4",
+      "status": "PASS",
+      "finding": "One context, no child attachment evidence, an uninstrumented initial open and a bounded reload are explicit. No reported truncation is not promoted to complete sender or late-event coverage; a new page is not assumed to be a new session."
+    },
+    {
+      "id": "R5",
+      "status": "PASS",
+      "finding": "The inline measurement ID proves source presence only. Absent named defaults/updates in source and observed console do not establish denied consent, absent execution or incorrect startup order."
+    },
+    {
+      "id": "R6",
+      "status": "PASS",
+      "finding": "Completed migration, exact legacy disconnection and accepted real-purchase work are preserved without repetition or refreshed live claims. No causal production repair, speculative sender, reconnection or consent change is justified."
+    },
+    {
+      "id": "R7",
+      "status": "PASS",
+      "finding": "The retained artifacts contain public identifiers and aggregate summaries without raw visitor/session IDs, request headers, cookies, payloads, customer data or credentials. Declared action boundaries and diagnostic/tab cleanup are consistent; this reviewer did not independently replay them."
+    },
+    {
+      "id": "R8",
+      "status": "PASS",
+      "finding": "READBACK and OBSERVATION consistently disclose the failed collector summary, unknown required sequence and the one-trace stop. The packet PARTIAL label is not treated by this review as new runtime measurement acceptance."
+    }
+  ],
+  "resolved_findings": [
+    {
+      "id": "FILTER-01",
+      "severity": "MATERIAL_EVIDENCE_COVERAGE",
+      "initial_source_hashes": {
+        "OBSERVATION.json": "2b301dd5c2843175e6c0bcf717d2280e799b557aa5383b89074dd5c0adc62c98",
+        "READBACK.md": "1fe9dda9becd69cebec2fcc86befabbe3f0f2da583b19887cf333c0361c3de28"
+      },
+      "finding": "The actual request matcher omitted the previously observed expected GA4 collector analytics.google.com/g/collect.",
+      "resolution": "Corrected both records to identify the operator filtering failure, unknown retained collector presence and inability to reprocess disposed diagnostics. No second trace ran.",
+      "status": "REPORTING_CORRECTED__RUNTIME_EVIDENCE_NOT_RECOVERED"
+    }
+  ],
+  "must_fix_corrections": [],
+  "remaining_limits": [
+    "Whether the expected GA4 collector appeared in this capture cannot be recovered from retained evidence.",
+    "Executing sender provenance, named consent defaults/updates, consent-event ordering, session freshness and session_start remain unknown.",
+    "Only one source context and one bounded reload were observed; child/worker and initial-navigation coverage were not established.",
+    "This review neither proves a current implementation failure nor resolves the historical report-level warning, attribution or all-market measurement.",
+    "Review is source-independent, not independently observed live evidence. Operator artifact checks are not runtime acceptance."
+  ],
+  "next_action": "Parent records the incomplete attempt and continues independent authorized lanes. A later separately permitted trace must first qualify expected-collector matching and actual execution-context coverage; no automatic repeat, native fallback, consent transition or new harness is authorized by this review.",
+  "independence": {
+    "built_or_executed_capture": false,
+    "browser_or_external_requests": 0,
+    "private_order_or_credential_access": 0,
+    "new_test_events": 0,
+    "production_changes": 0,
+    "root_source_changes": 0,
+    "shared_canonical_changes": 0,
+    "writes": [
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/INDEPENDENT_REVIEW.json"
+    ]
+  }
+}

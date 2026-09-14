@@ -1,0 +1,14 @@
+Confidence: H for documentation; M for runtime attribution pending the exact trace. Independent reviewer DID_NOT_BUILD_OR_EXECUTE; no browser, consent, source or canonical writes.
+
+Root reports UET 36005151 received a Page Load with Consent Signal “Not present.” This establishes missing consent information for that event and URL during the test session. It does not identify the sending stream, establish sitewide failure, prove cookie behavior, or verify purchase tracking. The prior “runtime unverified” assessment is superseded only for this observed event. [Microsoft UET implementation and receiver validation](https://github.com/MicrosoftDocs/Advertising/blob/main/advertising/msa-help/hlp_BA_CONC_UET_Consent.md).
+
+Root subsequently read tab 8: USFL; analytics=false, marketing=false, preferences=false, saleOfData=true. Those effective permissions deny analytics/marketing despite the separate sale permission. The earlier receiver event needs temporal/session correlation with the fresh reload. Shopify’s Allowed methods incorporate merchant settings, location and choices; raw blank consent strings and market/language selection cannot substitute. Read initial permissions and listen for visitorConsentCollected; the listener does not replay initial state. [Shopify Customer Privacy API](https://shopify.dev/docs/api/customer-privacy).
+
+Challenge the premise that one top-frame bridge repairs the integration: the prior assessment records both standard bat.js/uetq and proprietary shop-wpa transport. Bind tag ID, timestamp, URL, request initiator/runtime and receiver event to the same denied session. Shopify app admission requires every declared purpose; admission alone does not prove Microsoft consent transmission. [Shopify Pixel Privacy](https://shopify.dev/docs/api/web-pixels-api/pixel-privacy).
+
+If that trace identifies the existing standard stream as faulty, the supported remedy is documented uetq consent default/update commands, ad_storage denied before dependent events, and granted only when the stream’s required effective permissions allow it; carry updates through revocation/navigation. Preserve app purpose requirements and Basic blocking; do not add an event-producing tag or assume standard commands alter shop-wpa. If only proprietary transport fails, use a supported publisher repair. Validate denied/granted/revoked states and Page Load/Custom Event receiver signals separately. [Microsoft UET guidance](https://github.com/MicrosoftDocs/Advertising/blob/main/advertising/msa-help/hlp_BA_CONC_UET_Consent.md).
+
+Next: review root’s correlated trace before selecting the exact source repair. No speculative bridge is approved.
+
+Reviewed at UTC: 2026-09-12T10:44:33.389728+00:00
+Prior assessment SHA256: 4110c41b6ea34a60c128d5def59c0400707758bececb85923c43b776b579dc84

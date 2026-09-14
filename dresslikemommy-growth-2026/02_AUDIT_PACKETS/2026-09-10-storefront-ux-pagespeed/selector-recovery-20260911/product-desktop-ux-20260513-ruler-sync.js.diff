@@ -1,0 +1,74 @@
+--- frozen-v7/assets/product-desktop-ux-20260513-ruler-sync.js
++++ proposed/assets/product-desktop-ux-20260513-ruler-sync.js
+@@ -1314,18 +1314,9 @@
+ 
+   var typeValue = getTypeOptionValue(variant, options, sizeOptionIndex);
+   var typeRoleKey = inferRoleKeyFromType(typeValue, roleInfo.key);
+-  if (
+-    typeRoleKey &&
+-    (!skuRoleKey || roleInfo.key === 'child' || roleInfo.key === 'adult' || roleInfo.key === 'boy' || roleInfo.key === 'girl')
+-  ) {
+-    if (
+-      roleInfo.key === 'child' ||
+-      roleInfo.key === 'adult' ||
+-      (roleInfo.key === 'boy' && typeRoleKey === 'girl') ||
+-      (roleInfo.key === 'girl' && typeRoleKey === 'boy')
+-    ) {
+-      roleInfo = cloneRoleInfoWithKey(roleInfo, typeRoleKey);
+-    }
++  // Garment type can refine generic roles, never replace an explicit or SKU-backed Girl/Boy.
++  if (typeRoleKey && (roleInfo.key === 'child' || roleInfo.key === 'adult')) {
++    roleInfo = cloneRoleInfoWithKey(roleInfo, typeRoleKey);
+   }
+ 
+   return roleInfo;
+@@ -1675,6 +1666,18 @@
+   return parts.join(' ');
+ }
+ 
++function needsNativeVariantPicker(productData) {
++  var options = productData && productData.options;
++  var variants = productData && productData.variants;
++  var sizeOptionIndex = findSizeOptionIndex(options);
++  if (sizeOptionIndex < 0 || !Array.isArray(variants) || !variants.length) return true;
++  // Keep every source size reachable, including height and qualified adult labels.
++  // A partial custom builder must not silently omit variants it cannot classify.
++  return variants.some(function (variant) {
++    return !getRoleInfoForVariant(variant, options, sizeOptionIndex);
++  });
++}
++
+ function initMatchingSetBuilder(wrapper, sectionId, productData) {
+   var builder = wrapper.querySelector('[data-matching-set-builder]');
+   if (!builder) return;
+@@ -1701,6 +1704,21 @@
+     if (needsSort) {
+       productData = Object.assign({}, productData, { options: sortedOptions });
+     }
++  }
++
++  if (needsNativeVariantPicker(productData)) {
++    var nativeRoot = wrapper.closest('.product__info-container');
++    builder.setAttribute('hidden', 'hidden');
++    if (nativeRoot) {
++      nativeRoot.classList.remove('product__info-container--matching-set');
++      nativeRoot.setAttribute('data-has-matching-set', 'false');
++      nativeRoot.setAttribute('data-matching-set-fallback', 'true');
++      nativeRoot.removeAttribute('data-type-implicit');
++    }
++    document.dispatchEvent(new CustomEvent('dlm:matching-set-fallback', {
++      detail: { sectionId: sectionId },
++    }));
++    return;
+   }
+ 
+   // CRO redesign May 2026: on bundle products the legacy "Compare
+@@ -6536,7 +6554,7 @@
+   var mainButton = document.getElementById('ProductSubmitButton-' + sectionId);
+   var matchingSetBuilder = wrapper.querySelector('[data-matching-set-builder]');
+   var matchingSetButton = wrapper.querySelector('[data-matching-set-add-button]');
+-  var isMatchingSet = !!(matchingSetBuilder && matchingSetButton);
++  var isMatchingSet = !!(matchingSetBuilder && matchingSetButton && !wrapper.closest('[data-matching-set-fallback="true"]'));
+   var matchingSetStickyState =
+     window.DLMMatchingSetStickyState && window.DLMMatchingSetStickyState[sectionId]
+       ? window.DLMMatchingSetStickyState[sectionId]

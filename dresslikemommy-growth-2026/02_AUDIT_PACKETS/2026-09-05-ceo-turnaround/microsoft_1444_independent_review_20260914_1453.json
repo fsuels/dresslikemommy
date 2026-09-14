@@ -1,0 +1,240 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-09-14T15:01:01.244Z",
+  "reviewer": "/root/claim_lookup_cause",
+  "task": "Parent14:53 heartbeat: independent Microsoft1444 saved-receipt review and bounded AU-refresh challenge",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "HIGH_FOR_SAVED_SOURCE_CONSISTENCY; NO_INDEPENDENT_LIVE_REPLAY",
+  "scope": {
+    "read_only": true,
+    "live_calls": 0,
+    "browser_calls": 0,
+    "credential_reads": 0,
+    "source_writes": 0,
+    "shared_canonical_writes": 0,
+    "new_tasks_or_agents": 0,
+    "owned_artifact": "/private/tmp/dlm-ms-1444-review-for-parent1453.json"
+  },
+  "inputs": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-1444/readback.json",
+      "sha256": "f1d938f657dcb36609ba7304eaf82b72324ba854d8e62ecc9eac5ff2d51d4d4e"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-1444/READBACK.md",
+      "sha256": "15c9d541fbcc0bc969296eda8c219ebf2372d1f6076b443653c86391fbc972ae"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/rsa_asset_policy_readback.json",
+      "sha256": "b5bcded437716dee9056d67fcfa9504ea1531ecf24ebb5eda1f64bf408b604fc"
+    }
+  ],
+  "checks_passed": 30,
+  "checks_total": 30,
+  "checks": [
+    {
+      "check": "exact_current_json_hash",
+      "result": "PASS"
+    },
+    {
+      "check": "exact_markdown_hash",
+      "result": "PASS"
+    },
+    {
+      "check": "dated_baseline_hash",
+      "result": "PASS"
+    },
+    {
+      "check": "same_account_and_customer",
+      "result": "PASS"
+    },
+    {
+      "check": "two_exact_US_DE_ids",
+      "result": "PASS"
+    },
+    {
+      "check": "same_exact_campaign_group_join",
+      "result": "PASS"
+    },
+    {
+      "check": "new_Good_vs_dated_Pending_grid_strength",
+      "result": "PASS"
+    },
+    {
+      "check": "asset_strength_baseline_separate",
+      "result": "PASS"
+    },
+    {
+      "check": "both_ads_paused",
+      "result": "PASS"
+    },
+    {
+      "check": "three_paused_diagnostic_pages_each",
+      "result": "PASS"
+    },
+    {
+      "check": "whole_ad_editorial_explicitly_unverified",
+      "result": "PASS"
+    },
+    {
+      "check": "editorial_search_limited_to_Attributes",
+      "result": "PASS"
+    },
+    {
+      "check": "columns_cancel_no_save_or_apply",
+      "result": "PASS"
+    },
+    {
+      "check": "filtered_two_ads_not_all42",
+      "result": "PASS"
+    },
+    {
+      "check": "full_ad_copy_and_assets_not_replayed",
+      "result": "PASS"
+    },
+    {
+      "check": "Today_partial_day",
+      "result": "PASS"
+    },
+    {
+      "check": "thirteen_unique_campaigns_rendered_paused",
+      "result": "PASS"
+    },
+    {
+      "check": "all_reported_sample_metrics_zero",
+      "result": "PASS"
+    },
+    {
+      "check": "native_reporting_lag_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "zero_denominator_ratios_undefined",
+      "result": "PASS"
+    },
+    {
+      "check": "timezone_literal_not_fixed_offset_conversion",
+      "result": "PASS"
+    },
+    {
+      "check": "configured_caps_not_spend_authority",
+      "result": "PASS"
+    },
+    {
+      "check": "shopping_grid_does_not_close_feed_issue",
+      "result": "PASS"
+    },
+    {
+      "check": "order_consent_dedup_attribution_profit_gates",
+      "result": "PASS"
+    },
+    {
+      "check": "no_prohibited_retries_or_new_order_query",
+      "result": "PASS"
+    },
+    {
+      "check": "no_business_mutations_or_support_contact",
+      "result": "PASS"
+    },
+    {
+      "check": "owned_background_exact_account_tab_recovery",
+      "result": "PASS"
+    },
+    {
+      "check": "no_login_account_or_permission_recovery",
+      "result": "PASS"
+    },
+    {
+      "check": "paid_NONE_and_parent_sales_clock_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "canonical_continuation_pointer",
+      "result": "PASS"
+    }
+  ],
+  "accepted_summary": {
+    "exact_strength_delta": "US ad79508657389070/campaign506254907/group1272136755587035 and DE ad78890182372245/campaign506254908/group1262241151661314 show Good in the Sep14 grid; the bound Sep12 grid showed Pending. This is a changed diagnostic label, not an editorial approval or performance result.",
+    "editorial": "All three delivery-popup pages per ad expose Campaign paused, Ad group paused and Ad paused. The Attributes picker search returned No results and was canceled. Whole-ad editorial remains UNVERIFIED; popup and picker scope are not an exhaustive policy inventory. Full copy/assets were not replayed.",
+    "metrics": "Partial Today Sep14: two filtered ads and all13 rendered campaign rows remain Paused with the stated zero activity. Native1h click/impression,2h UET and5h non-UET lag retained. CPC/CPA/ROAS are undefined for zero denominators. Native timezone label is not reinterpreted as a fixed offset or cutoff.",
+    "scope": "The two filtered ads are not all42 unfiltered ads. Configured daily budgets are caps, not actual spend or fresh authority. Shopping Campaign paused is not evidence that the earlier product-offer issue was repaired.",
+    "receiver_and_economics": "Existing one-purchase receipt is retained separately. Exact order/value/currency/items, consent source, sender deduplication, paid attribution, costs and profit remain open/unknown. No new Shopify order query or support contact.",
+    "recovery": "The bound owner receipt records an absent prior task tab, one new owned background exact-account tab, initial navigation timeout, then one supported listTabs/getTab recovery after the page loaded. No second tab, personal browser, login, account switch or permission action is reported.",
+    "no_prohibited_retries": "No prior failed export, new purchase/consent test, completed import or forecast retry. Columns canceled; business mutation counters all zero. Paid scope NONE and parent19:04:53UTC sales clock preserved."
+  },
+  "evidence_pointers": {
+    "current_strength": "readback.json:34–76; READBACK.md:3–5",
+    "dated_baseline": "heartbeat-20260912-1438/rsa_asset_policy_readback.json:11–18,210–217,418–423",
+    "current_partial_metrics_and_limits": "readback.json:99–162; READBACK.md:7",
+    "owned_tab_recovery": "readback.json:19–32; READBACK.md:9",
+    "preserved_dependencies_and_mutations": "readback.json:164–205; READBACK.md:11–13"
+  },
+  "findings": [],
+  "limits": [
+    "No independent live replay or raw tool-trace reconstruction. PASS accepts consistency and bounded interpretation of the supplied owner receipts.",
+    "Good ad strength is not whole-ad editorial acceptance, serving eligibility, creative improvement or measured performance.",
+    "Partial Today zeros do not replace a completed-day report or establish future/no historical spend; ratios remain undefined.",
+    "The bound JSON says a new handoff mark is needed; final handoff completion is not established by these two files.",
+    "No feed repair, purchase identity, consent repair, paid authority or profit is accepted."
+  ],
+  "secondary_AU_challenge": {
+    "old_AU_manifest": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.contained_release_20260911/au-en.manifest.json",
+      "sha256": "cd100dcad21bcbe4c7a887d0ae8ac980bb0e3d10b643ac243e6a2d99dca9a270",
+      "rows": 4761,
+      "market": {
+        "key": "au-en",
+        "country": "AU",
+        "locale": "en",
+        "currency": "AUD",
+        "marketId": "gid://shopify/Market/544866401"
+      },
+      "source_completed_at": "2026-09-11T21:48:12.073Z"
+    },
+    "US_delta": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/candidate_source_delta_checks.json",
+      "sha256": "f295980d4a8e4407fd127832b77d89b335f594f8197299e6c42cad9707fd7cbf"
+    },
+    "all20_US_omission_variants_present_once_in_old_AU_manifest": true,
+    "mapped_AU_offer_count": 20,
+    "current_AU_native_membership": "UNVERIFIED",
+    "current_AU_source_contextual_prices_and_availability": "UNVERIFIED",
+    "minimum_next_evidence": [
+      "Fresh native before-state of existing manual AU10727245667 source: account513542500, AU/en/AU label, Free listings only, current received timestamp/count/issues and source-qualified membership of the two20-ID parent cohorts.",
+      "Use the existing AU-only build.mjs --market au-en --live source-read path with the last submitted contained AU manifest; bind a fresh complete ACTIVE scan, AU market/catalog/publication, AUD contextual prices/availability, exact variants and AU landing context. Preserve current six-parent holds and unchanged shipping/return source qualification; do not reuse US prices or force a4741-row result.",
+      "Independently review exact fresh AU delta against last submitted AU file; account for every addition/removal/field change, verify all retained prices and six protected AU offers, preserve paid exclusion and holds, and qualify any changed AU shipping/return/buyer facts before a same-source upload. No hosting/source/scheduler change follows from preparation."
+    ],
+    "confirmed_baseline": "The latest saved submitted AU source was File(manual), account513542500/source10727245667, AU/en/AU label, Free listings,4761 rows receivedSep11 22:43:01UTC. Its saved source clock isSep11 21:48:12.073UTC. Twenty mapped variants from the fresh US active-scan omission set appear once each in that old AU manifest.",
+    "hypothesis_not_conclusion": "Potential AU stale membership warrants a current AU read and fresh local candidate. It does not establish current AU membership, a failed AU fetch, archive/deletion cause, or applicability of US contextual price/currency/shipping facts.",
+    "existing_source_path": "automation_release_v1/bin/build.mjs with --config international_candidate_config.json --market au-en --live; use the last actually submitted contained AU manifest as the previous baseline and a fresh local output directory. The saved AU source-build receipt establishes source_only=true and publication=false for this path.",
+    "minimum_verification_before_release": "Review the exact fresh AU file, full delta and preserved holds/price/variant/landing/currency/publication bindings; requalify only changed or unsupported AU shipping/return/buyer facts. Preserve earlier exceptions and policy limits. A local candidate is preparation; any later same-source upload needs the existing owner's current exact scope, before-state, independent review and native received/count/protected-offer after-state.",
+    "exclusions": "No forced4741 count, copying US prices or shipping, timestamp restamp, new hold/source/scheduler/hosting, public/GCS download retry, paid enablement, or blanket buyer harness.",
+    "references": [
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.contained_release_20260911/google_receipt_20260911.json",
+        "lines": "4–32,42–45",
+        "sha256": "3cd97eb8acc94736e709dddf55b50d65d5a0335a0a74cbb229b93864d3164ba3"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.contained_release_20260911/au-en.manifest.json",
+        "lines": "3–15,4779–4783",
+        "sha256": "cd100dcad21bcbe4c7a887d0ae8ac980bb0e3d10b643ac243e6a2d99dca9a270"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.fresh_containment_source_build_20260911.json",
+        "sha256": "e1e56c34146d8f6f119c72d8bb1d598d00c1b7b13c1e45d00fbad154988b113e"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate_config.json",
+        "sha256": "6be63f2712324d9a3d0bddf750b1f46616e5e910e9cecb15073c3b17754163ed"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.full_cohort_qualification_20260911.json",
+        "lines": "2999–3010,4841",
+        "sha256": "7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a"
+      }
+    ]
+  },
+  "parent_next_action": "Accept the bounded Microsoft diagnostic update without reopening paid/editorial/receiver gates; use the existing Merchant owner for current AU diagnosis and fresh AU-only local candidate preparation.",
+  "continuation_prompt": "ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

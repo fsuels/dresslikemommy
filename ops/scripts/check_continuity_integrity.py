@@ -13,6 +13,7 @@ import re
 import subprocess
 import sys
 from dataclasses import dataclass
+from datetime import date, timedelta
 from pathlib import Path
 
 
@@ -52,7 +53,9 @@ PINTEREST_FEED_GROUPING_FRESHNESS_MARKER = (
 )
 
 COCKPIT_HTML = MARKETING / "operator_cockpit.html"
+COCKPIT_RENDERER = OPS / "scripts" / "render_marketing_cockpit.py"
 COCKPIT_SOURCES = [
+    COCKPIT_RENDERER,
     MARKETING / "operator_cockpit.md",
     MARKETING / "current_marketing_state.md",
     MARKETING / "action_queue.md",
@@ -69,6 +72,25 @@ SPEND_CORE_FILES = [
     MARKETING / "blocker_board.md",
     MARKETING / "operator_cockpit.md",
     COCKPIT_HTML,
+]
+
+MARKETING_FRESHNESS_FILES = {
+    "current_marketing_state": MARKETING / "current_marketing_state.md",
+    "action_queue": MARKETING / "action_queue.md",
+    "daily_scorecard": MARKETING / "daily_scorecard.md",
+}
+MARKETING_CONTROL_START = "<!-- MARKETING_AUTHORITATIVE_CONTROL:START -->"
+MARKETING_CONTROL_END = "<!-- MARKETING_AUTHORITATIVE_CONTROL:END -->"
+MAX_LIVE_STATE_AGE_DAYS = 7
+MAX_ROOT_BOOTSTRAP_BYTES = 10 * 1024
+MAX_PAID_GROWTH_INSTRUCTION_BYTES = 16 * 1024
+
+LISTING_LOCALIZATION_CLOSEOUT = OPS / "scripts" / "finalize_shopify_listing_localization.py"
+LISTING_LOCALIZATION_WORKFLOW_FILES = [
+    OPS / "prompts" / "START-HERE.md",
+    OPS / "prompts" / "shopify-listing-master-prompt.md",
+    OPS / "prompts" / "shopify-listing-from-1688.md",
+    ROOT / "docs" / "agent-loops" / "product-listing-localization-loop.md",
 ]
 
 
@@ -208,7 +230,334 @@ def check_spend_authority_agreement() -> CheckResult:
 
     if failures:
         return CheckResult("spend_authority_agreement", False, "; ".join(failures))
-    return CheckResult("spend_authority_agreement", True, f"core command-layer files agree on {status}")
+    return CheckResult(
+        "spend_authority_agreement",
+        True,
+        f"core files agree on standing record {status}; semantic control determines effective action authority",
+    )
+
+
+def parse_reconciled_date(text: str) -> date | None:
+    match = re.search(r"^Last reconciled:\s*(\d{4}-\d{2}-\d{2})\b", text, re.MULTILINE)
+    if not match:
+        return None
+    try:
+        return date.fromisoformat(match.group(1))
+    except ValueError:
+        return None
+
+
+def parse_authoritative_control(text: str) -> dict[str, str]:
+    start = text.find(MARKETING_CONTROL_START)
+    end = text.find(MARKETING_CONTROL_END)
+    if start == -1 or end == -1 or end <= start:
+        return {}
+    block = text[start + len(MARKETING_CONTROL_START) : end]
+    return {
+        key: value
+        for key, value in re.findall(
+            r"^-\s+`([a-z_]+)`:\s+`([^`\n]+)`\s*$",
+            block,
+            re.MULTILINE,
+        )
+    }
+
+
+def green_action_rows(action_queue_text: str) -> list[str]:
+    return re.findall(
+        r"^\|[^|\n]+\|\s*GREEN\s*\|[^\n]*$",
+        action_queue_text,
+        re.MULTILINE,
+    )
+
+
+def has_green_action(action_queue_text: str) -> bool:
+    return bool(green_action_rows(action_queue_text))
+
+
+def evaluate_marketing_semantic_freshness(
+    state_text: str,
+    action_queue_text: str,
+    scorecard_text: str,
+    *,
+    today: date,
+    spend_status: str | None = None,
+) -> CheckResult:
+    texts = {
+        "current_marketing_state": state_text,
+        "action_queue": action_queue_text,
+        "daily_scorecard": scorecard_text,
+    }
+    reconciled_dates: dict[str, date] = {}
+    for name, text in texts.items():
+        reconciled = parse_reconciled_date(text)
+        if reconciled is None:
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                f"{name} is missing a valid Last reconciled YYYY-MM-DD date",
+            )
+        if reconciled > today:
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                f"{name} has a future Last reconciled date {reconciled.isoformat()}",
+            )
+        reconciled_dates[name] = reconciled
+
+    control = parse_authoritative_control(state_text)
+    if not control:
+        oldest_age = max((today - value).days for value in reconciled_dates.values())
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            "missing authoritative marketing control block"
+            + (f"; oldest command-layer readback is {oldest_age} days old" if oldest_age else ""),
+        )
+
+    required_fields = {
+        "control_as_of",
+        "source_live_evidence_as_of",
+        "live_state_mode",
+        "live_readback_fresh_until",
+        "autonomous_action_ready",
+        "effective_approval_policy",
+        "approved_external_scope",
+        "next_best_action",
+        "supersedes_execution_readiness_below",
+    }
+    missing_fields = sorted(required_fields - control.keys())
+    if missing_fields:
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            f"authoritative control block is missing: {', '.join(missing_fields)}",
+        )
+
+    control_dates: dict[str, date] = {}
+    for field in ("control_as_of", "source_live_evidence_as_of"):
+        try:
+            parsed = date.fromisoformat(control[field])
+        except ValueError:
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                f"{field} must be YYYY-MM-DD",
+            )
+        if parsed > today:
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                f"{field} cannot be in the future",
+            )
+        control_dates[field] = parsed
+
+    if control["supersedes_execution_readiness_below"] != "true":
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            "authoritative control block must supersede older execution-readiness labels",
+        )
+    if control_dates["source_live_evidence_as_of"] > control_dates["control_as_of"]:
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            "source_live_evidence_as_of cannot be later than control_as_of",
+        )
+
+    mode = control["live_state_mode"]
+    green_action = has_green_action(action_queue_text)
+    if mode == "STALE_READBACK_REQUIRED":
+        expected = {
+            "live_readback_fresh_until": "EXPIRED",
+            "autonomous_action_ready": "false",
+            "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+            "approved_external_scope": "NONE",
+            "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+        }
+        mismatches = [
+            f"{key}={control[key]!r} (expected {value!r})"
+            for key, value in expected.items()
+            if control[key] != value
+        ]
+        if mismatches:
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                "stale mode is not fail-closed: " + "; ".join(mismatches),
+            )
+        if green_action:
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                "stale mode cannot coexist with a GREEN action-queue row",
+            )
+        oldest = min(reconciled_dates.values())
+        return CheckResult(
+            "marketing_semantic_freshness",
+            True,
+            "stale command layer is explicitly fail-closed; "
+            f"oldest readback {oldest.isoformat()}, next action read-only reconciliation",
+        )
+
+    if mode != "LIVE_CURRENT":
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            f"unknown live_state_mode {mode!r}",
+        )
+
+    stale_control_dates = [
+        f"{name}={(today - value).days}d"
+        for name, value in control_dates.items()
+        if (today - value).days > MAX_LIVE_STATE_AGE_DAYS
+    ]
+    if stale_control_dates:
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            "LIVE_CURRENT control evidence exceeds semantic freshness limit: "
+            + ", ".join(stale_control_dates),
+        )
+
+    stale_files = [
+        f"{name}={(today - reconciled).days}d"
+        for name, reconciled in reconciled_dates.items()
+        if (today - reconciled).days > MAX_LIVE_STATE_AGE_DAYS
+    ]
+    if stale_files:
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            "LIVE_CURRENT exceeds semantic freshness limit: " + ", ".join(stale_files),
+        )
+    source_date = control_dates["source_live_evidence_as_of"]
+    lagging_files = [
+        name
+        for name, reconciled in reconciled_dates.items()
+        if reconciled < source_date
+    ]
+    if lagging_files:
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            "LIVE_CURRENT command-layer date predates source evidence: "
+            + ", ".join(lagging_files),
+        )
+
+    try:
+        fresh_until = date.fromisoformat(control["live_readback_fresh_until"])
+    except ValueError:
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            "LIVE_CURRENT live_readback_fresh_until must be YYYY-MM-DD",
+        )
+    if fresh_until < today:
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            f"LIVE_CURRENT readback expired on {fresh_until.isoformat()}",
+        )
+    maximum_fresh_until = (
+        control_dates["source_live_evidence_as_of"]
+        + timedelta(days=MAX_LIVE_STATE_AGE_DAYS)
+    )
+    if fresh_until > maximum_fresh_until:
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            "LIVE_CURRENT fresh-until date exceeds the evidence-age limit: "
+            f"{fresh_until.isoformat()} > {maximum_fresh_until.isoformat()}",
+        )
+
+    ready = control["autonomous_action_ready"]
+    if ready not in {"true", "false"}:
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            "autonomous_action_ready must be true or false",
+        )
+    if ready == "true":
+        if spend_status != "APPROVED_ACTIVE":
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                "autonomous action requires spend_authorization Status APPROVED_ACTIVE",
+            )
+        if control["effective_approval_policy"] != "APPROVED_ACTIVE_WITHIN_CAPS":
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                "autonomous action requires APPROVED_ACTIVE_WITHIN_CAPS",
+            )
+        if control["approved_external_scope"] == "NONE":
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                "autonomous action requires a non-empty approved_external_scope",
+            )
+        green_rows = green_action_rows(action_queue_text)
+        if not green_rows:
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                "autonomous action requires at least one GREEN action-queue row",
+            )
+        approved_scope = control["approved_external_scope"]
+        exact_scope_marker = f"`{approved_scope}`"
+        if not any(exact_scope_marker in row for row in green_rows):
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                "approved_external_scope must be named exactly in backticks in a GREEN action-queue row",
+            )
+    else:
+        if control["effective_approval_policy"] != "FRESH_ACTION_TIME_APPROVAL_REQUIRED":
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                "non-autonomous LIVE_CURRENT mode requires FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+            )
+        if control["approved_external_scope"] != "NONE":
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                "non-autonomous LIVE_CURRENT mode requires approved_external_scope=NONE",
+            )
+        if green_action:
+            return CheckResult(
+                "marketing_semantic_freshness",
+                False,
+                "GREEN action-queue row requires autonomous_action_ready=true",
+            )
+
+    return CheckResult(
+        "marketing_semantic_freshness",
+        True,
+        f"live command layer is current through {fresh_until.isoformat()}; autonomous_action_ready={ready}",
+    )
+
+
+def check_marketing_semantic_freshness() -> CheckResult:
+    missing = [
+        rel(path)
+        for path in MARKETING_FRESHNESS_FILES.values()
+        if not path.exists()
+    ]
+    if missing:
+        return CheckResult(
+            "marketing_semantic_freshness",
+            False,
+            f"missing command-layer file(s): {', '.join(missing)}",
+        )
+    return evaluate_marketing_semantic_freshness(
+        read_text(MARKETING_FRESHNESS_FILES["current_marketing_state"]),
+        read_text(MARKETING_FRESHNESS_FILES["action_queue"]),
+        read_text(MARKETING_FRESHNESS_FILES["daily_scorecard"]),
+        today=date.today(),
+        spend_status=parse_spend_status(),
+    )
 
 
 def check_cockpit_freshness() -> CheckResult:
@@ -344,7 +693,73 @@ def check_agent_bootstrap_parity() -> CheckResult:
         return CheckResult("agent_bootstrap_parity", False, "AGENTS.md or CLAUDE.md is missing")
     if agents.read_bytes() != claude.read_bytes():
         return CheckResult("agent_bootstrap_parity", False, "AGENTS.md and CLAUDE.md are not byte-for-byte identical")
-    return CheckResult("agent_bootstrap_parity", True, "AGENTS.md and CLAUDE.md are byte-for-byte identical")
+    root_bytes = agents.stat().st_size
+    marketing_guide = MARKETING / "AGENTS.md"
+    marketing_bytes = marketing_guide.stat().st_size if marketing_guide.exists() else 0
+    paid_growth_chain_bytes = root_bytes + marketing_bytes
+    if root_bytes > MAX_ROOT_BOOTSTRAP_BYTES:
+        return CheckResult(
+            "agent_bootstrap_parity",
+            False,
+            f"root bootstrap is {root_bytes} bytes; compact below {MAX_ROOT_BOOTSTRAP_BYTES}",
+        )
+    if paid_growth_chain_bytes > MAX_PAID_GROWTH_INSTRUCTION_BYTES:
+        return CheckResult(
+            "agent_bootstrap_parity",
+            False,
+            f"root plus paid-growth bootstrap is {paid_growth_chain_bytes} bytes; compact below {MAX_PAID_GROWTH_INSTRUCTION_BYTES}",
+        )
+    return CheckResult(
+        "agent_bootstrap_parity",
+        True,
+        "AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass "
+        f"(root={root_bytes}, root+paid-growth={paid_growth_chain_bytes} bytes)",
+    )
+
+
+def check_listing_localization_workflow() -> CheckResult:
+    if not LISTING_LOCALIZATION_CLOSEOUT.exists():
+        return CheckResult(
+            "listing_localization_workflow",
+            False,
+            f"missing {rel(LISTING_LOCALIZATION_CLOSEOUT)}",
+        )
+
+    closeout_text = read_text(LISTING_LOCALIZATION_CLOSEOUT)
+    required_closeout_markers = [
+        "poll_shopify_product_translations.py",
+        "--min-age-seconds",
+        "--force-refresh",
+        "audit_shopify_product_translation_completeness.py",
+        "repair_localized_product_size_charts.py",
+        "audit_localized_size_chart_variant_mapping.py",
+    ]
+    missing_markers = [marker for marker in required_closeout_markers if marker not in closeout_text]
+
+    missing_files: list[str] = []
+    missing_references: list[str] = []
+    for path in LISTING_LOCALIZATION_WORKFLOW_FILES:
+        if not path.exists():
+            missing_files.append(rel(path))
+            continue
+        if "finalize_shopify_listing_localization.py" not in read_text(path):
+            missing_references.append(rel(path))
+
+    if missing_markers or missing_files or missing_references:
+        details = []
+        if missing_markers:
+            details.append(f"closeout missing marker(s): {', '.join(missing_markers)}")
+        if missing_files:
+            details.append(f"missing workflow file(s): {', '.join(missing_files)}")
+        if missing_references:
+            details.append(f"workflow file(s) do not require closeout: {', '.join(missing_references)}")
+        return CheckResult("listing_localization_workflow", False, "; ".join(details))
+
+    return CheckResult(
+        "listing_localization_workflow",
+        True,
+        "synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits",
+    )
 
 
 def run_checks() -> list[CheckResult]:
@@ -354,9 +769,11 @@ def run_checks() -> list[CheckResult]:
         check_alternate_worklogs(),
         check_prompt_anchor_policy(anchor),
         check_spend_authority_agreement(),
+        check_marketing_semantic_freshness(),
         check_cockpit_freshness(),
         check_marketing_integration_audit(),
         check_pinterest_feed_grouping(),
+        check_listing_localization_workflow(),
         check_agent_bootstrap_parity(),
     ]
 

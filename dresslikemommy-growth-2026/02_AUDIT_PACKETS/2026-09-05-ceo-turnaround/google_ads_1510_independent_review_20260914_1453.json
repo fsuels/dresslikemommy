@@ -1,0 +1,375 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-09-14T15:30:47.306Z",
+  "reviewer": "/root/claim_lookup_cause",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "HIGH_FOR_EXACT_SAVED_BINDINGS_AND_VALUES; NO_INDEPENDENT_LIVE_REPLAY",
+  "scope": "Independent bounded saved-source review of the unsolicited completed Google Ads1510 owner receipt. No dispatch, live call, canonical edit, source edit, credential read, code change or extra report replay.",
+  "owned_artifact": "/private/tmp/dlm-google-1510-independent-review.json",
+  "bindings": {
+    "receipt": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260914_1510.json",
+      "sha256": "5a43e9903af32ff0b20463c40c7ca16360f70f8c911254b6cc41cd1668f6eeeb"
+    },
+    "owner_checks": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/FOLLOWUP_20260914_1510_CHECKS.json",
+      "sha256": "b2371f9cd2e7368abed2ba280267cd4271038e3da9eeb13ccd9707ad4f1c1408"
+    },
+    "source_bindings": [
+      {
+        "name": "previous_followup",
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260914_1110.json",
+        "sha256": "d985511e967f9aaeefcf710e02bad1c9279ddc981cce1a9e84ba838073945e7f"
+      },
+      {
+        "name": "latest_exact_editor_before_today",
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260914_0656.json",
+        "sha256": "465e26121fbf1ae1c3aec1b1340fe89fb6dee9ccffd958b99bfb41e2e7c60b18"
+      },
+      {
+        "name": "recovery_method",
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/EDITOR_RECOVERY_20260911.json",
+        "sha256": "e01509a47ca795bb87b9adc6e233895258609c2a5f5917c9002d586e3fdda6b6"
+      },
+      {
+        "name": "reviewed_copy",
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/COPY_CHANGE_PLAN.json",
+        "sha256": "b1b7a7a475f6bec8beb7769dbcaf87981b83facb515635790bf449c9d0fa0a15"
+      },
+      {
+        "name": "existing_copy_review",
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/EXACT_COPY_PRE_SAVE_REVIEW.json",
+        "sha256": "ecc6ea17f713360efc31130b4dfc14d934b929db667a8a844c90b43209634b36"
+      },
+      {
+        "name": "all_eighteen_local_completion",
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_remaining_native_demand_20260914_1236/execution_checkpoint.json",
+        "sha256": "7a15e7145ae1d071c93f1591f2a5691f7076456b5b51ac8167b6f14ed16b2704"
+      }
+    ]
+  },
+  "validation": {
+    "independent_passed": 55,
+    "independent_total": 55,
+    "checks": [
+      {
+        "check": "exact_receipt_hash",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_owner_checks_hash",
+        "result": "PASS"
+      },
+      {
+        "check": "owner50_checks_bound_to_current_receipt",
+        "result": "PASS"
+      },
+      {
+        "check": "source_binding_previous_followup",
+        "result": "PASS"
+      },
+      {
+        "check": "source_binding_latest_exact_editor_before_today",
+        "result": "PASS"
+      },
+      {
+        "check": "source_binding_recovery_method",
+        "result": "PASS"
+      },
+      {
+        "check": "source_binding_reviewed_copy",
+        "result": "PASS"
+      },
+      {
+        "check": "source_binding_existing_copy_review",
+        "result": "PASS"
+      },
+      {
+        "check": "source_binding_all_eighteen_local_completion",
+        "result": "PASS"
+      },
+      {
+        "check": "prior_review_binds_exact_payload_and_target",
+        "result": "PASS"
+      },
+      {
+        "check": "original_full27_before_and27_after_unique_fields",
+        "result": "PASS"
+      },
+      {
+        "check": "exact18_changed_and9_unchanged_fields",
+        "result": "PASS"
+      },
+      {
+        "check": "restored_exact_frozen18_changes",
+        "result": "PASS"
+      },
+      {
+        "check": "eight_headlines_five_long_four_descriptions_one_business",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Headline 5 of 15",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Headline 6 of 15",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Headline 7 of 15",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Headline 8 of 15",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Headline 9 of 15",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Headline 10 of 15",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Headline 14 of 15",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Headline 15 of 15",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Long headline 1 of 5",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Long headline 2 of 5",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Long headline 3 of 5",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Long headline 4 of 5",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Long headline 5 of 5",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Description 1 of 5",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Description 2 of 5",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Description 3 of 5",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Description 4 of 5",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_change_Business name",
+        "result": "PASS"
+      },
+      {
+        "check": "all18_changes_cover_delta_once",
+        "result": "PASS"
+      },
+      {
+        "check": "all27_actual_recorded_after_values_match_frozen_after",
+        "result": "PASS"
+      },
+      {
+        "check": "current_native_before27_and18_matching_reported",
+        "result": "PASS"
+      },
+      {
+        "check": "raw_DOM_limit_explicit",
+        "result": "PASS"
+      },
+      {
+        "check": "all_four_protected_DOM_comparisons_reported_equal",
+        "result": "PASS"
+      },
+      {
+        "check": "media_counts_and_final_URL_preserved",
+        "result": "PASS"
+      },
+      {
+        "check": "old_editor23_is_dated_evidence_not_current",
+        "result": "PASS"
+      },
+      {
+        "check": "same_task_browser_metadata_identity",
+        "result": "PASS"
+      },
+      {
+        "check": "current_inventory_contains_report_only_no_editor_or_GA4",
+        "result": "PASS"
+      },
+      {
+        "check": "no_old_handle_probes_or_missing_tab_cause_inference",
+        "result": "PASS"
+      },
+      {
+        "check": "new_editor2_exact_target_and_distinct_provider",
+        "result": "PASS"
+      },
+      {
+        "check": "turn_scoped_handoff_and_owned_report_cleanup",
+        "result": "PASS"
+      },
+      {
+        "check": "saved_target_and_selected_customer_exact",
+        "result": "PASS"
+      },
+      {
+        "check": "saved_campaign_paused_Poor_budget5",
+        "result": "PASS"
+      },
+      {
+        "check": "Today_ET_partial_zero_sample",
+        "result": "PASS"
+      },
+      {
+        "check": "currency_fresh_ISO_limit_retained",
+        "result": "PASS"
+      },
+      {
+        "check": "unsaved_restoration_and_identity_gate",
+        "result": "PASS"
+      },
+      {
+        "check": "only18_editor_fills_all_other_action_counters_zero",
+        "result": "PASS"
+      },
+      {
+        "check": "no_new_copy_or_policy_acceptance",
+        "result": "PASS"
+      },
+      {
+        "check": "no_GA4_order_purchase_report_replay",
+        "result": "PASS"
+      },
+      {
+        "check": "paid_NONE_and_autonomy_unchanged",
+        "result": "PASS"
+      },
+      {
+        "check": "parent_sales_clock_and_owner_theme_preserved",
+        "result": "PASS"
+      },
+      {
+        "check": "canonical_continuation_pointer",
+        "result": "PASS"
+      }
+    ],
+    "original_operator_checks_preserved": 50,
+    "original_operator_check_result": "50/50 PASS",
+    "source_bindings_checked": 6
+  },
+  "editor_comparison": {
+    "counts": {
+      "before": 27,
+      "changed": 18,
+      "unchanged": 9,
+      "after": 27,
+      "media_regions_reported_identical": 4
+    },
+    "exact_change_split": {
+      "headlines": 8,
+      "long_headlines": 5,
+      "descriptions": 4,
+      "business_name": 1
+    },
+    "original_frozen_before_hash": "224daca563289be4e79f348999e989dc22f0ffd337bf035c1c43c22c7ad6188e",
+    "frozen_and_recorded_after_hash": "e488cb61187121b1aa8c00bb6ba6c9232751f0fa8eb63fad10e3658f12c93541",
+    "hash_method": "SHA256 of the flattened27-field JSON map using sorted keys and compact separators.",
+    "independently_verified": "Complete frozen27-value before/after maps differ at exactly18 fields; restored_fields equals every frozen field/slot/before/after/character record; all27 recorded current after values exactly equal the reviewed after map. Nine values, including Final URL, are unchanged.",
+    "native_before_limit": "Current-native27-before equality and all18 before-value matches are recorded operator comparisons. The full raw current-before DOM was not persisted, so this reviewer cannot independently recompute that native comparison.",
+    "media_limit": "Images, Logos, Videos and Sitelinks DOM equality is reported true, with counts20/2/0 and final URL unchanged. Raw media DOM was not persisted; independent media recomputation was NOT RUN.",
+    "new_copy_generated": false,
+    "save_attempts": 0,
+    "identity_attempts": 0,
+    "saved_after_state": "NOT_ESTABLISHED",
+    "operational_result": "Reviewed copy restored in an unsaved editor according to the owner receipt. Live campaign repair remains PARTIAL/BLOCKED by normal identity/Save acceptance."
+  },
+  "target_and_report": {
+    "selected_customer_id": "6509972886",
+    "routing_ocid": "8520129103",
+    "campaign_id": "24247604341",
+    "asset_group_id": "6746545742",
+    "selected_native_account_label": "DLM 650-997-2886 [selected]",
+    "saved_campaign_state": "PAUSED",
+    "saved_strength": "Poor",
+    "configured_budget_display": "$5.00/day",
+    "currency_limit": "USD is qualified historical same-account context; fresh native ISO not reread.",
+    "period": "Partial Today, Sep14,2026, native (GMT-04:00) Eastern Time; report processing finality unverified.",
+    "observed_sample": "0 clicks,0 impressions,$0.00 cost,0 conversions,0 conversion value. No historical/future zero-spend, profitable performance or complete policy acceptance inference.",
+    "zero_denominator_limit": "CPC, CPA and ROAS are not established by this zero-activity sample.",
+    "asset_scope": "Partial saved asset rows show Not eligible / Campaign is paused. No complete asset policy audit, new disapproval or saved-review acceptance."
+  },
+  "browser_handoff": {
+    "task_id": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+    "browser_id": "1",
+    "tab_id": "2",
+    "provider_tab_id": "browser-use:1b82be59-d2fc-4d4e-ba0a-5368395f7611",
+    "handoff_mark_reported": true,
+    "same_task_codexSessionId_matches": true,
+    "inventory_basis": "The current same-task inventory contains the new owned report1 only; no matching editor or GA4 property-report URL. This is scoped inventory evidence, not a global browser claim.",
+    "historical_editor": "Tab23/provider e919… was present in the dated0656 receipt; it is not treated as a current or transferable handle.",
+    "old_handle_probes_reported": false,
+    "new_editor_target": "Exact Google assetgroup/edit route for campaign24247604341/group6746545742 and routing ocid8520129103.",
+    "owned_report1_closed": true,
+    "missing_surface_cause": "UNKNOWN",
+    "lifetime": "Reported mark_handoff_called=true for the new editor2. Mark is turn-scoped and must be renewed when appropriate; survival is not guaranteed.",
+    "personal_browser_actions": 0,
+    "no_broader_task_or_browser_repair_claim": true
+  },
+  "preserved_boundaries": {
+    "paid_scope": "NONE",
+    "autonomous_action_ready": false,
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "only_editor_fills": 18,
+    "all_other_reported_action_counters": 0,
+    "no_Save_Apply_auth_retry": true,
+    "no_asset_upload_or_campaign_creation": true,
+    "no_budget_bid_status_goal_change": true,
+    "no_GA4_order_purchase_or_completed_keyword_replay": true,
+    "no_new_theme_publication": true,
+    "owner_theme": "137888792673",
+    "retained_MAIN": "133290917985",
+    "parent_full_sales_read_due_at_utc": "2026-09-14T19:04:53Z",
+    "source_and_shared_files_unchanged_by_reviewer": true
+  },
+  "findings": [],
+  "evidence_line_pointers": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260914_1510.json",
+    "browser_reconciliation": 47,
+    "ads_readback": 74,
+    "editor_restoration": 107,
+    "protected_regions_dom_identical": 270,
+    "actions": 300,
+    "authority_context": 316,
+    "peer_evidence_reused": 290
+  },
+  "residual_limits": [
+    "Saved-source consistency review only; no independent native replay.",
+    "Native current-before and media-region equality rely on reported operator comparisons because complete raw DOM was not persisted.",
+    "Editor restoration is not accepted Save, completed identity verification, publication or saved campaign repair.",
+    "Handoff marking is not a guaranteed editor lifetime or evidence of why an older tab disappeared.",
+    "Partial Today zero metrics do not establish full-day finality, usable performance, purchase identity, attribution or profit.",
+    "Prior exact-copy pre-save review remains bounded; its saved-after acceptance conditions have not been fulfilled."
+  ],
+  "next_action": "Parent may integrate this bounded unsaved-restoration result. Preserve current owned editor2 for the existing normal owner identity/Save step; only after actual acceptance should saved values be independently read back. Do not repeat unchanged Save/authentication attempts or duplicate the existing question.",
+  "continuation_prompt": "ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

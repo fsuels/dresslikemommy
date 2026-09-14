@@ -1,0 +1,91 @@
+{
+  "classification": "VERIFY",
+  "disposition": "HOLD_WITH_EVIDENCE__CONTEXT_FALLBACK_USED",
+  "automation_wake_utc": "2026-09-14T02:43:58.383Z",
+  "recorded_at_utc": "2026-09-14T02:49:24.895976+00:00",
+  "task": "TA-15",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "uet_id": "36005151",
+  "microsoft_focused_anchor": "2026-09-13-microsoft-keyword-ceiling-qualified",
+  "later_index_receipt": "2026-09-13-ceo-ads-draft-read-failure-and-late-channel-receipts; only its explicit Microsoft22:43 source section adopted, not Google account ownership or editor state.",
+  "retrieval": {
+    "brief_file": "heartbeat-20260914-0243-compiled-brief.txt",
+    "brief_sha256": "9a94bfb15f97c6a60c9b9d34ee6c00af26b0fffabb3fd97ae1be47ac99c6b06c",
+    "reproduced_google_claim_attached_to_ta15": true,
+    "observed": "The Microsoft brief links queueTA-15 to Google Ads coordination row24 and reports a queue/claim mismatch. The mixed latest anchor includesTA-15 as a peer receipt.",
+    "exact_fallback": "Read queue184, complete coordination24 and35 and mixed anchor51007-51031. Row35 explicitly retains root01a08703 as Microsoft477439 sole writer. Row24 is the separate Ads6509972886 owner. No actual ownership contradiction or transfer inferred.",
+    "implementation_status": "Compiler not changed. A potential retrieval false association is documented for the shared context owner; causal code path not traced.",
+    "authority_effect": "NONE: all freshness, support, paid and peer gates preserved."
+  },
+  "current_native_readback": {
+    "method": "One fresh reload on task-owned browser1/tab7; generic consent notice closed once, Continue0; completed campaign table read.",
+    "url": "https://ui.ads.microsoft.com/campaign/vnext/campaigns?aid=477439&cid=770182&uid=2290164",
+    "report_date": "2026-09-13",
+    "coverage": "Partial current account day despite September14 UTC wake",
+    "time_zone_label": "(GMT-05:00) Eastern Time (U.S. & Canada)",
+    "individual_campaign_rows": 13,
+    "current_statuses": "All Paused",
+    "ui_overall_metrics": {
+      "Spend": "0.00",
+      "Revenue": "0.00",
+      "Conv.": "0.00",
+      "Clicks": "0",
+      "Impr.": "0",
+      "Total spend": "0.00"
+    },
+    "legacy_shopping": "Existing Product offers not found remains visible on paused291767342; no new failure or repair established.",
+    "limitations": "Current-day UI values may lag. No CSV export, new receiver trace, Shopify join or profit proof. Zero-denominator efficiency ratios are undefined. Historical unavailable CSV cells remain unchanged."
+  },
+  "purchase_and_cost_evidence": {
+    "full_source": "Existing parent20:49:22-23UTC orders /20:49:49-50UTC fulfillment; adopted in previous22:43 checkpoint.",
+    "later_creation_only": "Parent mixed anchor now indexes exact Ads-owner interval[2026-09-13T20:49:22Z,2026-09-13T22:56:45Z) returning0EXACT all-new/non-test-web/paid-non-test-web orders. Parent-indexed dated evidence only, not a Microsoft live query or full lifecycle refresh.",
+    "new_purchase_sample_supplied": false,
+    "next_full_read_due_at_utc": "2026-09-14T08:49:22Z",
+    "limits": "No absence of orders after22:56:45UTC asserted. Actual costs, settlement, attribution, consent/purchase acceptance and retained profit remain UNKNOWN."
+  },
+  "decision": "No new supported publisher/contact answer, purchase sample, qualified campaign input or paid authority. Preserve initial paused builds and completed studies; do not repeat app/consent/planner/import work. Refer the reproducible context issue to its owner if still present.",
+  "scope_receipt": {
+    "reloads": 1,
+    "notice_close": 1,
+    "notice_continue": 0,
+    "native_saves": 0,
+    "imports": 0,
+    "planner_runs": 0,
+    "paid_enablements": 0,
+    "support_sends": 0,
+    "order_queries": 0,
+    "new_tracking_tests": 0,
+    "shared_canonical_or_code_writes": 0,
+    "automation_updates": 0,
+    "new_user_questions": 0,
+    "new_agent_assignments": 0
+  },
+  "browser_handoff": {
+    "browser": "1",
+    "tab": "7",
+    "page": "Campaigns",
+    "marked_handoff": true,
+    "open_dialogs": 0
+  },
+  "machine_fields": {
+    "source_live_evidence_as_of": "2026-09-14",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "decision_depends_on_uncertain_state": true,
+    "decision_changing_evidence": "Existing support-contact answer or supported publisher change, genuine purchase/cost evidence or exact paid authority.",
+    "if_evidence_supports_recommendation": "Resume only the corresponding authorized bounded action.",
+    "if_evidence_opposes_recommendation": "Retain hold; no bid raise, import, consent workaround or ownership transfer.",
+    "material_decision": "NOT_MATERIAL"
+  },
+  "verification": {
+    "json_roundtrip": "PASS",
+    "brief_reproduction": "CONFIRMED",
+    "native_readback": "PASS_WITH_LIMITS",
+    "new_independent_review": "SKIPPED: no consequential repair or paid decision",
+    "shared_continuity_checks": "SKIPPED: own evidence only; no shared canonical or code changes"
+  },
+  "next_action": "Supported consent repair after existing contact answer or publisher change, followed by genuine purchase acceptance. Preserve parent08:49:22UTC full-sales clock.",
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

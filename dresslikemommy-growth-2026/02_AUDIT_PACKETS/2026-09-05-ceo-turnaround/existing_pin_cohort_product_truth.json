@@ -1,0 +1,441 @@
+{
+  "schema_version": 1,
+  "task": "Existing organic Pin category and sold-unit source qualification",
+  "created_at": "2026-09-06 15:32:54 UTC",
+  "owner": "/root/shopify_merchant_connection_repair",
+  "root_execution_owner": "/root",
+  "store_context": {
+    "expected": "dresslikemommy-com.myshopify.com",
+    "identity_basis": "Repository exact product GIDs/handles matched fresh dedicated Shopify search/get results. These dedicated responses do not return a shop identity field; no independent current shop query was made."
+  },
+  "scope": {
+    "pin_ids": [
+      "343118065386636481",
+      "343118065386636478",
+      "343118065386636463"
+    ],
+    "product_ids": [
+      "7545279217761",
+      "7545373130849",
+      "7546613530721"
+    ],
+    "external_writes": 0,
+    "browser_actions": 0,
+    "public_http_requests": 0,
+    "graphql_code_authored": false,
+    "no_new_orders_or_customers_queried": true
+  },
+  "tool_evidence": {
+    "search": {
+      "tool": "mcp__codex_apps__shopify_search_products",
+      "args": {
+        "first": 4,
+        "search_query": "id:7545279217761 OR id:7545373130849 OR id:7546613530721",
+        "sort_key": "ID"
+      },
+      "start": "2026-09-06 15:29:55 UTC",
+      "end": "2026-09-06 15:29:56 UTC",
+      "products_returned": 3,
+      "pageInfo": {
+        "hasNextPage": false
+      },
+      "errors": false
+    },
+    "get": {
+      "tool": "mcp__codex_apps__shopify_get_product",
+      "requests": [
+        {
+          "id": "gid://shopify/Product/7545279217761"
+        },
+        {
+          "id": "gid://shopify/Product/7545373130849"
+        },
+        {
+          "id": "gid://shopify/Product/7546613530721"
+        }
+      ],
+      "calls": 3,
+      "errors": false,
+      "total_variants_returned": 39,
+      "pagination_note": "Dedicated get exposes no variant cursor. Returned variant arrays equal reported totalVariants (8, 10, 21), establishing complete scoped lists. Search returns only a five-variant preview; decisions use dedicated get."
+    },
+    "sanitization": "Saved only allowed product fields, variant IDs/titles/prices, and bounded buyer-facing source quotes. Supplier/vendor/source URLs, SKUs, inventory quantities and unnecessary full bodies were omitted. Hashes bind these sanitized source snapshots, not raw connector responses or complete description bytes."
+  },
+  "root_supplied_evidence": {
+    "claim": "Fresh Pinterest profile titles prepend Matching Mommy and Me Dresses for these three exact Pins.",
+    "verification_by_subagent": "NOT RUN; parent owns Pinterest native before-state and copy execution.",
+    "red_resort_landing_followup": "Parent freshly observed MAIN Red Resort rendering the internal mother-daughter draft sentence and Draft-first setup block. Parent-supplied rendered evidence; not independently replayed by this subagent."
+  },
+  "products": [
+    {
+      "pin_id": "343118065386636481",
+      "product_name": "Scarlet Ruffle",
+      "lookup_expected_product_id": "7545279217761",
+      "observation": {
+        "start": "2026-09-06 15:30:05 UTC",
+        "end": "2026-09-06 15:30:07 UTC"
+      },
+      "source_snapshot": {
+        "id": "gid://shopify/Product/7545279217761",
+        "handle": "scarlet-ruffle-mommy-and-me-set",
+        "title": "Scarlet Ruffle Mommy and Me Tank Top - Breezy Beach Top",
+        "status": "ACTIVE",
+        "productType": "Matching Family Tops",
+        "currencyCode": "USD",
+        "search_updatedAt": "2026-09-06T10:34:06Z",
+        "variant_count": 8,
+        "variants": [
+          {
+            "id": "gid://shopify/ProductVariant/44116028522593",
+            "title": "Tank Top / Child 3 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116028555361",
+            "title": "Tank Top / Child 4 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116028588129",
+            "title": "Tank Top / Child 5 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116028620897",
+            "title": "Tank Top / Child 6-7 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116028653665",
+            "title": "Tank Top / Child 8 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116028686433",
+            "title": "Tank Top / Child 9-10 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116028719201",
+            "title": "Tank Top / Mother S",
+            "price": "28.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116028751969",
+            "title": "Tank Top / Mother M",
+            "price": "28.99"
+          }
+        ],
+        "buyer_source_quotes": [
+          "Scarlet Ruffle is a vivid red ruffle tank top. Pants, bottoms, and accessories are not included.",
+          "This listing is for the tank top only.",
+          "Includes the red ruffle top; bottoms and styling pieces shown in photos are not included."
+        ]
+      },
+      "source_assertions": {
+        "all_variants_returned": true,
+        "product_body_supports_sold_unit": true,
+        "variant_labels_support_sold_unit": true,
+        "title_matches_search": true,
+        "status_matches_search": true
+      },
+      "verified_shopify_offer": "One tank top for one selected wearer and size; bottoms and accessories excluded.",
+      "eligible_for": "Source-based correction of this existing organic Pin's category and sold-unit copy; root must verify exact native target, image/destination fit, authority and unchanged non-target fields.",
+      "verdict": "PASS_SCOPED_PRODUCT_TRUTH",
+      "suggested_pin_copy": {
+        "title": "Scarlet Ruffle Mommy and Me Tank Tops",
+        "description": "Coordinate a mother-and-daughter look with Scarlet Ruffle red tank tops. Each selection is one top; bottoms and accessories are not included. Choose each person's size separately.",
+        "status": "LOCAL_PROPOSAL_ONLY",
+        "basis": "Current product title/body and complete variant labels; no material, fit, availability, shipping, return, discount, price or profit claims."
+      },
+      "inferred_intent": "An accurate product category and explicit sold unit should reduce expectation mismatch for matching mother-and-daughter outfit searches. This is an unmeasured hypothesis, not evidence of ranking, traffic, conversion or profit lift.",
+      "risks_and_limits": [
+        "Fabric composition and measurements were not independently verified.",
+        "Current source includes chart/provenance language; rendered exposure was not checked."
+      ],
+      "historical_context": null,
+      "source_snapshot_sha256": "33b545cefa7cb35ecd43e81502dcc813eb6bbc2cb3ec0f8223250ca8af108e10"
+    },
+    {
+      "pin_id": "343118065386636478",
+      "product_name": "Red Resort",
+      "lookup_expected_product_id": "7545373130849",
+      "observation": {
+        "start": "2026-09-06 15:30:05 UTC",
+        "end": "2026-09-06 15:30:07 UTC"
+      },
+      "source_snapshot": {
+        "id": "gid://shopify/Product/7545373130849",
+        "handle": "red-resort-mommy-and-me-set",
+        "title": "Red Resort Mommy and Me Set - Tee and Skirt",
+        "status": "ACTIVE",
+        "productType": "Matching Family Sets",
+        "currencyCode": "USD",
+        "search_updatedAt": "2026-09-06T10:34:25Z",
+        "variant_count": 10,
+        "variants": [
+          {
+            "id": "gid://shopify/ProductVariant/44116578467937",
+            "title": "Two-Piece Set / Child 4 Years",
+            "price": "28.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116578500705",
+            "title": "Two-Piece Set / Child 5 Years",
+            "price": "28.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116578533473",
+            "title": "Two-Piece Set / Child 6-7 Years",
+            "price": "28.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116578566241",
+            "title": "Two-Piece Set / Child 8 Years",
+            "price": "28.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116578599009",
+            "title": "Two-Piece Set / Child 9-10 Years",
+            "price": "28.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116578631777",
+            "title": "Two-Piece Set / Mother S",
+            "price": "31.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116578664545",
+            "title": "Two-Piece Set / Mother M",
+            "price": "31.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116621721697",
+            "title": "Two-Piece Set / Mother L",
+            "price": "31.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116621754465",
+            "title": "Two-Piece Set / Mother XL",
+            "price": "31.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116621787233",
+            "title": "Two-Piece Set / Mother 2XL",
+            "price": "31.99"
+          }
+        ],
+        "buyer_source_quotes": [
+          "Complete red short-sleeve top plus white pleated skirt set; hats, bags, sunglasses, and shoes are styling props only.",
+          "Each size includes both the red top and the white pleated skirt."
+        ]
+      },
+      "source_assertions": {
+        "all_variants_returned": true,
+        "product_body_supports_sold_unit": true,
+        "variant_labels_support_sold_unit": true,
+        "title_matches_search": true,
+        "status_matches_search": true
+      },
+      "verified_shopify_offer": "One two-piece outfit per selected wearer and size: one tee plus one skirt. Mother and child outfits require separate selections.",
+      "eligible_for": "Source-based correction of this existing organic Pin's category and sold-unit copy; root must verify exact native target, image/destination fit, authority and unchanged non-target fields.",
+      "verdict": "PASS_SCOPED_PRODUCT_TRUTH",
+      "suggested_pin_copy": {
+        "title": "Red Resort Mommy and Me Tee & Skirt Sets",
+        "description": "Coordinate red-and-white mother-daughter outfits with Red Resort. Each size selection includes one red tee and one white pleated skirt for one person. Choose mother and child sizes separately; styling accessories are not included.",
+        "status": "LOCAL_PROPOSAL_ONLY",
+        "basis": "Current product title/body and complete variant labels; no material, fit, availability, shipping, return, discount, price or profit claims."
+      },
+      "inferred_intent": "An accurate product category and explicit sold unit should reduce expectation mismatch for matching mother-and-daughter outfit searches. This is an unmeasured hypothesis, not evidence of ranking, traffic, conversion or profit lift.",
+      "risks_and_limits": [
+        "Adult skirt measurements are unavailable in the current body and May 6 correction history; no fit or measurement promise is proposed.",
+        "Fabric composition was not independently verified.",
+        "Current source contains internal draft/selector/chart prose; rendered exposure was not checked."
+      ],
+      "historical_context": {
+        "status": "RESOLVED_HISTORICAL_CONFLICT",
+        "detail": "Initial separate Top/Skirt draft was corrected after the owner clarified that top and skirt are sold together. Later selector correction established ten complete-set variants, agreeing with the current source.",
+        "source": "ops/AGENT_WORKLOG.md",
+        "anchors": [
+          "2026-05-06-red-resort-complete-set-correction",
+          "2026-05-06-red-resort-vendor-size-selector-correction",
+          "2026-05-06-red-resort-skirt-size-guide-correction"
+        ],
+        "line_reference": "29035–29149"
+      },
+      "source_snapshot_sha256": "325cd18b619fbcefea75b893f77714fc9f486a61b281a2fba0582f7c46ffb389"
+    },
+    {
+      "pin_id": "343118065386636463",
+      "product_name": "Golden Daisy",
+      "lookup_expected_product_id": "7546613530721",
+      "observation": {
+        "start": "2026-09-06 15:30:05 UTC",
+        "end": "2026-09-06 15:30:07 UTC"
+      },
+      "source_snapshot": {
+        "id": "gid://shopify/Product/7546613530721",
+        "handle": "golden-daisy-mommy-and-me-set",
+        "title": "Golden Daisy Mommy & Me Matching Separates",
+        "status": "ACTIVE",
+        "productType": "Matching Family Sets",
+        "currencyCode": "USD",
+        "search_updatedAt": "2026-09-06T10:34:35Z",
+        "variant_count": 21,
+        "variants": [
+          {
+            "id": "gid://shopify/ProductVariant/44197959270497",
+            "title": "Top / Child 2 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44197959303265",
+            "title": "Top / Child 3 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44197959336033",
+            "title": "Top / Child 4 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44197959368801",
+            "title": "Top / Child 5 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44197959401569",
+            "title": "Top / Child 6-7 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44197959434337",
+            "title": "Top / Child 8 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44197959467105",
+            "title": "Top / Child 9-10 Years",
+            "price": "25.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44197959499873",
+            "title": "Top / Mother S",
+            "price": "26.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44197959532641",
+            "title": "Top / Mother M",
+            "price": "26.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44197959565409",
+            "title": "Top / Mother L",
+            "price": "26.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44197959598177",
+            "title": "Pants / Child 1-2 Years",
+            "price": "27.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44173814333537",
+            "title": "Pants / Child 2 Years",
+            "price": "26.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44173814366305",
+            "title": "Pants / Child 3 Years",
+            "price": "26.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44173814399073",
+            "title": "Pants / Child 4 Years",
+            "price": "26.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44173814431841",
+            "title": "Pants / Child 5 Years",
+            "price": "26.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44173814464609",
+            "title": "Pants / Child 6-7 Years",
+            "price": "26.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44173814497377",
+            "title": "Pants / Child 8 Years",
+            "price": "26.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44173814530145",
+            "title": "Pants / Child 9-10 Years",
+            "price": "26.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44173814562913",
+            "title": "Pants / Mother S",
+            "price": "26.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44173814595681",
+            "title": "Pants / Mother M",
+            "price": "27.99"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44173814628449",
+            "title": "Pants / Mother L",
+            "price": "27.99"
+          }
+        ],
+        "buyer_source_quotes": [
+          "Choose the top or pants separately.",
+          "Type options let shoppers choose the top or pants instead of assuming a bundled set."
+        ]
+      },
+      "source_assertions": {
+        "all_variants_returned": true,
+        "product_body_supports_sold_unit": true,
+        "variant_labels_support_sold_unit": true,
+        "title_matches_search": true,
+        "status_matches_search": true
+      },
+      "verified_shopify_offer": "One separately selected top or pair of pants for one wearer and size. Top and pants are not bundled.",
+      "eligible_for": "Source-based correction of this existing organic Pin's category and sold-unit copy; root must verify exact native target, image/destination fit, authority and unchanged non-target fields.",
+      "verdict": "PASS_SCOPED_PRODUCT_TRUTH",
+      "suggested_pin_copy": {
+        "title": "Golden Daisy Mommy and Me Tops & Pants",
+        "description": "Build a coordinated mother-and-daughter look with Golden Daisy. Tops and pants are sold separately. Choose the piece, wearer, and size for each item, and select each person's pieces individually.",
+        "status": "LOCAL_PROPOSAL_ONLY",
+        "basis": "Current product title/body and complete variant labels; no material, fit, availability, shipping, return, discount, price or profit claims."
+      },
+      "inferred_intent": "An accurate product category and explicit sold unit should reduce expectation mismatch for matching mother-and-daughter outfit searches. This is an unmeasured hypothesis, not evidence of ranking, traffic, conversion or profit lift.",
+      "risks_and_limits": [
+        "Child 1–2 Years is a Pants-only option; no corresponding Top variant returned.",
+        "Fabric composition and measurements were not independently verified.",
+        "Current Admin body contains an embedded Admin breadcrumb and internal draft/chart-code prose. Historical theme sanitizer evidence means this is not proof of current public exposure.",
+        "No discount or bundled-family price is established or proposed."
+      ],
+      "historical_context": {
+        "status": "HISTORICAL_CORROBORATION_ONLY",
+        "detail": "Existing top-restore receipt records separate Top/Pants options. May 12 problem entry documents local removal of a false automatic-discount promise and local description sanitization.",
+        "source": "ops/listings/golden-daisy-top-restore-report.json",
+        "problem_source": "ops/PROBLEM_TRACKER.md",
+        "problem_ids": [
+          "PROB-2026-05-12-PDP-BUNDLE-DISCOUNT-MISMATCH",
+          "PROB-2026-05-12-GOLDEN-DAISY-PDP-87-CRO-HARDENING"
+        ]
+      },
+      "source_snapshot_sha256": "c333ae3bf0da60f803bab16be4221a7232b39f42ed5d716a5f8b824f8215d3f2"
+    }
+  ],
+  "shared_limits": [
+    "ACTIVE does not itself prove channel publication, current public availability, market reachability or checkout. This subtask did not independently verify those surfaces.",
+    "No current Pin or product image was visually inspected by this subagent. Photo/copy/destination fit remains root's native/rendered check.",
+    "No supplier facts, fabric composition, chart measurements, fulfillment promises, inventory availability, discount, CPA/ROAS or expected sales lift are certified.",
+    "This is organic existing-Pin copy qualification. It grants no Shopping/Search campaign, product/feed-scope or spend authority.",
+    "Historical files are dated context. Fresh source results take precedence for current product options."
+  ],
+  "source_hash_encoding": "UTF-8 JSON, ensure_ascii=False, sort_keys=True, separators=(comma,colon), no final newline; only sanitized source_snapshot object"
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "dlm.au_release_readback_checks.v1",
+  "at_utc": "2026-09-14T15:51:32.425953+00:00",
+  "status": "RECEIVING_AND_SAMPLE_EVIDENCE_VALID__OVERALL_PARTIAL",
+  "checks": {
+    "review_receipt_hash_matches": true,
+    "all_final_receipt_bindings_match": true,
+    "all_frozen_preparation_files_unchanged": true,
+    "all_frozen_code_config_holds_unchanged": true,
+    "one_exact_selection_and_one_upload": true,
+    "upload_within_reviewed_freshness_window": true,
+    "actual_receiving4741_zero_new": true,
+    "actual_receiving_recognized_noissues": true,
+    "all_required12_native_sample_checks_pass": true,
+    "pending20_native_omission_gap_not_hidden": true,
+    "pending_source_count_gap_not_hidden": true,
+    "original_three_failed_assumptions_preserved": true,
+    "no_other_external_writes_recorded": true
+  },
+  "checks_passed": 13,
+  "checks_total": 13,
+  "repository_checks": {
+    "strict_continuity": "CONTINUITY_OK",
+    "scoped_git_diff_check": "PASS"
+  },
+  "open_operational_acceptance": {
+    "source_count_equals4741": false,
+    "twenty_omitted_ids_absent_from_current_source": false
+  },
+  "handoff_sha256": "06be3a8c4a2cdec9b5d47e92a1b038fef489594abde0e75ebeaea6f8f941c1cd",
+  "limits": "Evidence validation does not convert the two explicit open operational acceptance items into a pass."
+}

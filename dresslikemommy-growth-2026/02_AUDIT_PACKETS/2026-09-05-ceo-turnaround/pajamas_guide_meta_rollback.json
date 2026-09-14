@@ -1,0 +1,17 @@
+{
+  "status": "PREPARED_NOT_RUN",
+  "query": "mutation RestoreGuideDescriptionAbsence($metafields: [MetafieldIdentifierInput!]!) { metafieldsDelete(metafields: $metafields) { userErrors { field message } } }",
+  "variables": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Article/559471886433",
+        "namespace": "global",
+        "key": "description_tag"
+      }
+    ]
+  },
+  "schema": "Mutation.metafieldsDelete, MetafieldIdentifierInput and MetafieldsDeletePayload observed",
+  "validation": "Connector PASS guide-meta-rollback-20260906 revision1",
+  "guard": "Use only if necessary after verifying exact article, newly created metafield ID, value and digest match applied receipt; no concurrent writer. Delete has no atomic CAS, so stop if drift or concurrency. Never delete any other field.",
+  "external_writes": 0
+}

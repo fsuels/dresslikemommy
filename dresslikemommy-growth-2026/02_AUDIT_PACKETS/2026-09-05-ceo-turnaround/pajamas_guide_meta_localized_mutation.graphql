@@ -1,0 +1,1 @@
+mutation RegisterGuideDescriptions($resourceId: ID!, $translations: [TranslationInput!]!) { translationsRegister(resourceId: $resourceId, translations: $translations) { translations { key locale value outdated } userErrors { field message } } }

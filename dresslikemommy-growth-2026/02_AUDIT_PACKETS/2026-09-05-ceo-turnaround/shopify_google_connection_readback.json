@@ -1,0 +1,246 @@
+{
+  "record_created_at_utc": "2026-09-06T05:46:02Z",
+  "observation_date": "2026-09-06",
+  "operator": "shopify_merchant_connection_repair",
+  "task_stage": "HANDOFF",
+  "status": "LOCAL_RETAIL_SYNC_REPAIR_IMPLEMENTED_AND_VERIFIED_BY_ROOT__APP_ACCESS_UNRESOLVED",
+  "scope": {
+    "browser_id": "2",
+    "profile": "test",
+    "tab_id": "475224124",
+    "store": "dresslikemommy-com",
+    "settings_url": "https://admin.shopify.com/store/dresslikemommy-com/apps/google/settings",
+    "overview_url": "https://admin.shopify.com/store/dresslikemommy-com/apps/google/overview",
+    "expected_merchant_id": "124884876",
+    "historical_ads_customer_id": "3990976848",
+    "historical_business_manager_id": "om-1794417514559008712"
+  },
+  "authority": {
+    "user_requested_connection_repair": true,
+    "user_named_exact_settings_page": true,
+    "external_write_owner": "root",
+    "subagent_permission": "DIAGNOSE_AND_PREPARE_ONLY",
+    "standing_paid_control": "STALE_READBACK_REQUIRED",
+    "standing_approved_external_scope": "NONE",
+    "standing_control_changed": false
+  },
+  "settings_observations": {
+    "google_identity_matches_owner_designated_test_identity": true,
+    "merchant_shown_connected": "124884876",
+    "analytics_shown_connected": {
+      "measurement_id": "G-N4EQNK0MMB",
+      "property_id": "330266838"
+    },
+    "connected_services_display_count": 2,
+    "google_business_profile_control": "Connect",
+    "product_sync_display": "On",
+    "countries_and_languages_sync_display": "On",
+    "shipping_information_sync_display": "On",
+    "product_titles_sync_display": "On",
+    "product_descriptions_sync_display": "On",
+    "conversion_measurement_display": "On",
+    "local_inventory_retail_locations_sync_display": "On",
+    "notification_summary_initial": "3 of 3 notifications turned on",
+    "notification_summary_after_navigation": "0 of 3 notifications turned on",
+    "notification_edits_by_operator": false,
+    "display_state_is_not_source_ingestion_proof": true
+  },
+  "overview_observations": {
+    "merchant_center_status": "Inactive",
+    "merchant_center_section": "Impactful opportunities",
+    "merchant_center_action": "Get started with Google Merchant Center",
+    "google_ads_status": "Error",
+    "google_ads_error": "Google Ads account issue There is an issue with your Google Ads account. Please check your account in Google Ads for details.",
+    "product_listing_counts_visible": false,
+    "error_toast": "An error occurred. Please try again later.",
+    "error_toast_seen_again_on_settings_return": true
+  },
+  "retail_locations_dialog_before_state": {
+    "title": "Retail locations",
+    "automatic_sync": "On",
+    "action_button": "Turn off automatic sync for all locations",
+    "description": "Automatically syncs your local inventory with all current and future Google Business Profile locations",
+    "location_count_visible": 1,
+    "location_address_and_label": "OMITTED",
+    "save_enabled": false,
+    "turn_off_clicked": false,
+    "save_clicked": false
+  },
+  "parent_supplied_current_evidence": {
+    "provenance": "Root agent message during this same task; not independently read by this subagent",
+    "merchant_id": "124884876",
+    "merchant_destination": "https://merchants.google.com/noaccess",
+    "outcome": "Current connected Google identity explicitly lacks access to the exact Merchant account",
+    "normal_existing_identity_selected_only": true,
+    "global_account_switch_or_alternate_account_inspection": false
+  },
+  "diagnosis": {
+    "wrong_saved_merchant_link": "NOT_SUPPORTED_BY_CURRENT_SETTINGS",
+    "simple_product_sync_off": "NOT_SUPPORTED_BY_CURRENT_SETTINGS",
+    "app_access_denial": "LIVE_VERIFIED_BY_PARENT",
+    "local_retail_sync_mismatch": "LIVE_UI_VERIFIED__BUSINESS_MODEL_MISMATCH",
+    "cause_of_settings_overview_conflict": "UNKNOWN",
+    "cause_of_error_toast": "UNKNOWN",
+    "local_sync_causes_online_listing_inactivity": "NOT_PROVEN",
+    "online_product_eligibility_or_missing_counts": "NOT_VERIFIED",
+    "overall_causal_confidence": "MEDIUM"
+  },
+  "proposed_repair": {
+    "target": "Google & YouTube settings: Local inventory retail locations automatic sync only",
+    "desired_state": "Off",
+    "owner": "root",
+    "action_status": "HANDED_OFF_NOT_EXECUTED_BY_SUBAGENT",
+    "preconditions": [
+      "Independent action review",
+      "Fresh exact modal state",
+      "Only local retail sync changes"
+    ],
+    "preserve": [
+      "Existing Google identity",
+      "Merchant 124884876",
+      "Analytics property 330266838",
+      "Online product sync",
+      "Country and language sync",
+      "Shipping information sync",
+      "Product title and description sync",
+      "Conversion measurement",
+      "Fulfillment location",
+      "Product quantities"
+    ],
+    "verification": [
+      "Save accepted if attempted",
+      "Reopened modal persists Off",
+      "Same linked IDs",
+      "Online sync controls preserved",
+      "Overview separately rechecked without claiming access restored"
+    ],
+    "kill_criteria": [
+      "Permission or consent prompt",
+      "Unexpected broader scope",
+      "Save failure",
+      "Other settings changed",
+      "Off fails to persist"
+    ],
+    "rollback": "Inverse local retail sync control, using freshly read labels; parent-owned and only if needed",
+    "sales_moving_role": "Remove unsupported physical-retail inventory path; actual online distribution recovery still requires app access and source diagnostics"
+  },
+  "source_and_product_boundaries": {
+    "us_en_age_group": "HISTORICALLY_SOLVED_DO_NOT_REPEAT",
+    "us_es_source_id": "10627981690",
+    "us_es_and_capacity_status": "HISTORICAL_OPEN__FRESH_READBACK_REQUIRED",
+    "active_public_purchasable_cohort_checked": false,
+    "product_photo_title_price_availability_landing_fit_checked": false,
+    "supplier_clean_feed_cohort_checked": false,
+    "product_or_feed_recommendation_released": false,
+    "paid_spend_or_shopping_released": false
+  },
+  "actions_taken": [
+    "Read assigned settings page",
+    "Expanded product settings",
+    "Expanded conversion settings",
+    "Opened normal Google overview",
+    "Returned to settings",
+    "Opened local retail locations modal",
+    "Handed tab to root before any toggle or Save"
+  ],
+  "external_mutations_by_subagent": [],
+  "controls_not_used": [
+    "Disconnect",
+    "Connect",
+    "Get started",
+    "Turn Off",
+    "Save",
+    "Sync",
+    "Billing",
+    "Permissions or consent",
+    "Other-account selectors"
+  ],
+  "evidence_redaction": [
+    "No credentials",
+    "No embedded authentication URL",
+    "No location address",
+    "No supplier details",
+    "No customer data"
+  ],
+  "official_references": [
+    "https://support.google.com/merchants/answer/13709335?hl=en",
+    "https://help.shopify.com/en/manual/online-sales-channels/marketplaces/google/shopping-on-google/local-inventory"
+  ],
+  "parent_execution_addendum": {
+    "source": "shopify_google_settings_repair_execution.json",
+    "source_sha256": "d21ff260d1541acf6553eecb063a51a2680ed3f4f1190594bf7dd73bcf2e96ef",
+    "as_of_utc": "2026-09-06T06:00:29.507925+00:00",
+    "executor": "root",
+    "status": "IMPLEMENTED_AND_PERSISTENCE_VERIFIED",
+    "save_clicks": 1,
+    "normal_settings_reload": true,
+    "local_retail_sync_after": "Off",
+    "reopened_modal": {
+      "automaticSync": "Off",
+      "button": "Turn on automatic sync for all locations",
+      "syncAllLocationsChecked": false,
+      "saveEnabled": false
+    },
+    "preserved_merchant_id": "124884876",
+    "preserved_online_controls": {
+      "productSync": "On",
+      "countryLanguageSync": "On",
+      "shippingInformationSync": "On",
+      "productTitlesSync": "On",
+      "productDescriptionsSync": "On",
+      "conversionMeasurement": "On"
+    },
+    "broader_settings_touched": false,
+    "online_traffic_or_sales_restored": "NOT_ESTABLISHED",
+    "verified_via": "Read root-owned execution receipt; subagent did not independently re-enter browser",
+    "initial_execution_record_as_of_utc": "2026-09-06T05:52:59.458488+00:00",
+    "source_updated_at_utc": "2026-09-06T06:00:29.507925+00:00",
+    "activation_navigation": {
+      "button": "Get started with Google Merchant Center",
+      "outcome": "STOPPED_UNEXPECTED_CONFIRM_DIALOG",
+      "message": "Changes you made may not be saved. Are you sure you want to leave this page?",
+      "visibleCancelAttempt": "Did not dismiss",
+      "documentedFallback": "Existing rich Tab getJsDialog returned confirm; ConfirmDialog.dismiss() used",
+      "dismissalVerified": true,
+      "after": "Overview remained visible with Merchant Inactive; no account created, connected, disconnected or activation confirmed",
+      "retryAllowedWithoutNewEvidence": false
+    },
+    "current_residuals": {
+      "merchantAccountAccess": "Fresh same-identity noaccess response for124884876",
+      "overviewMerchantStatus": "Inactive in both specialist before-repair and root after-repair reads",
+      "overviewAdsStatus": "Google Ads account issue in loaded root after-repair read; subsequent UI briefly omitted Error text, so no resolution inferred",
+      "appError": "Generic error toast occurred during earlier navigation; root did not observe save error",
+      "onlineProductsApproved": "UNKNOWN",
+      "onlineTrafficOrSalesRestored": "NOT_ESTABLISHED"
+    },
+    "other_settings_read": {
+      "checkoutLink": "Off; no change",
+      "installedTags": [
+        {
+          "tag": "G-N4EQNK0MMB",
+          "service": "GA4",
+          "account": "88409806"
+        },
+        {
+          "tag": "GT-WRH8Q3MD",
+          "service": "Merchant",
+          "merchantTag": "MC-MQ104D130Y",
+          "merchantId": "124884876"
+        }
+      ],
+      "manualTagsAdded": 0,
+      "conversionEventSettingsChanged": false,
+      "notificationSettingsChanged": false
+    }
+  },
+  "parent_followup_message": {
+    "provenance": "Root task messages reconciled against expanded execution receipt updated 2026-09-06T06:00:29.507925+00:00",
+    "overview_after_repair": "Inactive in both specialist before-repair and root after-repair reads; Google Ads account issue in loaded root after-repair read; subsequent UI briefly omitted Error text, so no resolution inferred",
+    "google_tag_readback": "Existing GA4 and Merchant tags observed by parent; unchanged",
+    "setup_diagnostic_navigation": "Confirm dialog dismissed through supported ConfirmDialog.dismiss(); cancellation already verified and Overview remained visible. No activation confirmed.",
+    "subagent_guidance": "Existing rich Tab.getJsDialog(); returned confirm object supports dismiss() to Cancel. BeforeUnloadDialog also exposes dismiss(). Read fresh state afterward; no browser action by this subagent.",
+    "actual_dialog_type_returned_by_root": "confirm",
+    "cancellation_already_verified": true,
+    "current_next_state": "Resume supported existing-account access recovery; root is checking current validation of the same already-authorized Google support request. Do not repeat cancellation or completed local-retail sync repair."
+  }
+}

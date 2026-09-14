@@ -1,0 +1,46 @@
+--- revision2/assets/product-desktop-ux-20260513-ruler-sync.js
++++ revision3/assets/product-desktop-ux-20260513-ruler-sync.js
+@@ -2836,6 +2836,12 @@
+     }) || null;
+   }
+ 
++  function decodeMatchingPriceText(value) {
++    var decoder = document.createElement('textarea');
++    decoder.innerHTML = String(value).replace(/</g, '&lt;').replace(/>/g, '&gt;');
++    return decoder.textContent;
++  }
++
+   function updateMatchingPrice() {
+     if (!infoContainer || !productData.default_price_html) return;
+     var priceContainer = document.getElementById('price-' + sectionId);
+@@ -2848,10 +2854,11 @@
+     if (variant) {
+       var regularPrice = price.querySelector('.price__regular .price-item--regular');
+       if (!regularPrice || typeof variant.price_text !== 'string') return;
+-      regularPrice.textContent = variant.price_text;
++      var priceText = decodeMatchingPriceText(variant.price_text);
++      regularPrice.textContent = priceText;
+       price.classList.remove('price--range', 'price--on-sale', 'price--sold-out');
+       price.setAttribute('data-price-variant-id', String(variant.id));
+-      price.setAttribute('data-price-current-text', variant.price_text);
++      price.setAttribute('data-price-current-text', priceText);
+       price.setAttribute('data-price-compare-text', '');
+       price.setAttribute('data-price-available', String(variant.available !== false));
+       price.setAttribute('data-price-on-sale', 'false');
+@@ -2864,14 +2871,14 @@
+       if (hasUnitPrice) {
+         var unitValue = unitPrice.querySelector('.price-item > span:first-child');
+         var unitReference = unitPrice.querySelector('.price-item > span:last-child');
+-        if (unitValue) unitValue.textContent = variant.unit_price_text;
++        if (unitValue) unitValue.textContent = decodeMatchingPriceText(variant.unit_price_text);
+         if (unitReference) unitReference.textContent =
+           (Number(variant.unit_price_reference_value) === 1 ? '' : String(variant.unit_price_reference_value)) +
+           variant.unit_price_reference_unit;
+       }
+     }
+     var nextHtml = template.innerHTML;
+-    if (priceContainer.innerHTML !== nextHtml) priceContainer.innerHTML = nextHtml;
++    if (priceContainer.innerHTML !== nextHtml) priceContainer.replaceChildren(template.content.cloneNode(true));
+   }
+ 
+   function updateSummary() {

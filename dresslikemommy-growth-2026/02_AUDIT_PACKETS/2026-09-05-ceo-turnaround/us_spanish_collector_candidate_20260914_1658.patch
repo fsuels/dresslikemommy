@@ -1,0 +1,328 @@
+--- a/src/collector.js
++++ b/src/collector.js
+@@ -8,6 +8,41 @@
+ function exact(count) {
+   assert(count?.precision === 'EXACT' && Number.isSafeInteger(count.count) && count.count >= 0, 'non_exact_source_count');
+   return count.count;
++}
++
++// Resolve only the requested language. An outdated override is still present:
++// select it before the generator applies its existing freshness failure gate.
++export function resolveTranslationScopes(product, market) {
++  assert(Array.isArray(product.globalTranslations) &&
++    (market.marketId ? Array.isArray(product.marketTranslations) : product.marketTranslations === undefined ||
++      (Array.isArray(product.marketTranslations) && product.marketTranslations.length === 0)), 'translation_scopes_missing');
++  const scoped = (records, marketId) => {
++    const fields = new Map();
++    for (const record of records) {
++      assert(record && typeof record.key === 'string' && record.key && typeof record.value === 'string' &&
++        typeof record.outdated === 'boolean', 'invalid_translation_record');
++      assert(record.locale === market.locale, 'translation_locale_mismatch');
++      assert(marketId ? record.market?.id === marketId : record.market === null, 'translation_scope_mismatch');
++      assert(!fields.has(record.key), 'duplicate_translation_key');
++      fields.set(record.key, record);
++    }
++    return fields;
++  };
++  const global = scoped(product.globalTranslations, null);
++  const overrides = scoped(product.marketTranslations || [], market.marketId ?? null);
++  const translations = [], fields = {};
++  for (const key of ['title', 'body_html', 'handle']) {
++    const record = overrides.has(key) ? overrides.get(key) : global.get(key);
++    if (record) {
++      assert(key !== 'handle' || record.value.trim(), 'empty_handle_translation');
++      translations.push(record);
++      fields[key] = { scope: overrides.has(key) ? 'market' : 'global', locale: record.locale,
++        marketId: record.market?.id ?? null, outdated: record.outdated };
++    } else {
++      fields[key] = { scope: key === 'handle' ? 'source_handle' : 'missing', locale: null, marketId: null, outdated: null };
++    }
++  }
++  return { translations, provenance: { locale: market.locale, marketId: market.marketId ?? null, fields } };
+ }
+ 
+ export function manifestRows(products) {
+@@ -71,7 +106,9 @@
+   if (verifyCatalog) assert(market.expectedCatalogs.length === 1 && market.marketId, 'single_reviewed_catalog_required');
+   const marketContext = verifyCatalog ? await readMarketContext(graphql, market, trace) : null;
+   const publicationVariables = { onlinePublicationId: config.onlinePublicationId, verifyCatalog, catalogPublicationId: verifyCatalog ? market.expectedCatalogs[0].publicationId : config.onlinePublicationId };
+-  const variables = { country: market.country, locale: market.locale, marketId: market.marketId ?? null, ...publicationVariables };
++  const includeTranslations = market.locale !== primary.locale;
++  const variables = { country: market.country, locale: market.locale, marketId: market.marketId ?? null,
++    includeTranslations, includeMarketTranslations: includeTranslations && Boolean(market.marketId), ...publicationVariables };
+   const products = await paginate(
+     after => graphql(PRODUCTS_QUERY, { ...variables, after }), d => d.products, 'products', trace
+   );
+@@ -80,6 +117,11 @@
+   for (let index = 0; index < products.length; index++) {
+     const product = products[index];
+     assert(product.status === 'ACTIVE', 'non_active_parent_returned');
++    if (includeTranslations) {
++      const resolved = resolveTranslationScopes(product, market);
++      product.translations = resolved.translations;
++      product.translationProvenance = resolved.provenance;
++    }
+     const count = exact(product.variantsCount);
+     product.variants = await paginate(async after => {
+       const response = await graphql(VARIANTS_QUERY, { id: product.id, country: market.country, after });
+--- a/src/generator.js
++++ b/src/generator.js
+@@ -1,4 +1,4 @@
+-import { SourceError, manifestRows } from './collector.js';
++import { SourceError, manifestRows, resolveTranslationScopes } from './collector.js';
+ 
+ export const COLUMNS = ['id', 'item_group_id', 'title', 'description', 'link', 'image_link', 'availability', 'price', 'condition', 'brand', 'gtin', 'mpn', 'identifier_exists', 'age_group', 'gender', 'color', 'size', 'return_policy_label', 'excluded_destination'];
+ const SUPPLIER = /(?:alibaba\.com|aliexpress\.com|1688\.com|taobao\.com|tmall\.com)/i;
+@@ -108,9 +108,13 @@
+ }
+ function localizedContent(product, config, market) {
+   if (market.locale === config.sourceLocale) return { title: cleanText(product.title), description: cleanText(product.description), handle: product.handle };
+-  const translations = new Map((product.translations || []).filter(t => t.locale === market.locale && !t.outdated).map(t => [t.key, t.value]));
++  // Old frozen snapshots keep their original unqualified array semantics. New
++  // scoped snapshots are resolved from raw records, never from a cached merge.
++  const scoped = Object.hasOwn(product, 'globalTranslations') || Object.hasOwn(product, 'marketTranslations') || Object.hasOwn(product, 'translationProvenance');
++  const records = scoped ? resolveTranslationScopes(product, market).translations : product.translations || [];
++  const translations = new Map(records.filter(t => t.locale === market.locale && !t.outdated).map(t => [t.key, t.value]));
+   assert(translations.get('title') && translations.get('body_html'), 'missing_or_stale_translation');
+-  const staleHandle = (product.translations || []).some(t => t.locale === market.locale && t.key === 'handle' && t.outdated);
++  const staleHandle = records.some(t => t.locale === market.locale && t.key === 'handle' && t.outdated);
+   assert(!staleHandle, 'stale_handle_translation');
+   return { title: cleanText(translations.get('title')), description: htmlToText(translations.get('body_html')), handle: translations.get('handle') || product.handle };
+ }
+--- a/src/queries.js
++++ b/src/queries.js
+@@ -30,7 +30,8 @@
+ 
+ export const PRODUCTS_QUERY = `query MerchantFeedProducts(
+   $after: String, $country: CountryCode!, $locale: String!, $marketId: ID,
+-  $onlinePublicationId: ID!, $catalogPublicationId: ID!, $verifyCatalog: Boolean!
++  $onlinePublicationId: ID!, $catalogPublicationId: ID!, $verifyCatalog: Boolean!,
++  $includeTranslations: Boolean!, $includeMarketTranslations: Boolean!
+ ) {
+   products(first: 25, after: $after, sortKey: ID, query: "status:active") {
+     nodes {
+@@ -42,7 +43,8 @@
+       variantsCount { count precision }
+       featuredMedia { ... on MediaImage { image { url } } }
+       category { id name fullName }
+-      translations(locale: $locale, marketId: $marketId) { key value locale outdated }
++      globalTranslations: translations(locale: $locale) @include(if: $includeTranslations) { key value locale outdated market { id } }
++      marketTranslations: translations(locale: $locale, marketId: $marketId) @include(if: $includeMarketTranslations) { key value locale outdated market { id } }
+       taxonomyGender: metafield(namespace: "shopify", key: "target-gender") {
+         references(first: 5) { nodes { ... on Metaobject { displayName } } pageInfo { hasNextPage endCursor } }
+       }
+--- /dev/null
++++ b/test/translation-scopes.test.mjs
+@@ -0,0 +1,212 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { collectCatalog } from '../src/collector.js';
++import { buildFeed } from '../src/generator.js';
++import { PRODUCTS_QUERY } from '../src/queries.js';
++import { config, market, now, product, snapshot, source } from './fixtures.js';
++
++const target = { ...market, key: 'us-es', locale: 'es', marketId: 'gid://shopify/Market/544735329',
++  landingBaseUrl: `${market.landingBaseUrl}/es`, landingQuery: { country: 'US', currency: 'USD' } };
++const global = (key, value, outdated = false) => ({ key, value, locale: 'es', outdated, market: null });
++const override = (key, value, outdated = false) => ({ ...global(key, value, outdated), market: { id: target.marketId } });
++function translated(id = 1) {
++  const p = product(id);
++  delete p.translations;
++  p.globalTranslations = [global('title', 'Conjunto azul a juego'), global('body_html', '<p>Conjunto azul de dos piezas.</p>')];
++  p.marketTranslations = [];
++  return p;
++}
++function apiFor(products) {
++  const requests = [];
++  const api = source(products, { intercept: (result, query, variables) => {
++    requests.push({ query, variables });
++    if (query.includes('query MerchantFeedIdentity')) result.shopLocales.push({ locale: 'es', primary: false, published: true });
++  } });
++  return { ...api, requests };
++}
++async function collect(products = [translated()], requested = target) {
++  const api = apiFor(products);
++  return { data: await collectCatalog(api.graphql, config, requested, { now: () => now }), api };
++}
++const build = (data, requested = target) => buildFeed(data, config, requested, { now });
++function failed(result, code) {
++  assert.equal(result.ok, false);
++  assert.equal(result.tsv, null);
++  assert.deepEqual(result.rows, []);
++  assert.deepEqual(result.rowIds, []);
++  assert.ok(result.diagnostics.errors.some(error => error.code === code));
++}
++
++test('one product query distinguishes global and market records with returned scope', () => {
++  assert.match(PRODUCTS_QUERY, /globalTranslations:\s*translations\(locale: \$locale\)/);
++  assert.match(PRODUCTS_QUERY, /marketTranslations:\s*translations\(locale: \$locale, marketId: \$marketId\)/);
++  assert.equal((PRODUCTS_QUERY.match(/market\s*\{\s*id\s*\}/g) || []).length, 2);
++  assert.match(PRODUCTS_QUERY, /globalTranslations:[^\n]+@include\(if: \$includeTranslations\)/);
++  assert.match(PRODUCTS_QUERY, /marketTranslations:[^\n]+@include\(if: \$includeMarketTranslations\)/);
++});
++
++test('absent override uses fresh global Spanish, retains raw scopes and records field provenance', async () => {
++  const p = translated(), original = structuredClone(p);
++  const { data, api } = await collect([p]);
++  assert.equal(api.calls(), 5, 'global and market content must share the existing product-page operation');
++  assert.deepEqual(data.products[0].globalTranslations, original.globalTranslations);
++  assert.deepEqual(data.products[0].marketTranslations, []);
++  assert.deepEqual(data.products[0].translations, original.globalTranslations);
++  assert.deepEqual(data.products[0].translationProvenance, {
++    locale: 'es', marketId: target.marketId,
++    fields: {
++      title: { scope: 'global', locale: 'es', marketId: null, outdated: false },
++      body_html: { scope: 'global', locale: 'es', marketId: null, outdated: false },
++      handle: { scope: 'source_handle', locale: null, marketId: null, outdated: null },
++    },
++  });
++  const request = api.requests.find(r => r.query.includes('query MerchantFeedProducts'));
++  assert.equal(request.variables.includeTranslations, true);
++  assert.equal(request.variables.includeMarketTranslations, true);
++  assert.equal(request.variables.marketId, target.marketId);
++  assert.equal(request.variables.country, 'US');
++  assert.equal(request.variables.locale, 'es');
++  const result = await build(data);
++  assert.equal(result.ok, true);
++  assert.equal(result.rows[0].title, 'Conjunto azul a juego');
++  assert.equal(result.rows[0].description, 'Conjunto azul de dos piezas.');
++  assert.equal(result.rows[0].id, 'shopify_US_1_101');
++  assert.equal(result.rows[0].item_group_id, 'shopify_US_1');
++  assert.equal(result.rows[0].price, '21.90 USD');
++  assert.equal(result.rows[0].link, 'https://www.dresslikemommy.com/es/products/matching-outfit-1?country=US&currency=USD&variant=101');
++  assert.equal(result.rows[0].excluded_destination, 'Shopping_ads');
++  assert.ok(!result.tsv.includes('Matching blue outfit') && !result.tsv.includes('Two-piece blue outfit.'));
++  delete data.products[0].globalTranslations; delete data.products[0].marketTranslations;
++  failed(await build(data), 'translation_scopes_missing');
++});
++
++test('current override wins by field, including over a stale lower-priority global field', async () => {
++  const p = translated(); p.globalTranslations[0].outdated = true;
++  p.marketTranslations = [override('title', 'Conjunto azul para Estados Unidos')];
++  const { data } = await collect([p]), result = await build(data);
++  assert.equal(result.ok, true);
++  assert.equal(result.rows[0].title, 'Conjunto azul para Estados Unidos');
++  assert.equal(result.rows[0].description, 'Conjunto azul de dos piezas.');
++  assert.equal(data.products[0].translationProvenance.fields.title.scope, 'market');
++  assert.equal(data.products[0].translationProvenance.fields.title.marketId, target.marketId);
++  assert.equal(data.products[0].translationProvenance.fields.body_html.scope, 'global');
++  assert.equal(data.products[0].globalTranslations[0].outdated, true);
++});
++
++test('stale title or body override cannot fall through to fresh global content or publish partial rows', async () => {
++  for (const key of ['title', 'body_html']) {
++    const p = translated(); p.marketTranslations = [override(key, 'Contenido del mercado anterior', true)];
++    const { data } = await collect([p, translated(2)]);
++    const selected = data.products[0].translations.find(t => t.key === key);
++    assert.equal(selected.outdated, true);
++    assert.equal(data.products[0].translationProvenance.fields[key].scope, 'market');
++    failed(await build(data), 'missing_or_stale_translation');
++  }
++});
++
++test('missing, stale and empty required global fields fail without English or cached-value fallback', async () => {
++  for (const key of ['title', 'body_html']) {
++    for (const mode of ['missing', 'stale', 'empty']) {
++      const p = translated();
++      if (mode === 'missing') p.globalTranslations = p.globalTranslations.filter(t => t.key !== key);
++      else if (mode === 'stale') p.globalTranslations.find(t => t.key === key).outdated = true;
++      else p.globalTranslations.find(t => t.key === key).value = '';
++      p.translations = [global('title', 'Cached title must not be used'), global('body_html', 'Cached English body must not be used')];
++      const { data } = await collect([p]);
++      failed(await build(data), 'missing_or_stale_translation');
++    }
++  }
++});
++
++test('translated handle uses global then market precedence, with the base handle only when absent', async () => {
++  const p = translated(); p.globalTranslations.push(global('handle', 'conjunto-azul'));
++  let result = await build((await collect([p])).data);
++  assert.ok(result.rows[0].link.includes('/es/products/conjunto-azul?'));
++  p.marketTranslations = [override('handle', 'conjunto-azul-estados-unidos')];
++  p.globalTranslations.find(t => t.key === 'handle').outdated = true;
++  const { data } = await collect([p]); result = await build(data);
++  assert.equal(result.ok, true);
++  assert.ok(result.rows[0].link.includes('/es/products/conjunto-azul-estados-unidos?'));
++  assert.equal(data.products[0].translationProvenance.fields.handle.scope, 'market');
++  p.marketTranslations = []; p.globalTranslations = p.globalTranslations.filter(t => t.key !== 'handle');
++  result = await build((await collect([p])).data);
++  assert.ok(result.rows[0].link.includes('/es/products/matching-outfit-1?'));
++});
++
++test('stale selected handles fail even when a fresh global handle exists', async () => {
++  const p = translated(); p.globalTranslations.push(global('handle', 'conjunto-azul'));
++  p.marketTranslations = [override('handle', 'conjunto-anterior', true)];
++  failed(await build((await collect([p])).data), 'stale_handle_translation');
++  p.marketTranslations = []; p.globalTranslations.find(t => t.key === 'handle').outdated = true;
++  failed(await build((await collect([p])).data), 'stale_handle_translation');
++});
++
++test('an explicit empty translated handle is rejected rather than relabeled as an absent handle', async () => {
++  for (const scope of ['globalTranslations', 'marketTranslations']) {
++    const p = translated(); p[scope].push(scope === 'globalTranslations' ? global('handle', '') : override('handle', ' '));
++    await assert.rejects(collect([p]), /empty_handle_translation/);
++  }
++});
++
++test('new collection requires complete and correctly scoped arrays, locale, boolean freshness and unique keys', async () => {
++  const cases = [
++    [p => { delete p.globalTranslations; }, 'translation_scopes_missing'],
++    [p => { delete p.marketTranslations; }, 'translation_scopes_missing'],
++    [p => { p.globalTranslations[0].market = { id: target.marketId }; }, 'translation_scope_mismatch'],
++    [p => { delete p.globalTranslations[0].market; }, 'translation_scope_mismatch'],
++    [p => { p.marketTranslations = [override('title', 'Otro mercado')]; p.marketTranslations[0].market.id = 'gid://shopify/Market/999'; }, 'translation_scope_mismatch'],
++    [p => { p.globalTranslations[0].locale = 'en'; }, 'translation_locale_mismatch'],
++    [p => { delete p.globalTranslations[0].outdated; }, 'invalid_translation_record'],
++    [p => { p.globalTranslations[0].value = null; }, 'invalid_translation_record'],
++    [p => { p.globalTranslations.push(global('title', 'Otro titulo')); }, 'duplicate_translation_key'],
++  ];
++  for (const [mutate, code] of cases) {
++    const p = translated(); mutate(p);
++    await assert.rejects(collect([p]), new RegExp(code));
++    failed(await build(snapshot([p], target)), code);
++  }
++});
++
++test('a locale without an explicit market resolves global content without assuming market provenance', async () => {
++  const unscoped = { ...target, marketId: null }, p = translated(); delete p.marketTranslations;
++  const { data, api } = await collect([p], unscoped), result = await build(data, unscoped);
++  assert.equal(result.ok, true);
++  assert.equal(data.products[0].translationProvenance.marketId, null);
++  assert.equal(data.products[0].translationProvenance.fields.title.scope, 'global');
++  assert.equal(api.requests.find(r => r.query.includes('query MerchantFeedProducts')).variables.includeMarketTranslations, false);
++});
++
++test('primary-English output keeps its frozen byte hash and does not use the translation scopes', async () => {
++  const p = translated(); p.marketTranslations = [override('title', 'No debe sustituir ingles', true)];
++  const { data, api } = await collect([p], market), result = await build(data, market);
++  assert.equal(result.ok, true);
++  assert.equal(result.sha256, '703b29f94edfe529c12335dfa0dfc6090bb04856a91d239e42058ff41a368c08');
++  assert.equal(data.products[0].translationProvenance, undefined);
++  const variables = api.requests.find(r => r.query.includes('query MerchantFeedProducts')).variables;
++  assert.equal(variables.includeTranslations, false);
++  assert.equal(variables.includeMarketTranslations, false);
++});
++
++test('legacy frozen snapshots preserve their original array behavior without invented scope provenance', async () => {
++  const p = product();
++  p.translations = [global('title', 'Conjunto azul a juego'), global('body_html', '<p>Conjunto azul de dos piezas.</p>')]
++    .map(({ market, ...translation }) => translation);
++  const data = snapshot([p], target), original = structuredClone(data), result = await build(data);
++  assert.equal(result.ok, true);
++  assert.equal(result.sha256, '5e7380292abc62f88dafab3ec1e7f1f198a4f25b1c832d9fb9fa52d96775334d');
++  assert.equal(result.rows[0].title, 'Conjunto azul a juego');
++  assert.equal(result.rows[0].description, 'Conjunto azul de dos piezas.');
++  assert.deepEqual(data, original);
++  assert.equal(data.products[0].translationProvenance, undefined);
++  p.translations[0].outdated = true;
++  failed(await build(data), 'missing_or_stale_translation');
++  await assert.rejects(collect([p]), /translation_scopes_missing/);
++});
++
++test('fresh resolved translations leave the landing verification and snapshot-context gates intact', async () => {
++  const { data } = await collect();
++  failed(await build(data, { ...target, landingContextVerified: false }), 'landing_context_unverified');
++  await assert.rejects(build(data, { ...target, country: 'CA' }), /snapshot_market_mismatch/);
++  await assert.rejects(build(data, { ...target, currency: 'CAD' }), /snapshot_market_mismatch/);
++  await assert.rejects(build(data, { ...target, marketId: 'gid://shopify/Market/999' }), /snapshot_market_mismatch/);
++});

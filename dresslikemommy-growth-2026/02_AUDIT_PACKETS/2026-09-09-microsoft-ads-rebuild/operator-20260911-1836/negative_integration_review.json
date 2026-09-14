@@ -1,0 +1,133 @@
+{
+  "as_of_utc": "2026-09-11T18:56:34.944716+00:00",
+  "status": "PASS_LOCAL_INTEGRATION__NO_IMPORT_OR_ACTIVATION",
+  "reviewer": "root01a08703; did not author the 103 row judgments",
+  "semantic_challenge": {
+    "accepted_with_limits": "All 48 candidates apply only to the advertised fixed Sunshine tee offer, never the store or sibling dress groups. Offer changes and actual mixed-intent queries require re-review.",
+    "rejected_wording": "11 broad French/German/Spanish/Italian phrases remain rejected as written, including maillot, kleider, vestido(s), abito/i and vestito/i.",
+    "alternative_considered": "Promoting these to campaign negatives would block sibling dress intent; explicit ad-group scope is retained. Using no cross-garment seeds also remains a valid native-test choice.",
+    "source_limits": "Current product variants are configuration evidence, not supplier stock or a complete store assortment. Dictionary senses demonstrate ambiguity, not observed lost sales. No native-language certification or query-performance evidence.",
+    "primary_sources": [
+      "https://learn.microsoft.com/en-us/advertising/guides/negative-keywords?view=bingads-13",
+      "https://learn.microsoft.com/en-us/advertising/campaign-management-service/negativekeyword?view=bingads-13",
+      "https://www.larousse.fr/dictionnaires/francais/maillot/48685",
+      "https://www.duden.de/rechtschreibung/Kleid",
+      "https://dle.rae.es/vestido",
+      "https://www.treccani.it/vocabolario/abito/",
+      "https://www.treccani.it/vocabolario/vestito/"
+    ],
+    "root_refreshed_sources": [
+      "Microsoft negative-keyword rules",
+      "Duden Kleid plural sense",
+      "RAE vestido",
+      "Treccani vestito"
+    ],
+    "matching_limits": "Independent token screen is diagnostic only and does not emulate Microsoft negative matching or close variants."
+  },
+  "counts": {
+    "HOLD_SPECIFIC_EVIDENCE": 44,
+    "ROOT_REVIEWED_LOCAL_TEE_RESERVE": 48,
+    "UNCHANGED_STRONG_INTENT_PROPOSAL": 77,
+    "REJECTED_AS_WRITTEN": 11
+  },
+  "initial_dress_stage": {
+    "negative_rows": 14,
+    "new_negative_rows": 0,
+    "tee_ad_groups_added": 0
+  },
+  "checks_passed": 16,
+  "checks": [
+    {
+      "check": "ten frozen source inputs preserved",
+      "passed": true
+    },
+    {
+      "check": "all five reviewer output hashes match",
+      "passed": true
+    },
+    {
+      "check": "exact 103 held source lines reviewed once",
+      "passed": true
+    },
+    {
+      "check": "all reviewed source identities match",
+      "passed": true
+    },
+    {
+      "check": "decision partition reconciles",
+      "passed": true
+    },
+    {
+      "check": "48 qualified candidates retain exact tee ad-group scope",
+      "passed": true
+    },
+    {
+      "check": "qualified landing stays on fixed Sunshine product",
+      "passed": true
+    },
+    {
+      "check": "zero qualified initial dress stage additions",
+      "passed": true
+    },
+    {
+      "check": "independent literal screen finds no same-group collision",
+      "passed": true
+    },
+    {
+      "check": "eight scoped candidates retain explicit sibling conflict warning",
+      "passed": true,
+      "conflicting_candidate_keys": [
+        "local_neg_2c64cc2db6d06fcf",
+        "local_neg_5c482a85e99da226",
+        "local_neg_5d3ee5fb67096bd0",
+        "local_neg_8279693d3de5b71f",
+        "local_neg_96684c494b6da6b4",
+        "local_neg_ab4e254c8056485b",
+        "local_neg_dfff6fd4fe7c4d50",
+        "local_neg_f04899f7b5a17bbd"
+      ]
+    },
+    {
+      "check": "qualified subset is exact",
+      "passed": true
+    },
+    {
+      "check": "priority subset is exact and remains tee reserves",
+      "passed": true
+    },
+    {
+      "check": "14 original initial dress negatives preserved",
+      "passed": true
+    },
+    {
+      "check": "overlay covers all 180 sources without changing originals",
+      "passed": true
+    },
+    {
+      "check": "11 rejected and 44 held rows remain excluded",
+      "passed": true
+    },
+    {
+      "check": "no platform import or activation authorization",
+      "passed": true
+    }
+  ],
+  "overlay": {
+    "path": "effective_negative_review.csv",
+    "sha256": "caaf025bf73a0bc12f37666139915cf159cfc7aad0a859433c36b1d4693d611f",
+    "not_a_platform_import": true
+  },
+  "source_preservation": {
+    "campaign_plan.md": "1617edecc07323215c080245930d051a8e5e7017fdc216d20f73d4cf843a58f0",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839",
+    "keywords.csv": "658a8fef354ae4a299b2692d0dfda50f8c08a9d5f0c2d4fceb0c78351e53e94e",
+    "ad_groups.csv": "448a80f4b78fd0fdc5f94a557e2c512f0959f7d2390743923e4f365eb6b868d8",
+    "responsive_search_ads.csv": "0f8e442dbc8e7d5fc8e5424892ee4a357bf412edd0afdf843eac04c97f000eaa",
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "microsoft_deployed_app_pixel.js": "bdf85b114cb9d9ef5c790dee198f38dd8032c46bc13bdf7ca9f4ee034abc7f29",
+    "microsoft_deployed_storefront_script.js": "171802eab48befd7660099e6ad8c6d0423c14bfeb2b866b14b30694d7f7bce3a",
+    "launch-plan-20260911/shopify_candidate_readback.json": "53716ee712fbbb7f3ca187ffdf8176ecf7503cbf9e3de82e8f9f39874a1e393d",
+    "launch-plan-20260911/launch_contract.json": "06c9a560060b9d46048b50d5ee829a538d2512ed7f8cad39be718c523a8181b1"
+  },
+  "rollback": "Stop using this dated overlay and revert its campaign-plan pointer; all original CSVs remain byte-identical. No external rollback required."
+}

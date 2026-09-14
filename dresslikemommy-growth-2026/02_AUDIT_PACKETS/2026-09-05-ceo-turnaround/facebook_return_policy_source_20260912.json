@@ -1,0 +1,180 @@
+{
+  "schema": "dlm.existing_meta_return_qualification.v1",
+  "status": "SOURCE_QUALIFIED__META_MAPPING_AND_SUPPORTED_EDIT_GATED",
+  "wake_id": "2026-09-12T16:00:48.710Z",
+  "observation_window_utc": {
+    "from": "2026-09-12T16:00:48.710Z",
+    "through": "2026-09-12T16:10:13Z",
+    "limit": "Clock bounds for this collection; per-action timestamps were not captured."
+  },
+  "task": "TA-18",
+  "root_thread": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "frame": {
+    "objective": "Resolve the displayed no-returns/30-day inconsistency before the existing Facebook organic release, preserving the store's actual policy and exclusions.",
+    "task_stage": "BLOCKED",
+    "entities": [
+      "15571635",
+      "14695685",
+      "240386145",
+      "942388912516328",
+      "TA-18",
+      "PROB-2026-09-06-META-ACCOUNT-QUALIFICATION"
+    ],
+    "authority": "Read-only source and normal task-owned UI qualification only. No policy/rule/account/cart/paid write.",
+    "hypothesis": "Meta may use a separately configured return setting rather than the custom storefront page.",
+    "falsifier": "Current integration helper text and exact Meta setting prove the source and override relationship.",
+    "chosen_action": "Qualify saved written policy and existing default rule; retain the exact Meta mapping/access gate.",
+    "alternative_rejected": "Do not enable rules or rewrite policy to force a possible sync; the dependency is not proven and changes can affect future orders.",
+    "success_criteria": "Exact saved written policy, rule enabled state and documented separation recorded; any unsupported cause remains unknown.",
+    "rollback": "No business mutation performed; no rollback needed. Local canonical changes retain exact inverse strings."
+  },
+  "shop": {
+    "id": "gid://shopify/Shop/15571635",
+    "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "saved_refund_policy": {
+    "id": "gid://shopify/ShopPolicy/14695685",
+    "type": "REFUND_POLICY",
+    "url": "https://checkout.shopify.com/15571635/policies/14695685.html?locale=en",
+    "updatedAt": "2026-01-26T14:46:23-05:00",
+    "body_redacted": "<h2>Returns &amp; Exchanges</h2>\n<p>We want you and your family to love your matching outfits! If something isn't right, we're here to help.</p>\n<h3>Return Window</h3>\n<p>You have <strong>30 days</strong> from the date of delivery to request a return or exchange.</p>\n<h3>Eligibility</h3>\n<p>To be eligible for a return, items must be:</p>\n<ul>\n<li>Unworn, unwashed, and in original condition</li>\n<li>In their original packaging with all tags attached</li>\n<li>Free of stains, pet hair, perfume, or signs of wear</li>\n</ul>\n<h3>Non-Returnable Items</h3>\n<ul>\n<li>Swimwear and intimates (for hygiene reasons)</li>\n<li>Items marked as \"Final Sale\"</li>\n<li>Gift cards</li>\n<li>Items returned after 30 days</li>\n</ul>\n<h3>How to Start a Return</h3>\n<ol>\n<li><strong>Email us</strong> at [PUBLIC_BUSINESS_EMAIL_REDACTED] with your order number and reason for return</li>\n<li>Our team will review your request and respond within 1 business day</li>\n<li>We'll provide return instructions and a return shipping address</li>\n<li>Ship the item(s) back in their original packaging</li>\n</ol>\n<h3>Refunds</h3>\n<p>Once we receive and inspect your return:</p>\n<ul>\n<li>You'll receive an email confirming we received your item</li>\n<li>If approved, your refund will be processed to your original payment method within <strong>5–10 business days</strong></li>\n<li>Depending on your bank, it may take an additional 2–5 business days to appear on your statement</li>\n</ul>\n<h3>Exchanges</h3>\n<p>Want a different size or color? Email us at [PUBLIC_BUSINESS_EMAIL_REDACTED] with your order number and we'll help you get the right item.</p>\n<h3>Damaged or Defective Items</h3>\n<p>Received a damaged or defective item? Contact us within 7 days of delivery with photos of the issue. We'll send a replacement or issue a full refund — no need to return the damaged item.</p>\n<h3>Late or Missing Refunds</h3>\n<p>If you haven't received your refund within 10 business days of our confirmation email:</p>\n<ol>\n<li>Check your bank account or credit card statement</li>\n<li>Contact your credit card company — processing times vary</li>\n<li>Contact your bank — there may be additional processing time</li>\n<li>Email us at [PUBLIC_BUSINESS_EMAIL_REDACTED] and we'll investigate</li>\n</ol>\n<h3>Shipping Costs</h3>\n<ul>\n<li>Return shipping costs are the customer's responsibility, unless the item arrived damaged or defective</li>\n<li>Original shipping costs are non-refundable</li>\n</ul>\n<h3>Questions?</h3>\n<p>Email us at <strong>[PUBLIC_BUSINESS_EMAIL_REDACTED]</strong> or call <strong>[PUBLIC_BUSINESS_PHONE_REDACTED]</strong> (Mon–Fri, 9 AM – 5 PM EST).</p>\n<p><em>Last updated: January 2026</em></p>",
+    "body_redaction": "Business contact strings omitted from persisted evidence; policy terms are unchanged.",
+    "evidence_label": "LIVE_VERIFIED",
+    "workflow": "QueryRoot, Shop, ShopPolicy schema discovery; supplemental official docs; one validated read-only Admin GraphQL query. No mutation.",
+    "query": "query DlmRefundPolicyReadback { shop { id myshopifyDomain shopPolicies { id type body url updatedAt } } }",
+    "validation": "VALID; required scope read_legal_policies"
+  },
+  "shopify_default_rule": {
+    "id": "240386145",
+    "overview_url": "https://admin.shopify.com/store/dresslikemommy-com/settings/legal",
+    "detail_url": "https://admin.shopify.com/store/dresslikemommy-com/settings/legal/cancel-return-rules/240386145",
+    "overview_label": "Default rules No rules set",
+    "overview_other_rules": "No other rules appeared in the rendered list. Not an independent full API/market enumeration.",
+    "detail_observed": {
+      "return_rules_enabled": false,
+      "cancellation_rules_enabled": false,
+      "return_rules_applies_to": "fulfilled items in an order",
+      "cancellation_rules_applies_to": "unfulfilled items in an order",
+      "future_order_helper": "Return rules will only apply to items purchased after the rules were turned on or updated",
+      "final_sale_note": "Customers can't request returns or cancellations for final sale products",
+      "collections_control": {
+        "selected": true,
+        "disabled": true
+      },
+      "products_control": {
+        "selected": false,
+        "disabled": true
+      },
+      "add_final_sale_collection_disabled": true
+    },
+    "not_proven": [
+      "No active return window/fees or final-sale membership was established from disabled controls.",
+      "Disabled structured rules do not negate the written conditional return policy.",
+      "No causal link to Meta's return label is established."
+    ],
+    "actions": [
+      "Opened own hidden Shopify settings tab14 after documented CUA reset",
+      "Clicked observed Policies link",
+      "Clicked existing Default rules link",
+      "Read enabled states and helper text"
+    ],
+    "mutation_controls_touched": 0,
+    "browser": {
+      "owner_thread": "01a08223-036e-7fa3-8961-ecd297163fb5",
+      "browser": "1 / Codex IAB",
+      "tab": "14",
+      "visible": false,
+      "no_other_task_tab_used": true
+    }
+  },
+  "meta_settings": {
+    "page_id": "942388912516328",
+    "url": "https://admin.shopify.com/store/dresslikemommy-com/apps/facebook-ads/shopify_app/settings",
+    "browser": {
+      "owner_thread": "01a08223-036e-7fa3-8961-ecd297163fb5",
+      "browser": "1 / Codex IAB",
+      "tab": "11"
+    },
+    "return_label": "Returns not accepted",
+    "business_details_change_button_id": "SETTINGS__UPDATE_STORE_DETAILS__EDIT_BUTTON",
+    "change_button_clicked": false,
+    "connection_prompt": {
+      "appeared_passively": true,
+      "title": "Connect the Facebook account you use for your business",
+      "connect_button_clicked": false,
+      "cancel_or_dismiss_clicked": false,
+      "scope": "Prompt says the connected Facebook account is used to check permissions for business accounts/assets. This does not prove the channel is disconnected or all Page permissions are absent."
+    },
+    "blocked_detail": "No return-setting editor/override/source/scope was inspected because the passive account connection prompt intervened.",
+    "current_source_mapping": "UNKNOWN",
+    "no_unchanged_publisher_or_business_suite_retry": true,
+    "sanitization": "Embedded commercepartnerhub session query tokens omitted from persisted evidence."
+  },
+  "public_refund_readback": {
+    "urls": [
+      "https://www.dresslikemommy.com/policies/refund-policy",
+      "https://checkout.shopify.com/15571635/policies/14695685.html?locale=en"
+    ],
+    "tool": "web open",
+    "attempts": 1,
+    "each_url_one_open": true,
+    "result": "Both opens returned non-retryable tool URL-safety errors. Rendered public refund-policy content remains unverified in this wake.",
+    "no_retry_or_alternate_public_fetch": true,
+    "prior_custom_page": "The separate prior14:49–14:57 /pages/return-policy and Sunshine PDP30-day display receipt is preserved; it is not a new current public-route check."
+  },
+  "primary_documentation": [
+    {
+      "url": "https://help.shopify.com/en/manual/fulfillment/managing-orders/returns/return-rules",
+      "finding": "Written refund policy and structured return rules are separate; generated text does not automatically incorporate the rules; future-order effect and exception/market scope require care."
+    },
+    {
+      "url": "https://help.shopify.com/en/manual/online-sales-channels/social-commerce/facebook-instagram-by-meta/publishing-products",
+      "finding": "Product-detail synchronization is documented; no verified statement that this return label is driven by written policy or default rules."
+    },
+    {
+      "url": "https://help.shopify.com/en/manual/online-sales-channels/social-commerce/facebook-instagram-by-meta/product-categories",
+      "finding": "Direct-checkout custom return-policy guidance is not proof that exceptions map into this website-checkout shop."
+    },
+    {
+      "url": "https://help.shopify.com/en/manual/online-sales-channels/social-commerce/facebook-instagram-by-meta/requirements-and-considerations",
+      "finding": "Use the currently observed website-checkout integration scope; do not impose old direct-checkout assumptions."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/2026-07/queries/shop",
+      "finding": "Official shopPolicies read query example supplements live schema validation."
+    }
+  ],
+  "independent_research": {
+    "reviewer": "/root/order_delta_1934",
+    "verdict": "QUALIFIED_HOLD__NO_CORRECTIVE_WRITE_SUPPORTED",
+    "limits": "Official Meta integration pages failed retrieval. No sync deadline, editable path, source precedence or final-sale mapping was certified."
+  },
+  "next_action": "After usable normal Meta account access changes, inspect the exact Business details return-setting source, scope and exceptions without changing them. Only then prepare the smallest supported correction and after-state/rollback binding. Do not turn Shopify rules on as a synchronization test.",
+  "preserved_gates": {
+    "exact_cart_question_pending": true,
+    "previous_cart_auto_review_rejection_preserved": true,
+    "no_cart_retry": true,
+    "one_owner_action": "Owner Admin publication of existing verified theme137888792673; unchanged",
+    "paid_scope": "NONE",
+    "genuine_purchase_and_actual_profit": "UNVERIFIED",
+    "next_full_sales_read_due_utc": "2026-09-12T20:24:58Z"
+  },
+  "root_external_business_writes": 0,
+  "new_posts": 0,
+  "new_policy_rules": 0,
+  "new_account_connections": 0,
+  "new_sales_reads": 0,
+  "new_sales_or_profit_claim": false,
+  "tool_limits": [
+    "Required cockpit renderer succeeded; local macOS opener failed as before, no fallback or visible-open claim this wake.",
+    "A mistyped local account-protocol filename was absent; the actual ops/ACCOUNT_ACCESS_PROTOCOL.md was then read.",
+    "CUA reset was solely to reload documented API instructions; existing tabs were not closed by the reset.",
+    "Unrelated policy bodies returned by the connector are not persisted in this receipt."
+  ],
+  "canonical_anchor": "2026-09-12-facebook-return-policy-source-qualified",
+  "cleanup": {
+    "Shopify_default_rule_tab14": "CLOSED without edits or unsaved-change prompt",
+    "Meta_settings_tab11": "Retained with markHandoff; same passive account-connection prompt remains; no Connect, Change, Cancel or Save clicked",
+    "root_session": "01a08223 / browser1; no other task tab used"
+  }
+}

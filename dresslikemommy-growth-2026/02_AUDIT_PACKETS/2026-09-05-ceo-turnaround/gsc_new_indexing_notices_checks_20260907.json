@@ -1,0 +1,38 @@
+{
+  "anchor": "2026-09-06-ceo-turnaround-new-indexing-notices",
+  "checks": {
+    "reviewed_source_hashes_match": true,
+    "independent_18_checks_pass": true,
+    "nine_paid_controls_unchanged": true,
+    "alerts_have_no_url_count_or_crawl_evidence": true,
+    "no_external_mutation_or_publication": true,
+    "no_browser_retry": true,
+    "new_account_creation_authority_preserved": true,
+    "bare_domain_scope_correction_integrated": true,
+    "one_exact_worklog_anchor": true,
+    "no_owner_address_or_full_body_in_receipt": true
+  },
+  "check_count": 10,
+  "passed_count": 10,
+  "handoff_and_task_context": "PASS 17/17",
+  "command_integration": "PASS 25/25 zero side-document risks",
+  "strict_continuity": "PASS CONTINUITY_OK",
+  "scoped_diff_check": "PASS",
+  "cockpit_render": "PASS",
+  "initial_check_failures": [
+    {
+      "check": "handoff semantic task stage",
+      "observed": "16/17, old BLOCKED field did not match new DIAGNOSE anchor",
+      "correction": "Changed only current handoff task_stage to DIAGNOSE; rerun17/17PASS"
+    },
+    {
+      "check": "cockpit freshness",
+      "observed": "Source scope wording changed after render",
+      "correction": "Regenerated cockpit after final source edit; strict rerunCONTINUITY_OK"
+    }
+  ],
+  "cockpit_auto_open": "FAILED existing native application/XPC errors; local rendering passed; no repeat or system modification",
+  "independent_review_file": "gsc_new_indexing_notices_review_20260907.json",
+  "new_traffic_sales_profit_effect": "NOT_MEASURED",
+  "normal_native_access": "Existing desktop-state clarification pending; not retried this checkpoint"
+}

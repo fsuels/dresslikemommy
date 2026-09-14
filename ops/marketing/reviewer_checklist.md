@@ -1,6 +1,6 @@
 # Marketing Safety Reviewer Checklist
 
-Last updated: 2026-05-14
+Last updated: 2026-07-23
 
 Run or simulate this checklist before any non-ops file edit, any external write, any blocker reclassification, or any spend/budget/bid/status/feed/product/conversion recommendation.
 
@@ -12,6 +12,25 @@ Run or simulate this checklist before any non-ops file edit, any external write,
 - Evidence paths and readback timestamps.
 - Expected local change, live change, or no-write outcome.
 - Rollback or next unblock path.
+
+## Material Decision Challenge Contract
+
+Use this compact contract before a material decision: any paid-media spend/status/budget/bid action, live feed/product/conversion write, blocker reclassification, durable command-layer rule change, or costly/irreversible action. Routine reversible repo-local edits still use the checklist below but do not need a ceremonial contract.
+
+Freeze these fields before execution:
+
+1. `decision_id`, `as_of`, and evidence grade (`LIVE_VERIFIED`, `REPO_EVIDENCE`, or `INFERENCE`).
+2. Exact decision and measured baseline.
+3. Three explicit options: proposed action, status quo, and one credible alternative.
+4. Predicted outcome and the single assumption most likely to invalidate it.
+5. Numeric or observable success criterion, kill criterion, decision window, and maximum cost/exposure.
+6. Approval boundary and smallest rollback.
+7. Evidence that would change the decision.
+8. A named verifier who did not build or execute the action.
+9. One recommended next action.
+10. After the window: resolved outcome, evidence, and durable learning.
+
+The builder may prepare the contract, but may not self-certify the verifier field. A decision remains `UNRESOLVED` until a separate linked outcome record with dated evidence is appended to `decision_log.md`. The frozen prediction must not be rewritten; corrections append `AMENDMENT` or `SUPERSEDES`.
 
 ## Checklist
 
@@ -31,6 +50,11 @@ Run or simulate this checklist before any non-ops file edit, any external write,
 | Anti-cannibalization | Query/product/audience ownership is clear across Search, Shopping, Pinterest, remarketing, countries, languages, campaigns, and ad groups; no duplicate or self-competing structure is introduced. |  |
 | Day 1 action clock | Sales/ROAS are checked daily; zero impressions after 24 hours triggers same-day diagnosis and high-intent long-tail or auction-entry planning. |  |
 | Repo-known vs live-verified | Historical repo evidence is labeled as repo-known/stale unless a current readback proves live state. |  |
+| Semantic freshness control | `current_marketing_state.md` has an authoritative control block; stale mode is fail-closed, contains no `GREEN` queue row, and permits only read-only reconciliation. |  |
+| Frozen material-decision contract | Material action has baseline, three options, prediction, invalidating assumption, success/kill criteria, window, maximum exposure, approval, rollback, and evidence that would change the decision. |  |
+| Independent verification | A reviewer who did not build or execute the action verifies the frozen contract and after-state; unresolved outcome is not presented as success. |  |
+| Decision/outcome linkage | A material decision has a stable `decision_id`; its observed result is a separate linked `outcome_id`, and the original prediction/success/kill/window fields remain frozen. |  |
+| Learning evidence | A routine durable rule is supported by two independent observed-outcome events; repeated policy/prompt copies are not counted as recurrence. A single-event exception is limited to high-severity spend, customer-truth, publication, credential, destructive-action, or approval-scope failures. |  |
 | Blocker classification | Any blocker close/downgrade/upgrade maps to `ops/PROBLEM_TRACKER.md` status, fixed criteria, evidence, and next action. |  |
 | Audit-only drift | The outcome creates a sales-moving next action, approval packet, blocker removal, controlled build, or exact unblock step. |  |
 | Operator cockpit | `operator_cockpit.md` will be updated before stopping/compacting with current goal, local/live changes, blockers, next 3 tasks, assumptions, and risks. |  |
@@ -39,6 +63,9 @@ Run or simulate this checklist before any non-ops file edit, any external write,
 
 ```text
 Reviewer verdict: PASS | PASS_WITH_GATES | BLOCK
+Decision ID:
+Decision status: NOT_MATERIAL | FROZEN_UNRESOLVED | RESOLVED
+Independent verifier:
 Checked:
 - ...
 Risks:

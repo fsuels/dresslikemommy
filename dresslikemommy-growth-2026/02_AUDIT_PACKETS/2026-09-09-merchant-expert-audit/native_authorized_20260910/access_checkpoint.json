@@ -1,0 +1,98 @@
+{
+  "schema": "dlm.merchant.native_access_checkpoint.v1",
+  "account": {
+    "merchant": "513542500",
+    "business": "Dresslikemommy",
+    "shopify": "15571635"
+  },
+  "authority": "Current user explicitly authorized the assistant to select Merchant513542500 in Chrome and inspect/operate it; prior selected-tab permission gate is superseded.",
+  "permission_status": "RESOLVED_CURRENT_OWNER_AUTHORIZATION",
+  "observations": [
+    {
+      "by_utc": "2026-09-10T17:55:47Z",
+      "surface": "Merchant513 Products",
+      "verified": [
+        "Account header Dresslikemommy513542500",
+        "Products body: Something went wrong; Please try again; Start over"
+      ],
+      "offer_count": null,
+      "actions": "Read only; Start over untouched."
+    },
+    {
+      "window_utc": {
+        "after": "2026-09-10T17:55:47Z",
+        "before": "2026-09-10T17:59:18Z"
+      },
+      "surface": "Merchant513 Add product source",
+      "verified": [
+        "File-source method selected",
+        "URL input empty",
+        "Continue disabled",
+        "English language",
+        "US feed label",
+        "United States, Austria, Australia, +28 more displayed"
+      ],
+      "interpretation": "Unsubmitted form only. Not an existing feed, approved countries, configured lifecycle, or received product count."
+    },
+    {
+      "around_utc": "2026-09-10T18:01:08Z",
+      "surface": "Coordination",
+      "verified": [
+        "Pinterest explicitly paused native interactions",
+        "No unsaved form from Pinterest task",
+        "Pinterest released shared canonical interval without edits",
+        "Parent acknowledged Merchant native and own canonical interval"
+      ]
+    },
+    {
+      "window_utc": {
+        "after": "2026-09-10T18:01:08Z",
+        "before": "2026-09-10T18:04:17Z"
+      },
+      "surface": "Chrome foreground interruption",
+      "verified": [
+        "An unrelated authorization window became a window titled Sign in",
+        "AX exposed no Merchant tab controls",
+        "One window-cycle attempt blocked by user-changed-app guard",
+        "One later window-cycle shortcut executed; Sign in remained"
+      ],
+      "actions": "No credential entry, sign-in completion or reset. No Merchant button clicks."
+    },
+    {
+      "window_utc": {
+        "after": "2026-09-10T18:07:16Z"
+      },
+      "surface": "Recovery read",
+      "verified": [
+        "AX later showed Untitled with no tab controls",
+        "Visual fallback showed unrelated Chrome content",
+        "Browser-provider discovery exposed only the Codex in-app browser; no tab-scoped Chrome provider"
+      ],
+      "actions": "No interaction with unrelated content, no screenshot or content details copied to repository, no helper/security/permission changes."
+    }
+  ],
+  "current_status": "STABLE_MERCHANT_FOREGROUND_REQUIRED",
+  "unknown": [
+    "Existing receiving data-source IDs and processed offer counts",
+    "Native Shopify Google Product sync and country/language/future-country settings",
+    "Actual active/add/change/withdraw/reactivate receipt",
+    "Logo slot/current asset/review status"
+  ],
+  "actions": {
+    "merchant_buttons_clicked": 0,
+    "tab_clicks_performed": 0,
+    "source_submissions": 0,
+    "settings_saves": 0,
+    "window_cycle_shortcuts_executed": 1,
+    "window_cycle_attempts_guard_blocked": 1,
+    "credential_entries": 0
+  },
+  "root_artifacts": [
+    "../lifecycle_20260910/LIFECYCLE_SETUP.md",
+    "../lifecycle_20260910/root_checks.json",
+    "canonical_before.json",
+    "canonical_patch.json"
+  ],
+  "owner_action": "Finish or dismiss the current non-Merchant Chrome flow, then leave Chrome unchanged so the already-authorized assistant can select Merchant513. Existing recovery question remains pending; no second Merchant scope approval is needed.",
+  "evidence_limits": "Native state and screenshot were observed through CUA; sanitized task facts only are retained here. Foreground changes were external to root's guarded navigation; no cause or actor is inferred beyond the tool's user-changed-app warning."
+}

@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-14T12:59:13.137662+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "source_receipt": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sunshine_organic_demand_20260914_1236.json",
+    "sha256": "cd0b5d5acbcd7cbae2b08618eee3640b2ef4e97e48c621492badc7b5ac2f5574"
+  },
+  "check_counts": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "id": "C01",
+      "check": "Frozen source and manual-transcription provenance",
+      "status": "PASS",
+      "conditions": {
+        "hash": true,
+        "manual_not_export": true,
+        "no_action_time_proof": true,
+        "pending_review_is_creation_state": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "source_sha256": "cd0b5d5acbcd7cbae2b08618eee3640b2ef4e97e48c621492badc7b5ac2f5574",
+        "limitation": "Verifies saved transcription and arithmetic only, not independent native fidelity or product-ID-to-handle mapping."
+      }
+    },
+    {
+      "id": "C02",
+      "check": "Independently recomputed rows, uniqueness and count bounds",
+      "status": "PASS",
+      "conditions": {
+        "counts": true,
+        "unique_labels": true,
+        "valid_nonnegative_integer_metrics": true,
+        "pagination_reports_complete_visible_tables": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "row_counts": {
+          "queries": 8,
+          "pages": 17,
+          "countries": 4
+        },
+        "recomputed_sums": {
+          "queries": [
+            0,
+            22
+          ],
+          "pages": [
+            1,
+            69
+          ],
+          "countries": [
+            0,
+            22
+          ]
+        },
+        "limitation": "Native pagination is transcribed; table completion does not establish complete underlying traffic."
+      }
+    },
+    {
+      "id": "C03",
+      "check": "Page sums reproduce headline and displayed CTR",
+      "status": "PASS",
+      "conditions": {
+        "page_headline": true,
+        "displayed_ctr": true,
+        "position_separate": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "clicks": 1,
+        "impressions": 69,
+        "ctr_exact_percent": 1.4492753623188406,
+        "limitation": "Average position is a transcribed headline; rows lack position data for independent recomputation."
+      }
+    },
+    {
+      "id": "C04",
+      "check": "URL-contains scope and parameterized/locale distinctions are preserved",
+      "status": "PASS",
+      "conditions": {
+        "correct_property_scope": true,
+        "every_path_matches": true,
+        "distinct_variants_not_collapsed": true,
+        "localized_subset": true,
+        "sensitive_query_values_redacted": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "unparameterized_rows": 11,
+        "parameterized_rows": 6,
+        "localized_prefixes": [
+          "he",
+          "ko",
+          "sv",
+          "es",
+          "da",
+          "nl",
+          "de",
+          "it",
+          "ru",
+          "ro"
+        ],
+        "redacted_parameter_rows": 3,
+        "limitation": "Do not deduplicate feed/parameter URLs into an invented count or equate language path/country parameter with user location. Exact removed values cannot be reverified."
+      }
+    },
+    {
+      "id": "C05",
+      "check": "Displayed dates and distinct cohorts remain qualified",
+      "status": "PASS",
+      "conditions": {
+        "dates": true,
+        "no_comparison_filters": true,
+        "capture_after_period": true,
+        "timezone_finality_unverified": true,
+        "separate_causal_window": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "displayed_start": "2026-06-13",
+        "displayed_end_inclusive": "2026-09-12",
+        "displayed_calendar_dates": 92,
+        "limitation": "Ninety-two displayed dates are not converted to a UTC or New York acquisition window; update recency does not prove processing finality."
+      }
+    },
+    {
+      "id": "C06",
+      "check": "Partial-data warning and unassigned query/country gaps remain explicit",
+      "status": "PASS",
+      "conditions": {
+        "query_country_sums": true,
+        "gaps": true,
+        "explicit_native_warning": true,
+        "unassigned_not_invented": true,
+        "no_language_demography": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "detail_sums": [
+          0,
+          22
+        ],
+        "headline": [
+          1,
+          69
+        ],
+        "unassigned_per_dimension": [
+          1,
+          47
+        ],
+        "limitation": "The identical gaps cannot be added together; both are views of the same incomplete reporting scope."
+      }
+    },
+    {
+      "id": "C07",
+      "check": "Limited-footprint decision does not qualify demand, CPC or conversions",
+      "status": "PASS",
+      "conditions": {
+        "scoped_decision": true,
+        "finding_scoped_to_report": true,
+        "paid_evidence_separate": true,
+        "conversions_profit_unknown": true,
+        "preserve_existing_repair": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "interpretation": "Limited observed historical site footprint only. One click cannot establish absent country demand, no sales, paid profitability, causality or search-market size. Future preference for stronger store evidence is a recommendation, not a new executed keyword task."
+      }
+    },
+    {
+      "id": "C08",
+      "check": "Scope/authority and source remain unchanged",
+      "status": "PASS",
+      "conditions": {
+        "paid_none": true,
+        "no_business_write_recorded": true,
+        "no_export_private_replay_claim": true,
+        "source_no_drift": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "review_actions": "Only assigned private review written; no browser, network, code/canonical/source changes or return-capability review edit.",
+        "operator_actions": "Read as saved assertions, not independently live verified."
+      }
+    }
+  ],
+  "unresolved_findings": [],
+  "independence": "DID_NOT_BUILD_OR_EXECUTE: independent saved-source arithmetic, URL/filter and conclusion review. No independent live measurement or native-export/AX transcript comparison; raw entire browser tree was not supplied.",
+  "recomputed": {
+    "row_counts": {
+      "queries": 8,
+      "pages": 17,
+      "countries": 4
+    },
+    "sums": {
+      "queries": [
+        0,
+        22
+      ],
+      "pages": [
+        1,
+        69
+      ],
+      "countries": [
+        0,
+        22
+      ]
+    },
+    "gaps": {
+      "queries": [
+        1,
+        47
+      ],
+      "countries": [
+        1,
+        47
+      ]
+    },
+    "ctr_percent": 1.4492753623188406,
+    "displayed_dates_count": 92
+  },
+  "conclusion": "The limited observed footprint is supportable within this partial three-month handle-contains report: pages1/69, query and country tables0/22. It neither qualifies paid/market demand nor establishes absent customer outcomes. No material internal contradiction found.",
+  "limits": [
+    "All source rows, filter labels and pagination are operator-transcribed; exact live transcription accuracy cannot be independently established from this artifact alone.",
+    "Product7545279512673 is source-supplied metadata. No independent Shopify mapping query was run; all17 URL paths consistently bind the named handle.",
+    "The three redacted com_cvv values and excluded/loading account state cannot be reconstructed or certified from the saved source.",
+    "Both detail dimensions omit the same1click/47impressions relative to headline. No cause, country, query, language, visitor identity or incremental sale is inferred.",
+    "Report timezone/finality and independent average-position recomputation remain unverified. The displayed June13–September12 dates are separate from Greek and post-release measurement.",
+    "The previous return-capability artifact and every shared/source file were preserved."
+  ],
+  "recommendation": "Retain this as limited historical GSC evidence, preserving its partial-table warning and all existing buyer/cost/measurement gates. Do not use it as country rejection, CPC evidence or conversion/profit proof."
+}

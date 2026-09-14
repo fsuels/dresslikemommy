@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-13T06:59:00.940131+00:00",
+  "task": "TA-15",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewed_decision": "HOLD_WITH_EVIDENCE_NO_CAMPAIGN_CHANGE",
+  "review_manifest_sha256": "a139c9b030628f2efe23ee1eb7569c3b98c55fbaaf36a46a9393988322f7a341",
+  "input_sha256": {
+    "decision_frame.json": "9e9aab7114a682380350bd78447f069ac0dc6dd904487dcf650b8ae885ea5b5a",
+    "native_scenarios.json": "ad4aaeae6fc2dc7bd2f369a4a1d8249deebec88a67764c9ee4edf928a62d1314",
+    "account_settings_readback.json": "46c52b084018feb79c08ecd79372d56a48f6af34dc5e51548a111d142155cf42",
+    "download_manifest.json": "aaf4d6aec3e2859683ef114003d605e91fcf311d2b3b2283536a1d443a7e4db4",
+    "de_reserve_phrase_forecast.csv": "d4f851dd6b9eddf8482c4201c78ea876bb90129a4be702b53767b6873d3aebd5",
+    "us_reserve_phrase_forecast.csv": "fd06e89e6fa0cdb5968ee6d6f7fefa6f9adc546fda4bc026c85bf37e351259ab",
+    "READBACK.md": "e9a923c780cdb351637a7801a4c27b32871a6ff10e555c8d0f31905d430129fc"
+  },
+  "dated_baseline_sha256": {
+    "native_scenarios.json": "83413a896d3c6d0435920c4f41b4450b75078e1f712eae6afc663087de31fa43",
+    "de_reserve_exact_forecast.csv": "837f7f431a59f7ad328f40d78bf6b3b2bf460d3c0881a3d4fe8990f9c788e1ae",
+    "us_reserve_exact_forecast.csv": "e0c00f90d7a1e9876268f7d86f37c7c76686e40658f924bae395374dd99c4452"
+  },
+  "raw_csv_checks": [
+    {
+      "file": "de_reserve_phrase_forecast.csv",
+      "sha256": "d4f851dd6b9eddf8482c4201c78ea876bb90129a4be702b53767b6873d3aebd5",
+      "bytes": 593,
+      "rows": 4,
+      "crlf_count": 4,
+      "source_modified_at_utc": "2026-09-13T06:47:08.638927+00:00"
+    },
+    {
+      "file": "us_reserve_phrase_forecast.csv",
+      "sha256": "fd06e89e6fa0cdb5968ee6d6f7fefa6f9adc546fda4bc026c85bf37e351259ab",
+      "bytes": 578,
+      "rows": 4,
+      "crlf_count": 4,
+      "source_modified_at_utc": "2026-09-13T06:49:30.308471+00:00"
+    }
+  ],
+  "checks": [
+    {
+      "name": "all_seven_input_hashes_and_manifest",
+      "pass": true,
+      "evidence": {
+        "manifest_sha256": "a139c9b030628f2efe23ee1eb7569c3b98c55fbaaf36a46a9393988322f7a341",
+        "files": {
+          "decision_frame.json": "9e9aab7114a682380350bd78447f069ac0dc6dd904487dcf650b8ae885ea5b5a",
+          "native_scenarios.json": "ad4aaeae6fc2dc7bd2f369a4a1d8249deebec88a67764c9ee4edf928a62d1314",
+          "account_settings_readback.json": "46c52b084018feb79c08ecd79372d56a48f6af34dc5e51548a111d142155cf42",
+          "download_manifest.json": "aaf4d6aec3e2859683ef114003d605e91fcf311d2b3b2283536a1d443a7e4db4",
+          "de_reserve_phrase_forecast.csv": "d4f851dd6b9eddf8482c4201c78ea876bb90129a4be702b53767b6873d3aebd5",
+          "us_reserve_phrase_forecast.csv": "fd06e89e6fa0cdb5968ee6d6f7fefa6f9adc546fda4bc026c85bf37e351259ab",
+          "READBACK.md": "e9a923c780cdb351637a7801a4c27b32871a6ff10e555c8d0f31905d430129fc"
+        }
+      }
+    },
+    {
+      "name": "target_identity_and_local_verifier_scope",
+      "pass": true,
+      "evidence": "TA-15 target matches across frame, scenarios and settings. Independent review does not replay the live UI."
+    },
+    {
+      "name": "two_original_csv_downloads_eight_rows",
+      "pass": true,
+      "evidence": "Native origin/losslessness is root provenance; local byte identity against frozen hashes is independently checked below."
+    },
+    {
+      "name": "csv_hash_bytes_shape_de_reserve_phrase_forecast.csv",
+      "pass": true,
+      "evidence": {
+        "file": "de_reserve_phrase_forecast.csv",
+        "sha256": "d4f851dd6b9eddf8482c4201c78ea876bb90129a4be702b53767b6873d3aebd5",
+        "bytes": 593,
+        "rows": 4,
+        "crlf_count": 4,
+        "source_modified_at_utc": "2026-09-13T06:47:08.638927+00:00"
+      }
+    },
+    {
+      "name": "csv_hash_bytes_shape_us_reserve_phrase_forecast.csv",
+      "pass": true,
+      "evidence": {
+        "file": "us_reserve_phrase_forecast.csv",
+        "sha256": "fd06e89e6fa0cdb5968ee6d6f7fefa6f9adc546fda4bc026c85bf37e351259ab",
+        "bytes": 578,
+        "rows": 4,
+        "crlf_count": 4,
+        "source_modified_at_utc": "2026-09-13T06:49:30.308471+00:00"
+      }
+    },
+    {
+      "name": "dated_baseline_identity",
+      "pass": true,
+      "evidence": "Earlier baseline verified only as dated context; no current-account verification."
+    },
+    {
+      "name": "same_four_strings_phrase_cap_DE_RESERVE_PHRASE",
+      "pass": true,
+      "evidence": "Four identical ordered keyword strings, all Phrase, USD0.15, temporary Draft Campaign labels."
+    },
+    {
+      "name": "exact_raw_row_transcription_DE_RESERVE_PHRASE",
+      "pass": true,
+      "evidence": "All 40 CSV data cells match the scenario JSON exactly; missing/non-finite strings remain strings."
+    },
+    {
+      "name": "retained_parameters_DE_RESERVE_PHRASE",
+      "pass": true,
+      "evidence": "Country, USD3 DE/USD5 US modelling input, seven negative strings and library lineage match the earlier transcript."
+    },
+    {
+      "name": "earlier_exact_file_DE_RESERVE_PHRASE",
+      "pass": true,
+      "evidence": {
+        "file": "de_reserve_exact_forecast.csv",
+        "sha256": "837f7f431a59f7ad328f40d78bf6b3b2bf460d3c0881a3d4fe8990f9c788e1ae",
+        "status": "DATED_CONTEXT_ONLY"
+      }
+    },
+    {
+      "name": "same_four_strings_phrase_cap_US_RESERVE_PHRASE",
+      "pass": true,
+      "evidence": "Four identical ordered keyword strings, all Phrase, USD0.15, temporary Draft Campaign labels."
+    },
+    {
+      "name": "exact_raw_row_transcription_US_RESERVE_PHRASE",
+      "pass": true,
+      "evidence": "All 40 CSV data cells match the scenario JSON exactly; missing/non-finite strings remain strings."
+    },
+    {
+      "name": "retained_parameters_US_RESERVE_PHRASE",
+      "pass": true,
+      "evidence": "Country, USD3 DE/USD5 US modelling input, seven negative strings and library lineage match the earlier transcript."
+    },
+    {
+      "name": "earlier_exact_file_US_RESERVE_PHRASE",
+      "pass": true,
+      "evidence": {
+        "file": "us_reserve_exact_forecast.csv",
+        "sha256": "e0c00f90d7a1e9876268f7d86f37c7c76686e40658f924bae395374dd99c4452",
+        "status": "DATED_CONTEXT_ONLY"
+      }
+    },
+    {
+      "name": "eight_unique_phrase_rows",
+      "pass": true,
+      "evidence": "Two isolated countries, four reserve strings each; no Broad or Exact data row in the new exports."
+    },
+    {
+      "name": "planner_equivalence_limits",
+      "pass": true,
+      "evidence": "Language, presence, bidding strategy, negative match metadata and Audience placement remain qualified."
+    },
+    {
+      "name": "de_stale_group_name_not_match_authority",
+      "pass": true,
+      "evidence": "All four actual Match Type cells establish Phrase despite the retained Exact word in the temporary group name."
+    },
+    {
+      "name": "de_chart_exact_point_absent_and_interpolation_inferred",
+      "pass": true,
+      "evidence": "Positive chart points bracket USD0.15. A value of approximately0.08 at USD0.15 is INFERRED; no directly exposed exact point or interpolation rule was verified."
+    },
+    {
+      "name": "us_point_no_observed_click_gain",
+      "pass": true,
+      "evidence": "The recorded US chart point equals the earlier point, subject to timing/estimator qualifications. This is not a causal or measured click comparison."
+    },
+    {
+      "name": "impression_grids_preserved_without_purchase_inference",
+      "pass": true,
+      "evidence": "US rounded impressions4 versus1; DE1 versus0. No measured click, conversion or purchase gain follows."
+    },
+    {
+      "name": "missing_values_not_coerced",
+      "pass": true,
+      "evidence": "Six dash click fields and two rounded zero click fields; no positive finite CSV click count. No conversion to numeric zero or inferred average CPC."
+    },
+    {
+      "name": "baseline_age_not_causal_control",
+      "pass": true,
+      "evidence": {
+        "elapsed_minutes": {
+          "DE_RESERVE_PHRASE": 228.19,
+          "US_RESERVE_PHRASE": 232.53
+        },
+        "interpretation": "Roughly four hours older, not a causal match-type experiment."
+      }
+    },
+    {
+      "name": "de_old_chart_provenance_limit_detected",
+      "pass": true,
+      "evidence": "The new assertion that the earlier DE Exact chart had six zero-valued points is NOT corroborated by the bound 02:39 baseline JSON/CSV. It is treated only as a later root transcription, not independent baseline proof."
+    },
+    {
+      "name": "notice_generic_and_dismissed",
+      "pass": true,
+      "evidence": "Default notice selection is not a consent implementation or declaration; closed without Continue according to root readback."
+    },
+    {
+      "name": "settings_not_receiver_or_purchase_proof",
+      "pass": true,
+      "evidence": "MSCLKID/UTM are settings observations. Generic notice, paused banner and view-through inclusion do not demonstrate tag or purchase acceptance."
+    },
+    {
+      "name": "planner_only_mutation_scope",
+      "pass": true,
+      "evidence": "Root transcribes1 match change,3 planner Saves,1 delete of4 temporary rows and2 exports; all listed production/contact/tracking/order actions0. No independent live replay."
+    },
+    {
+      "name": "qualified_hold_and_paid_gates",
+      "pass": true,
+      "evidence": "No new import, live bid, enablement or speculative consent workaround is justified or authorized."
+    },
+    {
+      "name": "pending_question_and_parent_ownership_preserved",
+      "pass": true,
+      "evidence": "The existing contact question and parent integration/owner action remain unchanged."
+    },
+    {
+      "name": "reserve_destinations_not_import_ready",
+      "pass": true,
+      "evidence": "Existing broader library URLs and original match-type lineage are not silently promoted to campaign-ready rows."
+    },
+    {
+      "name": "no_input_drift_at_commit",
+      "pass": true,
+      "evidence": "All seven inputs and the review manifest remain byte-identical immediately before writing the review."
+    },
+    {
+      "name": "retained_de_exact_chart_provenance_addendum",
+      "pass": true,
+      "evidence": {
+        "addendum_sha256": "af0bed2eb87ed200476eac6d5df7cebe00f604dc044be9a2e42ef1701db6b611",
+        "affected_native_scenarios_sha256": "ad4aaeae6fc2dc7bd2f369a4a1d8249deebec88a67764c9ee4edf928a62d1314",
+        "points": [
+          {
+            "x_bid_usd": "0",
+            "y_weekly_clicks": "0.00"
+          },
+          {
+            "x_bid_usd": "0.07",
+            "y_weekly_clicks": "0.00"
+          },
+          {
+            "x_bid_usd": "0.08",
+            "y_weekly_clicks": "0.00"
+          },
+          {
+            "x_bid_usd": "0.1",
+            "y_weekly_clicks": "0.00"
+          },
+          {
+            "x_bid_usd": "0.12",
+            "y_weekly_clicks": "0.00"
+          },
+          {
+            "x_bid_usd": "15.58",
+            "y_weekly_clicks": "0.00"
+          }
+        ],
+        "assessment": "Clarifies that the six zero-valued points were observed in a retained prechange UI this wake, not a fresh Exact request. The earlier baseline omission remains accurately recorded. No exposed Exact0.15 point or causal match-type gain is independently established. All original frozen inputs remain unchanged."
+      }
+    }
+  ],
+  "check_count": 31,
+  "adverse_interpretation_challenge": {
+    "challenged_claim": "More Phrase impressions or equal bracket endpoints establish useful incremental traffic at the exact cap.",
+    "assessment": "US rounded impressions rise while the observed chart click point remains0.10. DE Phrase exposes0.08 at0.14 and0.27, not at0.15; an exact-cap estimate requires an unverified interpolation. The earlier Exact reference and retained prechange chart clarified in the addendum cannot establish causal lift.",
+    "alternative": "Keep these as hypotheses for a future better-controlled, sufficiently qualified planner comparison; do not treat this run as grounds to expand keywords, raise a live bid, claim zero demand, or select a winning market.",
+    "decision": "Retain the scoped no-change hold. Both positive near-cap signals and failed click-improvement claims remain conditional."
+  },
+  "limitations": [
+    "Independent verification covered local hashes, bytes, parsed rows, cross-file consistency and interpretation only. Root AX/settings/action observations were not independently replayed.",
+    "Lossless native-source origin is root provenance; local copies match the frozen manifests, but original browser download storage was not separately inspected.",
+    "The earlier DE Exact six-point zero chart assertion is a later root transcription not retained in the bound earlier baseline. It was excluded from independent comparative proof.",
+    "The complete twelve-point DE Phrase series is not retained; only three near-cap points are recorded, and no exact0.15 point is exposed.",
+    "No new receiver consent proof, actual CPC, purchases, attribution, CPA, ROAS, profit, language/presence/MaxClicks equivalence or paid authority is established.",
+    "No browser, account, support, canonical, automation or external action was performed by this reviewer.",
+    "The separately bound DE chart addendum explains the source as retained prechange UI, with six zero-valued points and no exact0.15 point. Root provenance, stale-result and noncausal-control limits remain; no positive or negative match-type effect is proven."
+  ],
+  "next_action": "Retain the qualified hold and existing pending supported consent path; preserve the parent ownership and paid/purchase/economics dependencies.",
+  "additional_input_sha256": {
+    "provenance_addendum.json": "af0bed2eb87ed200476eac6d5df7cebe00f604dc044be9a2e42ef1701db6b611"
+  },
+  "pre_handback_draft_sha256": "03dd78352d0b2e1583c51c90664d85177e16a9eceaf9ae41a9fe1069af51ce96",
+  "provenance_clarification": "The source omission was clarified by the separate addendum. It supplies a root transcription of the retained prechange DE Exact chart, not independently replayed evidence or a newly requested control. The hold remains supported independently of DE gain."
+}

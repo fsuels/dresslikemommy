@@ -220,21 +220,13 @@ function installPixel() {
 
   // ===== CLIENT ID =========================================================
   async function getClientId() {
-    // Best-effort: try the sandbox-visible _ga cookie. Almost always null in
-    // current Shopify builds because the storefront _ga is on a different
-    // origin. Kept for forward-compat — if a future Shopify release exposes
-    // cross-origin _ga the pixel auto-upgrades to a matching client_id.
+    // Use the client-ID cookie when Shopify exposes it. Measurement Protocol
+    // accepts its full value; parsing components can truncate the identifier.
+    // https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference?client_type=gtag
     const ga = await cookies.get("_ga");
     if (ga && typeof ga === "string") {
-      // Format: GA1.1.<client_id>.<creation_ts>
-      const parts = ga.split(".");
-      if (parts.length >= 4) {
-        const candidate = parts.slice(2, parts.length - 1).join(".");
-        if (candidate) {
-          await storage.set(CLIENT_ID_STORAGE_KEY, candidate);
-          return candidate;
-        }
-      }
+      await storage.set(CLIENT_ID_STORAGE_KEY, ga);
+      return ga;
     }
     const stored = await storage.get(CLIENT_ID_STORAGE_KEY);
     if (stored) return stored;

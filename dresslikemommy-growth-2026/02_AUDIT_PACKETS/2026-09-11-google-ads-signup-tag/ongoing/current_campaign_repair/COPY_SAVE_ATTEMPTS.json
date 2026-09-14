@@ -1,0 +1,73 @@
+{
+  "recorded_at_utc": "2026-09-11T19:44:02.306122+00:00",
+  "status": "SAVE_FAILED_AFTER_IDENTITY_DIALOG_CLOSED",
+  "target": {
+    "account": "6509972886",
+    "campaign": "24247604341",
+    "asset_group": "6746545742"
+  },
+  "copy_plan_sha256": "b1b7a7a475f6bec8beb7769dbcaf87981b83facb515635790bf449c9d0fa0a15",
+  "before_state_18_fields_matched": true,
+  "staged_18_fields_match_reviewed_payload": true,
+  "preview": "Brand Dress Like Mommy and revised mommy-and-me headline/description rendered in editor; not a saved-ad acceptance.",
+  "attempts": [
+    {
+      "action": "Save this ad",
+      "result": "An error occurred. Please try again later."
+    },
+    {
+      "action": "One retry Save this ad",
+      "result": "Confirm it's you dialog"
+    },
+    {
+      "action": "Normal Confirm in identity dialog",
+      "result": "Try again; no completed verification"
+    }
+  ],
+  "external_edit_success_claimed": false,
+  "saved_after_state": "NOT_VERIFIED",
+  "campaign_status_last_verified": "PAUSED",
+  "campaign_status_changed_by_root": false,
+  "budget_usd_per_day": 5,
+  "handoff": {
+    "browser_id": "1",
+    "tab_id": "5",
+    "provider_tab_id": "browser-use:d544b0e5-3d7e-4ac7-8182-9af9393b4174",
+    "retained_with_markHandoff": true,
+    "browser_visibility_requested": true,
+    "open_in_codex_result": "queued",
+    "question": "Complete Google Confirm it's you then reply Verified",
+    "answer": "PENDING"
+  },
+  "stop": "No further Save/Apply or native fallback until normal identity verification completes. Preserve the staged editor.",
+  "prior_recorded_status": "SAVE_BLOCKED_IDENTITY_VERIFICATION",
+  "later_attempt_after_dialog_closed": {
+    "recorded_at_utc": "2026-09-11T20:15:17.716063+00:00",
+    "new_evidence": "Prior Confirm it's you dialog no longer present; cause of closure and verification completion not established.",
+    "precheck": {
+      "exact18planned_values": true,
+      "images_region_unchanged": true,
+      "logos_region_unchanged": true,
+      "videos_region_unchanged": true,
+      "sitelinks_region_unchanged": true
+    },
+    "action": "One normal Save this ad click in the same preserved editor; no alternative authentication surface.",
+    "result": "An error occurred. Please try again later.",
+    "error_location": "Inline beneath Headline5of15, Mother and Daughter Outfits,27of30characters.",
+    "success": false,
+    "identity_verification": "UNVERIFIED",
+    "current_editor": "Preserved with18plannedvalues; no more Save retries without changed failure evidence or normal owner verification.",
+    "root_cause": "UNKNOWN; do not label this a specific text-policy, brand, credential, adblock, or network cause."
+  },
+  "final_readback": {
+    "recorded_at_utc": "2026-09-11T20:52:14.427293+00:00",
+    "editor18fields_match": true,
+    "generic_error_remains_visible": true,
+    "identity_completion": "UNVERIFIED",
+    "fresh_saved_asset_group_still_has_old_copy": true,
+    "successful_save": false,
+    "new_save_attempt": false,
+    "editor_marked_handoff": true,
+    "receipt": "FINAL_DELIVERY_READBACK.json"
+  }
+}

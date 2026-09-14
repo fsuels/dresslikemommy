@@ -1,0 +1,98 @@
+{
+  "status": "REUSED_PRIVATE_RECONCILIATION_INPUT__NO_NEW_ORDER_EXPORT",
+  "source_read_at_utc": "2026-09-06T01:36:44.719Z",
+  "source_input_sha256": "f0b264d992f670e0d344dc912e551dd6818589821b4db2e15ae383ea7a69ad7c",
+  "source_mode": "0600",
+  "fixed_window": {
+    "start": "2026-08-08T04:00:00Z",
+    "end_exclusive": "2026-09-05T04:00:00Z"
+  },
+  "recent_paid_orders": 8,
+  "missing_rows": [
+    {
+      "alias": "MISSING_01",
+      "country": "US",
+      "retained_merchandise_usd": "36.98",
+      "source_name": "web",
+      "financial_status": "PAID",
+      "test": false,
+      "cancelled": false,
+      "journey_ready": true,
+      "recorded_first_visit_source": "DuckDuckGo",
+      "recorded_last_visit_source": "DuckDuckGo",
+      "transaction_kinds_statuses": [
+        {
+          "kind": "AUTHORIZATION",
+          "status": "SUCCESS"
+        },
+        {
+          "kind": "CAPTURE",
+          "status": "SUCCESS"
+        }
+      ],
+      "consent_at_purchase": null,
+      "browser_callback_receipt": null,
+      "pixel_sender": null,
+      "transport_or_ingestion_receipt": null
+    },
+    {
+      "alias": "MISSING_02",
+      "country": "DK",
+      "retained_merchandise_usd": "216.48",
+      "source_name": "web",
+      "financial_status": "PAID",
+      "test": false,
+      "cancelled": false,
+      "journey_ready": true,
+      "recorded_first_visit_source": "direct",
+      "recorded_last_visit_source": "direct",
+      "transaction_kinds_statuses": [
+        {
+          "kind": "SALE",
+          "status": "SUCCESS"
+        }
+      ],
+      "consent_at_purchase": null,
+      "browser_callback_receipt": null,
+      "pixel_sender": null,
+      "transport_or_ingestion_receipt": null
+    },
+    {
+      "alias": "MISSING_03",
+      "country": "US",
+      "retained_merchandise_usd": "48.98",
+      "source_name": "web",
+      "financial_status": "PAID",
+      "test": false,
+      "cancelled": false,
+      "journey_ready": true,
+      "recorded_first_visit_source": "Google",
+      "recorded_last_visit_source": "Google",
+      "transaction_kinds_statuses": [
+        {
+          "kind": "AUTHORIZATION",
+          "status": "SUCCESS"
+        },
+        {
+          "kind": "CAPTURE",
+          "status": "SUCCESS"
+        }
+      ],
+      "consent_at_purchase": null,
+      "browser_callback_receipt": null,
+      "pixel_sender": null,
+      "transport_or_ingestion_receipt": null
+    }
+  ],
+  "all_recent_source_names": [
+    "web"
+  ],
+  "missing_retained_merchandise_usd": "302.44",
+  "limits": [
+    "All eight recent retained orders have recorded sourceName web; no POS/manual source explanation appears in this captured field.",
+    "Stored source names are attribution records, not customer consent or proof of acquisition cause.",
+    "The captured order data contains no individual web-consent decision, checkout_completed callback, sender or transport/ingestion evidence; unknown is preserved.",
+    "No raw order/customer/contact identifier is persisted; exact private cohort reused, not re-exported."
+  ],
+  "external_mutations": "NONE"
+}

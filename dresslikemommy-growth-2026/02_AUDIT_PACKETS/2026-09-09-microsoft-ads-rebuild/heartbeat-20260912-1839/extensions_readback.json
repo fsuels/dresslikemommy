@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "task_id": "TA-15",
+  "classification": "VERIFY",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "owning_thread_id": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "observation_window_utc": ["2026-09-12T18:39:49Z", "2026-09-12T18:56:17Z"],
+  "surface": {
+    "browser_id": "1",
+    "tab_id": "7",
+    "provider_tab_id": "browser-use:7a2e27da-1295-467c-b4f0-5b23ab611945",
+    "final_url": "https://ui.ads.microsoft.com/campaign/vnext/accountsettings?aid=477439&cid=770182&uid=2290164",
+    "method": "Task-owned background native UI, DOM and accessibility readbacks; no private API",
+    "date_range_displayed": "Entire time: 9/12/2023 - 9/12/2026",
+    "campaign_status_filter": "Enabled, Paused",
+    "extension_status_filter": "All but deleted ad extensions"
+  },
+  "manual_views": [
+    {"type": "Sitelink Extensions", "level": "Account", "campaign_id": null, "empty": true},
+    {"type": "Callout Extensions", "level": "Account", "campaign_id": null, "empty": true},
+    {"type": "Promotion Extensions", "level": "Account", "campaign_id": null, "empty": true},
+    {"type": "Location Extensions", "level": "Account", "campaign_id": null, "empty": true},
+    {"type": "Review Extensions", "level": "Account", "campaign_id": null, "empty": true},
+    {"type": "Sitelink Extensions", "level": "Campaign", "campaign_id": "506254908", "empty": true},
+    {"type": "Sitelink Extensions", "level": "Ad group", "campaign_id": "506254908", "empty": true},
+    {"type": "Sitelink Extensions", "level": "Campaign", "campaign_id": "506254907", "empty": true},
+    {"type": "Sitelink Extensions", "level": "Ad group", "campaign_id": "506254907", "empty": true}
+  ],
+  "empty_view_receiver_text": "There are no results available based on your filtered search. Please revise your search.",
+  "scope_evidence": {
+    "account": "Account selected in all-campaign extension view",
+    "506254908": "DLM | MS | DE | DE | Search | 202609; Campaign then Ad group selected",
+    "506254907": "DLM | MS | US | EN | Search | 202609; Ad group then Campaign selected",
+    "ad_group_view_limitation": "The level tab lists associations in the selected campaign, rather than selecting the individual group in the scope menu.",
+    "evidence_retention_limitation": "Condensed transcription of observed native readbacks; not an independent live verification or full account export. Callout and promotion account selection was observed in native UI; their condensed records do not retain a separate selected-tab DOM line."
+  },
+  "legacy_sitelink_visible_sample": {
+    "exhaustive": false,
+    "asset_ids": ["8864880917028", "8864880917029"],
+    "titles": ["Mommy and Me Dresses", "Mommy & Me Tops"],
+    "level": "Campaign",
+    "qualification": "Visible rows associated with older paused campaigns; virtualized visible subset, not a complete association inventory. Their destinations were not expanded. Absence of new campaign associations was separately verified in exact scopes above."
+  },
+  "automated_extensions": {
+    "before_selected_radio": "Use all Automated Extensions available for this account. This is the setting we recommend for most advertisers.",
+    "after_cancel_reopen_selected_radio": "Use all Automated Extensions available for this account. This is the setting we recommend for most advertisers.",
+    "inspected_opt_out_categories": [
+      "Business Logo", "Consumer Ratings", "Dynamic Ad Enhancements", "Dynamic Callouts", "Dynamic Locations", "Dynamic Multimedia", "Dynamic Partner Data Enhancements", "Dynamic Sitelinks", "Dynamic Structured Snippets", "Longer Ad Headlines", "Previous Visits", "Seller Ratings", "Syndication Only Decorations"
+    ],
+    "inspection_action": "Selected the opt-out radio only to expose available categories, selected no category, clicked Cancel, reopened Manage and verified saved Use all remained selected, then Cancelled.",
+    "save_clicks": 0,
+    "historical_report": {
+      "visible_category_count": 9,
+      "date_range": "2023-09-12 through 2026-09-12",
+      "qualification": "Historical aggregate report with prior goal definitions. Not evidence of current eligible creative, distinct purchases, current CPC, present serving or profit."
+    },
+    "verified_interpretation": "Manual association absence does not exclude the separately enabled automated extension mechanism.",
+    "not_verified": ["Which automated assets would serve for the new campaigns", "Any wrong-language asset or incorrect destination", "Any unsupported promotion, location, image or review claim", "Replacement of the saved RSA headline Final URL"]
+  },
+  "account_options_final_readback": {
+    "tracking_template": "",
+    "final_url_suffix": "",
+    "msclkid_auto_tagging": true,
+    "utm_auto_tagging": true,
+    "utm_mode": "Replace all existing tags",
+    "auto_retrieve_images": false,
+    "automatic_conversion_goal_setup": false,
+    "view_through_in_all_conversions": true,
+    "doubleverify_enabled": false,
+    "automatic_multimedia_in_dynamic_ad_groups": false,
+    "business_attribute_checkboxes_selected": 0,
+    "banner": "None of your ads are running, because you have paused your campaigns. You need to enable your campaigns.",
+    "consent_reminder": "Adopt Consent Mode for UET immediately",
+    "reminder_action": "Close only; no Continue and no declaration submitted"
+  },
+  "decision": {
+    "disposition": "HOLD_WITH_EVIDENCE_NO_EXTERNAL_CHANGE",
+    "hypothesis_tested": "Old manual campaign sitelinks could also be associated with the rebuilt US/DE campaigns or inherited from account scope.",
+    "observed_result": "No matching manual sitelink association at account or either new campaign/ad-group level. Five selected account-level manual types were empty.",
+    "alternative_considered": "Opt out only of Dynamic Sitelinks to constrain extra landing destinations in a future initial experiment.",
+    "alternative_scope": "Account-wide; would also affect older campaigns if resumed. Does not certify manual control over all generated copy/media.",
+    "reason_for_no_change": "No incorrect generated destination or claim was observed. No paid experiment is active. A global opt-out has an unquantified visibility/engagement tradeoff and is not a demonstrated repair.",
+    "next_independent_trigger": "A qualified launch decision requiring fixed extra destinations, or native evidence of a wrong-language, wrong-destination or unsupported automatic asset. Prepare an exact targeted decision then; do not repeat unchanged empty grids.",
+    "dependent_next_action": "Resume the supported standard UET consent repair when the pending support-contact question is answered or a supported publisher/access change supplies a new path. Then verify genuine purchase acceptance.",
+    "authority": "Existing bounded nonspend repair and qualified paused USEN/DEDE preparation; paid scope remains NONE.",
+    "rollback": "No external save. Temporary radio selection cancelled and saved Use all read back."
+  },
+  "official_sources": [
+    {"url": "https://help.ads.microsoft.com/apex/index/3/en-us/60014", "retrieval": "Official indexed page retrieved this run", "supports": "Opt-out is account-wide by category, automatic appearance is conditional, reporting is category-level."},
+    {"url": "https://help.ads.microsoft.com/apex/index/3/it/60006", "retrieval": "Official indexed Italian guide read by bounded source agent; root retrieved indexed result", "supports": "Dynamic sitelinks add other site-page links; dynamic copy and multimedia are separate automated capabilities."},
+    {"url": "https://learn.microsoft.com/en-us/advertising/guides/ad-extensions?view=bingads-13", "retrieval": "Bounded source agent direct official read this run", "supports": "Association, not mere account asset storage, determines manual eligibility; do not presume lower-level assets eliminate higher-level ones."}
+  ],
+  "execution_limits": {
+    "external_save_clicks": 0,
+    "campaign_imports": 0,
+    "support_messages_sent": 0,
+    "consent_declarations_submitted": 0,
+    "purchase_or_tracking_test_events_created": 0,
+    "shared_canonical_files_edited": 0,
+    "paid_authority_changed": false,
+    "known_consent_gap_retested": false,
+    "automation_configuration_readback": "Existing microsoft-ads-profitable-growth-operator ACTIVE every 4 hours for this thread; unchanged. Configuration does not prove continuous runtime or profit."
+  },
+  "operational_notes": [
+    "One read selector used table instead of the DOM grid role; inspected fresh DOM and used its supported grid role.",
+    "One immediate Cancel/reopen sequence did not reopen the editor; read settled page, reopened once and verified the saved radio. No Save was clicked.",
+    "No whole-account creative or inherited-asset certification is made; uninspected manual extension types and rendered automatic assets remain outside this pass."
+  ]
+}

@@ -1,0 +1,499 @@
+{
+  "schema": "dlm.independent_ads_real_purchase_source_review.v1",
+  "reviewer": "/root/together_heart_runner",
+  "reviewed_at_utc": "2026-09-14T07:33:55.166046+00:00",
+  "task_classification": "VERIFY",
+  "verdict": "PASS_WITH_LIMITS",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "criteria": {
+    "path": "/private/tmp/dlm-ads-20260914-0656-review-criteria.json",
+    "sha256": "18b6e46c8cd7b43ef3d56aec4538d651e3f6de00e7ef561e5a41bf74ca3e2094",
+    "frozen_before_source_validation": true,
+    "assessment": {
+      "source_and_artifact_criteria": "All85 final source criteria pass with stated evidence limits.",
+      "candidate_privacy": "Owned-artifact private-token exclusion passes; the no-display part remains a disclosed reviewer process exception because an opaque pagination cursor was printed once."
+    }
+  },
+  "source_bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260914_0656.json",
+      "sha256": "465e26121fbf1ae1c3aec1b1340fe89fb6dee9ccffd958b99bfb41e2e7c60b18"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/REAL_PURCHASE_CANDIDATE_20260914_0656.json",
+      "sha256": "911e20bb2b92c01ef699673d8b93c5ea130eedbfe226e922a1581cf21339d04d"
+    },
+    {
+      "path": "/private/tmp/dlm-sales-20260914-0704-source.json",
+      "sha256": "d0326a1650fc265c9c85af0c1c3773a6f6d28b585128c81a26b0b8b250178e1a"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260914_0255.json",
+      "sha256": "0eb08548638e33ceefc94315c000225e6790908e1c364e58c0a7a53e9237f512"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/COPY_CHANGE_PLAN.json",
+      "sha256": "b1b7a7a475f6bec8beb7769dbcaf87981b83facb515635790bf449c9d0fa0a15"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/EXACT_COPY_PRE_SAVE_REVIEW.json",
+      "sha256": "ecc6ea17f713360efc31130b4dfc14d934b929db667a8a844c90b43209634b36"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+      "sha256": "99aad3484b86cf758412a037c9cdb0361da8800cebe781ec5ba1f54ac95218c8"
+    }
+  ],
+  "check_summary": {
+    "initial_executed": 85,
+    "initial_passed": 84,
+    "initial_failed_reviewer_shape_assumption_resolved": 1,
+    "correction_executed": 3,
+    "correction_passed": 3,
+    "total_executed": 88,
+    "total_passed_executions": 87,
+    "final_source_criteria_passed": 85,
+    "unresolved_source_findings": 0,
+    "owner20and25checks_not_counted_as_ours": true,
+    "review_process_privacy_exception_count": 1
+  },
+  "checks": [
+    {
+      "check": "assigned SHA FOLLOWUP_20260914_0656.json",
+      "passed": true
+    },
+    {
+      "check": "assigned SHA REAL_PURCHASE_CANDIDATE_20260914_0656.json",
+      "passed": true
+    },
+    {
+      "check": "assigned SHA dlm-sales-20260914-0704-source.json",
+      "passed": true
+    },
+    {
+      "check": "assigned SHA dlm-ads-20260914-0656-review-criteria.json",
+      "passed": true
+    },
+    {
+      "check": "private source0600 mode",
+      "passed": true
+    },
+    {
+      "check": "criteria frozen before validation",
+      "passed": true
+    },
+    {
+      "check": "bound supporting source FOLLOWUP_20260914_0255.json",
+      "passed": true
+    },
+    {
+      "check": "bound supporting source COPY_CHANGE_PLAN.json",
+      "passed": true
+    },
+    {
+      "check": "bound supporting source EXACT_COPY_PRE_SAVE_REVIEW.json",
+      "passed": true
+    },
+    {
+      "check": "bound supporting source SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+      "passed": true
+    },
+    {
+      "check": "candidate hash bound in followup",
+      "passed": true
+    },
+    {
+      "check": "frozen copy review accepts exact plan",
+      "passed": true
+    },
+    {
+      "check": "source record sequence",
+      "passed": true
+    },
+    {
+      "check": "creation interval continues preceding cutoff",
+      "passed": true
+    },
+    {
+      "check": "three count bounds and unbounded exactcount query",
+      "passed": true
+    },
+    {
+      "check": "unrestricted non-testweb and financiallypaid count scopes",
+      "passed": true
+    },
+    {
+      "check": "candidate exactbounds and readonly query",
+      "passed": true
+    },
+    {
+      "check": "candidate query covers claimed state money items andjourney",
+      "passed": true
+    },
+    {
+      "check": "allthree sourcecounts1EXACT",
+      "passed": true
+    },
+    {
+      "check": "candidate oneorder fouritems completepagination",
+      "passed": true
+    },
+    {
+      "check": "same shop and timezone across sources",
+      "passed": true
+    },
+    {
+      "check": "unique private timestamp join",
+      "passed": true
+    },
+    {
+      "check": "candidate timestamp inside exact interval",
+      "passed": true
+    },
+    {
+      "check": "root complete broader read covers interval",
+      "passed": true,
+      "evidence_limit": "Root uses the declared $filter variable; stored filter bounds cover the candidate interval, complete pagination and capture clock verified. This is source-bound consistency, not live query replay."
+    },
+    {
+      "check": "root exactone interval creation matches candidate",
+      "passed": true
+    },
+    {
+      "check": "root one non-testweb paid candidate",
+      "passed": true
+    },
+    {
+      "check": "root matched lineitems complete",
+      "passed": true
+    },
+    {
+      "check": "exact private variantset and quantities join",
+      "passed": true
+    },
+    {
+      "check": "exact private productset join",
+      "passed": true
+    },
+    {
+      "check": "fourunits across current original andreported quantities",
+      "passed": true
+    },
+    {
+      "check": "followup timestamp andproduct coherent withcandidate",
+      "passed": true
+    },
+    {
+      "check": "private matching state test",
+      "passed": true
+    },
+    {
+      "check": "private matching state source",
+      "passed": true
+    },
+    {
+      "check": "private matching state financial_status",
+      "passed": true
+    },
+    {
+      "check": "private matching state cancelled_at",
+      "passed": true
+    },
+    {
+      "check": "private matching state fulfillment_status",
+      "passed": true
+    },
+    {
+      "check": "positive non-testPAIDweb notcancelled",
+      "passed": true
+    },
+    {
+      "check": "US owner-observed country internally consistent",
+      "passed": true,
+      "evidence_limit": "Root independent source does not contain country; no independent live US verification."
+    },
+    {
+      "check": "followup statefields agree withcandidate",
+      "passed": true
+    },
+    {
+      "check": "private matching current shopmoney subtotal",
+      "passed": true
+    },
+    {
+      "check": "private matching current shopmoney total",
+      "passed": true
+    },
+    {
+      "check": "private matching current shopmoney tax",
+      "passed": true
+    },
+    {
+      "check": "private matching current shopmoney refund",
+      "passed": true
+    },
+    {
+      "check": "current total positive",
+      "passed": true
+    },
+    {
+      "check": "USD shop andpresentment",
+      "passed": true
+    },
+    {
+      "check": "candidate shop/presentment money coherence total",
+      "passed": true
+    },
+    {
+      "check": "candidate shop/presentment money coherence original_total",
+      "passed": true
+    },
+    {
+      "check": "candidate shop/presentment money coherence subtotal",
+      "passed": true
+    },
+    {
+      "check": "candidate shop/presentment money coherence tax",
+      "passed": true
+    },
+    {
+      "check": "candidate shop/presentment money coherence shipping",
+      "passed": true
+    },
+    {
+      "check": "candidate shop/presentment money coherence refund",
+      "passed": true
+    },
+    {
+      "check": "line amounts sum to exact subtotal andqualified sum",
+      "passed": true
+    },
+    {
+      "check": "line shop/presentment amounts sameUSD",
+      "passed": true
+    },
+    {
+      "check": "line originalsum notbelow discounted",
+      "passed": true
+    },
+    {
+      "check": "subtotal plus tax shipping equals total",
+      "passed": true
+    },
+    {
+      "check": "zero refunds and exactfollowup total",
+      "passed": true
+    },
+    {
+      "check": "creation anddatedtracking local dates coherent",
+      "passed": true
+    },
+    {
+      "check": "source directjourney notGoogle attribution inference",
+      "passed": true
+    },
+    {
+      "check": "candidate receiver transaction consent dedup stillunverified",
+      "passed": true
+    },
+    {
+      "check": "actual costs andprofit unknown",
+      "passed": true
+    },
+    {
+      "check": "all27 current textvalues equal frozen afterplan",
+      "passed": true
+    },
+    {
+      "check": "current27 exactly priorverified27",
+      "passed": true
+    },
+    {
+      "check": "same actor-owned editor identity",
+      "passed": true
+    },
+    {
+      "check": "retained exact account campaign group",
+      "passed": true
+    },
+    {
+      "check": "paused5USD unsaved andidentitygate distinct",
+      "passed": true
+    },
+    {
+      "check": "no currentfill save identity orreload",
+      "passed": true
+    },
+    {
+      "check": "TodaySep14partial vs Sep13complete processingunverified",
+      "passed": true
+    },
+    {
+      "check": "today capturedrows zero activity pausedbudget exactdate",
+      "passed": true
+    },
+    {
+      "check": "yesterday capturedrows zero activity pausedbudget exactdate",
+      "passed": true
+    },
+    {
+      "check": "historic Sep7-13 costnotnewspend",
+      "passed": true
+    },
+    {
+      "check": "historical CPC math0.16 separate zero denominators",
+      "passed": true,
+      "evidence_limit": "Current CPC/CPA/ROAS with zero denominators are undefined, not zero performance ratios."
+    },
+    {
+      "check": "rendered recommendation label notqualitygain",
+      "passed": true
+    },
+    {
+      "check": "purchase action identity consistent across receipts",
+      "passed": true
+    },
+    {
+      "check": "purchase action owner status date zero qualified",
+      "passed": true
+    },
+    {
+      "check": "actionsettings owner-summary internally supported",
+      "passed": true,
+      "evidence_limit": "No raw settings rows embedded. This checks the owner summary, not independent live configuration."
+    },
+    {
+      "check": "zero Ads action nottrackingfailure proof",
+      "passed": true
+    },
+    {
+      "check": "GA4 pending existingowner preserved",
+      "passed": true
+    },
+    {
+      "check": "zero externalbusiness andsharedwrites",
+      "passed": true
+    },
+    {
+      "check": "two report changes readonlyactionread andcleanup",
+      "passed": true
+    },
+    {
+      "check": "paidNONE runtimeblocked andcadence unchanged",
+      "passed": true
+    },
+    {
+      "check": "owner20and25verification notindependentliveproof",
+      "passed": true
+    },
+    {
+      "check": "no mixedage currentfullcohort inference",
+      "passed": true
+    },
+    {
+      "check": "privateorder identifiers excluded from source receipts",
+      "passed": true
+    },
+    {
+      "check": "customerPII andraworder handoff excluded bysource structure",
+      "passed": true
+    },
+    {
+      "check": "allinputs and frozenreferences unchangedatclose",
+      "passed": true
+    }
+  ],
+  "findings": [],
+  "independent_comparison": {
+    "unique_matching_record": true,
+    "exact_timestamp_match": true,
+    "exact_variant_set_and_current_quantities_match": true,
+    "exact_product_set_match": true,
+    "shared_current_shopmoney_subtotal_total_tax_refund_match": true,
+    "identifying_association_written_in_owned_artifacts": false
+  },
+  "qualified_observation": {
+    "new_non_test_uncancelled_PAID_web_orders": 1,
+    "units": 4,
+    "currency": "USD",
+    "total": "111.96",
+    "refund": "0.00",
+    "financial_status_is_not_paid_media_attribution": true,
+    "receiver_ingestion": "UNVERIFIED",
+    "actual_costs_attribution_profit": "UNKNOWN"
+  },
+  "qualified_findings": [
+    "The candidate resolves to exactly one independent private source record by timestamp, full variant/current-quantity set, product set and shared order-money/state fields. The identifying association remains in memory only.",
+    "A real four-unit USD111.96 financially PAID web candidate is supported. It enables the existing receiver check; it does not establish GA4 ingestion, Ads attribution, campaign effectiveness, fulfillment success or profit.",
+    "All27 current draft values exactly equal the frozen plan and preceding snapshot. Editor23 remains owned by the same Ads task; campaign Paused/configuredUSD5, copy unsaved, normal identity/Save acceptance unverified.",
+    "TodaySeptember14 partial zeros, calendar-completeSeptember13 processing-unverified zeros and historicalSeptember7-13 USD0.80 are distinct reporting periods. Current zero-denominator efficiency ratios remain undefined.",
+    "Purchase7760272273 settings/status are summarized owner observations without raw settings rows. Awaiting conversions and zeroSeptember13 results do not independently establish tracking failure or receiver acceptance.",
+    "Existing GA4 receiver follow-up is running separately; no duplicate query or dispatch was made."
+  ],
+  "validation_attempt_history": [
+    {
+      "status": "STOPPED_BEFORE_COMPARISON",
+      "reason": "The first validation command resolved a relative research reference one directory too high. The file was then found at the receipt-relative path with its exact expected hash; no source was changed."
+    }
+  ],
+  "review_process_privacy_exception": {
+    "type": "OUTPUT_MINIMIZATION_EXCEPTION",
+    "description": "One opaque private pagination cursor was accidentally emitted in a structural-inspection tool output. It was not decoded, repeated or copied into owned artifacts. No customer name/contact/address or plaintext order identifier was displayed. Parent was notified.",
+    "residual_limit": "The earlier tool output cannot be removed by this reviewer. The no-display part of the frozen privacy criterion is not fully satisfied; owned artifacts pass the private-token exclusion check.",
+    "source_correctness_effect": "None; this is a reviewer process limitation, not a source/candidate defect."
+  },
+  "limits": [
+    "Saved-file validation only. No API/browser/account/GA4 replay. Owner20/25 and strict10 checks were not rerun or counted as independent live truth.",
+    "The independent private source contains current variant quantities and current shop-money subtotal/total/tax/refund. Country, direct journey, processedAt, original quantities/prices, shipping and individual line amounts remain owner-source facts checked for consistency, not independently reread fields.",
+    "GA4 date mapping retains dated September12 property settings. FinancialPAID and Shopify direct journey neither establish nor exclude paid acquisition. Receiver transaction/value/currency/items/consent/dedup and actual contribution remain unverified.",
+    "Detailed Ads action settings lack verbatim captured rows in this packet. Current actor/media preservation is limited to captured text and summarized observations, not an independent asset-ID or live-account certificate.",
+    "The creation interval ends06:59:06UTC. Private root read at07:04:53-54UTC is a separate source. No later state or mixed-age full-cohort total was added to the Ads result; root owns full-sales scheduling reconciliation.",
+    "Candidate receipts omit raw identifiers but contain detailed purchase time and items. This review adds no raw-order association, transaction fingerprint digest or variant-to-order mapping. Opaque pagination metadata must remain private."
+  ],
+  "source_corrections_required": false,
+  "next_action": "Use the existing GA4 owner result for the real transaction/value/currency/items/consent/dedup check. Keep Ads normal identity/Save and paidNONE gates separate; no duplicate dispatch.",
+  "actions": {
+    "only_written": [
+      "/private/tmp/dlm-ads-20260914-0656-review-criteria.json",
+      "/private/tmp/dlm-ads-20260914-0656-parent-review.json"
+    ],
+    "external_API_browser_calls": 0,
+    "canonical_source_code_writes": 0,
+    "new_dispatches": 0,
+    "identifying_associations_written": 0
+  },
+  "reviewer_check_corrections": [
+    {
+      "initial_review_sha256": "d7584a2cb28fa1e1a8d37a7f2cdce50b0d0ccd67d8e53243019291384911436d",
+      "initial_check_summary": {
+        "executed": 85,
+        "passed": 84,
+        "failed": 1,
+        "unresolved_source_findings": 1,
+        "owner20and25checks_not_counted_as_ours": true,
+        "review_process_privacy_exception_count": 1
+      },
+      "initial_findings": [
+        {
+          "check": "root complete broader read covers interval",
+          "passed": false
+        }
+      ],
+      "reason": "The root query uses the declared $filter variable. The first assertion incorrectly expected the actual filter literal embedded in the GraphQL document. The explicit stored filter bounds and query-variable contract cover the candidate interval; no source changed.",
+      "correction_checks": [
+        {
+          "check": "root variable-based query binds named filter metadata",
+          "passed": true
+        },
+        {
+          "check": "root explicit filter fully contains candidate interval",
+          "passed": true
+        },
+        {
+          "check": "all review bindings unchanged at correction close",
+          "passed": true
+        }
+      ]
+    }
+  ]
+}

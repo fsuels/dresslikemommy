@@ -1,0 +1,341 @@
+{
+  "schema": "dlm.au_corrected_price_independent_review.v1",
+  "status": "PASS",
+  "reviewer": "/root/together_heart_source",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE_REPAIR_OR_DEPLOYMENT",
+  "reviewed_at_utc": "2026-09-11T19:03:30.263345+00:00",
+  "scope": "Exact old/new AU candidate and bound source/manifest/diagnostics, plus independent live query of only five AU contextual prices. Sole output is this receipt.",
+  "checks_passed": 21,
+  "checks_total": 21,
+  "checks": [
+    {
+      "check": "Expected frozen and rebuilt TSV identities",
+      "status": "PASS",
+      "detail": "Both supplied SHA256 values match; rebuilt size is17,284,594bytes."
+    },
+    {
+      "check": "Real TSV parse and ordered18-column schema",
+      "status": "PASS",
+      "detail": "Strict csv.DictReader over StringIO preserves quoted newlines; all records are complete."
+    },
+    {
+      "check": "Exact4923 unique identities and row order",
+      "status": "PASS",
+      "detail": "No added, removed, duplicated or reordered offer."
+    },
+    {
+      "check": "Exactly five approved price-only deltas",
+      "status": "PASS",
+      "detail": "Only the exact five Adult2XL targets change from325308.00AUD to33.00AUD."
+    },
+    {
+      "check": "All4918 other rows and85 affected nonprice cells exact",
+      "status": "PASS",
+      "detail": "Complete row equality outside targets; all17 other columns remain equal in each target."
+    },
+    {
+      "check": "Entire byte stream changes only five prices",
+      "status": "PASS",
+      "detail": "Exact byte transformation, not merely parsed-field equivalence;20byte reduction."
+    },
+    {
+      "check": "Paid exclusions and availability unchanged",
+      "status": "PASS",
+      "detail": "All4923 Shopping_ads exclusions and in_stock declarations are retained."
+    },
+    {
+      "check": "Saved shop and AU context binding",
+      "status": "PASS",
+      "detail": "Saved source and manifest bind AU/en/AUD with stable market/catalog context; this is18:53 source evidence."
+    },
+    {
+      "check": "Exactly240 ACTIVE source parents and closing manifest",
+      "status": "PASS",
+      "detail": "Recomputed from the saved full snapshot and its closing identity manifest."
+    },
+    {
+      "check": "Exactly4945 source variants and per-parent counts",
+      "status": "PASS",
+      "detail": "No repeated source variant; every exact parent variant count reconciles."
+    },
+    {
+      "check": "Exactly4923 available rows and22 unavailable omitted",
+      "status": "PASS",
+      "detail": "File identity set equals the saved available cohort. Buyability is not owned physical inventory or Google eligibility."
+    },
+    {
+      "check": "Saved pagination complete with independently reconciled pages",
+      "status": "PASS",
+      "detail": "Every connection ends with hasNextPage=false; source variant and parent page totals reconcile."
+    },
+    {
+      "check": "Every emitted price matches saved AU contextual source",
+      "status": "PASS",
+      "detail": "All4923 prices match Decimal-formatted contextual amounts with currencyAUD from the18:53:09.071UTC snapshot; no FX calculation or USD copying."
+    },
+    {
+      "check": "All240 groups and exact source identity suffixes",
+      "status": "PASS",
+      "detail": "Full parent and variant components bind to their source records."
+    },
+    {
+      "check": "All4923 exact country/currency/variant links",
+      "status": "PASS",
+      "detail": "Parsed three distinct query pairs equal AU, AUD and exact numeric variant ID; product path equals source handle. No loose substring matching or public-page preselection proof."
+    },
+    {
+      "check": "Manifest hash,MD5,bytes,IDs and timestamps exact",
+      "status": "PASS",
+      "detail": "Local payload manifest matches the actual bytes and saved source; no remote ETag or deployment inference."
+    },
+    {
+      "check": "Diagnostics agree on exclusions and lifecycle",
+      "status": "PASS",
+      "detail": "All22 omitted unavailable IDs reconcile; no lifecycle drift or build errors. Existing warnings remain unresolved."
+    },
+    {
+      "check": "Old versus fresh source preserves every other record",
+      "status": "PASS",
+      "detail": "All4940 other source variant records are exact; parent nonprice fields are exact apart from recorded updatedAt change."
+    },
+    {
+      "check": "Builder validation agrees without replacing independent checks",
+      "status": "PASS",
+      "detail": "Builder33-check report agrees with independently recomputed comparisons."
+    },
+    {
+      "check": "Independent schema-validation-query workflow and five fresh AU prices",
+      "status": "PASS",
+      "detail": "One independent structured query returned33.0AUD for each exact target at18:59:27–18:59:28UTC with countryAU context and correct parent."
+    },
+    {
+      "check": "Every reviewed input remains unchanged",
+      "status": "PASS",
+      "detail": "All nine reviewed source, manifest, diagnostics, TSV and builder-validation files remain byte-identical during review."
+    }
+  ],
+  "input_manifest": {
+    "before_price_correction_20260911/au-en.tsv": {
+      "sha256": "a7db8ec43fc6caa61054faa13cac4c0575a3a7d7658071ab7c21b0bb518fa184",
+      "bytes": 17284614
+    },
+    "before_price_correction_20260911/au-en.snapshot.json": {
+      "sha256": "de73bb037b7c8ee437b7aa1be2901b9dd74949f92a14a2edd46e7335dd01b942",
+      "bytes": 6786967
+    },
+    "before_price_correction_20260911/au-en.manifest.json": {
+      "sha256": "ad43db59080b4e39bd9b3a3c6d6dea3282b96b5c835385c2814d9f17098e37ef",
+      "bytes": 232105
+    },
+    "before_price_correction_20260911/au-en.diagnostics.json": {
+      "sha256": "e8f1e8c07f0e55b8c5da031dde04e8bb3af6af8f5f95722ca28c547c8cca56d5",
+      "bytes": 968258
+    },
+    "corrected_price_build/au-en.tsv": {
+      "sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+      "bytes": 17284594
+    },
+    "corrected_price_build/au-en.snapshot.json": {
+      "sha256": "bf2aadd8cf9cefdb387b8fe6b704420492b526905681182cd6ac08218b0cab4b",
+      "bytes": 6786947
+    },
+    "corrected_price_build/au-en.manifest.json": {
+      "sha256": "83c8e8f6043f44cefe982c7637a20f3f5322e8b8f08878f3190f91ade0f4478d",
+      "bytes": 232105
+    },
+    "corrected_price_build/au-en.diagnostics.json": {
+      "sha256": "834a75ce97777c43e587d28d01794c6465428fb87d43c07ec5230b2bba8ee1c7",
+      "bytes": 968257
+    },
+    "au-en.price_rebuild_validation.json": {
+      "sha256": "5389a20950f8125001ae72569c9fec5061d54fe5b45f3744ac324a081f763557",
+      "bytes": 5608
+    }
+  },
+  "counts": {
+    "source_active_parents": 240,
+    "source_variants": 4945,
+    "source_available_emitted": 4923,
+    "source_unavailable_omitted": 22,
+    "columns": 18,
+    "parent_groups": 240,
+    "changed_rows": 5,
+    "changed_cells": 5,
+    "unchanged_other_feed_rows": 4918,
+    "preserved_nonprice_cells_in_affected_rows": 85,
+    "unchanged_source_variant_records": 4940,
+    "fresh_contextual_prices_read": 5
+  },
+  "exact_deltas": [
+    {
+      "record_ordinal_including_header": 1844,
+      "id": "shopify_AU_7230336729185_41883237220449",
+      "size": "Adult 2XL",
+      "color": "White",
+      "changed_fields": {
+        "price": {
+          "before": "325308.00 AUD",
+          "after": "33.00 AUD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1845,
+      "id": "shopify_AU_7230336729185_41883237285985",
+      "size": "Adult 2XL",
+      "color": "Blue",
+      "changed_fields": {
+        "price": {
+          "before": "325308.00 AUD",
+          "after": "33.00 AUD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1846,
+      "id": "shopify_AU_7230336729185_41883237318753",
+      "size": "Adult 2XL",
+      "color": "Pink",
+      "changed_fields": {
+        "price": {
+          "before": "325308.00 AUD",
+          "after": "33.00 AUD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1847,
+      "id": "shopify_AU_7230336729185_41883238465633",
+      "size": "Adult 2XL",
+      "color": "Black",
+      "changed_fields": {
+        "price": {
+          "before": "325308.00 AUD",
+          "after": "33.00 AUD"
+        }
+      }
+    },
+    {
+      "record_ordinal_including_header": 1848,
+      "id": "shopify_AU_7230336729185_41883238498401",
+      "size": "Adult 2XL",
+      "color": "Red",
+      "changed_fields": {
+        "price": {
+          "before": "325308.00 AUD",
+          "after": "33.00 AUD"
+        }
+      }
+    }
+  ],
+  "saved_source_completed_at_utc": "2026-09-11T18:53:09.071Z",
+  "source_product_timestamp_drift": [
+    {
+      "product_id": "gid://shopify/Product/7230336729185",
+      "before": "2026-09-07T18:08:05Z",
+      "after": "2026-09-11T17:12:39Z"
+    }
+  ],
+  "independent_live_read": {
+    "started_at_utc": "2026-09-11 18:59:27 UTC",
+    "completed_at_utc": "2026-09-11 18:59:28 UTC",
+    "query": "query IndependentAuFiveContextualPrices($ids: [ID!]!) { nodes(ids: $ids) { ... on ProductVariant { id product { id } contextualPricing(context: { country: AU }) { price { amount currencyCode } } } } }",
+    "variables": {
+      "ids": [
+        "gid://shopify/ProductVariant/41883237220449",
+        "gid://shopify/ProductVariant/41883237285985",
+        "gid://shopify/ProductVariant/41883237318753",
+        "gid://shopify/ProductVariant/41883238465633",
+        "gid://shopify/ProductVariant/41883238498401"
+      ]
+    },
+    "data": {
+      "nodes": [
+        {
+          "id": "gid://shopify/ProductVariant/41883237220449",
+          "product": {
+            "id": "gid://shopify/Product/7230336729185"
+          },
+          "contextualPricing": {
+            "price": {
+              "amount": "33.0",
+              "currencyCode": "AUD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/ProductVariant/41883237285985",
+          "product": {
+            "id": "gid://shopify/Product/7230336729185"
+          },
+          "contextualPricing": {
+            "price": {
+              "amount": "33.0",
+              "currencyCode": "AUD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/ProductVariant/41883237318753",
+          "product": {
+            "id": "gid://shopify/Product/7230336729185"
+          },
+          "contextualPricing": {
+            "price": {
+              "amount": "33.0",
+              "currencyCode": "AUD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/ProductVariant/41883238465633",
+          "product": {
+            "id": "gid://shopify/Product/7230336729185"
+          },
+          "contextualPricing": {
+            "price": {
+              "amount": "33.0",
+              "currencyCode": "AUD"
+            }
+          }
+        },
+        {
+          "id": "gid://shopify/ProductVariant/41883238498401",
+          "product": {
+            "id": "gid://shopify/Product/7230336729185"
+          },
+          "contextualPricing": {
+            "price": {
+              "amount": "33.0",
+              "currencyCode": "AUD"
+            }
+          }
+        }
+      ]
+    },
+    "workflow": {
+      "schema_types": [
+        "QueryRoot",
+        "ProductVariant",
+        "ContextualPricingContext",
+        "ProductVariantContextualPricing",
+        "Product",
+        "MoneyV2"
+      ],
+      "connected_validation": "VALID",
+      "helper_validation": "VALID",
+      "documentation_helper": "search_docs attempted; fetch failed; connected schema remained authoritative"
+    },
+    "external_writes": 0
+  },
+  "current_knowledge_limits": [
+    "Full240-parent/4945-variant source evidence is the saved18:53:09.071UTC export, not an independent later full-cohort query.",
+    "Only five corrected AU contextual prices were freshly verified independently at18:59:28UTC.",
+    "No guessed exchange rate, USD copied value, or unrelated market read was used.",
+    "No upload, deployment, Google receiving/processed price/account review/eligibility/approval/serving, traffic, sales or profit is verified here.",
+    "Existing paid exclusions, missing/unknown attributes, return-policy setup and public numeric-variant preselection gates remain separate.",
+    "Availability is Shopify buyability from the saved source, not physical owned inventory.",
+    "Documentation helper search had a fetch failure; direct connected schema discovery and both connected/helper validation succeeded before the live query."
+  ],
+  "next_action": "Merchant may close the local AU corrected-price build against this exact hash; any subsequent deployment, Google receiving or market expansion remains under its separate current authority and verification gates."
+}

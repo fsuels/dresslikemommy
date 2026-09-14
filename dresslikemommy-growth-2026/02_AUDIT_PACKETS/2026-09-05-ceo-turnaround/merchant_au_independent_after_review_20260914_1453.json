@@ -1,0 +1,633 @@
+{
+  "schema": "dlm.au_1453_independent_after_review.v1",
+  "reviewer": "/root/claim_lookup_cause",
+  "reviewed_at_utc": "2026-09-14T15:55:35.369081+00:00",
+  "status": "PASS_WITH_LIMITS",
+  "review_completion": "Final saved-source review of the exact 15:49:45 owner handoff and its six receipts; not completion of AU current-source-list reconciliation.",
+  "operational_status": "PARTIAL__AU_RECEIVING_AND_12_SAMPLES_VERIFIED__NATIVE_REMOVALS_PENDING",
+  "scope": "Read-only local independent after-review. Reviewer did not build the candidate, execute the release, or replay native account observations.",
+  "permissions": {
+    "owned_output_only": "/private/tmp/dlm-au-1453-independent-after-review.json",
+    "live_reads": 0,
+    "external_writes": 0,
+    "canonical_writes": 0,
+    "owner_source_writes": 0,
+    "credential_reads": 0,
+    "new_harnesses": 0,
+    "production_or_paid_authorization_granted": false
+  },
+  "parent_supplied_current_bindings": {
+    "handoff": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/release_execution_handoff.json",
+      "sha256": "06be3a8c4a2cdec9b5d47e92a1b038fef489594abde0e75ebeaea6f8f941c1cd"
+    },
+    "native_omissions": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_omission_reconciliation.json",
+      "sha256": "5d2ee817631d861b0b27aa33d6485abb75492a8bf623850a8a7708397f3e3aa2"
+    }
+  },
+  "prior_independent_review": {
+    "path": "/private/tmp/dlm-au-1453-independent-review.json",
+    "sha256": "dc5c26205d14c62f289ca3473c74ad11ebc915674ad5857a9f0913b963194c12",
+    "accepted_copy_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_au_independent_release_review_20260914_1453.json",
+    "reused_scope": "Complete 4741-row source, field, hold and price analysis; unchanged frozen bytes are rehashed, not rebuilt or re-fetched."
+  },
+  "release_bindings": {
+    "release_packet": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/release_packet.json",
+      "sha256": "fce639297946421744046bc4d619557e47d6071dfbcb3637b237c5c2523a63f0"
+    },
+    "freeze": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/freeze.json",
+      "sha256": "4b66f6e616be749abfa0b7e751228708745b866e0520e5db34c40530085917f6"
+    },
+    "candidate": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/candidate/au-en.tsv",
+      "sha256": "f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236",
+      "md5": "206a788dfa76767adb41ce385dd8d3d9",
+      "bytes": 16618022,
+      "rows": 4741
+    },
+    "saved_action_claim_sha256": "89899dcfeca86a54eb1b493720ec7c60ecb1cf87c9ea50801545bf23512e1837"
+  },
+  "six_receipt_bindings": {
+    "release_attempt.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/release_attempt.json",
+      "expected_sha256": "17b52465de505b41202be95c517dba1b0e20fbda6aa34b49e46be6ae8c385a2b",
+      "observed_sha256": "17b52465de505b41202be95c517dba1b0e20fbda6aa34b49e46be6ae8c385a2b",
+      "matches": true
+    },
+    "native_google_receiving_result.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_google_receiving_result.json",
+      "expected_sha256": "f029a4a8b1722ca8dbad5ad8a64511eb75fc6d671b6292a24ff3f0ef795fe568",
+      "observed_sha256": "f029a4a8b1722ca8dbad5ad8a64511eb75fc6d671b6292a24ff3f0ef795fe568",
+      "matches": true
+    },
+    "native_sample_readback.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_sample_readback.json",
+      "expected_sha256": "9ae88ccc150b0b48559eea9a45779af2f81e301ec51445deb35d7100974f298a",
+      "observed_sha256": "9ae88ccc150b0b48559eea9a45779af2f81e301ec51445deb35d7100974f298a",
+      "matches": true
+    },
+    "native_source_count_after.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_source_count_after.json",
+      "expected_sha256": "85d48c7e705bd23d1b9160ad5d9710a6243e628155c8571384c02b35083919ee",
+      "observed_sha256": "85d48c7e705bd23d1b9160ad5d9710a6243e628155c8571384c02b35083919ee",
+      "matches": true
+    },
+    "native_omissions_first_pass.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_omissions_first_pass.json",
+      "expected_sha256": "b5ea81b6c34823d8c4799514e25cfd3d485a3ba2b705717b5b8d155027490d5a",
+      "observed_sha256": "b5ea81b6c34823d8c4799514e25cfd3d485a3ba2b705717b5b8d155027490d5a",
+      "matches": true
+    },
+    "native_omission_reconciliation.json": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_omission_reconciliation.json",
+      "expected_sha256": "5d2ee817631d861b0b27aa33d6485abb75492a8bf623850a8a7708397f3e3aa2",
+      "observed_sha256": "5d2ee817631d861b0b27aa33d6485abb75492a8bf623850a8a7708397f3e3aa2",
+      "matches": true
+    }
+  },
+  "frozen_source_binding_verification": {
+    "local_file_count": 22,
+    "external_binding_count": 5,
+    "matched_count": 27,
+    "bindings": {
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/before/au-en.diagnostics.json": {
+        "sha256": "10fb41ad6b672aeb5a598974a8523011d6304754a5e394e2efc2b0304c3b1867",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/before/au-en.manifest.json": {
+        "sha256": "cd100dcad21bcbe4c7a887d0ae8ac980bb0e3d10b643ac243e6a2d99dca9a270",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/before/au-en.snapshot.json": {
+        "sha256": "cd08a7c5d54871ad9db1e6c31da1da70269006d0ac8b6bc590e285a966ebe915",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/before/au-en.tsv": {
+        "sha256": "3857b029a134868c6de8cdfda75d926710651a9e5600beff5ab645a5d61559ae",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/before/eligibility_holds.json": {
+        "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/build.intent.json": {
+        "sha256": "0aa026301cf7f8d0cd0e1cc62ea82bd48022e41e63ff16d99877e9da1e6c989d",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/build.json": {
+        "sha256": "dcdadc74e0acf2c48f319b9c8672a2a182587b5266b69143680784b0e201c8a2",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/candidate/au-en.diagnostics.json": {
+        "sha256": "dcf1c4f0f61359af28869d9e5f878b3e2fc699e1d39fd6661aba62e54ad3b747",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/candidate/au-en.manifest.json": {
+        "sha256": "7eb8b576097cecbdf8abb6d804ca488764015834228d0a8e47313040cff3953f",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/candidate/au-en.snapshot.json": {
+        "sha256": "1ed985b0d3afd9281846b5fd2dce0a35a8fb88c6eaf3cdee4b3d7c84aba2ad68",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/candidate/au-en.tsv": {
+        "sha256": "f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/candidate/eligibility_holds.json": {
+        "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/candidate_validation.json": {
+        "sha256": "f17bd6728de2b20edd699e9fc0bbe57a99e503077a06c1181fded6c27bf4c1fc",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/delta_resolution.json": {
+        "sha256": "26c68710fa9ffb67a8ca4beecbd8cd8cfacf43c5d3ffa14594c00380e547e60f",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_offer_before.json": {
+        "sha256": "d61d6fb31c65f3b38a452478324e0111176c6a2503438114fab56d3630772a75",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_source_before.json": {
+        "sha256": "beb03c6e724a2380e996919d822b34a90cdd0a0099d0ef67a4684e319f844810",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/price_changes.json": {
+        "sha256": "2e1cd0aded769dcbee0a601270c7371e16d7c430db195c6abc759f1fe9f200bb",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/release_packet.json": {
+        "sha256": "fce639297946421744046bc4d619557e47d6071dfbcb3637b237c5c2523a63f0",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/source/au-en.diagnostics.json": {
+        "sha256": "8f0ee5b17f60bea076949b7c12d21f3d570c98f3f80803d818e0eba885fdd678",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/source/au-en.manifest.json": {
+        "sha256": "2a427c29627c546870d12de03d77b84674d70e592cd625c582c4c1835a1ed85f",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/source/au-en.snapshot.json": {
+        "sha256": "1ed985b0d3afd9281846b5fd2dce0a35a8fb88c6eaf3cdee4b3d7c84aba2ad68",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/source/au-en.tsv": {
+        "sha256": "43c0ac336f81f7f03e35220d9e54ede13ec605f42f68ba5ea81bf9189d75e04d",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate_config.json": {
+        "sha256": "6be63f2712324d9a3d0bddf750b1f46616e5e910e9cecb15073c3b17754163ed",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py": {
+        "sha256": "4e6457f5d76fa37e46caf29a2f9c791bce615211a77713fbd7c0d98ee3749b9f",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/cohort_filter.py": {
+        "sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/eligibility_holds_20260911.json": {
+        "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+        "matches": true
+      },
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.full_cohort_qualification_20260911.json": {
+        "sha256": "7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a",
+        "matches": true
+      }
+    }
+  },
+  "checks": {
+    "final_handoff_matches_parent_sha": true,
+    "omission_receipt_matches_parent_sha": true,
+    "prior_independent_review_exact_hash": true,
+    "copied_accepted_prior_review_exact_hash": true,
+    "handoff_has_exact_six_receipts": true,
+    "all_six_handoff_receipt_paths_and_hashes_match": true,
+    "frozen_bindings_exact_22_local_plus_5_external": true,
+    "all_27_frozen_bindings_unchanged": true,
+    "release_packet_and_freeze_match_accepted_review": true,
+    "exact_owner_and_review_bound": true,
+    "saved_action_claim_matches_reviewed_claim": true,
+    "parent_dispatch_and_idle_confirmations_recorded": true,
+    "all_native_receipts_exact_account_and_source": true,
+    "action_time_existing_manual_au_free_listing_identity": true,
+    "prior_receiving_completed_before_replacement": true,
+    "exact_uploaded_local_file_sha_md5_and_bytes": true,
+    "exact_local_file_path_bound_to_supported_chooser": true,
+    "one_actual_file_selection_and_one_upload": true,
+    "source_identity_selection_upload_receipt_clock_order_before_expiry": true,
+    "upload_source_age_under_two_hours": true,
+    "upload_dialog_closed_and_update_temporarily_disabled": true,
+    "early_zero_transitional_receipt_not_accepted_as_success": true,
+    "receiving_and_history_4741_updated_zero_new_clean": true,
+    "native_history_time_literal_preserved": true,
+    "timezone_not_displayed_and_utc_conversion_qualified": true,
+    "google_received_complete_byte_checksum_not_claimed": true,
+    "no_download_restore_or_duplicate_update": true,
+    "no_other_external_shopify_or_hosting_writes_reported": true,
+    "no_automatic_rollback_or_future_standing_authority": true,
+    "candidate_ids_match_frozen_manifest_without_duplicates": true,
+    "before_ids_match_frozen_manifest_without_duplicates": true,
+    "exact_frozen_20_omissions_zero_additions": true,
+    "exact_required_twelve_unique_sample_ids": true,
+    "six_changed_and_six_protected_as_reviewed": true,
+    "all_twelve_native_prices_match_candidate_and_independent_matrix": true,
+    "all_twelve_before_prices_match_frozen_matrix": true,
+    "all_six_changed_pairs_covered_once": true,
+    "all_twelve_native_AUD_approved_in_stock_AU_free_listings": true,
+    "all_twelve_saved_source_filter_bindings_exact": true,
+    "all_twelve_exact_detail_URL_identity_matches_saved_rows": true,
+    "all_twelve_observed_after_receiving_and_before_sample_save": true,
+    "rejected_stale_price_filter_row_preserved_and_later_matching_source_row_bound": true,
+    "two_protected_older_update_labels_preserved": true,
+    "older_labels_not_claimed_as_per_record_rewrite_proof": true,
+    "sample_coverage_not_all530_or_all_approval_serving_orders_profit": true,
+    "source_header_and_source_filtered_count_still_4761": true,
+    "count_observations_exact_and_post_receiving": true,
+    "count_not_promoted_to_omission_proof": true,
+    "two_final_prefixes_exact20_frozen_omissions_covered_once": true,
+    "each_final_query_complete_ten_exact_source_parent_matches": true,
+    "final_source_and_parent_filters_visible_and_not_loading": true,
+    "final_omission_queries_after_count_before_handoff": true,
+    "first_pass_same20_present_not_silently_overwritten": true,
+    "second_omission_query_stale_prior_parent_rejected": true,
+    "all20_presence_zero_verified_absence_remains_pending": true,
+    "no_cause_or_convergence_or_accountwide_deletion_serving_inference": true,
+    "original_three_failed_nochange_assumptions_preserved": true,
+    "source_delta_530_plus8held_plus2unavailable_preserved": true,
+    "broader_market_return_storequality_work_remains_open": true,
+    "operational_handoff_explicitly_partial": true,
+    "next_owner_action_readonly_count_two_prefixes_no_upload": true
+  },
+  "checks_passed": 61,
+  "checks_total": 61,
+  "failed_checks": [],
+  "receiving_verified_with_limits": {
+    "account_id": "513542500",
+    "source_id": "10727245667",
+    "one_existing_manual_upload_reported": true,
+    "source_completed_at_utc": "2026-09-14T15:03:55.842Z",
+    "action_time_native_identity_at_utc": "2026-09-14T15:26:56.171Z",
+    "file_selected_at_utc": "2026-09-14T15:27:57.054Z",
+    "upload_started_at_utc": "2026-09-14T15:28:32.317Z",
+    "source_age_at_upload_seconds": 1476.475,
+    "deadline_utc": "2026-09-14T17:03:55.842Z",
+    "receiving_observed_at_utc": "2026-09-14T15:29:06.574Z",
+    "native_history_observed_at_utc": "2026-09-14T15:29:44.605Z",
+    "native_history_literal": "Sep 14, 2026 11:28:35 AM",
+    "native_history_UTC_conversion": "2026-09-14T15:28:35Z assuming America/New_York (UTC-04:00) from task context; account timezone not independently verified.",
+    "updated": 4741,
+    "new": 0,
+    "attributes": "All recognized",
+    "file_issues": "No issues found",
+    "Google_received_complete_byte_checksum": "UNKNOWN"
+  },
+  "twelve_samples": {
+    "changed": 6,
+    "protected": 6,
+    "all_saved_current_prices_match": true,
+    "all_saved_AUD_Approved_InStock_FreeListings_Australia": true,
+    "exact_source_qualification": "Each saved record states exact source-filtered matching row plus an exact account/offer/language/AU native detail URL. Source ID is supported by the recorded matching filtered row, not inferred solely from the URL.",
+    "matrix": [
+      {
+        "offer_id": "shopify_AU_6718945034337_39756756287585",
+        "kind": "changed",
+        "frozen_before_AUD": "34.00 AUD",
+        "candidate_AUD": "35.00 AUD",
+        "saved_native_price": "A$35.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:33:58.731Z",
+        "last_update_literal": "4 mins ago",
+        "source_row_verified_at_utc": "2026-09-14T15:33:58.731Z"
+      },
+      {
+        "offer_id": "shopify_AU_7227378892897_41871520235617",
+        "kind": "changed",
+        "frozen_before_AUD": "37.00 AUD",
+        "candidate_AUD": "38.00 AUD",
+        "saved_native_price": "A$38.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:34:49.128Z",
+        "last_update_literal": "6 mins ago",
+        "source_row_verified_at_utc": "2026-09-14T15:34:49.128Z"
+      },
+      {
+        "offer_id": "shopify_AU_7227375714401_41871506735201",
+        "kind": "changed",
+        "frozen_before_AUD": "47.00 AUD",
+        "candidate_AUD": "48.00 AUD",
+        "saved_native_price": "A$48.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:35:26.380Z",
+        "last_update_literal": "6 mins ago",
+        "source_row_verified_at_utc": "2026-09-14T15:35:26.380Z"
+      },
+      {
+        "offer_id": "shopify_AU_7227379023969_41871522267233",
+        "kind": "changed",
+        "frozen_before_AUD": "51.00 AUD",
+        "candidate_AUD": "52.00 AUD",
+        "saved_native_price": "A$52.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:36:03.675Z",
+        "last_update_literal": "7 mins ago",
+        "source_row_verified_at_utc": "2026-09-14T15:36:03.675Z"
+      },
+      {
+        "offer_id": "shopify_AU_7533429358689_44046853439585",
+        "kind": "changed",
+        "frozen_before_AUD": "54.00 AUD",
+        "candidate_AUD": "55.00 AUD",
+        "saved_native_price": "A$55.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:38:38.143Z",
+        "last_update_literal": "9 mins ago",
+        "source_row_verified_at_utc": "2026-09-14T15:39:14.987Z"
+      },
+      {
+        "offer_id": "shopify_AU_7533453934689_44047092613217",
+        "kind": "changed",
+        "frozen_before_AUD": "57.00 AUD",
+        "candidate_AUD": "58.00 AUD",
+        "saved_native_price": "A$58.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:39:46.227Z",
+        "last_update_literal": "11 mins ago",
+        "source_row_verified_at_utc": "2026-09-14T15:39:46.227Z"
+      },
+      {
+        "offer_id": "shopify_AU_6718945034337_39756755861601",
+        "kind": "protected",
+        "frozen_before_AUD": "26.00 AUD",
+        "candidate_AUD": "26.00 AUD",
+        "saved_native_price": "A$26.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:40:25.369Z",
+        "last_update_literal": "11 mins ago",
+        "source_row_verified_at_utc": "2026-09-14T15:40:25.369Z"
+      },
+      {
+        "offer_id": "shopify_AU_7230336729185_41883237220449",
+        "kind": "protected",
+        "frozen_before_AUD": "33.00 AUD",
+        "candidate_AUD": "33.00 AUD",
+        "saved_native_price": "A$33.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:41:16.482Z",
+        "last_update_literal": "12 mins ago",
+        "source_row_verified_at_utc": "2026-09-14T15:41:16.482Z"
+      },
+      {
+        "offer_id": "shopify_AU_7230336729185_41883237285985",
+        "kind": "protected",
+        "frozen_before_AUD": "33.00 AUD",
+        "candidate_AUD": "33.00 AUD",
+        "saved_native_price": "A$33.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:41:54.941Z",
+        "last_update_literal": "13 mins ago",
+        "source_row_verified_at_utc": "2026-09-14T15:41:54.941Z"
+      },
+      {
+        "offer_id": "shopify_AU_7230336729185_41883237318753",
+        "kind": "protected",
+        "frozen_before_AUD": "33.00 AUD",
+        "candidate_AUD": "33.00 AUD",
+        "saved_native_price": "A$33.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:42:37.188Z",
+        "last_update_literal": "2 days ago",
+        "source_row_verified_at_utc": "2026-09-14T15:42:37.188Z"
+      },
+      {
+        "offer_id": "shopify_AU_7230336729185_41883238465633",
+        "kind": "protected",
+        "frozen_before_AUD": "33.00 AUD",
+        "candidate_AUD": "33.00 AUD",
+        "saved_native_price": "A$33.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:43:16.101Z",
+        "last_update_literal": "14 mins ago",
+        "source_row_verified_at_utc": "2026-09-14T15:43:16.101Z"
+      },
+      {
+        "offer_id": "shopify_AU_7230336729185_41883238498401",
+        "kind": "protected",
+        "frozen_before_AUD": "33.00 AUD",
+        "candidate_AUD": "33.00 AUD",
+        "saved_native_price": "A$33.00",
+        "currency": "AUD",
+        "native_status": "Approved",
+        "availability": "In stock",
+        "marketing_methods": "Free listings",
+        "source_id": "10727245667",
+        "at_utc": "2026-09-14T15:44:08.847Z",
+        "last_update_literal": "2 days ago",
+        "source_row_verified_at_utc": "2026-09-14T15:44:08.847Z"
+      }
+    ],
+    "rejected_stale_sample": {
+      "offer_id": "shopify_AU_7533429358689_44046853439585",
+      "saved_history": "Different prior row under the new filter was rejected. Exact native detail showedA$55, then the matching AU-source-qualified row loaded and showedA$55; only that matching source row was accepted.",
+      "accepted_matching_row_at_utc": "2026-09-14T15:39:14.987Z"
+    },
+    "older_protected_update_labels": [
+      "shopify_AU_7230336729185_41883237318753",
+      "shopify_AU_7230336729185_41883238498401"
+    ],
+    "coverage_limit": "Six changed offer observations cover six price pairs, not all 530 native effective prices. For five changed samples, the old price is the frozen prior file, not a separately verified native before-price observation. No per-record rewrite causality, whole-offer approval, serving, shopper behavior, orders or profit."
+  },
+  "unresolved_removal_evidence": {
+    "status": "PENDING__20_OF_20_OMITTED_IDS_STILL_PRESENT",
+    "candidate_removed_ids": [
+      "shopify_AU_7108998987873_41496666669153",
+      "shopify_AU_7108998987873_41496666701921",
+      "shopify_AU_7108998987873_41496666734689",
+      "shopify_AU_7108998987873_41496666767457",
+      "shopify_AU_7108998987873_41496666800225",
+      "shopify_AU_7108998987873_41496666832993",
+      "shopify_AU_7108998987873_41496666865761",
+      "shopify_AU_7108998987873_41496666898529",
+      "shopify_AU_7108998987873_41496666931297",
+      "shopify_AU_7108998987873_41496666964065",
+      "shopify_AU_7109117280353_41497061785697",
+      "shopify_AU_7109117280353_41497061818465",
+      "shopify_AU_7109117280353_41497061851233",
+      "shopify_AU_7109117280353_41497061884001",
+      "shopify_AU_7109117280353_41497061916769",
+      "shopify_AU_7109117280353_41497061949537",
+      "shopify_AU_7109117280353_41497061982305",
+      "shopify_AU_7109117280353_41497062015073",
+      "shopify_AU_7109117280353_41497062080609",
+      "shopify_AU_7109117280353_41497062113377"
+    ],
+    "candidate_added_ids": [],
+    "source_header_count": 4761,
+    "source_header_observed_at_utc": "2026-09-14T15:44:34.911Z",
+    "source_filtered_table_count": 4761,
+    "source_filtered_table_observed_at_utc": "2026-09-14T15:46:08.349Z",
+    "two_completed_prefix_results": [
+      {
+        "at_utc": "2026-09-14T15:46:27.761Z",
+        "parent": "7108998987873",
+        "source_id": "10727245667",
+        "predicate": "Data source DLM AU English Free Listings AND Product ID starts with shopify_AU_7108998987873_",
+        "observed_ids": [
+          "shopify_AU_7108998987873_41496666734689",
+          "shopify_AU_7108998987873_41496666898529",
+          "shopify_AU_7108998987873_41496666832993",
+          "shopify_AU_7108998987873_41496666701921",
+          "shopify_AU_7108998987873_41496666767457",
+          "shopify_AU_7108998987873_41496666800225",
+          "shopify_AU_7108998987873_41496666964065",
+          "shopify_AU_7108998987873_41496666865761",
+          "shopify_AU_7108998987873_41496666669153",
+          "shopify_AU_7108998987873_41496666931297"
+        ],
+        "result": "EXACT_TEN_STILL_PRESENT__REMOVAL_NOT_VERIFIED",
+        "complete_matching_rows": 10,
+        "source_filter_visible": true,
+        "expected_parent_filter_visible": true,
+        "loading": false,
+        "no_results": false
+      },
+      {
+        "at_utc": "2026-09-14T15:47:52.227Z",
+        "parent": "7109117280353",
+        "source_id": "10727245667",
+        "predicate": "Data source DLM AU English Free Listings AND Product ID starts with shopify_AU_7109117280353_",
+        "observed_ids": [
+          "shopify_AU_7109117280353_41497062015073",
+          "shopify_AU_7109117280353_41497062080609",
+          "shopify_AU_7109117280353_41497061851233",
+          "shopify_AU_7109117280353_41497061818465",
+          "shopify_AU_7109117280353_41497061884001",
+          "shopify_AU_7109117280353_41497061982305",
+          "shopify_AU_7109117280353_41497062113377",
+          "shopify_AU_7109117280353_41497061949537",
+          "shopify_AU_7109117280353_41497061785697",
+          "shopify_AU_7109117280353_41497061916769"
+        ],
+        "result": "EXACT_TEN_STILL_PRESENT__REMOVAL_NOT_VERIFIED",
+        "complete_matching_rows": 10,
+        "source_filter_visible": true,
+        "expected_parent_filter_visible": true,
+        "loading": false,
+        "no_results": false
+      }
+    ],
+    "observed_present": 20,
+    "verified_absent": 0,
+    "stale_query_history": "Exact source + parent-prefix filters and matching10 returned IDs per completed query; no loading or mismatched rows accepted. The second query briefly returned prior-parent rows at15:46:45 and was not accepted until the matching parent loaded.",
+    "interpretation": "The exact frozen omissions are absent from the uploaded local file but present in the saved current AU source-list results. Cause and whether/when that list will change remain UNKNOWN. A successful 4741-row receipt does not resolve this mismatch."
+  },
+  "preserved_failed_assumptions": {
+    "original_candidate_checks": {
+      "passed": 18,
+      "total": 21,
+      "false_checks": [
+        "all_retained_lines_byte_identical_to_old",
+        "no_additions_or_retained_field_changes",
+        "no_retained_source_product_changes"
+      ]
+    },
+    "resolution_sha256": "26c68710fa9ffb67a8ca4beecbd8cd8cfacf43c5d3ffa14594c00380e547e60f",
+    "qualification": "Original equality assumptions remain failed and explicitly superseded by the reviewed 530 retained price-only delta. The other 10 full-source amount changes are 8 held available and 2 unavailable variants; all excluded."
+  },
+  "evidence_limits": [
+    "Saved operator observations are independently checked for exact source, identity, prices, chronology and frozen-data correspondence; no reviewer live replay and no raw DOM/screenshot is attached in these six receipts.",
+    "Exact matching completed rows support the reported presence and price observations. There is no separate error=false field on the final omission queries; loading=false, exact IDs, visible filters and completed matching rows are recorded. Do not invent an additional native error-state readback.",
+    "One upload and no other external writes are executor-reported in the bound action receipts; the reviewer did not inspect an independent external audit log.",
+    "Current-after canonical ownership and paid controls were not re-read; the saved action claim matches the accepted pre-release review. This review grants no new authority and does not alter paid NONE or any owner claim.",
+    "Owner final strict/local checkpoint results were reported to parent but are not independently verified by this source-only review; task completion/idle metadata remains parent-owned.",
+    "All 530 native effective prices, all-offer approval, archive/deletion state, accountwide or serving absence, shopper price/currency behavior, return-policy coverage, broader markets, orders and profit remain unverified.",
+    "Native account timezone is not displayed. The 15:28:35 UTC history conversion is conditional on the task America/New_York context.",
+    "Do not infer processing will converge or any guaranteed deadline; no duplicate upload, blocked download, automatic stale-file/pilot/held-offer rollback, US/hosting, settings, scheduler or unrelated writes."
+  ],
+  "findings": [],
+  "evidence_line_pointers": {
+    "release_attempt_identity_claim_upload": [
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/release_attempt.json:10",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/release_attempt.json:16",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/release_attempt.json:35",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/release_attempt.json:46"
+    ],
+    "receiving_and_timezone": [
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_google_receiving_result.json:25",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_google_receiving_result.json:43"
+    ],
+    "sample_stale_rejection_and_limits": [
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_sample_readback.json:95",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_sample_readback.json:173",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_sample_readback.json:207",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_sample_readback.json:226"
+    ],
+    "omission_queries_and_integrity": [
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_omission_reconciliation.json:7",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_omission_reconciliation.json:65",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/native_omission_reconciliation.json:72"
+    ],
+    "partial_handoff_and_next_action": [
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/release_execution_handoff.json:6",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/release_execution_handoff.json:89"
+    ]
+  },
+  "next_owner_action": {
+    "owner": "Existing Merchant task 01a08706-c63a-7e01-ba48-7777bcb1788a, coordinated by parent",
+    "action": "At the existing owner follow-up, recheck only source 10727245667 current count and the two exact source-qualified parent-prefix queries. Reuse completed receiving and 12 samples; no upload.",
+    "why_first": "Current source-list membership is the remaining AU refresh verification gap; further receiving or price replay would duplicate completed work."
+  },
+  "continuation_prompt": "Continue AU source 10727245667 removal reconciliation in the existing Merchant owner task using this review and the exact 20 IDs in native_omission_reconciliation.json. Read only the source count and two source-qualified parent-prefix results; preserve PARTIAL until supported after-state changes it. Reuse the verified receipt and 12 samples; no duplicate upload or other writes.",
+  "canonical_continuation_prompt": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

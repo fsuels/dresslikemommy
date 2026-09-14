@@ -1,0 +1,58 @@
+{
+  "verified_at_utc": "2026-09-11T15:41:32.409021+00:00",
+  "account_id": "513542500",
+  "scheduled_source_id": "10727274744",
+  "backend_feed_id": "408458421",
+  "report_sha256": "896863aa6d045040b8d3709f9a76ce5eec3a2c8cec543698daee79f144eba5e5",
+  "source_ui_owned_products_count": 4923,
+  "report_unique_ids": 4923,
+  "expected_unique_ids": 4923,
+  "exact_id_set_matches": true,
+  "message_counts": {
+    "Item uploaded through multiple feeds": 4923
+  },
+  "types": {
+    "Warning": 4923
+  },
+  "google_url_fetch_verified": true,
+  "last_updated": "Sep11 2026 11:13AM EDT",
+  "local_generic_http_readback_verified": false,
+  "seed_removed": false,
+  "next_gate": "Confirm seed source10727262045 owns0 rows before removing it; after removal re-fetch scheduled source and verify4923 remain.",
+  "ownership_progression": [
+    {
+      "source": "native source list",
+      "seed_products": 52,
+      "scheduled_products": 4871,
+      "decision": "retained seed while transfer incomplete"
+    },
+    {
+      "source": "native source list",
+      "checked_at_utc": "2026-09-11T16:01:09.385821+00:00",
+      "seed_products": 0,
+      "scheduled_products": 4923,
+      "all_expected_unique_ids_previously_report_verified": true,
+      "decision": "complete transfer verified; remove only seed10727262045 using independently reviewed conditional cutover"
+    }
+  ],
+  "current_ownership_complete": true,
+  "planned_seed_removal": {
+    "account_id": "513542500",
+    "source_id": "10727262045",
+    "remaining_source_id": "10727274744",
+    "expected_remaining_products": 4923,
+    "rollback": "Retained immutable first_release_v2/us-en.tsv can recreate source if needed. No other sources removed."
+  },
+  "cutover_after_readback": {
+    "checked_at_utc": "2026-09-11T16:08:39.496763+00:00",
+    "seed_source_10727262045_removed": true,
+    "scheduled_source_id": "10727274744",
+    "owned_products": 4923,
+    "last_update_local": "Sep11,2026 12:05PM America/New_York",
+    "total_updated_products": 4923,
+    "new_products": 0,
+    "attributes": "All recognized",
+    "file_issues": "No issues found",
+    "duplicate_warning_cleared": true
+  }
+}

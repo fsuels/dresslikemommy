@@ -77,7 +77,7 @@ def main() -> None:
     <table id="size-chart">
       <thead><tr><th>Tamaño</th><th>Edad</th></tr></thead>
       <tbody>
-        <tr><td>Niño 5 años</td><td>5</td></tr>
+        <tr><td>Niño 5 años</td><td>—</td></tr>
         <tr><td>Mother S</td><td></td></tr>
       </tbody>
     </table>
@@ -88,6 +88,8 @@ def main() -> None:
     assert "Mamá S" in repaired
     assert "Niño 5 años" not in repaired
     assert "Mother S" not in repaired
+    assert "<td>Niña 5 años</td><td>5</td>" in repaired
+    assert "<td>Mamá S</td><td></td>" in repaired
 
     missing_chart_translation = """
     <ul><li><strong>Tela:</strong> Ligera y cómoda.</li></ul>

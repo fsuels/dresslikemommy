@@ -1,0 +1,13 @@
+--- current-unpublished/main-product.liquid
++++ proposed/main-product.liquid
+@@ -2545,6 +2545,10 @@
+         isMatchingSet = false;
+         bundleSection = null;
+         matchingSetStickyState = null;
++        if ({{ product.selected_variant.id | json }}) {
++          hasUserConfirmedSizeSelection = getSizeSelectionState().isComplete;
++          hasUserConfirmedColorSelection = getColorSelectionState().isComplete;
++        }
+         visibilityObserver.observe(atcBtn);
+         atcObserver.observe(atcBtn, {
+           attributes: true,

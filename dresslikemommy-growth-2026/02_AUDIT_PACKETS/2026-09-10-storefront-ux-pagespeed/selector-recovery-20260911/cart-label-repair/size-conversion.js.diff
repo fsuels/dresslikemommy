@@ -1,0 +1,25 @@
+--- uploaded-three-file/assets/size-conversion.js
++++ proposed/assets/size-conversion.js
+@@ -277,10 +277,9 @@
+ 
+     elements.forEach((element) => {
+       const rawValue = element.getAttribute("data-size-display-value") || element.textContent;
+-      const exactDisplayLabel = getFrontendSizeDisplayLabel(rawValue);
+-      const displayLabel = exactDisplayLabel !== String(rawValue || "").trim()
+-        ? exactDisplayLabel
+-        : replaceSizeTokensInText(rawValue);
++      // Cart and order lines must retain the exact selected size label.
++      // A height label is not a supported age recommendation.
++      const displayLabel = String(rawValue || "").trim();
+       if (!displayLabel) return;
+       if (element.textContent !== displayLabel) {
+         element.textContent = displayLabel;
+@@ -445,7 +444,7 @@
+     if (!selectElement || !selectElement.options) return;
+     Array.from(selectElement.options).forEach((optionElement) => {
+       if (!optionElement || optionElement.value === "") return;
+-      const displayLabel = getFrontendSizeDisplayLabel(optionElement.value);
++      const displayLabel = String(optionElement.value || "").trim();
+       if (!displayLabel) return;
+       optionElement.textContent = displayLabel;
+       optionElement.setAttribute("data-display-label", displayLabel);

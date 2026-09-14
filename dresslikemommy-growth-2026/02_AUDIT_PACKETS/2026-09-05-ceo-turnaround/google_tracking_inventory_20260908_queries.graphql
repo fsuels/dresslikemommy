@@ -1,0 +1,9 @@
+# Read-only inventory; appInstallations access denied, not retried.
+query GoogleTrackingInventory20260908 { shop { id name myshopifyDomain } appInstallations(first: 50) { nodes { id app { id title } } pageInfo { hasNextPage endCursor } } themes(first: 10, roles: [MAIN]) { nodes { id name role } pageInfo { hasNextPage endCursor } } }
+
+# Independent permitted live MAIN layout source read.
+query GoogleTrackingTheme20260908 { shop { id name myshopifyDomain } themes(first: 10, roles: [MAIN]) { nodes { id name role files(first: 10, filenames: ["layout/theme.liquid"]) { nodes { filename checksumMd5 body { ... on OnlineStoreThemeFileBodyText { content } } } pageInfo { hasNextPage endCursor } } } pageInfo { hasNextPage endCursor } } }
+
+# Independent permitted live analytics asset source read.
+query GoogleTrackingTheme20260908 { shop { id name myshopifyDomain } themes(first: 10, roles: [MAIN]) { nodes { id name role files(first: 10, filenames: ["assets/analytics.js"]) { nodes { filename checksumMd5 body { ... on OnlineStoreThemeFileBodyText { content } } } pageInfo { hasNextPage endCursor } } } pageInfo { hasNextPage endCursor } } }
+

@@ -1,0 +1,90 @@
+{
+  "decision_id": "DLM-DEC-2026-09-06-MEOW-SEARCH-IDENTITY",
+  "anchor": "2026-09-07-ceo-turnaround-meow-search-identity",
+  "status": "IMPLEMENTED_API_VERIFIED",
+  "product": "gid://shopify/Product/7533458194529",
+  "scope": "English SEO title and20 existing translated meta_title values. Exact original English/translated descriptions restored after unintended side effect.",
+  "mutations": {
+    "total": 3,
+    "productUpdate": 2,
+    "translationsRegister": 1,
+    "registered_rows": 40,
+    "changed_translated_title_values": 20,
+    "reaffirmed_unchanged_description_values": 20,
+    "userErrors": 0
+  },
+  "initial_failed_gate": "First SEO-title-only productUpdate cleared original SEO description and made20 translated descriptions outdated. Separate readback caught it; dependent writes stopped.",
+  "corrective_path": "Exact original primary description restored with approved title in the same SEO object. Source description/digest recovered but20 translated description flags remained stale. Independently reviewed40-row completion used respective fresh source digests for20 approved titles and20 unchanged descriptions.",
+  "final": {
+    "as_of": "2026-09-07 03:28:01 UTC",
+    "checks": {
+      "product_identity_and_store": true,
+      "active": true,
+      "exact_primary_title": true,
+      "exactly100_translation_rows": true,
+      "no_duplicate_rows": true,
+      "same_translation_locale_key_set": true,
+      "exactly20_target_rows": true,
+      "all20_titles_exact": true,
+      "all20_titles_outdated_false": true,
+      "all80_non_target_values_and_flags_original": true,
+      "all20_descriptions_original": true,
+      "all20_description_flags_original": true,
+      "all20_bodies_preserved": true,
+      "primary_description_exact": true,
+      "description_source_and_digest_original": true,
+      "all_other_source_rows_preserved": true,
+      "all_other_returned_product_fields_preserved": true,
+      "source_title_matches_product": true,
+      "source_title_digest_matches_registration": true,
+      "variant_pagination_complete": true,
+      "image_pagination_complete": true,
+      "mutation40_rows_outdated_false": true,
+      "all3_mutations_zero_userErrors": true
+    },
+    "checks_passed": 23,
+    "checks_total": 23,
+    "all_pass": true,
+    "mutations_total": 3,
+    "source_before": "meow_identity_before_20260907.json",
+    "translation_before": "meow_identity_translations_before_20260907.json",
+    "independent_postreview": "PENDING",
+    "first_gate_failure": "Original title-only save cleared SEO description; stopped remaining writes, restored original primary description, then re-registered20 unchanged description translations alongside20 approved titles to restore flags.",
+    "native_serp_traffic_sales": "NOT_VERIFIED"
+  },
+  "postreview": {
+    "verdict": "PASS_API_AFTER_STATE",
+    "checks_passed": 32,
+    "checks_failed": 0,
+    "path": "meow_identity_postreview_20260907.json",
+    "sha256": "db6a75f15c58455d4e54aba3561ece5c7948946f6def3fa4be5468db90d423e4"
+  },
+  "current_refresh": {
+    "as_of": "2026-09-08 02:46:45 UTC",
+    "checks": {
+      "all_returned_source_product_fields_still_match": true,
+      "all100_translation_values_flags_still_match": true
+    },
+    "all_pass": true,
+    "prior_verified_at": "2026-09-07 03:28:01 UTC",
+    "mutations_this_refresh": 0,
+    "native_probe": "A single authorized current cua.getState again reported Mac locked/automatic unlock unsuccessful; no retry, helper reset or permission change.",
+    "goal_runtime_status": "usageLimited",
+    "authority": "New user full computer-control authorization saved; not proof of unlocked session; existing new Ads-account creation approval remains."
+  },
+  "rollback": "meow_identity_rollback_v3_20260907.json supersedes initial title-only inverse. No full rollback used; targeted original-description restoration was used.",
+  "authority": "Saved owner automatic reviewed reversible marketing-repair instruction; no new permission requested. Full computer-control authority renewed; native snapshot still reports locked.",
+  "limits": [
+    "No native head, SERP, indexing, CTR, traffic or sales lift proof",
+    "No Ads customer, Merchant migration, paid campaign, organic post, theme publication or financial action",
+    "Legacy Cat Meadow tags/feed labels and supplier-facing body wording outside scope",
+    "API preservation covers queried source/product fields and full100 existing translation rows, not unqueried platform state"
+  ],
+  "next_action": "Normal Mac unlock/desktop-state resolution so approved Google operating-account setup and prepared organic publication can resume.",
+  "goal": {
+    "status": "usageLimited",
+    "complete": false,
+    "modification": "No goal-status or schedule change"
+  },
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

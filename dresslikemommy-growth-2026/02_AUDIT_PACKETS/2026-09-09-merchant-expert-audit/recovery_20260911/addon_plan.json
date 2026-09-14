@@ -1,0 +1,12 @@
+{
+  "schema": "dlm.merchant.addon_plan.v1",
+  "status": "PREPARED",
+  "account": "513542500",
+  "authorization": "Current user authorized all relevant nonspend Merchant setup corrections and automatic active-product lifecycle, including expert configuration of available options.",
+  "sole_writer": "root01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "actions": [
+    {"name":"API diagnostics","before":"Add API diagnostics button available in Discover","effect":"Enable the diagnostic view for API call usage and errors to investigate zero submitted offers","after_plan":"Read Your add-ons and diagnostic page for exact account","rollback":"Remove only API diagnostics through its own add-on control if needed"},
+    {"name":"Advanced data source management","before":"Add Advanced data source management button available in Discover","effect":"Expose existing-source attribute rules for supported return exception mapping; enabling alone does not create a rule or a new source","after_plan":"Read Your add-ons and existing source10014302986 tabs/available rule target","rollback":"Remove only this add-on if no dependent rules or supplemental sources were created; re-evaluate if dependencies exist"}
+  ],
+  "excluded": ["No paid or billing changes", "No product/source data changes from this plan", "No rule Apply", "No supplemental or duplicate source", "No Product sync card click while its exact approval is pending", "No return policy Save before exception mapping is qualified"]
+}

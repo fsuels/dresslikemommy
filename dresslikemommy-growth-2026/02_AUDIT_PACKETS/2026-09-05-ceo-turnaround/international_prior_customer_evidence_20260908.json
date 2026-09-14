@@ -1,0 +1,83 @@
+{
+  "source_file": "analytics_shopify_additional_aggregates.json",
+  "source_query": "sales_country_90d",
+  "source_window": "2026-06-07 through 2026-09-04",
+  "currency": "USD",
+  "evidence_grade": "REPO_KNOWN",
+  "filter": "Exact shipping-country match for 8 reviewed international candidates; no other rows transformed",
+  "source_row_count": 12,
+  "included_row_count": 8,
+  "excluded_row_count": 4,
+  "rows": [
+    {
+      "shipping_country": "Denmark",
+      "orders": "4",
+      "gross_sales": "444.73",
+      "sales_reversals": "0",
+      "net_sales": "444.73",
+      "average_order_value": "111.182"
+    },
+    {
+      "shipping_country": "Czech Republic",
+      "orders": "3",
+      "gross_sales": "177.66",
+      "sales_reversals": "0",
+      "net_sales": "177.66",
+      "average_order_value": "59.22"
+    },
+    {
+      "shipping_country": "Germany",
+      "orders": "3",
+      "gross_sales": "156.2",
+      "sales_reversals": "0",
+      "net_sales": "156.2",
+      "average_order_value": "52.066"
+    },
+    {
+      "shipping_country": "Romania",
+      "orders": "2",
+      "gross_sales": "151.73",
+      "sales_reversals": "0",
+      "net_sales": "151.73",
+      "average_order_value": "75.865"
+    },
+    {
+      "shipping_country": "Italy",
+      "orders": "1",
+      "gross_sales": "151.25",
+      "sales_reversals": "0",
+      "net_sales": "151.25",
+      "average_order_value": "151.25"
+    },
+    {
+      "shipping_country": "Greece",
+      "orders": "3",
+      "gross_sales": "196.34",
+      "sales_reversals": "-69.73",
+      "net_sales": "126.61",
+      "average_order_value": "65.446"
+    },
+    {
+      "shipping_country": "Netherlands",
+      "orders": "1",
+      "gross_sales": "71.8",
+      "sales_reversals": "0",
+      "net_sales": "71.8",
+      "average_order_value": "71.8"
+    },
+    {
+      "shipping_country": "Canada",
+      "orders": "1",
+      "gross_sales": "62.77",
+      "sales_reversals": "0",
+      "net_sales": "62.77",
+      "average_order_value": "62.77"
+    }
+  ],
+  "limitations": [
+    "Dated Shopify sales aggregate, not newly collected business outcomes",
+    "Not all rows prove paid attribution, retained orders or actual net profit",
+    "Sessions by visitor country are not a valid denominator for shipping-country sales",
+    "No fresh CPC, keyword volume or SEO difficulty from this table"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-11T23:06:02.747037+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "verdict": "GO_EXACT_US_SAVE__CONDITIONAL_GO_EXACT_DE_SAVE",
+  "confidence": "H for the frozen US proposal and bounded DE decision rule; DE native before-state is not yet verified",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "input_sha256": {
+    "country_targeting_contract.json": "fc840ab0c53a14e0f33b5f6b8603f9eee1b61c4d8eeef474861dd808671bf1f7",
+    "us_location_before_and_proposal.json": "af361feefd2220dce6dd679679da8b9b71b449c18c8d1c66d36b759c32b4747d",
+    "import-review/postflight_review.json": "56661042f85c7da7e1f11c8577604171840b6262def58eecc546e28a84bf1e31",
+    "import_receiver_and_saved_settings.json": "fa6b42a496baac1394dfa8f518ead737188c82d94e63dd37de5ca2eaf0a7b7e4",
+    "campaign_after.json": "72c55f4f1d05a306183d8c88222427abbef5b134c2cb7d4424fd40046356833f"
+  },
+  "checks": {
+    "frozen_contract_sha": true,
+    "frozen_us_proposal_sha": true,
+    "import_postflight_passed": true,
+    "only_two_new_campaign_ids": true,
+    "exact_us_de_country_regions": true,
+    "us_exact_account_customer_and_scoped_url": true,
+    "us_paused_empty": true,
+    "us_fresh_before_no_explicit_targets": true,
+    "us_fresh_before_inclusive_interest": true,
+    "us_exact_one_country_proposal": true,
+    "us_presence_only_and_neutral_bid": true,
+    "us_save_still_pending": true,
+    "de_explicit_fresh_before_condition": true,
+    "per_campaign_conditions_cover_identity_empty_before_country_controls_preservation": true,
+    "saved_country_and_reopened_intent_required": true,
+    "no_auto_broadening_rollback": true,
+    "full_paid_scope_unchanged": true,
+    "independent_verifier_exact": true,
+    "separate_uncertain_de_branch": true
+  },
+  "checks_passed": 19,
+  "per_campaign_verdicts": [
+    {
+      "campaign_id": "506254907",
+      "verdict": "GO_FOR_EXACT_SAVE_AFTER_FINAL_UI_CHECK",
+      "target": "United States (country/region)",
+      "intent": "People in your targeted locations",
+      "bid_adjustment_percent": 0,
+      "ready_evidence": "Exact fresh native before-state and one-country staged proposal are frozen; Save is unclicked."
+    },
+    {
+      "campaign_id": "506254908",
+      "verdict": "CONDITIONAL_GO_ONLY_IF_FRESH_BEFORE_AND_PROPOSAL_MATCH",
+      "target": "Germany (country/region)",
+      "intent": "People in your targeted locations",
+      "bid_adjustment_percent": 0,
+      "fresh_before_satisfied": false,
+      "required_before_save": [
+        "Correct account/customer and exact new German campaign ID/name; remains Paused and empty.",
+        "Native Location tab/editor shows zero existing explicit targets and the exact default inclusive-interest intent; any different state halts this branch.",
+        "Select exactly Germany (country/region), not a territory, radius or similarly named location.",
+        "Exactly one target, presence-only radio, 0 percent modifier, no excluded-target changes, and no other setting changes.",
+        "Save the individual before/proposal receipt and recheck these facts immediately before its one Save."
+      ],
+      "branch_rule": "If all frozen conditions match, root may execute the already reviewed single Save without another generic permission request. Any mismatch holds that campaign unchanged and Paused for a new exact review."
+    }
+  ],
+  "critical_premise_challenge": {
+    "premise": "A US/English or DE/German campaign name and language already constrain its serving country.",
+    "finding": "Rejected by the US native before-state: no explicit targets and all available countries/regions were eligible except any exclusions. Language and naming are separate from geography.",
+    "resolution": "The exact country plus presence-only change is a bounded preparation fix on paused, empty shells. Do it before adding serving children; then verify the saved target row and reopened intent control.",
+    "falsifier": "Wrong country type or ID/name, more than one target, interest-inclusive intent retained, changed modifier/exclusions, any changed status/cap/budget/language, or a DE before-state different from the prescribed one.",
+    "response": "Stop the affected branch and keep it Paused/empty. Do not broaden geography automatically, alter old campaigns, or infer success from a Save toast."
+  },
+  "exact_action_limit": "At most one native Save for US 506254907 and one for DE 506254908, each satisfying its individual conditions. No import, child creation, paid activation, creative, tracking, privacy, goal or old-campaign changes.",
+  "postflight_required": [
+    "Saved Targeted table has exactly the intended country/region with neutral 0 percent modifier.",
+    "Reopened editor shows that exact country and People in your targeted locations selected; interest-inclusive option is not selected.",
+    "Campaign remains Paused and empty; Maximize Clicks with 0.15 USD maximum CPC, language, 5/3 USD budgets and four expansion controls are preserved.",
+    "Record individual Save counts, scoped URLs, final-state receipt and any deviations."
+  ],
+  "rollback": "Before Save cancel the unsaved proposal. After Save, a verification failure leaves the exact new shell Paused and empty while diagnosed; do not automatically remove the country or restore broad interest eligibility. No destructive deletion/re-import or old-campaign mutation.",
+  "limitations": [
+    "DE before-state still requires fresh native evidence; the import receiver zero-criteria count is not substituted for that check.",
+    "Platform location inference and the selected control are not a guarantee of physical residency.",
+    "No actual CPC, traffic quality, purchase/consent, attribution, economics, profit or launch readiness claim.",
+    "Independent receipt review only; no browser or account operations by verifier."
+  ],
+  "external_writes_by_reviewer": 0,
+  "browser_or_account_calls_by_reviewer": 0,
+  "shared_canonical_files_changed": false
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-09-09T18:13:50.679297+00:00",
+  "scope": "Owner-requested saved GA4 migration and identified duplicate cleanup",
+  "tag": {
+    "measurement_id": "G-N4EQNK0MMB",
+    "saved_in_google_youtube": true,
+    "configuration_verified": true
+  },
+  "legacy_pixel": {
+    "id": "111181921",
+    "before": "connected",
+    "after": "disconnected",
+    "source_edited": false,
+    "deleted": false,
+    "connect_control_verified": true,
+    "inventory_reload_verified": true
+  },
+  "preserved": {
+    "ads_pixel_id": "111214689",
+    "merchant_tag_id": "GT-T5R7JFVL",
+    "pixel_inventory_count": 8
+  },
+  "replacement_test": {
+    "journey": "US English homepage reload after disconnection",
+    "page_view_hits_in_isolated_new_page": 1,
+    "destination": "G-N4EQNK0MMB",
+    "endpoint": "https://analytics.google.com/g/collect",
+    "shopify_event_name": "page_viewed",
+    "hit_message": "29 History Change",
+    "consent_field": "G111",
+    "receiver_ingestion_verified": false,
+    "purchase_generated": false
+  },
+  "wizard": {
+    "overview_notice_present": false,
+    "reopened_progress": "1 of 3",
+    "message": "No tags to migrate at this time",
+    "migrate_button_enabled": false,
+    "final_acknowledgement_clicked": false,
+    "status": "CONFLICTED_PROGRESS_NON_ACTIONABLE"
+  },
+  "debugging_active_after_closeout": false,
+  "independent_verdict": "PASS_CONFIG_AND_DUPLICATE_CLEANUP__WIZARD_STATUS_CONFLICTED",
+  "limitations": [
+    "Receiver and genuine purchase parity unverified",
+    "Denied-consent behavior unverified",
+    "Consent panel discrepancy retained",
+    "Custom fields and purchase value semantics not equivalent by assumption"
+  ],
+  "next_action": "Reconcile the next genuine Shopify purchase with retained GA4 receiver evidence",
+  "checks": {
+    "strict_continuity": "CONTINUITY_OK, all10checks passed after clarification; one interim cockpit-freshness failure cleared after existing dashboard service rendered",
+    "integration_audit": "PASS, 25/25 tracked files integrated, zero side-document risks",
+    "scoped_diff_check": "PASS",
+    "receipt_scope_and_whitespace": "PASS",
+    "independent_final_consistency": "PASS after explicit supersession clarification"
+  }
+}

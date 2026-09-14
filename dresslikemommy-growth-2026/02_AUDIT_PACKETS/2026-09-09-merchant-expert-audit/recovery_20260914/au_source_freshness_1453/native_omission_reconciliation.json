@@ -1,0 +1,77 @@
+{
+  "schema": "dlm.au_native_omission_reconciliation.v1",
+  "account_id": "513542500",
+  "source_id": "10727245667",
+  "status": "PENDING__20_OF_20_OMITTED_IDS_STILL_IN_CURRENT_SOURCE_LIST",
+  "recorded_at_utc": "2026-09-14T15:49:45.489528+00:00",
+  "queries": [
+    {
+      "at_utc": "2026-09-14T15:46:27.761Z",
+      "parent": "7108998987873",
+      "source_id": "10727245667",
+      "predicate": "Data source DLM AU English Free Listings AND Product ID starts with shopify_AU_7108998987873_",
+      "observed_ids": [
+        "shopify_AU_7108998987873_41496666734689",
+        "shopify_AU_7108998987873_41496666898529",
+        "shopify_AU_7108998987873_41496666832993",
+        "shopify_AU_7108998987873_41496666701921",
+        "shopify_AU_7108998987873_41496666767457",
+        "shopify_AU_7108998987873_41496666800225",
+        "shopify_AU_7108998987873_41496666964065",
+        "shopify_AU_7108998987873_41496666865761",
+        "shopify_AU_7108998987873_41496666669153",
+        "shopify_AU_7108998987873_41496666931297"
+      ],
+      "result": "EXACT_TEN_STILL_PRESENT__REMOVAL_NOT_VERIFIED",
+      "complete_matching_rows": 10,
+      "source_filter_visible": true,
+      "expected_parent_filter_visible": true,
+      "loading": false,
+      "no_results": false
+    },
+    {
+      "at_utc": "2026-09-14T15:47:52.227Z",
+      "parent": "7109117280353",
+      "source_id": "10727245667",
+      "predicate": "Data source DLM AU English Free Listings AND Product ID starts with shopify_AU_7109117280353_",
+      "observed_ids": [
+        "shopify_AU_7109117280353_41497062015073",
+        "shopify_AU_7109117280353_41497062080609",
+        "shopify_AU_7109117280353_41497061851233",
+        "shopify_AU_7109117280353_41497061818465",
+        "shopify_AU_7109117280353_41497061884001",
+        "shopify_AU_7109117280353_41497061982305",
+        "shopify_AU_7109117280353_41497062113377",
+        "shopify_AU_7109117280353_41497061949537",
+        "shopify_AU_7109117280353_41497061785697",
+        "shopify_AU_7109117280353_41497061916769"
+      ],
+      "result": "EXACT_TEN_STILL_PRESENT__REMOVAL_NOT_VERIFIED",
+      "complete_matching_rows": 10,
+      "source_filter_visible": true,
+      "expected_parent_filter_visible": true,
+      "loading": false,
+      "no_results": false
+    }
+  ],
+  "expected_absent_count": 20,
+  "observed_present_count": 20,
+  "verified_absent_count": 0,
+  "source_header_count": 4761,
+  "source_header_observed_at_utc": "2026-09-14T15:44:34.911Z",
+  "source_table_count": 4761,
+  "source_table_observed_at_utc": "2026-09-14T15:46:08.349Z",
+  "received_file_rows": 4741,
+  "readback_integrity": "Exact source + parent-prefix filters and matching10 returned IDs per completed query; no loading or mismatched rows accepted. The second query briefly returned prior-parent rows at15:46:45 and was not accepted until the matching parent loaded.",
+  "first_pass_receipt": "native_omissions_first_pass.json",
+  "operations": {
+    "file_uploads": 0,
+    "product_mutations": 0,
+    "downloads": 0
+  },
+  "limits": [
+    "File omission and receiving are verified, current-source-list removal is not.",
+    "No archive/deletion reason, accountwide absence, serving absence, cache cause or processing deadline is inferred.",
+    "No duplicate upload, stale-file/pilot restore or other product action."
+  ]
+}

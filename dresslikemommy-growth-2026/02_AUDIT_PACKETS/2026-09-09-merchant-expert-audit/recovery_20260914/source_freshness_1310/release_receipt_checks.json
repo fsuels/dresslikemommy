@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "at_utc": "2026-09-14T13:47:50.430575+00:00",
+  "status": "EXECUTOR_RECEIPT_CONSISTENCY_PASS_WITH_NATIVE_COUNT_LIMIT",
+  "independent": false,
+  "checks_passed": 18,
+  "checks_total": 18,
+  "checks": [
+    {
+      "check": "review_exact_sha",
+      "result": "PASS"
+    },
+    {
+      "check": "one_existing_lifecycle_promotion_result",
+      "result": "PASS"
+    },
+    {
+      "check": "host_committed_with_three_after_readbacks",
+      "result": "PASS"
+    },
+    {
+      "check": "exact_hosted_feed_and_row_binding",
+      "result": "PASS"
+    },
+    {
+      "check": "one_google_update_only",
+      "result": "PASS"
+    },
+    {
+      "check": "native_target_identity",
+      "result": "PASS"
+    },
+    {
+      "check": "native_receipt_matches_candidate_row_count",
+      "result": "PASS"
+    },
+    {
+      "check": "native_file_success_and_no_connection_error",
+      "result": "PASS"
+    },
+    {
+      "check": "independent_native_reopen_matches_receipt",
+      "result": "PASS"
+    },
+    {
+      "check": "protected_six_distinct_current_native_offers",
+      "result": "PASS"
+    },
+    {
+      "check": "protected_exact_prices",
+      "result": "PASS"
+    },
+    {
+      "check": "protected_eligibility_availability_country_destination",
+      "result": "PASS"
+    },
+    {
+      "check": "protected_observed_after_receiving",
+      "result": "PASS"
+    },
+    {
+      "check": "native_removal_count_gap_explicit",
+      "result": "PASS"
+    },
+    {
+      "check": "no_google_byte_equality_claim",
+      "result": "PASS"
+    },
+    {
+      "check": "no_other_production_or_download_restore_changes",
+      "result": "PASS"
+    },
+    {
+      "check": "freshness_deadline_preserves_real_scan_clock",
+      "result": "PASS"
+    },
+    {
+      "check": "checkpoint_matches_actual_release",
+      "result": "PASS"
+    }
+  ],
+  "meaning": "Local consistency of saved actual execution/readback receipts. Not another live write, full Google byte comparison, independent review, or proof of the unresolved20 removals."
+}

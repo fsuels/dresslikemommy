@@ -1,0 +1,85 @@
+{
+  "schema": "dlm.merchant.receiver_standards_reconciliation.v1",
+  "review_date_utc": "2026-09-10",
+  "scope": "Independent official-document and local-evidence review; no account actions",
+  "verdict": "CAUSE_UNKNOWN_REQUIRES_SETUP_AND_RECEIVER_EVIDENCE",
+  "confidence": {"documented_distinctions": "HIGH", "root_cause": "UNKNOWN"},
+  "baseline": {
+    "path": "live_baseline.json",
+    "sha256": "e38a999d33b6fae049b1426c801242a55f757b0f62aa27ddc1a854d4c78d3ed7",
+    "recorded_at_utc": "2026-09-10 18:43:46 UTC",
+    "observation_window_utc": {"start": "2026-09-10 18:29:50 UTC", "end": "2026-09-10 18:43:46 UTC", "individual_ui_call_times_exact": false},
+    "shopify_shop_id": "15571635",
+    "merchant_account_id": "513542500",
+    "source_id": "10014302986",
+    "source_products": 0,
+    "app_submitted_including_variants": 0,
+    "source_last_updated_display": "-",
+    "source_country": "US",
+    "source_language": "English",
+    "app_product_sync_badge": "On",
+    "app_country_language_sync_badge": "On",
+    "app_shipping_sync_badge": "On",
+    "website_verified_and_claimed": true,
+    "app_countries_derived_from_group_sizes": 34,
+    "app_unsupported_countries": 31,
+    "app_unmapped_language_reason_rows": 20,
+    "merchant_configured_countries": 31,
+    "merchant_country_setup_display": "Incomplete"
+  },
+  "interpretations": [
+    {"id": "receiver_gap", "status": "VERIFIED_IN_ROOT_BASELINE", "cause": "UNKNOWN"},
+    {"id": "onboarding_completion", "status": "UNKNOWN", "source_ids": ["google_setup", "shopify_requirements"], "test": "Read actual setup completion and any unresolved prerequisite; connection and On badges are insufficient evidence"},
+    {"id": "country_conflict", "status": "CONFLICTED", "source_id": "google_shopify_sync", "official_pairs": {"RS": ["en", "sr"], "SI": ["en", "sl"]}, "account_exception_cause": "UNKNOWN", "explains_all_zero_us_en": false},
+    {"id": "language_reason_scope", "status": "UNKNOWN_COUNTRY_MAPPING", "plausible_inference": "Country-specific automatic pairing or selection restriction", "global_twenty_language_exclusion_proven": false, "source_ids": ["google_shopify_sync", "google_languages"]},
+    {"id": "country_incomplete_direction", "status": "UNKNOWN", "note": "Could precede or result from zero products; does not identify the failure"},
+    {"id": "return_policy_gate", "public_policy_required": true, "merchant_verified_policy_object_required_before_any_submission": false, "source_id": "google_returns"},
+    {"id": "content_api_label", "status": "EXPECTED_POSSIBLE_MIGRATION_LABEL", "migration_reinstall_required": false, "source_id": "google_shopify_sync"}
+  ],
+  "ordered_actions": [
+    {"rank": 1, "action": "Inspect exact setup checklist and completion state; correct only genuinely unsatisfied prerequisites", "acceptance": "Recorded completion plus actual policy/contact/phone/payment/target/shipping/checkout evidence", "source_ids": ["google_setup", "shopify_requirements", "shopify_connect"]},
+    {"rank": 2, "action": "Trace a genuinely corrected existing product through normal automatic update and receiving-source readback", "acceptance": "Known product edit UTC and required data, then account-bound processed offer evidence", "source_ids": ["google_shopify_sync", "shopify_connect"], "arbitrary_noop_or_toggle_edit": false},
+    {"rank": 3, "action": "If verified setup and real updates still yield zero, prepare Google ingestion and country-eligibility support evidence", "acceptance": "Account-specific diagnosis or provider-supported reprocessing instructions", "source_id": "shopify_connect", "external_message_sent": false}
+  ],
+  "recovery_limits": {
+    "generic_force_resync": "NO_PUBLISHED_PROCEDURE_FOUND_IN_REVIEWED_PRIMARY_DOCS; not proof none exists",
+    "documented_normal_trigger": "Successful setup and genuine required-product-data changes",
+    "expected_initial_sync": "Up to 24 hours",
+    "expected_subsequent_sync": "Typically a few hours",
+    "timing_is_receipt_guarantee": false,
+    "blind_disconnect_reconnect": "NOT_RECOMMENDED; reviewed reconnect guidance is conditional on an explicit domain-verification error",
+    "off_on_reset_or_reinstall": "NOT_SUPPORTED_AS_GENERAL_RECOVERY_BY_REVIEWED_DOCS",
+    "native_product_sync_navigation": "Root baseline records automatic-review rejection; no bypass attempted",
+    "no_documented_global_ingestion_gate_found_for": ["Google Ads account", "brand logo", "digital wallets", "buy now pay later", "physical retail"],
+    "blanket_identifier_or_custom_product_changes": false,
+    "new_duplicate_source_recommended": false
+  },
+  "sources_retrieved_date_utc": "2026-09-10",
+  "sources": [
+    {"id": "google_setup", "url": "https://support.google.com/merchants/answer/16267554?hl=en", "authority": "Google Merchant Center Help", "relevant_sections": ["Store requirements", "Phone verification", "Step 5: finalise setup"]},
+    {"id": "shopify_requirements", "url": "https://help.shopify.com/en/manual/online-sales-channels/marketplaces/google/requirements", "authority": "Shopify Help Center", "relevant_sections": ["Store requirements", "Google account requirements", "Separate product sync step"]},
+    {"id": "shopify_connect", "url": "https://help.shopify.com/en/manual/online-sales-channels/marketplaces/google/getting-setup/connect", "authority": "Shopify Help Center", "relevant_sections": ["Checklist troubleshooting", "Domain verification errors", "Sync timing", "Support responsibilities"]},
+    {"id": "google_shopify_sync", "url": "https://support.google.com/merchants/answer/13693394?hl=en", "authority": "Google Merchant Center Help", "relevant_sections": ["Supported country-language table", "Product data updates", "Automatic sync", "Merchant API migration"]},
+    {"id": "google_languages", "url": "https://support.google.com/merchants/answer/160637?hl=en", "authority": "Google Merchant Center Help", "relevant_sections": ["Supported languages", "Country and language combinations", "Landing and checkout matching"]},
+    {"id": "google_returns", "url": "https://support.google.com/merchants/answer/14011730?hl=en", "authority": "Google Merchant Center Help", "relevant_sections": ["Optional Merchant return information", "Required public policy"]}
+  ],
+  "research_limits": [
+    "Current native account evidence is root-provided, independently interpreted rather than independently reread",
+    "No account backend job, submission payload or exact processed-offer record available",
+    "No official explanation found for current Serbia/Slovenia exception or unmapped language warnings",
+    "Community, app reviews, third-party advice and forum resync assertions were not used as authority",
+    "Configured countries and published languages do not establish submitted or approved offer coverage"
+  ],
+  "checks": {
+    "root_target_binding_matches": true,
+    "both_zero_counts_preserved": true,
+    "country_conflict_not_reclassified_as_global_unsupported": true,
+    "language_pair_uncertainty_explicit": true,
+    "setup_gate_not_asserted_as_cause": true,
+    "receipt_and_approval_not_claimed": true,
+    "external_actions_performed": false,
+    "primary_sources_only_for_recommendations": true,
+    "three_ordered_next_actions": true,
+    "peer_or_canonical_files_modified": false
+  }
+}

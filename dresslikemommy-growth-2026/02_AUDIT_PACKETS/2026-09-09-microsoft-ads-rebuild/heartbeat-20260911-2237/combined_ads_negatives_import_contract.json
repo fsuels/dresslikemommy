@@ -1,0 +1,65 @@
+{
+  "created_at_utc": "2026-09-12T09:05:44.931744+00:00",
+  "decision_id": "DLM-DEC-2026-09-12-MICROSOFT-PAUSED-ADS-NEGATIVES",
+  "status": "PENDING_INDEPENDENT_FINAL_REVIEW",
+  "authority": "Existing current explicit qualified Paused USEN/DEDE preparation; no spend, launch, billing, purchase, consent or unrelated account changes. Root01a08703 sole Microsoft writer.",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "file_sha256": "3deba07cadfc6bd09189b9f204a5f101ece37c78b2e2abc46d6b374bde2bad1e",
+  "mapping_options_sha256": "2832c342b00fa988982c3c7e8d22b2c5846d6f6c13dd8f4e94294f4dd21f930b",
+  "parent_bindings": [
+    {
+      "campaign_id": "506254907",
+      "campaign_name": "DLM | MS | US | EN | Search | 202609",
+      "group_id": "1272136755587035",
+      "group_name": "Mother Daughter | Matching Dresses",
+      "language": "English",
+      "status": "Paused",
+      "budget_usd_day": "5.00",
+      "maximum_CPC_usd": "0.15"
+    },
+    {
+      "campaign_id": "506254908",
+      "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+      "group_id": "1262241151661314",
+      "group_name": "Mother Daughter | Matching Dresses",
+      "language": "German",
+      "status": "Paused",
+      "budget_usd_day": "3.00",
+      "maximum_CPC_usd": "0.15"
+    }
+  ],
+  "before_state": "Both campaigns and groups Paused; sixPaused Exact keywords. ZeroAds and negatives from campaignempty recovery and exact8-row Import receiver. No subsequent ad or negative creation. DElanguage mismatch fixed and independently verified.",
+  "evidence_bindings": {
+    "import-review/group_keyword_postflight_review.json": "080a0236fae5f987482635b1eb0488a11b9be905f31cb1c5b7f57166e8cacd90",
+    "parent_inspection_exit_readback.json": "b16a70f8e225f64b6c7c811c734260ecf574aa179bbade25a8e9deb600fa62b9",
+    "group_keyword_parent_preservation.json": "f1a09dc5f671fccd70522fd4138d85bda60ab0268261d3e77a5017a1efe14389",
+    "group_keyword_import_receiver.json": "fa5e838349017009833b41ac321c8cac9f1d5b900d4f7ba67e696a8f119e3f49",
+    "rsa_native_mapper_preview.json": "07390fd5ba298672a823936abd9898d9f4d5d0158563f41df7825df17efd5dde",
+    "import-review/combined_mapper_preflight_review.json": "c109d08e3c25f3c37e42bf073297d0b9ebdce02efbb01e0c4aecc67e325b4d52"
+  },
+  "exact_action": "One native Import of this single16-row file, using the frozen9-of77 new-item options. Do not submit separate RSA/negative files.",
+  "expected_new": {
+    "Ads": 2,
+    "Campaign negative keywords": 14
+  },
+  "expected_every_other_entity_new": 0,
+  "expected_all_synced_deleted_errors": 0,
+  "contains_no_parent_updates": true,
+  "contains_no_positive_keyword_or_group_or_campaign_rows": true,
+  "critical_uncertainty": "Native mapper only previews10 rows and accepts headers, not all server row enums. Frozen source16 rows and earlier2RSA preview support bounded import, but actual2Ads/14negatives acceptance is only established by native receiver and exact saved readback.",
+  "alternative": "Do not reformat/reimport the previous8 creation rows. Hold if final reviewer cannot accept the native preview limit.",
+  "after_required": [
+    "Native17-entity receiver exact2Ads/14Campaignnegatives and allothernew/synced/deleted/errors0",
+    "ExactlyonePausedRSA in each existinggroup with IDs and all8headlines/3descriptions/paths/finalURL/suffix preserved",
+    "ExactlysevenPhrasecampaignnegativevalues perparent; no groupnegative/positive rows",
+    "Parents/groups/keywords remainPaused; budgets/caps/language/network preserved"
+  ],
+  "rollback": "BeforeImport cancel; after partial/uncertain result keep existingparents/groupsPaused, inspect everycreateditem, never blindreimport or enable/delete. Newad rollback is exact reviewed Paused state; negatives can be removed by exact IDs if a demonstrated mismatch and exact reviewed rollback.",
+  "native_Import_limit": 1,
+  "material_decision": true,
+  "independent_verifier": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "paid_activation_authorized": false,
+  "full_paid_scope": "NONE"
+}

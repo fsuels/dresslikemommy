@@ -1,0 +1,136 @@
+{
+  "schema": "dlm.us_es_saved_artifact_review.v1",
+  "recorded_at_utc": "2026-09-14T18:30:22.971657+00:00",
+  "reviewer": "Executor separate sequential review; parent independent review remains pending.",
+  "status": "PASS",
+  "passed": 22,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "complete source and partition identity",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "source manifest unchanged by global view",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "empty exact-market override state is explicit",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "all 238 joined product changes limited to translations",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "derived source clock preserved",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "source and translation binding hashes",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "all 4925 partition rows match source fields and disjoint rules",
+      "result": "PASS",
+      "detail": {
+        "rows_checked": 4925,
+        "mismatched_rows": 0
+      }
+    },
+    {
+      "check": "full partition counts",
+      "result": "PASS",
+      "detail": {
+        "SOURCE_TRANSLATION_QUALIFIED_LANDING_UNVERIFIED": 4552,
+        "TRANSLATION_REJECTED": 189,
+        "SOURCE_NOT_AVAILABLE": 22,
+        "EXISTING_ELIGIBILITY_HOLD": 162
+      }
+    },
+    {
+      "check": "potential manifest is exactly qualified subset",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "translation rejection manifest exact",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "translation parent states",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "stale translation raw flags agree with qualification",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "six hold definitions unchanged; only local market scope differs",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "US/es isolated config remains disabled and unscheduled",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "all 13 bound inputs including runtime and English feeds unchanged",
+      "result": "PASS",
+      "detail": {
+        "bindings": 13,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "no executable Google TSV exists in qualification packet",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "original builder failure preserved",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "four existing guard tests passed",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "buyer receipt retains direct-link failures and manual-only limits",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "buyer IDs prices options match complete source",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "check": "no supplier URL or signed/auth token pattern in packet",
+      "result": "PASS",
+      "detail": {
+        "files_flagged": []
+      }
+    },
+    {
+      "check": "all prepared JSON artifacts parse",
+      "result": "PASS",
+      "detail": {
+        "files": 17
+      }
+    }
+  ],
+  "scope_limit": "Local source membership and evidence integrity; does not certify a ready TSV, destination acceptance, approval, serving, numerical capacity, unattended automation or sales."
+}

@@ -1,0 +1,40 @@
+{
+  "status": "PREPARED_SINGLE_FRENCH_TITLE_REPAIR__NOT_APPLIED",
+  "record_clock_utc": "2026-09-11 20:35:10 UTC",
+  "authority": "Current user requests correct complete all-language Merchant listings and necessary Shopify corrections; no active overlapping translation writer found by parent.",
+  "product": {
+    "id": "gid://shopify/Product/7229130801249",
+    "status": "ACTIVE",
+    "title": "Beige Chiffon Mother & Daughter Matching Summer Dresses",
+    "handle": "elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits",
+    "updatedAt": "2026-09-09T18:12:49Z"
+  },
+  "field": "title",
+  "locale": "fr",
+  "source": {
+    "key": "title",
+    "value": "Beige Chiffon Mother & Daughter Matching Summer Dresses",
+    "digest": "7dacef21b53e25f3f466cf071a6940aaaef7a2332c29f5973b9d9df14adf9062",
+    "locale": "en"
+  },
+  "before": {
+    "key": "title",
+    "value": "Robes élégantes en mousseline beige pour mère et fille - Été... | DLM",
+    "locale": "fr",
+    "outdated": true
+  },
+  "after": "Robes d’été assorties mère-fille en mousseline beige",
+  "scope": [
+    "Only the global French title translation of Product7229130801249",
+    "No English title, description/body, size charts, prices, status, publication, otherlocale, variant, sourcefile or Googlewrite"
+  ],
+  "rationale": "Replace outdated truncated French title with accurate current-source translation; preserve mother-daughter matching, summer dresses, beige chiffon. No sales/shipping/quality claims added.",
+  "prewrite": [
+    "Fresh query rechecks exact English title digest and same French before value/outdated status",
+    "Independently verify linguistic/factual fidelity and exact one-field payload",
+    "Validate translationsRegister schema before execution"
+  ],
+  "after_plan": "Read all French keys and English source again. Verify exact one changed French title, outdated=false, every other French value unchanged; no Google receipt or locale-wide readiness inferred.",
+  "rollback": "Register the exact prior French title with current English title digest only if rollback needed. This restores text, not the prior outdated flag.",
+  "source_query": "query MerchantFrenchTitleBefore($id: ID!) { product(id:$id) { id status title handle updatedAt } translatableResource(resourceId:$id) { resourceId translatableContent { key value digest locale } fr: translations(locale:\"fr\") { key value locale outdated } } }"
+}

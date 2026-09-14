@@ -1,0 +1,31 @@
+--- frozen-v7/sections/main-product.liquid
++++ proposed/sections/main-product.liquid
+@@ -2538,6 +2538,28 @@
+         characterData: true,
+       });
+ 
++      // The inline sticky initializes before the deferred builder can choose native fallback.
++      document.addEventListener('dlm:matching-set-fallback', function (event) {
++        if (!event || !event.detail || event.detail.sectionId !== '{{ section.id }}' || !isMatchingSet) return;
++        var nativeButton = document.getElementById('ProductSubmitButton-{{ section.id }}');
++        if (!nativeButton) return;
++        visibilityObserver.unobserve(atcBtn);
++        atcObserver.disconnect();
++        atcBtn = nativeButton;
++        isMatchingSet = false;
++        bundleSection = null;
++        matchingSetStickyState = null;
++        visibilityObserver.observe(atcBtn);
++        atcObserver.observe(atcBtn, {
++          attributes: true,
++          attributeFilter: ['disabled'],
++          childList: true,
++          subtree: true,
++          characterData: true,
++        });
++        syncStickyState();
++      });
++
+       if (priceContainer) {
+         var priceObserver = new MutationObserver(syncStickyPrice);
+         priceObserver.observe(priceContainer, {

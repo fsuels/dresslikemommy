@@ -1,0 +1,203 @@
+{
+  "schema": "dlm.au_variant_release_policy_review.v3",
+  "reviewed_at_utc": "2026-09-11T20:45:14.915313+00:00",
+  "reviewer": "/root/together_heart_source",
+  "verdict": "PASS_WITH_LIMITS__GO_EXACT_ONE_ROW_AU_FREE_LISTING_PILOT_ONLY",
+  "decision": "The new ordinary-buyer receipt closes the missing visible selector, exact selected-price and Add-to-cart evidence for this one offer. Existing qualified nonspend authority supports the exact pilot submission through the sole Merchant owner. This is a bounded submission recommendation, not Google eligibility, successful upload or all-market completion.",
+  "independence": "Reviewer did not create the pilot, perform the browser test or execute Merchant operations. Independently parsed files, compared exact fields/hashes, and reconciled owner-provided saved UI evidence with current official requirements. No browser/API call in this revision.",
+  "preserved_history": {
+    "revision1_sha256": "7582becd697a7eb0966dd9aa6d3390e0b9a6063f9bd7e665c9796e185785f11d",
+    "revision2_sha256": "607c03486b0e89277c91780880c0d19b0448f01a350a0e71ffaab868773346cc",
+    "both_byte_identical": true,
+    "superseded_gap": "Revision 2 missing manual-selector/Add evidence is now resolved by a different fresh actual visible-control test. The old WebMCP provenance correction remains valid; it is not retroactively reclassified."
+  },
+  "authorized_release_scope": {
+    "account": "513542500",
+    "country": "AU",
+    "language": "en",
+    "currency": "AUD",
+    "feed_label": "AU",
+    "destination": "Free listings ONLY",
+    "excluded_destination": "Shopping_ads",
+    "file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.pilot-39756755861601.tsv",
+    "sha256": "1be7f03b09e872f2c5e4f4ddf9c39b3ea354e11e9e697aef83e451396d3b513c",
+    "bytes": 3688,
+    "rows": 1,
+    "columns": 18,
+    "offer_id": "shopify_AU_6718945034337_39756755861601",
+    "item_group_id": "shopify_AU_6718945034337",
+    "link": "https://www.dresslikemommy.com/products/mom-child-matching-two-piece-swimsuit?country=AU&currency=AUD&variant=39756755861601",
+    "price": "26.00 AUD",
+    "availability": "in_stock",
+    "sole_executor": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+    "authority": "Retained explicit owner AU and qualified nonspend all-markets instructions; this review neither creates nor expands authority. No new generic permission request.",
+    "source_management": "Use the single intended DLM AU English Free Listings source; no duplicate AU provided source. Preserve US source 10727274744 and other destinations. Full AU file is not approved by this pilot decision."
+  },
+  "native_prewrite_binding": {
+    "as_of_utc": "2026-09-11T20:41Z",
+    "timestamp_precision": "Minute supplied by parent; not independently measured click time.",
+    "provenance": "Root forwarded sole Merchant native draft readback during this review; reviewer did not operate or independently observe account UI.",
+    "recorded_state": "Exact account 513542500, AU only, English, feed label AU, Free listings only, computer-file mode. Initial all-36-country/Shopping_ads/US-label defaults were corrected in the unsaved draft. No file or Continue action yet.",
+    "execute_guard": "Immediately bind selected file to this exact digest/size/one-row scope and preserve target settings. If a provided AU source already exists, file/settings drift, paid destination appears, or an unexpected policy/permission step appears, stop that action and reconcile; do not create a duplicate."
+  },
+  "new_buyer_evidence": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/au-manual-buyer-20260911/READBACK.json",
+    "sha256": "c7533174469a00b5a2d998fac2b0a5ada48042538ee5cf7f92a5484b10d761d7",
+    "observation_window_utc": {
+      "start": "2026-09-11T20:29:16Z",
+      "end": "2026-09-11T20:34:32.937Z",
+      "limit": "Window includes retrieval before navigation; individual action timestamps were not separately recorded.",
+      "cartCaptureAttemptAt": "2026-09-11T20:32:29.931Z"
+    },
+    "MAIN": "133290917985",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "locale": "en",
+    "initial_state": {
+      "cartCount": 0,
+      "country": "Australia",
+      "currency": "AUD",
+      "visiblePrice": "$26.00 AUD - $34.00 AUD",
+      "pressedRole": "Mother",
+      "targetChildPreselected": false,
+      "sizeSelected": false,
+      "colorSelected": false,
+      "addEnabled": false,
+      "addText": "PICK A SIZE",
+      "productFormVariantInput": "",
+      "classification": "DEFAULT_VARIANT_PRESELECTION_DEFECT_REPRODUCED; this state alone does not prove the manual buying path is broken."
+    },
+    "manual_path": "Actual visible Child -> 2-3 Years -> Black controls. Selected summary showed Ready to add Child - 2-3 Years - A$26.00 and enabled ADD THIS PIECE TO BAG; one ordinary button click added the exact variant.",
+    "cart": {
+      "method": "Visible button interaction through CUA; no WebMCP/direct cart mutation",
+      "variantHref": "/products/mom-child-matching-two-piece-swimsuit?variant=39756755861601",
+      "variantId": "39756755861601",
+      "size": "Child 2-3 years",
+      "color": "Black",
+      "quantity": 1,
+      "unitPrice": "26.00",
+      "linePrice": "26.00",
+      "estimatedTotal": "26.00",
+      "currency": "AUD",
+      "shippingCountry": "Australia",
+      "checkoutButtonPresent": true,
+      "checkoutClicked": false
+    },
+    "cleanup": "Only test line removed; cart empty; US/USD/English restored to documented baseline; owned tab closed.",
+    "method_limit": "Desktop 1280x720 only. Fresh checkout navigation/payment not performed. This is actual CUA visible-control interaction, not WebMCP cart injection.",
+    "recovery_limit": "One coordinated ordinary load after at least 94 minutes backoff rendered normally. Raw HTTP status/Retry-After were not captured. This does not authorize renewed batch probing."
+  },
+  "price_and_checkout_binding": {
+    "pilot_fields": "All 18 parsed fields exactly equal the previously reviewed full-feed offer; price remains formatted 26.00 AUD, in_stock, numeric variant link and Shopping_ads exclusion.",
+    "saved_source_clock": "2026-09-11T18:53:09.071Z contextual Shopify source; reused saved source binding from revision 2, not requeried.",
+    "older_checkout_clock": "2026-09-11T16:23:02.636274+00:00 consolidated receipt: the exact variant at 26.00 AUD reached checkout through WebMCP cart preparation. That historical checkout acceptance is separate from the new visible-selector/cart test.",
+    "interpretation": "New selected price and cart match source/feed and older checkout; fresh payment or purchase proof is not claimed."
+  },
+  "official_requirement_interpretation": [
+    {
+      "url": "https://support.google.com/merchants/answer/6324416?hl=en",
+      "classification": "Correct default variant selection is explicitly a Best practice. Missing preselection alone does not impose a V7 publication prerequisite."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/4752265?hl=en",
+      "classification": "Minimum rules require readily identifiable matching product/price and an active purchase control or equivalent ordering route. Actual visible choices now expose this exact variant at 26 AUD and a working Add control.",
+      "inference": "For this bounded offer, the demonstrated manual route supplies the missing substantive evidence. Initial Mother/range is retained as a UX and potential crawler/eligibility risk, not declared compliant default selection."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/6324371?hl=en",
+      "classification": "Matching amount/currency and understandable variant prices are required. The selected variant summary, exact cart and saved contextual source agree at 26.00 AUD."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/6324448?hl=en",
+      "classification": "Functional purchase controls and consistent availability are required. The new actual Add interaction resolves the prior unsupported inference from a cart tool."
+    }
+  ],
+  "policy_source_freshness": "Primary Google pages read on 2026-09-11 in this same decision review; no repeated web request.",
+  "material_pre_submission_blocker_within_reviewed_scope": "NONE demonstrated after the manual UI evidence and exact pilot checks. Apply the normal exact-target/file guard at execution.",
+  "residual_limits": [
+    "Initial Mother role, no size/color, 26-34 AUD range and disabled PICK A SIZE persist. This review does not certify that initial variant presentation or Google crawler interpretation.",
+    "Exact mobile buyer flow was NOT_RUN in the fresh receipt. Mobile functionality remains a Google requirement and a follow-up qualification item; no observed mobile failure is supplied here. Do not claim desktop evidence covers mobile.",
+    "The historical checkout timestamp and action method remain distinct from the fresh manual cart test. No order, payment, conversion lift or profit proof.",
+    "This is not a fresh full product-truth, identifiers, tax, shipping-performance or entire website policy audit. Source-backed fields remain unchanged; local validation is not Google eligibility.",
+    "Account review remains pending; saved restriction impact names United States. AU receipt/processing/eligibility/serving remain unverified until actual Google readback.",
+    "One manually uploaded offer is neither 4,923-offer qualification nor automatic ongoing feed refresh."
+  ],
+  "required_after_state": [
+    "Record actual one-time file submission and resulting source ID, account/AU/en/AU label/Free listings-only settings; retain Shopping_ads exclusion and verify US/other source preservation.",
+    "Read actual processing result and reconcile one unique offer with no extras/duplicates. Download the Google-received file if available; compare the exact row and 26.00 AUD. If byte-normalized by Google, preserve original download and distinguish semantic equality from exact byte equality.",
+    "Read the effective Google product detail for shopify_AU_6718945034337_39756755861601 under that AU source: country/language/price/currency/availability/destination and current issues. Record Pending/Rejected/Eligible exactly.",
+    "Keep submitted, received, processed, eligible and serving distinct. Do not claim traffic or orders from ingestion. Inspect narrow source-specific reversal before any corrective removal; do not restore known bad prices or touch the US source."
+  ],
+  "full_cohort_qualification_path": [
+    "First obtain and review actual Google pilot receipt and any product/account diagnostic; an accepted file is not a pass for all other variants.",
+    "Use existing UX ownership and bounded recovery discipline to qualify mobile and the material shared-selector branches/price ranges, including Together Heart and the five corrected Adult 2XL AU variants at 33 AUD. Preserve exact scope and cart cleanup; no uncoordinated batches.",
+    "Resolve observed minimum-rule failures or Google diagnostics through the existing UX/source owners. V7 is an available reviewed remedy, not a blanket policy prerequisite. Reuse the full-feed source/row checks with action-time freshness and update the same AU source only when the broader scope is qualified; do not create another source or rebuild without cause."
+  ],
+  "checks_passed": 23,
+  "checks_total": 23,
+  "checks": {
+    "pilot_exact_hash_and_3688_bytes": true,
+    "manual_receipt_exact_hash": true,
+    "full_feed_exact_frozen_hash": true,
+    "both_previous_reviews_byte_preserved": true,
+    "UTF8_no_BOM_or_NUL": true,
+    "one_data_row_18_columns": true,
+    "headers_order_identical": true,
+    "all_18_row_fields_unchanged_from_full": true,
+    "exact_ID_parent_group": true,
+    "exact_link_domain_path_and_query": true,
+    "formatted_price_currency": true,
+    "availability_and_paid_exclusion": true,
+    "core_required_values_present": true,
+    "exact_apparel_variant_values": true,
+    "candidate_target_scope": true,
+    "candidate_file_binding": true,
+    "actual_MAIN_exact_link": true,
+    "buyer_variant_identity": true,
+    "actual_visible_manual_sequence": true,
+    "exact_cart_variant_qty_AUD": true,
+    "cleanup_verified": true,
+    "no_production_or_payment_actions_in_UX": true,
+    "initial_defect_and_mobile_limits_retained": true
+  },
+  "input_manifest": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.pilot-39756755861601.tsv": {
+      "sha256": "1be7f03b09e872f2c5e4f4ddf9c39b3ea354e11e9e697aef83e451396d3b513c",
+      "bytes": 3688
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.pilot-39756755861601.candidate_20260911.json": {
+      "sha256": "87d7376b89a2b2f31f1c035c6c0fd92f63e3835308814ed1d27841eafd0b4d91",
+      "bytes": 5841
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/au-manual-buyer-20260911/READBACK.json": {
+      "sha256": "c7533174469a00b5a2d998fac2b0a5ada48042538ee5cf7f92a5484b10d761d7",
+      "bytes": 6741
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.tsv": {
+      "sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+      "bytes": 17284594
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.variant_release_policy_review_20260911.json": {
+      "sha256": "7582becd697a7eb0966dd9aa6d3390e0b9a6063f9bd7e665c9796e185785f11d",
+      "bytes": 21969
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.variant_release_policy_review_20260911_revision2.json": {
+      "sha256": "607c03486b0e89277c91780880c0d19b0448f01a350a0e71ffaab868773346cc",
+      "bytes": 10445
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_landing_checkout_receipt.json": {
+      "sha256": "d25af448898e7352069d26d49525751502ca20d562670af91a56b8f935fda7dd",
+      "bytes": 4638
+    }
+  },
+  "operations": {
+    "only_write": "au-en.variant_release_policy_review_20260911_revision3.json",
+    "browser_or_account_calls": 0,
+    "external_mutations": 0,
+    "shared_canonical_edits": 0,
+    "paid_actions": 0,
+    "new_permission_requests": 0
+  }
+}

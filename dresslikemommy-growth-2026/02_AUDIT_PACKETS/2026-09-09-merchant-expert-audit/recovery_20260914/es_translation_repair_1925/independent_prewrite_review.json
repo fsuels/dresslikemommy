@@ -1,0 +1,282 @@
+{
+  "action": "TA07-ES-TRANSLATION-REPAIR-20260914-1925",
+  "reviewer": "/root/merchant_translation_review",
+  "independence": "Did not author candidate; no external calls or mutations; wrote only this review artifact.",
+  "reviewed_at_utc": "2026-09-14T19:50:10.098852+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewed_proposal_sha256": "8f4fee9765c5b4ec4a5943955959c51d55ec4c4da2e85c8b2f89b2295f1241e6",
+  "source_evidence_sha256": "8d86c055e54ad1119ef1624cf6d4f586939ee25fdcc519a920c674629efa0b65",
+  "source_completed_at": "2026-09-14T19:26:57.534Z",
+  "scope": {
+    "locale": "es",
+    "marketId": null,
+    "proposed_changes": 25,
+    "already_blocked_fields": 1,
+    "current_outdated_fields": 26,
+    "products_with_proposals": 10,
+    "approved_unchanged_fields": 25,
+    "proposed_bodies_requiring_revision": 0,
+    "external_write_authority": "NONE_FOR_REVIEWER",
+    "expected_partition": "25exact approved Spanish changes /1source-blocked Tropical body"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "proposal_sha256": "97791e60cb1707713b6ae5ee3673a55ca6f87fb4dd5e40d6afa3d347dd72076f",
+      "verdict": "BLOCKED_REVISIONS_REQUIRED",
+      "findings": [
+        {
+          "id": "T1",
+          "priority": "P2",
+          "resourceId": "gid://shopify/Product/7545279840353",
+          "key": "body_html",
+          "file": "proposal.json",
+          "line": 189,
+          "issue": "The proposed buyer-facing Spanish repeats internal drafting and future-request workflow: este borrador and una solicitud independiente. This is inherited source contamination rather than a mistranslation.",
+          "required_resolution": "Hold this body or replace only the internal workflow explanation with buyer-facing top-only inclusion and chart-backed size facts, preserving the table and every measurement. Route English source cleanup separately; do not merely register the current draft prose as fresh."
+        },
+        {
+          "id": "T2",
+          "priority": "P2",
+          "resourceId": "gid://shopify/Product/7546613530721",
+          "key": "body_html",
+          "file": "proposal.json",
+          "line": 267,
+          "issue": "The proposed buyer-facing Spanish repeats internal implementation statements: este borrador, no se han inventado filas and Cada variante de Shopify. These do not help the shopper select a product.",
+          "required_resolution": "Hold this body or replace only internal workflow prose with the supported separate-piece selection, child/mother size scope, chart code mapping and unavailable-measurement facts. Keep all table cells and product facts intact; route English source cleanup separately."
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "proposal_sha256": "8f4fee9765c5b4ec4a5943955959c51d55ec4c4da2e85c8b2f89b2295f1241e6",
+      "intermediate_reviewed_sha256": "e52a3544e85987236eee3394025d2cb0955986200cb8bfff4d3bf0db6fb79592",
+      "verdict": "PASS_WITH_LIMITS",
+      "resolved_findings": [
+        "T1",
+        "T2"
+      ],
+      "open_blocking_candidate_findings": [],
+      "permitted_omissions_and_rephrasings": [
+        "Golden Daisy: omit the single empty internal anchor, empty span and adjacent meta tag, without removing surrounding buyer-facing words or product facts.",
+        "Red Heart: replace internal draft/category/model/pending-request workflow with the same actual top-only purchase limitation and chart-backed size scope.",
+        "Golden Daisy: replace draft/Shopify/no-invented-rows workflow with supported separate-piece selection, girl/mother chart coverage, chart codes, matching size labels and dash meanings.",
+        "Golden Daisy: state that exact fiber composition is unspecified instead of describing the internal chart/image evidence. No composition or material is invented."
+      ],
+      "authorization_basis": "Root explicitly authorized narrow buyer-facing cleanup of these two bodies and the one material-limitation clause. English source cleanup remains a separate owner handoff.",
+      "final_clause_delta": "Inverse replacement restores the previously reviewed e52a3544 candidate SHA exactly; no other final-round byte changes.",
+      "verification": "All25 exact field bindings and the25/1partition rechecked; all827table cells, numeric sequences, table attributes and blank/dash positions preserved; no prohibited source/Admin URLs, placeholders or unresolved draft/Shopify prose in proposed values."
+    }
+  ],
+  "verified": {
+    "all_25_resource_key_digest_source_before_locale_outdated_bindings": "PASS",
+    "source_evidence_sha256": "PASS",
+    "exact_disjoint_26_field_partition": "25proposed +1blocked; zero duplicate keys or missing outdated fields",
+    "short_fields_semantics": "All18 non-body values were read in full and are faithful Spanish, retaining brand/product-line names and current included-product limitations.",
+    "body_semantics": "All7 current proposed bodies read against English product facts. The two internal workflow defects are fixed using the permitted narrow buyer-facing rephrasings; all substantive selection, material, sizing and uncertainty facts remain.",
+    "table_preservation": {
+      "status": "PASS",
+      "tables": 7,
+      "cells": 827,
+      "row_counts": [
+        21,
+        13,
+        9,
+        15,
+        18,
+        11,
+        12
+      ],
+      "row_column_structure": "unchanged",
+      "HTML_table_attributes": "unchanged",
+      "blank_dash_positions": "unchanged",
+      "numeric_sequences": "unchanged after decimal-separator normalization",
+      "measurement_unit_meanings": "preserved"
+    },
+    "golden_daisy_markup_omission": {
+      "status": "PASS",
+      "source_empty_anchor_count": 1,
+      "anchor_text": "empty",
+      "anchor_child_tags": [
+        "span"
+      ],
+      "adjacent_meta_count": 1,
+      "proposed_anchors": 0,
+      "proposed_meta": 0,
+      "buyer_facing_words_or_facts_lost": false
+    },
+    "proposed_links_images": 0,
+    "supplier_Admin_URL_placeholder_scan": "PASS across all25 proposed values",
+    "blocked_tropical_body": "Confirmed the current English child weight ranges match the flagged22-30kg and75-85kg values. Holding the body is appropriate; no conversion or measurement was guessed."
+  },
+  "preservation_requirements": [
+    "All currently valid translations remain untouched.",
+    "No changes to source English, other locales, market-specific overrides, variants, prices, status or publications.",
+    "Only reviewed resource/key/current digest and exact candidate values may be registered after current-source reread."
+  ],
+  "limitations": [
+    "Review uses the supplied sanitized source snapshot, not a new live read or supplier measurement verification.",
+    "Five redacted source/before fields have full-value hashes and private full-response binding. The private response was not opened because the review is scoped to this folder.",
+    "Source product facts, sizing and material claims were preserved rather than independently verified from supplier evidence.",
+    "The Tropical body remains source-blocked; this review does not approve it or guarantee feed eligibility, exposure or sales."
+  ],
+  "next_action": "Root executes the exact reviewed25global Spanish field corrections after the current-source guard, then independently reads back their values/outdated flags and preservation of non-target fields. Keep Tropical body blocked and hand English source hygiene to its existing owner.",
+  "approved_fields": [
+    {
+      "resourceId": "gid://shopify/Product/7227375714401",
+      "key": "body_html",
+      "sourceDigest": "74fa455d1c4a3758364f47da0b17e413fff4f637669b64571b61091d769b3e5f",
+      "valueSha256": "3bbeddd6daa55e56e26d87a43b1a4689d77d075e47cfc32d1b1df045ce2bb60b"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227378892897",
+      "key": "title",
+      "sourceDigest": "09bc65d38dd73ca14ba2a556e60148df9bdff03f513ee1ff70ae474062d2fff8",
+      "valueSha256": "5a895443aa3c94050e14af464d30eb5e22db5a7dcbb8dde6c018f334f9db3fc7"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227378892897",
+      "key": "meta_title",
+      "sourceDigest": "aae0c3df329d4d6224e4fb4bd52c55bcdaf559c6735408350c580bb10ce252e4",
+      "valueSha256": "48ca7ffeed53b36436469075e02eb72fb191cc97021bb0e1841f4c2cb2b47fde"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227378892897",
+      "key": "meta_description",
+      "sourceDigest": "18ad1fd79eaa195e95add3b535670f72d913875c82a863c270967b1572d352e3",
+      "valueSha256": "3c61dcc0d4286cba312636c3558f0e0e6dba5ce6ca68085bec37755abcaa1609"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229026304097",
+      "key": "body_html",
+      "sourceDigest": "02334ca4ee954ed518401ec26a95765152aa1e2408f4ce0b9c4d0aa0066c02f3",
+      "valueSha256": "8538a87c50c1bcb9e698f22f6c47171d06f146cdcf9c06266db2977f0b997b4b"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536709664865",
+      "key": "title",
+      "sourceDigest": "7b989cf1d9a0b5ea2ae6d3387d6d671be04e4acc33920f3ac53ff471ab4354c1",
+      "valueSha256": "08847dc809de74e8da8e793a624156ad119aeb4a7f7568b2936ec2c5231a96da"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536984359009",
+      "key": "title",
+      "sourceDigest": "0925869271d8aed9dd9de98847e42a6dcdf2c8787c3eaebf03ff6fd46111357c",
+      "valueSha256": "d318853695af86ae0ec48f0f628336b9cf60f4fb735d6362bb3856ad3d99bf52"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279217761",
+      "key": "title",
+      "sourceDigest": "fa132a132a5480e34f634b25ef8197b6b967098091c3138447097872bf5b61cd",
+      "valueSha256": "0ebfeb4c5c97ea2222c37966ace07205a567e0da400a53865e6537991cad2539"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279217761",
+      "key": "body_html",
+      "sourceDigest": "389f124653f65af495735dfb23043daf0d44694c579715646600afcc0980176d",
+      "valueSha256": "8817ed3798bce39fefd812020d01f6edf020482a2836cbb4902394389bb2451c"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279217761",
+      "key": "product_type",
+      "sourceDigest": "4382ccb82839c019270fb8eb5edfcfd9e150b1ab2561ff4362c10e0537481ffb",
+      "valueSha256": "e49f5539075d6fd25629a82cc05cf273d895235e86d7c53d77e33a86f92b304b"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279217761",
+      "key": "meta_title",
+      "sourceDigest": "ce4a4afa26bdf031614d16d8e71d9c9fc0606bc2166c98b5ee9af01e21d8d0f2",
+      "valueSha256": "e893e75b49f4b4bffd6ba45a5c81ea80b8a6dba7cc2ff29d8ecccfd6644ed95a"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279217761",
+      "key": "meta_description",
+      "sourceDigest": "0d2781931b85bc0a9e20044878cf63a856ae6e11dc30256902d1418e67811760",
+      "valueSha256": "af9add5b1fc551cc7f2ec9c360e521f3067f72d153412c8d901a81805a0c3cbf"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279512673",
+      "key": "body_html",
+      "sourceDigest": "9bd9fdf5817bff247fa3576eb06c149b18e3239038b613b0773d864c00fcdbfa",
+      "valueSha256": "fb8f09b58806e876432c3ed4bd006bfb8e42baac12ab63ce9fb4495f2bc13883"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279512673",
+      "key": "meta_title",
+      "sourceDigest": "7e890bb2e728e1e64cd761d31bc9f4bc4330f9c6edc7d08111d9d5f926838de0",
+      "valueSha256": "9321eb860038b6456ad2d5a1cdbf94a4dc5b450579d1a133853c5872aac82cde"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279512673",
+      "key": "meta_description",
+      "sourceDigest": "ad422724f1ed1b67d9812315d287ccae6fc642cf807c9ecc23c2a44b1d8e7776",
+      "valueSha256": "9c13a4574b896fcb3282f160158811fe2ab171e1ba23d2d96ce73fced4c36d96"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279840353",
+      "key": "body_html",
+      "sourceDigest": "83f7fb8190093a707c2532d8de85ce8fe12b7c8e47c7565f8e1b92361116c74b",
+      "valueSha256": "6f25010543869f0c9c47a6b55cc473f6930b35acfce6847c2c45ee242080e5b1"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279840353",
+      "key": "meta_title",
+      "sourceDigest": "00f98a34d2a080cb2ae1aaf3df4c7e58949bba3b6c2fcc1a9c5686ac0ac8b586",
+      "valueSha256": "354f123efb6c6dae826b268db3ddc3e0641c48fa2d5fef4347c0d69811e32de3"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279840353",
+      "key": "meta_description",
+      "sourceDigest": "221672b6f07f60fd45d714d053756b199d1dea1b7ff5997bc3ed19db1a32882b",
+      "valueSha256": "5c0a071f9cec445bc3c3b3464be5aff641d5f19c9d9884805302676db01430b8"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545373130849",
+      "key": "body_html",
+      "sourceDigest": "f46fea199ddfc5ba10fdb83c7fc88d243d18182ef5d442370f113bdb27d94c29",
+      "valueSha256": "8dbb3ffe7fb90141a06de251ed8cad42dc5438ca079b8b9ddd9559bae3409f46"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545373130849",
+      "key": "meta_title",
+      "sourceDigest": "833e86d019939fe51104afe481e67381212919f1f4c55fd79653072c64bd9e9e",
+      "valueSha256": "6b352d96ca8bd62719fa922065ae175f5aa8fbded47245d769398c454f442620"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545373130849",
+      "key": "meta_description",
+      "sourceDigest": "dc5fd96383ea01536c0b87706df5e2423dce39eb7b31e38baf8ec2ad3d525134",
+      "valueSha256": "39c28fea735723a6a0fb86b1f767bf695a078e841b8a52d3babf65d1ee6e94de"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7546613530721",
+      "key": "title",
+      "sourceDigest": "f3a3ab1f66e816e85600f2fa6b8424bf4719b4b88e9fbef6da0ea8e44df3a0dc",
+      "valueSha256": "8e7d0f8e9aacd8b15193fa7afaa9e4d4e6c13859df51a0ee7ec95052669cf6e8"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7546613530721",
+      "key": "body_html",
+      "sourceDigest": "d2ea403104d46bb9c1075f7983ec9ae322883ba1b4725688d93d69b8d768b279",
+      "valueSha256": "83429bbc95c2ed409aa0ebe8a6827d688eda9610447a90ddcf447b7cb2b5aff3"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7546613530721",
+      "key": "meta_title",
+      "sourceDigest": "f712cf3bfe326316844211408c31cb4dc71aabf32bb72f3a502e2b9a92f72685",
+      "valueSha256": "335a00d584ade0db889f70e05222c544968bf7b245d8ad37f1205a37b821a715"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7546613530721",
+      "key": "meta_description",
+      "sourceDigest": "217d6b3c879f7bc4f294c9b10a4775e312084ee02e1311a42f42e818bd1dc667",
+      "valueSha256": "8d6ac42dff33a42028c12f1c6fa516ac831073092129b8742f5fb74f0dfbd7fb"
+    }
+  ],
+  "blocked_field": {
+    "resourceId": "gid://shopify/Product/7227378925665",
+    "key": "body_html",
+    "reason": "Source childweight measurements require verification; do not register as fresh, invent a correction or include this blocked field."
+  },
+  "approval_limit": "Candidate fidelity/scope approval applies only to the exact final proposal SHA and25listed field values. Root must re-read current digests/before state immediately before registration and verify the after-state; this is not evidence that any external write occurred."
+}

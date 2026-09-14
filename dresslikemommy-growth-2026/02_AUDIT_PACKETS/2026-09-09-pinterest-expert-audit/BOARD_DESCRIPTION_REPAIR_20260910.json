@@ -1,0 +1,49 @@
+{
+  "schema": "dlm.pinterest_board_description_repair.v1",
+  "owner": "root01a08704-8176-7171-b6f5-928a09d7c3f9",
+  "authority": "Current owner explicitly renewed fix everything in Pinterest audit; narrow reversible correction of an unsupported public claim. Independent reviewer confirms in-scope; no new approval question.",
+  "target": {
+    "profile": "dresslikemommy",
+    "board_id": "343118134050368248",
+    "name": "Mommy & Me Matching Outfits",
+    "url": "https://www.pinterest.com/dresslikemommy/mommy-me-matching-outfits/",
+    "visibility": "Public",
+    "pin_count_before": 55
+  },
+  "field": "description",
+  "before": "Adorable mommy and me matching outfits for every season. Find the perfect mommy and me dresses, matching mother daughter swimsuits, and coordinating family looks. Shop our complete collection of mommy and me outfits at dresslikemommy.com - the largest selection of matching family clothing online.",
+  "intended_after": "Explore mommy and me matching outfits, mother and daughter dresses, matching swimsuits, and coordinating family looks. Find ideas for family photos, holidays, and everyday outfits at DressLikeMommy.com. Check each product page for available sizes and what is included.",
+  "reason": "Largest-selection superlative is unsupported. Replacement retains relevant shopping topics and gives accurate item-level guidance.",
+  "independent_review": {
+    "agent": "release_verifier",
+    "verdict": "PASS",
+    "reviewed_chars": 268,
+    "no_external_action": true
+  },
+  "preserve": [
+    "board name",
+    "visibility",
+    "collaborators",
+    "cover",
+    "existing Pins",
+    "other boards",
+    "account settings"
+  ],
+  "rollback": {
+    "field": "description",
+    "value_source": "before",
+    "method": "Same existing board editor; use only if a proven repair regression requires it"
+  },
+  "verification_plan": "One Save, then refresh/reopen the same existing board and compare the exact persisted description and unchanged board identity/visibility.",
+  "status": "IMPLEMENTED_VERIFIED",
+  "saves": 1,
+  "verified_after_refresh": true,
+  "after": "Explore mommy and me matching outfits, mother and daughter dresses, matching swimsuits, and coordinating family looks. Find ideas for family photos, holidays, and everyday outfits at DressLikeMommy.com. Check each product page for available sizes and what is included.",
+  "preservation_readback": {
+    "board_id": "343118134050368248",
+    "name": "Mommy & Me Matching Outfits",
+    "visibility": "Public",
+    "pin_count": 55,
+    "existing_sunshine_pin": "343118065386636484"
+  }
+}

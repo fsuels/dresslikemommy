@@ -1,0 +1,1188 @@
+--- merchant-revision3/assets/cart.js
++++ release/assets/cart.js
+@@ -382,22 +382,65 @@
+   const STORAGE_KEY = 'dlm_recently_viewed';
+   const MAX_ITEMS = 6;
+ 
++  function productPath(value) {
++    if (typeof value !== 'string' || !value.startsWith('/')) return '';
++    try {
++      const url = new URL(value, window.location.origin);
++      if (url.origin !== window.location.origin) return '';
++      // Remove a previous language/market prefix before applying the active route root.
++      const match = url.pathname.match(/^(?:\/[a-z]{2}(?:-[a-z]{2})?)?(\/products\/[^/]+)\/?$/i);
++      return match ? match[1] : '';
++    } catch (e) {
++      return '';
++    }
++  }
++
++  function imageUrl(value) {
++    if (typeof value !== 'string' || !value.trim()) return '';
++    try {
++      const url = new URL(value, window.location.origin);
++      return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : '';
++    } catch (e) {
++      return '';
++    }
++  }
++
++  function escapeHtml(value) {
++    return value.replace(/[&<>"']/g, function(character) {
++      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character];
++    });
++  }
++
++  function readRecentlyViewed() {
++    try {
++      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
++      if (!Array.isArray(stored)) return [];
++      const seen = new Set();
++      return stored.reduce(function(viewed, item) {
++        const url = item && productPath(item.url);
++        if (!url || typeof item.title !== 'string' || !item.title.trim() || seen.has(url)) return viewed;
++        seen.add(url);
++        viewed.push({ url, title: item.title, image: imageUrl(item.image), time: item.time });
++        return viewed;
++      }, []).slice(0, MAX_ITEMS);
++    } catch (e) {
++      return []; // Unavailable or malformed storage must not interrupt the cart.
++    }
++  }
++
+   // Track current product page (lightweight — just localStorage write)
+-  if (window.location.pathname.startsWith('/products/')) {
++  const currentProductPath = productPath(window.location.pathname);
++  if (currentProductPath) {
+     try {
+       const titleTag = document.querySelector('meta[property="og:title"]');
+       const imageTag = document.querySelector('meta[property="og:image"]');
+-      const priceTag = document.querySelector('meta[property="product:price:amount"]');
+ 
+       if (titleTag) {
+-        const viewed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+-        const url = window.location.pathname;
+-        const filtered = viewed.filter(item => item.url !== url);
+-        filtered.unshift({ url, title: titleTag.content || '', image: imageTag ? imageTag.content : '', price: priceTag ? priceTag.content : '', time: Date.now() });
++        const filtered = readRecentlyViewed().filter(item => item.url !== currentProductPath);
++        filtered.unshift({ url: currentProductPath, title: titleTag.content || '', image: imageTag ? imageUrl(imageTag.content) : '', time: Date.now() });
+         localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered.slice(0, MAX_ITEMS)));
+       }
+     } catch(e) { /* localStorage not available */ }
+-    return; // Exit early — no rendering needed on product pages
+   }
+ 
+   // Only render if empty-cart containers exist on page
+@@ -407,17 +450,17 @@
+     if (!drawerContainer && !pageContainer) return; // No containers — skip entirely
+ 
+     try {
+-      const viewed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
++      const viewed = readRecentlyViewed();
+       if (viewed.length === 0) return;
+ 
++      // Cached prices have no reliable currency/market context. The linked PDP owns current pricing.
+       if (drawerContainer) {
+         const drawerGrid = document.getElementById('CartDrawer-RecentlyViewedGrid');
+         if (drawerGrid) {
+           drawerGrid.innerHTML = viewed.slice(0, 3).map(function(item) {
+-            return '<a href="' + item.url + '" class="cart-drawer__upsell-item">' +
+-              (item.image ? '<img src="' + item.image + '" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img">' : '') +
+-              '<div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">' + item.title.split(' | ')[0] + '</span>' +
+-              (item.price ? '<span class="cart-drawer__upsell-price">$' + item.price + '</span>' : '') +
++            return '<a href="' + escapeHtml(getLocaleAwareRoute(item.url)) + '" class="cart-drawer__upsell-item">' +
++              (item.image ? '<img src="' + escapeHtml(item.image) + '" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img">' : '') +
++              '<div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">' + escapeHtml(item.title.split(' | ')[0]) + '</span>' +
+               '</div></a>';
+           }).join('');
+           drawerContainer.style.display = '';
+@@ -428,10 +471,9 @@
+         const pageGrid = document.getElementById('CartPage-RecentlyViewedGrid');
+         if (pageGrid) {
+           pageGrid.innerHTML = viewed.slice(0, 4).map(function(item) {
+-            return '<a href="' + item.url + '" class="cart-page__cross-sell-item">' +
+-              (item.image ? '<div class="cart-page__cross-sell-img-wrap"><img src="' + item.image + '" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div>' : '') +
+-              '<div class="cart-page__cross-sell-info"><span class="cart-page__cross-sell-name">' + item.title.split(' | ')[0] + '</span>' +
+-              (item.price ? '<span class="cart-page__cross-sell-price">$' + item.price + '</span>' : '') +
++            return '<a href="' + escapeHtml(getLocaleAwareRoute(item.url)) + '" class="cart-page__cross-sell-item">' +
++              (item.image ? '<div class="cart-page__cross-sell-img-wrap"><img src="' + escapeHtml(item.image) + '" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div>' : '') +
++              '<div class="cart-page__cross-sell-info"><span class="cart-page__cross-sell-name">' + escapeHtml(item.title.split(' | ')[0]) + '</span>' +
+               '</div></a>';
+           }).join('');
+           pageContainer.style.display = '';
+@@ -445,6 +487,9 @@
+   } else {
+     renderRecentlyViewed();
+   }
++
++  // Quantity removal can replace the empty-cart markup after the initial page render.
++  subscribe(PUB_SUB_EVENTS.cartUpdate, renderRecentlyViewed);
+ })();
+ 
+ /* ── Swipe-to-remove on mobile — only init on touch devices with cart items ── */
+--- merchant-revision3/assets/cookie-preferences.css
++++ release/assets/cookie-preferences.css
+@@ -0,0 +1,28 @@
++.footer__cookie-preferences {
++  display: block;
++  margin-top: 0.8rem;
++}
++
++.footer__cookie-preferences-button {
++  min-height: 4.4rem;
++  max-width: 100%;
++  padding: 0.8rem 0;
++  white-space: normal;
++}
++
++.footer .footer__cookie-preferences .footer__cookie-preferences-button,
++.footer .footer__cookie-preferences .footer__cookie-preferences-status {
++  color: #ccc;
++  font-size: 1.4rem;
++  line-height: 1.5;
++  overflow-wrap: anywhere;
++}
++
++.footer .footer__cookie-preferences .footer__cookie-preferences-button:hover,
++.footer .footer__cookie-preferences .footer__cookie-preferences-button:focus-visible {
++  color: #fff;
++}
++
++.footer__cookie-preferences-status {
++  display: block;
++}
+--- merchant-revision3/assets/cookie-preferences.js
++++ release/assets/cookie-preferences.js
+@@ -0,0 +1,91 @@
++if (!customElements.get('cookie-preferences')) {
++  customElements.define('cookie-preferences', class extends HTMLElement {
++    connectedCallback() {
++      if (this.button) return;
++      this.button = this.querySelector('button');
++      this.status = this.querySelector('[role="status"]');
++      if (!this.button || !this.status) return;
++      this.handleClick = this.openPreferences.bind(this);
++      this.button.addEventListener('click', this.handleClick);
++    }
++
++    disconnectedCallback() {
++      this.button?.removeEventListener('click', this.handleClick);
++      this.finishOpening(false);
++      this.button = null;
++    }
++
++    visibleDialog() {
++      return [...document.querySelectorAll('.shopify-pc__prefs__dialog, .shopify-pc__prefs')]
++        .find((dialog) => dialog.getClientRects().length > 0
++          && window.getComputedStyle(dialog).visibility !== 'hidden'
++          && !dialog.closest('[hidden], [aria-hidden="true"]'));
++    }
++
++    openPreferences() {
++      if (this.attempt) return;
++      this.status.textContent = '';
++      const privacyBanner = window.privacyBanner;
++      if (!privacyBanner || typeof privacyBanner.showPreferences !== 'function') {
++        this.status.textContent = this.dataset.unavailableMessage;
++        return;
++      }
++
++      const attempt = {};
++      this.attempt = attempt;
++      this.button.disabled = true;
++      this.button.setAttribute('aria-busy', 'true');
++      const checkDialog = () => {
++        if (this.attempt !== attempt) return;
++        const dialog = this.visibleDialog();
++        if (dialog) {
++          this.dialog = dialog;
++          clearTimeout(this.openTimeout);
++          this.button.removeAttribute('aria-busy');
++        } else if (this.dialog) {
++          this.finishOpening(true);
++        }
++      };
++
++      this.observer = new MutationObserver(checkDialog);
++      this.observer.observe(document.body, {
++        childList: true,
++        subtree: true,
++        attributes: true,
++        attributeFilter: ['class', 'style', 'hidden', 'aria-hidden'],
++      });
++      this.openTimeout = setTimeout(() => this.openFailed(attempt), 10000);
++
++      try {
++        const result = privacyBanner.showPreferences();
++        checkDialog();
++        // The API result is not a dialog-close signal. Shopify owns dialog focus.
++        Promise.resolve(result).catch(() => this.openFailed(attempt));
++      } catch (_error) {
++        this.openFailed(attempt);
++      }
++    }
++
++    openFailed(attempt) {
++      if (this.attempt !== attempt) return;
++      this.finishOpening(false);
++      this.status.textContent = this.dataset.unavailableMessage;
++    }
++
++    finishOpening(restoreFocus) {
++      clearTimeout(this.openTimeout);
++      this.observer?.disconnect();
++      const activeElement = document.activeElement;
++      const focusNeedsReturn = !activeElement || activeElement === document.body
++        || !activeElement.isConnected || this.dialog?.contains(activeElement);
++      this.dialog = null;
++      this.attempt = null;
++      if (!this.button) return;
++      this.button.disabled = false;
++      this.button.removeAttribute('aria-busy');
++      if (restoreFocus && focusNeedsReturn && this.button.isConnected) {
++        this.button.focus({ preventScroll: true });
++      }
++    }
++  });
++}
+--- merchant-revision3/assets/product-desktop-ux-20260513-ruler-sync.js
++++ release/assets/product-desktop-ux-20260513-ruler-sync.js
+@@ -430,8 +430,8 @@
+     chooseRoleStep: "Vælg, hvem dette stykke tøj er til",
+     chooseOptionsStep: "Vælg størrelse og muligheder",
+     chooseRoleCta: "Vælg et familiemedlem",
+-    addCurrentPiece: "Læg dette stykke tøj i kurven",
+-    readyToAdd: "Kan lægges i kurven",
++    addCurrentPiece: "Læg denne vare i indkøbskurven",
++    readyToAdd: "Klar til at lægge i kurven",
+   },
+   de: {
+     pieceOne: '1 passendes Teil',
+--- merchant-revision3/layout/theme.liquid
++++ release/layout/theme.liquid
+@@ -418,10 +418,7 @@
+     }
+ 
+     html:not(.dlm-shopify-privacy-banner-visible) #shopify-pc__banner,
+-    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__banner__wrapper,
+-    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__prefs,
+-    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__prefs__overlay,
+-    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__prefs__dialog {
++    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__banner__wrapper {
+       display: none !important;
+       visibility: hidden !important;
+     }
+@@ -434,9 +431,6 @@
+       var bannerSelectors = [
+         '#shopify-pc__banner',
+         '.shopify-pc__banner__wrapper',
+-        '.shopify-pc__prefs',
+-        '.shopify-pc__prefs__overlay',
+-        '.shopify-pc__prefs__dialog',
+       ];
+ 
+       function showPrivacyBanner() {
+--- merchant-revision3/locales/ar.json
++++ release/locales/ar.json
+@@ -269,6 +269,7 @@
+       "assistance_note": "بحاجة الى مساعدة؟ نقوم عادةً بالرد خلال يوم عمل واحد."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "اطّلع على خيارات الشحن عند إتمام الشراء.",
+       "shipping_headline": "شحن قياسي مجاني",
+       "estimate_to_country": "التسليم المقدر إلى {{ country }}: ",
+       "estimate_default": "التسليم المقدر: ",
+@@ -520,6 +521,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "تفضيلات ملفات تعريف الارتباط",
++      "cookie_preferences_unavailable": "تعذّر فتح تفضيلات ملفات تعريف الارتباط. يرجى المحاولة مرة أخرى.",
+       "payment": "طرق الدفع"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/cs.json
++++ release/locales/cs.json
+@@ -269,6 +269,7 @@
+       "assistance_note": "Potřebujete pomoc? Obvykle odpovídáme do jednoho pracovního dne."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Možnosti dopravy najdete při placení.",
+       "shipping_headline": "Standardní doprava zdarma",
+       "estimate_to_country": "Odhadované doručení do {{ country }}: ",
+       "estimate_default": "Odhadované doručení: ",
+@@ -672,6 +673,8 @@
+       "shipping_country_reassurance": "Doprava do {{ country }}. Standardní doprava je v ceně; přesný odhad doručení a případné expresní rozšíření se zobrazí před platbou."
+     },
+     "footer": {
++      "cookie_preferences": "Předvolby souborů cookie",
++      "cookie_preferences_unavailable": "Předvolby souborů cookie se nepodařilo otevřít. Zkuste to prosím znovu.",
+       "payment": "Platební metody"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/da.json
++++ release/locales/da.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Har du brug for hjælp? Vi svarer typisk inden for en hverdag."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Se leveringsmuligheder ved betaling.",
+       "shipping_headline": "Gratis standardforsendelse",
+       "estimate_to_country": "Forventet levering til {{ country }}: ",
+       "estimate_default": "Forventet levering: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Forsendelse til {{ country }}. Standardforsendelse er inkluderet; præcist leveringsestimat og eventuel ekspresopgradering vises før betaling."
+     },
+     "footer": {
++      "cookie_preferences": "Cookieindstillinger",
++      "cookie_preferences_unavailable": "Cookieindstillingerne kunne ikke åbnes. Prøv igen.",
+       "payment": "Betalingsmetoder"
+     },
+     "featured_blog": {
+@@ -695,7 +698,7 @@
+         "family_sets": "Matchende familieferietøj | Strand- og rejsesæt",
+         "family_matching": "Matchende familietøj | Mor og mig",
+         "new_women_outfits": "Matchende familietøj | Kjoler, badetøj og familiesæt",
+-        "dresses": "Mommy and Me Kjoler | Moder Datter",
++        "dresses": "Kjoler til mor og datter | Dress Like Mommy",
+         "maxi_dresses": "Matchende Maxikjoler | Mor og datter",
+         "best_sellers": "Bedst sælgende Mommy and Me Outfits | Kjoler, badedragter og meget mere",
+         "daddy_me": "Daddy and Me skjorter, t-shirts og matchende outfits",
+@@ -709,7 +712,7 @@
+         "all": "Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Komfortable stilarter med hurtig forsendelse.",
+         "mommy_and_me": "Shop mommy and me outfits, dresses, swimsuits, and matching sets for birthdays, family photos, vacations, and everyday twinning moments.",
+         "spring_matching": "Shop mommy and me Easter dresses and spring matching outfits for church, brunch, egg hunts, family photos, and other seasonal celebrations.",
+-        "dresses": "Shop mommy and me dresses and mother daughter matching dresses for photos, parties, vacations, and polished everyday wear.",
++        "dresses": "Find matchende kjoler til mor og datter. Se styles til familiebilleder, fester og ferier, og tjek størrelser og mål på produktsiden, før du vælger.",
+         "maxi_dresses": "Shop mommy and me maxi dresses and matching maxi dresses for photos, travel, celebrations, and easy polished everyday wear.",
+         "swimsuits": "Shop matching family swimsuits and mom and daughter matching swimsuits for beach trips, pool days, cruises, and coordinated summer photos.",
+         "family_swimsuits": "Shop matching family bathing suits and family swimwear for beach vacations, pool days, cruises, and coordinated summer photos.",
+--- merchant-revision3/locales/de.json
++++ release/locales/de.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Brauchen Sie Hilfe? Wir antworten in der Regel innerhalb eines Werktages."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Versandoptionen werden an der Kasse angezeigt.",
+       "shipping_headline": "Kostenloser Standardversand",
+       "estimate_to_country": "Voraussichtliche Lieferung nach {{ country }}: ",
+       "estimate_default": "Voraussichtliche Lieferung: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Versand nach {{ country }}. Standardversand ist enthalten; genaue Lieferprognose und mögliche Express-Upgrades erscheinen vor der Zahlung."
+     },
+     "footer": {
++      "cookie_preferences": "Cookie-Einstellungen",
++      "cookie_preferences_unavailable": "Die Cookie-Einstellungen konnten nicht geöffnet werden. Bitte versuchen Sie es erneut.",
+       "payment": "Zahlungsmethoden"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/el.json
++++ release/locales/el.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Χρειάζεστε βοήθεια; Συνήθως απαντάμε εντός μιας εργάσιμης ημέρας."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Δείτε τις επιλογές αποστολής στο ταμείο.",
+       "shipping_headline": "Δωρεάν τυπική αποστολή",
+       "estimate_to_country": "Εκτιμώμενη παράδοση σε {{ country }}: ",
+       "estimate_default": "Εκτιμώμενη παράδοση: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Αποστολή προς {{ country }}. Η τυπική αποστολή περιλαμβάνεται· η ακριβής εκτίμηση παράδοσης και τυχόν αναβάθμιση express εμφανίζονται πριν από την πληρωμή."
+     },
+     "footer": {
++      "cookie_preferences": "Προτιμήσεις cookie",
++      "cookie_preferences_unavailable": "Δεν ήταν δυνατό το άνοιγμα των προτιμήσεων cookie. Δοκιμάστε ξανά.",
+       "payment": "Μέθοδοι πληρωμής"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/en.default.json
++++ release/locales/en.default.json
+@@ -269,6 +269,7 @@
+       "assistance_note": "Need help? We typically reply within one business day."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "See shipping options at checkout.",
+       "shipping_headline": "Standard shipping included",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -520,6 +521,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Cookie preferences",
++      "cookie_preferences_unavailable": "Cookie preferences could not open. Please try again.",
+       "payment": "Payment methods"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/es.json
++++ release/locales/es.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "¿Necesitas ayuda? Normalmente respondemos dentro de un día hábil."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Consulta las opciones de envío al finalizar la compra.",
+       "shipping_headline": "Envío estándar gratis",
+       "estimate_to_country": "Entrega estimada a {{ country }}: ",
+       "estimate_default": "Entrega estimada: ",
+@@ -521,6 +522,8 @@
+       "shipping_country_reassurance": "Envío a {{ country }}. El envío estándar está incluido; la estimación exacta de entrega y cualquier mejora exprés aparecen antes del pago."
+     },
+     "footer": {
++      "cookie_preferences": "Preferencias de cookies",
++      "cookie_preferences_unavailable": "No se pudieron abrir las preferencias de cookies. Inténtalo de nuevo.",
+       "payment": "Formas de pago"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/fi.json
++++ release/locales/fi.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Tarvitsetko apua? Vastaamme yleensä yhden arkipäivän kuluessa."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Katso toimitusvaihtoehdot kassalla.",
+       "shipping_headline": "Ilmainen vakiotoimitus",
+       "estimate_to_country": "Arvioitu toimitus maahan {{ country }}: ",
+       "estimate_default": "Arvioitu toimitus: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Toimitus maahan {{ country }}. Vakiotoimitus sisältyy; tarkka toimitusarvio ja mahdollinen pikapäivitys näkyvät ennen maksua."
+     },
+     "footer": {
++      "cookie_preferences": "Evästeasetukset",
++      "cookie_preferences_unavailable": "Evästeasetuksia ei voitu avata. Yritä uudelleen.",
+       "payment": "Maksutavat"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/fr.json
++++ release/locales/fr.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Besoin d'aide ? Nous répondons généralement dans un délai d'un jour ouvrable."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Consultez les options de livraison au moment du paiement.",
+       "shipping_headline": "Livraison standard gratuite",
+       "estimate_to_country": "Livraison estimée vers {{ country }} : ",
+       "estimate_default": "Livraison estimée : ",
+@@ -521,6 +522,8 @@
+       "shipping_country_reassurance": "Livraison vers {{ country }}. La livraison standard est incluse; l’estimation exacte et toute option express s’affichent avant le paiement."
+     },
+     "footer": {
++      "cookie_preferences": "Préférences de cookies",
++      "cookie_preferences_unavailable": "Impossible d’ouvrir les préférences de cookies. Veuillez réessayer.",
+       "payment": "Moyens de paiement"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/he.json
++++ release/locales/he.json
+@@ -3401,6 +3401,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "העדפות קובצי Cookie",
++      "cookie_preferences_unavailable": "לא ניתן לפתוח את העדפות קובצי ה-Cookie. נסו שוב.",
+       "payment": "שיטות תשלום"
+     },
+     "breadcrumbs": {
+@@ -3918,6 +3920,7 @@
+       "ssl_encrypted": "SSL מוצפן"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "אפשרויות המשלוח מוצגות בקופה.",
+       "shipping_headline": "משלוח רגיל חינם",
+       "estimate_to_country": "אספקה משוערת אל {{ country }}: ",
+       "estimate_default": "אספקה משוערת: ",
+--- merchant-revision3/locales/hi.json
++++ release/locales/hi.json
+@@ -269,6 +269,7 @@
+       "assistance_note": "मदद की ज़रूरत है? हम आम तौर पर एक कार्यदिवस के भीतर उत्तर देते हैं।"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "चेकआउट पर शिपिंग के विकल्प देखें।",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -520,6 +521,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "कुकी प्राथमिकताएँ",
++      "cookie_preferences_unavailable": "कुकी प्राथमिकताएँ नहीं खोली जा सकीं। कृपया फिर से कोशिश करें।",
+       "payment": "भुगतान के तरीके"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/hr-HR.json
++++ release/locales/hr-HR.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Trebate pomoć? Obično odgovaramo u roku od jednog radnog dana."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Opcije dostave pogledajte pri završetku kupnje.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -521,6 +522,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Postavke kolačića",
++      "cookie_preferences_unavailable": "Nije moguće otvoriti postavke kolačića. Pokušajte ponovno.",
+       "payment": "Načini plaćanja"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/hu.json
++++ release/locales/hu.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Segítségre van szüksége? Általában egy munkanapon belül válaszolunk."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "A szállítási lehetőségeket a pénztárnál tekintheti meg.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Sütibeállítások",
++      "cookie_preferences_unavailable": "Nem sikerült megnyitni a sütibeállításokat. Próbálja újra.",
+       "payment": "Fizetési módok"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/id.json
++++ release/locales/id.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Butuh bantuan? Kami biasanya membalas dalam satu hari kerja."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Lihat pilihan pengiriman saat checkout.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Preferensi cookie",
++      "cookie_preferences_unavailable": "Preferensi cookie tidak dapat dibuka. Silakan coba lagi.",
+       "payment": "Metode pembayaran"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/it.json
++++ release/locales/it.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Hai bisogno di aiuto? Solitamente rispondiamo entro un giorno lavorativo."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Consulta le opzioni di spedizione al momento del pagamento.",
+       "shipping_headline": "Spedizione standard gratuita",
+       "estimate_to_country": "Consegna stimata in {{ country }}: ",
+       "estimate_default": "Consegna stimata: ",
+@@ -521,6 +522,8 @@
+       "shipping_country_reassurance": "Spedizione verso {{ country }}. La spedizione standard è inclusa; stima esatta ed eventuale upgrade express appaiono prima del pagamento."
+     },
+     "footer": {
++      "cookie_preferences": "Preferenze sui cookie",
++      "cookie_preferences_unavailable": "Impossibile aprire le preferenze sui cookie. Riprova.",
+       "payment": "Metodi di pagamento"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/ja.json
++++ release/locales/ja.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "お困りですか？通常、1営業日以内に返信します。"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "配送方法はチェックアウト時にご確認ください。",
+       "shipping_headline": "標準配送無料",
+       "estimate_to_country": "{{ country }}へのお届け予定: ",
+       "estimate_default": "お届け予定: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Cookieの設定",
++      "cookie_preferences_unavailable": "Cookieの設定を開けませんでした。もう一度お試しください。",
+       "payment": "決済方法"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/ko.json
++++ release/locales/ko.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "도움이 필요하신가요? 일반적으로 영업일 기준 1일 이내에 답변해 드립니다."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "결제 시 배송 옵션을 확인하세요.",
+       "shipping_headline": "무료 일반 배송",
+       "estimate_to_country": "{{ country }} 예상 도착: ",
+       "estimate_default": "예상 도착: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "쿠키 설정",
++      "cookie_preferences_unavailable": "쿠키 설정을 열 수 없습니다. 다시 시도해 주세요.",
+       "payment": "결제 방법"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/lt-LT.json
++++ release/locales/lt-LT.json
+@@ -308,6 +308,7 @@
+       "assistance_note": "Reikia pagalbos? Paprastai atsakome per vieną darbo dieną."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Pristatymo būdus peržiūrėkite atsiskaitydami.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -531,6 +532,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Slapukų nuostatos",
++      "cookie_preferences_unavailable": "Nepavyko atidaryti slapukų nuostatų. Bandykite dar kartą.",
+       "payment": "Mokėjimo būdai"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/nb.json
++++ release/locales/nb.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Trenger du hjelp? Vi svarer vanligvis innen én virkedag."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Se leveringsalternativer i kassen.",
+       "shipping_headline": "Gratis standardfrakt",
+       "estimate_to_country": "Estimert levering til {{ country }}: ",
+       "estimate_default": "Estimert levering: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Frakt til {{ country }}. Standard frakt er inkludert; nøyaktig leveringsestimat og eventuell ekspressoppgradering vises før betaling."
+     },
+     "footer": {
++      "cookie_preferences": "Innstillinger for informasjonskapsler",
++      "cookie_preferences_unavailable": "Innstillingene for informasjonskapsler kunne ikke åpnes. Prøv igjen.",
+       "payment": "Betalingsmåter"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/nl.json
++++ release/locales/nl.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Hulp nodig? Wij antwoorden doorgaans binnen één werkdag."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Bekijk de verzendopties bij het afrekenen.",
+       "shipping_headline": "Gratis standaardverzending",
+       "estimate_to_country": "Geschatte levering naar {{ country }}: ",
+       "estimate_default": "Geschatte levering: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Verzending naar {{ country }}. Standaard verzending is inbegrepen; de exacte leveringsschatting en eventuele express-upgrade verschijnen vóór betaling."
+     },
+     "footer": {
++      "cookie_preferences": "Cookievoorkeuren",
++      "cookie_preferences_unavailable": "De cookievoorkeuren konden niet worden geopend. Probeer het opnieuw.",
+       "payment": "Betaalmethoden"
+     },
+     "featured_blog": {
+@@ -695,7 +698,7 @@
+         "family_sets": "Bijpassende gezinsvakantie-outfits | Strand en reizen Sets",
+         "family_matching": "Bijpassende outfits voor het hele gezin | Mama en ik",
+         "new_women_outfits": "Bijpassende outfits voor het hele gezin | Jurken, badkleding en familie Sets",
+-        "dresses": "Mama en ik Jurken | Moeder Dochter",
++        "dresses": "Jurken voor moeder en dochter | Dress Like Mommy",
+         "maxi_dresses": "Bijpassende maxi-jurken | Moeder en dochter",
+         "best_sellers": "Best verkochte Mama en ik-outfits | Jurken, Badpakken en meer",
+         "daddy_me": "Papa en ik Shirts, T-shirts en bijpassende outfits",
+@@ -709,7 +712,7 @@
+         "all": "Koop alle bijpassende outfits op één plek, inclusief mama en ik, papa en ik, koppels en familiesets. Comfortabele stijlen met snelle verzending.",
+         "mommy_and_me": "Koop mama en mij-outfits, jurken, badpakken en bijpassende sets voor verjaardagen, familiefoto's, vakanties en alledaagse twinning-momenten.",
+         "spring_matching": "Koop paasjurken voor mama en mij en bijpassende lente-outfits voor de kerk, brunch, eieren zoeken, familiefoto's en andere seizoensvieringen.",
+-        "dresses": "Koop mama en mij-jurken en bijpassende moeder-dochterjurken voor foto's, feestjes, vakanties en verzorgde dagelijkse kleding.",
++        "dresses": "Ontdek bijpassende jurken voor moeder en dochter. Bekijk stijlen voor familiefoto’s, feestjes en vakanties en controleer de maten op de productpagina.",
+         "maxi_dresses": "Shop maxi-jurken voor mama en mij en bijpassende maxi-jurken voor foto's, reizen, feesten en gemakkelijk verzorgde dagelijkse kleding.",
+         "swimsuits": "Koop bijpassende gezinsbadpakken en bijpassende moeder- en dochterbadpakken voor strandtrips, zwembaddagen, cruises en bijpassende zomerfoto's.",
+         "family_swimsuits": "Koop bijpassende gezinsbadpakken en gezinsbadkleding voor strandvakanties, zwembaddagen, cruises en bijpassende zomerfoto's.",
+--- merchant-revision3/locales/no.json
++++ release/locales/no.json
+@@ -3333,6 +3333,8 @@
+       "shipping_country_reassurance": "Frakt til {{ country }}. Standard frakt er inkludert; nøyaktig leveringsestimat og eventuell ekspressoppgradering vises før betaling."
+     },
+     "footer": {
++      "cookie_preferences": "Innstillinger for informasjonskapsler",
++      "cookie_preferences_unavailable": "Innstillingene for informasjonskapsler kunne ikke åpnes. Prøv igjen.",
+       "payment": "Betalingsmåter"
+     },
+     "featured_blog": {
+@@ -3865,6 +3867,7 @@
+       "ssl_encrypted": "SSL kryptert"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Se leveringsalternativer i kassen.",
+       "shipping_headline": "Gratis standardfrakt",
+       "estimate_to_country": "Estimert levering til {{ country }}: ",
+       "estimate_default": "Estimert levering: ",
+--- merchant-revision3/locales/pl.json
++++ release/locales/pl.json
+@@ -308,6 +308,7 @@
+       "assistance_note": "Potrzebujesz pomocy? Zazwyczaj odpowiadamy w ciągu jednego dnia roboczego."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Sprawdź opcje dostawy przy finalizacji zakupu.",
+       "shipping_headline": "Darmowa wysyłka standardowa",
+       "estimate_to_country": "Szacowana dostawa do {{ country }}: ",
+       "estimate_default": "Szacowana dostawa: ",
+@@ -531,6 +532,8 @@
+       "shipping_country_reassurance": "Wysyłka do {{ country }}. Standardowa wysyłka jest w cenie; dokładny termin i ewentualna opcja ekspresowa pojawią się przed płatnością."
+     },
+     "footer": {
++      "cookie_preferences": "Preferencje plików cookie",
++      "cookie_preferences_unavailable": "Nie udało się otworzyć preferencji plików cookie. Spróbuj ponownie.",
+       "payment": "Metody płatności"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/pt-BR.json
++++ release/locales/pt-BR.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Precisar de ajuda? Normalmente respondemos dentro de um dia útil."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Veja as opções de frete ao finalizar a compra.",
+       "shipping_headline": "Envio padrão grátis",
+       "estimate_to_country": "Entrega estimada para {{ country }}: ",
+       "estimate_default": "Entrega estimada: ",
+@@ -521,6 +522,8 @@
+       "shipping_country_reassurance": "Envio para {{ country }}. O envio padrão está incluído; a estimativa exata e qualquer upgrade expresso aparecem antes do pagamento."
+     },
+     "footer": {
++      "cookie_preferences": "Preferências de cookies",
++      "cookie_preferences_unavailable": "Não foi possível abrir as preferências de cookies. Tente novamente.",
+       "payment": "Formas de pagamento"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/pt-PT.json
++++ release/locales/pt-PT.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Precisar de ajuda? Normalmente respondemos dentro de um dia útil."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Veja as opções de envio ao finalizar a compra.",
+       "shipping_headline": "Envio padrão gratuito",
+       "estimate_to_country": "Entrega estimada para {{ country }}: ",
+       "estimate_default": "Entrega estimada: ",
+@@ -521,6 +522,8 @@
+       "shipping_country_reassurance": "Envio para {{ country }}. O envio padrão está incluído; a estimativa exata e qualquer upgrade expresso aparecem antes do pagamento."
+     },
+     "footer": {
++      "cookie_preferences": "Preferências de cookies",
++      "cookie_preferences_unavailable": "Não foi possível abrir as preferências de cookies. Tente novamente.",
+       "payment": "Métodos de pagamento"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/ro-RO.json
++++ release/locales/ro-RO.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Ai nevoie de ajutor? De obicei, răspundem în termen de o zi lucrătoare."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Consultați opțiunile de livrare la finalizarea comenzii.",
+       "shipping_headline": "Livrare standard inclusă",
+       "estimate_to_country": "Livrare estimată în {{ country }}: ",
+       "estimate_default": "Livrare estimată: ",
+@@ -521,6 +522,8 @@
+       "shipping_country_reassurance": "Livrare către {{ country }}. Livrarea standard este inclusă; estimarea exactă și orice upgrade expres apar înainte de plată."
+     },
+     "footer": {
++      "cookie_preferences": "Preferințe pentru cookie-uri",
++      "cookie_preferences_unavailable": "Preferințele pentru cookie-uri nu au putut fi deschise. Încercați din nou.",
+       "payment": "Metode de plată"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/ro.json
++++ release/locales/ro.json
+@@ -269,6 +269,7 @@
+       "assistance_note": "Ai nevoie de ajutor? De obicei, răspundem în termen de o zi lucrătoare."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Consultați opțiunile de livrare la finalizarea comenzii.",
+       "shipping_headline": "Livrare standard inclusă",
+       "estimate_to_country": "Livrare estimată în {{ country }}: ",
+       "estimate_default": "Livrare estimată: ",
+@@ -672,6 +673,8 @@
+       "shipping_country_reassurance": "Livrare către {{ country }}. Livrarea standard este inclusă; estimarea exactă și orice upgrade expres apar înainte de plată."
+     },
+     "footer": {
++      "cookie_preferences": "Preferințe pentru cookie-uri",
++      "cookie_preferences_unavailable": "Preferințele pentru cookie-uri nu au putut fi deschise. Încercați din nou.",
+       "payment": "Metode de plată"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/ru.json
++++ release/locales/ru.json
+@@ -308,6 +308,7 @@
+       "assistance_note": "Нужна помощь? Обычно мы отвечаем в течение одного рабочего дня."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Варианты доставки можно посмотреть при оформлении заказа.",
+       "shipping_headline": "Бесплатная стандартная доставка",
+       "estimate_to_country": "Ожидаемая доставка в {{ country }}: ",
+       "estimate_default": "Ожидаемая доставка: ",
+@@ -531,6 +532,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Настройки файлов cookie",
++      "cookie_preferences_unavailable": "Не удалось открыть настройки файлов cookie. Попробуйте ещё раз.",
+       "payment": "Способы оплаты"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/sk-SK.json
++++ release/locales/sk-SK.json
+@@ -308,6 +308,7 @@
+       "assistance_note": "Potrebujete pomoc? Zvyčajne odpovedáme do jedného pracovného dňa."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Možnosti dopravy nájdete pri platbe.",
+       "shipping_headline": "Standardní doprava zdarma",
+       "estimate_to_country": "Odhadované doručení do {{ country }}: ",
+       "estimate_default": "Odhadované doručení: ",
+@@ -531,6 +532,8 @@
+       "shipping_country_reassurance": "Doprava do {{ country }}. Standardní doprava je v ceně; přesný odhad doručení a případné expresní rozšíření se zobrazí před platbou."
+     },
+     "footer": {
++      "cookie_preferences": "Predvoľby súborov cookie",
++      "cookie_preferences_unavailable": "Predvoľby súborov cookie sa nepodarilo otvoriť. Skúste to znova.",
+       "payment": "Spôsoby platby"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/sl-SI.json
++++ release/locales/sl-SI.json
+@@ -308,6 +308,7 @@
+       "assistance_note": "Potrebujete pomoč? Običajno odgovorimo v enem delovnem dnevu."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Možnosti dostave si oglejte ob zaključku nakupa.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -531,6 +532,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Nastavitve piškotkov",
++      "cookie_preferences_unavailable": "Nastavitev piškotkov ni bilo mogoče odpreti. Poskusite znova.",
+       "payment": "Načini plačila"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/sv.json
++++ release/locales/sv.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Behöver du hjälp? Vi svarar vanligtvis inom en arbetsdag."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Se fraktalternativ i kassan.",
+       "shipping_headline": "Fri standardfrakt",
+       "estimate_to_country": "Beräknad leverans till {{ country }}: ",
+       "estimate_default": "Beräknad leverans: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Frakt till {{ country }}. Standardfrakt ingår; exakt leveransestimat och eventuell expressuppgradering visas före betalning."
+     },
+     "footer": {
++      "cookie_preferences": "Cookieinställningar",
++      "cookie_preferences_unavailable": "Det gick inte att öppna cookieinställningarna. Försök igen.",
+       "payment": "Betalningsmetoder"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/th.json
++++ release/locales/th.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "ต้องการความช่วยเหลือ? โดยทั่วไปเราจะตอบกลับภายในหนึ่งวันทำการ"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "ดูตัวเลือกการจัดส่งในขั้นตอนชำระเงิน",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "การตั้งค่าคุกกี้",
++      "cookie_preferences_unavailable": "ไม่สามารถเปิดการตั้งค่าคุกกี้ได้ โปรดลองอีกครั้ง",
+       "payment": "วิธีการชำระเงิน"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/tr.json
++++ release/locales/tr.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Yardıma mı ihtiyacınız var? Genellikle bir iş günü içinde yanıt veririz."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Kargo seçeneklerini ödeme adımında görebilirsiniz.",
+       "shipping_headline": "Ücretsiz standart kargo",
+       "estimate_to_country": "Tahmini teslimat {{ country }} ülkesine: ",
+       "estimate_default": "Tahmini teslimat: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Çerez tercihleri",
++      "cookie_preferences_unavailable": "Çerez tercihleri açılamadı. Lütfen tekrar deneyin.",
+       "payment": "Ödeme yöntemleri"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/vi.json
++++ release/locales/vi.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Cần giúp đỡ? Chúng tôi thường trả lời trong vòng một ngày làm việc."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Xem các lựa chọn giao hàng khi thanh toán.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Tùy chọn cookie",
++      "cookie_preferences_unavailable": "Không thể mở tùy chọn cookie. Vui lòng thử lại.",
+       "payment": "Phương thức thanh toán"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/zh-CN.json
++++ release/locales/zh-CN.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "需要帮助吗？我们通常会在一个工作日内回复。"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "请在结账时查看配送选项。",
+       "shipping_headline": "免费标准配送",
+       "estimate_to_country": "预计送达 {{ country }}: ",
+       "estimate_default": "预计送达: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Cookie偏好设置",
++      "cookie_preferences_unavailable": "无法打开Cookie偏好设置。请重试。",
+       "payment": "付款方式"
+     },
+     "featured_blog": {
+--- merchant-revision3/locales/zh-TW.json
++++ release/locales/zh-TW.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "需要幫助嗎？我們通常會在一個工作天內回覆。"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "請在結帳時查看配送選項。",
+       "shipping_headline": "免費標準配送",
+       "estimate_to_country": "預計送達 {{ country }}: ",
+       "estimate_default": "預計送達: ",
+@@ -511,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Cookie偏好設定",
++      "cookie_preferences_unavailable": "無法開啟Cookie偏好設定。請再試一次。",
+       "payment": "付款方式"
+     },
+     "featured_blog": {
+--- merchant-revision3/sections/footer.liquid
++++ release/sections/footer.liquid
+@@ -4,6 +4,8 @@
+ {{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+ {{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+ {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
++{{ 'cookie-preferences.css' | asset_url | stylesheet_tag }}
++<script src="{{ 'cookie-preferences.js' | asset_url }}" defer="defer"></script>
+ 
+ 
+ 
+@@ -390,6 +392,26 @@
+         {%- elsif journal_blog != blank and section.settings.show_journal_link -%}
+           <small class="copyright__content"><a href="{{ journal_blog.url }}">{{ section.settings.journal_link_label | escape }}</a></small>
+         {%- endif -%}
++        <cookie-preferences
++          class="footer__cookie-preferences"
++          data-unavailable-message="{{ 'sections.footer.cookie_preferences_unavailable' | t | escape }}"
++        >
++          <button
++            type="button"
++            class="link link--text footer__cookie-preferences-button"
++            aria-haspopup="dialog"
++            aria-describedby="CookiePreferencesStatus-{{ section.id }}"
++          >
++            {{ 'sections.footer.cookie_preferences' | t | escape }}
++          </button>
++          <span
++            id="CookiePreferencesStatus-{{ section.id }}"
++            class="footer__cookie-preferences-status"
++            role="status"
++            aria-live="polite"
++            aria-atomic="true"
++          ></span>
++        </cookie-preferences>
+       </div>
+     </div>
+   </div>
+--- merchant-revision3/sections/main-product.liquid
++++ release/sections/main-product.liquid
+@@ -2836,7 +2836,6 @@
+   })();
+ </script>
+ 
+-{% render 'product-faq-schema', product: product %}
+ 
+ {% schema %}
+ {
+--- merchant-revision3/snippets/jsonld-seo.liquid
++++ release/snippets/jsonld-seo.liquid
+@@ -230,8 +230,6 @@
+     {%- assign currency_code = 'USD' -%}
+   {%- endif -%}
+   {%- assign shipping_country_code = localization.country.iso_code | default: shop.address.country_code | append: '' | strip | upcase -%}
+-  {%- assign price_valid_until_year = 'now' | date: '%Y' | plus: 1 -%}
+-  {%- assign price_valid_until = price_valid_until_year | append: '-12-31' -%}
+   {%- assign taxonomy_category1 = product.metafields.custom.category1 | default: '' | strip -%}
+   {%- assign taxonomy_subcategory = product.metafields.custom.subcategory | default: '' | strip -%}
+   {%- assign taxonomy_type = product.metafields.custom.type | default: product.type | default: '' | strip -%}
+@@ -299,7 +297,6 @@
+       "@type": "Offer",
+       "priceCurrency": {{ currency_code | json }},
+       "price": {{ selected_variant_price | json }},
+-      "priceValidUntil": {{ price_valid_until | json }},
+       "availability": "https://schema.org/{% if selected_variant.available %}InStock{% else %}OutOfStock{% endif %}",
+       "url": {{ selected_variant_offer_url | json }},
+       "sku": {{ selected_sku_value | json }},
+@@ -316,16 +313,6 @@
+       "gtin14": {{ selected_variant_barcode | json }},
+       {%- endif -%}
+       "itemCondition": "https://schema.org/NewCondition",
+-      "hasMerchantReturnPolicy": {
+-        "@type": "MerchantReturnPolicy",
+-        {%- if shipping_country_code != blank -%}
+-        "applicableCountry": {{ shipping_country_code | json }},
+-        {%- endif -%}
+-        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+-        "merchantReturnDays": 30,
+-        "returnMethod": "https://schema.org/ReturnByMail",
+-        "returnFees": "https://schema.org/ReturnShippingFees"
+-      },
+       "shippingDetails": {
+         "@type": "OfferShippingDetails",
+         "name": {{ 'products.shipping_country.schema_standard_shipping' | t | json }},
+--- merchant-revision3/snippets/pdp-purchase-confidence.liquid
++++ release/snippets/pdp-purchase-confidence.liquid
+@@ -1,55 +1,20 @@
+ {%- comment -%}
+-  PDP Purchase Confidence module (Baymard-aligned).
+-
+-  Consolidates shipping, returns, and security into a single visual block
+-  with three promise-first summaries and three collapsed <details>:
+-
+-    🚚  Standard shipping included
+-        Estimated delivery to United States: May 27 – June 1
+-        Change country
+-
+-    🔄  30-day returns & exchanges
+-        Unworn, unwashed items with tags attached. Some exclusions apply.
+-
+-    🛡  Secure checkout
+-        Encrypted payment. Major cards and express payment options accepted.
+-
+-    ▾ Shipping details
+-    ▾ Return policy
+-    ▾ Payment & privacy
+-
+-  The key principle: show the promise first, hide the policy detail until
+-  requested. Replaces three separate auto-expanded accordions on the PDP.
+-
+-  Inputs (all optional, all driven by the same liquid scope as before):
+-    - shipping_label_copy:      "Standard shipping included" (still used
+-                                 for the aria-label / meta channels)
+-    - delivery_estimate_copy:   "Estimated delivery:" — only used as fallback
+-    - standard_delivery_window: "12-16 days" calendar-day fallback text
+-    - standard_delivery_copy:   combined fallback line
++  Purchase confidence: localized shipping options, qualified returns and secure checkout.
++  Destination and currency reflect the current Shopify localization.
+ {%- endcomment -%}
+ 
+ {%- liquid
+   assign pc_label_copy = shipping_label_copy | default: 'Standard shipping included'
+-  # CRO: standardized delivery window in calendar days so today's
+-  # displayed range matches across every country and auto-rolls daily.
+-  # The "min-max days" values are read by layout/theme.liquid's
+-  # calculateDeliveryDates() (calendar-day mode for #dlm-shipping-card-date).
+-  assign pc_window = standard_delivery_window | default: '12-16 days'
+   assign pc_country = localization.country.name | default: ''
+-  assign pc_country_code = localization.country.iso_code | default: ''
+   assign pc_currency_code = localization.country.currency.iso_code | default: ''
+   assign pc_country_count = localization.available_countries.size
+ 
+   assign pc_localized_root_url = routes.root_url | default: '/'
+   assign pc_localized_root_url_last = pc_localized_root_url | slice: -1
+   if pc_localized_root_url_last == '/'
+-    assign pc_shipping_info_url = pc_localized_root_url | append: 'pages/shipping-info'
++    assign pc_shipping_policy_url = pc_localized_root_url | append: 'policies/shipping-policy'
+   else
+-    assign pc_shipping_info_url = pc_localized_root_url | append: '/pages/shipping-info'
+-  endif
+-  if pc_country_code != blank
+-    assign pc_shipping_info_url = pc_shipping_info_url | append: '?country=' | append: pc_country_code
++    assign pc_shipping_policy_url = pc_localized_root_url | append: '/policies/shipping-policy'
+   endif
+ 
+   # Headline — avoids "free" wording because standard shipping is included in product prices.
+@@ -59,22 +24,9 @@
+     assign pc_shipping_headline = 'Standard shipping included'
+   endif
+ 
+-  # Estimate line — combines destination + window into one scannable line:
+-  #   "Estimated delivery to United States: May 27 – June 1"
+-  # The date span is populated live by the existing JS hook in theme.liquid
+-  # (looks up #dlm-shipping-card-date) with the computed range.
+-  if pc_country != blank
+-    assign pc_estimate_template = 'products.purchase_confidence.estimate_to_country' | t: country: pc_country
+-  else
+-    assign pc_estimate_template = 'products.purchase_confidence.estimate_default' | t
+-  endif
+-  assign pc_estimate_check = pc_estimate_template | downcase
+-  if pc_estimate_template == blank or pc_estimate_check contains 'translation missing'
+-    if pc_country != blank
+-      assign pc_estimate_template = 'Estimated delivery to ' | append: pc_country | append: ': '
+-    else
+-      assign pc_estimate_template = 'Estimated delivery: '
+-    endif
++  assign pc_shipping_checkout = 'products.purchase_confidence.shipping_checkout' | t
++  if pc_shipping_checkout == blank or pc_shipping_checkout contains 'translation missing'
++    assign pc_shipping_checkout = 'See shipping options at checkout.'
+   endif
+ 
+   # "Ships to {{ country }}" label — gives the orphan "USD" line context.
+@@ -418,21 +370,7 @@
+     </span>
+     <div class="dlm-pc-row__body">
+       <p class="dlm-pc-row__title">{{ pc_shipping_headline }}</p>
+-      <p
+-        class="dlm-pc-row__estimate"
+-        data-delivery-estimate-row
+-        data-delivery-estimate-tier="standard"
+-        data-delivery-fallback-visible
+-      >
+-        {{ pc_estimate_template }}<span
+-          class="dlm-pc-row__estimate-date"
+-          id="dlm-shipping-card-date"
+-          data-delivery-prefix=""
+-          data-delivery-window="{{ pc_window | escape }}"
+-          data-delivery-window-mode="calendar"
+-          data-delivery-fallback="{{ pc_window | escape }}"
+-        >{{ pc_window }}</span>
+-      </p>
++      <p class="dlm-pc-row__estimate">{{ pc_shipping_checkout }}</p>
+       <p class="dlm-pc-row__action-row">
+         <span class="dlm-pc-row__ships-to">{{ pc_ships_to }}</span>
+         {%- if pc_currency_code != blank -%}
+@@ -482,6 +420,7 @@
+       <summary>{{ pc_shipping_details_label }}</summary>
+       <div class="dlm-pc-details__body">
+         <p>{{ pc_shipping_details_body }}</p>
++        <p><a class="dlm-pc-link" href="{{ pc_shipping_policy_url }}">{{ pc_shipping_details_label }}</a></p>
+         {%- if pc_country_count > 0 -%}
+           <p>
+             <button

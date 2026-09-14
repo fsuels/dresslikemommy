@@ -1,0 +1,350 @@
+{
+  "captured_at_utc": "2026-09-06T06:45:48Z",
+  "operator": "shopify_merchant_connection_repair",
+  "task_stage": "VERIFY",
+  "scope": "Current source proof for four specified files only on two exact themes",
+  "query": "query DraftPreviewScopedSource($mainId: ID!, $draftId: ID!, $filenames: [String!]!, $mainAfter: String, $draftAfter: String) {\n  shop { name myshopifyDomain }\n  main: theme(id: $mainId) {\n    id name role updatedAt\n    files(first: 4, filenames: $filenames, after: $mainAfter) {\n      nodes { filename checksumMd5 size updatedAt body { __typename ... on OnlineStoreThemeFileBodyText { content } } }\n      pageInfo { hasNextPage endCursor }\n      userErrors { code filename }\n    }\n  }\n  draft: theme(id: $draftId) {\n    id name role updatedAt\n    files(first: 4, filenames: $filenames, after: $draftAfter) {\n      nodes { filename checksumMd5 size updatedAt body { __typename ... on OnlineStoreThemeFileBodyText { content } } }\n      pageInfo { hasNextPage endCursor }\n      userErrors { code filename }\n    }\n  }\n}",
+  "variables": {
+    "mainId": "gid://shopify/OnlineStoreTheme/133290917985",
+    "draftId": "gid://shopify/OnlineStoreTheme/137782591585",
+    "filenames": [
+      "assets/cart.js",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "locales/da.json",
+      "locales/nl.json"
+    ]
+  },
+  "validation": {
+    "schema_types": [
+      "QueryRoot",
+      "OnlineStoreTheme",
+      "OnlineStoreThemeFile",
+      "OnlineStoreThemeFileConnection",
+      "Shop"
+    ],
+    "documentation_search": "Official structured Shopify search succeeded",
+    "skill_search_script": "FAILED: fetch failed; no authentication or policy failure",
+    "structured_graphql_validation": "VALID",
+    "skill_validation_script": "VALID",
+    "artifact_id": "draft-preview-four-files-8d94232e-5d4a-42e8-8a1e-29243a6c67f1",
+    "revision": 1,
+    "required_scope": "read_themes"
+  },
+  "browser_actions": [],
+  "external_mutations": [],
+  "reference_files": {
+    "danish_runtime_manifest_after.json": {
+      "sha256": "2387d678172da1d298eec6c6754b8974e45821e0f5f573bab23104382d3567b7"
+    },
+    "danish_runtime_execution.json": {
+      "sha256": "7c474d13941f0a778700007eed39c37e8b452917a8f8c246d4c3b975b1d52cff"
+    },
+    "cart_draft_execution.json": {
+      "sha256": "0ac7b876351606bbf08e9eef9166e86958c8e8364cb5af634028272ff8025c8e"
+    },
+    "cart_draft_after_source.json": {
+      "sha256": "b18f888ec653c1d82997e05e986e6eab85fca0d6e38b306c633bb792e4a941d5"
+    },
+    "traffic_seo_release.json": {
+      "sha256": "08beb9e02368a7ae8b36579be7299120c11119f27ca302d4af891208ac31cb22"
+    },
+    "danish_buyer_copy_checks.json": {
+      "sha256": "1a1596d550748c40208059d0f1a6850044bd1838561f233247227823b3ced74c"
+    },
+    "danish_runtime_candidate.js": {
+      "sha256": "964872eee1ecbbef337628e14bcd2336022ccffb1e8fdbe1bdd6e635c66b2d50"
+    },
+    "cart_draft_after_draft/assets/cart.js": {
+      "sha256": "e2fed4a6ae3abbba3b39d481dfee9eb755f623e7856b2d1c2a8747fe6c059cf7"
+    },
+    "cart_draft_after_main/assets/cart.js": {
+      "sha256": "6050b1dbcf8b64de7aa81714d25cb32ea5e87e2be33b6d65a51db1ace4781fd4"
+    }
+  },
+  "shop": {
+    "name": "Dress Like Mommy",
+    "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "themes": {
+    "main": {
+      "id": "gid://shopify/OnlineStoreTheme/133290917985",
+      "name": "dresslikemommy/main",
+      "role": "MAIN",
+      "updatedAt": "2026-07-02T16:47:21Z",
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "ImxvY2FsZXNcL25sLmpzb24i"
+      },
+      "userErrors": [],
+      "files": [
+        {
+          "filename": "assets/cart.js",
+          "checksumMd5": "6303a25065e3d6757ea9dc9be25dac92",
+          "size": "22805",
+          "updatedAt": "2026-04-29T08:15:28Z",
+          "body_type": "OnlineStoreThemeFileBodyText",
+          "saved_manifest_md5": "6303a25065e3d6757ea9dc9be25dac92",
+          "matches_saved_manifest": true,
+          "returned_text_sha256": "6050b1dbcf8b64de7aa81714d25cb32ea5e87e2be33b6d65a51db1ace4781fd4",
+          "returned_text_md5": "6303a25065e3d6757ea9dc9be25dac92",
+          "returned_text_bytes": 22805,
+          "returned_text_matches_server_md5": true,
+          "returned_text_matches_server_size": true
+        },
+        {
+          "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+          "checksumMd5": "61ded53111ee5002eb5c37b42a2c4b3f",
+          "size": "258347",
+          "updatedAt": "2026-07-02T16:47:21Z",
+          "body_type": "OnlineStoreThemeFileBodyUrl",
+          "saved_manifest_md5": "61ded53111ee5002eb5c37b42a2c4b3f",
+          "matches_saved_manifest": true,
+          "returned_body_text": false,
+          "url_requested_or_fetched": false
+        },
+        {
+          "filename": "locales/da.json",
+          "checksumMd5": "9b050ed146a416020a0263972f5909a3",
+          "size": "69691",
+          "updatedAt": "2026-05-12T03:23:55Z",
+          "body_type": "OnlineStoreThemeFileBodyText",
+          "saved_manifest_md5": "9b050ed146a416020a0263972f5909a3",
+          "matches_saved_manifest": true,
+          "returned_text_sha256": "288872f35d2b6c6baefc02dc6fbcd09f86c7f33d779bc0aa78e8d90dad5d85de",
+          "returned_text_md5": "9b050ed146a416020a0263972f5909a3",
+          "returned_text_bytes": 69691,
+          "returned_text_matches_server_md5": true,
+          "returned_text_matches_server_size": true
+        },
+        {
+          "filename": "locales/nl.json",
+          "checksumMd5": "496897e8c972ba3685ece34aba094e4f",
+          "size": "72312",
+          "updatedAt": "2026-05-12T03:23:56Z",
+          "body_type": "OnlineStoreThemeFileBodyText",
+          "saved_manifest_md5": "496897e8c972ba3685ece34aba094e4f",
+          "matches_saved_manifest": true,
+          "returned_text_sha256": "21f14d473fe6acc5b3f41086b3a73285af5fed7a4ee3165a13efb83643b19872",
+          "returned_text_md5": "496897e8c972ba3685ece34aba094e4f",
+          "returned_text_bytes": 72312,
+          "returned_text_matches_server_md5": true,
+          "returned_text_matches_server_size": true
+        }
+      ]
+    },
+    "draft": {
+      "id": "gid://shopify/OnlineStoreTheme/137782591585",
+      "name": "DLM SEO DA NL 2026-09-06",
+      "role": "UNPUBLISHED",
+      "updatedAt": "2026-09-06T05:06:58Z",
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "ImxvY2FsZXNcL25sLmpzb24i"
+      },
+      "userErrors": [],
+      "files": [
+        {
+          "filename": "assets/cart.js",
+          "checksumMd5": "61c560a479ad1e32ec4e84d4bf685f09",
+          "size": "24383",
+          "updatedAt": "2026-09-06T04:06:14Z",
+          "body_type": "OnlineStoreThemeFileBodyText",
+          "saved_manifest_md5": "61c560a479ad1e32ec4e84d4bf685f09",
+          "matches_saved_manifest": true,
+          "returned_text_sha256": "e2fed4a6ae3abbba3b39d481dfee9eb755f623e7856b2d1c2a8747fe6c059cf7",
+          "returned_text_md5": "61c560a479ad1e32ec4e84d4bf685f09",
+          "returned_text_bytes": 24383,
+          "returned_text_matches_server_md5": true,
+          "returned_text_matches_server_size": true
+        },
+        {
+          "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+          "checksumMd5": "379cc0f86d1ed46e357ceca745687c3e",
+          "size": "258613",
+          "updatedAt": "2026-09-06T05:06:58Z",
+          "body_type": "OnlineStoreThemeFileBodyUrl",
+          "saved_manifest_md5": "379cc0f86d1ed46e357ceca745687c3e",
+          "matches_saved_manifest": true,
+          "returned_body_text": false,
+          "url_requested_or_fetched": false
+        },
+        {
+          "filename": "locales/da.json",
+          "checksumMd5": "f501252517157f8ed92ca59a347b46e5",
+          "size": "69730",
+          "updatedAt": "2026-09-06T02:58:15Z",
+          "body_type": "OnlineStoreThemeFileBodyText",
+          "saved_manifest_md5": "f501252517157f8ed92ca59a347b46e5",
+          "matches_saved_manifest": true,
+          "returned_text_sha256": "0a7265af27aca0fa2383c6109394f8c53bf63f94ff2244306abfe2e671ac308e",
+          "returned_text_md5": "f501252517157f8ed92ca59a347b46e5",
+          "returned_text_bytes": 69730,
+          "returned_text_matches_server_md5": true,
+          "returned_text_matches_server_size": true
+        },
+        {
+          "filename": "locales/nl.json",
+          "checksumMd5": "8c8aefb0ed28e7025f39c4c86443eaee",
+          "size": "72351",
+          "updatedAt": "2026-09-06T02:58:15Z",
+          "body_type": "OnlineStoreThemeFileBodyText",
+          "saved_manifest_md5": "8c8aefb0ed28e7025f39c4c86443eaee",
+          "matches_saved_manifest": true,
+          "returned_text_sha256": "4c4d75e5ff84c7e61f338b895d7e8871083b97717fc1bd23f6ee573f955d81b7",
+          "returned_text_md5": "8c8aefb0ed28e7025f39c4c86443eaee",
+          "returned_text_bytes": 72351,
+          "returned_text_matches_server_md5": true,
+          "returned_text_matches_server_size": true
+        }
+      ]
+    }
+  },
+  "scoped_comparison": [
+    {
+      "side": "main",
+      "filename": "assets/cart.js",
+      "matches_saved_checksum": true
+    },
+    {
+      "side": "main",
+      "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "matches_saved_checksum": true
+    },
+    {
+      "side": "main",
+      "filename": "locales/da.json",
+      "matches_saved_checksum": true
+    },
+    {
+      "side": "main",
+      "filename": "locales/nl.json",
+      "matches_saved_checksum": true
+    },
+    {
+      "side": "draft",
+      "filename": "assets/cart.js",
+      "matches_saved_checksum": true
+    },
+    {
+      "side": "draft",
+      "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "matches_saved_checksum": true
+    },
+    {
+      "side": "draft",
+      "filename": "locales/da.json",
+      "matches_saved_checksum": true
+    },
+    {
+      "side": "draft",
+      "filename": "locales/nl.json",
+      "matches_saved_checksum": true
+    }
+  ],
+  "cart_source_checks": {
+    "main": {
+      "exact_text_matches_saved_after_source": true,
+      "exact_text_matches_saved_local_after_file": true,
+      "saved_after_source_record": "cart_draft_after_source.json",
+      "saved_after_source_captured_at_utc": "2026-09-06T04:06:41.598Z"
+    },
+    "draft": {
+      "exact_text_matches_saved_after_source": true,
+      "exact_text_matches_saved_local_after_file": true,
+      "saved_after_source_record": "cart_draft_after_source.json",
+      "saved_after_source_captured_at_utc": "2026-09-06T04:06:41.598Z",
+      "matches_execution_candidate_sha256": true
+    }
+  },
+  "seo_expected_values": [
+    {
+      "locale": "da",
+      "file": "locales/da.json",
+      "key": "sections.collection_seo.meta_descriptions.dresses",
+      "route": "https://www.dresslikemommy.com/da/collections/dresses",
+      "expected_draft": "Find matchende kjoler til mor og datter. Se styles til familiebilleder, fester og ferier, og tjek størrelser og mål på produktsiden, før du vælger.",
+      "current_draft": "Find matchende kjoler til mor og datter. Se styles til familiebilleder, fester og ferier, og tjek størrelser og mål på produktsiden, før du vælger.",
+      "current_main": "Shop mommy and me dresses and mother daughter matching dresses for photos, parties, vacations, and polished everyday wear.",
+      "matches_release": true,
+      "proof": "Exact current GraphQL returned locale text"
+    },
+    {
+      "locale": "da",
+      "file": "locales/da.json",
+      "key": "sections.collection_seo.meta_titles.dresses",
+      "route": "https://www.dresslikemommy.com/da/collections/dresses",
+      "expected_draft": "Kjoler til mor og datter | Dress Like Mommy",
+      "current_draft": "Kjoler til mor og datter | Dress Like Mommy",
+      "current_main": "Mommy and Me Kjoler | Moder Datter",
+      "matches_release": true,
+      "proof": "Exact current GraphQL returned locale text"
+    },
+    {
+      "locale": "nl",
+      "file": "locales/nl.json",
+      "key": "sections.collection_seo.meta_descriptions.dresses",
+      "route": "https://www.dresslikemommy.com/nl/collections/dresses",
+      "expected_draft": "Ontdek bijpassende jurken voor moeder en dochter. Bekijk stijlen voor familiefoto's, feestjes en vakanties en controleer de maten op de productpagina.",
+      "current_draft": "Ontdek bijpassende jurken voor moeder en dochter. Bekijk stijlen voor familiefoto's, feestjes en vakanties en controleer de maten op de productpagina.",
+      "current_main": "Koop mama en mij-jurken en bijpassende moeder-dochterjurken voor foto's, feestjes, vakanties en verzorgde dagelijkse kleding.",
+      "matches_release": true,
+      "proof": "Exact current GraphQL returned locale text"
+    },
+    {
+      "locale": "nl",
+      "file": "locales/nl.json",
+      "key": "sections.collection_seo.meta_titles.dresses",
+      "route": "https://www.dresslikemommy.com/nl/collections/dresses",
+      "expected_draft": "Jurken voor moeder en dochter | Dress Like Mommy",
+      "current_draft": "Jurken voor moeder en dochter | Dress Like Mommy",
+      "current_main": "Mama en ik Jurken | Moeder Dochter",
+      "matches_release": true,
+      "proof": "Exact current GraphQL returned locale text"
+    }
+  ],
+  "seo_leaf_differences_total": 4,
+  "danish_buyer_labels": {
+    "file": "assets/product-desktop-ux-20260513-ruler-sync.js",
+    "labels": {
+      "chooseRoleStep": "Vælg, hvem dette stykke tøj er til",
+      "chooseOptionsStep": "Vælg størrelse og muligheder",
+      "chooseRoleCta": "Vælg et familiemedlem",
+      "addCurrentPiece": "Læg denne vare i indkøbskurven",
+      "readyToAdd": "Klar til at lægge i kurven"
+    },
+    "candidate_sha256": "964872eee1ecbbef337628e14bcd2336022ccffb1e8fdbe1bdd6e635c66b2d50",
+    "candidate_md5": "379cc0f86d1ed46e357ceca745687c3e",
+    "exact_candidate_keys_match_saved_checks": true,
+    "current_server_checksum_matches_candidate": true,
+    "proof_limit": "Current API returned URL body type; labels independently extracted from saved candidate bound to current server checksum. No new runtime text download or browser proof."
+  },
+  "status": "PASS_SCOPED_CURRENT_SOURCE_MATCH__BROWSER_VERIFICATION_PARENT_OWNED",
+  "scope_limits": {
+    "files_per_theme": 4,
+    "theme_count": 2,
+    "returned_scoped_files": 8,
+    "full_525_file_audit": "NOT_RUN",
+    "unscoped_current_theme_drift": "UNKNOWN",
+    "historical_manifest_full_coverage": "Historical 525+525 manifest only; this readback refreshes four files per theme",
+    "browser_preview": "NOT_RUN_BY_SUBAGENT_PARENT_OWNS",
+    "publication": "NOT_RUN",
+    "external_write": "NONE",
+    "product_cohort_or_measurement_readiness": "NOT_ESTABLISHED"
+  },
+  "official_documentation": [
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/queries/theme",
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/OnlineStoreThemeFile"
+  ],
+  "source_body_handling": "Returned text bodies hashed and compared locally; only checksums, scoped text values and verification outcomes retained. No runtime URL requested or fetched.",
+  "verification": {
+    "store_and_roles": "PASS",
+    "scoped_pagination": "PASS_4_PER_THEME_COMPLETE",
+    "scoped_errors": 0,
+    "all_eight_saved_manifest_checksums": "PASS",
+    "six_returned_text_md5_and_size_checks": "PASS",
+    "current_cart_exact_saved_after_source": "PASS_BOTH_THEMES",
+    "four_expected_seo_values": "PASS",
+    "five_danish_labels_bound_to_current_checksum": "PASS",
+    "full_manifest_comparison": "NOT_RUN"
+  }
+}

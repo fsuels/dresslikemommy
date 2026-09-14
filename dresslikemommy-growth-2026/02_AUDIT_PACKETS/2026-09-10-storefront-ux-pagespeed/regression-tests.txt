@@ -1,0 +1,30 @@
+✔ keeps unique server images without changing requests after initial HTML has begun loading (1.285958ms)
+✔ still replaces a duplicate card image with a distinct available candidate (0.934334ms)
+✔ theme editor section reload does not reload already unique images (0.274958ms)
+✔ a slower older query cannot overwrite the latest results (39.452667ms)
+✔ a response body arriving during the next input debounce is discarded (9.485958ms)
+✔ Escape dismisses pending results without preventing native search-input behavior (4.33425ms)
+✔ a queued input callback cannot reopen after Escape; fresh typing can (4.391208ms)
+✔ native input clearing followed by Escape leaves no delayed dropdown (5.492958ms)
+✔ focusout prevents delayed reopening and refocus fetches fresh results (5.040583ms)
+✔ refocus uses the current query cache, never an older visible prefix result (11.980084ms)
+✔ query cache keeps whitespace, hyphens and object-property names distinct (13.605542ms)
+✔ search-for label replacement is literal and skips absent or ambiguous previous terms (4.15575ms)
+▶ network, HTTP and malformed-result failures preserve normal form submission
+  ✔ network (6.085334ms)
+  ✔ http (4.927125ms)
+  ✔ markup (4.489ms)
+✔ network, HTTP and malformed-result failures preserve normal form submission (15.779791ms)
+✔ AbortError and late failures do not throw or dismiss a newer success (8.502542ms)
+▶ cart quantity and removal refresh the translated title from the same section response
+  ✔ item_count=2 (6.491167ms)
+  ✔ item_count=0 (7.54075ms)
+✔ cart quantity and removal refresh the translated title from the same section response (14.483666ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 372.44575

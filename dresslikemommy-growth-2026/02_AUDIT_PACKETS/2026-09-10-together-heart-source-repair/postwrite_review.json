@@ -1,0 +1,442 @@
+{
+  "schema": "dlm.together_heart_postwrite_independent.v1",
+  "reviewed_at_utc": "2026-09-10T04:07:04.700219+00:00",
+  "reviewer": "/root/order_delta_1934",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "review_method": "Direct independent comparison of frozen before and saved actual API after-state; successful mutation receipts checked separately. No reliance on after_checks.json or on the earlier prewrite simulation for observed preservation.",
+  "verdict": "PASS",
+  "product_id": "gid://shopify/Product/7672336646241",
+  "source_captured_at": "2026-09-10T03:41:53.676Z",
+  "guard_reported_at": "2026-09-10T03:55:31.901Z",
+  "primary_attempted_at": "2026-09-10T03:55:31.990Z",
+  "after_captured_at": "2026-09-10T03:56:57.568Z",
+  "artifact_sha256": {
+    "before.json": "e936358723910b762420156ef885d4743afb46f627b7bf35c51233d045d9125a",
+    "after.json": "3e8ed7ccbba3c4a89f251d433e81452488391b9fc93a0d470921ed538d5594d8",
+    "execution.json": "dfe71d74751f24c3ca3f7741be3e0ab03002c1a9d5d8cf00255e260aa2d911c3",
+    "plan.json": "4ca4598c855c4d4b07c1cd00e69504faf7f4ea0cfdaaccd1f67689a300c78dc1",
+    "mutation_payload.json": "30925fc6ef5313a186db93e2da870d82392725b31d9a822380d6a482363c9f7d",
+    "rollback.json": "9e6bbf28d377f6a4d6887ca713267f49d07d6b63080ce4d81a39708e4d555b6a"
+  },
+  "global_checks": {
+    "prewrite_plan_hash_bound": true,
+    "before_snapshot_hash_matches_plan": true,
+    "mutation_payload_hash_bound": true,
+    "rollback_payload_hash_bound": true,
+    "exact_product_identity": true,
+    "shop_identity_unchanged": true,
+    "shop_locales21_unchanged": true,
+    "product_fields_no_additions_or_removals": true,
+    "only_body_and_system_updated_at_changed": true,
+    "all_returned_other_business_product_fields_preserved": true,
+    "expected_system_updated_at_matches_primary_receipt": true,
+    "product_update_success_zero_user_errors": true,
+    "primary_receipt_and_independent_after_equal_reviewed_body": true,
+    "translations_register_success_zero_user_errors": true,
+    "translation_mutation_receipt_exact20_unique_bodies": true,
+    "translation_receipt_matches_independent_after_and_plan": true,
+    "exact100_unique_translation_rows": true,
+    "translation_key_locale_sets_unchanged": true,
+    "all100_translations_current": true,
+    "exact80_nonbody_translation_records_unchanged": true,
+    "only20_translation_values_changed": true,
+    "variants98_exact_with_complete_pagination": true,
+    "publication_relationships11_exact_with_complete_pagination": true,
+    "source_content_keys6_unchanged": true,
+    "all5_other_source_values_digests_locales_preserved": true,
+    "primary_source_body_value_exact_after": true,
+    "new_body_digest_matches_primary_readback_and_expected_hash": true,
+    "fresh_guard_recorded_before_primary_attempt": true,
+    "after_capture_timestamp_matches_execution": true,
+    "exact_two_mutations_recorded_rollback_unused": true,
+    "all21_plan_locales_present_in_after": true,
+    "primary_mutation_only_description_field": true
+  },
+  "locale_checks": [
+    {
+      "locale": "en",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "ar",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "cs",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "da",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "de",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "el",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "es",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "fi",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "fr",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "he",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "hi",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "it",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "ja",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "ko",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "nl",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "no",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "pl",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "pt-BR",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "ro",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "ru",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    },
+    {
+      "locale": "sv",
+      "checks": {
+        "before_exact_frozen_plan": true,
+        "after_exact_reviewed_plan_and_hash": true,
+        "both_tables14x10": true,
+        "all10_headers_preserved": true,
+        "exact28_hip_waist_targets_changed_to_unavailable": true,
+        "other112_cells_exactly_preserved": true,
+        "all42_original_rendered_measurement_cells_unchanged": true,
+        "table_markup_except28_cell_values_preserved": true
+      },
+      "target_unavailable_cells": 28,
+      "other_cells_preserved": 112,
+      "original_rendered_measurements_preserved": 42
+    }
+  ],
+  "counts": {
+    "global_checks_passed": 32,
+    "global_checks_total": 32,
+    "locale_checks_passed": 168,
+    "locale_checks_total": 168,
+    "exact_bodies": 21,
+    "all_current_translations": 100,
+    "unchanged_nonbody_translations": 80,
+    "unchanged_variants": 98,
+    "unchanged_publication_relationships": 11,
+    "unchanged_other_primary_source_values_and_digests": 5,
+    "hip_waist_cells_now_unavailable": 588,
+    "other_table_cells_preserved": 2352,
+    "original_rendered_measurement_occurrences_preserved": 882
+  },
+  "preserved_product_business_fields": [
+    "handle",
+    "id",
+    "options",
+    "productType",
+    "resourcePublications",
+    "seo",
+    "status",
+    "tags",
+    "title",
+    "variants"
+  ],
+  "expected_system_change": {
+    "field": "updatedAt",
+    "before": "2026-09-07T18:35:01Z",
+    "after": "2026-09-10T03:55:41Z",
+    "body_digest_changed": true
+  },
+  "failed_checks": [],
+  "limitations": [
+    "Evidence is the saved normal API receipts through the stated after-capture time; this reviewer did not perform a new API or browser read.",
+    "All returned product business fields are preserved. System updatedAt and the primary body value/digest changed as expected; unreturned fields are not certified.",
+    "The prewrite guard flags and mutation count are recorded execution evidence. The direct before/after comparisons independently establish the returned preservation outcome.",
+    "Translation outdated=false establishes Shopify current flags, not native-language perfection or complete storefront/RTL behavior.",
+    "Public rendered copy/fit controls and product-specific recurrence prevention remain root-owned checks before closing the whole source-remediation problem.",
+    "No product eligibility, carrier, delivered cost, attribution, traffic, sales, CPA, ROAS or profit result is inferred."
+  ],
+  "actions": {
+    "network_calls": 0,
+    "browser_calls": 0,
+    "shopify_calls": 0,
+    "repo_or_canonical_edits": 0,
+    "owned_private_review_written": 1
+  }
+}

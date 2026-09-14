@@ -1,0 +1,16 @@
+{
+  "status": "PENDING_INDEPENDENT_REVIEW",
+  "decision_id": "DLM-DEC-2026-09-06-MEOW-SEARCH-IDENTITY",
+  "facts": "Description and original source digest restored exactly; all100 translation values unchanged, but20 meta_description outdated flags remain true. The original restoration flag gate failed; no translated title has been written.",
+  "proposal": "One translationsRegister with40 existing rows:20 independently reviewed new title values and20 byte-identical prior description values with their freshly read respective source digests. The description re-registration is a repair of our own unintended stale flags, not new description copy.",
+  "scope": {
+    "meta_title_changed_values": 20,
+    "meta_description_reaffirmed_unchanged_values": 20,
+    "new_locales": 0,
+    "other_rows": 60
+  },
+  "guard": "Fresh product/source and100 current translation rows must match the restored receipt exactly; all40 before values must match captured originals; copy and current20 title/description digests must match.",
+  "success": "21 final SEO titles equal approved copy; all20 meta_title flags false; all80 non-target translation values/flags exactly original; source/product fields other than intended title unchanged.",
+  "kill": "Mismatch, tool error, unexpected result or non-target after-state change; no repeated mutation after ambiguous response.",
+  "rollback": "Use rollback_v2 primary with both original SEO fields, then fresh digests and exact original translated titles plus unchanged descriptions if flags need restoration; no timestamps promise."
+}

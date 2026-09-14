@@ -1,0 +1,206 @@
+{
+  "schema": "dlm.recent_order_payment_fees.v1",
+  "compiled_at_utc": "2026-09-07 00:03:56 UTC",
+  "read_window_utc": {
+    "start_inclusive": "2026-09-05T04:00:00Z",
+    "end_exclusive": "2026-09-06T23:35:57.262Z",
+    "filter": "created_at:>=2026-09-05T04:00:00Z created_at:<2026-09-06T23:35:57.262Z status:any"
+  },
+  "evidence_timing": "Source reads completed earlier in this continuation turn; exact per-call timestamps were not persisted. compiled_at_utc is report compilation time, not a source timestamp.",
+  "shop": {
+    "name": "Dress Like Mommy",
+    "currencyCode": "USD"
+  },
+  "complete_query_page": true,
+  "rows": [
+    {
+      "row_key": "RECENT_01",
+      "created_at": "2026-09-05T15:19:05Z",
+      "current_total": {
+        "shopMoney": {
+          "amount": "54.47",
+          "currencyCode": "USD"
+        },
+        "presentmentMoney": {
+          "amount": "46.9",
+          "currencyCode": "EUR"
+        }
+      },
+      "capture_or_sale": [
+        {
+          "kind": "SALE",
+          "status": "SUCCESS",
+          "test": false,
+          "gateway": "shopify_payments",
+          "amountSet": {
+            "shopMoney": {
+              "amount": "54.47",
+              "currencyCode": "USD"
+            },
+            "presentmentMoney": {
+              "amount": "46.9",
+              "currencyCode": "EUR"
+            }
+          },
+          "fees": [
+            {
+              "type": "processing_fee",
+              "amount": {
+                "amount": "2.09",
+                "currencyCode": "EUR"
+              },
+              "taxAmount": {
+                "amount": "0.0",
+                "currencyCode": "EUR"
+              }
+            },
+            {
+              "type": "foreign_exchange_fee",
+              "amount": {
+                "amount": "0.69",
+                "currencyCode": "EUR"
+              },
+              "taxAmount": {
+                "amount": "0.0",
+                "currencyCode": "EUR"
+              }
+            }
+          ]
+        }
+      ],
+      "authorization_count": 0,
+      "shipping_country": "BE",
+      "country_source": "recent_paid_order_countries_20260906.json",
+      "financial_status": "PAID",
+      "fulfillment_status": "UNFULFILLED",
+      "test": false,
+      "cancelled": false,
+      "source_name": "web",
+      "transaction_timing": [
+        {
+          "kind": "SALE",
+          "status": "SUCCESS",
+          "created_at": "2026-09-05T15:18:39Z",
+          "processed_at": "2026-09-05T15:18:39Z"
+        }
+      ]
+    },
+    {
+      "row_key": "RECENT_02",
+      "created_at": "2026-09-06T21:31:05Z",
+      "current_total": {
+        "shopMoney": {
+          "amount": "31.98",
+          "currencyCode": "USD"
+        },
+        "presentmentMoney": {
+          "amount": "31.98",
+          "currencyCode": "USD"
+        }
+      },
+      "capture_or_sale": [
+        {
+          "kind": "CAPTURE",
+          "status": "SUCCESS",
+          "test": false,
+          "gateway": "shopify_payments",
+          "amountSet": {
+            "shopMoney": {
+              "amount": "31.98",
+              "currencyCode": "USD"
+            },
+            "presentmentMoney": {
+              "amount": "31.98",
+              "currencyCode": "USD"
+            }
+          },
+          "fees": [
+            {
+              "type": "processing_fee",
+              "amount": {
+                "amount": "1.42",
+                "currencyCode": "USD"
+              },
+              "taxAmount": {
+                "amount": "0.0",
+                "currencyCode": "USD"
+              }
+            }
+          ]
+        }
+      ],
+      "authorization_count": 1,
+      "shipping_country": "US",
+      "country_source": "recent_paid_order_countries_20260906.json",
+      "financial_status": "PAID",
+      "fulfillment_status": "UNFULFILLED",
+      "test": false,
+      "cancelled": false,
+      "source_name": "web",
+      "transaction_timing": [
+        {
+          "kind": "AUTHORIZATION",
+          "status": "SUCCESS",
+          "created_at": "2026-09-06T21:31:01Z",
+          "processed_at": "2026-09-06T21:31:01Z"
+        },
+        {
+          "kind": "CAPTURE",
+          "status": "SUCCESS",
+          "created_at": "2026-09-06T21:31:06Z",
+          "processed_at": "2026-09-06T21:31:06Z"
+        }
+      ]
+    }
+  ],
+  "settlement_ledger_read": {
+    "status": "BLOCKED_MISSING_CONNECTOR_SCOPE",
+    "field": "shopifyPaymentsAccount",
+    "account_value": null,
+    "returned_isError": false,
+    "graphql_errors": [
+      {
+        "message": "Access denied for shopifyPaymentsAccount field. Required access: the `read_shopify_payments` or the `read_shopify_payments_accounts` access scope.",
+        "path": [
+          "shopifyPaymentsAccount"
+        ]
+      }
+    ],
+    "interpretation": "API permission denial, not evidence that the store has no payments account. No scope grant, credential change or alternate API attempted."
+  },
+  "fee_basis": {
+    "RECENT_01": {
+      "recorded_fee_total": "2.78",
+      "fee_currency": "EUR",
+      "same_currency_presentment_revenue": "46.90",
+      "status": "VERIFIED_NATIVE_CURRENCY_FEE; USD_SETTLEMENT_FEE_UNKNOWN",
+      "components": {
+        "processing_fee": "2.09",
+        "foreign_exchange_fee": "0.69"
+      },
+      "tax_total": "0.00"
+    },
+    "RECENT_02": {
+      "recorded_fee_total": "1.42",
+      "fee_currency": "USD",
+      "same_currency_presentment_revenue": "31.98",
+      "status": "VERIFIED_CAPTURE_FEE",
+      "components": {
+        "processing_fee": "1.42"
+      },
+      "tax_total": "0.00",
+      "authorization_excluded": true
+    }
+  },
+  "interpretation": {
+    "scope": "Same two paid web orders; no new order cohort or updated baseline.",
+    "profit": "UNKNOWN. Actual fulfilled product, China fees, freight, duties/other costs, acquisition costs and mature returns remain unverified.",
+    "accounting": "Payment fees are part of the owner's all-in nonmarketing cost allowance. Count them once; do not subtract them again from an already all-inclusive 50% cost estimate.",
+    "currency": "Do not add EUR and USD fees, or present spot/order FX conversion as actual settled USD fees. Use same-currency ratios or clearly labelled conditional cost bounds only.",
+    "marketing_limit": "Cannot derive defensible CPA or campaign profitability from these payment fees alone.",
+    "attribution": "Google-sourced journeys remain paid-versus-organic unresolved; these fees do not establish incremental sales from current work.",
+    "financial_actions": "NONE; read-only. No order, fulfillment, transaction, payment, refund or billing action.",
+    "native_readback": "BLOCKED_MAC_LOCKED; normal unlock request already pending."
+  },
+  "privacy": "No customer identity, private order or transaction IDs, address, complete referral URL or tracking value persisted."
+}

@@ -1,0 +1,926 @@
+{
+  "schema": "dlm.independent_full_sales_source_review.v1",
+  "reviewed_at_utc": "2026-09-14T07:24:51.679Z",
+  "task_classification": "VERIFY",
+  "verdict": "PASS_WITH_LIMITS",
+  "source_receipt": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_0704.json",
+    "sha256": "7eab5039ded43cceada676ca48778e97554c3e1610f976b840399dfccbd6c3fd"
+  },
+  "source_status_at_review": "LIVE_READBACK_COMPLETE__INDEPENDENT_REVIEW_PENDING",
+  "independence": {
+    "classification": "DID_NOT_BUILD_OR_EXECUTE",
+    "source_query_execution_by_reviewer": false,
+    "candidate_builder_read_or_executed": false,
+    "independent_live_replay": false,
+    "browser_external_or_account_calls": false,
+    "canonical_or_peer_artifacts_changed": false,
+    "output_ownership": "Only /private/tmp/dlm-sales-20260914-0704-independent-review.json",
+    "method": "Froze criteria before candidate review; independently filtered protected raw orders, used Decimal money, zoneinfo calendar windows, original creation/product-variant joins transiently, exact root call-variable/result joins, fulfillment-line ordinal mapping, prior-basket lifecycle comparison and candidate redaction equivalence. Parent builder was not read or executed.",
+    "provenance_limit": "Actual embedded successful validator response and separately supplied root call-time variables were verified as source evidence. This is independent local document and arithmetic verification, not a second live Shopify read."
+  },
+  "frozen_criteria": {
+    "frozen_before_candidate_review_at_utc": "2026-09-14T07:15:10.647Z",
+    "independent_of_candidate_builder": true,
+    "criteria": [
+      "Exact source, baseline, legacy mapping and call-variable binding hashes; raw and binding permissions0600.",
+      "Successful actual validator response for both exact artifact IDs/revision1 and read-only query shape; explicitly qualify execution/binding provenance.",
+      "Correct DLM shop identity on order and all fulfillment reads, exact UTC/New York half-open windows and non-atomic capture times.",
+      "Complete bounded order/line/fulfillment/event coverage without pagination or list-cap gaps.",
+      "Recompute all returned versus PAID/non-test/noncancelled/web inclusion; separate excluded records and original historical cohort.",
+      "Use exact Decimal amounts and USD shopMoney precision; independently sum units/subtotal/total/tax/refunds for each cohort/window.",
+      "Join legacy orders transiently by original creation time and exact product/variant/quantity sets; join actual fulfillment call variables to returned results and lines.",
+      "Compare old-basket payment/refund/cancel/fulfillment/carrier-event state; distinguish new-basket additions from old-lifecycle changes.",
+      "Compute new creations, trailing24h, completed prior New York date and approximate GA4-cutover candidates without receiver or attribution inference.",
+      "Reconstruct redacted rows with basket aliases, global-window flags and within-basket ordinals; no exact per-order timestamps, IDs, variant associations, PII or private cursors in persistent review/receipt.",
+      "Require candidate equivalence to independently computed source facts and preserved baseline/profit/paid gates before final verdict; no live replay or builder execution.",
+      "Retain honest evidence limits and next-full timing based on actual full read rather than interpreting PAID as paid-ad attribution or fulfilled as delivered."
+    ]
+  },
+  "check_counts": {
+    "raw_source_executed": 59,
+    "raw_source_passed": 59,
+    "candidate_executed": 37,
+    "candidate_passed": 37,
+    "total_checks_executed": 96,
+    "passed": 96,
+    "failed": 0,
+    "unresolved": 0
+  },
+  "checks": [
+    {
+      "check": "four_exact_source_bindings",
+      "result": "PASS",
+      "evidence": "Protected source, supplemental call binding, frozen previous full receipt and its exact legacy mapping hashes match."
+    },
+    {
+      "check": "protected_raw_and_binding_modes",
+      "result": "PASS",
+      "evidence": "Both private source and call-variable addendum read back0600."
+    },
+    {
+      "check": "binding_names_exact_source",
+      "result": "PASS",
+      "evidence": "Supplemental call-time provenance binds immutable raw source hash.",
+      "limit": "Root call-time provenance, not an independent execution replay."
+    },
+    {
+      "check": "actual_validator_overall_valid",
+      "result": "PASS",
+      "evidence": "Embedded original connector response, not only a normalized success flag."
+    },
+    {
+      "check": "validator_artifact_1",
+      "result": "PASS",
+      "evidence": "Original validator block names exact expected artifact/revision and successful schema validation."
+    },
+    {
+      "check": "validator_artifact_2",
+      "result": "PASS",
+      "evidence": "Original validator block names exact expected artifact/revision and successful schema validation."
+    },
+    {
+      "check": "read_only_operation_shapes",
+      "result": "PASS",
+      "evidence": "Actual generic order and fulfillment operation text retained; no mutation."
+    },
+    {
+      "check": "queries_reused_with_shop_identity_addition",
+      "result": "PASS",
+      "evidence": "Compared exact old validated query strings: only shop.id was added; fields/limits/filters unaffected."
+    },
+    {
+      "check": "order_shop_identity",
+      "result": "PASS",
+      "evidence": "DLM15571635, public domain, USD and America/New_York match."
+    },
+    {
+      "check": "all_fulfillment_shop_identities",
+      "result": "PASS",
+      "evidence": "All three source responses carry the same DLM shop ID/domain/USD."
+    },
+    {
+      "check": "exact_global_order_window",
+      "result": "PASS",
+      "evidence": "Inclusive frozen lower bound/exclusive actual capture cutoff; statuses not excluded server-side."
+    },
+    {
+      "check": "non_atomic_capture_sequence",
+      "result": "PASS",
+      "evidence": "Order and later parallel fulfillment snapshots have distinct clocks; not atomic."
+    },
+    {
+      "check": "complete_order_page",
+      "result": "PASS",
+      "evidence": "One terminal bounded page,3returned/50limit. Private cursor retained transiently only."
+    },
+    {
+      "check": "unique_order_identity_and_window_membership",
+      "result": "PASS",
+      "evidence": "Private order IDs unique and all creation timestamps fall within exact server window; values omitted."
+    },
+    {
+      "check": "all_order_line_pages_complete",
+      "result": "PASS",
+      "evidence": "Every order line connection terminal and below50limit."
+    },
+    {
+      "check": "line_quantities_and_transient_pairs_valid",
+      "result": "PASS",
+      "evidence": "Nonnegative integer current quantities; present unique within-basket product/variant pairs support exact ordinal mapping."
+    },
+    {
+      "check": "every_returned_money_currency_usd",
+      "result": "PASS",
+      "evidence": "All18returned shopMoney values are USD; no presentment currency or FX mixed."
+    },
+    {
+      "check": "every_money_value_finite_cent_exact",
+      "result": "PASS",
+      "evidence": "Decimal validates nonnegative finite amounts with exact cent precision before totals."
+    },
+    {
+      "check": "inclusion_and_exclusion_partition",
+      "result": "PASS",
+      "evidence": "Local PAID AND testfalse AND cancellationnull AND sourceweb; every returned record assessed, none omitted."
+    },
+    {
+      "check": "all_returned_financial_and_source_states",
+      "result": "PASS",
+      "evidence": "Three currently PAID/non-test/noncancelled web orders; PAID is financial status, not advertising attribution."
+    },
+    {
+      "check": "full_vs_qualifying_totals_equal",
+      "result": "PASS",
+      "evidence": "Independent Decimal totals of all returned and qualifying sets coincide because exclusions0."
+    },
+    {
+      "check": "unit_sum_across_all_lines",
+      "result": "PASS",
+      "evidence": "Units summed from current quantities across all three baskets, not order count."
+    },
+    {
+      "check": "window_math:full_observed_cohort",
+      "result": "PASS",
+      "evidence": "Filtered raw creation timestamps with inclusive lower/exclusive upper bound; exact Decimal totals retained as sanitized result."
+    },
+    {
+      "check": "window_math:original_comparable_cohort",
+      "result": "PASS",
+      "evidence": "Filtered raw creation timestamps with inclusive lower/exclusive upper bound; exact Decimal totals retained as sanitized result."
+    },
+    {
+      "check": "window_math:since_previous_full_read",
+      "result": "PASS",
+      "evidence": "Filtered raw creation timestamps with inclusive lower/exclusive upper bound; exact Decimal totals retained as sanitized result."
+    },
+    {
+      "check": "window_math:trailing_24_hours",
+      "result": "PASS",
+      "evidence": "Filtered raw creation timestamps with inclusive lower/exclusive upper bound; exact Decimal totals retained as sanitized result."
+    },
+    {
+      "check": "window_math:previous_completed_shop_day",
+      "result": "PASS",
+      "evidence": "Filtered raw creation timestamps with inclusive lower/exclusive upper bound; exact Decimal totals retained as sanitized result."
+    },
+    {
+      "check": "window_math:after_approximate_GA4_cutover",
+      "result": "PASS",
+      "evidence": "Filtered raw creation timestamps with inclusive lower/exclusive upper bound; exact Decimal totals retained as sanitized result."
+    },
+    {
+      "check": "completed_prior_new_york_day",
+      "result": "PASS",
+      "evidence": "zoneinfo computes September13 completed store calendar date; distinct from trailing24h."
+    },
+    {
+      "check": "trailing24h_exact_duration",
+      "result": "PASS",
+      "evidence": "Trailing window is[September13 07:04:53Z,September14 07:04:53Z)."
+    },
+    {
+      "check": "cutover_clock_kept_approximate",
+      "result": "PASS",
+      "evidence": "Approximate prior migration cutoff preserved; candidate timing does not establish receiver ingestion."
+    },
+    {
+      "check": "exact_legacy_identity:Rainbow",
+      "result": "PASS",
+      "evidence": "Exact original creation timestamp and complete product/variant set matched one current order; identifiers omitted."
+    },
+    {
+      "check": "legacy_current_quantity_comparison:Rainbow",
+      "result": "PASS",
+      "evidence": "Exact original/current per-variant quantities equal; stored only as boolean/safe alias."
+    },
+    {
+      "check": "exact_legacy_identity:Mermaid",
+      "result": "PASS",
+      "evidence": "Exact original creation timestamp and complete product/variant set matched one current order; identifiers omitted."
+    },
+    {
+      "check": "legacy_current_quantity_comparison:Mermaid",
+      "result": "PASS",
+      "evidence": "Exact original/current per-variant quantities equal; stored only as boolean/safe alias."
+    },
+    {
+      "check": "original_cohort_recovery_equals_window",
+      "result": "PASS",
+      "evidence": "Legacy-recovered original pair exactly equals frozen original creation window."
+    },
+    {
+      "check": "original_cohort_money_unchanged",
+      "result": "PASS",
+      "evidence": "Original2orders/4units/USD86.45/tax0/refunds0 remain unchanged; new order separate."
+    },
+    {
+      "check": "three_actual_fulfillment_bindings",
+      "result": "PASS",
+      "evidence": "Three ordered successful actual parallel calls correspond to three returned results."
+    },
+    {
+      "check": "call_variables_exact_unique_order_ids",
+      "result": "PASS",
+      "evidence": "Exact private call-variable IDs cover each current order once; omitted from review."
+    },
+    {
+      "check": "settled_result_and_source_binding",
+      "result": "PASS",
+      "evidence": "Call index, root result key, actual settled-result status and returned financial/fulfillment states agree.",
+      "limit": "Source order response omits order.id; supplemental call-time variables supply the private execution binding."
+    },
+    {
+      "check": "two_capture_financial_fields_agree:Rainbow",
+      "result": "PASS",
+      "evidence": "Exact returned status/subtotal/refund fields agree between order and fulfillment captures."
+    },
+    {
+      "check": "fulfillment_cap_not_reached:Rainbow",
+      "result": "PASS",
+      "evidence": "Returned fulfillments below first50 cap; no truncated unpaginated array claimed complete at cap."
+    },
+    {
+      "check": "fulfillment_connections_complete:Rainbow",
+      "result": "PASS",
+      "evidence": "Fulfillment line and event connections terminal."
+    },
+    {
+      "check": "fulfillment_line_identity_and_quantity:Rainbow",
+      "result": "PASS",
+      "evidence": "Every fulfilled product/variant maps to an exact order line; quantity sum equals fulfillment totalQuantity."
+    },
+    {
+      "check": "fulfilled_quantities_within_order:Rainbow",
+      "result": "PASS",
+      "evidence": "Summed fulfilled quantities do not exceed exact current order-line quantities."
+    },
+    {
+      "check": "two_capture_financial_fields_agree:Mermaid",
+      "result": "PASS",
+      "evidence": "Exact returned status/subtotal/refund fields agree between order and fulfillment captures."
+    },
+    {
+      "check": "fulfillment_cap_not_reached:Mermaid",
+      "result": "PASS",
+      "evidence": "Returned fulfillments below first50 cap; no truncated unpaginated array claimed complete at cap."
+    },
+    {
+      "check": "fulfilled_quantities_within_order:Mermaid",
+      "result": "PASS",
+      "evidence": "Summed fulfilled quantities do not exceed exact current order-line quantities."
+    },
+    {
+      "check": "two_capture_financial_fields_agree:New basket 1",
+      "result": "PASS",
+      "evidence": "Exact returned status/subtotal/refund fields agree between order and fulfillment captures."
+    },
+    {
+      "check": "fulfillment_cap_not_reached:New basket 1",
+      "result": "PASS",
+      "evidence": "Returned fulfillments below first50 cap; no truncated unpaginated array claimed complete at cap."
+    },
+    {
+      "check": "fulfilled_quantities_within_order:New basket 1",
+      "result": "PASS",
+      "evidence": "Summed fulfilled quantities do not exceed exact current order-line quantities."
+    },
+    {
+      "check": "no_carrier_events_or_delivery_timestamps",
+      "result": "PASS",
+      "evidence": "Current source has no returned carrier events, transit/delivery timestamps or ETA; fulfillmentSUCCESS is not delivery."
+    },
+    {
+      "check": "original_lifecycle_comparison:Mermaid",
+      "result": "PASS",
+      "evidence": "Full independently constructed sanitized lifecycle summary equals exact prior basket aggregate; no payment/refund/cancel/fulfillment/carrier-event delta."
+    },
+    {
+      "check": "original_lifecycle_comparison:Rainbow",
+      "result": "PASS",
+      "evidence": "Full independently constructed sanitized lifecycle summary equals exact prior basket aggregate; no payment/refund/cancel/fulfillment/carrier-event delta."
+    },
+    {
+      "check": "new_basket_addition_explains_total_delta",
+      "result": "PASS",
+      "evidence": "New qualifying basket fully explains current total changes; original cohort lifecycle separate."
+    },
+    {
+      "check": "raw_order_privacy_field_allowlist",
+      "result": "PASS",
+      "evidence": "Requested raw order fields limited to transient IDs/time/status/money/product-variant joins and quantity; no customer/name/email/address/order-number/payment-detail fields."
+    },
+    {
+      "check": "raw_tracking_company_only",
+      "result": "PASS",
+      "evidence": "TrackingInfo contains company only; no tracking numbers or tracking URLs."
+    },
+    {
+      "check": "safe_rows_no_private_values",
+      "result": "PASS",
+      "evidence": "Independent reduced rows retain only aliases/global-window flags/within-basket ordinals, money and lifecycle summaries."
+    },
+    {
+      "check": "source_hashes_stable_after_calculation",
+      "result": "PASS",
+      "evidence": "Rehashed protected source, call bindings, immutable baseline and legacy mapping after all math; unchanged."
+    },
+    {
+      "check": "candidate_exact_hash_and_pending_status",
+      "result": "PASS",
+      "evidence": "Frozen candidate exact bytes match; creator pending status remains historical and is not overwritten."
+    },
+    {
+      "check": "candidate_dlm_identity",
+      "result": "PASS",
+      "evidence": "Candidate and reduced source carry exact DLM shop identity/timezone/USD/public domain."
+    },
+    {
+      "check": "candidate_exact_capture_clocks",
+      "result": "PASS",
+      "evidence": "Raw actual order07:04:53–54 and fulfillment07:06:24–26UTC match; three calls, non-atomic."
+    },
+    {
+      "check": "candidate_observed_filter",
+      "result": "PASS",
+      "evidence": "Exact original lower bound/current exclusive cutoff, no server status filtering."
+    },
+    {
+      "check": "candidate_cohort_partition",
+      "result": "PASS",
+      "evidence": "Every returned order assessed by exact saved non-test/noncancelled/PAID/web inclusion; diagnostic status counts match independently."
+    },
+    {
+      "check": "candidate_full_and_qualifying_money",
+      "result": "PASS",
+      "evidence": "Exact independent Decimal totals and8currentunits; three PAID,1FULFILLED/2UNFULFILLED."
+    },
+    {
+      "check": "candidate_original_cohort_identity_and_totals",
+      "result": "PASS",
+      "evidence": "Both legacy-created/variant-set joins independently reproduced; original2/4/USD86.45 retained separately."
+    },
+    {
+      "check": "candidate_window:comparison_since_last_full_read",
+      "result": "PASS",
+      "evidence": "All six window fields and Decimal totals match raw independent half-open filters; all contain exactly one new qualifying basket."
+    },
+    {
+      "check": "candidate_window:trailing_24_hours",
+      "result": "PASS",
+      "evidence": "All six window fields and Decimal totals match raw independent half-open filters; all contain exactly one new qualifying basket."
+    },
+    {
+      "check": "candidate_window:previous_completed_shop_calendar_day",
+      "result": "PASS",
+      "evidence": "All six window fields and Decimal totals match raw independent half-open filters; all contain exactly one new qualifying basket."
+    },
+    {
+      "check": "candidate_window:ga4_post_cutover_candidates",
+      "result": "PASS",
+      "evidence": "All six window fields and Decimal totals match raw independent half-open filters; all contain exactly one new qualifying basket."
+    },
+    {
+      "check": "candidate_completed_NY_date",
+      "result": "PASS",
+      "evidence": "CompletedSeptember13NY is[September13 04Z,September14 04Z), not UTC date or trailing24h."
+    },
+    {
+      "check": "candidate_prior_capture_and_total_delta",
+      "result": "PASS",
+      "evidence": "Previous actual full source retained; new1order/4units/USD111.96 explains current delta."
+    },
+    {
+      "check": "new_basket_alias_is_unique_display_label",
+      "result": "PASS",
+      "evidence": "Candidate gives one distinct nonidentifying display alias to the unique new reduced row.",
+      "limit": "Tropical Palm is root-assigned display terminology; product titles are absent from raw query, so independent product-title identity is not certified."
+    },
+    {
+      "check": "candidate_basket_lifecycle:Rainbow",
+      "result": "PASS",
+      "evidence": "Every status/quantity/refund/fulfillment/line-match/company/event/pagination/acceptance boolean matches independent raw computation."
+    },
+    {
+      "check": "candidate_basket_lifecycle:Mermaid",
+      "result": "PASS",
+      "evidence": "Every status/quantity/refund/fulfillment/line-match/company/event/pagination/acceptance boolean matches independent raw computation."
+    },
+    {
+      "check": "candidate_basket_lifecycle:Tropical Palm",
+      "result": "PASS",
+      "evidence": "Every status/quantity/refund/fulfillment/line-match/company/event/pagination/acceptance boolean matches independent raw computation."
+    },
+    {
+      "check": "candidate_redacted_row_equivalence:1",
+      "result": "PASS",
+      "evidence": "Every row field equals independently reduced raw data after alias substitution and null-to-presence normalization; within-basket ordinal order and six membership flags preserved."
+    },
+    {
+      "check": "candidate_redacted_row_equivalence:2",
+      "result": "PASS",
+      "evidence": "Every row field equals independently reduced raw data after alias substitution and null-to-presence normalization; within-basket ordinal order and six membership flags preserved."
+    },
+    {
+      "check": "candidate_redacted_row_equivalence:3",
+      "result": "PASS",
+      "evidence": "Every row field equals independently reduced raw data after alias substitution and null-to-presence normalization; within-basket ordinal order and six membership flags preserved."
+    },
+    {
+      "check": "candidate_row_count_and_no_extra_order_fields",
+      "result": "PASS",
+      "evidence": "No extra order fields hidden outside compared reduced row schema."
+    },
+    {
+      "check": "candidate_all_explicit_change_fields",
+      "result": "PASS",
+      "evidence": "Six independently computed comparison fields plus exact single new alias; original-basket unchanged qualifier preserved."
+    },
+    {
+      "check": "candidate_post_cutover_limits",
+      "result": "PASS",
+      "evidence": "One timing-qualified candidate, approximate migration date and UNKNOWN receiver ingestion; no new GA4 proof."
+    },
+    {
+      "check": "candidate_baseline_relative_path_resolves",
+      "result": "PASS",
+      "evidence": "Repo-relative baseline points to actual previous evening full receipt, not candidate or wrong working directory."
+    },
+    {
+      "check": "candidate_baseline_clocks_and_legacy_preserved",
+      "result": "PASS",
+      "evidence": "Old cutoff, previous due08:49:22 and exact legacy mapping remain dated and intact."
+    },
+    {
+      "check": "candidate_coverage_counts",
+      "result": "PASS",
+      "evidence": "One terminal3-order page,8orderlines,3fulfillment reads; limits not reached."
+    },
+    {
+      "check": "candidate_coverage_limits",
+      "result": "PASS",
+      "evidence": "Complete connection evidence and exact-enumerated/USD/non-atomic limitations retained."
+    },
+    {
+      "check": "candidate_actual_validator_exact_copy",
+      "result": "PASS",
+      "evidence": "Both actual successful validator blocks and exact query strings carried unchanged into candidate."
+    },
+    {
+      "check": "candidate_duplicate_source_metadata",
+      "result": "PASS",
+      "evidence": "Top-level and reduced-source clocks/query/page metadata agree exactly."
+    },
+    {
+      "check": "candidate_transient_binding_attestation",
+      "result": "PASS",
+      "evidence": "Exact private call bindings independently matched earlier; candidate preserves provenance distinction and both hashes."
+    },
+    {
+      "check": "candidate_profit_paid_owner_and_historic_baseline_preserved",
+      "result": "PASS",
+      "evidence": "PaidNONE, original owner theme action, unknown costs/settlement/CPA/ROAS/GA4 acceptance, synthetic0 and unrefreshed28daybaseline byte-equivalent values."
+    },
+    {
+      "check": "candidate_business_outcome_qualified",
+      "result": "PASS",
+      "evidence": "Actual financially qualifying order reported; paid acquisition, direct journey, receiver and profit not asserted."
+    },
+    {
+      "check": "candidate_next_full_cadence_exact",
+      "result": "PASS",
+      "evidence": "Meaningful new-order signal justifies early full read; old08:49:22due retained historically and new19:04:53 is12hafter actual accepted cutoff."
+    },
+    {
+      "check": "candidate_raw_identifier_timestamp_cursor_values_absent",
+      "result": "PASS",
+      "evidence": "Scanned exact private order IDs/numeric IDs/order timestamps/product-variant IDs and private cursors transiently; zero values in candidate."
+    },
+    {
+      "check": "candidate_no_customer_or_tracking_leak",
+      "result": "PASS",
+      "evidence": "No email/address/customer/payment/tracking fields in compared order rows; only company names in fulfillment."
+    },
+    {
+      "check": "candidate_redaction_contract_preserved",
+      "result": "PASS",
+      "evidence": "Existing redaction contract and revision2 preserved, with global windows/aliases/ordinals only."
+    },
+    {
+      "check": "candidate_and_private_sources_still_immutable",
+      "result": "PASS",
+      "evidence": "Final candidate/raw/binding hash and private mode checks; no source edits or live calls."
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "/private/tmp/dlm-sales-20260914-0704-source.json",
+      "sha256": "d0326a1650fc265c9c85af0c1c3773a6f6d28b585128c81a26b0b8b250178e1a",
+      "mode": "0600",
+      "bytes": 13814
+    },
+    {
+      "path": "/private/tmp/dlm-sales-20260914-0704-bindings.json",
+      "sha256": "35cbbdbb27c18704d45f5d881093bacead1a340facb73d684818bfe64a55f7e7",
+      "mode": "0600",
+      "bytes": 1726
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260913_2045.json",
+      "sha256": "d6ee2ceca2d70fc27f63e7cc1ae5a656c2bd17cb69d43fcc95d104b690e1869f",
+      "mode": "0644",
+      "bytes": 19712
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/recent_order_basket_variants_20260907.json",
+      "sha256": "9782ec236e6608e690dbae0dbdfc5640b4bdbcfa57b775c008268b45ea9a930a",
+      "mode": "0644",
+      "bytes": 5263
+    }
+  ],
+  "transient_evidence": [
+    {
+      "path": "/private/tmp/dlm-sales-20260914-0704-source.json",
+      "sha256": "d0326a1650fc265c9c85af0c1c3773a6f6d28b585128c81a26b0b8b250178e1a",
+      "mode": "0600",
+      "bytes": 13814
+    },
+    {
+      "path": "/private/tmp/dlm-sales-20260914-0704-bindings.json",
+      "sha256": "35cbbdbb27c18704d45f5d881093bacead1a340facb73d684818bfe64a55f7e7",
+      "mode": "0600",
+      "bytes": 1726
+    }
+  ],
+  "separately_bound_validator_response": {
+    "location": "Protected raw.validation; copied exactly in candidate.query_validation.validator_receipt",
+    "artifact_ids": [
+      "dlm-order-checkpoint-20260914-new-purchase",
+      "dlm-fulfillment-checkpoint-20260914-new-purchase"
+    ],
+    "revision": 1,
+    "overall": "VALID",
+    "artifact_statuses": [
+      "SUCCESS",
+      "SUCCESS"
+    ],
+    "original_connector_text": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 2\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-order-checkpoint-20260914-new-purchase\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_orders, read_marketplace_orders, read_quick_sale, read_products\n\n### Code Block 2\n**Artifact ID:** dlm-fulfillment-checkpoint-20260914-new-purchase\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_orders, read_marketplace_orders, read_quick_sale, read_assigned_fulfillment_orders, read_merchant_managed_fulfillment_orders, read_third_party_fulfillment_orders, read_marketplace_fulfillment_orders, read_products\n\n",
+    "operation_binding": "Exact order and fulfillment strings in protected raw match candidate query_validation.operations and duplicate sanitized_source.query_validation; original artifact IDs/revision match two successful connector blocks.",
+    "limits": "No independent live schema discovery/validator execution; the response does not itself include a cryptographic code hash. The root source binds adjacent operation text and actual validation metadata."
+  },
+  "unresolved_findings": [],
+  "resolved_findings": [],
+  "independent_results": {
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "name": "Dress Like Mommy",
+      "ianaTimezone": "America/New_York",
+      "currencyCode": "USD",
+      "primaryDomain": {
+        "host": "www.dresslikemommy.com"
+      }
+    },
+    "full_totals": {
+      "orders": 3,
+      "current_units": 8,
+      "current_subtotal_usd": "198.41",
+      "current_total_usd": "198.41",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    },
+    "qualifying_totals": {
+      "orders": 3,
+      "current_units": 8,
+      "current_subtotal_usd": "198.41",
+      "current_total_usd": "198.41",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    },
+    "excluded_count": 0,
+    "financial_status_counts": {
+      "PAID": 3
+    },
+    "fulfillment_status_counts": {
+      "FULFILLED": 1,
+      "UNFULFILLED": 2
+    },
+    "window_results": {
+      "full_observed_cohort": {
+        "start_inclusive": "2026-09-05T04:00:00Z",
+        "end_exclusive": "2026-09-14T07:04:53Z",
+        "all_order_creations": 3,
+        "qualifying_orders": 3,
+        "qualifying_totals": {
+          "orders": 3,
+          "current_units": 8,
+          "current_subtotal_usd": "198.41",
+          "current_total_usd": "198.41",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "all_returned_totals": {
+          "orders": 3,
+          "current_units": 8,
+          "current_subtotal_usd": "198.41",
+          "current_total_usd": "198.41",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "excluded_orders": 0
+      },
+      "original_comparable_cohort": {
+        "start_inclusive": "2026-09-05T04:00:00Z",
+        "end_exclusive": "2026-09-08T19:10:23Z",
+        "all_order_creations": 2,
+        "qualifying_orders": 2,
+        "qualifying_totals": {
+          "orders": 2,
+          "current_units": 4,
+          "current_subtotal_usd": "86.45",
+          "current_total_usd": "86.45",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "all_returned_totals": {
+          "orders": 2,
+          "current_units": 4,
+          "current_subtotal_usd": "86.45",
+          "current_total_usd": "86.45",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "excluded_orders": 0
+      },
+      "since_previous_full_read": {
+        "start_inclusive": "2026-09-13T20:49:22Z",
+        "end_exclusive": "2026-09-14T07:04:53Z",
+        "all_order_creations": 1,
+        "qualifying_orders": 1,
+        "qualifying_totals": {
+          "orders": 1,
+          "current_units": 4,
+          "current_subtotal_usd": "111.96",
+          "current_total_usd": "111.96",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "all_returned_totals": {
+          "orders": 1,
+          "current_units": 4,
+          "current_subtotal_usd": "111.96",
+          "current_total_usd": "111.96",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "excluded_orders": 0
+      },
+      "trailing_24_hours": {
+        "start_inclusive": "2026-09-13T07:04:53Z",
+        "end_exclusive": "2026-09-14T07:04:53Z",
+        "all_order_creations": 1,
+        "qualifying_orders": 1,
+        "qualifying_totals": {
+          "orders": 1,
+          "current_units": 4,
+          "current_subtotal_usd": "111.96",
+          "current_total_usd": "111.96",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "all_returned_totals": {
+          "orders": 1,
+          "current_units": 4,
+          "current_subtotal_usd": "111.96",
+          "current_total_usd": "111.96",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "excluded_orders": 0
+      },
+      "previous_completed_shop_day": {
+        "start_inclusive": "2026-09-13T04:00:00Z",
+        "end_exclusive": "2026-09-14T04:00:00Z",
+        "all_order_creations": 1,
+        "qualifying_orders": 1,
+        "qualifying_totals": {
+          "orders": 1,
+          "current_units": 4,
+          "current_subtotal_usd": "111.96",
+          "current_total_usd": "111.96",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "all_returned_totals": {
+          "orders": 1,
+          "current_units": 4,
+          "current_subtotal_usd": "111.96",
+          "current_total_usd": "111.96",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "excluded_orders": 0
+      },
+      "after_approximate_GA4_cutover": {
+        "start_inclusive": "2026-09-09T18:09:00Z",
+        "end_exclusive": "2026-09-14T07:04:53Z",
+        "all_order_creations": 1,
+        "qualifying_orders": 1,
+        "qualifying_totals": {
+          "orders": 1,
+          "current_units": 4,
+          "current_subtotal_usd": "111.96",
+          "current_total_usd": "111.96",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "all_returned_totals": {
+          "orders": 1,
+          "current_units": 4,
+          "current_subtotal_usd": "111.96",
+          "current_total_usd": "111.96",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "excluded_orders": 0
+      }
+    },
+    "completed_previous_shop_date": "2026-09-13",
+    "totals_delta": {
+      "orders": 1,
+      "current_units": 4,
+      "current_subtotal_usd": "111.96",
+      "current_total_usd": "111.96",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    },
+    "changes": {
+      "new_order_creations": 1,
+      "new_qualifying_orders": 1,
+      "qualifying_totals_changed": true,
+      "all_returned_totals_changed": true,
+      "original_basket_payment_refund_cancellation_or_fulfillment_changed": false,
+      "new_carrier_events": 0
+    },
+    "legacy_checks": [
+      {
+        "basket": "Rainbow",
+        "legacy_creation_and_variant_set_match": true,
+        "current_quantities_equal_original": true
+      },
+      {
+        "basket": "Mermaid",
+        "legacy_creation_and_variant_set_match": true,
+        "current_quantities_equal_original": true
+      }
+    ],
+    "basket_aggregates": [
+      {
+        "basket": "Rainbow",
+        "financial_status": "PAID",
+        "order_fulfillment_status": "FULFILLED",
+        "current_units": 2,
+        "current_subtotal_usd": "54.47",
+        "recorded_refunds_usd": "0.00",
+        "cancelled": false,
+        "fulfillments_returned": 1,
+        "fulfillment_statuses": [
+          {
+            "status": "SUCCESS",
+            "display_status": "FULFILLED",
+            "total_quantity": 2
+          }
+        ],
+        "matched_variant_selections": 2,
+        "exact_current_basket_variant_quantity_match": true,
+        "fulfillment_lines_within_ordered_quantities": true,
+        "recorded_tracking_companies": [
+          "YunExpress"
+        ],
+        "delivered_at_present": false,
+        "in_transit_at_present": false,
+        "estimated_delivery_at_present": false,
+        "events_returned": 0,
+        "event_status_counts": {},
+        "events_since_previous_source_read": 0,
+        "event_pagination_complete": true,
+        "fulfillment_line_item_pagination_complete": true,
+        "carrier_acceptance_verified": false,
+        "delivery_verified": false
+      },
+      {
+        "basket": "Mermaid",
+        "financial_status": "PAID",
+        "order_fulfillment_status": "UNFULFILLED",
+        "current_units": 2,
+        "current_subtotal_usd": "31.98",
+        "recorded_refunds_usd": "0.00",
+        "cancelled": false,
+        "fulfillments_returned": 0,
+        "fulfillment_statuses": [],
+        "matched_variant_selections": 0,
+        "exact_current_basket_variant_quantity_match": false,
+        "fulfillment_lines_within_ordered_quantities": true,
+        "recorded_tracking_companies": [],
+        "delivered_at_present": false,
+        "in_transit_at_present": false,
+        "estimated_delivery_at_present": false,
+        "events_returned": 0,
+        "event_status_counts": {},
+        "events_since_previous_source_read": 0,
+        "event_pagination_complete": true,
+        "fulfillment_line_item_pagination_complete": true,
+        "carrier_acceptance_verified": false,
+        "delivery_verified": false
+      },
+      {
+        "basket": "New basket 1",
+        "financial_status": "PAID",
+        "order_fulfillment_status": "UNFULFILLED",
+        "current_units": 4,
+        "current_subtotal_usd": "111.96",
+        "recorded_refunds_usd": "0.00",
+        "cancelled": false,
+        "fulfillments_returned": 0,
+        "fulfillment_statuses": [],
+        "matched_variant_selections": 0,
+        "exact_current_basket_variant_quantity_match": false,
+        "fulfillment_lines_within_ordered_quantities": true,
+        "recorded_tracking_companies": [],
+        "delivered_at_present": false,
+        "in_transit_at_present": false,
+        "estimated_delivery_at_present": false,
+        "events_returned": 0,
+        "event_status_counts": {},
+        "events_since_previous_source_read": 0,
+        "event_pagination_complete": true,
+        "fulfillment_line_item_pagination_complete": true,
+        "carrier_acceptance_verified": false,
+        "delivery_verified": false
+      }
+    ],
+    "coverage": {
+      "order_pages": 1,
+      "order_returned": 3,
+      "order_has_next_page": false,
+      "order_line_items_returned": 8,
+      "fulfillment_orders_read": 3,
+      "fulfillments_returned": 1,
+      "fulfillment_line_items_returned": 2,
+      "events_returned": 0,
+      "money_values_checked": 18
+    },
+    "next_12h_full_read_due_at_utc": "2026-09-14T19:04:53Z"
+  },
+  "reviewed_changes": [
+    "One new qualifying non-test, noncancelled, financially PAID web order:4units,USD111.96subtotal/total,tax0,recordedrefunds0. CurrentlyUNFULFILLED with0fulfillments.",
+    "Current full bounded cohort is3qualifyingorders/8units/USD198.41subtotal andtotal; exclusions0; USD0tax andrecordedrefunds.",
+    "Original comparable cohort remains2orders/4units/USD86.45. Exact legacy identities and quantities match; original payment/refund/cancel/fulfillment/carrier-event summaries unchanged.",
+    "The same one new order falls in the since-prior-full, trailing24h, completedSeptember13NewYork and approximate post-GA4-cutover windows. These overlap and are not additional separate orders.",
+    "Rainbow remains1SUCCESS fulfillment of2exact matching line units withYunExpresscompany; noevents,carrieracceptance,transit/deliverytimestamps orETA. Mermaid andnewbasket remainunfulfilled.",
+    "Actual global captures:ordersSeptember14 07:04:53–54UTC;3parallelfulfillment reads07:06:24–26UTC. Ordercreation cutoff07:04:53UTC is exclusive; later creations are outside this read.",
+    "New nextfullreadSeptember14 19:04:53UTC is exactly12hoursafter the actualfull-ordercutoff. Old08:49:22due remains dated; meaningful neworder justifiedearlyrefresh and candidate adoption was conditional on independent acceptance."
+  ],
+  "limitations": [
+    "No independent live replay. Raw results, successful validation and call variables are root-executed evidence; private identifiers and exact per-order creation timestamps were used transiently and not copied into this review.",
+    "Order and fulfillment captures are sequential/non-atomic. Queried financial/status/subtotal/refund fields agree across captures; this does not prove absence of transient intervening changes.",
+    "Order and line/event connections are terminal. The unpaginated fulfillment arrays are below50; no cap-truncated response was certified complete.",
+    "Product titles were not requested in the new raw query. Candidate's new-basket display label is treated as root-assigned terminology, not independently verified product-title/source mapping. Numerical and lifecycle equivalence does not depend on that label.",
+    "No cost, supplier invoice, freight, duty, payment settlement or retained-margin data was queried. Gross recorded order amounts do not prove retained profit.",
+    "PAID is financial status, not paid-ad attribution. Actual paid-growth sales, attributable conversion value, CPA, ROAS, high-intent efficiency and anti-cannibalization remain unverified.",
+    "The approximate post-cutover candidate supports follow-up, not GA4 or Ads purchase receiver acceptance, consent, deduplication or ingestion. No attribution journey was queried.",
+    "FulfillmentSUCCESS and trackingcompany do not prove carrier acceptance or delivery. Zero returned events means no such evidence in this bounded response.",
+    "Existing paidNONE, original owner theme-publication action, unrefreshed28daybaseline and unknown tracking/profit gates are preserved in the candidate. This review grants no settings, paid, publication, customer-contact or purchase authority.",
+    "Candidate's creation-time PENDING field is preserved; this separate hash-bound PASS_WITH_LIMITS provides independent acceptance without editing that source."
+  ],
+  "privacy": {
+    "protected_source_mode": "0600",
+    "protected_call_binding_mode": "0600",
+    "sensitive_customer_fields_requested": false,
+    "exact_private_ids_order_timestamps_product_variant_associations_cursors_in_review": false,
+    "candidate_scan": "Zero matches for transient private order IDs/numeric IDs/exact order timestamps/product-variant IDs/private cursors; no customer or tracking identifiers in reduced rows.",
+    "retained_reproducibility": "Global windows, basket aliases, within-basket line ordinals/quantities, exact-money aggregates, status fields, source hashes and privacy-safe check evidence.",
+    "cleanup_owner": "Root may remove its protected raw and call-binding files after recording this review; reviewer did not delete or mutate them."
+  },
+  "recommendation": "Accept the new full-cohort source and its19:04:53UTC next-full clock. Route the one genuine timing-qualified order candidate to the existing measurement/Ads owner for separately authorized receiver and attribution reconciliation. Preserve all paid and tracking settings gates and the existing owner theme-publication action.",
+  "source_corrections_required": false
+}

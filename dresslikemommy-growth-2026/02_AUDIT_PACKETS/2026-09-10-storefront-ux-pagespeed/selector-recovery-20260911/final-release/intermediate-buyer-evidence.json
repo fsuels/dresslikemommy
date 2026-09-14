@@ -1,0 +1,68 @@
+{
+  "status": "INTERMEDIATE_BUYER_EVIDENCE_NOT_FINAL_RELEASE_ACCEPTANCE",
+  "source": "Actual CUA DOM, visible controls and cart readbacks in owned IAB tab12; manually reduced from tool output. No API cart actions.",
+  "theme_id": "137888792673",
+  "role": "unpublished",
+  "country": "AU",
+  "currency": "AUD",
+  "language": "en",
+  "observations": [
+    {
+      "case": "E1 raw guide labels and units",
+      "at": "2026-09-11T22:27:23.862Z",
+      "at_inches": "2026-09-11T22:27:46.256Z",
+      "result": "PASS",
+      "details": "Both original and modern tables retain90cm through160cm plus adult normal/extended source labels.100cm length69cm/27.2in and bust62cm/24.4in preserved. Unit toggle changes modern headings/measurements, keeps original combined table unchanged."
+    },
+    {
+      "case": "E1 linked normal adult mobile after reload",
+      "at": "2026-09-11T22:28:41.527Z",
+      "result": "FAILED_BEFORE_PENDING_DEEPLINK_REPAIR",
+      "variant": "43821479854177",
+      "selected_size": "S (Adult Normal Version)",
+      "price": 40,
+      "details": "Native radio checked and price correct, mobile sticky incorrectly says SELECT SIZE. Cart0."
+    },
+    {
+      "case": "E2 child desktop sticky cart",
+      "at": "2026-09-11T22:31:24.780Z",
+      "result": "PASS",
+      "variant": "43831323000929",
+      "selected_size": "100cm",
+      "cart_size": "100cm",
+      "color": "Purple",
+      "price": 43,
+      "quantity": 1,
+      "removed_at": "2026-09-11T22:31:40.947Z",
+      "cart_after": 0,
+      "details": "Ordinary desktop sticky click, exact variant link and cart label. Early capture22:31:11 was pending AJAX and is not a failure."
+    },
+    {
+      "case": "E2 adult native cart",
+      "at": "2026-09-11T22:31:57.721Z",
+      "result": "PASS",
+      "variant": "43831323197537",
+      "selected_size": "S",
+      "cart_size": "S",
+      "color": "Purple",
+      "price": 50,
+      "quantity": 1,
+      "removed_at": "2026-09-11T22:31:58.463Z",
+      "cart_after": 0
+    },
+    {
+      "case": "E2 source guides and reviews",
+      "at": "2026-09-11T22:32:09.365Z",
+      "result": "PASS_WITH_SOURCE_LIMITS",
+      "details": "Both tables retain source S/M/L and100/110/120/130/140/150 labels and original measurement columns.100 row length63/24.8,bust31/12.2,height95-105/37.4-41.3. Judge.me Customer Reviews and Write a review retained."
+    },
+    {
+      "case": "Trail Plaid initialization",
+      "at": "2026-09-11T22:32:56.104Z",
+      "error_at": "2026-09-11T22:32:36.688Z",
+      "result": "FAILED_BEFORE_PENDING_NULL_GUIDE_REPAIR",
+      "details": "Only Type selector visible; matching builder hidden and empty. Product desktop UX init failed TypeError Cannot read properties of null(reading rows), at buildSizeGuideGroups -> initMatchingSizeGuide -> initProductDesktopUx. Current draft identity137888792673 verified."
+    }
+  ],
+  "limits": "Current final two-file repair has not yet been staged. These observations do not qualify the future final snapshot. Initial no-variant E2 range43-50 remains until size interaction; supplier size guidance correctness and payments are not certified."
+}

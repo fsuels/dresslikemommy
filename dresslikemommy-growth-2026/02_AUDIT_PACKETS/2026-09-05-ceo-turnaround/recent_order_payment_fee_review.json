@@ -1,0 +1,274 @@
+{
+  "schema": "dlm.recent_order_payment_fee_independent_review.v1",
+  "reviewed_at_utc": "2026-09-07T00:07:35.177782+00:00",
+  "verdict": "PASS_LOCAL_NUMERICAL_AND_RECEIPT_CONSISTENCY",
+  "reviewer": "/root/current_ga4_sales_reconciliation",
+  "scope": "Independent local verification only; reviewer did not execute or independently inspect the Shopify API/UI source reads.",
+  "source_sha256": {
+    "recent_order_payment_fees_20260907.json": "dc3e58c2e6be722ad26c9db180afd3540d77727b311b50a88d3762ba58728a79",
+    "recent_order_payment_fees_query.graphql": "d0a20b9e3b44e20aaa286d63cf5a883fc588e8f0aca51614b6d86636c1ddd5e5",
+    "recent_order_payment_fee_basis_query.graphql": "e660fdac565a4829625e4c3ea7e566c480bdca774b335901e293d5dc667e5241",
+    "recent_order_settlement_fee_query.graphql": "d38d54b89bd37c9ed8f0e5ecb06f89c587f04caae71a783ea02c7213a8004d94",
+    "recent_paid_order_signal_20260906.json": "9d23a144fe81ec4f5ae12a5109013d38bec0707333932310c7c508ad26a385e8",
+    "recent_paid_order_countries_20260906.json": "68a1d79d8af581d44304ecf307e0ff79b7cdcef06df502f575d01e489828c70c"
+  },
+  "source_time_basis": "Source reads completed earlier in this continuation turn; exact per-call timestamps were not persisted. compiled_at_utc is report compilation time, not a source timestamp.",
+  "cohort_window": {
+    "start_inclusive": "2026-09-05T04:00:00Z",
+    "end_exclusive": "2026-09-06T23:35:57.262Z",
+    "report_timezone": "America/New_York",
+    "complete_query_page": true
+  },
+  "checks": [
+    {
+      "check": "exact two unique fee rows and frozen cohort keys",
+      "pass": true
+    },
+    {
+      "check": "identical fixed window",
+      "pass": true
+    },
+    {
+      "check": "same shop and USD shop currency",
+      "pass": true
+    },
+    {
+      "check": "all compiled receipts report complete cohort pages",
+      "pass": true
+    },
+    {
+      "check": "countries uniquely join on sanitized created_at",
+      "pass": true
+    },
+    {
+      "check": "two paid unfulfilled orders and four item units",
+      "pass": true
+    },
+    {
+      "check": "shop revenue totals USD86.45",
+      "pass": true
+    },
+    {
+      "check": "baseline subtotal equals total with zero tax and refunds",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 same created_at and row facts",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 country agrees in all three receipts",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 shop current total matches frozen total and subtotal",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 non-test uncancelled paid unfulfilled web order",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 exactly one successful non-test Shopify Payments capture or sale",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 transaction shop and presentment amount match order",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 fee and tax denominations match presentment revenue",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 fee types unique and recorded taxes zero",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 independently summed components match fee basis",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 fee basis denominator and currency match",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 reported authorization count matches timing rows",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 exact expected components",
+      "pass": true
+    },
+    {
+      "check": "RECENT_01 Belgium sale not authorization",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 same created_at and row facts",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 country agrees in all three receipts",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 shop current total matches frozen total and subtotal",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 non-test uncancelled paid unfulfilled web order",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 exactly one successful non-test Shopify Payments capture or sale",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 transaction shop and presentment amount match order",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 fee and tax denominations match presentment revenue",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 fee types unique and recorded taxes zero",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 independently summed components match fee basis",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 fee basis denominator and currency match",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 reported authorization count matches timing rows",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 exact expected components",
+      "pass": true
+    },
+    {
+      "check": "RECENT_02 authorization excluded, only captured fee counted",
+      "pass": true
+    },
+    {
+      "check": "explicit GraphQL access denial overrides false isError wrapper",
+      "pass": true
+    },
+    {
+      "check": "scope limitation correctly names required scopes",
+      "pass": true
+    },
+    {
+      "check": "all three saved operations are queries only",
+      "pass": true
+    },
+    {
+      "check": "fee-basis query requests both currency representations",
+      "pass": true
+    },
+    {
+      "check": "settlement query targets denied ledger field",
+      "pass": true
+    },
+    {
+      "check": "compilation timestamp explicitly distinguished from source time",
+      "pass": true
+    },
+    {
+      "check": "frozen paid-versus-organic ambiguity preserved",
+      "pass": true
+    },
+    {
+      "check": "native readback explicitly blocked",
+      "pass": true
+    },
+    {
+      "check": "all six sources unchanged during review",
+      "pass": true
+    }
+  ],
+  "check_count": 43,
+  "passed_count": 43,
+  "failed_checks": [],
+  "row_calculations": [
+    {
+      "row_key": "RECENT_01",
+      "country": "BE",
+      "revenue_currency": "EUR",
+      "presentment_revenue": "46.90",
+      "shop_revenue_usd": "54.47",
+      "recorded_fee_components": {
+        "processing_fee": "2.09",
+        "foreign_exchange_fee": "0.69"
+      },
+      "recorded_fee_total": "2.78",
+      "recorded_fee_tax_total": "0.00",
+      "fee_ratio_exact_fraction": "139/2345",
+      "fee_ratio_decimal_50_digit_precision": "0.059275053304904051172707889125799573560767590618337",
+      "fee_percent_decimal_50_digit_precision": "5.9275053304904051172707889125799573560767590618337",
+      "revenue_times_70_percent_exact": "32.830",
+      "remaining_all_other_cost_envelope_exact": "30.050",
+      "remaining_envelope_percent_decimal_50_digit_precision": "64.072494669509594882729211087420042643923240938166",
+      "remaining_envelope_cents_floor": "30.05",
+      "currency_conversion_applied": false,
+      "allowable_cpa": null,
+      "actual_net_profit": null,
+      "formula": "0.70 * same-currency presentment revenue - recorded same-currency sale/capture fees",
+      "meaning": "Conditional shared ceiling for every other expense, including acquisition, while reserving 30% of this revenue; actual remaining costs and mature retained revenue are unknown."
+    },
+    {
+      "row_key": "RECENT_02",
+      "country": "US",
+      "revenue_currency": "USD",
+      "presentment_revenue": "31.98",
+      "shop_revenue_usd": "31.98",
+      "recorded_fee_components": {
+        "processing_fee": "1.42"
+      },
+      "recorded_fee_total": "1.42",
+      "recorded_fee_tax_total": "0.00",
+      "fee_ratio_exact_fraction": "71/1599",
+      "fee_ratio_decimal_50_digit_precision": "0.044402751719824890556597873671044402751719824890557",
+      "fee_percent_decimal_50_digit_precision": "4.4402751719824890556597873671044402751719824890557",
+      "revenue_times_70_percent_exact": "22.3860",
+      "remaining_all_other_cost_envelope_exact": "20.9660",
+      "remaining_envelope_percent_decimal_50_digit_precision": "65.559724828017510944340212632895559724828017510944",
+      "remaining_envelope_cents_floor": "20.96",
+      "currency_conversion_applied": false,
+      "allowable_cpa": null,
+      "actual_net_profit": null,
+      "formula": "0.70 * same-currency presentment revenue - recorded same-currency sale/capture fees",
+      "meaning": "Conditional shared ceiling for every other expense, including acquisition, while reserving 30% of this revenue; actual remaining costs and mature retained revenue are unknown."
+    }
+  ],
+  "cross_currency_fee_sum": null,
+  "settled_usd_fee_for_belgium": null,
+  "settlement_gate": "BLOCKED_MISSING_CONNECTOR_SCOPE: shopifyPaymentsAccount returned GraphQL access denial despite isError:false. No account-absence inference, retry, scope change or access workaround.",
+  "accounting_rules": [
+    "Count only the successful sale/capture fees once; authorization is not another sale or expense.",
+    "Do not add EUR and USD fees or deduct EUR2.78 directly from USD54.47. An order FX ratio is not verified settled USD expense.",
+    "The 70%-revenue remainder includes every other expense. It is not a CPA, approved spend cap, actual net margin or proof of 30% profit.",
+    "An already all-inclusive 50% nonmarketing cost estimate includes payment fees. Do not subtract these fees again; replace modeled components with evidence when available."
+  ],
+  "limitations": [
+    "Matching sanitized row keys, created_at, totals and country is internally exact; private-ID identity and source pagination were not independently re-inspected.",
+    "The saved fee queries describe intended reads but are not raw responses or independent evidence of every executed action. Compiled complete-page and no-retry statements remain operator-supplied.",
+    "Belgium USD settlement expenses are unknown. API-paid status is not bank settlement, fulfillment, delivery or mature retained profit.",
+    "Both orders remain UNFULFILLED in the supplied receipts; actual goods, handling, freight, duties, acquisition and return costs are unresolved.",
+    "This is the original fixed two-order window, not a new September7 cohort, refreshed baseline or proof of sales caused by current work. Google paid versus organic remains unresolved.",
+    "Native inspection remains BLOCKED_MAC_LOCKED. No external actions or financial changes were made by this reviewer."
+  ],
+  "next_action": "After normal unlock, reconcile actual procurement, fulfillment and remaining costs for these same two baskets before a purchase-focused paid test or profit claim.",
+  "external_calls": 0,
+  "external_writes": 0,
+  "written_files": [
+    "recent_order_payment_fee_review.json",
+    "recent_order_payment_fee_review.md"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "test": "Fresh agents, continuous overlapping runs on saved localhost fixture",
+  "root": {
+    "agent": "root",
+    "tab_handle": "2 (session-scoped)",
+    "url": "http://127.0.0.1:49564/browser-fixture.html?lane=shopify",
+    "start_ms": 1789147999462,
+    "end_ms": 1789148045098,
+    "verified_iterations": 60,
+    "final_after_reload": "Lane: shopify | Saved: shopify-60 | Steps: 60",
+    "own_tab_closed": true
+  },
+  "peer": {
+    "agent": "browser_continuous",
+    "tab_handle": "1 (session-scoped)",
+    "url": "http://127.0.0.1:49564/browser-fixture.html?lane=merchant",
+    "start_ms": 1789148006879,
+    "end_ms": 1789148057182,
+    "verified_iterations": 40,
+    "first_verified_iteration_ms": 1789148007569,
+    "last_verified_iteration_ms": 1789148057031,
+    "final_after_reload": "Lane: merchant | Saved: merchant-40 | Steps: 40",
+    "own_tab_closed": true
+  },
+  "api_operations": [
+    "own Tab.getAXState",
+    "own Tab.setValue",
+    "own Tab.click",
+    "own Tab.reload",
+    "own Tab.close"
+  ],
+  "actions_absent": [
+    "native apps",
+    "personal or other tabs",
+    "browser inventory",
+    "clipboard",
+    "global browser settings",
+    "business accounts",
+    "auth or permissions"
+  ],
+  "provenance": "Root mcp__cua_repl.js result and browser_continuous tool-backed final report; every iteration matched its expected Lane/Saved/Steps; both final reloads matched",
+  "limits": [
+    "Synthetic two-agent test, not two separately created user tasks",
+    "No business-account authentication or cookie/profile isolation test",
+    "No cross-turn browser persistence test",
+    "No direct observation of personal desktop activity",
+    "Cause of earlier peer browser unavailability remains UNKNOWN"
+  ],
+  "overlap_ms": 38219,
+  "verdict": "PASS_TWO_AGENT_SYNTHETIC_BACKGROUND_CONCURRENCY",
+  "fixture_server_cleanup": "STOPPED: owned exec session9521 exited0 on requested Ctrl-C after both tabs closed"
+}

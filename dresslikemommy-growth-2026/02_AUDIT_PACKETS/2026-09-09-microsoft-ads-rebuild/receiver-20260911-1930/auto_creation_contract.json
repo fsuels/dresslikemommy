@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "decision_id": "DLM-DEC-2026-09-11-MICROSOFT-MANUAL-AD-CONTROL",
+  "status": "FROZEN_AWAITING_INDEPENDENT_REVIEW",
+  "as_of": "2026-09-11 19:57:31 UTC",
+  "evidence_grade": "LIVE_VERIFIED",
+  "target": {
+    "account_id": 477439,
+    "customer_id": 770182
+  },
+  "authority": "Current owner request to professionally rebuild and fix Microsoft campaigns; reversible nonspend settings that prevent unreviewed new ads; no campaign enablement/budget/bid/spend",
+  "active_claim": "root01a08703 sole Microsoft writer; shared canonical updates held for writer queue",
+  "mutations": [
+    {
+      "surface": "Auto-apply recommendation settings",
+      "url": "https://ui.ads.microsoft.com/campaign/vnext/recommendations/AutoApplySettings?aid=477439&cid=770182&uid=2290164",
+      "field": "Add responsive search ads",
+      "before": true,
+      "after": false
+    },
+    {
+      "surface": "Account level options",
+      "url": "https://ui.ads.microsoft.com/campaign/vnext/accountsettings?aid=477439&cid=770182&uid=2290164",
+      "field": "Automatically create multimedia ads in my dynamic ad groups",
+      "before": true,
+      "after": false
+    }
+  ],
+  "other_auto_apply_before": {
+    "Fix your conversion goal setting": false,
+    "Fix missing keyword parameters issue": false,
+    "Create conversion goal": false,
+    "Remove negative keyword conflicts": false
+  },
+  "other_account_options_before": {
+    "tracking_template": "",
+    "final_url_suffix": "",
+    "auto_retrieve_images": false,
+    "utm_auto_tagging": true,
+    "utm_mode": "Replace all existing tags",
+    "automatic_conversion_goal_setup": false,
+    "include_view_through_in_all_conversions": true,
+    "auto_multimedia_in_dynamic_adgroups": true,
+    "doubleverify_enabled": false
+  },
+  "msclkid_before": true,
+  "options": [
+    {
+      "name": "Disable the two automatic ad-creation settings",
+      "selected": true,
+      "reason": "Keeps generated ad changes under review while rebuilding exact-intent campaigns"
+    },
+    {
+      "name": "Status quo autoRSA and automatic multimedia dynamic ads on",
+      "selected": false,
+      "reason": "Can add unreviewed creative/placements after the rebuild"
+    },
+    {
+      "name": "Disable/remove entire existing campaigns or dynamic ad groups",
+      "selected": false,
+      "reason": "Already paused; unnecessary object/status edits and rollback impact"
+    }
+  ],
+  "prediction": "Both automatic ad-creation paths become Off; no new ads are intentionally created by this change. Existing ads/history/settings remain.",
+  "invalidating_assumption": "Native labels match the intended opt-ins and no unlisted setting changes on Save",
+  "success": "Both checkboxes read Off after full reload; remaining four auto-apply options stay Off; all unlisted account tracking/privacy settings unchanged; campaignsremainPaused",
+  "kill": [
+    "Wrong account/surface",
+    "Checkbox before-state drift",
+    "New legal/privacy/security/billing prompt",
+    "Save failure",
+    "Unlisted changes",
+    "Campaign enabled"
+  ],
+  "max_advertising_exposure_usd": 0,
+  "verification": "Fresh before and staged readback per surface; two normal Saves; reopen both pages; preserve existing goal correction and all11Paused campaign statuses",
+  "rollback": "Exact inverse on these two checkboxes only, if necessary and authorized; no deleted object recovery or account reset",
+  "independent_verifier": "/root/international_campaign_build",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "uncertainty": "Does not assert existing generated ads were removed or scheduled imports disabled; inspect those independently. No gain/low CPC/profit claimed.",
+  "deadline": "Current authenticated session",
+  "next_action": "Save the reviewed two-field correction, then continue exact-intent paused build and receiver remediation"
+}

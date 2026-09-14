@@ -1,0 +1,440 @@
+{
+  "selection_rule": "MINIMAL_PAUSED_STAGE for ad groups, keywords, RSAs; MINIMAL_PAUSED_STAGE_PROPOSAL for campaign negatives. Source rows are one-based CSV rows including header.",
+  "source_sha256": {
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "ad_groups.csv": "dbf27dfc5ccd5cfb27c5aed898f202c76060b5b484ec353b3140ad701d950f92",
+    "keywords.csv": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012",
+    "responsive_search_ads.csv": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839"
+  },
+  "selected": {
+    "ad_groups.csv": [
+      {
+        "source_csv_row": 2,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "campaign_name": "DLM | MS | US | EN | Search | 202609",
+          "ad_group_key": "ms_us_en_202609_dresses",
+          "ad_group_name": "Mother Daughter | Matching Dresses",
+          "status": "Paused",
+          "type": "SearchStandard",
+          "intent": "dresses",
+          "language": "",
+          "language_inheritance": "inherit campaign",
+          "final_url": "https://www.dresslikemommy.com/collections/dresses",
+          "required_buyer_country": "US",
+          "landing_resource": "gid://shopify/Collection/240127941",
+          "landing_evidence": "Sept11 Admin exact dresses collection240127941 and task IAB US/en/USD + DE/de/EUR collection readback; admin134 differs from rendered37; full buyer path unverified; receiver-20260911-1930/landing_revision_receipt.json",
+          "rendered_buyer_path_verified": "false",
+          "eligible_for_initial_test": "candidate_after_gates",
+          "proposed_distribution": "Microsoft sites and select traffic IF supported",
+          "distribution_verified": "false",
+          "audience_exposure": "Possible; distribution alone does not exclude Audience",
+          "keyword_bid": "",
+          "bid_note": "Inherited MaxClicks; do not mistake keyword bids for a cap",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE"
+        }
+      },
+      {
+        "source_csv_row": 10,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+          "ad_group_key": "ms_de_de_202609_dresses",
+          "ad_group_name": "Mother Daughter | Matching Dresses",
+          "status": "Paused",
+          "type": "SearchStandard",
+          "intent": "dresses",
+          "language": "",
+          "language_inheritance": "inherit campaign",
+          "final_url": "https://www.dresslikemommy.com/de/collections/dresses",
+          "required_buyer_country": "DE",
+          "landing_resource": "gid://shopify/Collection/240127941",
+          "landing_evidence": "Sept11 Admin exact dresses collection240127941 and task IAB US/en/USD + DE/de/EUR collection readback; admin134 differs from rendered37; full buyer path unverified; receiver-20260911-1930/landing_revision_receipt.json",
+          "rendered_buyer_path_verified": "false",
+          "eligible_for_initial_test": "candidate_after_gates",
+          "proposed_distribution": "Microsoft sites and select traffic IF supported",
+          "distribution_verified": "false",
+          "audience_exposure": "Possible; distribution alone does not exclude Audience",
+          "keyword_bid": "",
+          "bid_note": "Inherited MaxClicks; do not mistake keyword bids for a cap",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE"
+        }
+      }
+    ],
+    "keywords.csv": [
+      {
+        "source_csv_row": 2,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "ad_group_key": "ms_us_en_202609_dresses",
+          "keyword_key": "ms_us_en_202609_dresses_exact_1",
+          "keyword": "mommy and me matching dresses",
+          "match_type": "Exact",
+          "status": "Paused",
+          "local_activation": "MINIMAL_PAUSED_STAGE",
+          "keyword_bid": "",
+          "candidate_cpc_ceiling_usd": "0.15",
+          "observed_current_avg_cpc": "",
+          "observed_current_volume": "",
+          "demand_and_cpc_status": "UNMEASURED",
+          "source": "Model-drafted native intent candidate",
+          "final_url": "https://www.dresslikemommy.com/collections/dresses",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE",
+          "intent_evidence_note": "Close exact-match synonyms with likely semantic overlap; not tested low-CPC long-tail terms."
+        }
+      },
+      {
+        "source_csv_row": 3,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "ad_group_key": "ms_us_en_202609_dresses",
+          "keyword_key": "ms_us_en_202609_dresses_exact_2",
+          "keyword": "mother daughter dresses that match",
+          "match_type": "Exact",
+          "status": "Paused",
+          "local_activation": "MINIMAL_PAUSED_STAGE",
+          "keyword_bid": "",
+          "candidate_cpc_ceiling_usd": "0.15",
+          "observed_current_avg_cpc": "",
+          "observed_current_volume": "",
+          "demand_and_cpc_status": "UNMEASURED",
+          "source": "Model-drafted native intent candidate",
+          "final_url": "https://www.dresslikemommy.com/collections/dresses",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE",
+          "intent_evidence_note": "Close exact-match synonyms with likely semantic overlap; not tested low-CPC long-tail terms."
+        }
+      },
+      {
+        "source_csv_row": 4,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "ad_group_key": "ms_us_en_202609_dresses",
+          "keyword_key": "ms_us_en_202609_dresses_exact_3",
+          "keyword": "mother daughter matching dresses",
+          "match_type": "Exact",
+          "status": "Paused",
+          "local_activation": "MINIMAL_PAUSED_STAGE",
+          "keyword_bid": "",
+          "candidate_cpc_ceiling_usd": "0.15",
+          "observed_current_avg_cpc": "",
+          "observed_current_volume": "",
+          "demand_and_cpc_status": "UNMEASURED",
+          "source": "Model-drafted native intent candidate",
+          "final_url": "https://www.dresslikemommy.com/collections/dresses",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE",
+          "intent_evidence_note": "Close exact-match synonyms with likely semantic overlap; not tested low-CPC long-tail terms."
+        }
+      },
+      {
+        "source_csv_row": 58,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "ad_group_key": "ms_de_de_202609_dresses",
+          "keyword_key": "ms_de_de_202609_dresses_exact_1",
+          "keyword": "partnerlook kleider mutter tochter",
+          "match_type": "Exact",
+          "status": "Paused",
+          "local_activation": "MINIMAL_PAUSED_STAGE",
+          "keyword_bid": "",
+          "candidate_cpc_ceiling_usd": "0.15",
+          "observed_current_avg_cpc": "",
+          "observed_current_volume": "",
+          "demand_and_cpc_status": "UNMEASURED",
+          "source": "Model-drafted native intent candidate",
+          "final_url": "https://www.dresslikemommy.com/de/collections/dresses",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE",
+          "intent_evidence_note": "Intent candidate only; current demand and click cost are unmeasured."
+        }
+      },
+      {
+        "source_csv_row": 59,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "ad_group_key": "ms_de_de_202609_dresses",
+          "keyword_key": "ms_de_de_202609_dresses_exact_2",
+          "keyword": "gleiche kleider mutter tochter",
+          "match_type": "Exact",
+          "status": "Paused",
+          "local_activation": "MINIMAL_PAUSED_STAGE",
+          "keyword_bid": "",
+          "candidate_cpc_ceiling_usd": "0.15",
+          "observed_current_avg_cpc": "",
+          "observed_current_volume": "",
+          "demand_and_cpc_status": "UNMEASURED",
+          "source": "Model-drafted native intent candidate",
+          "final_url": "https://www.dresslikemommy.com/de/collections/dresses",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE",
+          "intent_evidence_note": "Intent candidate only; current demand and click cost are unmeasured."
+        }
+      },
+      {
+        "source_csv_row": 60,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "ad_group_key": "ms_de_de_202609_dresses",
+          "keyword_key": "ms_de_de_202609_dresses_exact_3",
+          "keyword": "mama tochter kleider",
+          "match_type": "Exact",
+          "status": "Paused",
+          "local_activation": "MINIMAL_PAUSED_STAGE",
+          "keyword_bid": "",
+          "candidate_cpc_ceiling_usd": "0.15",
+          "observed_current_avg_cpc": "",
+          "observed_current_volume": "",
+          "demand_and_cpc_status": "UNMEASURED",
+          "source": "Model-drafted native intent candidate",
+          "final_url": "https://www.dresslikemommy.com/de/collections/dresses",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE",
+          "intent_evidence_note": "Intent candidate only; current demand and click cost are unmeasured."
+        }
+      }
+    ],
+    "responsive_search_ads.csv": [
+      {
+        "source_csv_row": 2,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "ad_group_key": "ms_us_en_202609_dresses",
+          "ad_key": "ms_us_en_202609_dresses_rsa_1",
+          "ad_type": "ResponsiveSearchAd",
+          "status": "Paused",
+          "headline_1": "Mommy & Me Dresses",
+          "headline_2": "Mother & Daughter Dresses",
+          "headline_3": "Find Your Matching Look",
+          "headline_4": "Dresses for Family Photos",
+          "headline_5": "Choose Sizes for Each Person",
+          "headline_6": "Explore Coordinated Styles",
+          "headline_7": "Browse Mother-Daughter Looks",
+          "headline_8": "Dress Like Mommy",
+          "description_1": "Explore coordinated dresses for mothers and daughters. Find your matching look.",
+          "description_2": "Compare styles and size options for each person before adding items to your bag.",
+          "description_3": "Planning family photos? Browse matching dresses and check the product details.",
+          "path_1": "mommy-and-me",
+          "path_2": "dresses",
+          "final_url": "https://www.dresslikemommy.com/collections/dresses",
+          "final_url_suffix": "utm_source=bing&utm_medium=cpc&utm_campaign=ms_us_en_202609&utm_content=ms_us_en_202609_dresses_rsa_1",
+          "pinning": "Unpinned; no required disclosure relies on headline3 or description2",
+          "native_review": "PENDING",
+          "editorial_review": "NOT_SUBMITTED",
+          "import_schema": "LOCAL_REVIEW_TABLE_NOT_MICROSOFT_BULK",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE"
+        }
+      },
+      {
+        "source_csv_row": 10,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "ad_group_key": "ms_de_de_202609_dresses",
+          "ad_key": "ms_de_de_202609_dresses_rsa_1",
+          "ad_type": "ResponsiveSearchAd",
+          "status": "Paused",
+          "headline_1": "Mutter-Tochter-Kleider",
+          "headline_2": "Kleider im Partnerlook",
+          "headline_3": "Findet Euren Familienlook",
+          "headline_4": "Für Gemeinsame Familienfotos",
+          "headline_5": "Größen für Mutter und Tochter",
+          "headline_6": "Entdeckt Passende Kleider",
+          "headline_7": "Die Kollektion Entdecken",
+          "headline_8": "Dress Like Mommy",
+          "description_1": "Entdeckt aufeinander abgestimmte Kleider für Mutter und Tochter. Findet euren Look.",
+          "description_2": "Vergleicht Modelle und Größen für jede Person, bevor ihr eure Auswahl trefft.",
+          "description_3": "Plant ihr Familienfotos? Entdeckt passende Kleider und lest die Produktdetails.",
+          "path_1": "mutter-tochter",
+          "path_2": "kleider",
+          "final_url": "https://www.dresslikemommy.com/de/collections/dresses",
+          "final_url_suffix": "utm_source=bing&utm_medium=cpc&utm_campaign=ms_de_de_202609&utm_content=ms_de_de_202609_dresses_rsa_1",
+          "pinning": "Unpinned; no required disclosure relies on headline3 or description2",
+          "native_review": "PENDING",
+          "editorial_review": "NOT_SUBMITTED",
+          "import_schema": "LOCAL_REVIEW_TABLE_NOT_MICROSOFT_BULK",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE"
+        }
+      }
+    ],
+    "negative_keywords.csv": [
+      {
+        "source_csv_row": 12,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "sewing pattern",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 13,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "sewing patterns",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 14,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "diy",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 15,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "costume rental",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 16,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "wholesale",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 17,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "svg",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 18,
+        "record": {
+          "campaign_key": "ms_us_en_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "printable",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 80,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "schnittmuster",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 81,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "nähanleitung",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 82,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "selber nähen",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 83,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "verleih",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 84,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "großhandel",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 85,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "svg",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      },
+      {
+        "source_csv_row": 86,
+        "record": {
+          "campaign_key": "ms_de_de_202609",
+          "ad_group_key": "",
+          "scope": "Campaign",
+          "negative_keyword": "druckvorlage",
+          "match_type": "Phrase",
+          "local_state": "PROPOSED_ONLY",
+          "reason": "Strong DIY/rental/wholesale or digital-pattern intent seed; proposal for exact reviewed campaign only, with final negative review still required.",
+          "local_staging_state": "MINIMAL_PAUSED_STAGE_PROPOSAL"
+        }
+      }
+    ]
+  }
+}

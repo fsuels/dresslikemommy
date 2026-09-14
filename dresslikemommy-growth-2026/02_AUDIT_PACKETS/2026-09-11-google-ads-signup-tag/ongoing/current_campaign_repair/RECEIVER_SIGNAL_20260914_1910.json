@@ -1,0 +1,82 @@
+{
+  "schema": "dlm.google_ads.changed_purchase_signal.v1",
+  "recorded_at_utc": "2026-09-14T19:15:14Z",
+  "task_id": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+  "trigger": "New source-owner genuine-order receipt found during intervening heartbeat; routine daily Ads review was not repeated",
+  "source_order_receipt": {
+    "path": "2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_1900_v2.json",
+    "sha256": "c108602199f1f963e6f9eec9e5377bb160b1cb8e58128c43a832097a404bb47f",
+    "source_as_of": "2026-09-14T19:01:25Z",
+    "status": "ROOT_VERIFIED__INDEPENDENT_SOURCE_REVIEW_PENDING",
+    "signal": "Producer reports one new Navy Floral paid noncancelled web order:2units/USD40.82, plus a prior order cancellation. Source owner retains reconciliation and notification.",
+    "new_shopify_query_by_ads_owner": false
+  },
+  "native_readback": {
+    "evidence_level": "LIVE_VERIFIED",
+    "read_window_utc": {
+      "start": "2026-09-14T19:10:48.975Z",
+      "end": "2026-09-14T19:15:14Z"
+    },
+    "account_id": "6509972886",
+    "selected_account_text": "DLM 650-997-2886",
+    "ocid": "8520129103",
+    "purchase_action_id": "7760272273",
+    "native_url": "https://ads.google.com/aw/conversions/detail?ocid=8520129103&ctId=7760272273&showWebpagesTab=true&showDiagnosticsTab=false&showStoreDiagnosticsTab=false&euid=228618707&__u=2136917243&uscid=8520129103&__c=1852023447&authuser=0",
+    "reporting_period": "Today, September14,2026; partial date",
+    "status": "Awaiting conversions",
+    "native_explanation": "Conversions have not been recorded within the last7days; Google says campaign inactivity may explain this.",
+    "all_conversions": 0,
+    "all_conversion_value": 0,
+    "source": "Website",
+    "optimization": "Purchases, Primary action",
+    "count": "Every conversion",
+    "value": "Different values with $1 fallback",
+    "click_window_days": 30,
+    "engaged_view_window_days": 3,
+    "view_window_days": 1,
+    "attribution": "Data-driven; Google paid channels",
+    "enhanced_conversions": "Not configured",
+    "data_source_label": "DLM Manual event",
+    "running_ad_banner": "None of your ads are running"
+  },
+  "decision": "NO_NEW_ADS_RECEIVER_ACCEPTANCE; preserve normal identity/Save and purchase/cost gates. Zero Google-paid conversions do not prove failure to ingest a non-ad-attributed purchase.",
+  "limits": [
+    "Order source independent review remains pending; this is not a new independent order audit.",
+    "No exact Navy Floral GA4 transaction/item match, sender/consent/dedup proof or Google paid attribution was obtained.",
+    "Actual costs, retained revenue/cash, CPA, ROAS and profit remain unqualified.",
+    "No source-owner notification or action is duplicated."
+  ],
+  "actions": {
+    "normal_read_only_conversion_navigation": 1,
+    "campaign_report_date_changes": 0,
+    "save_attempts": 0,
+    "identity_attempts": 0,
+    "editor_rebuilds": 0,
+    "campaign_bid_budget_status_changes": 0,
+    "tracking_goal_consent_changes": 0,
+    "keyword_negative_imports": 0,
+    "shopify_order_queries": 0,
+    "media_feed_changes": 0,
+    "new_schedules": 0,
+    "goal_state_changes": 0
+  },
+  "browser": {
+    "owning_task": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+    "browser_id": "1",
+    "temporary_receiver_tab": "3 closed",
+    "retained_editor_tab": "2",
+    "retained_editor_provider": "browser-use:1b82be59-d2fc-4d4e-ba0a-5368395f7611",
+    "editor_preservation": "Current inventory matched; markHandoff repeated successfully without reopening, reloading, refilling or saving editor"
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-06-01",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "material_decision": "NOT_MATERIAL",
+    "decision_depends_on_uncertain_state": false
+  },
+  "next_action": "Existing source owner completes new order reconciliation and routes exact GA4 receipt qualification through its current owner. Ads owner resumes only on meaningful receiver/access/authority evidence; do not repeat this unchanged new-order check.",
+  "notification_decision": "DONT_NOTIFY: no actionable Ads-state change; parent owns the new-order notification",
+  "canonical_integrator": "01a08223-036e-7fa3-8961-ecd297163fb5"
+}

@@ -41,7 +41,7 @@ SEO_DESCRIPTION = "Blue plaid family set with skirt looks for mom + girls and te
 PRINT_NAME = "Coastal Blue Plaid"
 SHORTCODE = "CBPL"
 COLOR_TOKEN = "BLUE"
-VENDOR_URL = "https://detail.1688.com/offer/921490864577.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
@@ -310,7 +310,7 @@ def tags() -> list[str]:
         "Summer",
         "Vacation",
         "Resort",
-        VENDOR_URL,
+
     ]
     values.extend(row["picker_label"] for row in SIZE_CHART)
     values.extend(row["role"] for row in SIZE_CHART)

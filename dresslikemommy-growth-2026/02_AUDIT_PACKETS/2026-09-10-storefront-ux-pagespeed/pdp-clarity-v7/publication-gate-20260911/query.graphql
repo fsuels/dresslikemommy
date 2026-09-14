@@ -1,0 +1,8 @@
+query VerifiedV7PublicationGate {
+ shop { id name myshopifyDomain }
+ publication: themes(first: 10, roles: [MAIN]) { nodes { id name role processing updatedAt } pageInfo { hasNextPage endCursor } }
+ preview: theme(id: "gid://shopify/OnlineStoreTheme/137888792673") { id name role processing updatedAt files(first: 1000) { nodes { filename checksumMd5 size } pageInfo { hasNextPage endCursor } } }
+ main: theme(id: "gid://shopify/OnlineStoreTheme/133290917985") { id name role processing updatedAt files(first: 1000) { nodes { filename checksumMd5 size } pageInfo { hasNextPage endCursor } } }
+ combined: theme(id: "gid://shopify/OnlineStoreTheme/137881223265") { id name role processing updatedAt files(first: 1000) { nodes { filename checksumMd5 size } pageInfo { hasNextPage endCursor } } }
+}
+

@@ -1,0 +1,418 @@
+{
+  "schema": "dlm.ga4_real_purchase_receiver_independent_review.v1",
+  "recorded_at_utc": "2026-09-14T07:48:26Z",
+  "delegation": "TA02-REAL-PURCHASE-20260914-0718",
+  "reviewer": "/root/tag_repair_review",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "HIGH_FOR_LOCAL_SOURCE_RECONCILIATION",
+  "scope": "Independent local verification of the frozen version 2 receiver finding, its operator checks, the candidate and prior Ads follow-up. Version 1 and its checks were read only to verify preservation and the pagination correction.",
+  "source_hashes": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/GA4_REAL_PURCHASE_RECEIVER_20260914_0718_v2.json",
+      "sha256": "3f829246566c87089456d80ae355d6b5be8c4ea85dbd988a964081737c1c33a1",
+      "role": "reviewed_current_source"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/GA4_REAL_PURCHASE_RECEIVER_CHECKS_20260914_0718_v2.json",
+      "sha256": "3f934f25b3cbcee11c4b766a2b0b19e59a4b8dc856a853683a14c4ace9e548c9",
+      "role": "reviewed_current_source"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/REAL_PURCHASE_CANDIDATE_20260914_0656.json",
+      "sha256": "911e20bb2b92c01ef699673d8b93c5ea130eedbfe226e922a1581cf21339d04d",
+      "role": "reviewed_current_source"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260914_0656.json",
+      "sha256": "465e26121fbf1ae1c3aec1b1340fe89fb6dee9ccffd958b99bfb41e2e7c60b18",
+      "role": "reviewed_current_source"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/GA4_REAL_PURCHASE_RECEIVER_20260914_0718.json",
+      "sha256": "eb1371589bcc5e24a6aac5a962ec53fe809c2d702a1ef97cf468c64a33bd0ea3",
+      "role": "superseded_immutable_history"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/GA4_REAL_PURCHASE_RECEIVER_CHECKS_20260914_0718.json",
+      "sha256": "aa595dea6ac1d5273f4938f77ac89688012a5bb18fcb2695467c2341189a7740",
+      "role": "superseded_immutable_history"
+    }
+  ],
+  "reviewed_receiver_sha256": "3f829246566c87089456d80ae355d6b5be8c4ea85dbd988a964081737c1c33a1",
+  "check_summary": {
+    "independent_local_passed": 43,
+    "independent_local_failed": 0,
+    "independent_local_total": 43,
+    "root_operator_checks_reported": 48,
+    "root_operator_private_or_native_checks_replayed_by_reviewer": 0
+  },
+  "checks": [
+    {
+      "id": "LOCAL-01",
+      "name": "Frozen SHA-256: GA4_REAL_PURCHASE_RECEIVER_20260914_0718_v2.json",
+      "status": "PASS",
+      "evidence": "Computed directly from the assigned local file bytes."
+    },
+    {
+      "id": "LOCAL-02",
+      "name": "Frozen SHA-256: review/GA4_REAL_PURCHASE_RECEIVER_CHECKS_20260914_0718_v2.json",
+      "status": "PASS",
+      "evidence": "Computed directly from the assigned local file bytes."
+    },
+    {
+      "id": "LOCAL-03",
+      "name": "Frozen SHA-256: REAL_PURCHASE_CANDIDATE_20260914_0656.json",
+      "status": "PASS",
+      "evidence": "Computed directly from the assigned local file bytes."
+    },
+    {
+      "id": "LOCAL-04",
+      "name": "Frozen SHA-256: FOLLOWUP_20260914_0656.json",
+      "status": "PASS",
+      "evidence": "Computed directly from the assigned local file bytes."
+    },
+    {
+      "id": "LOCAL-05",
+      "name": "Frozen SHA-256: GA4_REAL_PURCHASE_RECEIVER_20260914_0718.json",
+      "status": "PASS",
+      "evidence": "Computed directly from the assigned local file bytes."
+    },
+    {
+      "id": "LOCAL-06",
+      "name": "Frozen SHA-256: review/GA4_REAL_PURCHASE_RECEIVER_CHECKS_20260914_0718.json",
+      "status": "PASS",
+      "evidence": "Computed directly from the assigned local file bytes."
+    },
+    {
+      "id": "LOCAL-07",
+      "name": "Version 2 and operator receipt bind preserved version 1",
+      "status": "PASS",
+      "evidence": "Version 1 and its operator checks retain their original hashes."
+    },
+    {
+      "id": "LOCAL-08",
+      "name": "Candidate and historical Ads source bindings",
+      "status": "PASS",
+      "evidence": "Both cross-references match the independently hashed candidate and follow-up."
+    },
+    {
+      "id": "LOCAL-09",
+      "name": "Operator check receipt is internally consistent",
+      "status": "PASS",
+      "evidence": "These are 48 root/operator checks, including private and native checks; they are not 48 independently replayed checks by this reviewer."
+    },
+    {
+      "id": "LOCAL-10",
+      "name": "Version 2 delta remains limited to pagination and revision metadata",
+      "status": "PASS",
+      "evidence": "Transaction evidence, candidate, reported values, date scope, acceptance limits and authority conditions are unchanged."
+    },
+    {
+      "id": "LOCAL-11",
+      "name": "Account and action identities are coherent across supplied sources",
+      "status": "PASS",
+      "evidence": "Identity consistency is verified in local sources; account surfaces were not accessed by this reviewer."
+    },
+    {
+      "id": "LOCAL-12",
+      "name": "New York conversion and daylight offset",
+      "status": "PASS",
+      "evidence": "UTC 2026-09-14 03:39:45 is September 13 at 23:39:45 in New York."
+    },
+    {
+      "id": "LOCAL-13",
+      "name": "Reporting day UTC boundaries",
+      "status": "PASS",
+      "evidence": "Computed with zoneinfo; the end is exclusive."
+    },
+    {
+      "id": "LOCAL-14",
+      "name": "Candidate creation lies inside the recorded extraction window",
+      "status": "PASS",
+      "evidence": "The extraction window crosses the New York date boundary; only this candidate is reconciled, not a claimed full-day or full-cohort ledger."
+    },
+    {
+      "id": "LOCAL-15",
+      "name": "Created and processed timestamps both belong to the selected GA4 date",
+      "status": "PASS",
+      "evidence": "The recorded processed timestamp precedes creation by 7 seconds; both belong to the same reporting date. No unsupported causal chronology is inferred."
+    },
+    {
+      "id": "LOCAL-16",
+      "name": "Complete calendar day is separated from processing finality",
+      "status": "PASS",
+      "evidence": "The date ended before capture, but native intraday/mostly-complete warnings remain; unsampled means available data, not final data."
+    },
+    {
+      "id": "LOCAL-17",
+      "name": "Candidate is a recorded non-test paid web US order",
+      "status": "PASS",
+      "evidence": "The candidate is paid and unfulfilled as recorded; this does not establish ad attribution, fulfillment success or retained profit."
+    },
+    {
+      "id": "LOCAL-18",
+      "name": "Candidate pagination and quantity are bounded and complete in its receipt",
+      "status": "PASS",
+      "evidence": "One candidate and four lines; this check does not reread or generalize the order ledger."
+    },
+    {
+      "id": "LOCAL-19",
+      "name": "Candidate money bags and reporting currency agree in USD",
+      "status": "PASS",
+      "evidence": "Both Shopify money-bag currencies and property reporting currency are USD; raw GA4 event currency is not exposed."
+    },
+    {
+      "id": "LOCAL-20",
+      "name": "This sample has no tax, shipping charge or refund and no line discount",
+      "status": "PASS",
+      "evidence": "This sample cannot validate currency conversion or tax, shipping, refund and discount treatment in other orders."
+    },
+    {
+      "id": "LOCAL-21",
+      "name": "One transaction and one reported purchase",
+      "status": "PASS",
+      "evidence": "Verified consistency of the root transaction-report receipt, not an independent native transaction read."
+    },
+    {
+      "id": "LOCAL-22",
+      "name": "Reported purchase revenue matches candidate total exactly",
+      "status": "PASS",
+      "evidence": "Decimal arithmetic; this is reported revenue, not verified raw event value or profit."
+    },
+    {
+      "id": "LOCAL-23",
+      "name": "Four distinct public product/variant joins",
+      "status": "PASS",
+      "evidence": "One public Shopify product 7505374838881 and four public variants; matching does not use private order identifiers."
+    },
+    {
+      "id": "LOCAL-24",
+      "name": "Public variant quantity and revenue: 43740397797473",
+      "status": "PASS",
+      "evidence": "shopify_US_7505374838881_43740397797473; quantity 1; USD 26.99."
+    },
+    {
+      "id": "LOCAL-25",
+      "name": "Public variant quantity and revenue: 43740397863009",
+      "status": "PASS",
+      "evidence": "shopify_US_7505374838881_43740397863009; quantity 1; USD 24.99."
+    },
+    {
+      "id": "LOCAL-26",
+      "name": "Public variant quantity and revenue: 43740397928545",
+      "status": "PASS",
+      "evidence": "shopify_US_7505374838881_43740397928545; quantity 1; USD 24.99."
+    },
+    {
+      "id": "LOCAL-27",
+      "name": "Public variant quantity and revenue: 43740398125153",
+      "status": "PASS",
+      "evidence": "shopify_US_7505374838881_43740398125153; quantity 1; USD 34.99."
+    },
+    {
+      "id": "LOCAL-28",
+      "name": "Item names and all public row totals reconcile",
+      "status": "PASS",
+      "evidence": "Four quantities and USD111.96 agree across the two aggregate item reports, transaction report and candidate."
+    },
+    {
+      "id": "LOCAL-29",
+      "name": "Recorded full pagination resolves the first-page coverage inference",
+      "status": "PASS",
+      "evidence": "Root expanded and parsed the native report. This reviewer verifies the recorded coverage summary and its arithmetic, not a native replay or all 36 raw rows."
+    },
+    {
+      "id": "LOCAL-30",
+      "name": "Recorded other-row zero values, no negatives and totals are coherent",
+      "status": "PASS",
+      "evidence": "The supplemental native observation records 32 other rows with zero purchased quantity and revenue, on unchanged September 13 scope."
+    },
+    {
+      "id": "LOCAL-31",
+      "name": "Aggregate item matching is not promoted to a raw transaction join",
+      "status": "PASS",
+      "evidence": "The item dimension is aggregate, despite the matching date, public IDs, quantity and revenue."
+    },
+    {
+      "id": "LOCAL-32",
+      "name": "Private identity verification is attributed to root with replay limit",
+      "status": "PASS",
+      "evidence": "The query text requests only the two identity fields. Schema validation, private exact match and runtime clearing are root-reported, not independently reproduced."
+    },
+    {
+      "id": "LOCAL-33",
+      "name": "Redacted source shape and privacy boundary",
+      "status": "PASS",
+      "evidence": "No raw Order GID or email-shaped value was found in the six supplied artifacts. The unknown private numeric identifier/digest and actual runtime deletion cannot be independently checked without the excluded private source."
+    },
+    {
+      "id": "LOCAL-34",
+      "name": "Native missing-session/ad_user_data warning retains causal limits",
+      "status": "PASS",
+      "evidence": "This is a report-level diagnostic, not reproduced event sequencing or an individual consent decision."
+    },
+    {
+      "id": "LOCAL-35",
+      "name": "All Users and not-set attribution are preserved without country filtering",
+      "status": "PASS",
+      "evidence": "United States is the property reporting-country setting and the candidate shipping country; the report was not filtered to a US audience."
+    },
+    {
+      "id": "LOCAL-36",
+      "name": "Raw event currency remains unverified",
+      "status": "PASS",
+      "evidence": "Matching USD property reports and Shopify amounts cannot establish the transmitted raw event currency."
+    },
+    {
+      "id": "LOCAL-37",
+      "name": "Sender deduplication remains unverified",
+      "status": "PASS",
+      "evidence": "One displayed transaction and one purchase do not establish the number or deduplication of emitted purchase events."
+    },
+    {
+      "id": "LOCAL-38",
+      "name": "No new Ads read is distinguished from the prior zero-conversion action read",
+      "status": "PASS",
+      "evidence": "The earlier action7760272273 readback is reused and cannot be described as newly read or as proof that Ads tracking failed."
+    },
+    {
+      "id": "LOCAL-39",
+      "name": "PAID financial status and direct Shopify journey do not imply Ads acquisition",
+      "status": "PASS",
+      "evidence": "Direct/no-UTM journey does not independently establish or exclude Google Ads attribution under another attribution model."
+    },
+    {
+      "id": "LOCAL-40",
+      "name": "Profit, other markets and launch acceptance remain open",
+      "status": "PASS",
+      "evidence": "The sample does not establish costs, retained profit, other-market purchase accuracy or paid-launch readiness."
+    },
+    {
+      "id": "LOCAL-41",
+      "name": "Source declares no production writes and retained editor/report boundaries",
+      "status": "PASS",
+      "evidence": "These are root action records. Reviewer separately made no external calls and only writes the assigned independent review receipt."
+    },
+    {
+      "id": "LOCAL-42",
+      "name": "Authority stays read-only and paused baseline is not refreshed or enabled",
+      "status": "PASS",
+      "evidence": "The supplied earlier Ads baseline is paused; this review neither refreshes campaign state nor creates any spend or production authority."
+    },
+    {
+      "id": "LOCAL-43",
+      "name": "Earlier pending receiver status is a dated predecessor, not silently complete",
+      "status": "PASS",
+      "evidence": "The newer report evidence resolves only the reported ingestion/value/public-item subset; raw event, consent and dedup remain open."
+    }
+  ],
+  "date_and_revenue_reconciliation": {
+    "ga4_property_id": "330266838",
+    "reporting_timezone": "America/New_York",
+    "reporting_date": "2026-09-13",
+    "day_start_utc": "2026-09-13T04:00:00Z",
+    "day_end_exclusive_utc": "2026-09-14T04:00:00Z",
+    "candidate_created_at_utc": "2026-09-14T03:39:45Z",
+    "candidate_created_in_reporting_timezone": "2026-09-13T23:39:45-04:00",
+    "reported_purchases": 1,
+    "reported_purchase_revenue_usd": "111.96",
+    "matched_item_quantity": 4,
+    "matched_item_revenue_usd": "111.96",
+    "calendar_day_complete_at_capture": true,
+    "processing_finality": "NOT_FINAL_INTRADAY"
+  },
+  "public_item_matches": [
+    {
+      "item_id": "shopify_US_7505374838881_43740397797473",
+      "public_product_id": "7505374838881",
+      "public_variant_id": "43740397797473",
+      "candidate_current_quantity": 1,
+      "candidate_original_quantity": 1,
+      "ga4_reported_quantity": 1,
+      "candidate_discounted_line_total_usd": "26.99",
+      "ga4_reported_item_revenue_usd": "26.99",
+      "match": "VERIFIED_FROM_SAVED_PUBLIC_ROWS"
+    },
+    {
+      "item_id": "shopify_US_7505374838881_43740397863009",
+      "public_product_id": "7505374838881",
+      "public_variant_id": "43740397863009",
+      "candidate_current_quantity": 1,
+      "candidate_original_quantity": 1,
+      "ga4_reported_quantity": 1,
+      "candidate_discounted_line_total_usd": "24.99",
+      "ga4_reported_item_revenue_usd": "24.99",
+      "match": "VERIFIED_FROM_SAVED_PUBLIC_ROWS"
+    },
+    {
+      "item_id": "shopify_US_7505374838881_43740397928545",
+      "public_product_id": "7505374838881",
+      "public_variant_id": "43740397928545",
+      "candidate_current_quantity": 1,
+      "candidate_original_quantity": 1,
+      "ga4_reported_quantity": 1,
+      "candidate_discounted_line_total_usd": "24.99",
+      "ga4_reported_item_revenue_usd": "24.99",
+      "match": "VERIFIED_FROM_SAVED_PUBLIC_ROWS"
+    },
+    {
+      "item_id": "shopify_US_7505374838881_43740398125153",
+      "public_product_id": "7505374838881",
+      "public_variant_id": "43740398125153",
+      "candidate_current_quantity": 1,
+      "candidate_original_quantity": 1,
+      "ga4_reported_quantity": 1,
+      "candidate_discounted_line_total_usd": "34.99",
+      "ga4_reported_item_revenue_usd": "34.99",
+      "match": "VERIFIED_FROM_SAVED_PUBLIC_ROWS"
+    }
+  ],
+  "resolved_review_note": {
+    "issue": "Version 1 inferred complete purchased-row coverage from first-page totals while pages beyond row 10 had not been inspected. Arithmetic alone was not an exhaustive 36-row audit.",
+    "resolution": "Version 2 records root expansion to 50 rows, pagination 1-36 of 36, four nonzero purchased rows and 32 other rows with zero purchased quantity and revenue, with no negative rows and unchanged September 13 scope. The provisional inference fields were removed.",
+    "status": "RESOLVED_BY_ROOT_SUPPLEMENTAL_NATIVE_READ_WITH_SOURCE_BOUND_REVIEW",
+    "independence_limit": "Reviewer verified revision hashes, recorded coverage predicates and public-row arithmetic; reviewer did not inspect the native 36-row report or replay the operator parser."
+  },
+  "independence": {
+    "built_or_executed_receiver_change": false,
+    "native_or_connector_access": "NOT_RUN",
+    "private_parent_source_access": "NOT_RUN",
+    "private_transaction_join_replay": "NOT_RUN",
+    "schema_introspection_or_identity_query_replay": "NOT_RUN",
+    "raw_runtime_clearance_verification": "NOT_RUN",
+    "statement": "Root reports an exact private transaction-ID match to a schema-validated minimal Shopify legacyResourceId query and subsequent runtime clearing. Redacted artifacts do not permit independent replay of that join, verification of the excluded identifier/digest, or verification of runtime clearing. This PASS is for bounded saved-source reconciliation, not independent live acceptance."
+  },
+  "acceptance_limits": [
+    "One reported purchase and four matching public item rows support bounded GA4 report-level ingestion/value/item evidence for this US sample. The item report is aggregate and is not a raw item payload joined to the transaction row.",
+    "GA4 reporting currency USD is not proof of raw event currency. This zero-tax, zero-shipping, zero-refund, undiscounted sample does not validate those treatments or currency conversion for other orders.",
+    "The completed New York calendar date still has native intraday and mostly-complete data warnings. Unsampled means 100% of available data, not final processing.",
+    "The native session_start/ad_user_data warning is a report-level diagnostic. No underlying event ordering or individual consent choice was independently observed or reproduced; no production correction is authorized by the warning alone.",
+    "One displayed transaction does not establish sender deduplication. No synthetic purchase or replay is needed or authorized by this review.",
+    "No new Ads read occurred in the receiver pass. The earlier Awaiting conversions/zero-conversion action read is a dated baseline and does not prove failure; Shopify PAID status is not paid-media attribution.",
+    "Costs, retained profit, Ads attribution, full measurement acceptance, international accuracy and launch readiness remain unresolved. Existing paused campaign status is a prior source fact, not newly verified here."
+  ],
+  "privacy": {
+    "raw_order_or_transaction_identifiers_copied": false,
+    "customer_contact_copied": false,
+    "private_source_path_or_comparison_digest_copied": false,
+    "public_product_and_variant_ids_only": true,
+    "private_source_not_accessed": true,
+    "limits": "Local redacted-artifact checks do not independently prove exclusion of an unknown private numeric identifier or verify deletion of private runtime values."
+  },
+  "reviewer_actions": {
+    "assigned_local_review_receipts_written": 1,
+    "external_calls": 0,
+    "browser_or_account_actions": 0,
+    "private_source_reads": 0,
+    "production_writes": 0,
+    "shared_canonical_worklog_queue_cockpit_writes": 0,
+    "source_artifacts_modified": 0
+  },
+  "material_unresolved_contradictions": [],
+  "next_action": {
+    "owner": "Existing tag/consent owner under parent coordination",
+    "action": "Diagnose the reported missing-session/ad_user_data ordering warning through normal read-only access.",
+    "why_first": "It is the specific observed diagnostic still limiting session and attribution interpretation; retain all measurement, economics and paid gates while collecting evidence.",
+    "authority": "Read-only diagnosis only; any production change needs its exact reviewed scope."
+  }
+}

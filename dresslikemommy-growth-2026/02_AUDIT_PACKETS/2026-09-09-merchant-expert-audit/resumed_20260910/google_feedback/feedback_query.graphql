@@ -1,0 +1,7 @@
+query MerchantProductFeedback($after:String) {
+  shop { id }
+  products(first:50, after:$after, query:"status:active") {
+    nodes { id title status feedback { summary details { feedbackGeneratedAt state app { id title } messages { message } link { label url } } } }
+    pageInfo { hasNextPage endCursor }
+  }
+}

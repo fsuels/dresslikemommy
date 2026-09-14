@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "verified_at_utc": "2026-09-14T17:53:35.106433+00:00",
+  "status": "PASS",
+  "checkpoint_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+  "before_sha256": "59a484082220caf940469c3ffaccf572a8e99c542071f669c350057c679e0ff6",
+  "after_sha256": "e249c205bf69c7c3c2c422a3378aaa4304d95caabab958431ac79dbd9f43dbbe",
+  "before_snapshot_path": "/private/tmp/dlm-hb1658-final-checkpoint-before.json",
+  "closeout": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_closeout_20260914_1658.json",
+    "sha256": "04acda21dee1699618db60b2760f7923200f875d50e149bb35aeb0b0275347e7"
+  },
+  "target_wake": "2026-09-14T16:58:18.578Z",
+  "canonical_anchor": "2026-09-14-ceo-return-coverage-prerequisite-and-x-report",
+  "scheduled_wakes_preserved_count": 59,
+  "owner_records_preserved_count": 40,
+  "updated_owner_indices": [
+    38,
+    39
+  ],
+  "all_previous_wakes_unchanged": true,
+  "first38_owner_records_unchanged": true,
+  "all_non_target_checkpoint_fields_unchanged": true,
+  "all_ancestor_and_sibling_fields_unchanged": true,
+  "previous_canonical_chain_preserved": true,
+  "json_after_readback_equal": true,
+  "runtime_goal_heartbeat_and_original_business_clocks_unchanged": true,
+  "post_checkpoint_strict_continuity": {
+    "checked_at_utc": "2026-09-14T17:53:52.646336+00:00",
+    "command": [
+      "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "ops/scripts/check_continuity_integrity.py",
+      "--strict"
+    ],
+    "exit_code": 0,
+    "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 51419 lines; latest anchor 2026-09-14-ceo-return-coverage-prerequisite-and-x-report\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-14-ceo-return-coverage-prerequisite-and-x-report\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+    "stderr": ""
+  }
+}

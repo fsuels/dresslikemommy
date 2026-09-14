@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-11T20:23:29.487755+00:00",
+  "verdict": "PASS_LOCAL_LANDING_PLAN_V2_WITH_LIMITS",
+  "native_search_creation": "HOLD_NO_VERIFIED_PAUSED_SAVE",
+  "reviewer": "/root/international_campaign_build",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "scope": "14 local fields: ten final_url, two landing_resource, two landing_evidence; root receipts compared, no independent browser or connector replay",
+  "inputs_sha256": {
+    "landing_revision_receipt.json": "be0d3d58a56cec1655c9ece716cf6fe27a32717ee7340ed5412c077869bca0d7",
+    "landing_revision_plan.json": "fa00f08d8bf8dca34dc348cd91ba3aac15b77605c31ca6548cf836e780b5b534",
+    "native_search_creation_readback.json": "74077394bd7aff6d1ea11e64e3119db00f4620f08ef9e3c3bf73a711eaa46bad",
+    "ad_groups.csv": "448a80f4b78fd0fdc5f94a557e2c512f0959f7d2390743923e4f365eb6b868d8",
+    "keywords.csv": "658a8fef354ae4a299b2692d0dfda50f8c08a9d5f0c2d4fceb0c78351e53e94e",
+    "responsive_search_ads.csv": "0f8e442dbc8e7d5fc8e5424892ee4a357bf412edd0afdf843eac04c97f000eaa",
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839",
+    "campaign_plan.md": "1617edecc07323215c080245930d051a8e5e7017fdc216d20f73d4cf843a58f0",
+    "landing_revision_plan_v2.json": "973657f413ce2078eb37aa1318dc092381e093a485e648b492358b41a27a4184",
+    "dresses_collection_source.json": "c6e4dead25d0548ecf0c21bef43b4ec91bef6f125f7d1254e149c1bd4f23c48b"
+  },
+  "check_count": 8,
+  "checks": [
+    {
+      "id": "L1",
+      "result": "PASS",
+      "finding": "All three CSV before hashes still match V2; V2 retains the original ten URL edits byte-for-byte and adds exactly four provenance fields. All evidence hashes captured."
+    },
+    {
+      "id": "L2",
+      "result": "PASS",
+      "finding": "Exactly ten unique cells: ad_groups rows 0,8; keywords rows 0,1,2,56,57,58; responsive_search_ads rows 0,8. This is the complete minimal local stage: 2 groups, 6 Exact keywords, 2 RSAs, US English and Germany German."
+    },
+    {
+      "id": "L3",
+      "result": "PASS",
+      "finding": "Every target has matching campaign/ad-group identity, Paused status, MINIMAL_PAUSED_STAGE, exact before URL and country-specific proposed /collections/dresses URL; no reserve/tee row is targeted."
+    },
+    {
+      "id": "L4",
+      "result": "PASS",
+      "finding": "Independent in-memory V2 application changes 14 fields and preserves 3304 other parsed cells. Other rows, status, creative, rendered_buyer_path_verified=false and all launch holds remain unchanged. Root must verify exact-byte preservation and inverse after applying."
+    },
+    {
+      "id": "L5",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "Dated root desktop receipt supports closer matching-dress intent: US first five products are matching dresses; Germany Deutsch/EUR selection exposes corresponding collection/first product. It does not establish pure-dress assortment, price durability, inventory, checkout, shipping, native-language quality or paid readiness."
+    },
+    {
+      "id": "L6",
+      "result": "PASS_RESOLVED",
+      "finding": "V2 corrects both landing_resource IDs to dresses collection 240127941 and both dated landing_evidence strings. Root sanitized structured source explicitly binds handle dresses to this ID. Admin134 is distinct from rendered37; no full assortment or live theme reconciliation is inferred."
+    },
+    {
+      "id": "L7",
+      "result": "PASS_HOLD_NATIVE_SAVE",
+      "finding": "No native campaign/save is recorded. Exact Microsoft Help guide 51033 was read via its indexed official result after direct open returned Oops. It states final Go live and Save & exit can start Search ads. This does not establish what first-step Save & go to next step persists. No safe Paused/draft state is proved; do not assume local CSV Paused or another campaign-type wizard controls this Search flow."
+    },
+    {
+      "id": "L8",
+      "result": "PASS_HOLD_DEFAULTS",
+      "finding": "Native Canada+US and presence-or-interest defaults differ from the intended country-specific stage. Any future qualified creation must explicitly set intended country, presence-only geography and campaign language, plus reviewed cost/control settings, before an authorized activation. No such save is approved by this local review."
+    }
+  ],
+  "provenance_condition": "V1 metadata caveat resolved by the exact four additional V2 fields. Root source is a sanitized structured receipt, not independent connector replay. Admin134/public37 remain distinct.",
+  "activation_authority_added": false,
+  "next_action": "Root may apply exact V2 locally after fresh source guards and verify 14-field inverse/readback. Keep native Search creation and paid launch held.",
+  "primary_sources": [
+    {
+      "url": "https://help.ads.microsoft.com/apex/index/3/en-us/51033",
+      "retrieval": "2026-09-11 official indexed search result; direct web open returned Oops",
+      "supports": "Final Search Go live and Save & exit can initiate serving; not a guarantee about first-step save behavior"
+    }
+  ],
+  "revision_history": [
+    {
+      "superseded_review_sha256": "6e2d930ed17c3e73d3eb9438b75832d23e03eeff980fc9dd29b2a865bddc2792",
+      "plan": "landing_revision_plan.json",
+      "plan_sha256": "fa00f08d8bf8dca34dc348cd91ba3aac15b77605c31ca6548cf836e780b5b534",
+      "verdict": "PASS_LOCAL_URL_PLAN_WITH_LIMITS",
+      "limitation": "Old collection identity in retained metadata required supersession/correction; resolved in V2."
+    }
+  ],
+  "changed_fields_count": 14,
+  "changed_field_counts": {
+    "final_url": 10,
+    "landing_resource": 2,
+    "landing_evidence": 2
+  }
+}

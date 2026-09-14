@@ -1,0 +1,376 @@
+TAP version 13
+# Subtest: Drawer: a cached DKK amount never appears as dollars or any stale price
+not ok 1 - Drawer: a cached DKK amount never appears as dollars or any stale price
+  ---
+  duration_ms: 1.379042
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:98:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /href="\/da\/products\/skyfade-family-matching-set"/. Input:
+    
+    '<a href="/products/skyfade-family-matching-set" class="cart-drawer__upsell-item"><img src="https://cdn.shopify.com/skyfade.jpg" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">Skyfade Family Matching Set</span><span class="cart-drawer__upsell-price">$131.0</span></div></a>'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '<a href="/products/skyfade-family-matching-set" class="cart-drawer__upsell-item"><img src="https://cdn.shopify.com/skyfade.jpg" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">Skyfade Family Matching Set</span><span class="cart-drawer__upsell-price">$131.0</span></div></a>'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:101:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: Page: a cached DKK amount never appears as dollars or any stale price
+not ok 2 - Page: a cached DKK amount never appears as dollars or any stale price
+  ---
+  duration_ms: 0.606959
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:98:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /href="\/da\/products\/skyfade-family-matching-set"/. Input:
+    
+    '<a href="/products/skyfade-family-matching-set" class="cart-page__cross-sell-item"><div class="cart-page__cross-sell-img-wrap"><img src="https://cdn.shopify.com/skyfade.jpg" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div><div class="cart-page__cross-sell-info"><span class="cart-page__cross-sell-name">Skyfade Family Matching Set</span><span class="cart-page__cross-sell-price">$131.0</span></div></a>'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '<a href="/products/skyfade-family-matching-set" class="cart-page__cross-sell-item"><div class="cart-page__cross-sell-img-wrap"><img src="https://cdn.shopify.com/skyfade.jpg" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div><div class="cart-page__cross-sell-info"><span class="cart-page__cross-sell-name">Skyfade Family Matching Set</span><span class="cart-page__cross-sell-price">$131.0</span></div></a>'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:101:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: switch from /da/products/skyfade-family-matching-set to /fr/ keeps exactly the current locale
+not ok 3 - switch from /da/products/skyfade-family-matching-set to /fr/ keeps exactly the current locale
+  ---
+  duration_ms: 2.522375
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:114:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(page.html(surface).includes(`href="${expected}"`))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:117:14)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: switch from /fr/products/skyfade-family-matching-set to /da/ keeps exactly the current locale
+not ok 4 - switch from /fr/products/skyfade-family-matching-set to /da/ keeps exactly the current locale
+  ---
+  duration_ms: 0.418541
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:114:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(page.html(surface).includes(`href="${expected}"`))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:117:14)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: switch from /da/products/skyfade-family-matching-set to / keeps exactly the current locale
+not ok 5 - switch from /da/products/skyfade-family-matching-set to / keeps exactly the current locale
+  ---
+  duration_ms: 0.306167
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:114:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(page.html(surface).includes(`href="${expected}"`))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:117:14)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: switch from /da/products/skyfade-family-matching-set to /da/ keeps exactly the current locale
+ok 6 - switch from /da/products/skyfade-family-matching-set to /da/ keeps exactly the current locale
+  ---
+  duration_ms: 0.291583
+  type: 'test'
+  ...
+# Subtest: switch from /fr-ca/products/skyfade-family-matching-set?currency=CAD&country=CA to /da keeps exactly the current locale
+not ok 7 - switch from /fr-ca/products/skyfade-family-matching-set?currency=CAD&country=CA to /da keeps exactly the current locale
+  ---
+  duration_ms: 0.288291
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:114:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(page.html(surface).includes(`href="${expected}"`))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:117:14)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: untrusted stored text remains text and image attributes cannot break out
+not ok 8 - untrusted stored text remains text and image attributes cannot break out
+  ---
+  duration_ms: 0.294292
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:123:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /&lt;img src=x onerror=&quot;alert\(1\)&quot;&gt;/. Input:
+    
+    `<a href="/products/skyfade-family-matching-set" class="cart-drawer__upsell-item"><img src="https://cdn.shopify.com/a.jpg?q=" onerror="alert(3)&x=1" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name"><img src=x onerror="alert(1)"> & Mom's <script>alert(2)</script></span><span class="cart-drawer__upsell-price">$131.0</span></div></a>`
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: `<a href="/products/skyfade-family-matching-set" class="cart-drawer__upsell-item"><img src="https://cdn.shopify.com/a.jpg?q=" onerror="alert(3)&x=1" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name"><img src=x onerror="alert(1)"> & Mom's <script>alert(2)</script></span><span class="cart-drawer__upsell-price">$131.0</span></div></a>`
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:127:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: external, executable, invalid, and non-product links are not rendered
+not ok 9 - external, executable, invalid, and non-product links are not rendered
+  ---
+  duration_ms: 0.325458
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:135:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /Rejected card|other\.example|javascript:|data:text/. Input:
+    
+    '<a href="https://other.example/products/skyfade" class="cart-drawer__upsell-item"><img src="https://cdn.shopify.com/skyfade.jpg" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">Rejected card</span><span class="cart-drawer__upsell-price">$131.0</span></div></a><a href="//other.example/products/skyfade" class="cart-drawer__upsell-item"><img src="https://cdn.shopify.com/skyfade.jpg" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">Rejected card</span><span class="cart-drawer__upsell-price">$131.0</span></div></a><a href="javascript:alert(1)" class="cart-drawer__upsell-item"><img src="https://cdn.shopify.com/skyfade.jpg" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">Rejected card</span><span class="cart-drawer__upsell-price">$131.0</span></div></a>'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '<a href="https://other.example/products/skyfade" class="cart-drawer__upsell-item"><img src="https://cdn.shopify.com/skyfade.jpg" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">Rejected card</span><span class="cart-drawer__upsell-price">$131.0</span></div></a><a href="//other.example/products/skyfade" class="cart-drawer__upsell-item"><img src="https://cdn.shopify.com/skyfade.jpg" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">Rejected card</span><span class="cart-drawer__upsell-price">$131.0</span></div></a><a href="javascript:alert(1)" class="cart-drawer__upsell-item"><img src="https://cdn.shopify.com/skyfade.jpg" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">Rejected card</span><span class="cart-drawer__upsell-price">$131.0</span></div></a>'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:152:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: unsafe image schemes are omitted while a valid product remains clickable
+not ok 10 - unsafe image schemes are omitted while a valid product remains clickable
+  ---
+  duration_ms: 0.346875
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:157:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /href="\/da\/products\//. Input:
+    
+    '<a href="/products/skyfade-family-matching-set" class="cart-drawer__upsell-item"><img src="javascript:alert(1)" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">Skyfade Family Matching Set</span><span class="cart-drawer__upsell-price">$131.0</span></div></a>'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '<a href="/products/skyfade-family-matching-set" class="cart-drawer__upsell-item"><img src="javascript:alert(1)" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img"><div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">Skyfade Family Matching Set</span><span class="cart-drawer__upsell-price">$131.0</span></div></a>'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:161:14)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: malformed, non-array, or unavailable storage leaves the empty cart usable
+ok 11 - malformed, non-array, or unavailable storage leaves the empty cart usable
+  ---
+  duration_ms: 1.447833
+  type: 'test'
+  ...
+# Subtest: a localized product visit is tracked once and its empty-cart drawer renders
+not ok 12 - a localized product visit is tracked once and its empty-cart drawer renders
+  ---
+  duration_ms: 1.07975
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:177:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:190:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: a product visit recovers from non-array history and storage denial remains harmless
+not ok 13 - a product visit recovers from non-array history and storage denial remains harmless
+  ---
+  duration_ms: 0.863208
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:198:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    undefined !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:204:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: history stays bounded, deduplicates past locales, and respects card limits
+not ok 14 - history stays bounded, deduplicates past locales, and respects card limits
+  ---
+  duration_ms: 0.722042
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:208:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:214:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: DOM readiness and an empty-cart replacement both render history
+not ok 15 - DOM readiness and an empty-cart replacement both render history
+  ---
+  duration_ms: 0.760125
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:217:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /Skyfade Family Matching Set/. Input:
+    
+    ''
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: ''
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:227:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: the existing quantity count and subtotal refresh targets stay intact
+not ok 16 - the existing quantity count and subtotal refresh targets stay intact
+  ---
+  duration_ms: 0.403417
+  type: 'test'
+  location: '/private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:231:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'selector')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (file:///private/tmp/dlm-cart-draft-validation-y88l993t/baseline/ops/tests/test_cart_recently_viewed.mjs:234:76)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 2
+# fail 14
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 49.559292

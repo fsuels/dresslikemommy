@@ -1,0 +1,26 @@
+{
+  "schema": "dlm.merchant_followup_validation.v1",
+  "task_id": "TA07-ELIGIBILITY-RETURN-COVERAGE-20260914-1236",
+  "executor_checks": "28/28PASS",
+  "scoped_git_diff_check": {
+    "command": "git diff --check -- [own dated folder] [own execution checkpoint]",
+    "exit_code": 0,
+    "limit": "Git diff does not validate contents of untracked files; JSON parse and cross-source comparisons ran separately."
+  },
+  "strict_continuity": {
+    "initial_command": "python3 ops/scripts/check_continuity_integrity.py --strict",
+    "initial_result": "NOT RUN to completion: system Python3.9.6 below required3.10",
+    "successful_command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/check_continuity_integrity.py --strict",
+    "exit_code": 0,
+    "result": "CONTINUITY_OK",
+    "shared_canonical_changes": 0
+  },
+  "cleanup": {
+    "public_return_tab10": "Closed",
+    "merchant_tab5": "Retained with markHandoff on existing US10727274744 source details",
+    "no_unsaved_changes": true,
+    "no_other_task_tabs_touched": true
+  },
+  "independent_review": "Pending parent; no corrective release is approved by executor checks.",
+  "root_shared_lease": "Preserved"
+}

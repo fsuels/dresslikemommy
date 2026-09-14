@@ -1,0 +1,58 @@
+{
+  "reviewed_at_utc": "2026-09-12T10:52:51.465112+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "verdict": "PASS_WITH_LIMITS_FOR_SUPPORTED_PUBLISHER_ESCALATION",
+  "check_count": 20,
+  "checks": {
+    "all_four_input_hashes_frozen": true,
+    "wrapper_byte_length_and_embedded_receipt_hash_match": true,
+    "exact_account_customer_uet_bound": true,
+    "before_after_denial_explicit": true,
+    "observed_request_exact_scoped_page_load_without_asc": true,
+    "receiver_three_missing_signal_rows_qualified": true,
+    "no_per_hit_join_claim": true,
+    "truncated_network_positive_evidence_only": true,
+    "wrapper_attribution_is_explicit_inference": true,
+    "source_standard_loader_and_page_load_semantics": true,
+    "source_no_explicit_privacy_or_consent_commands": true,
+    "source_conditional_checkout_branch_recorded_without_runtime_claim": true,
+    "strict_app_purpose_configuration_preserved": true,
+    "identifier_semantics_not_assumed": true,
+    "manual_privacy_review_minimized_report_and_trace": true,
+    "final_support_body_fresh_consent_scope_only": true,
+    "no_speculative_bridge_or_extra_sender_claim": true,
+    "unsupported_outcomes_excluded": true,
+    "existing_send_boundary_retained": true,
+    "readback_and_support_preserve_required_next_validation": true
+  },
+  "exact_inputs_sha256": {
+    "receiver_consent_trace.json": "3065fecb0007b9e8554e5460a7ae8b08df78c5657d6caaba9d7f9e17e97f129a",
+    "standard_publisher_observed.js": "171802eab48befd7660099e6ad8c6d0423c14bfeb2b866b14b30694d7f7bce3a",
+    "support_request_ready.md": "563eafeeea48a8b6506f70a1c7e3de8ac3028c091c29e3e4753d92d4ecbfbffe",
+    "READBACK.md": "6bd805bd1574fa27d11913549aff0e684024da9a23104a98f239d5bf0db3a6b5"
+  },
+  "earlier_support_body_sha256_superseded": "65df664441195236b57093983d5c24ef34e1aa888b9d3cf393329767eabb86b5",
+  "review_corrections_before_final_verdict": [
+    "Final report now exposes other/no call stack and labels wrapper attribution as an inference.",
+    "Historical cookie and app-home paragraphs removed; exact send scope is fresh consent evidence."
+  ],
+  "critical_premise_challenged": "Loading-chain and matching-page evidence is not a final-request call stack or per-hit receiver join. It supports a qualified publisher investigation, not definitive assignment of all observed events to one component or a speculative local bridge.",
+  "source_extraction_findings": {
+    "verified": "Bound extracted file is exactly 639 bytes, loads standard bat.js, creates UET36005151 and queues pageLoad; no explicit Shopify permission or consent command appears in this wrapper.",
+    "additional_branch": "A conditional legacy Shopify.checkout branch queues subtotal/currency with an empty action; no checkout execution or defect is inferred.",
+    "provenance_limit": "CDP response-body capture, before/after getter observations and exact private test-URL comparisons are recorded by root in the redacted receipt. Reviewer independently checked the saved hashes and source semantics but did not operate the browser or replay the capture. Absence of consent code in this wrapper does not by itself establish absence of automatic handling in loaded bat.js."
+  },
+  "privacy_review": "Manually read all four files. The report and redacted trace omit actual visitor/debug identifiers, cookie contents, customer/order data, credentials and payment details. Retained account/tag/app identifiers, coarse test region, timestamps, public collection path and source hashes are relevant diagnostic metadata. No full raw session URL or network archive is included.",
+  "runtime_interpretation": "The recorded denied session emitted a standard-shaped pageLoad without asc and the native receiver independently displayed three same-test-URL events with no consent signal. This is enough to seek a supported correction and diagnostic method while preserving stream, timing, attribution and region limitations.",
+  "not_established": [
+    "The actual meaning or validity of nonempty identifier values, cookie access, or ad-storage behavior",
+    "An exhaustive inventory or absence of shop-wpa requests",
+    "A one-to-one request/receiver ID match or final action call stack",
+    "EEA/UK/CH behavior, purchase consent/value/deduplication, attribution loss or profit",
+    "A production repair, any change in consent mode, or authority to send before the already-requested user permission arrives"
+  ],
+  "send_status": "NOT SENT per current root evidence; explicit user permission already requested and still pending. This content/privacy verdict introduces no new permission gate and does not authorize transmission.",
+  "authorized_scope_of_review": "Only read existing local evidence and create this new review addendum. No canonical, browser, external, source, campaign or generated-file writes.",
+  "next_action": "Use this exact redacted report for the supported publisher escalation if the pending send permission arrives; review any proposed repair as a separate exact action."
+}

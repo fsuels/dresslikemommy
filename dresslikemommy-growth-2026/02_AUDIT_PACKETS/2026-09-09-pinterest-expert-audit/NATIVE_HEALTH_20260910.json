@@ -1,0 +1,72 @@
+{
+  "schema": "dlm.pinterest_native_health.v1",
+  "observed_at_utc": "2026-09-10T15:41:00Z/2026-09-10T15:51:00Z",
+  "method": "Original user Chrome profile test; existing Pinterest tab selected successfully; native accessibility UI readback",
+  "advertiser_id": "549756244483",
+  "profile": "dresslikemommy",
+  "account_access": "LIVE_VERIFIED; earlier selected-tab blocker superseded for this session; no alternate browser used",
+  "hub": {
+    "shopify": "Connected",
+    "merchant_status": "Approved",
+    "verified_domain": "dresslikemommy.com",
+    "vmp_status": "Under review",
+    "hub_eqs_label": "Good setup",
+    "last_30d_campaigns_total": 1,
+    "active_campaigns_preview": "No active campaigns in the last 30 days",
+    "catalog_id": "3041764155561548387",
+    "catalog_source_preview": "3 of 24; one Shopify Processing on Sep10, two Completed Sep9 at4897 each; not a full catalog audit"
+  },
+  "event_quality": {
+    "ui_updated": "2026-09-09",
+    "web_status": "Needs attention",
+    "capi_14d": {
+      "score": "Fair",
+      "integration": "Shopify",
+      "top_issues": ["Product ID in Add Payment Info", "Click ID in Checkout", "Email in Add to Cart"],
+      "product_id_coverage_pct": {"AddPaymentInfo": 0, "Checkout": 100, "AddToCart": 100, "InitiateCheckout": 100, "PageVisit": 28},
+      "product_id_status": "AddPaymentInfo not set up; the other four listed events labelled in good health",
+      "product_id_catalog_match": "NOT_READ; coverage is not catalog match",
+      "click_id_coverage_pct": {"Checkout": 0, "AddToCart": 0, "InitiateCheckout": 0, "AddPaymentInfo": 0, "PageVisit": 0, "Search": 0, "ViewCategory": 0},
+      "email_low_coverage_pct": {"AddToCart": 5, "AddPaymentInfo": 57},
+      "additional_event_insight_warnings": ["ProductPrice AddPaymentInfo", "ProductQuantity AddPaymentInfo", "ProductBrand Checkout/AddToCart/InitiateCheckout/AddPaymentInfo/PageVisit", "ProductCategory same five events", "ProductTitle same five events", "SearchQuery Search"],
+      "duplicate_event_category": "Event ID good health for PageVisit and ViewCategory only; no real purchase pair parity proven",
+      "product_id_troubleshooting": "Native guide says set up Product ID for AddPaymentInfo via developer mapping; no merchant field editor exposed in this guide"
+    },
+    "capi_1d": {
+      "score": "Fair",
+      "top_issues": ["Email AddToCart", "Email InitiateCheckout", "ClickID AddToCart"],
+      "events_with_click_id_warnings": ["AddToCart", "InitiateCheckout", "PageVisit", "ViewCategory"],
+      "event_insight_warnings": ["ProductBrand", "ProductCategory", "ProductTitle"],
+      "purchase_event_absence_not_interpreted_as_fixed": true
+    },
+    "tag_1d": {
+      "score": "Fair",
+      "integration": "Shopify",
+      "top_issues": ["Email AddToCart", "Email InitiateCheckout", "ClickID AddToCart"],
+      "event_insight_warnings": ["ProductQuantity PageVisit"]
+    },
+    "tag_14d": {
+      "score": "Fair",
+      "top_issues": ["Email AddToCart", "ClickID Checkout", "Email InitiateCheckout"],
+      "event_insight_warnings": ["ProductQuantity PageVisit", "SearchQuery Search"]
+    }
+  },
+  "tag_manager": {
+    "visible_non_archived_tags": 1,
+    "tag_id": "2620007050621",
+    "name": "conversion_tracker",
+    "latest_event_utc": "2026-09-10T15:43:00Z",
+    "automatic_enhanced_match": "ENABLED before inspection",
+    "options_enabled": ["Email", "Phone Number", "External ID", "First and Last name", "City, State, Zip Code and Country", "Gender", "Birthdate"],
+    "options_exit": "Cancel; no change",
+    "generic_enroll_banner_is_not_setting_truth": true
+  },
+  "interpretation_limits": [
+    "Do not invent customer identifiers to improve coverage.",
+    "No active campaign history in hub is a plausible explanation for absent paid Click IDs, not proof of correct propagation.",
+    "Product ID presence does not prove exact catalog match or parent grouping.",
+    "Good setup in hub and enabled AEM do not override Fair detailed receipt quality.",
+    "No receipt proves actual order discount/value/currency parity or consent suppression for Pinterest."
+  ],
+  "external_changes": {"tag_settings": 0, "tracking_installations": 0, "feed_changes": 0, "campaign_changes": 0, "spend": 0}
+}

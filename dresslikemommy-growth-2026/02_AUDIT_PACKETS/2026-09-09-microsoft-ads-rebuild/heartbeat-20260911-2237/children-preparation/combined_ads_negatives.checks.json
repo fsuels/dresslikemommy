@@ -1,0 +1,219 @@
+{
+  "prepared_at": "2026-09-12T08:41:22.283113+00:00",
+  "status": "MAPPER_ONLY_NOT_IMPORT_READY",
+  "csv": "combined_ads_negatives.ui_candidate.csv",
+  "csv_sha256": "3deba07cadfc6bd09189b9f204a5f101ece37c78b2e2abc46d6b374bde2bad1e",
+  "rows": 16,
+  "columns": 29,
+  "checks_passed": 9,
+  "checks": [
+    {
+      "check": "exact16row_union",
+      "result": "PASS",
+      "detail": "14 campaign-negative rows followed by2 RSA rows; no campaign, group, keyword, extension or criterion row."
+    },
+    {
+      "check": "alias_only_column_conversion",
+      "result": "PASS",
+      "detail": "Campaign Name→Campaign; Ad Group Name→Ad Group; Final URLs→Final Url. All other original header spellings retained."
+    },
+    {
+      "check": "all124source_cells_preserved",
+      "result": "PASS",
+      "detail": "All14×5 +2×27 source cells match exactly, including108 populated values; no copy, URL, suffix or match-type changes."
+    },
+    {
+      "check": "campaign_negative_scope_and_status",
+      "result": "PASS",
+      "detail": "Active means exclusion association only. Blank Ad Group preserves campaign scope; no negative expands to ad-group or account scope."
+    },
+    {
+      "check": "paused_rsa_scope_and_assets",
+      "result": "PASS",
+      "detail": "Both ads retain exact intended group names,16headlines/6descriptions/4paths/2finalURLs/2suffixes; no added pins or assets."
+    },
+    {
+      "check": "blank_unrelated_union_cells",
+      "result": "PASS",
+      "detail": "No RSA asset/URL fields leak into exclusion rows, and no negative fields leak into RSA rows."
+    },
+    {
+      "check": "no_financial_or_campaign_controls",
+      "result": "PASS",
+      "detail": "Candidate references exact names only. It cannot assert IDs; root must verify existing campaign and group IDs before upload/import. No money/network/targeting/default-bid fields."
+    },
+    {
+      "check": "utf8_and_roundtrip",
+      "result": "PASS",
+      "detail": "UTF-8 BOM/CRLF CSV roundtrip preserves all German characters."
+    },
+    {
+      "check": "frozen_inputs_unchanged",
+      "result": "PASS",
+      "detail": "All4 frozen preview CSVs and all5 main CSVs retain their expected hashes; only3 new combined files are created."
+    }
+  ],
+  "source_cell_comparisons": 124,
+  "populated_source_cells_compared": 108,
+  "source_row_lineage": [
+    {
+      "output_csv_row": 2,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 2,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | US | EN | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 3,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 3,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | US | EN | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 4,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 4,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | US | EN | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 5,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 5,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | US | EN | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 6,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 6,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | US | EN | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 7,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 7,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | US | EN | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 8,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 8,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | US | EN | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 9,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 9,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 10,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 10,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 11,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 11,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 12,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 12,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 13,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 13,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 14,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 14,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 15,
+      "source_csv": "campaign_negatives.ui_candidate.csv",
+      "source_csv_row": 15,
+      "type": "Campaign Negative Keyword",
+      "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+      "ad_group_name": "",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 16,
+      "source_csv": "rsa_mapper_only_not_import_ready.csv",
+      "source_csv_row": 2,
+      "type": "Responsive Search Ad",
+      "campaign_name": "DLM | MS | US | EN | Search | 202609",
+      "ad_group_name": "Mother Daughter | Matching Dresses",
+      "all_source_cells_preserved": true
+    },
+    {
+      "output_csv_row": 17,
+      "source_csv": "rsa_mapper_only_not_import_ready.csv",
+      "source_csv_row": 3,
+      "type": "Responsive Search Ad",
+      "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+      "ad_group_name": "Mother Daughter | Matching Dresses",
+      "all_source_cells_preserved": true
+    }
+  ],
+  "frozen_preview_sha256": {
+    "campaign_negatives.ui_candidate.csv": "b566c095bfc152088b88ee9f450a87a9f7a25ee41c953e35c66488f9c9f122ae",
+    "rsa_mapper_only_not_import_ready.csv": "1a6525d2a6682474a826f08fc763604c47a830c43e68e94c0ec75d259dcc8926",
+    "paused_groups_keywords.ui_candidate.csv": "15287d329200ac4c62f4af9e6a0cdb15738240484694c83377a9213b53cee370",
+    "network_schema_review.ui_candidate.csv": "efef91e3cf011753a936e2f9695dd5498efb1d27ea063fab9fba757eac0abc68"
+  },
+  "main_source_sha256": {
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "ad_groups.csv": "dbf27dfc5ccd5cfb27c5aed898f202c76060b5b484ec353b3140ad701d950f92",
+    "keywords.csv": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012",
+    "responsive_search_ads.csv": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839"
+  },
+  "native_actions": "NOT RUN",
+  "external_or_shared_mutation": false
+}

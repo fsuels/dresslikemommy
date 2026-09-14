@@ -1,0 +1,171 @@
+{
+  "schema": "dlm.merchant_shopify_policy_readback.v1",
+  "status": "LIVE_VERIFIED_SHOPIFY_POLICY_SOURCE",
+  "source_live_evidence_as_of": "2026-09-08T21:12:10Z",
+  "merchant_context": {
+    "requested_merchant_id": "513542500",
+    "selection_source": "Current owner instruction relayed by root",
+    "account_identity_or_shopify_link_verified_by_this_read": false,
+    "root_owns_google_account_reconciliation": true
+  },
+  "shop": {
+    "id": "gid://shopify/Shop/15571635",
+    "name": "Dress Like Mommy",
+    "myshopify_domain": "dresslikemommy-com.myshopify.com",
+    "primary_domain_host": "www.dresslikemommy.com",
+    "shop_currency": "USD",
+    "iana_timezone": "America/New_York",
+    "legal_business_entity": "UNKNOWN; not queried",
+    "business_country_or_physical_address": "UNKNOWN; not inferred from currency, timezone or policy wording",
+    "operating_model": "Repo-known dropshipping; no physical store or owned inventory claim"
+  },
+  "source_policies": {
+    "shipping": {
+      "id": "gid://shopify/ShopPolicy/29845782625",
+      "type": "SHIPPING_POLICY",
+      "title": "Shipping",
+      "url": "https://checkout.shopify.com/15571635/policies/29845782625.html?locale=en"
+    },
+    "refund": {
+      "id": "gid://shopify/ShopPolicy/14695685",
+      "type": "REFUND_POLICY",
+      "title": "Refund policy",
+      "url": "https://checkout.shopify.com/15571635/policies/14695685.html?locale=en"
+    },
+    "contact_metadata_only": {
+      "id": "gid://shopify/ShopPolicy/31171805281",
+      "type": "CONTACT_INFORMATION",
+      "title": "Contact",
+      "url": "https://checkout.shopify.com/15571635/policies/31171805281.html?locale=en"
+    }
+  },
+  "shipping": {
+    "policy_last_updated_label": "January 28, 2026",
+    "countries": "Destinations offered at checkout; dependent on destination, product and available method. No country list appears in this policy.",
+    "standard_rate": "Included in product prices where a standard shipping method is available.",
+    "minimum_order_or_free_shipping_threshold": "NOT_STATED",
+    "express": "Some destinations only; method, upgrade and delivery estimate shown at checkout.",
+    "handling_business_days": {
+      "min": 1,
+      "max": 3,
+      "anchor": "After payment confirmation",
+      "possible_additional_days_during_holidays_promotions_high_volume": {
+        "min": 1,
+        "max": 2
+      }
+    },
+    "transit_days": "UNKNOWN; current checkout estimate shown before payment; no numeric standard or express transit range in policy",
+    "order_cutoff_time": "NOT_STATED",
+    "business_day_calendar": "NOT_STATED",
+    "tracking": "Tracking number when carrier provides one; may take 24–48 hours to update after issue.",
+    "customs": "For destinations outside the United States, destination country/carrier may collect import duties, taxes, brokerage/customs fees; customer pays unless checkout explicitly includes them.",
+    "checkout_country_rate_delivery_readback": "NOT_RUN; no countries, live methods, costs or transit times inferred from Shopify Markets"
+  },
+  "returns": {
+    "policy_last_updated_label": "January 2026",
+    "window_days": 30,
+    "window_anchor": "Delivery date; request a return or exchange within 30 days.",
+    "conditions": [
+      "Unworn, unwashed, original condition",
+      "Original packaging and tags attached",
+      "No stains, pet hair, perfume or signs of wear"
+    ],
+    "exclusions": [
+      "Swimwear and intimates",
+      "Items marked Final Sale",
+      "Gift cards",
+      "Items returned after 30 days"
+    ],
+    "initiation": "Email public business support with order number and reason; team says response within 1 business day and then supplies instructions/return address.",
+    "method": "Ship returned items in original packaging after instructions.",
+    "return_shipping_cost": "Customer responsibility except damaged/defective items.",
+    "original_shipping": "Non-refundable.",
+    "restocking_fee": "NOT_STATED; do not infer zero",
+    "return_label_provision_or_fixed_return_fee": "NOT_STATED",
+    "refund_processing_business_days": {
+      "min": 5,
+      "max": 10,
+      "anchor": "After receipt, inspection and approval; original payment method"
+    },
+    "possible_additional_bank_days": {
+      "min": 2,
+      "max": 5
+    },
+    "damaged_defective": {
+      "contact_within_days_of_delivery": 7,
+      "evidence": "Photos of issue",
+      "stated_remedy": "Replacement or full refund; no need to return damaged item"
+    },
+    "exchanges": "Size/color exchanges requested through support; separate exchange delivery cost/timing not stated.",
+    "return_address": "Provided after contact; no address collected or persisted"
+  },
+  "public_customer_support": {
+    "role_email": [
+      "info@dresslikemommy.com"
+    ],
+    "email_provenance": "Published shipping/refund policy bodies; exact generic business-role mailbox",
+    "contact_policy_url": "https://checkout.shopify.com/15571635/policies/31171805281.html?locale=en",
+    "contact_policy_body_read": false,
+    "phone_or_individual_contact_details": "OMITTED"
+  },
+  "unknowns": [
+    "Current Merchant account ownership/Shopify connection",
+    "Actual supported checkout country/product pairs",
+    "Numeric standard and express transit ranges",
+    "Current checkout methods and express charges",
+    "Any shipping threshold",
+    "Order cutoff and handling-day calendar",
+    "Return restocking/fixed fees and label policy",
+    "Legal business entity/address/country",
+    "Rendered policy availability and checkout consistency"
+  ],
+  "execution": {
+    "graphql_query_calls": 2,
+    "schema_types_read": [
+      "Shop",
+      "ShopPolicy"
+    ],
+    "query_root_node_shop_fields": "Reused validated current-session schema discovery",
+    "schema_shape_failures": 0,
+    "authentication_permission_failures": 0,
+    "validation": [
+      {
+        "artifact": "merchant-513542500-policy-metadata-20260908",
+        "revision": 1,
+        "status": "VALID"
+      },
+      {
+        "artifact": "merchant-513542500-policy-bodies-20260908",
+        "revision": 1,
+        "status": "VALID"
+      }
+    ],
+    "external_writes": 0,
+    "app_installation_reads": 0,
+    "customer_order_reads": 0,
+    "browser_calls": 0,
+    "public_requests": 0,
+    "body_read_policy_count": 2,
+    "policy_list_pagination": "Shop.shopPolicies is an unpaginated list; complete returned list5, only2 selected bodies read"
+  },
+  "checks": {
+    "shop_id_and_domain_match": true,
+    "exact_two_requested_policy_ids_match": true,
+    "shipping_and_refund_body_nonempty": true,
+    "no_private_contact_fields_queried": true,
+    "no_contact_privacy_terms_bodies_read": true,
+    "no_market_delivery_inference": true
+  },
+  "queries": {
+    "metadata": "query MerchantPolicyMetadata20260908 {\n  shop {\n    id name myshopifyDomain currencyCode ianaTimezone\n    primaryDomain { host }\n    shopPolicies { id type title url }\n  }\n}",
+    "bodies": "query MerchantShippingRefundPolicies20260908($ids: [ID!]!) {\n  nodes(ids: $ids) {\n    ... on ShopPolicy { id type title url body }\n  }\n}",
+    "body_variables": {
+      "ids": [
+        "gid://shopify/ShopPolicy/14695685",
+        "gid://shopify/ShopPolicy/29845782625"
+      ]
+    }
+  },
+  "interpretation": "Policy source supplies factual store/handling/return terms. It does not establish Merchant connection, shipping-service eligibility, actual delivery performance or profit. Root handles exact Google setup and unresolved account context.",
+  "privacy": "Only current public policy terms, public business-role mailbox, policy URLs, shop/public policy IDs and domain/currency facts saved. No raw HTML, private home/return address, owner email, phone, customer/order data or credentials."
+}

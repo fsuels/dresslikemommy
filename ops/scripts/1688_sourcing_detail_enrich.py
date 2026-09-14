@@ -62,12 +62,17 @@ DETAIL_JS = r"""
       /(alicdn|cbu01|cbu02|cbu03|1688)/.test(lower) &&
       !/(avatar|logo|icon|sprite|gif)/.test(lower);
   }).slice(0, 24);
-  const title = (
-    meta('meta[property="og:title"]') ||
-    text(document.querySelector("h1")) ||
-    document.title ||
+  const cleanPageTitle = (value) => (value || "")
+    .replace(/\s*[-_—|]\s*(?:阿里巴巴|1688).*$/i, "")
+    .trim();
+  const companyLike = (value) => /(?:有限责任公司|有限公司|贸易公司|服饰公司|商行|工厂)$/.test(value || "");
+  const titleCandidates = [
+    text(document.querySelector("h1")),
+    cleanPageTitle(document.title),
+    cleanPageTitle(meta('meta[property="og:title"]')),
     body.slice(0, 120)
-  ).replace(/\s*[-_—|].*1688.*$/i, "").trim();
+  ].map((value) => (value || "").trim()).filter(Boolean);
+  const title = titleCandidates.find((value) => !companyLike(value)) || titleCandidates[0] || "";
   const anchorCandidates = Array.from(document.querySelectorAll("a[href]"));
   const vendorAnchor = anchorCandidates.find((anchor) => /shop\.1688\.com|\.1688\.com\/page\/index/.test(anchor.href));
   const vendorNode = document.querySelector('[class*="shop-name"], [class*="company"], [class*="supplier"], [class*="seller"]');
@@ -79,9 +84,22 @@ DETAIL_JS = r"""
   ]).find((value) => value.length >= 2 && value.length <= 80) || "";
   const vendorUrl = absolutize(vendorAnchor?.href || "");
   const price = body.match(/[¥￥]\s*([0-9]+(?:\.[0-9]+)?)/)?.[1] || "";
-  const moq = body.match(/(?:起批|起订|MOQ|moq)[^\d]{0,10}(\d+)/i)?.[1] || "";
+  // 1688 commonly renders "1件起批 60天老客价". Matching only digits after
+  // 起批 would incorrectly turn the 60-day loyalty-price label into MOQ 60.
+  const moq = (
+    body.match(/(\d+(?:\.\d+)?)\s*(?:件|个|套|pcs?|pieces?)\s*(?:起批|起订)/i)?.[1] ||
+    body.match(/(?:起批量?|起订量?|MOQ|moq)\s*[:：]?\s*(\d+(?:\.\d+)?)\s*(?:件|个|套|pcs?|pieces?)?/i)?.[1] ||
+    ""
+  );
   const repeat = body.match(/(?:回头率|Repurchase Rate)[^0-9]{0,10}([0-9]+(?:\.[0-9]+)?)\s*%/i)?.[1] || "";
-  const years = body.match(/(\d+(?:\.\d+)?)\s*年(?:店|诚信通|经营|会员)?/)?.[1] || "";
+  const tenurePatterns = [
+    /(\d+(?:\.\d+)?)\s*年\s*(?:诚信通|经营|店龄|开店|入驻|会员|老店)/i,
+    /(?:诚信通|经营年限|店龄|开店|入驻|会员年限)[^\d]{0,12}(\d+(?:\.\d+)?)\s*年/i,
+    /(?:supplier|company|store|member|in business)[^0-9]{0,24}(\d+(?:\.\d+)?)\s*years?/i,
+    /(\d+(?:\.\d+)?)\s*years?[^A-Za-z0-9]{0,16}(?:supplier|company|store|member|in business)/i
+  ];
+  const tenureMatch = tenurePatterns.map((pattern) => body.match(pattern)).find(Boolean);
+  const years = tenureMatch?.[1] || "";
   const rating = body.match(/(?:综合|服务|描述|物流|评分|rating)[^\d]{0,12}([4-5](?:\.\d{1,2})?)/i)?.[1] || "";
   const salesMatch = body.match(/(?:近30天|30天|月销|月售|成交|付款|销量|已售|售出|sold|orders)[^\d]{0,14}(\d+(?:\.\d+)?)(万|K|k)?\+?/i);
   const normalizeCount = (value, unit) => {
@@ -101,7 +119,7 @@ DETAIL_JS = r"""
   const riskTerms = [
     "Disney", "Mickey", "Minnie", "Nike", "Adidas", "Barbie", "Hello Kitty", "Snoopy",
     "Pokemon", "Marvel", "迪士尼", "米奇", "米妮", "耐克", "阿迪", "芭比", "凯蒂猫",
-    "史努比", "宝可梦", "漫威", "卡通", "联名", "品牌", "logo"
+    "史努比", "宝可梦", "漫威", "卡通", "联名", "logo"
   ];
   const availabilityTerms = ["现货", "有货", "库存", "已下架", "商品不存在", "售罄", "库存不足"];
   const dispatchTerms = detectTerms(["24小时发货", "48小时发货", "72小时发货", "当日发货", "急速发货", "现货"]);
@@ -121,6 +139,8 @@ DETAIL_JS = r"""
     repurchase_rate_pct: repeat ? `${repeat}%` : "",
     rating,
     years_on_1688: years,
+    years_on_1688_scope: years ? "supplier_context_phrase" : "",
+    years_on_1688_label: tenureMatch?.[0] || "",
     badges: uniq(detectTerms(badgeTerms)).join(" | "),
     service_flags: uniq([...detectTerms(serviceTerms), ...dispatchTerms]).join(" | "),
     dropship_supported: hasDropship ? "yes" : "",
@@ -180,6 +200,30 @@ def clean(value: Any) -> str:
     return re.sub(r"\s+", " ", str(value)).strip()
 
 
+SUPPLIER_TENURE_SCOPE = "supplier_context_phrase"
+SUPPLIER_TENURE_PATTERNS = (
+    re.compile(r"(\d+(?:\.\d+)?)\s*年\s*(?:诚信通|经营|店龄|开店|入驻|会员|老店)", re.IGNORECASE),
+    re.compile(r"(?:诚信通|经营年限|店龄|开店|入驻|会员年限)[^\d]{0,12}(\d+(?:\.\d+)?)\s*年", re.IGNORECASE),
+    re.compile(r"(?:supplier|company|store|member|in business)[^0-9]{0,24}(\d+(?:\.\d+)?)\s*years?", re.IGNORECASE),
+    re.compile(r"(\d+(?:\.\d+)?)\s*years?[^A-Za-z0-9]{0,16}(?:supplier|company|store|member|in business)", re.IGNORECASE),
+)
+
+
+def validated_supplier_tenure(detail: dict[str, Any]) -> tuple[str, str, str]:
+    """Fail closed unless the captured label itself proves supplier-tenure context."""
+    if clean(detail.get("years_on_1688_scope")) != SUPPLIER_TENURE_SCOPE:
+        return "", "", ""
+    raw_years = clean(detail.get("years_on_1688"))
+    raw_label = clean(detail.get("years_on_1688_label"))
+    if not raw_years or not raw_label:
+        return "", "", ""
+    for pattern in SUPPLIER_TENURE_PATTERNS:
+        match = pattern.search(raw_label)
+        if match and clean(match.group(1)) == raw_years:
+            return raw_years, raw_label, SUPPLIER_TENURE_SCOPE
+    return "", "", ""
+
+
 def now_iso() -> str:
     return dt.datetime.now(dt.timezone.utc).isoformat()
 
@@ -223,6 +267,74 @@ def merge_unique(*values: str) -> str:
                 seen.add(key)
                 merged.append(part)
     return " | ".join(merged)
+
+
+DETAIL_PAGE_TITLE_SUFFIX = re.compile(r"\s*[-_—|]\s*(?:阿里巴巴|1688).*$", re.IGNORECASE)
+SUPPLIER_NAME_SUFFIX = re.compile(r"(?:有限责任公司|有限公司|贸易公司|服饰公司|商行|工厂)$")
+DETAIL_ONLY_GENERIC_IP_TERMS = {"品牌"}
+DISPATCH_EVIDENCE_TERMS = (
+    "24小时发货",
+    "48小时发货",
+    "72小时发货",
+    "当日发货",
+    "急速发货",
+    "ships within",
+    "hour shipping",
+    "same-day shipping",
+    "ready stock",
+    "现货",
+)
+
+
+def detail_product_title(base: dict[str, Any], detail: dict[str, Any]) -> str:
+    """Prefer a product title and never replace it with the supplier name."""
+    base_title = clean(base.get("title"))
+    vendor_name = clean(detail.get("vendor_name"))
+    candidates = [
+        DETAIL_PAGE_TITLE_SUFFIX.sub("", clean(detail.get("page_title"))),
+        DETAIL_PAGE_TITLE_SUFFIX.sub("", clean(detail.get("title"))),
+        base_title,
+    ]
+    for candidate in candidates:
+        if not candidate:
+            continue
+        if vendor_name and candidate == vendor_name:
+            continue
+        if base_title and len(candidate) <= 80 and SUPPLIER_NAME_SUFFIX.search(candidate):
+            continue
+        return candidate
+    return base_title
+
+
+def detail_moq(detail: dict[str, Any]) -> str:
+    """Extract the quantity tied to the minimum-order label, not a nearby day count."""
+    raw = clean(detail.get("raw_detail_text"))
+    patterns = (
+        re.compile(r"(\d+(?:\.\d+)?)\s*(?:件|个|套|pcs?|pieces?)\s*(?:起批|起订)", re.IGNORECASE),
+        re.compile(
+            r"(?:起批量?|起订量?|MOQ)\s*[:：]?\s*(\d+(?:\.\d+)?)\s*(?:件|个|套|pcs?|pieces?)?",
+            re.IGNORECASE,
+        ),
+    )
+    for pattern in patterns:
+        match = pattern.search(raw)
+        if match:
+            return clean(match.group(1))
+    return clean(detail.get("moq"))
+
+
+def detail_ip_risk_flags(detail: dict[str, Any]) -> str:
+    """Drop generic legal-copy matches while retaining named or product-specific risks."""
+    return " | ".join(
+        part for part in split_list(clean(detail.get("ip_risk_flags"))) if part.lower() not in DETAIL_ONLY_GENERIC_IP_TERMS
+    )
+
+
+def dispatch_evidence_label(value: Any) -> str:
+    """Return service text only when it actually proves dispatch speed or ready stock."""
+    text = clean(value)
+    lowered = text.lower()
+    return text if any(term.lower() in lowered for term in DISPATCH_EVIDENCE_TERMS) else ""
 
 
 def normalize_image_url(url: str) -> str:
@@ -347,30 +459,37 @@ def collect_detail(client: CdpClient, url: str) -> dict[str, Any]:
 
 def enriched_row(base: dict[str, Any], detail: dict[str, Any], image_dir: Path, evidence_path: Path) -> dict[str, Any]:
     image_urls = [normalize_image_url(url) for url in detail.get("image_urls", []) if clean(url)]
+    tenure_years, tenure_label, tenure_scope = validated_supplier_tenure(detail)
     row = dict(base)
     row.update(
         {
-            "title": clean(detail.get("title")) or clean(base.get("title")),
+            "title": detail_product_title(base, detail),
             "vendor_name": clean(detail.get("vendor_name")) or clean(base.get("vendor_name")),
             "vendor_url": clean(detail.get("vendor_url")) or clean(base.get("vendor_url")),
             "price_cny": clean(detail.get("price_cny")) or clean(base.get("price_cny")),
-            "moq": clean(detail.get("moq")) or clean(base.get("moq")),
+            "moq": detail_moq(detail) or clean(base.get("moq")),
             "monthly_sales": clean(detail.get("monthly_sales")) or clean(base.get("monthly_sales")),
             "sales_context": clean(detail.get("sales_context")) or clean(base.get("sales_context")),
             "repurchase_rate_pct": clean(detail.get("repurchase_rate_pct")) or clean(base.get("repurchase_rate_pct")),
             "rating": clean(detail.get("rating")) or clean(base.get("rating")),
-            "years_on_1688": clean(detail.get("years_on_1688")) or clean(base.get("years_on_1688")),
+            # Search-card values and unscoped whole-page matches are never trusted as company tenure.
+            "years_on_1688": tenure_years,
+            "years_on_1688_scope": tenure_scope,
+            "years_on_1688_label": tenure_label,
             "badges": merge_unique(clean(base.get("badges")), clean(detail.get("badges"))),
             "service_flags": merge_unique(clean(base.get("service_flags")), clean(detail.get("service_flags"))),
             "dropship_supported": clean(detail.get("dropship_supported")) or clean(base.get("dropship_supported")),
             "size_chart": clean(detail.get("size_chart")) or clean(base.get("size_chart")),
             "availability": clean(detail.get("availability")) or clean(base.get("availability")),
-            "ip_risk_flags": merge_unique(clean(base.get("ip_risk_flags")), clean(detail.get("ip_risk_flags"))),
+            "ip_risk_flags": merge_unique(clean(base.get("ip_risk_flags")), detail_ip_risk_flags(detail)),
             "image_url": image_urls[0] if image_urls else clean(base.get("image_url")),
             "vendor_image_urls": " | ".join(image_urls),
             "vendor_images_path": relative(image_dir),
             "detail_evidence_path": relative(evidence_path),
-            "raw_card_text": clean(detail.get("raw_detail_text")) or clean(base.get("raw_card_text")),
+            # Keep search-card evidence product-scoped. The full detail text is
+            # retained in detail-evidence.json, but it also contains platform
+            # disclaimers that must not become product/IP/category signals.
+            "raw_card_text": clean(base.get("raw_card_text")) or detail_product_title(base, detail),
             "notes": merge_unique(
                 clean(base.get("notes")),
                 f"Detail enriched from logged-in 1688 page: {detail.get('page_url', '')}",
@@ -431,8 +550,11 @@ def update_decision_evidence(key: str, base: dict[str, Any], scored: dict[str, A
         evidence["vendor_images_path"] = relative(image_dir)
     if clean(scored.get("dropship_supported")):
         evidence["dropship_confirmed"] = clean(scored.get("dropship_supported"))
-    if service:
-        evidence["dispatch_confirmed"] = service
+    dispatch_evidence = dispatch_evidence_label(service)
+    if dispatch_evidence:
+        evidence["dispatch_confirmed"] = dispatch_evidence
+    else:
+        evidence.pop("dispatch_confirmed", None)
     if vendor_summary:
         evidence["supplier_confirmed"] = vendor_summary
     evidence["detail_evidence_path"] = relative(output_dir / "detail-evidence.json")
@@ -502,6 +624,8 @@ def update_vendor_database(key: str, base: dict[str, Any], scored: dict[str, Any
             "badges": merge_unique(clean(record.get("badges")), clean(scored.get("badges"))),
             "service_flags": merge_unique(clean(record.get("service_flags")), clean(scored.get("service_flags"))),
             "years_on_1688": clean(scored.get("years_on_1688")) or record.get("years_on_1688", ""),
+            "years_on_1688_scope": clean(scored.get("years_on_1688_scope")) or record.get("years_on_1688_scope", ""),
+            "years_on_1688_label": clean(scored.get("years_on_1688_label")) or record.get("years_on_1688_label", ""),
             "rating": clean(scored.get("rating")) or record.get("rating", ""),
             "offer_keys": sorted(offer_keys),
             "categories": sorted(category for category in categories if category),

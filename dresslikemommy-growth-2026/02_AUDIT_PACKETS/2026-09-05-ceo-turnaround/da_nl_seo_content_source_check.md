@@ -1,0 +1,13 @@
+Confidence: H in the saved source dependency; no fresh live read.
+
+**No collection/article/metafield/config substitute is wired into these outputs. The four-file draft bundle is not structurally required for SEO.**
+
+For both `dresses` and `mother-daughter-matching-dresses`, the owning snippet selects **`sections.collection_seo.meta_titles.dresses`** and **`sections.collection_seo.meta_descriptions.dresses`**, resolves them with `| t`, and hardcodes `force_theme_seo=true`. These are theme-language keys in **`locales/da.json` and `locales/nl.json`**. [Title/force source](/Users/fsuels/Projects/dresslikemommy/snippets/collection-seo-fallback.liquid:164); [Description key](/Users/fsuels/Projects/dresslikemommy/snippets/collection-seo-fallback.liquid:336); [Translation expression](/Users/fsuels/Projects/dresslikemommy/snippets/collection-seo-fallback.liquid:374).
+
+`layout/theme.liquid` overwrites `page_title` and `page_description` with those results. Open Graph/Twitter and CollectionPage description use the same fallback. The owner snippet reads no metafield or settings override. Therefore translated collection SEO/global SEO fields remain subordinate; article translations cannot supply this collection branch. [Head precedence](/Users/fsuels/Projects/dresslikemommy/layout/theme.liquid:160); [Social precedence](/Users/fsuels/Projects/dresslikemommy/snippets/meta-tags.liquid:36); [Schema description](/Users/fsuels/Projects/dresslikemommy/snippets/collection-schema.liquid:22).
+
+The initial exact patch changes **four values across two locale files**; the later Dutch correction substitutes `familiefoto’s` to avoid the observed entity leak. H1/body keys are unchanged. The draft’s cart and product JavaScript changes are unrelated to these SEO expressions. [Four-key diff](/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/traffic_seo_release.patch:1); [Final Dutch value](/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/draft_nl_description_plan.json:1).
+
+**Evidence limit:** all four inspected consumer files’ MD5s match BOTH saved07:07 MAIN/draft manifests. Saved draft preview verified the intended outputs; this is not a new live read. [Rendered evidence](/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/DRAFT_RENDERED_PREVIEW.md:5).
+
+A theme-language editor/translation resource would still change the active theme’s translation source, not collection content; its current supported access is unverified. Do not use it to evade the existing restriction. No external action or source edit occurred.

@@ -1,0 +1,68 @@
+{
+  "recorded_at": "2026-09-11T22:53:37.098089+00:00",
+  "status": "PENDING_INDEPENDENT_REVIEW__EXACT_PAUSED_SHELL_IMPORT",
+  "decision_id": "DLM-DEC-2026-09-11-MICROSOFT-PAUSED-SHELL-IMPORT",
+  "current_user_authority": "Repeated ongoing Microsoft rebuild, reviewed nonspend repair and qualified paused preparation; exact new non-serving shells within scope. No paid activation authorization.",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "payload": "paused_shell_mapper_probe.csv",
+  "payload_sha256": "27262e4bdc410afdf875257dcc0f36d7a897cf987ec23f1685af4cfbfff8964e",
+  "options_artifact": "native_mapping_and_options.json",
+  "options_sha256": "79f1d0ccf993f975385a0e0cb6c2d32d2fc72794c8d67c5f20d39620b6bc1208",
+  "supersedes_probe_hold_only_if": "Independent verifier passes this exact frozen contract/options/payload; no drift in final UI. The prior mapper-only contract remains a completed phase record, not final Import authority.",
+  "exact_action": "Click native Import once for exactly two new Paused Search campaign shells, selected pause/import-paused options ON, newCampaigns only; no children, targeting, existing updates or bid/budget escalation.",
+  "expected_new_records": [
+    {
+      "name": "DLM | MS | US | EN | Search | 202609",
+      "status": "Paused",
+      "type": "Search",
+      "daily_budget_usd": "5.00",
+      "language": "English",
+      "bid_strategy": "MaxClicks",
+      "max_cpc_usd": "0.15",
+      "ad_groups": 0,
+      "ads": 0,
+      "keywords": 0,
+      "geography": "Not yet configured; names are organizational intent only"
+    },
+    {
+      "name": "DLM | MS | DE | DE | Search | 202609",
+      "status": "Paused",
+      "type": "Search",
+      "daily_budget_usd": "3.00",
+      "language": "German",
+      "bid_strategy": "MaxClicks",
+      "max_cpc_usd": "0.15",
+      "ad_groups": 0,
+      "ads": 0,
+      "keywords": 0,
+      "geography": "Not yet configured; names are organizational intent only"
+    }
+  ],
+  "before": "campaign_before.json:11Paused,120USDconfigured/day; both exact names absent",
+  "after": [
+    "Read native import results and capture created/updated/error counts and any IDs",
+    "Expected exactly2newcampaigns/0updates/0children; on error inspect partialresult, never blindretry",
+    "Reload native campaign table:13total; compare exact11oldIDs/status/budget/bid/type unchanged",
+    "Read each new campaign native settings:Paused/Search/USD5or3/EnglishorGerman/MaximizeClicks/maximumCPC0.15",
+    "Read each new campaign adgroup view:zerochildren/ads/keywords",
+    "Treat geography, campaign expansion, network, actual cap performance and all paid acceptance as separate unresolved gates"
+  ],
+  "stop_conditions": [
+    "Frozen file/options drift",
+    "New authentication/terms/permissions/billing/security prompt",
+    "Pre-import warning of existing updates or other entities",
+    "Import result partial, extra records, coerced status/bids/budget/language, or cap absent"
+  ],
+  "containment": "No ads or keywords in file; native Pause newly imported campaigns ON plus CSVPaused. If a newly created exact shell is unexpectedly Active, contain by pausing that exact newID with fresh readback, never touch an old campaign. Do not add children or activate until corrected.",
+  "rollback": "Before Import Cancel. After Import preserve new shellsPaused with zerochildren; no destructive removal or blind rerun. Retain original11unchanged; settings can be corrected with exact reviewed inverse.",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "Native row validation, import receiver counts and independently verified persisted status/cap",
+  "if_evidence_supports_recommendation": "Retain exactPaused shells, qualify country/intent/expansion and later selected children separately",
+  "if_evidence_opposes_recommendation": "Hold new shellsPaused with zerochildren; diagnose exact error; do not launch or silently dropcap",
+  "material_decision": true,
+  "independent_verifier": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "global_paid_control": "NONE / STALE_READBACK_REQUIRED preserved",
+  "actual_spend_authorized": false
+}

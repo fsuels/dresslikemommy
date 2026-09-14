@@ -1,0 +1,82 @@
+{
+  "reviewed_at_utc": "2026-09-12T15:09:11.514441+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "verdict": "PASS_WITH_LIMITS_EXACT_TA15_ASSET_URL_CANONICAL_DELTA",
+  "check_count": 26,
+  "checks": {
+    "plan_and_preflight_exact_application_bindings": true,
+    "preflight_26_checks_preserved": true,
+    "exact_seven_files_and_replacements": true,
+    "all_private_backup_hashes_match_preflight": true,
+    "all_seven_replacements_unique": true,
+    "actual_seven_after_hashes_match_plan_preflight_and_application": true,
+    "actual_seven_files_equal_independent_simulation": true,
+    "exact_inverse_restores_every_before_byte": true,
+    "nine_authority_fields_identical": true,
+    "all_prior_coded_controls_retained": true,
+    "parent_one_owner_action_exact": true,
+    "all_non_ta15_queue_rows_preserved": true,
+    "all_peer_coordination_rows_preserved": true,
+    "all_prior_worklog_history_preserved": true,
+    "identical_own_state_cockpit_insert": true,
+    "all_root_receipt_hashes_frozen": true,
+    "all_independent_reviews_frozen": true,
+    "every_review_source_binding_still_exact": true,
+    "qualification_limits_and_open_gates_preserved": true,
+    "only_no_change_native_outcome_recorded": true,
+    "final_validation_and_command_receipts_frozen": true,
+    "initial_alias_failures_preserved_as_failures": true,
+    "bundled_runtime_success_for_same_three_scripts": true,
+    "root_strict_and_integration_results_supported": true,
+    "final_scoped_whitespace_results_clean": true,
+    "two_current_derived_hashes_match_final_receipt": true
+  },
+  "lease": "TA15-ASSETS-20260912-1438",
+  "plan_sha256": "43c664c9709a9bbaeab6dafd0a5384d97b25d0622673d7ba0e55f46cf58a645d",
+  "preflight_sha256": "84e047cdeedbb8919deeca2503bf853f8f242af928e17cfbb3c26cf47068482b",
+  "application_sha256": "c0242a93c09778afbdeb6622aa73f1ef70a393b3c28968e53fa52c450a53c0f9",
+  "completed_validation_sha256": "08d9acad7d43fc65902c852cf8899256e0e2bb83ba45c66c89d36133574150b9",
+  "validation_commands_sha256": "aa064a48bdb0c7b0a58604d1f41355659747c096c2ee3ca78273ef90fa13f8bb",
+  "actual_seven_after_sha256": {
+    "ops/marketing/current_marketing_state.md": "4e9f99a3ed4b8e55e97a4da1c555d67b6f8e3cff157a8d4060fc16062705da56",
+    "ops/marketing/operator_cockpit.md": "2d412cbc5423e5f5baf8beaf6704c83a8720ccac721cc7d97e0220e37a83d7b2",
+    "ops/marketing/action_queue.md": "e3e533f54542f4d1686bba2ae0074703a25d7986dcfc8a891837ee280fb81fd7",
+    "ops/marketing/blocker_board.md": "3ddd0b844d7682f75d7218050b3f30c26117ad3c1476926adc025a55bf9b2d5f",
+    "ops/PROBLEM_TRACKER.md": "29f255e63f613dc4f8eba0ef4bd9dad0b4b9b1f5c8ff08e2a3bf3fb64702d86c",
+    "ops/AGENT_COORDINATION.md": "a9cecb6906589b522e885b51a6e76e405db49df67a2cd4fc9e5f00e265a7c2a8",
+    "ops/AGENT_WORKLOG.md": "ad7423ce5aee15f66987ef3fbcd41ea5a1565d2e07310bffa9c502f54d5b1f5c"
+  },
+  "derived_artifacts_sha256_at_review": {
+    "ops/marketing/operator_cockpit.html": "da3b0b11402ac133186a341a2f559102452ea2dca1ce8e0cb1652ff47734b5c0",
+    "ops/marketing/command_layer_integration_audit.md": "a44cda19e1031af5ebc02c6e9a245f2f8110897fefc72887c610e53879aad036"
+  },
+  "root_receipts_sha256": {
+    "rsa_asset_policy_readback.json": "b5bcded437716dee9056d67fcfa9504ea1531ecf24ebb5eda1f64bf408b604fc",
+    "native_url_tests.json": "f3c62a8cec111879894b503f9d06b9c02e9cb8fe6c617aac4c1d5b06e17bf628",
+    "account_options_before.json": "ed2b14f2bee4c8aa7d37e4b478295b82219041650df8c6398460a0a89c80e98a",
+    "account_options_after.json": "3802c729abe4f691e464be73c57e3ceb85f257f17a3cfd4b330c6f98773faa80"
+  },
+  "independent_reviews_sha256": {
+    "review/rsa_asset_review.json": "39e37d6e7d125e6a753eb8f68b14280945b526adaaa8c1c58199cdc59002363f",
+    "review/url_test_review.json": "6ae6c35d32d962d567ce6aeebdea590c27cce6038dbf62e5d418018ac2bb63ee"
+  },
+  "preserved_authority_fields": {
+    "control_as_of": "2026-09-05",
+    "source_live_evidence_as_of": "2026-06-01",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "live_readback_fresh_until": "EXPIRED",
+    "autonomous_action_ready": "false",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+    "supersedes_execution_readiness_below": "true"
+  },
+  "verification_method": "Independently reconstructed the seven changes from hash-verified private backups, compared every actual byte/hash, reversed all changes to the exact before state, and checked controls, owner action, peer table rows and history. Rehashed all frozen inputs and the two derived artifacts; no standard test or renderer was rerun.",
+  "validation_provenance": "The three initial python3.13 shell attempts failed with exit 127 because the alias was unavailable. Root then executed the same scripts successfully through the existing bundled Python 3.12.14; these failures and recovery remain in the frozen command log. Final renderer/integration/strict/scoped whitespace results are root-executed and independently reviewed here, not reviewer-executed.",
+  "critical_limit": "Asset Approved/None and passing native URL Tests remain qualified root observations. They do not close whole-ad editorial, consent, real-click attribution, purchase/value/deduplication, paid-authority, support-contact or profit gates.",
+  "derived_limit": "The two hashes matched at this review. Generated output contains dated/current-minute information and these hashes are not permanent immutability claims.",
+  "remaining_work": "Supported consent repair and genuine purchase/economics acceptance remain incomplete. The exact support report is unsent with its existing permission question pending; no new external action is authorized.",
+  "reviewer_mutations": "Only this new review/canonical_delta_postflight.json. No root input, prior review, canonical, generated or native change.",
+  "next_action": "Root may explicitly hand back the TA15-ASSETS-20260912-1438 shared lease. Do not reapply this plan or repeat completed tests without new evidence."
+}

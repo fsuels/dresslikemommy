@@ -1,0 +1,366 @@
+{
+  "captured_at_utc": "2026-09-11T22:25:23.424Z",
+  "query": "query CouplesCollectionFreeze($id: ID!, $ids: [ID!]!) {\n collection(id:$id){id handle title descriptionHtml updatedAt seo{title description} ruleSet{appliedDisjunctively rules{column relation condition}} products(first:50){nodes{id title status handle updatedAt} pageInfo{hasNextPage endCursor}} resourcePublications(onlyPublished:true,first:50){nodes{isPublished publishDate publication{id}} pageInfo{hasNextPage endCursor}}}\n nodes(ids:$ids){...on Product{id title status handle updatedAt tags}}\n}",
+  "variables": {
+    "id": "gid://shopify/Collection/290635284577",
+    "ids": [
+      "gid://shopify/Product/7230336729185",
+      "gid://shopify/Product/7672336646241",
+      "gid://shopify/Product/7505372282977"
+    ]
+  },
+  "result": {
+    "collection": {
+      "id": "gid://shopify/Collection/290635284577",
+      "handle": "couples",
+      "title": "Matching Couples Outfits",
+      "descriptionHtml": "<p>Matching Couples Outfits focuses on matching couple sets, hoodies, tees, and coordinated date-night looks for couples shopping coordinated style who want coordinated style that feels thoughtful instead of overdone. It is a practical place to shop for date nights, holidays, gifting, and travel, especially when you want styling that feels pulled together right away.</p><p>The collection includes easy matching outfits that feel fun, wearable, and photo-ready. Many shoppers use this category to find one strong starting piece, then build the rest of the outfit around it. That makes the collection useful whether you want a full matching set or just an easy anchor for a coordinated look.</p><p>When you are short on time, this is one of the easiest places to start. Choose a matching level that fits your style, from subtle coordination to bold graphics. Once you have found your favorite print, color, or silhouette, finish the look knowing you still have Free shipping + 30-day returns as you decide.</p>",
+      "updatedAt": "2026-07-08T20:28:54Z",
+      "seo": {
+        "title": "Matching Couples Outfits - Looks for Two | Dress Like Mommy",
+        "description": "Find matching couple sets, hoodies, tees, and coordinated date-night looks for couples shopping coordinated style. Free shipping + 30-day returns. Shop matching couple looks today."
+      },
+      "ruleSet": {
+        "appliedDisjunctively": false,
+        "rules": [
+          {
+            "column": "TAG",
+            "relation": "EQUALS",
+            "condition": "Couples"
+          }
+        ]
+      },
+      "products": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Product/6842594656353",
+            "title": "Couple Matching Hoodie King and Queen",
+            "status": "ARCHIVED",
+            "handle": "couple-matching-hoodie-king-and-queen",
+            "updatedAt": "2026-05-19T10:21:52Z"
+          },
+          {
+            "id": "gid://shopify/Product/6842589577313",
+            "title": "Matching Couple Hoodies Queen King Crown",
+            "status": "ARCHIVED",
+            "handle": "matching-couple-hoodies-queen-king-crown",
+            "updatedAt": "2026-05-19T10:21:51Z"
+          },
+          {
+            "id": "gid://shopify/Product/6842589118561",
+            "title": "Dad To Be Baby Loading Couple T-Shirt Pregnancy Announcement",
+            "status": "ARCHIVED",
+            "handle": "dad-to-be-baby-loading-couple-t-shirt-pregnancy-announcement",
+            "updatedAt": "2026-05-19T10:21:50Z"
+          },
+          {
+            "id": "gid://shopify/Product/6842588561505",
+            "title": "MR. GOOD and MRS. LIFE Couple T-shirt",
+            "status": "ARCHIVED",
+            "handle": "mr-good-and-mrs-life-couple-t-shirt",
+            "updatedAt": "2026-05-19T10:21:49Z"
+          },
+          {
+            "id": "gid://shopify/Product/6842588430433",
+            "title": "Nothing Makes Sense When We're Apart Couple T-shirt",
+            "status": "ARCHIVED",
+            "handle": "nothing-makes-sense-when-were-apart-couple-t-shirt",
+            "updatedAt": "2026-05-19T10:21:48Z"
+          },
+          {
+            "id": "gid://shopify/Product/6842588004449",
+            "title": "Bonnie and Clyde Matching Couple T-Shirts",
+            "status": "ARCHIVED",
+            "handle": "bonnie-and-clyde-matching-couple-t-shirts",
+            "updatedAt": "2026-05-19T10:21:48Z"
+          },
+          {
+            "id": "gid://shopify/Product/6842587545697",
+            "title": "Yin and Yang Matching Couple T-shirts",
+            "status": "ARCHIVED",
+            "handle": "yin-and-yang-matching-couple-t-shirts",
+            "updatedAt": "2026-05-19T10:21:47Z"
+          },
+          {
+            "id": "gid://shopify/Product/6842587119713",
+            "title": "Matching Couples T-Shirt Boyfriend Fiance Husband",
+            "status": "ARCHIVED",
+            "handle": "matching-couples-t-shirt-boyfriend-fiance-husband",
+            "updatedAt": "2026-05-19T10:21:46Z"
+          },
+          {
+            "id": "gid://shopify/Product/6842586136673",
+            "title": "Seeyoushy Couple Clothes Matching Set Lovers Avocado Better Half Printed Valentines Day Graphic Tees Fashion  Clothing",
+            "status": "ARCHIVED",
+            "handle": "seeyoushy-couple-clothes-matching-set-lovers-avocado-better-half-printed-valentines-day-graphic-tees-fashion-clothing",
+            "updatedAt": "2026-05-19T10:21:45Z"
+          },
+          {
+            "id": "gid://shopify/Product/6842585317473",
+            "title": "Matching Couples Bread & Nutella T-shirt",
+            "status": "ARCHIVED",
+            "handle": "matching-couples-bread-nutella-t-shirt",
+            "updatedAt": "2026-05-19T10:21:44Z"
+          },
+          {
+            "id": "gid://shopify/Product/6841780994145",
+            "title": "Couple Matching Queen King Hearts T-shirts",
+            "status": "ARCHIVED",
+            "handle": "couple-matching-queen-king-hearts-t-shirts",
+            "updatedAt": "2026-05-19T10:21:43Z"
+          },
+          {
+            "id": "gid://shopify/Product/6841768247393",
+            "title": "Couple T Shirt POWER COUPLE Short Sleeve T Shirts",
+            "status": "ARCHIVED",
+            "handle": "couple-t-shirt-power-couple-short-sleeve-t-shirts",
+            "updatedAt": "2026-05-19T10:21:42Z"
+          },
+          {
+            "id": "gid://shopify/Product/6841761300577",
+            "title": "Matching Couple T-Shirt LO VE",
+            "status": "ARCHIVED",
+            "handle": "matching-couple-t-shirt-lo-ve",
+            "updatedAt": "2026-05-19T10:21:41Z"
+          },
+          {
+            "id": "gid://shopify/Product/6841759727713",
+            "title": "Couple Matching T-shirt Funny BEARD BUTT",
+            "status": "ARCHIVED",
+            "handle": "couple-matching-t-shirt-funny-beard-butt",
+            "updatedAt": "2026-05-19T10:21:40Z"
+          },
+          {
+            "id": "gid://shopify/Product/6835971424353",
+            "title": "Matching Love Heart Printing Couple T-Shirts",
+            "status": "ARCHIVED",
+            "handle": "matching-love-heart-printing-couple-t-shirts",
+            "updatedAt": "2026-05-19T10:21:40Z"
+          },
+          {
+            "id": "gid://shopify/Product/6826336583777",
+            "title": "Matching Tshirt I Have Everything I Need I AM Everything",
+            "status": "ARCHIVED",
+            "handle": "matching-tshirt-i-have-everything-i-need-i-am-everything",
+            "updatedAt": "2026-05-19T10:21:39Z"
+          },
+          {
+            "id": "gid://shopify/Product/6826238607457",
+            "title": "Couple Matching Shirts Mr and Mrs Wedding Gift Anniversary",
+            "status": "ARCHIVED",
+            "handle": "couple-matching-shirts-mr-and-mrs-wedding-gift-anniversary",
+            "updatedAt": "2026-05-19T10:21:38Z"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo2ODI2MjM4NjA3NDU3LCJsYXN0X3ZhbHVlIjoiMjAyMi0wNy0xMSAxNTozMTo1OS4wMDAwMDAifQ=="
+        }
+      },
+      "resourcePublications": {
+        "nodes": [
+          {
+            "isPublished": true,
+            "publishDate": "2022-07-11T13:49:22Z",
+            "publication": {
+              "id": "gid://shopify/Publication/55169925"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2022-07-11T13:49:22Z",
+            "publication": {
+              "id": "gid://shopify/Publication/85065989"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2022-07-11T13:49:23Z",
+            "publication": {
+              "id": "gid://shopify/Publication/8877965409"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2022-07-11T13:49:23Z",
+            "publication": {
+              "id": "gid://shopify/Publication/21969633377"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2022-07-11T13:49:23Z",
+            "publication": {
+              "id": "gid://shopify/Publication/29172400225"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2022-08-25T18:50:22Z",
+            "publication": {
+              "id": "gid://shopify/Publication/76582879329"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2022-09-13T22:12:07Z",
+            "publication": {
+              "id": "gid://shopify/Publication/76604768353"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2026-03-27T03:14:19Z",
+            "publication": {
+              "id": "gid://shopify/Publication/97235894369"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo2OTE2NzgwNTI0NDksImxhc3RfdmFsdWUiOjY5MTY3ODA1MjQ0OX0="
+        }
+      }
+    },
+    "nodes": [
+      {
+        "id": "gid://shopify/Product/7230336729185",
+        "title": "Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM",
+        "status": "ACTIVE",
+        "handle": "matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors",
+        "updatedAt": "2026-09-11T17:12:39Z",
+        "tags": [
+          "Adult 2XL",
+          "Adult 3XL",
+          "Adult L",
+          "Adult M",
+          "Adult S",
+          "Adult XL",
+          "Baby 12M",
+          "Baby 6M",
+          "Black",
+          "Child 1-2yr",
+          "Child 11-12yr",
+          "Child 3-4yr",
+          "Child 5-6yr",
+          "Child 7-8yr",
+          "Child 9-10yr",
+          "Cotton",
+          "Family Matching",
+          "Father 2XL",
+          "Father 3XL",
+          "Father 4XL",
+          "Father L",
+          "Father M",
+          "Father XL",
+          "Mother L",
+          "Mother M",
+          "Mother S",
+          "Mother XS",
+          "Spring",
+          "Summer",
+          "Tops"
+        ]
+      },
+      {
+        "id": "gid://shopify/Product/7672336646241",
+        "title": "Together Heart Family Matching Sweaters — Crewneck Tops",
+        "status": "ACTIVE",
+        "handle": "together-heart-family-matching-sweaters",
+        "updatedAt": "2026-09-10T15:57:05Z",
+        "tags": [
+          "Adult 2XL",
+          "Adult 3XL",
+          "Adult 4XL",
+          "Adult L",
+          "Adult M",
+          "Adult S",
+          "Adult Sweater",
+          "Adult XL",
+          "Black",
+          "Blue",
+          "Child 2 Years",
+          "Child 3 Years",
+          "Child 4 Years",
+          "Child 5 Years",
+          "Child 6-7 Years",
+          "Child 8 Years",
+          "Child 9-10 Years",
+          "Child Sweater",
+          "Crewneck Sweater",
+          "Fall",
+          "Family Matching",
+          "Family Photos",
+          "Family Sweaters",
+          "Graphic Sweater",
+          "Green",
+          "Heart Graphic",
+          "Long Sleeve Top",
+          "Matching Family Outfits",
+          "Matching Family Sweaters",
+          "Matching Family Top",
+          "Matching Family Tops",
+          "Pink",
+          "Red",
+          "Sweaters",
+          "Together Heart",
+          "Tops",
+          "Unisex Sweater",
+          "White",
+          "Yellow"
+        ]
+      },
+      {
+        "id": "gid://shopify/Product/7505372282977",
+        "title": "Tropical Floral Family Matching Shirt and Dress Outfit Set",
+        "status": "ACTIVE",
+        "handle": "tropical-floral-family-matching-shirt-and-dress-outfit-set",
+        "updatedAt": "2026-09-07T18:16:41Z",
+        "tags": [
+          "Beach",
+          "beach holiday outfit",
+          "boys tropical shirt",
+          "Child 1-2yr",
+          "Child 3-4yr",
+          "Child 5-6yr",
+          "Child 7-8yr",
+          "Child 9-10yr",
+          "coordinated family outfits",
+          "Cotton",
+          "Cruise",
+          "daddy and me shirt",
+          "Family Matching",
+          "family matching clothes",
+          "family matching set",
+          "family photo outfit",
+          "Father 2XL",
+          "Father 3XL",
+          "father son matching",
+          "Father XL",
+          "Floral",
+          "girls floral dress",
+          "Gray",
+          "matching beach outfits",
+          "matching family outfits",
+          "mens floral shirt",
+          "mommy and me dress",
+          "mother daughter matching",
+          "Mother L",
+          "Mother M",
+          "Mother S",
+          "Mother XL",
+          "resort family wear",
+          "Sets",
+          "Spring",
+          "Summer",
+          "summer family outfit",
+          "tropical floral family outfit",
+          "tropical print outfit",
+          "vacation family outfit",
+          "women floral dress",
+          "Yellow"
+        ]
+      }
+    ]
+  }
+}

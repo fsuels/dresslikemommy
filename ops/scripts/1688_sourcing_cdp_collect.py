@@ -12,6 +12,7 @@ import argparse
 import datetime as dt
 import itertools
 import json
+import re
 import subprocess
 import time
 import urllib.parse
@@ -343,18 +344,18 @@ def query_text(
     defaults: dict[str, Any] | None = None,
     market: dict[str, Any] | None = None,
 ) -> str:
+    """Build the short product phrase sent to 1688.
+
+    Service, vendor, freshness, and destination-market requirements are
+    verified after discovery; stacking them into the query produced broad,
+    off-category results on the live site.
+    """
     defaults = defaults if isinstance(defaults, dict) else {}
-    market_modifiers = market.get("query_modifiers", []) if isinstance(market, dict) else []
     if isinstance(item, dict):
         return clean_query_terms(
             [
                 item.get("text"),
-                item.get("launch_year") or defaults.get("launch_year"),
                 item.get("launch_season") or item.get("season") or defaults.get("launch_season"),
-                item.get("freshness") or defaults.get("freshness"),
-                item.get("modifiers") or defaults.get("modifiers"),
-                market_modifiers,
-                item.get("fulfillment") or defaults.get("fulfillment"),
             ]
         )
     return str(item or "").strip()
@@ -392,6 +393,22 @@ def rotated_queries(
     state = history.get("categories", {}).get(search_history_key(category_id, market_target), {})
     start = int(state.get("next_query_index") or 0) % len(queries) if isinstance(state, dict) else 0
     return queries[start:] + queries[:start]
+
+
+def queries_for_run(
+    category_id: str,
+    queries: list[str],
+    query_index: int,
+    target_reviewable: int = 0,
+    market_target: str = DEFAULT_MARKET_TARGET,
+    max_queries: int = 0,
+) -> list[str]:
+    selected = (
+        rotated_queries(category_id, queries, market_target)
+        if query_index < 0 or target_reviewable > 0
+        else [queries[min(query_index, len(queries) - 1)]]
+    )
+    return selected[:max_queries] if max_queries > 0 else selected
 
 
 def offer_id_from_row(row: dict[str, Any]) -> str:
@@ -513,90 +530,170 @@ def dedupe_candidates(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return result
 
 
+def phrase_present(text: str, phrase: str) -> bool:
+    """Match Chinese substrings and English phrases without `son`/`men` substring leaks."""
+    phrase = str(phrase or "").strip().lower()
+    if not phrase:
+        return False
+    if any(ord(character) > 127 for character in phrase):
+        return phrase in text
+    return bool(re.search(rf"(?<![a-z0-9]){re.escape(phrase)}(?![a-z0-9])", text))
+
+
+def any_phrase(text: str, phrases: tuple[str, ...]) -> bool:
+    return any(phrase_present(text, phrase) for phrase in phrases)
+
+
 def category_match_score(row: dict[str, Any], category_id: str) -> str:
+    title = str(row.get("title", "")).lower()
     haystack = " ".join(
         str(row.get(field, "")).lower()
         for field in ("title", "raw_card_text", "badges", "service_flags")
     )
+    obvious_wrong_products = (
+        "lingerie",
+        "intimates",
+        "underwear",
+        "bralette",
+        "panties",
+        "thong",
+        "sexy uniform",
+        "doll clothes",
+        "doll clothing",
+        "doll outfit",
+        "dress accessories",
+        "hair accessory",
+        "headband",
+        "stiletto",
+        "pumps",
+        "fabric for dresses",
+        "内衣",
+        "文胸",
+        "胸罩",
+        "内裤",
+        "丁字裤",
+        "情趣",
+        "娃衣",
+        "玩偶服",
+    )
+    if any_phrase(title, obvious_wrong_products):
+        return "1"
+
+    mommy_terms = (
+        "mother-daughter",
+        "mother daughter",
+        "mother and daughter",
+        "mommy and me",
+        "mommy & me",
+        "mom and me",
+        "mom & me",
+        "母女",
+    )
+    daddy_terms = (
+        "father-son",
+        "father son",
+        "father and son",
+        "father-daughter",
+        "father daughter",
+        "father and daughter",
+        "dad and son",
+        "dad and daughter",
+        "daddy and me",
+        "daddy & me",
+        "父子",
+        "父女",
+    )
+    sibling_terms = (
+        "sibling matching",
+        "matching siblings",
+        "sibling outfits",
+        "siblings outfits",
+        "sisters matching",
+        "matching sisters",
+        "brothers matching",
+        "matching brothers",
+        "brother-sister",
+        "brother sister",
+        "brother and sister",
+        "sister-sister",
+        "brother-brother",
+        "姐妹装",
+        "姐妹同款",
+        "兄弟装",
+        "兄弟同款",
+        "兄妹装",
+        "兄妹同款",
+        "姐弟装",
+        "姐弟同款",
+    )
+    family_terms = (
+        "family matching",
+        "matching family",
+        "family outfit",
+        "family outfits",
+        "family clothing",
+        "family clothes",
+        "family of three",
+        "family of four",
+        "family of five",
+        "全家",
+        "一家三口",
+        "一家四口",
+        "家庭装",
+        "家庭亲子",
+        "亲子装",
+    )
+    couple_terms = (
+        "couple outfit",
+        "couple outfits",
+        "couple clothing",
+        "couple wear",
+        "couple style",
+        "couple's",
+        "couples",
+        "情侣",
+        "夫妻",
+        "男女同款",
+    )
+    maternity_terms = (
+        "maternity",
+        "pregnant",
+        "pregnancy",
+        "mom-to-be",
+        "baby bump",
+        "bump dress",
+        "孕妇",
+        "孕妈",
+        "孕肚",
+        "大肚",
+    )
+
+    if category_id == "mommy-and-me":
+        return "5" if any_phrase(haystack, mommy_terms) else "2"
+    if category_id == "daddy-and-me":
+        return "5" if any_phrase(haystack, daddy_terms) else "2"
+    if category_id == "siblings-matching":
+        return "5" if any_phrase(haystack, sibling_terms) else "2"
+    if category_id == "family-matching":
+        return "5" if any_phrase(haystack, family_terms) else "2"
+    if category_id == "couples":
+        english_gender_pair = bool(
+            re.search(r"\b(?:men|man|male)\b.*\b(?:women|woman|female)\b|\b(?:women|woman|female)\b.*\b(?:men|man|male)\b", haystack)
+        )
+        chinese_gender_pair = "男" in haystack and "女" in haystack
+        coordinated_genders = (english_gender_pair or chinese_gender_pair) and any_phrase(
+            haystack,
+            ("matching", "same style", "same-style", "coordinated", "同款", "配套"),
+        )
+        return "5" if any_phrase(haystack, couple_terms) or coordinated_genders else "2"
     if category_id == "maternity":
-        identity_terms = (
-            "maternity",
-            "pregnant",
-            "pregnancy",
-            "mom-to-be",
-            "baby bump",
-            "bump",
-            "孕妇",
-            "孕妈",
-            "孕肚",
-            "大肚",
-            "大肚子",
-        )
-        photoshoot_terms = (
-            "photo shoot",
-            "photoshoot",
-            "photography",
-            "portrait",
-            "studio",
-            "gown",
-            "formal",
-            "evening",
-            "wedding",
-            "bridal",
-            "bride",
-            "tulle",
-            "veil",
-            "strapless",
-            "off-shoulder",
-            "mermaid",
-            "cheongsam",
-            "fairy",
-            "ethereal",
-            "ceremony",
-            "写真",
-            "拍照",
-            "摄影",
-            "影楼",
-            "礼服",
-            "婚纱",
-            "高定",
-            "唯美",
-            "仙女",
-            "仙气",
-            "飘纱",
-            "白纱",
-            "薄纱",
-            "头纱",
-            "抹胸",
-            "鱼尾",
-            "油画",
-            "森系",
-            "私房",
-            "晚礼服",
-            "婚礼",
-        )
-        if any(term in haystack for term in identity_terms) and any(term in haystack for term in photoshoot_terms):
-            return "5"
-        if any(term in haystack for term in identity_terms):
-            return "3"
-        return "2"
-    terms = {
-        "mommy-and-me": ("mother", "daughter", "mom", "mommy", "母女", "亲子", "parent-child"),
-        "daddy-and-me": ("father", "son", "dad", "daddy", "父子", "父女", "亲子", "parent-child"),
-        "family-matching": ("family", "mother", "father", "daughter", "son", "家庭", "全家", "亲子", "parent-child"),
-        "couples": ("couple", "men", "women", "情侣", "男", "女"),
-    }
-    strong_terms = terms.get(category_id, ())
-    if any(term in haystack for term in strong_terms):
-        return "5"
-    if category_id == "family-matching" and ("dress" in haystack and "shirt" in haystack):
-        return "4"
+        has_maternity = any_phrase(haystack, maternity_terms)
+        has_matching_family = any_phrase(haystack, mommy_terms + family_terms)
+        return "5" if has_maternity and has_matching_family else "2"
     return "2"
 
 
 def re_search_offer(url: str) -> str:
-    import re
-
     match = re.search(r"/offer/(\d+)\.html", url)
     return match.group(1) if match else ""
 
@@ -745,20 +842,29 @@ def collect_category(
     target_reviewable: int = 0,
     max_pages_per_query: int = 1,
     market_target: str = DEFAULT_MARKET_TARGET,
+    max_queries: int = 0,
+    exact_queries: list[str] | None = None,
 ) -> Path:
     categories = load_categories()
     if category_id not in categories:
         raise SystemExit(f"Unknown category: {category_id}")
     market_target = normalize_market_target(market_target)
     category = categories[category_id]
-    queries = normalize_queries(category.get("queries", []), category.get("search_defaults", {}), market_profile(market_target))
+    explicit = [str(query or "").strip() for query in (exact_queries or []) if str(query or "").strip()]
+    queries = explicit or normalize_queries(category.get("queries", []), category.get("search_defaults", {}), market_profile(market_target))
     if not queries:
         raise SystemExit(f"No queries configured for category: {category_id}")
-    selected_queries = (
-        rotated_queries(category_id, queries, market_target)
-        if query_index < 0 or target_reviewable > 0
-        else [queries[min(query_index, len(queries) - 1)]]
-    )
+    if explicit:
+        selected_queries = explicit[:max_queries] if max_queries > 0 else explicit
+    else:
+        selected_queries = queries_for_run(
+            category_id,
+            queries,
+            query_index,
+            target_reviewable,
+            market_target,
+            max_queries,
+        )
     stamp = dt.datetime.now().strftime("%Y-%m-%d-%H%M%S")
     market_slug = "" if market_target == DEFAULT_MARKET_TARGET else f"-{market_target}"
     output_dir = SOURCING_ROOT / f"{stamp}-{category_id}{market_slug}-1688-auto"
@@ -982,6 +1088,18 @@ def main() -> None:
     parser.add_argument("--query-index", type=int, default=0, help="Which configured query to use for the category. Use -1 to try all configured queries.")
     parser.add_argument("--target-reviewable", type=int, default=0, help="Try all configured queries and aim for this many Gold/Test candidates.")
     parser.add_argument("--max-pages-per-query", type=int, default=1, help="Search result pages to visit for each query.")
+    parser.add_argument(
+        "--max-queries",
+        type=int,
+        default=0,
+        help="Maximum rotated queries to try per category in this run; 0 preserves the existing unlimited behavior.",
+    )
+    parser.add_argument(
+        "--exact-query",
+        action="append",
+        default=[],
+        help="Use this exact final Chinese query without configured season or rotation changes. Repeat for a batch.",
+    )
     parser.add_argument("--market-target", default=DEFAULT_MARKET_TARGET, help="Market profile id: balanced, us, or eu.")
     args = parser.parse_args()
 
@@ -996,6 +1114,8 @@ def main() -> None:
             args.target_reviewable,
             args.max_pages_per_query,
             args.market_target,
+            args.max_queries,
+            args.exact_query,
         )
         print(output_dir.relative_to(REPO_ROOT))
 

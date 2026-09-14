@@ -1,0 +1,135 @@
+{
+  "candidate_source": "Shopify sold variants/products that had no matching Google Ads Shopping click in the source audit window",
+  "economics": {
+    "initial_duration": "72 hours or until spend reaches $15, whichever comes first",
+    "max_cpc_usd": "0.15",
+    "stop_rules": [
+      "Stop if Shopify Google-paid orders remain 0 after $15 spend",
+      "Stop any product/ad group if average CPC exceeds $0.15 after 20 clicks",
+      "Stop any row if live QA finds checkout/PDP/source issues",
+      "Do not optimize from GA4 channel revenue until parity returns to +/-5%"
+    ],
+    "target_roas": "650%",
+    "test_daily_budget_cap_usd": "5.00",
+    "why_this_cap": "At $0.15 CPC and 650% ROAS target, required revenue per click is about $0.975. With observed product prices around $29-$35, the test needs roughly 1 order per 30-36 clicks to be viable before fulfillment/product margin review."
+  },
+  "files": {
+    "candidate_csv": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-21-shopify-sold-product-paid-retest/shopify_sold_product_retest_candidates_2026-05-21.csv"
+  },
+  "generated_at": "2026-05-21T07:03:15.713911+00:00",
+  "green_count": 13,
+  "guardrail": "No Google Ads, Shopify, Merchant, GA4, GTM, billing, campaign, budget, bid, status, keyword, negative, product group, conversion-goal, feed, or product write occurred.",
+  "held_count": 11,
+  "hold_reason_counts": {
+    "current_title_contains_dlm_suffix": 7,
+    "current_title_contains_ellipsis": 7,
+    "page_or_json_status_404_404": 5,
+    "product_not_available": 5,
+    "sold_variant_not_currently_available": 5,
+    "supplier_or_source_host_hit": 4
+  },
+  "mode": "LOCAL_APPROVAL_PACKET_ONLY_NO_LIVE_WRITES",
+  "rows_checked": 24,
+  "source_window": {
+    "end": "2026-05-19",
+    "start": "2026-04-22"
+  },
+  "top_green_candidates": [
+    {
+      "current_public_title": "Lavender Mommy and Me Floral Applique Sleeveless Ruffle Dress",
+      "handle": "lavender-mommy-and-me-floral-applique-sleeveless-ruffle-dress",
+      "min_available_price": "29.99",
+      "orders_count": 1,
+      "product_id": "7516479848545",
+      "product_url": "https://dresslikemommy.com/products/lavender-mommy-and-me-floral-applique-sleeveless-ruffle-dress",
+      "retest_rank": 1,
+      "sold_quantity": 3,
+      "sold_revenue": "94.97",
+      "sold_variant_ids": "43831323164769|43831323263073"
+    },
+    {
+      "current_public_title": "Green Tropical Leaf Daddy and Me Matching Swim Shorts for Pool Days",
+      "handle": "green-tropical-leaf-daddy-and-me-matching-swim-shorts-for-pool-days",
+      "min_available_price": "21.99",
+      "orders_count": 2,
+      "product_id": "7510790733921",
+      "product_url": "https://dresslikemommy.com/products/green-tropical-leaf-daddy-and-me-matching-swim-shorts-for-pool-days",
+      "retest_rank": 2,
+      "sold_quantity": 5,
+      "sold_revenue": "78.42",
+      "sold_variant_ids": "43768831148129|43768831311969|43768831803489|43768831967329|43768832131169"
+    },
+    {
+      "current_public_title": "Ivory Dot Mommy and Me Dresses - Puff Sleeve Sundress",
+      "handle": "ivory-dot-mommy-and-me-dresses",
+      "min_available_price": "31.99",
+      "orders_count": 1,
+      "product_id": "7537025613921",
+      "product_url": "https://dresslikemommy.com/products/ivory-dot-mommy-and-me-dresses",
+      "retest_rank": 3,
+      "sold_quantity": 2,
+      "sold_revenue": "68.12",
+      "sold_variant_ids": "44083600031841|44083600195681"
+    },
+    {
+      "current_public_title": "Pink Lace Garden Mommy and Me Dresses - Puff Sleeve Sundress",
+      "handle": "pink-lace-garden-mommy-and-me-dresses",
+      "min_available_price": "31.99",
+      "orders_count": 1,
+      "product_id": "7536696295521",
+      "product_url": "https://dresslikemommy.com/products/pink-lace-garden-mommy-and-me-dresses",
+      "retest_rank": 4,
+      "sold_quantity": 2,
+      "sold_revenue": "66.98",
+      "sold_variant_ids": "44082061082721|44082061246561"
+    },
+    {
+      "current_public_title": "Polka Dot Mommy and Me Dresses - Puff Sleeve Sundress",
+      "handle": "polka-dot-mommy-and-me-dresses",
+      "min_available_price": "31.99",
+      "orders_count": 1,
+      "product_id": "7536988520545",
+      "product_url": "https://dresslikemommy.com/products/polka-dot-mommy-and-me-dresses",
+      "retest_rank": 5,
+      "sold_quantity": 2,
+      "sold_revenue": "66.98",
+      "sold_variant_ids": "44083433930849|44083434258529"
+    },
+    {
+      "current_public_title": "Blue Tie-Dye Butterfly Mommy and Me Dresses \u2014 Tiered Sleeveless Dress",
+      "handle": "blue-tie-dye-butterfly-mommy-and-me-dresses",
+      "min_available_price": "27.99",
+      "orders_count": 1,
+      "product_id": "7535362015329",
+      "product_url": "https://dresslikemommy.com/products/blue-tie-dye-butterfly-mommy-and-me-dresses",
+      "retest_rank": 6,
+      "sold_quantity": 2,
+      "sold_revenue": "61.98",
+      "sold_variant_ids": "44057274810465|44057274908769"
+    },
+    {
+      "current_public_title": "Powder Blue Mommy and Me Set \u2014 Flutter Top & Eyelet Pants",
+      "handle": "powder-blue-mommy-and-me-set",
+      "min_available_price": "31.99",
+      "orders_count": 1,
+      "product_id": "7535944368225",
+      "product_url": "https://dresslikemommy.com/products/powder-blue-mommy-and-me-set",
+      "retest_rank": 7,
+      "sold_quantity": 2,
+      "sold_revenue": "60.98",
+      "sold_variant_ids": "44076870664289|44076870860897"
+    },
+    {
+      "current_public_title": "Ivory Cascade Mommy and Me Set - Sleeveless Top & Maxi Skirt",
+      "handle": "ivory-cascade-mommy-and-me-set",
+      "min_available_price": "28.99",
+      "orders_count": 1,
+      "product_id": "7536703012961",
+      "product_url": "https://dresslikemommy.com/products/ivory-cascade-mommy-and-me-set",
+      "retest_rank": 8,
+      "sold_quantity": 2,
+      "sold_revenue": "60.98",
+      "sold_variant_ids": "44082074517601|44082074714209"
+    }
+  ]
+}

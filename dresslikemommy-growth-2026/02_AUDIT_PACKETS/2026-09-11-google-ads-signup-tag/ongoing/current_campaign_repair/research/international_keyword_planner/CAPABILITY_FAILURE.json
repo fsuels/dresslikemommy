@@ -1,0 +1,23 @@
+{
+  "status": "BLOCKED_WORKER_BROWSER_CAPABILITY",
+  "receipt_clock_utc": "2026-09-11 20:01:02 UTC",
+  "worker": "/root/market_readback",
+  "requested_scope": "Google Keyword Planner account 650-997-2886; AU, GB and CA separately; English; Google only; last 12 months; ten parent-specified seeds",
+  "attempt": {
+    "tool": "mcp__cua_repl.js",
+    "operation": "cua.createBrowserTab",
+    "browser": "iab",
+    "visible": false,
+    "target": "https://ads.google.com/aw/keywordplanner/home?ocid=8520129103&authuser=0&__u=2136917243&__c=1852023447",
+    "exact_error": "Browser is not available: iab",
+    "attempt_count": 1,
+    "tab_created": false,
+    "country_query_runs": 0
+  },
+  "interpretation": "This worker could not create the requested in-app browser surface. Account identity, authentication, planner settings, volume ranges, bids, currency and seed-row visibility were not inspected; no global browser or account failure is inferred.",
+  "disposition": "Parent acknowledged the capability failure and will perform the three country reads in its working research tab. No retry, alternative surface, blank report or template was created.",
+  "protected_surfaces_untouched": ["user tab 4", "root editor tab 5", "root research tab 6", "native Chrome"],
+  "external_writes": 0,
+  "public_storefront_requests": 0,
+  "tab_close": "NOT_APPLICABLE_NO_TAB_CREATED"
+}

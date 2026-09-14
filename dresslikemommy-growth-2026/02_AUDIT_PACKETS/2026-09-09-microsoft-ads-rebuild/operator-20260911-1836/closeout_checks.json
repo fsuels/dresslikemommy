@@ -1,0 +1,79 @@
+{
+  "as_of_utc": "2026-09-11T19:12:01.563010+00:00",
+  "status": "PASS_IMPLEMENTED_LOCAL_OPERATOR__ACCOUNT_SIGN_IN_REQUIRED",
+  "local_integration_checks": {
+    "status": "PASS",
+    "count": 16
+  },
+  "independent_packet_review": {
+    "status": "PASS",
+    "count": 28,
+    "receipt": "root_packet_independent_review.json"
+  },
+  "automation_configuration": "IMPLEMENTED_AND_VERIFIED_ACTIVE_FOUR_HOUR_EXISTING_THREAD",
+  "scheduled_execution": "NOT_OBSERVED",
+  "account_access": "BLOCKED_NORMAL_OWNER_SIGN_IN",
+  "microsoft_shopify_config_or_paid_writes_this_continuation": 0,
+  "canonical_update": {
+    "status": "APPLIED_VERIFIED",
+    "files": 9,
+    "edits": 13,
+    "exact_after_hashes_verified": true,
+    "all_unrelated_content_preserved_by_replayed_inverse": true,
+    "paid_control_and_parent_one_owner_action_preserved": true
+  },
+  "compiler": {
+    "plain_continue_query": "FAILED_NO_RELEVANT_ANCHOR",
+    "exact_entity_query": "FAILED_AMBIGUOUS_RELEVANT_ANCHOR",
+    "recovery": "Exact TA-15/account477439 owning rows and relevant Microsoft anchor read directly; context only; parent owns compiler code"
+  },
+  "environment_failure": "Default python3 has no tomllib; switched to observed bundled Python runtime; exact automation read succeeded.",
+  "business_outcome": "UNKNOWN; no verified profit uplift",
+  "checks_run": [
+    {
+      "command": "bundled Python: integrate_negative_review.py",
+      "status": "PASS",
+      "checks": 16
+    },
+    {
+      "command": "independent root_packet review",
+      "status": "PASS",
+      "checks": 28
+    },
+    {
+      "command": "bundled Python: render_marketing_cockpit.py",
+      "status": "PASS"
+    },
+    {
+      "command": "bundled Python: audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "status": "PASS",
+      "tracked_files": 25,
+      "risks": 0
+    },
+    {
+      "command": "bundled Python: check_continuity_integrity.py --strict",
+      "status": "PASS_CONTINUITY_OK",
+      "checks": 10
+    },
+    {
+      "command": "git diff --check -- exact changed canonical and generated paths",
+      "status": "PASS"
+    },
+    {
+      "command": "reviewed hashes, own-card rendered content and local text whitespace",
+      "status": "PASS"
+    }
+  ],
+  "verification_adjustment": {
+    "initial_result": "FAILED_ASSERTION_EXPECTED_FULL_CHECKPOINT_METADATA_IN_CARD",
+    "observed_cause": "Existing renderer displays selected action-queue fields, not entire Microsoft checkpoint or automation ID. Inspection also found arbitrary free-text stage/access fields excluded TA-15 from owner/blocked filters.",
+    "correction": "Only TA-15 data changed to existing Needs access/Access enum and visible four-hour milestone; current_marketing_state.md gives a supported source link. Renderer untouched. Regenerated and repeated required checks.",
+    "after": "PASS actual rendered TA-15 card fields and documented filter predicates; not a visual browser interaction test"
+  },
+  "generated_files": {
+    "ops/marketing/operator_cockpit.html": "ba6efbe3ce30f56a2c8d3de2e381adb663a3963e36d4af2868bd034f3aaeeb1d",
+    "ops/marketing/command_layer_integration_audit.md": "1d6acff48b5f342f788094f09f1e04513032d43af005fe1c07920f4da4993680"
+  },
+  "next_action": "Existing owner sign-in to Microsoft477439 in this task-owned retained panel; then fresh receiving-account read and authorized bounded repair.",
+  "continuation_anchor": "2026-09-11-microsoft-recurring-operator-and-campaign-cleanup"
+}

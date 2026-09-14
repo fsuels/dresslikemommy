@@ -1,0 +1,56 @@
+{
+  "status": "VERIFIED_LOCAL_CYCLE_WITH_LIMITS",
+  "validated_at_utc": "2026-09-11T19:06:41.225600+00:00",
+  "commands": [
+    {
+      "command": "render_marketing_cockpit.py",
+      "exit_code": 0,
+      "result": "generated cockpit"
+    },
+    {
+      "command": "audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "exit_code": 0,
+      "result": "25/25 integrated;0side-document risks"
+    },
+    {
+      "command": "check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "result": "10PASS;CONTINUITY_OK"
+    },
+    {
+      "command": "git diff --check -- scoped modified targets and own packet",
+      "exit_code": 0
+    }
+  ],
+  "post_application": {
+    "candidate_hashes_matched": 5,
+    "row_count": 105,
+    "columns": 18,
+    "identities_statuses_routes_non_economic_scores_preserved": true,
+    "score_and_threshold_rows_recomputed": 105,
+    "thresholds": {
+      "YELLOW": 77,
+      "RED": 28
+    }
+  },
+  "parseable_packet_json_files": 43,
+  "independent_keyword_review": {
+    "verdict": "PASS_WITH_LIMITS",
+    "checks": 35,
+    "reviewer": "tag_repair_review",
+    "independence": "DID_NOT_BUILD_OR_EXECUTE"
+  },
+  "market_integrity_checks": 531,
+  "measurement_integrity_checks": 38,
+  "own_background_tab3_closed_readback": true,
+  "runtime_goal": "ACTIVE",
+  "focused_heartbeat": "ACTIVE_EVERY_4_HOURS_EXACT_TASK",
+  "unchanged_by_this_task": "Parent heartbeat ACTIVE every30minutes; paid semantic control NONE; parent OneOwnerAction and all peer claim rows preserved at integration",
+  "limits": [
+    "No campaign keyword/bid/budget/status/goal write this continuation",
+    "Real Purchase/receiver/consent/dedup/paid attribution and actual profit unverified",
+    "Current PMax themes/negatives/locations/languages/control unknown pending stable handback",
+    "Public route sweep partial after429; erroneous post429queued dispatch preserved and local stop corrected without network rerun",
+    "Visible locale defects accepted by existing UX owner for local V8; no live theme repair in this task"
+  ]
+}

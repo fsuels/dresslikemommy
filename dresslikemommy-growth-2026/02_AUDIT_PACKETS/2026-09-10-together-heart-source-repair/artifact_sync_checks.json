@@ -1,0 +1,90 @@
+{
+  "schema": "dlm-together-heart-artifact-sync.v1",
+  "completed_at": "2026-09-10T04:06:41.859411+00:00",
+  "agent": "/root/together_heart_runner",
+  "status": "PASS_LOCAL_ARTIFACT_SYNC__NO_IMPORT",
+  "scope": "Only two expanded owned local backup artifacts synchronized. Body HTML equals the reviewed root primary_after.html byte-for-byte; only data row 0 Body (HTML) changed in CSV. All bytes outside its encoded field remain identical.",
+  "before_manifest": "/private/tmp/dlm-together-heart-artifact-sync-before-20260910/manifest.json",
+  "source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/primary_after.html",
+    "sha256": "3b219a9fe76d0533abcd82d36101ce3cdfb394ce6382dcf4304dc00474667bba",
+    "bytes": 2836
+  },
+  "files": {
+    "ops/listings/body-together-heart-family-matching-sweaters.html": {
+      "before_sha256": "d9c7e1aef8d78b9fd6f86ec8baee8f2e752d5edd2ab273508f6f865254ee1091",
+      "after_sha256": "3b219a9fe76d0533abcd82d36101ce3cdfb394ce6382dcf4304dc00474667bba",
+      "after_bytes": 2836
+    },
+    "ops/listings/together-heart-family-matching-sweaters-shopify-import.csv": {
+      "before_sha256": "43247368bb6ed1c9c9032780803b08e6a2e3a2d4683912242a218ad114975bbc",
+      "after_sha256": "868c00031739e22171ec5e13cdb0e3832c41259cf3900208ebcb45f34733cb87",
+      "after_bytes": 41849
+    }
+  },
+  "csv": {
+    "data_rows": 98,
+    "columns": 74,
+    "changed_cells": [
+      {
+        "data_row": 0,
+        "column": "Body (HTML)",
+        "column_index": 2
+      }
+    ],
+    "unchanged_data_cells": 7251,
+    "unchanged_header_cells": 74,
+    "csv_record_endings": "CRLF, all 99 preserved",
+    "embedded_body_line_endings": "LF, exactly as reviewed source",
+    "delimiter": ",",
+    "quotechar": "\"",
+    "doublequote": true,
+    "quoting": "QUOTE_MINIMAL",
+    "all_non_target_raw_bytes_preserved": true
+  },
+  "shielded_files": {
+    "ops/listings/size-chart-together-heart-family-matching-sweaters.json": "754b53628d5342d6fc9d2e383af44e62bf5b4f9000fe8d54adcd4b7e5bc7f6eb",
+    "ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh": "34dedf3e8f128c3da8351388f251973d21afe534d9e7d9ae82cc7c7745986939",
+    "ops/listings/size-chart-together-heart-family-matching-sweatshirts.json": "042eecb525b7fc6b75821ce17e3f07edebc1ae9fcbb6d6170ada125441b798cd",
+    "ops/listings/body-together-heart-family-matching-sweatshirts.html": "d74e9e9c355add78c49d6b56beecfecc0871aabc06eaab3f666e6cbb275734e0"
+  },
+  "checks": {
+    "owned_body_still_matches_snapshot": true,
+    "owned_csv_still_matches_snapshot": true,
+    "body_column_is_2": true,
+    "original_98_rows_74_columns": true,
+    "only_first_data_row_has_body": true,
+    "original_field_encoding_unique": true,
+    "field_has_csv_delimiters": true,
+    "header_order_and_text_exact": true,
+    "all_98_row_lengths_preserved": true,
+    "exactly_one_csv_cell_changed": true,
+    "new_body_cell_exact_source": true,
+    "all_other_raw_csv_bytes_identical": true,
+    "all_99_record_crlf_endings_preserved": true,
+    "csv_final_crlf_preserved": true,
+    "body_after_exact_packet_bytes": true,
+    "csv_after_exact_validated_bytes": true,
+    "shielded_unchanged:ops/listings/size-chart-together-heart-family-matching-sweaters.json": true,
+    "shielded_unchanged:ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh": true,
+    "shielded_unchanged:ops/listings/size-chart-together-heart-family-matching-sweatshirts.json": true,
+    "shielded_unchanged:ops/listings/body-together-heart-family-matching-sweatshirts.html": true,
+    "source_packet_unchanged": true
+  },
+  "pass_count": 21,
+  "fail_count": 0,
+  "deviations": [
+    "Local HTML now matches root packet exactly, including its lack of a final newline; all CSV record terminators and its final CRLF remain unchanged."
+  ],
+  "not_run": [
+    "creation wrapper",
+    "CSV import",
+    "localization",
+    "credentials",
+    "network",
+    "API or browser",
+    "product writes",
+    "canonical document edits"
+  ],
+  "next_action": "Parent independent integration; do not import full CSV to apply the live repair."
+}

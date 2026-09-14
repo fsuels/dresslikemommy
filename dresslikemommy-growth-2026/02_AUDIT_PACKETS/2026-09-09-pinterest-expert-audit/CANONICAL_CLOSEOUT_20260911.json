@@ -1,0 +1,218 @@
+{
+  "schema": "dlm.pinterest.canonical-closeout.v1",
+  "status": "LOCAL_CLOSEOUT_VERIFIED__CONSENT_APPROVAL_AND_NATIVE_HANDOFF_PENDING",
+  "as_of_utc": "2026-09-11T16:47:08.675559+00:00",
+  "anchor": "2026-09-11-pinterest-pixel-callback-and-consent-conflict",
+  "checks": {
+    "root_post_apply_file_hashes": {
+      "passed": 10,
+      "total": 10
+    },
+    "root_paid_control": {
+      "bytes": 506,
+      "sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+      "unchanged": true
+    },
+    "root_prior_checkpoint_assertions": {
+      "passed": 6,
+      "total": 6
+    },
+    "root_signed_source_url_scans": {
+      "passed": 5,
+      "total": 5
+    },
+    "root_final_pending_and_cleanup_assertions": {
+      "passed": 3,
+      "total": 3
+    },
+    "independent_review": "PASS for corrected records and updater; no native replay",
+    "independent_initial_json_checks": {
+      "passed": 17,
+      "total": 17
+    },
+    "render_marketing_cockpit": "exit0",
+    "audit_marketing_command_integration": {
+      "exit_code": 0,
+      "tracked": 25,
+      "integrated": 25,
+      "risks": 0
+    },
+    "check_continuity_integrity_strict": {
+      "exit_code": 0,
+      "passed": 10,
+      "result": "CONTINUITY_OK",
+      "stored_pinterest_guard_failures": 0
+    },
+    "scoped_git_diff_check": "exit0 after final report update"
+  },
+  "applied_plan": {
+    "status": "APPLIED",
+    "anchor": "2026-09-11-pinterest-pixel-callback-and-consent-conflict",
+    "as_of_utc": "2026-09-11T16:45:02.172156+00:00",
+    "control_body_sha256": "7085e95c11574b5b2c1f3594653c7a7f6e42f0fb325289a5c70922d0a3e99c18",
+    "control_preserved": true,
+    "files": [
+      {
+        "path": "ops/marketing/current_marketing_state.md",
+        "before_sha256": "cd2a1711da5991a0f92d49bff0c39a4a38eaafe5f55bd95d2f55b79b36ba1c10",
+        "after_sha256": "6f58a5ebffe42db5380bb50220654109e120ef3f20534a417e09b1e4399a5587",
+        "added_lines": 8,
+        "removed_lines": 0
+      },
+      {
+        "path": "ops/marketing/memory_digest.md",
+        "before_sha256": "cff1d0b5c7ee9645af4defab346a4288cd154404af6f87b6d7c17f591c04c094",
+        "after_sha256": "38344972cdbdf9035a5e1b15a3a4deb17e0591205cd8ecfbbfe9bb93d6bc8b70",
+        "added_lines": 4,
+        "removed_lines": 0
+      },
+      {
+        "path": "ops/marketing/daily_scorecard.md",
+        "before_sha256": "a55f0d8bd0f0e20f0e8ea9013b2125dfb17599e85ee70f6990cf5fea4fe2e663",
+        "after_sha256": "f7e80693ccfcf69d936db315ba193a4ffbc720a126ced51e5d95f4bc7580f30c",
+        "added_lines": 6,
+        "removed_lines": 0
+      },
+      {
+        "path": "ops/marketing/blocker_board.md",
+        "before_sha256": "34de6c8ff44af3097a6f30b78de130a85e367487c2d454a55b144046a645d263",
+        "after_sha256": "aba67cf780ed81d74a93a35355fb58cb06e8e56d668fdfd6033009fca815fe04",
+        "added_lines": 6,
+        "removed_lines": 0
+      },
+      {
+        "path": "ops/marketing/operator_cockpit.md",
+        "before_sha256": "dc283734f939a331cec1e2d6c8c13bca3036588c9e16658bcac4e48d88ba1c4b",
+        "after_sha256": "2a2cd429566f42df9ea5308158b02ac5d4fb99b2f2095c7855172e9709b00299",
+        "added_lines": 1,
+        "removed_lines": 1
+      },
+      {
+        "path": "ops/marketing/action_queue.md",
+        "before_sha256": "c1fb3954e7ffe1adb526da5f6dad702571ec01d5fbb224e684fe2b8573b4d809",
+        "after_sha256": "289652e55abbbbd75e9fb399b1e945792d894cd3726ff48a6b64c445688865a3",
+        "added_lines": 1,
+        "removed_lines": 1
+      },
+      {
+        "path": "ops/AGENT_COORDINATION.md",
+        "before_sha256": "7d6933eefbb2981e30a70f2dedacf29c79f6a164aa3ee0162a1857327e074593",
+        "after_sha256": "7242e133d5523c00cae16db63d4ca8a236e578a9853396a6421e5bd6b3720ec2",
+        "added_lines": 1,
+        "removed_lines": 1
+      },
+      {
+        "path": "ops/PROBLEM_TRACKER.md",
+        "before_sha256": "b9a14783c2e3772c6d5dc264508b6ace7c567341bc077abd6b5abd8ddede7a79",
+        "after_sha256": "6da92067f82645aa350566704e8d5590f40c0ff1545b691bc6f1762825fcf2f6",
+        "added_lines": 6,
+        "removed_lines": 1
+      },
+      {
+        "path": "ops/marketing/decision_log.md",
+        "before_sha256": "92ea2e5d7db515171f61d2724545f16472252080f8c08d61288de1a9a39acd3d",
+        "after_sha256": "84f0820845e3a3d570eb9b219ba82ec033e56e4f6d2d0973ca2f8f2e67f3fc24",
+        "added_lines": 12,
+        "removed_lines": 0
+      },
+      {
+        "path": "ops/AGENT_WORKLOG.md",
+        "before_sha256": "1ec7da8d1f04a1946c7579a632984bb8c92249ef8369279cbf2e826f45632453",
+        "after_sha256": "9d4fb5d33564e6834c40d7d8351fa73a53bd5411b20a2888912bdac5e651d7db",
+        "added_lines": 34,
+        "removed_lines": 0
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "sha256": "6f58a5ebffe42db5380bb50220654109e120ef3f20534a417e09b1e4399a5587"
+    },
+    {
+      "path": "ops/marketing/memory_digest.md",
+      "sha256": "38344972cdbdf9035a5e1b15a3a4deb17e0591205cd8ecfbbfe9bb93d6bc8b70"
+    },
+    {
+      "path": "ops/marketing/daily_scorecard.md",
+      "sha256": "f7e80693ccfcf69d936db315ba193a4ffbc720a126ced51e5d95f4bc7580f30c"
+    },
+    {
+      "path": "ops/marketing/blocker_board.md",
+      "sha256": "aba67cf780ed81d74a93a35355fb58cb06e8e56d668fdfd6033009fca815fe04"
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "sha256": "2a2cd429566f42df9ea5308158b02ac5d4fb99b2f2095c7855172e9709b00299"
+    },
+    {
+      "path": "ops/marketing/action_queue.md",
+      "sha256": "289652e55abbbbd75e9fb399b1e945792d894cd3726ff48a6b64c445688865a3"
+    },
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "sha256": "7242e133d5523c00cae16db63d4ca8a236e578a9853396a6421e5bd6b3720ec2"
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "sha256": "6da92067f82645aa350566704e8d5590f40c0ff1545b691bc6f1762825fcf2f6"
+    },
+    {
+      "path": "ops/marketing/decision_log.md",
+      "sha256": "84f0820845e3a3d570eb9b219ba82ec033e56e4f6d2d0973ca2f8f2e67f3fc24"
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "sha256": "9d4fb5d33564e6834c40d7d8351fa73a53bd5411b20a2888912bdac5e651d7db"
+    },
+    {
+      "path": "ops/marketing/review_log.md",
+      "sha256": "dd3de5b0af2c0c7ee4394ca86ffd5771d7ddd1f47895ca790edc8b65ac7e3b10"
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.html",
+      "sha256": "d4e01bda615827aa042bc67250fce2ced673b178525e4925f163520a6627295d"
+    },
+    {
+      "path": "ops/marketing/command_layer_integration_audit.md",
+      "sha256": "8a236d6515debc6b0945833fa62a1b0e0164f4946e8e70ab3e4d3aac8d38aa59"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/AUDIT_REPORT.md",
+      "sha256": "c4a7461a46368f97441f8378beca18455d29b9cde42e8391b3a082aec371f79f"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/SHOPIFY_PIXEL_NATIVE_20260911.json",
+      "sha256": "9346d5bdf290d92cb806b23ee5270e0c6b689f74335173a2f62b457c4199c430"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/NATIVE_READBACK.md",
+      "sha256": "29451c2296a196fccb3a8998f4f88c2dc044ef5795831569449b049a0a575d9c"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/PINTEREST_PARTNER_DIAGNOSTIC_PACKET_20260910.md",
+      "sha256": "58d5ac1de29501c3c330057cdd3707359025fefb1c57a3e955cb2b6804c7097e"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/PIXEL_HELPER_INTERPRETATION_20260911.md",
+      "sha256": "222c585673aaf7193d3dfd57b484aca67ed2fab453c43049766cb498f7da6248"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/PIXEL_CHECKPOINT_REVIEW_20260911.md",
+      "sha256": "b87c37d9781fbb7bb1fb8d1ecaa9bd140de2b2d819e49801548d17974f075292"
+    }
+  ],
+  "shared_canonical_interval": "RELEASED; minimal coordination message succeeded",
+  "native_lease": "Released after user-changed-app interruptions; owner active, coordinate via Merchant/parent",
+  "approval_question": "PENDING; no answer inferred",
+  "tracking_acceptance": "INCOMPLETE; callback success does not prove receiving/consent/purchase accuracy",
+  "changes_today": {
+    "production_configuration": 0,
+    "campaign_budget_spend": 0,
+    "theme_publish": 0,
+    "pin_board_source": 0,
+    "test_orders": 0,
+    "cart_mutations": 0,
+    "verified_shopper_consent_choices": 1
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "dlm.pinterest_failed_source_pause.v1",
+  "owner": "root01a08704",
+  "authority": "Current owner request to fix Pinterest audit findings; reversible nonspend repair confined to the verified failed source",
+  "target": {
+    "catalog_id": "3041764155561548387",
+    "source_id": "3041760916127467912",
+    "source_kind": "URL",
+    "source_basename": "sitemap_collections_1.xml",
+    "country": "United States",
+    "language": "English (US)"
+  },
+  "before": {
+    "latest_ingestion": "Sep 10 at 3:30 AM EDT",
+    "status": "Failed",
+    "ten_visible_runs": "Sep1 throughSep10; allFailed with0successful uploads,0itemfailed,0warnings,0videos",
+    "next_ingestion_label": "No upcoming ingestions",
+    "manage_menu": [
+      "Stop current ingestion disabled",
+      "Trigger ingestion",
+      "Edit ingestion schedule",
+      "Pause ingestions"
+    ],
+    "error": {
+      "code": 100,
+      "message": "Pinterest couldn't download your product data source",
+      "occurrences": 1
+    }
+  },
+  "intended_action": "Pause ingestions for this source only",
+  "reason": "Stop repeated failed fetches of a collection sitemap misconfigured as a product data source; preserve all history and avoid another duplicate feed",
+  "preserve": [
+    "the source record",
+    "historical products and ingestion history",
+    "all23other sources",
+    "catalog products and groups",
+    "campaign status, budget and bids",
+    "Shopify data",
+    "tag and CAPI settings"
+  ],
+  "unknown": "Ten empty recent failures do not prove that this source never supplied historical items",
+  "verification_plan": "Read exact source identity after action; confirm paused state or Resume ingestions control, and unchanged other-source inventory",
+  "rollback": {
+    "target_source_id": "3041760916127467912",
+    "action": "Unpause ingestions on the same source"
+  },
+  "status": "IMPLEMENTED_VERIFIED",
+  "pause_actions": 1,
+  "delete_actions": 0,
+  "independent_review": {
+    "agent": "release_verifier",
+    "verdict": "PASS",
+    "limits": "Pause future ingestions only; historical items not proven empty; stop for any unexpected deletion/item removal/broader scope."
+  },
+  "observed_at_utc": "2026-09-10T16:08:46.860688+00:00",
+  "after": {
+    "menu": "Unpause ingestions",
+    "exact_source_id": "3041760916127467912",
+    "source_and_history_preserved": true,
+    "reloaded_menu": "Unpause ingestions",
+    "durable_native_readback": true
+  }
+}

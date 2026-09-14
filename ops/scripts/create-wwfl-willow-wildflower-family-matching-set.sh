@@ -281,7 +281,7 @@ def tags() -> list[str]:
         "Matching Family Outfits", "Matching Family Set", "Matching Family Top", "Matching Family Dresses",
         "Shirt", "Dress", "Summer", "Vacation", "Sage", "Floral", "Botanical", "Garden Floral",
         "Multicolor", "Puff Sleeve Dress", "Smocked Dress", "Collared Shirt", "Short Sleeve Shirt", PRINT_NAME,
-        "Girl Dress", "Mother Dress", "Boy Shirt", "Father Shirt", VENDOR_URL,
+        "Girl Dress", "Mother Dress", "Boy Shirt", "Father Shirt",
     ]
     values.extend(sorted({row["picker_label"] for row in SIZE_CHART}))
     values.extend(sorted({row["role"] for row in SIZE_CHART}))

@@ -1,0 +1,365 @@
+{
+  "schema": "dlm-together-heart-source-plan.v1",
+  "created_at": "2026-09-10T03:45:24.638255+00:00",
+  "status": "PASS_SOURCE_DIAGNOSIS__LIVE_READBACK_PARENT_OWNED",
+  "agent": "/root/together_heart_source",
+  "product_id": "7672336646241",
+  "handle": "together-heart-family-matching-sweaters",
+  "problem_id": "PROB-2026-09-10-TOGETHER-HEART-DERIVED-SIZING",
+  "scope": "Read-only local diagnosis. Only this /private/tmp report written. No repository, API, browser, external changes. No supplier URL or secret values retained in report.",
+  "source_proof": {
+    "provenance": "Fresh local source image viewed this turn; independently transcribed the 14 allowed sweater rows and compared all 56 cells. The previous independent 56-cell review is recorded at remaining-findings.md:9. This proves transcription, not physical measurement. Infant-romper reference rows remain excluded under the saved owner scope.",
+    "image_path": "ops/listings/source-size-chart-together-heart-family-matching-sweaters.png",
+    "fields": [
+      "length_cm",
+      "chest_cm",
+      "shoulder_cm",
+      "sleeve_cm"
+    ],
+    "manual_image_rows": [
+      [
+        "90",
+        39,
+        74,
+        36,
+        29
+      ],
+      [
+        "100",
+        42,
+        78,
+        38,
+        32
+      ],
+      [
+        "110",
+        45,
+        82,
+        40,
+        35
+      ],
+      [
+        "120",
+        48,
+        86,
+        41,
+        38
+      ],
+      [
+        "130",
+        51,
+        90,
+        43,
+        41
+      ],
+      [
+        "140",
+        54,
+        94,
+        45,
+        44
+      ],
+      [
+        "150",
+        57,
+        98,
+        47,
+        47
+      ],
+      [
+        "S/160",
+        64,
+        102,
+        50,
+        52
+      ],
+      [
+        "M/165",
+        66,
+        106,
+        51,
+        54
+      ],
+      [
+        "L/170",
+        68,
+        110,
+        53,
+        56
+      ],
+      [
+        "XL/175",
+        70,
+        114,
+        55,
+        58
+      ],
+      [
+        "2XL/180",
+        72,
+        118,
+        57,
+        60
+      ],
+      [
+        "3XL/185",
+        74,
+        122,
+        59,
+        61
+      ],
+      [
+        "4XL/190",
+        76,
+        126,
+        60,
+        63
+      ]
+    ],
+    "row_count": 14,
+    "source_cells": 56,
+    "mismatches": 0,
+    "derived_hip_waist_cells": 28,
+    "source_image_hip_waist_columns": 0,
+    "rendered_original_garment_cells": 42,
+    "shoulder_cells_in_json_not_rendered": 14,
+    "table_cells": 140,
+    "non_target_table_cells_preserved": 112,
+    "agent_verification_correction": "Initial manual transcription entered 61 for Adult 4XL shoulder and failed comparison. The source image shows 60. Correcting the independent transcription to 60 produced a 56/56 match; the existing JSON and runner value 60 were already correct."
+  },
+  "smallest_correction": {
+    "storage_value": "-",
+    "rendered_value": "—",
+    "fields": [
+      "hip_cm",
+      "waist_cm"
+    ],
+    "changed_measurement_cells": 28,
+    "preserve": "Keep all 56 original JSON measurement cells, all 112 non-target rendered table cells, 14 rows, 10 columns, row order, labels and metadata. Do not add a shoulder column or invent replacement values. Parent must use a fresh Shopify source, translation and variant baseline."
+  },
+  "runner_changes": [
+    {
+      "path": "ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh",
+      "lines": "208-458",
+      "change": "Replace28 hard-coded hip_cm/waist_cm numeric values with dash string; no otherSIZE_CHART field changes."
+    },
+    {
+      "path": "ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh",
+      "lines": "506-511,574-599",
+      "change": "Keep display_measurement and10-column build unchanged; isolated pure-function check proves dash->em dash and112cells preserved."
+    },
+    {
+      "path": "ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh",
+      "lines": "605-630",
+      "change": "Remove supplied-image/source-chart/requested-colors/seller-evidence prose and formula paragraph in build_body. Keep truthful apparel, colors, one-sweater scope and unknownfiber disclosure."
+    },
+    {
+      "path": "ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh",
+      "lines": "950-966",
+      "change": "Replace child/adult formula checks with exact hip_cm==waist_cm==dash checks. Preserve positive assertions for four originalmeasurements and all variant/price/tag guards."
+    },
+    {
+      "path": "ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh",
+      "lines": "1055-1058",
+      "change": "Replace customer-body requirements for jinconversion/formula disclosure with unavailable marker/noformula/internalcopy requirements. Keep conversion provenance in operator notes."
+    },
+    {
+      "path": "ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh",
+      "lines": "2265-2272",
+      "change": "Generated listing provenance must state source omits hip/waist and dash representation. Date the original derivation as superseded history."
+    },
+    {
+      "path": "ops/listings/size-chart-together-heart-family-matching-sweaters.json",
+      "lines": "1-254",
+      "change": "Synchronize precisely28 hip/waist fields with runner; preserve everyother field."
+    },
+    {
+      "path": "ops/listings/body-together-heart-family-matching-sweaters.html",
+      "lines": "2,7,24-40,43,46",
+      "change": "Synchronize28 table cells and narrow customercopy. Do not overwrite currentShopifybody wholesale from this dated localfile."
+    }
+  ],
+  "supporting_artifact_recurrence": {
+    "csv": {
+      "path": "ops/listings/together-heart-family-matching-sweaters-shopify-import.csv",
+      "rows": 98,
+      "body_cells_nonempty": 1,
+      "recommendation": "Align only Body (HTML) backup cell or explicitly mark obsolete. Preserve all identifiers/prices/otherCSVfields. Never import fullCSV to repairlivebody."
+    },
+    "old_aliases": {
+      "paths": [
+        "ops/listings/size-chart-together-heart-family-matching-sweatshirts.json",
+        "ops/listings/body-together-heart-family-matching-sweatshirts.html"
+      ],
+      "json_diff_fields": [
+        "garment",
+        "role"
+      ],
+      "recommendation": "Pre-rename sweatshirts artifacts are historical; runner writes only sweaters paths. Preserve history and mark superseded or update exactly formula-only mirror ifrootchooses. Never treatalias ascurrentliveinput."
+    }
+  },
+  "suggested_customer_copy": [
+    {
+      "source": "body line2",
+      "replacement": "<li><strong>Fabric:</strong> Exact fiber content is not specified.</li>"
+    },
+    {
+      "source": "body line7",
+      "replacement": "<li><strong>Size range:</strong> Child 2 Years through Child 9-10 Years and Adult S through Adult 4XL.</li>"
+    },
+    {
+      "source": "body line39",
+      "replacement_scope": "chart-backed size -> size; preserve other text"
+    },
+    {
+      "source": "body line40",
+      "replacement": "<p>Use the garment measurements to choose your size. Hip and waist measurements are unavailable; “—” marks an unavailable or non-applicable measurement.</p>"
+    },
+    {
+      "source": "body line43",
+      "replacement": "<li><strong>Seven colors:</strong> White, Pink, Black, Blue, Yellow, Red, and Green.</li>"
+    },
+    {
+      "source": "body line46",
+      "replacement": "<li><strong>Unisex sizing:</strong> Seven child sizes and seven adult sizes.</li>"
+    }
+  ],
+  "nearest_workflow": [
+    {
+      "path": "ops/scripts/repair_localized_product_size_charts.py",
+      "lines": "171-207,301-309",
+      "use": "--handles together-heart-family-matching-sweaters --force-rebuild-size-chart-tables; --execute registers body_html only and requires existingfulltranslatedbody. It preserves oldnon-tableprose, so each existinglocale needs separate scoped prosecorrection. Defaultcoverage check can passstalenumbers."
+    },
+    {
+      "path": "ops/scripts/poll_shopify_product_translations.py",
+      "lines": "1478-1575",
+      "use": "Pure source-driven table rebuild and completeness helpers, onfrozeninput ifdesired. Avoid fullproductrefresh for narrowbodyfix."
+    },
+    {
+      "path": "ops/scripts/finalize_shopify_listing_localization.py",
+      "lines": "47-178",
+      "use": "Canonical six-step reference. Firststep --min-age-seconds0 --execute --force-refresh reprocesses fullproduct translations and can modify nonbodyfields. Do not blindly run forbody-only repair; document exactscope deviation while preserving same read-only completeness/strict/mapping standards."
+    },
+    {
+      "path": "ops/scripts/audit_shopify_product_translation_completeness.py",
+      "lines": "CLI --handles and --fail-on-issues",
+      "use": "Read-only completeness acrosscurrentpublishednonprimarylocales; no missing/outdated/source-equal/source-language bodyissues."
+    },
+    {
+      "path": "ops/scripts/audit_localized_size_chart_variant_mapping.py",
+      "lines": "590-660,696-707",
+      "use": "Read-only --handles exacthandle --fail-on-unmatched. Historical98x20=1960 expected onlyafterfreshvariant/localecountreadback."
+    },
+    {
+      "path": "ops/scripts/fix-gdsy-golden-daisy-localized-size-guide.py",
+      "lines": "209-245,289-298",
+      "use": "Nearest prior product-scoped digest-bound table/bodyrepair pattern; never execute thisdifferentproductscript againstTogetherHeart."
+    }
+  ],
+  "verification_criteria": [
+    "Parent claims the exact current product and body-translation scope, then captures current source, published locales, full preservation snapshot and inverse payload. Historical draft, variant and price values are not current truth.",
+    "An independent reviewer checks the exact payload and inverse. After the English body update, retrieve the fresh body digest before translationsRegister. Restrict writes to body_html; preserve option, title, SEO and product-type translations.",
+    "Every served body must retain 14 rows and 10 columns, contain exactly 28 hip/waist em dashes, and preserve all 112 other table cells. Preserve all 56 original local JSON measurements. No formula or internal process prose remains.",
+    "Every currently published non-primary locale stays fully translated. Do not substitute English paragraphs. Preserve every non-body translation and all unrelated localized text.",
+    "Use --force-rebuild-size-chart-tables --fail-on-missing for the final strict readback: 0 missing, 0 planned and 0 errors. Also compare every target cell directly; coverage alone is insufficient.",
+    "Full translation completeness must have no missing, outdated, source-equal or source-language body findings. All current variant-to-locale mappings must match. The historical 20 locales, 840 slots and 1960 mappings are dated baselines.",
+    "Independently compare product, variants, prices, costs, status, publication, options, tags, media and non-body translations before and after. Do not change financial or cost fields.",
+    "Inspect the affected public desktop and mobile size guide and copy, including representative localized routes. No cart, order or payment action is needed.",
+    "Use shell syntax and isolated AST/pure-function checks for the local runner. LISTING_PREFLIGHT_ONLY still sources credentials and writes JSON/body files before exiting; use isolated temporary artifacts and never run the full creation runner.",
+    "Parent alone integrates the canonical records and runs required strict continuity and scoped diff checks. No global prompt rewrite is part of this correction."
+  ],
+  "risks_and_conflicts": [
+    "Shared master prompt lines 264-269 require the unsupported formula and line 632 requires populated waist values. The current source-truth correction and project rule against invented measurements support an exact-product exception. Record its provenance without a global prompt change or catalog reprocessing.",
+    "Coordination row 87 records a completed historical draft, not an active write lease. The new problem says no product claim was transferred. Parent must establish the current exact claim. No other active product-specific write claim was observed.",
+    "All 56 original measurement cells are stored in JSON, but only 42 original garment measurement cells are displayed. Do not report 56 rendered measurements.",
+    "The historical CSV, pre-rename aliases and runner prose can reintroduce the defect if only the live body is edited.",
+    "The background translation worker may race body writes. Bind each mutation to a fresh source digest and verify the independent after-state. Preserve worker configuration.",
+    "Do not add fabric, care or fulfillment guarantees. This repair does not prove conversion lift or profit."
+  ],
+  "evidence_files": {
+    "ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh": {
+      "sha256": "1b6a5a357dee72d20b1d2bb71f12a014451cbd0d350062650063114f21985a74",
+      "bytes": 76078
+    },
+    "ops/listings/size-chart-together-heart-family-matching-sweaters.json": {
+      "sha256": "6f464353f367d7e0cee53e931f6b0b52c33f3cf671cba40385bddb2c34c13edd",
+      "bytes": 5522
+    },
+    "ops/listings/body-together-heart-family-matching-sweaters.html": {
+      "sha256": "d9c7e1aef8d78b9fd6f86ec8baee8f2e752d5edd2ab273508f6f865254ee1091",
+      "bytes": 4803
+    },
+    "ops/listings/size-chart-together-heart-family-matching-sweatshirts.json": {
+      "sha256": "042eecb525b7fc6b75821ce17e3f07edebc1ae9fcbb6d6170ada125441b798cd",
+      "bytes": 5606
+    },
+    "ops/listings/body-together-heart-family-matching-sweatshirts.html": {
+      "sha256": "d74e9e9c355add78c49d6b56beecfecc0871aabc06eaab3f666e6cbb275734e0",
+      "bytes": 4782
+    },
+    "ops/listings/together-heart-family-matching-sweaters-shopify-import.csv": {
+      "sha256": "43247368bb6ed1c9c9032780803b08e6a2e3a2d4683912242a218ad114975bbc",
+      "bytes": 43815
+    },
+    "ops/listings/together-heart-family-matching-sweaters-listing.md": {
+      "sha256": "8b4423589138f0cf66f19487fe55e21c3fa46c2386a25cd3f45dd99cdbd8450b",
+      "bytes": 30417
+    },
+    "ops/listings/source-size-chart-together-heart-family-matching-sweaters.png": {
+      "sha256": "068970258c4c89bfe75e3dd8d0f942603d4084846e22ae992006140055aa4d44",
+      "bytes": 93817
+    },
+    "ops/listings/source-size-chart-together-heart-family-matching-sweatshirts.png": {
+      "sha256": "068970258c4c89bfe75e3dd8d0f942603d4084846e22ae992006140055aa4d44",
+      "bytes": 93817
+    },
+    "ops/listings/source-size-selector-together-heart-family-matching-sweaters.png": {
+      "sha256": "149a0acca1f567a35bea29dcbeeede365f6478cce161eccc864b666c92e159d8",
+      "bytes": 63344
+    },
+    "ops/scripts/finalize_shopify_listing_localization.py": {
+      "sha256": "dfc2671da1015050046a6d34354ddae2aef8b0b9b20489d92c441390afd02ff1",
+      "bytes": 10765
+    },
+    "ops/scripts/repair_localized_product_size_charts.py": {
+      "sha256": "27e3a1a0eb4bee1b96744bc280816847a5813002803b9ece2e03ec51ccfeaab3",
+      "bytes": 13922
+    },
+    "ops/scripts/poll_shopify_product_translations.py": {
+      "sha256": "713fb81a17c5d575e1605f67578598596dd963cbf68fabc5db23aaf221095ca7",
+      "bytes": 86499
+    },
+    "ops/scripts/audit_shopify_product_translation_completeness.py": {
+      "sha256": "e57c8e381e6de12347ba7c48c30d03b41b35a782ccce6087d9b86ed9b781eeb3",
+      "bytes": 11178
+    },
+    "ops/scripts/audit_localized_size_chart_variant_mapping.py": {
+      "sha256": "439fd549634143de59cfda8e4f93ff013ad11228617ed58ac9112063567ce1ef",
+      "bytes": 31657
+    },
+    "ops/prompts/shopify-listing-master-prompt.md": {
+      "sha256": "38dcf1343314e6f8d6af613365217c46d255cd03f6f42912656aa7b6c4cd7cb4",
+      "bytes": 29489
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/remaining-findings.md": {
+      "sha256": "ffdda43af2248e05366a12c10e862e6477408af056510c1ac622a53c31400178",
+      "bytes": 2240
+    }
+  },
+  "checks": {
+    "source56_exact": true,
+    "runner_equals_primary_json": true,
+    "derived28_exact": true,
+    "only28_json_cells_change": true,
+    "table14x10": true,
+    "table28_changes": true,
+    "table28_em_dashes": true,
+    "table112_other_cells_unchanged": true
+  },
+  "memory_provenance": {
+    "registry": "MEMORY.md:36-44",
+    "summary": "rollout_summaries/2026-09-02T17-46-18-N9sV-together_heart_sweater_listing_and_sourcing_studio_repair.md:15-36",
+    "rollout_id": "01a0633a-955e-7541-9c2e-1486ea18082d",
+    "use": "Historical source pointers only; local image, JSON and runner verified freshly."
+  }
+}

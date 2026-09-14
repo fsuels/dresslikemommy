@@ -1,0 +1,174 @@
+{
+  "schema": "dlm.pinterest.n1-source-preflight.v1",
+  "prepared_at_utc": "2026-09-11T19:11:57.547Z",
+  "concept_binding": {
+    "id": "N1",
+    "title": "Together Heart garment details",
+    "existing_dependency": "Verified actual neckline/cuff/print close-ups and live sizes needed",
+    "register_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/CONTENT_REGISTER_20260911.json",
+    "tracking_url": null,
+    "concept_or_calendar_changed": false
+  },
+  "outcome": "PARTIAL_SOURCE_QUALIFICATION__ONE_UNIQUE_OVERVIEW__NECKLINE_AND_CUFF_CLOSEUPS_NOT_QUALIFIED",
+  "product": {
+    "id": "gid://shopify/Product/7672336646241",
+    "handle": "together-heart-family-matching-sweaters",
+    "title": "Together Heart Family Matching Sweaters — Crewneck Tops",
+    "canonical_destination": "https://www.dresslikemommy.com/products/together-heart-family-matching-sweaters",
+    "local_source_after_captured_at": "2026-09-10T03:56:57.568Z",
+    "recorded_status": "ACTIVE",
+    "freshness": "REPO_KNOWN from September 10 saved after-state; no September 11 native/connector/media refresh by this reviewer.",
+    "completed_repair_boundary": "Parent-completed 21 body repairs and 98 variants are preserved. Nothing is re-run or changed."
+  },
+  "candidates": [
+    {
+      "id": "N1_LOCAL_BACK_GRAPHIC_OVERVIEW",
+      "absolute_path": "/Users/fsuels/Projects/dresslikemommy/uploads/together-heart-family-matching-sweaters/01-together-heart-family-sweaters.png",
+      "sha256": "d780cd23019ca3d4c1a8fe49baf3cb65c94bfb81298ab659a16a7c31cf04dfbd",
+      "bytes": 818005,
+      "width": 640,
+      "height": 667,
+      "product_id": "gid://shopify/Product/7672336646241",
+      "status": "USABLE_FOR_SOURCE_FAITHFUL_BACK_GRAPHIC_OVERVIEW_ONLY",
+      "visual_inspection": "VERIFIED_LOCAL_ORIGINAL_RESOLUTION_20260911",
+      "provenance": [
+        {
+          "absolute_path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/together-heart-family-matching-sweaters-listing.md",
+          "lines": [
+            24,
+            26
+          ],
+          "fact": "Supplied product image is recorded as authoritative local evidence; styling accessories are excluded."
+        },
+        {
+          "absolute_path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh",
+          "lines": [
+            102,
+            103
+          ],
+          "fact": "Canonical upload directory and PRODUCT_IMAGE filename match this file."
+        },
+        {
+          "absolute_path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/verify-together-heart-family-matching-sweaters.json",
+          "json_pointer": "/data/product/media/nodes/0",
+          "fact": "Exact product ID/handle has one stored gallery image with the matching canonical basename; this historical snapshot says DRAFT and is not current status."
+        }
+      ],
+      "supported_visual_details": {
+        "back_graphic": "White Together lettering crosses a brushstroke-style heart motif centered on the backs of four displayed tops.",
+        "visible_color_combinations": [
+          "Blue top with darker blue heart",
+          "Yellow top with orange/red heart",
+          "Red top with yellow/gold heart",
+          "Black top with yellow/gold heart"
+        ],
+        "general_shape": "Long sleeves, rear neckline bands and hem/wrist bands are visible at overview scale."
+      },
+      "detail_limits": {
+        "neckline": "Rear blue neckline band is partly visible; front neckline and collar construction are not shown closely enough to certify.",
+        "cuffs": "Small wrist-band views are visible, but stitching, knit/rib structure, stretch, thickness and finishing cannot be verified at this scale.",
+        "print": "Graphic wording, placement and rough heart shape are supported; print/embroidery process, texture and durability are not.",
+        "other_colors": "White, Pink and Green are not depicted in this image; do not recolor this source to manufacture examples.",
+        "source_quality": "The complete image is 640x667; individual graphic/cuff crops are much smaller. Do not upscale with invented garment detail. Clipped white glyph fragments appear at the top image edge and are not garment design."
+      },
+      "permitted_next_use": "A back-graphic/context layout retaining the actual depicted colors and one-top-per-selection understanding. This alone does not satisfy N1's verified neckline/cuff close-up dependency."
+    }
+  ],
+  "duplicate_not_a_second_candidate": {
+    "absolute_path": "/Users/fsuels/Projects/dresslikemommy/uploads/together-heart-family-matching-sweatshirts/01-together-heart-family-sweatshirts.png",
+    "sha256": "d780cd23019ca3d4c1a8fe49baf3cb65c94bfb81298ab659a16a7c31cf04dfbd",
+    "relation": "Byte-identical pre-rename sweatshirts alias; preserve but do not count as another view or use it as current product identity."
+  },
+  "recovery_pointers": [
+    {
+      "detail": "Front neckline at useful resolution",
+      "product_id": "gid://shopify/Product/7672336646241",
+      "handle": "together-heart-family-matching-sweaters",
+      "retrieval_target": "Exact current public product gallery or owner/seller-backed original for this same product. Root can use its task-owned browser; no retrieval performed here.",
+      "historical_gallery_pointer": {
+        "absolute_path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/verify-together-heart-family-matching-sweaters.json",
+        "json_pointer": "/data/product/media/nodes/0/image/url"
+      },
+      "acceptance": "Actual source neckline/shoulder area visible at sufficient resolution for the intended Pin detail, product/variant bound, without generated construction."
+    },
+    {
+      "detail": "Cuff and adjacent sleeve at useful resolution",
+      "product_id": "gid://shopify/Product/7672336646241",
+      "handle": "together-heart-family-matching-sweaters",
+      "retrieval_target": "Same exact current product gallery or owner/seller-backed original; the existing overview is insufficient for a macro/detail claim.",
+      "acceptance": "Source shows cuff edge and sleeve join clearly; describe only what is visible, with no unsupported material, stretch or quality claim."
+    }
+  ],
+  "exclusions": [
+    "Size-chart and selector screenshots are measurement/option evidence, not garment detail photographs.",
+    "No front artwork is inferred from the back graphic.",
+    "Pants, skirts, hats, eyewear, shoes and other accessories are not included-product evidence.",
+    "No real-customer identity, verified family relationship, material, current stock, sizing/fit guarantee or delivery claim is created.",
+    "No separate speculative rights gate is added; the listing records an owned/supplied image and the owner authorized store-media content preparation."
+  ],
+  "search_scope": {
+    "directories": [
+      "/Users/fsuels/Projects/dresslikemommy/uploads/together-heart-family-matching-sweaters",
+      "/Users/fsuels/Projects/dresslikemommy/uploads/together-heart-family-matching-sweatshirts"
+    ],
+    "canonical_directory_files": [
+      "01-together-heart-family-sweaters.png"
+    ],
+    "alias_directory_files": [
+      "01-together-heart-family-sweatshirts.png"
+    ],
+    "scope": "Exact Together Heart listing, runner, saved gallery and September 10 source-repair packet only; no broad old-ledger search."
+  },
+  "provenance_files": [
+    {
+      "role": "register",
+      "absolute_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/CONTENT_REGISTER_20260911.json",
+      "sha256": "ef96e6103284e86e4bd8be73d9f7f26d963021fe2d0e5940f85e524d56ecd39c"
+    },
+    {
+      "role": "listing",
+      "absolute_path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/together-heart-family-matching-sweaters-listing.md",
+      "sha256": "8b4423589138f0cf66f19487fe55e21c3fa46c2386a25cd3f45dd99cdbd8450b"
+    },
+    {
+      "role": "runner",
+      "absolute_path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh",
+      "sha256": "34dedf3e8f128c3da8351388f251973d21afe534d9e7d9ae82cc7c7745986939"
+    },
+    {
+      "role": "historicalGallery",
+      "absolute_path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/verify-together-heart-family-matching-sweaters.json",
+      "sha256": "5b683e3e065e983aaf25726fac554dce348042dd99d72db81bd793642fba26f1"
+    },
+    {
+      "role": "sourceAfter",
+      "absolute_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/after.json",
+      "sha256": "3e8ed7ccbba3c4a89f251d433e81452488391b9fc93a0d470921ed538d5594d8"
+    },
+    {
+      "role": "repairReadback",
+      "absolute_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/READBACK.md",
+      "sha256": "763de3370fb8f42db8d1572d25ce37b832a8160578f3abf6d534ff5f4874b4e1"
+    },
+    {
+      "role": "sourceReview",
+      "absolute_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/source_review.json",
+      "sha256": "f30ef72349cfb937a6127124f39e712b937cc146d315b4ca1d45ab821ee7fc95"
+    }
+  ],
+  "checks": {
+    "exact_product_binding": "PASS",
+    "canonical_gallery_basename_match": "PASS",
+    "unique_local_images": 1,
+    "viewed_local_files": 2,
+    "duplicate_hash_match": "PASS",
+    "usable_full_construction_closeups": 0,
+    "external_calls": 0,
+    "browser_actions": 0,
+    "canonical_or_source_edits": 0
+  },
+  "exact_next_independent_production_step": "Recover a source-backed front-neckline view and cuff close-up for product7672336646241 from its exact current gallery/originals, then inspect and hash those bytes before making the N1 garment-detail layout. Keep the existing back-graphic overview as the third source; do not fabricate missing details.",
+  "changed_files": [
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/N1_SOURCE_PREFLIGHT_20260911.json"
+  ]
+}

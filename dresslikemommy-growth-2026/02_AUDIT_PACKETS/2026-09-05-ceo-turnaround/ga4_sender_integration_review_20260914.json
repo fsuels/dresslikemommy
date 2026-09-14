@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-14T09:57:33.807498+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "plan": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ga4_sender_integration_plan_20260914.json",
+    "sha256": "ca266183ab1cfa907de9cc9475502cc52d62a5464b5c4bab207c510ca2fadc26"
+  },
+  "source_acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ga4_sender_parent_acceptance_20260914.json",
+    "sha256": "9ba64cd3bf64d17622cce5e097ae83855c128dfb1d2fc34f165353e6abe8d6ca"
+  },
+  "diagnosis_acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ga4_session_consent_parent_acceptance_20260914.json",
+    "sha256": "bb3893be1b2e66c5706b866dd9ab3b0e18991c9e9409edbb4b6e86afd73e51f7"
+  },
+  "underlying_source_bindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/execution_checkpoint.json",
+      "expected_sha256": "e9e0e2041dd9d069307a6dc7b1ebc723920fb2a0453436f42ae99f836cb82e34",
+      "actual_sha256": "e9e0e2041dd9d069307a6dc7b1ebc723920fb2a0453436f42ae99f836cb82e34",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/OBSERVATION.json",
+      "expected_sha256": "3fab3be81f3f184ec10a4cb69730e8c041e586e383b637fd5224a2b305c26181",
+      "actual_sha256": "3fab3be81f3f184ec10a4cb69730e8c041e586e383b637fd5224a2b305c26181",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/READBACK.md",
+      "expected_sha256": "b672e4f0836ed6f3c20b099385ee47ecb5b82dea0e3fb53ceb00be127bd4eac7",
+      "actual_sha256": "b672e4f0836ed6f3c20b099385ee47ecb5b82dea0e3fb53ceb00be127bd4eac7",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/OPERATOR_CHECKS.json",
+      "expected_sha256": "4673412553b506d0c51fee63cf3961ae7f3fb4fd5246e84285e73fcd758124a9",
+      "actual_sha256": "4673412553b506d0c51fee63cf3961ae7f3fb4fd5246e84285e73fcd758124a9",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/INDEPENDENT_REVIEW.json",
+      "expected_sha256": "e06ca6c4b8827d58fc2be83edbf5875b44bf2ddfb2fd9424958f5431b65ac667",
+      "actual_sha256": "e06ca6c4b8827d58fc2be83edbf5875b44bf2ddfb2fd9424958f5431b65ac667",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/session_consent_20260914_0846/execution_checkpoint.json",
+      "expected_sha256": "986bd231d6c74f902f035e7ec50abc0eef4d6e8bbc1a276aec66828c4440d196",
+      "actual_sha256": "986bd231d6c74f902f035e7ec50abc0eef4d6e8bbc1a276aec66828c4440d196",
+      "matches": true
+    },
+    {
+      "path": "ops/scripts/run_google_ads_paid_checkout_capture.py",
+      "expected_sha256": "ede408060aae44a751490f5dc68d42a3a306467847cccadd9f88ac68efc1350e",
+      "actual_sha256": "ede408060aae44a751490f5dc68d42a3a306467847cccadd9f88ac68efc1350e",
+      "matches": true
+    }
+  ],
+  "check_counts": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "id": "C01",
+      "check": "Frozen plan and accepted source roots",
+      "status": "PASS",
+      "conditions": {
+        "plan_hash": true,
+        "sender_acceptance_hash": true,
+        "diagnosis_acceptance_hash": true,
+        "same_parent_before_binding": true,
+        "five_operations": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "plan": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ga4_sender_integration_plan_20260914.json",
+        "source_acceptance": {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ga4_sender_parent_acceptance_20260914.json",
+          "sha256": "9ba64cd3bf64d17622cce5e097ae83855c128dfb1d2fc34f165353e6abe8d6ca"
+        },
+        "diagnosis_acceptance": {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ga4_session_consent_parent_acceptance_20260914.json",
+          "sha256": "bb3893be1b2e66c5706b866dd9ab3b0e18991c9e9409edbb4b6e86afd73e51f7"
+        }
+      }
+    },
+    {
+      "id": "C02",
+      "check": "Exact underlying saved-source and existing-matcher bindings",
+      "status": "PASS",
+      "conditions": {
+        "all_seven_match": true
+      },
+      "failed_conditions": [],
+      "evidence": [
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/execution_checkpoint.json",
+          "expected_sha256": "e9e0e2041dd9d069307a6dc7b1ebc723920fb2a0453436f42ae99f836cb82e34",
+          "actual_sha256": "e9e0e2041dd9d069307a6dc7b1ebc723920fb2a0453436f42ae99f836cb82e34",
+          "matches": true
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/OBSERVATION.json",
+          "expected_sha256": "3fab3be81f3f184ec10a4cb69730e8c041e586e383b637fd5224a2b305c26181",
+          "actual_sha256": "3fab3be81f3f184ec10a4cb69730e8c041e586e383b637fd5224a2b305c26181",
+          "matches": true
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/READBACK.md",
+          "expected_sha256": "b672e4f0836ed6f3c20b099385ee47ecb5b82dea0e3fb53ceb00be127bd4eac7",
+          "actual_sha256": "b672e4f0836ed6f3c20b099385ee47ecb5b82dea0e3fb53ceb00be127bd4eac7",
+          "matches": true
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/OPERATOR_CHECKS.json",
+          "expected_sha256": "4673412553b506d0c51fee63cf3961ae7f3fb4fd5246e84285e73fcd758124a9",
+          "actual_sha256": "4673412553b506d0c51fee63cf3961ae7f3fb4fd5246e84285e73fcd758124a9",
+          "matches": true
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/INDEPENDENT_REVIEW.json",
+          "expected_sha256": "e06ca6c4b8827d58fc2be83edbf5875b44bf2ddfb2fd9424958f5431b65ac667",
+          "actual_sha256": "e06ca6c4b8827d58fc2be83edbf5875b44bf2ddfb2fd9424958f5431b65ac667",
+          "matches": true
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/session_consent_20260914_0846/execution_checkpoint.json",
+          "expected_sha256": "986bd231d6c74f902f035e7ec50abc0eef4d6e8bbc1a276aec66828c4440d196",
+          "actual_sha256": "986bd231d6c74f902f035e7ec50abc0eef4d6e8bbc1a276aec66828c4440d196",
+          "matches": true
+        },
+        {
+          "path": "ops/scripts/run_google_ads_paid_checkout_capture.py",
+          "expected_sha256": "ede408060aae44a751490f5dc68d42a3a306467847cccadd9f88ac68efc1350e",
+          "actual_sha256": "ede408060aae44a751490f5dc68d42a3a306467847cccadd9f88ac68efc1350e",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "id": "C03",
+      "check": "TA-02 exact three-cell transformation",
+      "status": "PASS",
+      "conditions": {
+        "snapshot_hash": true,
+        "current_equals_snapshot": true,
+        "unique_old": true,
+        "new_absent_before": true,
+        "unique_new": true,
+        "exact_inverse": true,
+        "all_non_target_bytes_preserved": true,
+        "after_hash": true,
+        "thirteen_cells": true,
+        "only_three_TA02_cells": true,
+        "ten_others_preserved": true,
+        "same_receiver_owner": true,
+        "prior_evidence_retained": true,
+        "only_TA02_row": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "path": "ops/marketing/action_queue.md",
+        "kind": "TA02_THREE_CELLS_ONLY",
+        "before_sha256": "c0bf38ef2528ed5a38c9d66b1bf40a354cbb6223e949551b6a13f093fd9a1136",
+        "simulated_after_sha256": "618990493a4554371c9dc23e070b1c21605fd160c91d8485ee15f1c0c7a00982",
+        "before_snapshot": "/private/tmp/ta02-sender-integrate-20260914-0846-action_queue.md.before",
+        "changed_cells": [
+          5,
+          9,
+          10
+        ]
+      }
+    },
+    {
+      "id": "C04",
+      "check": "Cockpit insertion preserves Owner Action and Current Goal",
+      "status": "PASS",
+      "conditions": {
+        "snapshot_hash": true,
+        "current_equals_snapshot": true,
+        "unique_old": true,
+        "new_absent_before": true,
+        "unique_new": true,
+        "exact_inverse": true,
+        "all_non_target_bytes_preserved": true,
+        "after_hash": true,
+        "exact_insertion_before_owner": true,
+        "owner_action_unchanged": true,
+        "Current_Goal_unchanged": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "path": "ops/marketing/operator_cockpit.md",
+        "kind": "INSERT_BEFORE_OWNER_ACTION",
+        "before_sha256": "dd07c8ca52ad5d8b5a9e2706416a1c443db47b823b3cca894dfe787bdb48067d",
+        "simulated_after_sha256": "f83dab19fb8c9a93eb03bd8728cbecbb43c04b96303f97c6e492035cf8a3b1b5",
+        "before_snapshot": "/private/tmp/ta02-sender-integrate-20260914-0846-operator_cockpit.md.before",
+        "owner_action_sha256": "fbd1edcc162c77a507eab6699f73456d34b48a1c43afaa079ca54a9cbac9312b"
+      }
+    },
+    {
+      "id": "C05",
+      "check": "Existing problem receives an insertion with all history retained",
+      "status": "PASS",
+      "conditions": {
+        "snapshot_hash": true,
+        "current_equals_snapshot": true,
+        "unique_old": true,
+        "new_absent_before": true,
+        "unique_new": true,
+        "exact_inverse": true,
+        "all_non_target_bytes_preserved": true,
+        "after_hash": true,
+        "existing_problem_header": true,
+        "insertion_only": true,
+        "current_status_not_closed": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "path": "ops/PROBLEM_TRACKER.md",
+        "kind": "INSERT_CURRENT_FOLLOWUP_IN_EXISTING_PROBLEM",
+        "before_sha256": "b83778b2d65b158a2addd1301db04ce7aaabcffa004c551be6dbc32d76185902",
+        "simulated_after_sha256": "63a4f431930d371044ac56035a2e7ae9474c4587bd7a84eeb36647ef2e09930b",
+        "before_snapshot": "/private/tmp/ta02-sender-integrate-20260914-0846-PROBLEM_TRACKER.md.before"
+      }
+    },
+    {
+      "id": "C06",
+      "check": "Original tag claim changes only four intended cells",
+      "status": "PASS",
+      "conditions": {
+        "snapshot_hash": true,
+        "current_equals_snapshot": true,
+        "unique_old": true,
+        "new_absent_before": true,
+        "unique_new": true,
+        "exact_inverse": true,
+        "all_non_target_bytes_preserved": true,
+        "after_hash": true,
+        "eight_claim_cells": true,
+        "only_four_original_tag_cells": true,
+        "owner_surface_and_blocks_unchanged": true,
+        "prior_claim_notes_retained": true,
+        "prior_evidence_retained": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "path": "ops/AGENT_COORDINATION.md",
+        "kind": "ORIGINAL_TAG_CLAIM_FOUR_CELLS_ONLY",
+        "before_sha256": "6b8d91b76ab2d54afba631bc3b22367d0ba2b5e9e5bb106dfe9874f8c67fcea2",
+        "simulated_after_sha256": "368c6258be1c65df5cfa1950e79918ca44a94bf441eabdbf08d931ea75f978e0",
+        "before_snapshot": "/private/tmp/ta02-sender-integrate-20260914-0846-AGENT_COORDINATION.md.before",
+        "changed_cells": [
+          2,
+          4,
+          6,
+          7
+        ]
+      }
+    },
+    {
+      "id": "C07",
+      "check": "Worklog is append-only with qualified handoff metadata",
+      "status": "PASS",
+      "conditions": {
+        "snapshot_hash": true,
+        "current_equals_snapshot": true,
+        "empty_old": true,
+        "existing_prefix_preserved": true,
+        "exact_local_inverse": true,
+        "new_anchor_absent_before": true,
+        "new_anchor_once": true,
+        "after_hash": true,
+        "required_task_metadata": true,
+        "no_worklog_rewrite": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "path": "ops/AGENT_WORKLOG.md",
+        "kind": "APPEND_NEW_RELEVANT_ANCHOR",
+        "before_sha256": "0aaa6fad4078918f526186102a2b232d977270982116f07b00fc29146aee6376",
+        "simulated_after_sha256": "f548fdebe45900426fa9a2d7e4f48f73409a8044d29d789c80e3e501e2d2a938",
+        "before_snapshot": "/private/tmp/ta02-sender-integrate-20260914-0846-AGENT_WORKLOG.md.before"
+      }
+    },
+    {
+      "id": "C08",
+      "check": "Failed ephemeral capture and reporting-versus-runtime distinction remain explicit",
+      "status": "PASS",
+      "conditions": {
+        "accepted_reporting_only": true,
+        "runtime_not_accepted": true,
+        "omitted_endpoint_and_cleared_raw": true,
+        "failed_check_not_tracking_cause": true,
+        "prior_diagnosis_not_causal": true
+      },
+      "failed_conditions": [],
+      "evidence": "Accepted parent source and exact inserted cockpit/problem/worklog qualification; no independent capture replay"
+    },
+    {
+      "id": "C09",
+      "check": "Existing matcher qualification is narrow synthetic evidence, not a repair",
+      "status": "PASS",
+      "conditions": {
+        "five_synthetic_cases": true,
+        "no_code_or_network": true,
+        "exact_claim_bounds": true
+      },
+      "failed_conditions": [],
+      "evidence": "Five prior pure-function cases are read as saved evidence, not rerun or counted as this review tests"
+    },
+    {
+      "id": "C10",
+      "check": "Accepted purchase/migration and all non-target authority, owners and clocks survive",
+      "status": "PASS",
+      "conditions": {
+        "purchase_gate_unchanged": true,
+        "migration_explicit": true,
+        "TA16_exact_and_current_due": true,
+        "paid_NONE_native_and_peer_boundaries": true,
+        "dated_sales_not_new_wake": true
+      },
+      "failed_conditions": [],
+      "evidence": "TA-16 is byte-identical; only the named queue/claim rows change and other target-file bytes remain exact. Untouched authority files are outside this write plan."
+    },
+    {
+      "id": "C11",
+      "check": "No inferred runtime remedy or automatic repeat is authorized",
+      "status": "PASS",
+      "conditions": {
+        "next_step_has_no_auto_repeat": true,
+        "context_and_privacy_gate_preserved": true,
+        "owner_action_preserved_in_append": true,
+        "scope_restricted": true
+      },
+      "failed_conditions": [],
+      "evidence": "Publication action remains the existing owner action; capture limits do not grant consent, sender, paid or account authority"
+    },
+    {
+      "id": "C12",
+      "check": "All bounded inputs remain unchanged at completion",
+      "status": "PASS",
+      "conditions": {
+        "no_source_or_snapshot_drift": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "input_files": 20,
+        "shared_writes": 0,
+        "live_calls": 0,
+        "code_execution": 0
+      }
+    }
+  ],
+  "unresolved_findings": [],
+  "independence": "DID_NOT_BUILD_OR_EXECUTE: local independent source-binding and five-transformation review only. No capture, original source-audit duplication, raw/private order data, code or compiler execution, network, owner dispatch, source or shared-file write.",
+  "conclusion": "Five transformations are exact, reversible as local candidate edits, and preserve non-target bytes. TA-02 changes cells5/9/10 only; the original-tag claim changes cells2/4/6/7 only. Current Goal, full One Owner Action, TA-16 and19:04:53UTC due remain unchanged. Failed ephemeral collector coverage and cleared raw evidence remain explicit; reporting acceptance is separate from unaccepted runtime measurement.",
+  "limitations": [
+    "Saved capture and source-review assertions are bound and interpreted, not independently replayed. The five existing synthetic function cases were not rerun.",
+    "This review does not certify actual sender context, collector completeness, page_view/session or named-consent timing, purchaser consent, deduplication, attribution, international accuracy or retained profit.",
+    "This is pre-application evidence; parent must retain fresh before/after guards and run its required canonical checks. The worklog historical prefix is preserved; rollback does not authorize deletion of canonical history."
+  ],
+  "recommendation": "Apply only this exact five-operation documentation integration with current hash guards; preserve the existing owner action and do not automatically repeat the failed trace."
+}

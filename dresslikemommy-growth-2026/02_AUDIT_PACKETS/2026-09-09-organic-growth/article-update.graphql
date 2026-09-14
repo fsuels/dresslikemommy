@@ -1,0 +1,1 @@
+mutation OrganicPhotoGuideBody($id: ID!, $article: ArticleUpdateInput!) { articleUpdate(id: $id, article: $article) { article { id title handle body summary isPublished publishedAt updatedAt tags templateSuffix } userErrors { field message } } }

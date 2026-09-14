@@ -1,0 +1,26 @@
+name = "dlm-merchant-feed-worker"
+main = "src/automation.js"
+compatibility_date = "2026-07-01"
+workers_dev = true
+
+# Supply MERCHANT_CONFIG_JSON from a reviewed copy of config.example.json.
+# Store SHOPIFY_ADMIN_ACCESS_TOKEN with `wrangler secret put`; never in this file.
+# Cron enqueues only. Queue consumers use <=20 new logical Admin operations
+# (<=40 external fetches with the one allowed retry) and private R2 checkpoints.
+[triggers]
+crons = ["0 * * * *"]
+
+[[r2_buckets]]
+binding = "MERCHANT_FEED_BUCKET"
+bucket_name = "dlm-merchant-feeds"
+
+[[queues.producers]]
+binding = "MERCHANT_REFRESH_QUEUE"
+queue = "dlm-merchant-feed-refresh"
+
+[[queues.consumers]]
+queue = "dlm-merchant-feed-refresh"
+max_batch_size = 1
+max_batch_timeout = 1
+max_retries = 3
+max_concurrency = 1

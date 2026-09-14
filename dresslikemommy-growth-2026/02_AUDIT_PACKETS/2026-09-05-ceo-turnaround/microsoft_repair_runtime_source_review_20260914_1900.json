@@ -1,0 +1,97 @@
+{
+  "schema": "dlm.microsoft_repair_runtime_source_review.v1",
+  "verdict": "PASS_WITH_LIMITS__DATED_OWNER_REPORTED_RUNTIME_CORRECTION_ACCEPTED",
+  "confidence": "H_FOR_FROZEN_BINDINGS_AND_EXACT_AMENDMENT__NO_INDEPENDENT_PEER_GOAL_READ",
+  "reviewed_at_utc": "2026-09-14T19:50:52.329055+00:00",
+  "reviewer": "/root/claim_lookup_cause",
+  "scope": "Only the frozen Microsoft owner goal-status correction and unchanged authority, heartbeat and prior source bindings; no repeat of prior source review or tests.",
+  "prior_review": {
+    "path": "/private/tmp/dlm-ms-repair-parent-source-review.json",
+    "sha256": "90377b5f9ee4aadc5d6124768ad5d23533251effc0df1bd0d969e986dad6e67d",
+    "preserved_unchanged": true
+  },
+  "file_bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_repair_freeze_20260914_1946/handoff.json",
+      "sha256": "3b19b4f308717398faddbb28b6ed4b2cab03f61cbd1c859a3bc28512d57396d1",
+      "bytes": 5340,
+      "verified_unchanged_at_close": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_repair_freeze_20260914_1946/continuation_checkpoint.json",
+      "sha256": "5d0401f943e366befd3512d6e443de35b6e7642490d9d5af43c3a234fc589eaa",
+      "bytes": 5703,
+      "verified_unchanged_at_close": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_repair_freeze_20260914_1946/review_final.json",
+      "sha256": "2467cd9695069ba1e4c63677d1061bc7188afee422938a09fb88cb611731a033",
+      "bytes": 1827,
+      "verified_unchanged_at_close": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_repair_freeze_20260914_1946/purchase-contract.mjs",
+      "sha256": "e1af89e03de25cc356a28214c51753ed62b86803554e80a95dece236ad6e440a",
+      "bytes": 10960,
+      "verified_unchanged_at_close": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_repair_freeze_20260914_1946/purchase-contract.test.mjs",
+      "sha256": "962c506aa37187e20077030b441fc4276ee98124af98ab715d147dd152ee36f6",
+      "bytes": 19260,
+      "verified_unchanged_at_close": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_repair_freeze_20260914_1946/REPAIR_CANDIDATE.md",
+      "sha256": "dea88222becebf4c554baa7e2b476e4cf6329857e0f18b9925b7c82647a51563",
+      "bytes": 14891,
+      "verified_unchanged_at_close": true
+    }
+  ],
+  "exact_amendment": {
+    "modified_field": "goal_status: ACTIVE to BLOCKED for Microsoft owner only",
+    "added_fields": [
+      "latest_runtime_checkpoint",
+      "runtime_checkpoint_updated_at_utc"
+    ],
+    "verification": "Removing those two added fields and restoring the exact prior goal_status reconstructs the original handoff bytes and SHA256.",
+    "reconstructed_prior_handoff_sha256": "060529e49305bb00c527e0a20857732a167cc81ac2d0e7c7dbaffc97c898b6fc",
+    "reconstructed_prior_handoff_bytes": 5138,
+    "all_other_handoff_fields_preserved": true,
+    "final_review_and_three_reviewed_source_files_unchanged": true,
+    "reviewed_hash_maps_match": true
+  },
+  "accepted_runtime_statement": {
+    "evidence_as_of_utc": "2026-09-14T19:44:31.011162+00:00",
+    "owner_thread_id": "01a08703-644f-7940-8f67-9a2fa63722bb",
+    "goal": "BLOCKED; update_goal success is dated owner-reported evidence only.",
+    "three_turn_blocked_audit": "Reported in the frozen checkpoint; not independently verified or certified by this review.",
+    "heartbeat": "Same Microsoft owner heartbeat microsoft-ads-profitable-growth-operator ACTIVE every four hours; source reports unchanged.",
+    "heartbeat_future_execution": "UNKNOWN; active saved configuration is not proof of a future run.",
+    "parent_goal": "No parent-goal change is established or authorized.",
+    "authority": {
+      "approved_external_scope": "NONE",
+      "autonomous_action_ready": false,
+      "live_state_mode": "STALE_READBACK_REQUIRED",
+      "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED"
+    },
+    "paid_authority": "NONE remains unchanged; an objective CPC ceiling is not spend permission."
+  },
+  "preserved_decision": "Local specification and offline decision complete; custom browser candidate deployment NO_GO. Standard pageLoad consent defect remains demonstrated by separately dated prior evidence; purchase-sandbox defect unproved. Supported publisher correction waits the existing pending contact authorization.",
+  "limits": [
+    "No peer goal API, heartbeat API, live surface or three-turn transcript replay was performed.",
+    "The checkpoint public HTML literal check is owner-reported and does not prove runtime publisher, consent, purchase delivery or repair.",
+    "Previous 28-test result and two reproduced deployment-blocking races retain their prior reviewed scope; no tests were rerun.",
+    "This addendum supersedes only the prior review Microsoft goal ACTIVE statement; it grants no external write, contact, deployment, spend or shared canonical authority."
+  ],
+  "findings": [],
+  "next_action": "Parent may integrate only the matched Microsoft ACTIVE-to-BLOCKED status correction with its four-hour heartbeat ACTIVE and paid NONE preserved; no owner dispatch or repeated authorization question follows from this review.",
+  "boundaries": {
+    "external_calls": 0,
+    "tests_run": 0,
+    "source_or_canonical_writes": 0,
+    "goal_or_scheduler_operations": 0,
+    "owner_dispatches": 0,
+    "only_written_file": "/private/tmp/dlm-ms-repair-runtime-source-review.json"
+  }
+}

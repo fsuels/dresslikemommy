@@ -1291,18 +1291,25 @@ def translated_role_size_label(
 
 
 def first_body_cell_text(row_html: str) -> str:
-    match = TABLE_CELL_RE.search(row_html)
-    if not match:
-        return ""
-    return strip_markup(match.group(2))
+    cells = body_cell_texts(row_html)
+    return cells[0] if cells else ""
+
+
+def body_cell_texts(row_html: str) -> list[str]:
+    return [strip_markup(match.group(2)) for match in TABLE_CELL_RE.finditer(row_html)]
+
+
+def replace_body_cell(row_html: str, cell_index: int, replacement: str) -> str:
+    matches = list(TABLE_CELL_RE.finditer(row_html))
+    if cell_index < 0 or cell_index >= len(matches):
+        return row_html
+    match = matches[cell_index]
+    replacement_html = f"{match.group(1)}{replacement}{match.group(3)}"
+    return row_html[: match.start()] + replacement_html + row_html[match.end() :]
 
 
 def replace_first_body_cell(row_html: str, replacement: str) -> str:
-    return TABLE_CELL_RE.sub(
-        lambda match: f"{match.group(1)}{replacement}{match.group(3)}",
-        row_html,
-        count=1,
-    )
+    return replace_body_cell(row_html, 0, replacement)
 
 
 def translated_body_label(label_key: str, locale: str) -> str:
@@ -1389,9 +1396,18 @@ def repair_product_html_size_labels(
 
         for source_row_match in source_rows:
             source_row_html = source_row_match.group(0)
-            source_label = first_body_cell_text(source_row_html)
+            source_cells = body_cell_texts(source_row_html)
+            source_label = source_cells[0] if source_cells else ""
             if not source_label:
                 continue
+            source_size_match = SIZE_ROLE_RE.match(clean(source_label))
+            source_age = clean(source_cells[1]) if len(source_cells) > 1 else ""
+            sync_source_age = bool(
+                source_size_match
+                and source_size_match.group(1).lower() in {"child", "girl", "boy"}
+                and AGE_SUFFIX_RE.match(clean(source_size_match.group(2)))
+                and re.fullmatch(r"\d+(?:\s*[-–]\s*\d+)?", source_age)
+            )
             repaired_label = translated_role_size_label(
                 source_label,
                 locale,
@@ -1410,6 +1426,8 @@ def repair_product_html_size_labels(
                 if not first_body_cell_text(translated_row_html):
                     continue
                 new_row_html = replace_first_body_cell(translated_row_html, repaired_label)
+                if sync_source_age:
+                    new_row_html = replace_body_cell(new_row_html, 1, source_age)
                 row_start, row_end = translated_row_match.span()
                 translated_table_html = (
                     translated_table_html[:row_start]
@@ -1714,6 +1732,7 @@ def build_translation_payload(
                     and clean(existing.value)
                     and snapshot.resource_type == "Product"
                     and key == "body_html"
+                    and not force_refresh
                 ):
                     repaired_existing_value = repair_product_html_translation(
                         default_value,

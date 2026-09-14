@@ -12,17 +12,17 @@ Before declaring an account-access blocker, the agent must complete the recovery
 
 ## Recovery Ladder
 
-1. Check existing authenticated tabs or browser sessions first.
-   - Use the current Chrome / browser tab inventory when available.
-   - Prefer the already-authenticated tab for the exact account, advertiser, Merchant account, property, store, repository, or mailbox.
-   - Do not open duplicate tabs until the tab map has been checked.
-2. Check repo-known and local credential paths without exposing secrets.
+1. Check the assigned task-owned background session and configured structured integrations first.
+   - Follow `ops/BROWSER_SUBAGENT_COORDINATION.md`; inspect only assigned surfaces, never an unrelated personal tab inventory or another task's active tab.
+   - Reuse an authenticated assigned session for the exact account, advertiser, Merchant account, property, store, repository or mailbox.
+   - A new dedicated background tab is allowed when isolation requires it. Confirm its identity and availability; do not interpret a copied tab ID as a transferable session.
+2. Check repo-known configured access and documented local credential paths within the authorized scope, without exposing secrets.
    - Shopify Admin API: use the documented non-repo credential files under `~/.config/dresslikemommy/`.
    - GitHub: use the configured GitHub connector or `gh` auth state when available.
    - Paid-media and analytics surfaces: use authenticated browser sessions or configured connectors if present.
 3. Navigate from the authenticated session to the exact surface.
    - Confirm account identifiers before reading or writing. Examples include advertiser ID, Merchant account ID, Google Ads customer/campaign ID, GA4 property, Shopify store, GitHub repo, or mailbox.
-   - If a direct URL redirects to login, return to the tab inventory before calling it blocked.
+   - If a direct URL redirects to login, check only the assigned session or configured connector before calling it blocked. Do not recover by taking over personal Chrome or bypassing an interactive gate.
 4. Use current-session credentials only transiently when the owner has supplied them in the current session and the target site is the expected account.
    - Do not save the password in the browser unless the owner explicitly asks.
    - Do not persist the credential in any file.
@@ -35,7 +35,7 @@ Before declaring an account-access blocker, the agent must complete the recovery
 
 - The parent/orchestrator owns account-surface routing.
 - Keep one tab/session claim per surface in `ops/AGENT_COORDINATION.md` or the active evidence packet tab map.
-- Subagents must not open independent duplicate browser trees for the same surface.
+- Independent tasks need separate supported browser surfaces. They must not duplicate an active write claim; parallel reads still require separate tab ownership.
 - A stopped account lane must be labeled `ACCESS_RECOVERY_REQUIRED`, `MFA_OR_CAPTCHA_REQUIRED`, `PERMISSION_REQUIRED`, or `ACCOUNT_SWITCH_REQUIRED`, not a generic P0 blocker.
 - A true P0 blocker requires both:
   - the access is necessary for the next approved sales-moving action, and

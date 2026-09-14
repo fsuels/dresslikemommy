@@ -1,0 +1,102 @@
+{
+  "schema": "dlm.merchant_daily_execution_handoff.v1",
+  "action": "TA07-DAILY-20260914-1841",
+  "owner": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "parent": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "at_utc": "2026-09-14T19:08:51.317808+00:00",
+  "status": "DAILY_OPERATION_CONFIGURED__MULTILINGUAL_REPAIR_VERIFIED_LOCAL__ALL_MARKET_RELEASE_PARTIAL",
+  "goal_status": "active",
+  "automation": {
+    "id": "google-merchant-all-market-free-listings",
+    "status": "ACTIVE",
+    "local_schedule": "09:00 and17:00 daily America/New_York",
+    "target_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+    "first_future_run": "NOT_YET_OBSERVED"
+  },
+  "implemented": [
+    "Global translation inheritance with exact-market precedence and stale flags preserved",
+    "Explicit translation-only exclusion mode; default English rejection behavior retained",
+    "Original journal source-observation timestamps with conservative legacy fallback",
+    "Daily existing-task heartbeat and eight-milestone operating plan"
+  ],
+  "verified": [
+    "47/47 full pipeline tests pass",
+    "Independent two-round PASS_WITH_LIMITS; initial replay freshness failure fixed",
+    "English TSV fixture byte parity independently passed",
+    "Current country table US4741/4741 and AU4741/4741 approved",
+    "Free listings Active/On and domain Verified/Claimed",
+    "Three wallets present, pending review; no duplicate declarations"
+  ],
+  "not_completed": [
+    "No deployment or new-country/Spanish upload in this cycle",
+    "Spanish numeric variant-entry blocker remains",
+    "Canada/UK fresh source, delivery and buyer qualification remain",
+    "Exhaustive current country/language matrix and current logo status not verified",
+    "Store Quality No score; exposure, orders and profit not established by this cycle"
+  ],
+  "source_live_evidence_as_of": {
+    "native_account_window": [
+      "2026-09-14T18:42:50Z",
+      "2026-09-14T19:08:51.317808+00:00"
+    ],
+    "US_es_source": "2026-09-14T18:04:07.475Z",
+    "US_es_global_translation": "2026-09-14T18:07:06.528Z",
+    "US_en_source": "2026-09-14T13:16:10.466Z",
+    "AU_en_source": "2026-09-14T15:03:55.842Z"
+  },
+  "live_state_mode": "CURRENT_BOUNDED_NATIVE_READBACK__LOCAL_IMPLEMENTATION__VERIFIED_HEARTBEAT_CONFIGURATION",
+  "effective_approval_policy": "Renewed explicit owner instruction authorizes ongoing factual Merchant/free-listing operation with exact target, current source, review and destination verification; unrelated paid/security/billing/theme-publication scope stays excluded.",
+  "approved_external_scope": "Created one current-task Merchant heartbeat; account513542500 read-only reconciliation this cycle. No Merchant/Shopify/hosting/scheduler business deployment or product-source write executed.",
+  "authority_context": "Existing sole Merchant claim33; user renewed daily execution and requested goals. Parent retains shared canonical integration; UX retains theme.",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "Correct exact localized buyer route and current country/currency/delivery/translation source with supported receipt after one reviewed submission.",
+  "if_evidence_supports_recommendation": "Submit the exact ready market/language cohort once and verify native receipt and approval; continue the next valid country.",
+  "if_evidence_opposes_recommendation": "Withhold only affected source; preserve existing live cohorts, diagnose the failed premise, and continue independent due work.",
+  "material_decision": "MERCHANT_MULTILINGUAL_LIFECYCLE_LOCAL_REPAIR_AND_DURABLE_HEARTBEAT",
+  "independent_verifier": "/root/merchant_translation_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE_PRODUCTION_CHANGE",
+  "independent_verifier_status": "PASS_WITH_LIMITS",
+  "independent_review_sha256": "4ed8fe3dd7f432dea21a54e40dace4d2f1c759fb53e617743ee915077a0d0c98",
+  "adversarial_challenge": "Resumed cached reads initially received current timestamps and could pass an insufficient TTL. Independent reproduction established the defect; actual observedAt journaling and fresh/stale/legacy regression tests corrected it.",
+  "next_action": "Existing UX owner completes the exact Spanish variant-entry repair and readback; Merchant then completes and submits that qualified cohort. Canada/UK current-source qualification remains an independent queued lane.",
+  "canonical_integration": "Parent owns worklog, problem tracker, claim and action queue/cockpit integration. Add this receipt to TA-07 without changing full-paid authority or peer claims.",
+  "continuation_prompt": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "files": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/operating_plan.json",
+      "sha256": "a20d772990a0ef90e5b0b9f56580b38cee4d24dab805dc36da12ab420130dcaa"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/automation_receipt.json",
+      "sha256": "07c6c0c3cecb32c474df790f75cacae81165687667beffa346712e8fe313c983"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/native_account_readback.json",
+      "sha256": "1d3c67ac521642bd64897b42248414db70531ff0f3889193ec200659ff53c817"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/pipeline_before.json",
+      "sha256": "13dd1a0bbe82bb84bd1d30179aa98f42cb73d6837c758cf5685fff5c344896d4"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/pipeline_after.json",
+      "sha256": "f4ea9cf9ea7743a2e4d08867ff28aebbccc857265e0df5d1d0e8990bd633e009"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/pipeline_tests_after_clock_repair.json",
+      "sha256": "3dc4cc92bfda4dbca2b7952d03187e7b7aaf7d3539f36e93f8bf839c4f5782f9"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/independent_review.json",
+      "sha256": "4ed8fe3dd7f432dea21a54e40dace4d2f1c759fb53e617743ee915077a0d0c98"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/local_scope_validation.json",
+      "sha256": "986c27844329e160c1b9c19c1c13fb685b3e3649bb2750e161a9f5904994de52"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/README.md",
+      "sha256": "17328572b574cc6e77534f7edc27b7a9f4ae5a6fb0fa2beb92a61b993b0d5a84"
+    }
+  ]
+}

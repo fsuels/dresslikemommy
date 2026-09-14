@@ -36,6 +36,8 @@ def base_candidate_fields() -> dict[str, str]:
         "repurchase_rate_pct": "45%",
         "rating": "4.9",
         "years_on_1688": "6",
+        "years_on_1688_scope": "supplier_context_phrase",
+        "years_on_1688_label": "6年诚信通",
         "badges": "实力商家 买家保障 品质保障",
         "service_flags": "一件代发 24小时发货 官方物流 响应快",
         "raw_card_text": "2026新款 母女 亲子 现货 一件代发 买家保障 品质保障",
@@ -190,7 +192,7 @@ def main() -> None:
     )
 
     assert query_category_fit.verdict == "Test"
-    assert query_category_fit.category_match == "4"
+    assert query_category_fit.category_match == "5"
 
     ordinary_maternity = scorer.score_candidate(
         Candidate(
@@ -214,8 +216,8 @@ def main() -> None:
     )
 
     assert ordinary_maternity.verdict == "Reject"
-    assert ordinary_maternity.category_match == "3"
-    assert "ordinary maternity item; missing photoshoot/studio/gown signal" in ordinary_maternity.concerns
+    assert ordinary_maternity.category_match == "2"
+    assert "maternity item is missing an explicit matching-family signal" in ordinary_maternity.concerns
 
     photoshoot_maternity = scorer.score_candidate(
         Candidate(
@@ -238,9 +240,118 @@ def main() -> None:
         review_stage="search",
     )
 
-    assert photoshoot_maternity.verdict == "Test"
-    assert photoshoot_maternity.category_match == "5"
-    assert "maternity photoshoot/studio gown signal" in photoshoot_maternity.positive_signals
+    assert photoshoot_maternity.verdict == "Reject"
+    assert photoshoot_maternity.category_match == "2"
+    assert "maternity item is missing an explicit matching-family signal" in photoshoot_maternity.concerns
+
+    matching_maternity = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "candidate_id": "matching-maternity",
+                "product_url": "https://detail.1688.com/offer/917144772334.html",
+                "title": "2026 pregnant mom and daughter matching family dresses",
+                "raw_card_text": "孕妇 母女亲子装 连衣裙 2026新款 MOQ 1 回头率 55% 一件代发",
+                "search_query": "孕妇亲子装 连衣裙 秋季",
+                "category_id": "maternity",
+                "category_match": "",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
+        ),
+        review_stage="search",
+    )
+
+    assert matching_maternity.verdict == "Test"
+    assert matching_maternity.category_match == "5"
+    assert "maternity and matching-family signal" in matching_maternity.positive_signals
+
+    sibling_match = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "candidate_id": "sibling-match",
+                "product_url": "https://detail.1688.com/offer/917144772336.html",
+                "title": "2026 brother and sister matching kids vacation shirt and dress set",
+                "raw_card_text": "siblings coordinated outfits 2026 new MOQ 1 120 sold 一件代发 现货",
+                "search_query": "兄妹度假装 2026 夏季 新款 同款 一件代发",
+                "category_id": "siblings-matching",
+                "category_match": "",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
+        ),
+        review_stage="search",
+    )
+    assert sibling_match.verdict == "Test"
+    assert sibling_match.category_match == "5"
+
+    generic_adult_item = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "candidate_id": "generic-adult-item",
+                "product_url": "https://detail.1688.com/offer/917144772337.html",
+                "title": "2026 women's satin evening dress adult formalwear",
+                "raw_card_text": "women formal dress 2026 new MOQ 1 120 sold 一件代发 现货",
+                "search_query": "兄妹礼服 2026 春夏 新款 一件代发",
+                "category_id": "siblings-matching",
+                "category_match": "",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
+        ),
+        review_stage="search",
+    )
+    assert generic_adult_item.verdict == "Reject"
+    assert generic_adult_item.category_match == "2"
+    assert "weak visible match for selected store category" in generic_adult_item.concerns
+
+    assert scorer.yes_no_unknown("not supported") is False
+    assert scorer.yes_no_unknown("unsupported") is False
+    assert scorer.yes_no_unknown("不支持一件代发") is False
+    assert scorer.yes_no_unknown("supported") is True
+    assert scorer.yes_no_unknown("支持一件代发") is True
+
+    score_alias_only = scorer.candidate_from_row(
+        {
+            "candidate_id": "score-alias-only",
+            "product_url": "https://detail.1688.com/offer/917144772338.html",
+            "title": "candidate with a merchandising score but no supplier rating",
+            "score": "50",
+        },
+        1,
+    )
+    assert score_alias_only.rating == ""
+
+    invalid_rating = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "candidate_id": "invalid-rating",
+                "product_url": "https://detail.1688.com/offer/917144772339.html",
+                "rating": "50",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
+        ),
+        review_stage="search",
+    )
+    assert "invalid shop/service rating (50; expected 0-5)" in invalid_rating.concerns
+    assert invalid_rating.rating == ""
+    assert not any(signal.startswith("high shop/service rating") for signal in invalid_rating.positive_signals)
 
     detail_missing_proof = scorer.score_candidate(
         Candidate(
@@ -276,10 +387,11 @@ def main() -> None:
         ],
     )
 
-    detail_with_proof = scorer.score_candidate(
-        Candidate(
+    def detail_candidate(years_on_1688: str):
+        return Candidate(
             **{
                 **base_candidate_fields(),
+                "years_on_1688": years_on_1688,
                 "vendor_name": "Guangzhou Bright Apparel Co.",
                 "vendor_url": "https://shop.1688.com/example",
                 "vendor_location": "Guangzhou",
@@ -296,7 +408,64 @@ def main() -> None:
                 "availability": "ready stock / ships within 24 hours",
                 "detail_evidence_path": "ops/sourcing/evidence/900000000001.json",
             }
+        )
+
+    unknown_years_search = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "candidate_id": "unknown-years-search",
+                "years_on_1688": "",
+                "vendor_name": "",
+                "size_chart": "",
+                "dropship_supported": "",
+                "vendor_image_urls": "",
+                "availability": "",
+            }
         ),
+        review_stage="search",
+    )
+    assert unknown_years_search.verdict == "Test"
+    assert "supplier operating years missing" in unknown_years_search.concerns
+
+    unknown_years_detail = scorer.score_candidate(detail_candidate(""), review_stage="detail")
+    assert unknown_years_detail.verdict == "Reject"
+    assert (
+        "supplier operating years not confirmed from supplier-context evidence; "
+        "detail-stage recommendations require at least 5 years on 1688"
+        in unknown_years_detail.concerns
+    )
+
+    unscoped_five_year_supplier = scorer.score_candidate(
+        Candidate(
+            **{
+                **base_candidate_fields(),
+                "years_on_1688": "5",
+                "years_on_1688_scope": "",
+                "years_on_1688_label": "children age 5 years",
+                "vendor_name": "Guangzhou Bright Apparel Co.",
+                "vendor_url": "https://shop.1688.com/example",
+                "size_chart": "yes",
+                "dropship_supported": "yes",
+                "vendor_image_urls": " | ".join(f"https://img.example.com/{index}.jpg" for index in range(1, 5)),
+                "availability": "ready stock / ships within 24 hours",
+                "detail_evidence_path": "ops/sourcing/evidence/900000000001.json",
+            }
+        ),
+        review_stage="detail",
+    )
+    assert unscoped_five_year_supplier.verdict == "Reject"
+    assert any("supplier-context evidence" in concern for concern in unscoped_five_year_supplier.concerns)
+
+    four_year_supplier = scorer.score_candidate(detail_candidate("4"), review_stage="detail")
+    assert four_year_supplier.verdict == "Reject"
+    assert "supplier tenure below 5-year minimum (4 years on 1688)" in four_year_supplier.concerns
+
+    five_year_supplier = scorer.score_candidate(detail_candidate("5"), review_stage="detail")
+    assert five_year_supplier.verdict == "Gold"
+
+    detail_with_proof = scorer.score_candidate(
+        detail_candidate("6"),
         review_stage="detail",
     )
 

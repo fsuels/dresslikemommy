@@ -1,0 +1,2237 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at_utc": "2026-09-06T18:07:04.239414+00:00",
+  "status": "ACTIONABLE_LOCALIZED_ROUTE_SCOPE__NO_CANDIDATE_BODIES_OR_EXTERNAL_WRITES",
+  "article_id": "gid://shopify/Article/559471886433",
+  "translation_snapshot_observed_at": "2026-09-06 17:55:01 UTC",
+  "source_provenance": "Shopify Admin GraphQL translatableResource; all20nonprimarypublishedlocales; list is not paginated",
+  "english_source_body_digest": "01c2e9ab6b5c02346c0653bcc526205b5d52c856679e4f8446698999ba53522d",
+  "english_completed_repair_binding": {
+    "candidate_sha256": "01c2e9ab6b5c02346c0653bcc526205b5d52c856679e4f8446698999ba53522d",
+    "execution_status": "IMPLEMENTED_API_AND_RENDER_VERIFIED",
+    "execution_after_read_at_utc": "2026-09-06 16:28:29 UTC",
+    "copy_plan_status_is_historical": "PREPARED_NOT_APPLIED",
+    "authority_not_promoted": "Execution receipt proves the earlier English repair; subagent has no external-write authority."
+  },
+  "route_scope": {
+    "locales": [
+      "ar",
+      "cs",
+      "da",
+      "de",
+      "el",
+      "es",
+      "fi",
+      "fr",
+      "he",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "no",
+      "pt-BR",
+      "ro"
+    ],
+    "excluded_no_body_locales": {
+      "pl": {
+        "body_entries": 0,
+        "action": "NO_BODY_WORK"
+      },
+      "ru": {
+        "body_entries": 0,
+        "action": "NO_BODY_WORK"
+      },
+      "sv": {
+        "body_entries": 0,
+        "action": "NO_BODY_WORK"
+      }
+    },
+    "bad_destination_assessment": "The prior completed English repair supplies the empty Christmas collection and nightgown-to-dresses mismatch evidence. This local screen does not repeat current public or all-market destination checks.",
+    "target_route": "/collections/pajamas",
+    "existing_route_shape": "All captured hrefs are unprefixed relative /collections/... paths. No locale prefix, handle, host, query string or tracking parameter will be invented.",
+    "proposed_blocks": {
+      "shopping_cta": 17,
+      "empty_christmas_destination": 17,
+      "nightgown_destination": 16,
+      "total": 50
+    },
+    "proposed_change": "Translate only the three completed English shopping-block replacements into the existing locales. Keep the current /collections/pajamas CTA route; neutral Christmas copy must not promise holiday prints. Replace linked nightgown heading+paragraph with supported mommy/daughter-pajama wording. Do not merely swap href under nightgown or holiday-specific anchor promises.",
+    "ptBR_exception": "Existing nightgown paragraph has no link. Preserve it in this link-fix scope; do not count or create a nonexistent dresses link. Broader content alignment would require separate explicit scope.",
+    "preserve": "Every other body byte; recently released title/meta fields; publication/handle/blog; new-language body absence; no product/material/size claims added."
+  },
+  "totals_before": {
+    "/collections/pajamas": 51,
+    "/collections/dresses": 16,
+    "/collections/christmas-pajamas": 34,
+    "/collections/matching-outfits": 17,
+    "/collections/family-pajamas": 17
+  },
+  "total_affected_bad_hrefs": 50,
+  "total_family_pajamas_links_in_consolidated_ctas": 17,
+  "expected_after_if_proposed_blocks_corrected": {
+    "status": "EXPECTED_NOT_GENERATED_OR_VERIFIED",
+    "/collections/christmas-pajamas": 0,
+    "/collections/dresses": 0,
+    "/collections/family-pajamas": 0,
+    "/collections/pajamas": 84,
+    "/collections/matching-outfits": 17,
+    "total_anchors": 101
+  },
+  "locales": [
+    {
+      "locale": "ar",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 6192,
+      "body_utf8_sha256": "08f74207d8105ebc6d5d0a3947a323fbc3292bbf229e845c61f4f6218c016a63",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "البيجامات العائلية المتطابقة"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "البيجامات"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "القمصان الليلية"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "بيجامات عيد الميلاد المتناسقة"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "الملابس المتناسقة"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "مجموعة البيجامات المتناسقة"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "بيجامات عيد الميلاد"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "بيجامات العائلة المتناسقة"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "تسوق بيجامات العائلة المتناسقة",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "مجموعة البيجامات المتناسقة",
+        "before_html": "<p>هل أنت مستعد لبدء التقليد؟ تصفح <a href=\"/collections/pajamas\">مجموعة البيجامات المتناسقة</a> لدينا بأنماط للأم، والأب، والأطفال. هل تبحث عن مجموعات خاصة بالعطلات؟ اطلع على <a href=\"/collections/christmas-pajamas\">بيجامات عيد الميلاد</a> و<a href=\"/collections/family-pajamas\">بيجامات العائلة المتناسقة</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "مجموعات القمصان الليلية المتطابقة",
+          "before_html": "<h3>مجموعات القمصان الليلية المتطابقة</h3>\n<p>لأجل الأم وابنتها تحديدًا، تعتبر <a href=\"/collections/dresses\">القمصان الليلية</a> المتطابقة بديلاً لطيفًا لمجموعات البيجاما التقليدية. ناعمة، متدفقة، ومثالية لروتينات النوم بين الأم وابنتها التي تجعل الطفولة ساحرة.</p>",
+          "before_utf8_sha256": "10c1ec0bb08013a68553b568fcefe01f80643d96e0f4983f781f33f18ca93ad3",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2138,
+          "end_offset_python_codepoints_exclusive": 2404,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "القمصان الليلية"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "صباح عيد الميلاد",
+          "before_html": "<p>السبب الأول لشراء العائلات للبيجامات المتناسقة. <a href=\"/collections/christmas-pajamas\">بيجامات عيد الميلاد المتناسقة</a> بنقشات مربعات كلاسيكية، أو طباعات الرنّة، أو تصاميم \"عيد ميلاد سعيد\" هي من أساسيات العطلة. نصيحة محترف: اشترِها مبكرًا (أكتوبر-نوفمبر) قبل نفاد أفضل التصاميم.</p>",
+          "before_utf8_sha256": "32c0901d734319599b26be55c75fa30b69320d87a144bdcae25d14f38a0e6d07",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3251,
+          "end_offset_python_codepoints_exclusive": 3539,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "بيجامات عيد الميلاد المتناسقة"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "تسوق بيجامات العائلة المتناسقة",
+          "before_html": "<p>هل أنت مستعد لبدء التقليد؟ تصفح <a href=\"/collections/pajamas\">مجموعة البيجامات المتناسقة</a> لدينا بأنماط للأم، والأب، والأطفال. هل تبحث عن مجموعات خاصة بالعطلات؟ اطلع على <a href=\"/collections/christmas-pajamas\">بيجامات عيد الميلاد</a> و<a href=\"/collections/family-pajamas\">بيجامات العائلة المتناسقة</a>.</p>",
+          "before_utf8_sha256": "2933bedf3d1a05a90b43813debe4c2e460f3321675795fb340b07e268bde39ca",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 5710,
+          "end_offset_python_codepoints_exclusive": 6024,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "مجموعة البيجامات المتناسقة"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "بيجامات عيد الميلاد"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "بيجامات العائلة المتناسقة"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "cs",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 6746,
+      "body_utf8_sha256": "f4af03999876bccb32e0b6c984f3377a7e5c5ca37e5e027e113f6c42fa5a822d",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "rodinná sladěná pyžama"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "kolekci pyžam"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "noční košile"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "Vánoční sladěná pyžama"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "sladěné outfity"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "kolekci sladěných pyžam"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "vánoční pyžama"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "rodinná sladěná pyžama"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Nakupte rodinná sladěná pyžama",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "kolekci sladěných pyžam",
+        "before_html": "<p>Připraveni začít tradici? Prohlédněte si naši <a href=\"/collections/pajamas\">kolekci sladěných pyžam</a> se styly pro maminku, tatínka a děti. Hledáte sady speciálně na svátky? Podívejte se na naše <a href=\"/collections/christmas-pajamas\">vánoční pyžama</a> a <a href=\"/collections/family-pajamas\">rodinná sladěná pyžama</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "Sady sladěných nočních košil",
+          "before_html": "<h3>Sady sladěných nočních košil</h3>\n<p>Pro maminku a dceru jsou sladěné <a href=\"/collections/dresses\">noční košile</a> sladkou alternativou k tradičním pyžamovým setům. Měkké, splývavé a perfektní pro ty mateřsko-dceřiné večerní rituály, které dělají dětství kouzelným.</p>",
+          "before_utf8_sha256": "057f33e202548dfa8eeaba138cab806ac035fbd40266a14ee019d8ab1a37a7bb",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2336,
+          "end_offset_python_codepoints_exclusive": 2612,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "noční košile"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Vánoční ráno",
+          "before_html": "<p>Hlavní důvod, proč rodiny kupují sladěná pyžama. <a href=\"/collections/christmas-pajamas\">Vánoční sladěná pyžama</a> v klasickém kostkovaném vzoru, s motivy sobů nebo s nápisy „Veselé Vánoce“ jsou sváteční klasikou. Tip pro vás: kupte je brzy (říjen-listopad), než se ty nejlepší vzory vyprodají.</p>",
+          "before_utf8_sha256": "2eb141a703354e44c9831a5932c30eb907c0b653a29efe4db9ce83c0d7760c65",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3555,
+          "end_offset_python_codepoints_exclusive": 3858,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "Vánoční sladěná pyžama"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Nakupte rodinná sladěná pyžama",
+          "before_html": "<p>Připraveni začít tradici? Prohlédněte si naši <a href=\"/collections/pajamas\">kolekci sladěných pyžam</a> se styly pro maminku, tatínka a děti. Hledáte sady speciálně na svátky? Podívejte se na naše <a href=\"/collections/christmas-pajamas\">vánoční pyžama</a> a <a href=\"/collections/family-pajamas\">rodinná sladěná pyžama</a>.</p>",
+          "before_utf8_sha256": "9e1fe67f526a007a546a52be8f4e4f4a5265ab7fc3601f99b75260aa306a6981",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 6237,
+          "end_offset_python_codepoints_exclusive": 6569,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "kolekci sladěných pyžam"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "vánoční pyžama"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "rodinná sladěná pyžama"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "da",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 6725,
+      "body_utf8_sha256": "19fa053741f7907dcb3f50ec2182d678441f036cc7c83af2c43444f802694a48",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "matchende familiepyjamas"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "pyjamas-kollektion"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "natkjoler"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "Matchende julepyjamas"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "matchende outfits"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "matchende pyjamas-kollektion"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "julepyjamas"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "matchende familiepyjamas"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Køb matchende familiepyjamas",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "matchende pyjamas-kollektion",
+        "before_html": "<p>Klar til at starte traditionen? Gennemse vores <a href=\"/collections/pajamas\">matchende pyjamas-kollektion</a> med stilarter til mor, far og børn. Leder du efter særlige sæt til højtider? Se vores <a href=\"/collections/christmas-pajamas\">julepyjamas</a> og <a href=\"/collections/family-pajamas\">matchende familiepyjamas</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "Matchende natkjolesæt",
+          "before_html": "<h3>Matchende natkjolesæt</h3>\n<p>Specielt til mor og datter er matchende <a href=\"/collections/dresses\">natkjoler</a> et sødt alternativ til traditionelle pyjamasæt. Bløde, flydende og perfekte til de mor-datter-sengevaner, der gør barndommen magisk.</p>",
+          "before_utf8_sha256": "0e2d66fdbac7d65b28a9184ecb9359a7ffbd7332c8761ae926ac644b663316b2",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2365,
+          "end_offset_python_codepoints_exclusive": 2620,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "natkjoler"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Julemorgen",
+          "before_html": "<p>Den vigtigste grund til, at familier køber matchende pyjamas. <a href=\"/collections/christmas-pajamas\">Matchende julepyjamas</a> i klassisk tern, rensdyrprints eller “Glædelig jul”-designs er en juleklassiker. Pro tip: køb dem tidligt (oktober-november), før de bedste designs bliver udsolgt.</p>",
+          "before_utf8_sha256": "d84a20701cb684b7ab5a6ad1d26fcf67fe63a5d165e6864ab525a19907db5716",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3572,
+          "end_offset_python_codepoints_exclusive": 3871,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "Matchende julepyjamas"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Køb matchende familiepyjamas",
+          "before_html": "<p>Klar til at starte traditionen? Gennemse vores <a href=\"/collections/pajamas\">matchende pyjamas-kollektion</a> med stilarter til mor, far og børn. Leder du efter særlige sæt til højtider? Se vores <a href=\"/collections/christmas-pajamas\">julepyjamas</a> og <a href=\"/collections/family-pajamas\">matchende familiepyjamas</a>.</p>",
+          "before_utf8_sha256": "00de34aae0b1c9f50d1a965aa2efc480e25a254089cae9ed3654809adf8bd7a8",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 6209,
+          "end_offset_python_codepoints_exclusive": 6540,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "matchende pyjamas-kollektion"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "julepyjamas"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "matchende familiepyjamas"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "de",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 6537,
+      "body_utf8_sha256": "ac8daae7ed5834392170538d2c6e97af877598ebf8b4a7ae81ea470727364fcf",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "Familien-Partner pajamas"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "pajama collection"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "nightgowns"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "Weihnachts matching pajamas"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "Partneroutfits"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "matching pajama collection"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "Weihnachts pajamas"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "Familien-Partner pajamas"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Shop Familien-Partner Pajamas",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "matching pajama collection",
+        "before_html": "<p>Ready to start the tradition? Browse our <a href=\"/collections/pajamas\">matching pajama collection</a> with styles for mom, dad, and kids. Looking for holiday-specific sets? Check out our <a href=\"/collections/christmas-pajamas\">Weihnachts pajamas</a> and <a href=\"/collections/family-pajamas\">Familien-Partner pajamas</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "Nightgown Matching Sets",
+          "before_html": "<h3>Nightgown Matching Sets</h3>\n<p>For mommy and daughter specifically, matching <a href=\"/collections/dresses\">nightgowns</a> are a sweet alternative to traditional PJ sets. Soft, flowy, and perfect for those mother-daughter bedtime routines that make childhood magical.</p>",
+          "before_utf8_sha256": "d9a2309630e7dcb9636979f51bc681113f5125f5e6efa208fd260ee6f84f395b",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2333,
+          "end_offset_python_codepoints_exclusive": 2609,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "nightgowns"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Weihnachts Morning",
+          "before_html": "<p>The #1 reason families buy matching PJs. <a href=\"/collections/christmas-pajamas\">Weihnachts matching pajamas</a> in classic plaid, reindeer prints, or “Merry Weihnachts” designs are a holiday staple. Pro tip: buy them early (October-November) before the best designs sell out.</p>",
+          "before_utf8_sha256": "c41685bfa95a45771b249ba91c5f892ed03425a35113781d085866e668235ed5",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3554,
+          "end_offset_python_codepoints_exclusive": 3838,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "Weihnachts matching pajamas"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Shop Familien-Partner Pajamas",
+          "before_html": "<p>Ready to start the tradition? Browse our <a href=\"/collections/pajamas\">matching pajama collection</a> with styles for mom, dad, and kids. Looking for holiday-specific sets? Check out our <a href=\"/collections/christmas-pajamas\">Weihnachts pajamas</a> and <a href=\"/collections/family-pajamas\">Familien-Partner pajamas</a>.</p>",
+          "before_utf8_sha256": "68314d4e1d7725438a4dee7665aa19cc7473ceedd57ec7d3dea4ea6f54fd19cd",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 6021,
+          "end_offset_python_codepoints_exclusive": 6351,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "matching pajama collection"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "Weihnachts pajamas"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "Familien-Partner pajamas"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "el",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 7548,
+      "body_utf8_sha256": "8e865484f87e495150f6044427e5963a8d42070fd792ef44414453c91378a04e",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "οικογενειακά ταιριαστά πιτζαμάκια"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "συλλογή πυτζάμες"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "νυχτικά"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "χριστουγεννιάτικες ταιριαστές πυτζάμες"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "ταιριαστά ρούχα"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "συλλογή ταιριαστών πυτζαμών"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "χριστουγεννιάτικες πυτζάμες"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "οικογενειακές ταιριαστές πυτζάμες"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Αγοράστε Οικογενειακές Ταιριαστές Πυτζάμες",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "συλλογή ταιριαστών πυτζαμών",
+        "before_html": "<p>Έτοιμοι να ξεκινήσετε την παράδοση; Περιηγηθείτε στη <a href=\"/collections/pajamas\">συλλογή ταιριαστών πυτζαμών</a> με στυλ για μαμά, μπαμπά και παιδιά. Ψάχνετε για σετ ειδικά για τις γιορτές; Δείτε τις <a href=\"/collections/christmas-pajamas\">χριστουγεννιάτικες πυτζάμες</a> και τις <a href=\"/collections/family-pajamas\">οικογενειακές ταιριαστές πυτζάμες</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "Σετ Ταιριαστών Νυχτικών",
+          "before_html": "<h3>Σετ Ταιριαστών Νυχτικών</h3>\n<p>Για μαμά και κόρη ειδικά, τα ταιριαστά <a href=\"/collections/dresses\">νυχτικά</a> είναι μια γλυκιά εναλλακτική στα παραδοσιακά σετ πυτζάμες. Απαλά, ρέοντα και τέλεια για τις ρουτίνες ύπνου μητέρας-κόρης που κάνουν την παιδική ηλικία μαγική.</p>",
+          "before_utf8_sha256": "58632f3e4b0b44a9ec6630cdec4dc09b73e28a5de449dffbcc4a6a3beccc009d",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2620,
+          "end_offset_python_codepoints_exclusive": 2900,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "νυχτικά"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Πρωί Χριστουγέννων",
+          "before_html": "<p>Ο #1 λόγος που οι οικογένειες αγοράζουν ταιριαστές πυτζάμες. Οι <a href=\"/collections/christmas-pajamas\">χριστουγεννιάτικες ταιριαστές πυτζάμες</a> σε κλασικό καρό, σχέδια με τάρανδους ή «Καλά Χριστούγεννα» είναι απαραίτητο στοιχείο των γιορτών. Μικρό μυστικό: αγοράστε τις νωρίς (Οκτώβριος-Νοέμβριος) πριν εξαντληθούν τα καλύτερα σχέδια.</p>",
+          "before_utf8_sha256": "a45383779c7aac8f684ce602e41ad71a9b420da79e79ca13dfa61853ef676e3f",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3956,
+          "end_offset_python_codepoints_exclusive": 4301,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "χριστουγεννιάτικες ταιριαστές πυτζάμες"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Αγοράστε Οικογενειακές Ταιριαστές Πυτζάμες",
+          "before_html": "<p>Έτοιμοι να ξεκινήσετε την παράδοση; Περιηγηθείτε στη <a href=\"/collections/pajamas\">συλλογή ταιριαστών πυτζαμών</a> με στυλ για μαμά, μπαμπά και παιδιά. Ψάχνετε για σετ ειδικά για τις γιορτές; Δείτε τις <a href=\"/collections/christmas-pajamas\">χριστουγεννιάτικες πυτζάμες</a> και τις <a href=\"/collections/family-pajamas\">οικογενειακές ταιριαστές πυτζάμες</a>.</p>",
+          "before_utf8_sha256": "7fc2ac37b6ee28c334c10cb8cd0730cf13fd2b06a686778b3b55e0f58c859c17",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 6982,
+          "end_offset_python_codepoints_exclusive": 7349,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "συλλογή ταιριαστών πυτζαμών"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "χριστουγεννιάτικες πυτζάμες"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "οικογενειακές ταιριαστές πυτζάμες"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "es",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 7799,
+      "body_utf8_sha256": "fe1f5bba175c72757c585fd2331f05b43be790caf92b5103b003eef5fd4d9cb2",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "los pijamas familiares a juego"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "colección completa de pijamas"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "los camisones"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "Los pijamas navideños a juego"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "conjuntos a juego"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "colección de pijamas a juego"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "pijamas navideños"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "pijamas familiares a juego"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Comprar pijamas familiares a juego",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "colección de pijamas a juego",
+        "before_html": "<p> ¿Listos para empezar la tradición? Explora nuestra <a href=\"/collections/pajamas\">colección de pijamas a juego</a> con estilos para mamá, papá e hijos. ¿Buscas conjuntos especiales para estas fiestas? Descubre nuestros <a href=\"/collections/christmas-pajamas\">pijamas navideños</a> y <a href=\"/collections/family-pajamas\">pijamas familiares a juego</a> .</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "Conjuntos de camisones a juego",
+          "before_html": "<h3> Conjuntos de camisones a juego</h3>\n\n <p>Especialmente para mamá e hija, <a href=\"/collections/dresses\">los camisones</a> a juego son una alternativa encantadora a los pijamas tradicionales. Suaves, vaporosos y perfectos para esas rutinas de dormir madre-hija que hacen que la infancia sea mágica.</p>",
+          "before_utf8_sha256": "01d590014303e6e0e911409449d6b1f5c9e60a8f219f4c69e58d5a9fef3764b6",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2769,
+          "end_offset_python_codepoints_exclusive": 3075,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "los camisones"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Mañana de Navidad",
+          "before_html": "<p> La razón principal por la que las familias compran pijamas a juego. <a href=\"/collections/christmas-pajamas\">Los pijamas navideños a juego</a> con cuadros clásicos, estampados de renos o diseños de \"Feliz Navidad\" son un básico navideño. Consejo: cómpralos con anticipación (octubre-noviembre) antes de que se agoten los mejores diseños.</p>",
+          "before_utf8_sha256": "311c9c6d1b33e9d4c11e871d4c35d88909ae9450147ce5df6e081aff54ea0eba",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 4116,
+          "end_offset_python_codepoints_exclusive": 4461,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "Los pijamas navideños a juego"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Comprar pijamas familiares a juego",
+          "before_html": "<p> ¿Listos para empezar la tradición? Explora nuestra <a href=\"/collections/pajamas\">colección de pijamas a juego</a> con estilos para mamá, papá e hijos. ¿Buscas conjuntos especiales para estas fiestas? Descubre nuestros <a href=\"/collections/christmas-pajamas\">pijamas navideños</a> y <a href=\"/collections/family-pajamas\">pijamas familiares a juego</a> .</p>",
+          "before_utf8_sha256": "796933ed68914370e5f7ea87ce805c72627ea144dcf4628b9d138e24b4401be4",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 7239,
+          "end_offset_python_codepoints_exclusive": 7601,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "colección de pijamas a juego"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "pijamas navideños"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "pijamas familiares a juego"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "fi",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 7103,
+      "body_utf8_sha256": "e5eb56b88679fcc9575241a1e56069cabd4a45317af8b062f764aa5490039f5e",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "perheen yhteensopivat pyjamat"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "pyjamakokoelmaamme"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "yöpaidat"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "Joulun yhteensopivat pyjamat"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "yhteensopivat asut"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "yhteensopivien pyjamien kokoelmaamme"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "joulupyjamiin"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "perheen yhteensopiviin pyjamiin"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Osta perheen yhteensopivat pyjamat",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "yhteensopivien pyjamien kokoelmaamme",
+        "before_html": "<p>Valmiina aloittamaan perinteen? Selaa <a href=\"/collections/pajamas\">yhteensopivien pyjamien kokoelmaamme</a>, jossa on tyylejä äidille, isälle ja lapsille. Etsitkö juhlapäiville sopivia settejä? Tutustu <a href=\"/collections/christmas-pajamas\">joulupyjamiin</a> ja <a href=\"/collections/family-pajamas\">perheen yhteensopiviin pyjamiin</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "Yöpaidan yhteensopivat setit",
+          "before_html": "<h3>Yöpaidan yhteensopivat setit</h3>\n<p>Erityisesti äidille ja tyttärelle, yhteensopivat <a href=\"/collections/dresses\">yöpaidat</a> ovat suloinen vaihtoehto perinteisille pyjamapuvuilla. Pehmeitä, laskeutuvia ja täydellisiä äiti-tytär-iltahetkiin, jotka tekevät lapsuudesta taianomaista.</p>",
+          "before_utf8_sha256": "3e7d24a18142f29fa98a6b543d1eeabc56ded27a4ed30bf4fcee7ed5ca4ba433",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2533,
+          "end_offset_python_codepoints_exclusive": 2826,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "yöpaidat"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Joulu-aamu",
+          "before_html": "<p>Perheiden ykkössyy ostaa yhteensopivia pyjamoja. <a href=\"/collections/christmas-pajamas\">Joulun yhteensopivat pyjamat</a> klassisessa ruutukuosissa, porokuvioilla tai ”Hyvää joulua” -kuoseilla ovat juhlan perusta. Vinkki: osta ne ajoissa (lokakuu-marraskuu) ennen kuin parhaat kuosit loppuvat.</p>",
+          "before_utf8_sha256": "9a09bb1e4f242eb60281feb19cbabf72796fd1b8cbc2b323dc08f563e3d0d6b1",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3808,
+          "end_offset_python_codepoints_exclusive": 4109,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "Joulun yhteensopivat pyjamat"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Osta perheen yhteensopivat pyjamat",
+          "before_html": "<p>Valmiina aloittamaan perinteen? Selaa <a href=\"/collections/pajamas\">yhteensopivien pyjamien kokoelmaamme</a>, jossa on tyylejä äidille, isälle ja lapsille. Etsitkö juhlapäiville sopivia settejä? Tutustu <a href=\"/collections/christmas-pajamas\">joulupyjamiin</a> ja <a href=\"/collections/family-pajamas\">perheen yhteensopiviin pyjamiin</a>.</p>",
+          "before_utf8_sha256": "7623ddee67b09d4f7c9a2d8f14ecb631b2cf76ab79defe984160c6f200d21eb8",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 6564,
+          "end_offset_python_codepoints_exclusive": 6911,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "yhteensopivien pyjamien kokoelmaamme"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "joulupyjamiin"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "perheen yhteensopiviin pyjamiin"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "fr",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 8246,
+      "body_utf8_sha256": "63f1a5885436a0a131c6edd90d089e23e453f7ee804fd83a9b5954cf88518d7f",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "les pyjamas assortis"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "collection complète de pyjamas"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "les nuisettes"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "les pyjamas de Noël assortis,"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "tenues assorties"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "collection de pyjamas assortis"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "pyjamas de Noël"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "à nos pyjamas assortis pour toute la famille"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Achetez des pyjamas assortis pour toute la famille",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "collection de pyjamas assortis",
+        "before_html": "<p> Prêts à instaurer une nouvelle tradition ? Découvrez notre <a href=\"/collections/pajamas\">collection de pyjamas assortis</a> pour maman, papa et enfants. Envie de trouver des ensembles pour les fêtes ? Jetez un œil à nos <a href=\"/collections/christmas-pajamas\">pyjamas de Noël</a> et <a href=\"/collections/family-pajamas\">à nos pyjamas assortis pour toute la famille</a> .</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "Ensembles de nuisettes assortis",
+          "before_html": "<h3> Ensembles de nuisettes assortis</h3>\n\n <p>Pour une maman et sa fille, <a href=\"/collections/dresses\">les nuisettes</a> assorties sont une alternative adorable aux pyjamas traditionnels. Douces et fluides, elles sont parfaites pour ces rituels du coucher mère-fille qui rendent l'enfance magique.</p>",
+          "before_utf8_sha256": "3083a8ac67969c5bef623e2cb9a7a9dc84db7effa6052873e7171b290c838ddf",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2996,
+          "end_offset_python_codepoints_exclusive": 3300,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "les nuisettes"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Le matin de Noël",
+          "before_html": "<p> La raison principale pour laquelle les familles achètent des pyjamas assortis : <a href=\"/collections/christmas-pajamas\">les pyjamas de Noël assortis,</a> à carreaux classiques, à motifs de rennes ou avec l’inscription « Joyeux Noël », sont un incontournable des fêtes. Conseil : achetez-les tôt (octobre-novembre) avant que les plus beaux modèles ne soient épuisés.</p>",
+          "before_utf8_sha256": "a7a5dbf088529c09309399bced1f37992b9297dfbfae6414ae2b60bfc179d6ef",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 4396,
+          "end_offset_python_codepoints_exclusive": 4770,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "les pyjamas de Noël assortis,"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Achetez des pyjamas assortis pour toute la famille",
+          "before_html": "<p> Prêts à instaurer une nouvelle tradition ? Découvrez notre <a href=\"/collections/pajamas\">collection de pyjamas assortis</a> pour maman, papa et enfants. Envie de trouver des ensembles pour les fêtes ? Jetez un œil à nos <a href=\"/collections/christmas-pajamas\">pyjamas de Noël</a> et <a href=\"/collections/family-pajamas\">à nos pyjamas assortis pour toute la famille</a> .</p>",
+          "before_utf8_sha256": "78857140c8ca32998bcd97e27a9569f95ffda49f7c3a20a05150fd413cd3d083",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 7686,
+          "end_offset_python_codepoints_exclusive": 8067,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "collection de pyjamas assortis"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "pyjamas de Noël"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "à nos pyjamas assortis pour toute la famille"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "he",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 5721,
+      "body_utf8_sha256": "eb44ced79d693e8f34d3b6a6df6d83e748822c6c5590b58d31e9c7404c7ffa9e",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "פיג'מות משפחתיות תואמות"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "אוסף הפיג'מות"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "חלוקי לילה"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "פיג'מות חג מולד תואמות"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "הבגדים התואמים"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "אוסף הפיג'מות התואמות שלנו"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "פיג'מות חג המולד"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "פיג'מות משפחתיות תואמות"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "קנו פיג'מות משפחתיות תואמות",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "אוסף הפיג'מות התואמות שלנו",
+        "before_html": "<p>מוכנים להתחיל את המסורת? דפדפו ב<a href=\"/collections/pajamas\">אוסף הפיג'מות התואמות שלנו</a> עם סגנונות לאמא, לאבא ולילדים. מחפשים סטים לחגים? בדקו את <a href=\"/collections/christmas-pajamas\">פיג'מות חג המולד</a> ואת <a href=\"/collections/family-pajamas\">פיג'מות משפחתיות תואמות</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "מערכות חלוקי לילה תואמים",
+          "before_html": "<h3>מערכות חלוקי לילה תואמים</h3>\n<p>למומיות ובנות במיוחד, <a href=\"/collections/dresses\">חלוקי לילה</a> תואמים הם אלטרנטיבה מתוקה למערכות פיג'מות מסורתיות. רכים, זורמים, ומושלמים לשגרות השינה של אם ובת שהופכות את הילדות לקסומה.</p>",
+          "before_utf8_sha256": "78fc813d331845230c5a8cc748af2bd4edcda8aeef36c07d4794ca1bc6c67aba",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 1991,
+          "end_offset_python_codepoints_exclusive": 2223,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "חלוקי לילה"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "בוקר חג המולד",
+          "before_html": "<p>הסיבה מספר 1 שמשפחות קונות פיג'מות תואמות. <a href=\"/collections/christmas-pajamas\">פיג'מות חג מולד תואמות</a> בפלנל קלאסי, הדפסי איילים או עיצובים של \"חג מולד שמח\" הן פריט חובה לחג. טיפ מקצועי: קנו מוקדם (אוקטובר-נובמבר) לפני שהעיצובים הטובים ביותר נגמרים.</p>",
+          "before_utf8_sha256": "4564f719f82427184a085ea3facd0c5e182df5b5aadbc73858a8b1513d0eeba9",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2999,
+          "end_offset_python_codepoints_exclusive": 3263,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "פיג'מות חג מולד תואמות"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "קנו פיג'מות משפחתיות תואמות",
+          "before_html": "<p>מוכנים להתחיל את המסורת? דפדפו ב<a href=\"/collections/pajamas\">אוסף הפיג'מות התואמות שלנו</a> עם סגנונות לאמא, לאבא ולילדים. מחפשים סטים לחגים? בדקו את <a href=\"/collections/christmas-pajamas\">פיג'מות חג המולד</a> ואת <a href=\"/collections/family-pajamas\">פיג'מות משפחתיות תואמות</a>.</p>",
+          "before_utf8_sha256": "fba955443fa19fd7fd0875451980a7cb440fffb1e355e32f0adcf390031a9dad",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 5294,
+          "end_offset_python_codepoints_exclusive": 5585,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "אוסף הפיג'מות התואמות שלנו"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "פיג'מות חג המולד"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "פיג'מות משפחתיות תואמות"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "hi",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 6642,
+      "body_utf8_sha256": "39b38b9505a08faf3b6202ee16f8d76ebf6c3097a02fcc7aedf7b60fa2ef7716",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "परिवार के मेल खाते पजामे"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "पजामा संग्रह"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "नाइटगाउन"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "क्रिसमस मैचिंग पजामे"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "मैचिंग आउटफिट्स"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "मैचिंग पजामा कलेक्शन"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "क्रिसमस पजामे"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "परिवार के मैचिंग पजामे"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "परिवार के मैचिंग पजामे खरीदें",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "मैचिंग पजामा कलेक्शन",
+        "before_html": "<p>परंपरा शुरू करने के लिए तैयार हैं? हमारी <a href=\"/collections/pajamas\">मैचिंग पजामा कलेक्शन</a> देखें जिसमें माँ, पिता और बच्चों के लिए स्टाइल्स हैं। छुट्टियों के लिए खास सेट्स ढूंढ रहे हैं? हमारे <a href=\"/collections/christmas-pajamas\">क्रिसमस पजामे</a> और <a href=\"/collections/family-pajamas\">परिवार के मैचिंग पजामे</a> देखें।</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "नाइटगाउन मेल खाते सेट",
+          "before_html": "<h3>नाइटगाउन मेल खाते सेट</h3>\n<p>विशेष रूप से माँ और बेटी के लिए, मेल खाते <a href=\"/collections/dresses\">नाइटगाउन</a> पारंपरिक पजामा सेट का एक प्यारा विकल्प हैं। नरम, बहने वाले, और उन माँ-बेटी की सोने की दिनचर्या के लिए परफेक्ट जो बचपन को जादुई बनाती हैं।</p>",
+          "before_utf8_sha256": "1ef61ab8a070a041427fb7a253d431811e280b8b3b97c73b73941913bf423194",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2310,
+          "end_offset_python_codepoints_exclusive": 2571,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "नाइटगाउन"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "क्रिसमस की सुबह",
+          "before_html": "<p>परिवार मैचिंग पजामे खरीदने का नंबर 1 कारण। <a href=\"/collections/christmas-pajamas\">क्रिसमस मैचिंग पजामे</a> क्लासिक प्लेड, रेनडियर प्रिंट या “मेरी क्रिसमस” डिज़ाइनों में छुट्टियों की खास चीज़ हैं। प्रो टिप: उन्हें जल्दी खरीदें (अक्टूबर-नवंबर) ताकि सबसे अच्छे डिज़ाइन बिकने से पहले मिल जाएं।</p>",
+          "before_utf8_sha256": "01efdbcc3954ae0ecc9ecf9c5dd9cf14028894df87e3cafb11e90dcdacf313e7",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3526,
+          "end_offset_python_codepoints_exclusive": 3824,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "क्रिसमस मैचिंग पजामे"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "परिवार के मैचिंग पजामे खरीदें",
+          "before_html": "<p>परंपरा शुरू करने के लिए तैयार हैं? हमारी <a href=\"/collections/pajamas\">मैचिंग पजामा कलेक्शन</a> देखें जिसमें माँ, पिता और बच्चों के लिए स्टाइल्स हैं। छुट्टियों के लिए खास सेट्स ढूंढ रहे हैं? हमारे <a href=\"/collections/christmas-pajamas\">क्रिसमस पजामे</a> और <a href=\"/collections/family-pajamas\">परिवार के मैचिंग पजामे</a> देखें।</p>",
+          "before_utf8_sha256": "4e26ceaac6e0e55e023b58ed1193ba7fce4f1e19e229f515781735e0240ac47a",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 6119,
+          "end_offset_python_codepoints_exclusive": 6457,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "मैचिंग पजामा कलेक्शन"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "क्रिसमस पजामे"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "परिवार के मैचिंग पजामे"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "it",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 7551,
+      "body_utf8_sha256": "4ec461ef2351085a3b35a69524b6570b777d5d25e4b354f04054e392e94339a5",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "pigiami abbinati per famiglie"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "collezione completa di pigiami"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "camicie da notte"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "pigiami di Natale coordinati"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "outfit coordinati"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "collezione di pigiami coordinati"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "pigiami di Natale"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "pigiami coordinati per tutta la famiglia"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Acquista pigiami coordinati per la famiglia",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "collezione di pigiami coordinati",
+        "before_html": "<p>Pronti a iniziare la tradizione? Sfoglia la nostra <a href=\"/collections/pajamas\">collezione di pigiami coordinati</a> con modelli per mamma, papà e bambini. Cerchi set specifici per le festività? Dai un'occhiata ai nostri <a href=\"/collections/christmas-pajamas\">pigiami di Natale</a> e ai <a href=\"/collections/family-pajamas\">pigiami coordinati per tutta la famiglia</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "Set abbinati di camicie da notte",
+          "before_html": "<h3>Set abbinati di camicie da notte</h3>\n<p>Per mamma e figlia in particolare, le <a href=\"/collections/dresses\">camicie da notte</a> abbinate sono una dolce alternativa ai tradizionali set di pigiami. Morbide, fluide e perfette per quelle routine della buonanotte madre-figlia che rendono l'infanzia magica.</p>",
+          "before_utf8_sha256": "459aa1b951777c8918917603eb5a852d5f5b413ff8f048b1675f8b770c0378fe",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2603,
+          "end_offset_python_codepoints_exclusive": 2916,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "camicie da notte"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Mattina di Natale",
+          "before_html": "<p>La ragione numero uno per cui le famiglie comprano pigiami coordinati. I <a href=\"/collections/christmas-pajamas\">pigiami di Natale coordinati</a> in classico tartan, con renne o con scritte “Buon Natale” sono un must delle festività. Consiglio da esperti: comprali presto (ottobre-novembre) prima che i modelli migliori finiscano.</p>",
+          "before_utf8_sha256": "21e612ae6a87b33d4199bb7e011fc3ccff3b9ce3ef8e21511b11f51246110f86",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3922,
+          "end_offset_python_codepoints_exclusive": 4260,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "pigiami di Natale coordinati"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Acquista pigiami coordinati per la famiglia",
+          "before_html": "<p>Pronti a iniziare la tradizione? Sfoglia la nostra <a href=\"/collections/pajamas\">collezione di pigiami coordinati</a> con modelli per mamma, papà e bambini. Cerchi set specifici per le festività? Dai un'occhiata ai nostri <a href=\"/collections/christmas-pajamas\">pigiami di Natale</a> e ai <a href=\"/collections/family-pajamas\">pigiami coordinati per tutta la famiglia</a>.</p>",
+          "before_utf8_sha256": "cdfdc78c3c930a631689233fa9b865d9f223f19212857f28a3958b57db7166d3",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 6972,
+          "end_offset_python_codepoints_exclusive": 7353,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "collezione di pigiami coordinati"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "pigiami di Natale"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "pigiami coordinati per tutta la famiglia"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "ja",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 3743,
+      "body_utf8_sha256": "ecbfe1ba57f8d79f7cece5a90da9c94ebf9d5d5682b30d02f130572b9d354033",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "家族お揃いパジャマ"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "パジャマコレクション"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "ナイトガウン"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "クリスマスお揃いパジャマ"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "こちら"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "マッチングパジャマコレクション"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "クリスマスパジャマ"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "家族お揃いパジャマ"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "家族お揃いパジャマを購入する",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "マッチングパジャマコレクション",
+        "before_html": "<p>伝統を始める準備はできましたか？<a href=\"/collections/pajamas\">マッチングパジャマコレクション</a>で、ママ、パパ、子ども向けのスタイルをチェックしましょう。ホリデー限定セットをお探しなら、<a href=\"/collections/christmas-pajamas\">クリスマスパジャマ</a>や<a href=\"/collections/family-pajamas\">家族お揃いパジャマ</a>もご覧ください。</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "ナイトガウンのマッチングセット",
+          "before_html": "<h3>ナイトガウンのマッチングセット</h3>\n<p>特にママと娘には、伝統的なパジャマセットの代わりにマッチングの<a href=\"/collections/dresses\">ナイトガウン</a>がおすすめ。柔らかく、ゆったりしていて、母娘の就寝ルーティンを魔法のように彩ります。</p>",
+          "before_utf8_sha256": "87744438e0f60894193b01471cc64d53187604c5154d74171ea5c7ecdc4a37fa",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 1160,
+          "end_offset_python_codepoints_exclusive": 1306,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "ナイトガウン"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "クリスマスの朝",
+          "before_html": "<p>家族がお揃いパジャマを買う一番の理由。<a href=\"/collections/christmas-pajamas\">クリスマスお揃いパジャマ</a>はクラシックなチェック柄、トナカイ柄、「メリークリスマス」デザインなど、ホリデーの定番です。プロのアドバイス：人気デザインは早め（10月〜11月）に買いましょう。</p>",
+          "before_utf8_sha256": "87ab99bf7f76f0de6d7b3b45b94b6c7dbfe2fa6db2ef7e48844ca4480288c8c3",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 1873,
+          "end_offset_python_codepoints_exclusive": 2037,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "クリスマスお揃いパジャマ"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "家族お揃いパジャマを購入する",
+          "before_html": "<p>伝統を始める準備はできましたか？<a href=\"/collections/pajamas\">マッチングパジャマコレクション</a>で、ママ、パパ、子ども向けのスタイルをチェックしましょう。ホリデー限定セットをお探しなら、<a href=\"/collections/christmas-pajamas\">クリスマスパジャマ</a>や<a href=\"/collections/family-pajamas\">家族お揃いパジャマ</a>もご覧ください。</p>",
+          "before_utf8_sha256": "f634407e6593960a095647f34f3f016937fd60412074341733f3d57e0d4e9e17",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3410,
+          "end_offset_python_codepoints_exclusive": 3642,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "マッチングパジャマコレクション"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "クリスマスパジャマ"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "家族お揃いパジャマ"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "ko",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 4034,
+      "body_utf8_sha256": "9e0417baf799dd0b300ed441a7fc0b10aeab2f3c3529dc0cb0e1bac5c78d5617",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "가족 매칭 파자마"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "파자마 컬렉션"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "나이트가운"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "크리스마스 커플 파자마"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "커플 의상"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "커플 파자마 컬렉션"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "크리스마스 파자마"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "가족 커플 파자마"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "가족 커플 파자마 쇼핑하기",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "커플 파자마 컬렉션",
+        "before_html": "<p>전통을 시작할 준비가 되셨나요? 엄마, 아빠, 아이들을 위한 스타일이 있는 <a href=\"/collections/pajamas\">커플 파자마 컬렉션</a>을 둘러보세요. 휴일용 세트를 찾고 계신가요? <a href=\"/collections/christmas-pajamas\">크리스마스 파자마</a>와 <a href=\"/collections/family-pajamas\">가족 커플 파자마</a>를 확인해 보세요.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "나이트가운 매칭 세트",
+          "before_html": "<h3>나이트가운 매칭 세트</h3>\n<p>특히 엄마와 딸을 위해, 매칭 <a href=\"/collections/dresses\">나이트가운</a>은 전통적인 파자마 세트의 달콤한 대안입니다. 부드럽고 흐르는 듯한 소재로, 어린 시절을 마법처럼 만드는 엄마와 딸의 취침 루틴에 완벽합니다.</p>",
+          "before_utf8_sha256": "329c1eeeef0f7160c384111af1138b5eb8b344b0ac5541c0996d51dde23536fe",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 1354,
+          "end_offset_python_codepoints_exclusive": 1518,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "나이트가운"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "크리스마스 아침",
+          "before_html": "<p>가족이 커플 파자마를 사는 가장 큰 이유입니다. <a href=\"/collections/christmas-pajamas\">크리스마스 커플 파자마</a>는 클래식 체크무늬, 순록 프린트, “메리 크리스마스” 디자인으로 휴일 필수품입니다. 전문가 팁: 최고의 디자인이 품절되기 전에 (10월~11월) 미리 구매하세요.</p>",
+          "before_utf8_sha256": "10a169b1ba3559dcf93b6536e1d02df8f4b52249d67ae85c9b2991f5feadc74b",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2119,
+          "end_offset_python_codepoints_exclusive": 2301,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "크리스마스 커플 파자마"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "가족 커플 파자마 쇼핑하기",
+          "before_html": "<p>전통을 시작할 준비가 되셨나요? 엄마, 아빠, 아이들을 위한 스타일이 있는 <a href=\"/collections/pajamas\">커플 파자마 컬렉션</a>을 둘러보세요. 휴일용 세트를 찾고 계신가요? <a href=\"/collections/christmas-pajamas\">크리스마스 파자마</a>와 <a href=\"/collections/family-pajamas\">가족 커플 파자마</a>를 확인해 보세요.</p>",
+          "before_utf8_sha256": "334f884299ee4181d16c7b7d65f2e6039151a01867c52df269c1482320a27ffa",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3701,
+          "end_offset_python_codepoints_exclusive": 3938,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "커플 파자마 컬렉션"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "크리스마스 파자마"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "가족 커플 파자마"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "nl",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 7134,
+      "body_utf8_sha256": "6c0ae849e6c808428479789e931d450fb4589d601603eed106cc8f87efa5fbba",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "bijpassende familypyjama’s"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "pyjamacollectie"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "nachtjaponnen"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "Kerstpyjama's om te matchen"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "bijpassende outfits"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "collectie bijpassende pyjama's"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "kerstpyjama's"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "familie pyjama's om te matchen"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Bestel Familie Pyjama's om te Matchen",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "collectie bijpassende pyjama's",
+        "before_html": "<p>Klaar om de traditie te starten? Bekijk onze <a href=\"/collections/pajamas\">collectie bijpassende pyjama's</a> met stijlen voor mama, papa en kinderen. Op zoek naar sets voor de feestdagen? Bekijk onze <a href=\"/collections/christmas-pajamas\">kerstpyjama's</a> en <a href=\"/collections/family-pajamas\">familie pyjama's om te matchen</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "Sets met bijpassende nachtjaponnen",
+          "before_html": "<h3>Sets met bijpassende nachtjaponnen</h3>\n<p>Speciaal voor mama en dochter zijn bijpassende <a href=\"/collections/dresses\">nachtjaponnen</a> een lieve alternatief voor traditionele pyjamasetjes. Zacht, luchtig en perfect voor die moeder-dochter-bedtijdroutines die de kindertijd magisch maken.</p>",
+          "before_utf8_sha256": "10583aa8c46ed4b8ad2f34c60734478d8ec6cc6fbfd1f4631d43ccea0c9af18d",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2563,
+          "end_offset_python_codepoints_exclusive": 2862,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "nachtjaponnen"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Kerstochtend",
+          "before_html": "<p>De belangrijkste reden waarom families bijpassende pyjama's kopen. <a href=\"/collections/christmas-pajamas\">Kerstpyjama's om te matchen</a> in klassieke ruit, rendierprints of “Vrolijk Kerstfeest” ontwerpen zijn een feestdagklassieker. Tip: koop ze vroeg (oktober-november) voordat de beste ontwerpen uitverkocht zijn.</p>",
+          "before_utf8_sha256": "7f12624188e971a59d92e28b52f08ab7f4243cea30cfa3b9a1a603c2f5960a01",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3849,
+          "end_offset_python_codepoints_exclusive": 4174,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "Kerstpyjama's om te matchen"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Bestel Familie Pyjama's om te Matchen",
+          "before_html": "<p>Klaar om de traditie te starten? Bekijk onze <a href=\"/collections/pajamas\">collectie bijpassende pyjama's</a> met stijlen voor mama, papa en kinderen. Op zoek naar sets voor de feestdagen? Bekijk onze <a href=\"/collections/christmas-pajamas\">kerstpyjama's</a> en <a href=\"/collections/family-pajamas\">familie pyjama's om te matchen</a>.</p>",
+          "before_utf8_sha256": "9d65b090058121879fa8c93ebd603361d6397817dc6b2aa65eec7b2d6513b425",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 6597,
+          "end_offset_python_codepoints_exclusive": 6941,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "collectie bijpassende pyjama's"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "kerstpyjama's"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "familie pyjama's om te matchen"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "no",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 6723,
+      "body_utf8_sha256": "99b7a62e6ceb710c78aaed2adead2baf6797c68178ce0ede4d4fc83f784bbbaf",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "matchende familiepyjamas"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "pyjamas-kolleksjon"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "nattkjoler"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "Matchende julepysjamas"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "matchende antrekk"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "matchende pysjamas-kolleksjon"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "julepysjamas"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "matchende familiepysjamas"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Handle matchende familiepysjamas",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "matchende pysjamas-kolleksjon",
+        "before_html": "<p>Klar til å starte tradisjonen? Bla gjennom vår <a href=\"/collections/pajamas\">matchende pysjamas-kolleksjon</a> med stiler for mamma, pappa og barn. Ser du etter sett til høytider? Sjekk ut våre <a href=\"/collections/christmas-pajamas\">julepysjamas</a> og <a href=\"/collections/family-pajamas\">matchende familiepysjamas</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "Matchende nattkjolesett",
+          "before_html": "<h3>Matchende nattkjolesett</h3>\n<p>Spesielt for mamma og datter er matchende <a href=\"/collections/dresses\">nattkjoler</a> et søtt alternativ til tradisjonelle pyjamas-sett. Myke, flytende og perfekte for de mor-datter-leggetidsrutinene som gjør barndommen magisk.</p>",
+          "before_utf8_sha256": "e2333a4a951d18e31a51f16dc41a21eeaf91e38cf1d2676c0eb4e81bd5ce6106",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2381,
+          "end_offset_python_codepoints_exclusive": 2650,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "nattkjoler"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Julemorgen",
+          "before_html": "<p>Hovedgrunnen til at familier kjøper matchende pysjamas. <a href=\"/collections/christmas-pajamas\">Matchende julepysjamas</a> i klassisk rutemønster, reinsdyrtrykk eller «God Jul»-design er en høytidstradisjon. Profftips: kjøp tidlig (oktober-november) før de beste designene blir utsolgt.</p>",
+          "before_utf8_sha256": "04dcde054ad31f2040352e6e130a521150412effa6f0df193568948dc1781a9e",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3598,
+          "end_offset_python_codepoints_exclusive": 3892,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "Matchende julepysjamas"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Handle matchende familiepysjamas",
+          "before_html": "<p>Klar til å starte tradisjonen? Bla gjennom vår <a href=\"/collections/pajamas\">matchende pysjamas-kolleksjon</a> med stiler for mamma, pappa og barn. Ser du etter sett til høytider? Sjekk ut våre <a href=\"/collections/christmas-pajamas\">julepysjamas</a> og <a href=\"/collections/family-pajamas\">matchende familiepysjamas</a>.</p>",
+          "before_utf8_sha256": "aefa919c81ab4b9436d4515f7b50718e51b2738bd84567d37ddddb33d83285b0",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 6210,
+          "end_offset_python_codepoints_exclusive": 6541,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "matchende pysjamas-kolleksjon"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "julepysjamas"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "matchende familiepysjamas"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    },
+    {
+      "locale": "pt-BR",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 7300,
+      "body_utf8_sha256": "79d8b3b510b5fc2ef2083597bc118e5aaad3cf3c6d38dba1f3f4e331da2a05a2",
+      "all_anchor_count": 7,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 2,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "pijamas combinando para família"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "coleção completa de pijamas"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "Pijamas combinando de Natal"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "roupas combinando"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "coleção de pijamas combinando"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "pijamas de Natal"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "pijamas combinando para família"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Compre Pijamas Combinando para Família",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "coleção de pijamas combinando",
+        "before_html": "<p>Pronto para começar a tradição? Navegue pela nossa <a href=\"/collections/pajamas\">coleção de pijamas combinando</a> com estilos para mamãe, papai e crianças. Procurando conjuntos específicos para feriados? Confira nossos <a href=\"/collections/christmas-pajamas\">pijamas de Natal</a> e <a href=\"/collections/family-pajamas\">pijamas combinando para família</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Manhã de Natal",
+          "before_html": "<p>A razão número 1 para famílias comprarem pijamas combinando. <a href=\"/collections/christmas-pajamas\">Pijamas combinando de Natal</a> em xadrez clássico, estampas de rena ou designs “Feliz Natal” são um clássico dos feriados. Dica profissional: compre cedo (outubro-novembro) antes que os melhores designs esgotem.</p>",
+          "before_utf8_sha256": "300c83a0acb0b90655319a6dd71ef033b8ce64b660a412f33a7bbf0fee3995ad",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 3826,
+          "end_offset_python_codepoints_exclusive": 4147,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "Pijamas combinando de Natal"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Compre Pijamas Combinando para Família",
+          "before_html": "<p>Pronto para começar a tradição? Navegue pela nossa <a href=\"/collections/pajamas\">coleção de pijamas combinando</a> com estilos para mamãe, papai e crianças. Procurando conjuntos específicos para feriados? Confira nossos <a href=\"/collections/christmas-pajamas\">pijamas de Natal</a> e <a href=\"/collections/family-pajamas\">pijamas combinando para família</a>.</p>",
+          "before_utf8_sha256": "4bc703b4fc677a5a115d01ff9b69b93062b8e20ba41ff7c540ae9d2ce3d40608",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 6741,
+          "end_offset_python_codepoints_exclusive": 7107,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "coleção de pijamas combinando"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "pijamas de Natal"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "pijamas combinando para família"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": "<h3>Conjuntos de Camisolas Combinando</h3>\n<p>Para mamãe e filha especificamente, camisolas combinando são uma alternativa doce aos conjuntos tradicionais de pijama. Macias, fluidas e perfeitas para aquelas rotinas de dormir mãe e filha que tornam a infância mágica.</p>"
+    },
+    {
+      "locale": "ro",
+      "body_outdated_at_source": true,
+      "body_unicode_codepoints": 7754,
+      "body_utf8_sha256": "d6c9acc623e199fe7a459cf93ba0a363b80227edafb76aaf175fcb47f7b58de0",
+      "all_anchor_count": 8,
+      "counts": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "broken_route_occurrences": 3,
+      "all_existing_links": [
+        {
+          "href": "/collections/pajamas",
+          "text": "pijamalele asortate pentru familie"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "colecție de pijamale"
+        },
+        {
+          "href": "/collections/dresses",
+          "text": "rochițele de noapte"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "Pijamalele asortate de Crăciun"
+        },
+        {
+          "href": "/collections/matching-outfits",
+          "text": "ținutelor asortate"
+        },
+        {
+          "href": "/collections/pajamas",
+          "text": "colecția noastră de pijamale asortate"
+        },
+        {
+          "href": "/collections/christmas-pajamas",
+          "text": "pijamalele de Crăciun"
+        },
+        {
+          "href": "/collections/family-pajamas",
+          "text": "pijamalele asortate pentru familie"
+        }
+      ],
+      "existing_shopping_cta": {
+        "heading": "Cumpără pijamale asortate pentru familie",
+        "paragraph_ordinal_1based": 16,
+        "pajamas_anchor_text": "colecția noastră de pijamale asortate",
+        "before_html": "<p>Gata să începi tradiția? Răsfoiește <a href=\"/collections/pajamas\">colecția noastră de pijamale asortate</a> cu modele pentru mamă, tată și copii. Cauți seturi specifice sărbătorilor? Vezi <a href=\"/collections/christmas-pajamas\">pijamalele de Crăciun</a> și <a href=\"/collections/family-pajamas\">pijamalele asortate pentru familie</a>.</p>"
+      },
+      "proposed_replacement_blocks": [
+        {
+          "id": "nightgown_destination",
+          "paragraph_ordinal_1based": 7,
+          "heading_text": "Seturi asortate de rochițe de noapte",
+          "before_html": "<h3>Seturi asortate de rochițe de noapte</h3>\n<p>Pentru mămici și fiice în mod special, <a href=\"/collections/dresses\">rochițele de noapte</a> asortate sunt o alternativă dulce la seturile tradiționale de pijamale. Moi, vaporoase și perfecte pentru rutinele de culcare mamă-fiică care fac copilăria magică.</p>",
+          "before_utf8_sha256": "a369f931b488ca528e9af3dbeffa1863614de12512b986416ab3335ec5704bbf",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 2803,
+          "end_offset_python_codepoints_exclusive": 3113,
+          "existing_links": [
+            {
+              "href": "/collections/dresses",
+              "text": "rochițele de noapte"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "paragraph_ordinal_1based": 10,
+          "heading_text": "Dimineața de Crăciun",
+          "before_html": "<p>Motivul numărul 1 pentru care familiile cumpără pijamale asortate. <a href=\"/collections/christmas-pajamas\">Pijamalele asortate de Crăciun</a> în carouri clasice, imprimeuri cu reni sau modele „Crăciun fericit” sunt un element de bază al sărbătorilor. Sfat de expert: cumpără-le din timp (octombrie-noiembrie) înainte să se epuizeze cele mai bune modele.</p>",
+          "before_utf8_sha256": "e8b0021e1a307a5f1ad46574c6133acd94e4759613c39ac3197c4555c05387a9",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 4199,
+          "end_offset_python_codepoints_exclusive": 4560,
+          "existing_links": [
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "Pijamalele asortate de Crăciun"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        },
+        {
+          "id": "shopping_cta",
+          "paragraph_ordinal_1based": 16,
+          "heading_text": "Cumpără pijamale asortate pentru familie",
+          "before_html": "<p>Gata să începi tradiția? Răsfoiește <a href=\"/collections/pajamas\">colecția noastră de pijamale asortate</a> cu modele pentru mamă, tată și copii. Cauți seturi specifice sărbătorilor? Vezi <a href=\"/collections/christmas-pajamas\">pijamalele de Crăciun</a> și <a href=\"/collections/family-pajamas\">pijamalele asortate pentru familie</a>.</p>",
+          "before_utf8_sha256": "08a2746adfce137f69de4adcaf00bbe88a3444d3c57c5fdd17da932196477af5",
+          "before_occurrences": 1,
+          "start_offset_python_codepoints": 7204,
+          "end_offset_python_codepoints_exclusive": 7547,
+          "existing_links": [
+            {
+              "href": "/collections/pajamas",
+              "text": "colecția noastră de pijamale asortate"
+            },
+            {
+              "href": "/collections/christmas-pajamas",
+              "text": "pijamalele de Crăciun"
+            },
+            {
+              "href": "/collections/family-pajamas",
+              "text": "pijamalele asortate pentru familie"
+            }
+          ],
+          "after_destination": "/collections/pajamas",
+          "after_semantic_template_english": "<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>",
+          "localized_after_html": null,
+          "candidate_status": "NEXT_LOCALIZED_DRAFT_REQUIRED; source screen only"
+        }
+      ],
+      "plain_unlinked_nightgown_block_outside_link_fix": null
+    }
+  ],
+  "next_after_metadata_release": [
+    "Confirm article/store identity, current body_html digest and exact17 body before-hashes after the metadata release; preserve newly released metadata.",
+    "Draft/review exact localized after-blocks using the recorded English templates; each before-block must occur exactly once; preserve all other bytes and prepare inverse rollback.",
+    "Root executes only reviewed body_html translations, then independently reads back bodies/unmodified metadata and verifies the affected visible shopping links in their locales.",
+    "Treat this as shopping-route parity only. No full translated safety/content parity or sales/traffic lift is certified; an outdated=false after-state alone would not establish that."
+  ],
+  "qualification_limits": [
+    "No browser/API/network/public requests in this subtask.",
+    "English kids/babies/other wording repairs are outside this route-only screen; no blanket fit, material, availability or seasonal design assertions introduced.",
+    "Default English working-destination evidence does not establish every language/country market checkout.",
+    "All17 old bodies are outdated in the snapshot; do not label them fully synchronized solely after a bounded route change."
+  ],
+  "validation": {
+    "status": "PASS_SCOPED_EXTRACTION_AND_SOURCE_BINDING",
+    "count": 12,
+    "checks": {
+      "exact_article": true,
+      "17_existing_bodies_only": true,
+      "no_new_pl_ru_sv_body": true,
+      "english_candidate_plan_execution_digest_agree": true,
+      "english_execution_after_body_exact": true,
+      "all_17_bodies_outdated_in_snapshot": true,
+      "34_christmas_links": true,
+      "16_dresses_links_with_ptBR_exception": true,
+      "51_pajamas_links_17_final_ctas": true,
+      "50_unique_before_blocks": true,
+      "135_anchors_reconcile": true,
+      "all_source_hashes_stable": true
+    }
+  },
+  "source_sha256": {
+    "pajamas_guide_meta_all_locale_before.json": "5cf39cda08f8232b3056ca41e822d70135e56c8d19a5560692a3a9dee05011be",
+    "pajamas_guide_candidate.html": "01c2e9ab6b5c02346c0653bcc526205b5d52c856679e4f8446698999ba53522d",
+    "pajamas_guide_copy_plan.json": "7b58186f4fb6556f4800a81791e1bea7064dadb585ed6102b95a9a573dd5ca1b",
+    "pajamas_guide_execution.json": "db85f9aedd0a26e218cb5847e90b4c864b99efde7de887d9defdd09fdbb8ca35"
+  },
+  "external_writes": 0
+}

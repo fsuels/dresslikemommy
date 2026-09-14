@@ -1,0 +1,154 @@
+{
+  "review_id": "DLM-MERCHANT-PAYMENT-METHODS-INDEPENDENT-20260911",
+  "reviewed_at_utc": "2026-09-11T20:22:31Z",
+  "verdict": "PASS_PREWRITE__EXACT_THREE_WALLET_DECLARATIONS_ONLY",
+  "confidence": "H",
+  "independence": {
+    "reviewer": "/root/order_delta_1934",
+    "executor": "Merchant owner 01a08706-c63a-7e01-ba48-7777bcb1788a",
+    "reviewer_built_or_executed_proposal": false,
+    "reviewer_account_or_source_queries": 0,
+    "reviewer_external_writes": 0,
+    "file_ownership": "This independent review only; prior return-policy review and all peer files preserved."
+  },
+  "source_evidence": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/payment_methods.reconciliation_20260911.json",
+    "sha256": "237d753869997391a1e670d8fd960a5bc7cac7f8b0a103de086d61684d965b1a",
+    "record_clock_utc": "2026-09-11T20:16:44Z",
+    "time_precision": "Recorded after the provider read; exact query timestamp remains in task tool history",
+    "source_class": "Fresh Merchant-owned schema-validated Shopify receipt plus native Merchant observations, independently reviewed locally; not independently re-queried.",
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "name": "Dress Like Mommy",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "supported_wallet_enums": [
+      "SHOPIFY_PAY",
+      "APPLE_PAY",
+      "GOOGLE_PAY"
+    ],
+    "merchant_account": "513542500",
+    "native_before": {
+      "digital_wallets": [],
+      "bnpl": [],
+      "observed_account": "513542500",
+      "observed_page": "/mc/settings/paymentsignal/edit"
+    },
+    "native_picker_options": [
+      "Amazon Pay",
+      "Apple Pay",
+      "Google Pay",
+      "Meta Pay",
+      "Paypal",
+      "Shop Pay",
+      "Venmo"
+    ],
+    "native_picker_checkbox_state": "Parent relayed Merchant current observation: all seven unchecked; saved before also has no digital-wallet declarations.",
+    "native_picker_timestamp_limit": "No separate precise native-picker capture timestamp in the supplied artifact; fresh current-turn owner readback, after the recorded provider read."
+  },
+  "mapping": [
+    {
+      "shopify_enum": "APPLE_PAY",
+      "merchant_native_option": "Apple Pay",
+      "basis": "Admin DigitalWallet documentation explicitly names Apple Pay; same native option observed."
+    },
+    {
+      "shopify_enum": "GOOGLE_PAY",
+      "merchant_native_option": "Google Pay",
+      "basis": "Admin DigitalWallet documentation explicitly names Google Pay; same native option observed. No Google Wallet alias substitution needed."
+    },
+    {
+      "shopify_enum": "SHOPIFY_PAY",
+      "merchant_native_option": "Shop Pay",
+      "basis": "Admin enum description says Shopify Pay; Shopify official February 13, 2020 changelog expressly renames it Shop Pay. Same native option observed. This is not Shop Pay Installments."
+    }
+  ],
+  "approved_bounded_declaration": {
+    "account": "513542500",
+    "add_exactly": [
+      "Apple Pay",
+      "Google Pay",
+      "Shop Pay"
+    ],
+    "remove": [],
+    "do_not_select": [
+      "Amazon Pay",
+      "Meta Pay",
+      "Paypal",
+      "Venmo"
+    ],
+    "bnpl_after": [],
+    "scope": "Merchant accepted-payment declarations only under existing owner setup authority. No provider activation, Shopify payment configuration, billing, fees, contracts, checkout purchase, installments, paid settings, source-feed or theme changes."
+  },
+  "execution_and_readback": [
+    "Sole Merchant owner reconfirms the same account, empty before-state, seven native options and unchanged Shopify-supported list immediately before saving; stop if material state differs.",
+    "Select only Apple Pay, Google Pay and Shop Pay in the actual native picker. Verify those three checked and all other choices unchecked. Use the observed modal Save; if the page requires a distinct final Save, complete only that same declaration save. Do not infer modal closure alone proves persistence.",
+    "Freshly reload Business info Details and Accepted payment methods. Record actual saved wallet names, any pending/review/approved state, account identity and readback time. Expected submitted set is exactly the three named wallets and BNPL remains empty; distinguish pending review from approval and display.",
+    "If reviewed entries are not immediately listed, preserve the actual pending state or missing persistence as unresolved; do not repeatedly add or claim success. No checkout/payment transaction is necessary for this declaration review.",
+    "Stop for identity mismatch, login, policy/permission rejection, billing/provider onboarding or any action beyond declarations. Preserve unrelated concurrent settings."
+  ],
+  "rollback": {
+    "before_wallets": [],
+    "before_bnpl": [],
+    "action": "If erroneous, remove only Apple Pay, Google Pay and Shop Pay declarations added by this exact operation, using the normal remove/Confirm/Save flow and a truthful displayed removal reason; then reload to verify. Do not deactivate Shopify wallets or remove concurrently added methods.",
+    "rollback_receipt_needed": "Account, exact removed names, retained declarations, BNPL state and timestamp."
+  },
+  "limits": [
+    "Shopify supportedDigitalWallets proves configured shop support, not a successful wallet purchase or visibility for every browser, device, card, shopper or country.",
+    "Compatible device/browser, customer wallet/card/provider and regional eligibility can constrain availability. Google Pay provider regional support is conditional; do not apply the US Merchant declaration as a claim that all three wallets work globally.",
+    "Google documents this manual declaration feature as US-only. Store Quality e-wallet reporting country coverage is a separate feature and must not be inferred from this save.",
+    "New declarations are reviewed by Google; submitted, saved, approved, displayed, improved Store Quality and sales are distinct outcomes.",
+    "No PayPal, Amazon Pay, Meta Pay, Venmo, card-network or BNPL support inferred from badges or native option availability.",
+    "Return-policy review remains unchanged; no sales, CPA, ROAS or profit result is measured by this settings review."
+  ],
+  "official_primary_sources": [
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/enums/DigitalWallet",
+      "used_for": "Current 2026-07 Admin enum names and linkage to PaymentSettings.supportedDigitalWallets."
+    },
+    {
+      "url": "https://changelog.shopify.com/posts/shopify-pay-is-now-shop-pay",
+      "used_for": "Explicit Shopify Pay to Shop Pay rename; historical naming event verified from official changelog."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/14837610?hl=en",
+      "used_for": "US-only manual declaration, separate wallet/BNPL controls, Save/review, removal and potential annotations."
+    },
+    {
+      "url": "https://help.shopify.com/en/manual/payments/accelerated-checkouts/google-pay",
+      "used_for": "Provider, regional and customer-experience restrictions; no provider changes performed."
+    },
+    {
+      "url": "https://help.shopify.com/en/manual/payments/accelerated-checkouts/apple-pay?section=Desktop",
+      "used_for": "Compatible Apple Pay device/browser and payment-provider requirements; previously read during this review."
+    }
+  ],
+  "checks": {
+    "source_json_parsed": true,
+    "merchant_identity_513542500": true,
+    "shop_identity_15571635": true,
+    "shop_name_matches": true,
+    "shop_domain_matches": true,
+    "owner_schema_check_record_present": true,
+    "owner_query_validation_pass": true,
+    "three_supported_wallet_enums_exact": true,
+    "before_wallets_empty": true,
+    "before_bnpl_empty": true,
+    "native_target_is_declaration_page": true,
+    "native_picker_seven_distinct_options": true,
+    "all_three_exact_native_options_present": true,
+    "proposed_enum_native_mapping_exact": true,
+    "unsupported_options_excluded": true,
+    "no_source_external_write_recorded": true,
+    "apple_google_mapping_primary_documentation_verified": true,
+    "shopify_pay_to_shop_pay_official_rename_verified": true,
+    "declaration_review_and_us_scope_primary_documentation_verified": true,
+    "new_report_path_unoccupied": true
+  },
+  "check_summary": {
+    "passed": 20,
+    "total": 20,
+    "failed": 0
+  },
+  "next_action": "Merchant owner completes the exact three-option declaration and supplies a persisted saved/pending-state readback; no additional generic approval request is needed for this matched declaration."
+}

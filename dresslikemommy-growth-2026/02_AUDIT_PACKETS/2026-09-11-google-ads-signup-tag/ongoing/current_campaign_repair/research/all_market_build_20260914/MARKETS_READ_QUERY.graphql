@@ -1,0 +1,25 @@
+query DlmAllMarketCoverage20260914($after: String) {
+ shop { id name currencyCode primaryDomain { url } }
+ shopLocales(published: true) { locale name primary published }
+ markets(first: 50, after: $after) {
+  nodes {
+   id name status
+   currencySettings { baseCurrency { currencyCode enabled } localCurrencies }
+   conditions { regionsCondition { regions(first: 50) {
+    nodes { __typename name ... on MarketRegionCountry { code currency { currencyCode enabled } } }
+    pageInfo { hasNextPage endCursor }
+   } } }
+   webPresences(first: 50) {
+    nodes { id rootUrls { locale url } }
+    pageInfo { hasNextPage endCursor }
+   }
+  }
+  pageInfo { hasNextPage endCursor }
+ }
+ webPresences(first: 50) {
+  nodes { id defaultLocale { locale } rootUrls { locale url }
+   markets(first: 50) { nodes { id } pageInfo { hasNextPage endCursor } }
+  }
+  pageInfo { hasNextPage endCursor }
+ }
+}

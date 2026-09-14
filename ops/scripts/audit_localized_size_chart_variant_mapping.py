@@ -4,6 +4,8 @@
 This complements `repair_localized_product_size_charts.py`: that script proves
 each locale has chart tables; this script proves available variants can match a
 row in those charts using the same conservative role/type rules as the PDP.
+Explicitly scoped draft products check every variant because Shopify reports
+all unpublished variants as unavailable for sale.
 """
 
 from __future__ import annotations
@@ -618,18 +620,21 @@ def body_item(snapshot: Any) -> dict[str, str] | None:
 def audit_product(client: ShopifyClient, product: dict[str, Any], locales: list[str]) -> dict[str, Any]:
     source_html = product.get("descriptionHtml") or ""
     size_name, type_name = size_and_type_options(product)
-    variants = [variant for variant in variant_rows(product) if variant.get("availableForSale")]
+    all_variants = variant_rows(product)
+    available_variants = [variant for variant in all_variants if variant.get("availableForSale")]
+    variants = all_variants if clean(product.get("status")).upper() == "DRAFT" else available_variants
     row: dict[str, Any] = {
         "product_id": clean(product.get("legacyResourceId")),
         "handle": clean(product.get("handle")),
         "title": clean(product.get("title")),
         "source_has_size_chart": has_size_chart_table(source_html),
-        "available_variants": len(variants),
+        "available_variants": len(available_variants),
+        "variants_checked": len(variants),
         "variant_locale_checks": 0,
         "unmatched_count": 0,
         "unmatched": [],
     }
-    if not row["source_has_size_chart"] or not size_name or not type_name:
+    if not row["source_has_size_chart"] or not size_name:
         return row
     snapshot = client.fetch_resource(clean(product.get("id")), locales, 1)
     item = body_item(snapshot)
@@ -658,6 +663,7 @@ def write_reports(rows: list[dict[str, Any]], report_json: Path, report_csv: Pat
     summary = {
         "products_scanned": len(rows),
         "products_with_source_size_chart": sum(1 for row in rows if row["source_has_size_chart"]),
+        "variants_checked": sum(int(row["variants_checked"]) for row in rows),
         "variant_locale_checks": sum(int(row["variant_locale_checks"]) for row in rows),
         "products_with_unmatched_variants": sum(1 for row in rows if row["unmatched_count"]),
         "unmatched_variant_locale_count": sum(int(row["unmatched_count"]) for row in rows),
@@ -668,7 +674,7 @@ def write_reports(rows: list[dict[str, Any]], report_json: Path, report_csv: Pat
     with report_csv.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(
             handle,
-            fieldnames=["product_id", "handle", "source_has_size_chart", "available_variants", "variant_locale_checks", "unmatched_count", "unmatched"],
+            fieldnames=["product_id", "handle", "source_has_size_chart", "available_variants", "variants_checked", "variant_locale_checks", "unmatched_count", "unmatched"],
         )
         writer.writeheader()
         for row in rows:
@@ -678,6 +684,7 @@ def write_reports(rows: list[dict[str, Any]], report_json: Path, report_csv: Pat
                     "handle": row["handle"],
                     "source_has_size_chart": row["source_has_size_chart"],
                     "available_variants": row["available_variants"],
+                    "variants_checked": row["variants_checked"],
                     "variant_locale_checks": row["variant_locale_checks"],
                     "unmatched_count": row["unmatched_count"],
                     "unmatched": json.dumps(row["unmatched"], ensure_ascii=False),

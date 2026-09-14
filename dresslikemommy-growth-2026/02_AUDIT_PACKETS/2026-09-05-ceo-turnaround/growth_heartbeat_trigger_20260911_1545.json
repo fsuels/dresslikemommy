@@ -1,0 +1,365 @@
+{
+  "schema": "dlm.heartbeat_trigger_delta.v1",
+  "status": "READBACK_COMPLETE__OWNER_MANUAL_PRICE_CORRECTION_HANDOFF",
+  "trigger_at_utc": "2026-09-11T15:45:12.784Z",
+  "source_live_evidence_as_of": "2026-09-11T15:47:16Z",
+  "new_order_window": {
+    "start_inclusive": "2026-09-11T11:45:19Z",
+    "end_exclusive": "2026-09-11T15:47:15Z",
+    "all_order_creations": 0,
+    "pagination_complete": true
+  },
+  "shop": {
+    "name": "Dress Like Mommy",
+    "ianaTimezone": "America/New_York",
+    "currencyCode": "USD",
+    "primaryDomain": {
+      "host": "www.dresslikemommy.com"
+    }
+  },
+  "themes": {
+    "nodes": [
+      {
+        "id": "gid://shopify/OnlineStoreTheme/133290917985",
+        "name": "dresslikemommy/main",
+        "role": "MAIN",
+        "updatedAt": "2026-07-02T16:47:21Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137782591585",
+        "name": "DLM SEO DA NL 2026-09-06",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-06T07:03:53Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137850814561",
+        "name": "DLM DA NL SEO only 2026-09-08",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-08T19:01:09Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137880666209",
+        "name": "DLM Consent Preferences 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T18:58:13Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137881223265",
+        "name": "DLM Merchant Landing Fixes 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T20:10:58Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137888792673",
+        "name": "DLM UX Performance QA 2026-09-10",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-10T04:34:55Z"
+      }
+    ],
+    "pageInfo": {
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjoxMzc4ODg3OTI2NzMsImxhc3RfdmFsdWUiOjEzNzg4ODc5MjY3M30="
+    }
+  },
+  "query": "query HeartbeatTriggerDelta($createdWindow:String!,$after:String){shop{name ianaTimezone currencyCode primaryDomain{host}} orders(first:50,after:$after,query:$createdWindow){nodes{test} pageInfo{hasNextPage endCursor}} themes(first:50){nodes{id name role updatedAt} pageInfo{hasNextPage endCursor}}}",
+  "source": "Previously discovered Shopify schema, freshly validated documented read-only trigger; separate saved Merchant operator receipt.",
+  "checks": {
+    "shop_name": true,
+    "shop_domain": true,
+    "shop_currency": true,
+    "shop_timezone": true,
+    "order_pagination_complete": true,
+    "no_new_orders": true,
+    "theme_pagination_complete": true,
+    "one_expected_main": true,
+    "current_ux_unpublished": true
+  },
+  "checks_passed": 9,
+  "latest_full_cohort_receipt": {
+    "path": "growth_heartbeat_full_cohort_20260911_0743.json",
+    "field": "full_cohort_receipt",
+    "orders_as_of": "2026-09-11T07:45:33Z",
+    "fulfillments_as_of": "2026-09-11T07:45:55Z",
+    "not_refreshed_here": true
+  },
+  "runtime_goal": {
+    "status": "blocked",
+    "verified_at_utc": "2026-09-11T15:47:35Z",
+    "goal_objective_preserved": true,
+    "new_goal_created": false,
+    "limit": "Existing goal remains blocked in runtime; the existing heartbeat and authorized channel task are advancing. No supported resume mutation was called."
+  },
+  "latest_anchor": "2026-09-11-ceo-turnaround-price-outliers-and-review-gates",
+  "latest_merchant_canonical_anchor": "2026-09-11-merchant-us-received-and-website-review-requested",
+  "task_stage": "HANDOFF",
+  "live_state_mode": "STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+  "approved_external_scope": "NONE",
+  "authority_context": "PARENT_READ_ONLY_RECONCILIATION__OWNER_DIRECT_NONSPEND_FEED_SCOPE_PRESERVED",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "Actual product approval, source scheduling and lifecycle execution, genuine new order or current UX publication.",
+  "if_evidence_supports_recommendation": "Continue qualified next actions with the current operator and exact scope.",
+  "if_evidence_opposes_recommendation": "Keep unresolved acceptance/hosting/approval gates explicit without duplicate submission or new authority.",
+  "material_decision": "NOT_MATERIAL",
+  "owner_action": "Owner will correct the five prices personally and notify the Merchant task; then verify fresh Shopify and existing feed receipt. Do not repeat price approval or perform an agent price mutation.",
+  "internal_queue": [
+    "Existing exact five-price approval then source/public/feed verification",
+    "Pinterest native tracking diagnosis; Merchant public market proof and separately credential-gated lifecycle",
+    "Existing UX owner publication and due separate organic outcome cohorts"
+  ],
+  "execution": {
+    "external_mutations": 0,
+    "browser_calls": 8,
+    "account_probes": 0,
+    "new_goal_or_automation": 0,
+    "native_chrome_calls": 0,
+    "blocked_exact_price_mutation_attempts": 1,
+    "public_qa_cart_mutations": 0,
+    "shopify_price_reads": 4
+  },
+  "dashboard_status": "EXISTING_SERVICE_HEALTHY",
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "limits": [
+    "The Merchant processing milestone was already reported to the user; do not notify again merely for persistence.",
+    "Processed4923 is not approval, indexed count, automation, international completion or acquisition proof.",
+    "The same-read indexed source link was4376; parent did not repeat native UI.",
+    "Parent refreshed creations/theme roles only, not full order/fulfillment, settlement, costs, CPA, ROAS or profit.",
+    "Five-source-prices are verified; published extreme-price evidence is one exact White variant and product range, not five independent public pages.",
+    "Correct underlyingTogetherHeartJSONLDdoes not prove Google restriction cause. ExistingUXpreview resolves the sampled custom deep link; publishedtheme remainsgated.",
+    "UXoperator shared-record update was rejected; parent did not execute the rejected plan. Newparentprice/heartbeatrecords are independently owned.",
+    "Post-rejectionmanifest covers75variants/9publicationrelationships/6source-contentdigests; individualtranslationvalues notqueried."
+  ],
+  "merchant_receipt_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/merchant_source_receipt.json",
+    "sha256": "b36cd1e23fba76df8558b90dfa0513b41370ee0bf6faee9d9246ebfebd8dc7a1",
+    "selected_receipt": {
+      "account_id": "513542500",
+      "source_id": "10727262045",
+      "source_type": "File (manual)",
+      "submitted_file_rows": 4923,
+      "market": "US",
+      "language": "en",
+      "feed_label": "US",
+      "marketing_methods": [
+        "Free listings"
+      ],
+      "native_source_created": true,
+      "native_settings_readback_verified": true,
+      "upload_as_test": false,
+      "processing_complete_verified": true,
+      "approved_products_verified": false,
+      "processing_readback": {
+        "observed_at_utc": "2026-09-11T15:00:30.325341+00:00",
+        "last_updated": "September 11, 2026 10:58 AM",
+        "total_updated_products": 4923,
+        "new_products_added": 4923,
+        "attribute_names": "All recognized",
+        "file_issues": "No issues found",
+        "indexed_source_link_count_at_same_read": 4376
+      }
+    },
+    "checks": {
+      "receipt_hash_matches_parent_read": true,
+      "merchant_exact": true,
+      "new_source_exact": true,
+      "market_language_label_exact": true,
+      "free_listings_only": true,
+      "source_created_and_settings_read_back": true,
+      "not_a_test": true,
+      "processing_complete": true,
+      "row_counts_reconcile": true,
+      "attribute_names_recognized": true,
+      "file_no_issues": true,
+      "approval_not_inferred": true,
+      "indexed_count_kept_separate": true,
+      "manual_source_not_automation": true
+    },
+    "checks_passed": 14,
+    "reviewer": "Parent root; did not build, upload or execute the direct source",
+    "limit": "Saved native operator receipt consistency, not an independent UI replay or product approval check."
+  },
+  "local_preservation_checks": {
+    "all_three_inverse_hashes_exact": true,
+    "seven_protected_files_exact": true,
+    "one_parent_row_changed": true,
+    "one_parent_cockpit_note_changed": true,
+    "prior_worklog_exact_prefix": true,
+    "after_readback_exact": true
+  },
+  "before_snapshot": "/private/tmp/dlm-heartbeat-1545-before-20260911",
+  "before_manifest": {
+    "ops/AGENT_COORDINATION.md": {
+      "sha256": "4b9b74a0d8e9ff2e44b878d7d86049eed0f0e883de76e49e33fd5156a0247448",
+      "bytes": 398309
+    },
+    "ops/marketing/operator_cockpit.md": {
+      "sha256": "9d891824638d683c7281d32225d5da66b4801fa40f2bd418f3ca83d278b818f4",
+      "bytes": 109203
+    },
+    "ops/AGENT_WORKLOG.md": {
+      "sha256": "9d0f814ec92074d75f02918e57db17973ea45ce3b6e3b13500a919aa4c8b5130",
+      "bytes": 4025398
+    },
+    "ops/marketing/current_marketing_state.md": {
+      "sha256": "2d690b2d630dd164fb9fa5bdc60d8bbbe5ed27f1a81cdfa956df54a672e27cad",
+      "bytes": 230954
+    },
+    "ops/marketing/action_queue.md": {
+      "sha256": "65be298ec4c3fba13c72ec59cea55e3ae47cb80ff7a13bd729b0227f1cb9ba27",
+      "bytes": 151614
+    },
+    "ops/marketing/blocker_board.md": {
+      "sha256": "f265a0f4815915d3947f578983907af2bbcebb741b66edf02655c590bdcd4eb0",
+      "bytes": 59548
+    },
+    "ops/marketing/decision_log.md": {
+      "sha256": "61681a20fb0cf4219ddadcb4464f7e87a6697b205dbdf0139af4d33f2ebc3bbd",
+      "bytes": 203257
+    },
+    "ops/marketing/spend_authorization.md": {
+      "sha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+      "bytes": 5950
+    },
+    "ops/PROBLEM_TRACKER.md": {
+      "sha256": "7e2bcd2ff9f13a5ec470684c43c56b7a5eab1245206adf21f58f59a011ae2e81",
+      "bytes": 862091
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json": {
+      "sha256": "64a85a444b45932f93d33d4366c4cc8cab750b5064401dfbf6da55d86c31cb64",
+      "bytes": 83356
+    }
+  },
+  "after_manifest": {
+    "ops/AGENT_COORDINATION.md": {
+      "sha256": "363e60c9647ed874dd2dc43dac37bf054d19ce4ff2f649a6ffddd596bbbd0a57",
+      "bytes": 398454
+    },
+    "ops/marketing/operator_cockpit.md": {
+      "sha256": "78f2bc4e7329224b83ea125380a7ef0bd62ad43e03197d7fb60536c958d499a9",
+      "bytes": 109406
+    },
+    "ops/AGENT_WORKLOG.md": {
+      "sha256": "42d6a68db9464b77565373099df0b352d679a06be2ba4e68cff275fa80f00153",
+      "bytes": 4029865
+    }
+  },
+  "coordination": {
+    "parent_native_lease": "NONE",
+    "merchant_native_lease": "RELEASED_TO_PINTEREST",
+    "parent_shared_interval": "RELEASED_TO_MERCHANT",
+    "peer_wakeups": "Merchant and UX changed-state coordination; Pinterest explicit native handback; no routine wakes",
+    "pinterest_native_lease": "ACCEPTED",
+    "parent_public_iab_lease": "RELEASED_OWN_TAB_CLOSED",
+    "merchant_public_iab_lease": "RELEASED_AFTER_AU_CA_GB_CHECKS_PER_OPERATOR"
+  },
+  "checks_pending": [],
+  "late_owner_update": {
+    "source": "Merchant direct message after parent release",
+    "scheduled_source_id": "10727274744",
+    "scheduled_rows_processed": 4923,
+    "source_ownership_reported": {
+      "scheduled": 4871,
+      "manual": 52
+    },
+    "duplicate_source_warning": true,
+    "account_issue": "No products displayed blocks US free listings; review action disabled pending an in-stock product",
+    "website_verified_and_claimed": true,
+    "hourly_shopify_refresh_active": false,
+    "scope": "New owner priority is website restriction; parent will perform isolated public read-only diagnosis, no native or account control.",
+    "superseded_by": "merchant_later_receipt; retain the earlier4871+52transfer observation as dated history"
+  },
+  "price_repair": {
+    "product_id": "7230336729185",
+    "outlier_variants": 5,
+    "current_price": "229918.99 USD",
+    "proposed_price": "22.99 USD",
+    "source_as_of": "2026-09-11T16:23:18Z",
+    "source_variant_count": 75,
+    "full_manifest_after_rejection_unchanged": true,
+    "independent_prepared_checks": 37,
+    "drift_checks": 10,
+    "blocked_by_automatic_review": true,
+    "approval_question_pending": false,
+    "mutation_applied": false,
+    "evidence": "public_landing_diagnosis_20260911/price_execution_attempt.json",
+    "proposal": "public_landing_diagnosis_20260911/price_correction_proposal.json",
+    "public_evidence": "public_landing_diagnosis_20260911/public_readback.json",
+    "owner_manual_correction_pending": true,
+    "owner_handling_source": "Merchant current owner-instruction relay"
+  },
+  "merchant_later_receipt": {
+    "source": "Saved operator evidence and explicit handback; not parent native replay",
+    "scheduled_source_id": "10727274744",
+    "scheduled_owned_offers": 4923,
+    "manual_seed_removed_only_after_ownership_zero": true,
+    "source_refresh_local": "September11 12:05PM America/New_York",
+    "updated": 4923,
+    "new": 0,
+    "file_issues": "No issues found",
+    "duplicate_warning_cleared": true,
+    "broken_checkout_shortcut_corrected": true,
+    "google_account_review_requested": true,
+    "review_after_state": "Issue is under review",
+    "google_product_approval_verified": false,
+    "hourly_shopify_lifecycle_active": false,
+    "worker_credential_destination_approval_pending": true,
+    "credential_retry_or_workaround": false
+  },
+  "closeout_before_public_extension": {
+    "cockpit_render": "PASS",
+    "integration_audit": {
+      "exit_code": 0,
+      "tracked_files": 25,
+      "side_document_risks": 0
+    },
+    "strict_continuity": {
+      "exit_code": 0,
+      "checks_passed": 10,
+      "result": "CONTINUITY_OK"
+    },
+    "scoped_diff_check": {
+      "exit_code": 0,
+      "diagnostics": 0
+    },
+    "final_ten_file_hash_check": "PASS",
+    "shared_interval": "RELEASED_AFTER_CHECKS",
+    "released_at_utc": "2026-09-11T15:56:24Z"
+  },
+  "closeout": {
+    "cockpit_render": "PASS",
+    "integration_audit": {
+      "exit_code": 0,
+      "tracked_files": 25,
+      "side_document_risks": 0
+    },
+    "strict_continuity": {
+      "exit_code": 0,
+      "checks_passed": 10,
+      "result": "CONTINUITY_OK"
+    },
+    "scoped_diff_check": {
+      "exit_code": 0,
+      "diagnostics": 0
+    },
+    "independent_prepared_price_review": {
+      "checks_passed": 37,
+      "execution_verdict": "BLOCKED_AUTO_REVIEW"
+    },
+    "parent_preservation_checks": {
+      "passed": 14,
+      "path": "public_landing_diagnosis_20260911/parent_preservation_checks.json"
+    },
+    "shared_interval": "RELEASED_AFTER_CHECKS",
+    "one_pending_price_question": false,
+    "retry_or_workaround": false,
+    "released_at_utc": "2026-09-11T16:32:38.601592+00:00",
+    "price_question_superseded_by_owner_manual_takeover": true
+  },
+  "owner_manual_handoff": {
+    "recorded_at_utc": "2026-09-11T16:37:16.247576+00:00",
+    "source": "Current owner instruction relayed by Merchant operator",
+    "agent_price_mutations": "STOPPED",
+    "canonical_update_owner": "Merchant current sole shared writer, exact parent TA23/OneOwnerAction record-only delegation",
+    "verification_trigger": "Owner says the five price edits are complete"
+  }
+}

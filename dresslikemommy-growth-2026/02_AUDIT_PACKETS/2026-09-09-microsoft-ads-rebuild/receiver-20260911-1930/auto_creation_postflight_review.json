@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "qualification": "Configuration verified by independent comparison of root's saved native readbacks; no browser replay.",
+  "reviewer": "/root/international_campaign_build",
+  "independence": "Did not build the contract, execute native Saves, or capture native after-state. Wrote only this postflight review pair.",
+  "checked_at_utc": "2026-09-11T20:13:58.147721+00:00",
+  "checks": [
+    {
+      "check": "exact frozen contract and PASS preflight retained",
+      "passed": true
+    },
+    {
+      "check": "same account and customer target",
+      "passed": true
+    },
+    {
+      "check": "two recorded Saves and actions exactly match contract",
+      "passed": true
+    },
+    {
+      "check": "all captured after settings equal exact expected state",
+      "passed": true
+    },
+    {
+      "check": "only two setting differences and exact inverse preserved",
+      "passed": true
+    },
+    {
+      "check": "fresh goal grid reconciles preserved five Active one-primary summary",
+      "passed": true
+    },
+    {
+      "check": "eleven paused campaigns and recorded ordered budget amounts reconcile",
+      "passed": true
+    },
+    {
+      "check": "after chronology no spending promotion and limits explicit",
+      "passed": true
+    }
+  ],
+  "checks_passed": 8,
+  "exact_setting_changes": [
+    "auto_apply/Add responsive search ads",
+    "account_options/auto_multimedia_in_dynamic_adgroups"
+  ],
+  "recorded_after_settings": {
+    "auto_apply": {
+      "Add responsive search ads": false,
+      "Fix your conversion goal setting": false,
+      "Fix missing keyword parameters issue": false,
+      "Create conversion goal": false,
+      "Remove negative keyword conflicts": false
+    },
+    "account_options": {
+      "tracking_template": "",
+      "final_url_suffix": "",
+      "auto_retrieve_images": false,
+      "utm_auto_tagging": true,
+      "utm_mode": "Replace all existing tags",
+      "automatic_conversion_goal_setup": false,
+      "include_view_through_in_all_conversions": true,
+      "auto_multimedia_in_dynamic_adgroups": false,
+      "doubleverify_enabled": false
+    },
+    "msclkid": true
+  },
+  "source_hashes": {
+    "auto_creation_contract.json": "b4a00ad74ade466f34af5f62abff159b6658049b460ac37a0387ad54c09cf90d",
+    "auto_creation_preflight_review.json": "7f785468161b59b11a65c0deb95b9097eec3b84a8a6598ace2241ab96dbdd094",
+    "auto_creation_after.json": "83087420ed942bfe6b3601c476bf3264620d0a5f3415f26cf47a44a26440f737",
+    "auto_creation_execution_receipt.json": "2a7b7b73fe0755cdf78b1128b0fcf52ac8a5b469f35ae26f1bdc1dbfe9e44dc5",
+    "live_after.json": "916c73c0b5a9de4a8d369d848897c8362b4f9c665ccd29c8d008094a400e520a"
+  },
+  "evidence_as_of_utc": "2026-09-11 20:12:13 UTC",
+  "reported_native_saves": 2,
+  "actual_changed_setting_values": 2,
+  "configured_daily_budget_sum_usd": "120.00",
+  "issues": [],
+  "target": {
+    "account_id": 477439,
+    "customer_id": 770182
+  },
+  "outcome": "Both named creation opt-ins are Off. All five captured auto-apply values are Off. MSCLKIDOn, UTMOn/Replaceexisting and all eight untargeted account-option values match the frozen expected state.",
+  "goal_and_campaign_preservation": "Fresh grid reports five Active goals, one primary purchase Event goal with CountAll/UET36005151, and four secondary goals. Eleven campaigns remain reported Paused with the same ordered budget amounts and no new campaign.",
+  "limits": [
+    "Two native Saves and reopened settings pages are reported in root's execution evidence. This reviewer verified consistency and exact field differences in those receipts, not the browser itself.",
+    "Latest goal evidence is the grid only. Variable USD0 fallback and detailed windows/criteria remain supported by the earlier19:51 goal postflight; they were not freshly reopened in this snapshot.",
+    "The latest budget snapshot lists ordered amounts without campaign IDs. The amounts/order reconcile to the prior ID-bound list, but this is not a fresh independent per-ID budget comparison.",
+    "Political classification and business attributes are recorded only in the after-file, without corresponding frozen before-values here; no independent unchanged-state claim is made for them.",
+    "Existing placeholders/ads were not removed or individually paused. Scheduled imports and all other automatic creation paths are outside this change.",
+    "No consent, transaction value, order deduplication, paid attribution, CPC improvement, sales or profit claim follows from these two opt-outs.",
+    "Evidence is dated20:12:13UTC and does not establish unchanged live state after this recorded interval. No spend authority is created."
+  ],
+  "next_action": "Root may record this two-setting correction as configuration verified. Any subsequent landing or account change requires its separately supplied scope and evidence; no additional work was inferred."
+}

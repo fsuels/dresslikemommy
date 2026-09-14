@@ -1,0 +1,1068 @@
+{
+  "status": "PASS",
+  "method": "Offline normalization of preserved structured sources; no network calls",
+  "scope": "Data integrity, pagination, join, source comparison and serialization; not buyer acceptance",
+  "checks_count": 212,
+  "checks": [
+    {
+      "name": "provider_success",
+      "result": "PASS",
+      "detail": "Structured connector returned data without a tool or GraphQL error"
+    },
+    {
+      "name": "shop_identity",
+      "result": "PASS",
+      "detail": "Fresh shipping and same-session market sources identify the same shop"
+    },
+    {
+      "name": "complete_pagination:deliveryProfiles",
+      "result": "PASS",
+      "detail": "1 returned nodes; hasNextPage=false required"
+    },
+    {
+      "name": "one_default_profile",
+      "result": "PASS",
+      "detail": "Exactly one profile returned; it is the default profile"
+    },
+    {
+      "name": "complete_pagination:gid://shopify/DeliveryLocationGroup/10664247393",
+      "result": "PASS",
+      "detail": "2 returned nodes; hasNextPage=false required"
+    },
+    {
+      "name": "complete_pagination:gid://shopify/DeliveryZone/21400485985",
+      "result": "PASS",
+      "detail": "2 returned nodes; hasNextPage=false required"
+    },
+    {
+      "name": "complete_pagination:gid://shopify/DeliveryZone/21400715361",
+      "result": "PASS",
+      "detail": "2 returned nodes; hasNextPage=false required"
+    },
+    {
+      "name": "methods_reconcile",
+      "result": "PASS",
+      "detail": "Four returned active method definitions equal profile activeMethodDefinitionsCount"
+    },
+    {
+      "name": "static_rates",
+      "result": "PASS",
+      "detail": "All returned providers are static rates; no carrier calculation was requested or tested"
+    },
+    {
+      "name": "complete_pagination:gid://shopify/Product/7672336646241/variants",
+      "result": "PASS",
+      "detail": "98 returned nodes; hasNextPage=false required"
+    },
+    {
+      "name": "bounded_product_assignment",
+      "result": "PASS",
+      "detail": "All 98 unique variants returned for Together Heart link to this profile; no other product was sampled"
+    },
+    {
+      "name": "active_country_inventory",
+      "result": "PASS",
+      "detail": "Complete same-session active-country inventory supplies exactly 65 unique rows"
+    },
+    {
+      "name": "unambiguous_country_mapping:AD",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:AD",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:AD",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:AI",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:AI",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:AI",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:AT",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:AT",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:AT",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:AU",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:AU",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:AU",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:AX",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:AX",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:AX",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:BE",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:BE",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:BE",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:BG",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:BG",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:BG",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:BL",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:BL",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:BL",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:BM",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:BM",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:BM",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:BS",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:BS",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:BS",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:CA",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:CA",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:CA",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:CH",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:CH",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:CH",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:CK",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:CK",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:CK",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:CY",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:CY",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:CY",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:CZ",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:CZ",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:CZ",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:DE",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:DE",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:DE",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:DK",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:DK",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:DK",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:ES",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:ES",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:ES",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:FI",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:FI",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:FI",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:FJ",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:FJ",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:FJ",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:FR",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:FR",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:FR",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:GB",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:GB",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:GB",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:GF",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:GF",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:GF",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:GL",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:GL",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:GL",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:GP",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:GP",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:GP",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:GR",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:GR",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:GR",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:HR",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:HR",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:HR",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:IE",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:IE",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:IE",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:IS",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:IS",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:IS",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:IT",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:IT",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:IT",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:KY",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:KY",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:KY",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:LT",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:LT",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:LT",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:LU",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:LU",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:LU",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:LV",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:LV",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:LV",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:MC",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:MC",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:MC",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:ME",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:ME",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:ME",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:MF",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:MF",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:MF",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:MQ",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:MQ",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:MQ",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:MT",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:MT",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:MT",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:MX",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:MX",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:MX",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:NL",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:NL",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:NL",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:NO",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:NO",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:NO",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:NZ",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:NZ",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:NZ",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:PL",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:PL",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:PL",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:PM",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:PM",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:PM",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:PT",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:PT",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:PT",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:RE",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:RE",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:RE",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:RO",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:RO",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:RO",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:RS",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:RS",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:RS",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:RU",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:RU",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:RU",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:SE",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:SE",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:SE",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:SI",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:SI",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:SI",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:SK",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:SK",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:SK",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:SM",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:SM",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:SM",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:SV",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:SV",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:SV",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:TC",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:TC",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:TC",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:TF",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:TF",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:TF",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:TV",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:TV",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:TV",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:UM",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:UM",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:UM",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:US",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:US",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:US",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:VG",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:VG",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:VG",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:WF",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:WF",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:WF",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:WS",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:WS",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:WS",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:XK",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:XK",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:XK",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "unambiguous_country_mapping:YT",
+      "result": "PASS",
+      "detail": "Exactly one applicable country-level zone in the sole returned profile"
+    },
+    {
+      "name": "unconditional_standard:YT",
+      "result": "PASS",
+      "detail": "One active static USD 0 standard rate with no returned method conditions"
+    },
+    {
+      "name": "priority_conditions:YT",
+      "result": "PASS",
+      "detail": "One active USD 12.99 priority rate with inclusive 0–5 POUNDS total weight bounds"
+    },
+    {
+      "name": "shop_country_confirmation",
+      "result": "PASS",
+      "detail": "All 65 active country codes are independently present in shop.shipsToCountries"
+    },
+    {
+      "name": "country_count_reconciliation",
+      "result": "PASS",
+      "detail": "7 explicit active countries plus 58 Rest of world mappings equals 65"
+    },
+    {
+      "name": "prior_configuration_comparison",
+      "result": "PASS",
+      "detail": "Names, IDs, countries, province codes, active flags, rate providers and conditions match Sep 9 source"
+    },
+    {
+      "name": "retained_source_hashes",
+      "result": "PASS",
+      "detail": "All input sources retain their original SHA-256 hashes"
+    },
+    {
+      "name": "country_csv_roundtrip",
+      "result": "PASS",
+      "detail": "65 unique countries survive CSV serialization with exact inventory membership"
+    }
+  ]
+}

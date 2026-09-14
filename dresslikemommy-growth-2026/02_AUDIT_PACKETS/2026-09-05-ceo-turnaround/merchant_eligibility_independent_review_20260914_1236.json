@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-14T13:12:55.981837+00:00",
+  "verdict": "SOURCE_ACCEPTED_WITH_LIMITS__ONE_DECISION_FIELD_QUALIFICATION_REQUIRED",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE. Independent local comparison of immutable saved owner receipts and prior official capability review only. No live browser, account/API, credential/order data, source/canonical edit or production action.",
+  "source_bindings": {
+    "native": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/eligibility_returns_1244/native_eligibility_and_source_health.json",
+      "sha256": "c7a21822bce387ead35b2c880153ee0a00131137a0dfa1e36ade5cd9439bcc4b"
+    },
+    "returns": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/eligibility_returns_1244/return_policy_source_qualification.json",
+      "sha256": "3c809470e0f007da1e372546f499249891a50d0f50740ffb7bcadc9d99b5a494"
+    },
+    "decision": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/eligibility_returns_1244/decision_and_handoff.json",
+      "sha256": "6215c0c080e19e3e5a1ea83912badcc3e20bca4fe0e2c9ab419566ab4867a46c"
+    },
+    "executor_checks": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/eligibility_returns_1244/local_receipt_checks.json",
+      "sha256": "7e2ebf2aa651ffca9a8e89b65396b4b12556d92996bcba2bc5a185839920f773"
+    },
+    "capability": {
+      "path": "/private/tmp/dlm-merchant-return-capability-review-20260914-1236.json",
+      "sha256": "406f8d1ac1eba437bee0773f82fccd903ca57b60fb29d36aff5e120505176640"
+    },
+    "previous_refund": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/facebook_return_policy_source_20260912.json",
+      "sha256": "c1ec12832cafaaef009145134013bad2c59b90396dab871c425766c1d9715f60"
+    }
+  },
+  "check_counts": {
+    "total": 17,
+    "passed": 16,
+    "failed": 1
+  },
+  "checks": [
+    {
+      "id": "C01",
+      "name": "Six immutable source bindings",
+      "status": "PASS",
+      "evidence": "All four supplied receipts, the completed four-source capability review and the exact September12 refund source match expected SHA256."
+    },
+    {
+      "id": "C02",
+      "name": "Account and owner identity",
+      "status": "PASS",
+      "evidence": "Saved account-specific URLs and task IDs agree; no independent account replay."
+    },
+    {
+      "id": "C03",
+      "name": "Evidence grade and executor checks",
+      "status": "PASS",
+      "evidence": "The28 executor checks are internally count-consistent, not counted as independent checks. Query validation is an owner summary, not an attached validator output/native export."
+    },
+    {
+      "id": "C04",
+      "name": "Capture and source-clock limits",
+      "status": "PASS",
+      "evidence": "Recorded native/read timestamps lie within12:47:20–13:03:37UTC collection bounds. Public policy observation has only bounds. Native midnight/relative labels are not converted to invented UTC event times."
+    },
+    {
+      "id": "C05",
+      "name": "Account issue absence is scoped",
+      "status": "PASS",
+      "evidence": "The exact prior issue and pending wording are absent at12:49:11.105UTC. This supersedes waiting for that displayed issue, not every-product approval or a dated approval transition."
+    },
+    {
+      "id": "C06",
+      "name": "Four exact paired sample prices and statuses",
+      "status": "PASS",
+      "evidence": "Two protected products sampled in each country, USD22.99/17.99 and AUD33.00/26.00. Saved Approved/showing labels are per-offer diagnostics; actual impressions/clicks/sales not measured."
+    },
+    {
+      "id": "C07",
+      "name": "Aggregate count and partial freshness",
+      "status": "PASS",
+      "evidence": "9,522 equals the two reported source counts arithmetically; this is not full inventory identity reconciliation.54/9,522 is below1%; no inferred9,468 Approved count, cross-source deletion cause or fresh aggregate timestamp."
+    },
+    {
+      "id": "C08",
+      "name": "US failed fetch retains older products",
+      "status": "PASS",
+      "evidence": "Latest result failed; both update counters remain literal dashes, not zeros. Retained4,761 and September14 midnight header do not prove successful fresh synchronization. Cause remains undiagnosed."
+    },
+    {
+      "id": "C09",
+      "name": "AU historical successful manual receipt kept separate",
+      "status": "PASS",
+      "evidence": "AU September11 manual receipt is4761 updated/4760 new, not a new September14 ingest and not evidence that US fetching succeeded."
+    },
+    {
+      "id": "C10",
+      "name": "Unresolved issue and inventory limits",
+      "status": "PASS",
+      "evidence": "54 image-processing issues and54 Not showing are distinct counts without full offer-set join. StoreQuality lists alternatives; no single cause or improvement. Optional inventory navigation timed out; discovered/other-source population remains unknown."
+    },
+    {
+      "id": "C11",
+      "name": "Shopify policy/page identity and normalized text",
+      "status": "PASS",
+      "evidence": "Independently stripped HTML and normalized whitespace: current saved refund, current published page and the September12 redacted body agree. This covers the one handle-filtered page query, not all policies/languages/markets."
+    },
+    {
+      "id": "C12",
+      "name": "Conflicting exclusion/postage and refund milestones",
+      "status": "PASS",
+      "evidence": "Terms broadly exclude sale/personalized items; refund/page explicitly Final Sale and other categories. Postage exception wording differs. Processing and bank posting are separate business-day milestones; damaged/defective no-return remedy retained. No legal conclusion."
+    },
+    {
+      "id": "C13",
+      "name": "AT-only policy, country picker and optional ambiguous Days",
+      "status": "PASS",
+      "evidence": "Saved policy is Austria only, no exceptions. US/AU choices are capability, not configured/effective coverage. Optional blank Days stays blank; four reviewed official sources also do not establish business/calendar units. Native50-character label limit is compatible with a broader100-character feed specification."
+    },
+    {
+      "id": "C14",
+      "name": "US/AU restocking-zero source attribution",
+      "status": "FAIL",
+      "evidence": "FAIL: US/AU candidate standard_values_supported.restocking_fee=0 is not supplied by normalized website/refund/Terms text. Only existing AT native No cost is evidenced here. Reclassify as existing-AT setting/proposed value with exact saved decision provenance; do not invent a fee or ask a duplicate generic approval."
+    },
+    {
+      "id": "C15",
+      "name": "Priority and return release remain qualified",
+      "status": "PASS",
+      "evidence": "US supported-path health diagnosis should precede another website-review wait. No executable correction is approved here: classify current complete affected cohorts, reconcile Terms/refund and defective remedy, freeze truthful sequencing/rollback and independently verify any exact proposal. Optional blank refund days alone is not a blocker."
+    },
+    {
+      "id": "C16",
+      "name": "No business effect or authority promotion",
+      "status": "PASS",
+      "evidence": "All saved actions remain0; existing six-parent/162-offer holds, sole Merchant execution, paidNONE, theme owner and measurement clocks retained. Saved reports do not prove broader catalog eligibility, policy effectiveness, traffic, purchases or profit."
+    },
+    {
+      "id": "C17",
+      "name": "Additional exact saved zero-fee decision provenance",
+      "status": "PASS",
+      "evidence": "ops/AGENT_WORKLOG.md:49450 records the September11 owner confirmation of no restocking fee in the Austria setup. This substantiates owner-decision provenance, not website wording or independently established US/AU scope. No duplicate question is needed; any future exact US/AU proposal must preserve the distinction."
+    }
+  ],
+  "unresolved_findings": [
+    {
+      "id": "F1",
+      "severity": "FIELD_PROVENANCE_QUALIFICATION",
+      "source": "decision_and_handoff.json#/smallest_supported_correction_candidate/standard_values_supported/restocking_fee",
+      "observed": 0,
+      "finding": "Zero restocking has saved September11 owner-decision provenance in the Austria setup, now independently located. The written refund/page text is silent; this packet does not independently establish a country-wide US/AU zero-fee decision. The candidate must retain that origin/scope qualification rather than call zero website-proven.",
+      "required_correction": "In parent interpretation or a later exact candidate, attribute zero to the saved owner decision/current AT configuration, with US/AU applicability explicitly qualified. No repeated generic or no-restocking question is requested. Observed eligibility/fetch acceptance and the read-only diagnosis may proceed; no return-policy write is released."
+    }
+  ],
+  "resolved_findings": [],
+  "decision": {
+    "prior_website_review_wait": "SUPERSEDED for the exact previously displayed account issue; transition time and all-offer approval remain unproved.",
+    "next": "Merchant sole owner performs bounded supported-path US10727274744 connection diagnosis after parent ownership/runtime check. Any later production correction requires its exact current before-state and guarded reviewed proposal, not this receipt.",
+    "return_write": "NOT_QUALIFIED. Resolve Terms/refund/page conflict, current complete country/source/exception assignment and defective remedy; preserve optional blank processing days and AT state.",
+    "production_authorization_granted": false
+  },
+  "official_sources_reused": [
+    "https://support.google.com/merchants/answer/14011730?hl=en",
+    "https://support.google.com/merchants/answer/9445425?hl=en",
+    "https://support.google.com/merchants/answer/17081382?hl=en",
+    "https://developers.google.com/merchant/api/guides/online-return-policies/overview"
+  ],
+  "limitations": [
+    "Owner-native/manual structured observations and source-transcribed terms are reviewed; no second native replay or raw AX/validator export is attached.",
+    "The extra owner-cited invalid-window and StoreQuality documentation pages were not independently opened or relied on in this bounded review.",
+    "Four samples do not qualify all4761 offers per country. September13 aggregate timestamp and September11 source receipts are not refreshed creation/sales/attribution/profit measurements.",
+    "Current all-source inventory, image-issue/Not-showing set identity and effective US/AU offer-return overrides are not established.",
+    "No legal conclusion, source repair execution, StoreQuality improvement, paid permission or timeline guarantee."
+  ],
+  "boundaries": {
+    "source_edits": 0,
+    "canonical_edits": 0,
+    "external_reads": 0,
+    "external_writes": 0,
+    "new_tasks_agents_automations": 0
+  },
+  "additional_source": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/ops/AGENT_WORKLOG.md",
+    "line": 49450,
+    "exact_line_sha256": "633d40a3f4aea3eadec76968b325a1008bba91b2ec2e68af49d0a6d6a9fb1fee",
+    "scope": "Only the cited owner-decision sentence; no broader chronology or current control audit."
+  },
+  "review_history": [
+    {
+      "review_sha256": "7b7e0c8d8fb55f9f220697e8296ceb9845a70ca3c90f082383ef2b7e4ad3a8fe",
+      "status": "Initial16-check review retained:15PASS/1field-provenance finding.",
+      "followup": "Parent supplied the exact saved September11 owner confirmation. Added one narrow local provenance check; no source receipt was edited or live observation rerun."
+    }
+  ],
+  "acceptance_scope": "Current observed eligibility/source facts and supported read-only priority accepted with limits. US/AU policy-field release, full inventory coverage and source repair execution are not approved."
+}

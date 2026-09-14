@@ -1,0 +1,93 @@
+{
+  "schema": "dlm.merchant_return_assignment_truth_gate.v1",
+  "task_id": "TA07-RETURN-ASSIGNMENT-20260914-1658",
+  "status": "PREPARED_NOT_APPLIED__POLICY_TRUTH_AND_EFFECTIVE_ASSIGNMENT_OPEN",
+  "merchant_account_id": "513542500",
+  "countries": [
+    "US",
+    "AU"
+  ],
+  "sources": [
+    {
+      "country": "US",
+      "source_id": "10727274744",
+      "feed_sha256": "b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571",
+      "source_completed_at_utc": "2026-09-14T13:16:10.466Z"
+    },
+    {
+      "country": "AU",
+      "source_id": "10727245667",
+      "feed_sha256": "f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236",
+      "source_completed_at_utc": "2026-09-14T15:03:55.842Z"
+    }
+  ],
+  "confirmed_common_fields_from_reused_source": {
+    "linked_return_page": "https://www.dresslikemommy.com/pages/return-policy",
+    "refund_policy_id": "14695685",
+    "return_page_id": "161929989",
+    "request_window": "30 days from delivery",
+    "condition": "New, unworn, unwashed, original packaging and tags; source eligibility conditions apply.",
+    "mail_returns": "Return by mail after the business provides instructions.",
+    "exchanges": "Accepted within the source eligibility conditions.",
+    "restocking_fee": "No fee; already explicitly confirmed by owner.",
+    "processing_time": "5-10 business days after receipt/inspection, plus possible bank processing; do not convert this automatically into an unlabeled calendar-day UI value.",
+    "existing_native_policy": "9309759641 Standard for Austria remains unchanged.",
+    "optional_refund_processing_days": "Remain blank; field was not edited."
+  },
+  "unresolved_truth": [
+    {
+      "topic": "Sale items",
+      "terms_id": "14695813",
+      "terms_claim": "Sale items are final sale.",
+      "refund_and_page_claim": "Only items explicitly marked Final Sale are excluded on that basis.",
+      "needed": "Owner's intended distinction between all discounted/on-sale items and explicitly marked Final Sale items, plus complete source-backed offer membership under that definition.",
+      "effect": "Without this, 4041 currently submitted offers per country cannot be certified ordinary return eligible."
+    },
+    {
+      "topic": "Personalized items",
+      "terms_id": "14695813",
+      "terms_claim": "Personalized items are final sale.",
+      "refund_and_page_claim": "No equivalent blanket personalized-item exclusion appears in the matching Refund Policy/Page.",
+      "needed": "Owner's intended personalization exclusion and the exact source field/variant facts identifying it.",
+      "source_limit": "Frozen source schemas lack an authoritative personalization field. Product7537001431137 contains Mother3XL custom-tailored wording; this alone does not establish personalized/final-sale status for any or all variants."
+    },
+    {
+      "topic": "Return postage and defective remedy",
+      "terms_id": "14695813",
+      "terms_claim": "Customer responsibility unless the business made an error.",
+      "refund_and_page_claim": "Customer responsibility except damaged/defective handling; damaged/defective items can be refunded or replaced without physical return.",
+      "needed": "One consistent owner-approved definition of postage exceptions and the no-physical-return defective remedy, then a supported native representation. Do not silently choose one text or translate it to a blanket no-returns exception."
+    }
+  ],
+  "source_mapping_candidates": {
+    "nondefective_source_exceptions": {
+      "per_country_offers": 700,
+      "per_country_parents": 46,
+      "basis": "All have source taxonomy Swimwear;44 parents also have productType Swimwear. Existing source rules reproduce the frozen diagnostics.",
+      "candidate_label_in_diagnostics": "no_returns",
+      "label_emitted": false,
+      "native_label_exists_or_assigned": "UNKNOWN",
+      "limitation": "The candidate label is an existing local classifier value, not a recommended blanket denial of defective remedies or evidence of a saved exception."
+    },
+    "remaining_offers": {
+      "per_country": 4041,
+      "classification": "UNKNOWN",
+      "ordinary_eligible_confirmed": 0
+    },
+    "held_offers": {
+      "per_country": 162,
+      "parents": 6,
+      "action": "Keep existing holds unchanged; this task does not release or reclassify them."
+    }
+  },
+  "native_configuration_path_after_truth_resolution": "Use the already-observed standard-policy country picker for the approved countries, then supported country-matched exceptions and exact offer assignment. The prior capability receipt establishes a multi-country picker, but no save-ready policy semantics or applied assignment are certified here.",
+  "native_representation_questions": [
+    "How to represent the source's nondefective exclusions while preserving its damaged/defective refund/replacement remedy.",
+    "How effective per-offer assignment will be read back through an ordinary supported report/export or account capability before calling the repair verified."
+  ],
+  "next_owner_action": "Resolve the sale/personalized exclusion and postage/defective-remedy conflict between Terms14695813 and Refund14695685/Page161929989 as one concrete policy-truth decision; it goes first because a country default or no_returns exception could otherwise misstate customer eligibility.",
+  "dependent_action_authority": "No policy/feed/label/product/theme/account write is authorized by this packet. Request an exact repair dispatch only after source truth and independent review are resolved.",
+  "external_writes": 0,
+  "broader_all_market_status": "PARTIAL",
+  "no_shopify_refresh_before_existing_deadline": true
+}
