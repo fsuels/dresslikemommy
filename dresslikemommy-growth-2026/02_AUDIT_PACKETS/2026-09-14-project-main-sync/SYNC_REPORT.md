@@ -15,6 +15,7 @@ The remaining 72 root theme-file changes are committed locally and held from Git
 ## Checks and limits
 
 - PASS: independent 527-file comparison, 22 configuration/template preservation checks, source/index merge checks, 81 syntax checks, 30 reviewed-source regression tests, 14 feed-worker tests and strict continuity before synchronization.
+- PASS: post-sync Shopify processing finished without error at21:06:34UTC. MAIN133290917985 and draft137888792673 retained their roles, and the public homepage loaded with cart0.
 - PASS: the GitHub update preserves all 528 guarded theme/configuration/workflow entries. Every theme directory is identical to the previous remote main; no theme change appears anywhere in the pushed history. No excluded private path was added.
 - Existing failures recorded: three Liquid complexity checks, two outdated Python status assertions, nine missing-dependency imports, and whitespace findings in historical/imported archive files. These were preserved and disclosed rather than disabled or represented as passing.
 - This synchronization does not establish a new PageSpeed score, live buyer acceptance or conversion increase.
