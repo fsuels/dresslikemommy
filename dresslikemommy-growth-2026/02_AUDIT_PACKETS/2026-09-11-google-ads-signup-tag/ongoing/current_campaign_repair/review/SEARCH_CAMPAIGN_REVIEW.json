@@ -1,0 +1,647 @@
+{
+  "schema": "dlm.independent_search_campaign_review.v1",
+  "reviewed_at_utc": "2026-09-11T20:51:21.739788+00:00",
+  "reviewer": "/root/tag_repair_review",
+  "verdict": "PASS_WITH_LIMITS_LOCAL_DRAFT_ONLY",
+  "confidence": "HIGH_FOR_STATIC_REVIEW",
+  "review_phase": "FINAL_BROADER_CANDIDATE_DELTA",
+  "launch_readiness": "HELD_UNQUALIFIED",
+  "execution_authorized_by_review": false,
+  "review_scope": {
+    "owned_files_only": [
+      "review/SEARCH_CAMPAIGN_REVIEW.json",
+      "review/SEARCH_CAMPAIGN_REVIEW.md"
+    ],
+    "native_browser_account_checks": "NOT_RUN",
+    "public_requests": 0,
+    "external_writes": 0,
+    "canonical_writes": 0,
+    "independence": "Reviewer did not build these Search drafts or perform the root Planner reads. Static content, source hashes and data joins were independently checked."
+  },
+  "reviewed_artifacts": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/SEARCH_CAMPAIGN_DRAFTS.json",
+      "sha256": "962486705f12e585f03717712aec164ec28617df0143d9d363fc66a41a8d7792"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/SEARCH_CAMPAIGN_DRAFTS.md",
+      "sha256": "b4c0ff81bd569ce4641e33102f86b3524a74b4a3b3aafdb1f38c063d81408602"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/INTERNATIONAL_KEYWORD_COMPARISON.json",
+      "sha256": "f772b6d8f83adc311886bf5355f5768ffa47be55434964b47f160ee9e0342ea3"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+      "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/BROADER_KEYWORD_OPPORTUNITIES.json",
+      "sha256": "3dacf157a2ab6129a937bdf579a984adeb8d47e1f77d2cc754f1e6c165fb95ff"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/US_NAVY_SOURCE_READBACK.json",
+      "sha256": "510e9650d3d1f421d7dd6e0e3625e0ae37622026a2fd0881abe60ad9872c92c5"
+    }
+  ],
+  "checks": [
+    {
+      "check": "preserved_authority_economics_launch_gates_negatives_and_queues",
+      "result": "PASS",
+      "detail": "Compared against exact frozen narrow-reserve snapshot in memory."
+    },
+    {
+      "check": "US_EN_campaign_controls_preserved",
+      "result": "PASS",
+      "detail": "All campaign controls except intentional US proposed name."
+    },
+    {
+      "check": "US_EN_original_low_volume_records_unchanged",
+      "result": "PASS",
+      "detail": "Original records moved unchanged; no match-type, source status or native evidence alteration."
+    },
+    {
+      "check": "US_EN_prior_other_reserve_records_unchanged",
+      "result": "PASS",
+      "detail": "Original historical cohort context explicitly retained."
+    },
+    {
+      "check": "US_EN_negative_refs_and_economics_preserved",
+      "result": "PASS",
+      "detail": "No negative or economic change."
+    },
+    {
+      "check": "US_EN_old_origin_retained",
+      "result": "PASS",
+      "detail": "No tee keyword reassignment to dress destination."
+    },
+    {
+      "check": "AU_EN_campaign_controls_preserved",
+      "result": "PASS",
+      "detail": "All campaign controls except intentional US proposed name."
+    },
+    {
+      "check": "AU_EN_original_low_volume_records_unchanged",
+      "result": "PASS",
+      "detail": "Original records moved unchanged; no match-type, source status or native evidence alteration."
+    },
+    {
+      "check": "AU_EN_prior_other_reserve_records_unchanged",
+      "result": "PASS",
+      "detail": "Original historical cohort context explicitly retained."
+    },
+    {
+      "check": "AU_EN_landing_and_product_source_preserved",
+      "result": "PASS",
+      "detail": "International country route and product evidence unchanged."
+    },
+    {
+      "check": "AU_EN_negative_refs_and_economics_preserved",
+      "result": "PASS",
+      "detail": "No negative or economic change."
+    },
+    {
+      "check": "AU_EN_old_origin_retained",
+      "result": "PASS",
+      "detail": "No tee keyword reassignment to dress destination."
+    },
+    {
+      "check": "GB_EN_campaign_controls_preserved",
+      "result": "PASS",
+      "detail": "All campaign controls except intentional US proposed name."
+    },
+    {
+      "check": "GB_EN_original_low_volume_records_unchanged",
+      "result": "PASS",
+      "detail": "Original records moved unchanged; no match-type, source status or native evidence alteration."
+    },
+    {
+      "check": "GB_EN_prior_other_reserve_records_unchanged",
+      "result": "PASS",
+      "detail": "Original historical cohort context explicitly retained."
+    },
+    {
+      "check": "GB_EN_landing_and_product_source_preserved",
+      "result": "PASS",
+      "detail": "International country route and product evidence unchanged."
+    },
+    {
+      "check": "GB_EN_negative_refs_and_economics_preserved",
+      "result": "PASS",
+      "detail": "No negative or economic change."
+    },
+    {
+      "check": "GB_EN_old_origin_retained",
+      "result": "PASS",
+      "detail": "No tee keyword reassignment to dress destination."
+    },
+    {
+      "check": "CA_EN_campaign_controls_preserved",
+      "result": "PASS",
+      "detail": "All campaign controls except intentional US proposed name."
+    },
+    {
+      "check": "CA_EN_original_low_volume_records_unchanged",
+      "result": "PASS",
+      "detail": "Original records moved unchanged; no match-type, source status or native evidence alteration."
+    },
+    {
+      "check": "CA_EN_prior_other_reserve_records_unchanged",
+      "result": "PASS",
+      "detail": "Original historical cohort context explicitly retained."
+    },
+    {
+      "check": "CA_EN_landing_and_product_source_preserved",
+      "result": "PASS",
+      "detail": "International country route and product evidence unchanged."
+    },
+    {
+      "check": "CA_EN_negative_refs_and_economics_preserved",
+      "result": "PASS",
+      "detail": "No negative or economic change."
+    },
+    {
+      "check": "CA_EN_old_origin_retained",
+      "result": "PASS",
+      "detail": "No tee keyword reassignment to dress destination."
+    },
+    {
+      "check": "complete_US_Sunshine_history_preserved",
+      "result": "PASS",
+      "detail": "Full prior US preparation preserved separately from prospective Navy structure."
+    },
+    {
+      "check": "AU_GB_CA_ad_strings_unchanged",
+      "result": "PASS",
+      "detail": "AU only adds a historical-Planner vocabulary annotation."
+    },
+    {
+      "check": "new_US_Navy_ad_strings_equal_existing_CA_Navy_template",
+      "result": "PASS",
+      "detail": "Per-piece dress copy matches independently reviewed Navy template."
+    },
+    {
+      "check": "final_six_artifact_hashes_match",
+      "result": "PASS"
+    },
+    {
+      "check": "final_29_source_hashes_match",
+      "result": "PASS"
+    },
+    {
+      "check": "final_markdown_hash_bound",
+      "result": "PASS"
+    },
+    {
+      "check": "only_three_held_research_candidates",
+      "result": "PASS"
+    },
+    {
+      "check": "zero_qualified_keywords_UK_no_forced_candidate",
+      "result": "PASS"
+    },
+    {
+      "check": "same_product_type_for_all_current_drafts",
+      "result": "PASS"
+    },
+    {
+      "check": "new_research_exact_rows_match_root_receipt",
+      "result": "PASS"
+    },
+    {
+      "check": "historical_low_and_high_bids_yoy_preserved",
+      "result": "PASS",
+      "detail": "US 0.15–0.57/-90%; CA 0.08–0.31/0%; AU 0.10–0.60/0%. No actual CPC or forecast."
+    },
+    {
+      "check": "new_actual_CPC_forecast_unknown",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_filters_period_currency_and_bounds_match",
+      "result": "PASS"
+    },
+    {
+      "check": "all_16_nonselected_dispositions_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "no_profitable_country_or_additive_volume_claim",
+      "result": "PASS"
+    },
+    {
+      "check": "AU_Planner_not_delivered_query",
+      "result": "PASS"
+    },
+    {
+      "check": "US_dates_and_no_runtime_route_claim",
+      "result": "PASS"
+    },
+    {
+      "check": "all_24_US_draft_options_match_US_source_receipt",
+      "result": "PASS",
+      "detail": "Underlying US receipt separately checked against all 24 raw snapshot/feed rows and four source hashes."
+    },
+    {
+      "check": "no_3XL_or_chart_fit_certification",
+      "result": "PASS"
+    },
+    {
+      "check": "final_rsa_actual_limits_and_counts",
+      "result": "PASS",
+      "detail": {
+        "headlines": 32,
+        "descriptions": 12,
+        "display_paths": 8,
+        "max_headline": 27,
+        "max_description": 88,
+        "max_path": 13
+      }
+    },
+    {
+      "check": "final_declared_character_counts_match",
+      "result": "PASS"
+    },
+    {
+      "check": "final_rsa_duplicate_checks",
+      "result": "PASS"
+    },
+    {
+      "check": "per_piece_unit_copy_all_four",
+      "result": "PASS"
+    },
+    {
+      "check": "current_ad_copy_no_tee_price_service_material_claim",
+      "result": "PASS"
+    },
+    {
+      "check": "all_four_Navy_routes_correctly_proposed",
+      "result": "PASS"
+    },
+    {
+      "check": "preserved_prior_review_not_current_delta_claim",
+      "result": "PASS"
+    },
+    {
+      "check": "original_narrow_zero_demand_not_inferred",
+      "result": "PASS"
+    },
+    {
+      "check": "current_null_budgets_economics_and_unchanged_ceiling",
+      "result": "PASS"
+    },
+    {
+      "check": "no_current_external_or_canonical_mutation_claim",
+      "result": "PASS"
+    }
+  ],
+  "check_summary": {
+    "passed": 53,
+    "failed": 0,
+    "bound_source_hashes": 29,
+    "new_US_source_option_joins": 24,
+    "preserved_international_source_option_joins": 72,
+    "total_Navy_source_option_joins_across_review_passes": 96,
+    "prior_narrow_native_observations_bound": 24,
+    "broader_native_sample_rows_bound": 19
+  },
+  "source_hashes": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/markets/active_country_inventory.csv",
+      "sha256": "54c26aca0d196adb5ccd274a473a1408ad159f6d93ce70639908e3e75289fd8a",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/markets/locale_routes.csv",
+      "sha256": "008bbcf8432e31e6ce98912cc01df0193dddfe43d6f9bd57c4054c201fd05f9d",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/country_language_scopes.csv",
+      "sha256": "d83e9ebe1594764c0b385dfb81db84de49540055b7777b235bcd1f1ed92b4485",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/US_KEYWORD_PLANNER.json",
+      "sha256": "424490edebe434e6a030901e2da12b929cbbbd3abb0051e7fe02f6b726b74979",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/STRATEGY_FIT_REVIEW.json",
+      "sha256": "a7488db4d5d910147641a98c2546f305cb8b86a629aedf7a3d4e147a5e184c35",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/SHOPIFY_CURRENT_METADATA.json",
+      "sha256": "1f209b9538d507ab72a6e0bae8eaadf98990a68920ddcd2086c3502d15b7f76d",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/measurement_economics/READINESS.md",
+      "sha256": "8b69941eb88ed3d9314d49d571a710acc5b45851f2284ea6f8fe93be6871002b",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/APPLICATION_RECEIPT.json",
+      "sha256": "6a846863ddbc5e5b3e93929dda497e3094076a0e064205526fb842e4575ff1da",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/SUNSHINE_STRIPE_OFFER_QUALIFICATION.md",
+      "sha256": "d4f4bb635fd125e9c4a72a8636d7ee1db5855247cf8c3e5b0bb5dfee3fee36f2",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/markets/US_EN.csv",
+      "sha256": "21839c6c11d6578e5cc937bb529b7d9421bbf1c45496bb8b55e8487f821592b7",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/markets/AU_EN.csv",
+      "sha256": "971fd92cb7cb2a3425cc7b6be44e588420d7ab18080658557af1852e61d2cebb",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/markets/GB_EN.csv",
+      "sha256": "a929cc4c7f84586f1caa723efd122b65a2f7eb6e399c8f39f6a8dc9fdd615704",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/markets/CA_EN.csv",
+      "sha256": "751ffef213dee0bde2304f4cbf8bb7ff36a9fa127a0186ed12e62f084fa8b37b",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.snapshot.json",
+      "sha256": "bf2aadd8cf9cefdb387b8fe6b704420492b526905681182cd6ac08218b0cab4b",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.tsv",
+      "sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.manifest.json",
+      "sha256": "83c8e8f6043f44cefe982c7637a20f3f5322e8b8f08878f3190f91ade0f4478d",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.snapshot.json",
+      "sha256": "6b3ea0331cf140c0cd7ddfb88ad1c17a1d4ab831f46dcf676000bac76491dc56",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.tsv",
+      "sha256": "6c5e86a09cc91baf37ff9705a4511b6f3076a8d23ba8381b7dc02ed55f864e87",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.manifest.json",
+      "sha256": "f5e539e6bff161e435e6a3f59b46cb44deb26b9900cbde0f5816002009c1d325",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/ca-en.snapshot.json",
+      "sha256": "c925871d94876ebe93b9a3a3612f32eb35d36506d5d169c3faf03c97107fac4f",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/ca-en.tsv",
+      "sha256": "2bd7ea6c66e36e557f66a0de1e6335aea5b589d146f87daa9c71ce549547d861",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/ca-en.manifest.json",
+      "sha256": "32e483bc33953bb91b5a1569cb50963cb0b79dacab5dafd176d457cde3bc0b9f",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/INTERNATIONAL_KEYWORD_COMPARISON.json",
+      "sha256": "f772b6d8f83adc311886bf5355f5768ffa47be55434964b47f160ee9e0342ea3",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NARROW_KEYWORD_READBACK.json",
+      "sha256": "81e88a3942f1e752b815d2e8bcac3993201dfa55f99f325130bad7829607bfad",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/BROADER_KEYWORD_OPPORTUNITIES.json",
+      "sha256": "3dacf157a2ab6129a937bdf579a984adeb8d47e1f77d2cc754f1e6c165fb95ff",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/US_NAVY_SOURCE_READBACK.json",
+      "sha256": "510e9650d3d1f421d7dd6e0e3625e0ae37622026a2fd0881abe60ad9872c92c5",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/refreshed_feed/us-en.snapshot.json",
+      "sha256": "f4890d66fd397217e8d31f2cb9b7a242e236ffc3914a39741ea3b781364fb20b",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/refreshed_feed/us-en.manifest.json",
+      "sha256": "b61e14d9ea54399adc000e26ac76957357b8d009f3fc91f73a6c49087132d5d9",
+      "current_hash_match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/refreshed_feed/us-en.tsv",
+      "sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+      "current_hash_match": true
+    }
+  ],
+  "rsa_actual_lengths": [
+    {
+      "lane": "US_EN",
+      "headline_lengths": [
+        16,
+        24,
+        27,
+        25,
+        25,
+        23,
+        22,
+        25
+      ],
+      "description_lengths": [
+        88,
+        80,
+        83
+      ],
+      "display_path_lengths": [
+        10,
+        13
+      ],
+      "business_name_length": 16
+    },
+    {
+      "lane": "AU_EN",
+      "headline_lengths": [
+        16,
+        24,
+        27,
+        25,
+        25,
+        23,
+        22,
+        25
+      ],
+      "description_lengths": [
+        88,
+        80,
+        83
+      ],
+      "display_path_lengths": [
+        10,
+        13
+      ],
+      "business_name_length": 16
+    },
+    {
+      "lane": "GB_EN",
+      "headline_lengths": [
+        16,
+        24,
+        27,
+        25,
+        25,
+        23,
+        22,
+        25
+      ],
+      "description_lengths": [
+        88,
+        80,
+        83
+      ],
+      "display_path_lengths": [
+        10,
+        13
+      ],
+      "business_name_length": 16
+    },
+    {
+      "lane": "CA_EN",
+      "headline_lengths": [
+        16,
+        24,
+        27,
+        25,
+        25,
+        23,
+        22,
+        25
+      ],
+      "description_lengths": [
+        88,
+        80,
+        83
+      ],
+      "display_path_lengths": [
+        10,
+        13
+      ],
+      "business_name_length": 16
+    }
+  ],
+  "selected_research_rows": [
+    {
+      "country": "US",
+      "keyword": "mother and daughter same dress",
+      "monthly_searches_displayed": "10 – 100",
+      "competition": "High",
+      "three_month_change": "0%",
+      "year_over_year_change": "-90%",
+      "top_of_page_bid_low_usd": 0.15,
+      "top_of_page_bid_high_usd": 0.57,
+      "disposition": "RESEARCH_CANDIDATE_NAVY_SPRIG_UNIT_AND_VARIANT_FIT_REQUIRED",
+      "actual_cpc_usd": null,
+      "forecast_at_015": null
+    },
+    {
+      "country": "AU",
+      "keyword": "mommy and me dresses",
+      "monthly_searches_displayed": "10 – 100",
+      "competition": "High",
+      "three_month_change": "0%",
+      "year_over_year_change": "0%",
+      "top_of_page_bid_low_usd": 0.1,
+      "top_of_page_bid_high_usd": 0.6,
+      "disposition": "RESEARCH_CANDIDATE_NAVY_SPRIG_NATIVE_QUERY_OBSERVED",
+      "actual_cpc_usd": null,
+      "forecast_at_015": null
+    },
+    {
+      "country": "CA",
+      "keyword": "mother and daughter same dress",
+      "monthly_searches_displayed": "10 – 100",
+      "competition": "High",
+      "three_month_change": "0%",
+      "year_over_year_change": "0%",
+      "top_of_page_bid_low_usd": 0.08,
+      "top_of_page_bid_high_usd": 0.31,
+      "disposition": "RESEARCH_CANDIDATE_NAVY_SPRIG",
+      "actual_cpc_usd": null,
+      "forecast_at_015": null
+    }
+  ],
+  "qualification": {
+    "prospective_research_candidates": 3,
+    "qualified_launch_keywords": 0,
+    "original_low_volume_reserve_records": 7,
+    "UK_initial_research_candidates": 0,
+    "new_budget_allocated_usd": 0,
+    "budget_amounts": null,
+    "loss_allowances": null,
+    "actual_CPC": null,
+    "forecast_at_015": null,
+    "actual_max_CAC": null,
+    "actual_retained_profit": null
+  },
+  "material_strategic_challenge": {
+    "premise": "A product-aligned phrase with a low historical bid estimate provides sufficient affordable purchase traffic for an initial paid cohort.",
+    "evidence": "All 24 narrow country/phrase rows show 0–10 monthly searches without bid estimates. Broader US/CA/AU rows show 10–100 monthly, High competition and low–high USD bids 0.15–0.57/0.08–0.31/0.10–0.60; US YoY is −90%. The 19-row sample is bounded and filtered to positive low bids.",
+    "resolution": "The original seven phrases remain unchanged low-volume reserve. Three product-fitting broader terms are prospective exact research only; all initial launch lists remain empty. UK receives no forced seasonal, wedding or infant candidate.",
+    "limits": [
+      "Historical discovery volume is not native keyword eligibility, an exact-match forecast, zero demand or independent additive reachable volume.",
+      "Low-range bids are not actual CPC, auction floors or delivery guarantees. Every selected high-range estimate exceeds USD 0.15.",
+      "The positive-bid sample excludes missing estimates and cannot certify an exhaustive best keyword/country ranking.",
+      "US −90% YoY remains in the current selection evidence. No growth trend or profit is invented."
+    ],
+    "next_safe_check": "Root uses the normal owned account surface to check candidate-set eligibility/forecast and exact Manual CPC/no-increase controls at USD 0.15, without enabling, creating extra exposure or relaxing remaining purchase, buyer-route, cost and authority gates."
+  },
+  "product_truth_review": {
+    "current_drafts": "All four prepared structures now reference Navy Sprig 7670609346657. Each selected Type/Size is one garment; Dress and Cardigan are separate choices. All 96 US/AU/GB/CA option-price-link bindings were verified across the two review passes.",
+    "US_source_dates": "US price/publication snapshot 17:15:54 UTC; later ACTIVE metadata 19:40 UTC did not refresh prices.",
+    "source_limit": "Mother 3XL appears in the source description but not the 24 returned variants. Current ad copy makes no 3XL, size-chart accuracy, fabric, stock, fulfillment, delivery, discount, bundle price or profit claim.",
+    "Sunshine_preservation": "The full historical US Sunshine copy, route and product source are preserved. Its original three low-volume tee keywords and other reserve exclusions retain their own product context; none is assigned to the new Navy destination.",
+    "buyer_route": "Country/currency routes remain proposals with runtime cart/checkout acceptance NOT_RUN under the HTTP 429 stop. Contextual source/feed data does not prove buyer acceptance, Google approval or supplier inventory."
+  },
+  "execution_limits": [
+    "Reviewer used local files only; root's rendered Planner receipts were not independently replayed. No account, browser, public, canonical or storefront action was performed.",
+    "Normal Google identity verification remains binding. This review does not authorize or bypass any account Save, launch, budget, negative, ad or campaign change.",
+    "Preserve existing PMax 24247604341 paused and the configured USD 5/day / 650% target settings. Four local structures are preparation alternatives; new budget allocation is 0 and new budgets/loss allowances are null.",
+    "USD 0.15 is the retained prospective Search Manual CPC ceiling, not a PMax hard-CPC capability or a guarantee that current native exception controls are correct.",
+    "Positive exact match includes same-meaning/intent close variants. Separate words or countries are not additive nonoverlapping audiences. Presence/language controls do not perfectly identify physical presence or every query language.",
+    "Four sewing phrases remain held preventive campaign-negative proposals; account inheritance, duplicate and false-positive checks are required before any separately authorized application. Knit/crochet phrases stay reserve; negative close variants do not expand automatically.",
+    "AU mommy wording comes from a historical Planner keyword row. It is not an observed delivered paid search query or buyer acceptance.",
+    "Retain A<=min(R/6.5,CM-H-0.30R,authorized cash/loss allowance), with R retained merchandise plus retained shipping excluding tax, V disjoint actual variable costs, CM=R-V, H other allocated costs. Costs/refunds, purchase acceptance, maxCAC and profit remain unknown."
+  ],
+  "material_corrections_remaining": [],
+  "review_history": [
+    {
+      "phase": "NARROW_RESERVE_PREDECESSOR",
+      "reviewed_at_utc": "2026-09-11T20:44:20.845673+00:00",
+      "reviewed_draft_json_sha256": "d55dd69b5bc3b7fc98c13b8b6295630e32389d31a5205205737cbfb1a861c1a5",
+      "reviewed_draft_markdown_sha256": "dabe32f8a7c8ff41898a96c5bacc7bff3cc40da86f4a7fdf9a28680547864c5e",
+      "review_receipt_json_sha256_at_release": "852c49285f0119ea3de3016e9204da6e3724247b887406e376becda081cdb4a6",
+      "verdict": "PASS_WITH_LIMITS_LOCAL_DRAFT_ONLY",
+      "passed_checks": 38,
+      "source_hashes": 24,
+      "contextual_variant_joins": 72,
+      "scope": "Prior review preserved for chronology. Current verdict binds only the six artifacts listed above; predecessor approval is not reused as current live authority."
+    }
+  ]
+}

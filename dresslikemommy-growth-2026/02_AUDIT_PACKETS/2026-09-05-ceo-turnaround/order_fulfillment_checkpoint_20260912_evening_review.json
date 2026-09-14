@@ -1,0 +1,516 @@
+{
+  "schema": "dlm.independent_order_fulfillment_review.v1",
+  "reviewed_at_utc": "2026-09-12T20:53:48.894507+00:00",
+  "reviewer": "/root/order_delta_1934",
+  "phase": "VERIFY",
+  "verdict": "PASS_WITH_LIMITS",
+  "source_receipt": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260912_2041.json",
+    "sha256": "0f0bde5c470b3077f05029ce58d6bb247048deeaad2840b09fe724df3786edab",
+    "redaction_revision": 2
+  },
+  "baseline_receipt": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260912_0824.json",
+    "sha256": "25d2d853de5bd8e0330190cda246db8c202180ad5a2eedfde39aa02a2a0f4d49"
+  },
+  "transient_evidence": {
+    "sha256": "f5cc93b97e29288ca586276fcd427b2c871f76cf61445cc763a131eb1a841455",
+    "permissions": "0600",
+    "values_not_copied_to_review": true,
+    "scope": "Temporary source supplied by root, used for exact membership/line-join recomputation only."
+  },
+  "independence": {
+    "built_or_executed_new_source_reads": false,
+    "independent_live_replay": false,
+    "method": "Independent filtering, integer-cent arithmetic, UTC/zoneinfo windows, before/after basket comparison, query-text and validation-metadata consistency, transient-to-redacted equivalence and privacy review. Root performed all new live reads."
+  },
+  "check_count": 70,
+  "passed_checks": 70,
+  "failed_checks": [],
+  "checks": [
+    {
+      "check": "baseline exact immutable hash",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "transient source hash fixed",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "shop identity equals morning and receipt",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "order clock agrees across source and envelope",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "fulfillment window matches exact separate source clock",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "window lower bound is frozen NY September5 midnight",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "creation filter exact bounds and no status exclusion",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "enumerated order page complete below50",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "all line pages complete and count reconciles",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "sanitized basket labels unique and original baskets retained",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "private order distinctness remains source reported",
+      "pass": true,
+      "basis": "consistency check only; private source-order identity joins are root reported"
+    },
+    {
+      "check": "local financial/test/cancel/web filter recomputed",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "excluded/status counters independently reconcile",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "all12queried money valuesUSD finite integer cents",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "line quantities nonnegative integers",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "filtered money/unit/count totals independently summed",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "all-status totals independently summed",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "qualifying status counts independently summed",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "every source row inside exact observed bounds",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "frozen original cohort all-status and qualifying totals",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "independent membership/count/money reconciliation:comparison_since_last_full_read",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "independent membership/count/money reconciliation:trailing_24_hours",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "independent membership/count/money reconciliation:previous_completed_shop_calendar_day",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "independent membership/count/money reconciliation:ga4_post_cutover_candidates",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "previous full creation cutoff and fulfillment clock correct",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "trailing window exactly24hours ending at source cutoff",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "previous completedNYday independently zoneinfo-derived",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "GA4cutover unchanged and candidate list agrees",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "fulfillment source recheck same status and money:Rainbow",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "fulfillment arrays/nested pages complete:Rainbow",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "fulfillment quantity joins and declared quantities:Rainbow",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "fulfillment source recheck same status and money:Mermaid",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "fulfillment arrays/nested pages complete:Mermaid",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "fulfillment quantity joins and declared quantities:Mermaid",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "all basket fields independently recomputed",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "retained full basket status/refund/cancel/fulfillment evidence unchanged",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "morning versus evening filtered/all-status totals unchanged",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "monetary/unit/count delta independently zero",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "all change flags independently supported",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "separate frozen28day baseline preserved",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "order and fulfillment query strings exactly reused",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "two-operation fresh validation metadata internally consistent",
+      "pass": true,
+      "basis": "owner-reported schema/connector-validation metadata, not a replay of provider validation"
+    },
+    {
+      "check": "query scope read-only and no prohibited customer/tracking data fields",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "sequential non-atomic evidence explicitly retained",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "next full-read exactly12hours after actual order cutoff",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "due clock preserved and actual query after due",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "cost attribution profit receiver uncertainty and paidNONE remain",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "corrected receipt exact frozen hash and valid unique-key JSON",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "morning baseline and transient-source hashes still exact",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "temporary detailed source permissions0600",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "exact inverse reconstructs original full receipt hash without saving it",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "within-basket source associations map one-to-one:Rainbow",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "within-basket source associations map one-to-one:Mermaid",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "corrected source exactly matches independently derived redaction",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "all twelve creation-window flags independently derived before redaction",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "redacted ordinal join quantities preserve fulfillment:Rainbow",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "redacted ordinal join quantities preserve fulfillment:Mermaid",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "source validation metadata unaffected by redaction",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "owner28check metadata reconciles but not counted as28independent checks",
+      "pass": true,
+      "basis": "metadata consistency only"
+    },
+    {
+      "check": "all business totals baskets and windows match independent computations",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "profit outcome explicitly unknown",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "both original review findings and old hash preserved without old values",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "no forbidden identifying record keys or ShopifyGID values persisted",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "none of the exact transient record values copied to corrected receipt",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "no per-record timestampsURLscontacts in saved rows",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "bounded secret and contact value scan passes",
+      "pass": true,
+      "basis": "local key/value/pattern scan, not an exhaustive secret detector"
+    },
+    {
+      "check": "carrier evidence does not claim acceptance or delivery",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "paid financial status not used as paid-ad attribution",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "next due clock equals independently computed result",
+      "pass": true,
+      "basis": "independent local computation"
+    },
+    {
+      "check": "corrected source and baseline unchanged immediately before review write",
+      "pass": true,
+      "basis": "independent local computation"
+    }
+  ],
+  "resolved_findings": [
+    {
+      "id": "F1",
+      "finding": "Initial repository receipt unnecessarily retained exact per-order creation times and product/variant associations despite the morning transient-data contract.",
+      "status": "RESOLVED_REVISION_2",
+      "verification": "All12 membership flags were recomputed from the temporary source. Within-basket line ordinals reproduce exact quantity joins. No identifying values remain in the repository receipt or this review; temporary file is0600."
+    },
+    {
+      "id": "F2",
+      "finding": "Initial business outcome could imply assessed profit lift despite unverified costs and attribution.",
+      "status": "RESOLVED_REVISION_2",
+      "verification": "Outcome is now NO_NEW_QUALIFYING_SALES_OBSERVED__PROFIT_UNKNOWN and all cost/settlement/attribution/receiver gates stay UNKNOWN."
+    }
+  ],
+  "preserved_initial_receipt_sha256": "5530784b2e79c8eef27ed5e45b7f2ea89784200877ecff79cfd894376934c139",
+  "redaction_inverse": "Reconstructed initial JSON only in process memory; its exact SHA256 matches. No other original field changed beyond the documented redaction, privacy/check metadata and outcome correction.",
+  "verification_history": "The first arithmetic pass overlapped root revision2. Its old-format full-source-equality and27-check-count predicates were superseded by explicit redaction-equivalence and28-check-metadata assertions, which pass. The47 unaffected assertions are retained; no arithmetic discrepancy was found.",
+  "source_clocks": {
+    "order_started": "2026-09-12T20:41:48Z",
+    "order_completed": "2026-09-12T20:41:49Z",
+    "fulfillment_started": "2026-09-12T20:42:14Z",
+    "fulfillment_completed": "2026-09-12T20:42:15Z",
+    "next_full_read_due": "2026-09-13T08:41:48Z"
+  },
+  "recomputed_totals": {
+    "orders": 2,
+    "current_units": 4,
+    "current_subtotal_usd": "86.45",
+    "current_total_usd": "86.45",
+    "current_tax_usd": "0.00",
+    "recorded_refunds_usd": "0.00"
+  },
+  "same_cohort_lifecycle": "Mermaid remains PAID/unfulfilled with2units/USD31.98. Rainbow remains PAID/fulfilled with2units/USD54.47 and one SUCCESS fulfillment matching both quantities; YunExpress is recorded, with no event, transit, delivery or ETA proof.",
+  "recomputed_windows": {
+    "observed_window": {
+      "all_order_creations": 2,
+      "qualifying_orders": 2,
+      "qualifying_totals": {
+        "orders": 2,
+        "current_units": 4,
+        "current_subtotal_usd": "86.45",
+        "current_total_usd": "86.45",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00"
+      },
+      "excluded_orders": 0
+    },
+    "original_cohort": {
+      "all_order_creations": 2,
+      "qualifying_orders": 2,
+      "qualifying_totals": {
+        "orders": 2,
+        "current_units": 4,
+        "current_subtotal_usd": "86.45",
+        "current_total_usd": "86.45",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00"
+      },
+      "excluded_orders": 0
+    },
+    "comparison_since_last_full_read": {
+      "all_order_creations": 0,
+      "qualifying_orders": 0,
+      "qualifying_totals": {
+        "orders": 0,
+        "current_units": 0,
+        "current_subtotal_usd": "0.00",
+        "current_total_usd": "0.00",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00"
+      },
+      "excluded_orders": 0
+    },
+    "trailing_24_hours": {
+      "all_order_creations": 0,
+      "qualifying_orders": 0,
+      "qualifying_totals": {
+        "orders": 0,
+        "current_units": 0,
+        "current_subtotal_usd": "0.00",
+        "current_total_usd": "0.00",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00"
+      },
+      "excluded_orders": 0
+    },
+    "previous_completed_shop_calendar_day": {
+      "all_order_creations": 0,
+      "qualifying_orders": 0,
+      "qualifying_totals": {
+        "orders": 0,
+        "current_units": 0,
+        "current_subtotal_usd": "0.00",
+        "current_total_usd": "0.00",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00"
+      },
+      "excluded_orders": 0
+    },
+    "ga4_post_cutover_candidates": {
+      "all_order_creations": 0,
+      "qualifying_orders": 0,
+      "qualifying_totals": {
+        "orders": 0,
+        "current_units": 0,
+        "current_subtotal_usd": "0.00",
+        "current_total_usd": "0.00",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00"
+      },
+      "excluded_orders": 0
+    }
+  },
+  "comparison_result": "No new qualifying or excluded creations in the morning-to-evening, trailing24h, previous completed New York day or approximate post-GA4-cutover windows. Same retained-cohort payment/refund/cancellation/fulfillment/carrier evidence as08:24 morning reference.",
+  "measurement_limits": [
+    "This reviews root-supplied source evidence and documents, not an independent live account or raw-provider replay.",
+    "Schema discovery and connector validation are recorded metadata. Identical operations and metadata consistency are checked; provider validation was not rerun.",
+    "Private current-order identity joins and exact two-order distinctness remain root-reported; variant/quantity associations and creation-window membership were independently recomputed from the temporary source.",
+    "Clock precision is seconds from root tool capture; independent Shopify server Date/header metadata is not present. Order and fulfillment reads are sequential/non-atomic; fulfillment reads were parallel.",
+    "PAID is financial status, not paid-media attribution. Counts represent orders/current units; no transaction history, settled revenue, actual costs, CPA, ROAS or retained profit was established.",
+    "SUCCESS and a recorded carrier name do not prove carrier acceptance/delivery; absent events do not prove no real-world movement.",
+    "No genuine new purchase candidate exists in this window for GA4 receiver reconciliation. Neither receiver failure nor success follows.",
+    "The eight-order28day baseline is historical, unchanged and excluded from current cohort totals. No unrelated market, campaign, theme, access or cost work was re-audited."
+  ],
+  "decision_recommendation": "No new sales or purchase-learning signal supports scaling. Preserve existing serving/buyer repair owners and paidNONE; next full readSep13 08:41:48UTC, earlier only for a meaningful source event.",
+  "actions": {
+    "review_receipt_writes": 1,
+    "other_file_writes": 0,
+    "canonical_writes": 0,
+    "source_mutations": 0,
+    "external_calls": 0,
+    "browser_calls": 0,
+    "customer_messages": 0
+  }
+}

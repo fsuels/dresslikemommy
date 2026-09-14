@@ -1,0 +1,22 @@
+Confidence: H for documented definitions; M for applying them to the saved UI. Independent documentation review, 2026-09-06; no account/browser/tag/campaign changes.
+
+**Smart goals measure predicted session quality, not verified purchases.** Microsoft scores sessions using signals such as duration, page depth, location, device and browser; crossing its threshold records a conversion. A session can also qualify for another goal, so Smart plus purchase counts need not represent different customers or orders. This is a modeled engagement proxy, not evidence of a modeled or observed purchase. [Microsoft Smart goals](https://help.ads.microsoft.com/apex/index/3/en/52099) was retrieved as the official indexed article body; the previously failing Help page was not reopened.
+
+**Exclusion preserves reporting.** The documented API setting is `ExcludeFromBidding=true`, equivalent to clearing “Include in Conversions.” It removes that goal from automated bidding and standard conversion/revenue/ROAS statistics; All-conversion/All-revenue statistics retain it. The supplied native dialogs describe the current UI equivalent as “Use for auto-bidding optimization: No,” with reporting retained. Goal pausing is a different operation and is unnecessary for reporting-only use. Exact Smart-goal editability and resulting persistence still require root's native evidence. [ConversionGoal, ExcludeFromBidding and Status](https://learn.microsoft.com/en-us/advertising/campaign-management-service/conversiongoal?view=bingads-13#elements)
+
+**Campaign × goal reporting separates goal outcomes; it does not establish exclusive spending on each outcome.** `Goal` is the goal name, `GoalId` its identifier and `GoalType` its type. Conversion counts reflect the configured action; revenue is advertiser-reported conversion value. Spend sums click costs; CPA is spend/conversions and ROAS revenue/spend. The API now specifies `ConversionsQualified`/`AllConversionsQualified` in place of deprecated count fields; “Qualified” does not mean purchase-verified. [Conversion report columns](https://learn.microsoft.com/en-us/advertising/reporting-service/conversionperformancereportcolumn?view=bingads-13)
+
+The inspected primary references explain grouping but do **not** specify whether this native campaign-by-goal view blanks, repeats or otherwise places click/spend values. Do not invent that allocation rule or interpret a blank/zero goal row as free conversions. Preserve an unsegmented campaign denominator for the identical dates, currency, timezone and filters, then reconcile root's goal rows against it; do not sum repeated campaign totals. This is a conservative calculation method, not a claimed platform allocation algorithm. [Reporting grouping and report metadata](https://learn.microsoft.com/en-us/advertising/guides/reports?view=bingads-13#columns-that-group-the-data)
+
+All versus Unique counts apply within the goal's conversion window after a click; Unique is not an across-goal order deduplicator. Different goals therefore need overlap verification. Variable revenue permits a default; fallback currency/value alone does not prove transmitted order revenue. [Goal counting](https://learn.microsoft.com/en-us/advertising/campaign-management-service/conversiongoal?view=bingads-13#elements), [ConversionGoalRevenue](https://learn.microsoft.com/en-us/advertising/campaign-management-service/conversiongoalrevenue?view=bingads-13)
+
+**Account evidence boundary.** The two supplied files show account477439/customer770182, eleven paused campaigns, Smart plus three checkout/purchase goals included in bidding, AddToCart excluded, and unknown reporting currency. `36000629`/`36005151` are UET tag IDs, not goal IDs. The three purchase-like definitions and fallback values do not establish unique retained orders. Neither historical483 conversions nor reported value/spend proves purchase-only profitability or launch readiness.
+
+Next exact read: root's matching campaign-by-goal counts/value, independent campaign spend/click totals and reporting currency; then test purchase-goal overlap before calculating purchase-only ROAS.
+
+Bound local scope:
+
+- `microsoft_paid_initial_readback.json` SHA256 `b1d6f0c754ff7e3d685bd31fd74b58ba0297bccbf74fb0f67b46d48ace416b10`
+- `microsoft_paid_interpretation.md` SHA256 `6f24543cefff66c8927b1acceb06da7017088e50fb7ffabbf3c585b91f21bc65`
+
+A guessed SmartGoal Learn URL was rejected as non-retryable and abandoned. No permission or account workaround was attempted.

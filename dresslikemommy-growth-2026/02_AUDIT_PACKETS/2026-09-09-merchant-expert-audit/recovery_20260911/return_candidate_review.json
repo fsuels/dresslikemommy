@@ -1,0 +1,90 @@
+{
+  "schema": "dlm.merchant.return_candidate_independent_review.v1",
+  "verdict": "HOLD",
+  "go_no_go": "NO_GO_TO_CURRENT_ATTESTATION_AND_SAVE",
+  "confidence": "H",
+  "reviewed_at_utc": "2026-09-11T14:00:28.774311Z",
+  "source_sha256": "d6ea283a1e9ac159e0545e582bf82daadc5f91fc8fad0e65357d93b60f2221f7",
+  "source_bytes": 44019,
+  "source_read_window": {
+    "started_at_utc": "2026-09-10 18:49:51 UTC",
+    "completed_at_utc": "2026-09-10 18:49:51 UTC"
+  },
+  "page_body_sha256": "6f63f061500595080c381f33b3bccc90264b13f7bc2f7d6ebbf3770a170f44b5",
+  "refund_policy_body_sha256": "a0e7f90e201df7169edf00073d48b47aa58afc69ae7b6003ee8b93720e58d7fb",
+  "source_checks": {
+    "correct_shop_and_page": true,
+    "published_page": true,
+    "both_policy_body_hashes_match": true,
+    "both_thirty_days": true,
+    "four_exclusion_categories_present": true,
+    "condition_mail_and_fee_exception_preserved": true,
+    "business_day_refund_units_not_invented": true,
+    "terms_conflict_retained_no_rewrite": true
+  },
+  "scope": "Bounded pre-save review of saved source policy, root-provided current candidate and two official Google help pages. No native control, external writes, new policy or shared edits.",
+  "source_artifact": "../receiver_20260910/return_policy_reconciliation.json",
+  "candidate_provenance": "Current native candidate and explicit owner no-restocking-fee confirmation supplied by root; not independently operated or read by this reviewer.",
+  "candidate": {
+    "merchant_account": "513542500",
+    "country": "Austria",
+    "url": "https://www.dresslikemommy.com/pages/return-policy",
+    "returns": "Defective and non-defective",
+    "exchanges": true,
+    "condition": "New only",
+    "days": 30,
+    "method": "Mail",
+    "return_label": "Customer responsibility",
+    "restocking_fee": "None; explicitly confirmed by owner",
+    "refund_processing_days": null,
+    "website_match_attestation_required": true,
+    "exception_labels_configured": false
+  },
+  "documented_facts": [
+    {
+      "url": "https://support.google.com/merchants/answer/14011730?hl=en",
+      "retrieved_date": "2026-09-11",
+      "scope": "How it works/examples, requirements and exception setup",
+      "finding": "Google explicitly documents creating the standard policy first, then exceptions associated with specific products through return_policy_label. Merchant and website policies must be consistent."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/9445425",
+      "retrieved_date": "2026-09-11",
+      "scope": "Minimum requirements",
+      "finding": "Non-standard products require the return policy label; missing values use the default policy."
+    }
+  ],
+  "binary_fields": {
+    "source_checks_pass": true,
+    "ordinary_eligible_item_baseline_supported": true,
+    "owner_no_restocking_fee_authority_present": true,
+    "optional_ambiguous_refund_days_left_blank": true,
+    "google_documents_standard_then_exception_sequence": true,
+    "exception_attribute_globally_documented": true,
+    "existing_publisher_label_path_confirmed": false,
+    "excluded_offer_cohort_binding_verified": false,
+    "current_empty_receiver_proved": false,
+    "website_match_attestation_ready": false,
+    "new_user_scope_approval_required": false,
+    "external_mutation_performed": false
+  },
+  "decision_reason": "The standard policy can match ordinary eligible items while overstating returnability for excluded items that lack a return_policy_label. Creating an exception policy alone does not attach it to products. A saved September 10 zero count and a September 11 detail without a numeric count do not prove no affected offers can receive the default.",
+  "truth_gate": "Before attesting and saving this default, confirm a supported, concrete route in the existing publisher/source to persist return_policy_label for the actual excluded product/variant cohort, and prepare the immediate exception-plus-label sequence with processed-offer readback. Do not assume Shopify tags or a created exception automatically populate that attribute.",
+  "permission_vs_accuracy": "HOLD is an independent customer-truth judgment for this candidate, not a missing authority gate and not a claim that Google forbids its documented standard-first workflow.",
+  "required_completion": [
+    "Use the selected 30-day policy's swimwear, intimates, explicitly marked Final Sale and gift-card exceptions without inventing classifications or broadening all sale items.",
+    "Confirm and prepare the current source's supported label-writing mechanism and the exact excluded offer bindings.",
+    "Once the staged sequence is concrete, create standard and exception policies in Google's supported order; verify the resulting policy labels and effective product assignments before claiming website consistency is complete.",
+    "Retain damaged/defective handling and customer-shipping exception; do not invent calendar-day refund duration or rewrite the conflicting Terms."
+  ],
+  "outstanding_conflicts": [
+    "Terms also says all sale/personalized products are final sale and uses a different return-shipping exception. Existing conflict retained; no precedence judgment or rewrite in this review."
+  ],
+  "limits": [
+    "Source bodies were verified in the saved September 10 snapshot, not freshly re-read from Shopify by this reviewer.",
+    "No proof of current receiver emptiness, actual policy verification status or processed return-policy labels.",
+    "Google approval/review delay is not assumed to contain a temporary inaccurate default."
+  ],
+  "next_action": "Confirm the existing feed's concrete exception-label mechanism while retaining the unsubmitted review; no further fee or general scope approval is needed."
+}
+

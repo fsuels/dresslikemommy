@@ -1,0 +1,115 @@
+{
+  "schema": "dlm.merchant.receipt_resume_independent_review.v1",
+  "status": "PASS",
+  "checked_at_utc": "2026-09-10T22:01:12.080586Z",
+  "checks": {
+    "five_current_after_hashes_and_all_eight_inverses_match": true,
+    "worklog_append_only": true,
+    "other_290_coordination_table_rows_preserved": true,
+    "paid_506_bytes_preserved": true,
+    "one_access_attempt_no_account_data_or_retry": true,
+    "new_receipt_fields_empty_not_old_zero": true,
+    "old_zero_explicitly_dated_in_markdown_and_new_sections": true,
+    "zero_external_changes": true,
+    "existing_unlock_and_separate_exact_click_gate_preserved": true,
+    "anchor_and_bounded_time_consistent": true,
+    "ingestion_cause_unknown_and_no_diagnosis": true,
+    "own_section_scope_and_other_owner_content_preserved": true
+  },
+  "files": [
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "operation_count": 1,
+      "before_sha256": "974a12b42bb74913121eaa232977de508af9ab6563db43245d0e07d98197b4e5",
+      "before_bytes": 397920,
+      "after_sha256": "95561f381cb9923a7137574e3ad759c644a81cae8a101c235caf060cd1467c89",
+      "after_bytes": 398202,
+      "inverse_pass": true
+    },
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "operation_count": 2,
+      "before_sha256": "59998f17ac9382cedd33b5ce30d793f7573baaf599a3d68d64fd96df94fe0302",
+      "before_bytes": 230526,
+      "after_sha256": "502aedafa5f4da85394e13d9aa5a3b219053e0a633b0d84c8748009d036ee5b6",
+      "after_bytes": 231349,
+      "inverse_pass": true
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "operation_count": 2,
+      "before_sha256": "10e1839ee1cfcddda46e3a04511e3fd6e852e651bcf5c39f959c10f6b3c0a842",
+      "before_bytes": 105846,
+      "after_sha256": "cc8a7d159d8d3833622fc37abb8d19c149417ad7f4b8d39ca91b29670c9c4581",
+      "after_bytes": 106661,
+      "inverse_pass": true
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "operation_count": 2,
+      "before_sha256": "de46a46a4bef174e0e680393b7671ec57dd7af1b2bec8894f84592824b8f769c",
+      "before_bytes": 856595,
+      "after_sha256": "5d0bc4e5c2a9e732ad385704ce4ab9401729c8f5c6211e56f8189544e30e4877",
+      "after_bytes": 857394,
+      "inverse_pass": true
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "operation_count": 1,
+      "before_sha256": "22a8d9b027fe1e9789787618348a02a2e442d765a55ed6cc98be59302b0b06d0",
+      "before_bytes": 4012114,
+      "after_sha256": "5cbdf421f638bba3af539629e82751668b0b8d143ba258612b382a876f00a82a",
+      "after_bytes": 4014841,
+      "inverse_pass": true
+    }
+  ],
+  "paid_control": {
+    "sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+    "bytes": 506
+  },
+  "other_coordination_rows": {
+    "sha256": "41fe98890fb4f008a7671abf19d7545dc057b8eff8156ed1984d46b70a818eea",
+    "count": 290
+  },
+  "worklog_append_bytes": 2727,
+  "worklog_append_sha256": "deec82a60a55bb25e02d10f62595ce60d265133903d56ee1195a1bbd214123ef",
+  "source_bindings": {
+    "resume_2156.json": {
+      "sha256": "3def91b9ae09f9aba50f96535052122a9eb87d6e4e3936a0853be3999df67b61",
+      "bytes": 3885
+    },
+    "RESUME_2156.md": {
+      "sha256": "ecf7c7ea5cdb0945f100492d1139d994626b0002bb1a3c4f25146ea6b07b0822",
+      "bytes": 1815
+    },
+    "resume_2156_canonical_patch.json": {
+      "sha256": "89b4d08fa857cadc98e9dd838a64cd050eb184674ab493aa36d7ed19e45f274f",
+      "bytes": 12596
+    }
+  },
+  "review_verdict": "PASS",
+  "confidence": "H",
+  "reviewer": "/root/merchant_landing_code_review",
+  "scope": "Saved resume evidence and five-file preservation only. Reviewer wrote only resume_2156_review.json and resume_2156_review.md; no native/API/web or other historical-packet reads.",
+  "check_count": 12,
+  "material_findings": [],
+  "interpretation": {
+    "latest_access_evidence": "One blocked native access read bounded 2026-09-10 21:55:29–21:56:33 UTC; no account content returned.",
+    "current_receipt": "NOT PROVED; new count and timestamp null, processed offer IDs empty.",
+    "prior_receiver_zero": "Dated 18:29:50–18:43:46 UTC source/app evidence, not a fresh successful receiver read.",
+    "unchanged_authority_and_gates": "General Merchant selection/operation is authorized. The existing manual unlock question and separate Product sync exact-click review gate remain in place.",
+    "preservation": "Exact inverse establishes all bytes outside the eight declared operations remain unchanged, including peer-owned content and parent global cockpit passages. Worklog prior content is unchanged."
+  },
+  "independent_native_or_api_replay": false,
+  "external_changes_performed": false,
+  "root_validation_commands_repeated": false,
+  "root_validation_receipt_reviewed": false,
+  "limits": [
+    "This PASS validates the saved checkpoint and canonical preservation, not product receipt or completed Merchant setup.",
+    "Root runs required renderer/integration/strict checks separately; those commands and its additional validation artifact were outside this bounded review.",
+    "No current product count, processing timestamp, offer-to-variant binding, cause of zero ingestion or profit outcome can be inferred from the blocked read."
+  ],
+  "next_owner_action": "Resolve the already pending Mac unlock question; after access returns, verify exact account/source processing data and offer bindings.",
+  "continuation_prompt": "Continue from 2026-09-10-merchant-receipt-resume-mac-lock after the existing unlock gate clears. Preserve the separate Product sync exact-click gate, current owners and paid control; obtain fresh receiver evidence before treating earlier counts as current."
+}
+

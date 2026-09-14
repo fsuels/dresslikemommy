@@ -1,0 +1,111 @@
+{
+  "asOfUtc": "2026-09-06T06:13:04.742294+00:00",
+  "status": "PASS_WITH_EXTERNAL_ACCESS_AND_FORM_GATES",
+  "frozenEvaluatorHashesAfter": {
+    "ops/scripts/compile_task_context.py": "b59503387361fb669c625231a9bfc73264a78f9617a8fedc680b59b98e56b554",
+    "ops/scripts/score_paid_growth_handoff.py": "a5a095d596101b8fe3881f1ee1cf99b725e609a69d0b0df1f5ecf6a15c80fc35",
+    "ops/prompts/paid-growth-ai-army-continuation-prompt.md": "475eb926afd0e4cdb551844fdfb70b1c823c78883e9bba118bfefd35537090c0",
+    "ops/tests/test_compile_task_context.py": "d3dfb6c4663063298c609548be989a0321792a05fdf94e23f4e398f1cf8c38d1",
+    "ops/tests/test_score_paid_growth_handoff.py": "a310ea8d1ca362f4661d80bad67871d306aebf259fd18d9daba6d88fa6716244",
+    "ops/tests/test_score_paid_growth_handoff_semantic.py": "b0ad3dfbd7fb99c376e1f215d574a7269d7676c6ef2d79a5b919b159677474b6",
+    "ops/tests/fixtures/paid_growth_handoff_capability/holdout_routine_local.md": "083580210495efbeb6b1f00f5986a221b42e1f5b8c1f0dee0f4985ac9a1432ad"
+  },
+  "frozenEvaluatorHashesBeforeUnchanged": true,
+  "paidArtifactHashesAfter": {
+    "focused_paid_test.md": "ec700254101c3092df718faf3c141dd34ccedebcd716c83855af798604d5d527",
+    "focused_paid_test_keywords.csv": "d2ddc2b661235bca60b6f0cb05d7e294b717782173ba001ae2d524b2c020cd9a",
+    "focused_paid_test_ads.csv": "429dd983edc5f3a3f66edbdf3813583d9b3e6ab1ad5feed4c5f5d4ae48f87693",
+    "focused_paid_test_settings.json": "2f357100edd3d1b8a7e54c6051a16517191b10385c9a55a5b244ce575bed32ab"
+  },
+  "paidArtifactHashesBeforeUnchanged": true,
+  "rootFileHashesAfter": {
+    "assets/product-desktop-ux-20260513-ruler-sync.js": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+    "sections/main-product.liquid": "6ab7ac0a8d9a68df637a35a5f900217b372ef6704a12232935f1651fb2c18fcd",
+    "assets/cart.js": "3e56046d72019380c0d48ecbd7ec5c12473813278eaeff90090fcec4124955be"
+  },
+  "rootFileHashesBeforeUnchanged": true,
+  "authoritativeControl": {
+    "control_as_of": "2026-09-05",
+    "source_live_evidence_as_of": "2026-06-01",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "live_readback_fresh_until": "EXPIRED",
+    "autonomous_action_ready": "false",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+    "supersedes_execution_readiness_below": "true"
+  },
+  "authoritativeControlUnchanged": true,
+  "rootGuideMirror": true,
+  "guideHashVerified": true,
+  "newJsonFilesParsed": 7,
+  "pin2MappingFormatDisclosureAndDisabledPublication": true,
+  "exactSettingsExecutionSanity": true,
+  "specialistReceiptBindingVerified": true,
+  "noBusinessLiftClaim": true,
+  "noSpend": true,
+  "supportSubmission": "NOT_SUBMITTED",
+  "goalStatus": "ACTIVE",
+  "finalVerifiedAtUtc": "2026-09-06T06:15:59.755964+00:00",
+  "handoffScore": {
+    "passed": true,
+    "score": "17/17",
+    "selectedAnchor": "2026-09-06-ceo-turnaround-google-settings-repair",
+    "command": "score_paid_growth_handoff.py --task-query Continue the September 5 CEO turnaround --task-entity 2026-09-05-ceo-turnaround --fail-on-issues"
+  },
+  "semanticRetrievalCorrection": {
+    "initialResult": "Compiler selected previous Danish anchor because new worklog entry lacked canonical metadata/date heading",
+    "fix": "Added existing task_entities/task_stage/next_action_id/owner_input_action fields and ISO date header; no evaluator or prompt change",
+    "after": "Scorer retrieved unique current Google-settings anchor;17/17"
+  },
+  "integration": {
+    "passed": true,
+    "tracked": 25,
+    "integrated": 25,
+    "sideDocumentRisks": 0,
+    "command": "audit_marketing_command_integration.py --write-report --fail-on-risk"
+  },
+  "strictContinuity": {
+    "passed": true,
+    "exitCode": 0,
+    "result": "CONTINUITY_OK",
+    "command": "check_continuity_integrity.py --strict",
+    "pinterestGrouping": "0 FAIL snapshots reported within strict continuity",
+    "guideMirror": "AGENTS.md/CLAUDE.md byte-identical"
+  },
+  "scopedGitDiffCheck": {
+    "passed": true,
+    "exitCode": 0
+  },
+  "independentFinalReview": {
+    "file": "shopify_google_settings_final_review.md",
+    "sha256": "0a458b2b72b73038fd0c25ece68ed17dece4953f63f6844ba79bc67654c2c8dc",
+    "verdict": "PASS_WITH_RESIDUAL_GATES",
+    "localConsistencyChecks": 15,
+    "uiProofProvenance": "Parent supplied; verifier did not browse/build/execute"
+  },
+  "newTextArtifactWhitespaceCheck": {
+    "shopify_google_connection_readback.json": "PASS",
+    "SHOPIFY_GOOGLE_CONNECTION_REPAIR.md": "PASS",
+    "shopify_local_inventory_repair_review.md": "PASS",
+    "shopify_google_settings_repair_execution.json": "PASS",
+    "shopify_google_settings_final_review.md": "PASS",
+    "google_support_form_recheck_20260906.json": "PASS",
+    "pinterest_distribution_current_readback.json": "PASS",
+    "pinterest_distribution_history_trace.md": "PASS",
+    "pinterest_distribution_independent_review.md": "PASS",
+    "pinterest_organic_release_readback.json": "PASS",
+    "vintage_pinterest_size_guide_readback.json": "PASS",
+    "vintage_pinterest_size_guide_review.md": "PASS"
+  },
+  "oneOwnerAction": "OWNER_CORRECT_SUPPORT_EMAIL_FIELDS_THEN_OPERATOR_VERIFY",
+  "normalMacUnlockRequired": false,
+  "goalComplete": false,
+  "remainingExternalGates": [
+    "Google app permissions for existing Merchant/Ads",
+    "Same approved support form contact readback",
+    "Greek exact paragraph approval",
+    "Actual non-ad costs/returns and paid exposure/launch proof",
+    "Prepared organic/draft actual browser release checks"
+  ]
+}

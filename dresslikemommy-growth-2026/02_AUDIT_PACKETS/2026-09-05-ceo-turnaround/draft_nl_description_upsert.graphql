@@ -1,0 +1,1 @@
+mutation DlmCorrectDraftNlDescription($themeId: ID!, $files: [OnlineStoreThemeFilesUpsertFileInput!]!) { themeFilesUpsert(themeId: $themeId, files: $files) { upsertedThemeFiles { filename } job { id done } userErrors { field message } } }

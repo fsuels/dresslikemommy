@@ -33,7 +33,7 @@ MOTHER_COMPARE="38.24"     # 32.99 × 1.15 → 37.94 → 37.99
 # Apply round_up(price × 1.15, .99):
 CHILD_COMPARE="31.99"
 MOTHER_COMPARE="37.99"
-VENDOR_URL="https://detail.1688.com/offer/920493992812.html"
+VENDOR_URL=""
 
 OUT_DIR="$(cd "$(dirname "$0")/../listings" && pwd)"
 SIZE_CHART_FILE="${OUT_DIR}/size_chart.json"
@@ -205,7 +205,7 @@ CREATE_PAYLOAD=$(jq -c -n \
       productType: $ptype, vendor: $vendor,
       tags: $tags, productOptions: $opts,
       seo: { title: $seoT, description: $seoD },
-      status: "ACTIVE", category: $cat
+      status: "DRAFT", category: $cat
     } }
   }')
 
@@ -258,21 +258,9 @@ META_PAYLOAD=$(jq -c -n --arg pid "${PRODUCT_ID}" --argjson sizes "${SIZE_GIDS}"
 META_RESP=$(gql "${META_PAYLOAD}")
 echo "${META_RESP}" | jq '.data.metafieldsSet.userErrors, (.data.metafieldsSet.metafields | length)'
 
-# ---------- Phase 5d: publishablePublish ----------
-echo "Phase 5d: publish to sales channels ..."
-for PUB_GID in \
-  "gid://shopify/Publication/55169925" \
-  "gid://shopify/Publication/21969633377" \
-  "gid://shopify/Publication/29172400225" \
-  "gid://shopify/Publication/76582879329" \
-  "gid://shopify/Publication/76604768353"
-do
-  PUB_PAYLOAD=$(jq -c -n --arg pid "${PRODUCT_ID}" --arg pub "${PUB_GID}" '
-    {query:"mutation pp($id:ID!,$input:[PublicationInput!]!){ publishablePublish(id:$id,input:$input){ userErrors{ field message } } }",
-     variables:{id:$pid,input:[{publicationId:$pub}]}}')
-  PUB_RESP=$(gql "${PUB_PAYLOAD}")
-  echo "  ${PUB_GID} -> $(echo ${PUB_RESP} | jq -c '.data.publishablePublish.userErrors')"
-done
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+echo "Sales-channel publication skipped; product remains a draft pending approval."
 
 # ---------- Phase 5e: media (skip if uploads dir empty) ----------
 UPLOAD_DIR="/Users/fsuels/Projects/dresslikemommy/uploads/${HANDLE}"

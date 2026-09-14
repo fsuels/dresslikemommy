@@ -1,0 +1,237 @@
+{
+  "schema": "dlm.rainbow_title_independent_preflight.v1",
+  "reviewed_at_utc": "2026-09-07T00:17:39.757575+00:00",
+  "verdict": "PASS_FOR_EXACT_TWO_FIELD_PLAN_WITH_FRESH_GUARDS",
+  "independence": "Reviewer did not author either title/plan or execute/read the source API/UI; local source and supplied validator receipts reviewed independently.",
+  "plan_file": "rainbow_title_plan.json",
+  "plan_sha256": "abf14f61d0d764cd46ccbe0a0dd3fef56b563a8b815cabb27b257a457a79bc80",
+  "source_sha256": {
+    "rainbow_title_plan.json": "abf14f61d0d764cd46ccbe0a0dd3fef56b563a8b815cabb27b257a457a79bc80",
+    "rainbow_title_preflight_source.json": "1b0143d0f87f2321f148fb98aa1ce4fc09123b3218e50df258163b22d5a5470a",
+    "rainbow_title_source_query.graphql": "4bc6127a9bed841596ab5acf3647dd7e0273c6bf56ed6329ae6b74c5142eb789",
+    "rainbow_dutch_title_mutation.graphql": "77adadeef71c7ab15841bdc89a924648abe1850a24c3ec4e97fd19bc306c419b",
+    "rainbow_title_query_local_validation.json": "16ea77ca655f515f7c9531c1ccf6d97de109f5549247b47a3a423c103c8b4e21",
+    "rainbow_title_mutation_connector_validation.json": "34bfe6641f2ded4146987fc1b92f5286b3bb0ad53ddbd5537f18f591eb5b56db",
+    "rainbow_title_mutation_local_validation.json": "3978c5f394bae27316c5bbb4e06e3084e2750b432fc136965363a20846fb997d",
+    "recent_sold_product_landing_review.json": "d6b8a900128a0edfde898a71518d05f66c83990882bd723a4cff5da9e66e56d7",
+    "recent_paid_order_signal_20260906.json": "9d23a144fe81ec4f5ae12a5109013d38bec0707333932310c7c508ad26a385e8",
+    "recent_paid_order_countries_20260906.json": "68a1d79d8af581d44304ecf307e0ff79b7cdcef06df502f575d01e489828c70c"
+  },
+  "product_id": "gid://shopify/Product/7229023846497",
+  "candidates": {
+    "english": "Vibrant Rainbow Mommy and Me Maxi Dresses",
+    "dutch": "Regenboogmaxijurken voor moeder en dochter"
+  },
+  "candidate_characters": {
+    "english": 41,
+    "dutch": 42
+  },
+  "checks": [
+    {
+      "check": "frozen root plan exact supplied product and shop identity",
+      "pass": true
+    },
+    {
+      "check": "source title active status and source handle exact",
+      "pass": true
+    },
+    {
+      "check": "source query covers twenty unique locale aliases",
+      "pass": true
+    },
+    {
+      "check": "ninety-two unique translation rows",
+      "pass": true
+    },
+    {
+      "check": "translation key counts",
+      "pass": true
+    },
+    {
+      "check": "existing Dutch title and false flag bind before",
+      "pass": true
+    },
+    {
+      "check": "six unique English source keys",
+      "pass": true
+    },
+    {
+      "check": "old title digest belongs to exact old source title",
+      "pass": true
+    },
+    {
+      "check": "source English body equals both product reads",
+      "pass": true
+    },
+    {
+      "check": "eight variant records and five girl three mother names",
+      "pass": true
+    },
+    {
+      "check": "separately named option prices",
+      "pass": true
+    },
+    {
+      "check": "English candidate exact",
+      "pass": true
+    },
+    {
+      "check": "Dutch candidate exact",
+      "pass": true
+    },
+    {
+      "check": "both old titles literally contain truncation",
+      "pass": true
+    },
+    {
+      "check": "neither new title has ellipsis or bundle Set wording",
+      "pass": true
+    },
+    {
+      "check": "current English body supports rainbow maxi mother daughter terms",
+      "pass": true
+    },
+    {
+      "check": "exactly two proposed fields and operations",
+      "pass": true
+    },
+    {
+      "check": "dedicated English update only id and title",
+      "pass": true
+    },
+    {
+      "check": "one NL title registration exact target and fresh digest placeholder",
+      "pass": true
+    },
+    {
+      "check": "mutation references inspected document",
+      "pass": true
+    },
+    {
+      "check": "translation mutation restricted to supplied resource and translations",
+      "pass": true
+    },
+    {
+      "check": "old digest not present in executable template",
+      "pass": true
+    },
+    {
+      "check": "fresh no-drift precondition before first write",
+      "pass": true
+    },
+    {
+      "check": "second write requires fresh English digest value and all other translation values",
+      "pass": true
+    },
+    {
+      "check": "independent between-write and final source readbacks required",
+      "pass": true
+    },
+    {
+      "check": "outdated and updatedAt effects disclosed",
+      "pass": true
+    },
+    {
+      "check": "partial success explicitly non-atomic and no blind retry",
+      "pass": true
+    },
+    {
+      "check": "rollback restores English first then fresh digest Dutch original",
+      "pass": true
+    },
+    {
+      "check": "rollback fresh no-drift guard and metadata limitation",
+      "pass": true
+    },
+    {
+      "check": "query validator supplied PASS",
+      "pass": true
+    },
+    {
+      "check": "mutation local validator supplied PASS",
+      "pass": true
+    },
+    {
+      "check": "mutation connector validator supplied PASS",
+      "pass": true
+    },
+    {
+      "check": "old Dress Set landing candidate explicitly superseded unexecuted",
+      "pass": true
+    },
+    {
+      "check": "recent exact product and NL entry BE destination source support",
+      "pass": true
+    },
+    {
+      "check": "source stock images and buyer paths not independently certified",
+      "pass": true
+    },
+    {
+      "check": "current owner automatic authority distinguished from paid authority",
+      "pass": true
+    },
+    {
+      "check": "root sole external writer",
+      "pass": true
+    },
+    {
+      "check": "local translation simulation changes exactly one value and preserves 91",
+      "pass": true
+    },
+    {
+      "check": "local Dutch content inverse exact",
+      "pass": true
+    },
+    {
+      "check": "local English title simulation has one field delta",
+      "pass": true
+    },
+    {
+      "check": "local English content inverse exact",
+      "pass": true
+    },
+    {
+      "check": "source files stable through check",
+      "pass": true
+    }
+  ],
+  "check_count": 42,
+  "passed_count": 42,
+  "failed_checks": [],
+  "semantic_review": {
+    "verdict": "PASS",
+    "english": "Rainbow, mother-and-daughter relationship and maxi dresses match the source. Removing Set avoids an explicit paired-bundle implication; no materials, measurements, availability, fulfillment or quantified fit promises were added.",
+    "dutch": "Regenboogmaxijurken voor moeder en dochter is natural and clear Dutch for rainbow maxi dresses for mother and daughter. It makes no bundled-quantity claim.",
+    "limits": "A title is not a complete separate-piece disclosure. Existing body/SEO claims and malformed translated chart markup are preserved, not newly certified or repaired by this plan."
+  },
+  "preservation_contract": {
+    "translation_rows": 92,
+    "changed_translation_values": 1,
+    "other_translation_values_preserved": 91,
+    "other_existing_title_translations_potentially_outdated": 17,
+    "title_translation_values_total": 18,
+    "other_source_content_entries_preserved": 5,
+    "variants_preserved": 8,
+    "images_preserved": 4,
+    "product_title_only": true,
+    "outdated_flags": "Capture all actual deltas separately. Their final values cannot be proved pre-execution; content rollback cannot restore system metadata.",
+    "nine_paid_controls": "Plan and current claim prohibit paid changes. This local preflight does not independently recompute a before/after diff of nine canonical controls; root retains that preservation responsibility."
+  },
+  "gates_before_and_between_writes": [
+    "Root fresh exact source/dedicated-product no-drift guard against reviewed before state.",
+    "After English update, independently read exact new English title and live title digest; verify original NL and other91 values before binding one NL/title payload.",
+    "Never submit the placeholder or old digest; stop on error/unknown outcome and reconcile exact readback without blind retry.",
+    "Record separate final product/source/all92 values and flag deltas. If only English succeeds, preserve verified improvement and explicitly leave NL pending."
+  ],
+  "rollback_review": "PASS content-only inverse: guarded original English title, fresh resulting title digest, original NL value only, and separate verification. No overwrite on drift and no metadata restoration claim.",
+  "native_status": "BLOCKED_MAC_LOCKED",
+  "business_limit": "No rendered H1, search snippet, indexed state, incremental sales, paid ROAS, CPA or net-profit proof. The recent Google source remains paid/organic unresolved.",
+  "authorization": "Current direct owner instruction covers reviewed reversible two-field copy repair; this independent verdict grants no extra authority, paid action, account change or financial write.",
+  "external_calls": 0,
+  "external_writes": 0,
+  "written_files": [
+    "rainbow_title_preflight.json",
+    "rainbow_title_preflight.md"
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "status": "BOUNDED_META_INVENTORY_COMPLETE_NATIVE_ACCOUNT_IDENTITY_UNVERIFIED",
+  "reviewer": "historical_google_access_paths",
+  "facts": [
+    {
+      "id": 1,
+      "status": "VERIFIED_SAVED_CURRENT_SHOPIFY_READBACK",
+      "statement": "Parent read at 2026-09-07 01:08:16 UTC confirms four candidates ACTIVE and published to Facebook & Instagram. Shopify App2329312 (facebook-ads), Publication29172400225 and AppCatalog7834435681 are Shopify identities, not Meta ad-account or Commerce catalog identities.",
+      "evidence": [
+        {
+          "path": "cross_platform_shopify_publications_20260907.json",
+          "line": 101
+        }
+      ],
+      "product_ids": [
+        "7109117280353",
+        "7229023846497",
+        "7533081133153",
+        "7545279512673"
+      ],
+      "shopify_ids": {
+        "app": "2329312",
+        "publication": "29172400225",
+        "app_catalog": "7834435681"
+      }
+    },
+    {
+      "id": 2,
+      "status": "HISTORICAL_LIVE_READBACK",
+      "statement": "March26 storefront webPixelsConfigList evidence recorded Facebook pixel547553035448852. Current installation, dataset ownership, event receipt and associated ad account are unverified.",
+      "evidence": [
+        {
+          "path": "ops/AGENT_WORKLOG.md",
+          "line": 8540
+        },
+        {
+          "path": "ops/AGENT_WORKLOG.md",
+          "line": 8580
+        }
+      ],
+      "historical_facebook_pixel_id": "547553035448852"
+    },
+    {
+      "id": 3,
+      "status": "HISTORICAL_ADMIN_READBACK",
+      "statement": "May6 Shopify Customer Events showed Facebook & Instagram Connected / Optimized. The recorded repair changed only Pinterest; it is not a Meta repair or Ads Manager access proof.",
+      "evidence": [
+        {
+          "path": "ops/AGENT_WORKLOG.md",
+          "line": 29665
+        },
+        {
+          "path": "ops/AGENT_WORKLOG.md",
+          "line": 29673
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-06-pinterest-event-quality-fix/PINTEREST_EVENT_QUALITY_FIX_RECHECK.md",
+          "line": 223
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "status": "HISTORICAL_REPAIR_INDEPENDENTLY_RECOUNTED",
+      "statement": "April26 Shopify publication repair added Facebook & Instagram to94 products:94 matching requests succeeded without errors. Full after-scan found321 active products and zero missing requested channel pairs. This does not prove downstream Meta approval or ad serving.",
+      "evidence": [
+        {
+          "path": "ops/AGENT_WORKLOG.md",
+          "line": 21881
+        },
+        {
+          "path": "ops/channel-publication-audit-active-products.json",
+          "line": 44
+        },
+        {
+          "path": "ops/channel-publication-apply-results.json",
+          "line": 38
+        },
+        {
+          "path": "ops/channel-publication-verify-active-products.json",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "status": "HISTORICAL_EXPORT_GAP_AND_BOUNDED_LOCAL_ABSENCE",
+      "statement": "April29 recorded Meta Ads NEEDS_EXPORT. No Meta business portfolio, ad-account, Commerce catalog, or public Facebook Page URL/ID, nor verified native Ads Manager access/repair receipt, was recovered in the searched scope. Local social_facebook_link fields are blank. This is not proof that a Page, account or access does not exist.",
+      "evidence": [
+        {
+          "path": "ops/AGENT_WORKLOG.md",
+          "line": 24977
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-needs-data-economics-reconciliation/ad_spend_analytics_reconciliation.csv",
+          "line": 5
+        },
+        {
+          "path": "config/settings_data.json",
+          "line": 112
+        },
+        {
+          "path": "config/settings_data.json",
+          "line": 382
+        }
+      ],
+      "public_facebook_page": {
+        "url": null,
+        "id": null,
+        "status": "UNKNOWN_NO_SOURCE_BACKED_IDENTITY_IN_SEARCHED_SCOPE",
+        "do_not_infer_from": "Brand/store name, pixel ID, Shopify App or AppCatalog IDs"
+      }
+    },
+    {
+      "id": 6,
+      "status": "PARENT_SUPPLIED_CURRENT_NATIVE_BLOCKER",
+      "statement": "Parent reports the fresh approximately01:04UTC CUA inventory remains Mac locked. This reviewer made no browser/auth calls. A historically observed normal Shopify route is Customer Events; connected Meta business/account identities still require normal native readback.",
+      "evidence": [
+        {
+          "path": "ops/AGENT_WORKLOG.md",
+          "line": 29665
+        }
+      ],
+      "normal_documented_route": "https://admin.shopify.com/store/dresslikemommy-com/settings/customer_events"
+    }
+  ],
+  "source_sha256": {
+    "ops/channel-publication-audit-active-products.json": "c29162ed6c63d0a31615990505813650f3603971bc1eab1992ec944c8d29f2af",
+    "ops/channel-publication-apply-results.json": "91538feede3a5e75ec06723feccc9d0148f4607ff9339b9b85c1676dcd2282a1",
+    "ops/channel-publication-verify-active-products.json": "1c00ca6ac1cda41e1ccf2821c412efbd622fccff54addf479e5017558ac6ebe1",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-06-pinterest-event-quality-fix/PINTEREST_EVENT_QUALITY_FIX_RECHECK.md": "5ce59c6dcd1afaea2bbef6c54683ef14c83bc6318a186c3459a454a58b3d00b6",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-needs-data-economics-reconciliation/ad_spend_analytics_reconciliation.csv": "e659ee11a905c24ff639db9b75e5ff8e285bf73680fb5121fc88d619ce266c68",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/cross_platform_shopify_publications_20260907.json": "a75206a1863bf5f51d3013234b16ce9ce669fe8e54131ed57c2914525591d904",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/cross_platform_shopify_publications_20260907.graphql": "360343a83002b7a46240ef1e68fea56ea92a130b392a5587f7e804425915d118",
+    "config/settings_data.json": "813613945a0d69e783a87f0c314b2ddcf23952ac2eb4c31d4dc76d1d47a860db"
+  },
+  "worklog_excerpt_sha256": {
+    "8539-8594": "b007996e5b14a9b92761dcae00492821c7e8fc49ebb21e9268cf34bad527d942",
+    "21881-21904": "de36fe759d4d15a3ab1d64d606c720de940d21aafb6121688c6c3471dade0590",
+    "24967-25003": "f3dabd2f53c40b5e96c21f8010095acd0120e01a6834c981b2d8db7eb2a73a13",
+    "29653-29676": "0b3f0d9b94bf768de01f5d70179aa5cbd061a3f1dc15ab60ac51f24fac0a8cb4"
+  },
+  "searched_scope": [
+    "Meta/Facebook terms and exact pixel ID in targeted canonical worklog/problem entries; only relevant linked anchors read",
+    "ops/marketing Markdown and ACCOUNT_ACCESS_PROTOCOL.md filename/term checks",
+    "Three existing channel-publication audit/apply/verify JSON files",
+    "Exact April29 ad-spend row/README and May6 event-quality receipt",
+    "Packet filenames for Meta/Facebook-specific artifacts; no broad rollout bodies",
+    "config/settings_data.json social_facebook_link fields",
+    "New parent-supplied Shopify publication receipt/query; no duplicate API read"
+  ],
+  "excluded_scope": [
+    "Credential stores, mailbox, browser/history/auth, customer/order/payment files, external systems",
+    "Tracking implementation/current event-delivery analysis owned by Feed Ops"
+  ],
+  "next_action": "After the existing normal unlock, open the existing Facebook & Instagram channel in Shopify Admin and read its connected Meta business, ad account, Page and public Page URL, catalog and pixel identities plus errors. Verify the exact Page before any organic-post duplicate/destination checks; no post, connection or campaign action is implied.",
+  "external_calls": 0,
+  "external_writes": 0,
+  "canonical_edits": 0,
+  "independent_checks": [
+    "Four exact active candidate/Facebook publication joins",
+    "Shopify identity namespace confirmed",
+    "94 before/apply product-handle joins, all success",
+    "321-product zero-missing after-state",
+    "Six facts with precise source anchors; historical/current separation"
+  ]
+}

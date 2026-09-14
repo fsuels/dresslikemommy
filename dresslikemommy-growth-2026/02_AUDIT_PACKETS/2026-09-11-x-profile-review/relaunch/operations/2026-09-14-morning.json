@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "checkpoint": "2026-09-14 morning \u2014 completed September 13 X reporting",
+  "actual_heartbeat_utc": "2026-09-14T13:01:01.345Z",
+  "actual_heartbeat_local": "2026-09-14T09:01:01.345-04:00",
+  "automation_id": "run-dress-like-mommy-x-organic-pilot",
+  "task_stage": "VERIFY",
+  "source_context": {
+    "task": "TA-24",
+    "owner": "root01a0915d-9105-7833-9d4b-eb467ab0ebbd",
+    "anchor": "2026-09-12-x-operation-context-and-morning-handoff-verified",
+    "retrieval": "continue X returned Retrieval OK. Current X claim and TA-24 were read in full; same owner, API hold and no repeated connection question.",
+    "paid_authority": "NONE; autonomous_action_ready=false; STALE_READBACK_REQUIRED preserved.",
+    "shared_writer": "Parent retains shared canonical ownership. This run writes only the existing task-owned X receipt, execution status and readback."
+  },
+  "reporting_window": {
+    "since": "2026-09-13",
+    "until": "2026-09-13",
+    "date_boundaries": "Inclusive, unquoted explicit ShopifyQL dates",
+    "coverage": "Completed calendar day, as reported at this morning check; late processing and attribution gaps remain possible.",
+    "timezone": "EDT",
+    "timezone_evidence": "Observed through connected shop-info at the September 13 morning run; not queried again today. America/New_York is UTC-04:00 on the report date.",
+    "timezone_receipt": "operations/2026-09-13-morning.json",
+    "first_full_x_reporting_date": "2026-09-12",
+    "completed_full_x_dates_observed": 2
+  },
+  "accepted_campaign_report": {
+    "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-13 UNTIL 2026-09-13",
+    "columns": [],
+    "rows": [],
+    "rowCount": 0,
+    "shopDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "accepted_referrer_report": {
+    "query": "FROM sessions SHOW sessions GROUP BY referrer_source, referrer_name SINCE 2026-09-13 UNTIL 2026-09-13 ORDER BY sessions DESC LIMIT 100",
+    "columns": [
+      {
+        "name": "referrer_source",
+        "dataType": "STRING"
+      },
+      {
+        "name": "referrer_name",
+        "dataType": "STRING"
+      },
+      {
+        "name": "sessions",
+        "dataType": "INTEGER"
+      }
+    ],
+    "rows": [
+      [
+        "direct",
+        "",
+        "99"
+      ],
+      [
+        "search",
+        "google",
+        "37"
+      ],
+      [
+        "search",
+        "duckduckgo",
+        "4"
+      ],
+      [
+        "unknown",
+        "chatgpt",
+        "1"
+      ]
+    ],
+    "rowCount": 4,
+    "chartHint": {
+      "type": "bar",
+      "xAxisColumnIndex": 0,
+      "yAxisColumnIndices": [
+        2
+      ],
+      "yAxisFormat": "number"
+    },
+    "summaryMetric": {
+      "label": "sessions",
+      "value": "141"
+    },
+    "shopDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "report_validation": {
+    "campaign_isError": false,
+    "referrer_isError": false,
+    "expected_shop": "dresslikemommy-com.myshopify.com",
+    "error_code_present": false
+  },
+  "measurement": {
+    "x_campaign_rows": 0,
+    "named_x_twitter_tco_referrer_rows": 0,
+    "referrer_rows_returned": 4,
+    "referrer_limit": 100,
+    "referrer_session_total": 141,
+    "acquired_x_visits": null,
+    "qualified_x_visits": null,
+    "confirmed_paid_noncancelled_x_orders": null,
+    "supported_x_contribution": null,
+    "interpretation": "The accepted report has no X campaign row or named X/Twitter/t.co referrer row. Direct and unclassified sessions may contain unattributed traffic. Empty rows do not establish zero clicks or orders, publication status, or content failure.",
+    "progression": "No X-tagged progression row available. Completed-checkout sessions would not establish distinct paid orders.",
+    "qa": "No storefront request or tagged QA visit this run. Preserve earlier QA without inventing session subtraction.",
+    "separate_cohorts": "Article and Sunshine Pin reporting clocks remain separate; a guide visit is not counted as an additional acquisition."
+  },
+  "publication": {
+    "R001": "Historical September 11 verified publication and pin receipt retained; no current X readback.",
+    "R002": "DUE__PUBLICATION_UNVERIFIED; planned September 13 at 12:15 PM EDT. Platform post ID/URL/actual time remain unknown.",
+    "current_native_pending_count": null,
+    "original_saved_submissions": 7,
+    "remaining_future_planned_dates": [
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-18",
+      "2026-09-20",
+      "2026-09-22",
+      "2026-09-23"
+    ],
+    "due_today_in_recorded_plan": 0,
+    "next_planned": "R003 \u2014 September 15 at 12:15 PM EDT; saved schedule is not publication proof.",
+    "api_connection": "No X publisher found in enabled tool metadata; existing supported-connection question remains pending once. No credential, setup, browser workaround or repeated public 403 probe.",
+    "duplicate_or_backfill_attempts": 0
+  },
+  "decision": "Retain the initial queue as the baseline and do not increase cadence. Two completed full days without attributed X rows and an unverified R002 publication cannot distinguish reach, publishing, attribution and content performance; no winner or loser is established. Keep reviewed R009/R010 local candidates unchanged until the connection and publication preflight are satisfied. Avoid another filler draft or duplicate post.",
+  "next_action": "At the existing 4 PM check, assess permitted R002 publication evidence if newly available and one grounded opportunity for the existing plan. R003 remains the next recorded scheduled original; preserve its item. September 19 remains the first evidence-based decision checkpoint.",
+  "modifications": {
+    "X_account_post_reply_schedule_writes": 0,
+    "other_platform_writes": 0,
+    "automation_changes": 0,
+    "new_drafts": 0,
+    "new_spend": 0,
+    "owner_questions_repeated": 0,
+    "tagged_QA_visits": 0,
+    "shared_canonical_writes": 0
+  },
+  "verification": {
+    "status": "PASS",
+    "strict_snapshot": {
+      "exit_code": 0,
+      "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 51308 lines; latest anchor 2026-09-14-ceo-compact-microsoft-context-repaired\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-14-ceo-compact-microsoft-context-repaired\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+      "scope": "Read-only shared repository snapshot; no shared canonical edits."
+    },
+    "scoped_git_diff_check": {
+      "exit_code": 0,
+      "output": "",
+      "scope": "Task-owned X relaunch directory."
+    },
+    "same_active_automation": true,
+    "persisted_prompt_sha256": "2248c70c1339eecd5b53c10a81403586627da2d6d3c2a9295e51c4d87a6e1e62",
+    "historical_live_projection_sha256": "40574c4b612c89fd5750f10e0c99f3f452928f18692505a30632898655499e89",
+    "before_owned_files": {
+      "readback_sha256": "6a4c2e5c1396a3ef7cd9f22a73185b139db8f9786a3f21a3c3c8bace85d53185",
+      "execution_status_sha256": "caff0ffd495bfb3c3481a03941c9452bf3b6ee44796064055293d0bf33ae39b8"
+    },
+    "checks": {
+      "accepted_matching_shop_reports": true,
+      "explicit_completed_date": true,
+      "no_campaign_rows_not_zero_orders": true,
+      "referrer_count_and_sum": true,
+      "publication_uncertainty_preserved": true,
+      "original_live_projection_unchanged": true,
+      "current_receipt_and_next_check": true,
+      "no_external_mutations_or_question_repeat": true,
+      "strict_and_diff_pass": true
+    },
+    "count": 9
+  },
+  "effort": {
+    "prior_recorded_recurring_minutes": 28.79,
+    "prior_recorded_run_count": 5,
+    "current_calendar_week_start_local": "2026-09-14",
+    "weekly_cap_minutes": 120,
+    "setup_minutes": null,
+    "accounting_limit": "The five prior routine run receipts total 28.79 elapsed minutes. Setup and intervening coordination closeout time are not fully quantified; no complete weekly-cap compliance claim. Current run elapsed time will be added at closeout.",
+    "current_recorded_calendar_week_minutes": 4.92,
+    "known_recorded_rolling_seven_day_minutes": 33.71
+  },
+  "notification_decision": "UNCHANGED: no verified buyer result, new blocker, new owner action or implemented content improvement. Keep the pending connection question and avoid another parent/owner status notice.",
+  "overall_requested_outcome": "PARTIAL; live relaunch and historical native submissions verified, additional unattended publishing and R002 verification remain blocked on the existing supported-connection dependency. No acquired X traffic or order result verified.",
+  "completed_at_utc": "2026-09-14T13:05:56.764331+00:00",
+  "elapsed_wall_minutes": 4.92
+}

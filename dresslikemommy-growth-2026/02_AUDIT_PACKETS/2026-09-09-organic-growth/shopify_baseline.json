@@ -1,0 +1,585 @@
+{
+  "captured_at_utc": "2026-09-09T16:44:25.080Z",
+  "shop_domain": "www.dresslikemommy.com",
+  "reporting_timezone": "America/New_York",
+  "date_window": {
+    "since": "2026-08-10",
+    "until": "2026-09-08",
+    "inclusive_days": 30
+  },
+  "reports": {
+    "funnel": {
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout, conversion_rate SINCE 2026-08-10 UNTIL 2026-09-08",
+      "columns": [
+        {
+          "name": "sessions",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_with_cart_additions",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_that_reached_checkout",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_that_completed_checkout",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "conversion_rate",
+          "dataType": "PERCENT"
+        }
+      ],
+      "rows": [
+        [
+          "4896",
+          "115",
+          "27",
+          "10",
+          "0.002042483660130719"
+        ]
+      ],
+      "rowCount": 1,
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "order_referrers": {
+      "query": "FROM sales SHOW orders, total_sales GROUP BY order_referrer_source, order_referrer_name SINCE 2026-08-10 UNTIL 2026-09-08",
+      "columns": [
+        {
+          "name": "order_referrer_source",
+          "dataType": "STRING"
+        },
+        {
+          "name": "order_referrer_name",
+          "dataType": "STRING"
+        },
+        {
+          "name": "orders",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "total_sales",
+          "dataType": "MONEY"
+        }
+      ],
+      "rows": [
+        [
+          "search",
+          "google",
+          "5",
+          "306.21"
+        ],
+        [
+          "",
+          "",
+          "3",
+          "450.39"
+        ],
+        [
+          "search",
+          "duckduckgo",
+          "1",
+          "36.98"
+        ],
+        [
+          "",
+          "dresslikemommy",
+          "1",
+          "53.84"
+        ]
+      ],
+      "rowCount": 4,
+      "chartHint": {
+        "type": "bar",
+        "xAxisColumnIndex": 0,
+        "yAxisColumnIndices": [
+          2
+        ],
+        "yAxisFormat": "number"
+      },
+      "summaryMetric": {
+        "label": "orders",
+        "value": "10"
+      },
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "products_90d_top12": {
+      "query": "FROM sales SHOW orders, net_sales GROUP BY product_title SINCE 2026-06-11 UNTIL 2026-09-08 ORDER BY net_sales DESC LIMIT 12",
+      "columns": [
+        {
+          "name": "product_title",
+          "dataType": "STRING"
+        },
+        {
+          "name": "orders",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "net_sales",
+          "dataType": "MONEY"
+        }
+      ],
+      "rows": [
+        [
+          "",
+          "6",
+          "357.49"
+        ],
+        [
+          "Skyfade Family Matching Set - Dress & Shirt",
+          "3",
+          "239.31"
+        ],
+        [
+          "Matching Mother and Daughter Beach Dresses Elegant ... | DLM",
+          "2",
+          "123.96"
+        ],
+        [
+          "Matching Dad and Son Green Stripe Swim Trunks Beach Shorts",
+          "2",
+          "119.62"
+        ],
+        [
+          "Sunshine Stripe Family Matching Tops - Cotton Tee",
+          "1",
+          "118.95"
+        ],
+        [
+          "Vibrant Rainbow Mommy and Me Maxi Dresses",
+          "2",
+          "107.39"
+        ],
+        [
+          "Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set",
+          "1",
+          "101.97"
+        ],
+        [
+          "Pastel Bloom Mommy and Me Dresses - Sleeveless Sundress",
+          "2",
+          "100.02"
+        ],
+        [
+          "Matching Mommy & Me Sunflower Maxi Dresses Sleevele... | DLM",
+          "2",
+          "99.2"
+        ],
+        [
+          "Pink Horizon Family Matching Set — Dress & Shirt",
+          "1",
+          "92.5"
+        ],
+        [
+          "Sunlit Floral Family Matching Set - Dress & Shirt",
+          "1",
+          "89.61"
+        ],
+        [
+          "Men’s & Kids’ Matching Hawaiian Shirt – Blue Tropical Cotton Short Sleeve Button-Up",
+          "1",
+          "86.31"
+        ]
+      ],
+      "rowCount": 12,
+      "chartHint": {
+        "type": "bar",
+        "xAxisColumnIndex": 0,
+        "yAxisColumnIndices": [
+          1
+        ],
+        "yAxisFormat": "number"
+      },
+      "summaryMetric": {
+        "label": "orders",
+        "value": "24"
+      },
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "session_referrers_top15": {
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout GROUP BY referrer_source, referrer_name SINCE 2026-08-10 UNTIL 2026-09-08 ORDER BY sessions DESC LIMIT 15",
+      "columns": [
+        {
+          "name": "referrer_source",
+          "dataType": "STRING"
+        },
+        {
+          "name": "referrer_name",
+          "dataType": "STRING"
+        },
+        {
+          "name": "sessions",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_with_cart_additions",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_that_reached_checkout",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_that_completed_checkout",
+          "dataType": "INTEGER"
+        }
+      ],
+      "rows": [
+        [
+          "direct",
+          "",
+          "3071",
+          "30",
+          "14",
+          "4"
+        ],
+        [
+          "search",
+          "google",
+          "1096",
+          "76",
+          "11",
+          "5"
+        ],
+        [
+          "unknown",
+          "trafficheap",
+          "508",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "social",
+          "facebook",
+          "69",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "search",
+          "duckduckgo",
+          "54",
+          "4",
+          "1",
+          "1"
+        ],
+        [
+          "search",
+          "bing",
+          "25",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "unknown",
+          "chatgpt",
+          "24",
+          "3",
+          "0",
+          "0"
+        ],
+        [
+          "search",
+          "yahoo!",
+          "24",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "unknown",
+          "brave",
+          "4",
+          "1",
+          "1",
+          "0"
+        ],
+        [
+          "search",
+          "yandex",
+          "4",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "social",
+          "pinterest",
+          "3",
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "paid",
+          "google",
+          "2",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "search",
+          "ecosia",
+          "2",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "search",
+          "yahoo! images",
+          "2",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "unknown",
+          "openurls",
+          "1",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "rowCount": 15,
+      "chartHint": {
+        "type": "bar",
+        "xAxisColumnIndex": 0,
+        "yAxisColumnIndices": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "yAxisFormat": "number"
+      },
+      "summaryMetric": {
+        "label": "sessions",
+        "value": "4,889"
+      },
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "session_countries_top12": {
+      "query": "FROM sessions SHOW sessions, sessions_that_completed_checkout GROUP BY session_country SINCE 2026-08-10 UNTIL 2026-09-08 ORDER BY sessions DESC LIMIT 12",
+      "columns": [
+        {
+          "name": "session_country",
+          "dataType": "STRING"
+        },
+        {
+          "name": "sessions",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_that_completed_checkout",
+          "dataType": "INTEGER"
+        }
+      ],
+      "rows": [
+        [
+          "United States",
+          "2614",
+          "6"
+        ],
+        [
+          "Singapore",
+          "532",
+          "0"
+        ],
+        [
+          "Italy",
+          "264",
+          "0"
+        ],
+        [
+          "China",
+          "209",
+          "0"
+        ],
+        [
+          "Denmark",
+          "96",
+          "2"
+        ],
+        [
+          "Israel",
+          "84",
+          "0"
+        ],
+        [
+          "Norway",
+          "70",
+          "0"
+        ],
+        [
+          "Greece",
+          "69",
+          "0"
+        ],
+        [
+          "Canada",
+          "57",
+          "0"
+        ],
+        [
+          "Brazil",
+          "52",
+          "0"
+        ],
+        [
+          "Sweden",
+          "52",
+          "0"
+        ],
+        [
+          "Mexico",
+          "47",
+          "0"
+        ]
+      ],
+      "rowCount": 12,
+      "chartHint": {
+        "type": "bar",
+        "xAxisColumnIndex": 0,
+        "yAxisColumnIndices": [
+          1,
+          2
+        ],
+        "yAxisFormat": "number"
+      },
+      "summaryMetric": {
+        "label": "sessions",
+        "value": "4,146"
+      },
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "devices": {
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_completed_checkout GROUP BY session_device_type SINCE 2026-08-10 UNTIL 2026-09-08",
+      "columns": [
+        {
+          "name": "session_device_type",
+          "dataType": "STRING"
+        },
+        {
+          "name": "sessions",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_with_cart_additions",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_that_completed_checkout",
+          "dataType": "INTEGER"
+        }
+      ],
+      "rows": [
+        [
+          "desktop",
+          "2899",
+          "16",
+          "0"
+        ],
+        [
+          "mobile",
+          "1980",
+          "99",
+          "10"
+        ],
+        [
+          "tablet",
+          "14",
+          "0",
+          "0"
+        ],
+        [
+          "other",
+          "3",
+          "0",
+          "0"
+        ]
+      ],
+      "rowCount": 4,
+      "chartHint": {
+        "type": "bar",
+        "xAxisColumnIndex": 0,
+        "yAxisColumnIndices": [
+          1,
+          2,
+          3
+        ],
+        "yAxisFormat": "number"
+      },
+      "summaryMetric": {
+        "label": "sessions",
+        "value": "4,896"
+      },
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "sales": {
+      "query": "FROM sales SHOW orders, gross_sales, discounts, sales_reversals, net_sales, shipping_charges, taxes, total_sales SINCE 2026-08-10 UNTIL 2026-09-08",
+      "columns": [
+        {
+          "name": "orders",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "gross_sales",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "discounts",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "sales_reversals",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "net_sales",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "shipping_charges",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "taxes",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "total_sales",
+          "dataType": "MONEY"
+        }
+      ],
+      "rows": [
+        [
+          "10",
+          "821.44",
+          "0",
+          "0",
+          "821.44",
+          "25.98",
+          "0",
+          "847.42"
+        ]
+      ],
+      "rowCount": 1,
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    }
+  },
+  "limitations": [
+    "ShopifyQL aggregates; no order-level payment, cancellation, fulfillment, or actual cost reconciliation in this task.",
+    "Search referrer category does not independently exclude paid/untagged traffic or establish incremental organic attribution.",
+    "Top-N rows are subsets; do not add product order counts as unique total orders.",
+    "conversion_rate raw decimal checked against completed_checkout_sessions / sessions before multiplying by 100.",
+    "Current report is not directly comparable with historical 28-day snapshots; reporting windows differ."
+  ]
+}

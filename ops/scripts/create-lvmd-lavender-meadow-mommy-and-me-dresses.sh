@@ -41,7 +41,7 @@ PRINT_NAME = "Lavender Meadow"
 SHORTCODE = "LVMD"
 COLOR_TOKEN = "LAV"
 COLOR_NAME = "Lavender"
-VENDOR_URL = "https://detail.1688.com/offer/780646169756.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Dresses"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-4"
@@ -290,7 +290,7 @@ def tags() -> list[str]:
         "Garden",
         "Vacation",
         "Resort",
-        VENDOR_URL,
+
     ]
     values.extend(row["picker_label"] for row in SIZE_CHART)
     return sorted(dict.fromkeys(values))

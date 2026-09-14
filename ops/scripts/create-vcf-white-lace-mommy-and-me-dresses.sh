@@ -48,7 +48,7 @@ MOTHER_CMP="36.99"      # 31.99 * 1.15 = 36.79; round_up to next .99 = 36.99
 #   31.99 × 1.15 = 36.7885 → next .99 = 36.99
 CHILD_CMP="33.99"
 MOTHER_CMP="36.99"
-VENDOR_URL="https://detail.1688.com/offer/1032400758007.html"
+VENDOR_URL=""
 SEASON="Summer"
 FORCE_SPEC_PRICES="true"
 
@@ -230,7 +230,7 @@ if [[ -z "$EXIST_ID" ]]; then
       query:"mutation productCreate($input: ProductInput!){ productCreate(input:$input){ product{ id handle title } userErrors{ field message }}}",
       variables:{input:{
         title:$title, handle:$handle, descriptionHtml:$body,
-        productType:$ptype, vendor:$vendor, status:"ACTIVE",
+        productType:$ptype, vendor:$vendor, status:"DRAFT",
         tags:$tags, category:$tax,
         seo:{title:$seoT, description:$seoD},
         productOptions:[
@@ -386,16 +386,9 @@ echo "✓ Metafields written: $MF_COUNT"
 # 9. Publish to channels
 # ─────────────────────────────────────────────────────────────────────────────
 echo "── publishablePublish ──"
-PUB_PAYLOAD=$(jq -nc --arg pid "$PRODUCT_ID" \
-  --arg p1 "$PUB_ONLINE" --arg p2 "$PUB_GOOGLE" --arg p3 "$PUB_META" --arg p4 "$PUB_PINT" --arg p5 "$PUB_TT" '
-  {
-    query:"mutation pub($id:ID!, $input:[PublicationInput!]!){ publishablePublish(id:$id, input:$input){ publishable{ availablePublicationsCount{ count } } userErrors{ field message }}}",
-    variables:{ id:$pid, input:[
-      {publicationId:$p1},{publicationId:$p2},{publicationId:$p3},{publicationId:$p4},{publicationId:$p5}
-    ]}
-  }')
-PUB_RESP=$(gql "$PUB_PAYLOAD")
-echo "$PUB_RESP" | jq '.data.publishablePublish.userErrors'
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+echo "Sales-channel publication skipped; product remains a draft pending approval."
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 10. Media — idempotent (skip if uploads dir empty)

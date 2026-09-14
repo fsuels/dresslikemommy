@@ -1,0 +1,159 @@
+{
+  "schema": "dlm.facebook_native_qualification.v1",
+  "task_id": "TA-18",
+  "root_thread_id": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "status": "IDENTITIES_PARTIALLY_VERIFIED__PUBLISHING_ACCESS_UNPROVED",
+  "observation_window_utc": {
+    "start": "2026-09-12T14:39:16Z",
+    "end": "2026-09-12T14:49:53Z",
+    "precision_note": "Clock reads bound this observation window; individual UI action timestamps were not separately captured."
+  },
+  "source": "Normal task-owned background IAB through supported CUA. Facts below are transcribed from rendered accessibility and visual observations; no hidden state or private browser API used.",
+  "authority": {
+    "source": "draft_publication_current_20260908.json and current TA-18 action row",
+    "scope": "Existing finished nonspend Facebook photo post, after exact target, current buyer, duplicate, native settings and independent review gates.",
+    "new_blanket_approval_required": false,
+    "paid_external_scope": "NONE",
+    "paid_live_state_mode": "STALE_READBACK_REQUIRED",
+    "external_publication_performed": false,
+    "account_or_permission_change_performed": false
+  },
+  "readback": {
+    "shopify": {
+      "evidence_label": "LIVE_VERIFIED",
+      "store": "dresslikemommy-com",
+      "authenticated_admin": true,
+      "channel_url": "https://admin.shopify.com/store/dresslikemommy-com/apps/facebook-ads/shopify_app/home",
+      "settings_url": "https://admin.shopify.com/store/dresslikemommy-com/apps/facebook-ads/shopify_app/settings",
+      "app_installation_id_from_native_search": "313608142945",
+      "facebook_shop_name": "Dresslikemommy.com",
+      "facebook_shop_status": "Active",
+      "instagram_shop_name": "dresslikemommy",
+      "instagram_shop_status": "Active",
+      "product_status_label": "Approved",
+      "displayed_product_count": 257,
+      "product_count_scope": "One Shopify Meta-channel summary. No complete product, variant, country or language reconciliation was performed.",
+      "platform_banner": "Your shop is back and available to customers again",
+      "banner_detail": "Customers are directed to the merchant website for checkout. This is displayed platform state, not proof of new traffic or sales."
+    },
+    "connected_page": {
+      "evidence_label": "LIVE_VERIFIED",
+      "id": "942388912516328",
+      "settings_label": "Facebook Page: 942388912516328",
+      "name": "Dresslikemommy.com",
+      "id_route": "https://www.facebook.com/942388912516328",
+      "resolved_public_url": "https://www.facebook.com/dresslikemommy/",
+      "public_destination_label": "dresslikemommy.com",
+      "publishing_role_verified": false
+    },
+    "connected_instagram": {
+      "evidence_label": "LIVE_VERIFIED",
+      "settings_shop_name": "dresslikemommy",
+      "settings_profile_label": "Instagram profile: @matchingdressesmotherdaughter",
+      "native_profile_and_publishing_role_verified": false
+    },
+    "measurement_configuration": {
+      "evidence_label": "LIVE_VERIFIED",
+      "data_sharing_setting": "Maximum",
+      "displayed_description": "Meta Pixel, advanced matching and Conversions API",
+      "dataset_id": "547553035448852",
+      "dataset_name": "Dresslikemommy.com's Pixel",
+      "ownership_label": "Dresslikemommy.com owns this",
+      "business_id_in_settings_event_manager_link": "422152645220050",
+      "event_manager_link": "https://business.facebook.com/events_manager2/list/pixel/547553035448852/overview?business_id=422152645220050&nav_source=",
+      "business_role_directly_verified": false,
+      "current_event_transport_receiver_purchase_consent_dedup_verified": false
+    },
+    "other_settings": {
+      "evidence_label": "LIVE_VERIFIED",
+      "return_policy_label": "Returns not accepted",
+      "shipping_option_count": 2,
+      "shipping_last_synced_label": "Sep 8, 2026",
+      "website_email_offer": "Off",
+      "shop_email_offer": "Off",
+      "policy_accuracy_verified": false,
+      "policy_note": "Displayed Meta return setting is recorded for qualification; no current website-policy comparison or legal conclusion was made. No setting was edited."
+    },
+    "untyped_route_identifiers": {
+      "commerce_route_id": "561668318457800",
+      "source": "Visible Manage offer link contains /commerce/561668318457800/.",
+      "ads_redirect_sai_id": "3028263364079464",
+      "source_2": "Visible Create ad link contains sai_id=3028263364079464.",
+      "identity_limit": "Neither route is promoted to a verified catalog or ad-account identity. The connected product catalog ID and Meta ad-account ID remain unknown."
+    },
+    "shop_chart": {
+      "evidence_label": "LIVE_VERIFIED",
+      "displayed_window": "From Sep 5 - Sep 11",
+      "selected_metric": "Checkouts initiated",
+      "facebook_shop_daily_values": [0, 0, 0, 0, 0, 0, 0],
+      "instagram_shop_daily_values": [0, 0, 0, 0, 0, 0, 0],
+      "scope_limit": "The channel's two shop series only. Not sitewide visits, real orders, paid attribution or profit; timezone and reporting completeness were not independently read."
+    }
+  },
+  "publishing_access": {
+    "status": "ACCESS_RECOVERY_REQUIRED",
+    "public_page_readable": true,
+    "public_view_voice_matches_dlm": false,
+    "voice_observation": "The current public view offered Comment as another managed brand. It did not show a Dress Like Mommy post composer or management controls.",
+    "business_route_checked_once": "https://business.facebook.com/latest/home?asset_id=942388912516328",
+    "business_route_result": "Sorry, this content isn't available right now",
+    "business_route_detail": "The link may have expired or the page may only be visible to another audience.",
+    "interpretation": "This does not prove the account lacks every Page permission. The current session has not established a usable Dress Like Mommy publisher role.",
+    "account_switch_login_or_connect_clicked": false,
+    "remaining_gates": [
+      "Normal authorized publishing access to the exact existing Page",
+      "Complete relevant Page duplicate check",
+      "Current public child and adult buyer-path acceptance",
+      "Native composer image, caption, direct link and disclosure readback",
+      "One publication and exact public post ID, URL and clickthrough readback"
+    ],
+    "next_access_action": "Use the normal Facebook identity with publishing access to Page942388912516328, then resume the same reviewed post. No new Page, account, reconnection, permission expansion or generic approval is requested.",
+    "next_attempt_trigger": "Changed normal Page-management access or exact owner handoff; no unchanged-session retry."
+  },
+  "prepared_release": {
+    "payload_path": "cross_platform_facebook_post_20260907.json",
+    "payload_sha256": "3a8bd75026846b5b315478182adf7732cd7def87b5f5ff284730c920f1623e91",
+    "image_path": "sunshine_product_detail_v1.png",
+    "image_sha256": "751f8636c646032f88d975759a199885bd3e7237c000b6237328ee1121cb44f9",
+    "product_id": "7545279512673",
+    "public_url": "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops",
+    "source_review": "Independent /root/order_delta_1934 September12 read-only review confirms exact saved image and payload bytes; no age-based rewrite needed. Saved source truth is dated; native publication and current buyer gates remain separate.",
+    "measurement_clock": "Starts at actual Facebook publication, not the September7 UTM label or Pinterest release date.",
+    "original_payload_modified": false,
+    "new_creative_draft_upload_post_or_schedule": false
+  },
+  "recovery_and_tool_limits": [
+    "Configured tool inventory contains no callable Meta/Facebook management connector. Previously documented named local helper/credential inventory had no supported Meta path; secret values were not read this wake.",
+    "The first newly created task tab became unavailable after the CUA documentation reset. One supported replacement was recovered and retained; successful Shopify native access supersedes the old blanket Mac-lock blocker for this observation window.",
+    "A JavaScript binding error occurred after replacement-tab creation; root reacquired that same returned tab, not another account or browser.",
+    "A detached accessibility scroll failed; a normal screenshot remained available. One catalog-arrow click produced no visible expansion. Catalog identity is not claimed; no looping or private API fallback.",
+    "An optional raw-browser binding was unavailable; no raw browser, hidden state, shell browser control or native personal-browser fallback was used.",
+    "Embedded Shopify session query values were omitted from this receipt and subsequent printed observations. No credentials, customer records or unrelated profile details were saved."
+  ],
+  "tab_map": [
+    {
+      "task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+      "browser_id": "1",
+      "browser_type": "iab",
+      "tab_id": "11",
+      "url": "https://admin.shopify.com/store/dresslikemommy-com/apps/facebook-ads/shopify_app/home",
+      "role": "Root Meta-channel qualification",
+      "handoff_mark_applied": true
+    },
+    {
+      "task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+      "browser_id": "1",
+      "browser_type": "iab",
+      "tab_id": "12",
+      "url": "https://business.facebook.com/latest/home?asset_id=942388912516328",
+      "role": "Exact Page publishing-access handoff",
+      "handoff_mark_applied": true
+    }
+  ],
+  "business_outcome": {
+    "new_publication": false,
+    "new_visits_orders_revenue_or_profit_verified": false,
+    "completed": "Correct Shopify-linked Page, public URL, current shops, displayed approval count and retained dataset now have current native evidence.",
+    "incomplete": "Publishing access, full catalog/language coverage, purchase measurement and the Facebook post remain open."
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "checkedAt": "2026-09-10T05:05:22.444Z",
+  "revision": 6,
+  "status": "VERIFIED_PREVIEW__OWNER_PUBLICATION_PENDING",
+  "commands": [
+    {
+      "ranAt": "2026-09-10T04:33:13.587Z",
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-pdp-v6/arabic-child-selector.test.mjs",
+        "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-pdp-v6/japanese-cleanup.test.mjs"
+      ],
+      "exitCode": 0,
+      "result": "42/42 production-script regressions PASS",
+      "evidence": "localized-pdp-v6/regression-results.txt"
+    },
+    {
+      "ranAt": "2026-09-10T04:33:23.372Z",
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/opt/homebrew/lib/node_modules/@shopify/cli/bin/run.js",
+        "theme",
+        "check",
+        "--path",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ux-v6-DlTMHa/theme",
+        "--output",
+        "json"
+      ],
+      "fileCount": 527,
+      "exitCode": 0,
+      "sourceFiles": [
+        {
+          "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+          "beforeMd5": "1d3544d25d247e50b862a089c9249e9a",
+          "afterMd5": "522339c5825769c499e1ad1488b8a138",
+          "sha256": "e5a16e0cc2e9dca6cd5b40fce603b1cee54daa023943b1b5cd5033b401842438",
+          "size": 268875,
+          "charLength": 262976
+        },
+        {
+          "filename": "snippets/pdp-description-copy-cleanup.liquid",
+          "beforeMd5": "44243cbf23a0b608fe400a5c5a48db2b",
+          "afterMd5": "0e33a0f440288594bf5acd02d109091a",
+          "sha256": "04997bf4d29704d478115fac5e6588772e460e04eccffa0f6cd3e712d80e2219",
+          "size": 10526,
+          "charLength": 10406
+        }
+      ],
+      "result": "527 files; zero diagnostics",
+      "evidence": "localized-pdp-v6/theme-check.json"
+    },
+    {
+      "command": "Bundled Python ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "exitCode": 0,
+      "sideDocumentRisks": 0
+    },
+    {
+      "command": "Bundled Python ops/scripts/check_continuity_integrity.py --strict",
+      "sessionId": 24108,
+      "exitCode": 0,
+      "result": "CONTINUITY_OK",
+      "latestAnchor": "2026-09-10-storefront-localized-pdp-v6-preview-verified"
+    },
+    {
+      "command": "git diff --check -- owning canonical files and storefront UX packet",
+      "exitCode": 0
+    }
+  ],
+  "source": {
+    "checkedAt": "2026-09-10T04:38:52.344Z",
+    "revision": 6,
+    "preview": {
+      "id": "gid://shopify/OnlineStoreTheme/137888792673",
+      "name": "DLM UX Performance QA 2026-09-10",
+      "role": "UNPUBLISHED",
+      "processing": false,
+      "fileCount": 527,
+      "hasNextPage": false
+    },
+    "expectedSourceDifferences": [],
+    "mainChanges": [],
+    "combinedChanges": [],
+    "changedAgainstCombined": [
+      "assets/cart.js",
+      "assets/component-cart.css",
+      "assets/component-facets.css",
+      "assets/homepage-collection-card-images.js",
+      "assets/predictive-search.js",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "assets/section-home-curation.css",
+      "assets/theme-inline-body-static-05.css",
+      "locales/da.json",
+      "sections/category-icons.liquid",
+      "sections/curated-product-grid.liquid",
+      "sections/footer.liquid",
+      "sections/hero-banner.liquid",
+      "sections/main-cart-items.liquid",
+      "snippets/home-spotlight-card.liquid",
+      "snippets/pdp-description-copy-cleanup.liquid"
+    ],
+    "changedAgainstMain": [
+      "assets/cart.js",
+      "assets/component-cart.css",
+      "assets/component-facets.css",
+      "assets/cookie-preferences.css",
+      "assets/cookie-preferences.js",
+      "assets/homepage-collection-card-images.js",
+      "assets/predictive-search.js",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "assets/section-home-curation.css",
+      "assets/theme-inline-body-static-04.css",
+      "assets/theme-inline-body-static-05.css",
+      "layout/theme.liquid",
+      "locales/ar.json",
+      "locales/cs.json",
+      "locales/da.json",
+      "locales/de.json",
+      "locales/el.json",
+      "locales/en.default.json",
+      "locales/es.json",
+      "locales/fi.json",
+      "locales/fr.json",
+      "locales/he.json",
+      "locales/hi.json",
+      "locales/hr-HR.json",
+      "locales/hu.json",
+      "locales/id.json",
+      "locales/it.json",
+      "locales/ja.json",
+      "locales/ko.json",
+      "locales/lt-LT.json",
+      "locales/nb.json",
+      "locales/nl.json",
+      "locales/no.json",
+      "locales/pl.json",
+      "locales/pt-BR.json",
+      "locales/pt-PT.json",
+      "locales/ro-RO.json",
+      "locales/ro.json",
+      "locales/ru.json",
+      "locales/sk-SK.json",
+      "locales/sl-SI.json",
+      "locales/sv.json",
+      "locales/th.json",
+      "locales/tr.json",
+      "locales/vi.json",
+      "locales/zh-CN.json",
+      "locales/zh-TW.json",
+      "sections/category-icons.liquid",
+      "sections/curated-product-grid.liquid",
+      "sections/footer.liquid",
+      "sections/hero-banner.liquid",
+      "sections/main-cart-items.liquid",
+      "sections/main-product.liquid",
+      "snippets/home-spotlight-card.liquid",
+      "snippets/jsonld-seo.liquid",
+      "snippets/pdp-description-copy-cleanup.liquid",
+      "snippets/pdp-policy-modals.liquid",
+      "snippets/pdp-purchase-confidence.liquid",
+      "snippets/product-desktop-ux.liquid"
+    ],
+    "mainRole": "MAIN",
+    "combinedRole": "UNPUBLISHED",
+    "incrementalAfterChecks": {
+      "previewRole": "UNPUBLISHED",
+      "previewFiles": 527,
+      "processing": false,
+      "complete": true,
+      "exactTwoApplied": true,
+      "unchangedOther525": true,
+      "mainUnchanged": true,
+      "combinedUnchanged": true,
+      "changes": [
+        {
+          "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+          "checksumMd5": "522339c5825769c499e1ad1488b8a138",
+          "size": "268875"
+        },
+        {
+          "filename": "snippets/pdp-description-copy-cleanup.liquid",
+          "checksumMd5": "0e33a0f440288594bf5acd02d109091a",
+          "size": "10526"
+        }
+      ]
+    }
+  },
+  "renderedEvidence": "browser-verification.json (V5)",
+  "additionalRenderedEvidence": [
+    "localized-pdp-v6/browser-after.json",
+    "localized-pdp-v6/selected-guide-recheck.json"
+  ],
+  "independentReview": {
+    "status": "PASS",
+    "reviewer": "/root/theme_audit_review",
+    "scope": "Exact source/apply/inverse preservation and root browser receipts; did not build or execute; single adult-S evidence clarification resolved.",
+    "evidence": "localized-pdp-v6/independent-after-review.json"
+  },
+  "canonicalIndependentReview": {
+    "status": "PASS",
+    "evidence": "localized-pdp-v6/canonical-independent-review.json"
+  },
+  "livePublication": "NOT_RUN_CONNECTOR_RESTRICTION",
+  "postFixPageSpeed": "REQUIRES_RELEASE__EARLIER_PREVIEW_ATTEMPT_MEASURED_MAIN",
+  "residualFindings": "remaining-findings.md and AUDIT.md",
+  "artifactValidation": {
+    "checkedAt": "2026-09-10T04:59:56.182Z",
+    "jsonFilesParsed": 28,
+    "checks": [
+      {
+        "file": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "apply": true,
+        "inverse": true,
+        "candidate": true
+      },
+      {
+        "file": "snippets/pdp-description-copy-cleanup.liquid",
+        "apply": true,
+        "inverse": true,
+        "candidate": true
+      }
+    ],
+    "incrementalPayloadFiles": 2,
+    "incrementalInverseFiles": 2,
+    "cumulativeInverseFiles": 16,
+    "cumulativeInverseMatchesCombined": true
+  },
+  "sourceCopyValidation": "candidate-source-validation.json",
+  "historicalTests": "V5 20 homepage/search/cart and8 footer tests retained; unchanged areas were not rerun in V6.",
+  "restoration": {
+    "cart": 0,
+    "locale": "en",
+    "viewportWidth": 1280,
+    "units": "cm",
+    "previewTabRetained": true
+  },
+  "productSourceRepair": "Completed by coordinating owner; product-source writes not repeated here."
+}

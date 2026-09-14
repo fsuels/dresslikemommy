@@ -1,0 +1,90 @@
+{
+  "ads_surface_absent_item_ids": 71,
+  "ads_surface_duplicate_rows_found": 8852,
+  "ads_surface_rows_found": 8852,
+  "ads_surface_unique_item_ids_found": 4460,
+  "availability_counts": {
+    "IN_STOCK": 8812,
+    "OUT_OF_STOCK": 40
+  },
+  "expected_rows": 4531,
+  "generated_at_utc": "2026-05-21T09:55:36.582459+00:00",
+  "guardrails_preserved": [
+    "No Google Ads mutate",
+    "No Merchant write",
+    "No Shopify write",
+    "No campaign/product-group/budget/bid/status/conversion/billing change"
+  ],
+  "interpretation": {
+    "missing_item_attribute_for_product_type": "Warning-level item attribute issue, not the current counts/images/no-catchall blocker.",
+    "not_eligible_in_any_campaign": "Present on every Ads-surface expected item and consistent with all approved Shopping campaigns remaining paused/no active advertising path in this diagnostic scope.",
+    "not_eligible_out_of_stock": "Non-campaign ERROR on 20 unique expected items, all OUT_OF_STOCK; these need exclusion or inventory-state-specific handling before any future eligibility gate can pass strictly."
+  },
+  "issue_attribute_counts": {
+    "age group": 4695,
+    "color": 2056,
+    "gender": 1065,
+    "size": 16
+  },
+  "issue_code_counts": {
+    "missing_item_attribute_for_product_type": 7832,
+    "not_eligible_in_any_campaign": 8852,
+    "not_eligible_out_of_stock": 40
+  },
+  "issue_code_severity_counts": {
+    "missing_item_attribute_for_product_type|WARNING": 7832,
+    "not_eligible_in_any_campaign|ERROR": 8852,
+    "not_eligible_out_of_stock|ERROR": 40
+  },
+  "missing_expected_ads_surface_found_rows": 72,
+  "missing_expected_ads_surface_unique_found": 70,
+  "missing_expected_rows_from_latest_gate": 141,
+  "mode": "READ_ONLY_GOOGLE_ADS_SHOPPING_PRODUCT_ISSUE_DIAGNOSTIC",
+  "non_campaign_error_issue_instances": 40,
+  "not_eligible_in_any_campaign_issue_instances": 8852,
+  "outputs": {
+    "absent_rows": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/eligibility_diagnostic_20260521/google_ads_expected_offer_absent_from_ads_surface_20260521.csv",
+    "issue_rows": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/eligibility_diagnostic_20260521/google_ads_expected_offer_issue_diagnostic_20260521.csv",
+    "parent_presence": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/eligibility_diagnostic_20260521/google_ads_expected_offer_parent_presence_summary_20260521.csv",
+    "parent_presence_unique": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/eligibility_diagnostic_20260521/google_ads_expected_offer_parent_presence_summary_unique_20260521.csv",
+    "unique_issue_rows": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/eligibility_diagnostic_20260521/google_ads_expected_offer_issue_diagnostic_unique_20260521.csv"
+  },
+  "ready_label_rows": 4390,
+  "status_counts": {
+    "NOT_ELIGIBLE": 8852
+  },
+  "unique_availability_counts": {
+    "IN_STOCK": 4440,
+    "OUT_OF_STOCK": 20
+  },
+  "unique_issue_attribute_counts": {
+    "age group": 2789,
+    "color": 1053,
+    "gender": 722,
+    "size": 16
+  },
+  "unique_issue_code_counts": {
+    "missing_item_attribute_for_product_type": 4580,
+    "not_eligible_in_any_campaign": 4460,
+    "not_eligible_out_of_stock": 20
+  },
+  "unique_issue_code_severity_counts": {
+    "missing_item_attribute_for_product_type|WARNING": 4580,
+    "not_eligible_in_any_campaign|ERROR": 4460,
+    "not_eligible_out_of_stock|ERROR": 20
+  },
+  "unique_issue_combo_counts": {
+    "missing_item_attribute_for_product_type|not_eligible_in_any_campaign": 3273,
+    "missing_item_attribute_for_product_type|not_eligible_in_any_campaign|not_eligible_out_of_stock": 16,
+    "not_eligible_in_any_campaign": 1167,
+    "not_eligible_in_any_campaign|not_eligible_out_of_stock": 4
+  },
+  "unique_non_campaign_error_code_counts": {
+    "not_eligible_out_of_stock": 20
+  },
+  "unique_non_campaign_error_items": 20,
+  "unique_not_eligible_in_any_campaign_items": 4460,
+  "unique_status_counts": {
+    "NOT_ELIGIBLE": 4460
+  }
+}

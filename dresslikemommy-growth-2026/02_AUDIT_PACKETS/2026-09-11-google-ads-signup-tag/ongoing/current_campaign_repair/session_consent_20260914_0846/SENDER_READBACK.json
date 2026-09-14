@@ -1,0 +1,129 @@
+{
+  "schema": "dlm.session_consent_sender_readback.v1",
+  "delegation": "TA02-SESSION-CONSENT-20260914-0846",
+  "owner_task": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+  "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "recorded_at_utc": "2026-09-14T09:05:58Z",
+  "observation_window_utc": {
+    "start": "2026-09-14T08:50:40Z",
+    "end": "2026-09-14T09:05:58Z",
+    "precision": "Task window. Individual Shopify reads were not independently timestamped."
+  },
+  "classification": "VERIFY",
+  "status": "LIVE_CONFIGURATION_READBACK_WITH_LIMITS_NO_RUNTIME_CAUSE_PROVEN",
+  "provenance": {
+    "method": "Normal task-owned Shopify Admin browser UI; selected fields transcribed from DOM snapshots and active action menus. No screenshot or complete raw DOM retained.",
+    "browser_id": "1",
+    "browser_session": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+    "tabs_used": [
+      "27",
+      "28"
+    ],
+    "tabs_closed": [
+      "27",
+      "28"
+    ],
+    "store_handle": "dresslikemommy-com",
+    "store_label": "Dress Like Mommy",
+    "independent_live_replay": false
+  },
+  "observations": [
+    {
+      "id": "L1",
+      "status": "LIVE_VERIFIED",
+      "surface": "Shopify Settings > Customer events > DLM GA4 Measurement Protocol actions",
+      "entity": "111181921",
+      "observation": "The active actions menu offers Connect DLM GA4 Measurement Protocol.",
+      "meaning": "Legacy custom GA4 pixel is disconnected in this current read.",
+      "limit": "Does not establish absence of every possible sender or historical duplicate events."
+    },
+    {
+      "id": "L2",
+      "status": "LIVE_VERIFIED",
+      "surface": "Shopify Settings > Customer events > Google & YouTube app pixel",
+      "entity": "1780363",
+      "transport_display": "Server / Web",
+      "data_access_setting": "Optimized",
+      "setting_selected": true,
+      "current_access": "Access on",
+      "explanation_display": "We detect signals such as referred traffic and campaign settings.",
+      "limit": "Current configuration/access only; not historical event access, consent order or event receipt."
+    },
+    {
+      "id": "L3",
+      "status": "LIVE_VERIFIED_WITH_LIMITS",
+      "surface": "Google & YouTube app pixel activity log, initial view",
+      "displayed_row": {
+        "date": "Jun 2, 2026",
+        "time": "8:00 PM",
+        "action": "Data access granted"
+      },
+      "native_timezone": "NOT_ESTABLISHED",
+      "date_filter_applied": false,
+      "history_completeness": "NOT_ESTABLISHED",
+      "meaning": "One row in the initial view was observed. It cannot establish continuous access during the purchase session."
+    },
+    {
+      "id": "L4",
+      "status": "LIVE_VERIFIED",
+      "surface": "Shopify Google & YouTube app permissions",
+      "publisher": "Google LLC",
+      "pixels": "Connected",
+      "data_access": "Optimized",
+      "limit": "App-level connection observation; does not independently establish exact GA4 destinations or named Google consent states."
+    },
+    {
+      "id": "L5",
+      "status": "LIVE_VERIFIED",
+      "surface": "Shopify Google & YouTube > Settings",
+      "conversion_measurement": "On",
+      "limit": "The exact current Google tag list was not expanded successfully; prior saved tag IDs remain historical evidence only."
+    }
+  ],
+  "excluded_observations": [
+    {
+      "text": "Preloaded generic permission modal wording in the full Customer events DOM",
+      "reason": "No corresponding visible consent modal was opened. Not used as proof of an active permission/consent state."
+    },
+    {
+      "text": "Shopify app Overview Merchant counters and Ads service overview",
+      "reason": "Outside this delegation; not used as feed truth or current campaign status."
+    },
+    {
+      "text": "The date shown in the initial activity-log row compared with the documentation start date",
+      "reason": "Timezone and log completeness were not established; no chronological defect inferred."
+    }
+  ],
+  "failed_optional_readback": {
+    "target": "Expand current Google tag destinations",
+    "first_attempt": "getByRole(button, Google tags, exact) had no matches",
+    "refreshed_ui": "The normal native tab read showed Additional conversion measurement settings 2 collapsed.",
+    "second_attempt": "getByRole(button, Additional conversion measurement settings 2, exact) had no matches",
+    "classification": "UI_LOCATOR_CAPABILITY_FAILURE; no account-authentication or production-save attempt",
+    "disposition": "Stopped this optional expansion after two selector failures. No guessed API, alternate account route, native foreground control or repeated retry.",
+    "current_tag_list": "LIVE_READBACK_NOT_COMPLETED",
+    "existing_saved_mapping_source": "2026-09-11-google-ads-signup-tag/execution_receipt.json"
+  },
+  "scope_accounting": {
+    "production_changes": 0,
+    "consent_choice_changes": 0,
+    "tag_changes": 0,
+    "pixel_connection_changes": 0,
+    "data_access_changes": 0,
+    "save_apply_enable_pause_actions": 0,
+    "new_private_order_queries": 0,
+    "private_order_replays": 0,
+    "synthetic_purchases": 0,
+    "full_item_report_repeats": 0,
+    "ads_zero_report_repeats": 0,
+    "public_storefront_requests": 0,
+    "blocked_URL_retries_by_operator": 0,
+    "account_switches": 0,
+    "exact_historical_app_activity_window_query": "NOT_RUN; current access and standalone-analytics exemption do not establish this as the decision-critical cause.",
+    "report_transaction_and_item_views": "NOT_REOPENED; prior accepted receipt reused.",
+    "new_default_update_event_trace": "NOT_RUN; this delegation excludes consent changes and blocked public/access workarounds.",
+    "raw_DOM_or_authentication_material_in_artifact": false,
+    "retained_ads_editor_23": "UNTOUCHED",
+    "retained_ga4_report_25": "UNTOUCHED"
+  }
+}

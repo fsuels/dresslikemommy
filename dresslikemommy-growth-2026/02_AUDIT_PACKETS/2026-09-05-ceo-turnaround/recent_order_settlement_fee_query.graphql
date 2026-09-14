@@ -1,0 +1,3 @@
+query RecentOrderSettlementFees($filter:String!) {
+ shopifyPaymentsAccount { balanceTransactions(first:50,hideTransfers:true,query:$filter) { nodes { sourceOrderTransactionId transactionDate type amount { amount currencyCode } fee { amount currencyCode } net { amount currencyCode } } pageInfo { hasNextPage endCursor } } }
+}

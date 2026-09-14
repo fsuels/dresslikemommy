@@ -1,0 +1,71 @@
+# Session context: continue Microsoft Ads
+
+Retrieval: OK
+Context is not external-write approval, transferred ownership, or a current live readback.
+
+Authority — ops/marketing/current_marketing_state.md:8-18
+- approved_external_scope: NONE
+- autonomous_action_ready: false
+- control_as_of: 2026-09-05
+- effective_approval_policy: FRESH_ACTION_TIME_APPROVAL_REQUIRED
+- live_readback_fresh_until: EXPIRED
+- live_state_mode: STALE_READBACK_REQUIRED
+- next_best_action: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: 2026-06-01
+- supersedes_execution_readiness_below: true
+
+Business goal — ops/GROWTH_NORTH_STAR.md:5-20
+## Owner's Goal In Plain English
+
+The owner wants Dress Like Mommy to make more money, not just get more traffic.
+
+The set goal is to build and run a profitable paid-growth machine for Dress Like Mommy: Google Ads and Pinterest campaigns active across every viable language/market, executed expertly and safely, aiming for as many profitable conversions as possible at about `650% ROAS`.
+
+This is not an audit project. Audits, packets, trackers, and readbacks exist only to support action that can make sales happen: building controlled campaigns, enabling exact-approved tests, improving targeting/copy/assets/landing pages, removing blockers, monitoring performance, adding evidence-backed negatives, scaling winners, and killing waste.
+
+The goal is aggressive but intelligent growth:
+
+- Increase sales.
+- Increase profit.
+- Maintain or move toward about `650% ROAS`.
+- Avoid expensive wasted clicks.
+- Use Google Ads, Pinterest, Merchant Center, Shopify, website CRO, tracking, feed quality, languages, and international markets together.
+- Use subagents in parallel where possible so work moves fast without conflict.
+
+Current microsoft-ads tasks (1); repo-known, not live proof
+
+TA-15 — Finish purchase/consent acceptance before any measured paid experiment — ops/marketing/action_queue.md:184
+- Priority: P0
+- Status: YELLOW
+- Action: TA-15 Repair verified Microsoft standard UET consent gap and finish purchase acceptance
+- Owner agent: root01a08703 sole Microsoft writer; paused_import_verifier independent reviews; UX owns theme
+- Lane: Paid traffic
+- Checkpoint: In progress
+- Checkpoint date: 2026-09-13
+- Owner input: Technical dependency
+- Gate: Paused USEN/DEDE campaigns and complete initial children saved; real purchase, supported source/consent, actual economics and numeric paid launch open
+- Completed milestone: 2campaigns/2groups/6Exactkeywords/2RSAs/14campaignPhrase negatives verified; country/presence/0.15cap saved; DE group language corrected; all13Paused and original11 settings preserved; existing4h heartbeat delivered;22asset associationsApproved/PinNone;2nativeURLTests pass with automatic campaign/adgroup tags September13:14Exact/8Phrase models do not qualify useful0.15 traffic; US0.10weekly chart, DE0.08near-cap/no exactpoint. Reviews35/31PASS_WITH_LIMITS; no campaign writes.
+- Next step: Supported consent repair on the existing contact answer/source change, then genuine purchase and actual economics. Preserve paused builds and paidNONE. Do not repeat the completed Exact/Phrase inputs, treat unavailable values as zero demand, import reserve rows or raise bids from these forecasts.
+- Evidence/source: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0239/READBACK.md and dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0639/READBACK.md; current_marketing_state.md; 2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/READBACK.md; anchor2026-09-12-microsoft-rsa-assets-and-url-tests-verified
+- Identity metadata: 2026-09-13-ceo-ads-draft-read-failure-and-late-channel-receipts — ops/AGENT_WORKLOG.md:51007-51031
+
+Current coordination claims (2)
+Read the complete allowed/blocked actions and notes at these source rows before acting; these summaries confer no scope.
+- Google Ads ongoing all-market optimization [TA-15]: `EDITOR_READ_TIMEOUT__IDENTITY_SAVE_GATED__LOCAL_COPY_PRESERVED`; owner root01a09194 sole Ads/canonical integrator; google_launch_research independent copy/strategy; tag_repair_review independent assets/settings; market_readback local creative — ops/AGENT_COORDINATION.md:24
+- Google account identity evidence in owner mailboxes [channel scope]: `HANDOFF_READ_ONLY_MAIL_SEARCH_COMPLETE`; owner Codex `/root`, September5 EDT / September6 UTC; owner explicitly requests both mailbox searches — ops/AGENT_COORDINATION.md:90
+Older coordination records: 4 separated from current scope. Complete JSON retains every older identity/status/source; no old lock is cleared or scope revived.
+
+Queue/claim gate comparisons remain unresolved; inspect the paired sources before taking over work:
+- TA-15: queue ops/marketing/action_queue.md:184; claim ops/AGENT_COORDINATION.md:24; claim status `EDITOR_READ_TIMEOUT__IDENTITY_SAVE_GATED__LOCAL_COPY_PRESERVED`
+
+Recent channel/related anchors (6 of 30 relevant records; source text available in JSON):
+- 2026-09-13-microsoft-keyword-ceiling-qualified — ops/AGENT_WORKLOG.md:50895-50920 [REPO_KNOWN]
+- 2026-09-12-microsoft-rsa-assets-and-url-tests-verified — ops/AGENT_WORKLOG.md:50751-50779 [STALE_OR_SUPERSEDED]
+- 2026-09-12-microsoft-standard-uet-consent-gap-verified — ops/AGENT_WORKLOG.md:50625-50654 [STALE_OR_SUPERSEDED]
+- 2026-09-13-ceo-ads-draft-read-failure-and-late-channel-receipts — ops/AGENT_WORKLOG.md:51007-51031 [REPO_KNOWN]
+- 2026-09-12-google-ads-editor-recovered-and-creation-delta-integrated — ops/AGENT_WORKLOG.md:50780-50804 [REPO_KNOWN]
+- 2026-09-12-google-ads-readback-and-gb-source-integrated — ops/AGENT_WORKLOG.md:50655-50681 [REPO_KNOWN]
+
+Review the sourced tasks and existing owner claims; resume the applicable unfinished step without replaying completed work. Broad Shopify inventory does not select a product or release.
+
+Default --format json retains complete task/claim/anchor records. This brief selects fields explicitly; it does not replace source review.

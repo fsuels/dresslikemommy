@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "artifact_type": "x_organic_local_post_queue",
+  "prepared_date": "2026-09-11",
+  "state": "LOCAL_DRAFT",
+  "account": {
+    "handle": "dresslikemommy",
+    "profile_url": "https://x.com/dresslikemommy"
+  },
+  "purpose": "A bounded 14-day launch queue within a 30-day zero-ad-spend organic relaunch experiment.",
+  "authority_note": "This artifact prepares exact copy. The root task owns account access, current authority, independent review, publication, scheduling and canonical integration. A calendar date or LOCAL_DRAFT row is not proof of external execution.",
+  "canonical_task_state": "ops/marketing/action_queue.md",
+  "canonical_outcome_state": "ops/marketing/daily_scorecard.md",
+  "current_coordination": "ops/AGENT_COORDINATION.md",
+  "launch": {
+    "first_publication_utc": null,
+    "relative_day_definition": "Day 1 is the local America/New_York calendar date of the first new, successfully published and independently read-back relaunch post. Later dates are launch_date plus relative_day minus one.",
+    "timezone": "America/New_York",
+    "calendar_rule": "One original post maximum per planned day. Do not backfill missed days or compress the queue. Dates are proposed until the root records a real launch and any actual schedule receipt.",
+    "default_posting_window_local": "12:00-13:00",
+    "posting_window_status": "WORKLOAD_HYPOTHESIS_NOT_AUDIENCE_EVIDENCE"
+  },
+  "resource_caps": {
+    "ad_spend_usd": 0,
+    "subscriptions_usd": 0,
+    "recurring_operator_minutes_per_week": 120,
+    "post_frequency": "3-4 originals per week; reduce when necessary to protect the time ceiling.",
+    "outbound_mass_messages": 0
+  },
+  "link_convention": {
+    "utm_source": "x",
+    "utm_medium": "social",
+    "utm_campaign": "organic_202609",
+    "utm_content_rule": "Stable unique value for each linked piece; never reused for a substantively different replacement.",
+    "internal_links_tagged": false,
+    "unlinked_post_url_rule": "exact_url=null means intentionally no outbound link; do not append a generic shop link."
+  },
+  "character_check": {
+    "standard_limit": 280,
+    "url_accounted_characters": 23,
+    "method": "All prepared bodies use ASCII. Estimated count is body.length plus 1 newline plus 23 for a single URL, or body.length for no URL. Native composer is the final check.",
+    "official_sources": [
+      "https://help.x.com/en/using-x/how-to-post",
+      "https://help.x.com/en/using-x/how-to-post-a-link"
+    ],
+    "source_checked_date": "2026-09-11",
+    "native_composer_verified": false
+  },
+  "global_required_preflight": [
+    "Root holds the exact X claim and fresh account readback identifies @dresslikemommy; stop for a different account, login, CAPTCHA or account-switch requirement.",
+    "Reconcile the current execution receipts and live profile for this immutable post ID, UTM content and candidate copy; never repost an already executed or ambiguously executed row.",
+    "Independent reviewer checks exact copy and any actual media for truthful category, sizing, included-piece, price, timing and rights claims.",
+    "For a linked row, open the destination as needed, verify current relevant content and the exact four UTM values through redirects; record every tagged operator QA visit with UTC time.",
+    "Preserve existing article and Pinterest release clocks; create the X launch clock only from a real publication receipt.",
+    "Inspect final native composer account, exact text, count, URL preview, media crop and alt text. Text-only publication is valid when optional media is absent.",
+    "Publish once only after current authorization and preflight agree. If the response is uncertain, inspect the profile before any retry.",
+    "Read back the exact public post URL, platform ID, visible text, destination and media; record UTC time and actual pin state separately. Do not infer success from composer disappearance.",
+    "No ads, boost, subscriptions, billing, security changes, purchases, mass DMs, fabricated interaction or writes to other channels are part of this queue."
+  ],
+  "qa_exclusion": {
+    "known_prior_tagged_qa_visits": 1,
+    "known_prior_qa_source": "../EVIDENCE.json guide.operator_tagged_qa_visits; September 11 prepublication audit",
+    "additional_operator_visits": "UNKNOWN_UNTIL_ROOT_RECORDS_THEM",
+    "rule": "Exclude prepublication QA from the X release cohort. Record later tagged QA timestamps and exclude identifiable operator visits using available read-only reporting; if exact isolation is unavailable, label affected figures mixed or unknown instead of subtracting an invented count."
+  },
+  "measurement": {
+    "current_x_sessions": null,
+    "current_x_product_visits": null,
+    "current_x_orders": null,
+    "current_x_contribution": null,
+    "unknown_is_not_zero": true,
+    "order_confirmation": "Distinct paid, noncancelled Shopify orders with available X journey evidence, reconciled for reversals; final contribution may remain provisional while costs or return outcomes are missing.",
+    "diagnostic_limit": "Post views, likes and follows are not orders, unique buyers or incremental sales."
+  },
+  "posts": [
+    {
+      "post_id": "DLM-X-202609-R001",
+      "relative_day": 1,
+      "role": "PINNED_INTRODUCTION",
+      "theme": "start_here",
+      "body": "Family moments, thoughtfully coordinated. We share mommy & me, daddy & me, and family outfit ideas, with help on sizes and what each selection includes. Planning photos? Start with our guide:",
+      "buyer_question": "Where should I start when choosing family-photo outfits?",
+      "preflight_extra": [
+        "Verify the guide still supports the three planning topics.",
+        "If an older pin exists, capture its exact URL and pinned state before replacing it; pin this post only after its public readback."
+      ],
+      "exact_url": "https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_pinned_family_photo_guide",
+      "body_with_url": "Family moments, thoughtfully coordinated. We share mommy & me, daddy & me, and family outfit ideas, with help on sizes and what each selection includes. Planning photos? Start with our guide:\nhttps://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_pinned_family_photo_guide",
+      "estimated_x_character_count": 215,
+      "state": "LOCAL_DRAFT",
+      "media": {
+        "mode": "EDITORIAL_CARD",
+        "required": true,
+        "state": "CREATED_PENDING_INDEPENDENT_REVIEW",
+        "brief": "An original, readable text card in the approved profile palette: 'Plan a family-photo look' with three short lines: 'Choose a shared palette', 'Check each person's size', 'Confirm what each selection includes'. Use brand typography and ample spacing. No garment, price, customer, or delivery illustration.",
+        "alt_text_required_if_attached": true,
+        "alt_text_candidate": "Dress Like Mommy. Plan a family-photo look: 01 Choose a shared palette; 02 Check each person's size; 03 Confirm what each selection includes. Ivory background with plum text and rose accents.",
+        "alt_text_state": "ACTUAL_IMAGE_ROOT_CHECKED_PENDING_INDEPENDENT_REVIEW",
+        "path": "assets/x-pinned-checklist-v1.png",
+        "sha256": "6a52c13ae2cc60151a71179d4174fe23128000ca19e526819e0ab0ab52bd02d0"
+      },
+      "scheduled_at_utc": null,
+      "published_at_utc": null,
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "preflight": "GLOBAL_REQUIRED_PREFLIGHT_PLUS_POST_SPECIFIC",
+      "pin_after_verified_publication": true,
+      "utm_content": "x_pinned_family_photo_guide"
+    },
+    {
+      "post_id": "DLM-X-202609-R002",
+      "relative_day": 3,
+      "role": "ORIGINAL_POST",
+      "theme": "size_chart",
+      "body": "Sizing check: use each product's chart, confirm the units, and follow its measurement instructions for each person. If a measurement or size is unclear, ask before choosing. More family-photo planning tips:",
+      "buyer_question": "How do I compare the sizes needed by different family members?",
+      "preflight_extra": [
+        "Keep this as general shopping guidance; do not insert an age-to-size mapping or product measurement without its current source."
+      ],
+      "exact_url": "https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_r002_size_chart",
+      "body_with_url": "Sizing check: use each product's chart, confirm the units, and follow its measurement instructions for each person. If a measurement or size is unclear, ask before choosing. More family-photo planning tips:\nhttps://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_r002_size_chart",
+      "estimated_x_character_count": 230,
+      "state": "LOCAL_DRAFT",
+      "media": {
+        "mode": "TEXT_ONLY",
+        "required": false,
+        "state": "NOT_APPLICABLE",
+        "brief": "Text-only. Do not attach a generic size chart or infer body/garment measurements from a photo.",
+        "alt_text_required_if_attached": true,
+        "alt_text_candidate": null,
+        "alt_text_state": "NOT_APPLICABLE"
+      },
+      "scheduled_at_utc": null,
+      "published_at_utc": null,
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "preflight": "GLOBAL_REQUIRED_PREFLIGHT_PLUS_POST_SPECIFIC",
+      "pin_after_verified_publication": false,
+      "utm_content": "x_r002_size_chart"
+    },
+    {
+      "post_id": "DLM-X-202609-R003",
+      "relative_day": 5,
+      "role": "ORIGINAL_POST",
+      "theme": "selection_contents",
+      "body": "Shopping a matching look? Check what the selected option includes before adding it to cart. A photo of several outfits doesn't necessarily mean one price buys the whole look. Our guide helps you plan each person's piece:",
+      "buyer_question": "Does the pictured family look come as one purchase?",
+      "preflight_extra": [
+        "Read the guide's separate mother/daughter selection explanation; avoid converting it into an all-products bundle or pricing claim."
+      ],
+      "exact_url": "https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_r003_selection_contents",
+      "body_with_url": "Shopping a matching look? Check what the selected option includes before adding it to cart. A photo of several outfits doesn't necessarily mean one price buys the whole look. Our guide helps you plan each person's piece:\nhttps://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_r003_selection_contents",
+      "estimated_x_character_count": 244,
+      "state": "LOCAL_DRAFT",
+      "media": {
+        "mode": "TEXT_ONLY",
+        "required": false,
+        "state": "NOT_APPLICABLE",
+        "brief": "Text-only. A later product-specific image needs fresh evidence of the exact selected option, included piece and price.",
+        "alt_text_required_if_attached": true,
+        "alt_text_candidate": null,
+        "alt_text_state": "NOT_APPLICABLE"
+      },
+      "scheduled_at_utc": null,
+      "published_at_utc": null,
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "preflight": "GLOBAL_REQUIRED_PREFLIGHT_PLUS_POST_SPECIFIC",
+      "pin_after_verified_publication": false,
+      "utm_content": "x_r003_selection_contents"
+    },
+    {
+      "post_id": "DLM-X-202609-R004",
+      "relative_day": 6,
+      "role": "ORIGINAL_POST",
+      "theme": "palette_exercise",
+      "body": "Try this family-photo palette exercise: choose one starting color, a neutral, and one small accent. Lay everyone's outfits side by side and repeat the accent in a few places. Leave room for each person's favorite piece.",
+      "buyer_question": "How can a family coordinate without everyone wearing the same thing?",
+      "preflight_extra": [
+        "If the card is created, rewrite its alt text to describe the actual colors and all meaningful visible wording."
+      ],
+      "exact_url": null,
+      "body_with_url": "Try this family-photo palette exercise: choose one starting color, a neutral, and one small accent. Lay everyone's outfits side by side and repeat the accent in a few places. Leave room for each person's favorite piece.",
+      "estimated_x_character_count": 219,
+      "state": "LOCAL_DRAFT",
+      "media": {
+        "mode": "EDITORIAL_CARD",
+        "required": true,
+        "state": "CREATED_PENDING_INDEPENDENT_REVIEW",
+        "brief": "An original text-led palette exercise card with abstract swatches only, labelled 'Starting color', 'Neutral', and 'Small accent'. The graphic teaches an exercise; it must not resemble a pictured purchasable set. Final swatches and contrast require visual review.",
+        "alt_text_required_if_attached": true,
+        "alt_text_candidate": "Dress Like Mommy. One palette. Everyone's style. Three abstract swatches: dusty blue as the starting color, warm ivory as the neutral, and terracotta as the small accent. Start with pieces you already own.",
+        "alt_text_state": "ACTUAL_IMAGE_ROOT_CHECKED_PENDING_INDEPENDENT_REVIEW",
+        "path": "assets/x-palette-exercise-v1.png",
+        "sha256": "7ba71e750778428ca7e009a57b3e35920fddfb54eda347fd19ae88feaf060a9e"
+      },
+      "scheduled_at_utc": null,
+      "published_at_utc": null,
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "preflight": "GLOBAL_REQUIRED_PREFLIGHT_PLUS_POST_SPECIFIC",
+      "pin_after_verified_publication": false,
+      "utm_content": null
+    },
+    {
+      "post_id": "DLM-X-202609-R005",
+      "relative_day": 8,
+      "role": "ORIGINAL_POST",
+      "theme": "wardrobe_first",
+      "body": "Start with one piece your family already loves, then shop for the missing pieces. Write down the colors and who still needs an outfit before browsing. Our family-photo guide can help you plan the rest:",
+      "buyer_question": "Can we build a coordinated look around clothes we already own?",
+      "preflight_extra": [
+        "Verify the guide remains a useful planning destination; this is a shopping method, not a claim that every color or piece is available."
+      ],
+      "exact_url": "https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_r005_wardrobe_first",
+      "body_with_url": "Start with one piece your family already loves, then shop for the missing pieces. Write down the colors and who still needs an outfit before browsing. Our family-photo guide can help you plan the rest:\nhttps://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_r005_wardrobe_first",
+      "estimated_x_character_count": 225,
+      "state": "LOCAL_DRAFT",
+      "media": {
+        "mode": "TEXT_ONLY",
+        "required": false,
+        "state": "NOT_APPLICABLE",
+        "brief": "Text-only. Do not imply that any pictured wardrobe item is sold by Dress Like Mommy.",
+        "alt_text_required_if_attached": true,
+        "alt_text_candidate": null,
+        "alt_text_state": "NOT_APPLICABLE"
+      },
+      "scheduled_at_utc": null,
+      "published_at_utc": null,
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "preflight": "GLOBAL_REQUIRED_PREFLIGHT_PLUS_POST_SPECIFIC",
+      "pin_after_verified_publication": false,
+      "utm_content": "x_r005_wardrobe_first"
+    },
+    {
+      "post_id": "DLM-X-202609-R006",
+      "relative_day": 10,
+      "role": "ORIGINAL_POST",
+      "theme": "try_on_check",
+      "body": "The outfit check before photo day: sit, walk, raise your arms, and try the shoes with the whole look. For children, leave time to change anything they don't feel comfortable wearing. A short try-on can surface a problem early.",
+      "buyer_question": "What should we check once everyone's outfit arrives?",
+      "preflight_extra": [
+        "Preserve this as a suggested try-on routine, not a promise of comfort, fit, delivery or returns."
+      ],
+      "exact_url": null,
+      "body_with_url": "The outfit check before photo day: sit, walk, raise your arms, and try the shoes with the whole look. For children, leave time to change anything they don't feel comfortable wearing. A short try-on can surface a problem early.",
+      "estimated_x_character_count": 226,
+      "state": "LOCAL_DRAFT",
+      "media": {
+        "mode": "TEXT_ONLY",
+        "required": false,
+        "state": "NOT_APPLICABLE",
+        "brief": "Text-only. No staged testimonial, child identity, comfort claim about a product, or unverified garment demonstration.",
+        "alt_text_required_if_attached": true,
+        "alt_text_candidate": null,
+        "alt_text_state": "NOT_APPLICABLE"
+      },
+      "scheduled_at_utc": null,
+      "published_at_utc": null,
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "preflight": "GLOBAL_REQUIRED_PREFLIGHT_PLUS_POST_SPECIFIC",
+      "pin_after_verified_publication": false,
+      "utm_content": null
+    },
+    {
+      "post_id": "DLM-X-202609-R007",
+      "relative_day": 12,
+      "role": "ORIGINAL_POST",
+      "theme": "event_timing",
+      "body": "Planning outfits for a fixed date? Check the current delivery information for your destination before ordering, and leave time to try everything on. If the timing is unclear, ask first. Our family-photo planning guide:",
+      "buyer_question": "How should I plan an outfit purchase around a specific event date?",
+      "preflight_extra": [
+        "Verify the guide still has destination/timing guidance. Do not add a delivery range or event deadline without fresh destination-specific evidence."
+      ],
+      "exact_url": "https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_r007_event_timing",
+      "body_with_url": "Planning outfits for a fixed date? Check the current delivery information for your destination before ordering, and leave time to try everything on. If the timing is unclear, ask first. Our family-photo planning guide:\nhttps://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_r007_event_timing",
+      "estimated_x_character_count": 242,
+      "state": "LOCAL_DRAFT",
+      "media": {
+        "mode": "TEXT_ONLY",
+        "required": false,
+        "state": "NOT_APPLICABLE",
+        "brief": "Text-only. No delivery countdown, holiday-order deadline, fast-shipping badge or arrival date.",
+        "alt_text_required_if_attached": true,
+        "alt_text_candidate": null,
+        "alt_text_state": "NOT_APPLICABLE"
+      },
+      "scheduled_at_utc": null,
+      "published_at_utc": null,
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "preflight": "GLOBAL_REQUIRED_PREFLIGHT_PLUS_POST_SPECIFIC",
+      "pin_after_verified_publication": false,
+      "utm_content": "x_r007_event_timing"
+    },
+    {
+      "post_id": "DLM-X-202609-R008",
+      "relative_day": 13,
+      "role": "ORIGINAL_POST",
+      "theme": "buyer_question",
+      "body": "What are you planning outfits for: family photos, a trip, or a celebration? And what's harder: choosing colors, finding each person's size, or working out which pieces to buy?",
+      "buyer_question": "Which practical decision should the next helpful post answer?",
+      "preflight_extra": [
+        "Keep this question relevant to adult buyers and actual outfit planning. If a real incoming question replaces this slot, give the replacement a new immutable ID and review its exact copy."
+      ],
+      "exact_url": null,
+      "body_with_url": "What are you planning outfits for: family photos, a trip, or a celebration? And what's harder: choosing colors, finding each person's size, or working out which pieces to buy?",
+      "estimated_x_character_count": 175,
+      "state": "LOCAL_DRAFT",
+      "media": {
+        "mode": "TEXT_ONLY",
+        "required": false,
+        "state": "NOT_APPLICABLE",
+        "brief": "Text-only. A real conversation prompt; do not create votes, answers or fake customer quotes.",
+        "alt_text_required_if_attached": true,
+        "alt_text_candidate": null,
+        "alt_text_state": "NOT_APPLICABLE"
+      },
+      "scheduled_at_utc": null,
+      "published_at_utc": null,
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "preflight": "GLOBAL_REQUIRED_PREFLIGHT_PLUS_POST_SPECIFIC",
+      "pin_after_verified_publication": false,
+      "utm_content": null
+    }
+  ],
+  "supersession_rule": "Immutable IDs identify one reviewed piece. Correct a local typo before review if needed; substantively different replacement copy receives a new ID with supersedes_post_id. Preserve published records in root execution receipts rather than rewriting history."
+}

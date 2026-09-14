@@ -1,0 +1,518 @@
+{
+  "activation_discussion_allowed": false,
+  "campaign_status_ok": true,
+  "campaigns": [
+    {
+      "advertising_channel_type": "SHOPPING",
+      "bidding_strategy_type": "MANUAL_CPC",
+      "budget_amount_micros": 1000000,
+      "campaign_priority": 1,
+      "feed_label": "US",
+      "id": 23868645508,
+      "merchant_id": 124884876,
+      "name": "DLM_US_SHOPPING_DADDY_ME_PARENT_OUTFIT_V2",
+      "primary_status": "PAUSED",
+      "status": "PAUSED"
+    },
+    {
+      "advertising_channel_type": "SHOPPING",
+      "bidding_strategy_type": "MANUAL_CPC",
+      "budget_amount_micros": 1000000,
+      "campaign_priority": 1,
+      "feed_label": "US",
+      "id": 23858920059,
+      "merchant_id": 124884876,
+      "name": "DLM_US_SHOPPING_FAMILY_MATCHING_PARENT_OUTFIT_V2",
+      "primary_status": "PAUSED",
+      "status": "PAUSED"
+    },
+    {
+      "advertising_channel_type": "SHOPPING",
+      "bidding_strategy_type": "MANUAL_CPC",
+      "budget_amount_micros": 1000000,
+      "campaign_priority": 1,
+      "feed_label": "US",
+      "id": 23868645502,
+      "merchant_id": 124884876,
+      "name": "DLM_US_SHOPPING_MOMMY_ME_PARENT_OUTFIT_V2",
+      "primary_status": "PAUSED",
+      "status": "PAUSED"
+    },
+    {
+      "advertising_channel_type": "SHOPPING",
+      "bidding_strategy_type": "TARGET_SPEND",
+      "budget_amount_micros": 20000000,
+      "campaign_priority": 1,
+      "feed_label": "US",
+      "id": 23802638621,
+      "merchant_id": 124884876,
+      "name": "DLM_US_STANDARD_SHOPPING_TEST_PAID_READY",
+      "primary_status": "PAUSED",
+      "status": "PAUSED"
+    }
+  ],
+  "expected_spec": {
+    "expected_parent_counts_by_lane": {
+      "daddy_and_me": 34,
+      "family_matching": 77,
+      "mommy_and_me": 99
+    },
+    "included_variant_rows": 4531,
+    "missing_hero_image_in_spec": 0,
+    "missing_item_group_id_in_spec": 0
+  },
+  "gate_passed": false,
+  "guardrails": [
+    "Read-only Google Ads Shopping product readback.",
+    "No Google Ads mutate operations.",
+    "No Merchant Center write.",
+    "No Shopify write.",
+    "No feed upload or product data write.",
+    "No budget, bid, status, conversion, billing, or activation change."
+  ],
+  "item_group_id_readback": {
+    "google_ads_shopping_product_field_available": false,
+    "live_item_group_id_proven": false,
+    "merchant_content_api_scope_probe": {
+      "available": false,
+      "error_type": "RefreshError",
+      "message": "('invalid_scope: Bad Request', {'error': 'invalid_scope', 'error_description': 'Bad Request'})"
+    },
+    "note": "Google Ads shopping_product exposes labels and product_image_uri but not item_group_id; Merchant Content API scope is required for strict live item_group_id proof."
+  },
+  "listing_group_summary": {
+    "bad_catchall_units": 0,
+    "excluded_catchall_units": 24,
+    "included_units": 12,
+    "total": 60
+  },
+  "live_ready_products": {
+    "image_mismatches": 0,
+    "label_mismatches": 0,
+    "live_parent_counts_by_lane_from_spec_join": {
+      "daddy_and_me": 34,
+      "family_matching": 77,
+      "mommy_and_me": 92
+    },
+    "matching_expected_rows": 1886,
+    "missing_expected_rows": 2645,
+    "missing_live_images": 0,
+    "rows_with_ready_label": 1886,
+    "sample_image_mismatches": [],
+    "sample_label_mismatches": [],
+    "sample_ready_products": [
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "mommy_and_me",
+        "custom_label_2": "swimwear",
+        "custom_label_3": "parent_outfit",
+        "custom_label_4": "us_parent_outfit_ready_v20260520",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108953604193_41496508432481",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_30.png?v=1771566174",
+        "status": "NOT_ELIGIBLE",
+        "title": "Family Matching Swimsuits - Blue | Dress Like Mommy Mother S / Blue"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "mommy_and_me",
+        "custom_label_2": "swimwear",
+        "custom_label_3": "parent_outfit",
+        "custom_label_4": "us_parent_outfit_ready_v20260520",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108953604193_41496508465249",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_30.png?v=1771566174",
+        "status": "NOT_ELIGIBLE",
+        "title": "Family Matching Swimsuits - Blue | Dress Like Mommy Mother M / Blue"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "mommy_and_me",
+        "custom_label_2": "swimwear",
+        "custom_label_3": "parent_outfit",
+        "custom_label_4": "us_parent_outfit_ready_v20260520",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108953604193_41496508498017",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_30.png?v=1771566174",
+        "status": "NOT_ELIGIBLE",
+        "title": "Family Matching Swimsuits - Blue | Dress Like Mommy Mother L / Blue"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "mommy_and_me",
+        "custom_label_2": "swimwear",
+        "custom_label_3": "parent_outfit",
+        "custom_label_4": "us_parent_outfit_ready_v20260520",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108953604193_41496508563553",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_30.png?v=1771566174",
+        "status": "NOT_ELIGIBLE",
+        "title": "Family Matching Swimsuits - Blue | Dress Like Mommy Child 2-3 years / Blue"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "mommy_and_me",
+        "custom_label_2": "swimwear",
+        "custom_label_3": "parent_outfit",
+        "custom_label_4": "us_parent_outfit_ready_v20260520",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108953604193_41496508661857",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_30.png?v=1771566174",
+        "status": "NOT_ELIGIBLE",
+        "title": "Family Matching Swimsuits - Blue | Dress Like Mommy Child 4-5 years / Blue"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "mommy_and_me",
+        "custom_label_2": "swimwear",
+        "custom_label_3": "parent_outfit",
+        "custom_label_4": "us_parent_outfit_ready_v20260520",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108953604193_41496508727393",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_30.png?v=1771566174",
+        "status": "NOT_ELIGIBLE",
+        "title": "Family Matching Swimsuits - Blue | Dress Like Mommy Child 8-10 years / Blue"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "mommy_and_me",
+        "custom_label_2": "swimwear",
+        "custom_label_3": "parent_outfit",
+        "custom_label_4": "us_parent_outfit_ready_v20260520",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108958519393_41496524685409",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_42.png?v=1771566599",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me Swimsuits - One Shoulder | Dress Like Mommy Child 4-5 years / Blue"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "mommy_and_me",
+        "custom_label_2": "swimwear",
+        "custom_label_3": "parent_outfit",
+        "custom_label_4": "us_parent_outfit_ready_v20260520",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108962254945_41496538349665",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_34.png?v=1771566376",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me One-Piece Swimsuits - Tropical Print | Dress Like Mommy Mother S / Red"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "mommy_and_me",
+        "custom_label_2": "swimwear",
+        "custom_label_3": "parent_outfit",
+        "custom_label_4": "us_parent_outfit_ready_v20260520",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108962254945_41496538447969",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_34.png?v=1771566376",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me One-Piece Swimsuits - Tropical Print | Dress Like Mommy Mother XL / Red"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "mommy_and_me",
+        "custom_label_2": "swimwear",
+        "custom_label_3": "parent_outfit",
+        "custom_label_4": "us_parent_outfit_ready_v20260520",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108962254945_41496538644577",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_34.png?v=1771566376",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me One-Piece Swimsuits - Tropical Print | Dress Like Mommy Child 10-12 years / Red"
+      }
+    ],
+    "unexpected_ready_rows": 0
+  },
+  "old_campaign_paused": true,
+  "old_test_ready_context": {
+    "label_tuple_counts": [
+      {
+        "labels": [
+          "paid_eligible",
+          "mommy_and_me",
+          "swimwear",
+          "parent_outfit",
+          "us_test_ready"
+        ],
+        "rows": 161
+      },
+      {
+        "labels": [
+          "paid_eligible",
+          "family_matching",
+          "tops_shirts",
+          "parent_outfit",
+          "us_test_ready"
+        ],
+        "rows": 75
+      },
+      {
+        "labels": [
+          "paid_eligible",
+          "mommy_and_me",
+          "dresses",
+          "parent_outfit",
+          "us_test_ready"
+        ],
+        "rows": 72
+      },
+      {
+        "labels": [
+          "paid_eligible",
+          "margin_medium",
+          "daddy_me",
+          "aov_medium",
+          "us_test_ready"
+        ],
+        "rows": 66
+      },
+      {
+        "labels": [
+          "paid_eligible",
+          "margin_medium",
+          "mommy_me",
+          "aov_medium",
+          "us_test_ready"
+        ],
+        "rows": 29
+      },
+      {
+        "labels": [
+          "paid_eligible",
+          "mommy_and_me",
+          "pajamas",
+          "parent_outfit",
+          "us_test_ready"
+        ],
+        "rows": 22
+      },
+      {
+        "labels": [
+          "paid_eligible",
+          "family_matching",
+          "dresses",
+          "parent_outfit",
+          "us_test_ready"
+        ],
+        "rows": 21
+      },
+      {
+        "labels": [
+          "paid_eligible",
+          "mommy_and_me",
+          "sweaters_outerwear",
+          "parent_outfit",
+          "us_test_ready"
+        ],
+        "rows": 20
+      },
+      {
+        "labels": [
+          "paid_eligible",
+          "margin_medium",
+          "swimsuits",
+          "aov_medium",
+          "us_test_ready"
+        ],
+        "rows": 19
+      },
+      {
+        "labels": [
+          "paid_eligible",
+          "family_matching",
+          "sweaters_outerwear",
+          "parent_outfit",
+          "us_test_ready"
+        ],
+        "rows": 11
+      },
+      {
+        "labels": [
+          "paid_eligible",
+          "family_matching",
+          "sets",
+          "parent_outfit",
+          "us_test_ready"
+        ],
+        "rows": 7
+      },
+      {
+        "labels": [
+          "paid_eligible",
+          "mommy_and_me",
+          "sets",
+          "parent_outfit",
+          "us_test_ready"
+        ],
+        "rows": 3
+      }
+    ],
+    "old_rows_matching_new_expected_item_ids": 392,
+    "rows_with_paid_eligible_us_test_ready": 506,
+    "sample_old_products": [
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "margin_medium",
+        "custom_label_2": "mommy_me",
+        "custom_label_3": "aov_medium",
+        "custom_label_4": "us_test_ready",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108009197665_41493704310881",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_18_af65a660-5f30-40d4-85f2-b41b39ece5d3.png?v=1771834477",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me Maxi Dresses - Pink Tie-Dye Print | Dress Like Mommy Mother S / Multi Color"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "margin_medium",
+        "custom_label_2": "mommy_me",
+        "custom_label_3": "aov_medium",
+        "custom_label_4": "us_test_ready",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108009197665_41493704343649",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_18_af65a660-5f30-40d4-85f2-b41b39ece5d3.png?v=1771834477",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me Maxi Dresses - Pink Tie-Dye Print | Dress Like Mommy Mother M / Multi Color"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "margin_medium",
+        "custom_label_2": "mommy_me",
+        "custom_label_3": "aov_medium",
+        "custom_label_4": "us_test_ready",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108009197665_41493704441953",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_18_af65a660-5f30-40d4-85f2-b41b39ece5d3.png?v=1771834477",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me Maxi Dresses - Pink Tie-Dye Print | Dress Like Mommy Child 3-4 Years / Multi Color"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "margin_medium",
+        "custom_label_2": "mommy_me",
+        "custom_label_3": "aov_medium",
+        "custom_label_4": "us_test_ready",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108009197665_41493704507489",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_18_af65a660-5f30-40d4-85f2-b41b39ece5d3.png?v=1771834477",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me Maxi Dresses - Pink Tie-Dye Print | Dress Like Mommy Child 7-8 Years / Multi Color"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "margin_medium",
+        "custom_label_2": "mommy_me",
+        "custom_label_3": "aov_medium",
+        "custom_label_4": "us_test_ready",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108009197665_41493704540257",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_18_af65a660-5f30-40d4-85f2-b41b39ece5d3.png?v=1771834477",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me Maxi Dresses - Pink Tie-Dye Print | Dress Like Mommy Child 9-10 Years / Multi Color"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "margin_medium",
+        "custom_label_2": "mommy_me",
+        "custom_label_3": "aov_medium",
+        "custom_label_4": "us_test_ready",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108009197665_41493704573025",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_18_af65a660-5f30-40d4-85f2-b41b39ece5d3.png?v=1771834477",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me Maxi Dresses - Pink Tie-Dye Print | Dress Like Mommy Child 11-12 Years / Multi Color"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "margin_medium",
+        "custom_label_2": "mommy_me",
+        "custom_label_3": "aov_medium",
+        "custom_label_4": "us_test_ready",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108045897825_41493759918177",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_46_f8f1194f-2fd2-4419-8b77-86fcb687b4f9.png?v=1771839957",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me Midi Dresses - Silver | Dress Like Mommy Child 3-4 Years / Gray"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "margin_medium",
+        "custom_label_2": "mommy_me",
+        "custom_label_3": "aov_medium",
+        "custom_label_4": "us_test_ready",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108045897825_41493759950945",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_46_f8f1194f-2fd2-4419-8b77-86fcb687b4f9.png?v=1771839957",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me Midi Dresses - Silver | Dress Like Mommy Child 5-6 Years / Gray"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "margin_medium",
+        "custom_label_2": "mommy_me",
+        "custom_label_3": "aov_medium",
+        "custom_label_4": "us_test_ready",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108045897825_41493760049249",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_46_f8f1194f-2fd2-4419-8b77-86fcb687b4f9.png?v=1771839957",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me Midi Dresses - Silver | Dress Like Mommy Child 11-12 Years / Gray"
+      },
+      {
+        "availability": "IN_STOCK",
+        "custom_label_0": "paid_eligible",
+        "custom_label_1": "margin_medium",
+        "custom_label_2": "mommy_me",
+        "custom_label_3": "aov_medium",
+        "custom_label_4": "us_test_ready",
+        "feed_label": "US",
+        "item_id": "shopify_US_7108045897825_41493760082017",
+        "merchant_center_id": 124884876,
+        "product_image_uri": "https://cdn.shopify.com/s/files/1/1557/1635/files/pomelli-image_46_f8f1194f-2fd2-4419-8b77-86fcb687b4f9.png?v=1771839957",
+        "status": "NOT_ELIGIBLE",
+        "title": "Mommy and Me Midi Dresses - Silver | Dress Like Mommy Mother S / Gray"
+      }
+    ]
+  },
+  "reason": "FAIL_CLOSED__MERCHANT_FEED_LABEL_IMAGE_READBACK_NOT_LIVE",
+  "timestamp_utc": "20260520T132155Z"
+}

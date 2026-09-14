@@ -1,0 +1,79 @@
+{
+  "recorded_at_utc": "2026-09-11 18:43:39 UTC",
+  "stage": "VERIFY",
+  "source": "Root observed native Chrome, Shopify connector and task-owned in-app browser; sanitized evidence transcription",
+  "campaign": {
+    "customer_id": "6509972886",
+    "campaign_id": "24247604341",
+    "name": "Campaign #1",
+    "type": "Performance Max",
+    "status": "Enabled",
+    "daily_budget_usd": 5,
+    "serving_status": "Pending: All asset groups under review",
+    "report_window": "2026-09-06 through 2026-09-11",
+    "impressions": 0,
+    "clicks": 0,
+    "conversions": 0,
+    "cost_usd": 0,
+    "full_settings_read": "USER_ACTIVITY_INTERRUPTION",
+    "themes_keywords_negatives_geo": "UNKNOWN",
+    "pause_answer": "PENDING"
+  },
+  "shopify_recent_report": {
+    "query": "FROM sales SHOW orders, gross_sales, discounts, sales_reversals, net_sales, shipping_charges, taxes, total_sales TIMESERIES day SINCE 2026-09-09 UNTIL 2026-09-11",
+    "verified_domain": "dresslikemommy-com.myshopify.com",
+    "dates": [
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11"
+    ],
+    "orders_each_day": 0,
+    "all_money_columns_each_day": 0,
+    "limits": "September11 partial. Report aggregates, not independent full order-ledger, attribution or purchase receiver proof."
+  },
+  "public_served_configuration": {
+    "url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+    "canonical_matches": true,
+    "theme_id": 133290917985,
+    "theme_role": "main",
+    "ads_tag_present": "AW-18433316477",
+    "purchase_label_present": "DTaoCJG3sfQcEP2s2NVE",
+    "preserved_ids": [
+      "G-N4EQNK0MMB",
+      "GT-T5R7JFVL"
+    ],
+    "cart_items": 0,
+    "locale": "English",
+    "country_currency": "United States/USD",
+    "basis": "Read-only DOM/inline public bootstrap inspection"
+  },
+  "passive_network": {
+    "first_attempt": "Discarded as incomplete because event buffer reported truncation",
+    "second_attempt_events": 576,
+    "second_attempt_truncated": false,
+    "google_requests_observed_in_root_target": 0,
+    "sandbox_child_target_visibility": "UNVERIFIED",
+    "unsupported_followup": "Target.setAutoAttach is not supported through raw CDP; not retried",
+    "interpretation": "CAPABILITY_LIMIT. Root target absence cannot diagnose sandboxed pixel dispatch or consent.",
+    "consent_ui_observed": false,
+    "tracking_consent_cookie_name_present": false,
+    "consent_choice": "UNKNOWN; no choice inferred from missing banner/cookie",
+    "console_warnings_or_errors_observed": 0,
+    "console_limit": 25
+  },
+  "acceptance": {
+    "served_configuration": "VERIFIED",
+    "google_base_tag_detector": "Prior same-day PASS preserved",
+    "genuine_purchase_payload": "NOT_VERIFIED",
+    "receiver": "NOT_VERIFIED",
+    "consent_transitions": "NOT_RUN",
+    "deduplication": "NOT_RUN",
+    "actual_profit": "UNKNOWN"
+  },
+  "external_configuration_changes_this_cycle": 0,
+  "ad_clicks_or_purchases": 0,
+  "consent_changes": 0,
+  "cleanup": "Own public QA tab closed; no cart/market/locale change; no further native actions while owner used Chrome",
+  "standing_paid_authority": "NONE",
+  "goal_status": "ACTIVE"
+}

@@ -1,0 +1,80 @@
+{
+  "variantPublicationProbe": {
+    "content": [
+      {
+        "type": "text",
+        "text": "## Validation Summary\n\n**Overall Status:** ❌ INVALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-direct-feed-variant-publication-probe\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ❌ FAILED\n**Details:** GraphQL validation errors: Cannot query field \"publishedOnPublication\" on type \"ProductVariant\".\n\n"
+      }
+    ],
+    "isError": false
+  },
+  "initial": {
+    "content": [
+      {
+        "type": "text",
+        "text": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 4\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-direct-feed-identity_query\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_locales, read_markets_home, read_products\n\n### Code Block 2\n**Artifact ID:** dlm-direct-feed-manifest_query\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_products, read_publications\n\n### Code Block 3\n**Artifact ID:** dlm-direct-feed-products_query\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_products, read_publications, read_files, read_themes, read_orders, read_draft_orders, read_images, read_quick_sale\n\n### Code Block 4\n**Artifact ID:** dlm-direct-feed-variants_query\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_products, read_files, read_themes, read_orders, read_draft_orders, read_images, read_quick_sale\n\n"
+      }
+    ],
+    "isError": false
+  },
+  "productsV2": {
+    "content": [
+      {
+        "type": "text",
+        "text": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-direct-feed-products_query\n**Revision:** 2\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_products, read_publications, read_files, read_themes, read_orders, read_draft_orders, read_images, read_quick_sale, read_metaobjects\n\n"
+      }
+    ],
+    "isError": false
+  },
+  "skillInitial": [
+    {
+      "name": "IDENTITY_QUERY",
+      "result": {
+        "chunk_id": "77c996",
+        "wall_time_seconds": 0.000002584,
+        "exit_code": 0,
+        "original_token_count": 106,
+        "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-direct-feed-identity_query\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_locales, read_markets_home, read_products\n\n\n"
+      }
+    },
+    {
+      "name": "MANIFEST_QUERY",
+      "result": {
+        "chunk_id": "296d05",
+        "wall_time_seconds": 0.000002583,
+        "exit_code": 0,
+        "original_token_count": 102,
+        "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-direct-feed-manifest_query\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_products, read_publications\n\n\n"
+      }
+    },
+    {
+      "name": "PRODUCTS_QUERY",
+      "result": {
+        "chunk_id": "434019",
+        "wall_time_seconds": 0.000002792,
+        "exit_code": 0,
+        "original_token_count": 124,
+        "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-direct-feed-products_query\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_products, read_publications, read_files, read_themes, read_orders, read_draft_orders, read_images, read_quick_sale\n\n\n"
+      }
+    },
+    {
+      "name": "VARIANTS_QUERY",
+      "result": {
+        "chunk_id": "30713e",
+        "wall_time_seconds": 0.000002458,
+        "exit_code": 0,
+        "original_token_count": 119,
+        "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-direct-feed-variants_query\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_products, read_files, read_themes, read_orders, read_draft_orders, read_images, read_quick_sale\n\n\n"
+      }
+    }
+  ],
+  "docs": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[\n  {\n    \"score\": 0.840697,\n    \"content\": \"Fields with this object ProductContextualPricing.maxVariantPricing ProductContextualPricing.minVariantPricing ProductVariant.contextualPricing\",\n    \"url\": \"https://shopify.dev/docs/api/admin-graphql/2026-07/objects/ProductVariantContextualPricing\",\n    \"title\": \"ProductVariantContextualPricing - GraphQL Admin\",\n    \"domain\": \"admin\"\n  },\n  {\n    \"score\": 0.80367595,\n    \"content\": \"for inventory tracking Image: Used for variant-specific images SellingPlanGroup: Used for subscriptions and selling plans Learn more about Shopify's product model. available​For​Sale Boolean! non-null Whether the product variant is available for sale. available​Publications​Count Count The number of publications that a resource is published to, without feedback errors. barcode String The value of the barcode associated with the product. compare​At​Price Money The compare-at price of the variant in the default shop currency. contextual​Pricing Product​Variant​Contextual​Pricing! non-null The pricing that applies for a customer in a given context. As of API version 2025-04, only active markets are considered in the price resolution. context Contextual​Pricing​Context! required\",\n    \"url\": \"https://shopify.dev/docs/api/admin-graphql/2026-07/queries/productVariantByIdentifier\",\n    \"title\": \"productVariantByIdentifier - GraphQL Admin\",\n    \"domain\": \"admin\"\n  }\n]"
+      }
+    ],
+    "isError": false
+  }
+}

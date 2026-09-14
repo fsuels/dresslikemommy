@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-09-11 19:30:09 UTC",
+  "tool": "mcp__codex_apps__shopify_graphql_mutation",
+  "observedRule": "Create and manage your store\n\nExecute a GraphQL mutation against the Shopify Admin API.\nThe Shopify Admin API supports hundreds of mutations. Built-in tools cover common write operations, but when the user asks to modify a resource that has no dedicated tool (e.g. metafields, metaobjects, pages, blogs, translations, publications, etc.), use this tool.\nNote: Some dangerous mutations are blocked for safety (e.g. refunds, gift card writes, staff management, theme deletion, theme publishing). Theme file writes (themeFilesCopy, themeFilesUpsert) are allowed on unpublished themes only — writes that target the live/MAIN theme are blocked. If a mutation is blocked, inform the user and suggest they perform the action in Shopify admin.\nThe host app will prompt the user for confirmation before executing.\n\nBefore calling this tool, follow the GraphQL Workflow:\n1. Use graphql_schema to look up the exact mutation name (type_name='Mutation') and input type fields — do NOT guess.\n2. You can also use search_docs_chunks to find mutation examples in Shopify documentation.\n3. Construct the operation.\n4. Call validate_graphql_codeblocks to verify the operation — do NOT skip validation.\n5. Only then call this tool to execute the mutation.\n\nIMPORTANT: After executing, present the results clearly to the user. Do NOT dump raw JSON — summarize what changed in a helpful, readable way. This tool is part of plugin `Shopify`.\n\nexec tool declaration:\n```ts\ndeclare const tools: { mcp__codex_apps__shopify_graphql_mutation(args: {\n  // GraphQL mutation string\n  query: string;\n  // GraphQL variables object\n  variables?: { [key: string]: unknown; };\n}): Promise<CallToolResult>; };\n```",
+  "mutationAttempted": false,
+  "alternativeMainWriteAttempted": false,
+  "interpretation": "Theme publishing and MAIN file writes are explicitly blocked by the connector. Supported handoff is owner publication in Shopify Admin; a browser/CLI/other-API mutation must not work around this restriction.",
+  "ownerAction": {
+    "storeId": "15571635",
+    "domain": "dresslikemommy-com.myshopify.com",
+    "themeId": "137888792673",
+    "themeName": "DLM UX Performance QA 2026-09-10",
+    "action": "Publish this existing theme in Shopify Admin; preserve old MAIN133290917985 for rollback."
+  }
+}
+

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "status": "CANDIDATE_REQUIRES_INDEPENDENT_EXACT_RELEASE_REVIEW",
+  "markets": ["us-en", "au-en"],
+  "holds": [
+    {
+      "product_id": "gid://shopify/Product/7516369715297",
+      "reason": "Actual MAIN Australian buyer test found no usable options or Add to Cart control.",
+      "evidence": ["international_candidate/au-en.full_cohort_qualification_20260911.json", "Root sole-UX ordinary buyer receipt, September 11"],
+      "release_condition": "Current supported source/theme repair and exact role, size, price and manual Add/cart readback prove buyability."
+    },
+    {
+      "product_id": "gid://shopify/Product/7516479848545",
+      "reason": "Six child offers have unresolved null-role selector identity; runtime qualification is incomplete.",
+      "evidence": ["international_candidate/au-en.full_cohort_qualification_20260911.json", "international_candidate/au-en.sku-template-binding_20260911.json"],
+      "release_condition": "Resolve the actual SKU/options mapping and verify the affected child selection and cart identity."
+    },
+    {
+      "product_id": "gid://shopify/Product/7536337125473",
+      "reason": "Trail Plaid contains sixteen Girl/Boy selection-key collision pairs in the actual MAIN selector mapping.",
+      "evidence": ["international_candidate/au-en.full_cohort_qualification_20260911.json", "international_candidate/au-en.sku-template-binding_20260911.json"],
+      "release_condition": "Exact Girl/Boy variant identity is unambiguous and independently verified through the actual buyer path."
+    },
+    {
+      "product_id": "gid://shopify/Product/7536992976993",
+      "reason": "Existing English Skyfade measurement/source truth hold remains unresolved.",
+      "evidence": ["Existing root source-truth review for Skyfade7536992976993, September 11"],
+      "release_condition": "Source-backed measurements and the applicable current English buyer size information pass the owning source review."
+    },
+    {
+      "product_id": "gid://shopify/Product/7536988520545",
+      "reason": "Existing English Polka Dot measurement/source truth hold remains unresolved.",
+      "evidence": ["Existing root source-truth review for PolkaDot7536988520545, September 11"],
+      "release_condition": "Source-backed measurements and the applicable current English buyer size information pass the owning source review."
+    }
+  ],
+  "scope_note": "Local candidate containment under current nonspend authority. Final independent review must bind this exact file before either country's publication. No Shopify status or inventory change and no claim that these active variants are out of stock."
+}

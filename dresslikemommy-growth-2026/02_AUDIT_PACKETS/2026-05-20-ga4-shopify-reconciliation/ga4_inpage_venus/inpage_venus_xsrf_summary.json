@@ -1,0 +1,96 @@
+{
+  "generated_at": "2026-05-20T13:33:22.185Z",
+  "xsrf_captured": true,
+  "results": [
+    {
+      "name": "known_event_name",
+      "status": 200,
+      "ok": true,
+      "file": "known_event_name_xsrf.txt",
+      "textLength": 1698,
+      "contains": {
+        "purchase": true,
+        "transaction": false,
+        "transaction_id": false,
+        "responseRows": true,
+        "error": false
+      },
+      "sample": ")]}', {\"default\":{\"responses\":[{\"dimensions\":[\"event_name\"],\"metrics\":[{\"id\":\"event_count\"}],\"colDimensions\":[],\"responseRows\":[{\"dimensionValues\":[],\"dimensionCompoundValues\":[{\"value\":\"purchase\"}],\"metricValues\":[],\"metricCompoundValues\":[{\"value\":18}],\"rowTotals\":[],\"anomalyAnnotations\":[],\"forecastAnnotations\":[],\"benchmarkingAnnotations\":[]}],\"totalsRow\":{\"dimensionValues\":[],\"dimensionCompoundValues\":[{\"value\":\"RESERVED_TOTAL\"}],\"metricValues\":[],\"metricCompoundValues\":[{\"value\":18}],\"rowTotals\":[],\"anomalyAnnotations\":[],\"forecastAnnotations\":[],\"benchmarkingAnnotations\":[]},\"pivotHeaders\":[],\"storageIds\":[],\"segmentKeyMap\":[],\"overallRowCount\":1,\"freshnessTimestamp\":\"1779191230451504\",\"numberOfSamplesRead\":[],\"samplingSpaceSize\":[],\"metadata\":{\"performance\":{\"f1QueryLatencyMs\":\"229\",\"reportRequestLatencyMs\":\"272\",\"f1GcuSecs\":1.081},\"classification\":{\"identityBlendingStrategy\":2,\"numDaysInDateRange\":28,\"externalWideningSources\":[],\"storageType\":[8,1],\"largestDailyNumRowsInSelectedTables\":\"0\"},\"venusRequestId\":\"13305807299381257631_1779284000714808042_0\",\"dataTruncationReasons\":[],\"isBehavioralModelingEnabledByUser\":true,\"isBehavioralModelingApplied\":false,\"hasFullBaseviewDateCoverage\":true,\"propertyHasFallbackToBaseviewEnabled\":true,\"budgetingForecastAvailabilityMetadata\":[],\"dataProcessingStatusInfo\":{\"latestQueriedDailyCompletionDateStatus\":1,\"latestQueriedDailyCompletionDate\":20260518}}}],\"metadata\":{\"guid\":\"DLM-CODEX-READONLY-GA4-RECON\",\"performance\":{\"beConfigLatencyMs\":\"10\",\"reportingServiceTotalLatencyMs\":\"298\",\"checkVenusDataAccessLatencyMs\":\"8\"}}},\"di\":{\"ser"
+    },
+    {
+      "name": "transaction_snake_all",
+      "status": 500,
+      "ok": false,
+      "file": "transaction_snake_all_xsrf.txt",
+      "textLength": 153,
+      "contains": {
+        "purchase": false,
+        "transaction": false,
+        "transaction_id": false,
+        "responseRows": false,
+        "error": true
+      },
+      "sample": ")]}', {\"er\":{\"errorCode\":13,\"httpStatus\":500},\"di\":{\"serverTime\":\"31\",\"serverTick\":[],\"rpcInfo\":[],\"logRecord\":[],\"graphInfo\":[],\"responseExtension\":[]}}"
+    },
+    {
+      "name": "transaction_snake_no_source",
+      "status": 500,
+      "ok": false,
+      "file": "transaction_snake_no_source_xsrf.txt",
+      "textLength": 153,
+      "contains": {
+        "purchase": false,
+        "transaction": false,
+        "transaction_id": false,
+        "responseRows": false,
+        "error": true
+      },
+      "sample": ")]}', {\"er\":{\"errorCode\":13,\"httpStatus\":500},\"di\":{\"serverTime\":\"31\",\"serverTick\":[],\"rpcInfo\":[],\"logRecord\":[],\"graphInfo\":[],\"responseExtension\":[]}}"
+    },
+    {
+      "name": "transaction_snake_min",
+      "status": 500,
+      "ok": false,
+      "file": "transaction_snake_min_xsrf.txt",
+      "textLength": 153,
+      "contains": {
+        "purchase": false,
+        "transaction": false,
+        "transaction_id": false,
+        "responseRows": false,
+        "error": true
+      },
+      "sample": ")]}', {\"er\":{\"errorCode\":13,\"httpStatus\":500},\"di\":{\"serverTime\":\"33\",\"serverTick\":[],\"rpcInfo\":[],\"logRecord\":[],\"graphInfo\":[],\"responseExtension\":[]}}"
+    },
+    {
+      "name": "transaction_event_param",
+      "status": 500,
+      "ok": false,
+      "file": "transaction_event_param_xsrf.txt",
+      "textLength": 153,
+      "contains": {
+        "purchase": false,
+        "transaction": false,
+        "transaction_id": false,
+        "responseRows": false,
+        "error": true
+      },
+      "sample": ")]}', {\"er\":{\"errorCode\":13,\"httpStatus\":500},\"di\":{\"serverTime\":\"53\",\"serverTick\":[],\"rpcInfo\":[],\"logRecord\":[],\"graphInfo\":[],\"responseExtension\":[]}}"
+    },
+    {
+      "name": "transaction_camel_min",
+      "status": 500,
+      "ok": false,
+      "file": "transaction_camel_min_xsrf.txt",
+      "textLength": 153,
+      "contains": {
+        "purchase": false,
+        "transaction": false,
+        "transaction_id": false,
+        "responseRows": false,
+        "error": true
+      },
+      "sample": ")]}', {\"er\":{\"errorCode\":13,\"httpStatus\":500},\"di\":{\"serverTime\":\"53\",\"serverTick\":[],\"rpcInfo\":[],\"logRecord\":[],\"graphInfo\":[],\"responseExtension\":[]}}"
+    }
+  ]
+}

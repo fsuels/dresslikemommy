@@ -1,0 +1,61 @@
+{
+  "status": "SOURCE_REPAIR_VERIFIED__PUBLIC_RUNTIME_REPAIR_REQUIRED",
+  "strict_public_comparison": {
+    "exact_paragraph_sets": 19,
+    "exact_tables": 21,
+    "total_languages": 21,
+    "initial_checks_passed": 40,
+    "initial_checks_total": 42
+  },
+  "french": {
+    "classification": "BENIGN_WHITESPACE_NORMALIZATION",
+    "exact_change": "The public formatter removes the single space before the semicolon in paragraph2. No other paragraph character differs.",
+    "accepted_after_explicit_normalization": true
+  },
+  "japanese": {
+    "classification": "FAILED_PUBLIC_RENDERING",
+    "api_body": "Correct Japanese text persisted exactly and is current.",
+    "actual_public_paragraphs": [
+      "Together。。",
+      "11。。。",
+      "、、、。。"
+    ],
+    "repeat_observation_at": "2026-09-10T04:15:36.635Z",
+    "repeat_normal_tab_id": "4",
+    "route": "https://www.dresslikemommy.com/ja/products/together-heart-family-matching-sweaters",
+    "preview": false,
+    "screenshot_reviewed": true,
+    "table_cells_exact": true,
+    "problem_id": "PROB-2026-09-10-PDP-JAPANESE-COPY-STRIPPED"
+  },
+  "arabic": {
+    "classification": "FAILED_CHILD_SELECTOR",
+    "route": "https://www.dresslikemommy.com/ar/products/together-heart-family-matching-sweaters",
+    "roles": [
+      "adult"
+    ],
+    "visible_adult_sizes": 7,
+    "guide_rows": [
+      14
+    ],
+    "source_variants_preserved": 98,
+    "source_table_labels_preserved": true,
+    "causal_status": "Exact theme classifier diagnosis delegated; source body repair not presumed cause.",
+    "problem_id": "PROB-2026-09-10-TOGETHER-HEART-ARABIC-CHILD-SELECTOR"
+  },
+  "handoff": {
+    "thread": "01a088c3-c890-71a1-98ee-f19b6905af55",
+    "title": "Audit website conversion issues",
+    "existing_candidate": "137888792673",
+    "sent": true,
+    "scope": "Repair and independently verify both exact theme defects in the existing combined candidate. No duplicate product writes or MAIN publishing through restricted connector.",
+    "shared_canonical_interval": "Root holds until explicit handback."
+  },
+  "cleanup": {
+    "second_temporary_tab_closed": true,
+    "english_restored": true,
+    "cart_items": 0,
+    "viewport_reset": true
+  },
+  "limitation": "Do not mark full all-language buyer acceptance complete or claim sales lift. Source measurements, source bodies and recurrence fix have separate verified completion."
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "dlm.growth.canonical.application.v1",
+  "status": "APPLIED_EXACT_REVIEWED_CANDIDATE__STANDARD_CHECKS_PENDING",
+  "applied_at_utc": "2026-09-14T14:20:10.058602+00:00",
+  "anchor": "2026-09-14-ceo-merchant-eligibility-and-source-freshness",
+  "manifest": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1236.json",
+    "sha256": "8356cdbc9e9523dcf050fc85c75e486a8aeafe9da8b8a4ff626678d9486a0254"
+  },
+  "source_acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1236.json",
+    "sha256": "b887e8045e5c8affe8602b244958e1b10b75e8072e4d5bce547b3978183dca09"
+  },
+  "independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_canonical_final_review_20260914_1236.json",
+    "sha256": "3fc3d09372f1c5c01e6baf011593dd09adfb169352f837f059bfa469489dc154"
+  },
+  "target_count": 9,
+  "operation_count": 18,
+  "current_before_guards_passed": true,
+  "exact_apply_and_reverse_verified": true,
+  "after_hashes": {
+    "ops/marketing/current_marketing_state.md": "4779e0fd9aee927738b99deed4950c2bb5cd5ac45eda977544273e0d52cf0fb0",
+    "ops/marketing/action_queue.md": "5e722705102766d233c4c35fbc9775bd3f983cb6210016ca1e875efa708e6af2",
+    "ops/marketing/daily_scorecard.md": "649860fe1e4e9a78019f61ac1008a34454476fdc8f1942e1566645b887580554",
+    "ops/marketing/blocker_board.md": "5ae5ba78cba1fd104f0f25925eb5b0d3ebaf85a740258d60a1c2466cc82f7935",
+    "ops/marketing/operator_cockpit.md": "0dd2d0c269c9b7c18a5e751d3c35cce671527a898da07a9daafe9dee5d6b4e51",
+    "ops/AGENT_COORDINATION.md": "7610e042b39806939dd4adf9ead09cbb3f86cba6ed0537ee423a0ab3b8d786b5",
+    "ops/PROBLEM_TRACKER.md": "46af596212b3bd4d6ee847b71a8d0431a711ee76fe6702dfb580c2bd6bdd0746",
+    "ops/marketing/decision_log.md": "eef7de6d410d30fe778ed84611ebc0a492080e7cfde26aa2c7f34c76af4afd46",
+    "ops/AGENT_WORKLOG.md": "20ba27578f1555dc3852639f51b8f611ab6c3dc6af6a7a0b0cf454efae067527"
+  },
+  "rollback": "Only reverse exact reviewed changed chunks after current guards; preserve peer changes. No full-file or git reset. External source rollback is separate and old expired pointer is not a healthy rollback.",
+  "business_external_writes": 0,
+  "other_source_or_owner_packet_writes": 0,
+  "new_harness_or_scheduler_or_goal": false
+}

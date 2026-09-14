@@ -1,0 +1,26 @@
+✔ explicit child link selects its role, size, every axis and exactly quantity one (73.690417ms)
+✔ explicit adult link remains adult with correct price and axes (16.942917ms)
+✔ missing or invalid link null preserves empty adult default and range (10.117125ms)
+✔ missing or invalid link "" preserves empty adult default and range (9.654ms)
+✔ missing or invalid link 999999 preserves empty adult default and range (9.11225ms)
+✔ missing or invalid link "invalid" preserves empty adult default and range (9.359583ms)
+✔ unavailable explicit variant is visible, priced and cannot be added (14.460333ms)
+✔ shopper changing role clears the linked price and never reseeds the deep link (20.656292ms)
+✔ changing axes refreshes the price and clearing an axis returns to the range (25.515541ms)
+✔ quantity and legacy change rerenders preserve shopper choices without reseeding (31.00725ms)
+✔ server-formatted EUR and JPY values survive without USD conversion (33.464417ms)
+✔ server money entities decode once while preserving spaces, ampersands and text controls (103.319209ms)
+✔ unit-price entities decode with the existing numeric reference quantity and unit (11.89775ms)
+✔ decoding money text never creates markup or executes an encoded event handler (10.476041ms)
+✔ an asynchronous stale Dawn price replacement is reconciled without a mutation loop (13.212209ms)
+✔ all 21 locale files change only the six scoped return keys (22.000958ms)
+✔ reviewed selector dictionaries preserve English and all existing entries (8.383ms)
+✔ inactive locale parity adds only the two keys and all 35 locale files contain them (19.220375ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 601.587166

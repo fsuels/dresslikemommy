@@ -1,0 +1,2053 @@
+{
+  "schema": "dlm.minimalist_heart_price_independent_after.v1",
+  "status": "PASS_INDEPENDENT_LIVE_PRICE_SOURCE_CORRECTION",
+  "reviewer": "/root/order_delta_1934",
+  "independence": "Reviewer did not build or execute the approved mutation; performed a separate live read-only Shopify query.",
+  "independent_read_started_at_utc": "2026-09-11T17:18:39Z",
+  "independent_read_completed_at_utc": "2026-09-11T17:18:40Z",
+  "source": "Shopify Admin GraphQL connector",
+  "query": "query MinimalistHeartPriceManifest($id:ID!,$variantAfter:String,$publicationAfter:String){shop{name currencyCode primaryDomain{host}} product(id:$id){id handle title status tags updatedAt options{id name position values} variants(first:100,after:$variantAfter){nodes{id title price compareAtPrice sku barcode selectedOptions{name value} inventoryPolicy inventoryQuantity taxable updatedAt} pageInfo{hasNextPage endCursor}} resourcePublicationsV2(first:50,after:$publicationAfter){nodes{isPublished publishDate publication{id name}} pageInfo{hasNextPage endCursor}}} translatableResource(resourceId:$id){resourceId translatableContent{key digest locale}}}",
+  "query_variables": {
+    "id": "gid://shopify/Product/7230336729185",
+    "variantAfter": null,
+    "publicationAfter": null
+  },
+  "query_validation": {
+    "status": "VALID_WITH_DEPRECATED_PUBLICATION_NAME_WARNING",
+    "artifact_id": "independent-minimalist-heart-price-after-20260911",
+    "revision": 1,
+    "fresh_schema_types": [
+      "QueryRoot",
+      "Product",
+      "ProductVariant",
+      "TranslatableResource",
+      "TranslatableContent",
+      "ResourcePublicationV2Connection"
+    ],
+    "warning": "Publication.name is deprecated but the full manifest query validated successfully; retained for direct parity with saved before/after evidence."
+  },
+  "independent_live_manifest": {
+    "shop": {
+      "name": "Dress Like Mommy",
+      "currencyCode": "USD",
+      "primaryDomain": {
+        "host": "www.dresslikemommy.com"
+      }
+    },
+    "product": {
+      "id": "gid://shopify/Product/7230336729185",
+      "handle": "matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors",
+      "title": "Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM",
+      "status": "ACTIVE",
+      "tags": [
+        "Adult 2XL",
+        "Adult 3XL",
+        "Adult L",
+        "Adult M",
+        "Adult S",
+        "Adult XL",
+        "Baby 12M",
+        "Baby 6M",
+        "Black",
+        "Child 1-2yr",
+        "Child 11-12yr",
+        "Child 3-4yr",
+        "Child 5-6yr",
+        "Child 7-8yr",
+        "Child 9-10yr",
+        "Cotton",
+        "Family Matching",
+        "Father 2XL",
+        "Father 3XL",
+        "Father 4XL",
+        "Father L",
+        "Father M",
+        "Father XL",
+        "Mother L",
+        "Mother M",
+        "Mother S",
+        "Mother XS",
+        "Spring",
+        "Summer",
+        "Tops"
+      ],
+      "updatedAt": "2026-09-11T17:12:39Z",
+      "options": [
+        {
+          "id": "gid://shopify/ProductOption/9234206228577",
+          "name": "Size",
+          "position": 1,
+          "values": [
+            "Child 2-3 Years",
+            "Child 3-4 Years",
+            "Child 4-5 Years",
+            "Child 5-6 Years",
+            "Child 6-7 Years",
+            "Child 7-8 Years",
+            "Child 9-10 Years",
+            "Adult S",
+            "Adult M",
+            "Adult L",
+            "Adult XL",
+            "Adult 2XL",
+            "Adult 3XL",
+            "Adult 4XL",
+            "Adult 5XL"
+          ]
+        },
+        {
+          "id": "gid://shopify/ProductOption/9234206261345",
+          "name": "Color",
+          "position": 2,
+          "values": [
+            "White",
+            "Blue",
+            "Pink",
+            "Black",
+            "Red"
+          ]
+        }
+      ],
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/41883235778657",
+            "title": "Child 2-3 Years / White",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 2-3 Years"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:23Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883235844193",
+            "title": "Child 2-3 Years / Blue",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 2-3 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:23Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883235876961",
+            "title": "Child 2-3 Years / Pink",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 2-3 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:25Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237744737",
+            "title": "Child 2-3 Years / Black",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 2-3 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:25Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237777505",
+            "title": "Child 2-3 Years / Red",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 2-3 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:25Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883235909729",
+            "title": "Child 3-4 Years / White",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 3-4 Years"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:25Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883235975265",
+            "title": "Child 3-4 Years / Blue",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 3-4 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:27Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236008033",
+            "title": "Child 3-4 Years / Pink",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 3-4 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:27Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237810273",
+            "title": "Child 3-4 Years / Black",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 3-4 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:27Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237843041",
+            "title": "Child 3-4 Years / Red",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 3-4 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:27Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236040801",
+            "title": "Child 4-5 Years / White",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 4-5 Years"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:29Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236106337",
+            "title": "Child 4-5 Years / Blue",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 4-5 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:29Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236139105",
+            "title": "Child 4-5 Years / Pink",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 4-5 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:29Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237875809",
+            "title": "Child 4-5 Years / Black",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 4-5 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:29Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237908577",
+            "title": "Child 4-5 Years / Red",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 4-5 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:30Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236171873",
+            "title": "Child 5-6 Years / White",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": "b5000712721064",
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 5-6 Years"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 1075,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:31Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236237409",
+            "title": "Child 5-6 Years / Blue",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 5-6 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:31Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236270177",
+            "title": "Child 5-6 Years / Pink",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 5-6 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:31Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237941345",
+            "title": "Child 5-6 Years / Black",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 5-6 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:32Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237974113",
+            "title": "Child 5-6 Years / Red",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 5-6 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:33Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236302945",
+            "title": "Child 6-7 Years / White",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 6-7 Years"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:33Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236368481",
+            "title": "Child 6-7 Years / Blue",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 6-7 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:34Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236401249",
+            "title": "Child 6-7 Years / Pink",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 6-7 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:34Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238006881",
+            "title": "Child 6-7 Years / Black",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 6-7 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:35Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238039649",
+            "title": "Child 6-7 Years / Red",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 6-7 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:35Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236434017",
+            "title": "Child 7-8 Years / White",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 7-8 Years"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:36Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236499553",
+            "title": "Child 7-8 Years / Blue",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 7-8 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:36Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236532321",
+            "title": "Child 7-8 Years / Pink",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 7-8 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:36Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238072417",
+            "title": "Child 7-8 Years / Black",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 7-8 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:38Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238105185",
+            "title": "Child 7-8 Years / Red",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 7-8 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:38Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236565089",
+            "title": "Child 9-10 Years / White",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 9-10 Years"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:38Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236630625",
+            "title": "Child 9-10 Years / Blue",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": "b5000712721156",
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 9-10 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 1096,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:38Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236663393",
+            "title": "Child 9-10 Years / Pink",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 9-10 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:40Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238137953",
+            "title": "Child 9-10 Years / Black",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 9-10 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:40Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238170721",
+            "title": "Child 9-10 Years / Red",
+            "price": "19.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Child 9-10 Years"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:40Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236696161",
+            "title": "Adult S / White",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult S"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:40Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236761697",
+            "title": "Adult S / Blue",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult S"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:42Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236794465",
+            "title": "Adult S / Pink",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult S"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:42Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238203489",
+            "title": "Adult S / Black",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult S"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:42Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238236257",
+            "title": "Adult S / Red",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult S"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:42Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236827233",
+            "title": "Adult M / White",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult M"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:44Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236892769",
+            "title": "Adult M / Blue",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult M"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:44Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236925537",
+            "title": "Adult M / Pink",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult M"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:44Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238269025",
+            "title": "Adult M / Black",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult M"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:44Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238301793",
+            "title": "Adult M / Red",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult M"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:46Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883236958305",
+            "title": "Adult L / White",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": "b5000712721070",
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult L"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 1031,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:46Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237023841",
+            "title": "Adult L / Blue",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": "b5000712721160",
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult L"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 1097,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:46Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237056609",
+            "title": "Adult L / Pink",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult L"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:46Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238334561",
+            "title": "Adult L / Black",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult L"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:48Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238367329",
+            "title": "Adult L / Red",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult L"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:48Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237089377",
+            "title": "Adult XL / White",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult XL"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:48Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237154913",
+            "title": "Adult XL / Blue",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult XL"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:48Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237187681",
+            "title": "Adult XL / Pink",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult XL"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:50Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238400097",
+            "title": "Adult XL / Black",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult XL"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:50Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238432865",
+            "title": "Adult XL / Red",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult XL"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:50Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237220449",
+            "title": "Adult 2XL / White",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 2XL"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-11T17:12:39Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237285985",
+            "title": "Adult 2XL / Blue",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 2XL"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-11T17:12:39Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237318753",
+            "title": "Adult 2XL / Pink",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 2XL"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-11T17:12:39Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238465633",
+            "title": "Adult 2XL / Black",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 2XL"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-11T17:12:39Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238498401",
+            "title": "Adult 2XL / Red",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 2XL"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-11T17:12:39Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237351521",
+            "title": "Adult 3XL / White",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 3XL"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:53Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237417057",
+            "title": "Adult 3XL / Blue",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 3XL"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:54Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237449825",
+            "title": "Adult 3XL / Pink",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 3XL"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:54Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238531169",
+            "title": "Adult 3XL / Black",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 3XL"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:54Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238563937",
+            "title": "Adult 3XL / Red",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 3XL"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:55Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237482593",
+            "title": "Adult 4XL / White",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 4XL"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:56Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237548129",
+            "title": "Adult 4XL / Blue",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 4XL"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:56Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237580897",
+            "title": "Adult 4XL / Pink",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 4XL"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:56Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238596705",
+            "title": "Adult 4XL / Black",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 4XL"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:57Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238629473",
+            "title": "Adult 4XL / Red",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 4XL"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:58Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237613665",
+            "title": "Adult 5XL / White",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 5XL"
+              },
+              {
+                "name": "Color",
+                "value": "White"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:58Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237679201",
+            "title": "Adult 5XL / Blue",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 5XL"
+              },
+              {
+                "name": "Color",
+                "value": "Blue"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:58Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883237711969",
+            "title": "Adult 5XL / Pink",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 5XL"
+              },
+              {
+                "name": "Color",
+                "value": "Pink"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:07:59Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238662241",
+            "title": "Adult 5XL / Black",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 5XL"
+              },
+              {
+                "name": "Color",
+                "value": "Black"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:08:00Z"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/41883238695009",
+            "title": "Adult 5XL / Red",
+            "price": "22.99",
+            "compareAtPrice": null,
+            "sku": null,
+            "barcode": null,
+            "selectedOptions": [
+              {
+                "name": "Size",
+                "value": "Adult 5XL"
+              },
+              {
+                "name": "Color",
+                "value": "Red"
+              }
+            ],
+            "inventoryPolicy": "DENY",
+            "inventoryQuantity": 100,
+            "taxable": true,
+            "updatedAt": "2026-09-07T18:08:00Z"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0MTg4MzIzODY5NTAwOSwibGFzdF92YWx1ZSI6Ijc1In0="
+        }
+      },
+      "resourcePublicationsV2": {
+        "nodes": [
+          {
+            "isPublished": true,
+            "publishDate": "2024-10-31T21:58:47Z",
+            "publication": {
+              "id": "gid://shopify/Publication/85065989",
+              "name": "Buy Button"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2024-10-31T21:58:47Z",
+            "publication": {
+              "id": "gid://shopify/Publication/8877965409",
+              "name": "Point of Sale"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2024-10-31T21:58:47Z",
+            "publication": {
+              "id": "gid://shopify/Publication/21969633377",
+              "name": "Google & YouTube"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2024-10-31T21:58:47Z",
+            "publication": {
+              "id": "gid://shopify/Publication/55169925",
+              "name": "Online Store"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2024-10-31T21:58:47Z",
+            "publication": {
+              "id": "gid://shopify/Publication/29172400225",
+              "name": "Facebook & Instagram"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2024-10-31T21:58:47Z",
+            "publication": {
+              "id": "gid://shopify/Publication/76582879329",
+              "name": "Pinterest"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2024-10-31T21:58:47Z",
+            "publication": {
+              "id": "gid://shopify/Publication/76604768353",
+              "name": "TikTok"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2025-03-21T03:56:00Z",
+            "publication": {
+              "id": "gid://shopify/Publication/97235894369",
+              "name": "n8n Integration"
+            }
+          },
+          {
+            "isPublished": true,
+            "publishDate": "2026-04-26T18:03:11Z",
+            "publication": {
+              "id": "gid://shopify/Publication/76604735585",
+              "name": "Microsoft Channel"
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoyNjAwMjg3OTE4NDk5MywibGFzdF92YWx1ZSI6IjI2MDAyODc5MTg0OTkzIn0="
+        }
+      }
+    },
+    "translatableResource": {
+      "resourceId": "gid://shopify/Product/7230336729185",
+      "translatableContent": [
+        {
+          "key": "title",
+          "digest": "917259eb428a5238c86ea590388105733ceed40cee5c3713cd7964fba895deff",
+          "locale": "en"
+        },
+        {
+          "key": "body_html",
+          "digest": "f369ee718f0f3597b2e998ed0ad50a7ca640d6aa44d371cb49de84dc98046c27",
+          "locale": "en"
+        },
+        {
+          "key": "handle",
+          "digest": "209155a2fe00e3157097efd1eb17fe7100cc898d2539624ecc2273b36089c62c",
+          "locale": "en"
+        },
+        {
+          "key": "product_type",
+          "digest": "e79defc7e2c0969fb9767214c3f4196eeaeb45f157df556079103d858d7e5f10",
+          "locale": "en"
+        },
+        {
+          "key": "meta_title",
+          "digest": "a079f119afb230bc4e8092d80d59f0c10f43be62003efe0c1e61f6a3a547aaca",
+          "locale": "en"
+        },
+        {
+          "key": "meta_description",
+          "digest": "fac1dcfa238589b9d331a3406e9cd72ea11ee88ebe9bc8d202ef938432826b4e",
+          "locale": "en"
+        }
+      ]
+    }
+  },
+  "execution": {
+    "shopify_read_queries": 1,
+    "external_mutations": 0,
+    "browser_calls": 0,
+    "account_probes": 0,
+    "shared_canonical_writes": 0,
+    "prior_historical_review_changed": false
+  },
+  "review_completed_at_utc": "2026-09-11T17:21:22.763877+00:00",
+  "checks": {
+    "actual_independent_live_source_read_recorded": true,
+    "fresh_schema_and_validation_completed": true,
+    "independent_query_identical_saved_manifest_query": true,
+    "shop_identity_and_usd_currency_exact": true,
+    "product_identity_active_exact": true,
+    "before_data_digest_matches_actual": true,
+    "merchant_after_data_digest_matches_actual": true,
+    "intent_bound_to_correct_before_digest": true,
+    "approved_payload_exact_product_and_five_price_only": true,
+    "fresh_exact_owner_reply_recorded": true,
+    "intent_matches_approved_payload": true,
+    "intent_reports_one_request_no_automatic_retry": true,
+    "mutation_all_or_nothing": true,
+    "mutation_receipt_success_no_user_errors": true,
+    "mutation_returned_exact_five_correct_prices": true,
+    "all_75_variant_ids_unique_and_preserved": true,
+    "variant_order_preserved": true,
+    "variant_pagination_complete": true,
+    "variant_pagination_metadata_preserved": true,
+    "exactly_five_changed_price_fields": true,
+    "exact_target_before_and_after_prices": true,
+    "all_70_other_prices_exact": true,
+    "all_70_other_variant_records_entirely_exact": true,
+    "queried_nonprice_variant_fields_preserved": true,
+    "target_timestamps_only_expected_system_change": true,
+    "product_timestamp_matches_recorded_update": true,
+    "other_queried_product_fields_exact": true,
+    "all_9_publication_relationships_preserved": true,
+    "publication_pagination_complete": true,
+    "publication_connection_metadata_preserved": true,
+    "all_6_source_digest_records_preserved": true,
+    "six_unique_expected_source_digest_keys": true,
+    "source_digest_shape_valid": true,
+    "source_resource_identity_preserved": true,
+    "all_observed_prices_positive_two_decimal_usd_basis": true,
+    "live_price_distribution_correct": true,
+    "no_extreme_price_remains": true,
+    "full_independent_live_manifest_matches_merchant_after": true,
+    "operator_readback_receipt_digest_and_changes_match": true,
+    "no_reviewer_mutation_or_browser": true
+  },
+  "checks_passed": 40,
+  "checks_total": 40,
+  "failed_checks": [],
+  "input_artifact_sha256": {
+    "before.json": "5cb54df321299e053159878f61a6c7550c97ca9decf9584fbff166336d4b40a6",
+    "after.json": "a997c27e79167f12a1e8a3c69eb9c48c9e637fcdcdf499e07d3e5f977083b81a",
+    "approved_payload.json": "54e907a3d4f75b64c959b558213018fcb73c99af0a8eb0a48f322bcc56227383",
+    "mutation_intent.json": "b482d072e67e91874d9386787da73b36e2109f8ed6f0a7c2044a77d498aa94b4",
+    "apply_receipt.json": "e20523e5858a604e9bd13b66d6098a64532468f6833f9170ce892fb50291ccb0",
+    "readback_receipt.json": "23020c3317d42f660cb6ec9175ad90c3c5a6413916a49f74c41e635ab7df8ae2"
+  },
+  "independent_live_manifest_sha256": "d314db6afb6a07811d6ede7281d24be16795c1424777b8289f03521b8b80023e",
+  "digest_serialization": "UTF-8 JSON with compact comma/colon separators, preserving source key order; matches declared before and Merchant-after data hashes.",
+  "changed_variant_records": [
+    {
+      "id": "gid://shopify/ProductVariant/41883237220449",
+      "title": "Adult 2XL / White",
+      "before": "229918.99",
+      "after": "22.99",
+      "changed_fields": [
+        "price",
+        "updatedAt"
+      ]
+    },
+    {
+      "id": "gid://shopify/ProductVariant/41883237285985",
+      "title": "Adult 2XL / Blue",
+      "before": "229918.99",
+      "after": "22.99",
+      "changed_fields": [
+        "price",
+        "updatedAt"
+      ]
+    },
+    {
+      "id": "gid://shopify/ProductVariant/41883237318753",
+      "title": "Adult 2XL / Pink",
+      "before": "229918.99",
+      "after": "22.99",
+      "changed_fields": [
+        "price",
+        "updatedAt"
+      ]
+    },
+    {
+      "id": "gid://shopify/ProductVariant/41883238465633",
+      "title": "Adult 2XL / Black",
+      "before": "229918.99",
+      "after": "22.99",
+      "changed_fields": [
+        "price",
+        "updatedAt"
+      ]
+    },
+    {
+      "id": "gid://shopify/ProductVariant/41883238498401",
+      "title": "Adult 2XL / Red",
+      "before": "229918.99",
+      "after": "22.99",
+      "changed_fields": [
+        "price",
+        "updatedAt"
+      ]
+    }
+  ],
+  "verified_counts": {
+    "source_variants": 75,
+    "changed_price_fields": 5,
+    "other_variant_prices_preserved": 70,
+    "other_variant_full_records_preserved": 70,
+    "publication_relationships_preserved": 9,
+    "source_digest_records_preserved": 6,
+    "individual_translation_values_queried": 0
+  },
+  "queried_variant_fields": [
+    "id",
+    "title",
+    "price",
+    "compareAtPrice",
+    "sku",
+    "barcode",
+    "selectedOptions",
+    "inventoryPolicy",
+    "inventoryQuantity",
+    "taxable",
+    "updatedAt"
+  ],
+  "queried_product_fields": [
+    "id",
+    "handle",
+    "title",
+    "status",
+    "tags",
+    "updatedAt",
+    "options",
+    "variants",
+    "resourcePublicationsV2"
+  ],
+  "expected_update_timestamp_changes": {
+    "product": "2026-09-11T17:12:39Z",
+    "five_target_variants": [
+      "2026-09-11T17:12:39Z"
+    ],
+    "all_other_variants_updatedAt_unchanged": true
+  },
+  "limitations": [
+    "This independently verifies live Shopify source only. Merchant feed refresh, Google review/serving, buyer rendering and profit are separate outcomes.",
+    "Only queried product/variant fields and nine publication relationships were compared. Inventory quantity/policy parity is not a complete market-specific salability test.",
+    "Six source content digest records were compared; individual translation values were not queried or certified.",
+    "Shop currency USD establishes the basis of the Admin variant price fields. No presentment-currency/market-price read was performed.",
+    "Publication.name emitted a deprecation warning; query validation explicitly succeeded and all nine returned names/relationships match the before-state.",
+    "The operator records one accepted request and no automatic retry. This independent read proves final state, not the entire external call history.",
+    "The receipt timestamps for mutation intent and apply are not strictly ordered at subsecond precision; no exact API duration is inferred. Owner approval precedes both, and the separately captured Merchant and independent after-states match."
+  ],
+  "single_next_action": "Merchant continues its owned feed update and receiving-source verification using the corrected Shopify prices; this source correction requires no reapplication.",
+  "authority_note": "Fresh exact owner approval is recorded by the sole Merchant executor. The prior BLOCKED_AUTO_REVIEW history remains unchanged in its separate historical review."
+}

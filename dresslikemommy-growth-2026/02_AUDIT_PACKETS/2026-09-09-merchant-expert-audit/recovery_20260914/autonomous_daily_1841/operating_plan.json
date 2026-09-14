@@ -1,0 +1,94 @@
+{
+  "schema": "dlm.merchant_daily_operating_plan.v1",
+  "action": "TA07-DAILY-20260914-1841",
+  "owner_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "created_at_utc": "2026-09-14T19:07:06.271763+00:00",
+  "objective": "All eligible active Shopify offers in each actual served country and supported published language, accurate localized buyer experience, verified Google processing/approval, dependable catalog lifecycle and measured free-shopping acquisition.",
+  "overall_status": "ACTIVE__PARTIAL",
+  "milestones": [
+    {
+      "id": "M1",
+      "name": "Daily accountable execution",
+      "status": "IMPLEMENTED_VERIFIED_CONFIGURATION",
+      "done_when": "The existing Merchant task has one active, scoped recurring work cycle and recoverable receipts. First future execution remains to be observed.",
+      "evidence": "automation_receipt.json"
+    },
+    {
+      "id": "M2",
+      "name": "Maintain existing US/AU eligible English cohorts",
+      "status": "VERIFIED_4741_OF_4741_APPROVED_EACH",
+      "done_when": "Current complete source, received file and approved cohort reconcile, with due refreshes and deleted/unavailable exclusions. Maintain continuously; exposure and sales are separate.",
+      "evidence": "native_account_readback.json"
+    },
+    {
+      "id": "M3",
+      "name": "Correct multilingual source lifecycle",
+      "status": "IMPLEMENTED_LOCAL__INDEPENDENT_PASS_WITH_LIMITS__NOT_DEPLOYED",
+      "done_when": "Global translations and exact-market overrides resolve correctly, stale content is explicitly excluded under reviewed locale configuration, integrity failures prevent partial replacement, and resumed reads preserve original observation age. Deployment and live foreign ingestion remain separate.",
+      "evidence": [
+        "pipeline_after.json",
+        "pipeline_tests_after_clock_repair.json",
+        "independent_review.json"
+      ]
+    },
+    {
+      "id": "M4",
+      "name": "US Spanish cohort",
+      "status": "BLOCKED_EXACT_VARIANT_LANDING_CONTEXT",
+      "done_when": "Exact localized links select source role/size/color/price, stale translations are repaired or explicitly excluded, then the exact fresh cohort is submitted and approved.",
+      "current_partition": {
+        "potential": 4552,
+        "translation_rejected_available": 189,
+        "existing_held_available": 162,
+        "unavailable": 22,
+        "total": 4925
+      },
+      "evidence": "../us_spanish_qualification/execution_handoff.json"
+    },
+    {
+      "id": "M5",
+      "name": "Canada English/French and UK English",
+      "status": "PENDING_CURRENT_SOURCE_DELIVERY_AND_BUYER_QUALIFICATION",
+      "done_when": "Reconcile actual country/catalog/currency and delivery truth; refresh stale September11 candidate inputs; qualify direct links and translations; create or reuse exact source identity; verify receipt and approval. No stale-file upload."
+    },
+    {
+      "id": "M6",
+      "name": "Remaining real market/language coverage",
+      "status": "PENDING_CURRENT_COUNTRY_LANGUAGE_MATRIX",
+      "done_when": "Refresh actual market, publication, language, currency and Google-supported destination mapping. Submit only valid combinations, avoiding blind all-language cross-products and duplicate identities. Historical September9 inventory is a discovery aid, not current eligibility or a release target."
+    },
+    {
+      "id": "M7",
+      "name": "Account quality and customer trust",
+      "status": "PARTIAL__DOMAIN_AND_FREE_LISTINGS_VERIFIED__QUALITY_AND_WALLETS_PENDING",
+      "done_when": "Resolve supported policy/branding/data gaps truthfully; monitor Google review and sufficient traffic signals. Verify ratings when Google calculates them; never manufacture reviews or promises."
+    },
+    {
+      "id": "M8",
+      "name": "Free-shopping customer and profit evidence",
+      "status": "NOT_ESTABLISHED_BY_THIS_CYCLE",
+      "done_when": "Read dated free-listing impressions/clicks and supported store sessions/orders; separate QA, lag, paid traffic and missing attribution/costs. Use actual product outcomes to prioritize improvements."
+    }
+  ],
+  "daily_cycle": [
+    "Recover owning task state and inspect only due or changed evidence.",
+    "Check source freshness, product/account disapprovals and market-level missing coverage.",
+    "Execute the highest-value reviewed correction or qualified market submission; coordinate existing UX/product owners where needed.",
+    "Verify the actual destination, reconcile counts and preserve a rollback/before-state.",
+    "Update owning checkpoint and deliver canonical integration to the parent; report only material results or required action."
+  ],
+  "weekly_quality_cycle": [
+    "Review factual title/description relevance and valid size/color/age/gender/grouping/identifiers using source evidence.",
+    "Review localized landing and delivery/return consistency, eligible image quality and real policy/ratings signals.",
+    "Use actual free-shopping engagement and attributable paid noncancelled orders, with cost limits, to reprioritize product and market work."
+  ],
+  "quality_source": {
+    "url": "https://support.google.com/merchants/answer/14261098?hl=en",
+    "facts_used": "Google says missing ratings can reflect missing information or insufficient impressions; policy changes may take up to30 days to appear in Store Quality. A perfect rating cannot be forced by settings."
+  },
+  "authority": "Fresh owner request authorizes ongoing factual Merchant/free-listing corrections and automatic active-catalog upkeep. Preserve sole Merchant ownership and independent review; no paid/billing/auth/security/account-transfer/MAIN-theme publication or new commitments. Do not ask again for already authorized routine scope.",
+  "single_next_action": "Complete the existing UX-owned exact Spanish variant-entry repair and buyer readback, then resume that qualified language submission. The local multilingual collector correction is now reviewed and ready for integration; Canada/UK source qualification is an independent queued lane.",
+  "canonical_integration": "Parent retains shared worklog, claims, action queue and cockpit; this packet and executor checkpoint are the Merchant-owned state.",
+  "continuation_prompt_path": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

@@ -1,0 +1,77 @@
+{
+  "schema": "dlm.growth.canonical.checks.v1",
+  "recorded_at_utc": "2026-09-14T14:20:51.606595+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "render",
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/render_marketing_cockpit.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Rendered ops/marketing/operator_cockpit.html\n",
+      "stderr": ""
+    },
+    {
+      "name": "command_integration_audit",
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/audit_marketing_command_integration.py",
+        "--write-report",
+        "--fail-on-risk"
+      ],
+      "exit_code": 0,
+      "stdout": "# Marketing Command Layer Integration Audit\n\nIntegration status: `GENERATED`\n\nLast generated: 2026-09-14 10:20\n\nPurpose: identify command-layer files that risk becoming side documents nobody uses.\n\n## Summary\n\n- Tracked files: `25`\n- Integrated/generated/archive files: `25`\n- Side-document risks: `0`\n\nA side-document risk means a file is missing from the source registry, has too few command-loop references, or is not connected to an action surface.\n\n## Required Rule\n\nNo new `ops/marketing/` artifact counts as done unless it is either:\n\n- registered in `ops/marketing/AGENTS.md`,\n- linked from an action surface such as `action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `operator_cockpit.md`, or `ops/PROBLEM_TRACKER.md`,\n- logged in continuity files such as `ops/AGENT_WORKLOG.md`, `ops/AGENT_COORDINATION.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, or `memory_digest.md`,\n- or explicitly marked as `Integration status: ARCHIVE_REFERENCE` or `Integration status: GENERATED`.\n\n## File Results\n\n| File | Status | Registered | Ref count | Action surface | Fix |\n|---|---|---:|---:|---:|---|\n| `ops/marketing/AGENTS.md` | `PASS_CORE` | `true` | `11` | `true` | none |\n| `ops/marketing/action_queue.md` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/assumption_log.md` | `PASS_CORE` | `true` | `3` | `false` | none |\n| `ops/marketing/blocker_board.md` | `PASS_CORE` | `true` | `7` | `true` | none |\n| `ops/marketing/campaign_explorer.json` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/command_layer_integration_audit.md` | `PASS_GENERATED` | `true` | `9` | `true` | generated integration audit |\n| `ops/marketing/current_marketing_state.md` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/daily_scorecard.md` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/decision_log.md` | `PASS_CORE` | `true` | `6` | `true` | none |\n| `ops/marketing/dream_consolidation_prompt.md` | `PASS_INTEGRATED` | `true` | `4` | `true` | none |\n| `ops/marketing/expert_growth_playbook_2026.md` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |\n| `ops/marketing/keyword_factory_015_cpc_criteria.md` | `PASS_INTEGRATED` | `true` | `12` | `true` | none |\n| `ops/marketing/keyword_scoring_rubric.md` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |\n| `ops/marketing/keyword_strategy.md` | `PASS_INTEGRATED` | `true` | `13` | `true` | none |\n| `ops/marketing/keyword_universe.csv` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |\n| `ops/marketing/memory_digest.md` | `PASS_CORE` | `true` | `2` | `false` | none |\n| `ops/marketing/migration_trace.md` | `PASS_ARCHIVE_REFERENCE` | `true` | `4` | `true` | none |\n| `ops/marketing/operator_cockpit.html` | `PASS_GENERATED` | `true` | `9` | `true` | generated cockpit |\n| `ops/marketing/operator_cockpit.md` | `PASS_CORE` | `true` | `5` | `true` | none |\n| `ops/marketing/prompt_log.md` | `PASS_CORE` | `true` | `2` | `false` | none |\n| `ops/marketing/review_log.md` | `PASS_CORE` | `true` | `5` | `true` | none |\n| `ops/marketing/reviewer_checklist.md` | `PASS_CORE` | `true` | `7` | `true` | none |\n| `ops/marketing/spend_authorization.md` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/team_registry.md` | `PASS_CORE` | `true` | `3` | `false` | none |\n| `ops/marketing/us_primary_keyword_lane.md` | `PASS_INTEGRATED` | `true` | `11` | `true` | none |\n\n## Risks To Fix\n\n- None.\n\n## Command\n\n```bash\npython3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk\n```\n\n",
+      "stderr": ""
+    },
+    {
+      "name": "strict_continuity",
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/check_continuity_integrity.py",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 51343 lines; latest anchor 2026-09-14-ceo-merchant-eligibility-and-source-freshness\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-14-ceo-merchant-eligibility-and-source-freshness\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+      "stderr": ""
+    },
+    {
+      "name": "scoped_git_diff_check",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "ops/marketing/current_marketing_state.md",
+        "ops/marketing/action_queue.md",
+        "ops/marketing/daily_scorecard.md",
+        "ops/marketing/blocker_board.md",
+        "ops/marketing/operator_cockpit.md",
+        "ops/AGENT_COORDINATION.md",
+        "ops/PROBLEM_TRACKER.md",
+        "ops/marketing/decision_log.md",
+        "ops/AGENT_WORKLOG.md",
+        "ops/marketing/operator_cockpit.html",
+        "ops/marketing/command_layer_integration_audit.md"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "canonical_after_hashes": {
+    "ops/marketing/current_marketing_state.md": "4779e0fd9aee927738b99deed4950c2bb5cd5ac45eda977544273e0d52cf0fb0",
+    "ops/marketing/action_queue.md": "5e722705102766d233c4c35fbc9775bd3f983cb6210016ca1e875efa708e6af2",
+    "ops/marketing/daily_scorecard.md": "649860fe1e4e9a78019f61ac1008a34454476fdc8f1942e1566645b887580554",
+    "ops/marketing/blocker_board.md": "5ae5ba78cba1fd104f0f25925eb5b0d3ebaf85a740258d60a1c2466cc82f7935",
+    "ops/marketing/operator_cockpit.md": "0dd2d0c269c9b7c18a5e751d3c35cce671527a898da07a9daafe9dee5d6b4e51",
+    "ops/AGENT_COORDINATION.md": "7610e042b39806939dd4adf9ead09cbb3f86cba6ed0537ee423a0ab3b8d786b5",
+    "ops/PROBLEM_TRACKER.md": "46af596212b3bd4d6ee847b71a8d0431a711ee76fe6702dfb580c2bd6bdd0746",
+    "ops/marketing/decision_log.md": "eef7de6d410d30fe778ed84611ebc0a492080e7cfde26aa2c7f34c76af4afd46",
+    "ops/AGENT_WORKLOG.md": "20ba27578f1555dc3852639f51b8f611ab6c3dc6af6a7a0b0cf454efae067527"
+  },
+  "all_canonical_hashes_equal_reviewed_candidate": true,
+  "generated_cockpit_sha256": "f587496177ac51ef61e4a5900a19ded7b675c3f8ebadbd2f14d5ec38687c6a11",
+  "scope_limit": "Command/diff checks do not independently replay live accounts or verify sales/attribution/cost/profit."
+}

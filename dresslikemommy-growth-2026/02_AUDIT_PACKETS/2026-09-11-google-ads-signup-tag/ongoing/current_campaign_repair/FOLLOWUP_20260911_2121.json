@@ -1,0 +1,87 @@
+{
+  "schema": "dlm.google_ads_followup_evidence.v1",
+  "recorded_at_utc": "2026-09-11 21:22:49 UTC",
+  "window": {
+    "from_exclusive": "2026-09-11T19:47:15Z",
+    "until_exclusive": "2026-09-11T21:21:23Z"
+  },
+  "source": "Authenticated Shopify Admin GraphQL; schema discovery and validation completed before read. Preserved IAB tab5 read-only UI.",
+  "query": "query AdsPurchaseCandidateCount($all: String!, $web: String!, $paid: String!) {\n  shop { id name ianaTimezone }\n  allNewOrders: ordersCount(query: $all, limit: null) { count precision }\n  nonTestWebOrders: ordersCount(query: $web, limit: null) { count precision }\n  paidNonTestWebOrders: ordersCount(query: $paid, limit: null) { count precision }\n}",
+  "variables": {
+    "all": "created_at:>'2026-09-11T19:47:15Z' created_at:<'2026-09-11T21:21:23Z'",
+    "web": "created_at:>'2026-09-11T19:47:15Z' created_at:<'2026-09-11T21:21:23Z' test:false source_name:web",
+    "paid": "created_at:>'2026-09-11T19:47:15Z' created_at:<'2026-09-11T21:21:23Z' test:false source_name:web financial_status:paid"
+  },
+  "result": {
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "name": "Dress Like Mommy",
+      "ianaTimezone": "America/New_York"
+    },
+    "allNewOrders": {
+      "count": 0,
+      "precision": "EXACT"
+    },
+    "nonTestWebOrders": {
+      "count": 0,
+      "precision": "EXACT"
+    },
+    "paidNonTestWebOrders": {
+      "count": 0,
+      "precision": "EXACT"
+    }
+  },
+  "privacy": "No customer identity, order ID, payment details, address, cart token or checkout token requested.",
+  "inference": "No newly created order in this exact window is available as a genuine purchase-acceptance sample. This does not prove conversion tracking is correct or broken.",
+  "limits": [
+    "Counts cover new creations only, not refunds, cancellations, payment transitions or receiver ingestion for older orders.",
+    "Earlier daily order totals and attribution/profit clocks remain separate.",
+    "No synthetic purchase, conversion upload, payment or checkout submission."
+  ],
+  "ads_editor": {
+    "browser_id": "1",
+    "tab_id": "5",
+    "campaign_id": "24247604341",
+    "asset_group_id": "6746545742",
+    "current_url_preserved": true,
+    "all18_reviewed_staged_fields_still_present": true,
+    "inline_error": "An error occurred. Please try again later.",
+    "error_under": "Headline 5 of 15",
+    "identity_dialog_currently_visible": false,
+    "identity_completion": "UNVERIFIED",
+    "new_save_attempt": false,
+    "current_saved_asset_group_reopened": false,
+    "displayed_editor_ad_strength": "Poor"
+  },
+  "peer_delta": {
+    "AU_pilot_source": "10727245667",
+    "variant_id": "39756755861601",
+    "price_aud": 26,
+    "status": "RECEIVED_NOT_APPROVED",
+    "source": "Parent live-source-bound canonical update and direct parent message; cause UNKNOWN.",
+    "relevance": "Different product from the proposed Navy Sprig Search drafts; does not qualify their buyer routes, eligibility or economics."
+  },
+  "no_progress_audit": {
+    "previous_goal_turn": "PROGRESS: final Search and video production/review completed.",
+    "this_goal_turn": "NO_PROGRESS_AFTER_REVALIDATION: no newly available purchase sample or changed Ads verification/save state; no independent campaign repair remains executable under current gates.",
+    "same_blocker_consecutive_impasse_turns": 1,
+    "goal_status": "ACTIVE",
+    "update_goal_called": false
+  },
+  "external_writes": 0,
+  "public_storefront_requests": 0,
+  "shared_canonical_writes": 0,
+  "next_action": "Normal owner Google identity verification in preserved editor. Resume scoped saves only on changed verification evidence; otherwise retain paid hold.",
+  "authority_context": {
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "source_live_evidence_as_of": "2026-09-11T21:21:23Z",
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "Completed normal Google verification or a genuine new purchase/sample with receiver evidence.",
+    "if_evidence_supports_recommendation": "Resume the exact reviewed account repair or read-only purchase reconciliation as applicable.",
+    "if_evidence_opposes_recommendation": "Preserve editor and campaign hold; do not retry unchanged authentication or fabricate purchase proof."
+  }
+}

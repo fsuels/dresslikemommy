@@ -1,0 +1,23 @@
+{
+  "prepared_at_utc": "2026-09-11T15:13:37.010311+00:00",
+  "account_id": "513542500",
+  "authority": "Current user explicitly requested direct upload and automatic additions/removals of only active buyable listings",
+  "seed_source_id": "10727262045",
+  "seed_receiving_verified_rows": 4923,
+  "new_source_input": "scheduled_file_url",
+  "url": "https://dlm-merchant-feed-worker.dresslikemommy.workers.dev/feeds/us-en.tsv",
+  "country": "US",
+  "language": "en",
+  "feed_label": "US",
+  "marketing_methods": [
+    "Free listings"
+  ],
+  "schedule": "Every24hours12AMAmerica/New_York, fastest UI option",
+  "file_sha256": "e96faeeb86a64898e3564581997ffde427bd593f061cf02a4dc19244520621c5",
+  "independent_review": "PASS conditional cutover: verify successful Google URL fetch and ownership of all4923IDs before removal of seed",
+  "local_public_http_status": "403Cloudflare1010; no retry/evasion/security weakening",
+  "google_fetch_status": "NOT RUN",
+  "seed_removal_authority": "Only task-created source10727262045 after exact ownership/receiving gate; retain seed ifnewsourcefails",
+  "rollback": "Retain or recreate seed from immutable reviewedfile; recreation mayhave newID andisnotinstant",
+  "long_term_requirement": "One direct publisher for each US/en/US offer; server lifecycle refresh mustbeactivatedandverified"
+}

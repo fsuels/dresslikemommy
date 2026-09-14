@@ -1,0 +1,42 @@
+✔ frozen V7 reproduces E1 empty builder and E2 six omitted height variants (63.032375ms)
+✔ E1 and E2 use native picker for all raw size labels without invented roles or altered source (13.280917ms)
+✔ currency and contextual price do not change coverage or role collision behavior (582.298792ms)
+✔ all 56 Trail Plaid variants retain exact explicit role and distinct selection identity (24.08475ms)
+✔ six tested core products preserve the complete prior selector result (233.690084ms)
+✔ all 240 exact-SKU source products change grouping only for Trail Plaid; native fallback exactly E1/E2 (3212.512791ms)
+✔ native fallback restores controls and both sticky routes at 390px (106.479125ms)
+✔ native fallback restores controls and both sticky routes at 1280px (67.222042ms)
+✔ frozen V7 bytes unchanged and proposal changes exactly the three declared files (6.686625ms)
+✔ supported matching-set sticky controls keep their original bundle route at 390px (32.761625ms)
+✔ supported matching-set sticky controls keep their original bundle route at 1280px (35.822833ms)
+✔ native fallback honors server-resolved deep link only: false (57.921125ms)
+✔ native fallback honors server-resolved deep link only: true (95.878ms)
+✖ missing initial size chart no longer prevents Trail Plaid builder initialization (9.96525ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4765.981125
+
+✖ failing tests:
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/selector-recovery-final.test.mjs:139:1
+✖ missing initial size chart no longer prevents Trail Plaid builder initialization (9.96525ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/selector-recovery-final.test.mjs:142:68)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /rows/,
+    operator: 'throws',
+    diff: 'simple'
+  }

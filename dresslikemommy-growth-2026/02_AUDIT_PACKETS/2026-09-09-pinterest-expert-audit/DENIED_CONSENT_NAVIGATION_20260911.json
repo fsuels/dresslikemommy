@@ -1,0 +1,60 @@
+{
+  "captured_at_utc": "2026-09-11T18:52:10.006Z",
+  "classification": "LIVE_VERIFIED_BOUNDED_DENIED_CONSENT_OBSERVATION",
+  "test_surface": "Task-owned background IAB browser tab3",
+  "route": "Rainbow product page to /blogs/news through normal Blog link",
+  "baseline": {
+    "choices": {
+      "marketing": "no",
+      "analytics": "no",
+      "preferences": "no",
+      "sale_of_data": ""
+    },
+    "allowed": {
+      "marketing": false,
+      "analytics": false,
+      "preferences": false,
+      "sale_of_data": true
+    }
+  },
+  "after": {
+    "choices": {
+      "marketing": "no",
+      "analytics": "no",
+      "preferences": "no",
+      "sale_of_data": ""
+    },
+    "allowed": {
+      "marketing": false,
+      "analytics": false,
+      "preferences": false,
+      "sale_of_data": true
+    }
+  },
+  "capture": {
+    "start_cursor": 1340,
+    "end_cursor": 2350,
+    "has_more": false,
+    "truncated": false,
+    "request_count": 222
+  },
+  "domain_counts": {
+    "www.dresslikemommy.com": 186,
+    "shop.app": 1,
+    "cdn.shopify.com": 26,
+    "otlp-http-production.shopifysvc.com": 5,
+    "monorail-edge.shopifysvc.com": 1,
+    "bat.bing.com": 3
+  },
+  "pinterest_requests_in_capture": 0,
+  "limits": [
+    "Main-tab CDP network capture only; not a complete separately targeted worker capture or Pinterest receiving-dashboard test.",
+    "No consent grant, reset or revocation occurred. Marketing, analytics and preferences were already denied.",
+    "Bing script and action paths appeared, but consent-mode semantics have not been determined. No violation or duplicate tracking claim is made.",
+    "Earlier long-interval capture was truncated and is not used as evidence of absence.",
+    "Does not resolve the earlier separate native-browser helper evidence conflict.",
+    "QA page views are not organic campaign outcomes."
+  ],
+  "external_writes": 0,
+  "credential_or_customer_data_saved": false
+}

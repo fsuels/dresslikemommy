@@ -14,6 +14,14 @@ Codex-native custom agents live in `.codex/agents/`.
 | Landing CRO Operator | `.codex/agents/landing_cro_operator.toml` | Paid landing-page QA, checkout clarity, storefront CRO | Public/read-only/theme-local first | No live theme/Admin/product/policy writes without current approval |
 | Marketing Safety Reviewer | `.codex/agents/marketing_safety_reviewer.toml` | Approval-boundary, external-write, supplier/source leak, active-product, evidence-staleness, spend-authority, and blocker-classification review | Read-only reviewer | Does not edit files or touch external accounts |
 
+## September 5 turnaround assignments
+
+The parent owns the single TA-01–13 queue and all shared records. Completed evidence: Google operator — exact Ads identity/history and local pilot build sheet; analytics operator — Shopify/GA4/GSC baseline and SEO briefs; CRO operator — sampled public/cart/checkout and Danish winner paths. Parent completed Merchant/Pinterest readbacks and integration. The cart worker completed only the recently-viewed IIFE/test, preserving pre-existing quantity/subtotal fixes. The separate reviewer completed local verification with PASS_WITH_GATES; this did not clear launch or publication.
+
+At a new session, inspect current claims before assigning new bounded work. Prior agent names, live browser tabs and server processes are not durable workers. Use the saved reports instead of dispatching the completed audits again. A new parent owns shared records and any authorized external action; assign only disjoint outstanding queue items. The owner-requested continuity check uses a reader with no original chat history and no write permission. Its evidence is in the turnaround packet's `continuity_verification/` directory.
+
+Current economics are cohort-specific under the owner's 30% profit objective. Historical persona CPA examples below are not current CPA targets. This assignment record creates no background workers or scheduled spending; each continuation resumes the canonical queue and dated evidence.
+
 ## Expert Personas
 
 - Head of Growth: senior performance marketing director. Owns fastest safe path to profitable sales, daily accountability, approval boundaries, and `650% ROAS` discipline.

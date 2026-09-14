@@ -1,0 +1,164 @@
+{
+  "status": "VERIFIED_SHOPIFY_METADATA_ONLY",
+  "read_started_at_utc": "2026-09-11 19:39:59 UTC",
+  "read_completed_at_utc": "2026-09-11 19:40:00 UTC",
+  "query": "query CurrentSitelinkMetadata {\n  shop { id name url }\n  products(first: 3, query: \"handle:golden-daisy-mommy-and-me-set OR handle:navy-sprig-mommy-and-me-dresses OR handle:meow-star-garden-mommy-and-me-pajamas\") {\n    nodes { id handle title status onlineStoreUrl publishedAt updatedAt }\n    pageInfo { hasNextPage endCursor }\n  }\n  pajamas: collections(first: 2, query: \"handle:pajamas\") {\n    nodes {\n      id handle title updatedAt\n      resourcePublications(first: 20, onlyPublished: true) {\n        nodes { isPublished publishDate publication { id catalog { id title } } }\n        pageInfo { hasNextPage endCursor }\n      }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n  pajamasOnlineStorePublished: collections(first: 2, query: \"handle:pajamas AND published_status:published\") {\n    nodes { id handle title }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+  "workflow": "graphql_schema → validate_graphql_codeblocks PASS → graphql_query; search_products also called for exact three handles",
+  "data": {
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "name": "Dress Like Mommy",
+      "url": "https://www.dresslikemommy.com"
+    },
+    "products": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Product/7533458194529",
+          "handle": "meow-star-garden-mommy-and-me-pajamas",
+          "title": "Meow Star Garden Mommy and Me Pajamas — Short-Sleeve Set",
+          "status": "ACTIVE",
+          "onlineStoreUrl": "https://www.dresslikemommy.com/products/meow-star-garden-mommy-and-me-pajamas",
+          "publishedAt": "2026-04-22T02:37:37Z",
+          "updatedAt": "2026-09-07T18:19:36Z"
+        },
+        {
+          "id": "gid://shopify/Product/7546613530721",
+          "handle": "golden-daisy-mommy-and-me-set",
+          "title": "Golden Daisy Mommy & Me Matching Separates",
+          "status": "ACTIVE",
+          "onlineStoreUrl": "https://www.dresslikemommy.com/products/golden-daisy-mommy-and-me-set",
+          "publishedAt": "2026-05-08T05:11:14Z",
+          "updatedAt": "2026-09-07T18:31:17Z"
+        },
+        {
+          "id": "gid://shopify/Product/7670609346657",
+          "handle": "navy-sprig-mommy-and-me-dresses",
+          "title": "Navy Sprig Mommy and Me Dresses — Dress & Cardigan",
+          "status": "ACTIVE",
+          "onlineStoreUrl": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses",
+          "publishedAt": "2026-09-02T16:10:41Z",
+          "updatedAt": "2026-09-07T18:33:16Z"
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjo3NjcwNjA5MzQ2NjU3LCJsYXN0X3ZhbHVlIjoiNzY3MDYwOTM0NjY1NyJ9"
+      }
+    },
+    "pajamas": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Collection/240129605",
+          "handle": "pajamas",
+          "title": "Pajamas",
+          "updatedAt": "2026-08-25T11:04:39Z",
+          "resourcePublications": {
+            "nodes": [
+              {
+                "isPublished": true,
+                "publishDate": "2016-10-25T23:37:00Z",
+                "publication": {
+                  "id": "gid://shopify/Publication/55169925",
+                  "catalog": null
+                }
+              },
+              {
+                "isPublished": true,
+                "publishDate": "2017-03-08T21:12:36Z",
+                "publication": {
+                  "id": "gid://shopify/Publication/85065989",
+                  "catalog": null
+                }
+              },
+              {
+                "isPublished": true,
+                "publishDate": "2018-04-07T05:54:42Z",
+                "publication": {
+                  "id": "gid://shopify/Publication/8877965409",
+                  "catalog": null
+                }
+              },
+              {
+                "isPublished": true,
+                "publishDate": "2018-08-24T19:34:44Z",
+                "publication": {
+                  "id": "gid://shopify/Publication/21969633377",
+                  "catalog": null
+                }
+              },
+              {
+                "isPublished": true,
+                "publishDate": "2021-11-02T19:35:28Z",
+                "publication": {
+                  "id": "gid://shopify/Publication/29172400225",
+                  "catalog": null
+                }
+              },
+              {
+                "isPublished": true,
+                "publishDate": "2022-08-25T18:50:19Z",
+                "publication": {
+                  "id": "gid://shopify/Publication/76582879329",
+                  "catalog": null
+                }
+              },
+              {
+                "isPublished": true,
+                "publishDate": "2022-09-13T22:12:03Z",
+                "publication": {
+                  "id": "gid://shopify/Publication/76604768353",
+                  "catalog": null
+                }
+              },
+              {
+                "isPublished": true,
+                "publishDate": "2026-03-27T03:14:17Z",
+                "publication": {
+                  "id": "gid://shopify/Publication/97235894369",
+                  "catalog": null
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eyJsYXN0X2lkIjo2OTE2NzcwMDM4NzMsImxhc3RfdmFsdWUiOjY5MTY3NzAwMzg3M30="
+            }
+          }
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjoyNDAxMjk2MDUsImxhc3RfdmFsdWUiOiIyNDAxMjk2MDUifQ=="
+      }
+    },
+    "pajamasOnlineStorePublished": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Collection/240129605",
+          "handle": "pajamas",
+          "title": "Pajamas"
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjoyNDAxMjk2MDUsImxhc3RfdmFsdWUiOiIyNDAxMjk2MDUifQ=="
+      }
+    }
+  },
+  "limits": [
+    "Current public HTTP availability and buyer flow NOT RUN: storefront HTTP429 stop preserved.",
+    "Product ACTIVE plus non-null onlineStoreUrl and publishedAt proves current Shopify online-store publication metadata, not stock, purchase completion, or Merchant offer approval.",
+    "Collection URL https://www.dresslikemommy.com/collections/pajamas is derived from verified shop URL and current exact handle; queried Collection schema does not expose onlineStoreUrl.",
+    "Collection online-store publication is evidenced by an exact handle + published_status:published query. Resource publication IDs were returned but no human-readable channel labels were exposed."
+  ],
+  "copy_correction": {
+    "existing_candidate": "Explore the Cat Meadow design",
+    "replacement": "Mommy and me pajama options",
+    "replacement_characters": 27,
+    "reason": "Current product title uses Meow Star Garden; neutral wording avoids historical-name mismatch."
+  },
+  "existing_pajamas_sitelink_descriptions": [
+    "Browse pajama styles",
+    "View product details and options"
+  ]
+}

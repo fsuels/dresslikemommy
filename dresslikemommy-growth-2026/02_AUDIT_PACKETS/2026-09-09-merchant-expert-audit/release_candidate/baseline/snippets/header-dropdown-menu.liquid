@@ -1,0 +1,141 @@
+{% comment %}
+  Renders a standard dropdown style menu for the header.
+
+  Usage:
+  {% render 'header-dropdown-menu' %}
+{% endcomment %}
+
+<nav class="header__inline-menu">
+  <ul class="list-menu list-menu--inline" role="list">
+    {%- for link in section.settings.menu.links -%}
+      {%- if section.settings.hide_blog_link_in_primary_nav and link.url contains '/blogs/' -%}
+        {% continue %}
+      {%- endif -%}
+      {%- capture link_is_visible -%}
+        {%- render 'nav-link-visible', link: link -%}
+      {%- endcapture -%}
+      {%- assign link_is_visible = link_is_visible | strip -%}
+      {%- if link_is_visible != 'true' -%}
+        {% continue %}
+      {%- endif -%}
+      {%- capture visible_child_count_raw -%}
+        {%- render 'nav-link-visible-child-count', link: link -%}
+      {%- endcapture -%}
+      {%- liquid
+        assign nav_link_title = link.title | escape
+        assign visible_child_count = visible_child_count_raw | plus: 0
+        if link.url contains '/blogs/'
+          assign nav_link_title = 'Style Journal'
+        endif
+      -%}
+      <li>
+        {%- if visible_child_count > 0 -%}
+          <header-menu>
+            <details id="Details-HeaderMenu-{{ forloop.index }}">
+              <summary
+                id="HeaderMenu-{{ link.handle }}"
+                class="header__menu-item list-menu__item link focus-inset"
+              >
+                <span
+                  {%- if link.child_active %}
+                    class="header__active-menu-item"
+                  {% endif %}
+                >
+                  {{- nav_link_title -}}
+                </span>
+                {% render 'icon-caret' %}
+              </summary>
+              <ul
+                id="HeaderMenu-MenuList-{{ forloop.index }}"
+                class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
+                role="list"
+                tabindex="-1"
+              >
+                {%- for childlink in link.links -%}
+                  {%- capture childlink_is_visible -%}
+                    {%- render 'nav-link-visible', link: childlink -%}
+                  {%- endcapture -%}
+                  {%- assign childlink_is_visible = childlink_is_visible | strip -%}
+                  {%- if childlink_is_visible != 'true' -%}
+                    {% continue %}
+                  {%- endif -%}
+                  {%- capture childlink_visible_grandchild_count_raw -%}
+                    {%- render 'nav-link-visible-child-count', link: childlink -%}
+                  {%- endcapture -%}
+                  {%- assign childlink_visible_grandchild_count = childlink_visible_grandchild_count_raw | plus: 0 -%}
+                  <li>
+                    {%- if childlink_visible_grandchild_count == 0 -%}
+                      <a
+                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                        href="{{ childlink.url }}"
+                        class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                        {% if childlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ childlink.title | escape }}
+                      </a>
+                    {%- else -%}
+                      <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
+                        <summary
+                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                          class="header__menu-item link link--text list-menu__item focus-inset caption-large"
+                        >
+                          <span>{{ childlink.title | escape }}</span>
+                          {% render 'icon-caret' %}
+                        </summary>
+                        <ul
+                          id="HeaderMenu-SubMenuList-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                          class="header__submenu list-menu motion-reduce"
+                        >
+                          {%- for grandchildlink in childlink.links -%}
+                            {%- capture grandchildlink_is_visible -%}
+                              {%- render 'nav-link-visible', link: grandchildlink -%}
+                            {%- endcapture -%}
+                            {%- assign grandchildlink_is_visible = grandchildlink_is_visible | strip -%}
+                            {%- if grandchildlink_is_visible != 'true' -%}
+                              {% continue %}
+                            {%- endif -%}
+                            <li>
+                              <a
+                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                href="{{ grandchildlink.url }}"
+                                class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"
+                                {% if grandchildlink.current %}
+                                  aria-current="page"
+                                {% endif %}
+                              >
+                                {{ grandchildlink.title | escape }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </details>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </details>
+          </header-menu>
+        {%- else -%}
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ link.url }}"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            <span
+              {%- if link.current %}
+                class="header__active-menu-item"
+              {% endif %}
+            >
+              {{- nav_link_title -}}
+            </span>
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>

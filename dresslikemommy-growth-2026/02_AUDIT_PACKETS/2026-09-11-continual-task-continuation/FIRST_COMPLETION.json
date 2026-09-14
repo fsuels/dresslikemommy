@@ -1,0 +1,44 @@
+{
+  "verified_at_utc": "2026-09-11T19:11:41.866403+00:00",
+  "status": "FIRST_MANUALLY_TRIGGERED_CONTINUATION_COMPLETED_VERIFIED_LOCAL_WORK",
+  "dispatch_key": "TA-07:AU_CORRECTED_PRICE_REBUILD:2026-09-11:6ce4404257af85366",
+  "recipient_thread_id": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "recipient_title": "Audit Google Merchant setup",
+  "source_checkpoint": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+  "owner_completion_receipt": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.price_rebuild_checkpoint.json",
+  "independent_review": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.corrected_price_independent_review.json",
+  "source_anchor": "2026-09-11-merchant-au-local-feed-corrected-prices-verified",
+  "source_completed_at_utc": "2026-09-11T18:53:09.071Z",
+  "owner_closed_at_utc": "2026-09-11T19:05:52.991940+00:00",
+  "checks": {
+    "one_matching_dispatch": true,
+    "one_send_attempt": true,
+    "parent_records_verified_execution": true,
+    "exact_owner_completion_receipt_hash": true,
+    "exact_independent_review_hash": true,
+    "current_feed_matches_owner_and_reviewed_hash": true,
+    "current_feed_expected_bytes": true,
+    "owner_complete_and_shared_interval_released": true,
+    "exact_five_corrected_prices": true,
+    "google_submission_not_run": true,
+    "business_result_not_established": true,
+    "same_active_thirty_minute_heartbeat": true
+  },
+  "checks_passed": 12,
+  "result": {
+    "local_au_feed_rows": 4923,
+    "corrected_price_rows": 5,
+    "corrected_price": "33.00 AUD",
+    "other_feed_rows_unchanged": 4918,
+    "current_feed_sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+    "independent_review_checks": "21/21 PASS",
+    "owner_local_checks": "33/33",
+    "owner_feed_tests": "PASS 25/25, node --test test/feed.test.mjs",
+    "owner_schema_validation": "PASS 5/5 unchanged operations through official Shopify schema validator"
+  },
+  "limits": [
+    "Manual first continuation completed; a later automatic scheduled wake is not yet verified here.",
+    "No Google submission, external publication or sales/profit improvement established."
+  ],
+  "shared_canonical_edits": "NONE; explicit shared-writer hold respected"
+}

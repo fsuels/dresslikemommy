@@ -1,0 +1,126 @@
+{
+  "schema": "dlm.merchant.lifecycle_setup.v1",
+  "created_at_utc": "2026-09-10T16:28:00Z",
+  "status": "PREPARED_NATIVE_CONFIGURATION_GATED",
+  "shop_id": "15571635",
+  "merchant_account_id": "513542500",
+  "objective": "Maintain active Shopify offers and truthful availability in Google free listings for every actually served and Google-eligible market/language, including future additions, changes, removals and reactivation.",
+  "authority": "Current user explicitly requested automatic lifecycle synchronization and nonspend Merchant corrections. No paid, billing, security, theme publication, or duplicate unbound source authority inferred.",
+  "implementation_changes_this_phase": 0,
+  "verified": {
+    "active_parent_source_baseline": 240,
+    "exact_variant_source_baseline": 4945,
+    "baseline_receipt": "../menu_completion_20260910/shopify_source/summary.json",
+    "parent_google_channel_availability": "240/240 as of September 10 15:46 UTC; not Merchant receipt",
+    "current_market_auto_inclusion": {
+      "International": true,
+      "Eurozone": true,
+      "United States": true
+    },
+    "unattached_catalog": {
+      "title": "Estonia",
+      "autoPublish": true,
+      "associated_markets": 0,
+      "action": "Preserve; do not delete or invent association"
+    },
+    "google_app_catalog": "gid://shopify/AppCatalog/7676067937"
+  },
+  "desired_configuration": [
+    {
+      "surface": "Shopify Google & YouTube > Settings > Product feed > Product sync",
+      "desired": "Automatically sync products using the Google & YouTube app",
+      "current": "UNKNOWN",
+      "action": "Read current mode and receiving account; save automatic mode only if different and binding is Merchant513542500."
+    },
+    {
+      "surface": "Shopify Google & YouTube > Product sync > Countries and languages",
+      "desired": "Every currently served country/language supported by the actual app and account, with real shipping and localized purchasable landing pages",
+      "current": "UNKNOWN",
+      "action": "Reconcile the saved65-country/21-language matrix with actual account options and received sources; preserve existing identities and rules."
+    },
+    {
+      "surface": "Same country configuration",
+      "desired": "Automatically sync future countries",
+      "current": "UNKNOWN",
+      "action": "Enable if off after confirming it follows enabled Shopify Markets and shipping destinations."
+    },
+    {
+      "surface": "Merchant513542500 > Marketing methods > Free listings",
+      "desired": "Enabled and eligible",
+      "current": "UNKNOWN",
+      "action": "Read setting, country eligibility and account issues; correct nonspend setup if needed."
+    },
+    {
+      "surface": "Merchant513542500 > Data sources and Products",
+      "desired": "App-owned sources receive and refresh current intended offers; no stale removed offers; complete approved country-language coverage recorded",
+      "current": "UNKNOWN",
+      "action": "Bind source IDs, language, feed label, offer IDs, country sets, refresh times, quota, issues and per-destination status. Do not infer this from Shopify publication counts."
+    }
+  ],
+  "lifecycle": [
+    {
+      "event": "New product becomes ACTIVE and available on Online Store and Google channel",
+      "expected": "Native app creates applicable variant/language offers in supported configured markets."
+    },
+    {
+      "event": "Price, availability, product content or translation changes",
+      "expected": "Native app refreshes the supported offers with accurate localized data; verify actual translated coverage."
+    },
+    {
+      "event": "Variant is added or removed on an ACTIVE product",
+      "expected": "Create or withdraw only its mapped language/feed-label offer identities, preserving the parent grouping and remaining variants."
+    },
+    {
+      "event": "Product becomes DRAFT, ARCHIVED or UNLISTED, is removed from a relevant channel, or is deleted in Shopify",
+      "expected": "Withdraw corresponding source-owned offers; verify absence or non-serving status in Merchant. Exact latency remains unverified."
+    },
+    {
+      "event": "Product returns to ACTIVE and both channels",
+      "expected": "Native app can restore eligible offers under their retained identity. Avoid Merchant UI archive as routine lifecycle control because feed updates cannot undo it."
+    },
+    {
+      "event": "Market or language is added/removed",
+      "expected": "Use current enabled Markets, published languages and shipping; reconcile actual Google support and source ownership before adding/removing target coverage."
+    }
+  ],
+  "conditional_gaps": [
+    {
+      "condition": "A genuine future ACTIVE product misses Google channel inclusion despite native automatic sync",
+      "remedy": "Use supported Shopify Flow Product created plus Product status updated, conditioned on ACTIVE and Online Store availability, with selected Google channel publication. Do not set Google publication.autoPublish through AppCatalog mutation whose target-specific support and lifecycle fit are unestablished.",
+      "status": "NOT BUILT_OR_ENABLED; need native evidence and installed Flow capability."
+    },
+    {
+      "condition": "Supported translated offers are absent from app-owned sources",
+      "remedy": "Add only uncovered primary language/pricing partitions through a maintained source with refresh and deletion reconciliation. A supplemental source cannot create missing language offers.",
+      "status": "NOT CREATED; actual receiving source identity/quota/coverage required. No static upload presented as automation."
+    }
+  ],
+  "rejected_path": {
+    "operation": "publicationUpdate(autoPublish:true) on Google21969633377",
+    "status": "NOT RUN",
+    "reason": "Fresh Catalog.publication binds target to AppCatalog. A generic field and shared error enum do not establish target-specific writability or fit for activation/removal. No runtime unsupported error was observed; native Product sync is the supported first path.",
+    "rollback_if_ever_supported": "Same target autoPublish:false would restore the flag but would not undo subsequent publication membership; no rollback executed."
+  },
+  "access": {
+    "native_attempt_this_phase": 0,
+    "prior_auto_review_rejection": "Selecting native Chrome could expose unrelated private tabs/content beyond Merchant scope.",
+    "pending_owner_action": "Select Merchant Center513542500 in Chrome, keep the tab stable, and explicitly confirm selected-tab inspection and operation.",
+    "no_workaround": true
+  },
+  "acceptance_required": [
+    "All current ACTIVE intended variants reconciled to received Merchant identities.",
+    "Each served and supported country-language pair has received eligible offers or an explicit evidence-backed exclusion; 21 languages do not by themselves prove all1365 requested pairs.",
+    "Actual later source change and withdrawal are observed at Merchant; no fabricated receipt or latency claim.",
+    "Google approval and serving are reported separately from successful submission.",
+    "No paid enablement or unsupported customer claims.",
+    "Zero inventory updates truthful availability and does not trigger product deletion; UNLISTED is excluded from ACTIVE-only Google publication."
+  ],
+  "evidence": [
+    "publication_snapshot.json",
+    "catalog_snapshot.json",
+    "../resumed_20260910/coverage_standards/coverage_matrix.json",
+    "official_lifecycle.md",
+    "preflight_review.md",
+    "code_inventory.md"
+  ]
+}

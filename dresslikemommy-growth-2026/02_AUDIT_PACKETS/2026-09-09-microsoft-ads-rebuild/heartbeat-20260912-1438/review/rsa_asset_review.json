@@ -1,0 +1,201 @@
+{
+  "reviewed_at_utc": "2026-09-12T14:58:36.787441+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "verdict": "PASS_WITH_LIMITS_RSA_ASSET_POLICY_READBACK",
+  "check_count": 22,
+  "checks": {
+    "all_four_exact_source_hashes": true,
+    "readback_frozen_copy_binding_exact": true,
+    "exact_account_customer_scope": true,
+    "exact_two_ad_ids": true,
+    "campaign_group_associations_match_saved_ads": true,
+    "twenty_two_associations_twenty_one_unique_ids": true,
+    "only_shared_id_is_brand_twice": true,
+    "no_duplicate_asset_association_within_ad": true,
+    "eight_headlines_three_descriptions_each": true,
+    "all_headline_texts_match_frozen_and_csv": true,
+    "all_description_texts_match_frozen_and_csv": true,
+    "all_twenty_two_asset_policy_statuses_approved": true,
+    "all_twenty_two_position_pinning_none": true,
+    "all_assets_active_and_advertiser_provided": true,
+    "ad_statuses_remain_paused_in_readback": true,
+    "all_metrics_are_dashes_not_measured_performance": true,
+    "ad_strength_labels_kept_separate_from_editorial": true,
+    "saved_url_paths_and_suffixes_match_frozen_csv_only": true,
+    "only_two_minimal_staged_csv_rows_selected": true,
+    "existing_account_auto_tracking_options_recorded": true,
+    "native_asset_page_query_ids_match_own_entities": true,
+    "root_observation_provenance_explicit": true
+  },
+  "bound_sources": {
+    "asset_readback": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/rsa_asset_policy_readback.json",
+      "sha256": "b5bcded437716dee9056d67fcfa9504ea1531ecf24ebb5eda1f64bf408b604fc"
+    },
+    "account_options_before": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/account_options_before.json",
+      "sha256": "ed2b14f2bee4c8aa7d37e4b478295b82219041650df8c6398460a0a89c80e98a"
+    },
+    "frozen_saved_ads": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260911-2237/combined_saved_ads_readback.json",
+      "sha256": "240544fc6f85fc6a30ab1e27ee11345012bde9cdcca5b5af0448f4f027b5390e"
+    },
+    "source_csv": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/responsive_search_ads.csv",
+      "sha256": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07"
+    }
+  },
+  "verified_summary": {
+    "associations": 22,
+    "unique_asset_ids": 21,
+    "shared_brand_asset_id": "1268836471611768",
+    "per_ad_headlines": 8,
+    "per_ad_descriptions": 3,
+    "all_policy_status": "Approved",
+    "all_position_pinning": "None"
+  },
+  "asset_associations_by_ad": {
+    "79508657389070": [
+      {
+        "asset_id": "1271035495066794",
+        "asset_type": "Headline",
+        "text": "Mommy & Me Dresses"
+      },
+      {
+        "asset_id": "1261139890260049",
+        "asset_type": "Headline",
+        "text": "Mother & Daughter Dresses"
+      },
+      {
+        "asset_id": "1264438425285892",
+        "asset_type": "Headline",
+        "text": "Find Your Matching Look"
+      },
+      {
+        "asset_id": "1265537936782885",
+        "asset_type": "Headline",
+        "text": "Dresses for Family Photos"
+      },
+      {
+        "asset_id": "1273234518375212",
+        "asset_type": "Headline",
+        "text": "Choose Sizes for Each Person"
+      },
+      {
+        "asset_id": "1262239401944050",
+        "asset_type": "Headline",
+        "text": "Explore Coordinated Styles"
+      },
+      {
+        "asset_id": "1268836471611800",
+        "asset_type": "Headline",
+        "text": "Browse Mother-Daughter Looks"
+      },
+      {
+        "asset_id": "1268836471611768",
+        "asset_type": "Headline",
+        "text": "Dress Like Mommy"
+      },
+      {
+        "asset_id": "1273234518375228",
+        "asset_type": "Description",
+        "text": "Explore coordinated dresses for mothers and daughters. Find your matching look."
+      },
+      {
+        "asset_id": "1267736960066759",
+        "asset_type": "Description",
+        "text": "Compare styles and size options for each person before adding items to your bag."
+      },
+      {
+        "asset_id": "1265537936782869",
+        "asset_type": "Description",
+        "text": "Planning family photos? Browse matching dresses and check the product details."
+      }
+    ],
+    "78890182372245": [
+      {
+        "asset_id": "1274334029841021",
+        "asset_type": "Headline",
+        "text": "Mutter-Tochter-Kleider"
+      },
+      {
+        "asset_id": "1269935983480921",
+        "asset_type": "Headline",
+        "text": "Kleider im Partnerlook"
+      },
+      {
+        "asset_id": "1273234518375196",
+        "asset_type": "Headline",
+        "text": "Findet Euren Familienlook"
+      },
+      {
+        "asset_id": "1271035495066810",
+        "asset_type": "Headline",
+        "text": "Für Gemeinsame Familienfotos"
+      },
+      {
+        "asset_id": "1264438425285860",
+        "asset_type": "Headline",
+        "text": "Größen für Mutter und Tochter"
+      },
+      {
+        "asset_id": "1267736960066743",
+        "asset_type": "Headline",
+        "text": "Entdeckt Passende Kleider"
+      },
+      {
+        "asset_id": "1268836471611784",
+        "asset_type": "Headline",
+        "text": "Die Kollektion Entdecken"
+      },
+      {
+        "asset_id": "1268836471611768",
+        "asset_type": "Headline",
+        "text": "Dress Like Mommy"
+      },
+      {
+        "asset_id": "1262239401944066",
+        "asset_type": "Description",
+        "text": "Entdeckt aufeinander abgestimmte Kleider für Mutter und Tochter. Findet euren Look."
+      },
+      {
+        "asset_id": "1262239401944034",
+        "asset_type": "Description",
+        "text": "Vergleicht Modelle und Größen für jede Person, bevor ihr eure Auswahl trefft."
+      },
+      {
+        "asset_id": "1264438425285876",
+        "asset_type": "Description",
+        "text": "Plant ihr Familienfotos? Entdeckt passende Kleider und lest die Produktdetails."
+      }
+    ]
+  },
+  "limits": [
+    "Verification independently reconciles root-transcribed native AX/grid observations with frozen local sources; no independent live replay occurred.",
+    "Asset Active is distinct from ad or campaign Enabled. Both ad readbacks are Paused.",
+    "Asset-level Approved does not establish whole-ad editorial approval or serving eligibility.",
+    "The actual per-association None values strengthen the earlier pinning readback; no claim is made about unrelated assets or later changes.",
+    "Pending and Average Performance are recorded Ad Strength labels; dash-valued metrics do not establish traffic, conversions, revenue or performance.",
+    "Saved URL/path/suffix comparison is between the frozen saved-ad receipt and CSV, not a new current URL editor readback."
+  ],
+  "utm_prospective_review": {
+    "recommendation": "NO_CHANGE_PENDING_US_TEST_AND_CONCRETE_NEED",
+    "challenge": "Prefer NO_CHANGE while the US URL Test completes. The reported DE Test finds the landing page and emits one instance of each automatic UTM key, so duplicate parameters are not reproduced. Microsoft recommends URL Test when manual suffixes coexist with automatic tagging; coexistence alone does not require deletion. Record the observed automatic campaign-name/ad-group values and their mapping to the two saved ads instead of claiming the manual campaign/ad identifiers reach analytics. Two suffix-clearing Saves currently offer optional configuration cleanup, with no demonstrated attribution gain. Reconsider only if paired tests reveal a mismatch or an explicit tracking requirement needs different values. Any future proposal must freeze the two existing ad IDs, exact before suffixes and rollback, preserve account options and legacy campaigns, and verify assembled URLs and saved ad state. No external Save is approved without an exact action contract; native Test is not a paid click or purchase-ingestion test.",
+    "external_save_decision": "NOT_APPROVED_NO_ACTION_CONTRACT",
+    "de_test_provenance": "Parent message reports passing landing-page test, automatic campaign-name/ad-group/term values and no duplicate keys. No test receipt was supplied in this bounded review; this is not independent test verification.",
+    "official_sources": [
+      {
+        "url": "https://help.ads.microsoft.com/apex/index/3/en/56762",
+        "claim": "Microsoft warns manual final URL/suffix UTMs plus automatic tagging can duplicate in some circumstances and recommends URL Test.",
+        "retrieval": "Official indexed search result read; direct Help open returned its generic error page, not the article."
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/advertising/customer-management-service/autotagtype?view=bingads-13",
+        "claim": "Replace is an account-level automatic-tagging setting.",
+        "retrieval": "Official Microsoft Learn page directly opened and read."
+      }
+    ]
+  },
+  "reviewer_mutations": "Only this new review/rsa_asset_review.json. No native, canonical, source, other review or external Save."
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "part": 1,
+    "text": "[Diagnostic 1/7] This is the original diagnostic report captured on September 12, 2026. References to the current app configuration below describe that dated capture. Please investigate and propose a supported correction. This request does not authorize changes to the account, consent, app configuration or campaigns.\n\n**Subject:** Shopify app standard UET sends pageLoad without a consent signal while Shopify denies marketing and analytics\n\nPlease investigate and"
+  },
+  {
+    "part": 2,
+    "text": "[Diagnostic 2/7] provide a supported repair for the Microsoft Advertising Shopify integration on Dress Like Mommy, Advertising account **477439**, customer **770182**, UET **36005151**.\n\nOn September 12, 2026, we used Microsoft Advertising's native **Test your tag** for our public `/collections/dresses` page. The receiver displayed three Page Load / page view events with **Consent Signal: Not present** for the same test session.\n\nIn a controlled storefront tab,"
+  },
+  {
+    "part": 3,
+    "text": "[Diagnostic 3/7] Shopify's Customer Privacy API reported region USFL and effective **analytics=false** and **marketing=false**, both before and after a reload. We did not change consent. At **10:43:06.879 UTC**, that reload sent a GET to the standard UET `/action/0` endpoint with `ti=36005151` and `evt=pageLoad`, for the exact tested page. The request had no `asc` parameter. Identifier-named fields were nonempty, but their values are deliberately omitted and"
+  },
+  {
+    "part": 4,
+    "text": "[Diagnostic 4/7] their semantics have not been inferred.\n\nThe observed Microsoft app publisher wrapper loaded `bat.js`, initialized `new UET` with this tag ID and queued `pageLoad`. Its body had no Shopify privacy check or explicit consent command. The final action request's initiator was reported as `other`, without a call stack; attribution to this wrapper is inferred from the observed loading chain, matching tag and exact test URL. The standard wrapper SHA256"
+  },
+  {
+    "part": 5,
+    "text": "[Diagnostic 5/7] was `171802eab48befd7660099e6ad8c6d0423c14bfeb2b866b14b30694d7f7bce3a`. We are reporting the standard storefront stream; we have not proved a defect in the isolated app-pixel purchase stream.\n\nThe current public app configuration remains pixel **931561569**, API client **2997493**, STRICT runtime, version **5ee93563fe31b11d2d65e2f09a5229dc**, declaring ANALYTICS, MARKETING and SALE_OF_DATA. We have preserved those requirements.\n\nPlease provide"
+  },
+  {
+    "part": 6,
+    "text": "[Diagnostic 6/7] the supported app release or configuration repair that makes the standard UET initialization honor Shopify's effective permissions before dependent events and on subsequent permission changes. Please also identify the supported way to verify consent in the separate `shop-wpa` stream. We want to avoid an unconditional grant, duplicate event sender, unsupported vendor-worker edit, or an unreviewed change in consent mode.\n\nLimits: the network buffer"
+  },
+  {
+    "part": 7,
+    "text": "[Diagnostic 7/7] was not exhaustive; native receiver timestamps have minute-level precision and expose no per-hit request ID. This report does not establish a regional purchase failure, duplicated orders, lost revenue or a repaired integration. We have not placed a test order. A redacted source and trace can accompany this report.\n"
+  }
+]

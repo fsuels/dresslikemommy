@@ -1,0 +1,127 @@
+{
+  "schema": "dlm.exact_product_price_correction_proposal.v1",
+  "status": "OWNER_MANUAL_PRICE_CORRECTION_PENDING",
+  "task_stage": "BLOCKED",
+  "product_id": "7230336729185",
+  "variant_ids": [
+    "41883237220449",
+    "41883237285985",
+    "41883237318753",
+    "41883238465633",
+    "41883238498401"
+  ],
+  "scope": "Only price on the five Adult2XL variants; preserve other70variants, IDs, options, SKU, availability, product content, translations, status, publications and theme.",
+  "source_evidence": [
+    "price_live_source_before.json",
+    "public_readback.json",
+    "feed_contract_review.json",
+    "price_provenance.json"
+  ],
+  "problem": "Five prices are229918.99 USD in current Shopify and the frozen USfeed. The published MAIN White sample variant's JSON-LD and the product's visible price range reproduce229918.99; the other four public variant pages were not separately checked. Their earlier exact price was18.99, but all35other adult variants have since moved from18.99 to22.99.",
+  "recommended_price": "22.99",
+  "recommendation_basis": "Deliberate proposal to match the current35other adult variants; not a claim that current owner intent or margin is proven.",
+  "alternative_price": "18.99",
+  "alternative_basis": "Exact April29/May6 historical price; may be superseded by later repricing.",
+  "mutation": "mutation CorrectMinimalistHeartPrices($productId:ID!,$variants:[ProductVariantsBulkInput!]!){productVariantsBulkUpdate(productId:$productId,variants:$variants,allowPartialUpdates:false){productVariants{id title price compareAtPrice} userErrors{field message}}}",
+  "variables": {
+    "productId": "gid://shopify/Product/7230336729185",
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/41883237220449",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237285985",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237318753",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238465633",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238498401",
+        "price": "22.99"
+      }
+    ]
+  },
+  "inverse_variables": {
+    "productId": "gid://shopify/Product/7230336729185",
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/41883237220449",
+        "price": "229918.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237285985",
+        "price": "229918.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237318753",
+        "price": "229918.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238465633",
+        "price": "229918.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238498401",
+        "price": "229918.99"
+      }
+    ]
+  },
+  "mutation_validation": {
+    "status": "VALID",
+    "artifact_id": "minimalist-heart-five-price-correction-20260911",
+    "revision": 1,
+    "executed": false
+  },
+  "preflight": [
+    "Resolve the existing exact five22.99owner approval question, then refresh source/claim. The action-time automatic review supersedes the earlier general-authority interpretation.",
+    "Fresh read same75variants; stop on drift or competing price writer.",
+    "Freeze a fresh execution before-state for all75variants, explicitly including prices, compare-at values, titles, SKU, selected options and availability-related fields, plus product content/status/publications and relevant translation evidence; current diagnostic query contains only IDs/titles/prices/compareAtPrice/updatedAt. Do not claim unqueried fields verified. Confirm allfivecurrentoutliers and preserved70variantprices."
+  ],
+  "verification": [
+    "Mutation returns0userErrors and exactlyfiveexpectedIDs/prices.",
+    "Independently read all75variants; exactlyfivepricechanges, other70prices, all queried identity/SKU/options/inventory/tax/compareAt fields,9publicationrelationships and6content-source digests unchanged. Individual translation values are not queried; do not claim a complete translation replay.",
+    "Verify MAIN exact variant price/JSON-LD and visible productrange; no order/payment.",
+    "Merchant rebuilds existing scheduled feed from correctedShopifytruth and verifies exactlyfivepricechanges then actualreceiverreceipt; no feed-onlyoverride."
+  ],
+  "rollback": "Exact five-price inverse retained for audit; never automatically restore a known broken229918.99 price. If verification fails, stop and reconcile before another write.",
+  "authority": {
+    "source_live_evidence_as_of": "2026-09-11T16:05:25Z",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_EXACT_PRICE_APPROVAL_REQUIRED per observed automatic review",
+    "approved_external_scope": "NONE",
+    "decision_depends_on_uncertain_state": true,
+    "decision_changing_evidence": "Fresh full source/claim/drift validation supports the exact five-only repair; independent review confirms current uniform adult-price context",
+    "if_evidence_supports_recommendation": "Apply only the five reviewed22.99price fields, verify current source and published route, hand corrected source truth to Merchant",
+    "if_evidence_opposes_recommendation": "Stop without mutation or unapproved rollback; reconcile drift/contradiction under current user scope",
+    "material_decision": "MATERIAL",
+    "independent_verifier": "/root/order_delta_1934; price_proposal_independent_review.json;37/37PASS prepared only",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "approval_source": [
+      "ops/marketing/action_queue.md:97-99",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/LIVE_PIXEL_AND_SUNSHINE_REPAIRS.md:3-9",
+      "Current user instruction to lead and complete sales-moving tasks"
+    ],
+    "exact_nonspend_scope": "Five Adult2XL price fields on7230336729185 set to22.99 USD; no other field or variant change",
+    "current_price_approval": "Owner takes over; no agent mutation or repeat question."
+  },
+  "external_mutations": 0,
+  "no_margin_or_profit_claim": true,
+  "superseded_owner_question": "No question was sent. Generic May approval wording was reconciled against the newer explicit standing reversible-repair authority.",
+  "execution_before": "price_execution_before.json",
+  "action_time_gate": "price_execution_attempt.json",
+  "owner_manual_handoff": {
+    "recorded_at_utc": "2026-09-11T16:36:01.553349+00:00",
+    "source": "Merchant operator relay of current owner instruction",
+    "status": "OWNER_WILL_CORRECT_PRICES_AND_NOTIFY",
+    "agent_price_mutation_allowed": false,
+    "repeat_price_approval_question": false,
+    "next_action": "Wait for owner confirmation, then fresh read-only Shopify price/source verification and existing Merchant feed refresh under its owner."
+  }
+}

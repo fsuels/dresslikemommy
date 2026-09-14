@@ -1,0 +1,46 @@
+{
+  "schema": "dlm.heartbeat_closeout_checks.v1",
+  "recorded_at_utc": "2026-09-10T07:52:02.547147+00:00",
+  "status": "PASS",
+  "commands": [
+    {
+      "command": "audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "exit_code": 0,
+      "result": "25 tracked files, 0 side-document risks"
+    },
+    {
+      "command": "check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "result": "CONTINUITY_OK",
+      "limits": "Pinterest guard ran fix-in-progress mode with zero FAIL snapshots; not new live feed eligibility proof."
+    },
+    {
+      "command": "git diff --check -- exact owned canonical/checkpoint paths",
+      "exit_code": 0,
+      "result": "No whitespace diagnostics"
+    }
+  ],
+  "hashes": {
+    "ops/AGENT_COORDINATION.md": "96132f1ae1b125a19ce18b50d110326817c23fbd6a187f07edd2426249a8b858",
+    "ops/AGENT_WORKLOG.md": "5d29ab717690637f360cac05c3471b6f942ddeca5168143b8abe2bf295b88f08",
+    "ops/marketing/current_marketing_state.md": "98f4f2105ac30ca31a8906f37e90da448bdb4d34bcb37b21e520984d516031ea",
+    "ops/marketing/action_queue.md": "15d3fd5e43bb6fb60ba8193bd10e7e2cb985f9a8b5fb7d02b81029731138785f",
+    "ops/marketing/blocker_board.md": "829a00b4f1735f1b2ea57b2752bc6425adf0e7c09a5dc105a2474a587429709a",
+    "ops/marketing/daily_scorecard.md": "ab0a2435d28f7c2b7201a18be93c05f80488319d88b418a70af9083026bf44ca",
+    "ops/marketing/operator_cockpit.md": "f961c239635eaef8f7ae2cf42c7d7f11a6bd1c13629c07123c885c620f48aafe",
+    "ops/marketing/command_layer_integration_audit.md": "d87a34481a8601ba72ec18aeeaf3ceb5069191ee883832280b5f519c069b0510"
+  },
+  "prior_sales_entries": 8,
+  "current_sales_entries": 9,
+  "external_mutations": 0,
+  "independent_review": {
+    "status": "PASS",
+    "checks_passed": 11,
+    "checks_total": 11,
+    "reviewer": "together_heart_source",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "receipt": "/private/tmp/dlm-heartbeat-closeout-independent-20260910-0738.json",
+    "receipt_sha256": "88153764ff67568740f5fd52fbe252f767fe7fdad8e77ce7ac4b79a1212a0f99",
+    "limits": "File-only review; no second API or browser replay."
+  }
+}

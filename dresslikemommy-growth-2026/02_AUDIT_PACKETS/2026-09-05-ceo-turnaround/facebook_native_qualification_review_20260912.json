@@ -1,0 +1,255 @@
+{
+  "schema": "dlm.facebook_native_qualification_independent_review.v1",
+  "reviewed_at_utc": "2026-09-12T14:59:49.655775+00:00",
+  "reviewer": "/root/order_delta_1934",
+  "verdict": "PASS_WITH_LIMITS__PUBLISHING_AND_BUYER_GATES_OPEN",
+  "independence": "Reviewer did not execute the root browser read. This is independent interpretation, local hash and scope review of the saved owner receipt, not a second independent live UI read.",
+  "source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/facebook_native_qualification_20260912.json",
+    "sha256": "81c1f30540ace1c4d9f23bf9791e2f48ed060b5f9575ba2aa14936f6172f3ee1",
+    "observation_window_utc": {
+      "start": "2026-09-12T14:39:16Z",
+      "end": "2026-09-12T14:49:53Z",
+      "precision_note": "Clock reads bound this observation window; individual UI action timestamps were not separately captured."
+    }
+  },
+  "linked_artifacts": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/cross_platform_facebook_post_20260907.json",
+      "sha256": "3a8bd75026846b5b315478182adf7732cd7def87b5f5ff284730c920f1623e91"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sunshine_product_detail_v1.png",
+      "sha256": "751f8636c646032f88d975759a199885bd3e7237c000b6237328ee1121cb44f9"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/draft_publication_current_20260908.json",
+      "sha256": "6f30358254df1e1f30e26cad29b8e9c3009ffb7c0c486739c8481b4d303c838a"
+    }
+  ],
+  "check_count": 32,
+  "passed_checks": 32,
+  "failed_checks": [],
+  "checks": [
+    {
+      "check": "source JSON parses with unique object keys and exact expected hash",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "81c1f30540ace1c4d9f23bf9791e2f48ed060b5f9575ba2aa14936f6172f3ee1"
+    },
+    {
+      "check": "task and root identity bound",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Source is the existing parent Facebook lane."
+    },
+    {
+      "check": "UTC observation window ordered and precision qualified",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "2026-09-12 14:39:16–14:49:53 UTC; bounds, not per-action clocks."
+    },
+    {
+      "check": "normal rendered owner provenance retained",
+      "pass": true,
+      "method": "interpretation of saved receipt",
+      "evidence": "LIVE_VERIFIED labels identify the root operator’s recorded UI observations; this reviewer makes no independent live assertion."
+    },
+    {
+      "check": "Shopify store and two visible shops scoped",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "The receipt supports observed channel states in that session, not a new connection."
+    },
+    {
+      "check": "Page ID binds exact native label and public route",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Page identity is root-observed and distinct from publishing permission."
+    },
+    {
+      "check": "Page publishing role remains unproved",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Readable public Page and wrong current voice do not demonstrate publisher access or absence of all permissions."
+    },
+    {
+      "check": "Shopify installation ID not promoted to Meta ID",
+      "pass": true,
+      "method": "interpretation of saved receipt",
+      "evidence": "Field is explicitly Shopify native search app-installation identity; it is not the Page, dataset or catalog."
+    },
+    {
+      "check": "dataset identity and event-link path agree",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Dataset label and typed Events path agree."
+    },
+    {
+      "check": "business identity is link-derived and role unproved",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "No direct business-role or full Business Manager qualification claimed."
+    },
+    {
+      "check": "Instagram shop label and handle remain separate",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "No inferred handle equivalence or Instagram publishing access."
+    },
+    {
+      "check": "untyped commerce and ad redirect IDs not misclassified",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "561668318457800 and3028263364079464 remain route identifiers only."
+    },
+    {
+      "check": "product approval count is displayed summary only",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "No all-active-products/all-languages/individual-offer eligibility acceptance."
+    },
+    {
+      "check": "configuration is not purchase measurement acceptance",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Pixel/CAPI description and sharing label do not prove event transport, receipt, consent, deduplication or conversion value."
+    },
+    {
+      "check": "displayed return and shipping settings retain truth limits",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "No merchant-policy accuracy, current delivery promise or legal conclusion is certified."
+    },
+    {
+      "check": "two seven-day checkout series remain narrowly scoped",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Sep5–11 displayed values are not sitewide orders, attributable growth, CPA, ROAS or profit."
+    },
+    {
+      "check": "one unavailable Business Suite route does not prove no permission",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Exact focused Page route failed; cause and all permission scope remain unknown."
+    },
+    {
+      "check": "new access gate correctly replaces old blanket lock",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Only this normal IAB observation window clears the old blanket access assertion. Native Chrome/global desktop status is not inferred."
+    },
+    {
+      "check": "access recovery does not authorize account changes",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Require changed normal Page-management access or exact owner handoff; no switch/login/connect/permission write performed."
+    },
+    {
+      "check": "publisher duplicate buyer native and after-state gates remain",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Current buyer/cart acceptance is not established by this native qualification review."
+    },
+    {
+      "check": "exact original Facebook payload hash retained",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "cross_platform_facebook_post_20260907.json"
+    },
+    {
+      "check": "exact image hash retained in both packets",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "No re-generation, asset change or current native rendering proof."
+    },
+    {
+      "check": "product identity and untagged route agree",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Single existing Sunshine product; saved source truth is dated."
+    },
+    {
+      "check": "exact post text includes complete tagged destination",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Clickable-link behavior remains an actual native/public check."
+    },
+    {
+      "check": "old UTM date is stable campaign namespace not exposure timestamp",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Do not rewrite the preserved UTM merely because publication is later; record actual Facebook publication separately from Pinterest."
+    },
+    {
+      "check": "frozen caption makes no time-limited price or promotion promise",
+      "pass": true,
+      "method": "saved copy interpretation plus local text check",
+      "evidence": "Age alone does not require a new creative. Current product/buyer truth remains separate."
+    },
+    {
+      "check": "saved exact organic authorization persists",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Current direct saved publication scope is distinct from standing paid authority; no additional blanket permission requested."
+    },
+    {
+      "check": "paid NONE and stale control preserved in interpretation",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "No boost, ad, audience upload, tracking mutation or spend authority follows."
+    },
+    {
+      "check": "no account change post upload or schedule claimed",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "Qualification only; organic release still incomplete."
+    },
+    {
+      "check": "outcomes and economic acceptance remain unknown",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "No visits, sales increase, purchase value, CPA, ROAS or retained-profit claim."
+    },
+    {
+      "check": "saved URLs contain only scoped public/account IDs",
+      "pass": true,
+      "method": "local computation",
+      "evidence": "No embedded Shopify session/HMAC/access-token URLs appear; only visible scoped identity parameters remain."
+    },
+    {
+      "check": "credential and customer-PII hygiene check",
+      "pass": true,
+      "method": "local scan plus saved-record inspection",
+      "evidence": "Scoped text/key/URL scan found no credential values, email addresses, customer/order/address/tracking records or unrelated managed-brand name. This is not an exhaustive cryptographic secret detector."
+    }
+  ],
+  "safe_promotions": [
+    "Root observed Shopify-linked Page942388912516328 resolving to the existing public DLM Page; dataset547553035448852; business422152645220050 only as link-derived identity.",
+    "Root observed two Active shop summaries and257 Approved displayed products; this is not full catalog/locale eligibility.",
+    "The old blanket Mac-lock assertion is superseded for this successful task-owned IAB window. Usable DLM publisher access remains unproved."
+  ],
+  "still_unknown": [
+    "Exact usable Facebook publishing role, duplicate check, current complete child/adult buyer acceptance, native composer/disclosures and actual public post/clickthrough.",
+    "Meta catalog/ad-account identity; business-role and Instagram-profile/publishing-role qualification.",
+    "Purchase event transport/receiver/value/currency/items/consent/deduplication, current policy accuracy, complete country/language coverage, attributable acquisition and retained profit."
+  ],
+  "dated_payload_decision": "Reuse exact saved image/caption/direct tagged URL. September7 in utm_campaign is an immutable campaign label, not publication or measurement start. Start the Facebook cohort at actual verified publication and separate identifiable QA visits.",
+  "next_native_gate": "Changed normal publishing access or exact owner handoff for existing Page942388912516328. Root performs remaining duplicate, current buyer, native composer and publication-after-state steps under saved exact organic authority and any actual platform approval gate; no unchanged access retry or broad reconnect.",
+  "separate_buyer_update": "Parent reported a later read-only Sunshine route check and an automatic-review rejection of Add this piece to bag, with a specific temporary QA question pending. That separate event was not independently inspected here, does not alter this source hash and does not establish current cart acceptance or release approval.",
+  "scope": {
+    "file_written": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/facebook_native_qualification_review_20260912.json",
+    "shared_canonical_writes": 0,
+    "external_calls": 0,
+    "browser_calls": 0,
+    "shopify_queries": 0,
+    "publication_or_settings_writes": 0,
+    "paid_scope": "NONE",
+    "actual_release_approval_from_this_review": false
+  },
+  "limitations": [
+    "The saved LIVE_VERIFIED labels refer to the root operator’s recorded UI observations. Raw screenshots and live UI were not independently repeated.",
+    "No full buyer QA, source inventory, policy reconciliation, performance query, platform permission recovery, code test or broad continuity audit was performed.",
+    "The linked historical whole release-plan file was not re-certified; the exact Facebook payload and image hashes were recomputed."
+  ]
+}

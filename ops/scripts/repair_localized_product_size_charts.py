@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Audit and repair localized Shopify product body size-chart coverage.
+"""Audit and repair size-chart coverage inside existing localized product bodies.
 
-This script is intentionally narrow: it only registers Product `body_html`
-translations for active products whose English/source description has a
-`size-chart` table and whose existing published-locale body translation is
-missing that table.
+This script never creates a localized body from the English/source body. A
+missing full-body translation must be created by
+`poll_shopify_product_translations.py` first; otherwise translated labels can
+hide untranslated prose and produce a false localization pass.
 """
 
 from __future__ import annotations
@@ -171,25 +171,8 @@ def audit_product(
         existing = snapshot.existing_translations.get((locale, "body_html"))
         existing_value = existing.value if existing else ""
         if not clean(existing_value):
-            repaired_value = ensure_product_html_size_chart_coverage(
-                item["value"],
-                item["value"],
-                locale,
-                product_context=context,
-            )
-            if not has_complete_size_chart_table_coverage(item["value"], repaired_value):
-                row["errors"].append(f"{locale}:source_fallback_did_not_create_complete_size_chart_set")
-                continue
-            row["fallback_source_locales"].append(locale)
             row["missing_locales"].append(locale)
-            translations.append(
-                {
-                    "locale": locale,
-                    "key": "body_html",
-                    "value": repaired_value,
-                    "translatableContentDigest": item["digest"],
-                }
-            )
+            row["errors"].append(f"{locale}:missing_full_body_translation_run_translation_poll_first")
             continue
         if force_rebuild_size_chart_tables:
             repaired_value = rebuild_product_html_size_chart_tables_from_source(

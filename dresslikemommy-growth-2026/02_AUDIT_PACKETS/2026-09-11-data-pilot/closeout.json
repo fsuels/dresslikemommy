@@ -1,0 +1,79 @@
+{
+  "schema": "dlm.data_pilot.closeout.v1",
+  "anchor": "2026-09-11-read-only-data-pilot",
+  "scope": "Existing repository records only; local preparation and continuity annotations.",
+  "results": {
+    "reproduction_checks": 45,
+    "independent_baseline_checks": 39,
+    "independent_cost_checks": 28,
+    "source_hashes_matched": 10,
+    "reviewed_artifact_hashes_matched": 7,
+    "independent_verdict": "PASS_WITH_LIMITS",
+    "integration_tracked": 25,
+    "integration_risks": 0,
+    "actual_openai_data_plugin_run": "NOT_RUN",
+    "live_reads": 0,
+    "external_writes": 0
+  },
+  "commands": {
+    "reproduction": "python3 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-data-pilot/reproduce.py --check",
+    "renderer": {
+      "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/render_marketing_cockpit.py",
+      "result": {
+        "chunk_id": "5555c6",
+        "wall_time_seconds": 0.000003334,
+        "exit_code": 0,
+        "original_token_count": 12,
+        "output": "Rendered ops/marketing/operator_cockpit.html\n"
+      }
+    },
+    "integration": {
+      "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "exit_code": 0
+    },
+    "continuity": {
+      "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/check_continuity_integrity.py --strict",
+      "result": {
+        "chunk_id": "0f33cb",
+        "wall_time_seconds": 0.000001083,
+        "exit_code": 0,
+        "original_token_count": 325,
+        "output": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 49711 lines; latest anchor 2026-09-11-read-only-data-pilot\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-11-read-only-data-pilot\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n"
+      }
+    },
+    "scoped_git_diff_check": {
+      "chunk_id": "8ff748",
+      "wall_time_seconds": 0.00000275,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    "artifact_checks": {
+      "chunk_id": "f5fd65",
+      "wall_time_seconds": 0.000002834,
+      "exit_code": 0,
+      "original_token_count": 143,
+      "output": "review keys ['schema', 'reviewed_at_utc', 'verdict', 'reviewer', 'independence', 'independence_detail', 'scope', 'conclusion', 'commands_and_results', 'critical_results', 'acceptance_criteria_review', 'errors', 'limits', 'next_evidence_action', 'reviewed_artifacts_sha256']\nverdict PASS_WITH_LIMITS\n{\"source_hashes\": \"10/10 match\", \"report_links\": \"all resolve\", \"new_artifact_whitespace\": \"PASS\", \"packet_files\": [\"PILOT.md\", \"analysis.json\", \"independent_review.json\", \"metrics.csv\", \"reproduce.py\", \"required_fields.csv\", \"source_inventory.json\", \"validation.json\"]}\n"
+    }
+  },
+  "canonical_files_annotated": [
+    "ops/AGENT_COORDINATION.md",
+    "ops/AGENT_WORKLOG.md",
+    "ops/PROBLEM_TRACKER.md",
+    "ops/marketing/daily_scorecard.md",
+    "ops/marketing/operator_cockpit.md",
+    "ops/marketing/review_log.md"
+  ],
+  "generated_files_refreshed": [
+    "ops/marketing/operator_cockpit.html",
+    "ops/marketing/command_layer_integration_audit.md"
+  ],
+  "preserved": "Source files, unrelated dirty work, other claims, global owner action, action queue and authoritative control were not edited by this task.",
+  "residual_limits": [
+    "Actual delivered/settled costs are not joined for the selected 30-day window.",
+    "Complete campaign attribution and spend are missing for this period.",
+    "No actual profit or new Data-plugin capability result is established."
+  ],
+  "next_pilot_evidence": "Continue existing TA-16 Rainbow basket cost/settlement qualification; preserve global owner priority.",
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

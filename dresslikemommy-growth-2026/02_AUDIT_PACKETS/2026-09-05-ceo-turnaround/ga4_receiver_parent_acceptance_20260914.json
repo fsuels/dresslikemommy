@@ -1,0 +1,154 @@
+{
+  "schema": "dlm.ga4_receiver_parent_acceptance.v1",
+  "recorded_at_utc": "2026-09-14T07:53:21.482647Z",
+  "status": "PASS_WITH_LIMITS",
+  "source_receipt": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/GA4_REAL_PURCHASE_RECEIVER_20260914_0718_v2.json",
+    "sha256": "3f829246566c87089456d80ae355d6b5be8c4ea85dbd988a964081737c1c33a1"
+  },
+  "independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/GA4_REAL_PURCHASE_RECEIVER_INDEPENDENT_REVIEW_20260914_0718.json",
+    "sha256": "61e0283b8879aa1ba6050ebc1b58610a2d0d956fafbb7c4999cf40cc320162d6",
+    "verdict": "PASS_WITH_LIMITS",
+    "check_summary": {
+      "independent_local_passed": 43,
+      "independent_local_failed": 0,
+      "independent_local_total": 43,
+      "root_operator_checks_reported": 48,
+      "root_operator_private_or_native_checks_replayed_by_reviewer": 0
+    },
+    "independence": {
+      "built_or_executed_receiver_change": false,
+      "native_or_connector_access": "NOT_RUN",
+      "private_parent_source_access": "NOT_RUN",
+      "private_transaction_join_replay": "NOT_RUN",
+      "schema_introspection_or_identity_query_replay": "NOT_RUN",
+      "raw_runtime_clearance_verification": "NOT_RUN",
+      "statement": "Root reports an exact private transaction-ID match to a schema-validated minimal Shopify legacyResourceId query and subsequent runtime clearing. Redacted artifacts do not permit independent replay of that join, verification of the excluded identifier/digest, or verification of runtime clearing. This PASS is for bounded saved-source reconciliation, not independent live acceptance."
+    }
+  },
+  "operator_checks": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/GA4_REAL_PURCHASE_RECEIVER_CHECKS_20260914_0718_v2.json",
+    "sha256": "3f934f25b3cbcee11c4b766a2b0b19e59a4b8dc856a853683a14c4ace9e548c9",
+    "reported_passes": 48
+  },
+  "root_full_sales_source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_0704.json",
+    "sha256": "7eab5039ded43cceada676ca48778e97554c3e1610f976b840399dfccbd6c3fd"
+  },
+  "checks": [
+    {
+      "name": "final v2 source bound",
+      "passed": true
+    },
+    {
+      "name": "independent review bound",
+      "passed": true
+    },
+    {
+      "name": "operator checks bound",
+      "passed": true
+    },
+    {
+      "name": "independent source binding GA4_REAL_PURCHASE_RECEIVER_20260914_0718_v2.json",
+      "passed": true
+    },
+    {
+      "name": "independent source binding GA4_REAL_PURCHASE_RECEIVER_CHECKS_20260914_0718_v2.json",
+      "passed": true
+    },
+    {
+      "name": "independent source binding REAL_PURCHASE_CANDIDATE_20260914_0656.json",
+      "passed": true
+    },
+    {
+      "name": "independent source binding FOLLOWUP_20260914_0656.json",
+      "passed": true
+    },
+    {
+      "name": "independent source binding GA4_REAL_PURCHASE_RECEIVER_20260914_0718.json",
+      "passed": true
+    },
+    {
+      "name": "independent source binding GA4_REAL_PURCHASE_RECEIVER_CHECKS_20260914_0718.json",
+      "passed": true
+    },
+    {
+      "name": "independent verdict and reviewed current source",
+      "passed": true
+    },
+    {
+      "name": "independent 43checks no replay claim",
+      "passed": true
+    },
+    {
+      "name": "exact retained account property",
+      "passed": true
+    },
+    {
+      "name": "same completed NewYork day",
+      "passed": true
+    },
+    {
+      "name": "root same bounded qualifying candidate",
+      "passed": true
+    },
+    {
+      "name": "one transaction and exact reported revenue",
+      "passed": true
+    },
+    {
+      "name": "four exact public variant quantities match private root source",
+      "passed": true
+    },
+    {
+      "name": "reported item money and quantity reconcile",
+      "passed": true
+    },
+    {
+      "name": "complete36 row source predicates",
+      "passed": true
+    },
+    {
+      "name": "private transaction operator result qualified",
+      "passed": true
+    },
+    {
+      "name": "report warning not individual implementation proof",
+      "passed": true
+    },
+    {
+      "name": "intraday retained",
+      "passed": true
+    },
+    {
+      "name": "raw currency dedup international profit remain open",
+      "passed": true
+    },
+    {
+      "name": "no paid authority promotion",
+      "passed": true
+    },
+    {
+      "name": "no production or repeat account query",
+      "passed": true
+    },
+    {
+      "name": "receiver private source released",
+      "passed": true
+    },
+    {
+      "name": "saved receiver contains no exact private root identifiers",
+      "passed": true
+    }
+  ],
+  "check_count": 26,
+  "passed": 26,
+  "verifier_independence": "Root did not execute GA4/native receiver read; independently reconciled final source bindings and its existing Shopify source. Separate tag_repair_review did not build or execute either receiver read.",
+  "limits": [
+    "No independent replay of the operator private transaction-ID/native report reads or its runtime cleanup.",
+    "US report-level match only; report diagnostics do not prove a captured individual cause; raw payload, consent, sender deduplication, Ads attribution, international accuracy, actual costs and profit remain open."
+  ],
+  "private_source_copy_created": false,
+  "next_action": "Existing tag/consent owner qualifies the native warning through normal read-only diagnosis; preserve working migration and paused paid state."
+}

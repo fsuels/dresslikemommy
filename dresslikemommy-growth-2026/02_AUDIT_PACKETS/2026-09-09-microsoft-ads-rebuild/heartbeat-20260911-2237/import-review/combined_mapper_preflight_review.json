@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-12T08:44:22.559680+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "verdict": "GO_MAPPER_ONLY_AFTER_SUCCESSFUL_PARENT_POSTFLIGHT__FINAL_IMPORT_HELD",
+  "confidence": "H for the exact local union; parent import completion and native combined-file acceptance are pending in this review",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "input_sha256": {
+    "children-preparation/combined_ads_negatives.ui_candidate.csv": "3deba07cadfc6bd09189b9f204a5f101ece37c78b2e2abc46d6b374bde2bad1e",
+    "children-preparation/combined_ads_negatives.manifest.json": "24ffec403e06879cb77aa7a686d76105e4ed1ce13f53e169f06c8977132e8616",
+    "children-preparation/combined_ads_negatives.checks.json": "33145002ea693a3ec0699d4f45d40bd1adfd23cc795078319fc0318ed8cedc1f",
+    "children-preparation/campaign_negatives.ui_candidate.csv": "b566c095bfc152088b88ee9f450a87a9f7a25ee41c953e35c66488f9c9f122ae",
+    "children-preparation/rsa_mapper_only_not_import_ready.csv": "1a6525d2a6682474a826f08fc763604c47a830c43e68e94c0ec75d259dcc8926",
+    "import-review/group_keyword_final_preflight_review.json": "a97a7c68a8579330746275197e3c11530c62ef937922cc6c4f100e6587d240c6"
+  },
+  "checks": {
+    "frozen_combined_csv_hash": true,
+    "checks_hash_bound_to_manifest": true,
+    "four_source_previews_and_five_main_files_preserved": true,
+    "exact16row29column_union": true,
+    "only_three_header_aliases": true,
+    "all124_source_cells_preserved": true,
+    "all_unrelated_union_cells_blank": true,
+    "negative_campaign_phrase_scope_active_association": true,
+    "rsa_paused_exact_parent_name_no_negative_fields": true,
+    "exact_two_campaign_bindings_parent_ids_unqualified": true,
+    "no_campaign_group_keyword_control_records_or_fields": true,
+    "parent_readback_required_and_no_import_authority": true,
+    "utf8_bom_crlf_and_complete_rows": true
+  },
+  "checks_passed": 13,
+  "source_cells_compared": 124,
+  "source_cells_preserved": 124,
+  "populated_source_cells_preserved": 108,
+  "preview_precondition": "Do not navigate away from or retry the in-progress eight-row import. First establish its successful receiver and saved after-state: exactly two intended Paused SearchStandard groups and six Paused Exact keywords under campaigns 506254907/506254908, correct unique group IDs, Microsoft sites and select traffic distribution, inherited Maximize Clicks and parent cap/pause/settings preserved. A pending, partial or unexpected result does not satisfy this condition.",
+  "parent_postflight_status": "PENDING_IN_THIS_REVIEW",
+  "allowed_action_after_condition": "Use this single frozen 16-row file instead of the separate negative and RSA preview files. Native upload/column-and-row preview only; inspect all 29 headers and 16 rows. No final Import under this verdict.",
+  "critical_premise_challenge": "A combined Status column must retain row-specific meaning: Active on the 14 campaign exclusion associations cannot be inherited onto the two Paused RSA rows. Likewise Negative must not map to positive Keyword, and blank Ad Group cells must keep exclusions at campaign scope.",
+  "mandatory_preview_checks": [
+    "Exact parent campaign names and freshly verified group IDs/names; no unknown or newly inferred parent routing.",
+    "All 14 negatives remain Campaign Negative Keyword/Active/Phrase with Ad Group blank; Negative maps to the exclusion text field.",
+    "Both RSAs remain Paused with the exact 16 headlines, 6 descriptions, 4 paths, 2 final URLs and 2 suffixes. Description 1/2 RSA must use responsive-ad mappings.",
+    "The three header aliases map as intended; no populated asset, URL, suffix, status or parent field is skipped or coerced.",
+    "No campaign/group/keyword creation, existing-item updates, automatic rename, URL/suffix rewrite, bid/budget change or unexpected direct-apply action."
+  ],
+  "replacement_and_retry_rule": "This file replaces the separate 14-negative and 2-RSA previews, never supplements them. Do not later execute the combined file plus its source create files. Any uncertain or partial execution requires ID-level readback before another create request.",
+  "final_import_authorized": false,
+  "paid_activation_authorized": false,
+  "limits": [
+    "Native mapping recognition, row enum acceptance and final import options remain unverified for this combined file.",
+    "Copy and source cells are preserved, without new editorial/native-language, landing, attribution, consent, economics, Audience exclusion or profit claims."
+  ],
+  "external_writes_by_reviewer": 0,
+  "browser_or_account_calls_by_reviewer": 0,
+  "shared_canonical_files_changed": false
+}

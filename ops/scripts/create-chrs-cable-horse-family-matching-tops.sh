@@ -35,7 +35,7 @@ HANDLE = "cable-horse-family-matching-tops"
 TITLE = "Cable Horse Family Matching Sweaters - Cozy Sweater"
 SEO_TITLE = "Cable Horse Family Sweaters | Dress Like Mommy"
 SEO_DESCRIPTION = "Cable-knit family matching sweaters in cream for mom, dad, girls & boys. Sizes 1-2Y-10Y and Adult S-4XL."
-VENDOR_URL = "https://detail.1688.com/offer/1007389194841.html"
+VENDOR_URL = ""
 PRODUCT_TYPE = "Matching Family Sweaters"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-13-12"
 EXPECTED_TAXONOMY = "Apparel & Accessories > Clothing > Clothing Tops > Sweaters"
@@ -326,7 +326,7 @@ tags = sorted(
             "Crewneck Sweater",
             "Adult Sweater",
             "Child Sweater",
-            VENDOR_URL,
+
         ]
         + size_values
     )
@@ -339,7 +339,7 @@ product_input = {
     "vendor": "dresslikemommy.com",
     "productType": PRODUCT_TYPE,
     "tags": tags,
-    "status": "ACTIVE",
+    "status": "DRAFT",
     "category": TAXONOMY_GID,
     "seo": {"title": SEO_TITLE, "description": SEO_DESCRIPTION},
 }
@@ -428,18 +428,9 @@ for index in range(0, len(metafields), 25):
     )
     user_errors(output, "data.metafieldsSet.userErrors")
 
-publications = [
-    {"publicationId": "gid://shopify/Publication/55169925"},
-    {"publicationId": "gid://shopify/Publication/21969633377"},
-    {"publicationId": "gid://shopify/Publication/29172400225"},
-    {"publicationId": "gid://shopify/Publication/76582879329"},
-    {"publicationId": "gid://shopify/Publication/76604768353"},
-]
-output = gql(
-    "mutation($id:ID!,$input:[PublicationInput!]!){publishablePublish(id:$id,input:$input){userErrors{field message}}}",
-    {"id": product_id, "input": publications},
-)
-user_errors(output, "data.publishablePublish.userErrors")
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+print("Sales-channel publication skipped; product remains a draft pending approval.")
 
 media = gql(
     "query($id:ID!){product(id:$id){media(first:50){nodes{... on MediaImage{id alt image{url}}}}}}",
@@ -506,8 +497,8 @@ checks = [
     ("variant count", len(live_variants) == len(variants), f"{len(live_variants)} vs {len(variants)}"),
     ("sku parity", live_skus == spec_skus, ", ".join(live_skus)),
     ("taxonomy", product["category"]["fullName"] == EXPECTED_TAXONOMY, product["category"]["fullName"]),
-    ("published", bool(product["publishedAt"]), str(product["publishedAt"])),
-    ("online url", bool(product["onlineStoreUrl"]), str(product["onlineStoreUrl"])),
+    ("not published", not bool(product["publishedAt"]), str(product["publishedAt"])),
+    ("online url absent", not bool(product["onlineStoreUrl"]), str(product["onlineStoreUrl"])),
 ]
 price_ok = all(
     variant["price"] == next(item["price"] for item in variants if item["inventoryItem"]["sku"] == variant["sku"])

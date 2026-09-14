@@ -1,0 +1,392 @@
+{
+  "schema": "dlm.merchant.currency_independent_saved_evidence_verification.v1",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "H",
+  "reviewed_at_utc": "2026-09-10T00:46:39.113Z",
+  "reviewer": "/root/merchant_landing_code_review",
+  "scope": "Independent saved-evidence and unchanged-code review. No new source query, native/browser replay, external write, canonical edit or theme edit.",
+  "checks_passed": 16,
+  "checks_failed": 0,
+  "counts": {
+    "checks": 16,
+    "markets": 6,
+    "connections": 19,
+    "memberships": 68,
+    "uniqueCountries": 65,
+    "menuReportedRows": 130,
+    "contextPrices": 65,
+    "currencyMatches": 63
+  },
+  "overlapping_memberships": {
+    "AU": [
+      "Australia",
+      "International"
+    ],
+    "CA": [
+      "Canada",
+      "International"
+    ],
+    "GB": [
+      "Eurozone",
+      "United Kingdom"
+    ]
+  },
+  "nested_connections": [
+    {
+      "path": "markets.markets",
+      "count": 6,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjo1NDQ3MzUzMjksImxhc3RfdmFsdWUiOiJVbml0ZWQgU3RhdGVzIn0="
+    },
+    {
+      "path": "markets.markets.nodes.0.conditions.regionsCondition.regions",
+      "count": 1,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjoxMDQ1ODY3MDM2NzY5LCJsYXN0X3ZhbHVlIjoiMTA0NTg2NzAzNjc2OSJ9"
+    },
+    {
+      "path": "markets.markets.nodes.0.webPresences",
+      "count": 0,
+      "hasNextPage": false,
+      "endCursor": null
+    },
+    {
+      "path": "markets.markets.nodes.0.catalogs",
+      "count": 0,
+      "hasNextPage": false,
+      "endCursor": null
+    },
+    {
+      "path": "markets.markets.nodes.1.conditions.regionsCondition.regions",
+      "count": 1,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjoxMDQ1ODY0OTA2ODQ5LCJsYXN0X3ZhbHVlIjoiMTA0NTg2NDkwNjg0OSJ9"
+    },
+    {
+      "path": "markets.markets.nodes.1.webPresences",
+      "count": 0,
+      "hasNextPage": false,
+      "endCursor": null
+    },
+    {
+      "path": "markets.markets.nodes.1.catalogs",
+      "count": 0,
+      "hasNextPage": false,
+      "endCursor": null
+    },
+    {
+      "path": "markets.markets.nodes.2.conditions.regionsCondition.regions",
+      "count": 43,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjo3MTczMjc4NTk4MDksImxhc3RfdmFsdWUiOiI3MTczMjc4NTk4MDkifQ=="
+    },
+    {
+      "path": "markets.markets.nodes.2.webPresences",
+      "count": 0,
+      "hasNextPage": false,
+      "endCursor": null
+    },
+    {
+      "path": "markets.markets.nodes.2.catalogs",
+      "count": 1,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjo2ODgwNzIzMDQxLCJsYXN0X3ZhbHVlIjo2ODgwNzIzMDQxfQ=="
+    },
+    {
+      "path": "markets.markets.nodes.3.conditions.regionsCondition.regions",
+      "count": 21,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjo3MTczMjUwMDg5OTMsImxhc3RfdmFsdWUiOiI3MTczMjUwMDg5OTMifQ=="
+    },
+    {
+      "path": "markets.markets.nodes.3.webPresences",
+      "count": 0,
+      "hasNextPage": false,
+      "endCursor": null
+    },
+    {
+      "path": "markets.markets.nodes.3.catalogs",
+      "count": 1,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjo5MTA2MjI4MTcsImxhc3RfdmFsdWUiOjkxMDYyMjgxN30="
+    },
+    {
+      "path": "markets.markets.nodes.4.conditions.regionsCondition.regions",
+      "count": 1,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjoxMDQ1ODYzODI1NTA1LCJsYXN0X3ZhbHVlIjoiMTA0NTg2MzgyNTUwNSJ9"
+    },
+    {
+      "path": "markets.markets.nodes.4.webPresences",
+      "count": 0,
+      "hasNextPage": false,
+      "endCursor": null
+    },
+    {
+      "path": "markets.markets.nodes.4.catalogs",
+      "count": 0,
+      "hasNextPage": false,
+      "endCursor": null
+    },
+    {
+      "path": "markets.markets.nodes.5.conditions.regionsCondition.regions",
+      "count": 1,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjoyMjcwOTY2NTg4OSwibGFzdF92YWx1ZSI6IjIyNzA5NjY1ODg5In0="
+    },
+    {
+      "path": "markets.markets.nodes.5.webPresences",
+      "count": 0,
+      "hasNextPage": false,
+      "endCursor": null
+    },
+    {
+      "path": "markets.markets.nodes.5.catalogs",
+      "count": 1,
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjo2ODgxMDgzNDg5LCJsYXN0X3ZhbHVlIjo2ODgxMDgzNDg5fQ=="
+    }
+  ],
+  "currency_mismatches": [
+    {
+      "country": "NO",
+      "public_menu_currency": "USD",
+      "admin_context_price": {
+        "amount": "17.95",
+        "currencyCode": "EUR"
+      }
+    },
+    {
+      "country": "RU",
+      "public_menu_currency": "USD",
+      "admin_context_price": {
+        "amount": "17.95",
+        "currencyCode": "EUR"
+      }
+    }
+  ],
+  "source_bindings": {
+    "source_readback.json": {
+      "bytes": 31996,
+      "sha256": "da0c827aa870a54691f4f382a2b1ecb4baa37a506d7678f786b7a30edaef4f87"
+    },
+    "public_main_country_menu.json": {
+      "bytes": 2397,
+      "sha256": "4a22e4743fc7c12bf2223957d7a3f2bb2df69876046f3b8acf81d5064c249dc4"
+    },
+    "admin_all_country_context.json": {
+      "bytes": 13851,
+      "sha256": "c0b78411b337e2c0dd8a09a8ae567fd99a19fff8f0b2f14007a1bfeff560ca5d"
+    },
+    "comparison.json": {
+      "bytes": 11678,
+      "sha256": "43adedfb7c013b188dff420893cf6514a88166fd2faae683f786461298eabd87"
+    },
+    "public_main_raw_menus.json": {
+      "bytes": 1540,
+      "sha256": "e201e4c7b87d83e97dd3335d6db36cb4539617d45558f83ab6fe515793c81cb1"
+    }
+  },
+  "theme_manifest_binding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/resumed_20260910/theme_preservation/readback.json",
+    "sha256": "684d66891da4b0b48324a631123b9d756b46eb4ac4b57c16fdc634be565d153f",
+    "readStarted": "2026-09-10 00:29:10 UTC",
+    "readEnded": "2026-09-10 00:29:11 UTC"
+  },
+  "unchanged_source_bindings": [
+    {
+      "filename": "snippets/country-localization.liquid",
+      "bytes": 6029,
+      "md5": "61402f8f60143e8b463242d2ad46381a",
+      "sha256": "384da6a9a2415402150dd868a5697220bc44a0db41f0e1aab1e3b124cec9980f",
+      "main_metadata": {
+        "filename": "snippets/country-localization.liquid",
+        "checksumMd5": "61402f8f60143e8b463242d2ad46381a",
+        "size": "6029"
+      },
+      "target_metadata": {
+        "filename": "snippets/country-localization.liquid",
+        "checksumMd5": "61402f8f60143e8b463242d2ad46381a",
+        "size": "6029"
+      }
+    },
+    {
+      "filename": "assets/localization-form.js",
+      "bytes": 8697,
+      "md5": "df265e0e35406d9db39f719ca7b68b10",
+      "sha256": "521e98006d0a98169b4433ad819f77f94670f27354e5f4f910504a5b7548d40b",
+      "main_metadata": {
+        "filename": "assets/localization-form.js",
+        "checksumMd5": "df265e0e35406d9db39f719ca7b68b10",
+        "size": "8697"
+      },
+      "target_metadata": {
+        "filename": "assets/localization-form.js",
+        "checksumMd5": "df265e0e35406d9db39f719ca7b68b10",
+        "size": "8697"
+      }
+    }
+  ],
+  "raw_menu_verification": {
+    "check": {
+      "id": "fresh_retained_raw_menu_deduplication",
+      "status": "PASS",
+      "detail": "Independently parsed two ordered 65-entry menu strings into 130 rows; each of 65 countries occurs exactly twice, with zero currency conflicts; exact equality with original saved menu map and comparison gaps."
+    },
+    "inputBinding": {
+      "bytes": 1540,
+      "sha256": "e201e4c7b87d83e97dd3335d6db36cb4539617d45558f83ab6fe515793c81cb1"
+    },
+    "recordedAt": "2026-09-10T00:43:21.095Z",
+    "counts": {
+      "menus": 2,
+      "entriesPerMenu": [
+        65,
+        65
+      ],
+      "rawRows": 130,
+      "uniqueCountries": 65,
+      "duplicateCurrencyConflicts": 0
+    },
+    "scope": "Separate root browser DOM retention at 00:43:21.095 UTC; independent saved-evidence parsing, not another verifier browser replay."
+  },
+  "local_click_handler_cases": [
+    {
+      "country": "NO",
+      "submittedCountryCode": "NO",
+      "formSubmits": 1
+    },
+    {
+      "country": "RU",
+      "submittedCountryCode": "RU",
+      "formSubmits": 1
+    }
+  ],
+  "checks": [
+    {
+      "id": "market_ids_and_active_status",
+      "status": "PASS",
+      "detail": "Six distinct ACTIVE markets."
+    },
+    {
+      "id": "nested_connection_completeness",
+      "status": "PASS",
+      "detail": "Root markets plus regions, webPresences and catalogs for each of six markets: all 19 complete."
+    },
+    {
+      "id": "configured_country_set",
+      "status": "PASS",
+      "detail": "68 memberships; 65 unique countries; only AU/CA/GB appear in two markets."
+    },
+    {
+      "id": "public_menu_country_set",
+      "status": "PASS",
+      "detail": "All 65 configured countries have a saved public-menu currency."
+    },
+    {
+      "id": "root_recorded_menu_counts",
+      "status": "PASS",
+      "detail": "Original saved root extraction records 130 rows and zero conflicts. A separate retained raw root read independently reproduces those counts and the complete map."
+    },
+    {
+      "id": "public_context_identity",
+      "status": "PASS",
+      "detail": "Recorded MAIN theme, exact variant URL and US/en selected context; form inputs in saved extraction are null/omitted."
+    },
+    {
+      "id": "exact_variant_and_context_query",
+      "status": "PASS",
+      "detail": "65 distinct correctly bound country aliases; response belongs to variant 41498026442849, Mother S / Pink."
+    },
+    {
+      "id": "context_prices_complete",
+      "status": "PASS",
+      "detail": "All 65 aliases contain positive numeric price amounts and three-letter currency codes."
+    },
+    {
+      "id": "comparison_recomputed",
+      "status": "PASS",
+      "detail": "Independent recomputation: 63 currency matches; NO/RU each public menu USD versus Admin EUR 17.95."
+    },
+    {
+      "id": "source_time_precision_preserved",
+      "status": "PASS",
+      "detail": "Market source query time unknown; persistence is not read time. All-country contextual price window is independently recorded."
+    },
+    {
+      "id": "saved_fresh_manifest_identity",
+      "status": "PASS",
+      "detail": "Read-only manifests from 00:29:10–00:29:11 UTC retain previous hash and complete source roles/counts."
+    },
+    {
+      "id": "unchanged_binding_snippets/country-localization.liquid",
+      "status": "PASS",
+      "detail": "Baseline and release bytes identical; exact MD5/size match fresh MAIN and unpublished target metadata."
+    },
+    {
+      "id": "unchanged_binding_assets/localization-form.js",
+      "status": "PASS",
+      "detail": "Baseline and release bytes identical; exact MD5/size match fresh MAIN and unpublished target metadata."
+    },
+    {
+      "id": "actual_local_click_handler_NO_RU",
+      "status": "PASS",
+      "detail": "Two isolated executions of the actual unchanged JS onItemClick method pass country_code NO/RU to form.submit once; no currency remapping. This does not execute Shopify localization or browser checkout."
+    },
+    {
+      "id": "liquid_currency_and_country_binding",
+      "status": "PASS",
+      "detail": "Source prints Shopify-provided currency and submits the selected country; neither file contains a forced currency mapping."
+    },
+    {
+      "id": "fresh_retained_raw_menu_deduplication",
+      "status": "PASS",
+      "detail": "Independently parsed two ordered 65-entry menu strings into 130 rows; each of 65 countries occurs exactly twice, with zero currency conflicts; exact equality with original saved menu map and comparison gaps."
+    }
+  ],
+  "code_findings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/release_candidate/theme/snippets/country-localization.liquid",
+      "lines": [
+        37,
+        38,
+        39,
+        120,
+        129,
+        137,
+        149,
+        160
+      ],
+      "finding": "Both selected-country and option currencies come directly from Shopify localization objects. Available-country links pass ISO country codes into the country_code field."
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/release_candidate/theme/assets/localization-form.js",
+      "lines": [
+        105,
+        108,
+        111,
+        112,
+        116,
+        121,
+        125,
+        126
+      ],
+      "finding": "Production country clicks submit the unchanged data-value as country_code. The URL fallback is for localhost language selectors. Neither reviewed file contains a currency override."
+    }
+  ],
+  "decision": {
+    "forced_theme_currency_override": "NOT_SUPPORTED_BY_CURRENT_EVIDENCE",
+    "rationale": "Source-bound selector code displays Shopify-provided currency and submits country selection. Relabelling or forcing NO/RU currency in theme would not establish actual Shopify selling or checkout currency. No such change is proposed or implemented.",
+    "root_cause": "UNKNOWN",
+    "preserved_release_state": "At the 00:29:11 UTC saved full manifest, MAIN remained MAIN and release 137881223265 remained UNPUBLISHED; both reviewed files were byte-identical to baseline."
+  },
+  "evidence_limits": [
+    "The market source_readback.json records only the capture date. Its 00:34:05 UTC persisted_at is not an exact query timestamp.",
+    "The original 00:36:38 UTC aggregate did not retain raw rows. The independent 130-to-65 dedup uses the separate root browser DOM retention at 00:43:21.095 UTC; it matches the original map exactly.",
+    "Admin contextualPricing is recorded at 00:36:58–00:37:02 UTC for one exact variant. It is not a 65-product or all-catalog validation.",
+    "US/en was the recorded selected context. Available-menu currency labels are not 65 selected-country landing prices, checkout or payment-currency checks.",
+    "No independent second browser replay, Google Merchant receiver readback, serving proof, order outcome or profit proof is supplied by this review.",
+    "The two local actual-JS method executions use a stubbed form; they verify country forwarding only, not network localization or checkout."
+  ],
+  "next_owner_action": "Root should preserve NO/RU as unresolved and use authorized selected-country/checkout and relevant Shopify settings evidence to resolve selling-currency behavior before proposing a fix."
+}

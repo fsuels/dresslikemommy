@@ -1,0 +1,29 @@
+Historical filtered tool output recovered from the same Merchant task.
+Observed timestamp: 2026-09-11T16:16:17.799Z
+Not a new storefront request or current live revalidation. See international_landing_checkout_receipt.json for MAIN context and subsequent manual cart/checkout result. The historical call filtered the snapshot and may omit picker state.
+
+Wall time: 0.2587 seconds
+Output:
+    - generic: STANDARD SHIPPING INCLUDED TO Australia | EXPRESS OPTIONS AT CHECKOUT | SECURE CHECKOUT
+  - button "Australia | AUD $":
+    - generic: Australia | AUD $
+  - button "Cart 0 items":
+    - generic: Cart
+  - heading "Mom & Child Matching Two Piece Swimsuit" [level=1]
+    - generic: $26.00 AUD - $34.00 AUD
+    - button "Child":
+      - generic: Child
+    - button "Black"
+    - paragraph: "Estimated delivery to Australia: September 23 - September 27"
+      - generic: Ships to Australia
+      - generic: AUD
+  - paragraph: Mom & Child matching two piece swimsuits made from a soft chlorine-resistant spandex fabric. Our Mom & Child matching two piece swimsuits are available exclusively on dresslikemommy.com and are sure to be a hit with your little guy or gal! Our vision is to empower summer moments filled with delight and joy shared between parent and child.
+      - heading "Mommy and Me Matching Bikini Set – Floral Print Two-Piece Swimsuit for Mom & Daughter | Matching Swimwear" [level=3]:
+      - generic: From $29.00 AUD
+      - generic: From $25.00 AUD
+      - generic: From $25.00 AUD
+      - generic: From $22.00 AUD
+      - generic: From $22.00 AUD
+      - generic: From $22.00 AUD
+
+Precision correction from saved calls: cart was populated by supported WebMCP update_cart with exact numeric variant, not manual use of the visible size/color selector and Add button. This does not prove that manual buyer path.

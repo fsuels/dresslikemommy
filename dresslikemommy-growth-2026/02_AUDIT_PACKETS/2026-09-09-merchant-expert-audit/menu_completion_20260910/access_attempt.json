@@ -1,0 +1,38 @@
+{
+  "schema": "dlm.merchant.menu-access.v1",
+  "recorded_at_utc": "2026-09-10T15:44:19Z",
+  "time_note": "Checkpoint time from the clock tool; individual native tool calls were not independently timestamped.",
+  "task_id": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "merchant_target": "513542500",
+  "user_scope": "Complete all Merchant Center options to expert level, preserving prior explicit free-listing submission and setup/logo correction authority.",
+  "user_evidence": "September10 11:39 AM navigation screenshot: Notifications selected; Merchant account identity is outside the crop.",
+  "native_attempts": [
+    {
+      "action": "Inventory enabled surfaces",
+      "result": "Chrome running; only IAB browser adapter exposed."
+    },
+    {
+      "action": "Select existing native Chrome under fresh screenshot and resumed task",
+      "result": "Native read succeeded; foreground was outside Merchant. Existing Notifications - Merchant Center tab was visible. No target click or other interaction occurred.",
+      "unrelated_content_persisted_in_evidence": false
+    },
+    {
+      "action": "Reset JavaScript control bindings to obtain API documentation, then select Chrome",
+      "result": "BLOCKED_AUTO_REVIEW",
+      "reason": "Selecting native Chrome may expose unrelated private tabs and content beyond the authorized Merchant task; broader access not specifically authorized and path previously rejected.",
+      "merchant_configuration_changed": false
+    }
+  ],
+  "current_access_gate": "STABLE_SELECTED_MERCHANT_TAB_AND_EXPLICIT_INSPECTION_CONFIRMATION_REQUIRED",
+  "native_lease": false,
+  "workaround_used": false,
+  "product_or_setting_writes": 0,
+  "question": "Select Merchant513542500 in Chrome, keep that tab unchanged, and confirm that I may inspect and operate the selected tab for the already-authorized corrections.",
+  "question_answered": false,
+  "independent_lanes": [
+    "Official current menu acceptance checklist",
+    "One Shopify active-product availability and Google-app feedback refresh",
+    "Read-only comparison of existing local brand originals"
+  ],
+  "release_context": "Current UX successor137888792673 supersedes earlier137881223265 as release candidate; no theme write/release in this task."
+}

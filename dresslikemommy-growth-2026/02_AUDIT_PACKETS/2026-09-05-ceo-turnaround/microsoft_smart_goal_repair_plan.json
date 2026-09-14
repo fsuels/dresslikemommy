@@ -1,0 +1,31 @@
+{
+  "classification": "BUILD",
+  "status": "READY_FOR_INDEPENDENT_REVIEW",
+  "objective": "Prevent session-quality Smart goals from being counted or optimized as purchase outcomes before a future purchase-focused traffic test.",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "goal_id": "163000100",
+  "goal_name": "Smart goal [X0875435]",
+  "tag_id": "36000629",
+  "writer": "root",
+  "authority": {
+    "source": "Direct owner request in this task: I want you to do the approvals and implement automatically the changes! I need to see results!",
+    "interpretation": "Current owner authority for independently reviewed reversible marketing repairs. This is not agent self-approval or historical standing spend authority.",
+    "exact_scope": "Uncheck Include in Conversions for existing Smart goal 163000100 only; retain active goal and All-conversion reporting.",
+    "paid_launch_authority": false,
+    "nine_full_paid_control_fields": "UNCHANGED",
+    "excluded": ["campaign creation or enablement", "budgets or bids", "billing or payments", "other conversion goals", "UET code or installation", "privacy or consent settings", "account access", "Google or Pinterest controls"]
+  },
+  "before": {"include_in_conversions": true, "use_for_auto_bidding": "Yes", "status": "Active", "all_11_campaigns_paused": true},
+  "after": {"include_in_conversions": false, "use_for_auto_bidding": "No", "status": "Active", "all_11_campaigns_paused": true},
+  "evidence": ["microsoft_smart_goal_before.json", "microsoft_purchase_working_readback.json", "microsoft_purchase_goal_semantics.md", "microsoft_purchase_breakdown_review.json"],
+  "hypothesis": "Session scoring is an inappropriate primary outcome for purchase optimization. Exclusion removes 284 historical Smart outcomes from the standard conversion definition while retaining their All-conversion reporting; it does not resolve overlap between the other 199 goal conversions.",
+  "alternative": "Leave Smart included and depend on every operator and bidding strategy to separate it manually. Rejected because the account currently includes it in the standard outcome and automated bidding definition.",
+  "prewrite_guards": ["Independent review passes exact setting and authority scope", "Fresh native account, goal ID, checked checkbox and paused-campaign banner match frozen before-state", "Only this checkbox is changed; fresh staged state is unchecked", "No consent, billing, account or tagging change is required"],
+  "execution": "In this existing goal editor uncheck Include in Conversions, verify the staged state, then use the normal Save and next control. Navigate back to goals for a separate readback. Do not submit any unrelated wizard setting.",
+  "verification": ["Separate goals list shows Smart Active and auto-bidding No", "Reopen exact goal ID and verify checkbox unchecked; cancel without saving", "All other goal inclusion and configuration rows match before", "All 11 campaign identities, paused states, budgets and bids match before", "Retain historical frozen report and distinguish changed reporting definition from new performance"],
+  "rollback": "If the saved exact goal is still in this after-state and rollback is needed, check only Include in Conversions for goal 163000100 and save normally; verify Yes again. Stop on intervening changes or unexpected prompts.",
+  "success": "Exact setting saved and independently verified with preserved surrounding scope. No new traffic, sales, profit, order deduplication or launch readiness is claimed.",
+  "kill": "Stop before write on identity drift, unsupported editability, rejected platform review, unexpected fields, consent or tagging requirement, or before-state mismatch.",
+  "deadline": "Current task execution; fresh source is required immediately before Save."
+}

@@ -1,0 +1,54 @@
+query OngoingShippingCoverage($profilesAfter: String, $variantsAfter: String) {
+  shop { id name myshopifyDomain currencyCode shipsToCountries }
+  deliveryProfiles(first: 5, after: $profilesAfter) {
+    pageInfo { hasNextPage endCursor }
+    nodes {
+      id name default version
+      activeMethodDefinitionsCount
+      locationsWithoutRatesCount
+      originLocationCount
+      zoneCountryCount
+      productVariantsCount { count precision }
+      profileLocationGroups {
+        locationGroup { id }
+        locationGroupZones(first: 5) {
+          pageInfo { hasNextPage endCursor }
+          nodes {
+            zone {
+              id name
+              countries {
+                code { countryCode restOfWorld }
+                provinces { code }
+              }
+            }
+            methodDefinitions(first: 5) {
+              pageInfo { hasNextPage endCursor }
+              nodes {
+                id name active description
+                rateProvider {
+                  __typename
+                  ... on DeliveryRateDefinition { price { amount currencyCode } }
+                }
+                methodConditions {
+                  field operator
+                  conditionCriteria {
+                    __typename
+                    ... on Weight { value unit }
+                    ... on MoneyV2 { amount currencyCode }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  product(id: "gid://shopify/Product/7672336646241") {
+    id handle status
+    variants(first: 100, after: $variantsAfter) {
+      pageInfo { hasNextPage endCursor }
+      nodes { id deliveryProfile { id } }
+    }
+  }
+}

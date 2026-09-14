@@ -1,0 +1,156 @@
+{
+  "schema": "dlm.pinterest.shopify-pixel-native.v1",
+  "status": "LOCAL_CALLBACKS_VERIFIED__CONSENT_CONFLICTED__RECEIVER_GATED",
+  "assembled_at_utc": "2026-09-11T16:36:10.143495+00:00",
+  "method": "Original native Chrome profile test after explicit handback",
+  "store": "dresslikemommy-com",
+  "app_id": "3009811",
+  "web_pixel_id": "22577249",
+  "settings": {
+    "pixel_connection": "Connected",
+    "data_channels": [
+      "Server",
+      "Web"
+    ],
+    "data_access_label": "Always on",
+    "customer_privacy_permission": "Required",
+    "required_purposes": [
+      "marketing",
+      "analytics"
+    ],
+    "data_sale": "Data collected qualifies as data sale",
+    "sale_optout_statement": "The pixel will not collect data when the customer opts out of their data being sold.",
+    "declaration_not_runtime_proof": true
+  },
+  "app_permissions_readback": {
+    "installed_date": "2022-08-25",
+    "channel_status": "Active",
+    "store_analytics_activity": "Just now",
+    "product_activity": "5 minutes ago",
+    "customer_access_activity": "No activity in the last 30 days",
+    "interpretation": "These are app permission/activity declarations, not proof that CAPI lacks customer identifiers."
+  },
+  "pixel_helper": {
+    "official_action": "Test using the web pixels helper for Pinterest",
+    "launched": true,
+    "homepage_url": "https://dresslikemommy.com/?pb=0",
+    "loaded": true,
+    "homepage_received": [
+      "page_viewed"
+    ],
+    "homepage_event_local_time": "12:13:30 PM",
+    "search_term": "Sunshine Stripe",
+    "search_received": [
+      "search_submitted",
+      "page_viewed"
+    ],
+    "search_event_local_time": "12:20:45 PM",
+    "search_results": 27,
+    "errors_readback": "Green dots observed visually for page_viewed and product_viewed; no top-level or callback error displayed for these two events. Search callback dot not inspected.",
+    "provider_delivery": "NOT_VERIFIED",
+    "product_received": [
+      "page_viewed",
+      "product_viewed"
+    ],
+    "product_event_local_time": "12:22:48 PM",
+    "product_event_data": {
+      "numeric_ids_in_product_variant_data": [
+        "7545279512673",
+        "44116031373409"
+      ],
+      "amount": 21.99,
+      "currency": "USD",
+      "product_object_present": true,
+      "vendor_field_present": true,
+      "type_field_present": true,
+      "catalog_match": "NOT_VERIFIED"
+    },
+    "local_callback_success_is_not_provider_receipt": true
+  },
+  "consent_test": {
+    "initial_banner": "Cookie consent with Accept and Decline visible on search page",
+    "initial_sdk_state": "UNKNOWN",
+    "action": "Decline",
+    "action_local_time": "12:22:31 PM",
+    "banner_removed": true,
+    "helper_after_click": "Loaded; prior events and a clicked event remain listed",
+    "fresh_product_navigation_after_decline": "Initially Waiting to load / Pixel is awaiting consent, with Give consent to continue test visible.",
+    "session_cleanup": "INCOMPLETE: no grant action verified; current stored consent unknown. Attempt to navigate the existing test tab to the unpublished consent-control preview was interrupted by user-changed-app protection. Do not claim Decline or blank state restored.",
+    "grant_attempt": {
+      "action": "Give consent to continue test",
+      "result": "AUTOMATIC_APPROVAL_REVIEW_REJECTED",
+      "stated_reason": "Changes a privacy choice and may authorize Pinterest tracking/data transmission without explicit authorization for this specific QA action and destination.",
+      "retried_or_bypassed": false,
+      "execution_success_claimed": false
+    },
+    "subsequent_observation": "Later same product helper displayed Loaded with green page_viewed and product_viewed dots; both rows carried 12:22:48 PM. Loaded persisted in settled reload readback.",
+    "conflict": "Transition from awaiting consent to Loaded has no verified consent action or SDK-state readback. Do not attribute it to the rejected action, a person, or a proven defect. Complete refusal/revocation enforcement is not verified.",
+    "approval_question": {
+      "status": "PENDING",
+      "requested_scope": "Temporary marketing and analytics consent for ordinary page/product QA in the existing Shopify Pinterest helper; possible impact on other installed pixels disclosed; verify restoration control first and restore Decline afterward.",
+      "no_answer_inferred": true
+    }
+  },
+  "control_recovery": {
+    "symptom": "Native Chrome retained old menu after test opened; screenshots unavailable",
+    "system_settings_ax_and_screenshot": "PASS",
+    "dock_probe": "timeoutReached",
+    "js_session_reset": "NO_RECOVERY",
+    "scoped_helper_service_restart": "RECOVERED_CHROME",
+    "chrome_quit_or_permission_change": false,
+    "mac_lock_inferred": false
+  },
+  "changes": {
+    "production_configuration": 0,
+    "pin_board_source": 0,
+    "theme": 0,
+    "campaign_budget_spend": 0,
+    "test_orders": 0,
+    "cart_mutations": 0,
+    "shopper_cookie_choices": 1
+  },
+  "privacy": "No customer values, tokens, signed embedded app URLs, or raw event payloads retained.",
+  "theme_role_readback": {
+    "main": {
+      "id": "133290917985",
+      "role": "MAIN",
+      "updatedAt": "2026-07-02T16:47:21Z"
+    },
+    "combined_candidate": {
+      "id": "137888792673",
+      "role": "UNPUBLISHED",
+      "updatedAt": "2026-09-10T04:34:55Z"
+    },
+    "method": "Schema discovery, validated read-only Shopify Admin GraphQL nodes query",
+    "theme_change": false
+  },
+  "surface_closeout": {
+    "user_changed_app_interruptions": 2,
+    "new_native_actions": "PAUSED",
+    "native_lease": "Released to Merchant once user activity permits",
+    "test_tab": "LEFT_OPEN_FOR_CLEANUP",
+    "last_verified_test_cart_items": 0,
+    "preview_navigation_success": "NOT_VERIFIED",
+    "other_tabs_closed": 0,
+    "unsaved_edit_form": false
+  },
+  "receiver_comparison": {
+    "new_pinterest_receiver_readback": "NOT_RUN_AFTER_SHOPIFY_TEST",
+    "tag_14d_addpaymentinfo_product_id_coverage": "UNREAD",
+    "capi_14d_addpaymentinfo_product_id_coverage": {
+      "value": "0%",
+      "observed_date": "2026-09-10",
+      "report_updated_date": "2026-09-09"
+    },
+    "new_campaign_status_audit": "NOT_RUN",
+    "purchase_and_deduplication": "NOT_VERIFIED"
+  },
+  "acceptance": {
+    "connection_and_declared_privacy": "VERIFIED",
+    "page_product_callback_success": "VERIFIED_WITH_LIMITS",
+    "consent_refusal_and_revocation": "CONFLICTED",
+    "pinterest_receipt": "UNKNOWN",
+    "capi_payment_mapping_cause": "UNKNOWN",
+    "campaign_launch": "NOT_LAUNCH_READY"
+  }
+}

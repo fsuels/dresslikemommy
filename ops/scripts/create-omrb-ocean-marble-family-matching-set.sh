@@ -33,7 +33,7 @@ HANDLE = "ocean-marble-family-matching-set"
 TITLE = "Ocean Marble Family Matching Set - Dress & Shirt Set"
 SEO_TITLE = "Ocean Marble Family Matching Set | Dress Like Mommy"
 SEO_DESCRIPTION = "Blue watercolor family matching set for mom, dad, girls & boys. Dress and shirt+shorts sizes 1-2Y to 10Y, Mom S-L, Dad S-3XL."
-VENDOR_URL = "https://detail.1688.com/offer/1043342779774.html"
+VENDOR_URL = ""
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
 EXPECTED_TAXONOMY = "Apparel & Accessories > Clothing > Outfit Sets"
@@ -365,7 +365,7 @@ tags = sorted(set([
     "Short Sleeve Shirt",
     "Sleeveless Dress",
     "Four-Role Matching",
-    VENDOR_URL,
+
 ] + size_values + ["Mother S", "Mother M", "Mother L", "Father S", "Father M", "Father L", "Father XL", "Father 2XL", "Father 3XL"]))
 
 
@@ -419,7 +419,7 @@ product_input = {
     "vendor": "dresslikemommy.com",
     "productType": PRODUCT_TYPE,
     "tags": tags,
-    "status": "ACTIVE",
+    "status": "DRAFT",
     "category": TAXONOMY_GID,
     "seo": {"title": SEO_TITLE, "description": SEO_DESCRIPTION},
 }
@@ -488,10 +488,11 @@ publications = [{"publicationId": value} for value in [
     "gid://shopify/Publication/76582879329",
     "gid://shopify/Publication/76604768353",
 ]]
-result = gql("mutation($product:ProductUpdateInput!){productUpdate(product:$product){product{id status} userErrors{field message}}}", {"product": {"id": product_id, "status": "ACTIVE"}})
+result = gql("mutation($product:ProductUpdateInput!){productUpdate(product:$product){product{id status} userErrors{field message}}}", {"product": {"id": product_id, "status": "DRAFT"}})
 user_errors(result, "data.productUpdate.userErrors")
-result = gql("mutation($id:ID!,$input:[PublicationInput!]!){publishablePublish(id:$id,input:$input){userErrors{field message}}}", {"id": product_id, "input": publications})
-user_errors(result, "data.publishablePublish.userErrors")
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+print("Sales-channel publication skipped; product remains a draft pending approval.")
 
 media = gql("query($id:ID!){product(id:$id){media(first:50){nodes{... on MediaImage{id alt image{url}}}}}}", {"id": product_id})["data"]["product"]["media"]["nodes"]
 existing_alts = {item.get("alt") for item in media}
@@ -525,9 +526,9 @@ checks = [
     ("variant count", len(live_variants) == len(variants), f"{len(live_variants)} vs {len(variants)}"),
     ("sku parity", live_skus == spec_skus, ", ".join(live_skus)),
     ("taxonomy", p["category"]["fullName"] == EXPECTED_TAXONOMY, p["category"]["fullName"]),
-    ("status active", p["status"] == "ACTIVE", p["status"]),
-    ("published", bool(p["publishedAt"]), p["publishedAt"]),
-    ("online url", bool(p["onlineStoreUrl"]), p["onlineStoreUrl"]),
+    ("status draft", p["status"] == "DRAFT", p["status"]),
+    ("not published", not bool(p["publishedAt"]), p["publishedAt"]),
+    ("online url absent", not bool(p["onlineStoreUrl"]), p["onlineStoreUrl"]),
     ("media count", len(p["media"]["nodes"]) >= 2, len(p["media"]["nodes"])),
 ]
 expected_by_sku = {variant["inventoryItem"]["sku"]: variant for variant in variants}

@@ -1,0 +1,108 @@
+{
+  "schema": "dlm.google_ads_editor_recovery.v1",
+  "recorded_at_utc": "2026-09-11T21:31:40.501772+00:00",
+  "status": "REVIEWED_DRAFT_RESTORED_SAVE_NOT_ATTEMPTED",
+  "campaign_id": "24247604341",
+  "asset_group_id": "6746545742",
+  "account_id": "6509972886",
+  "trigger": {
+    "former_tab_id": "5",
+    "legacy_handle_result": "Tab 5 is not part of browser session 01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+    "fresh_current_handle_result": "Tab not found: 5 in browser 1",
+    "fresh_inventory": "Only existing user Campaigns tab4 remained. Cause of disappearance UNKNOWN.",
+    "no_restart_from_timeout": "Recovery followed an authoritative missing handle and absent inventory entry, not a timeout."
+  },
+  "fresh_campaign_readback": {
+    "surface": "New task-owned IAB tab7; fully rendered after load",
+    "date": "Today, September11,2026",
+    "timezone": "America/New_York",
+    "status": "PAUSED",
+    "average_daily_budget_usd": 5,
+    "impressions": 359,
+    "clicks": 5,
+    "cost_usd": 0.8,
+    "ctr_percent_displayed": 1.39,
+    "average_cpc_usd_calculated": 0.16,
+    "reported_conversions": 0,
+    "reported_conversion_value": 0,
+    "channels": "NOT_REREAD; prior dated all-YouTube evidence remains separate",
+    "copy_in_editor": "Freshly reopened saved copy matches original before payload, not the staged changes.",
+    "older_tab4": "Stale unrefreshed September6–10 display said Enabled and zero activity; superseded by fresh tab7 and new editor paused banner.",
+    "reporting_limit": "Three extra reported impressions do not establish post-pause delivery; cost/clicks unchanged."
+  },
+  "recovery": {
+    "new_editor_tab_id": "8",
+    "provider_tab_id": "browser-use:6df684ff-5579-4724-8d4a-55ffbed64371",
+    "same_iab_browser_id": "1",
+    "same_campaign_and_asset_group": true,
+    "expected_before_fields_matched": 18,
+    "reviewed_fields_restaged": 18,
+    "all_textbox_after_checks_passed": 27,
+    "protected_regions_identical": [
+      "Images",
+      "Logos",
+      "Videos",
+      "Sitelinks"
+    ],
+    "final_url_unchanged": true,
+    "markHandoff_called": true,
+    "temporary_readback_tab7_closed": true,
+    "existing_user_tab4_untouched": true
+  },
+  "readback_parser_note": "Initial local comparison flagged only the focused Business name because the accessibility line includes [active]. The parser was corrected to account for that UI annotation; the field itself already matched. No second fill was needed.",
+  "save_gate": {
+    "save_clicked": false,
+    "identity_completion": "UNVERIFIED",
+    "current_identity_dialog_visible": false,
+    "current_inline_error_visible": false,
+    "interpretation": "A freshly reopened form having no old inline error is not proof that identity verification or saving is fixed. Existing unsuccessful Save and Google identity challenge evidence remain controlling.",
+    "account_edit_saved": false,
+    "normal_owner_step": "In restored editor8, click Save and complete any normal Google identity prompt; report the result for independent saved-after-state verification."
+  },
+  "copy_source": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/COPY_CHANGE_PLAN.json",
+    "sha256": "b1b7a7a475f6bec8beb7769dbcaf87981b83facb515635790bf449c9d0fa0a15"
+  },
+  "external_business_changes": {
+    "save_or_apply_attempts": 0,
+    "campaign_budget_bid_status_goal_changes": 0,
+    "asset_uploads": 0,
+    "new_campaigns": 0
+  },
+  "global_paid_control": "UNCHANGED; STALE_READBACK_REQUIRED / FRESH_ACTION_TIME_APPROVAL_REQUIRED / NONE / autonomous_action_ready=false",
+  "shared_canonical_writes": 0,
+  "goal_audit": {
+    "previous_turn": "NO_PROGRESS_AFTER_REVALIDATION",
+    "this_turn": "PROGRESS: recovered a missing draft and resolved a stale enabled-display conflict. The same required normal identity/save acceptance remains unresolved after the recovery.",
+    "same_core_blocker_recurred_across_goal_turns": [
+      "Package closeout: FINAL_PACKET_CHECKS.json, no successful Save, normal verification unresolved.",
+      "First continuation: FOLLOWUP_20260911_2121.json, same error and no verified identity completion.",
+      "Current continuation: saved old copy freshly confirmed, local draft restored, identity still unverified; no available authorized dependent write can proceed."
+    ],
+    "consecutive_goal_turns_with_same_core_blocker": 3,
+    "remaining_independent_production": "Country drafts, negatives, sitelinks, landscape/video assets and independent reviews are complete locally. Further launch/account work needs normal Google access, genuine purchase/cost evidence, qualified buyer routes or exact spend authority.",
+    "goal_completion": "NOT_ACHIEVED"
+  },
+  "continuation_source": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "runtime_goal_after_state": {
+    "status": "BLOCKED",
+    "verified_with": "update_goal tool",
+    "same_blocker_goal_turns": 3,
+    "objective_preserved": true,
+    "completion_claimed": false
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-11T21:31:40.501772+00:00",
+    "timing_basis": "Receipt time immediately after current UI recovery/readbacks; no server event time inferred.",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "Normal Google verification completion and accepted Save, followed by fresh independent saved-value readback.",
+    "if_evidence_supports_recommendation": "Resume the previously reviewed exact repairs under current scope; separately qualify paid launch.",
+    "if_evidence_opposes_recommendation": "Preserve the local package and do not repeat unchanged Save/authentication attempts.",
+    "prior_copy_independent_review": "Existing exact COPY_CHANGE_PLAN.json review remains bound; no copy changes beyond restoring that payload."
+  }
+}

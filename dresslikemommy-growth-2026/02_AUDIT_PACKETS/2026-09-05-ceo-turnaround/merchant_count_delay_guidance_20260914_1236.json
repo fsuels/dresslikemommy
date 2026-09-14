@@ -1,0 +1,81 @@
+{
+  "schema": "dlm.merchant.official.count.delay.guidance.v1",
+  "reviewed_at_utc": "2026-09-14T13:40:33.540414+00:00",
+  "reviewer": "/root/claim_lookup_cause",
+  "scope": "Official Google Merchant Help only; no account/UI/API/credential access; preliminary canonical review unchanged.",
+  "reported_account_evidence": {
+    "basis": "PARENT_REPORTED_NOT_INDEPENDENT_LIVE_READBACK",
+    "source_id": "10727274744",
+    "type": "Full primary File(URL)",
+    "google_processed_at_utc": "2026-09-14T13:34:09Z",
+    "updated": 4741,
+    "new": 0,
+    "attributes": "All recognized",
+    "file_issues": "No issues",
+    "source_header_count_at_1336": 4761,
+    "expected_omitted_ids": 20,
+    "received_byte_equality": "UNAVAILABLE"
+  },
+  "sources": [
+    {
+      "url": "https://support.google.com/merchants/answer/16488800?hl=en",
+      "title": "Managing and editing your products",
+      "supports": "For an existing source, add/remove products in its original file and update that same source; Merchant Center reflects the source changes."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/14996874?hl=en",
+      "title": "Manage products in your Merchant Center account",
+      "supports": "For file-based removal, remove products from the file and resubmit. After account removal, disappearance from ads/free listings may take24-48hours. This does not specify source-header convergence time or prove removal occurred."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/14990942?hl=en",
+      "title": "Create a product data source",
+      "supports": "Primary sources can add/remove products; supplemental sources cannot add/remove products and only supply additional or replacement attributes."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/14968709?hl=en",
+      "title": "How to fix: Not submitted due to product limit",
+      "supports": "For API-supplied items, stopping uploads does not immediately free quota; explicit delete is the documented API mechanism. This API rule must not be applied as a need for deletion after a successful full file replacement."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/12488713?hl=en",
+      "title": "Check product visibility and status in Merchant Center",
+      "supports": "Processing product updates may take up to15minutes, usually after product edits. This is not an SLA for file omissions or source/list header totals."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/16488801",
+      "title": "Viewing and understanding your product data",
+      "supports": "Total products includes products provided by the merchant and additional products found by Google; source and exact product identity must be distinguished when reconciling totals."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/12158480?hl=en",
+      "title": "Add products automatically from your online store",
+      "supports": "Found by Google is separately managed and website-derived information may remain in organic search; a full US file update is not proof of account-wide or organic removal."
+    }
+  ],
+  "conclusion": {
+    "full_file_omission_is_supported_removal_method": true,
+    "twenty_exact_removals_currently_verified": false,
+    "source_header_delay_guarantee_found": false,
+    "lag_cause": "UNKNOWN; do not assign the difference to cache/processing/another source without exact readback",
+    "processing_receipt_limit": "4741updated/0new/recognized/no issues supports successful submitted-record processing, not received-file byte equality, omitted-ID deletion or full approval."
+  },
+  "one_next_verification": {
+    "owner": "Existing Merchant01a08706",
+    "when": "Next existing owner heartbeat at or after2026-09-14T13:49:09Z (15minutes after processing), if not already completed. This is a chosen diagnostic checkpoint, not a guaranteed Google completion deadline.",
+    "action": "Read source10727274744 count and exact20 omitted IDs in the same US/en context; check any surviving IDs for source ownership and current status. Preserve reported processing receipt and separately dated counters.",
+    "no_actions": [
+      "No duplicateUpdate",
+      "No blocked download retry",
+      "No blind deletion/API call",
+      "No independent Found-by-Google source mutation",
+      "No new scheduler"
+    ],
+    "if_unresolved": "Keep removal/count discrepancy open with exact surviving-ID/source evidence; do not declare completed deletion from a total alone."
+  },
+  "writes": {
+    "only": "/private/tmp/dlm-merchant-count-delay-guidance-20260914-1236.json",
+    "canonical": 0,
+    "external": 0
+  }
+}

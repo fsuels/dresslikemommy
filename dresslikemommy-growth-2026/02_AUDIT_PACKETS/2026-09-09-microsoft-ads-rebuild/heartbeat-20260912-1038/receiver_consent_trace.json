@@ -1,0 +1,153 @@
+{
+  "as_of_utc": "2026-09-12T10:47:18.829888+00:00",
+  "classification": "LIVE_VERIFIED_STANDARD_UET_CONSENT_SIGNAL_GAP; supported repair not implemented",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "uet_id": "36005151",
+  "authority": "Existing bounded nonspend tracking repair; no paid activation or new spend authority",
+  "own_surfaces": {
+    "receiver": {
+      "browser": "1",
+      "tab": "7",
+      "surface": "Native Test your tag for UET36005151"
+    },
+    "controlled_storefront": {
+      "browser": "1",
+      "tab": "8",
+      "canonical_url": "https://www.dresslikemommy.com/collections/dresses",
+      "debug_session_url_redacted": true
+    }
+  },
+  "test_scope": "Normal collection page views only; no cart mutation, checkout, purchase, synthetic conversion, consent setter, cookie read/write, security or production configuration change",
+  "popup_limit": "Native Open website URL produced a received event, but two filtered IAB listings did not expose its popup. Root opened the exact receiver-observed test URL in a separate supported task-owned background tab, then observed one reload. No duplicate import or test-start retry.",
+  "privacy_before_and_after_reload": {
+    "unchanged": true,
+    "method": "Read-only Shopify Customer Privacy API getters via supported tab CDP",
+    "region": "USFL",
+    "visitor_consent": {
+      "marketing": "no",
+      "analytics": "no",
+      "preferences": "no",
+      "sale_of_data": ""
+    },
+    "effective_permissions": {
+      "analytics": false,
+      "marketing": false,
+      "preferences": false,
+      "saleOfData": true
+    }
+  },
+  "captured_request": {
+    "observed_at_utc": "2026-09-12T10:43:06.879Z",
+    "host": "bat.bing.com",
+    "path": "/action/0",
+    "method": "GET",
+    "tag_id": "36005151",
+    "event": "pageLoad",
+    "page_matches_exact_test_url": true,
+    "page_path": "/collections/dresses",
+    "debug_parameter_present": true,
+    "consent_parameter_asc_present": false,
+    "nonempty_identifier_field_names": [
+      "mid",
+      "sid",
+      "vid",
+      "msclkid"
+    ],
+    "parameter_names": [
+      "Ver",
+      "bo",
+      "cdb",
+      "dbg",
+      "evt",
+      "lg",
+      "lt",
+      "mid",
+      "msclkid",
+      "p",
+      "pi",
+      "r",
+      "rn",
+      "sc",
+      "sh",
+      "sid",
+      "sv",
+      "sw",
+      "ti",
+      "tl",
+      "vid",
+      "vids"
+    ],
+    "raw_identifier_values_persisted": false
+  },
+  "sender_attribution": {
+    "standard_batjs_observed": true,
+    "public_app_wrapper_initiated_batjs": true,
+    "batjs_initialized_tag_config_path": "/p/action/36005151.js",
+    "action_initiator_type": "other",
+    "action_call_stack_exposed": false,
+    "reasoned_attribution": "Observed app wrapper loads bat.js, initializes UET36005151, and queues pageLoad; captured standard-shaped pageLoad request is for same tag and exact test URL. Final request has no call stack. Do not attribute this to isolated shop-wpa app stream."
+  },
+  "receiver_readback": {
+    "surface": "Native Test your tag",
+    "status": "Receiving traffic",
+    "rows_observed": 3,
+    "all_rows": {
+      "type": "Page Load",
+      "event": "page view",
+      "exact_test_url": true,
+      "parameters_received": "-",
+      "consent_signal": "Not present"
+    },
+    "displayed_last_received_minutes_ago": [
+      1,
+      2,
+      3
+    ],
+    "granularity_limit": "Rows are observed for the same unique test URL, with minute-level age; no per-hit request ID is exposed, so not a one-to-one request-ID join."
+  },
+  "network_capture_limit": {
+    "events_scanned": 469,
+    "truncated": true,
+    "has_more": false,
+    "effect": "Earlier buffer entries were evicted; positive observed request remains evidence, but trace is not exhaustive and absence of another stream cannot be concluded."
+  },
+  "current_app_configuration": {
+    "id": "931561569",
+    "apiClientId": 2997493,
+    "type": "APP",
+    "runtimeContext": "STRICT",
+    "scriptVersion": "5ee93563fe31b11d2d65e2f09a5229dc",
+    "privacyPurposes": [
+      "ANALYTICS",
+      "MARKETING",
+      "SALE_OF_DATA"
+    ],
+    "tagId": "36005151",
+    "matches_prior_version": true,
+    "method": "Only exact public pixel configuration extracted from rendered script DOM"
+  },
+  "public_standard_wrapper": {
+    "file": "standard_publisher_observed.js",
+    "bytes": 639,
+    "sha256": "171802eab48befd7660099e6ad8c6d0423c14bfeb2b866b14b30694d7f7bce3a",
+    "source_method": "CDP Network.getResponseBody for observed public publisher script request; source URL and all visitor identifiers omitted",
+    "deployed_or_modified_by_root": false
+  },
+  "proven": [
+    "The native receiver accepted three page-load test events with no consent signal",
+    "Controlled tab permissions for analytics and marketing were false before and after the recorded reload",
+    "The controlled reload emitted a standard pageLoad request for UET36005151 and exact test URL without asc",
+    "Current public app configuration retains strict analytics/marketing/sale-of-data requirements and prior script version"
+  ],
+  "not_proven": [
+    "EEA/UK/CH actual visitor result",
+    "shop-wpa purchase consent or deduplication",
+    "Each nonempty identifier field value is a real advertising identifier rather than a placeholder",
+    "An exhaustive request inventory",
+    "Specific per-hit network-to-receiver ID equality",
+    "Actual attribution loss, lost orders or contribution profit",
+    "A supported production repair or publisher update"
+  ],
+  "next_action": "Independently review the trace and ready a redacted Microsoft publisher support request; do not install a speculative consent bridge, change app purpose declarations, or bypass the unchanged app-loading dependency."
+}

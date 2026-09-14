@@ -1,0 +1,40 @@
+{
+  "as_of_utc": "2026-09-12T09:29:53.013399+00:00",
+  "runtime": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "checks": [
+    {
+      "command": "ops/scripts/render_marketing_cockpit.py",
+      "exit_code": 0,
+      "result": "Rendered operator_cockpit.html"
+    },
+    {
+      "command": "ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "exit_code": 0,
+      "result": "25/25 integrated;0side-document risks"
+    },
+    {
+      "command": "ops/scripts/check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "result": "10PASS;CONTINUITY_OK; exact currentMicrosoftanchor"
+    },
+    {
+      "command": "git diff --check -- exact11canonicalfiles plus2generatedfiles andownpacketpath",
+      "exit_code": 0,
+      "result": "No tracked-diff whitespace errors"
+    },
+    {
+      "command": "SHA256 recheck all11 canonical files against applicationreceipt",
+      "result": "PASS11/11"
+    },
+    {
+      "command": "Original fiveCSV hashes against frozenbuildermanifest",
+      "result": "PASS5/5"
+    }
+  ],
+  "generated_files_sha256": {
+    "ops/marketing/operator_cockpit.html": "f5ccae3403d66cb6b1f5f5c53b233c96e63729b145d2c7407af7f27c327c3a2c",
+    "ops/marketing/command_layer_integration_audit.md": "46d9f3326e6d9151431968083751963fd7d5d95d71bf6309b6e49122181f3f0e"
+  },
+  "independent_postreview": "PENDING",
+  "full_paid_authority_changed": false
+}

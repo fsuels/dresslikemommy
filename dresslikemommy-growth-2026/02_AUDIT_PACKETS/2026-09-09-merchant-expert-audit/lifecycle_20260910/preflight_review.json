@@ -1,0 +1,191 @@
+{
+  "schema": "dlm.merchant.lifecycle_publication_preflight_review.v1",
+  "verdict": "BLOCK",
+  "confidence": "H",
+  "reviewed_at_utc": "2026-09-10T16:33:03.472Z",
+  "exact_blocked_proposal": {
+    "operation": "publicationUpdate",
+    "publication_id": "gid://shopify/Publication/21969633377",
+    "input": {
+      "autoPublish": true
+    },
+    "attempts_authorized_by_this_review": 0
+  },
+  "reason": "Target-specific writability and lifecycle relevance are unestablished. The forward AppCatalog7676067937 -> publication21969633377 binding invalidates treating reverse catalog:null as a generic editable publication. The shared error enum signals possible restrictions but does not prove every operation or this Boolean update is forbidden. autoPublish only addresses newly created products, not the requested activation/removal lifecycle.",
+  "interpretation_status": "BLOCK for insufficient target fit and support evidence; not a runtime unsupported-error finding.",
+  "authority": {
+    "user_nonspend_lifecycle_corrections": "CURRENT_AUTHORIZED_SCOPE_AS_SUPPLIED_BY_ROOT",
+    "duplicate_user_approval_required": false,
+    "paid_authority_expanded": false,
+    "block_is_evidence_gap_not_missing_user_authority": true
+  },
+  "evidence": {
+    "status": "PASS_SAVED_EVIDENCE_CHECKS",
+    "bindings": {
+      "publication_snapshot.json": {
+        "bytes": 5865,
+        "sha256": "a5a76a920d8253563ed4fc0beb6bd33f49cdea2f1e09e9783815a49cdfcf69aa"
+      },
+      "schema_publication_update.json": {
+        "bytes": 5951,
+        "sha256": "263f28133d47e6ac81060523fd95c5be097b4a1248026b5c47d4059a4aff3095"
+      },
+      "catalog_snapshot.json": {
+        "bytes": 7665,
+        "sha256": "0d2320097dacccc2c43e95d5d00aff5b65cd58f9a00806552070af786d68d4aa"
+      }
+    },
+    "target_catalog": {
+      "id": "gid://shopify/AppCatalog/7676067937",
+      "type": "AppCatalog",
+      "status": "ACTIVE",
+      "publication": {
+        "id": "gid://shopify/Publication/21969633377",
+        "autoPublish": false
+      }
+    },
+    "catalog_window": {
+      "after": "2026-09-10T16:23:19Z",
+      "before": "2026-09-10T16:28:00Z"
+    },
+    "counts": {
+      "returned_publications": 9,
+      "catalogs": 13,
+      "app_catalogs": 9,
+      "market_catalogs": 4,
+      "included_each": 815,
+      "active": 240,
+      "draft": 3,
+      "archived": 572
+    },
+    "market_publications": [
+      {
+        "catalog_id": "gid://shopify/MarketCatalog/910622817",
+        "title": "International",
+        "publication": {
+          "id": "gid://shopify/Publication/77105823841",
+          "autoPublish": true
+        },
+        "associated_markets": 1
+      },
+      {
+        "catalog_id": "gid://shopify/MarketCatalog/6880690273",
+        "title": "Estonia",
+        "publication": {
+          "id": "gid://shopify/Publication/77105627233",
+          "autoPublish": true
+        },
+        "associated_markets": 0
+      },
+      {
+        "catalog_id": "gid://shopify/MarketCatalog/6880723041",
+        "title": "Eurozone",
+        "publication": {
+          "id": "gid://shopify/Publication/77105660001",
+          "autoPublish": true
+        },
+        "associated_markets": 1
+      },
+      {
+        "catalog_id": "gid://shopify/MarketCatalog/6881083489",
+        "title": "United States",
+        "publication": {
+          "id": "gid://shopify/Publication/77106053217",
+          "autoPublish": true
+        },
+        "associated_markets": 1
+      }
+    ],
+    "documented_error": {
+      "name": "CANNOT_MODIFY_APP_CATALOG_PUBLICATION",
+      "description": "Can't modify a publication that belongs to an app catalog."
+    },
+    "checked_at_utc": "2026-09-10T16:29:29.812Z"
+  },
+  "primary_documentation": {
+    "reviewed_date_utc": "2026-09-10",
+    "observed_api_docs_version": "2026-07 latest",
+    "sources": [
+      {
+        "url": "https://shopify.dev/docs/api/admin-graphql/latest/enums/PublicationUserErrorCode",
+        "claim": "The shared error enum includes CANNOT_MODIFY_APP_CATALOG_PUBLICATION; it warns of restrictions but does not identify which individual field updates on this target will be rejected."
+      },
+      {
+        "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/AppCatalog",
+        "claim": "An AppCatalog defines the publication associated with an app; its publication field identifies that publication."
+      },
+      {
+        "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/Publication",
+        "claim": "autoPublish concerns newly created products; included products are not necessarily published."
+      },
+      {
+        "url": "https://shopify.dev/docs/api/admin-graphql/latest/input-objects/PublicationUpdateInput",
+        "claim": "autoPublish is a Boolean input for new-product publication; add/remove product inputs are distinct."
+      },
+      {
+        "url": "https://shopify.dev/docs/api/admin-graphql/latest/mutations/publicationUpdate",
+        "claim": "Requires write_publications and catalog create/edit permission; returns publication and userErrors."
+      },
+      {
+        "url": "https://shopify.dev/docs/api/admin-graphql/latest/mutations/publishablePublish",
+        "claim": "Products must have ACTIVE status for channel visibility."
+      },
+      {
+        "url": "https://support.google.com/merchants/answer/13693394?hl=en",
+        "claim": "Documents the native Google & YouTube Product sync setting, automatic updates and future-country option. Current account settings remain unread."
+      }
+    ]
+  },
+  "schema_validation": {
+    "status": "PASS",
+    "method": "Shopify Admin skill validate.mjs, schema-only; no shop operation",
+    "artifact_id": "3b85b015-c2c1-4425-9c2e-008b2e60cc9f",
+    "revision": 1,
+    "required_scope": "write_publications",
+    "runtime_target_support_proven": false
+  },
+  "documentation_search": {
+    "skill_search": "FAILED_FETCH",
+    "fallback": "Official Shopify documentation successfully read through web tool before schema validation",
+    "permission_or_account_bypass": false
+  },
+  "verified_checks": [
+    "Same saved shop15571635 in publication and catalog receipts.",
+    "Nine unique returned publications; complete pagination; every autoPublish false and reverse catalog null.",
+    "815 EXACT included records partition 240 ACTIVE + 3 DRAFT + 572 ARCHIVED; no visibility inference.",
+    "Thirteen catalog records, complete pagination: nine AppCatalogs and four MarketCatalogs.",
+    "Forward AppCatalog7676067937 ACTIVE -> publication21969633377, autoPublish false.",
+    "All four returned MarketCatalog publications already autoPublish true; International/Eurozone/US each have one associated market; Estonia has none.",
+    "Saved schema and current official enum both contain CANNOT_MODIFY_APP_CATALOG_PUBLICATION.",
+    "Proposed mutation syntax validated against schema without execution; schema validity is distinct from target support."
+  ],
+  "semantic_limits": [
+    "The catalog query has no exact timestamp: bounded 16:23:19–16:28:00 UTC. The informal 16:33 estimate is explicitly discarded.",
+    "The cause of the reverse Publication.catalog null versus forward AppCatalog relationship is unresolved; null must not be treated as absence of an app catalog.",
+    "autoPublish concerns newly created products; it does not itself prove existing DRAFT/ARCHIVED -> ACTIVE handling, update propagation, deletion/withdrawal latency, translated offers or country coverage.",
+    "Google & YouTube Product sync and country/language automatic settings remain unread and access-gated. No Merchant receiving account, free-listing eligibility, serving or profit result is established.",
+    "Publication control is upstream channel availability, not a free-listings-only destination switch.",
+    "Changing the Boolean back would restore the flag only; it would not by itself verify reversal of any intervening product associations."
+  ],
+  "required_next_changes": [
+    "Withdraw this insufficiently supported publicationUpdate candidate. Record mutation NOT RUN and target writability UNKNOWN; do not execute its unused false rollback.",
+    "Preserve current AppCatalog/publication and already-enabled MarketCatalog flags. Do not probe with another mutation or create/rebind catalogs to avoid an uncertain target restriction.",
+    "After resolving the existing selected-tab access gate, inspect the documented Google & YouTube Product sync and country/language controls and Merchant513 receiving source. Apply only supported, observed settings under existing nonspend authority.",
+    "Observe actual creation, activation, changes, retirement/reactivation and added/removed variants. If explicit publication is the proven gap, prepare the narrow documented publishing workflow with its owner; verify receiving statuses and language/country coverage."
+  ],
+  "external_actions_by_reviewer": [],
+  "owned_outputs": [
+    "preflight_review.json",
+    "preflight_review.md"
+  ],
+  "continuation": "Verify the documented native Google sync controls and actual lifecycle behavior; retain this Boolean candidate as NOT RUN unless target-specific support and relevance are established.",
+  "revision": 2,
+  "target_writability": "UNKNOWN",
+  "mutation_execution_status": "NOT_RUN",
+  "runtime_unsupported_error_observed": false,
+  "reconciliation": {
+    "with": "official_lifecycle.md and official_lifecycle.json",
+    "accepted_correction": "A shared error code is not conclusive proof that every AppCatalog operation is forbidden. Final writability UNKNOWN, mutation NOT RUN, candidate BLOCK for inadequate support and lifecycle fit.",
+    "supersedes_revision_1_categorical_exclusion_wording": true
+  }
+}

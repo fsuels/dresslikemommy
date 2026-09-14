@@ -1,0 +1,132 @@
+{
+  "schema": "dlm.merchant.native_authorized_independent_verification.v1",
+  "status": "PASS_WITH_GATES",
+  "confidence": "H",
+  "reviewer": "/root/merchant_landing_code_review",
+  "scope": "Independent saved-evidence and canonical preservation review only; reviewer neither built nor executed the canonical/native changes.",
+  "canonical_snapshot_utc": "2026-09-10T18:14:37.342Z",
+  "saved_evidence_checked_at_utc": "2026-09-10T18:19:04.939827Z",
+  "material_contradictions": [],
+  "preservation": {
+    "status": "PASS",
+    "edit_count": 17,
+    "file_count": 6,
+    "inverse_checks": [
+      {
+        "path": "ops/AGENT_COORDINATION.md",
+        "edits": 3,
+        "current_sha256": "c784f52243e186a1e6200bf2338433cc397f1e9b117bae92e6dea901dcc7fd19",
+        "restored_sha256": "6e7eb14e8eb40addfd2b5b9d7357142dd8ab9a5de3bfb712ab03f96409ec5f06",
+        "restored_bytes": 397008,
+        "expected_before_sha256": "6e7eb14e8eb40addfd2b5b9d7357142dd8ab9a5de3bfb712ab03f96409ec5f06"
+      },
+      {
+        "path": "ops/marketing/current_marketing_state.md",
+        "edits": 6,
+        "current_sha256": "238e7e6b2ad92e788bf6ce45d99c4a0c1ba14798c1b092b7895c33d6a29d2632",
+        "restored_sha256": "b77f029ed31fc71b753ce2a96ad76d5390b50b75cb815584053eef31958d0f8a",
+        "restored_bytes": 227946,
+        "expected_before_sha256": "b77f029ed31fc71b753ce2a96ad76d5390b50b75cb815584053eef31958d0f8a"
+      },
+      {
+        "path": "ops/PROBLEM_TRACKER.md",
+        "edits": 2,
+        "current_sha256": "a7d4ae867a3ae1b7cee86b3cfaee3a388a34e2b2aae1df912736ea8411a4655f",
+        "restored_sha256": "20a9aac57035a203d918b24c0bae8e73820f8f6f7185a39586dc9e040f10c39c",
+        "restored_bytes": 856354,
+        "expected_before_sha256": "20a9aac57035a203d918b24c0bae8e73820f8f6f7185a39586dc9e040f10c39c"
+      },
+      {
+        "path": "ops/marketing/operator_cockpit.md",
+        "edits": 2,
+        "current_sha256": "a5a5cecadb78f3d7b2c8719a1b91d5e6b28e2d374a7737f419529c6bce396f74",
+        "restored_sha256": "7f7ca53ef730c5d78c1dbf2978ad310845a6550f9deb3fdc437d1f9fad811824",
+        "restored_bytes": 103648,
+        "expected_before_sha256": "7f7ca53ef730c5d78c1dbf2978ad310845a6550f9deb3fdc437d1f9fad811824"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/AUDIT_AND_FIX_PLAN.md",
+        "edits": 2,
+        "current_sha256": "72550dc889f7a2672febf5a621753372b3def717418147204e997100e98e130a",
+        "restored_sha256": "dc6c42032dbaa4a9ba6245e9e915e423e2bce55b67604e84f17e0b3a50211ffe",
+        "restored_bytes": 20665,
+        "expected_before_sha256": "dc6c42032dbaa4a9ba6245e9e915e423e2bce55b67604e84f17e0b3a50211ffe"
+      },
+      {
+        "path": "ops/AGENT_WORKLOG.md",
+        "edits": 2,
+        "current_sha256": "1d8172d194b8bda3d0bdc8d1cfd61743a2f0b9c1904b6fc54fc217b43f7fb980",
+        "restored_sha256": "03bb83049d7cbdb58fe622f40008dcecda7aa518a85c036c50efcbcb1a063b1c",
+        "restored_bytes": 3982248,
+        "expected_before_sha256": "03bb83049d7cbdb58fe622f40008dcecda7aa518a85c036c50efcbcb1a063b1c"
+      }
+    ],
+    "other_coordination_rows_preserved": 289,
+    "peer_rows_sha256": "c6de001ecf50e84dbea2ecee1869888262fef3ffb3589202b67afd3f2ab99578",
+    "paid_control": {
+      "bytes": 506,
+      "sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+      "byte_identical": true
+    },
+    "worklog": {
+      "append_and_later_own_section_edit_verified": true,
+      "final_append_sha256": "89dc971b09d89b0db31968e031119cb3dffb5a7b2fb0143ac28a7c3ee5a9f226",
+      "before_bytes": 3982248
+    },
+    "checked_at_utc": "2026-09-10T18:14:37.342Z"
+  },
+  "checkpoint_semantic_checks": {
+    "permission_resolved_stable_target_gate": true,
+    "account_identity_error_not_offers": true,
+    "form_31_is_unsubmitted_values": true,
+    "write_counts_and_shortcut_distinct": true,
+    "latest_gate_no_private_content_or_cause_inference": true,
+    "observation_time_bounds_no_new_read_claim": true,
+    "expected_sync_receipt_unknown": true,
+    "prior_api_candidate_not_run_writability_unknown": true,
+    "anchor_consistency": true
+  },
+  "source_bindings": {
+    "canonical_before.json": {
+      "sha256": "b04b16e2d27fdc8c817a0975d4c0a6d42b4262668cbb2ee7dfdd5fc5e01e91d4",
+      "bytes": 398818
+    },
+    "canonical_patch.json": {
+      "sha256": "17dae2db3eea99a526c79ae4e36b4837db0c78b5562ca74d07ff00174b30b180",
+      "bytes": 24771
+    },
+    "ACCESS_CHECKPOINT.md": {
+      "sha256": "793b6524ba178439db9ede3068857facae7189d690ff80461663f7bfb742e56b",
+      "bytes": 2681
+    },
+    "access_checkpoint.json": {
+      "sha256": "f05a826b6930cc43785a423a89e3d4a0885eee08194383394fc0a8a51883971a",
+      "bytes": 4059
+    },
+    "../lifecycle_20260910/preflight_review.json": {
+      "sha256": "0475fc3ebfb23725b1f31093b81467dbda132fc59f9b3838fc64aacaca001abb",
+      "bytes": 9679
+    }
+  },
+  "findings": [
+    "All 17 operations on six canonical files reverse to their exact before hashes and byte counts. The worklog append and subsequent edit confined to the new section were verified.",
+    "All 289 other coordination table rows, including table headings/separators, remain identical in order. This is not a count of active peer claims.",
+    "The 506-byte paid control is unchanged. Current owner authorization for Merchant operations does not change paid authority.",
+    "Account identity and the Products error are observed facts in the saved receipt. Receiving offer count remains null.",
+    "Three named countries plus 28 more equals 31 displayed selections in an empty, unsubmitted source form; this is neither existing-feed configuration nor received/approved coverage.",
+    "The saved native action counts distinguish one executed window-cycle shortcut from one guard-blocked attempt. Merchant button/tab clicks, submissions, saves and credential entries are zero.",
+    "Current Merchant permission is resolved. Stable Chrome recovery remains pending; it is not another Merchant scope approval.",
+    "The Markdown and JSON checkpoints agree on the account, interruption, latest recovery state, unknown receiving/sync settings and non-submission.",
+    "The lifecycle autoPublish candidate remains NOT RUN and target writability UNKNOWN; no unsupported runtime error is claimed.",
+    "Dated Shopify and catalog evidence is retained as source evidence, not proof of current Merchant approval or end-to-end lifecycle operation."
+  ],
+  "limits": [
+    "No browser/native/API replay, current live-state certification or source rescan.",
+    "Only sanitized native facts were reviewed; no unrelated images/content were sought or retained.",
+    "Root renderer/integration/strict checks were not duplicated and are outside this independent verification.",
+    "Receiving sources, offers, native sync controls, lifecycle receipt, country/language coverage and logo approval still require exact-surface verification."
+  ],
+  "next_action": "Use the already pending stable-Chrome recovery question; after stability is restored, inspect existing Merchant receiving sources and connected Google app sync settings before any source creation.",
+  "continuation_prompt": "Continue from 2026-09-10-merchant-native-access-authorized-lifecycle-checkpoint using the current owner authorization. Restore a stable Merchant Chrome surface, inspect existing sources and native sync controls, preserve paid authority, and keep the autoPublish candidate NOT RUN unless new target-specific evidence supports it."
+}
+

@@ -1,0 +1,99 @@
+✔ explicit child link selects its role, size, every axis and exactly quantity one (65.971959ms)
+✔ explicit adult link remains adult with correct price and axes (14.921708ms)
+✔ missing or invalid link null preserves empty adult default and range (8.777ms)
+✔ missing or invalid link "" preserves empty adult default and range (8.392833ms)
+✔ missing or invalid link 999999 preserves empty adult default and range (8.01475ms)
+✔ missing or invalid link "invalid" preserves empty adult default and range (7.472708ms)
+✔ unavailable explicit variant is visible, priced and cannot be added (12.126709ms)
+✔ shopper changing role clears the linked price and never reseeds the deep link (18.545958ms)
+✔ changing axes refreshes the price and clearing an axis returns to the range (22.15725ms)
+✔ quantity and legacy change rerenders preserve shopper choices without reseeding (27.222709ms)
+✔ server-formatted EUR and JPY values survive without USD conversion (31.448667ms)
+✖ server money entities decode once while preserving spaces, ampersands and text controls (9.420958ms)
+✖ unit-price entities decode with the existing numeric reference quantity and unit (9.900083ms)
+✖ decoding money text never creates markup or executes an encoded event handler (10.756333ms)
+✔ an asynchronous stale Dawn price replacement is reconciled without a mutation loop (11.694833ms)
+✔ all 21 locale files change only the six scoped return keys (44.538542ms)
+✔ reviewed selector dictionaries preserve English and all existing entries (7.979875ms)
+✔ inactive locale parity adds only the two keys and all 35 locale files contain them (37.630917ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 15
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 491.12225
+
+✖ failing tests:
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/theme_candidate/landing_regression.test.mjs:158:1
+✖ server money entities decode once while preserving spaces, ampersands and text controls (9.420958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '22,00&nbsp;€'
+  - '22,00 €'
+          ^
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/theme_candidate/landing_regression.test.mjs:174:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '22,00&nbsp;€',
+    expected: '22,00 €',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/theme_candidate/landing_regression.test.mjs:181:1
+✖ unit-price entities decode with the existing numeric reference quantity and unit (9.900083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '4,40&#160;€'
+  - '4,40 €'
+         ^
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/theme_candidate/landing_regression.test.mjs:189:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '4,40&#160;€',
+    expected: '4,40 €',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/theme_candidate/landing_regression.test.mjs:195:1
+✖ decoding money text never creates markup or executes an encoded event handler (10.756333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '&lt;img src=x onerror=alert(1)&gt; <em>22,00 €</em>'
+  - '<img src=x onerror=alert(1)> <em>22,00 €</em>'
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/theme_candidate/landing_regression.test.mjs:200:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '&lt;img src=x onerror=alert(1)&gt; <em>22,00 €</em>',
+    expected: '<img src=x onerror=alert(1)> <em>22,00 €</em>',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

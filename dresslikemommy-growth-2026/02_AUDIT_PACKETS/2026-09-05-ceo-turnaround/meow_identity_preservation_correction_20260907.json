@@ -1,0 +1,19 @@
+{
+  "decision_id": "DLM-DEC-2026-09-06-MEOW-SEARCH-IDENTITY",
+  "status": "PRESERVATION_GATE_FAILED_RESTORATION_PREPARED",
+  "cause": "One submitted productUpdate SEO-title-only payload was followed by returned and independently read null SEO description; precise server/tool cause remains unknown.",
+  "guard_before": "2026-09-07 03:18:18 UTC",
+  "restore": {
+    "product": {
+      "id": "gid://shopify/Product/7533458194529",
+      "seo": {
+        "title": "Meow Star Garden Mommy & Me Pajamas | Dress Like Mommy",
+        "description": "Shop our Meow Star Garden matching mommy-and-me pajamas — soft cotton short-sleeve set for mom + daughter. Sizes 2Y–10Y & Mom S–XL."
+      }
+    }
+  },
+  "excluded": "No new description wording or body/title/price/variant/status/handle/feed fields.",
+  "success": "Source meta_description value/digest restored exactly; returned seo.description matches before; 80 non-target translation values/flags match before; only desired SEO title and digest differ.",
+  "next": "Independent correction review; exact current-state guard; one restoration; separate source/all-translations guard before proceeding.",
+  "rollback_adjustment": "Any later original-title rollback must send both exact original SEO title and exact original SEO description together, then read source digest and restore20 prior title values. Preserve failed initial title-only attempt as evidence."
+}

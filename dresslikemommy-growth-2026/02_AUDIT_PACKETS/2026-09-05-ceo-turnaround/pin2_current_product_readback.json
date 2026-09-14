@@ -1,0 +1,415 @@
+{
+  "captured_at_utc": "2026-09-06 07:55:25 UTC",
+  "operator": "shopify_merchant_connection_repair",
+  "task_stage": "VERIFY",
+  "status": "PASS_CURRENT_PRODUCT_SOURCE_FACTS",
+  "pin_id": "VC_ORGANIC_02",
+  "scope": {
+    "product_id": "gid://shopify/Product/7533081133153",
+    "store": "dresslikemommy-com.myshopify.com",
+    "variant_selection_and_default_currency_prices_only": true
+  },
+  "query": "query Pin2CurrentProductSource($productId: ID!, $after: String) {\n shop { name myshopifyDomain currencyCode }\n product(id: $productId) {\n  id title handle status onlineStoreUrl\n  variants(first: 50, after: $after) {\n   nodes { id price selectedOptions { name value } }\n   pageInfo { hasNextPage endCursor }\n  }\n }\n}",
+  "variables": {
+    "productId": "gid://shopify/Product/7533081133153"
+  },
+  "validation": {
+    "schema_types": [
+      "QueryRoot",
+      "Product",
+      "ProductVariant",
+      "SelectedOption",
+      "Shop"
+    ],
+    "structured_validator": "VALID",
+    "skill_validator_script": "VALID",
+    "artifact_id": "pin2-current-product-087ea176-13a7-44f0-a91f-94cb423c7c5c",
+    "revision": 1,
+    "required_scope": "read_products",
+    "skill_search_script": "fetch failed; official structured documentation and schema used"
+  },
+  "current": {
+    "data": {
+      "shop": {
+        "name": "Dress Like Mommy",
+        "myshopifyDomain": "dresslikemommy-com.myshopify.com",
+        "currencyCode": "USD"
+      },
+      "product": {
+        "id": "gid://shopify/Product/7533081133153",
+        "title": "Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set",
+        "handle": "vintage-cottage-floral-mommy-and-me-pajama-set",
+        "status": "ACTIVE",
+        "onlineStoreUrl": "https://www.dresslikemommy.com/products/vintage-cottage-floral-mommy-and-me-pajama-set",
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/44044345802849",
+              "price": "31.99",
+              "selectedOptions": [
+                {
+                  "name": "Size",
+                  "value": "Child 2 Years"
+                },
+                {
+                  "name": "Color",
+                  "value": "Vintage Cottage Floral"
+                }
+              ]
+            },
+            {
+              "id": "gid://shopify/ProductVariant/44044345835617",
+              "price": "31.99",
+              "selectedOptions": [
+                {
+                  "name": "Size",
+                  "value": "Child 3 Years"
+                },
+                {
+                  "name": "Color",
+                  "value": "Vintage Cottage Floral"
+                }
+              ]
+            },
+            {
+              "id": "gid://shopify/ProductVariant/44044345868385",
+              "price": "31.99",
+              "selectedOptions": [
+                {
+                  "name": "Size",
+                  "value": "Child 4 Years"
+                },
+                {
+                  "name": "Color",
+                  "value": "Vintage Cottage Floral"
+                }
+              ]
+            },
+            {
+              "id": "gid://shopify/ProductVariant/44044345901153",
+              "price": "31.99",
+              "selectedOptions": [
+                {
+                  "name": "Size",
+                  "value": "Child 5 Years"
+                },
+                {
+                  "name": "Color",
+                  "value": "Vintage Cottage Floral"
+                }
+              ]
+            },
+            {
+              "id": "gid://shopify/ProductVariant/44044345933921",
+              "price": "31.99",
+              "selectedOptions": [
+                {
+                  "name": "Size",
+                  "value": "Child 6-7 Years"
+                },
+                {
+                  "name": "Color",
+                  "value": "Vintage Cottage Floral"
+                }
+              ]
+            },
+            {
+              "id": "gid://shopify/ProductVariant/44044345966689",
+              "price": "31.99",
+              "selectedOptions": [
+                {
+                  "name": "Size",
+                  "value": "Child 8 Years"
+                },
+                {
+                  "name": "Color",
+                  "value": "Vintage Cottage Floral"
+                }
+              ]
+            },
+            {
+              "id": "gid://shopify/ProductVariant/44044345999457",
+              "price": "31.99",
+              "selectedOptions": [
+                {
+                  "name": "Size",
+                  "value": "Child 9-10 Years"
+                },
+                {
+                  "name": "Color",
+                  "value": "Vintage Cottage Floral"
+                }
+              ]
+            },
+            {
+              "id": "gid://shopify/ProductVariant/44044346032225",
+              "price": "34.99",
+              "selectedOptions": [
+                {
+                  "name": "Size",
+                  "value": "Mother S"
+                },
+                {
+                  "name": "Color",
+                  "value": "Vintage Cottage Floral"
+                }
+              ]
+            },
+            {
+              "id": "gid://shopify/ProductVariant/44044346064993",
+              "price": "34.99",
+              "selectedOptions": [
+                {
+                  "name": "Size",
+                  "value": "Mother M"
+                },
+                {
+                  "name": "Color",
+                  "value": "Vintage Cottage Floral"
+                }
+              ]
+            },
+            {
+              "id": "gid://shopify/ProductVariant/44044346097761",
+              "price": "34.99",
+              "selectedOptions": [
+                {
+                  "name": "Size",
+                  "value": "Mother L"
+                },
+                {
+                  "name": "Color",
+                  "value": "Vintage Cottage Floral"
+                }
+              ]
+            },
+            {
+              "id": "gid://shopify/ProductVariant/44044346130529",
+              "price": "34.99",
+              "selectedOptions": [
+                {
+                  "name": "Size",
+                  "value": "Mother XL"
+                },
+                {
+                  "name": "Color",
+                  "value": "Vintage Cottage Floral"
+                }
+              ]
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NDA0NDM0NjEzMDUyOSwibGFzdF92YWx1ZSI6IjExIn0="
+          }
+        }
+      }
+    }
+  },
+  "external_mutations": [],
+  "browser_actions": [],
+  "public_http_requests": [],
+  "excluded_queries": [
+    "inventory or availability",
+    "customer or order",
+    "vendor or supplier/source fields",
+    "credentials",
+    "cost or private financial fields"
+  ],
+  "official_references": [
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/Product",
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/ProductVariant",
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/SelectedOption"
+  ],
+  "checks": {
+    "correct_shop": true,
+    "correct_product_id": true,
+    "title_matches_saved_source": true,
+    "product_active": true,
+    "online_store_url_present_and_matches_saved": true,
+    "pin2_destination_base_matches_current_online_store_url": true,
+    "default_currency_matches_saved_USD": true,
+    "complete_variant_pagination": true,
+    "same11_size_color_price_pairs_as_saved_source": true,
+    "mother_S_M_L_XL_exact": true,
+    "child_labels_cover_advertised2_through10": true,
+    "single_wearer_specific_size_per_variant": true,
+    "mother_prices_34_99": true,
+    "child_prices_31_99": true,
+    "all_color_Vintage_Cottage_Floral": true
+  },
+  "mismatches": [],
+  "source_references": {
+    "pinterest_organic_product_source.json": {
+      "sha256": "9133cc2d035c3811e8dff758aaf8526d8a6826fae20fb190f3ce33ddbbfd71c9"
+    },
+    "pinterest_organic_pins.json": {
+      "sha256": "47ae4fb5ad75b4fbdd47725411940b0500787ad77b4bd2d7adaeeb0fed22eb7c"
+    }
+  },
+  "saved_source_captured_at_utc": "2026-09-06T03:29:03.417Z",
+  "saved_snapshot_publicationStatus": "LOCAL_DRAFT_ONLY; not used as current product publication proof",
+  "pin2_claims_compared": {
+    "local_draft_id": "VC_ORGANIC_02",
+    "title": "Choose Mother & Child Pajama Sizes | Each Set Sold Separately",
+    "description": "Mother S–XL and Child 2–10 Years are separate size choices for Vintage Cottage floral pajamas. Each person's set is sold separately. See the options and choose each person's size on the product page.",
+    "primary_cta": "Choose each person's size",
+    "destination_url": "https://www.dresslikemommy.com/products/vintage-cottage-floral-mommy-and-me-pajama-set?utm_source=pinterest&utm_medium=social&utm_campaign=dlm_vintage_organic_20260906&utm_content=size_pairing",
+    "claims": [
+      {
+        "claim": "Vintage Cottage floral mother-and-child pajamas",
+        "source": "pinterest_organic_product_source.json",
+        "pointers": [
+          "/title",
+          "/variants"
+        ]
+      },
+      {
+        "claim": "Each person's set is sold separately",
+        "source": "focused_paid_test.md:7",
+        "basis": "Root recorded current rendered PDP wording: each selection is sold separately."
+      },
+      {
+        "claim": "Mother S–XL and Child 2–10 Years size choices",
+        "source": "pinterest_organic_product_source.json",
+        "pointers": [
+          "/variants"
+        ],
+        "limitation": "Variant labels establish listed choices, not a fit guarantee or future availability."
+      }
+    ],
+    "alt_text": "Shopping guide for matching mom-and-child pajamas: choose mom's size, choose your child's size, then add each set separately. Each person's set is sold separately."
+  },
+  "variant_summary": {
+    "count": 11,
+    "mother_sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "child_size_labels": [
+      "2 Years",
+      "3 Years",
+      "4 Years",
+      "5 Years",
+      "6-7 Years",
+      "8 Years",
+      "9-10 Years"
+    ],
+    "mother_default_currency_price": "34.99",
+    "child_default_currency_price": "31.99",
+    "default_currency": "USD",
+    "color": "Vintage Cottage Floral",
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/44044345802849",
+        "size": "Child 2 Years",
+        "color": "Vintage Cottage Floral",
+        "price": "31.99",
+        "reconstructed_legacy_title": "Child 2 Years / Vintage Cottage Floral"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/44044345835617",
+        "size": "Child 3 Years",
+        "color": "Vintage Cottage Floral",
+        "price": "31.99",
+        "reconstructed_legacy_title": "Child 3 Years / Vintage Cottage Floral"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/44044345868385",
+        "size": "Child 4 Years",
+        "color": "Vintage Cottage Floral",
+        "price": "31.99",
+        "reconstructed_legacy_title": "Child 4 Years / Vintage Cottage Floral"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/44044345901153",
+        "size": "Child 5 Years",
+        "color": "Vintage Cottage Floral",
+        "price": "31.99",
+        "reconstructed_legacy_title": "Child 5 Years / Vintage Cottage Floral"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/44044345933921",
+        "size": "Child 6-7 Years",
+        "color": "Vintage Cottage Floral",
+        "price": "31.99",
+        "reconstructed_legacy_title": "Child 6-7 Years / Vintage Cottage Floral"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/44044345966689",
+        "size": "Child 8 Years",
+        "color": "Vintage Cottage Floral",
+        "price": "31.99",
+        "reconstructed_legacy_title": "Child 8 Years / Vintage Cottage Floral"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/44044345999457",
+        "size": "Child 9-10 Years",
+        "color": "Vintage Cottage Floral",
+        "price": "31.99",
+        "reconstructed_legacy_title": "Child 9-10 Years / Vintage Cottage Floral"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/44044346032225",
+        "size": "Mother S",
+        "color": "Vintage Cottage Floral",
+        "price": "34.99",
+        "reconstructed_legacy_title": "Mother S / Vintage Cottage Floral"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/44044346064993",
+        "size": "Mother M",
+        "color": "Vintage Cottage Floral",
+        "price": "34.99",
+        "reconstructed_legacy_title": "Mother M / Vintage Cottage Floral"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/44044346097761",
+        "size": "Mother L",
+        "color": "Vintage Cottage Floral",
+        "price": "34.99",
+        "reconstructed_legacy_title": "Mother L / Vintage Cottage Floral"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/44044346130529",
+        "size": "Mother XL",
+        "color": "Vintage Cottage Floral",
+        "price": "34.99",
+        "reconstructed_legacy_title": "Mother XL / Vintage Cottage Floral"
+      }
+    ]
+  },
+  "pagination": {
+    "page_count": 1,
+    "requested_page_size": 50,
+    "returned_variants": 11,
+    "hasNextPage": false,
+    "endCursor": "eyJsYXN0X2lkIjo0NDA0NDM0NjEzMDUyOSwibGFzdF92YWx1ZSI6IjExIn0="
+  },
+  "graphql_errors": [],
+  "selection_disclosure": {
+    "current_source_fact": "Each returned variant has exactly one Size choice naming either Mother or Child; there is no combined Mother-and-Child selection among these11 variants",
+    "assessment": "PASS_CURRENT_SEPARATE_PERSON_SELECTION_STRUCTURE",
+    "prior_pin_disclosure": "The existing Pin separately cites prior rendered PDP wording for each person sold separately",
+    "new_current_rendered_disclosure_verified": false,
+    "pack_contents_or_checkout_sale_unit_reverified": false
+  },
+  "limits": [
+    "Listed size labels are selection options, not fit, stock, future availability or inventory guarantees",
+    "Default shop-currency prices are not market-specific checkout prices or profit evidence",
+    "ACTIVE and nonnull onlineStoreUrl do not prove current HTTP, checkout availability or current purchaser experience",
+    "No new current description, pack contents, photographs, supplier-clean landing proof, delivery or current rendered disclosure checked",
+    "No Pinterest upload, publication, board/duplicate verification or traffic/conversion lift established by this source check",
+    "No public HTTP retry; independent Admin read only"
+  ],
+  "identity_representation_normalization": {
+    "current_product_gid": "gid://shopify/Product/7533081133153",
+    "saved_source_gid": "gid://shopify/Product/7533081133153",
+    "pin_numeric_product_id": "7533081133153",
+    "same_product": true,
+    "method": "Exact Product GID prefix and digits matched to the Pin numeric identifier; no handle-based inference"
+  },
+  "local_validation_correction": "Initial comparison incorrectly compared the Pin numeric ID string directly with a GraphQL GID. Corrected explicit representation comparison; no Shopify product identity mismatch or new query required."
+}

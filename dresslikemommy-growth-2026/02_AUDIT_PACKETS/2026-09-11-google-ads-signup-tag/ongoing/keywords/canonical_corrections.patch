@@ -1,0 +1,465 @@
+--- a/ops/marketing/keyword_strategy.md
++++ b/ops/marketing/keyword_strategy.md
+@@ -1,6 +1,6 @@
+ # Action-Biased Keyword Strategy
+ 
+-Last updated: 2026-05-14
++Last updated: 2026-09-11
+ 
+ Purpose: build the largest useful Dress Like Mommy keyword universe locally, score it aggressively, and promote only small validated batches into live paid tests. This file is local strategy only; it is not approval to upload keywords or change live campaigns.
+ 
+@@ -87,18 +87,9 @@
+ 
+ ### Spend And Stop-Loss Rule
+ 
+-Planning math:
++Use the reviewed common retained-revenue convention: R is retained merchandise revenue after discounts/refunds plus retained shipping income, excluding tax; V is disjoint actual variable costs net of evidenced recoveries; H is allocated overhead and other costs excluded from V; CM = R − V. For positive R, permitted advertising A must satisfy `A ≤ min(R/6.5, CM − H − 0.30R, approved cash/loss allowance)`. This requires 6.5x business ROAS and 30% all-in profit on the same R basis. Unknown required inputs or a nonpositive result mean no economically qualified spending amount. Do not substitute platform purchase value without reconciling its revenue basis. Preserve the USD 0.15 CPC ceiling. The former USD 70 AOV/USD 10.77 CPA example is historical modeling, not a current target.
+ 
+-- Target ROAS: `650%`
+-- Planning AOV: `$70`
+-- Rough target CPA: `$70 / 6.5 = $10.77`
+-- Hard CPC ceiling: `$0.15`
+-
+-Action thresholds:
+-
+-- If a keyword or ad group spends about `50%` of target CPA with no add-to-cart, checkout, or qualified search-term signal, hold, narrow, or prepare a pause unless there is a strong reason to continue.
+-- If a keyword or ad group spends about `100%` of target CPA with no purchase, pause, narrow, or reroute inside the current authority if the action is green-gated.
+-- If a search term is obviously bad, add an exact negative immediately only when current authority and evidence allow it; otherwise prepare the exact approval packet.
++Compare spend only after observed conversion lag, while reserving unresolved refund/fulfillment exposure. The approved cumulative loss limit protects downside independently of ordinary sample uncertainty. Do not pause from a fixed modeled CPA or optimize purchase campaigns toward cart events. Prepare narrow negatives only from relevant query evidence and current authority.
+ 
+ ### Search Session Output Rule
+ 
+@@ -114,7 +105,10 @@
+ 
+ ## Current Promotion State
+ 
+-- US is the primary market. Current live US paid lane is Standard Shopping, so the universe should first improve Shopping query/title/product-fit diagnosis and future Search/Pinterest packets.
+-- GB/CA/AU Search campaigns are live but blocked for expansion until the paid landing sanitizer is live-clean and candidate rows pass the `$0.15` CPC gate.
+-- The current head terms and close-head variants are rejected as expansion ideas when first-page estimates are around `$0.65-$0.74`.
+-- No live external write is authorized by this strategy file alone.
++The May 14 descriptions of US Standard Shopping and GB/CA/AU Search as live are historical observations, not current account facts. Retrieve current campaign/account identity, country/language scope, effective CPC control, purchase acceptance, actual costs and authority from the canonical command layer before promotion. Do not clone a historical campaign or treat historical first-page estimates as current.
++
++No live external write is authorized by this strategy file alone.
++
++Evidence rule: current command-layer readbacks govern account status and authority. A local score is a research priority, not live readiness. Economic-fit and serveability points require dated evidence for the exact market, keyword and offer; assign zero evidence credit when unknown. Zero credit does not mean zero demand. Recompute the total/threshold without changing keyword identity or promotion status.
++
++Negative intent is not a blanket one-word exclusion: adult sizes are valid apparel; “free shipping” can express buying intent; “pattern” can describe a garment; and “costume/costumi” changes meaning by language. Use original-language, query-specific evidence and check existing negatives before proposing a narrow exclusion.
+--- a/ops/marketing/keyword_factory_015_cpc_criteria.md
++++ b/ops/marketing/keyword_factory_015_cpc_criteria.md
+@@ -1,6 +1,6 @@
+ # $0.15 CPC Keyword Factory Criteria
+ 
+-Last updated: 2026-05-14
++Last updated: 2026-09-11
+ 
+ Purpose: create a large, market-specific long-tail keyword universe quickly, starting with the United States as the primary market, then promote only validated rows into live Google Ads action packets. This is repo-local strategy; it is not approval to upload or change live campaigns.
+ 
+@@ -14,13 +14,7 @@
+ 
+ Get as many Dress Like Mommy paid-growth sales as possible, as fast as possible, while holding about `650% ROAS`.
+ 
+-Current planning math:
+-
+-- Planning AOV: about `$70`.
+-- Target ROAS: `650%`.
+-- Target CPA: about `$10.77`.
+-- Hard Search CPC cap: `$0.15`.
+-- At `$0.15` CPC and `$70` AOV, a keyword needs roughly `1.4%` conversion rate to support `650% ROAS` before other costs and noise. Terms that cannot plausibly convert at or above that level are not worth clicks, even if they are cheap.
++Use the owner's USD 0.15 CPC ceiling and the stricter of 6.5x return-adjusted ROAS and 30% all-in profit. Calculate allowable CPA from the common retained-revenue basis (merchandise plus shipping, excluding tax), actual variable costs and allocated overhead/other costs; leave it unknown when any necessary cost is missing. The former USD 70 AOV/USD 10.77 CPA/1.4% conversion illustration is historical only.
+ 
+ ## Why Not Upload The Biggest Possible List
+ 
+@@ -28,7 +22,7 @@
+ 
+ Reasons:
+ 
+-- A huge unfiltered live keyword list hides what is working because the daily budget can only buy about `13` clicks per market at `$2/day` and `$0.15` CPC.
++- A huge unfiltered live keyword list hides what is working because fragmented budgets buy too few comparable observations; historic USD 2/day was not a current allocation.
+ - Google can mark overly specific rows as `Low search volume`; those rows may be inactive until traffic increases, so adding thousands of ultra-specific exact terms can look like action while producing no learning.
+ - Close variants of head terms are not real long tail. `[mummy and me dresses]` or `[mommy and me dresses canada]` can still compete in the same expensive auction.
+ - Phrase match can discover useful queries, but it can also stretch into adjacent intent. Phrase rows need tighter themes, negatives, and search-term review.
+@@ -44,10 +38,10 @@
+ | Buyer intent | Query implies a shopper may buy now for a role, event, photo, vacation, birthday, wedding guest, beach day, or matching family occasion. |
+ | Product specificity | Includes role + product/style/material/color/occasion when possible, not only generic category language. |
+ | Landing fit | Current landing truthfully satisfies the query with active, public, purchasable, country/currency-correct, supplier-clean products. |
+-| Economics | Keyword Planner or keyword UI must show first-page estimate `<= $0.15`, or no below-first-page warning at max CPC `$0.15`. |
+-| Conversion plausibility | Query can plausibly convert at about `1.4%` or better at `$70` AOV and `$0.15` CPC. |
++| Economics | Current effective CPC control, country-specific auction evidence and actual cost/return-based allowable CPA must qualify. A historical bid range or absent warning alone does not pass. |
++| Conversion plausibility | Use the exact basket allowable CPA and observed uncertainty; unknown AOV/cost/conversion rate remains gated. |
+ | No cannibalization | One owner by market/language/query intent/landing. No duplicate exact keyword across live ad groups. |
+-| Negative fit | Query is not DIY, free, sewing pattern, used, rental, marketplace-only, local pickup, same-day, adult, doll/game, supplier/source, inspiration-only, or wrong apparel intent. |
++| Negative fit | Query is not DIY, free-product-only intent, sewing-pattern requests, used, rental, marketplace-only, local pickup, same-day, sexually explicit content, doll/game, supplier/source, inspiration-only, or wrong apparel intent. |
+ 
+ ## Scoring
+ 
+@@ -57,9 +51,9 @@
+ - `20` product match: Dress Like Mommy actually sells the item/category/role.
+ - `15` occasion/deadline: photoshoot, vacation, birthday, wedding, cruise, beach day, holiday, or family pictures.
+ - `15` landing-page match: exact PDP/collection promise, country/currency, clean supplier readback.
+-- `10` economics: first-page estimate at or below `$0.15`, no below-first-page warning, or clear Quality Score repair path.
+-- `10` volume/serveability: enough forecast/search volume to learn, or intentionally exact rare query kept in a low-volume bucket.
+-- `5` waste risk: avoids DIY, free, marketplace, supplier, local-stock, and wrong-intent traffic.
++- `10` economics: evidence-backed current CPC/control and actual cost/return qualification; unknown earns zero evidence credit.
++- `10` volume/serveability: dated, exact-market demand/auction evidence; unknown earns zero evidence credit.
++- `5` waste risk: avoids DIY, free-product-only intent, marketplace, supplier, local-stock, and wrong-intent traffic.
+ 
+ Promotion rule:
+ 
+@@ -72,7 +66,7 @@
+ Build large, upload small:
+ 
+ - Local universe target: hundreds of candidates per market from products, collections, homepage moments, Keyword Planner, search terms, and locale vocabulary.
+-- US gets the first and largest universe because it is the biggest market. If the live US lane is Shopping, the same keyword universe still informs product-title/feed-title priorities, Shopping search-term interpretation, Pinterest creative language, and future US Search packets.
++- US is the primary planning lane; actual current demand and economics determine allocation. If the live US lane is Shopping, the same keyword universe still informs product-title/feed-title priorities, Shopping search-term interpretation, Pinterest creative language, and future US Search packets.
+ - First live exact batch after gates: about `10-20` best rows per market, split into tight themes.
+ - Phrase discovery batch only if exact rows are too low-volume: about `3-8` phrase rows per market, one theme per ad group, with search-term review the next day.
+ - Do not add a keyword just because it is related. Add it because it is likely to produce profitable sales or learning at `$0.15`.
+@@ -110,9 +104,9 @@
+ - If using Shopping, use the same universe to diagnose product titles, photos, product groups, and query fit; do not pretend Shopping has manual keywords.
+ - If using Pinterest, use the same universe for creative/product grouping and lower-funnel wording, not Search keyword uploads.
+ 
+-## Active GB/CA/AU Immediate Standard
++## Historical GB/CA/AU Watchlist — Current Readback Required
+ 
+-Rejected as expansion/bid-up rows now:
++Historical head-term watchlist; do not infer current CPC, eligibility or exclusion from these names:
+ 
+ - `[mommy and me dresses]`
+ - `[mom and daughter matching outfits]`
+@@ -136,3 +130,9 @@
+ - If it is a live external write but already covered by current exact approval, do it, read back before/after, and log it.
+ - If it is a live external write not currently approved, produce the exact smallest approval packet and keep other safe work moving.
+ - Do not leave a blocker as a passive note.
++
++Evidence rule: current command-layer readbacks govern account status and authority. A local score is a research priority, not live readiness. Economic-fit and serveability points require dated evidence for the exact market, keyword and offer; assign zero evidence credit when unknown. Zero credit does not mean zero demand. Recompute the total/threshold without changing keyword identity or promotion status.
++
++Negative intent is not a blanket one-word exclusion: adult sizes are valid apparel; “free shipping” can express buying intent; “pattern” can describe a garment; and “costume/costumi” changes meaning by language. Use original-language, query-specific evidence and check existing negatives before proposing a narrow exclusion.
++
++Economics definitions follow `keyword_strategy.md`: R is retained merchandise plus retained shipping, excluding tax; V is actual variable costs; H is allocated overhead/other costs excluded from V; CM = R − V. Require `A ≤ min(R/6.5, CM − H − 0.30R, approved cash/loss allowance)`. Unknown required inputs remain unqualified; platform value must be reconciled to this basis.
+--- a/ops/marketing/keyword_scoring_rubric.md
++++ b/ops/marketing/keyword_scoring_rubric.md
+@@ -1,6 +1,6 @@
+ # Keyword Scoring Rubric
+ 
+-Last updated: 2026-05-14
++Last updated: 2026-09-11
+ 
+ Purpose: score local keyword candidates consistently before any live Search, Shopping, Pinterest, or creative action. This is a local decision tool, not upload approval.
+ 
+@@ -9,8 +9,8 @@
+ A keyword cannot be promoted live if any are true:
+ 
+ - It routes to a landing page that is not active, public, purchasable, country/currency-correct, or supplier-clean.
+-- It is a close-head variant with first-page estimates above the hard `$0.15` CPC ceiling.
+-- It implies DIY, free, sewing pattern, used, rental, marketplace-only, local pickup, same-day local inventory, adult, doll/game, supplier/source, or inspiration-only traffic.
++- Current effective CPC controls or economically evaluated exposure cannot satisfy the USD 0.15 ceiling; historical first-page estimates alone do not establish present serving or CPC.
++- It implies DIY, free-product-only intent, sewing-pattern requests, used, rental, marketplace-only, local pickup, same-day local inventory, sexually explicit content, doll/game, supplier/source, or inspiration-only traffic.
+ - It belongs to another language or market lane, such as French-Canada inside English-Canada.
+ - It duplicates a live exact keyword without a clear anti-cannibalization owner.
+ - It requires native language ad/keyword use without native signoff.
+@@ -25,9 +25,9 @@
+ | Product match | 20 | Does Dress Like Mommy actually sell the item/category/role implied by the query? |
+ | Occasion/deadline | 15 | Does the query include a buyer moment such as photoshoot, vacation, birthday, wedding, cruise, beach day, holiday, or family pictures? |
+ | Landing-page match | 15 | Is there a clean page, collection, or PDP that truthfully satisfies the query with country/currency fit and no supplier/source leak? |
+-| Economic fit | 10 | Can the term plausibly work at `$0.15` CPC and about `650% ROAS`, using the planning target CPA of about `$10.77` at `$70` AOV? |
+-| Volume/serveability | 10 | Is it likely to get impressions, or is it so narrow it may be low-search-volume dead weight? |
+-| Waste risk | 5 | Does it avoid DIY, free, ideas-only, marketplace, same-day, local-stock, supplier, and wrong-intent traffic? |
++| Economic fit | 10 | Dated evidence supports USD 0.15 CPC/control and the stricter of 6.5x return-adjusted ROAS and 30% all-in profit using actual costs; unknown earns zero evidence credit. |
++| Volume/serveability | 10 | Dated exact-market demand/auction evidence supports serving; unknown earns zero evidence credit, not a zero-demand claim. |
++| Waste risk | 5 | Does it avoid DIY, free-product-only intent, ideas-only, marketplace, same-day, local-stock, supplier, and wrong-intent traffic? |
+ 
+ ## Thresholds
+ 
+@@ -44,7 +44,7 @@
+ - exact market, language, campaign, ad group, match type, final URL, and negative watchlist are named in `action_queue.md`
+ - fresh Ads readback is saved
+ - landing sanitizer readback passes
+-- first-page estimate is `<= $0.15`, or max CPC `$0.15` has no below-first-page warning
++- current effective CPC controls meet the USD 0.15 ceiling and dated market-specific auction evidence supports a bounded test; an absent warning or historical bid range is not proof
+ - no broad/generic expansion is used as the first repair
+ - daily budget and expected clicks fit the learning plan
+ - after-state readback plan is written
+@@ -52,12 +52,14 @@
+ 
+ ## Stop-Loss Logic
+ 
+-Use the rough planning target CPA of `$10.77`.
+-
+-- About `$5.38` spend with no add-to-cart, checkout, qualified search term, or other useful signal: hold, narrow, or prepare pause.
+-- About `$10.77` spend with no purchase: pause, narrow, or reroute if authority and evidence allow it.
+-- Obvious bad search term: exact negative if authorized; otherwise exact approval packet.
++Calculate the exact basket allowable CPA from current actual costs, retained revenue/shipping and returns. Do not use the historical USD 70/USD 10.77 example as a current pause threshold. Evaluate ordinary uncertainty after conversion lag; enforce the separately approved cumulative loss ceiling with unresolved exposure reserved. A negative or pause still requires exact current scope, evidence and authority.
+ 
+ ## Session Rule
+ 
+ Every live Search session must end with a serving repair, negative action, keyword expansion, hold/kill/scale decision, or exact blocker/unblock action. A monitor-only session is not progress unless there was genuinely no data, no blocker, and the next decision is recorded in `daily_scorecard.md`.
++
++Evidence rule: current command-layer readbacks govern account status and authority. A local score is a research priority, not live readiness. Economic-fit and serveability points require dated evidence for the exact market, keyword and offer; assign zero evidence credit when unknown. Zero credit does not mean zero demand. Recompute the total/threshold without changing keyword identity or promotion status.
++
++Negative intent is not a blanket one-word exclusion: adult sizes are valid apparel; “free shipping” can express buying intent; “pattern” can describe a garment; and “costume/costumi” changes meaning by language. Use original-language, query-specific evidence and check existing negatives before proposing a narrow exclusion.
++
++Economics definitions follow `keyword_strategy.md`: R is retained merchandise plus retained shipping, excluding tax; V is actual variable costs; H is allocated overhead/other costs excluded from V; CM = R − V. Require `A ≤ min(R/6.5, CM − H − 0.30R, approved cash/loss allowance)`. Unknown required inputs remain unqualified; platform value must be reconciled to this basis.
+--- a/ops/marketing/us_primary_keyword_lane.md
++++ b/ops/marketing/us_primary_keyword_lane.md
+@@ -1,18 +1,14 @@
+ # US Primary Keyword Lane
+ 
+-Last updated: 2026-05-14
++Last updated: 2026-09-11
+ 
+ Purpose: make the United States explicit as the first paid-growth keyword/intelligence market. This is local strategy and planning, not live upload approval.
+ 
+ ## Position
+ 
+-US is the biggest market and should be the first keyword universe built, scored, and refreshed. GB/CA/AU are important expansion lanes, but they must not cause the operator to skip US demand.
++US is the primary planning market; current demand and actual economics must determine spending priority. GB/CA/AU are important expansion lanes, but they must not cause the operator to skip US demand.
+ 
+-Current live US paid lane in the command layer:
+-
+-- `Standard Shopping US`
+-- Shopping has no manual Search keywords.
+-- Keyword work still matters for US because it informs product titles, feed/title diagnostics, product grouping, Shopping search-term interpretation, Pinterest creative language, and future US Search packets.
++The former May 14 US Standard Shopping description is historical. Read the present account and campaign scope from the canonical command layer before action; do not recreate an old lane. Shopping and PMax search themes are not manual Search keyword lists. This universe can inform query, product/landing and future Search analysis without a live upload.
+ 
+ ## US Language
+ 
+@@ -45,7 +41,7 @@
+ Reject or hold rows that are:
+ 
+ - broad head terms without a buyer moment
+-- DIY, sewing pattern, free, used, rental, marketplace, local pickup, same-day, adult, doll/game, supplier/source, or inspiration-only
++- DIY, sewing-pattern requests, free-product-only intent, used, rental, marketplace, local pickup, same-day, sexually explicit content, doll/game, supplier/source, or inspiration-only
+ - true for another category but routed to the wrong landing
+ 
+ ## US Seed Clusters
+@@ -75,8 +71,14 @@
+ 
+ Build the local US universe as large as possible. Promote live only when:
+ 
+-- first-page estimate is `<= $0.15`, or max CPC `$0.15` has no below-first-page warning
++- current effective CPC controls meet the USD 0.15 ceiling and dated market-specific auction evidence supports a bounded test; an absent warning or historical bid range is not proof
+ - landing is active, public, purchasable, supplier-clean, country/currency-correct, and category-matched
+-- query can plausibly convert at about `1.4%` or better toward `650% ROAS`
++- return-adjusted actual basket economics meet the stricter of 6.5x ROAS and 30% all-in profit; no fixed AOV or conversion-rate assumption substitutes for evidence
+ - owner/campaign surface is clear: Search keyword, Shopping feed/title/product-group, or Pinterest creative/product-group
+ - reviewer pass and after-state readback plan exist
++
++Evidence rule: current command-layer readbacks govern account status and authority. A local score is a research priority, not live readiness. Economic-fit and serveability points require dated evidence for the exact market, keyword and offer; assign zero evidence credit when unknown. Zero credit does not mean zero demand. Recompute the total/threshold without changing keyword identity or promotion status.
++
++Negative intent is not a blanket one-word exclusion: adult sizes are valid apparel; “free shipping” can express buying intent; “pattern” can describe a garment; and “costume/costumi” changes meaning by language. Use original-language, query-specific evidence and check existing negatives before proposing a narrow exclusion.
++
++Economics definitions follow `keyword_strategy.md`: R is retained merchandise plus retained shipping, excluding tax; V is actual variable costs; H is allocated overhead/other costs excluded from V; CM = R − V. Require `A ≤ min(R/6.5, CM − H − 0.30R, approved cash/loss allowance)`. Unknown required inputs remain unqualified; platform value must be reconciled to this basis.
+--- a/ops/marketing/keyword_universe.csv
++++ b/ops/marketing/keyword_universe.csv
+@@ -1,106 +1,106 @@
+ market,language,layer,category,keyword,match_candidate,buyer_intent_25,product_match_20,occasion_deadline_15,landing_match_15,economic_fit_10,serveability_10,waste_risk_5,total_score,threshold,promotion_status,landing_route,live_action
+-US,en-US,high_intent_long_tail,Photo Days,family outfits for beach photos,exact,24,19,15,14,8,7,5,92,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,high_intent_long_tail,Vacation,matching family vacation outfits,exact,24,19,15,14,8,7,5,92,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
+-US,en-US,high_intent_long_tail,Photo Days,mommy and me dresses for pictures,exact,24,19,15,14,8,7,5,92,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,high_intent_long_tail,Photo Days,mother daughter outfits for photoshoot,exact,23,19,15,14,8,7,5,91,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,high_intent_long_tail,Photo Days,mom daughter family photo dresses,exact,24,19,15,14,8,7,5,92,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,high_intent_long_tail,Photo Days,mommy daughter picture outfits,exact,23,19,15,14,8,7,5,91,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,high_intent_long_tail,Beach Days,mother daughter beach photo dresses,exact,23,19,15,14,8,7,5,91,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,high_intent_long_tail,Birthdays,mommy and me birthday dresses,exact,23,19,15,14,8,7,5,91,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,high_intent_long_tail,Matching Dresses,mother daughter wedding guest dresses,exact,24,18,15,13,8,7,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_us_from_supplier_leaking_matching_dresses_to_clean_mommy_route_product_proof_required
+-US,en-US,high_intent_long_tail,Vacation,mommy daughter vacation dresses,exact,23,19,15,14,8,7,5,91,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
+-US,en-US,high_intent_long_tail,Photo Days,matching family photo dresses,exact,23,18,15,13,8,7,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,high_intent_long_tail,Photo Days,matching family picture outfits,exact,23,18,15,13,8,7,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,high_intent_long_tail,Beach Days,matching family beach dresses,exact,22,18,15,13,8,7,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,product_category,Matching Dresses,mommy and me summer dresses,exact,22,19,13,14,8,7,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,product_category,Matching Dresses,beige mother daughter dresses,exact,22,18,10,13,8,8,5,84,YELLOW,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/mommy-and-me,rerouted_us_from_supplier_leaking_matching_dresses_to_clean_mommy_route_product_proof_required
+-US,en-US,product_category,Matching Dresses,chiffon mother daughter dresses,exact,22,18,10,13,8,8,5,84,YELLOW,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/mommy-and-me,rerouted_us_from_supplier_leaking_matching_dresses_to_clean_mommy_route_product_proof_required
+-US,en-US,product_category,Matching Dresses,floral mommy daughter dresses,exact,22,19,10,14,8,8,5,86,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,core_obvious,Pajamas,mommy and me pajamas,exact,22,19,12,14,8,8,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,core_obvious,Pajamas,matching family pajamas,exact,22,19,12,14,8,8,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,product_category,Pajamas,mommy and me pajama set,exact,22,19,12,14,8,8,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,core_obvious,Swimsuits,matching family swimsuits,exact,23,19,13,14,8,7,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_us_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_product_proof_required
+-US,en-US,product_category,Swimsuits,mommy and me swimsuits,exact,23,19,13,14,8,7,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_us_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_product_proof_required
+-US,en-US,product_category,Swimsuits,mother daughter bathing suits,exact,23,19,13,14,8,7,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_us_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_product_proof_required
+-US,en-US,core_obvious,Daddy & Me,daddy and me shirts,exact,22,18,10,13,8,8,5,84,YELLOW,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/matching-outfits,rerouted_us_from_daddy_route_to_clean_family_matching_route_product_proof_required
+-US,en-US,high_intent_long_tail,Daddy & Me,dad and son vacation shirts,exact,23,18,15,13,8,7,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_daddy_route_to_clean_family_matching_route_product_proof_required
+-US,en-US,product_category,Daddy & Me,dad son matching shirts,exact,22,18,10,13,8,8,5,84,YELLOW,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/matching-outfits,rerouted_us_from_daddy_route_to_clean_family_matching_route_product_proof_required
+-US,en-US,high_intent_long_tail,Vacation,family cruise outfits,exact,24,18,15,13,8,7,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
+-US,en-US,product_category,Vacation,family tropical outfits matching,exact,22,18,13,13,8,7,5,86,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
+-US,en-US,product_category,Vacation,matching family hawaiian outfits,exact,21,17,13,12,8,7,5,83,YELLOW,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
+-US,en-US,high_intent_long_tail,Beach Days,mother daughter beach dresses,exact,23,19,14,14,8,7,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,high_intent_long_tail,Beach Days,mommy and me beach dresses,exact,23,19,14,14,8,7,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,product_category,Matching Dresses,mother daughter matching maxi dresses,exact,22,19,10,14,8,8,5,86,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_us_from_supplier_leaking_matching_dresses_to_clean_mommy_route_product_proof_required
+-US,en-US,product_category,Matching Dresses,mommy and me floral maxi dresses,exact,22,19,10,14,8,8,5,86,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,high_intent_long_tail,Vacation,family vacation matching outfits for pictures,phrase,24,18,15,13,8,6,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
+-US,en-US,high_intent_long_tail,Birthdays,mom and daughter birthday outfits,phrase,22,18,15,13,8,6,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_phrase_discovery_after_exact_gate
+-US,en-US,high_intent_long_tail,Photo Days,girls and mom matching dresses for photos,phrase,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_phrase_discovery_after_exact_gate
+-US,en-US,high_intent_long_tail,Photo Days,mother daughter dresses for family pictures,phrase,23,19,15,14,8,6,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_phrase_discovery_after_exact_gate
+-US,en-US,high_intent_long_tail,Vacation,matching family outfits for beach vacation,phrase,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
+-US,en-US,high_intent_long_tail,Photo Days,family matching outfits for photoshoot,phrase,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_phrase_discovery_after_exact_gate
+-US,en-US,high_intent_long_tail,Vacation,mother daughter matching vacation outfits,phrase,22,18,15,13,8,6,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
+-US,en-US,high_intent_long_tail,Photo Days,mommy and daughter matching photo dresses,phrase,23,19,15,14,8,6,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_phrase_discovery_after_exact_gate
+-US,en-US,high_intent_long_tail,Birthdays,family birthday matching outfits,phrase,22,17,15,13,8,6,5,86,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_phrase_discovery_after_exact_gate
+-US,en-US,high_intent_long_tail,Vacation,matching family outfits for cruise pictures,phrase,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
+-US,en-US,product_category,Vacation,family resort outfits matching,phrase,21,17,13,12,8,7,5,83,YELLOW,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
+-US,en-US,product_category,Vacation,mommy and me tropical dresses,phrase,22,18,13,13,8,6,5,85,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
+-US,en-US,product_category,Beach Days,family beach outfits matching white,phrase,20,16,13,11,7,7,5,79,YELLOW,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/family-matching,validate_active_products_before_search_packet
+-US,en-US,product_category,Matching Dresses,mom daughter matching sundresses,phrase,21,18,10,13,8,7,5,82,YELLOW,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/mommy-and-me,validate_active_products_before_search_packet
+-US,en-US,high_intent_long_tail,Daddy & Me,daddy son matching beach shirts,phrase,22,18,14,13,8,6,5,86,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_daddy_route_to_clean_family_matching_route_product_proof_required
+-US,en-US,product_category,Couples,matching couples beach outfits,exact,21,16,13,12,7,7,5,81,YELLOW,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/couples,validate_active_products_before_search_packet
+-US,en-US,product_category,Couples,couple matching vacation outfits,exact,21,16,13,12,7,7,5,81,YELLOW,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/couples,validate_active_products_before_search_packet
+-US,en-US,product_category,Couples,matching couple beach outfits,phrase,21,16,13,12,7,7,5,81,YELLOW,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/couples,validate_active_products_before_search_packet
+-US,en-US,product_category,Matching Dresses,mother daughter holiday dresses,exact,20,17,12,12,7,7,5,80,YELLOW,LOCAL_ONLY_HOLD_FOR_SEASON_AND_PRODUCT_PROOF,/collections/mommy-and-me,rerouted_us_from_supplier_leaking_matching_dresses_to_clean_mommy_route_product_proof_required
+-US,en-US,product_category,Pajamas,family holiday pajamas,exact,22,19,12,14,8,8,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,use_for_us_shopping_query_and_future_search_packet
+-US,en-US,product_category,Pajamas,mommy and me christmas pajamas,exact,20,18,12,13,7,7,5,82,YELLOW,LOCAL_ONLY_HOLD_FOR_SEASON_AND_PRODUCT_PROOF,/collections/pajamas,validate_season_and_product_fit
+-US,en-US,product_category,Pajamas,matching family christmas pajamas,exact,20,18,12,13,7,7,5,82,YELLOW,LOCAL_ONLY_HOLD_FOR_SEASON_AND_PRODUCT_PROOF,/collections/pajamas,validate_season_and_product_fit
+-US,en-US,research_watchlist,Photo Days,family picture outfit ideas,watchlist,12,12,6,8,5,8,5,56,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
+-US,en-US,research_watchlist,Family Matching,family outfit ideas,watchlist,10,12,5,8,5,8,5,53,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
+-US,en-US,research_watchlist,Photo Days,what to wear for family photos,watchlist,11,12,8,8,5,8,5,57,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
+-US,en-US,research_watchlist,Beach Days,beach family photo outfit ideas,watchlist,12,12,8,8,5,8,5,58,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
+-US,en-US,research_watchlist,Family Matching,cute matching family outfits,watchlist,15,15,6,10,6,8,5,65,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
+-GB,en-GB,high_intent_long_tail,Photo Days,mum and daughter dresses for photos,exact,23,19,15,14,8,6,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
+-GB,en-GB,high_intent_long_tail,Photo Days,mummy and me dresses for family photos,exact,23,19,15,14,8,6,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
+-GB,en-GB,high_intent_long_tail,Vacation,mother daughter holiday dresses uk,exact,22,18,15,13,8,6,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_from_vacation_404_to_clean_mommy_route_cpc_validation_required
+-GB,en-GB,high_intent_long_tail,Vacation,matching family holiday outfits,exact,22,18,15,13,8,6,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_cpc_validation_required
+-GB,en-GB,high_intent_long_tail,Beach Days,family beach photo outfits uk,exact,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,route_clean_cpc_validation_required
+-GB,en-GB,high_intent_long_tail,Photo Days,matching family outfits for holiday photos,phrase,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_cpc_validation_required
+-GB,en-GB,high_intent_long_tail,Matching Dresses,mum daughter wedding guest dresses,exact,24,18,15,13,8,6,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_from_supplier_leaking_matching_dresses_to_clean_mommy_route_cpc_validation_required
+-GB,en-GB,high_intent_long_tail,Beach Days,mummy and me beach dresses,exact,23,19,14,14,8,6,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
+-GB,en-GB,product_category,Swimsuits,matching family swimwear uk,exact,22,19,13,14,8,6,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_cpc_validation_required
+-GB,en-GB,product_category,Pajamas,family matching pyjamas,exact,22,19,12,14,8,7,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,route_clean_cpc_validation_required
+-GB,en-GB,product_category,Pajamas,mummy and me pyjamas,exact,22,19,12,14,8,7,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,route_clean_cpc_validation_required
+-GB,en-GB,high_intent_long_tail,Daddy & Me,dad and son holiday shirts,exact,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_daddy_christmas_metadata_to_clean_family_route_cpc_validation_required
+-GB,en-GB,product_category,Daddy & Me,daddy and me shirts uk,exact,21,18,10,13,8,7,5,82,YELLOW,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/family-matching,rerouted_from_daddy_christmas_metadata_to_clean_family_route_product_proof_required
+-GB,en-GB,product_category,Vacation,matching family tropical outfits uk,phrase,21,17,13,12,8,6,5,82,YELLOW,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_product_proof_required
+-GB,en-GB,research_watchlist,Photo Days,family photo outfit ideas uk,watchlist,11,12,8,8,5,8,5,57,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
+-CA,en-CA,high_intent_long_tail,Photo Days,mommy and me dresses canada pictures,exact,23,19,15,14,8,6,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
+-CA,en-CA,high_intent_long_tail,Photo Days,mom daughter family picture dresses canada,exact,23,19,15,14,8,6,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
+-CA,en-CA,high_intent_long_tail,Photo Days,mother daughter outfits for family pictures,exact,23,19,15,14,8,6,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
+-CA,en-CA,high_intent_long_tail,Photo Days,matching family outfits canada photos,exact,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,route_clean_cpc_validation_required
+-CA,en-CA,high_intent_long_tail,Beach Days,family beach photo outfits canada,exact,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,route_clean_cpc_validation_required
+-CA,en-CA,high_intent_long_tail,Vacation,matching family vacation outfits canada,exact,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_cpc_validation_required
+-CA,en-CA,product_category,Pajamas,mommy and me pajamas canada,exact,22,19,12,14,8,7,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,route_clean_cpc_validation_required
+-CA,en-CA,product_category,Pajamas,matching family pajamas canada,exact,22,19,12,14,8,7,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,route_clean_cpc_validation_required
+-CA,en-CA,product_category,Swimsuits,mommy and me swimsuits canada,exact,22,19,13,14,8,6,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_cpc_validation_required
+-CA,en-CA,product_category,Swimsuits,matching family swimwear canada,exact,22,19,13,14,8,6,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_cpc_validation_required
+-CA,en-CA,product_category,Daddy & Me,dad and son shirts canada,exact,21,18,10,13,8,7,5,82,YELLOW,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/family-matching,rerouted_from_daddy_christmas_metadata_to_clean_family_route_product_proof_required
+-CA,en-CA,high_intent_long_tail,Vacation,family cruise outfits canada,exact,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_cpc_validation_required
+-CA,en-CA,high_intent_long_tail,Matching Dresses,mother daughter wedding guest dresses canada,exact,24,18,15,13,8,6,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_from_supplier_leaking_matching_dresses_to_clean_mommy_route_cpc_validation_required
+-CA,en-CA,high_intent_long_tail,Photo Days,family cottage photo outfits,phrase,20,16,12,11,7,6,5,77,YELLOW,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/family-matching,route_clean_product_proof_required
+-CA,en-CA,research_watchlist,Photo Days,family picture outfit ideas canada,watchlist,11,12,8,8,5,8,5,57,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
+-AU,en-AU,high_intent_long_tail,Photo Days,mum and daughter dresses for photos australia,exact,23,19,15,14,8,6,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
+-AU,en-AU,high_intent_long_tail,Photo Days,mummy and me dresses for family photos,exact,23,19,15,14,8,6,5,90,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
+-AU,en-AU,high_intent_long_tail,Vacation,mother daughter holiday dresses australia,exact,22,18,15,13,8,6,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_from_vacation_404_to_clean_mommy_route_cpc_validation_required
+-AU,en-AU,high_intent_long_tail,Vacation,matching family holiday outfits australia,exact,22,18,15,13,8,6,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_cpc_validation_required
+-AU,en-AU,high_intent_long_tail,Beach Days,family beach photo outfits australia,exact,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,route_clean_cpc_validation_required
+-AU,en-AU,high_intent_long_tail,Beach Days,mum daughter beach dresses,exact,23,19,14,14,8,6,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
+-AU,en-AU,high_intent_long_tail,Beach Days,mummy and me beach dresses australia,exact,23,19,14,14,8,6,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
+-AU,en-AU,product_category,Swimsuits,matching family swimwear australia,exact,22,19,13,14,8,6,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_cpc_validation_required
+-AU,en-AU,product_category,Swimsuits,mummy and me swimwear australia,exact,22,19,13,14,8,6,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_cpc_validation_required
+-AU,en-AU,product_category,Pajamas,family matching pyjamas australia,exact,22,19,12,14,8,7,5,87,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,route_clean_cpc_validation_required
+-AU,en-AU,high_intent_long_tail,Daddy & Me,dad and son holiday shirts australia,exact,23,18,15,13,8,6,5,88,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_daddy_christmas_metadata_to_clean_family_route_cpc_validation_required
+-AU,en-AU,product_category,Vacation,matching family tropical outfits australia,phrase,21,17,13,12,8,6,5,82,YELLOW,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_product_proof_required
+-AU,en-AU,product_category,Vacation,family resort outfits australia,phrase,20,16,13,11,7,6,5,78,YELLOW,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_product_proof_required
+-AU,en-AU,high_intent_long_tail,Matching Dresses,mother daughter wedding guest dresses australia,exact,24,18,15,13,8,6,5,89,GREEN,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_from_supplier_leaking_matching_dresses_to_clean_mommy_route_cpc_validation_required
+-AU,en-AU,research_watchlist,Photo Days,family photo outfit ideas australia,watchlist,11,12,8,8,5,8,5,57,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
++US,en-US,high_intent_long_tail,Photo Days,family outfits for beach photos,exact,24,19,15,14,0,0,5,77,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_shopping_query_and_future_search_packet
++US,en-US,high_intent_long_tail,Vacation,matching family vacation outfits,exact,24,19,15,14,0,0,5,77,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
++US,en-US,high_intent_long_tail,Photo Days,mommy and me dresses for pictures,exact,24,19,15,14,0,0,5,77,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
++US,en-US,high_intent_long_tail,Photo Days,mother daughter outfits for photoshoot,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
++US,en-US,high_intent_long_tail,Photo Days,mom daughter family photo dresses,exact,24,19,15,14,0,0,5,77,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
++US,en-US,high_intent_long_tail,Photo Days,mommy daughter picture outfits,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
++US,en-US,high_intent_long_tail,Beach Days,mother daughter beach photo dresses,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
++US,en-US,high_intent_long_tail,Birthdays,mommy and me birthday dresses,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
++US,en-US,high_intent_long_tail,Matching Dresses,mother daughter wedding guest dresses,exact,24,18,15,13,0,0,5,75,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_us_from_supplier_leaking_matching_dresses_to_clean_mommy_route_product_proof_required
++US,en-US,high_intent_long_tail,Vacation,mommy daughter vacation dresses,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
++US,en-US,high_intent_long_tail,Photo Days,matching family photo dresses,exact,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_shopping_query_and_future_search_packet
++US,en-US,high_intent_long_tail,Photo Days,matching family picture outfits,exact,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_shopping_query_and_future_search_packet
++US,en-US,high_intent_long_tail,Beach Days,matching family beach dresses,exact,22,18,15,13,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_shopping_query_and_future_search_packet
++US,en-US,product_category,Matching Dresses,mommy and me summer dresses,exact,22,19,13,14,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
++US,en-US,product_category,Matching Dresses,beige mother daughter dresses,exact,22,18,10,13,0,0,5,68,RED,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/mommy-and-me,rerouted_us_from_supplier_leaking_matching_dresses_to_clean_mommy_route_product_proof_required
++US,en-US,product_category,Matching Dresses,chiffon mother daughter dresses,exact,22,18,10,13,0,0,5,68,RED,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/mommy-and-me,rerouted_us_from_supplier_leaking_matching_dresses_to_clean_mommy_route_product_proof_required
++US,en-US,product_category,Matching Dresses,floral mommy daughter dresses,exact,22,19,10,14,0,0,5,70,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
++US,en-US,core_obvious,Pajamas,mommy and me pajamas,exact,22,19,12,14,0,0,5,72,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,use_for_us_shopping_query_and_future_search_packet
++US,en-US,core_obvious,Pajamas,matching family pajamas,exact,22,19,12,14,0,0,5,72,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,use_for_us_shopping_query_and_future_search_packet
++US,en-US,product_category,Pajamas,mommy and me pajama set,exact,22,19,12,14,0,0,5,72,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,use_for_us_shopping_query_and_future_search_packet
++US,en-US,core_obvious,Swimsuits,matching family swimsuits,exact,23,19,13,14,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_us_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_product_proof_required
++US,en-US,product_category,Swimsuits,mommy and me swimsuits,exact,23,19,13,14,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_us_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_product_proof_required
++US,en-US,product_category,Swimsuits,mother daughter bathing suits,exact,23,19,13,14,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_us_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_product_proof_required
++US,en-US,core_obvious,Daddy & Me,daddy and me shirts,exact,22,18,10,13,0,0,5,68,RED,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/matching-outfits,rerouted_us_from_daddy_route_to_clean_family_matching_route_product_proof_required
++US,en-US,high_intent_long_tail,Daddy & Me,dad and son vacation shirts,exact,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_daddy_route_to_clean_family_matching_route_product_proof_required
++US,en-US,product_category,Daddy & Me,dad son matching shirts,exact,22,18,10,13,0,0,5,68,RED,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/matching-outfits,rerouted_us_from_daddy_route_to_clean_family_matching_route_product_proof_required
++US,en-US,high_intent_long_tail,Vacation,family cruise outfits,exact,24,18,15,13,0,0,5,75,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
++US,en-US,product_category,Vacation,family tropical outfits matching,exact,22,18,13,13,0,0,5,71,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
++US,en-US,product_category,Vacation,matching family hawaiian outfits,exact,21,17,13,12,0,0,5,68,RED,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
++US,en-US,high_intent_long_tail,Beach Days,mother daughter beach dresses,exact,23,19,14,14,0,0,5,75,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
++US,en-US,high_intent_long_tail,Beach Days,mommy and me beach dresses,exact,23,19,14,14,0,0,5,75,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
++US,en-US,product_category,Matching Dresses,mother daughter matching maxi dresses,exact,22,19,10,14,0,0,5,70,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_us_from_supplier_leaking_matching_dresses_to_clean_mommy_route_product_proof_required
++US,en-US,product_category,Matching Dresses,mommy and me floral maxi dresses,exact,22,19,10,14,0,0,5,70,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_shopping_query_and_future_search_packet
++US,en-US,high_intent_long_tail,Vacation,family vacation matching outfits for pictures,phrase,24,18,15,13,0,0,5,75,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
++US,en-US,high_intent_long_tail,Birthdays,mom and daughter birthday outfits,phrase,22,18,15,13,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_phrase_discovery_after_exact_gate
++US,en-US,high_intent_long_tail,Photo Days,girls and mom matching dresses for photos,phrase,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_phrase_discovery_after_exact_gate
++US,en-US,high_intent_long_tail,Photo Days,mother daughter dresses for family pictures,phrase,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_phrase_discovery_after_exact_gate
++US,en-US,high_intent_long_tail,Vacation,matching family outfits for beach vacation,phrase,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
++US,en-US,high_intent_long_tail,Photo Days,family matching outfits for photoshoot,phrase,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_phrase_discovery_after_exact_gate
++US,en-US,high_intent_long_tail,Vacation,mother daughter matching vacation outfits,phrase,22,18,15,13,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
++US,en-US,high_intent_long_tail,Photo Days,mommy and daughter matching photo dresses,phrase,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,use_for_us_phrase_discovery_after_exact_gate
++US,en-US,high_intent_long_tail,Birthdays,family birthday matching outfits,phrase,22,17,15,13,0,0,5,72,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,use_for_us_phrase_discovery_after_exact_gate
++US,en-US,high_intent_long_tail,Vacation,matching family outfits for cruise pictures,phrase,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
++US,en-US,product_category,Vacation,family resort outfits matching,phrase,21,17,13,12,0,0,5,68,RED,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
++US,en-US,product_category,Vacation,mommy and me tropical dresses,phrase,22,18,13,13,0,0,5,71,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_vacation_404_to_clean_family_matching_route_product_proof_required
++US,en-US,product_category,Beach Days,family beach outfits matching white,phrase,20,16,13,11,0,0,5,65,RED,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/family-matching,validate_active_products_before_search_packet
++US,en-US,product_category,Matching Dresses,mom daughter matching sundresses,phrase,21,18,10,13,0,0,5,67,RED,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/mommy-and-me,validate_active_products_before_search_packet
++US,en-US,high_intent_long_tail,Daddy & Me,daddy son matching beach shirts,phrase,22,18,14,13,0,0,5,72,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/matching-outfits,rerouted_us_from_daddy_route_to_clean_family_matching_route_product_proof_required
++US,en-US,product_category,Couples,matching couples beach outfits,exact,21,16,13,12,0,0,5,67,RED,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/couples,validate_active_products_before_search_packet
++US,en-US,product_category,Couples,couple matching vacation outfits,exact,21,16,13,12,0,0,5,67,RED,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/couples,validate_active_products_before_search_packet
++US,en-US,product_category,Couples,matching couple beach outfits,phrase,21,16,13,12,0,0,5,67,RED,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/couples,validate_active_products_before_search_packet
++US,en-US,product_category,Matching Dresses,mother daughter holiday dresses,exact,20,17,12,12,0,0,5,66,RED,LOCAL_ONLY_HOLD_FOR_SEASON_AND_PRODUCT_PROOF,/collections/mommy-and-me,rerouted_us_from_supplier_leaking_matching_dresses_to_clean_mommy_route_product_proof_required
++US,en-US,product_category,Pajamas,family holiday pajamas,exact,22,19,12,14,0,0,5,72,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,use_for_us_shopping_query_and_future_search_packet
++US,en-US,product_category,Pajamas,mommy and me christmas pajamas,exact,20,18,12,13,0,0,5,68,RED,LOCAL_ONLY_HOLD_FOR_SEASON_AND_PRODUCT_PROOF,/collections/pajamas,validate_season_and_product_fit
++US,en-US,product_category,Pajamas,matching family christmas pajamas,exact,20,18,12,13,0,0,5,68,RED,LOCAL_ONLY_HOLD_FOR_SEASON_AND_PRODUCT_PROOF,/collections/pajamas,validate_season_and_product_fit
++US,en-US,research_watchlist,Photo Days,family picture outfit ideas,watchlist,12,12,6,8,0,0,5,43,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
++US,en-US,research_watchlist,Family Matching,family outfit ideas,watchlist,10,12,5,8,0,0,5,40,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
++US,en-US,research_watchlist,Photo Days,what to wear for family photos,watchlist,11,12,8,8,0,0,5,44,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
++US,en-US,research_watchlist,Beach Days,beach family photo outfit ideas,watchlist,12,12,8,8,0,0,5,45,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
++US,en-US,research_watchlist,Family Matching,cute matching family outfits,watchlist,15,15,6,10,0,0,5,51,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
++GB,en-GB,high_intent_long_tail,Photo Days,mum and daughter dresses for photos,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
++GB,en-GB,high_intent_long_tail,Photo Days,mummy and me dresses for family photos,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
++GB,en-GB,high_intent_long_tail,Vacation,mother daughter holiday dresses uk,exact,22,18,15,13,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_from_vacation_404_to_clean_mommy_route_cpc_validation_required
++GB,en-GB,high_intent_long_tail,Vacation,matching family holiday outfits,exact,22,18,15,13,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_cpc_validation_required
++GB,en-GB,high_intent_long_tail,Beach Days,family beach photo outfits uk,exact,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,route_clean_cpc_validation_required
++GB,en-GB,high_intent_long_tail,Photo Days,matching family outfits for holiday photos,phrase,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_cpc_validation_required
++GB,en-GB,high_intent_long_tail,Matching Dresses,mum daughter wedding guest dresses,exact,24,18,15,13,0,0,5,75,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_from_supplier_leaking_matching_dresses_to_clean_mommy_route_cpc_validation_required
++GB,en-GB,high_intent_long_tail,Beach Days,mummy and me beach dresses,exact,23,19,14,14,0,0,5,75,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
++GB,en-GB,product_category,Swimsuits,matching family swimwear uk,exact,22,19,13,14,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_cpc_validation_required
++GB,en-GB,product_category,Pajamas,family matching pyjamas,exact,22,19,12,14,0,0,5,72,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,route_clean_cpc_validation_required
++GB,en-GB,product_category,Pajamas,mummy and me pyjamas,exact,22,19,12,14,0,0,5,72,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,route_clean_cpc_validation_required
++GB,en-GB,high_intent_long_tail,Daddy & Me,dad and son holiday shirts,exact,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_daddy_christmas_metadata_to_clean_family_route_cpc_validation_required
++GB,en-GB,product_category,Daddy & Me,daddy and me shirts uk,exact,21,18,10,13,0,0,5,67,RED,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/family-matching,rerouted_from_daddy_christmas_metadata_to_clean_family_route_product_proof_required
++GB,en-GB,product_category,Vacation,matching family tropical outfits uk,phrase,21,17,13,12,0,0,5,68,RED,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_product_proof_required
++GB,en-GB,research_watchlist,Photo Days,family photo outfit ideas uk,watchlist,11,12,8,8,0,0,5,44,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
++CA,en-CA,high_intent_long_tail,Photo Days,mommy and me dresses canada pictures,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
++CA,en-CA,high_intent_long_tail,Photo Days,mom daughter family picture dresses canada,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
++CA,en-CA,high_intent_long_tail,Photo Days,mother daughter outfits for family pictures,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
++CA,en-CA,high_intent_long_tail,Photo Days,matching family outfits canada photos,exact,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,route_clean_cpc_validation_required
++CA,en-CA,high_intent_long_tail,Beach Days,family beach photo outfits canada,exact,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,route_clean_cpc_validation_required
++CA,en-CA,high_intent_long_tail,Vacation,matching family vacation outfits canada,exact,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_cpc_validation_required
++CA,en-CA,product_category,Pajamas,mommy and me pajamas canada,exact,22,19,12,14,0,0,5,72,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,route_clean_cpc_validation_required
++CA,en-CA,product_category,Pajamas,matching family pajamas canada,exact,22,19,12,14,0,0,5,72,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,route_clean_cpc_validation_required
++CA,en-CA,product_category,Swimsuits,mommy and me swimsuits canada,exact,22,19,13,14,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_cpc_validation_required
++CA,en-CA,product_category,Swimsuits,matching family swimwear canada,exact,22,19,13,14,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_cpc_validation_required
++CA,en-CA,product_category,Daddy & Me,dad and son shirts canada,exact,21,18,10,13,0,0,5,67,RED,LOCAL_ONLY_HOLD_UNTIL_LANDING_AND_PRODUCT_PROOF,/collections/family-matching,rerouted_from_daddy_christmas_metadata_to_clean_family_route_product_proof_required
++CA,en-CA,high_intent_long_tail,Vacation,family cruise outfits canada,exact,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_cpc_validation_required
++CA,en-CA,high_intent_long_tail,Matching Dresses,mother daughter wedding guest dresses canada,exact,24,18,15,13,0,0,5,75,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_from_supplier_leaking_matching_dresses_to_clean_mommy_route_cpc_validation_required
++CA,en-CA,high_intent_long_tail,Photo Days,family cottage photo outfits,phrase,20,16,12,11,0,0,5,64,RED,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/family-matching,route_clean_product_proof_required
++CA,en-CA,research_watchlist,Photo Days,family picture outfit ideas canada,watchlist,11,12,8,8,0,0,5,44,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence
++AU,en-AU,high_intent_long_tail,Photo Days,mum and daughter dresses for photos australia,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
++AU,en-AU,high_intent_long_tail,Photo Days,mummy and me dresses for family photos,exact,23,19,15,14,0,0,5,76,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
++AU,en-AU,high_intent_long_tail,Vacation,mother daughter holiday dresses australia,exact,22,18,15,13,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_from_vacation_404_to_clean_mommy_route_cpc_validation_required
++AU,en-AU,high_intent_long_tail,Vacation,matching family holiday outfits australia,exact,22,18,15,13,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_cpc_validation_required
++AU,en-AU,high_intent_long_tail,Beach Days,family beach photo outfits australia,exact,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,route_clean_cpc_validation_required
++AU,en-AU,high_intent_long_tail,Beach Days,mum daughter beach dresses,exact,23,19,14,14,0,0,5,75,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
++AU,en-AU,high_intent_long_tail,Beach Days,mummy and me beach dresses australia,exact,23,19,14,14,0,0,5,75,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,route_clean_cpc_validation_required
++AU,en-AU,product_category,Swimsuits,matching family swimwear australia,exact,22,19,13,14,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_cpc_validation_required
++AU,en-AU,product_category,Swimsuits,mummy and me swimwear australia,exact,22,19,13,14,0,0,5,73,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-swimsuits,rerouted_from_supplier_leaking_swimsuits_to_clean_family_swimsuits_route_cpc_validation_required
++AU,en-AU,product_category,Pajamas,family matching pyjamas australia,exact,22,19,12,14,0,0,5,72,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/pajamas,route_clean_cpc_validation_required
++AU,en-AU,high_intent_long_tail,Daddy & Me,dad and son holiday shirts australia,exact,23,18,15,13,0,0,5,74,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/family-matching,rerouted_from_daddy_christmas_metadata_to_clean_family_route_cpc_validation_required
++AU,en-AU,product_category,Vacation,matching family tropical outfits australia,phrase,21,17,13,12,0,0,5,68,RED,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_product_proof_required
++AU,en-AU,product_category,Vacation,family resort outfits australia,phrase,20,16,13,11,0,0,5,65,RED,LOCAL_ONLY_HOLD_UNTIL_PRODUCT_MATCH_PROOF,/collections/family-matching,rerouted_from_vacation_404_to_clean_family_route_product_proof_required
++AU,en-AU,high_intent_long_tail,Matching Dresses,mother daughter wedding guest dresses australia,exact,24,18,15,13,0,0,5,75,YELLOW,LOCAL_ONLY_VALIDATE_NOT_UPLOADED,/collections/mommy-and-me,rerouted_from_supplier_leaking_matching_dresses_to_clean_mommy_route_cpc_validation_required
++AU,en-AU,research_watchlist,Photo Days,family photo outfit ideas australia,watchlist,11,12,8,8,0,0,5,44,RED,LOCAL_ONLY_RESEARCH_NOT_SEARCH_UPLOAD,content_or_pinterest_watchlist,do_not_launch_without_search_term_purchase_evidence

@@ -1,0 +1,123 @@
+{
+  "reviewed_at_utc": "2026-09-12T15:01:47.309999+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "verdict": "PASS_WITH_LIMITS_PAIRED_NATIVE_URL_TESTS_NO_CHANGE",
+  "check_count": 20,
+  "checks": {
+    "all_five_exact_input_hashes": true,
+    "account_customer_consistent": true,
+    "exact_two_existing_ad_ids": true,
+    "exact_campaign_group_ids": true,
+    "https_expected_host_and_localized_paths": true,
+    "each_status_landing_page_found": true,
+    "exact_six_keys_each_once": true,
+    "decoded_values_match_root_transcription": true,
+    "source_medium_exact": true,
+    "decoded_campaign_exact_frozen_name": true,
+    "decoded_content_exact_frozen_group_name": true,
+    "placeholder_click_and_term_distinguished": true,
+    "manual_suffix_strings_preserved_against_frozen_ads": true,
+    "automatic_campaign_content_differ_from_manual_suffix": true,
+    "reported_duplicate_arrays_match_actual_none": true,
+    "tracking_template_none_consistent_with_frozen_fields": true,
+    "existing_account_automatic_tracking_settings_bound": true,
+    "no_save_alternative_is_reported": true,
+    "paused_ad_state_supported_by_bound_asset_readback": true,
+    "policy_ingestion_performance_and_coverage_limits_explicit": true
+  },
+  "bound_inputs": {
+    "native_tests": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/native_url_tests.json",
+      "sha256": "f3c62a8cec111879894b503f9d06b9c02e9cb8fe6c617aac4c1d5b06e17bf628"
+    },
+    "account_options": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/account_options_before.json",
+      "sha256": "ed2b14f2bee4c8aa7d37e4b478295b82219041650df8c6398460a0a89c80e98a"
+    },
+    "frozen_saved_ads": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260911-2237/combined_saved_ads_readback.json",
+      "sha256": "240544fc6f85fc6a30ab1e27ee11345012bde9cdcca5b5af0448f4f027b5390e"
+    },
+    "asset_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/review/rsa_asset_review.json",
+      "sha256": "39e37d6e7d125e6a753eb8f68b14280945b526adaaa8c1c58199cdc59002363f"
+    },
+    "asset_readback": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/rsa_asset_policy_readback.json",
+      "sha256": "b5bcded437716dee9056d67fcfa9504ea1531ecf24ebb5eda1f64bf408b604fc"
+    }
+  },
+  "decoded_tests": [
+    {
+      "ad_id": "79508657389070",
+      "campaign_id": "506254907",
+      "group_id": "1272136755587035",
+      "base_url": "https://www.dresslikemommy.com/collections/dresses",
+      "decoded_parameter_values": {
+        "msclkid": "123abc",
+        "utm_source": "bing",
+        "utm_medium": "cpc",
+        "utm_campaign": "DLM | MS | US | EN | Search | 202609",
+        "utm_term": "keyword",
+        "utm_content": "Mother Daughter | Matching Dresses"
+      },
+      "key_occurrences": {
+        "msclkid": 1,
+        "utm_source": 1,
+        "utm_medium": 1,
+        "utm_campaign": 1,
+        "utm_term": 1,
+        "utm_content": 1
+      },
+      "native_status": "Landing page found"
+    },
+    {
+      "ad_id": "78890182372245",
+      "campaign_id": "506254908",
+      "group_id": "1262241151661314",
+      "base_url": "https://www.dresslikemommy.com/de/collections/dresses",
+      "decoded_parameter_values": {
+        "msclkid": "123abc",
+        "utm_source": "bing",
+        "utm_medium": "cpc",
+        "utm_campaign": "DLM | MS | DE | DE | Search | 202609",
+        "utm_term": "keyword",
+        "utm_content": "Mother Daughter | Matching Dresses"
+      },
+      "key_occurrences": {
+        "msclkid": 1,
+        "utm_source": 1,
+        "utm_medium": 1,
+        "utm_campaign": 1,
+        "utm_term": 1,
+        "utm_content": 1
+      },
+      "native_status": "Landing page found"
+    }
+  ],
+  "decision": "NO_CHANGE. The two observed native tests reproduce neither duplicate query keys nor a wrong campaign/group/localized destination; preserve the existing account automatic-tagging settings, manual suffixes and legacy campaign settings. Use the observed automatic campaign/group mapping for measurement qualification.",
+  "critical_challenge": "A possible coexistence problem described in documentation is not a reproduced defect. Removing two suffixes or changing account tagging lacks a demonstrated correction benefit in these tests.",
+  "unsupported_counterfactual_rationales_not_adopted": [
+    "The frozen alternatives state suffix-clearing Saves would cause new editorial review. These receipts do not establish that consequence; it is unnecessary to the NO_CHANGE decision."
+  ],
+  "provenance_limits": [
+    "Root operated native Test and transcribed the rendered result. Reviewer independently decoded the two saved URL strings and compared entity identities and frozen sources; no independent live replay occurred.",
+    "Test placeholders msclkid=123abc and utm_term=keyword are not genuine visitor/click/keyword evidence.",
+    "Landing page found establishes only this native test result; no full ad editorial approval, user-visible storefront flow, consent fix, GA4 ingestion, purchase/order join or performance is inferred.",
+    "The tested query mapping is not a guarantee for every keyword, device, redirect or placement, and the saved-source comparison is not a claim that frozen strings themselves are runtime authority.",
+    "No fresh readback of all legacy campaigns was performed in this lane; preserving them is the no-mutation scope, not a new exhaustive account audit."
+  ],
+  "external_save_decision": "NONE_APPROVED_OR_NEEDED_FOR_NO_CHANGE",
+  "official_reference": {
+    "url": "https://help.ads.microsoft.com/apex/index/3/en/56762",
+    "retrieval": "Official article text available through indexed search; direct Help open returned Oops.",
+    "use": "Documents possible duplicate UTMs from coexistence and native URL testing as the validation step; does not prove duplication here."
+  },
+  "reviewer_mutations": "Only this new review/url_test_review.json; prior asset review and all root input files preserved.",
+  "alternative_c_clarification": "Root clarified before final handback that Keep mode means changing the account from Replace to Preserve/keep-existing, combined with two ad-template migrations. That specified account-mode change would affect account-wide automatic tagging; the effect does not arise from the two ad-level template edits alone. No such change was executed or approved. The NO_CHANGE verdict rests on the passing tests and absent reproduced defect.",
+  "pre_handback_clarification": {
+    "previous_unhanded_review_sha256": "f44ba103ba650c0954bfb840e1257ea700cefe3a366a543ce3f0d9a6641f0ada",
+    "scope": "Clarify interpretation of alternative C from the authenticated root message; native input and all 20 check results unchanged."
+  }
+}

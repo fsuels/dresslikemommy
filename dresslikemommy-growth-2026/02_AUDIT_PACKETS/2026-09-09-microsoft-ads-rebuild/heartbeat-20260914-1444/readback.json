@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "task": "TA-15",
+  "classification": "VERIFY",
+  "action": "HOLD_WITH_EVIDENCE",
+  "recorded_at_utc": "2026-09-14 14:52:08 UTC",
+  "root_thread": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "objective": "Finish the remaining paused-ad editorial qualification using native read-only diagnostics, while preserving the supported consent/order gates.",
+  "selected_action_reason": "Parent integrated the one-purchase receiver receipt. No support-contact answer or supported source change appears in current canonical records. The saved ads previously had Pending ad strength and whole-ad editorial acceptance remained unknown; inspect that independent preparation gap.",
+  "prior_receipt": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/rsa_asset_policy_readback.json",
+    "sha256": "b5bcded437716dee9056d67fcfa9504ea1531ecf24ebb5eda1f64bf408b604fc",
+    "ad_grid_strength_for_both_ads": "Pending",
+    "asset_detail_strength": "Average Performance",
+    "interpretation": "The new Good labels supersede the dated grid diagnostic only. They do not show an editorial approval transition or measured performance improvement."
+  },
+  "browser_recovery": {
+    "prior_browser_id": "1",
+    "prior_tab_id": "7",
+    "prior_tab_error": "Tab not found: 7 in browser 1",
+    "new_task_owned_background_tab_created": true,
+    "navigation_result": "Timed out waiting for tab 1 to navigate to the exact Microsoft campaign URL.",
+    "recovery": "One supported listTabs call confirmed the new exact-target tab had loaded; getTab succeeded. No second tab was created.",
+    "browser_id": "1",
+    "tab_id": "1",
+    "provider_tab_id": "browser-use:46711e96-d70f-4e5b-abed-8d29f85a8130",
+    "final_url": "https://ui.ads.microsoft.com/campaign/vnext/campaigns?aid=477439&cid=770182&uid=2290164",
+    "authentication": "Existing authenticated account read succeeded; no login, account switch or permission action.",
+    "personal_browser_accessed": false,
+    "retention_limit": "The prior handoff mark did not guarantee later tab availability. Current tab needs a new handoff mark before turn end."
+  },
+  "native_ad_evidence": {
+    "url": "https://ui.ads.microsoft.com/campaign/vnext/ads?aid=477439&cid=770182&uid=2290164",
+    "filter": "Imported ads equals Items changed in the most recent import",
+    "filtered_ads": 2,
+    "unfiltered_ads_total_label": 42,
+    "ads": [
+      {
+        "ad_id": "78890182372245",
+        "campaign_id": "506254908",
+        "ad_group_id": "1262241151661314",
+        "market": "DE",
+        "language": "de",
+        "status": "Paused",
+        "ad_strength": "Good",
+        "delivery": "Campaign paused",
+        "visible_final_url_display": "dresslikemommy.com/de/collections/dresses",
+        "diagnostic_page_count": 3,
+        "diagnostics": [
+          "Campaign paused",
+          "Ad group paused",
+          "Ad paused"
+        ]
+      },
+      {
+        "ad_id": "79508657389070",
+        "campaign_id": "506254907",
+        "ad_group_id": "1272136755587035",
+        "market": "US",
+        "language": "en",
+        "status": "Paused",
+        "ad_strength": "Good",
+        "delivery": "Campaign paused",
+        "visible_final_url_display": "dresslikemommy.com/collections/dresses",
+        "diagnostic_page_count": 3,
+        "diagnostics": [
+          "Campaign paused",
+          "Ad group paused",
+          "Ad paused"
+        ]
+      }
+    ],
+    "diagnostic_scope": "All three pages per ad were read; these are the reasons exposed by this popup, not an exhaustive independent policy inventory.",
+    "whole_ad_editorial": "UNVERIFIED",
+    "alternate_editorial_inspection": {
+      "surface": "More actions > Columns > Modify columns > Attributes",
+      "available_attribute_names": [
+        "Ad",
+        "Campaign",
+        "Ad group",
+        "Delivery",
+        "Ad ID",
+        "Ad type",
+        "Device preference",
+        "Labels",
+        "Automated ad",
+        "Ad strength"
+      ],
+      "search_column_text": "editorial",
+      "result": "No results found",
+      "scope": "The exposed Attributes column picker only; not proof that no supported editorial surface exists anywhere.",
+      "exit": "Cancel",
+      "columns_added_or_removed": 0,
+      "apply_clicked": false,
+      "saved_column_set": false
+    },
+    "initial_date": "Yesterday: 9/13/2026 - 9/13/2026",
+    "final_date": "Today: 9/14/2026 - 9/14/2026",
+    "today_metrics_per_ad": {
+      "clicks": 0,
+      "impressions": 0,
+      "spend": 0,
+      "conversions": 0
+    },
+    "full_ad_editors_or_assets_reopened": false,
+    "copy_acceptance_limit": "Visible grid excerpts and destinations were observed. Full eight-headline/three-description copy and asset policies were not replayed."
+  },
+  "native_campaign_evidence": {
+    "date_range": "Today: 9/14/2026 - 9/14/2026",
+    "partial_day": true,
+    "campaign_count": 13,
+    "campaign_ids": [
+      "506254908",
+      "506254907",
+      "402056811",
+      "402056810",
+      "402056809",
+      "402056808",
+      "291767342",
+      "291767159",
+      "291767149",
+      "291766588",
+      "291766575",
+      "291536445",
+      "291532658"
+    ],
+    "all_13_rows_rendered": true,
+    "all_current_statuses": "Paused",
+    "all_13_row_metrics": {
+      "spend": 0,
+      "revenue": 0,
+      "conversions": 0,
+      "clicks": 0,
+      "impressions": 0
+    },
+    "overall_total_metrics": {
+      "spend": 0,
+      "revenue": 0,
+      "conversions": 0,
+      "clicks": 0,
+      "impressions": 0,
+      "total_spend": 0
+    },
+    "configured_daily_budget_total_label": "128.00/day",
+    "configured_us_de_budgets": {
+      "US": "5.00/day",
+      "DE": "3.00/day"
+    },
+    "budget_interpretation": "Configured caps are not actual spend or fresh spending authority. No budgets or bids changed.",
+    "timezone_literal": "(GMT-05:00) Eastern Time (U.S. & Canada)",
+    "timezone_limit": "Native label retained literally; not converted into a fixed offset or precise reporting cutoff.",
+    "lag_notice": {
+      "clicks_impressions_hours": 1,
+      "uet_conversions_hours": 2,
+      "non_uet_conversions_hours": 5
+    },
+    "zero_denominator_ratios": "CPC/CPA/ROAS undefined for this zero-activity sample despite native zero formatting.",
+    "legacy_shopping_id": "291767342",
+    "legacy_shopping_delivery_observed": "Campaign paused",
+    "legacy_shopping_limit": "The earlier Product offers not found message is not displayed in this grid sample. No feed/product diagnostic was inspected; no Merchant repair or serving eligibility is accepted."
+  },
+  "preserved_dependencies": {
+    "prior_purchase_receipt": "heartbeat-20260914-1044/receiver_readback.json and its27-check independent review; parent current canonical integration verified.",
+    "exact_shopify_order_value_currency_items": "UNVERIFIED",
+    "consent_source_repair": "OPEN",
+    "sender_deduplication": "UNVERIFIED",
+    "paid_attribution": "UNVERIFIED",
+    "actual_costs_and_profit": "UNKNOWN",
+    "support_request": "UNSENT; existing contact question pending, not re-asked.",
+    "next_parent_full_sales_read_utc": "2026-09-14T19:04:53Z",
+    "new_shopify_order_query": false,
+    "prior_export_paths_retried": false,
+    "new_purchase_or_consent_test": false,
+    "completed_imports_or_keyword_forecasts_repeated": false
+  },
+  "business_mutations": {
+    "saves": 0,
+    "imports": 0,
+    "enables": 0,
+    "budget_bid_changes": 0,
+    "tracking_changes": 0,
+    "shopify_changes": 0,
+    "support_messages": 0
+  },
+  "view_actions": [
+    "Closed generic consent reminder without Continue/declaration",
+    "Opened six diagnostic pages total",
+    "Searched Attributes columns and exited with Cancel",
+    "Selected Today report preset"
+  ],
+  "authority": {
+    "source_live_evidence_as_of": "2026-06-01",
+    "exact_microsoft_ui_readback_as_of": "2026-09-14 14:52:08 UTC",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "Existing support-contact authorization or supported source change, a genuine order/payload source, or a new explicit ad policy decision.",
+    "if_evidence_supports_recommendation": "Proceed with the specific supported nonspend repair or exact qualification within current authority.",
+    "if_evidence_opposes_recommendation": "Keep the corresponding evidence gate open and preserve reviewed paused campaigns.",
+    "verification": "Root native read with separate local consistency review; no live business change."
+  },
+  "next_action": "Wait for the existing supported source/contact dependency or a new genuine-order source, then complete consent and exact purchase acceptance. Preserve the Good ads; do not rewrite copy solely to improve a diagnostic rating or repeatedly search the same unavailable Attributes field.",
+  "continuation_prompt": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "shared_integration": "Root has no shared writer lease; own packet only, normal parent integration to be requested."
+}

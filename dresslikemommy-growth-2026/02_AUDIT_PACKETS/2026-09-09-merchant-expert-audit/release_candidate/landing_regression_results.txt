@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: explicit child link selects its role, size, every axis and exactly quantity one
+ok 1 - explicit child link selects its role, size, every axis and exactly quantity one
+  ---
+  duration_ms: 99.139917
+  type: 'test'
+  ...
+# Subtest: explicit adult link remains adult with correct price and axes
+ok 2 - explicit adult link remains adult with correct price and axes
+  ---
+  duration_ms: 20.024417
+  type: 'test'
+  ...
+# Subtest: missing or invalid link null preserves empty adult default and range
+ok 3 - missing or invalid link null preserves empty adult default and range
+  ---
+  duration_ms: 10.811792
+  type: 'test'
+  ...
+# Subtest: missing or invalid link "" preserves empty adult default and range
+ok 4 - missing or invalid link "" preserves empty adult default and range
+  ---
+  duration_ms: 9.299458
+  type: 'test'
+  ...
+# Subtest: missing or invalid link 999999 preserves empty adult default and range
+ok 5 - missing or invalid link 999999 preserves empty adult default and range
+  ---
+  duration_ms: 9.30175
+  type: 'test'
+  ...
+# Subtest: missing or invalid link "invalid" preserves empty adult default and range
+ok 6 - missing or invalid link "invalid" preserves empty adult default and range
+  ---
+  duration_ms: 13.68475
+  type: 'test'
+  ...
+# Subtest: unavailable explicit variant is visible, priced and cannot be added
+ok 7 - unavailable explicit variant is visible, priced and cannot be added
+  ---
+  duration_ms: 13.779625
+  type: 'test'
+  ...
+# Subtest: shopper changing role clears the linked price and never reseeds the deep link
+ok 8 - shopper changing role clears the linked price and never reseeds the deep link
+  ---
+  duration_ms: 25.942292
+  type: 'test'
+  ...
+# Subtest: changing axes refreshes the price and clearing an axis returns to the range
+ok 9 - changing axes refreshes the price and clearing an axis returns to the range
+  ---
+  duration_ms: 27.819625
+  type: 'test'
+  ...
+# Subtest: quantity and legacy change rerenders preserve shopper choices without reseeding
+ok 10 - quantity and legacy change rerenders preserve shopper choices without reseeding
+  ---
+  duration_ms: 39.953416
+  type: 'test'
+  ...
+# Subtest: server-formatted EUR and JPY values survive without USD conversion
+ok 11 - server-formatted EUR and JPY values survive without USD conversion
+  ---
+  duration_ms: 39.828458
+  type: 'test'
+  ...
+# Subtest: server money entities decode once while preserving spaces, ampersands and text controls
+ok 12 - server money entities decode once while preserving spaces, ampersands and text controls
+  ---
+  duration_ms: 124.904708
+  type: 'test'
+  ...
+# Subtest: unit-price entities decode with the existing numeric reference quantity and unit
+ok 13 - unit-price entities decode with the existing numeric reference quantity and unit
+  ---
+  duration_ms: 16.203209
+  type: 'test'
+  ...
+# Subtest: decoding money text never creates markup or executes an encoded event handler
+ok 14 - decoding money text never creates markup or executes an encoded event handler
+  ---
+  duration_ms: 17.127958
+  type: 'test'
+  ...
+# Subtest: an asynchronous stale Dawn price replacement is reconciled without a mutation loop
+ok 15 - an asynchronous stale Dawn price replacement is reconciled without a mutation loop
+  ---
+  duration_ms: 27.868084
+  type: 'test'
+  ...
+# Subtest: all 21 published locales preserve scoped returns plus exact reviewed release additions
+ok 16 - all 21 published locales preserve scoped returns plus exact reviewed release additions
+  ---
+  duration_ms: 34.642958
+  type: 'test'
+  ...
+# Subtest: reviewed selector dictionaries preserve English and all existing entries
+ok 17 - reviewed selector dictionaries preserve English and all existing entries
+  ---
+  duration_ms: 9.395459
+  type: 'test'
+  ...
+# Subtest: inactive locale parity preserves existing text with exact return, shipping and consent additions
+ok 18 - inactive locale parity preserves existing text with exact return, shipping and consent additions
+  ---
+  duration_ms: 42.732209
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 873.703167

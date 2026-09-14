@@ -1,0 +1,287 @@
+{
+  "schema": 1,
+  "status": "AU_NATIVE_BEFORE_STATE_VERIFIED_LIVE_BUYER_ACCEPTANCE_REQUIRED",
+  "started_at_utc": "2026-09-11T19:22:51.899438+00:00",
+  "account_id": "513542500",
+  "country": "AU",
+  "language": "en",
+  "currency": "AUD",
+  "destination": "Free listings",
+  "paid_exclusion": "Shopping_ads",
+  "authority": "Fresh explicit owner request to submit the verified AU feed, forwarded from task01a091be; no further generic upload approval required",
+  "source_file": "au-en.tsv",
+  "source_sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+  "source_bytes": 17284594,
+  "source_rows": 4923,
+  "independent_data_review": "au-en.corrected_price_independent_review.json",
+  "access_attempts": [
+    {
+      "operation": "Dedicated Chrome Merchant account tab",
+      "result": "Browser is not available: chrome",
+      "account_inspection": false
+    },
+    {
+      "operation": "Dedicated in-app Merchant account tab",
+      "result": "Redirected to Google sign-in; accounts signed out",
+      "tab_id": "4",
+      "account_inspection": false
+    }
+  ],
+  "owner_access_question": "SUPERSEDED_BY_VERIFIED_AUTHENTICATED_ACCOUNT_READBACK; no further sign-in response needed",
+  "native_app_wide_route": "Not retried; prior automatic privacy rejection retained",
+  "merchant_api_insufficient_scope_route": "Not retried",
+  "source_created": false,
+  "uploaded": false,
+  "google_receipt": "NOT_VERIFIED",
+  "existing_us_source_preserved": "10727274744",
+  "shared_canonical_interval": "RELEASED_TO_ADS_AFTER_CHECKS",
+  "release_review": "Requested from parent, including native variant preselection, account issue and exact submission path",
+  "credentials_transferred": false,
+  "proposed_submission": {
+    "method": "Direct file upload to a primary product data source in the existing Merchant account",
+    "account_id": "513542500",
+    "country": "AU",
+    "language": "en",
+    "currency_in_rows": "AUD",
+    "feed_label": "AU",
+    "preferred_source_name": "DLM AU English Free Listings",
+    "file": "au-en.tsv",
+    "sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+    "bytes": 17284594,
+    "rows": 4923,
+    "marketing_methods": [
+      "Free listings"
+    ],
+    "paid_excluded_destination": "Shopping_ads",
+    "upload_as_test": false,
+    "source_identity_before": "LIVE_VERIFIED native source inventory: no AU provided source. Existing US10727274744 and zero-product ContentAPI10014302986 preserved; Google-discovered10728396934 separate.",
+    "source_id_after": "UNKNOWN_UNTIL_SUBMISSION",
+    "preserve_existing_us_source": "10727274744",
+    "hosting_required": false,
+    "hosted_alternative": "Not selected: prior deployed host configuration enables only US; adding AU would require a separate reviewed Worker configuration and object/pointer deployment",
+    "before_state": [
+      "Verify signed-in Merchant513542500 identity",
+      "Read existing source inventory and exact AU source/settings if present",
+      "Read countries, language, destinations, existing product ownership and current review state",
+      "Read current AU shipping/setup diagnostics; no unsupported shipping/return facts"
+    ],
+    "after_state": [
+      "Read source ID, saved AU/en/AU/Free listings settings",
+      "Record upload time and exact file name/hash input",
+      "Wait for native successful source processing count and all recognized fields",
+      "Verify corrected five shopify_AU_7230336729185 target offer IDs at33.00AUD and native data-source attribution",
+      "Verify total4923 rows or reconcile current exact processing errors; distinguish pending review and serving"
+    ],
+    "rollback": "For a newly created exact AU-only manual source, remove only that source if wrong country/language/paid destination or corrupt receipt is proven and native removal is clearly source-scoped; preserve US. For any existing source update, capture/export its before-state first and stop if safe rollback cannot be established. Do not restore extreme prices or guess offer ownership.",
+    "automatic_lifecycle": "Not activated; direct-file first receipt does not establish ongoing automatic additions/removals. Keep the existing credential/runtime approval gate explicit.",
+    "buyer_route_gate": "Existing published numeric variant-preselection defect requires independent release review; no theme publication bypass or full-AU-route claim."
+  },
+  "prepared_at_utc": "2026-09-11T19:24:42.285140+00:00",
+  "official_release_sources": [
+    {
+      "url": "https://support.google.com/merchants/answer/12158380?hl=en",
+      "finding": "Direct TSV upload is supported. It does not sync automatically; every change requires resubmission. File maximum4GB."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/6324416?hl=en",
+      "finding": "Google link guidance recommends landing with the correct variant selected. Exact MAIN acceptance remains a separate gate."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/15404838?hl=en",
+      "finding": "Target-country shipping policies should use the offer currency; native AU/AUD service readback is pending account access."
+    }
+  ],
+  "latest_ux_evidence": {
+    "read_at_utc": "2026-09-11T19:49:49Z",
+    "main_theme": "133290917985",
+    "main_files": 525,
+    "candidate_theme": "137888792673",
+    "candidate_status": "UNPUBLISHED",
+    "candidate_files": 527,
+    "numeric_variant_preselection_on_MAIN": "NOT_VERIFIED_FIXED",
+    "five_target_URL_rendered_acceptance": "NOT_RUN",
+    "facts": "MAIN custom snippet still omits selected_variant_id. Candidate includes repair. Generic Together Heart MAIN failure and candidate pass documented by UX; no five-Minimalist-specific outcome claimed."
+  },
+  "browser_coordination": {
+    "native_Chrome": "Owned by Ads650 operator01a09194; no Merchant interaction",
+    "Merchant_IAB_tab": "5, dedicated authenticated Merchant513542500 tab; no sign-in needed",
+    "Codex_panel_status": "Queued for Merchant task; shows when this task is selected"
+  },
+  "updated_at_utc": "2026-09-11T20:01:06.593968+00:00",
+  "release_authority": "EXPLICIT_AU_DIRECT_FILE_SUBMISSION_AUTHORIZED",
+  "production_submission_gate": {
+    "reviewer": "/root/order_delta_1934",
+    "direct_upload_method": "Within fresh nonspend authority",
+    "blockers": [
+      "Current published MAIN numeric variant/size/color/cart/AUD acceptance not verified; existing V7 fix remains unpublished"
+    ],
+    "UX_owner_action": "Root escalated existing V7 live completion to sole UX owner; Merchant does not build/publish another theme or alter feed links ad hoc",
+    "no_google_issue_causality_claim": true,
+    "final_receipt": "au-en.release_review_20260911.json"
+  },
+  "independent_release_review": {
+    "file": "au-en.release_review_20260911.json",
+    "sha256": "d7661b6bcab172ddccc7a98c7b06e47403c88745458f90120813b32349741c14",
+    "reviewed_at_utc": "2026-09-11T19:29:01.453894+00:00",
+    "verdict": "PASS_PREPARATION__HOLD_PRODUCTION_SUBMISSION_FOR_ACCESS_AND_BUYER_ROUTE",
+    "local_preparation_checks": "17/17",
+    "not_a_generic_upload_approval_gate": true
+  },
+  "live_release_complete": false,
+  "next_required_steps": [
+    "Owner publishes existing reviewedV7/137888792673 through Shopify Admin; sole UX owner verifies actual published MAIN numeric variant/size/color/cart/AUD on seven exact AU links, with public-access clearance",
+    "Rehash and freshness-check current reviewed AU file; preserve received USsource10727274744 and avoid duplicateAUsource",
+    "Upload exactAU/en/AUD/Free-listings file once using existing authorization; capture savedsourceID/time/settings and nativeGoogle receipt plus all4923IDs/five33.00AUD prices",
+    "Distinguish Google received data from account approval/serving; do not repeat the pendingSep11 review"
+  ],
+  "owner_theme_publication_dependency": {
+    "source_read_at_utc": "2026-09-11T19:30:09Z",
+    "target_theme_id": "137888792673",
+    "target_theme_name": "DLM UX Performance QA 2026-09-10",
+    "target_status": "UNPUBLISHED",
+    "preserve_old_MAIN": "133290917985",
+    "restriction": "Supported Shopify connector explicitly blocks theme publishing and MAIN writes; owner must publish in Shopify Admin",
+    "owner_task": "01a088c3-c890-71a1-98ee-f19b6905af55",
+    "evidence": "pdp-clarity-v7/publication-gate-20260911/source-validation.json and publication-restriction.json",
+    "Merchant_action_after_publication": "Independent exact AU MAIN/variant/cart/AUD readback before production source submission"
+  },
+  "access_restored": {
+    "at_utc": "2026-09-11T19:38:58.523570+00:00",
+    "signal": "New independently reported authenticated Google IAB session",
+    "retained_tab4_result": "Earlier numeric-ID lookup failed; tab IDs are strings. This did not establish that tab4 was absent. Dedicated string-ID tab5 independently verified authenticated account.",
+    "new_dedicated_tab": "5",
+    "url": "https://merchants.google.com/mc/overview?a=513542500&hl=en",
+    "verified_account_label": "Merchant Center account: Dresslikemommy, 513542500",
+    "account_switch": false,
+    "native_Chrome": false
+  },
+  "native_source_inventory": {
+    "at_utc": "2026-09-11T19:45:34.644818+00:00",
+    "account": "513542500",
+    "url": "https://merchants.google.com/mc/products/sources?a=513542500&hl=en",
+    "provided_sources": [
+      {
+        "id": "10014302986",
+        "name": "Content API",
+        "type": "Content API",
+        "products": 0,
+        "country": "US",
+        "language": "en",
+        "feed_label": "US"
+      },
+      {
+        "id": "10727274744",
+        "name": "PRODUCTS SOURCE 3",
+        "type": "File (URL)",
+        "products": 4923,
+        "last_update_native": "September 11, 2026 12:05 EDT",
+        "country": "US",
+        "language": "en",
+        "feed_label": "US"
+      }
+    ],
+    "found_by_google": {
+      "id": "10728396934",
+      "active_products": 1981,
+      "archived_products": 1,
+      "countries": "Automatic",
+      "language": "Multiple",
+      "feed_label": "Multiple",
+      "frequency": "Every 24 hours"
+    },
+    "separate_AU_provided_source_exists": false,
+    "mutations": 0
+  },
+  "current_account_policy_readback": {
+    "read_at_utc": "2026-09-11T19:50:42.117584+00:00",
+    "issue": "No products displayed",
+    "impact": "Prevents all products from showing in United States",
+    "review_state": "Issue is under review",
+    "review_requested": "Sep11,2026",
+    "message": "Review requested on Sep11,2026. It can take a few days to complete.",
+    "new_review_requested": false,
+    "approval_or_serving_verified": false
+  },
+  "existing_us_source_receipt": {
+    "source_id": "10727274744",
+    "refreshed_at_utc": "2026-09-11T19:45:38Z",
+    "rows_received": 4923,
+    "received_hash": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+    "five_corrected_effective_prices": "22.99 USD verified individually",
+    "settings_preserved": true,
+    "receipt": "../price_correction_approved_20260911/google_price_receipt_20260911.json"
+  },
+  "native_AU_shipping_readback": {
+    "read_at_utc": "2026-09-11T19:52:07.601911+00:00",
+    "account": "513542500",
+    "total_shipping_policy_rows": 76,
+    "AU_policies": [
+      {
+        "name": "flat_0.00_AUD_21400485985_36297965665_free standard shipping",
+        "status": "Complete",
+        "visibility": "Show on Google",
+        "applies_to": "All products",
+        "cost": "Free shipping",
+        "currency": "AUD",
+        "total_delivery": "9-15business days",
+        "detail_expanded": true
+      },
+      {
+        "name": "weight_based_POUND_21400485985_Custom_rate_weight_based",
+        "status": "Complete",
+        "visibility": "Show on Google",
+        "applies_to": "All products",
+        "cost": "Weight based",
+        "total_delivery": "9-15days",
+        "detail_expanded": false
+      },
+      {
+        "name": "flat_0.00_AUD_21400715361_36298063969_free standard shipping",
+        "status": "Complete",
+        "visibility": "Show on Google",
+        "applies_to": "All products",
+        "cost": "Free",
+        "total_delivery": "9-15days",
+        "detail_expanded": false
+      },
+      {
+        "name": "weight_based_POUND_21400715361_Custom_rate_weight_based",
+        "status": "Complete",
+        "visibility": "Show on Google",
+        "applies_to": "All products",
+        "cost": "Weight based",
+        "total_delivery": "9-15days",
+        "detail_expanded": false
+      }
+    ],
+    "fulfillment_truth": "Existing settings readback only; do not infer carrier/service performance or guaranteed delivery",
+    "settings_mutations": 0,
+    "native_AU_currency_service_present": true
+  },
+  "native_before_state_complete_for_preparation": true,
+  "canonical_closeout": "ca-gb-au.canonical_closeout.json",
+  "current_completion": {
+    "US_five_price_repair": "COMPLETE:Shopify/public/host/Google receivedfile+5effectiveproductrecords verified",
+    "US_independent_Google_received_review": "14/14PASS",
+    "CA_GB_local_candidates": "COMPLETE_LOCAL;23/23independent each;notuploaded",
+    "AU_google_release": "BLOCKED_ON_OWNER_ADMIN_PUBLICATION_AND_LIVE_BUYER_ACCEPTANCE",
+    "Google_access": "VERIFIED;oldsigninrequestsuperseded",
+    "Google_NoProducts_account_review": "PENDING;noapproval/servingclaim",
+    "automatic_lifecycle": "NOT_ACTIVATED;exactcredentialdestinationapproval remainsseparate",
+    "logo": "NOT_UPLOADED;currentnativebrandingcontrolnotyetlocated"
+  },
+  "logo_native_followthrough": {
+    "at_utc": "2026-09-11T20:01:06.593968+00:00",
+    "account": "513542500",
+    "surfaces_read": [
+      "Settings Business info:Details,Stores,Countries",
+      "Marketing expanded:Ad campaigns,Promotions,Marketing methods"
+    ],
+    "logo_upload_control": "Not present on these observed surfaces; current savedasset/reviewstatusUNKNOWN",
+    "asset_selection": "Existing1600x800wordmark remains conditional onactualrectangularslot/backgroundrequirements; squarepadding remainsunqualified",
+    "writes": 0,
+    "official_brand_logo_reference": "https://support.google.com/merchants/answer/15098801?hl=en",
+    "new_generic_approval_question": false
+  },
+  "browser_handoff": "Dedicated authenticated Merchant tab5 retained for existing task continuation; no nativeChrome or credentialroute retry"
+}

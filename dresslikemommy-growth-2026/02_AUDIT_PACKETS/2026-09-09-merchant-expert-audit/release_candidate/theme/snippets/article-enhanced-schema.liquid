@@ -1,0 +1,112 @@
+{%- comment -%}
+  Enhanced Article schema with additional E-E-A-T signals, publisher info,
+  and breadcrumb structured data for blog articles.
+
+  Usage: {% render 'article-enhanced-schema', article: article, blog: blog %}
+{%- endcomment -%}
+
+{%- if article -%}
+{%- liquid
+  assign merchant_logo_url = 'dlm-merchant-rectangular-1600x800-google-safe.png' | asset_url
+  assign merchant_logo_prefix = merchant_logo_url | slice: 0, 2
+  if merchant_logo_prefix == '//'
+    assign merchant_logo_url = merchant_logo_url | prepend: 'https:'
+  endif
+
+  assign word_count = article.content | strip_html | split: ' ' | size
+  assign read_time = word_count | divided_by: 200 | at_least: 1
+  assign article_schema_image_url = blank
+  assign article_schema_image_width = blank
+  assign article_schema_image_height = blank
+
+  if article.image
+    assign article_schema_image_url = article.image | image_url: width: 1200 | prepend: 'https:'
+    assign article_schema_image_width = 1200
+    assign article_schema_image_height = 1200 | divided_by: article.image.aspect_ratio | round
+  endif
+-%}
+{%- unless article.image -%}
+  {%- capture article_schema_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
+  {%- capture article_schema_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
+  {%- capture article_schema_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
+  {%- assign article_schema_image_url = article_schema_image_url | strip -%}
+  {%- assign article_schema_image_width = article_schema_image_width | strip -%}
+  {%- assign article_schema_image_height = article_schema_image_height | strip -%}
+{%- endunless -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ request.origin }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Style Journal",
+      "item": "{{ request.origin }}{{ blog.url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | json }},
+      "item": "{{ request.origin }}{{ article.url }}"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ request.origin }}{{ article.url }}"
+  },
+  "headline": {{ article.title | json }},
+  "description": {{ article.excerpt | default: article.content | strip_html | truncatewords: 30 | json }},
+  {% if article_schema_image_url != blank %}
+  "image": {
+    "@type": "ImageObject",
+    "url": {{ article_schema_image_url | json }},
+    "width": {{ article_schema_image_width }},
+    "height": {{ article_schema_image_height }}
+  },
+  {% endif %}
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+  "dateModified": "{{ article.updated_at | default: article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | json }},
+    "description": "Family fashion enthusiast and founder of Dress Like Mommy",
+    "url": "{{ request.origin }}/pages/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dress Like Mommy",
+    "url": "{{ request.origin }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ merchant_logo_url | json }},
+      "width": 1600,
+      "height": 800
+    }
+  },
+  "wordCount": {{ word_count }},
+  "timeRequired": "PT{{ read_time }}M",
+  "articleSection": "Family Fashion",
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "Blog",
+    "name": "Dress Like Mommy Style Journal",
+    "url": "{{ request.origin }}{{ blog.url }}"
+  }
+}
+</script>
+{%- endif -%}

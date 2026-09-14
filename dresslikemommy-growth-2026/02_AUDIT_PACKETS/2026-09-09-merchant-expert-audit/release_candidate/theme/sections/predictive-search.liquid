@@ -1,0 +1,169 @@
+{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+{%- if predictive_search.performed -%}
+  {%- assign collection_results_size = predictive_search.resources.collections.size -%}
+  {%- assign product_results_size = predictive_search.resources.products.size -%}
+  {%- assign predictive_search_terms = predictive_search.terms | default: '' | downcase | strip | replace: '&', 'and' | replace: '-', ' ' | replace: '/', ' ' | replace: ',', ' ' | replace: '+', ' ' -%}
+  {%- assign pajama_query = false -%}
+  {%- if predictive_search_terms contains 'pajama' or predictive_search_terms contains 'pjs' -%}
+    {%- assign pajama_query = true -%}
+  {%- endif -%}
+  {%- assign has_canonical_pajama_collection_result = false -%}
+  {%- for collection in predictive_search.resources.collections -%}
+    {%- if collection.handle == 'pajamas' -%}
+      {%- assign has_canonical_pajama_collection_result = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign show_pajama_shortcut = false -%}
+  {%- if pajama_query and has_canonical_pajama_collection_result == false -%}
+    {%- assign show_pajama_shortcut = true -%}
+  {%- endif -%}
+  {%- assign display_collection_results_size = collection_results_size -%}
+  {%- if show_pajama_shortcut -%}
+    {%- assign display_collection_results_size = display_collection_results_size | plus: 1 -%}
+  {%- endif -%}
+  {%- assign display_total_results = display_collection_results_size | plus: product_results_size -%}
+  <div id="predictive-search-results" role="listbox">
+    {%- if display_total_results > 0 -%}
+      <div
+        id="predictive-search-results-groups-wrapper"
+        class="predictive-search__results-groups-wrapper{% unless product_results_size > 0 %} predictive-search__results-groups-wrapper--no-products{% endunless %}{% unless display_collection_results_size > 0 %} predictive-search__results-groups-wrapper--no-suggestions{% endunless %}"
+      >
+        {%- if display_collection_results_size > 0 -%}
+          <div class="predictive-search__result-group">
+            <div>
+              <h2 id="predictive-search-queries" class="predictive-search__heading text-body caption-with-letter-spacing">
+                Collections
+              </h2>
+              <ul
+                id="predictive-search-results-queries-list"
+                class="predictive-search__results-list list-unstyled"
+                role="group"
+                aria-labelledby="predictive-search-queries"
+              >
+                {%- if show_pajama_shortcut -%}
+                  <li
+                    id="predictive-search-option-collection-pajamas-shortcut"
+                    class="predictive-search__list-item"
+                    role="option"
+                    aria-selected="false"
+                  >
+                    <a
+                      href="{{ collections['pajamas'].url | default: '/collections/pajamas' }}"
+                      class="predictive-search__item link link--text"
+                      tabindex="-1"
+                      data-search-shortcut="pajamas"
+                      data-collection-handle="pajamas"
+                      aria-label="Shop Pajamas. Matching pjs, family pajamas, mommy and me pajamas, and mother daughter pajamas."
+                    >
+                      <div class="predictive-search__item-content predictive-search__item-content--centered">
+                        <p class="predictive-search__item-heading h5">Shop Pajamas</p>
+                      </div>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- for collection in predictive_search.resources.collections -%}
+                  {%- assign predictive_collection_url = collection.url -%}
+                  {%- if collection.handle == 'family-pajamas' -%}
+                    {%- assign predictive_collection_url = collections['pajamas'].url | default: '/collections/pajamas' -%}
+                  {%- endif -%}
+                  <li
+                    id="predictive-search-option-collection-{{ forloop.index }}"
+                    class="predictive-search__list-item"
+                    role="option"
+                    aria-selected="false"
+                  >
+                    <a href="{{ predictive_collection_url }}" class="predictive-search__item link link--text" tabindex="-1">
+                      <div class="predictive-search__item-content predictive-search__item-content--centered">
+                        <p class="predictive-search__item-heading h5">{{ collection.title | escape }}</p>
+                      </div>
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if product_results_size > 0 -%}
+          <div class="predictive-search__result-group">
+            <div>
+              <h2
+                id="predictive-search-products"
+                class="predictive-search__heading text-body caption-with-letter-spacing"
+              >
+                {{- 'templates.search.products' | t -}}
+              </h2>
+              <ul
+                id="predictive-search-results-products-list"
+                class="predictive-search__results-list list-unstyled"
+                role="group"
+                aria-labelledby="predictive-search-products"
+              >
+                {%- for product in predictive_search.resources.products -%}
+                  {%- capture predictive_search_alt -%}
+                    {% render 'product-image-alt', product: product, media: product.featured_media %}
+                  {%- endcapture -%}
+                  {%- assign predictive_search_alt = predictive_search_alt | strip -%}
+                  <li
+                    id="predictive-search-option-product-{{ forloop.index }}"
+                    class="predictive-search__list-item"
+                    role="option"
+                    aria-selected="false"
+                  >
+                    <a
+                      href="{{ product.url }}"
+                      class="predictive-search__item predictive-search__item--link-with-thumbnail link link--text"
+                      tabindex="-1"
+                    >
+                      {%- if product.featured_media != blank -%}
+                        <img
+                          class="predictive-search__image"
+                          src="{{ product.featured_media | image_url: width: 150 }}"
+                          alt="{{ predictive_search_alt | escape }}"
+                          width="50"
+                          height="{{ 50 | divided_by: product.featured_media.preview_image.aspect_ratio }}"
+                        >
+                      {%- endif -%}
+                      <div class="predictive-search__item-content{% unless settings.predictive_search_show_vendor or settings.predictive_search_show_price %} predictive-search__item-content--centered{% endunless %}">
+                        {%- if settings.predictive_search_show_vendor -%}
+                          {%- liquid
+                            assign predictive_public_brand = product.vendor | default: 'dresslikemommy.com' | strip
+                            assign predictive_public_brand_downcase = predictive_public_brand | downcase
+                            if predictive_public_brand == blank or predictive_public_brand_downcase contains 'http://' or predictive_public_brand_downcase contains 'https://' or predictive_public_brand_downcase contains '1688.com' or predictive_public_brand_downcase contains 'alibaba.com' or predictive_public_brand_downcase contains 'aliexpress.com'
+                              assign predictive_public_brand = 'dresslikemommy.com'
+                            endif
+                          -%}
+                          <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+                          <div class="predictive-search__item-vendor caption-with-letter-spacing">
+                            {{ predictive_public_brand }}
+                          </div>
+                        {%- endif -%}
+                        <p class="predictive-search__item-heading h5">{{ product.title | escape }}</p>
+                        {%- if settings.predictive_search_show_price -%}
+                          {% render 'price', product: product, use_variant: true, show_badges: false %}
+                        {%- endif -%}
+                      </div>
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+
+    <span class="hidden" data-predictive-search-live-region-count-value>
+      {% liquid
+        if display_total_results == 0
+          echo 'templates.search.no_results' | t: terms: predictive_search.terms
+        else
+          echo 'templates.search.results_with_count' | t: count: display_total_results
+        endif
+      %}
+    </span>
+  </div>
+{%- endif -%}

@@ -1,0 +1,188 @@
+{
+  "schema": "dlm.merchant_eligibility_source_followup.v1",
+  "task_id": "TA07-ELIGIBILITY-RETURN-COVERAGE-20260914-1236",
+  "owner_thread": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "merchant_account": "513542500",
+  "observation_window_utc": {
+    "start": "2026-09-14T12:47:20Z",
+    "end": "2026-09-14T13:03:37.432669+00:00",
+    "limit": "Collection bounds; per-field exact native timestamps are recorded where captured. The end includes the optional source-inventory load timeout."
+  },
+  "access": {
+    "browser": "1 / Codex In-app Browser",
+    "tab": "5",
+    "ownership": "Existing task-owned tab reconnected and exact account read back; no personal browser fallback",
+    "authenticated": true
+  },
+  "account_issues": {
+    "observed_at_utc": "2026-09-14T12:49:11.105Z",
+    "url": "https://merchants.google.com/mc/products/diagnostics/accountissues?a=513542500&hl=en",
+    "literal_heading": "No issues for you to fix",
+    "literal_body": "All setup & policy issues will be shown here",
+    "previous_issue": "No products displayed",
+    "previous_issue_present": false,
+    "previous_review_requested_on": "2026-09-11",
+    "current_pending_review_wording_present": false,
+    "transition_time": "UNKNOWN; no dated approval message or transition event read",
+    "interpretation": "Current setup/policy page no longer reports the previous issue. Not an assertion that every offer is approved."
+  },
+  "sources": {
+    "US": {
+      "id": "10727274744",
+      "name": "PRODUCTS SOURCE 3",
+      "type": "File (URL)",
+      "source_products": 4761,
+      "source_count_observed_at_utc": "2026-09-14T12:47:55.442Z",
+      "last_updated_literal": "September 14, 2026 12:00 AM",
+      "latest_result_observed_at_utc": "2026-09-14T12:48:20.057Z",
+      "latest_heading": "Fix your product file",
+      "latest_issue": "Connection failed.",
+      "latest_issue_detail": "Failed to connect to the remote server. Please make sure the source URL in your feed configuration is a valid one.",
+      "total_updated_products_literal": "-",
+      "new_products_added_literal": "-",
+      "affected_products_literal": "1",
+      "last_successful_release_preserved": "2026-09-11T22:37:57Z",
+      "last_successful_release_count": 4761,
+      "interpretation": "Scheduled source fetch failed; existing source offers remain. Cause not established. Header Last updated is not evidence of successful processing.",
+      "new_update_actions": 0
+    },
+    "AU": {
+      "id": "10727245667",
+      "name": "DLM AU English Free Listings",
+      "type": "File (manual)",
+      "source_products": 4761,
+      "observed_at_utc": "2026-09-14T12:47:35.342Z",
+      "last_updated_literal": "September 11, 2026 6:43 PM",
+      "total_updated_products": 4761,
+      "new_products_added": 4760,
+      "attribute_names": "All recognized",
+      "product_file": "No issues found",
+      "new_upload_actions": 0
+    }
+  },
+  "protected_representatives": [
+    {
+      "offer_id": "shopify_US_7230336729185_41883237220449",
+      "observed_at_utc": "2026-09-14T12:49:27.489Z",
+      "price_literal": "$22.99",
+      "currency": "USD",
+      "availability": "In stock",
+      "color": "White",
+      "size": "Adult 2XL",
+      "status": "Approved",
+      "showing_literal": "This product is showing on Google",
+      "marketing_method": "Free listings",
+      "country": "United States",
+      "last_update_literal": "32 hrs ago"
+    },
+    {
+      "offer_id": "shopify_US_6718945034337_39756755861601",
+      "observed_at_utc": "2026-09-14T12:49:52.770Z",
+      "price_literal": "$17.99",
+      "currency": "USD",
+      "availability": "In stock",
+      "color": "Black",
+      "size": "Child 2-3 years",
+      "status": "Approved",
+      "showing_literal": "This product is showing on Google",
+      "marketing_method": "Free listings",
+      "country": "United States",
+      "last_update_literal": "32 hrs ago"
+    },
+    {
+      "offer_id": "shopify_AU_7230336729185_41883237220449",
+      "observed_at_utc": "2026-09-14T12:49:54.499Z",
+      "price_literal": "A$33.00",
+      "currency": "AUD",
+      "availability": "In stock",
+      "color": "White",
+      "size": "Adult 2XL",
+      "status": "Approved",
+      "showing_literal": "This product is showing on Google",
+      "marketing_method": "Free listings",
+      "country": "Australia",
+      "last_update_literal": "2 days ago"
+    },
+    {
+      "offer_id": "shopify_AU_6718945034337_39756755861601",
+      "observed_at_utc": "2026-09-14T12:49:56.543Z",
+      "price_literal": "A$26.00",
+      "currency": "AUD",
+      "availability": "In stock",
+      "color": "Black",
+      "size": "Child 2-3 years",
+      "status": "Approved",
+      "showing_literal": "This product is showing on Google",
+      "marketing_method": "Free listings",
+      "country": "Australia",
+      "last_update_literal": "2 days ago"
+    }
+  ],
+  "aggregate": {
+    "observed_at_utc": "2026-09-14T12:50:21.149Z",
+    "url": "https://merchants.google.com/mc/items?a=513542500&hl=en",
+    "total_products": 9522,
+    "not_showing_on_google": 54,
+    "native_data_timestamp": "Last updated at 12:00 AM Sep 13, 2026",
+    "filters": {
+      "period": "Last 28 days",
+      "countries": "All",
+      "marketing_methods": "All for online store",
+      "data_sources": "All",
+      "product_list_filters": []
+    },
+    "exact_approved_count": "NOT READ; 9522 minus54 is not substituted for a directly read Approved count",
+    "Google_found_source_current_inventory": "NOT separately read; aggregate change does not prove deletion, archiving or cause."
+  },
+  "remaining_product_issue": {
+    "observed_at_utc": "2026-09-14T12:48:54.963Z",
+    "name": "Image not processed",
+    "affected_products": 54,
+    "percentage_literal": "Below 1%",
+    "native_instruction": "No action needed. The [image_link] image will be processed again within 3 days",
+    "interpretation": "Google's displayed processing guidance, not a promised deadline by this task",
+    "sample_offers": [
+      "shopify_AU_7537041342561_44083683786849",
+      "shopify_US_7537978572897_44087869833313"
+    ]
+  },
+  "store_quality": {
+    "observed_at_utc": "2026-09-14T12:56:08.597Z",
+    "url": "https://merchants.google.com/mc/quality?a=513542500&region=US&hl=en",
+    "country": "US",
+    "overall_score": "No score",
+    "reason_heading": "Missing information",
+    "shopping_experience": "You don't have a shopping experience score yet",
+    "possible_reasons_native": [
+      "Missing shipping and return policies",
+      "No recent offers in Free Listings",
+      "Insufficient offer impressions"
+    ],
+    "exact_cause": "UNKNOWN; the UI lists alternatives",
+    "metric_or_badge_improvement": false
+  },
+  "actions": {
+    "source_refresh_button_clicks": 0,
+    "uploads": 0,
+    "new_sources": 0,
+    "appeals_or_review_requests": 0,
+    "product_edits": 0,
+    "account_security_changes": 0,
+    "paid_changes": 0
+  },
+  "limits": [
+    "Representative approval and Google's per-offer showing status are verified; impressions, clicks, orders, attribution and profit were not measured in this task.",
+    "No blocked download retry, Worker fetch retry or alternate transport/security bypass.",
+    "US/AU source counts do not prove current Shopify catalog synchronization.",
+    "Six parents/162 offers remain held; no hold release.",
+    "CA/GB feeds/shipping, theme/MAIN and orders/customer data remain outside this wake."
+  ],
+  "source_inventory_followup": {
+    "url": "https://merchants.google.com/mc/products/sources?a=513542500&hl=en",
+    "started_at_utc": "2026-09-14T13:00:26.280Z",
+    "result": "NOT_VERIFIED_IN_THIS_FOLLOWUP",
+    "observation": "Normal navigation showed main still loading; supported wait for known existing source text timed out. Individual US/AU source pages were verified separately.",
+    "no_source_inventory_inference": true,
+    "retry_or_reload": false
+  }
+}

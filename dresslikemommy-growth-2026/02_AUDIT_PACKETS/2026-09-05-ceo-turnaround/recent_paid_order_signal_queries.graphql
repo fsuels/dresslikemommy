@@ -1,0 +1,22 @@
+query RecentGrowthOrders($filter: String!) {
+ shop { name ianaTimezone currencyCode }
+ orders(first: 50, query: $filter) {
+  nodes { createdAt test cancelledAt displayFinancialStatus sourceName currentSubtotalPriceSet { shopMoney { amount currencyCode } } currentTotalPriceSet { shopMoney { amount currencyCode } } totalRefundedSet { shopMoney { amount currencyCode } } }
+  pageInfo { hasNextPage endCursor }
+ }
+}
+
+query RecentGrowthOrderSources($filter: String!) {
+ orders(first: 50, query: $filter) {
+  nodes {
+   createdAt test cancelledAt displayFinancialStatus displayFulfillmentStatus sourceName
+   currentSubtotalPriceSet { shopMoney { amount currencyCode } }
+   currentTotalPriceSet { shopMoney { amount currencyCode } }
+   currentTotalTaxSet { shopMoney { amount currencyCode } }
+   totalRefundedSet { shopMoney { amount currencyCode } }
+   lineItems(first: 25) { nodes { title quantity currentQuantity product { id title handle } } pageInfo { hasNextPage endCursor } }
+   customerJourneySummary { ready customerOrderIndex firstVisit { occurredAt source sourceDescription landingPage utmParameters { source medium campaign content term } } lastVisit { occurredAt source sourceDescription landingPage utmParameters { source medium campaign content term } } }
+  }
+  pageInfo { hasNextPage endCursor }
+ }
+}

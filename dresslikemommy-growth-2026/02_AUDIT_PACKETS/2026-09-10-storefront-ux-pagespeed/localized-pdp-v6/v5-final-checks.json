@@ -1,0 +1,180 @@
+{
+  "checkedAt": "2026-09-10T02:10:37.702Z",
+  "status": "VERIFIED_PREVIEW__OWNER_PUBLICATION_PENDING",
+  "commands": [
+    {
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/check_continuity_integrity.py",
+        "--strict"
+      ],
+      "chunk_id": "3ba84d",
+      "wall_time_seconds": 0.000001,
+      "exit_code": 0,
+      "original_token_count": 335,
+      "output": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 48963 lines; latest anchor 2026-09-10-storefront-ux-pagespeed-preview-verified\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-10-storefront-ux-pagespeed-preview-verified\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9008, root+paid-growth=15743 bytes)\n\nCONTINUITY_OK\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "ops/AGENT_COORDINATION.md",
+        "ops/PROBLEM_TRACKER.md",
+        "ops/AGENT_WORKLOG.md"
+      ],
+      "chunk_id": "069623",
+      "wall_time_seconds": 0.000002333,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "tests/homepage-images.test.mjs",
+        "tests/search-cart.test.mjs"
+      ],
+      "cwd": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed",
+      "status": "PASS",
+      "tests": 20,
+      "evidence": "regression-tests.txt",
+      "note": "Executed earlier in this audit; no unchanged JavaScript retest at closeout."
+    },
+    {
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "tests/footer-headings.test.mjs"
+      ],
+      "cwd": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed",
+      "status": "PASS",
+      "tests": 8,
+      "exit_code": 0,
+      "evidence": "footer-test-results.txt",
+      "limit": "Source/locale contract checks; not a Liquid rendering engine."
+    },
+    {
+      "command": "Shopify CLI theme check, complete527-file temporary copy",
+      "status": "PASS",
+      "exit_code": 0,
+      "diagnostics": 0,
+      "evidence": [
+        "theme-check-v5-run.json",
+        "theme-check-v5.json",
+        "candidate-source-validation.json"
+      ]
+    }
+  ],
+  "source": {
+    "checkedAt": "2026-09-10T02:05:01.439Z",
+    "revision": 5,
+    "preview": {
+      "id": "gid://shopify/OnlineStoreTheme/137888792673",
+      "name": "DLM UX Performance QA 2026-09-10",
+      "role": "UNPUBLISHED",
+      "processing": false,
+      "fileCount": 527,
+      "hasNextPage": false
+    },
+    "expectedSourceDifferences": [],
+    "mainChanges": [],
+    "combinedChanges": [],
+    "changedAgainstCombined": [
+      "assets/cart.js",
+      "assets/component-cart.css",
+      "assets/component-facets.css",
+      "assets/homepage-collection-card-images.js",
+      "assets/predictive-search.js",
+      "assets/section-home-curation.css",
+      "assets/theme-inline-body-static-05.css",
+      "locales/da.json",
+      "sections/category-icons.liquid",
+      "sections/curated-product-grid.liquid",
+      "sections/footer.liquid",
+      "sections/hero-banner.liquid",
+      "sections/main-cart-items.liquid",
+      "snippets/home-spotlight-card.liquid"
+    ],
+    "changedAgainstMain": [
+      "assets/cart.js",
+      "assets/component-cart.css",
+      "assets/component-facets.css",
+      "assets/cookie-preferences.css",
+      "assets/cookie-preferences.js",
+      "assets/homepage-collection-card-images.js",
+      "assets/predictive-search.js",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "assets/section-home-curation.css",
+      "assets/theme-inline-body-static-04.css",
+      "assets/theme-inline-body-static-05.css",
+      "layout/theme.liquid",
+      "locales/ar.json",
+      "locales/cs.json",
+      "locales/da.json",
+      "locales/de.json",
+      "locales/el.json",
+      "locales/en.default.json",
+      "locales/es.json",
+      "locales/fi.json",
+      "locales/fr.json",
+      "locales/he.json",
+      "locales/hi.json",
+      "locales/hr-HR.json",
+      "locales/hu.json",
+      "locales/id.json",
+      "locales/it.json",
+      "locales/ja.json",
+      "locales/ko.json",
+      "locales/lt-LT.json",
+      "locales/nb.json",
+      "locales/nl.json",
+      "locales/no.json",
+      "locales/pl.json",
+      "locales/pt-BR.json",
+      "locales/pt-PT.json",
+      "locales/ro-RO.json",
+      "locales/ro.json",
+      "locales/ru.json",
+      "locales/sk-SK.json",
+      "locales/sl-SI.json",
+      "locales/sv.json",
+      "locales/th.json",
+      "locales/tr.json",
+      "locales/vi.json",
+      "locales/zh-CN.json",
+      "locales/zh-TW.json",
+      "sections/category-icons.liquid",
+      "sections/curated-product-grid.liquid",
+      "sections/footer.liquid",
+      "sections/hero-banner.liquid",
+      "sections/main-cart-items.liquid",
+      "sections/main-product.liquid",
+      "snippets/home-spotlight-card.liquid",
+      "snippets/jsonld-seo.liquid",
+      "snippets/pdp-policy-modals.liquid",
+      "snippets/pdp-purchase-confidence.liquid",
+      "snippets/product-desktop-ux.liquid"
+    ],
+    "mainRole": "MAIN",
+    "combinedRole": "UNPUBLISHED"
+  },
+  "renderedEvidence": "browser-verification.json",
+  "independentReview": {
+    "status": "PASS",
+    "reviewer": "/root/theme_audit_review",
+    "finalDocumentationBlockers": "Both resolved after V5 source and rendered verification",
+    "scope": "Unpublished staged payloads, inverses, source counts and documented evidence; no publishing approval."
+  },
+  "livePublication": "NOT_RUN_CONNECTOR_RESTRICTION",
+  "postFixPageSpeed": "BLOCKED_VALID_RELEASE_TARGET__PREVIEW_ATTEMPT_MEASURED_MAIN",
+  "residualFindings": "remaining-findings.md and AUDIT.md",
+  "artifactValidation": {
+    "status": "PASS",
+    "rollbackFiles": 14,
+    "stagedHashes": 14,
+    "failedRenderedChecks": 0
+  }
+}

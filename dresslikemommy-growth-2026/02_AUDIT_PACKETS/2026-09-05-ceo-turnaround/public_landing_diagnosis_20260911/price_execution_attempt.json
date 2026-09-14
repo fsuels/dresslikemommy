@@ -1,0 +1,80 @@
+{
+  "schema": "dlm.exact_price_mutation_attempt.v1",
+  "attempt_at_utc": "2026-09-11T16:22:33Z",
+  "status": "BLOCKED_AUTO_REVIEW__NO_MUTATION",
+  "product_id": "7230336729185",
+  "query": "mutation CorrectMinimalistHeartPrices($productId:ID!,$variants:[ProductVariantsBulkInput!]!){productVariantsBulkUpdate(productId:$productId,variants:$variants,allowPartialUpdates:false){productVariants{id title price compareAtPrice} userErrors{field message}}}",
+  "variables": {
+    "productId": "gid://shopify/Product/7230336729185",
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/41883237220449",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237285985",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883237318753",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238465633",
+        "price": "22.99"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/41883238498401",
+        "price": "22.99"
+      }
+    ]
+  },
+  "source_preflight": {
+    "entire_queried_manifest_unchanged": true,
+    "product_exact": true,
+    "same_shop": true,
+    "all75": true,
+    "all_variants_complete": true,
+    "publications9_complete": true,
+    "exact_five_outliers": true,
+    "five_outliers_only": true,
+    "other35adults2299": true,
+    "content_digests6": true
+  },
+  "source_preflight_checked_at_utc": "2026-09-11T16:22:16Z",
+  "reviewer_verdict": "37/37PREPARED_ONLY_PASS; not live execution authority",
+  "automatic_review": {
+    "rejected": true,
+    "reason": "Fresh exact approval of the five22.99USDShopifyprice changes is required; no such exact price approval was supplied.",
+    "rejection_received_before_execution": true,
+    "lower_level_retry": false,
+    "alternate_route": false
+  },
+  "post_attempt_readback": {
+    "as_of": "2026-09-11T16:23:18Z",
+    "entire_manifest_equals_before": true,
+    "variants": 75,
+    "publications": 9,
+    "content_source_digests": 6,
+    "changed_prices": 0,
+    "query": "query MinimalistHeartPriceManifest($id:ID!,$variantAfter:String,$publicationAfter:String){shop{name currencyCode primaryDomain{host}} product(id:$id){id handle title status tags updatedAt options{id name position values} variants(first:100,after:$variantAfter){nodes{id title price compareAtPrice sku barcode selectedOptions{name value} inventoryPolicy inventoryQuantity taxable updatedAt} pageInfo{hasNextPage endCursor}} resourcePublicationsV2(first:50,after:$publicationAfter){nodes{isPublished publishDate publication{id name}} pageInfo{hasNextPage endCursor}}} translatableResource(resourceId:$id){resourceId translatableContent{key digest locale}}}"
+  },
+  "owner_question": {
+    "requested": true,
+    "status": "SUPERSEDED_BY_OWNER_MANUAL_CORRECTION",
+    "exact_request": "Approve correcting five Adult2XLMinimalistHeart variant prices from229918.99 to22.99USD each, matching otheradultsizes; fivepricefields only.",
+    "repeat_question": false
+  },
+  "production_mutations": 0,
+  "shopify_error": false,
+  "root_cause": "Action-time automatic approval gate, not a Shopify schema/API error.",
+  "next_action": "Owner handles the price edits. After confirmation verify actual source; no agent price write.",
+  "owner_manual_handoff": {
+    "recorded_at_utc": "2026-09-11T16:36:01.553349+00:00",
+    "source": "Merchant operator relay of current owner instruction",
+    "status": "OWNER_WILL_CORRECT_PRICES_AND_NOTIFY",
+    "agent_price_mutation_allowed": false,
+    "repeat_price_approval_question": false,
+    "next_action": "Wait for owner confirmation, then fresh read-only Shopify price/source verification and existing Merchant feed refresh under its owner."
+  }
+}

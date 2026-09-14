@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-14T08:12:35.534182+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE: independent comparison of six saved context outputs and reviewed R2 only; no compiler, source/API/browser, canonical edit or live replay.",
+  "source_bindings": [
+    {
+      "path": "/private/tmp/dlm-20260914-0720-microsoft-context.json",
+      "sha256": "6244d8527d4458ca259984efcd8b0d214d33cfdb82f3d9d9567a530f0f14bad2"
+    },
+    {
+      "path": "/private/tmp/dlm-20260914-0720-analytics-context.json",
+      "sha256": "1cdca25ee42dda37fba2ac0bb45f7fe1270ca6595bd2812e43a9428baea57db8"
+    },
+    {
+      "path": "/private/tmp/dlm-20260914-0720-google-context.json",
+      "sha256": "b1319c78714bb6377591e34f7aad22624b635f65868acb5d9675395d1fc44815"
+    },
+    {
+      "path": "/private/tmp/dlm-20260914-final-microsoft-context.json",
+      "sha256": "1b8df0d7ce5d69f552427337c008928728287ce4d41918bab75c597443121e94"
+    },
+    {
+      "path": "/private/tmp/dlm-20260914-final-analytics-context.json",
+      "sha256": "7ac9c1b48817ae4a8490c02fc923f9089843c5f3879f65e684e0eddda31f01e5"
+    },
+    {
+      "path": "/private/tmp/dlm-20260914-final-google-context.json",
+      "sha256": "822d2acaa00a844252f1d4d2e8618dc48403ece33b0087e3a2527a2fe9f33e7a"
+    },
+    {
+      "path": "/private/tmp/dlm-sale-and-context-20260914-canonical-plan-r2.json",
+      "sha256": "e9d3a4637507bf3738602cec2422e7ccd6b0e01db26832180a1f22019fcc3a4b"
+    }
+  ],
+  "check_counts": {
+    "total": 40,
+    "passed": 40,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "id": "C01",
+      "check": "Frozen input hash: dlm-20260914-0720-microsoft-context.json",
+      "status": "PASS",
+      "evidence": {
+        "path": "/private/tmp/dlm-20260914-0720-microsoft-context.json",
+        "actual_sha256": "6244d8527d4458ca259984efcd8b0d214d33cfdb82f3d9d9567a530f0f14bad2"
+      }
+    },
+    {
+      "id": "C02",
+      "check": "Frozen input hash: dlm-20260914-0720-analytics-context.json",
+      "status": "PASS",
+      "evidence": {
+        "path": "/private/tmp/dlm-20260914-0720-analytics-context.json",
+        "actual_sha256": "1cdca25ee42dda37fba2ac0bb45f7fe1270ca6595bd2812e43a9428baea57db8"
+      }
+    },
+    {
+      "id": "C03",
+      "check": "Frozen input hash: dlm-20260914-0720-google-context.json",
+      "status": "PASS",
+      "evidence": {
+        "path": "/private/tmp/dlm-20260914-0720-google-context.json",
+        "actual_sha256": "b1319c78714bb6377591e34f7aad22624b635f65868acb5d9675395d1fc44815"
+      }
+    },
+    {
+      "id": "C04",
+      "check": "Frozen input hash: dlm-20260914-final-microsoft-context.json",
+      "status": "PASS",
+      "evidence": {
+        "path": "/private/tmp/dlm-20260914-final-microsoft-context.json",
+        "actual_sha256": "1b8df0d7ce5d69f552427337c008928728287ce4d41918bab75c597443121e94"
+      }
+    },
+    {
+      "id": "C05",
+      "check": "Frozen input hash: dlm-20260914-final-analytics-context.json",
+      "status": "PASS",
+      "evidence": {
+        "path": "/private/tmp/dlm-20260914-final-analytics-context.json",
+        "actual_sha256": "7ac9c1b48817ae4a8490c02fc923f9089843c5f3879f65e684e0eddda31f01e5"
+      }
+    },
+    {
+      "id": "C06",
+      "check": "Frozen input hash: dlm-20260914-final-google-context.json",
+      "status": "PASS",
+      "evidence": {
+        "path": "/private/tmp/dlm-20260914-final-google-context.json",
+        "actual_sha256": "822d2acaa00a844252f1d4d2e8618dc48403ece33b0087e3a2527a2fe9f33e7a"
+      }
+    },
+    {
+      "id": "C07",
+      "check": "Frozen input hash: dlm-sale-and-context-20260914-canonical-plan-r2.json",
+      "status": "PASS",
+      "evidence": {
+        "path": "/private/tmp/dlm-sale-and-context-20260914-canonical-plan-r2.json",
+        "actual_sha256": "e9d3a4637507bf3738602cec2422e7ccd6b0e01db26832180a1f22019fcc3a4b"
+      }
+    },
+    {
+      "id": "C08",
+      "check": "microsoft nine authority fields preserved",
+      "status": "PASS",
+      "evidence": "authority.fields, before versus final"
+    },
+    {
+      "id": "C09",
+      "check": "microsoft restrictive scope unchanged",
+      "status": "PASS",
+      "evidence": "NONE / false / external_write_authorized=false"
+    },
+    {
+      "id": "C10",
+      "check": "microsoft no reported errors, warnings or conflicts",
+      "status": "PASS",
+      "evidence": "Saved final diagnostics and session_brief.conflicts"
+    },
+    {
+      "id": "C11",
+      "check": "microsoft read-only next action",
+      "status": "PASS",
+      "evidence": "Saved final next_action.id"
+    },
+    {
+      "id": "C12",
+      "check": "analytics nine authority fields preserved",
+      "status": "PASS",
+      "evidence": "authority.fields, before versus final"
+    },
+    {
+      "id": "C13",
+      "check": "analytics restrictive scope unchanged",
+      "status": "PASS",
+      "evidence": "NONE / false / external_write_authorized=false"
+    },
+    {
+      "id": "C14",
+      "check": "analytics no reported errors, warnings or conflicts",
+      "status": "PASS",
+      "evidence": "Saved final diagnostics and session_brief.conflicts"
+    },
+    {
+      "id": "C15",
+      "check": "analytics read-only next action",
+      "status": "PASS",
+      "evidence": "Saved final next_action.id"
+    },
+    {
+      "id": "C16",
+      "check": "google nine authority fields preserved",
+      "status": "PASS",
+      "evidence": "authority.fields, before versus final"
+    },
+    {
+      "id": "C17",
+      "check": "google restrictive scope unchanged",
+      "status": "PASS",
+      "evidence": "NONE / false / external_write_authorized=false"
+    },
+    {
+      "id": "C18",
+      "check": "google no reported errors, warnings or conflicts",
+      "status": "PASS",
+      "evidence": "Saved final diagnostics and session_brief.conflicts"
+    },
+    {
+      "id": "C19",
+      "check": "google read-only next action",
+      "status": "PASS",
+      "evidence": "Saved final next_action.id"
+    },
+    {
+      "id": "C20",
+      "check": "microsoft task membership preserved",
+      "status": "PASS",
+      "evidence": [
+        "TA-15"
+      ]
+    },
+    {
+      "id": "C21",
+      "check": "microsoft claim membership preserved",
+      "status": "PASS",
+      "evidence": [
+        35
+      ]
+    },
+    {
+      "id": "C22",
+      "check": "google task membership preserved",
+      "status": "PASS",
+      "evidence": [
+        "TA-01",
+        "TA-09",
+        "TA-10"
+      ]
+    },
+    {
+      "id": "C23",
+      "check": "google claim membership preserved",
+      "status": "PASS",
+      "evidence": [
+        24,
+        44,
+        23,
+        42,
+        43,
+        33,
+        78,
+        86
+      ]
+    },
+    {
+      "id": "C24",
+      "check": "Analytics retains only current TA-02",
+      "status": "PASS",
+      "evidence": "session_brief.current_tasks"
+    },
+    {
+      "id": "C25",
+      "check": "Analytics active claim change exactly 24,44 to 24",
+      "status": "PASS",
+      "evidence": "Current claim line numbers"
+    },
+    {
+      "id": "C26",
+      "check": "Root relationship survives in historical section",
+      "status": "PASS",
+      "evidence": {
+        "location": "session_brief.older_coordination_claims line44",
+        "basis": {
+          "TA-02": {
+            "exact_entities": [
+              "330266838"
+            ],
+            "explicit_task_id": false
+          }
+        }
+      }
+    },
+    {
+      "id": "C27",
+      "check": "Recorded dates explain historical classification",
+      "status": "PASS",
+      "evidence": {
+        "root_record_date": "2026-09-12",
+        "prior_TA02_checkpoint": "2026-09-12",
+        "final_TA02_checkpoint": "2026-09-14",
+        "handling": "HISTORICAL_SCOPE_REQUIRES_RECONCILIATION; this retrieval neither clears a lock nor grants its old scope"
+      }
+    },
+    {
+      "id": "C28",
+      "check": "Historical root owner and status match current Google source row",
+      "status": "PASS",
+      "evidence": "The same row44 remains current under Google; no deleted or transferred ownership"
+    },
+    {
+      "id": "C29",
+      "check": "Root non-note scope fields unchanged",
+      "status": "PASS",
+      "evidence": "Owner, Surface, Status, Allowed Actions, Blocked Actions, Last Evidence/Handoff, Workstream"
+    },
+    {
+      "id": "C30",
+      "check": "TA-02 exact reviewed R2 replacement",
+      "status": "PASS",
+      "evidence": "R2 operation18 old/new equals saved before/final task text"
+    },
+    {
+      "id": "C31",
+      "check": "Ads claim exact reviewed R2 replacement",
+      "status": "PASS",
+      "evidence": "R2 operation20 old/new equals saved before/final claim24 text"
+    },
+    {
+      "id": "C32",
+      "check": "Root claim exact reviewed R2 replacement",
+      "status": "PASS",
+      "evidence": "R2 operation21 old/new equals saved before/final Google claim44 text"
+    },
+    {
+      "id": "C33",
+      "check": "Purchase receiver relationship remains exact",
+      "status": "PASS",
+      "evidence": "Analytics current claim24 exact Purchase7760272273; no explicit task-ID shortcut"
+    },
+    {
+      "id": "C34",
+      "check": "Current GA4 v2 receipt retained",
+      "status": "PASS",
+      "evidence": "TA-02 Evidence/source"
+    },
+    {
+      "id": "C35",
+      "check": "Next session/consent task and read-only boundary retained",
+      "status": "PASS",
+      "evidence": "TA-02 Action and Next step"
+    },
+    {
+      "id": "C36",
+      "check": "Current property and purchase identity retained",
+      "status": "PASS",
+      "evidence": "TA-02 identity_evidence.entities"
+    },
+    {
+      "id": "C37",
+      "check": "Latest root anchor recoverable",
+      "status": "PASS",
+      "evidence": "Analytics recent_anchors and TA-02 identity_evidence"
+    },
+    {
+      "id": "C38",
+      "check": "Latest anchor required metadata retained",
+      "status": "PASS",
+      "evidence": "Saved anchor metadata"
+    },
+    {
+      "id": "C39",
+      "check": "Measurement and profit limitations retained",
+      "status": "PASS",
+      "evidence": "TA-02 Gate"
+    },
+    {
+      "id": "C40",
+      "check": "No receiver owner reassignment",
+      "status": "PASS",
+      "evidence": "TA-02 owner/input unchanged"
+    }
+  ],
+  "conclusion": "Analytics did not lose the root-to-TA-02 relationship. Row44 moved from current coordination_claims to older_coordination_claims and retains the exact property330266838 linkage. Its recorded September12 date precedes the rewritten TA-02 September14 checkpoint. It remains a current row under the Google brief, and its owner/scope/status fields are unchanged. This is a saved-context historical reclassification, not an ownership revocation or missing relationship.",
+  "limits": [
+    "The displayed record_date remains September12 despite newer root Notes. This review verifies the saved date/classification and retained relationship; it does not trace compiler date-selection internals or certify that all root activity is stale.",
+    "Parent-reported rendering, integration, strict continuity and scoped diff were not rerun. No broad future-context or live-account acceptance is implied.",
+    "The report-level receiver match does not close raw payload/currency, session/consent ordering, deduplication, attribution, international accuracy or profit."
+  ],
+  "unresolved_findings": [],
+  "next_action": "Parent can close this narrow semantic verification and retain its existing owner action; no code or authority change is needed for the observed row44 reclassification."
+}

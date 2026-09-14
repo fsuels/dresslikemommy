@@ -1,0 +1,2373 @@
+{
+  "reviewed_at_utc": "2026-09-11T22:33:00.844343+00:00",
+  "review_id": "DLM-US-LOCAL-LIFECYCLE-CODE-REVIEW-20260911",
+  "reviewer": "/root/order_delta_1934",
+  "independence": "Reviewer did not build or edit lifecycle.py/test_lifecycle.py/README.md and did not run live prepare, build or promote. All behavior execution used simulated source and Cloudflare adapters in private temporary directories.",
+  "verdict": "PASS_REVISION6_CODE_AND_EXACT_US_AU_CONTAINMENT_WITH_ACTION_TIME_GUARDS",
+  "live_action_authorization": "Independent exact US pointer and AU existing-source file reviews created under saved current nonspend authority, bound below. Reviewer performed no external action. No standing paid/future-market/source/credential authority.",
+  "reviewed_files": {
+    "lifecycle.py": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+      "sha256": "4e6457f5d76fa37e46caf29a2f9c791bce615211a77713fbd7c0d98ee3749b9f",
+      "bytes": 30127
+    },
+    "cohort_filter.py": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/cohort_filter.py",
+      "sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9",
+      "bytes": 5275
+    },
+    "test_lifecycle.py": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/test_lifecycle.py",
+      "sha256": "86e0da29453480c3cb626e77c4bde25e2c22e3b8f84d2007515f2f5dd891f9a6",
+      "bytes": 22455
+    },
+    "test_cohort_filter.py": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/test_cohort_filter.py",
+      "sha256": "2f650ba22e058604c0d7fda7876ce2dec7aef1179aa77d8eb5f9c98c515d3f28",
+      "bytes": 5367
+    },
+    "README.md": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/README.md",
+      "sha256": "830c517763155d50ccd92c82493bb12a4a9bcd68d7d21e224114e72afe2a7a26",
+      "bytes": 7203
+    },
+    "eligibility_holds_20260911.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/eligibility_holds_20260911.json",
+      "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+      "bytes": 4385
+    }
+  },
+  "tests": {
+    "initial_supplied_suite": {
+      "tests": 16,
+      "failed": 0,
+      "test_file_sha256": "7e5734d3a2ea51719db4388249b5a285519e26b48cb1f9f40283a98961c17f32"
+    },
+    "latest_supplied_suite": {
+      "tests": 44,
+      "failed": 0,
+      "errors": 0,
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_lifecycle.py test_cohort_filter.py",
+      "working_directory": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim",
+      "receipt": "/private/tmp/dlm-containment-supplied-tests-revision6-20260911.json",
+      "receipt_sha256": "bd27fe5b765567615182b323a594c1b7575e5e1da7d0a91cb6df4d3dd540a9e8",
+      "at_utc": "2026-09-11T22:24:11.512072+00:00"
+    },
+    "independent_probes": {
+      "total": 11,
+      "passed": 10,
+      "failed": 1,
+      "path": "/private/tmp/dlm-lifecycle-independent-probes-20260911.json",
+      "sha256": "491fd6f62e9b4c657b67edd72c6aae99ec3c8648957be4acaebe0be7e7cabeff",
+      "script_path": "/private/tmp/dlm-lifecycle-independent-probes-20260911.py",
+      "script_sha256": "c7c1c9fbb86fef291d2d683d5c03c5176e15ee45bdaa0c98979bc43cd8fb3869",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 /private/tmp/dlm-lifecycle-independent-probes-20260911.py",
+      "results": [
+        {
+          "name": "complete_fixture_candidate_accepted",
+          "pass": true,
+          "observed": "complete fixture accepted with real candidate validation"
+        },
+        {
+          "name": "expired_source_rejected_before_start",
+          "pass": true,
+          "observed": "candidate_source_expired",
+          "expected": "candidate_source_expired"
+        },
+        {
+          "name": "incomplete_source_rejected",
+          "pass": true,
+          "observed": "incomplete_or_invalid_source",
+          "expected": "incomplete_or_invalid_source"
+        },
+        {
+          "name": "failed_live_build_rejected",
+          "pass": true,
+          "observed": "successful_live_scan_required",
+          "expected": "successful_live_scan_required"
+        },
+        {
+          "name": "build_intent_changed_after_review_rejected",
+          "pass": true,
+          "observed": "independent_review_binding_mismatch",
+          "expected": "independent_review_binding_mismatch"
+        },
+        {
+          "name": "same_hash_renewal_real_candidate_validation",
+          "pass": true,
+          "observed": {
+            "status": "COMMITTED_VERIFIED",
+            "writes": [
+              "merchant/us-en/current.json"
+            ],
+            "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+          }
+        },
+        {
+          "name": "worker_drift_during_upload_no_pointer_write",
+          "pass": true,
+          "observed": "worker_changed_before_commit",
+          "expected": "worker_changed_before_commit"
+        },
+        {
+          "name": "existing_wrong_immutable_bytes_rejected",
+          "pass": true,
+          "observed": "immutable_object_conflict",
+          "expected": "immutable_object_conflict"
+        },
+        {
+          "name": "remote_etag_mismatch_no_pointer_write",
+          "pass": true,
+          "observed": "immutable_readback_failed",
+          "expected": "immutable_readback_failed"
+        },
+        {
+          "name": "expiry_crossed_during_upload_stops_promotion",
+          "pass": false,
+          "observed": {
+            "status": "COMMITTED_VERIFIED",
+            "source_age_at_commit_seconds": 7201.0,
+            "pointer_was_written": true
+          },
+          "expected": "Stop expired candidate immediately before pointer commit",
+          "finding": "F1"
+        },
+        {
+          "name": "frozen_builder_files_and_config_match",
+          "pass": true,
+          "observed": "28 frozen files plus fixed freeze/config hashes verified"
+        }
+      ],
+      "unsafe_attempts": []
+    },
+    "frozen_files": {
+      "verified": 28,
+      "mismatch": 0,
+      "freeze_manifest_sha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed",
+      "config_sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b"
+    },
+    "independent_revision2": {
+      "path": "/private/tmp/dlm-lifecycle-independent-probes-20260911-revision2.json",
+      "sha256": "8b562dbe1560d2ec1c5d899cb13b42dba0a770ad3308fafa94d85fcd3e36ab0a",
+      "total": 12,
+      "passed": 12,
+      "results": [
+        {
+          "name": "complete_fixture_candidate_accepted",
+          "pass": true,
+          "observed": "complete fixture accepted with real candidate validation"
+        },
+        {
+          "name": "expired_source_rejected_before_start",
+          "pass": true,
+          "observed": "candidate_source_expired",
+          "expected": "candidate_source_expired"
+        },
+        {
+          "name": "incomplete_source_rejected",
+          "pass": true,
+          "observed": "incomplete_or_invalid_source",
+          "expected": "incomplete_or_invalid_source"
+        },
+        {
+          "name": "failed_live_build_rejected",
+          "pass": true,
+          "observed": "successful_live_scan_required",
+          "expected": "successful_live_scan_required"
+        },
+        {
+          "name": "build_intent_changed_after_review_rejected",
+          "pass": true,
+          "observed": "independent_review_binding_mismatch",
+          "expected": "independent_review_binding_mismatch"
+        },
+        {
+          "name": "same_hash_renewal_real_candidate_validation",
+          "pass": true,
+          "observed": {
+            "status": "COMMITTED_VERIFIED",
+            "writes": [
+              "merchant/us-en/current.json"
+            ],
+            "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+          }
+        },
+        {
+          "name": "worker_drift_during_upload_no_pointer_write",
+          "pass": true,
+          "observed": "worker_changed_before_commit",
+          "expected": "worker_changed_before_commit"
+        },
+        {
+          "name": "existing_wrong_immutable_bytes_rejected",
+          "pass": true,
+          "observed": "immutable_object_conflict",
+          "expected": "immutable_object_conflict"
+        },
+        {
+          "name": "remote_etag_mismatch_no_pointer_write",
+          "pass": true,
+          "observed": "immutable_readback_failed",
+          "expected": "immutable_readback_failed"
+        },
+        {
+          "name": "expiry_crossed_during_upload_stops_promotion",
+          "pass": true,
+          "observed": "candidate_source_expired",
+          "expected": "candidate_source_expired before pointer commit"
+        },
+        {
+          "name": "actual_review_file_changed_during_upload_rejected",
+          "pass": true,
+          "observed": "independent_review_hash_mismatch",
+          "expected": "independent_review_hash_mismatch"
+        },
+        {
+          "name": "frozen_builder_files_and_config_match",
+          "pass": true,
+          "observed": "28 frozen files plus fixed freeze/config hashes verified"
+        }
+      ],
+      "unsafe_attempts": []
+    },
+    "independent_transport_compatibility": {
+      "path": "/private/tmp/dlm-lifecycle-independent-weak-etag-probe-20260911.json",
+      "sha256": "c417e6c70a0ec85a4f41580abdc32219bb448bb7c10db551c8fdfd908b73fe8b",
+      "total": 12,
+      "passed": 11,
+      "failed": 1,
+      "results": [
+        {
+          "name": "complete_fixture_candidate_accepted",
+          "pass": true,
+          "observed": "complete fixture accepted with real candidate validation"
+        },
+        {
+          "name": "expired_source_rejected_before_start",
+          "pass": true,
+          "observed": "candidate_source_expired",
+          "expected": "candidate_source_expired"
+        },
+        {
+          "name": "incomplete_source_rejected",
+          "pass": true,
+          "observed": "incomplete_or_invalid_source",
+          "expected": "incomplete_or_invalid_source"
+        },
+        {
+          "name": "failed_live_build_rejected",
+          "pass": true,
+          "observed": "successful_live_scan_required",
+          "expected": "successful_live_scan_required"
+        },
+        {
+          "name": "build_intent_changed_after_review_rejected",
+          "pass": true,
+          "observed": "independent_review_binding_mismatch",
+          "expected": "independent_review_binding_mismatch"
+        },
+        {
+          "name": "same_hash_renewal_real_candidate_validation",
+          "pass": true,
+          "observed": {
+            "status": "COMMITTED_VERIFIED",
+            "writes": [
+              "merchant/us-en/current.json"
+            ],
+            "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+          }
+        },
+        {
+          "name": "worker_drift_during_upload_no_pointer_write",
+          "pass": true,
+          "observed": "worker_changed_before_commit",
+          "expected": "worker_changed_before_commit"
+        },
+        {
+          "name": "existing_wrong_immutable_bytes_rejected",
+          "pass": true,
+          "observed": "immutable_object_conflict",
+          "expected": "immutable_object_conflict"
+        },
+        {
+          "name": "remote_etag_mismatch_no_pointer_write",
+          "pass": true,
+          "observed": "immutable_readback_failed",
+          "expected": "immutable_readback_failed"
+        },
+        {
+          "name": "expiry_crossed_during_upload_stops_promotion",
+          "pass": true,
+          "observed": "candidate_source_expired",
+          "expected": "candidate_source_expired before pointer commit"
+        },
+        {
+          "name": "recorded_weak_gzip_transport_etag_compatible",
+          "pass": false,
+          "observed": "immutable_readback_failed",
+          "expected": "Accept the recorded weak gzip transport ETag shape when all decoded bytes, SHA256 and MD5 exactly match; preserve the raw R2 manifest ETag.",
+          "finding": "F2",
+          "pointer_was_written": false
+        },
+        {
+          "name": "frozen_builder_files_and_config_match",
+          "pass": true,
+          "observed": "28 frozen files plus fixed freeze/config hashes verified"
+        }
+      ],
+      "unsafe_attempts": []
+    },
+    "independent_revision3": {
+      "path": "/private/tmp/dlm-lifecycle-independent-probes-20260911-revision3.json",
+      "sha256": "7618f5775fae16b6648d58ebeb282e2966c33cda7e6d174ba2716c1235994eba",
+      "at_utc": "2026-09-11T21:33:43.855931+00:00",
+      "total": 19,
+      "passed": 19,
+      "failed": 0,
+      "results": [
+        {
+          "name": "complete_fixture_candidate_accepted",
+          "pass": true,
+          "observed": "complete fixture accepted with real candidate validation"
+        },
+        {
+          "name": "expired_source_rejected_before_start",
+          "pass": true,
+          "observed": "candidate_source_expired",
+          "expected": "candidate_source_expired"
+        },
+        {
+          "name": "incomplete_source_rejected",
+          "pass": true,
+          "observed": "incomplete_or_invalid_source",
+          "expected": "incomplete_or_invalid_source"
+        },
+        {
+          "name": "failed_live_build_rejected",
+          "pass": true,
+          "observed": "successful_live_scan_required",
+          "expected": "successful_live_scan_required"
+        },
+        {
+          "name": "build_intent_changed_after_review_rejected",
+          "pass": true,
+          "observed": "independent_review_binding_mismatch",
+          "expected": "independent_review_binding_mismatch"
+        },
+        {
+          "name": "same_hash_renewal_real_candidate_validation",
+          "pass": true,
+          "observed": {
+            "status": "COMMITTED_VERIFIED",
+            "writes": [
+              "merchant/us-en/current.json"
+            ],
+            "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+          }
+        },
+        {
+          "name": "worker_drift_during_upload_no_pointer_write",
+          "pass": true,
+          "observed": "worker_changed_before_commit",
+          "expected": "worker_changed_before_commit"
+        },
+        {
+          "name": "existing_wrong_immutable_bytes_rejected",
+          "pass": true,
+          "observed": "immutable_object_conflict",
+          "expected": "immutable_object_conflict"
+        },
+        {
+          "name": "remote_etag_mismatch_no_pointer_write",
+          "pass": true,
+          "observed": "remote_object_transport_etag_mismatch",
+          "expected": "remote_object_transport_etag_mismatch"
+        },
+        {
+          "name": "expiry_crossed_during_upload_stops_promotion",
+          "pass": true,
+          "observed": "candidate_source_expired",
+          "expected": "candidate_source_expired before pointer commit"
+        },
+        {
+          "name": "actual_review_file_changed_during_upload_rejected",
+          "pass": true,
+          "observed": "independent_review_hash_mismatch",
+          "expected": "independent_review_hash_mismatch"
+        },
+        {
+          "name": "recorded_weak_gzip_transport_etag_compatible",
+          "pass": true,
+          "observed": "COMMITTED_VERIFIED"
+        },
+        {
+          "name": "same_hash_weak_transport_renewal_reuses_existing_object",
+          "pass": true,
+          "observed": "COMMITTED_VERIFIED",
+          "writes": [
+            "merchant/us-en/current.json"
+          ]
+        },
+        {
+          "name": "missing_malformed_unrecorded_transport_rejected",
+          "pass": true,
+          "malformed_shapes_rejected": 7,
+          "total_shapes": 7
+        },
+        {
+          "name": "matching_transport_does_not_hide_corrupt_body",
+          "pass": true,
+          "observed": "remote_object_hash_mismatch",
+          "expected": "remote_object_hash_mismatch"
+        },
+        {
+          "name": "wrong_manifest_sha256_rejected",
+          "pass": true,
+          "observed": "remote_object_hash_mismatch",
+          "expected": "remote_object_hash_mismatch"
+        },
+        {
+          "name": "wrong_manifest_md5_rejected",
+          "pass": true,
+          "observed": "remote_object_hash_mismatch",
+          "expected": "remote_object_hash_mismatch"
+        },
+        {
+          "name": "wrong_hash_in_transport_etag_rejected",
+          "pass": true,
+          "observed": "remote_object_transport_etag_mismatch",
+          "expected": "remote_object_transport_etag_mismatch"
+        },
+        {
+          "name": "frozen_builder_files_and_config_match",
+          "pass": true,
+          "observed": "28 frozen files plus fixed freeze/config hashes verified"
+        }
+      ],
+      "unsafe_attempts": [],
+      "method": "Original independent boundary probe rerun against final code; recorded weak-gzip transport response plus seven malformed alternatives and incorrect byte/SHA256/MD5/hash negatives. Synthetic adapters only."
+    },
+    "latest_final_rebinding": {
+      "at_utc": "2026-09-11T21:42:17.722848+00:00",
+      "final_code_hashes_match": true,
+      "frozen_files_verified": 28,
+      "candidate_packet_equal_to_current_local_candidate_function": true,
+      "exact_binding_count": 12,
+      "bindings": {
+        "prepare_receipt_sha256": "427313de73b94576bf6859930fd5b6f8961d01ca2448c501a171921bc388aea8",
+        "live_build_receipt_sha256": "ff4ef7edd117fc71ee8e95ca91a4b6e14d3b97a24e023d0c19f33da01341880b",
+        "live_build_intent_sha256": "5b90e2eb49d7f20b600127e0ae3fcfc1afc8cdb0c207d484b6412458d1f97ea4",
+        "before_pointer_sha256": "0c0b406dc9bfced6a438f459161be9c71887260c420e4c4ef7a8a45d2ae11bd2",
+        "candidate_manifest_sha256": "e49ed987b164de84bdfdcab43deac2a9c341107826aa9d62e3287af8a3a433b6",
+        "candidate_feed_sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+        "candidate_snapshot_sha256": "fca7d568d26d4d01383c9bc2149e3447663e0bb70d9c9ddfdf560c3e48aa8a05",
+        "candidate_diagnostics_sha256": "0fee91464ab083c878daee25f23da334cc258a715e5b9c3366ad46e941366e41",
+        "uploader_sha256": "9c22626059110291b4b7fbfd026215b54de0d2b29966c047992da754c1bab1c8",
+        "config_sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b",
+        "builder_freeze_sha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed",
+        "source_completed_at": "2026-09-11T21:18:15.731Z"
+      },
+      "no_live_command": true
+    },
+    "independent_containment_revision1": {
+      "path": "/private/tmp/dlm-containment-independent-probes-20260911.json",
+      "sha256": "368e2f27e875b28114864e35c32c7062f8e7003d2c75aceec8aae02d2029908f",
+      "script": "/private/tmp/dlm-containment-independent-probes-20260911.py",
+      "script_sha256": "e5a0b9f44e9476cd9a7c5f526d28287d0af149c047bf065f61745e617826876f",
+      "at_utc": "2026-09-11T21:49:32.090063+00:00",
+      "total": 17,
+      "passed": 14,
+      "failed": 3,
+      "results": [
+        {
+          "name": "exact_whole_parent_not_prefix_and_all_retained_bytes_order",
+          "pass": true,
+          "retained_bytes_and_order_exact": true,
+          "source_counts": {
+            "parents": 3,
+            "variants": 4
+          },
+          "output_rows": 2,
+          "output_parents": 2
+        },
+        {
+          "name": "unknown_parent_hold_must_not_silently_succeed",
+          "pass": false,
+          "observed": "accepted",
+          "expected": "unknown_held_parent",
+          "removed": 0,
+          "finding": "F3"
+        },
+        {
+          "name": "duplicate_parent_hold_rejected",
+          "pass": true,
+          "observed": "invalid_or_duplicate_held_parent",
+          "expected": "duplicate_held_parent"
+        },
+        {
+          "name": "pure_filter_rejects_explicit_protected_offer_loss",
+          "pass": true,
+          "observed": "empty_cohort_or_protected_offer_lost",
+          "expected": "protected_offer_lost"
+        },
+        {
+          "name": "wrapper_must_wire_protected_pilot_and_five_price_ids",
+          "pass": false,
+          "wrapper_protected_arguments": [
+            [],
+            []
+          ],
+          "finding": "F4",
+          "observed": "Wrapper containment and verification do not supply protected IDs to the pure filter."
+        },
+        {
+          "name": "future_added_offer_still_requires_exact_buyer_qualification",
+          "pass": true,
+          "observed": "added_buyer_routes_unqualified",
+          "expected": "added_buyer_routes_unqualified"
+        },
+        {
+          "name": "run_hold_change_during_upload_stops_before_pointer",
+          "pass": true,
+          "observed": "hold_spec_changed",
+          "expected": "hold_spec_changed"
+        },
+        {
+          "name": "current_active_hold_revision_during_upload_must_invalidate_old_copy",
+          "pass": false,
+          "observed": "accepted",
+          "expected": "active_hold_spec_changed",
+          "pointer_written": true,
+          "finding": "F5"
+        },
+        {
+          "name": "actual_independent_review_file_drift_before_commit_stops",
+          "pass": true,
+          "observed": "independent_review_hash_mismatch",
+          "expected": "independent_review_hash_mismatch"
+        },
+        {
+          "name": "containment_receipt_drift_before_commit_stops",
+          "pass": true,
+          "observed": "independent_review_binding_mismatch",
+          "expected": "independent_review_binding_mismatch"
+        },
+        {
+          "name": "original_F1_expiry_guard_survives_containment",
+          "pass": true,
+          "observed": "candidate_source_expired",
+          "expected": "candidate_source_expired"
+        },
+        {
+          "name": "original_F2_weak_gzip_transport_guard_survives_containment",
+          "pass": true,
+          "status": "COMMITTED_VERIFIED"
+        },
+        {
+          "name": "unfiltered_original_bytes_drift_rejected",
+          "pass": true,
+          "observed": "unfiltered_source_changed",
+          "expected": "unfiltered_source_changed"
+        },
+        {
+          "name": "retained_output_byte_drift_rejected",
+          "pass": true,
+          "observed": "containment_not_exact",
+          "expected": "containment_not_exact"
+        },
+        {
+          "name": "repeat_or_partial_local_containment_stops",
+          "pass": true,
+          "observed": "containment_already_attempted",
+          "expected": "containment_already_attempted"
+        },
+        {
+          "name": "uncertain_pointer_does_not_restore_old_held_offer_feed_or_repeat_write",
+          "pass": true,
+          "observed": "after_pointer_mismatch",
+          "expected": "after_pointer_mismatch"
+        },
+        {
+          "name": "frozen28_files_and_US_config_unchanged",
+          "pass": true
+        }
+      ],
+      "unsafe_attempts": [],
+      "preserved_code": []
+    },
+    "independent_containment_revision6": {
+      "path": "/private/tmp/dlm-containment-independent-probes-revision6-20260911.json",
+      "sha256": "94a095a02d8e45883f00984fddc3663f904122adb9d84e1c5f0065fce292aeb7",
+      "script": "/private/tmp/dlm-containment-independent-probes-revision6-20260911.py",
+      "script_sha256": "c8c609b618b59eb6a0d5330c2e196525eb488346fb620460eda08cc48d25de26",
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "results": [
+        {
+          "name": "exact_whole_parent_not_prefix_and_all_retained_bytes_order",
+          "pass": true,
+          "retained_bytes_and_order_exact": true,
+          "source_counts": {
+            "parents": 3,
+            "variants": 4
+          },
+          "output_rows": 2,
+          "output_parents": 2
+        },
+        {
+          "name": "unknown_parent_hold_must_not_silently_succeed",
+          "pass": true,
+          "observed": "unknown_held_parent",
+          "expected": "unknown_held_parent"
+        },
+        {
+          "name": "duplicate_parent_hold_rejected",
+          "pass": true,
+          "observed": "invalid_or_duplicate_held_parent",
+          "expected": "duplicate_held_parent"
+        },
+        {
+          "name": "pure_filter_rejects_explicit_protected_offer_loss",
+          "pass": true,
+          "observed": "empty_cohort_or_protected_offer_lost",
+          "expected": "protected_offer_lost"
+        },
+        {
+          "name": "wrapper_must_wire_protected_pilot_and_five_price_ids",
+          "pass": true,
+          "wrapper_protected_arguments": [
+            [
+              "shopify_US_1_11"
+            ],
+            [
+              "shopify_US_1_11"
+            ]
+          ],
+          "finding": "F4",
+          "observed": "Both wrapper containment and replay supply the identical protected offer set."
+        },
+        {
+          "name": "future_added_offer_still_requires_exact_buyer_qualification",
+          "pass": true,
+          "observed": "added_buyer_routes_unqualified",
+          "expected": "added_buyer_routes_unqualified"
+        },
+        {
+          "name": "run_hold_change_during_upload_stops_before_pointer",
+          "pass": true,
+          "observed": "hold_spec_changed",
+          "expected": "hold_spec_changed"
+        },
+        {
+          "name": "current_active_hold_revision_during_upload_must_invalidate_old_copy",
+          "pass": true,
+          "observed": "active_hold_spec_changed",
+          "expected": "active_hold_spec_changed",
+          "pointer_written": false,
+          "finding": "F5"
+        },
+        {
+          "name": "actual_independent_review_file_drift_before_commit_stops",
+          "pass": true,
+          "observed": "independent_review_hash_mismatch",
+          "expected": "independent_review_hash_mismatch"
+        },
+        {
+          "name": "containment_receipt_drift_before_commit_stops",
+          "pass": true,
+          "observed": "independent_review_binding_mismatch",
+          "expected": "independent_review_binding_mismatch"
+        },
+        {
+          "name": "original_F1_expiry_guard_survives_containment",
+          "pass": true,
+          "observed": "candidate_source_expired",
+          "expected": "candidate_source_expired"
+        },
+        {
+          "name": "original_F2_weak_gzip_transport_guard_survives_containment",
+          "pass": true,
+          "status": "COMMITTED_VERIFIED"
+        },
+        {
+          "name": "unfiltered_original_bytes_drift_rejected",
+          "pass": true,
+          "observed": "unfiltered_source_changed",
+          "expected": "unfiltered_source_changed"
+        },
+        {
+          "name": "retained_output_byte_drift_rejected",
+          "pass": true,
+          "observed": "containment_not_exact",
+          "expected": "containment_not_exact"
+        },
+        {
+          "name": "repeat_or_partial_local_containment_stops",
+          "pass": true,
+          "observed": "containment_already_attempted",
+          "expected": "containment_already_attempted"
+        },
+        {
+          "name": "uncertain_pointer_does_not_restore_old_held_offer_feed_or_repeat_write",
+          "pass": true,
+          "observed": "after_pointer_mismatch",
+          "expected": "after_pointer_mismatch"
+        },
+        {
+          "name": "wrapper_rejects_attempted_protected_parent_hold",
+          "pass": true,
+          "observed": "empty_cohort_or_protected_offer_lost",
+          "expected": "protected_offer_lost"
+        },
+        {
+          "name": "replay_rejects_missing_required_protected_offer",
+          "pass": true,
+          "observed": "empty_cohort_or_protected_offer_lost",
+          "expected": "protected_offer_lost"
+        },
+        {
+          "name": "known_parent_without_available_rows_is_explicit_not_unknown",
+          "pass": true,
+          "observed": [
+            "gid://shopify/Product/99"
+          ]
+        },
+        {
+          "name": "qualification_artifact_changes_during_upload_stop_before_commit",
+          "pass": true,
+          "observed": "source_qualification_changed",
+          "expected": "source_qualification_changed"
+        },
+        {
+          "name": "actual_protected_constants_match_pilot_and_exact_five_price_ids",
+          "pass": true,
+          "count": 6
+        },
+        {
+          "name": "frozen28_files_and_US_config_unchanged",
+          "pass": true
+        }
+      ],
+      "unsafe_attempts": []
+    }
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "status": "RESOLVED_IN_REVISION2",
+      "severity": "required_fix_before_promotion",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+      "lines": [
+        254,
+        255,
+        315,
+        337,
+        345
+      ],
+      "observed": "validate_review/candidate checks source age before object handling. No source-age check occurs after object verification/remote drift reads and immediately before pointer PUT.",
+      "reproduction": "Actual candidate() and validate_review() run against a complete synthetic fresh-source packet at age7199seconds. Simulated immutable upload advances the clock to age7201seconds; promote() still writes current.json and returnsCOMMITTED_VERIFIED. No live operation or credentials used.",
+      "expected": "At commit, a candidate older than the explicit120minute limit stops and leaves the previous pointer unchanged, even when it was valid at entry.",
+      "necessary_correction": "Revalidate source freshness and exact review/candidate bindings immediately before pointer commit, under the existing lock after upload and drift checks. Add a boundary test advancing time during object handling; rerun the independent probe on exact revised code. No broader design or owner-approval change is needed.",
+      "resolution": {
+        "uploader_sha256": "1232c88e20fadac6f40057de5736f963bdbf8fb21126310efe2b1c6b9490c2e7",
+        "lines": [
+          342,
+          347
+        ],
+        "proof": "Original independent7199-to7201 during-upload probe now stops before pointer commit; actual review-file mutation during upload also stops.22 supplied tests and12 independent probes pass."
+      }
+    },
+    {
+      "id": "F2",
+      "status": "RESOLVED_IN_REVISION3",
+      "severity": "required_compatibility_fix_before_promotion",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+      "lines": [
+        301,
+        302,
+        337,
+        338
+      ],
+      "observed": "The same existing Cloudflare REST object API has saved weak transport ETags such as W/\"<raw-md5>-gzip\". strip-quote comparison against the raw R2 object MD5 rejects that recorded response shape despite exact decoded bytes, SHA256 and MD5.",
+      "evidence": [
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/object_readback_diagnostic.json",
+          "sha256": "50df9817a82e85331933037f8dc5a09478e734007000395a6993236f34605b69"
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/first_upload_receipt.json",
+          "sha256": "5c9de9d631e65d20181d3c9823858f8af571504922939de052f266a110ed7952"
+        }
+      ],
+      "reproduction": "Independent FakeApi provides a weak gzip transport ETag for matching immutable bytes. Real candidate/review validation passes, but promote stops with immutable_readback_failed and no pointer write.",
+      "necessary_correction": "Handle the exact supported strong/weak transport representations while retaining full decoded byte length, SHA256 and MD5 checks and preserving the raw R2 manifest ETag. Test the recorded weak-gzip shape and corrupted-body/mismatching-ETag cases. Rebind revised uploader hash in the same unchanged-source candidate packet.",
+      "not_required": "No new source scan, new scheduler, credential change, permission expansion or owner question is implied while the current complete source snapshot remains fresh.",
+      "resolution": {
+        "uploader_sha256": "9c22626059110291b4b7fbfd026215b54de0d2b29966c047992da754c1bab1c8",
+        "lines": [
+          296,
+          304,
+          312,
+          348
+        ],
+        "proof": "Accepts only exact raw quoted MD5 or recorded weak W/quoted-MD5-gzip transport shapes after full SHA256 and MD5 match. Original failing transport probe now passes; seven malformed/unrecorded shapes, wrong SHA256/MD5/transport hash and corrupt body fail closed. Raw manifest objectEtag and unchanged host contract are preserved.",
+        "independent_probe_sha256": "7618f5775fae16b6648d58ebeb282e2966c33cda7e6d174ba2716c1235994eba"
+      }
+    },
+    {
+      "id": "F3",
+      "status": "RESOLVED_IN_CONTAINMENT_REVISION6",
+      "severity": "required_guard_before_containment_acceptance",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/cohort_filter.py",
+      "lines": [
+        22,
+        46,
+        69
+      ],
+      "observed": "A syntactically valid hold for unknown Product999999 is accepted on a complete source fixture containing only Products1,2,12. It removes zero rows yet produces a normal eligibilityHolds receipt.",
+      "reproduction": "unknown_parent_hold_must_not_silently_succeed in the independent synthetic probe; output removed_available_rows=0. No source/network operation.",
+      "expected": "Unknown or mistyped held parent must not silently count as applied containment.",
+      "necessary_correction": "Validate held parent IDs against the complete current source/snapshot, bound into deterministic replay. If a known held parent has zero available offers, record that source-backed state explicitly; distinguish it from an unknown or mistyped ID. Reject duplicate IDs as already implemented.",
+      "resolution": {
+        "code_sha256": "4e6457f5d76fa37e46caf29a2f9c791bce615211a77713fbd7c0d98ee3749b9f",
+        "filter_sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9",
+        "proof": "Original unknown-parent probe now rejects unknown_held_parent using exact complete source-parent identities. Known source parent without available rows is explicitly recorded; duplicate/missing source identities reject.",
+        "independent_probe_receipt_sha256": "94a095a02d8e45883f00984fddc3663f904122adb9d84e1c5f0065fce292aeb7"
+      }
+    },
+    {
+      "id": "F4",
+      "status": "RESOLVED_IN_CONTAINMENT_REVISION6",
+      "severity": "required_guard_before_containment_acceptance",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+      "lines": [
+        260,
+        261,
+        284,
+        285
+      ],
+      "observed": "apply_holds can reject explicit protected-offer loss, but both wrapper containment and verify_containment calls omit protected_ids; the effective list is empty. Current pilot/five-price protection is therefore not wired into the production wrapper.",
+      "reproduction": "Independent call tracing shows [[],[]] for the two wrapper calls; direct helper probe confirms protection works only when explicitly passed.",
+      "expected": "The agreed current qualified pilot and five repaired price offer IDs remain protected by the exact reviewed wrapper/hold contract, or a separate source-backed eligibility change stops for reconciliation.",
+      "necessary_correction": "Bind the exact market-specific protected offer set into the current containment contract and pass it identically into build and replay. Test an attempted protected-parent hold and a missing protected offer, retaining truthful source-availability handling rather than forcing unavailable offers into a feed.",
+      "resolution": {
+        "code_sha256": "4e6457f5d76fa37e46caf29a2f9c791bce615211a77713fbd7c0d98ee3749b9f",
+        "filter_sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9",
+        "proof": "Both wrapper containment and deterministic replay now supply exact six protected US IDs. Original tracing passes; attempted protected-parent hold and missing protected offer both stop. Actual constant set equals pilot plus five repaired variant IDs.",
+        "independent_probe_receipt_sha256": "94a095a02d8e45883f00984fddc3663f904122adb9d84e1c5f0065fce292aeb7"
+      }
+    },
+    {
+      "id": "F5",
+      "status": "RESOLVED_IN_CONTAINMENT_REVISION6",
+      "severity": "required_commit_scope_guard",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+      "lines": [
+        276,
+        281,
+        418,
+        421
+      ],
+      "observed": "Final validation re-reads the frozen run copy but not the current active HOLD_SPEC. Adding a new known parent hold to the active spec during simulated immutable upload still commits the pointer using the older run list.",
+      "reproduction": "current_active_hold_revision_during_upload_must_invalidate_old_copy: current spec changes from Product2 to Products2+1 during fake upload; result accepted and pointer_written=true. Run-copy and review-file drift tests independently stop as expected.",
+      "expected": "A newer active hold revision cannot be ignored when approving/publishing an older frozen exclusion copy.",
+      "necessary_correction": "Before final commit compare the currently governing active hold-file SHA with the frozen run/review/containment binding and stop on drift. Preserve full packet revalidation, exact source expiry and sole-writer lock; do not overwrite the active file or silently adopt the new holds.",
+      "resolution": {
+        "code_sha256": "4e6457f5d76fa37e46caf29a2f9c791bce615211a77713fbd7c0d98ee3749b9f",
+        "filter_sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9",
+        "proof": "Original active-file-change-during-upload now stops active_hold_spec_changed with no pointer PUT. Current active hold SHA and source qualification artifact are checked in final validation; qualification drift independently stops as well.",
+        "independent_probe_receipt_sha256": "94a095a02d8e45883f00984fddc3663f904122adb9d84e1c5f0065fce292aeb7"
+      }
+    }
+  ],
+  "verified_controls": [
+    "Explicit frozen US config and prior current manifest passed to unchanged builder; Shopify override environment values stripped so the existing local private credential convention is used.",
+    "Fresh-run timestamps, source identity, complete pagination flag, exact counts, source progression, no-error diagnostics and return-label contract checked; review binds12 exact artifact fields.",
+    "Exact US/en/USD market,18-column contract, unique IDs, shared groups, positive currency-correct prices, Shopping_ads exclusion, expected domain and numeric variant URLs checked. URL validation does not prove buyer-route acceptance.",
+    "Same-content renewal uses a complete fresh validated source scan and reuses the immutable object; independent real-candidate probe verified pointer-only freshness renewal.",
+    "File/process lock wraps production CLI phases, including final pointer reads and commit. Sole-writer claim required; documented local exclusion is not remote CAS.",
+    "Existing immutable object must match; new object full bytes and ETag verified before commit. Pointer and Worker drift checked before commit; independent probes confirm drift/corruption/ETag mismatch preserve current pointer.",
+    "Redirects explicitly refused. Fixed Cloudflare account/bucket and object paths; no Shopify credential transmission, Worker/Queue/deploy/scheduler method or payment/paid action.",
+    "Ambiguous pointer response resolved by readback only; already committed exact result recognized, and uncertain uncommitted intent prevents blind retry. Partial/uncertain object upload is held.",
+    "No automatic rollback resurrects a broken price. Before pointer/full file retained; source-true reviewed recovery and later Google receipt are separate.",
+    "Host/public readback verifies context and source time, but cache, access and Google daily-fetch/processing limitations remain. Existing foreign-market and public-access gates are not overridden."
+  ],
+  "command_scope": {
+    "entry_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+    "phases": [
+      "prepare",
+      "build",
+      "inspect",
+      "promote",
+      "readback"
+    ],
+    "promotion_syntax": "python lifecycle.py promote --run ABSOLUTE_REVIEWED_RUN_PATH --review ABSOLUTE_INDEPENDENT_CANDIDATE_REVIEW_PATH --review-sha256 EXACT_REVIEW_HASH",
+    "restriction": "Exact current US review below authorizes only guarded pointer replacement for the named run. AU has a separate native same-source file review; this US-only executable cannot publish AU. No production command executed by reviewer."
+  },
+  "remaining_executable_conditions": [
+    "Use only exact reviewed lifecycle.py/hash and this run/review under the sole-writer lock; all other US pointer writers remain idle.",
+    "Compare active hold spec and source qualification to all16 bindings again before commit; stop on any new known retained-product issue or authority change.",
+    "Read exact current before pointer and Worker metadata, verify/upload only candidate SHA-keyed immutable body, verify full decoded SHA256/MD5 and accepted transport ETag, then perform guarded single pointer PUT.",
+    "At immediate precommit source age must remain within120minutes, no later than23:18:15.731UTC. Expiry requires a new complete source scan and fresh exact review; never restamp this one.",
+    "Resolve uncertain response by readback only; stop on explicit auth/scope/policy errors. No blind retry or automatic rollback.",
+    "AU remains governed only by its separate exact source10727245667 review and native action-time guards; source clock expires23:48:12.073UTC.",
+    "Capture hosted/native actual outcome and independent Google/effective-offer receipt; approval, serving, purchases and profit remain separate.",
+    "Underlying six product/source/image holds persist. Any source/hold/qualification/code drift requires narrow fresh review; no blanket reuse of these approvals."
+  ],
+  "privacy_and_preservation": {
+    "credential_contents_read": false,
+    "live_source_or_account_calls": 0,
+    "native_browser_calls": 0,
+    "external_writes": 0,
+    "production_commands_run": 0,
+    "implementation_or_tests_edited": false,
+    "prior_provisional_lifecycle_review_edited": false,
+    "only_repository_write": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/code_review_20260911.json",
+    "independent_temp_artifacts": "Private offline probe scripts/results and auto-cleaned synthetic fixture directories; no credential reads, production commands, browser or network calls."
+  },
+  "next_action": "Sole Merchant executes the exact US containment first under action-time guards because its source window expires first, then the separately reviewed AU same-source file replacement within its own window; return actual receipts for independent after-state verification.",
+  "revision_history": [
+    {
+      "prior_report_sha256": "c8ddeb5d28df1b573a9a71f5f45818cb2fd19ec3b15486ba48ba5a85a9c4e77b",
+      "reviewed_at_utc": "2026-09-11T21:20:09Z",
+      "verdict": "HOLD_ONE_REPRODUCED_COMMIT_FRESHNESS_GAP",
+      "reviewed_files": {
+        "lifecycle.py": {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+          "sha256": "b4ec693e60605bcf894a4cb45ddc304842cc4f870d7209a2ff3e7c40ae3f1c84",
+          "bytes": 22294
+        },
+        "test_lifecycle.py": {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/test_lifecycle.py",
+          "sha256": "455db18f07daa2e182572227b9722f7ef73f498192ec0172e39cb8ec175a1013",
+          "bytes": 12939
+        },
+        "README.md": {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/README.md",
+          "sha256": "11a37fb58e467cfdb40c31843929dde2d51f96aa0e8b6a1c3c88ae62ebaf64ec",
+          "bytes": 5116
+        }
+      },
+      "tests": {
+        "initial_supplied_suite": {
+          "tests": 16,
+          "failed": 0,
+          "test_file_sha256": "7e5734d3a2ea51719db4388249b5a285519e26b48cb1f9f40283a98961c17f32"
+        },
+        "latest_supplied_suite": {
+          "tests": 20,
+          "failed": 0,
+          "test_file_sha256": "455db18f07daa2e182572227b9722f7ef73f498192ec0172e39cb8ec175a1013",
+          "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_lifecycle.py",
+          "working_directory": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim"
+        },
+        "independent_probes": {
+          "total": 11,
+          "passed": 10,
+          "failed": 1,
+          "path": "/private/tmp/dlm-lifecycle-independent-probes-20260911.json",
+          "sha256": "491fd6f62e9b4c657b67edd72c6aae99ec3c8648957be4acaebe0be7e7cabeff",
+          "script_path": "/private/tmp/dlm-lifecycle-independent-probes-20260911.py",
+          "script_sha256": "c7c1c9fbb86fef291d2d683d5c03c5176e15ee45bdaa0c98979bc43cd8fb3869",
+          "command": "PYTHONDONTWRITEBYTECODE=1 python3 /private/tmp/dlm-lifecycle-independent-probes-20260911.py",
+          "results": [
+            {
+              "name": "complete_fixture_candidate_accepted",
+              "pass": true,
+              "observed": "complete fixture accepted with real candidate validation"
+            },
+            {
+              "name": "expired_source_rejected_before_start",
+              "pass": true,
+              "observed": "candidate_source_expired",
+              "expected": "candidate_source_expired"
+            },
+            {
+              "name": "incomplete_source_rejected",
+              "pass": true,
+              "observed": "incomplete_or_invalid_source",
+              "expected": "incomplete_or_invalid_source"
+            },
+            {
+              "name": "failed_live_build_rejected",
+              "pass": true,
+              "observed": "successful_live_scan_required",
+              "expected": "successful_live_scan_required"
+            },
+            {
+              "name": "build_intent_changed_after_review_rejected",
+              "pass": true,
+              "observed": "independent_review_binding_mismatch",
+              "expected": "independent_review_binding_mismatch"
+            },
+            {
+              "name": "same_hash_renewal_real_candidate_validation",
+              "pass": true,
+              "observed": {
+                "status": "COMMITTED_VERIFIED",
+                "writes": [
+                  "merchant/us-en/current.json"
+                ],
+                "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+              }
+            },
+            {
+              "name": "worker_drift_during_upload_no_pointer_write",
+              "pass": true,
+              "observed": "worker_changed_before_commit",
+              "expected": "worker_changed_before_commit"
+            },
+            {
+              "name": "existing_wrong_immutable_bytes_rejected",
+              "pass": true,
+              "observed": "immutable_object_conflict",
+              "expected": "immutable_object_conflict"
+            },
+            {
+              "name": "remote_etag_mismatch_no_pointer_write",
+              "pass": true,
+              "observed": "immutable_readback_failed",
+              "expected": "immutable_readback_failed"
+            },
+            {
+              "name": "expiry_crossed_during_upload_stops_promotion",
+              "pass": false,
+              "observed": {
+                "status": "COMMITTED_VERIFIED",
+                "source_age_at_commit_seconds": 7201.0,
+                "pointer_was_written": true
+              },
+              "expected": "Stop expired candidate immediately before pointer commit",
+              "finding": "F1"
+            },
+            {
+              "name": "frozen_builder_files_and_config_match",
+              "pass": true,
+              "observed": "28 frozen files plus fixed freeze/config hashes verified"
+            }
+          ],
+          "unsafe_attempts": []
+        },
+        "frozen_files": {
+          "verified": 28,
+          "mismatch": 0,
+          "freeze_manifest_sha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed",
+          "config_sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b"
+        }
+      },
+      "findings": [
+        {
+          "id": "F1",
+          "status": "OPEN",
+          "severity": "required_fix_before_promotion",
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+          "lines": [
+            254,
+            255,
+            315,
+            337,
+            345
+          ],
+          "observed": "validate_review/candidate checks source age before object handling. No source-age check occurs after object verification/remote drift reads and immediately before pointer PUT.",
+          "reproduction": "Actual candidate() and validate_review() run against a complete synthetic fresh-source packet at age7199seconds. Simulated immutable upload advances the clock to age7201seconds; promote() still writes current.json and returnsCOMMITTED_VERIFIED. No live operation or credentials used.",
+          "expected": "At commit, a candidate older than the explicit120minute limit stops and leaves the previous pointer unchanged, even when it was valid at entry.",
+          "necessary_correction": "Revalidate source freshness and exact review/candidate bindings immediately before pointer commit, under the existing lock after upload and drift checks. Add a boundary test advancing time during object handling; rerun the independent probe on exact revised code. No broader design or owner-approval change is needed."
+        }
+      ]
+    },
+    {
+      "prior_report_sha256": "dcef11dfba13099bca0a3d4e7b18736fb4709399471d24f5a8da59c027c26a8d",
+      "reviewed_at_utc": "2026-09-11T21:29:54Z",
+      "verdict": "HOLD_OBSERVED_REST_TRANSPORT_ETAG_COMPATIBILITY",
+      "preserved_fields": {
+        "reviewed_files": {
+          "lifecycle.py": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+            "sha256": "1232c88e20fadac6f40057de5736f963bdbf8fb21126310efe2b1c6b9490c2e7",
+            "bytes": 22754
+          },
+          "test_lifecycle.py": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/test_lifecycle.py",
+            "sha256": "53e0a09ada5c7b81d06af1765619b65eb353b4c7bf4b10dfc099b14974c428e7",
+            "bytes": 14747
+          },
+          "README.md": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/README.md",
+            "sha256": "11a37fb58e467cfdb40c31843929dde2d51f96aa0e8b6a1c3c88ae62ebaf64ec",
+            "bytes": 5116
+          }
+        },
+        "tests": {
+          "initial_supplied_suite": {
+            "tests": 16,
+            "failed": 0,
+            "test_file_sha256": "7e5734d3a2ea51719db4388249b5a285519e26b48cb1f9f40283a98961c17f32"
+          },
+          "latest_supplied_suite": {
+            "tests": 22,
+            "failed": 0,
+            "test_file_sha256": "53e0a09ada5c7b81d06af1765619b65eb353b4c7bf4b10dfc099b14974c428e7",
+            "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_lifecycle.py",
+            "working_directory": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim"
+          },
+          "independent_probes": {
+            "total": 11,
+            "passed": 10,
+            "failed": 1,
+            "path": "/private/tmp/dlm-lifecycle-independent-probes-20260911.json",
+            "sha256": "491fd6f62e9b4c657b67edd72c6aae99ec3c8648957be4acaebe0be7e7cabeff",
+            "script_path": "/private/tmp/dlm-lifecycle-independent-probes-20260911.py",
+            "script_sha256": "c7c1c9fbb86fef291d2d683d5c03c5176e15ee45bdaa0c98979bc43cd8fb3869",
+            "command": "PYTHONDONTWRITEBYTECODE=1 python3 /private/tmp/dlm-lifecycle-independent-probes-20260911.py",
+            "results": [
+              {
+                "name": "complete_fixture_candidate_accepted",
+                "pass": true,
+                "observed": "complete fixture accepted with real candidate validation"
+              },
+              {
+                "name": "expired_source_rejected_before_start",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired"
+              },
+              {
+                "name": "incomplete_source_rejected",
+                "pass": true,
+                "observed": "incomplete_or_invalid_source",
+                "expected": "incomplete_or_invalid_source"
+              },
+              {
+                "name": "failed_live_build_rejected",
+                "pass": true,
+                "observed": "successful_live_scan_required",
+                "expected": "successful_live_scan_required"
+              },
+              {
+                "name": "build_intent_changed_after_review_rejected",
+                "pass": true,
+                "observed": "independent_review_binding_mismatch",
+                "expected": "independent_review_binding_mismatch"
+              },
+              {
+                "name": "same_hash_renewal_real_candidate_validation",
+                "pass": true,
+                "observed": {
+                  "status": "COMMITTED_VERIFIED",
+                  "writes": [
+                    "merchant/us-en/current.json"
+                  ],
+                  "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+                }
+              },
+              {
+                "name": "worker_drift_during_upload_no_pointer_write",
+                "pass": true,
+                "observed": "worker_changed_before_commit",
+                "expected": "worker_changed_before_commit"
+              },
+              {
+                "name": "existing_wrong_immutable_bytes_rejected",
+                "pass": true,
+                "observed": "immutable_object_conflict",
+                "expected": "immutable_object_conflict"
+              },
+              {
+                "name": "remote_etag_mismatch_no_pointer_write",
+                "pass": true,
+                "observed": "immutable_readback_failed",
+                "expected": "immutable_readback_failed"
+              },
+              {
+                "name": "expiry_crossed_during_upload_stops_promotion",
+                "pass": false,
+                "observed": {
+                  "status": "COMMITTED_VERIFIED",
+                  "source_age_at_commit_seconds": 7201.0,
+                  "pointer_was_written": true
+                },
+                "expected": "Stop expired candidate immediately before pointer commit",
+                "finding": "F1"
+              },
+              {
+                "name": "frozen_builder_files_and_config_match",
+                "pass": true,
+                "observed": "28 frozen files plus fixed freeze/config hashes verified"
+              }
+            ],
+            "unsafe_attempts": []
+          },
+          "frozen_files": {
+            "verified": 28,
+            "mismatch": 0,
+            "freeze_manifest_sha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed",
+            "config_sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b"
+          },
+          "independent_revision2": {
+            "path": "/private/tmp/dlm-lifecycle-independent-probes-20260911-revision2.json",
+            "sha256": "8b562dbe1560d2ec1c5d899cb13b42dba0a770ad3308fafa94d85fcd3e36ab0a",
+            "total": 12,
+            "passed": 12,
+            "results": [
+              {
+                "name": "complete_fixture_candidate_accepted",
+                "pass": true,
+                "observed": "complete fixture accepted with real candidate validation"
+              },
+              {
+                "name": "expired_source_rejected_before_start",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired"
+              },
+              {
+                "name": "incomplete_source_rejected",
+                "pass": true,
+                "observed": "incomplete_or_invalid_source",
+                "expected": "incomplete_or_invalid_source"
+              },
+              {
+                "name": "failed_live_build_rejected",
+                "pass": true,
+                "observed": "successful_live_scan_required",
+                "expected": "successful_live_scan_required"
+              },
+              {
+                "name": "build_intent_changed_after_review_rejected",
+                "pass": true,
+                "observed": "independent_review_binding_mismatch",
+                "expected": "independent_review_binding_mismatch"
+              },
+              {
+                "name": "same_hash_renewal_real_candidate_validation",
+                "pass": true,
+                "observed": {
+                  "status": "COMMITTED_VERIFIED",
+                  "writes": [
+                    "merchant/us-en/current.json"
+                  ],
+                  "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+                }
+              },
+              {
+                "name": "worker_drift_during_upload_no_pointer_write",
+                "pass": true,
+                "observed": "worker_changed_before_commit",
+                "expected": "worker_changed_before_commit"
+              },
+              {
+                "name": "existing_wrong_immutable_bytes_rejected",
+                "pass": true,
+                "observed": "immutable_object_conflict",
+                "expected": "immutable_object_conflict"
+              },
+              {
+                "name": "remote_etag_mismatch_no_pointer_write",
+                "pass": true,
+                "observed": "immutable_readback_failed",
+                "expected": "immutable_readback_failed"
+              },
+              {
+                "name": "expiry_crossed_during_upload_stops_promotion",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired before pointer commit"
+              },
+              {
+                "name": "actual_review_file_changed_during_upload_rejected",
+                "pass": true,
+                "observed": "independent_review_hash_mismatch",
+                "expected": "independent_review_hash_mismatch"
+              },
+              {
+                "name": "frozen_builder_files_and_config_match",
+                "pass": true,
+                "observed": "28 frozen files plus fixed freeze/config hashes verified"
+              }
+            ],
+            "unsafe_attempts": []
+          },
+          "independent_transport_compatibility": {
+            "path": "/private/tmp/dlm-lifecycle-independent-weak-etag-probe-20260911.json",
+            "sha256": "c417e6c70a0ec85a4f41580abdc32219bb448bb7c10db551c8fdfd908b73fe8b",
+            "total": 12,
+            "passed": 11,
+            "failed": 1,
+            "results": [
+              {
+                "name": "complete_fixture_candidate_accepted",
+                "pass": true,
+                "observed": "complete fixture accepted with real candidate validation"
+              },
+              {
+                "name": "expired_source_rejected_before_start",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired"
+              },
+              {
+                "name": "incomplete_source_rejected",
+                "pass": true,
+                "observed": "incomplete_or_invalid_source",
+                "expected": "incomplete_or_invalid_source"
+              },
+              {
+                "name": "failed_live_build_rejected",
+                "pass": true,
+                "observed": "successful_live_scan_required",
+                "expected": "successful_live_scan_required"
+              },
+              {
+                "name": "build_intent_changed_after_review_rejected",
+                "pass": true,
+                "observed": "independent_review_binding_mismatch",
+                "expected": "independent_review_binding_mismatch"
+              },
+              {
+                "name": "same_hash_renewal_real_candidate_validation",
+                "pass": true,
+                "observed": {
+                  "status": "COMMITTED_VERIFIED",
+                  "writes": [
+                    "merchant/us-en/current.json"
+                  ],
+                  "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+                }
+              },
+              {
+                "name": "worker_drift_during_upload_no_pointer_write",
+                "pass": true,
+                "observed": "worker_changed_before_commit",
+                "expected": "worker_changed_before_commit"
+              },
+              {
+                "name": "existing_wrong_immutable_bytes_rejected",
+                "pass": true,
+                "observed": "immutable_object_conflict",
+                "expected": "immutable_object_conflict"
+              },
+              {
+                "name": "remote_etag_mismatch_no_pointer_write",
+                "pass": true,
+                "observed": "immutable_readback_failed",
+                "expected": "immutable_readback_failed"
+              },
+              {
+                "name": "expiry_crossed_during_upload_stops_promotion",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired before pointer commit"
+              },
+              {
+                "name": "recorded_weak_gzip_transport_etag_compatible",
+                "pass": false,
+                "observed": "immutable_readback_failed",
+                "expected": "Accept the recorded weak gzip transport ETag shape when all decoded bytes, SHA256 and MD5 exactly match; preserve the raw R2 manifest ETag.",
+                "finding": "F2",
+                "pointer_was_written": false
+              },
+              {
+                "name": "frozen_builder_files_and_config_match",
+                "pass": true,
+                "observed": "28 frozen files plus fixed freeze/config hashes verified"
+              }
+            ],
+            "unsafe_attempts": []
+          }
+        },
+        "findings": [
+          {
+            "id": "F1",
+            "status": "RESOLVED_IN_REVISION2",
+            "severity": "required_fix_before_promotion",
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+            "lines": [
+              254,
+              255,
+              315,
+              337,
+              345
+            ],
+            "observed": "validate_review/candidate checks source age before object handling. No source-age check occurs after object verification/remote drift reads and immediately before pointer PUT.",
+            "reproduction": "Actual candidate() and validate_review() run against a complete synthetic fresh-source packet at age7199seconds. Simulated immutable upload advances the clock to age7201seconds; promote() still writes current.json and returnsCOMMITTED_VERIFIED. No live operation or credentials used.",
+            "expected": "At commit, a candidate older than the explicit120minute limit stops and leaves the previous pointer unchanged, even when it was valid at entry.",
+            "necessary_correction": "Revalidate source freshness and exact review/candidate bindings immediately before pointer commit, under the existing lock after upload and drift checks. Add a boundary test advancing time during object handling; rerun the independent probe on exact revised code. No broader design or owner-approval change is needed.",
+            "resolution": {
+              "uploader_sha256": "1232c88e20fadac6f40057de5736f963bdbf8fb21126310efe2b1c6b9490c2e7",
+              "lines": [
+                342,
+                347
+              ],
+              "proof": "Original independent7199-to7201 during-upload probe now stops before pointer commit; actual review-file mutation during upload also stops.22 supplied tests and12 independent probes pass."
+            }
+          },
+          {
+            "id": "F2",
+            "status": "OPEN",
+            "severity": "required_compatibility_fix_before_promotion",
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+            "lines": [
+              301,
+              302,
+              337,
+              338
+            ],
+            "observed": "The same existing Cloudflare REST object API has saved weak transport ETags such as W/\"<raw-md5>-gzip\". strip-quote comparison against the raw R2 object MD5 rejects that recorded response shape despite exact decoded bytes, SHA256 and MD5.",
+            "evidence": [
+              {
+                "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/object_readback_diagnostic.json",
+                "sha256": "50df9817a82e85331933037f8dc5a09478e734007000395a6993236f34605b69"
+              },
+              {
+                "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/first_upload_receipt.json",
+                "sha256": "5c9de9d631e65d20181d3c9823858f8af571504922939de052f266a110ed7952"
+              }
+            ],
+            "reproduction": "Independent FakeApi provides a weak gzip transport ETag for matching immutable bytes. Real candidate/review validation passes, but promote stops with immutable_readback_failed and no pointer write.",
+            "necessary_correction": "Handle the exact supported strong/weak transport representations while retaining full decoded byte length, SHA256 and MD5 checks and preserving the raw R2 manifest ETag. Test the recorded weak-gzip shape and corrupted-body/mismatching-ETag cases. Rebind revised uploader hash in the same unchanged-source candidate packet.",
+            "not_required": "No new source scan, new scheduler, credential change, permission expansion or owner question is implied while the current complete source snapshot remains fresh."
+          }
+        ],
+        "remaining_executable_conditions": [
+          "Resolve F2 with exact code/test evidence, retaining the now-passing F1 commit guard.",
+          "Rebind the revised uploader SHA in the same fresh unchanged candidate packet; issue the exact timestamp-only independent review only after compatibility passes.",
+          "Sole Merchant owner must hold the shared writer lock and confirm unchanged pointer/Worker state, full immutable bytes and current source age immediately before one pointer renewal.",
+          "Keep all other country, source, Shopify, policy, paid, Worker/Queue/scheduler and credential state outside this exact renewal; destination receipt and outcomes remain separate."
+        ],
+        "candidate_data_review": {
+          "at_utc": "2026-09-11T21:27:17.996325+00:00",
+          "status": "37_OF_37_SOURCE_AND_PRESERVATION_CHECKS_PASS__PROMOTION_REVIEW_WITHHELD_FOR_F2",
+          "candidate_packet_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260911T211600Z-us-refresh/candidate_review_packet.revision2.json",
+          "candidate_packet_sha256": "6c146740d11498125d7ffde667673b29b4983e9ea42d074b5fbc106893b933a6",
+          "source_started_at": "2026-09-11T21:15:20.773Z",
+          "source_completed_at": "2026-09-11T21:18:15.731Z",
+          "counts": {
+            "active_online_country_catalog_published_parents": 240,
+            "unique_complete_variants": 4945,
+            "eligible_offers": 4923,
+            "unavailable_omitted": 22,
+            "trace_pages": 280,
+            "logical_requests": 282,
+            "source_prices_checked": 4923,
+            "source_price_mismatches": 0,
+            "added": 0,
+            "removed": 0,
+            "changed_rows": 0
+          },
+          "pages": {
+            "products": 10,
+            "variants": 263,
+            "final_manifest": 5,
+            "before_final_market_context": 2
+          },
+          "only_manifest_changes": {
+            "generatedAt": [
+              "2026-09-11T17:15:54.084Z",
+              "2026-09-11T21:18:15.733Z"
+            ],
+            "sourceCompletedAt": [
+              "2026-09-11T17:15:54.083Z",
+              "2026-09-11T21:18:15.731Z"
+            ]
+          },
+          "feed_sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+          "before_and_candidate_bytes_equal": true,
+          "all_other_manifest_fields_equal": true,
+          "all12_bindings_checked_for_revision2": true,
+          "sole_current_Merchant_claim_read": true,
+          "claim_line_sha256": "e33a99a83e6f8dfa8b031440dd56bbfc24e84a20378ad4a480b3f9cb6501090d",
+          "limitations": "Dated complete source read, not a database-atomic snapshot or live purchase/buyer-route/serving proof. Existing6197 identifier/apparel warnings and return-label omission remain; no added offer requires a new route qualification in this exact unchanged candidate."
+        },
+        "next_action": "Merchant fixes the recorded weak transport ETag compatibility, provides new hashes and candidate binding, and reviewer reruns that concrete probe before issuing timestamp-only promotion review."
+      }
+    },
+    {
+      "prior_report_sha256": "bc837e8d03fb2d14c1dd787cb8c597a5d51353a58f928d21008d66e68dbcbfeb",
+      "reviewed_at_utc": "2026-09-11T21:42:17.722848+00:00",
+      "verdict": "CODE_ACCEPTED_OFFLINE__LIVE_RELEASE_HELD_FOR_BUYER_QUALITY_CONTAINMENT",
+      "preserved_fields": {
+        "reviewed_files": {
+          "lifecycle.py": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+            "sha256": "9c22626059110291b4b7fbfd026215b54de0d2b29966c047992da754c1bab1c8",
+            "bytes": 23290
+          },
+          "test_lifecycle.py": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/test_lifecycle.py",
+            "sha256": "4a2d1c3c99fc18697e9d8fc1d77cca4c992d318d6080a0a54171d8324d63b481",
+            "bytes": 16215
+          },
+          "README.md": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/README.md",
+            "sha256": "e395db75fc938a53f1641bab95ff3b1ff83fde0c49fd3ca1e55440842adf2ddc",
+            "bytes": 5643
+          }
+        },
+        "tests": {
+          "initial_supplied_suite": {
+            "tests": 16,
+            "failed": 0,
+            "test_file_sha256": "7e5734d3a2ea51719db4388249b5a285519e26b48cb1f9f40283a98961c17f32"
+          },
+          "latest_supplied_suite": {
+            "tests": 26,
+            "failed": 0,
+            "test_file_sha256": "4a2d1c3c99fc18697e9d8fc1d77cca4c992d318d6080a0a54171d8324d63b481",
+            "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_lifecycle.py",
+            "working_directory": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim"
+          },
+          "independent_probes": {
+            "total": 11,
+            "passed": 10,
+            "failed": 1,
+            "path": "/private/tmp/dlm-lifecycle-independent-probes-20260911.json",
+            "sha256": "491fd6f62e9b4c657b67edd72c6aae99ec3c8648957be4acaebe0be7e7cabeff",
+            "script_path": "/private/tmp/dlm-lifecycle-independent-probes-20260911.py",
+            "script_sha256": "c7c1c9fbb86fef291d2d683d5c03c5176e15ee45bdaa0c98979bc43cd8fb3869",
+            "command": "PYTHONDONTWRITEBYTECODE=1 python3 /private/tmp/dlm-lifecycle-independent-probes-20260911.py",
+            "results": [
+              {
+                "name": "complete_fixture_candidate_accepted",
+                "pass": true,
+                "observed": "complete fixture accepted with real candidate validation"
+              },
+              {
+                "name": "expired_source_rejected_before_start",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired"
+              },
+              {
+                "name": "incomplete_source_rejected",
+                "pass": true,
+                "observed": "incomplete_or_invalid_source",
+                "expected": "incomplete_or_invalid_source"
+              },
+              {
+                "name": "failed_live_build_rejected",
+                "pass": true,
+                "observed": "successful_live_scan_required",
+                "expected": "successful_live_scan_required"
+              },
+              {
+                "name": "build_intent_changed_after_review_rejected",
+                "pass": true,
+                "observed": "independent_review_binding_mismatch",
+                "expected": "independent_review_binding_mismatch"
+              },
+              {
+                "name": "same_hash_renewal_real_candidate_validation",
+                "pass": true,
+                "observed": {
+                  "status": "COMMITTED_VERIFIED",
+                  "writes": [
+                    "merchant/us-en/current.json"
+                  ],
+                  "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+                }
+              },
+              {
+                "name": "worker_drift_during_upload_no_pointer_write",
+                "pass": true,
+                "observed": "worker_changed_before_commit",
+                "expected": "worker_changed_before_commit"
+              },
+              {
+                "name": "existing_wrong_immutable_bytes_rejected",
+                "pass": true,
+                "observed": "immutable_object_conflict",
+                "expected": "immutable_object_conflict"
+              },
+              {
+                "name": "remote_etag_mismatch_no_pointer_write",
+                "pass": true,
+                "observed": "immutable_readback_failed",
+                "expected": "immutable_readback_failed"
+              },
+              {
+                "name": "expiry_crossed_during_upload_stops_promotion",
+                "pass": false,
+                "observed": {
+                  "status": "COMMITTED_VERIFIED",
+                  "source_age_at_commit_seconds": 7201.0,
+                  "pointer_was_written": true
+                },
+                "expected": "Stop expired candidate immediately before pointer commit",
+                "finding": "F1"
+              },
+              {
+                "name": "frozen_builder_files_and_config_match",
+                "pass": true,
+                "observed": "28 frozen files plus fixed freeze/config hashes verified"
+              }
+            ],
+            "unsafe_attempts": []
+          },
+          "frozen_files": {
+            "verified": 28,
+            "mismatch": 0,
+            "freeze_manifest_sha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed",
+            "config_sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b"
+          },
+          "independent_revision2": {
+            "path": "/private/tmp/dlm-lifecycle-independent-probes-20260911-revision2.json",
+            "sha256": "8b562dbe1560d2ec1c5d899cb13b42dba0a770ad3308fafa94d85fcd3e36ab0a",
+            "total": 12,
+            "passed": 12,
+            "results": [
+              {
+                "name": "complete_fixture_candidate_accepted",
+                "pass": true,
+                "observed": "complete fixture accepted with real candidate validation"
+              },
+              {
+                "name": "expired_source_rejected_before_start",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired"
+              },
+              {
+                "name": "incomplete_source_rejected",
+                "pass": true,
+                "observed": "incomplete_or_invalid_source",
+                "expected": "incomplete_or_invalid_source"
+              },
+              {
+                "name": "failed_live_build_rejected",
+                "pass": true,
+                "observed": "successful_live_scan_required",
+                "expected": "successful_live_scan_required"
+              },
+              {
+                "name": "build_intent_changed_after_review_rejected",
+                "pass": true,
+                "observed": "independent_review_binding_mismatch",
+                "expected": "independent_review_binding_mismatch"
+              },
+              {
+                "name": "same_hash_renewal_real_candidate_validation",
+                "pass": true,
+                "observed": {
+                  "status": "COMMITTED_VERIFIED",
+                  "writes": [
+                    "merchant/us-en/current.json"
+                  ],
+                  "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+                }
+              },
+              {
+                "name": "worker_drift_during_upload_no_pointer_write",
+                "pass": true,
+                "observed": "worker_changed_before_commit",
+                "expected": "worker_changed_before_commit"
+              },
+              {
+                "name": "existing_wrong_immutable_bytes_rejected",
+                "pass": true,
+                "observed": "immutable_object_conflict",
+                "expected": "immutable_object_conflict"
+              },
+              {
+                "name": "remote_etag_mismatch_no_pointer_write",
+                "pass": true,
+                "observed": "immutable_readback_failed",
+                "expected": "immutable_readback_failed"
+              },
+              {
+                "name": "expiry_crossed_during_upload_stops_promotion",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired before pointer commit"
+              },
+              {
+                "name": "actual_review_file_changed_during_upload_rejected",
+                "pass": true,
+                "observed": "independent_review_hash_mismatch",
+                "expected": "independent_review_hash_mismatch"
+              },
+              {
+                "name": "frozen_builder_files_and_config_match",
+                "pass": true,
+                "observed": "28 frozen files plus fixed freeze/config hashes verified"
+              }
+            ],
+            "unsafe_attempts": []
+          },
+          "independent_transport_compatibility": {
+            "path": "/private/tmp/dlm-lifecycle-independent-weak-etag-probe-20260911.json",
+            "sha256": "c417e6c70a0ec85a4f41580abdc32219bb448bb7c10db551c8fdfd908b73fe8b",
+            "total": 12,
+            "passed": 11,
+            "failed": 1,
+            "results": [
+              {
+                "name": "complete_fixture_candidate_accepted",
+                "pass": true,
+                "observed": "complete fixture accepted with real candidate validation"
+              },
+              {
+                "name": "expired_source_rejected_before_start",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired"
+              },
+              {
+                "name": "incomplete_source_rejected",
+                "pass": true,
+                "observed": "incomplete_or_invalid_source",
+                "expected": "incomplete_or_invalid_source"
+              },
+              {
+                "name": "failed_live_build_rejected",
+                "pass": true,
+                "observed": "successful_live_scan_required",
+                "expected": "successful_live_scan_required"
+              },
+              {
+                "name": "build_intent_changed_after_review_rejected",
+                "pass": true,
+                "observed": "independent_review_binding_mismatch",
+                "expected": "independent_review_binding_mismatch"
+              },
+              {
+                "name": "same_hash_renewal_real_candidate_validation",
+                "pass": true,
+                "observed": {
+                  "status": "COMMITTED_VERIFIED",
+                  "writes": [
+                    "merchant/us-en/current.json"
+                  ],
+                  "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+                }
+              },
+              {
+                "name": "worker_drift_during_upload_no_pointer_write",
+                "pass": true,
+                "observed": "worker_changed_before_commit",
+                "expected": "worker_changed_before_commit"
+              },
+              {
+                "name": "existing_wrong_immutable_bytes_rejected",
+                "pass": true,
+                "observed": "immutable_object_conflict",
+                "expected": "immutable_object_conflict"
+              },
+              {
+                "name": "remote_etag_mismatch_no_pointer_write",
+                "pass": true,
+                "observed": "immutable_readback_failed",
+                "expected": "immutable_readback_failed"
+              },
+              {
+                "name": "expiry_crossed_during_upload_stops_promotion",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired before pointer commit"
+              },
+              {
+                "name": "recorded_weak_gzip_transport_etag_compatible",
+                "pass": false,
+                "observed": "immutable_readback_failed",
+                "expected": "Accept the recorded weak gzip transport ETag shape when all decoded bytes, SHA256 and MD5 exactly match; preserve the raw R2 manifest ETag.",
+                "finding": "F2",
+                "pointer_was_written": false
+              },
+              {
+                "name": "frozen_builder_files_and_config_match",
+                "pass": true,
+                "observed": "28 frozen files plus fixed freeze/config hashes verified"
+              }
+            ],
+            "unsafe_attempts": []
+          },
+          "independent_revision3": {
+            "path": "/private/tmp/dlm-lifecycle-independent-probes-20260911-revision3.json",
+            "sha256": "7618f5775fae16b6648d58ebeb282e2966c33cda7e6d174ba2716c1235994eba",
+            "at_utc": "2026-09-11T21:33:43.855931+00:00",
+            "total": 19,
+            "passed": 19,
+            "failed": 0,
+            "results": [
+              {
+                "name": "complete_fixture_candidate_accepted",
+                "pass": true,
+                "observed": "complete fixture accepted with real candidate validation"
+              },
+              {
+                "name": "expired_source_rejected_before_start",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired"
+              },
+              {
+                "name": "incomplete_source_rejected",
+                "pass": true,
+                "observed": "incomplete_or_invalid_source",
+                "expected": "incomplete_or_invalid_source"
+              },
+              {
+                "name": "failed_live_build_rejected",
+                "pass": true,
+                "observed": "successful_live_scan_required",
+                "expected": "successful_live_scan_required"
+              },
+              {
+                "name": "build_intent_changed_after_review_rejected",
+                "pass": true,
+                "observed": "independent_review_binding_mismatch",
+                "expected": "independent_review_binding_mismatch"
+              },
+              {
+                "name": "same_hash_renewal_real_candidate_validation",
+                "pass": true,
+                "observed": {
+                  "status": "COMMITTED_VERIFIED",
+                  "writes": [
+                    "merchant/us-en/current.json"
+                  ],
+                  "fresh_source_timestamp": "2026-09-11T20:00:00Z"
+                }
+              },
+              {
+                "name": "worker_drift_during_upload_no_pointer_write",
+                "pass": true,
+                "observed": "worker_changed_before_commit",
+                "expected": "worker_changed_before_commit"
+              },
+              {
+                "name": "existing_wrong_immutable_bytes_rejected",
+                "pass": true,
+                "observed": "immutable_object_conflict",
+                "expected": "immutable_object_conflict"
+              },
+              {
+                "name": "remote_etag_mismatch_no_pointer_write",
+                "pass": true,
+                "observed": "remote_object_transport_etag_mismatch",
+                "expected": "remote_object_transport_etag_mismatch"
+              },
+              {
+                "name": "expiry_crossed_during_upload_stops_promotion",
+                "pass": true,
+                "observed": "candidate_source_expired",
+                "expected": "candidate_source_expired before pointer commit"
+              },
+              {
+                "name": "actual_review_file_changed_during_upload_rejected",
+                "pass": true,
+                "observed": "independent_review_hash_mismatch",
+                "expected": "independent_review_hash_mismatch"
+              },
+              {
+                "name": "recorded_weak_gzip_transport_etag_compatible",
+                "pass": true,
+                "observed": "COMMITTED_VERIFIED"
+              },
+              {
+                "name": "same_hash_weak_transport_renewal_reuses_existing_object",
+                "pass": true,
+                "observed": "COMMITTED_VERIFIED",
+                "writes": [
+                  "merchant/us-en/current.json"
+                ]
+              },
+              {
+                "name": "missing_malformed_unrecorded_transport_rejected",
+                "pass": true,
+                "malformed_shapes_rejected": 7,
+                "total_shapes": 7
+              },
+              {
+                "name": "matching_transport_does_not_hide_corrupt_body",
+                "pass": true,
+                "observed": "remote_object_hash_mismatch",
+                "expected": "remote_object_hash_mismatch"
+              },
+              {
+                "name": "wrong_manifest_sha256_rejected",
+                "pass": true,
+                "observed": "remote_object_hash_mismatch",
+                "expected": "remote_object_hash_mismatch"
+              },
+              {
+                "name": "wrong_manifest_md5_rejected",
+                "pass": true,
+                "observed": "remote_object_hash_mismatch",
+                "expected": "remote_object_hash_mismatch"
+              },
+              {
+                "name": "wrong_hash_in_transport_etag_rejected",
+                "pass": true,
+                "observed": "remote_object_transport_etag_mismatch",
+                "expected": "remote_object_transport_etag_mismatch"
+              },
+              {
+                "name": "frozen_builder_files_and_config_match",
+                "pass": true,
+                "observed": "28 frozen files plus fixed freeze/config hashes verified"
+              }
+            ],
+            "unsafe_attempts": [],
+            "method": "Original independent boundary probe rerun against final code; recorded weak-gzip transport response plus seven malformed alternatives and incorrect byte/SHA256/MD5/hash negatives. Synthetic adapters only."
+          },
+          "latest_final_rebinding": {
+            "at_utc": "2026-09-11T21:42:17.722848+00:00",
+            "final_code_hashes_match": true,
+            "frozen_files_verified": 28,
+            "candidate_packet_equal_to_current_local_candidate_function": true,
+            "exact_binding_count": 12,
+            "bindings": {
+              "prepare_receipt_sha256": "427313de73b94576bf6859930fd5b6f8961d01ca2448c501a171921bc388aea8",
+              "live_build_receipt_sha256": "ff4ef7edd117fc71ee8e95ca91a4b6e14d3b97a24e023d0c19f33da01341880b",
+              "live_build_intent_sha256": "5b90e2eb49d7f20b600127e0ae3fcfc1afc8cdb0c207d484b6412458d1f97ea4",
+              "before_pointer_sha256": "0c0b406dc9bfced6a438f459161be9c71887260c420e4c4ef7a8a45d2ae11bd2",
+              "candidate_manifest_sha256": "e49ed987b164de84bdfdcab43deac2a9c341107826aa9d62e3287af8a3a433b6",
+              "candidate_feed_sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+              "candidate_snapshot_sha256": "fca7d568d26d4d01383c9bc2149e3447663e0bb70d9c9ddfdf560c3e48aa8a05",
+              "candidate_diagnostics_sha256": "0fee91464ab083c878daee25f23da334cc258a715e5b9c3366ad46e941366e41",
+              "uploader_sha256": "9c22626059110291b4b7fbfd026215b54de0d2b29966c047992da754c1bab1c8",
+              "config_sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b",
+              "builder_freeze_sha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed",
+              "source_completed_at": "2026-09-11T21:18:15.731Z"
+            },
+            "no_live_command": true
+          }
+        },
+        "findings": [
+          {
+            "id": "F1",
+            "status": "RESOLVED_IN_REVISION2",
+            "severity": "required_fix_before_promotion",
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+            "lines": [
+              254,
+              255,
+              315,
+              337,
+              345
+            ],
+            "observed": "validate_review/candidate checks source age before object handling. No source-age check occurs after object verification/remote drift reads and immediately before pointer PUT.",
+            "reproduction": "Actual candidate() and validate_review() run against a complete synthetic fresh-source packet at age7199seconds. Simulated immutable upload advances the clock to age7201seconds; promote() still writes current.json and returnsCOMMITTED_VERIFIED. No live operation or credentials used.",
+            "expected": "At commit, a candidate older than the explicit120minute limit stops and leaves the previous pointer unchanged, even when it was valid at entry.",
+            "necessary_correction": "Revalidate source freshness and exact review/candidate bindings immediately before pointer commit, under the existing lock after upload and drift checks. Add a boundary test advancing time during object handling; rerun the independent probe on exact revised code. No broader design or owner-approval change is needed.",
+            "resolution": {
+              "uploader_sha256": "1232c88e20fadac6f40057de5736f963bdbf8fb21126310efe2b1c6b9490c2e7",
+              "lines": [
+                342,
+                347
+              ],
+              "proof": "Original independent7199-to7201 during-upload probe now stops before pointer commit; actual review-file mutation during upload also stops.22 supplied tests and12 independent probes pass."
+            }
+          },
+          {
+            "id": "F2",
+            "status": "RESOLVED_IN_REVISION3",
+            "severity": "required_compatibility_fix_before_promotion",
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+            "lines": [
+              301,
+              302,
+              337,
+              338
+            ],
+            "observed": "The same existing Cloudflare REST object API has saved weak transport ETags such as W/\"<raw-md5>-gzip\". strip-quote comparison against the raw R2 object MD5 rejects that recorded response shape despite exact decoded bytes, SHA256 and MD5.",
+            "evidence": [
+              {
+                "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/object_readback_diagnostic.json",
+                "sha256": "50df9817a82e85331933037f8dc5a09478e734007000395a6993236f34605b69"
+              },
+              {
+                "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/first_upload_receipt.json",
+                "sha256": "5c9de9d631e65d20181d3c9823858f8af571504922939de052f266a110ed7952"
+              }
+            ],
+            "reproduction": "Independent FakeApi provides a weak gzip transport ETag for matching immutable bytes. Real candidate/review validation passes, but promote stops with immutable_readback_failed and no pointer write.",
+            "necessary_correction": "Handle the exact supported strong/weak transport representations while retaining full decoded byte length, SHA256 and MD5 checks and preserving the raw R2 manifest ETag. Test the recorded weak-gzip shape and corrupted-body/mismatching-ETag cases. Rebind revised uploader hash in the same unchanged-source candidate packet.",
+            "not_required": "No new source scan, new scheduler, credential change, permission expansion or owner question is implied while the current complete source snapshot remains fresh.",
+            "resolution": {
+              "uploader_sha256": "9c22626059110291b4b7fbfd026215b54de0d2b29966c047992da754c1bab1c8",
+              "lines": [
+                296,
+                304,
+                312,
+                348
+              ],
+              "proof": "Accepts only exact raw quoted MD5 or recorded weak W/quoted-MD5-gzip transport shapes after full SHA256 and MD5 match. Original failing transport probe now passes; seven malformed/unrecorded shapes, wrong SHA256/MD5/transport hash and corrupt body fail closed. Raw manifest objectEtag and unchanged host contract are preserved.",
+              "independent_probe_sha256": "7618f5775fae16b6648d58ebeb282e2966c33cda7e6d174ba2716c1235994eba"
+            }
+          }
+        ],
+        "code_acceptance": {
+          "status": "PASS_FOR_EXACT_OFFLINE_REVIEWED_CODE",
+          "supplied_tests_passed": 26,
+          "independent_probes_passed": 19,
+          "frozen_files_match": 28,
+          "F1_commit_freshness": "RESOLVED; final review re-read, all12 bindings and complete packet equality, then source-age check immediately before pointer PUT. Original7199-to7201 during-upload probe stops before commit.",
+          "F2_transport_compatibility": "RESOLVED; full decoded-byte SHA256/MD5 checks remain mandatory; only exact recorded weak-gzip transport alternative allowed.",
+          "not_accepted_by_this_review": [
+            "new exclusion/filter implementation",
+            "future exact candidate promotion",
+            "all4,923 buyer paths",
+            "live Google receipt/eligibility/serving",
+            "purchase/CPA/ROAS/profit"
+          ]
+        },
+        "remaining_executable_conditions": [
+          "Keep full4,923 timestamp-only renewal unapproved while the new buyer/source-quality dependency is unresolved.",
+          "Sole Merchant prepares the smallest source-current existing-US containment candidate or verified repair. Independent review must bind any new wrapper/code and exact excluded offer set; no all-retained buyer certification.",
+          "Any later approved promotion still requires the lock, exact review/code/source bindings, current pointer/Worker/immutable readback and source age at most120minutes immediately before commit. This scan expires2026-09-11T23:18:15.731Z; do not restamp an old snapshot.",
+          "No paid, other-country, Shopify/source mutation, policy, Worker/Queue/scheduler or credential-deployment authority is added by this code review. Preserve current owner scopes.",
+          "Hosted update and Google received/processed/effective-offer evidence remain separate; account approval, traffic, purchases and profitability are unverified by this work."
+        ],
+        "candidate_data_review": {
+          "at_utc": "2026-09-11T21:27:17.996325+00:00",
+          "status": "37_OF_37_DATED_SOURCE_PRESERVATION_CHECKS_PASS__FULL_FEED_PROMOTION_HELD_FOR_NEW_BUYER_QUALITY_EVIDENCE",
+          "candidate_packet_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260911T211600Z-us-refresh/candidate_review_packet.revision3.json",
+          "candidate_packet_sha256": "38933f6bfe64de087e285451c5850bf7cd0f6bef5029f6e19694f0371f608f42",
+          "source_started_at": "2026-09-11T21:15:20.773Z",
+          "source_completed_at": "2026-09-11T21:18:15.731Z",
+          "counts": {
+            "active_online_country_catalog_published_parents": 240,
+            "unique_complete_variants": 4945,
+            "eligible_offers": 4923,
+            "unavailable_omitted": 22,
+            "trace_pages": 280,
+            "logical_requests": 282,
+            "source_prices_checked": 4923,
+            "source_price_mismatches": 0,
+            "added": 0,
+            "removed": 0,
+            "changed_rows": 0
+          },
+          "pages": {
+            "products": 10,
+            "variants": 263,
+            "final_manifest": 5,
+            "before_final_market_context": 2
+          },
+          "only_manifest_changes": {
+            "generatedAt": [
+              "2026-09-11T17:15:54.084Z",
+              "2026-09-11T21:18:15.733Z"
+            ],
+            "sourceCompletedAt": [
+              "2026-09-11T17:15:54.083Z",
+              "2026-09-11T21:18:15.731Z"
+            ]
+          },
+          "feed_sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+          "before_and_candidate_bytes_equal": true,
+          "all_other_manifest_fields_equal": true,
+          "all12_bindings_checked_for_revision2": true,
+          "sole_current_Merchant_claim_read": true,
+          "claim_line_sha256": "e33a99a83e6f8dfa8b031440dd56bbfc24e84a20378ad4a480b3f9cb6501090d",
+          "limitations": "Complete dated Shopify source and all row prices were checked, with 22 unavailable omissions. This is not an atomic database snapshot, blanket buyer-route acceptance, Google receipt/serving or a profit claim. Newly reported and observed existing-row quality problems invalidate any inference that zero additions means no buyer-quality review is needed. Existing6197 warnings and omitted return labels remain.",
+          "all12_bindings_checked_for_revision3": true
+        },
+        "business_release_dependency": {
+          "status": "HOLD_FULL_4923_RENEWAL",
+          "reported_by": "/root; sole Merchant and UX owners retain execution",
+          "ux_receipt": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/au-buyer-matrix-20260911/READBACK.json",
+            "sha256": "6b0a5a43fb095f9b266f95f405d2978170d4a1522dbaf0ecc55e5707b0762e3b",
+            "status": "FAILED_FULL_MATRIX_HOLD",
+            "created_at_utc": "2026-09-11T21:36:37.971959+00:00",
+            "actual_MAIN": {
+              "id": "133290917985",
+              "name": "dresslikemommy/main",
+              "role": "main"
+            },
+            "market_locale_currency": [
+              "AU",
+              "en",
+              "AUD"
+            ]
+          },
+          "verified_runtime_scope": "AU E1 product7516369715297: ordinary Choose options click revealed no options or Add; six primary representative cases passed with stated limits. E2 and E3 runtime NOT RUN after stop. No independent US public browser observation by this reviewer.",
+          "source_qualification_limit": "Exact saved MAIN pure-function/source mapping reports E2 unclassified child roles and Trail Plaid identity collisions. Parent additionally reports current EN Skyfade and PolkaDot measurement holds; final source-hold receipt and deterministic US applicability are pending, not fabricated here.",
+          "candidate_parent_offer_counts": {
+            "7516369715297": 14,
+            "7516479848545": 9,
+            "7536337125473": 56,
+            "7536992976993": 54,
+            "7536988520545": 20
+          },
+          "all_five_present_in_exact_US_candidate": true,
+          "withheld_offers_if_all_five_parents": 153,
+          "retained_offers_if_all_five_parents": 4770,
+          "retained_parents_if_all_five_parents": 235,
+          "retained_count_is_not_blanket_buyer_qualification": true,
+          "decision": "Reconcile exact US applicability and contain the confirmed or unresolved material affected parent cohorts through a reviewed exclusion candidate, or repair source/buyer path and independently verify it, before refreshing a feed still containing those rows. Do not renew the known-issue full4,923 file solely to advance its source timestamp.",
+          "practical_limit": "Holding this renewal does not remove the already hosted or previously received offers. A reviewed containment publication and destination receipt/processing check are needed to establish reduced live exposure; Google eligibility/serving remain separate.",
+          "next_artifact_gate": "Existing Merchant wrapper/frozen-generator subset must independently bind exact excluded IDs, source freshness, all retained original TSV lines byte-for-byte, manifest/delta/hash consistency, single-writer/Worker/pointer drift guards, and truthful rollback without reintroducing broken prices or known held offers. No implementation acceptance is inherited merely from this lifecycle code review."
+        },
+        "next_action": "Merchant submits the exact source-fresh subset/exclusion packet after UX/source applicability reconciliation; reviewer verifies that containment before any current-US pointer promotion. This prevents timestamp renewal from preserving the newly identified buyer/source issues."
+      }
+    },
+    {
+      "prior_report_sha256": "a02bed6048b1f6f02feda6b6ef79aeeb43451d7ed03e8f28be5153ee82a60f01",
+      "reviewed_at_utc": "2026-09-11T21:51:30.806189+00:00",
+      "verdict": "HOLD_CONTAINMENT_F3_UNKNOWN_PARENT_F4_UNWIRED_PROTECTION_F5_ACTIVE_HOLD_DRIFT",
+      "preserved_fields": {
+        "reviewed_files": {
+          "lifecycle.py": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+            "sha256": "58df751f23e15009e7c1e5622c6678c85e863166e822e4471fe721e44bdca687",
+            "bytes_at_review": null,
+            "current_matches_reviewed_hash": false
+          },
+          "cohort_filter.py": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/cohort_filter.py",
+            "sha256": "ccd82ba6944ed5d00ff9c4caafea03e642da29daa71bda709651af459b9eb8cd",
+            "bytes_at_review": 4615,
+            "current_matches_reviewed_hash": true
+          },
+          "test_lifecycle.py": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/test_lifecycle.py",
+            "sha256": "64fc0eb44ea780c428004e8a6ce7f617eeea08b412ae5f8baf25bf23da5124fc",
+            "bytes_at_review": null,
+            "current_matches_reviewed_hash": false
+          },
+          "test_cohort_filter.py": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/test_cohort_filter.py",
+            "sha256": "783f27d29f2dfef2984761e6c2cd46131617a2e339d29c2e2b3261403c236b82",
+            "bytes_at_review": 4298,
+            "current_matches_reviewed_hash": true
+          },
+          "README.md": {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/README.md",
+            "sha256": "e395db75fc938a53f1641bab95ff3b1ff83fde0c49fd3ca1e55440842adf2ddc",
+            "bytes_at_review": null,
+            "current_matches_reviewed_hash": false
+          }
+        },
+        "code_acceptance": {
+          "status": "HOLD_FOR_THREE_REPRODUCED_CONTAINMENT_GAPS",
+          "prior_precontainment_acceptance": "Preserved in revision_history;26 tests/19 independent probes/28 frozen files passed on9c22626059110291b4b7fbfd026215b54de0d2b29966c047992da754c1bab1c8.",
+          "current_code_hashes": {
+            "lifecycle.py": "58df751f23e15009e7c1e5622c6678c85e863166e822e4471fe721e44bdca687",
+            "cohort_filter.py": "ccd82ba6944ed5d00ff9c4caafea03e642da29daa71bda709651af459b9eb8cd"
+          },
+          "current_supplied_tests": 36,
+          "current_independent_probes_passed": 14,
+          "current_independent_probes_total": 17,
+          "still_exact_at_report": false,
+          "verified": [
+            "Retained TSV header and every kept raw line preserve bytes including Unicode, quoting, CRLF and order. Exact whole-parent matching does not remove a numeric prefix neighbor.",
+            "Output hash/MD5/object key, row IDs, lifecycle diffs, kept parent count and return-exception rows reconcile; complete source counts/timestamps and all original evidence remain unchanged.",
+            "New future offers still require exact buyer-qualified IDs.",
+            "Frozen run hold copy, independent review and containment receipt drift during upload stop before pointer commit.",
+            "Unfiltered/source and retained-byte corruption are rejected; repeat/partial local containment cannot publish.",
+            "F1 final source expiry and F2 observed weak-gzip ETag handling remain operative.",
+            "No automatic rollback, pointer retry or credential/network behavior added;28 frozen generator files and explicit US config still match."
+          ],
+          "not_verified_or_approved": [
+            "F3 unknown-parent protection",
+            "F4 wrapper protected-pilot/five-price wiring",
+            "F5 current active hold revision invalidation",
+            "final eligible parent/offer count including pending Pastel Bloom decision",
+            "exact US/AU subset candidate",
+            "live promotion, Google receipt, approval, serving, traffic, purchases or profit"
+          ]
+        },
+        "remaining_executable_conditions": [
+          "Sole Merchant resolves only F3/F4/F5 and supplies exact code/test hashes; independent reviewer replays the three original probes plus passing holdouts.",
+          "Final current hold spec remains a candidate: source reviewer must settle exact applicability including any Pastel Bloom image issue. No5-parent/153-offer count is promoted into final release truth.",
+          "Then independently bind final source-current subset, all15 wrapper/review fields, exact excluded IDs, byte-preserved retained lines, full source/page/count proof and market-specific protected offers.",
+          "Any later production action retains exact single-writer, before pointer/Worker/immutable drift checks and immediate120minute source-age bound. No old-source restamping or unreviewed active hold adoption.",
+          "Rollback cannot point back to the known-broken price generation or blindly reactivate currently held offers. Recovery must be source-true and independently reviewed; destination receipt/processing remains separate.",
+          "No paid, other-country, Shopify/source mutation, policy, Worker/Queue/scheduler or credential authority is added."
+        ],
+        "next_action": "Merchant fixes the three reproduced guard gaps without altering frozen generator/source data; reviewer replays original probes on exact revised bytes before final subset review."
+      },
+      "F3_F4_F5_original_failure_receipt": "/private/tmp/dlm-containment-independent-probes-20260911.json",
+      "F3_F4_F5_original_failure_sha256": "368e2f27e875b28114864e35c32c7062f8e7003d2c75aceec8aae02d2029908f"
+    }
+  ],
+  "candidate_data_review": {
+    "at_utc": "2026-09-11T21:27:17.996325+00:00",
+    "status": "37_OF_37_DATED_SOURCE_PRESERVATION_CHECKS_PASS__FULL_FEED_PROMOTION_HELD_FOR_NEW_BUYER_QUALITY_EVIDENCE",
+    "candidate_packet_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260911T211600Z-us-refresh/candidate_review_packet.revision3.json",
+    "candidate_packet_sha256": "38933f6bfe64de087e285451c5850bf7cd0f6bef5029f6e19694f0371f608f42",
+    "source_started_at": "2026-09-11T21:15:20.773Z",
+    "source_completed_at": "2026-09-11T21:18:15.731Z",
+    "counts": {
+      "active_online_country_catalog_published_parents": 240,
+      "unique_complete_variants": 4945,
+      "eligible_offers": 4923,
+      "unavailable_omitted": 22,
+      "trace_pages": 280,
+      "logical_requests": 282,
+      "source_prices_checked": 4923,
+      "source_price_mismatches": 0,
+      "added": 0,
+      "removed": 0,
+      "changed_rows": 0
+    },
+    "pages": {
+      "products": 10,
+      "variants": 263,
+      "final_manifest": 5,
+      "before_final_market_context": 2
+    },
+    "only_manifest_changes": {
+      "generatedAt": [
+        "2026-09-11T17:15:54.084Z",
+        "2026-09-11T21:18:15.733Z"
+      ],
+      "sourceCompletedAt": [
+        "2026-09-11T17:15:54.083Z",
+        "2026-09-11T21:18:15.731Z"
+      ]
+    },
+    "feed_sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+    "before_and_candidate_bytes_equal": true,
+    "all_other_manifest_fields_equal": true,
+    "all12_bindings_checked_for_revision2": true,
+    "sole_current_Merchant_claim_read": true,
+    "claim_line_sha256": "e33a99a83e6f8dfa8b031440dd56bbfc24e84a20378ad4a480b3f9cb6501090d",
+    "limitations": "Complete dated Shopify source and all row prices were checked, with 22 unavailable omissions. This is not an atomic database snapshot, blanket buyer-route acceptance, Google receipt/serving or a profit claim. Newly reported and observed existing-row quality problems invalidate any inference that zero additions means no buyer-quality review is needed. Existing6197 warnings and omitted return labels remain.",
+    "all12_bindings_checked_for_revision3": true
+  },
+  "code_acceptance": {
+    "status": "PASS_EXACT_REVISION6",
+    "supplied_tests": 44,
+    "independent_probes": 22,
+    "frozen_files": 28,
+    "previous26_tests19_probes_and_F1_F2_history_preserved": true,
+    "original_F3_F4_F5_failures_preserved": true,
+    "final_bindings": 16,
+    "scope": "Code/probe acceptance; exact two current candidates bound separately. No all-offer buyer-path, Google approval/serving or profit acceptance."
+  },
+  "business_release_dependency": {
+    "status": "SIX_PARENT_162_OFFER_CONTAINMENT_VERIFIED_FOR_EXACT_CANDIDATES__UNDERLYING_REPAIRS_REMAIN_OPEN",
+    "reported_by": "/root; sole Merchant and UX owners retain execution",
+    "ux_receipt": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/au-buyer-matrix-20260911/READBACK.json",
+      "sha256": "6b0a5a43fb095f9b266f95f405d2978170d4a1522dbaf0ecc55e5707b0762e3b",
+      "status": "FAILED_FULL_MATRIX_HOLD",
+      "created_at_utc": "2026-09-11T21:36:37.971959+00:00",
+      "actual_MAIN": {
+        "id": "133290917985",
+        "name": "dresslikemommy/main",
+        "role": "main"
+      },
+      "market_locale_currency": [
+        "AU",
+        "en",
+        "AUD"
+      ]
+    },
+    "verified_runtime_scope": "AU E1 product7516369715297: ordinary Choose options click revealed no options or Add; six primary representative cases passed with stated limits. E2 and E3 runtime NOT RUN after stop. No independent US public browser observation by this reviewer.",
+    "source_qualification_limit": "Exact saved MAIN pure-function/source mapping reports E2 unclassified child roles and Trail Plaid identity collisions. Parent additionally reports current EN Skyfade and PolkaDot measurement holds; final source-hold receipt and deterministic US applicability are pending, not fabricated here.",
+    "candidate_parent_offer_counts": {
+      "7516369715297": 14,
+      "7516479848545": 9,
+      "7536337125473": 56,
+      "7536992976993": 54,
+      "7536988520545": 20
+    },
+    "all_five_present_in_exact_US_candidate": true,
+    "withheld_offers_if_all_five_parents": 153,
+    "retained_offers_if_all_five_parents": 4770,
+    "retained_parents_if_all_five_parents": 235,
+    "retained_count_is_not_blanket_buyer_qualification": true,
+    "decision": "Reconcile exact US applicability and contain the confirmed or unresolved material affected parent cohorts through a reviewed exclusion candidate, or repair source/buyer path and independently verify it, before refreshing a feed still containing those rows. Do not renew the known-issue full4,923 file solely to advance its source timestamp.",
+    "practical_limit": "Holding this renewal does not remove the already hosted or previously received offers. A reviewed containment publication and destination receipt/processing check are needed to establish reduced live exposure; Google eligibility/serving remain separate.",
+    "next_artifact_gate": "Existing Merchant wrapper/frozen-generator subset must independently bind exact excluded IDs, source freshness, all retained original TSV lines byte-for-byte, manifest/delta/hash consistency, single-writer/Worker/pointer drift guards, and truthful rollback without reintroducing broken prices or known held offers. No implementation acceptance is inherited merely from this lifecycle code review.",
+    "final_count_note": "Six parents/162 current source offers excluded,4,761 offers/234 parents retained in each exact file. Source/buyer/image holds remain active until their own repair/review; no underlying hold cleared.",
+    "prior_five_parent_fields": "Historical intermediate scope retained above; final exact release uses all six/162 as recorded in exact_candidate_verification and bound approvals."
+  },
+  "exact_candidate_verification": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/exact_candidate_verification.revision6_20260911.json",
+    "sha256": "fe47665cf912dc4596ce3c96021ec9da4c84b761b15905e9d3a18a303b7c21b7",
+    "checks_passed": 73,
+    "checks_total": 73,
+    "markets": {
+      "us-en": {
+        "source_start_utc": "2026-09-11T21:15:20.773Z",
+        "source_completed_utc": "2026-09-11T21:18:15.731Z",
+        "valid_until_utc": "2026-09-11T23:18:15.731000+00:00",
+        "rows": 4761,
+        "parents": 234,
+        "source_variants": 4945,
+        "unavailable_omitted": 22,
+        "excluded": 162,
+        "feed_sha256": "f12d84e3e4bb6ecabfe6b86d2a439f16913be3b2e65c8725d76edba5524c1323",
+        "bytes": 16563739,
+        "manifest_sha256": "985841419ca491cf49b425d5ca2f30d56e5fc9cc5972bf26121efd664d76233a",
+        "snapshot_sha256": "fca7d568d26d4d01383c9bc2149e3447663e0bb70d9c9ddfdf560c3e48aa8a05",
+        "diagnostics_sha256": "a854353c69d6e2348681484b66a0453e0a128e8f949f84fcc64157f64a86f3bd",
+        "trace_records": 280,
+        "trace_pages_by_type": {
+          "products": 10,
+          "variants": 263,
+          "final_manifest": 5,
+          "market_context": 2
+        },
+        "source_parents": 240,
+        "prices_checked": 4761,
+        "new_offers": 0,
+        "removed_from_previous": 162,
+        "checks_in_market": 24,
+        "exception_rows": 720,
+        "warnings_preserved": 6197
+      },
+      "au-en": {
+        "source_start_utc": "2026-09-11T21:45:47.371Z",
+        "source_completed_utc": "2026-09-11T21:48:12.073Z",
+        "valid_until_utc": "2026-09-11T23:48:12.073000+00:00",
+        "rows": 4761,
+        "parents": 234,
+        "source_variants": 4945,
+        "unavailable_omitted": 22,
+        "excluded": 162,
+        "feed_sha256": "3857b029a134868c6de8cdfda75d926710651a9e5600beff5ab645a5d61559ae",
+        "bytes": 16678003,
+        "manifest_sha256": "cd100dcad21bcbe4c7a887d0ae8ac980bb0e3d10b643ac243e6a2d99dca9a270",
+        "snapshot_sha256": "cd08a7c5d54871ad9db1e6c31da1da70269006d0ac8b6bc590e285a966ebe915",
+        "diagnostics_sha256": "10fb41ad6b672aeb5a598974a8523011d6304754a5e394e2efc2b0304c3b1867",
+        "trace_records": 280,
+        "trace_pages_by_type": {
+          "products": 10,
+          "variants": 263,
+          "final_manifest": 5,
+          "market_context": 2
+        },
+        "source_parents": 240,
+        "prices_checked": 4761,
+        "new_offers": 4760,
+        "removed_from_previous": 0,
+        "checks_in_market": 24,
+        "exception_rows": 720,
+        "warnings_preserved": 6197
+      }
+    },
+    "limits": [
+      "Saved actual source/build/native receipts independently reconciled locally; reviewer made no source/account/network/browser calls.",
+      "Exact retained raw lines and all prices/source availability matched; actual buyer acceptance is representative branch evidence with162 known/unresolved offers contained, not every-offer DOM/mobile/checkout proof.",
+      "SKU/template values remain bound to21:18:37–21:21:56 receipt; later snapshots reconcile parent identity/counts/options, not a second fresh SKU/template query.",
+      "Initial numeric-variant preselection/range issue persists; Google processing/effective offer prices and serving must be verified separately.",
+      "Before pointer/source is dated; sole Merchant must execute fresh guarded before-state under lock, active hold/qualification hash agreement, and source expiry.",
+      "No automatic rollback to full4923 known-held offers or old broken-price feed; source-true reviewed recovery only.",
+      "No paid authority, approval/serving, traffic/purchase attribution, CPA/ROAS/profit claim."
+    ]
+  },
+  "exact_release_reviews": {
+    "US": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260911T211600Z-us-six-parent-f345/independent_promotion_review.revision6_20260911.json",
+      "sha256": "bae6c875e23965e445a731dd03fbeb5cafc3012e490d78f4809a60208ad45a69",
+      "decision": "APPROVE_EXACT_US_FEED_POINTER",
+      "valid_until_utc": "2026-09-11T23:18:15.731Z",
+      "schema_validation": "PASS app.validate_review before and after final receipt creation;16 exact bindings"
+    },
+    "AU": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.contained_release_20260911/independent_release_review.revision6_20260911.json",
+      "sha256": "7cccc4488081bfda5a0ec45d3af053c60627252125ba856796c8a2e1ef36580c",
+      "decision": "APPROVE_EXACT_AU_EXISTING_SOURCE_FILE_REPLACEMENT_WITH_ACTION_TIME_GUARDS",
+      "valid_until_utc": "2026-09-11T23:48:12.073Z",
+      "schema_validation": "Bounded native replacement decision; not executable by the US-only wrapper."
+    }
+  }
+}

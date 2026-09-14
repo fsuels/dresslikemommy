@@ -1,0 +1,79 @@
+{
+  "recorded_at": "2026-09-11T22:48:10.178497+00:00",
+  "status": "REVIEW_ONLY_UPLOAD_AND_COLUMN_MATCHING__FINAL_IMPORT_HELD",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "payload": "paused_shell_mapper_probe.csv",
+  "sha256": "27262e4bdc410afdf875257dcc0f36d7a897cf987ec23f1685af4cfbfff8964e",
+  "scope": "Upload two proposed Paused Search shells to exact account native Microsoft-format mapper; inspect column mapping only. No final Import authorized by this probe contract.",
+  "current_user_scope": "Ongoing Microsoft repair and qualified paused preparation; full-paid NONE",
+  "columns": [
+    "Type",
+    "Status",
+    "Campaign",
+    "Campaign Type",
+    "Budget Type",
+    "Budget",
+    "Language",
+    "Bid Strategy Type",
+    "Bid Strategy MaxCpc"
+  ],
+  "rows": [
+    [
+      "Campaign",
+      "Paused",
+      "DLM | MS | US | EN | Search | 202609",
+      "Search",
+      "Daily",
+      "5.00",
+      "English",
+      "MaxClicks",
+      "0.15"
+    ],
+    [
+      "Campaign",
+      "Paused",
+      "DLM | MS | DE | DE | Search | 202609",
+      "Search",
+      "Daily",
+      "3.00",
+      "German",
+      "MaxClicks",
+      "0.15"
+    ]
+  ],
+  "checks": {
+    "exact_two_campaign_rows": true,
+    "all_paused": true,
+    "no_children_or_ad_content": true,
+    "maxclicks_explicit": true,
+    "max_cpc_explicit": true,
+    "no_existing_identifiers": true,
+    "fresh_native_names_absent": true
+  },
+  "containment": [
+    "No existing campaign IDs or matching existing names",
+    "Both rows explicitly Paused",
+    "No ad groups, ads or keywords",
+    "No existing-account or campaign updates permitted",
+    "No scheduling, launch or activation",
+    "Budget5/3USD is proposed configuration, not spend authorization"
+  ],
+  "before_state": "campaign_before.json",
+  "expected_evidence": [
+    "Status mapped",
+    "Campaign Type and Language mapped",
+    "Bid Strategy Type maps MaxClicks",
+    "Bid Strategy MaxCpc maps numeric0.15",
+    "No unknown/dropped/coerced critical columns"
+  ],
+  "stop_conditions": [
+    "Upload/Continue can directly apply changes",
+    "Status or cap unmapped/coerced",
+    "Any existing campaign update",
+    "Any new auth/terms/billing/permission challenge",
+    "Any unexpected destructive prompt"
+  ],
+  "rollback": "Cancel native import review without importing; retain existing11Paused campaigns",
+  "independent_schema_research": "schema-review/; documented Bulk cap is not UI acceptance"
+}

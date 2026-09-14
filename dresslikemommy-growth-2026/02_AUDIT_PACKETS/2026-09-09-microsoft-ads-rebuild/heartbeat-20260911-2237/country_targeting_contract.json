@@ -1,0 +1,51 @@
+{
+  "recorded_at": "2026-09-11T23:03:56.242111+00:00",
+  "status": "PENDING_INDEPENDENT_REVIEW",
+  "decision_id": "DLM-DEC-2026-09-11-MICROSOFT-COUNTRY-PRESENCE-TARGETING",
+  "authority": "Current ongoing qualified paused campaign preparation; no spend or activation.",
+  "scope": [
+    {
+      "campaign_id": "506254907",
+      "name": "DLM | MS | US | EN | Search | 202609",
+      "target": "United States (country/region)"
+    },
+    {
+      "campaign_id": "506254908",
+      "name": "DLM | MS | DE | DE | Search | 202609",
+      "target": "Germany (country/region)"
+    }
+  ],
+  "change": "For each exact new emptyPaused campaign, replace no explicit location target with exactlyone matching country; change inclusive search-interest location intent to People in your targeted locations; neutral0percent geographic bid adjustment.",
+  "us_frozen_proposal": "us_location_before_and_proposal.json",
+  "us_proposal_sha256": "af361feefd2220dce6dd679679da8b9b71b449c18c8d1c66d36b759c32b4747d",
+  "de_before_status": "Native import showed0criteria; fresh exact DE location/editor before-state still required before its Save.",
+  "per_campaign_pre_save_conditions": [
+    "Exactaccount477439/customer770182 and intended newcampaignID/name",
+    "Campaign remainsPaused andempty",
+    "Fresh nativeLocationstab/editor shows no existing location targets and defaultinclusiveintent; anydifferentstatehalts",
+    "Native searchresult exactcountry/region UnitedStates forUS/Germany forDE; no territory/radius substitute",
+    "Exactlyone target, presence-only radio selected,0percent bid modifier, noexcludedtargetchanges",
+    "Before/proposal receipt saved; no changes tobudget/cap/language/status/expansion/goals/oldcampaigns"
+  ],
+  "exact_actions": "Native Save once per campaign after individualfresh target/control readback. USproposalready; DE Save conditional uponsame documentedexact checks. No import or childcreation.",
+  "after": [
+    "NativeTargeted table shows exactlyone countryrow withbidmodifier0",
+    "Reopen samecountry editor; confirm exactlythatcountry and People in your targeted locations selected",
+    "Native campaign remainsPaused; preserve savedMaxClicks0.15,5USDEnglish or3USDGerman and expansionOff",
+    "Original11campaigns and all other settings untouched"
+  ],
+  "rollback": "BeforeSave Cancel. AfterSave retainnewcampsPaused/empty ifverificationfails; exactinverse is removeonlynewcountrytarget andrestoreoriginalintent, but do not automatically broaden a campaign. No deletion/reimport or oldcampaignchange.",
+  "full_paid_scope": "NONE",
+  "material_decision": true,
+  "independent_verifier": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "DE fresh0criteria/defaultintent and nativeexactGermanymatch; each savedcountry/presence readback",
+  "if_evidence_supports_recommendation": "Complete each exactcountry/presence target and retainPaused",
+  "if_evidence_opposes_recommendation": "Hold thatcampaign unchanged/Paused; do not infer geography or substitute territory",
+  "limits": [
+    "Platformpresence usesestimateduserlocation; this setting does not guarantee physical residency",
+    "Countries/languages are separate; campaignnames alone were not geo controls",
+    "No claim oflowCPC, approvedtraffic, attribution, consent, profitability or activation"
+  ]
+}

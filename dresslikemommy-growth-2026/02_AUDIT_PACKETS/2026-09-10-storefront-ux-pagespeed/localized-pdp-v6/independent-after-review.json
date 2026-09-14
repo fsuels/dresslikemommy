@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "revision": 6,
+  "status": "PASS",
+  "confidence": "H",
+  "reviewedAt": "2026-09-10 04:50:30 UTC",
+  "updatedAt": "2026-09-10 04:56:38 UTC",
+  "reviewer": "/root/theme_audit_review",
+  "scope": "Independent frozen-source, payload, inverse and saved postwrite/browser evidence review for the two-file V6 update.",
+  "target": {
+    "id": "gid://shopify/OnlineStoreTheme/137888792673",
+    "name": "DLM UX Performance QA 2026-09-10",
+    "role": "UNPUBLISHED"
+  },
+  "independence": {
+    "reviewerPerformed": [
+      "Recomputed source and payload hashes, sizes, manifest differences and rollback bindings.",
+      "Compared all 527 local candidate and recorded Theme Check copy files with the postwrite API manifest.",
+      "Compared saved Japanese/English/French/Korean rendered paragraphs with frozen source bodies.",
+      "Compared every recorded Arabic child/adult guide measurement with its source row, allowing only existing Arabic unit-label normalization to kg/cm.",
+      "Inspected recorded test outputs and root browser evidence, including first-child cart identity/price and cleanup."
+    ],
+    "rootPerformed": [
+      "Actual browser navigation, interaction, viewport changes and cart add/remove.",
+      "42 production-script regressions and full 527-file Shopify Theme Check.",
+      "Live full embedded-variant/options/table before/after equality comparisons reported in browser-after.json."
+    ],
+    "reviewerDidNotPerform": [
+      "No independent live browser replay or external action.",
+      "No test rerun, theme/product/canonical edit or publication."
+    ]
+  },
+  "files": [
+    {
+      "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "sha256": "e5a16e0cc2e9dca6cd5b40fce603b1cee54daa023943b1b5cd5033b401842438",
+      "size": 268875,
+      "beforeMd5": "1d3544d25d247e50b862a089c9249e9a",
+      "afterMd5": "522339c5825769c499e1ad1488b8a138"
+    },
+    {
+      "filename": "snippets/pdp-description-copy-cleanup.liquid",
+      "sha256": "04997bf4d29704d478115fac5e6588772e460e04eccffa0f6cd3e712d80e2219",
+      "size": 10526,
+      "beforeMd5": "44243cbf23a0b608fe400a5c5a48db2b",
+      "afterMd5": "0e33a0f440288594bf5acd02d109091a"
+    }
+  ],
+  "payloads": {
+    "apply": {
+      "file": "apply.json",
+      "sha256": "81c63a2029f6b6e7cf52e9b62624cce49020d21e6b18e0f469cd77db53401cee"
+    },
+    "rollback": {
+      "file": "rollback.json",
+      "sha256": "a8f8f541e283571c69bc54ccb5220b4b26ebbaaa3673587fcbc854b6c263b4f4"
+    },
+    "verification": "Both payloads target only the same unpublished theme and exactly the same two TEXT files. Apply bodies equal frozen candidate bytes. Rollback bodies match fresh prewrite API MD5 and size; cleanup also equals the inline source.",
+    "largeAssetProvenance": "The API omitted the large ruler JS inline body. Its inverse comes from the V5 local Theme Check copy, bound to current before/prewrite API MD5 and size. Postwrite JS verification uses the API MD5/size, not an independently returned full text body."
+  },
+  "sourceVerification": {
+    "status": "VERIFIED",
+    "prewriteAt": "2026-09-10T04:34:46.597Z",
+    "postwriteAt": "2026-09-10T04:38:52.344Z",
+    "freshPrewriteMatchesBefore": true,
+    "upsertUserErrors": 0,
+    "exactChangedFiles": 2,
+    "preservedOtherPreviewFiles": 525,
+    "fullCandidateFiles": 527,
+    "everyCandidateFileMatchesAfterManifest": true,
+    "everyThemeCheckCopyFileMatchesAfterManifest": true,
+    "mainUnchanged": true,
+    "merchantCombinedUnchanged": true,
+    "cumulativeChangedAgainstCombined": 16,
+    "cumulativePreservedAgainstCombined": 511,
+    "cumulativeDifferencesAgainstMain": 59,
+    "scopeNote": "The complete preview inherits prior combined-theme work; this review is not an exhaustive re-audit of the full 59-difference MAIN release."
+  },
+  "validationEvidence": {
+    "status": "VERIFIED",
+    "productionScriptRegressions": {
+      "runBy": "root",
+      "passed": 42,
+      "failed": 0,
+      "exitCode": 0,
+      "rerunByReviewer": false
+    },
+    "themeCheck": {
+      "runBy": "root",
+      "files": 527,
+      "exitCode": 0,
+      "diagnostics": 0,
+      "rerunByReviewer": false
+    },
+    "relevance": "Tests reproduce missing Arabic offers and Japanese stripping in baseline code, exercise the actual script, preserve 20 other locale role/guide outputs, retain tables and offer properties, and cover bounded matching, unavailable offers and cleanup protections."
+  },
+  "contentEvidence": {
+    "japanese": {
+      "sourceBodySha256": "9be752054def42be5e7a71c87dfd263853a985400e50c72184b6d44254976c3b",
+      "reviewerRecomputedExactSavedParagraphs": 3,
+      "rootReportedTableUnchanged": true,
+      "rootReportedParagraphsAndTableUnchangedAfterInteraction": true,
+      "rootReportedMobileWidth": 390,
+      "rootReportedMobileScrollWidth": 384
+    },
+    "arabic": {
+      "sourceBodySha256": "d3a7bb0bfd14250669081711a8130333bea940ebe0283d793bbe49df8003e9c3",
+      "reviewerComparedChildGuideRows": 7,
+      "reviewerComparedAdultGuideRows": 7,
+      "guideMeasurementComparison": "All saved visible measurement values equal source values. Header comparison applies only the existing normalization of Arabic kg/cm unit labels.",
+      "rootReportedEmbeddedVariants": 98,
+      "rootReportedAllVariantFieldsAndOptionsUnchanged": true,
+      "rootReportedSourceTableAndParagraphsUnchanged": true,
+      "cartReceiptVariantId": "46512187113569",
+      "cartReceiptPriceUsd": "24.99",
+      "cartReceiptMatchesCapturedProductVariant": true,
+      "rootReportedMobileLastChildSelection": [
+        "عمر 9-10 سنوات",
+        "أخضر"
+      ],
+      "rootReportedAdultAddEnabled": true,
+      "selectedGuideRecheck": {
+        "evidence": "selected-guide-recheck.json",
+        "rootCheckedAt": "2026-09-10T04:54:14.544Z",
+        "rootReportedSelection": "Adult S / white",
+        "rootReportedVisibleSelectedRows": [["S", "40-50", "150-160", "102", "52", "64"]],
+        "reviewerRecomputedRowMatchesFrozenSource": true,
+        "reviewerRecomputedPriceMatchesCapturedAdultSWhiteVariant": true,
+        "priceMinorUnits": 2699,
+        "rootReportedAddEnabled": true,
+        "rootReportedCartCount": 0,
+        "rootReportedViewportWidth": 390,
+        "screenshotInspection": "Root visually inspected the S highlight in the CUA transcript; reviewer did not independently inspect that screenshot or replay the browser."
+      }
+    },
+    "holdouts": {
+      "reviewerComparedSavedParagraphs": [
+        "en",
+        "fr",
+        "ko"
+      ],
+      "frenchNormalization": "Existing space-before-punctuation normalization retained.",
+      "rootReportedSourceTableCellsPerLocale": 140,
+      "rootReportedRoleOutputs": {
+        "en": [
+          "child",
+          "adult"
+        ],
+        "fr": [
+          "boy",
+          "adult"
+        ],
+        "ko": [
+          "boy",
+          "adult"
+        ]
+      }
+    },
+    "restoration": {
+      "rootReportedLocale": "en",
+      "rootReportedViewportWidth": 1280,
+      "rootReportedCartCount": 0
+    }
+  },
+  "evidenceSha256": {
+    "apply.json": "81c63a2029f6b6e7cf52e9b62624cce49020d21e6b18e0f469cd77db53401cee",
+    "rollback.json": "a8f8f541e283571c69bc54ccb5220b4b26ebbaaa3673587fcbc854b6c263b4f4",
+    "prewrite.json": "47f0bed6d9eacc73fcd0d1b395f4be3a0a27e34e1614607247caebb11c0e911f",
+    "after.json": "6359cd9fe8a85bfea64e097fb731bf7baeef8133a3355fea7aaad9a11674e1b4",
+    "browser-before.json": "fc5770e958a03b561227bb7756a65e0c1d74695e6eabb825af5925abdc451185",
+    "browser-after.json": "2664e35eafc0d1c00ca7c269d6836b46439ab2a97027420251fb497a97198bb9",
+    "regression-run.json": "178b5d338e5680a42bfd51c9758ac8d537f6df635b1c6a78018f66143f3f83fb",
+    "regression-results.txt": "b6b9571b795ec747ed65bb5737368da6228db487524f92dd3641d910bd90b2b8",
+    "theme-check-run.json": "6103e3fb17b3cab81f17a50f12f6153178af9d816a0985cf68af76292d4112fc",
+    "theme-check.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "selected-guide-recheck.json": "76e7582dd478e3f64b0658eb190bc049c913954fe15b74e66cfd07d336b6cd8d",
+    "READBACK.md": "08ee1b4ccb75909a78e80a57fb7d2918f49fe5759cd36dbcdc9a51037ab694a7"
+  },
+  "findings": [
+    {
+      "id": "V6-REVIEW-01",
+      "status": "RESOLVED",
+      "type": "Report versus browser-evidence inconsistency; source payload has no mismatch",
+      "evidence": "READBACK.md states adult S/white showed measurements 102/52/64. browser-after.json arabic.adultAfter.selection begins with 126/63/76, the 4XL source values, while its add summary names adult S at 26.99. The complete recorded guide contains correct source rows.",
+      "interpretation": "The saved combined text may reflect interaction timing or different surfaces. This evidence alone does not establish a new selector defect, but does not substantiate the specific settled adult-S measurement claim.",
+      "requestedResolution": "Root verifies the settled adult-S measurement summary and records the result, or narrows the report claim to the guide values actually evidenced. Do not change candidate source without a reproduced defect.",
+      "resolution": "Fresh root mobile DOM evidence captures only the visible tr.is-selected row: S,40-50,150-160,102,52,64; selected color is white, price2699, add enabled, cart0. Reviewer independently compared the saved row against the frozen Arabic source and price against the captured adult-S/white variant. READBACK.md now explains that the earlier sliced parent text contained all rows. No source defect was reproduced and both candidate hashes remain unchanged.",
+      "resolutionEvidence": "selected-guide-recheck.json",
+      "resolutionEvidenceSha256": "76e7582dd478e3f64b0658eb190bc049c913954fe15b74e66cfd07d336b6cd8d"
+    }
+  ],
+  "limitations": [
+    "Browser QA and live embedded-object/table equality were performed by root, not replayed by this reviewer. Browser JSON records equality results rather than full raw before/after variant and table arrays.",
+    "One child cart addition was exercised and removed. Exhaustive offer mapping relies on production-script fixtures plus root's live embedded-variant comparison.",
+    "The root repeated a mobile role click after initial rendering superseded the first attempt; the completed-selector interaction passed.",
+    "Mobile emulation is not physical-device certification. Current English-page console results do not cover every locale.",
+    "No payment/order, PageSpeed improvement, conversion lift, or perfect-website certification is established.",
+    "No publication approval is granted; owner publication remains separate and requires a fresh MAIN conflict check."
+  ],
+  "nextAction": "Root integrates this scoped PASS and the resolved V6-REVIEW-01 history into its owning handoff; canonical integration/checks remain root-owned. No publication approval is granted.",
+  "reviewerWrites": [
+    "localized-pdp-v6/independent-after-review.json",
+    "localized-pdp-v6/independent-after-review.md"
+  ]
+}

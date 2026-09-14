@@ -1,6 +1,15 @@
 const DEFAULT_FEED_OBJECT_KEY = 'pinterest/pinterest_unified_all_markets.tsv';
-const DEFAULT_FEED_SHA256 = '8aefb9cf4057497e4f56df36c2157b44c913e049fb1ecb2f75f505f1eb5470d7';
-const DEFAULT_FEED_ROW_COUNT = '41814';
+const DEFAULT_FEED_SHA256 = 'b76539eb641fede467bd6a572f90689c5b1bbff12edd8707fc202c87b4f1b1c0';
+const DEFAULT_FEED_ROW_COUNT = '28122';
+const DEFAULT_PAID_PARENT_FEED_OBJECT_KEY = 'pinterest/pinterest_us_paid_parent_collection_intent.tsv';
+const DEFAULT_PAID_PARENT_FEED_SHA256 = 'e990b912ecc80d1c73e72b19f421f10d8a0d21aea13628506ea9230df1c114b6';
+const DEFAULT_PAID_PARENT_FEED_ROW_COUNT = '210';
+const DEFAULT_PAID_PARENT_ES_FEED_OBJECT_KEY = 'pinterest/pinterest_us_es_paid_parent_collection_intent.tsv';
+const DEFAULT_PAID_PARENT_ES_FEED_SHA256 = 'f4679594f0112105f814be617ff62919019cd711be147d7d0dcae4eb73ef4a69';
+const DEFAULT_PAID_PARENT_ES_FEED_ROW_COUNT = '210';
+const DEFAULT_PAID_PARENT_ISOLATED_FEED_OBJECT_KEY = 'pinterest/pinterest_us_paid_parent_isolated_candidate.tsv';
+const DEFAULT_PAID_PARENT_ISOLATED_FEED_SHA256 = 'db2fcddaa95609ccade30b5af11d3edd9d90e35c10f2d011b24fc4b57dce8113';
+const DEFAULT_PAID_PARENT_ISOLATED_FEED_ROW_COUNT = '210';
 
 function textResponse(body, status, extraHeaders = {}) {
   return new Response(body, {
@@ -69,13 +78,14 @@ async function verifyShopifyAppProxy(request, env) {
   return timingSafeEqualHex(signature, expected);
 }
 
-function feedHeaders(object, env) {
+function feedHeaders(object, feedConfig) {
   const headers = new Headers();
   headers.set('Content-Type', 'text/tab-separated-values; charset=utf-8');
   headers.set('Cache-Control', 'public, max-age=86400');
   headers.set('X-Content-Type-Options', 'nosniff');
-  headers.set('X-DLM-Feed-SHA256', env.FEED_SHA256 || DEFAULT_FEED_SHA256);
-  headers.set('X-DLM-Feed-Rows', env.FEED_ROW_COUNT || DEFAULT_FEED_ROW_COUNT);
+  headers.set('X-DLM-Feed-SHA256', feedConfig.sha256 || '');
+  headers.set('X-DLM-Feed-Rows', feedConfig.rowCount || '');
+  headers.set('X-DLM-Feed-Object-Key', feedConfig.key);
 
   if (object.size != null) headers.set('Content-Length', String(object.size));
   if (object.httpEtag) headers.set('ETag', object.httpEtag);
@@ -83,7 +93,36 @@ function feedHeaders(object, env) {
   return headers;
 }
 
-async function serveFeed(request, env) {
+function feedConfigForPath(pathname, env) {
+  if (pathname === '/pinterest-paid-parent-isolated-feed.tsv' || pathname.endsWith('/pinterest-paid-parent-isolated-feed.tsv')) {
+    return {
+      key: env.PAID_PARENT_ISOLATED_FEED_OBJECT_KEY || DEFAULT_PAID_PARENT_ISOLATED_FEED_OBJECT_KEY,
+      sha256: env.PAID_PARENT_ISOLATED_FEED_SHA256 || DEFAULT_PAID_PARENT_ISOLATED_FEED_SHA256,
+      rowCount: env.PAID_PARENT_ISOLATED_FEED_ROW_COUNT || DEFAULT_PAID_PARENT_ISOLATED_FEED_ROW_COUNT,
+    };
+  }
+  if (pathname === '/pinterest-paid-parent-es-feed.tsv' || pathname.endsWith('/pinterest-paid-parent-es-feed.tsv')) {
+    return {
+      key: env.PAID_PARENT_ES_FEED_OBJECT_KEY || DEFAULT_PAID_PARENT_ES_FEED_OBJECT_KEY,
+      sha256: env.PAID_PARENT_ES_FEED_SHA256 || DEFAULT_PAID_PARENT_ES_FEED_SHA256,
+      rowCount: env.PAID_PARENT_ES_FEED_ROW_COUNT || DEFAULT_PAID_PARENT_ES_FEED_ROW_COUNT,
+    };
+  }
+  if (pathname === '/pinterest-paid-parent-feed.tsv' || pathname.endsWith('/pinterest-paid-parent-feed.tsv')) {
+    return {
+      key: env.PAID_PARENT_FEED_OBJECT_KEY || DEFAULT_PAID_PARENT_FEED_OBJECT_KEY,
+      sha256: env.PAID_PARENT_FEED_SHA256 || DEFAULT_PAID_PARENT_FEED_SHA256,
+      rowCount: env.PAID_PARENT_FEED_ROW_COUNT || DEFAULT_PAID_PARENT_FEED_ROW_COUNT,
+    };
+  }
+  return {
+    key: env.FEED_OBJECT_KEY || DEFAULT_FEED_OBJECT_KEY,
+    sha256: env.FEED_SHA256 || DEFAULT_FEED_SHA256,
+    rowCount: env.FEED_ROW_COUNT || DEFAULT_FEED_ROW_COUNT,
+  };
+}
+
+async function serveFeed(request, env, feedConfig) {
   if (request.method !== 'GET') {
     return jsonError(405, 'method_not_allowed', { Allow: 'GET' });
   }
@@ -94,15 +133,14 @@ async function serveFeed(request, env) {
     return jsonError(503, 'feed_bucket_not_bound');
   }
 
-  const key = env.FEED_OBJECT_KEY || DEFAULT_FEED_OBJECT_KEY;
-  const object = await env.PINTEREST_FEED_BUCKET.get(key);
+  const object = await env.PINTEREST_FEED_BUCKET.get(feedConfig.key);
   if (!object) {
     return jsonError(503, 'feed_unavailable');
   }
 
   return new Response(object.body, {
     status: 200,
-    headers: feedHeaders(object, env),
+    headers: feedHeaders(object, feedConfig),
   });
 }
 
@@ -112,8 +150,17 @@ export default {
     if (url.pathname === '/health') {
       return textResponse(JSON.stringify({ ok: true }), 200);
     }
-    if (url.pathname === '/pinterest-feed.tsv' || url.pathname.endsWith('/pinterest-feed.tsv')) {
-      return serveFeed(request, env);
+    if (
+      url.pathname === '/pinterest-feed.tsv' ||
+      url.pathname.endsWith('/pinterest-feed.tsv') ||
+      url.pathname === '/pinterest-paid-parent-feed.tsv' ||
+      url.pathname.endsWith('/pinterest-paid-parent-feed.tsv') ||
+      url.pathname === '/pinterest-paid-parent-isolated-feed.tsv' ||
+      url.pathname.endsWith('/pinterest-paid-parent-isolated-feed.tsv') ||
+      url.pathname === '/pinterest-paid-parent-es-feed.tsv' ||
+      url.pathname.endsWith('/pinterest-paid-parent-es-feed.tsv')
+    ) {
+      return serveFeed(request, env, feedConfigForPath(url.pathname, env));
     }
     return jsonError(404, 'not_found');
   },

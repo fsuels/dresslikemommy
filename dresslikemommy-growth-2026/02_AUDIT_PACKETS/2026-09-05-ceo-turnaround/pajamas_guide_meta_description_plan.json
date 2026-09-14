@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "status": "COPY_READY_EDITABLE_FIELD_READ_REQUIRED",
+  "created_at_utc": "2026-09-06T17:39:42.652386+00:00",
+  "author": "/root/historical_google_access_paths",
+  "execution_owner": "/root",
+  "purpose": "Replace a verified midword article excerpt in the rendered meta description with one complete, source-supported summary; no body/title rewrite.",
+  "article_id": "gid://shopify/Article/559471886433",
+  "url": "https://www.dresslikemommy.com/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+  "source_hashes_sha256": {
+    "pajamas_guide_search_head_readback.json": "971448a9308790a6803aaa631cabc107d29f73bbb7bb65ee579030422edb6ba9",
+    "pajamas_guide_candidate.html": "01c2e9ab6b5c02346c0653bcc526205b5d52c856679e4f8446698999ba53522d",
+    "pajamas_guide_gsc_readback.json": "800869b7c4b93ac7f026408e7593aa59b823ed4a2a470012c575ac395ceec926",
+    "pajamas_guide_source.json": "dd88364bd82ef3c1bfdfc3250f51fc0c3dd7d630cf8079f69051d776ebc0ae22",
+    "pajamas_guide_search_snippet_qualification.json": "4e6d32a726ccdcb44cb86f29c05dd080812f0c4985679116d9db943119c96dbe"
+  },
+  "observed_before": {
+    "rendered_title": "Family Matching Pajamas: Our Top Picks for Cozy Nights – Dress Like Mommy",
+    "rendered_meta_description": "There’s nothing quite like the whole family matching in cozy pajamas. Whether it’s movie night, Christmas morning, or a lazy Sunday, family matching pajamas turn an ordinary evening into something special. And honestly? They make for the best photos you’ll ever take. From holiday traditions to everyday comfort, this gu",
+    "rendered_meta_description_characters": 320,
+    "captured_at_utc": "2026-09-06T17:37:41.303Z",
+    "editable_seo_field": null,
+    "editable_prior_value_or_absence": null,
+    "source_mode": "UNKNOWN; rendered description matches first320 normalized article characters, but owning field/default mechanism has not been read."
+  },
+  "proposed_after": {
+    "meta_description": "Explore family matching pajama styles and sizing tips. Browse mommy-and-me pajamas, check each person's size, and confirm what each selection includes.",
+    "characters": 151,
+    "title": "Family Matching Pajamas: Our Top Picks for Cozy Nights – Dress Like Mommy",
+    "title_write": false,
+    "body_write": false,
+    "canonical_url_write": false,
+    "publication_write": false
+  },
+  "claim_to_source": [
+    {
+      "copy": "family matching pajama styles and sizing tips",
+      "evidence": [
+        "pajamas_guide_candidate.html: Best Styles of Family Matching Pajamas / Sizing Tips for Family Pajama Sets",
+        "pajamas_guide_gsc_readback.json: query_table.rows visible1,2,4,6"
+      ]
+    },
+    {
+      "copy": "Browse mommy-and-me pajamas",
+      "evidence": [
+        "pajamas_guide_candidate.html: Shop Family Matching Pajamas paragraph linking /collections/pajamas"
+      ]
+    },
+    {
+      "copy": "check each person's size, and confirm what each selection includes",
+      "evidence": [
+        "pajamas_guide_candidate.html: revised mother/daughter and final shopping paragraphs"
+      ]
+    }
+  ],
+  "alternative": {
+    "description": "Leave the current article-prefix meta description unchanged.",
+    "benefit": "No metadata mutation and no intervention in the already improving historical search baseline.",
+    "cost": "Keeps a320-character excerpt ending midword, omits practical size/inclusion guidance, and foregrounds broad family/photo enthusiasm.",
+    "decision": "Prefer the151-character complete practical summary after root verifies the exact editable field and rollback. This is a content-quality choice, not a predicted ranking or click lift."
+  },
+  "fresh_guards": [
+    "Root first identifies the actual editable SEO field and reads its exact prior value or absence; no assumed field name or mutation payload.",
+    "Immediately before any allowed write, exact article559471886433 identity, canonical URL, unchanged title and fixed body SHA01c2e9ab6b5c02346c0653bcc526205b5d52c856679e4f8446698999ba53522d must match; capture editable field baseline and stop on intervening change.",
+    "Build an exact one-field release from the discovered schema and complete required review/normal platform validation; this copy plan supplies no mutation authority."
+  ],
+  "desired_after_verification": [
+    "Separate source read returns the exact151-character description and preserved title/body/URL/publication.",
+    "Normal MAIN rendered meta[name=\"description\"].content equals the complete proposed text, with title/canonical and fixed body unchanged.",
+    "Do not claim the Google-displayed snippet, ranking, clicks, sales or profit changed."
+  ],
+  "inverse": {
+    "strategy": "Restore exactly the captured prior editable field value, including absence/default if that was the prior state, through the validated supported path. Do not write the320-character rendered excerpt as a guessed previous field value.",
+    "prior_value_snapshot_required": true,
+    "guard": "Only if rollback is needed and the exact field still equals the proposed text; stop on intervening edits."
+  },
+  "unchanged_baseline": {
+    "current": {
+      "from": "2026-08-07",
+      "to": "2026-09-03",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 223,
+      "ctr": 0,
+      "position": 13.3
+    },
+    "previous": {
+      "from": "2026-07-10",
+      "to": "2026-08-06",
+      "days": 28,
+      "clicks": 0,
+      "impressions": 121,
+      "ctr": 0,
+      "position": 16.9
+    },
+    "causality": "Both windows predate this proposed edit; no causal improvement claim."
+  },
+  "supersession": "Earlier NO_CHANGE qualification is preserved as the evidence state before current head fields were supplied. This new read establishes a rendered truncation defect; source ownership remains pending.",
+  "checks": {
+    "exact_guide_url_canonical": true,
+    "preserved_title_matches_article": true,
+    "observed_description320": true,
+    "observed_description_is_article_prefix": true,
+    "observed_midword_cutoff": true,
+    "candidate_length140_to165": true,
+    "candidate_exact151": true,
+    "style_and_size_topics_in_body": true,
+    "mommy_me_route_and_separate_selection_in_body": true,
+    "sampled_query_theme_basis": true,
+    "body_hash_remains_verified_candidate": true,
+    "no_unsupported_promotional_material_or_dad_claim": true
+  },
+  "check_count": 12,
+  "passed_count": 12,
+  "external_actions": 0,
+  "canonical_edits": 0,
+  "mutation_authority_supplied_by_this_plan": false
+}

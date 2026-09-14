@@ -1,0 +1,1394 @@
+{
+  "schema_version": 1,
+  "dispatch": "CTX-MS-CLAIM-20260914-0243",
+  "created_at": "2026-09-14T03:28:50.279370+00:00",
+  "status": "VERIFIED_LOCAL_CONTEXT_REPAIR__SEPARATE_TASK_ACCEPTANCE_PENDING",
+  "scope": "Minimal existing context compiler/helper and focused tests; own existing packet and own coordination/problem/worklog entries. No business/account/browser/global/prompt/schedule/paid mutation.",
+  "source_report": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-0243.json",
+    "sha256": "4d3a212c502c95a948875dc827467956ecea3d943636c89f83c9bab25f758ad1"
+  },
+  "actual_before_brief": {
+    "command": [
+      "/usr/bin/python3",
+      "ops/scripts/compile_task_context.py",
+      "--query",
+      "continue Microsoft Ads",
+      "--format",
+      "brief"
+    ],
+    "sha256": "9a94bfb15f97c6a60c9b9d34ee6c00af26b0fffabb3fd97ae1be47ac99c6b06c",
+    "parent_independent_path": "/private/tmp/dlm-ms-context-before-20260914-0254.txt",
+    "parent_independent_sha256": "9a94bfb15f97c6a60c9b9d34ee6c00af26b0fffabb3fd97ae1be47ac99c6b06c"
+  },
+  "fixes": [
+    "Do not import unpartitioned identities from a mixed-task or peer-task anchor; keep that anchor as related evidence.",
+    "Route Microsoft Ads/Advertising, compact Microsoft account identifiers, Bing Ads and UET without routing Microsoft mailbox/Edge/365 mail into Ads.",
+    "Use valid compact receipt dates for claim recency without turning bare/typed IDs, numeric account directories or invalid dates into evidence freshness.",
+    "Recognize the bounded Purchase identifier prefix so an exact Analytics-to-Ads receiver relationship remains valid."
+  ],
+  "frozen_initial_regressions": {
+    "frozen_before_implementation_at": "2026-09-14T03:07:18.889401+00:00",
+    "frozen_test_sha256": "721974703bc46bc6ae3295e2b93b3f6a7a271901adc78f018b0c73984bb3f884",
+    "cases": [
+      "mixed parent task identities",
+      "peer task sharing a problem",
+      "Microsoft mailbox",
+      "Microsoft Edge",
+      "Microsoft365 mailbox",
+      "compact receipt date"
+    ],
+    "holdouts": [
+      "Google Ads, X and other existing channel fixtures",
+      "real Microsoft owner conflict",
+      "exact numeric selection",
+      "explicit entity intersection",
+      "equal-ranked Microsoft receiver ambiguity",
+      "typed/numeric account and invalid-date recency"
+    ],
+    "baseline_results": [
+      {
+        "command": [
+          "/usr/bin/python3",
+          "ops/tests/test_session_context.py"
+        ],
+        "exit_code": 1,
+        "output_sha256": "39547733c489de01d2dfd4ff1175313e1da0957810389858c2b261716730e971"
+      },
+      {
+        "command": [
+          "/usr/bin/python3",
+          "ops/tests/test_compile_task_context.py"
+        ],
+        "exit_code": 0,
+        "output_sha256": "dc51b8c96c2d745df3bd5590d990230a482fd247123599548e0632fdbf97fc22"
+      }
+    ],
+    "preimplementation_fixture_correction": "The initial multi-channel free-text query was not tied under the existing selector; replaced with two equally ranked Microsoft receiver anchors before implementation. No compiler behavior changed."
+  },
+  "independent_review_receiver_regression": {
+    "captured_before_purchase_fix_at": "2026-09-14T03:16:55.589555+00:00",
+    "reason": "Independent verifier found a genuine Analytics operating claim removed by the initial mixed-anchor guard; the exact receiver Ads7760272273 in the queue corresponds to Purchase7760272273 on the claim.",
+    "test_sha256": "7aec469014fb8582d9d7b46c221ceaf652b5561b28216c6111824ed8d0370eea",
+    "compiler_before_sha256": "34d9bbfa6a5258ac31ee66eb4fc6dc3ba6a9bbc7885f3c19ab4b08e798c83a9d",
+    "helper_sha256": "b8f07e819cefa474fc5b5c06894c071afd36a124bac1c1386b2c529b434f2a1a",
+    "command": [
+      "/usr/bin/python3",
+      "ops/tests/test_session_context.py"
+    ],
+    "exit_code": 1,
+    "output_sha256": "210f51726972b8b53d5531cdf5f70a2e0a2c1b11ab62debe22a67e32ef347f99",
+    "expected": "Only the new exact-receiver case fails; existing twenty methods pass."
+  },
+  "final_tests": {
+    "focused": {
+      "command": [
+        "/usr/bin/python3",
+        "ops/tests/test_session_context.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "chunk_id": "51212c",
+      "wall_time_seconds": 0.051492959,
+      "exit_code": 0,
+      "original_token_count": 30,
+      "output": ".....................\n----------------------------------------------------------------------\nRan 21 tests in 0.114s\n\nOK\n"
+    },
+    "compatibility": {
+      "command": [
+        "/usr/bin/python3",
+        "ops/tests/test_compile_task_context.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "chunk_id": "4e66a6",
+      "wall_time_seconds": 1.334e-06,
+      "exit_code": 0,
+      "original_token_count": 1,
+      "output": "ok\n"
+    }
+  },
+  "source_checks": {
+    "dispatch": "CTX-MS-CLAIM-20260914-0243",
+    "files": {
+      "ops/scripts/session_context.py": {
+        "before_sha256": "cde65ee2450348a6424e3eab89ac19b635fd9b21d233864008bf7b431e128f83",
+        "after_sha256": "b8f07e819cefa474fc5b5c06894c071afd36a124bac1c1386b2c529b434f2a1a"
+      },
+      "ops/scripts/compile_task_context.py": {
+        "before_sha256": "34d9bbfa6a5258ac31ee66eb4fc6dc3ba6a9bbc7885f3c19ab4b08e798c83a9d",
+        "after_sha256": "e18cf818bd33a2965c1919da8bd87ff00b0a95abb4672a699e20eb429966b599"
+      },
+      "ops/tests/test_session_context.py": {
+        "before_sha256": "24f66fc3776a91785170c8fe39b99b763c8f0248885b3bffe13579e8fcae99a0",
+        "after_sha256": "7aec469014fb8582d9d7b46c221ceaf652b5561b28216c6111824ed8d0370eea"
+      },
+      "ops/tests/test_compile_task_context.py": {
+        "before_sha256": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943",
+        "after_sha256": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943"
+      },
+      "ops/scripts/render_marketing_cockpit.py": {
+        "before_sha256": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0",
+        "after_sha256": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0"
+      }
+    },
+    "original_fifteen_test_methods_unchanged": true,
+    "protected_files": {
+      "ops/marketing/current_marketing_state.md": {
+        "sha256": "0dec4afdd67823821200cdaf88eedf63168b9c2c86ff5c93bef1c523b93d7e55",
+        "byte_identical": true
+      },
+      "ops/marketing/action_queue.md": {
+        "sha256": "227d87a32d725369298e6f71c980929b2812b4cf25a21cdf600de1bf1f7912d6",
+        "byte_identical": true
+      },
+      "ops/marketing/daily_scorecard.md": {
+        "sha256": "57e89c73192e97a82403cb9d68d384e938205b6e5efec2528251c5b2187a2646",
+        "byte_identical": true
+      },
+      "ops/GROWTH_NORTH_STAR.md": {
+        "sha256": "c864a0890c9e23f8fcadd1d851ae7f1c37a4c9c7c646c18959ef350bbc7a0c21",
+        "byte_identical": true
+      }
+    },
+    "authority_fields": {
+      "approved_external_scope": "NONE",
+      "autonomous_action_ready": "false",
+      "control_as_of": "2026-09-05",
+      "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+      "live_readback_fresh_until": "EXPIRED",
+      "live_state_mode": "STALE_READBACK_REQUIRED",
+      "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+      "source_live_evidence_as_of": "2026-06-01",
+      "supersedes_execution_readiness_below": "true"
+    },
+    "complete_one_owner_action_sha256": "4e6d282da8d1e3768b7119436039ff58f5171501216914fec91d564b95effb88",
+    "complete_one_owner_action_length": 733,
+    "full_sales_due_utc": "2026-09-14T08:49:22Z",
+    "external_cockpit_change": {
+      "status": "PRESERVED_EXTERNAL_TIMESTAMP_ONLY",
+      "before_sha256": "a23ce5653d5afb42c6df8d1b47c34c51bc07e0fc181289522b2615f95d11a398",
+      "after_sha256": "695b25bc90619474f5ab257fec4deca9351fde479a681424d3ce9adfc16902aa",
+      "difference": "Page built 2026-09-13 22:56 EDT -> 23:05 EDT",
+      "actor": "UNKNOWN; root did not write cockpit in this repair",
+      "semantic_byte_comparison_after_timestamp_mask": true,
+      "initial_guard": "FAILED because generated HTML was included in exact byte-preservation set; diagnosed without reverting peer work"
+    },
+    "local_validation_harness_correction": "An inline source guard assumed One Owner Action was a heading. Inspection showed it is a complete paragraph at line100; guarded source remained byte-identical. No product code/test criteria changed."
+  },
+  "initial_snapshot": {
+    "captured_at": "2026-09-14T02:58:32.092537+00:00",
+    "dispatch": "CTX-MS-CLAIM-20260914-0243",
+    "source_sha256": {
+      "ops/scripts/session_context.py": "cde65ee2450348a6424e3eab89ac19b635fd9b21d233864008bf7b431e128f83",
+      "ops/scripts/compile_task_context.py": "34d9bbfa6a5258ac31ee66eb4fc6dc3ba6a9bbc7885f3c19ab4b08e798c83a9d",
+      "ops/tests/test_session_context.py": "24f66fc3776a91785170c8fe39b99b763c8f0248885b3bffe13579e8fcae99a0",
+      "ops/tests/test_compile_task_context.py": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943",
+      "ops/scripts/render_marketing_cockpit.py": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0",
+      "ops/AGENT_COORDINATION.md": "9e739cb006d819badc5bfa11a9dc0d48cad356576c1615aa9d44f1eab67740b8",
+      "ops/PROBLEM_TRACKER.md": "7fd2f1fb1dc6801f9ccfda363a06531f043b6d1af06330c31bff84b5c369c012",
+      "ops/AGENT_WORKLOG.md": "94151c8d9d4763a82582c22b7aadca44d1344cff0be97763fa68278c7be2a0bf",
+      "ops/marketing/current_marketing_state.md": "0dec4afdd67823821200cdaf88eedf63168b9c2c86ff5c93bef1c523b93d7e55",
+      "ops/marketing/action_queue.md": "227d87a32d725369298e6f71c980929b2812b4cf25a21cdf600de1bf1f7912d6",
+      "ops/marketing/daily_scorecard.md": "57e89c73192e97a82403cb9d68d384e938205b6e5efec2528251c5b2187a2646",
+      "ops/marketing/operator_cockpit.html": "a23ce5653d5afb42c6df8d1b47c34c51bc07e0fc181289522b2615f95d11a398",
+      "ops/GROWTH_NORTH_STAR.md": "c864a0890c9e23f8fcadd1d851ae7f1c37a4c9c7c646c18959ef350bbc7a0c21"
+    },
+    "scope": "Existing context implementation/tests and own coordination/problem/worklog entries; root grants disjoint shared interval; no peer/global/account write."
+  },
+  "final_seven_channel_comparisons": [
+    {
+      "query": "continue Microsoft Ads",
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Microsoft Ads",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "checks": {
+        "status_preserved": true,
+        "tasks_preserved": true,
+        "all_task_fields_preserved": true,
+        "authority_preserved": true,
+        "goal_preserved": true
+      },
+      "claims": [
+        {
+          "source_line": 35,
+          "workstream": "Current owner Microsoft Ads tracking and campaign rebuild",
+          "basis": {
+            "TA-15": {
+              "exact_entities": [
+                "2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/READBACK.md",
+                "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0239/READBACK.md",
+                "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0639/READBACK.md"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        }
+      ],
+      "sha256": "2fbaff63fa68f60a2927675eb0277c7efc26f176b7866c7b5f810f9c96b3b772"
+    },
+    {
+      "query": "continue Google Ads",
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Google Ads",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "checks": {
+        "status_preserved": true,
+        "tasks_preserved": true,
+        "all_task_fields_preserved": true,
+        "authority_preserved": true,
+        "goal_preserved": true
+      },
+      "claims": [
+        {
+          "source_line": 24,
+          "workstream": "Google Ads ongoing all-market optimization",
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "20260913",
+                "6509972886",
+                "FOLLOWUP_20260913_2254"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 27,
+          "workstream": "X profile relaunch and organic operation",
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "20260913"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 44,
+          "workstream": "Google account connection and tracking cutover, replacement task",
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "513542500",
+                "6509972886"
+              ],
+              "explicit_task_id": false
+            },
+            "TA-10": {
+              "exact_entities": [
+                "513542500"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 23,
+          "workstream": "Google Ads cold-start research and local blueprint",
+          "basis": {}
+        },
+        {
+          "source_line": 42,
+          "workstream": "Separate DA/NL metadata-only draft",
+          "basis": {
+            "TA-10": {
+              "exact_entities": [
+                "DA/NL"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 43,
+          "workstream": "International paid, SEO and market readiness",
+          "basis": {
+            "TA-10": {
+              "exact_entities": [
+                "INTERNATIONAL_MARKET_READINESS_20260908",
+                "INTERNATIONAL_PAID_OPPORTUNITIES_20260908",
+                "INTERNATIONAL_SEO_OPPORTUNITIES_20260908"
+              ],
+              "explicit_task_id": true
+            }
+          }
+        },
+        {
+          "source_line": 33,
+          "workstream": "Current owner Merchant Center international free-listing audit and repair",
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "513542500",
+                "international_candidate/us-au.final_release_receipts_20260911.json"
+              ],
+              "explicit_task_id": false
+            },
+            "TA-10": {
+              "exact_entities": [
+                "513542500"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 78,
+          "workstream": "Already-approved Google access recovery form",
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "3990976848"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 86,
+          "workstream": "Continuous profitable growth and exact SEO continuation",
+          "basis": {
+            "TA-10": {
+              "exact_entities": [
+                "DA/NL"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        }
+      ],
+      "sha256": "66834aeea3614a4be9f098c0cc32fc3951ee38cf7addc05ba270adba8d60fcf0"
+    },
+    {
+      "query": "continue X",
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue X",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "checks": {
+        "status_preserved": true,
+        "tasks_preserved": true,
+        "all_task_fields_preserved": true,
+        "authority_preserved": true,
+        "goal_preserved": true
+      },
+      "claims": [
+        {
+          "source_line": 27,
+          "workstream": "X profile relaunch and organic operation",
+          "basis": {}
+        }
+      ],
+      "sha256": "45ce7541acc13fa35db9565cdfff48975fbfcad57fe77ba97cee2e3d2aadf313"
+    },
+    {
+      "query": "continue Google Merchant",
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Google Merchant",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "checks": {
+        "status_preserved": true,
+        "tasks_preserved": true,
+        "all_task_fields_preserved": true,
+        "authority_preserved": true,
+        "goal_preserved": true
+      },
+      "claims": [
+        {
+          "source_line": 24,
+          "workstream": "Google Ads ongoing all-market optimization",
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "20260913",
+                "6509972886",
+                "FOLLOWUP_20260913_2254"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 27,
+          "workstream": "X profile relaunch and organic operation",
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "20260913"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 44,
+          "workstream": "Google account connection and tracking cutover, replacement task",
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "513542500",
+                "6509972886"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 29,
+          "workstream": "Merchant strategy review and correction",
+          "basis": {}
+        },
+        {
+          "source_line": 33,
+          "workstream": "Current owner Merchant Center international free-listing audit and repair",
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "513542500",
+                "international_candidate/us-au.final_release_receipts_20260911.json"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 78,
+          "workstream": "Already-approved Google access recovery form",
+          "basis": {
+            "TA-01": {
+              "exact_entities": [
+                "3990976848"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        }
+      ],
+      "sha256": "6565859797daa6ffaf2d83672d3295845ee0359b5aee460bf5f97d9188e8dc23"
+    },
+    {
+      "query": "continue Google Analytics",
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Google Analytics",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "checks": {
+        "status_preserved": true,
+        "tasks_preserved": true,
+        "all_task_fields_preserved": true,
+        "authority_preserved": true,
+        "goal_preserved": true
+      },
+      "claims": [
+        {
+          "source_line": 24,
+          "workstream": "Google Ads ongoing all-market optimization",
+          "basis": {
+            "TA-02": {
+              "exact_entities": [
+                "7760272273"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 44,
+          "workstream": "Google account connection and tracking cutover, replacement task",
+          "basis": {
+            "TA-02": {
+              "exact_entities": [
+                "330266838"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        }
+      ],
+      "sha256": "3abf99773f9bf2f1696a3310f12bdcc92dc71540cc9fc4c49f13ff6da10c2717"
+    },
+    {
+      "query": "continue Shopify",
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Shopify",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "checks": {
+        "status_preserved": true,
+        "tasks_preserved": true,
+        "all_task_fields_preserved": true,
+        "authority_preserved": true,
+        "goal_preserved": true
+      },
+      "claims": [
+        {
+          "source_line": 31,
+          "workstream": "Website UX and PageSpeed audit",
+          "basis": {
+            "TA-06": {
+              "exact_entities": [
+                "BUYER_READBACK",
+                "couples-grid-repair/verified-release-20260912.json"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 44,
+          "workstream": "Google account connection and tracking cutover, replacement task",
+          "basis": {
+            "TA-23": {
+              "exact_entities": [
+                "513542500"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 47,
+          "workstream": "Couples collection recovery",
+          "basis": {
+            "TA-06": {
+              "exact_entities": [
+                "BUYER_READBACK",
+                "couples-grid-repair/verified-release-20260912.json"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 50,
+          "workstream": "Facebook organic release and Meta qualification",
+          "basis": {}
+        },
+        {
+          "source_line": 28,
+          "workstream": "Minimalist Heart five-variant price correction",
+          "basis": {
+            "TA-23": {
+              "exact_entities": [
+                "7230336729185",
+                "price_correction_approved_20260911/google_price_receipt_20260911.json"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 30,
+          "workstream": "Together Heart source-backed sizing and buyer-copy correction",
+          "basis": {
+            "TA-21": {
+              "exact_entities": [
+                "2026-09-10-together-heart-source-repair/READBACK.md",
+                "7672336646241",
+                "PROB-2026-09-10-TOGETHER-HEART-DERIVED-SIZING"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 41,
+          "workstream": "Finished-growth publication under explicit owner request",
+          "basis": {
+            "TA-22": {
+              "exact_entities": [
+                "2026-09-10-storefront-ux-pagespeed/localized-pdp-v6/READBACK.md"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 43,
+          "workstream": "International paid, SEO and market readiness",
+          "basis": {}
+        },
+        {
+          "source_line": 53,
+          "workstream": "Rainbow dress English and Dutch titles",
+          "basis": {
+            "TA-17": {
+              "exact_entities": [
+                "7229023846497",
+                "PROB-2026-09-06-RAINBOW-TRUNCATED-TITLES"
+              ],
+              "explicit_task_id": true
+            }
+          }
+        },
+        {
+          "source_line": 65,
+          "workstream": "Sunshine mobile buyer/cart check",
+          "basis": {
+            "TA-08": {
+              "exact_entities": [
+                "PROB-2026-09-06-CART-RETURN-DISPLAY"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 69,
+          "workstream": "Exact installed GA4 helper binding",
+          "basis": {}
+        },
+        {
+          "source_line": 70,
+          "workstream": "Exact missing-purchase capture diagnosis",
+          "basis": {}
+        },
+        {
+          "source_line": 71,
+          "workstream": "Sunshine Stripe offer and basket economics",
+          "basis": {}
+        },
+        {
+          "source_line": 72,
+          "workstream": "Actual fulfillment-cost source identification",
+          "basis": {}
+        },
+        {
+          "source_line": 77,
+          "workstream": "Unpublished four-file storefront preview",
+          "basis": {}
+        },
+        {
+          "source_line": 79,
+          "workstream": "Shopify Google connection repair",
+          "basis": {}
+        },
+        {
+          "source_line": 83,
+          "workstream": "Organic URL recovery, TA-05",
+          "basis": {}
+        },
+        {
+          "source_line": 33,
+          "workstream": "Current owner Merchant Center international free-listing audit and repair",
+          "basis": {
+            "TA-23": {
+              "exact_entities": [
+                "513542500"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 48,
+          "workstream": "Rainbow remaining localized product titles",
+          "basis": {
+            "TA-17": {
+              "exact_entities": [
+                "7229023846497"
+              ],
+              "explicit_task_id": true
+            }
+          }
+        }
+      ],
+      "sha256": "be3941cf753736cf20f7255a30a3a337ff7527952c121aede40eb033772db86e"
+    },
+    {
+      "query": "continue Pinterest",
+      "command": [
+        "/usr/bin/python3",
+        "ops/scripts/compile_task_context.py",
+        "--query",
+        "continue Pinterest",
+        "--worklog",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_WORKLOG.md",
+        "--current-state",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/current_marketing_state.md",
+        "--problem-tracker",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/PROBLEM_TRACKER.md",
+        "--coordination",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/AGENT_COORDINATION.md",
+        "--action-queue",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/marketing/action_queue.md",
+        "--goal",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8/before/ops/GROWTH_NORTH_STAR.md"
+      ],
+      "exit_code": 0,
+      "checks": {
+        "status_preserved": true,
+        "tasks_preserved": true,
+        "all_task_fields_preserved": true,
+        "authority_preserved": true,
+        "goal_preserved": true
+      },
+      "claims": [
+        {
+          "source_line": 34,
+          "workstream": "Current owner Pinterest expert audit and growth setup",
+          "basis": {
+            "TA-12": {
+              "exact_entities": [
+                "TRACKING_LIVE_READBACK_20260911"
+              ],
+              "explicit_task_id": false
+            },
+            "TA-25": {
+              "exact_entities": [
+                "NATIVE_SCHEDULED_READBACKS_20260911"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 41,
+          "workstream": "Finished-growth publication under explicit owner request",
+          "basis": {
+            "TA-11": {
+              "exact_entities": [
+                "2026-09-09-pinterest-expert-audit/SUNSHINE_EXECUTION_20260910.json",
+                "SUNSHINE_EXECUTION_20260910"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 52,
+          "workstream": "Sunshine product-detail organic creative",
+          "basis": {
+            "TA-11": {
+              "exact_entities": [
+                "2026-09-09-pinterest-expert-audit/SUNSHINE_EXECUTION_20260910.json",
+                "SUNSHINE_EXECUTION_20260910"
+              ],
+              "explicit_task_id": true
+            }
+          }
+        },
+        {
+          "source_line": 80,
+          "workstream": "Pinterest organic distribution recovery",
+          "basis": {}
+        },
+        {
+          "source_line": 81,
+          "workstream": "Revenue-first organic buying guide and release priority",
+          "basis": {
+            "TA-11": {
+              "exact_entities": [
+                "7533081133153"
+              ],
+              "explicit_task_id": false
+            }
+          }
+        },
+        {
+          "source_line": 89,
+          "workstream": "Prior marketing execution and access reconciliation",
+          "basis": {}
+        }
+      ],
+      "sha256": "cf8cf985f89f915d89e52adee5ab1b703cae3b3e15f8a16cff0d64926f140d95"
+    }
+  ],
+  "code_diffs": {
+    "ops/scripts/session_context.py": "--- before/ops/scripts/session_context.py\n+++ ops/scripts/session_context.py\n@@ -23,7 +23,7 @@\n     \"google-ads\": r\"\\bgoogle[\\s_-]*(?:ads|operator)\\b|\\bads(?=\\d)|\\badwords\\b\",\n     \"google-merchant\": r\"\\bmerchant(?=\\b|\\d)\",\n     \"google-analytics\": r\"\\b(?:ga4|gtm)(?=\\b|\\d)|\\bgoogle[\\s_-]*analytics\\b\",\n-    \"microsoft-ads\": r\"\\bmicrosoft(?=\\b|\\d)|\\bbing[\\s_-]*ads\\b|\\buet\\b\",\n+    \"microsoft-ads\": r\"\\bmicrosoft(?:[\\s_-]+(?:ads|advertising)\\b|(?=\\d{6,}\\b))|\\bbing[\\s_-]*ads\\b|\\buet\\b\",\n     \"pinterest\": r\"\\bpinterest\\b|\\bpins?\\b\",\n     \"x\": r\"\\b(?:x|twitter)(?:[\\s_-]+(?:public[\\s_-]+)?(?:profile|pilot|account|operation|relaunch|organic[\\s_-]+(?:pilot|operation|relaunch|growth|content|posts?|publishing|traffic|marketing|campaign))\\b|\\.com/)\",\n     \"shopify\": r\"\\bshopify(?=\\b|\\d)|\\bstorefront\\b|\\btheme(?=\\b|\\d)\",\n@@ -108,6 +108,22 @@\n     }\n \n \n+def record_dates(text: str) -> list[str]:\n+    dates = DATE_RE.findall(text)\n+    # Receipt names may use YYYYMMDD. These are evidence dates, not account\n+    # identities; keep bare/typed IDs and numeric account directories out.\n+    for resource in RESOURCE_REFERENCE_RE.finditer(text):\n+        for part in resource.group().split(\"/\"):\n+            for value in re.findall(r\"(?<![A-Za-z0-9_])\\d{8}(?![A-Za-z0-9_])\", part):\n+                if part == value:\n+                    continue\n+                try:\n+                    dates.append(date(int(value[:4]), int(value[4:6]), int(value[6:])).isoformat())\n+                except ValueError:\n+                    pass\n+    return dates\n+\n+\n def coordination_rows(path: Path, text: str, format_path: Callable) -> list[dict]:\n     \"\"\"Read complete registry rows; blocked-action mentions are not their subject.\"\"\"\n     rows = []\n@@ -123,7 +139,7 @@\n             continue\n         row = source_block(path, text, number, number, format_path)\n         row[\"fields\"] = dict(zip(headers, cells))\n-        row[\"record_date\"] = max(DATE_RE.findall(line), default=None)\n+        row[\"record_date\"] = max(record_dates(line), default=None)\n         rows.append(row)\n     return rows\n \n@@ -202,7 +218,12 @@\n         problem_ids = [entity for entity in entities_by_task[row[\"id\"]] if entity.startswith(\"PROB-\")]\n         for anchor in reversed(anchors):\n             metadata_text = \",\".join(anchor[\"metadata\"].get(\"task_entities\", []))\n-            if row[\"id\"] not in TASK_ID_RE.findall(metadata_text) and not any(\n+            metadata_tasks = set(TASK_ID_RE.findall(metadata_text))\n+            # A multi-task or peer handoff remains related evidence below,\n+            # but its unpartitioned identities cannot be assigned to this task.\n+            if metadata_tasks - {row[\"id\"]}:\n+                continue\n+            if row[\"id\"] not in metadata_tasks and not any(\n                 contains_entity(metadata_text, entity) for entity in problem_ids\n             ):\n                 continue\n",
+    "ops/scripts/compile_task_context.py": "--- before/ops/scripts/compile_task_context.py\n+++ ops/scripts/compile_task_context.py\n@@ -83,7 +83,7 @@\n LONG_NUMERIC_ID_RE = re.compile(r\"\\b\\d{7,}\\b\")\n COMPACT_ID_RE = re.compile(\n     r\"(?i)(?<![A-Za-z0-9_])(?:Merchant|GA4|property|Ads|manager|Shopify|Product|\"\n-    r\"campaign|source|theme|advertiser|tag|pixel|variant)(\\d{7,})(?![A-Za-z0-9_])\"\n+    r\"campaign|source|theme|advertiser|tag|pixel|variant|Purchase)(\\d{7,})(?![A-Za-z0-9_])\"\n )\n WORD_RE = re.compile(r\"[A-Za-z0-9]+\")\n \n",
+    "ops/tests/test_session_context.py": "--- before/ops/tests/test_session_context.py\n+++ ops/tests/test_session_context.py\n@@ -458,6 +458,154 @@\n         self.assertFalse(brief[\"source_comparisons\"][0][\"match_basis\"][\"explicit_task_id\"])\n         self.assertEqual(brief[\"conflicts\"], [])\n \n+    def add_microsoft_fixture(self):\n+        worklog = self.paths[\"AGENT_WORKLOG.md\"]\n+        worklog.write_text(worklog.read_text() + (\n+            \"AGENT_CONTINUITY_ANCHOR: 2026-01-10-microsoft-receiver\\n\"\n+            \"task_entities: TA-06,Microsoft477439,36005151,PROB-2026-01-10-MS-CONSENT\\n\"\n+            \"task_stage: HANDOFF\\nnext_action_id: READ_ONLY_MARKETING_RECONCILIATION\\n\"\n+            \"Microsoft receiver proof remains open under its existing owner.\\n---\\n\"\n+        ))\n+        claims = self.paths[\"AGENT_COORDINATION.md\"]\n+        claims.write_text(claims.read_text() + (\n+            \"| Current Microsoft Ads repair | Microsoft477439 UET36005151 | HANDOFF | root06abcdef | \"\n+            \"Read only | No paid action | 2026-01-10-microsoft-receiver; TA-06 | \"\n+            \"Receiver acceptance and current owner preserved |\\n\"\n+        ))\n+\n+    def test_mixed_handoff_does_not_assign_peer_identity(self):\n+        self.add_microsoft_fixture()\n+        queue = self.paths[\"action_queue.md\"]\n+        queue.write_text(\"\\n\".join(\n+            line.replace(\"fixture-receipt.json\", \"PROB-2026-01-10-MS-CONSENT\")\n+            if \"TA-06\" in line else line for line in queue.read_text().splitlines()) + \"\\n\")\n+        worklog = self.paths[\"AGENT_WORKLOG.md\"]\n+        saved = worklog.read_text()\n+        for name, metadata in (\n+            (\"mixed parent receipt\", \"TA-01,TA-06,Ads6501112223\"),\n+            (\"peer task sharing a problem\", \"TA-01,Ads6501112223,PROB-2026-01-10-MS-CONSENT\"),\n+        ):\n+            with self.subTest(case=name):\n+                latest = \"2026-01-12-parent-receipt\"\n+                worklog.write_text(saved + (\n+                    f\"AGENT_CONTINUITY_ANCHOR: {latest}\\ntask_entities: {metadata}\\n\"\n+                    \"task_stage: VERIFY\\nnext_action_id: READ_ONLY_MARKETING_RECONCILIATION\\n\"\n+                    \"Google editor receipt and a separate TA-06 Microsoft follow-up. No ownership transfer.\\n---\\n\"\n+                ))\n+                result = self.compile(\"continue Microsoft Ads\")\n+                self.assertEqual(result[\"diagnostics\"][\"status\"], \"OK\")\n+                brief = result[\"session_brief\"]\n+                self.assertEqual([row[\"id\"] for row in brief[\"current_tasks\"]], [\"TA-06\"])\n+                identity = brief[\"current_tasks\"][0][\"identity_evidence\"]\n+                self.assertEqual(identity[\"anchor_id\"], \"2026-01-10-microsoft-receiver\")\n+                self.assertNotIn(\"6501112223\", identity[\"entities\"])\n+                self.assertEqual([row[\"fields\"][\"Workstream\"] for row in brief[\"coordination_claims\"]],\n+                                 [\"Current Microsoft Ads repair\"])\n+                self.assertIn(latest, [row[\"anchor_id\"] for row in brief[\"recent_anchors\"]])\n+                self.assertFalse(brief[\"external_write_authorized\"])\n+\n+    def test_microsoft_mailbox_and_browser_are_not_ads_scope(self):\n+        self.add_microsoft_fixture()\n+        claims = self.paths[\"AGENT_COORDINATION.md\"]\n+        saved = claims.read_text()\n+        for surface in (\"Connected Microsoft mailbox\", \"Microsoft Edge browser\", \"Microsoft365 mailbox\"):\n+            with self.subTest(surface=surface):\n+                claims.write_text(saved + (\n+                    \"| Google identity evidence in owner mail | \" + surface + \" | HANDOFF | root09abcdef | \"\n+                    \"Read only | No account change | 2026-01-11-mail-evidence | Mailbox only |\\n\"\n+                ))\n+                brief = self.compile(\"continue Microsoft Ads\")[\"session_brief\"]\n+                self.assertEqual([row[\"fields\"][\"Workstream\"] for row in brief[\"coordination_claims\"]],\n+                                 [\"Current Microsoft Ads repair\"])\n+        for surface in (\"Microsoft Ads\", \"Microsoft Advertising\", \"Microsoft477439\", \"Bing Ads\", \"UET receiver\"):\n+            self.assertTrue(channel_matches(\"microsoft-ads\", surface), surface)\n+\n+    def test_compact_receipt_date_keeps_current_microsoft_claim(self):\n+        self.add_microsoft_fixture()\n+        path = self.paths[\"AGENT_COORDINATION.md\"]\n+        path.write_text(path.read_text().replace(\n+            \"2026-01-10-microsoft-receiver; TA-06\",\n+            \"2026-01-09-microsoft-receiver; ops/microsoft/heartbeat-20260110-0243/READBACK.md; TA-06\"))\n+        result = self.compile(\"continue Microsoft Ads\")\n+        brief = result[\"session_brief\"]\n+        self.assertEqual([row[\"fields\"][\"Workstream\"] for row in brief[\"coordination_claims\"]],\n+                         [\"Current Microsoft Ads repair\"])\n+        self.assertEqual(brief[\"coordination_claims\"][0][\"record_date\"], \"2026-01-10\")\n+        self.assertEqual(brief[\"coordination_claims\"][0][\"evidence_grade\"], \"REPO_KNOWN\")\n+        self.assertEqual(result[\"authority\"][\"fields\"][\"approved_external_scope\"], \"NONE\")\n+        self.assertFalse(brief[\"external_write_authorized\"])\n+\n+    def test_microsoft_owner_conflict_and_selector_holdouts(self):\n+        self.add_microsoft_fixture()\n+        path = self.paths[\"AGENT_COORDINATION.md\"]\n+        saved = path.read_text()\n+        path.write_text(saved.replace(\"| root06abcdef |\", \"| root09abcdef |\"))\n+        result = self.compile(\"continue Microsoft Ads\")\n+        self.assertEqual(len(result[\"session_brief\"][\"conflicts\"]), 1)\n+        self.assertEqual(result[\"session_brief\"][\"conflicts\"][0][\"kind\"], \"OWNER_MISMATCH_REQUIRES_RECONCILIATION\")\n+        path.write_text(saved)\n+        exact = self.compile(\"continue Microsoft Ads\", explicit_entities=(\"36005151\",))\n+        self.assertEqual(exact[\"selected_anchor\"][\"anchor_id\"], \"2026-01-10-microsoft-receiver\")\n+        self.assertIsNone(exact[\"session_brief\"])\n+        split = self.compile(\"continue Microsoft Ads\", explicit_entities=(\"36005151\", \"6501112223\"))\n+        self.assertIn(\"REQUIRED_ENTITIES_NOT_COLOCATED\", split[\"diagnostics\"][\"errors\"])\n+        self.assertIsNone(split[\"session_brief\"])\n+        worklog = self.paths[\"AGENT_WORKLOG.md\"]\n+        worklog.write_text(worklog.read_text() + (\n+            \"AGENT_CONTINUITY_ANCHOR: second-receiver-receipt\\n\"\n+            \"task_entities: 36005151\\ntask_stage: HANDOFF\\nMicrosoft receiver evidence.\\n---\\n\"\n+        ))\n+        ambiguous = self.compile(\"continue Microsoft receiver\")\n+        self.assertEqual(ambiguous[\"diagnostics\"][\"status\"], \"FAILED_CLOSED\")\n+        self.assertIn(\"AMBIGUOUS_RELEVANT_ANCHOR\", ambiguous[\"diagnostics\"][\"errors\"])\n+        self.assertIsNone(ambiguous[\"session_brief\"])\n+\n+    def test_account_numbers_and_invalid_dates_do_not_refresh_claims(self):\n+        self.add_microsoft_fixture()\n+        path = self.paths[\"AGENT_COORDINATION.md\"]\n+        saved = path.read_text()\n+        for evidence in (\"Microsoft20290110\", \"20290110\", \"accounts/20290110/report.json\",\n+                         \"ops/microsoft/heartbeat-20260230/READBACK.md\"):\n+            with self.subTest(evidence=evidence):\n+                path.write_text(saved.replace(\"2026-01-10-microsoft-receiver; TA-06\",\n+                                              \"2026-01-09-microsoft-receiver; \" + evidence + \"; TA-06\"))\n+                brief = self.compile(\"continue Microsoft Ads\")[\"session_brief\"]\n+                self.assertEqual(brief[\"coordination_claims\"], [])\n+                self.assertEqual(brief[\"older_coordination_claims\"][0][\"record_date\"], \"2026-01-09\")\n+                self.assertIn(\"neither clears a lock\", brief[\"older_coordination_claims\"][0][\"handling\"])\n+\n+    def test_ga4_exact_purchase_receiver_keeps_ads_operating_claim(self):\n+        queue = self.paths[\"action_queue.md\"]\n+        queue.write_text(\"\\n\".join(\n+            line.replace(\"Verify receiver; preserve legacy disconnection\",\n+                         \"Verify Ads7760272273 purchase receiver; preserve legacy disconnection\")\n+            if \"TA-02\" in line else line for line in queue.read_text().splitlines()) + \"\\n\")\n+        claims = self.paths[\"AGENT_COORDINATION.md\"]\n+        claims.write_text(claims.read_text().replace(\n+            \"| Current Google Ads setup | Ads6501112223 |\",\n+            \"| Current Google Ads setup | Ads6501112223; Purchase7760272273 |\"))\n+        worklog = self.paths[\"AGENT_WORKLOG.md\"]\n+        worklog.write_text(worklog.read_text() + (\n+            \"AGENT_CONTINUITY_ANCHOR: 2026-01-12-mixed-ads-analytics-receipt\\n\"\n+            \"task_entities: TA-01,TA-02,Ads6501112223\\ntask_stage: HANDOFF\\n\"\n+            \"Separate Ads and Analytics receipts; preserve their exact receiver dependency.\\n---\\n\"\n+        ))\n+        brief = self.compile(\"continue Google Analytics\")[\"session_brief\"]\n+        operating = [row for row in brief[\"coordination_claims\"]\n+                     if row[\"fields\"][\"Workstream\"] == \"Current Google Ads setup\"]\n+        self.assertEqual(len(operating), 1)\n+        basis = operating[0][\"task_link_basis\"][\"TA-02\"]\n+        self.assertEqual(basis, {\"explicit_task_id\": False, \"exact_entities\": [\"7760272273\"]})\n+        self.assertFalse(brief[\"external_write_authorized\"])\n+        self.assertIn(\"7760272273\", extract_entities(\"Purchase7760272273\"))\n+        self.assertTrue(contains_exact_entity(\"Purchase7760272273\", \"7760272273\"))\n+        for text in (\"Purchase17760272273\", \"Purchase7760272273x\", \"OtherPurchase7760272273\"):\n+            self.assertFalse(contains_exact_entity(text, \"7760272273\"), text)\n+        claims.write_text(claims.read_text().replace(\"Purchase7760272273\", \"Purchase17760272273\"))\n+        changed = self.compile(\"continue Google Analytics\")[\"session_brief\"]\n+        self.assertNotIn(\"Current Google Ads setup\", [row[\"fields\"][\"Workstream\"]\n+                                                     for row in changed[\"coordination_claims\"]])\n+\n \n if __name__ == \"__main__\":\n     unittest.main()\n"
+  },
+  "independent_review": {
+    "verifier": "/root/continuity_audit",
+    "independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "scope": "Read-only independent local source review. No repository file or report writes by verifier.",
+    "verdict": "PASS_WITH_LIMITS",
+    "remaining_actionable_defects_in_scope": [],
+    "initial_finding": "First mixed-anchor repair incorrectly removed genuine Analytics-to-Ads operating claim. Queue Ads7760272273 and claim Purchase7760272273 identify the same receiver, but the compiler omitted the Purchase prefix.",
+    "resolution": "Added only Purchase to the existing bounded compact-ID matcher; preserved exact boundaries and minimum length. Independent final verification retained Analytics row24 using only receiver7760272273.",
+    "verified": [
+      "21 focused tests and unchanged10compatibility groups pass with bundled Python.",
+      "Original six failure cases plus receiver failure reproduced against before code; first helper repair with old compiler leaves only receiver failure.",
+      "Seven fresh channel probes against frozen canonical sources pass; task fields, owners, goals, authority and next actions preserved.",
+      "Microsoft TA-15/root01a08703/claimrow35 retained; rows24/90 excluded; latest mixed receipt retained as evidence.",
+      "111 source-text/line checks pass; frozen source hashes unchanged.",
+      "Exact receiver and five near-match rejections, owner conflict, entity intersection, ambiguity, X and date holdouts pass.",
+      "Inspected dashboard, X and Shopify relationship removals do not justify restoring mixed-task identity leakage."
+    ],
+    "commands": [
+      "PYTHONDONTWRITEBYTECODE=1 <bundled-python> ops/tests/test_session_context.py",
+      "PYTHONDONTWRITEBYTECODE=1 <bundled-python> ops/tests/test_compile_task_context.py",
+      "Inline read-only import probes: before-code reproduction, seven frozen-source compilations, provenance and hash verification."
+    ],
+    "not_run_by_verifier": [
+      "strict continuity",
+      "live accounts",
+      "browser concurrency"
+    ],
+    "verified_hashes": {
+      "ops/scripts/session_context.py": "b8f07e819cefa474fc5b5c06894c071afd36a124bac1c1386b2c529b434f2a1a",
+      "ops/scripts/compile_task_context.py": "e18cf818bd33a2965c1919da8bd87ff00b0a95abb4672a699e20eb429966b599",
+      "ops/tests/test_session_context.py": "7aec469014fb8582d9d7b46c221ceaf652b5561b28216c6111824ed8d0370eea",
+      "ops/tests/test_compile_task_context.py": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943"
+    }
+  },
+  "shared_interval": {
+    "started_at": "2026-09-14T03:02:34.990018+00:00",
+    "dispatch": "CTX-MS-CLAIM-20260914-0243",
+    "status": "RELEASED",
+    "files": {
+      "ops/AGENT_COORDINATION.md": {
+        "before_sha256": "9e739cb006d819badc5bfa11a9dc0d48cad356576c1615aa9d44f1eab67740b8",
+        "after_sha256": "cfd92e6afe5bab1a1b0fd4b5a5a637a54e26eb99e21ca880d1941e30b316997f"
+      },
+      "ops/PROBLEM_TRACKER.md": {
+        "before_sha256": "7fd2f1fb1dc6801f9ccfda363a06531f043b6d1af06330c31bff84b5c369c012",
+        "after_sha256": "495469bf050762c726e66e7cac5869cb100971f5f213aa45c4cd27d127d07595"
+      }
+    },
+    "claim_row_only": true,
+    "problem_note_only": true,
+    "released_at": "2026-09-14T03:32:47.487825+00:00",
+    "release_to_parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+    "effect": "The existing context owner has finished all shared-record writes and releases its parent-granted disjoint interval. No peer owner/claim is released or reassigned. Parent alone records the dispatch in its checkpoint.",
+    "receipt_publication_is_release_notice": "Parent handback follows immediately; no further shared-record edits planned in this dispatch."
+  },
+  "limits": [
+    "Local retrieval repair only; no live platform status or external write authority established.",
+    "Separate user-created task acceptance, authenticated browser/account concurrency, cookie/profile isolation, cross-turn persistence, desktop non-interference and sleep/remote operation remain unverified.",
+    "Seven channel comparisons verify stated task/owner/goal/authority preservation, not exhaustive relevance correctness for every historical relationship."
+  ],
+  "rollback": "Use only the inverse captured diffs for this dispatch after checking the current code hashes and shared ownership. Preserve all prior X/date repairs and all unrelated changes. Do not restore whole files from Git or rewrite peer records.",
+  "temporary_evidence_directory": "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ms-claim-20260914-dpyziur8",
+  "closeout": {
+    "closed_shared_edits_at": "2026-09-14T03:30:31.169543+00:00",
+    "status": "VERIFIED",
+    "files": {
+      "ops/AGENT_COORDINATION.md": {
+        "before_interval_sha256": "9e739cb006d819badc5bfa11a9dc0d48cad356576c1615aa9d44f1eab67740b8",
+        "before_closeout_sha256": "cfd92e6afe5bab1a1b0fd4b5a5a637a54e26eb99e21ca880d1941e30b316997f",
+        "after_sha256": "58e229f5748dd5a14ed2452bedd5fc4e3c78c73af61eaa26a4cba805ea30138e",
+        "diff_sha256": "a08e96f9a09e82aca70400651d6dab60c48c33c876ed903c8ccab8e444d642e4"
+      },
+      "ops/PROBLEM_TRACKER.md": {
+        "before_interval_sha256": "7fd2f1fb1dc6801f9ccfda363a06531f043b6d1af06330c31bff84b5c369c012",
+        "before_closeout_sha256": "495469bf050762c726e66e7cac5869cb100971f5f213aa45c4cd27d127d07595",
+        "after_sha256": "a179ec0ccd37ec54adff13ddec1c2e5776904ce8ff73b7829c5e417516b168b8",
+        "diff_sha256": "b4f973aafa1dfe3dee9f47647060cf19b5c189a7c93fa92665e0cbb988e80c6c"
+      },
+      "ops/AGENT_WORKLOG.md": {
+        "before_interval_sha256": "94151c8d9d4763a82582c22b7aadca44d1344cff0be97763fa68278c7be2a0bf",
+        "before_closeout_sha256": "94151c8d9d4763a82582c22b7aadca44d1344cff0be97763fa68278c7be2a0bf",
+        "after_sha256": "97ae565aa5a5ead3ecc71fbeb68fb7237751cbefcae8b2ccc38a296ebda64e5a",
+        "diff_sha256": "569c3b5f99870100f10fc208355ea9ab49dc2d14a808157591b01ebacd632409"
+      }
+    },
+    "only_own_coordination_row_changed": true,
+    "only_own_problem_note_changed": true,
+    "entire_existing_worklog_prefix_preserved": true,
+    "anchor": "2026-09-14-context-claim-relevance-repair",
+    "strict_continuity": {
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/check_continuity_integrity.py",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "output_sha256": "f8850dd361c7e08137940a16d4d2d251e3450043abcb780e67d6708b41941d65",
+      "output": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 51064 lines; latest anchor 2026-09-14-context-claim-relevance-repair\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-14-context-claim-relevance-repair\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n"
+    },
+    "git_diff_check": {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "ops/scripts/session_context.py",
+        "ops/scripts/compile_task_context.py",
+        "ops/tests/test_session_context.py",
+        "ops/AGENT_COORDINATION.md",
+        "ops/PROBLEM_TRACKER.md",
+        "ops/AGENT_WORKLOG.md",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/microsoft-claim-context-repair-20260914.json"
+      ],
+      "exit_code": 0,
+      "output": "",
+      "limitation": "Git check covers tracked diffs; all added lines in dispatch diffs and new receipt were separately checked because implementation/test/packet paths are already untracked."
+    },
+    "dispatch_diff_whitespace_check": "PASS",
+    "cockpit_regenerated": false,
+    "cockpit_regeneration_reason": "No renderer/freshness source was edited; strict cockpit freshness passes. Preserve observed external timestamp-only refresh.",
+    "peer_records_preserved": true,
+    "protected_sources_and_complete_owner_action_rechecked": true
+  },
+  "verified_at": "2026-09-14T03:32:47.487825+00:00",
+  "current_source_readback": {
+    "results": [
+      {
+        "name": "ms-brief",
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "continue Microsoft Ads",
+          "--format",
+          "brief"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "c9abfb3e20f23beab29039839cb270053d0dd139b36d401311c823ffcdec313e",
+        "stderr": ""
+      },
+      {
+        "name": "ms-json",
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "continue Microsoft Ads",
+          "--format",
+          "json"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "061dab38cc0964b8d908a2888b9e1254faaf131ebdd09718bc6f14a85fcc9f34",
+        "stderr": "",
+        "diagnostics": {
+          "duplicate_anchor_ids": [
+            "2026-04-30-google-ads-standard-shopping-activation-gate",
+            "2026-05-09-paid-growth-fr-be-checkout-safe-advance",
+            "2026-05-09-paid-growth-nl-checkout-standard-metrics-safe-advance",
+            "2026-05-10-google-ads-non-us-search-paused-build-8-applied-fr-be-blocked",
+            "2026-05-10-localized-shipping-info-link-repair-live",
+            "2026-05-12-controlled-measurement-pinterest-build",
+            "2026-05-13-pdp-step-builder-price-range-live",
+            "2026-05-15-merchant-shopify-prune-merchant-after-export-failed",
+            "2026-05-15-pinterest-exact-product-group-imported-no-launch",
+            "2026-05-15-pinterest-validation-only-product-group-scope-stop",
+            "2026-05-18-pinterest-gate-b3-repaired-ingestion-clean-no-launch",
+            "2026-05-18-pinterest-gate-b3-repaired-r2-uploaded-reingestion-processing",
+            "2026-05-18-pinterest-review-exact-groups-selected-publish-stopped",
+            "2026-05-19-google-ads-api-basic-access-approved-us-search-020-export-complete",
+            "2026-05-20-google-shopping-merchant-feed-gate-failed-closed",
+            "2026-05-20-pinterest-corrected-label-product-groups-no-restart",
+            "2026-05-20-pinterest-parent-paid-source-processing-no-restart",
+            "2026-05-20-pinterest-source-complete-selector-count-gate-failed-no-restart",
+            "2026-05-21-google-shopping-parent-outfit-eligibility-diagnostic-done",
+            "2026-05-21-google-shopping-remaining-repair-upload-blocked",
+            "2026-05-21-google-shopping-unresolved-offer-exclusion-packet-ready",
+            "2026-05-21-shopify-sold-product-retest-approval-packet",
+            "2026-06-22-feature-story-content-gift-password-static-fixes",
+            "2026-06-22-feature-story-current-state-six-fix-evidence-finalized",
+            "2026-06-22-feature-story-node-command-docs-closed",
+            "2026-06-29-coral-blossom-mommy-and-me-dresses-draft-listing",
+            "2026-06-29-green-botanical-ruffle-mommy-and-me-dresses-draft-listing",
+            "2026-06-29-ocean-bloom-mommy-and-me-dresses-draft-listing",
+            "2026-06-29-pink-resort-ruffle-mommy-and-me-dresses-draft-listing"
+          ],
+          "errors": [],
+          "ranked_anchor_candidates": [
+            {
+              "anchor_id": "2026-09-14-context-claim-relevance-repair",
+              "entity_hits": [],
+              "relevance_score": 2,
+              "start_line": 51035,
+              "token_hits": [
+                "ads",
+                "microsoft"
+              ]
+            },
+            {
+              "anchor_id": "2026-09-13-ceo-ads-draft-read-failure-and-late-channel-receipts",
+              "entity_hits": [],
+              "relevance_score": 2,
+              "start_line": 51007,
+              "token_hits": [
+                "ads",
+                "microsoft"
+              ]
+            },
+            {
+              "anchor_id": "2026-09-13-microsoft-keyword-ceiling-qualified",
+              "entity_hits": [],
+              "relevance_score": 2,
+              "start_line": 50895,
+              "token_hits": [
+                "ads",
+                "microsoft"
+              ]
+            },
+            {
+              "anchor_id": "2026-09-12-google-ads-editor-recovered-and-creation-delta-integrated",
+              "entity_hits": [],
+              "relevance_score": 2,
+              "start_line": 50780,
+              "token_hits": [
+                "ads",
+                "microsoft"
+              ]
+            },
+            {
+              "anchor_id": "2026-09-12-microsoft-rsa-assets-and-url-tests-verified",
+              "entity_hits": [],
+              "relevance_score": 2,
+              "start_line": 50751,
+              "token_hits": [
+                "ads",
+                "microsoft"
+              ]
+            }
+          ],
+          "status": "OK",
+          "warnings": []
+        },
+        "task_ids": [
+          "TA-15"
+        ],
+        "claim_fields": [
+          {
+            "keys": [
+              "dated_before_current_tasks",
+              "end_line",
+              "evidence_grade",
+              "fields",
+              "linked_task_ids",
+              "record_date",
+              "source_path",
+              "start_line",
+              "task_link_basis",
+              "text"
+            ],
+            "workstream": "Current owner Microsoft Ads tracking and campaign rebuild",
+            "owner": "root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme",
+            "basis": {
+              "TA-15": {
+                "exact_entities": [
+                  "2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/READBACK.md",
+                  "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0239/READBACK.md",
+                  "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0639/READBACK.md"
+                ],
+                "explicit_task_id": false
+              }
+            }
+          }
+        ],
+        "task_keys": [
+          "end_line",
+          "evidence_grade",
+          "fields",
+          "id",
+          "identity_evidence",
+          "source_path",
+          "start_line",
+          "text"
+        ],
+        "authority": {
+          "approved_external_scope": "NONE",
+          "autonomous_action_ready": "false",
+          "control_as_of": "2026-09-05",
+          "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+          "live_readback_fresh_until": "EXPIRED",
+          "live_state_mode": "STALE_READBACK_REQUIRED",
+          "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_live_evidence_as_of": "2026-06-01",
+          "supersedes_execution_readiness_below": "true"
+        },
+        "external_write_authorized": false
+      },
+      {
+        "name": "ga4-json",
+        "command": [
+          "/usr/bin/python3",
+          "ops/scripts/compile_task_context.py",
+          "--query",
+          "continue Google Analytics",
+          "--format",
+          "json"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "274d50b55111504dd34c7888f5159c3ad8cad64c46d0808053bba3e1c059a552",
+        "stderr": "",
+        "diagnostics": {
+          "duplicate_anchor_ids": [
+            "2026-04-30-google-ads-standard-shopping-activation-gate",
+            "2026-05-09-paid-growth-fr-be-checkout-safe-advance",
+            "2026-05-09-paid-growth-nl-checkout-standard-metrics-safe-advance",
+            "2026-05-10-google-ads-non-us-search-paused-build-8-applied-fr-be-blocked",
+            "2026-05-10-localized-shipping-info-link-repair-live",
+            "2026-05-12-controlled-measurement-pinterest-build",
+            "2026-05-13-pdp-step-builder-price-range-live",
+            "2026-05-15-merchant-shopify-prune-merchant-after-export-failed",
+            "2026-05-15-pinterest-exact-product-group-imported-no-launch",
+            "2026-05-15-pinterest-validation-only-product-group-scope-stop",
+            "2026-05-18-pinterest-gate-b3-repaired-ingestion-clean-no-launch",
+            "2026-05-18-pinterest-gate-b3-repaired-r2-uploaded-reingestion-processing",
+            "2026-05-18-pinterest-review-exact-groups-selected-publish-stopped",
+            "2026-05-19-google-ads-api-basic-access-approved-us-search-020-export-complete",
+            "2026-05-20-google-shopping-merchant-feed-gate-failed-closed",
+            "2026-05-20-pinterest-corrected-label-product-groups-no-restart",
+            "2026-05-20-pinterest-parent-paid-source-processing-no-restart",
+            "2026-05-20-pinterest-source-complete-selector-count-gate-failed-no-restart",
+            "2026-05-21-google-shopping-parent-outfit-eligibility-diagnostic-done",
+            "2026-05-21-google-shopping-remaining-repair-upload-blocked",
+            "2026-05-21-google-shopping-unresolved-offer-exclusion-packet-ready",
+            "2026-05-21-shopify-sold-product-retest-approval-packet",
+            "2026-06-22-feature-story-content-gift-password-static-fixes",
+            "2026-06-22-feature-story-current-state-six-fix-evidence-finalized",
+            "2026-06-22-feature-story-node-command-docs-closed",
+            "2026-06-29-coral-blossom-mommy-and-me-dresses-draft-listing",
+            "2026-06-29-green-botanical-ruffle-mommy-and-me-dresses-draft-listing",
+            "2026-06-29-ocean-bloom-mommy-and-me-dresses-draft-listing",
+            "2026-06-29-pink-resort-ruffle-mommy-and-me-dresses-draft-listing"
+          ],
+          "errors": [],
+          "ranked_anchor_candidates": [
+            {
+              "anchor_id": "2026-09-14-context-claim-relevance-repair",
+              "entity_hits": [],
+              "relevance_score": 2,
+              "start_line": 51035,
+              "token_hits": [
+                "analytics",
+                "google"
+              ]
+            },
+            {
+              "anchor_id": "2026-09-12-microsoft-standard-uet-consent-gap-verified",
+              "entity_hits": [],
+              "relevance_score": 2,
+              "start_line": 50625,
+              "token_hits": [
+                "analytics",
+                "google"
+              ]
+            },
+            {
+              "anchor_id": "2026-09-11-pinterest-content-batch-and-background-access",
+              "entity_hits": [],
+              "relevance_score": 2,
+              "start_line": 50134,
+              "token_hits": [
+                "analytics",
+                "google"
+              ]
+            },
+            {
+              "anchor_id": "2026-09-09-google-tag-duplicate-cleanup-verified",
+              "entity_hits": [],
+              "relevance_score": 2,
+              "start_line": 48537,
+              "token_hits": [
+                "analytics",
+                "google"
+              ]
+            },
+            {
+              "anchor_id": "2026-09-09-organic-buyer-growth-plan",
+              "entity_hits": [],
+              "relevance_score": 2,
+              "start_line": 48502,
+              "token_hits": [
+                "analytics",
+                "google"
+              ]
+            }
+          ],
+          "status": "OK",
+          "warnings": []
+        },
+        "task_ids": [
+          "TA-02"
+        ],
+        "claim_fields": [
+          {
+            "keys": [
+              "dated_before_current_tasks",
+              "end_line",
+              "evidence_grade",
+              "fields",
+              "linked_task_ids",
+              "record_date",
+              "source_path",
+              "start_line",
+              "task_link_basis",
+              "text"
+            ],
+            "workstream": "Google Ads ongoing all-market optimization",
+            "owner": "root01a09194 sole Ads/canonical integrator; google_launch_research independent copy/strategy; tag_repair_review independent assets/settings; market_readback local creative",
+            "basis": {
+              "TA-02": {
+                "exact_entities": [
+                  "7760272273"
+                ],
+                "explicit_task_id": false
+              }
+            }
+          },
+          {
+            "keys": [
+              "dated_before_current_tasks",
+              "end_line",
+              "evidence_grade",
+              "fields",
+              "linked_task_ids",
+              "record_date",
+              "source_path",
+              "start_line",
+              "task_link_basis",
+              "text"
+            ],
+            "workstream": "Google account connection and tracking cutover, replacement task",
+            "owner": "root01a08223 parent integration/collection-only writer; existingMerchant01a08706, Ads01a09194, UX01a088c3 and originalGA4owner retain their surfaces",
+            "basis": {
+              "TA-02": {
+                "exact_entities": [
+                  "330266838"
+                ],
+                "explicit_task_id": false
+              }
+            }
+          }
+        ],
+        "task_keys": [
+          "end_line",
+          "evidence_grade",
+          "fields",
+          "id",
+          "identity_evidence",
+          "source_path",
+          "start_line",
+          "text"
+        ],
+        "authority": {
+          "approved_external_scope": "NONE",
+          "autonomous_action_ready": "false",
+          "control_as_of": "2026-09-05",
+          "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+          "live_readback_fresh_until": "EXPIRED",
+          "live_state_mode": "STALE_READBACK_REQUIRED",
+          "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_live_evidence_as_of": "2026-06-01",
+          "supersedes_execution_readiness_below": "true"
+        },
+        "external_write_authorized": false
+      }
+    ],
+    "microsoft_brief": "# Session context: continue Microsoft Ads\n\nRetrieval: OK\nContext is not external-write approval, transferred ownership, or a current live readback.\n\nAuthority — ops/marketing/current_marketing_state.md:8-18\n- approved_external_scope: NONE\n- autonomous_action_ready: false\n- control_as_of: 2026-09-05\n- effective_approval_policy: FRESH_ACTION_TIME_APPROVAL_REQUIRED\n- live_readback_fresh_until: EXPIRED\n- live_state_mode: STALE_READBACK_REQUIRED\n- next_best_action: READ_ONLY_MARKETING_RECONCILIATION\n- source_live_evidence_as_of: 2026-06-01\n- supersedes_execution_readiness_below: true\n\nBusiness goal — ops/GROWTH_NORTH_STAR.md:5-20\n## Owner's Goal In Plain English\n\nThe owner wants Dress Like Mommy to make more money, not just get more traffic.\n\nThe set goal is to build and run a profitable paid-growth machine for Dress Like Mommy: Google Ads and Pinterest campaigns active across every viable language/market, executed expertly and safely, aiming for as many profitable conversions as possible at about `650% ROAS`.\n\nThis is not an audit project. Audits, packets, trackers, and readbacks exist only to support action that can make sales happen: building controlled campaigns, enabling exact-approved tests, improving targeting/copy/assets/landing pages, removing blockers, monitoring performance, adding evidence-backed negatives, scaling winners, and killing waste.\n\nThe goal is aggressive but intelligent growth:\n\n- Increase sales.\n- Increase profit.\n- Maintain or move toward about `650% ROAS`.\n- Avoid expensive wasted clicks.\n- Use Google Ads, Pinterest, Merchant Center, Shopify, website CRO, tracking, feed quality, languages, and international markets together.\n- Use subagents in parallel where possible so work moves fast without conflict.\n\nCurrent microsoft-ads tasks (1); repo-known, not live proof\n\nTA-15 — Finish purchase/consent acceptance before any measured paid experiment — ops/marketing/action_queue.md:184\n- Priority: P0\n- Status: YELLOW\n- Action: TA-15 Repair verified Microsoft standard UET consent gap and finish purchase acceptance\n- Owner agent: root01a08703 sole Microsoft writer; paused_import_verifier independent reviews; UX owns theme\n- Lane: Paid traffic\n- Checkpoint: In progress\n- Checkpoint date: 2026-09-13\n- Owner input: Technical dependency\n- Gate: Paused USEN/DEDE campaigns and complete initial children saved; real purchase, supported source/consent, actual economics and numeric paid launch open\n- Completed milestone: 2campaigns/2groups/6Exactkeywords/2RSAs/14campaignPhrase negatives verified; country/presence/0.15cap saved; DE group language corrected; all13Paused and original11 settings preserved; existing4h heartbeat delivered;22asset associationsApproved/PinNone;2nativeURLTests pass with automatic campaign/adgroup tags September13:14Exact/8Phrase models do not qualify useful0.15 traffic; US0.10weekly chart, DE0.08near-cap/no exactpoint. Reviews35/31PASS_WITH_LIMITS; no campaign writes.\n- Next step: Supported consent repair on the existing contact answer/source change, then genuine purchase and actual economics. Preserve paused builds and paidNONE. Do not repeat the completed Exact/Phrase inputs, treat unavailable values as zero demand, import reserve rows or raise bids from these forecasts.\n- Evidence/source: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0239/READBACK.md and dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0639/READBACK.md; current_marketing_state.md; 2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/READBACK.md; anchor2026-09-12-microsoft-rsa-assets-and-url-tests-verified\n- Identity metadata: 2026-09-13-microsoft-keyword-ceiling-qualified — ops/AGENT_WORKLOG.md:50895-50920\n\nCurrent coordination claims (1)\nRead the complete allowed/blocked actions and notes at these source rows before acting; these summaries confer no scope.\n- Current owner Microsoft Ads tracking and campaign rebuild [TA-15]: `STANDARD_UET_CONSENT_GAP_VERIFIED__SUPPORT_CONTACT_GATED`; owner root01a08703 sole Microsoft writer and own canonical integrator; international_campaign_build source preparation; paused_import_verifier independent exact reviews; UX owns theme — ops/AGENT_COORDINATION.md:35\nOlder coordination records: 2 separated from current scope. Complete JSON retains every older identity/status/source; no old lock is cleared or scope revived.\n\nQueue/claim gate comparisons remain unresolved; inspect the paired sources before taking over work:\n- TA-15: queue ops/marketing/action_queue.md:184; claim ops/AGENT_COORDINATION.md:35; claim status `STANDARD_UET_CONSENT_GAP_VERIFIED__SUPPORT_CONTACT_GATED`\n\nRecent channel/related anchors (6 of 21 relevant records; source text available in JSON):\n- 2026-09-12-microsoft-standard-uet-consent-gap-verified — ops/AGENT_WORKLOG.md:50625-50654 [STALE_OR_SUPERSEDED]\n- 2026-09-12-growth-recovery-and-qualified-release-handoff — ops/AGENT_WORKLOG.md:50527-50566 [REPO_KNOWN]\n- 2026-09-11-microsoft-recurring-operator-and-campaign-cleanup — ops/AGENT_WORKLOG.md:50100-50133 [REPO_KNOWN]\n- 2026-09-14-context-claim-relevance-repair — ops/AGENT_WORKLOG.md:51035-51064 [REPO_KNOWN]\n- 2026-09-13-ceo-ads-draft-read-failure-and-late-channel-receipts — ops/AGENT_WORKLOG.md:51007-51034 [REPO_KNOWN]\n- 2026-09-13-microsoft-keyword-ceiling-qualified — ops/AGENT_WORKLOG.md:50895-50920 [REPO_KNOWN]\n\nReview the sourced tasks and existing owner claims; resume the applicable unfinished step without replaying completed work. Broad Shopify inventory does not select a product or release.\n\nDefault --format json retains complete task/claim/anchor records. This brief selects fields explicitly; it does not replace source review.\n",
+    "checks": {
+      "microsoft_only_task": "TA-15",
+      "microsoft_only_operating_claim_line": 35,
+      "microsoft_owner": "root01a08703",
+      "microsoft_task_fields_preserved": true,
+      "mixed_google_entities_absent": true,
+      "latest_mixed_receipt_retained_as_evidence": true,
+      "analytics_exact_receiver_claim_line": 24,
+      "analytics_exact_receiver": "7760272273",
+      "owner_conflicts": 0,
+      "all_nine_authority_fields_preserved": true,
+      "external_write_authorized": false
+    }
+  },
+  "shared_record_diffs": {
+    "ops/AGENT_COORDINATION.md": "--- before/ops/AGENT_COORDINATION.md\n+++ ops/AGENT_COORDINATION.md\n@@ -23,7 +23,7 @@\n | Google Ads cold-start research and local blueprint | Own 2026-09-11-google-ads-cold-start-research packet; own continuity annotations only | `RESEARCH_VERIFIED__PAID_LAUNCH_GATED` | root01a09180 integrator; platform_2026_research public research; report_verifier independent read-only review | User-requested live public research, scoped Shopify aggregate reads, own public buying smoke test and local report; own canonical closeout; interval released after checks | No campaign/account/feed/theme publication, spend, payments, customer upload, credential change, peer ownership or global paid-control change | REPORT.md and EVIDENCE.json; anchor2026-09-11-google-ads-cold-start-research | Own Ads session stopped at signed-out chooser and invalid_grant; newer signup owner01a09194 now records exact650access/tag-detector failure; reuse its readback. Cart cleaned to0. Independent PASS_WITH_LIMITS; recommendations conditional on account, costs and genuine purchase proof. Preserve current Merchant, GA4 and UX owners and global One Owner Action. |\n | Google Ads ongoing all-market optimization | Ads6509972886; AW18433316477; Purchase7760272273; campaign24247604341/assetgroup6746545742; own keyword/creative/strategy evidence | `EDITOR_READ_TIMEOUT__IDENTITY_SAVE_GATED__LOCAL_COPY_PRESERVED` | root01a09194 sole Ads/canonical integrator; google_launch_research independent copy/strategy; tag_repair_review independent assets/settings; market_readback local creative | Current user exact campaign quality repairs and US/international campaign preparation; normal task-owned IAB readback; reviewed reversible preparation | No enablement, new spend allocation, budget/bid/goal/feed/account-link/consent/publication change; no identity bypass, personal-Chrome contention or public429retry; protect peer surfaces | 2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260912_1449.json; SOURCE_REFRESH_20260912.md; google_ads_1449_root_review_20260912.json; anchor2026-09-12-google-ads-editor-recovered-and-creation-delta-integrated; FOLLOWUP_20260913_2254.json; parent ADS650-EDITOR-TIMEOUT-20260913-2254; anchor2026-09-13-ceo-ads-draft-read-failure-and-late-channel-receipts | September13 22:54UTC owner handback: task-owned IAB1/tab13/providerbrowser-use:c89eed6d-ae6a-470d-846b-36e8b2ae3008 remains listed but two read attempts time out. Current27fields UNVERIFIED, not proven lost; last verified19:03:42UTC. No reload/close/fill/Save/authentication retry. Separate report works: Paused/configuredUSD5, September13partial0 activity, original saved copy. Creation-only[20:49:22,22:56:45)UTC0EXACT; no older lifecycle/GA4 refresh. Normal Save/identity and paidNONE unchanged; preserve local copy and owner theme action. Earlier dated history: GoalBLOCKED/existing4hheartbeatACTIVE. Owner reports same18fields restored/all27DOM-AXvalues after oldtab8 disappeared; causeUNKNOWN, noSave/identityretry. Task01a09194/IAB1/tab13/providerbrowser-use:c89eed6d-ae6a-470d-846b-36e8b2ae3008 is not another task tab13. Paused/configured5USD; Sep12partial0; Sep11same356imp/5click/USD0.80/USD0.16CPC/0conversions. Exact creation delta10:49:23–14:49:48UTC0; no old lifecycle/GA4 reread. Independent81saved-receipt checks; full current27field snapshots absent. FrozenGB/copy/peer/ownerpublication/paidNONE unchanged. |\n | Read-only Data pilot from existing records | 2026-09-11-data-pilot evidence packet; narrow scorecard, cockpit, review and worklog annotations | `COMPLETED_LOCAL_VERIFIED` | root01a0914d; cost_attribution_review source audit; data_pilot_verifier independent verification | Existing-records preparation complete: 45 reproduction checks, 39 independent baseline checks, 28 cost checks and ten source hashes verified | No live reads or writes, credentials, plugin installation, new account, infrastructure, spending, source edits or changes to peer claims | 2026-09-11-data-pilot/PILOT.md and independent_review.json; anchor2026-09-11-read-only-data-pilot | PASS_WITH_LIMITS: profit/CPA/ROAS and actual OpenAI Data-plugin benchmark remain unverified. Existing TA-03/16/20, control and owner priorities preserved. Local claim released. |\n-| Fresh-session context and background browser isolation | Context compiler/new tests; root bootstrap parity; memory/account/browser protocols; own evidence and continuity entries | `LOCAL_CONTEXT_REPAIRS_VERIFIED__SEPARATE_TASK_ACCEPTANCE_PENDING` | root01a090d4-41cf-7472-9553-17631cf1f937 integrator; context_implementation compiler/new-test writer; continuity_audit independent verifier; browser_continuous own localhost tab only | User-authorized local session-memory and browser-routing implementation complete; new local tasks derive current sourced channel briefs and use task-owned background surfaces | No live business, spend, credentials, personal/native browser, global configuration or peer-claim changes; no new paid service; separate user-task creation requires explicit request | anchor2026-09-11-session-context-and-background-browser-verification; 2026-09-11-session-context-and-browser-isolation/READBACK.md and validation.json; x-operation-context-repair-20260912.json; x-date-relationship-repair-20260912.json; anchor2026-09-12-x-operation-context-and-morning-handoff-verified | 10original groups plus9new tests pass on2runtimes;80source checks. Fresh continuous root60/peer40 browser iterations overlap38.219s; reloads and own-tab cleanup pass. Earlier peer availability failure retained. Separate user-created task/account auth, cookie isolation, cross-turn persistence and desktop non-interference remain unverified. Own canonical interval follows Organic and releases to X after strict checks. September 12 bounded follow-up repairs plain X operation task matching and false date-only evidence relationships. Four X continuation failures and five date cases are corrected; genuine account/path and explicit-selector holdouts survive. The first duplicate-task-ID explanation was disproven: Couples source names TA05, and only filename date20260911 caused the inferred link. Frozen first receipt remains historical; the second receipt corrects that explanation. Root owns canonical integration; independent code review and current-source readback verify this bounded local scope. No platform, account, browser-concurrency or overall growth completion is implied. |\n+| Fresh-session context and background browser isolation | Context compiler/new tests; root bootstrap parity; memory/account/browser protocols; own evidence and continuity entries | `LOCAL_CONTEXT_REPAIRS_VERIFIED__SEPARATE_TASK_ACCEPTANCE_PENDING` | root01a090d4-41cf-7472-9553-17631cf1f937 integrator; context_implementation compiler/new-test writer; continuity_audit independent verifier; browser_continuous own localhost tab only | User-authorized local session-memory and browser-routing implementation complete; new local tasks derive current sourced channel briefs and use task-owned background surfaces | No live business, spend, credentials, personal/native browser, global configuration or peer-claim changes; no new paid service; separate user-task creation requires explicit request | anchor2026-09-11-session-context-and-background-browser-verification; 2026-09-11-session-context-and-browser-isolation/READBACK.md and validation.json; x-operation-context-repair-20260912.json; x-date-relationship-repair-20260912.json; anchor2026-09-12-x-operation-context-and-morning-handoff-verified | 10original groups plus9new tests pass on2runtimes;80source checks. Fresh continuous root60/peer40 browser iterations overlap38.219s; reloads and own-tab cleanup pass. Earlier peer availability failure retained. Separate user-created task/account auth, cookie isolation, cross-turn persistence and desktop non-interference remain unverified. Own canonical interval follows Organic and releases to X after strict checks. September 12 bounded follow-up repairs plain X operation task matching and false date-only evidence relationships. Four X continuation failures and five date cases are corrected; genuine account/path and explicit-selector holdouts survive. The first duplicate-task-ID explanation was disproven: Couples source names TA05, and only filename date20260911 caused the inferred link. Frozen first receipt remains historical; the second receipt corrects that explanation. Root owns canonical integration; independent code review and current-source readback verify this bounded local scope. No platform, account, browser-concurrency or overall growth completion is implied. CTX-MS-CLAIM-20260914-0243: bounded Microsoft context repair locally verified. Mixed or peer handoff identities no longer transfer to another task; mailbox routing and compact receipt recency corrected; exact Purchase receiver relationship retained. Twenty-one focused tests, unchanged ten compatibility groups and seven channel preservation probes pass; independent PASS_WITH_LIMITS. Evidence: microsoft-claim-context-repair-20260914.json and anchor2026-09-14-context-claim-relevance-repair. Prior interval ordering above is historical. Own shared writes complete; current interval remains held only for final checks and ends at explicit parent handback recorded in that receipt. No peer, account, global, prompt, schedule or paid-control write; separate-task/browser acceptance remains pending. |\n | X profile relaunch and organic operation | https://x.com/dresslikemommy; own dated review/relaunch packet; own continuity and X queue records | `R002_DUE_PUBLICATION_UNVERIFIED__TWICE_DAILY_ANALYTICS_ACTIVE__API_CONNECTION_PENDING` | root01a0915d-9105-7833-9d4b-eb467ab0ebbd sole X operator; independent prompt and draft review PASS | Current repeated owner authorization covers this professional X account and ongoing organic traffic work; September11 proactive renewal, exact target access already verified | No spend, new charges, subscriptions, security/credential changes, mass outreach or other-channel production writes. New unattended X actions require an authorized official API-backed connection; automated AI replies also require X approval and recipient conditions | 2026-09-11-x-profile-review/relaunch/proactive-20260911/READBACK.md; AUTOMATION_APPLIED.json; INDEPENDENT_REVIEW.md; anchor2026-09-11-x-proactive-traffic-loop-and-api-boundary; operations/2026-09-12-morning.json; operations/2026-09-13-afternoon.json; parent TA24-X-AFTERNOON-20260913-2000 | September13 16:00:26EDT assessment completed. Original R001 and seven September11 native submissions remain dated evidence; current native pending count UNKNOWN. R002 past12:15planned time lacks a permitted publication receipt, so neither success nor failure is inferred. Six future planned dates remain; no resubmission. Empty partial-day X campaign rows do not establish zero traffic/orders; contribution UNKNOWN. Next existing09:00NY assessmentSeptember14; same supported-publisher question pending, no credential/setup/question repeat. R009/R010 local candidates and paidNONE preserved. |\n | Minimalist Heart five-variant price correction | Product7230336729185; Adult2XL White41883237220449/Blue41883237285985/Pink41883237318753/Black41883238465633/Red41883238498401; price only | `PRICE_SOURCE_HOSTED_AND_GOOGLE_VERIFIED` | root01a08706 sole price executor and Merchant publisher; parent01a08223/Analytics independent verification | Owner explicitly answered yes, change. I confirm! to exact five prices22.99USD each onSeptember11; supersedes prior manual handling and price approval gate; parent conditional execution handoff accepted | Preserve other70variants and all nonprice fields/content/status/publications/options/inventory/theme; no paid/billing/credential changes; no automatic broken-price rollback | price_correction_approved_20260911/google_price_receipt_20260911.json; google_received_independent_review_20260911.json; original approved payload/before/rollback preserved | Exact five22.99USD source/public prices and existing4923-row hosted feed are complete. Google19:45:38UTC received a byte-identical full file; all five effective product prices22.99USD/InStock verified. Independent source40/40, public5/5, feed12/12 and Google-file14/14 pass. Account approval is separate; no repeat source write/fetch or automatic broken-price rollback. Prior receipt-pending text is superseded. Anchor 2026-09-11-merchant-au-pilot-received-wallets-and-french-title-verified. |\n | Merchant strategy review and correction | Own 2026-09-10-merchant-strategy-review packet; own worklog entry only | `DONE_LOCAL_DOCUMENT_REVIEW__LIVE_GATES_PRESERVED` | root01a08d40 strategy review; strategy_review_verifier independent read-only document reviewer | User explicitly requested review and correction; read-only Shopify reports/product samples and public documentation; local proposed revision and evidence | No native/account/Shopify/Google/paid/transaction mutation, blocker reclassification, competing command state, or changes to peer ownership | CORRECTED_STRATEGY.md, EVIDENCE.json and INDEPENDENT_REVIEW.md; anchor2026-09-10-merchant-strategy-review-corrected | Independent PASS_WITH_GATES for document only; 18 root checks passed before final reviewer clarifications. Existing Merchant receiver/setup owner, GA4 acceptance, UX release and full-paid NONE preserved. Review is not authority to execute the proposed pilot. |\n",
+    "ops/PROBLEM_TRACKER.md": "--- before/ops/PROBLEM_TRACKER.md\n+++ ops/PROBLEM_TRACKER.md\n@@ -82,6 +82,8 @@\n - Next: continue permitted twice-daily analytics/research and resolve the existing publishing connection question; first full-week result review remains Sep19. Do not repeat login requests or the completed Save/Post/Pin, and preserve all seven native schedules.\n \n ## PROB-2026-09-11-SESSION-CONTEXT-AND-BROWSER-CONTENTION\n+\n+- September14 / CTX-MS-CLAIM-20260914-0243: SOLVED_LOCAL_VERIFIED Microsoft-context subdefect. Before brief SHA9a94bfb15f97c6a60c9b9d34ee6c00af26b0fffabb3fd97ae1be47ac99c6b06c reproduced mixed-parent Google identity leakage, Microsoft-mailbox scope and compact-receipt recency errors. Microsoft now retains only its justified operating owner while the mixed receipt remains evidence. Initial independent review caught a real Analytics receiver relationship removed by the first guard; the existing bounded matcher now recognizes exact Purchase receiver identities, preserving that dependency without reintroducing mixed metadata. All21focused tests, unchanged10compatibility groups and seven frozen-source channel preservation probes pass; original15test methods unchanged. Independent PASS_WITH_LIMITS includes111source-line checks. Exact scope, conflicts, selector ambiguity, entity intersection, prior X/date repairs and paid NONE/false preserved. Current-source/strict results and explicit shared-interval release are bound in microsoft-claim-context-repair-20260914.json. Broader separate-task/browser acceptance remains pending; the overall problem status below is unchanged.\n \n - Priority P2; status IMPLEMENTED_LOCAL_VERIFIED__SEPARATE_TASK_ACCEPTANCE_PENDING; owner root01a090d4. Scope: project-local context retrieval and background routing; no live platform, auth or global configuration changes.\n - Original symptoms: bare channel continuation probes were ambiguous or empty; numeric identifiers could miss compact current metadata and select older records. Independent tasks also competed for personal/native browser access.\n",
+    "ops/AGENT_WORKLOG.md": "--- before/ops/AGENT_WORKLOG.md\n+++ ops/AGENT_WORKLOG.md\n@@ -51029,3 +51029,36 @@\n One Owner Action: In Shopify Admin → Online Store → Themes, publish the verified existing DLM UX Performance QA 2026-09-10 (137888792673), using verified-release-20260912.json binding13f693b864c90c3b82da07d2c59df85f0e1c33962af48d6932ea05b61343f029. Keep current MAIN133290917985 for rollback. This puts the verified collection and buyer repairs in front of customers; the source-only changes cannot repair the currently published grid. Publication is already authorized. The Shopify connector explicitly requires the owner to publish in Admin and blocks agent publishing/MAIN file writes. After publication, UX verifies the new MAIN/source and affected buyer paths; no duplicate upload, new theme or renewed generic approval request.\n \n Continuation: Use ops/prompts/paid-growth-ai-army-continuation-prompt.md and this anchor; resume only the next changed or due authorized owner dependency.\n+\n+\n+## September14 local context claim relevance repair\n+\n+AGENT_CONTINUITY_ANCHOR: 2026-09-14-context-claim-relevance-repair\n+task_entities: PROB-2026-09-11-SESSION-CONTEXT-AND-BROWSER-CONTENTION, CTX-MS-CLAIM-20260914-0243, ops/scripts/session_context.py, ops/scripts/compile_task_context.py\n+task_stage: HANDOFF\n+next_action_id: READ_ONLY_MARKETING_RECONCILIATION\n+\n+Parent granted the existing context owner a disjoint interval for this minimal compiler/helper repair, focused tests, own packet and own coordination/problem/worklog entries. The actual before brief reproduced the parent SHA9a94bfb15f97c6a60c9b9d34ee6c00af26b0fffabb3fd97ae1be47ac99c6b06c. A mixed parent receipt leaked Google identities into the Microsoft task; brand-only Microsoft routing included a mailbox claim; compact receipt dates hid the genuine Microsoft operating claim as old. The repair keeps unpartitioned multi-task/peer metadata out of task identity, keeps the receipt as related evidence, narrows Microsoft Ads routing and recognizes valid receipt dates without making account numbers into dates.\n+\n+Frozen six failure cases now pass. Independent review exposed one valid Analytics-to-Ads relationship removed by the first patch. A separately frozen receiver regression failed before the compiler added only the bounded Purchase prefix; final Analytics retains the exact7760272273 relationship. Microsoft returns TA-15 with its existing root01a08703 claim at coordination row35, excluding unrelated Google rows24/90 while keeping the latest mixed receipt as related evidence. The existing operating owners and approval gates did not change.\n+\n+Final21focused tests and the unchanged10compatibility groups pass. All15original test methods are unchanged. Seven frozen-source channel probes preserve every current task field, owner, goal, authority and next action. Independent continuity_audit PASS_WITH_LIMITS reproduces all seven failure cases against before code, confirms111source-text/line checks, exact receiver and near-match behavior, and conflict/ambiguity/intersection/X/date holdouts. Removed dashboard/X/Shopify links inspected by the verifier did not justify restoring mixed-task identity leakage. This is bounded local retrieval verification, not exhaustive historical relevance certification or a live account read.\n+\n+Current state, action queue, daily scorecard and growth goal are byte-identical to the interval snapshot. All nine paid controls, the complete733-character One Owner Action and full-sales due2026-09-14 08:49:22UTC are preserved, as are X/article/Sunshine/P1 and other cohort clocks. The generated cockpit changed only its build timestamp outside this repair; that external change is preserved and the renderer is unchanged. No cockpit regeneration was needed for this local repair. Original source-guard failure and its timestamp diagnosis remain in evidence; no peer changes were reverted.\n+\n+source_live_evidence_as_of: 2026-06-01\n+live_state_mode: STALE_READBACK_REQUIRED\n+effective_approval_policy: FRESH_ACTION_TIME_APPROVAL_REQUIRED\n+approved_external_scope: NONE\n+decision_depends_on_uncertain_state: true\n+decision_changing_evidence: A new reproducible context defect or the pending separate-task browser acceptance result.\n+if_evidence_supports_recommendation: Continue the existing verified context path and the exact authorized acceptance work.\n+if_evidence_opposes_recommendation: Preserve evidence and existing owners, then repair only the reproduced local defect.\n+material_decision: NOT_MATERIAL; bounded local retrieval repair.\n+independent_verifier: /root/continuity_audit\n+verifier_independence: DID_NOT_BUILD_OR_EXECUTE\n+\n+The stale paid source date above is preserved authority metadata, not a new live read. Shared closeout, current-source readback, strict continuity and explicit interval release are recorded in dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/microsoft-claim-context-repair-20260914.json before parent handback. Parent alone updates its dispatch checkpoint. No new task, harness, automation, global rule, prompt, browser/account action, paid or other business write occurred. Separate user-task/account concurrency, desktop non-interference, cookie isolation, cross-turn persistence and remote/sleep operation remain unverified.\n+\n+One Owner Action is unchanged: owner Admin publication of verified existing theme137888792673 with MAIN133290917985 retained for rollback. The current local handback goes first so the parent can use corrected channel context without competing shared writers.\n+Continuation: Continue CTX-MS-CLAIM-20260914-0243 from this receipt; preserve existing owners and the pending separate-task acceptance boundary.\n"
+  },
+  "next_action": "Parent records the verified local repair and resumes the existing next due or changed authorized business dependency; broader separate-task acceptance remains distinct."
+}

@@ -1,0 +1,111 @@
+{
+  "asOfUtc": "2026-09-06T05:52:59.458488+00:00",
+  "executor": "root",
+  "status": "IMPLEMENTED_AND_PERSISTENCE_VERIFIED",
+  "target": {
+    "store": "dresslikemommy-com",
+    "settingsUrl": "https://admin.shopify.com/store/dresslikemommy-com/apps/google/settings",
+    "tabId": "475224124",
+    "setting": "Product feed > Local inventory retail locations > Automatic sync"
+  },
+  "authority": {
+    "source": "Current user explicitly requests fixing everything on the exact Google settings page",
+    "scope": "Only disable unsupported physical-retail automatic inventory sync",
+    "independentReview": "shopify_local_inventory_repair_review.md",
+    "paidControlChanged": false
+  },
+  "businessPremise": "Dropshipping ecommerce store; no physical retail store or owned inventory",
+  "before": {
+    "merchantId": "124884876",
+    "localRetailAutomaticSync": "On",
+    "modalButton": "Turn off automatic sync for all locations",
+    "saveEnabled": false,
+    "fulfillmentLocationsVisible": 1
+  },
+  "action": {
+    "initialRichLocatorAttempt": "NO_MATCHES_NO_ACTION",
+    "fallback": "Documented CUA visible element control on the same exact tab; disclosed to owner",
+    "toggleClicked": true,
+    "syncAllLocationsBeforeSave": false,
+    "saveClicks": 1,
+    "saveResult": "Modal closed and settings showed Off",
+    "broaderSettingsTouched": false
+  },
+  "after": {
+    "normalSettingsReload": true,
+    "merchantId": "124884876",
+    "ga4PropertyId": "330266838",
+    "measurementId": "G-N4EQNK0MMB",
+    "productSync": "On",
+    "countryLanguageSync": "On",
+    "shippingInformationSync": "On",
+    "productTitlesSync": "On",
+    "productDescriptionsSync": "On",
+    "conversionMeasurement": "On",
+    "localInventoryRetailLocations": "Off",
+    "reopenedModal": {
+      "automaticSync": "Off",
+      "button": "Turn on automatic sync for all locations",
+      "syncAllLocationsChecked": false,
+      "saveEnabled": false
+    },
+    "modalClosedWithoutAdditionalChanges": true
+  },
+  "residuals": {
+    "merchantAccountAccess": "Fresh same-identity noaccess response for124884876",
+    "overviewMerchantStatus": "Inactive in both specialist before-repair and root after-repair reads",
+    "overviewAdsStatus": "Google Ads account issue in loaded root after-repair read; subsequent UI briefly omitted Error text, so no resolution inferred",
+    "appError": "Generic error toast occurred during earlier navigation; root did not observe save error",
+    "onlineProductsApproved": "UNKNOWN",
+    "onlineTrafficOrSalesRestored": "NOT_ESTABLISHED"
+  },
+  "rollback": {
+    "action": "Same local-retail control On then Save if a verified unintended consequence requires it",
+    "executed": false,
+    "limit": "Do not restore unsupported local availability by default"
+  },
+  "notChanged": [
+    "Google identity or connected accounts",
+    "Fulfillment location",
+    "Product quantities",
+    "Online product/market/shipping/title/description sync",
+    "Conversion measurement",
+    "Billing",
+    "Campaigns, bids, budgets or paid eligibility"
+  ],
+  "spendUsd": 0,
+  "newPinPublications": 0,
+  "privacy": "No embedded auth URLs, credentials, business address or customer data persisted",
+  "updatedAtUtc": "2026-09-06T06:00:29.507925+00:00",
+  "otherSettingsRead": {
+    "checkoutLink": "Off; no change",
+    "installedTags": [
+      {
+        "tag": "G-N4EQNK0MMB",
+        "service": "GA4",
+        "account": "88409806"
+      },
+      {
+        "tag": "GT-WRH8Q3MD",
+        "service": "Merchant",
+        "merchantTag": "MC-MQ104D130Y",
+        "merchantId": "124884876"
+      }
+    ],
+    "manualTagsAdded": 0,
+    "conversionEventSettingsChanged": false,
+    "notificationSettingsChanged": false
+  },
+  "activationNavigation": {
+    "button": "Get started with Google Merchant Center",
+    "outcome": "STOPPED_UNEXPECTED_CONFIRM_DIALOG",
+    "message": "Changes you made may not be saved. Are you sure you want to leave this page?",
+    "visibleCancelAttempt": "Did not dismiss",
+    "documentedFallback": "Existing rich Tab getJsDialog returned confirm; ConfirmDialog.dismiss() used",
+    "dismissalVerified": true,
+    "after": "Overview remained visible with Merchant Inactive; no account created, connected, disconnected or activation confirmed",
+    "retryAllowedWithoutNewEvidence": false
+  },
+  "officialAppRoleReference": "https://support.google.com/merchants/answer/14883496?hl=en",
+  "appRoleFinding": "Current official guidance says Business Manager super admin does not automatically grant linked app roles, and app roles cannot be assigned from Business Manager. This does not establish historical access-loss cause."
+}

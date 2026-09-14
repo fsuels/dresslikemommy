@@ -1,0 +1,689 @@
+{
+  "schema": "dlm.peer_owner_renewal_source_review.v1",
+  "reviewed_at_utc": "2026-09-14T19:12:31.133645+00:00",
+  "reviewer": "/root/collector_global_fallback_fix",
+  "verdict": "PASS_WITH_LIMITS",
+  "scope": "Source-only independent review of exact X, Google Ads, TA-20 renewal and Microsoft handoff receipts, their named saved schedulers, and the specifically authorized completed X attribution and blocked-goal supersession. No account, private analytics, direct target-goal or future-execution verification.",
+  "owner_user_evidence": {
+    "path": "/private/tmp/dlm-peer-latest-user-renewals-20260914.json",
+    "sha256": "16a412981c31ef799b5cbb54896fa155c1f641b82f193ff82fd418741b89e290"
+  },
+  "parent_evidence_limit": "Parent independently selected actual owning-user messages and excluded ambient instructions, heartbeat/delegation and later machine goal context. This reviewer bound those exact excerpts; did not replay full rollouts.",
+  "host_timezone_readback": "/private/var/db/timezone/tz/2026c.1.0/zoneinfo/America/New_York",
+  "lanes": {
+    "X": {
+      "verdict": "PASS_WITH_LIMITS",
+      "source_receipt": {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-14-owner-renewal.json",
+        "sha256": "4cf859f72abcf33d6d653dcd14f061552e036679b10029505b10dedc88a62b37"
+      },
+      "authority": {
+        "basis": "PARENT_VERIFIED_ACTUAL_USER_EXCERPT_NOT_REPLAYED_BY_THIS_REVIEWER",
+        "parent_artifact_path": "/private/tmp/dlm-peer-latest-user-renewals-20260914.json",
+        "parent_artifact_sha256": "16a412981c31ef799b5cbb54896fa155c1f641b82f193ff82fd418741b89e290",
+        "thread_id": "01a0915d-9105-7833-9d4b-eb467ab0ebbd",
+        "message_id": "msg_01a0a136-70dc-7df1-9166-3b18416e5221",
+        "timestamp": "2026-09-14T18:38:14.748Z",
+        "rollout_line": 3109,
+        "user_text_sha256": "544d2cb908e06486fb9aea581a340ed0bdc520648b849978e43c657689428915",
+        "meaning": "Renewed continuing daily responsibility for this owning channel; not a root dispatch, ambient goal context, blanket spend permission or transfer of peer ownership."
+      },
+      "saved_automation": {
+        "path": "/Users/fsuels/.codex/automations/run-dress-like-mommy-x-organic-pilot/automation.toml",
+        "sha256": "e0e6c5eacab00eb59d7b710b4bf18d711a5c556f23d4c336b0aaac4d2c3083f5",
+        "id": "run-dress-like-mommy-x-organic-pilot",
+        "kind": "heartbeat",
+        "name": "Run Dress Like Mommy X organic pilot",
+        "status": "ACTIVE",
+        "target_thread_id": "01a0915d-9105-7833-9d4b-eb467ab0ebbd",
+        "rrule": "FREQ=DAILY;BYHOUR=9,16;BYMINUTE=0;BYSECOND=0",
+        "created_at": 1789153074370,
+        "updated_at": 1789155717736,
+        "prompt_sha256": "2248c70c1339eecd5b53c10a81403586627da2d6d3c2a9295e51c4d87a6e1e62",
+        "no_count_or_until": true,
+        "timezone_basis": "Saved prompt explicitly names America/New_York; independently observed /etc/localtime resolves to America/New_York. This is configured cadence, not proof of future wakes."
+      },
+      "checks": {
+        "same_named_active_heartbeat_target": true,
+        "unchanged_historical_prompt_and_cadence": true,
+        "twice_daily_nine_and_sixteen_no_expiry": true,
+        "candidate_and_review_bindings_match": true,
+        "candidate_publication_is_withheld": true,
+        "R010_body_destination_preserved": true,
+        "goal_source_is_not_a_success_claim": true,
+        "pending_publication_uncertainty_preserved": true,
+        "source_keeps_no_spend_or_new_X_action": true,
+        "business_reviews_and_cadence_retained": true
+      },
+      "source_ready": "COMPLETE_RENEWAL_PLUS_COMPLETED_ATTRIBUTION_REVIEW_AND_GOAL_BLOCK_RECEIPT__PUBLISHING_AND_BUSINESS_OUTCOME_GATES_REMAIN",
+      "evidence_and_review_bindings": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/product-photo-20260914/INDEPENDENT_REVIEW.json",
+          "sha256": "cdbb95561d156268d4a8d129c01fef88041fc7dcd784d043a4f5a8e7e7c5808f",
+          "expected_sha256": "cdbb95561d156268d4a8d129c01fef88041fc7dcd784d043a4f5a8e7e7c5808f",
+          "matches_expected": true
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/product-photo-20260914/CANDIDATE_R011.json",
+          "sha256": "641ebb6e2259f7184507652341f8d2de3c904f31eef0d7e600b06ac29d95bd07",
+          "expected_sha256": "641ebb6e2259f7184507652341f8d2de3c904f31eef0d7e600b06ac29d95bd07",
+          "matches_expected": true
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/product-photo-20260914/SOURCE_EVIDENCE.json",
+          "sha256": "f6fbcfdbd1f6cb9ef2ba6a0577e6c9b314b4d8cf228ceab78e7ebe8d7ef582be",
+          "expected_sha256": "f6fbcfdbd1f6cb9ef2ba6a0577e6c9b314b4d8cf228ceab78e7ebe8d7ef582be",
+          "matches_expected": true
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/product-photo-20260914/rainbow-storefront-original.png",
+          "sha256": "a9a5025333e17e8cb72ee0d54305be57e82301c387d23e71b753fe300c769ed0",
+          "expected_sha256": "a9a5025333e17e8cb72ee0d54305be57e82301c387d23e71b753fe300c769ed0",
+          "matches_expected": true
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/proactive-20260911/NEXT_EXPERIMENT_CANDIDATES.json",
+          "sha256": "895785aef5da692fbd55143765e536e190bc77c0040f53297a4b56720973d8c1",
+          "expected_sha256": "895785aef5da692fbd55143765e536e190bc77c0040f53297a4b56720973d8c1",
+          "matches_expected": true
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/POST_QUEUE.json",
+          "sha256": "c3d9d7ca9519994a1ef5a636793b571e01568b8dc7d518d364b5998cb61bb983",
+          "expected_sha256": "c3d9d7ca9519994a1ef5a636793b571e01568b8dc7d518d364b5998cb61bb983",
+          "matches_expected": true
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-14-morning.json",
+          "sha256": "a28ecddc9550a7ad0800e4ec35fae83f64661a1531f0f3486ef2f712867b38cb"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/proactive-20260911/AUTOMATION_APPLIED.json",
+          "sha256": "fb71b2409d793c5c6d24ac94af95b24948dea34e2d518679c8818fb059444502"
+        }
+      ],
+      "goal_qualification": {
+        "status": "LATEST_SOURCE_REPORTED_BLOCKED__SAVED_AUTOMATION_ACTIVE__NO_DIRECT_GET_GOAL_READBACK",
+        "current_status_receipt": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-14-goal-blocked.json",
+          "sha256": "26df17d22b78eb838dc92e82297c13ddd8bcd569a9e46393bf626dbd57fb5bef"
+        },
+        "source_completed_at_utc": "2026-09-14T19:07:36.052462+00:00",
+        "source_transition_epoch": 1789412462,
+        "same_condition_goal_turns": 3,
+        "objective_unchanged": true,
+        "achieved": "NOT_VERIFIED; source explicitly records no completion",
+        "supersession": "Only the September 14 renewal ACTIVE goal state is dated history; latest current source status is BLOCKED. Continuing owner responsibility and the unchanged ACTIVE 09:00/16:00 heartbeat are preserved.",
+        "source_state_not_directly_replayed": true
+      },
+      "proposed_factual_canonical_deltas": [
+        "Record exact September 14 actual-user renewal and unchanged first-profitable-X-sale objective. Preserve the dated ACTIVE renewal as history, then apply only its goal-state supersession: latest completed source reports BLOCKED after three recurring supported-API/publisher-gated turns; current saved 09:00/16:00 heartbeat remains ACTIVE without expiry.",
+        "Record R011 as one independently reviewed local image option, not a publication or extra scheduled post. R010 copy/destination and the original queue are preserved; choose at most one R010/R011 after the September 19 review when evidence and cadence permit.",
+        "Preserve $0 new charges, 120 minutes/week effort cap, three to four originals/week maximum and at most one/day. September 19, September 26 and October 12 remain evidence checkpoints.",
+        "Keep the existing supported-publisher/identity/sole-writer, image-origin disclosure, native preview and duplicate/cadence gates. R002 stays due/publication unverified; do not repeat the pending connection question or infer outcome from search absence.",
+        "Do not promote the opaque live_projection_sha256 preservation claim to independently reproduced proof; this review verifies the explicit queue and candidate hashes only. No new acquired traffic, order or profit result follows from this renewal receipt.",
+        "Index the bound attribution source and 12/12 independent consistency review: two retained source-eligible recent orders, one Direct journey and one empty ready journey, supply no positive X signal. Withhold X order/revenue/profit credit and retain unknown origin; do not use its separate calendar sales amount as a full-sales result.",
+        "Record 66.79 known rolling minutes only with the explicit earlier-accounting gap; no complete weekly-cap certification. Keep the single publisher question pending, preserve uncertain original posts and do not repeat recent analytics absent changed evidence."
+      ],
+      "review_limits": [
+        "Latest goal BLOCKED is bound completed source/readback evidence; this reviewer did not call the target goal API. Earlier ACTIVE renewal remains dated history.",
+        "R011 review has 17 source-reported checks with release gates; this review verifies its binding and does not repeat visual/rights/native-X review.",
+        "Renewal receipt reports a live projection hash without its projection input/serialization; it remains source-reported.",
+        "The specifically authorized later X attribution/block receipts are now included. No private analytics API or raw customer data was queried; morning figures and the calendar sales amount are not promoted to new canonical sales claims.",
+        "The later X receipt supersedes only goal state and records a completed attribution branch; it does not prove a new X publication, original classifier correctness, or weekly-effort compliance."
+      ],
+      "check_count": 10,
+      "checks_passed": 10,
+      "defects": [],
+      "goal_qualification_history": [
+        {
+          "status": "SOURCE_REPORTED_ACTIVE_NOT_DIRECT_GET_GOAL_READBACK",
+          "source_field": "objective_readback",
+          "business_milestone": "First distinct paid, non-test, noncancelled X-attributed order with positive contribution after evidenced actual costs",
+          "achieved": "NOT_VERIFIED; renewal source explicitly says NOT_ACHIEVED",
+          "goal_created_or_status_mutated_by_reviewer": false
+        }
+      ],
+      "supplemental_source_checks": {
+        "attribution_source_exact_parent_hash_and_review_binding": true,
+        "two_retained_rows_match_source_counts_and_all_supplied_eligibility_flags": true,
+        "one_direct_and_one_empty_ready_journey_with_no_reported_next_page": true,
+        "all_retained_X_signals_absent_without_claiming_no_real_X_influence": true,
+        "current_source_goal_BLOCKED_supersedes_dated_ACTIVE_only": true,
+        "saved_daily_heartbeat_and_prompt_unchanged_despite_goal_block": true,
+        "later_sources_report_no_new_X_or_analytics_repeat_or_owner_question": true,
+        "recorded_effort_sums_without_full_weekly_certification": true,
+        "full_sales_and_contribution_clocks_explicitly_excluded": true
+      },
+      "supplemental_check_count": 9,
+      "supplemental_checks_passed": 9,
+      "supplemental_evidence_bindings": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-14-goal-attribution.json",
+          "sha256": "fcb7514f7285f7fd7598ce95a120bd1519a026397f9596b14f5e4e22f045a32c"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-14-goal-attribution-review.json",
+          "sha256": "de903f830225c42d4d92506ddec14835ebeda89bc28e926e9937e689b220bb90"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-14-goal-blocked.json",
+          "sha256": "26df17d22b78eb838dc92e82297c13ddd8bcd569a9e46393bf626dbd57fb5bef"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/EXECUTION_STATUS.json",
+          "sha256": "305d7eeef68933deb874ce9b6808610d544131eb7858e8f459dd14fb2b251414"
+        }
+      ],
+      "attribution_qualification": {
+        "verdict": "WITHHOLD_X_CREDIT_SUPPORTED_BY_RETAINED_EVIDENCE",
+        "source_window_utc": {
+          "from_inclusive": "2026-09-11T18:41:00Z",
+          "through_inclusive": "2026-09-14T18:45:49Z"
+        },
+        "source_reported_eligible_distinct_orders": 2,
+        "retained_rows": 2,
+        "retained_journeys": [
+          "one direct visit, without retained UTM/referrer evidence",
+          "ready journey with no visits"
+        ],
+        "retained_orders_with_X_signal": 0,
+        "unrecorded_origin": "UNKNOWN; absence of retained X signals does not establish no X influence or zero actual X orders",
+        "independent_attribution_review": "Bound prior PASS_WITH_LIMITS 12/12; its checks are not counted as this reviewer checks",
+        "discarded_private_fields_limit": "Raw IDs, timestamps, financial/source fields and URLs were discarded. Distinct-ID count, original source-is-web/date/financial predicates and X normalization cannot be independently re-derived from this receipt. Only retained flags, counts and conservative decision consistency were checked.",
+        "calendar_sales_amount": "EXCLUDED_FROM_CANONICAL_DELTAS; different calendar scope, no amount-to-order, currency or actual-cost reconciliation. Not a full-sales clock or X revenue/profit proof.",
+        "live_query_or_private_data_replay": "NOT RUN"
+      },
+      "recorded_effort_qualification": {
+        "source_reported_rolling_seven_day_minutes": 66.79,
+        "source_reported_current_calendar_week_minutes": 38.0,
+        "limit_minutes_per_week": 120,
+        "arithmetic_verified": true,
+        "full_weekly_cap_certification": "NOT_ESTABLISHED; earlier setup/coordination gaps unquantified"
+      }
+    },
+    "Google Ads": {
+      "verdict": "PASS_WITH_LIMITS",
+      "source_receipt": {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/DAILY_EXECUTION_20260914.json",
+        "sha256": "6175225aa940985277bf7970a3a0931d6ef3d28c039cdd756be6ead9f01644df"
+      },
+      "authority": {
+        "basis": "PARENT_VERIFIED_ACTUAL_USER_EXCERPT_NOT_REPLAYED_BY_THIS_REVIEWER",
+        "parent_artifact_path": "/private/tmp/dlm-peer-latest-user-renewals-20260914.json",
+        "parent_artifact_sha256": "16a412981c31ef799b5cbb54896fa155c1f641b82f193ff82fd418741b89e290",
+        "thread_id": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+        "message_id": "msg_01a0a135-b223-7bf0-8a4b-2542b0d8c722",
+        "timestamp": "2026-09-14T18:37:25.923Z",
+        "rollout_line": 9904,
+        "user_text_sha256": "b183d8905012202b1fcefb1900b186b071da93e9eb497d646eb0e98f045dfca4",
+        "meaning": "Renewed continuing daily responsibility for this owning channel; not a root dispatch, ambient goal context, blanket spend permission or transfer of peer ownership."
+      },
+      "saved_automation": {
+        "path": "/Users/fsuels/.codex/automations/google-ads-markets-and-purchase-follow-up/automation.toml",
+        "sha256": "c35aa9c8cb55e2c13413255efcf2207ed569478b268fc3b31f33398c2ec67663",
+        "id": "google-ads-markets-and-purchase-follow-up",
+        "kind": "heartbeat",
+        "name": "Google Ads daily execution and profit review",
+        "status": "ACTIVE",
+        "target_thread_id": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+        "rrule": "RRULE:FREQ=HOURLY;INTERVAL=4",
+        "created_at": 1789152313270,
+        "updated_at": 1789411554236,
+        "prompt_sha256": "172a707375cb69aa611b15defe2baad2308776176c2139d108dae88b0eaccb76",
+        "no_count_or_until": true,
+        "timezone_basis": "Saved prompt explicitly names America/New_York; independently observed /etc/localtime resolves to America/New_York. This is configured cadence, not proof of future wakes."
+      },
+      "checks": {
+        "same_named_active_heartbeat_target": true,
+        "current_TOML_equals_exact_observed_after": true,
+        "current_TOML_equals_every_expected_after_field": true,
+        "only_name_prompt_updated_timestamp_changed": true,
+        "four_hour_cadence_and_creation_preserved": true,
+        "daily_review_and_urgent_exception_both_retained": true,
+        "paid_boundaries_remain_restrictive": true,
+        "goal_and_authentication_gates_not_reset": true,
+        "normal_identity_Save_question_remains_one_pending_dependency": true,
+        "completed_day_review_dates_preserved": true,
+        "future_runtime_and_business_outcomes_unverified": true
+      },
+      "source_ready": "COMPLETE_SAVED_AUTOMATION_CHANGE__CAMPAIGN_REPAIR_STILL_BLOCKED",
+      "evidence_and_review_bindings": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/COPY_SAVE_ATTEMPTS.json",
+          "sha256": "b9202733db2b2508b6349a12b170fdceb188669239e239df0cae8cdf63a3da8c"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260914_1510.json",
+          "sha256": "5a43e9903af32ff0b20463c40c7ca16360f70f8c911254b6cc41cd1668f6eeeb"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+          "sha256": "99aad3484b86cf758412a037c9cdb0361da8800cebe781ec5ba1f54ac95218c8"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/STRATEGY_FIT_REVIEW.md",
+          "sha256": "168783e1d01c33c498847a54b5bccba3420899e04e898519dec85088dd59de86"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/VIDEO_REVIEW.json",
+          "sha256": "6d2768382c5ed29ad83a31def88a4b7584cc0f8e559fd97d3448581afa1f8aa7"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260914_0656.json",
+          "sha256": "465e26121fbf1ae1c3aec1b1340fe89fb6dee9ccffd958b99bfb41e2e7c60b18"
+        }
+      ],
+      "independent_review_reference": {
+        "kind": "INLINE_SOURCE_REPORTED_REVIEW",
+        "source_file_sha256": "6175225aa940985277bf7970a3a0931d6ef3d28c039cdd756be6ead9f01644df",
+        "json_pointer": "/independent_review",
+        "reviewer": "/root/tag_repair_review",
+        "verdict": "PASS_WITH_CLARIFICATIONS",
+        "separate_review_file_or_hash_supplied": false
+      },
+      "goal_qualification": {
+        "status": "SOURCE_REPORTED_BLOCKED_UNCHANGED_NOT_DIRECT_GET_GOAL_READBACK",
+        "reported_at_utc": "2026-09-14T18:33:12Z",
+        "recorded_time_used_seconds": 10793,
+        "meaning": "Accumulated source-reported goal work time, not current active delivery, efficiency improvement or sales."
+      },
+      "proposed_factual_canonical_deltas": [
+        "Record same existing heartbeat renamed Google Ads daily execution and profit review, with exact reviewed prompt updated and saved; four-hour cadence, target task and creation identity are preserved.",
+        "Record one substantive daily decision review on the first eligible existing wake at or after 09:00 New York, with urgent serving/spend/measurement exceptions and independent authorized work between reviews. This is not a new daily-at-nine scheduler.",
+        "Preserve September 14 NY review / September 13 reporting date; next routine review is the first existing wake at or after September 15 09:00 New York. No report or purchase query was repeated by this review.",
+        "Preserve BLOCKED goal as source-reported and distinct from the ACTIVE automation. Keep reviewed copy unsaved and the existing normal identity/Save action pending once; do not infer saved campaign improvement from editor retention or scheduling.",
+        "Keep paid scope NONE / fresh exact action authority, USD0.15 CPC, approximately 6.5x ROAS and 30% all-in profit constraints. Prioritize existing repair when its gate changes, receiver/cost qualification with owners, then one qualified Search candidate. No enablement, spend or successful conversion claim."
+      ],
+      "review_limits": [
+        "Current scheduler file is independently read back; account/editor state and blocked goal remain dated source receipts, not live replay.",
+        "Inline independent design review is bound through the daily receipt; no separate reviewer artifact was identified by that receipt.",
+        "Source-reported 11 automation checks and strict-continuity results are not counted as this reviewer checks.",
+        "No future scheduled execution, runtime saving or business improvement has been observed here."
+      ],
+      "check_count": 11,
+      "checks_passed": 11,
+      "defects": []
+    },
+    "TA-20 organic": {
+      "verdict": "PASS_WITH_LIMITS",
+      "source_receipt": {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-readback.json",
+        "sha256": "a0fb4c5b591b318fd650b49dcb4f4caf38ee0f171926805670d7e34fbefa2e12"
+      },
+      "authority": {
+        "basis": "PARENT_VERIFIED_ACTUAL_USER_EXCERPT_NOT_REPLAYED_BY_THIS_REVIEWER",
+        "parent_artifact_path": "/private/tmp/dlm-peer-latest-user-renewals-20260914.json",
+        "parent_artifact_sha256": "16a412981c31ef799b5cbb54896fa155c1f641b82f193ff82fd418741b89e290",
+        "thread_id": "01a0870a-e632-7773-ac5d-8ee2616b31bc",
+        "message_id": "msg_01a0a138-0788-7072-a95c-3e27e7b34b78",
+        "timestamp": "2026-09-14T18:39:58.857Z",
+        "rollout_line": 1651,
+        "user_text_sha256": "a9a3a5af62e42882bae0300998b2a5dc387ddf854244f4a331797f5d55be18d7",
+        "meaning": "Renewed continuing daily responsibility for this owning channel; not a root dispatch, ambient goal context, blanket spend permission or transfer of peer ownership."
+      },
+      "saved_automation": {
+        "path": "/Users/fsuels/.codex/automations/review-organic-article-and-sunshine-results/automation.toml",
+        "sha256": "94495966b2efad60e3a7efb00d36ffe1f2ce1c734f8e6c3ae91c11186032dbdf",
+        "id": "review-organic-article-and-sunshine-results",
+        "kind": "heartbeat",
+        "name": "Dress Like Mommy daily organic growth",
+        "status": "ACTIVE",
+        "target_thread_id": "01a0870a-e632-7773-ac5d-8ee2616b31bc",
+        "rrule": "RRULE:FREQ=DAILY;BYHOUR=9;BYMINUTE=0;BYSECOND=0",
+        "created_at": 1789146348921,
+        "updated_at": 1789411794156,
+        "prompt_sha256": "0769f1bbad5f91b538d0b454ac35cea9e1aaa02b8a7356104043d6d3e7a6b86b",
+        "no_count_or_until": true,
+        "timezone_basis": "Saved prompt explicitly names America/New_York; independently observed /etc/localtime resolves to America/New_York. This is configured cadence, not proof of future wakes."
+      },
+      "checks": {
+        "same_named_active_heartbeat_target": true,
+        "exact_current_config_hash_matches_receipt_and_after": true,
+        "exact_request_matches_saved_fields": true,
+        "original_task_creation_notification_preserved": true,
+        "daily_nine_no_expiry_replaces_two_run_rule": true,
+        "next_seven_dates_match_configured_daily_semantics": true,
+        "frozen_evidence_and_pre_post_review_bindings_match": true,
+        "original_article_Sunshine_review_dates_preserved": true,
+        "all_exact_completed_date_windows_present_in_saved_prompt": true,
+        "cohort_overlap_and_publication_clocks_retained": true,
+        "owned_editorial_scope_material_review_and_peer_cadence_preserved": true,
+        "paid_and_outreach_theme_tracking_exclusions_preserved": true,
+        "new_configuration_execution_not_claimed": true
+      },
+      "source_ready": "COMPLETE_DAILY_AUTOMATION_READBACK__FUTURE_EXECUTION_AND_EDITORIAL_OUTCOMES_UNOBSERVED",
+      "evidence_and_review_bindings": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-request.json",
+          "sha256": "bb6b43f953f560da6f3541695c5a7ff47386c7c723edad4a8fd576a76141a200",
+          "expected_sha256": "bb6b43f953f560da6f3541695c5a7ff47386c7c723edad4a8fd576a76141a200",
+          "matches_expected": true
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-before.toml",
+          "sha256": "4e6297a752052ba2b15c758d7be49f1a96f3790d4a3e695ddee484958aa5ba3e"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-after.toml",
+          "sha256": "94495966b2efad60e3a7efb00d36ffe1f2ce1c734f8e6c3ae91c11186032dbdf",
+          "expected_sha256": "94495966b2efad60e3a7efb00d36ffe1f2ce1c734f8e6c3ae91c11186032dbdf",
+          "matches_expected": true
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/independent-review.json",
+          "sha256": "cc0edcd732df3a958eae4415d5c526466bfeb55188856f4b01e8757455c603cc"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/READBACK.md",
+          "sha256": "2b5d6f0f59edae3b009a00de1f2e37da60325ca49081c5488baa830b16a617d3"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-request.json",
+          "sha256": "bb6b43f953f560da6f3541695c5a7ff47386c7c723edad4a8fd576a76141a200",
+          "expected_sha256": "bb6b43f953f560da6f3541695c5a7ff47386c7c723edad4a8fd576a76141a200",
+          "matches_expected": true,
+          "phase": "pre_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-before.toml",
+          "sha256": "4e6297a752052ba2b15c758d7be49f1a96f3790d4a3e695ddee484958aa5ba3e",
+          "expected_sha256": "4e6297a752052ba2b15c758d7be49f1a96f3790d4a3e695ddee484958aa5ba3e",
+          "matches_expected": true,
+          "phase": "pre_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-inventory-before.json",
+          "sha256": "43fe70409c28d6c9e1077f910bcf08ccfa9130ad7cf59334c4b7b3eb754502db",
+          "expected_sha256": "43fe70409c28d6c9e1077f910bcf08ccfa9130ad7cf59334c4b7b3eb754502db",
+          "matches_expected": true,
+          "phase": "pre_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/automatic-reviews-20260911.json",
+          "sha256": "00f591f18ca270b328347c8ffa7fef451c4882764d8c8ac3fda22a0209181c8e",
+          "expected_sha256": "00f591f18ca270b328347c8ffa7fef451c4882764d8c8ac3fda22a0209181c8e",
+          "matches_expected": true,
+          "phase": "pre_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/distribution-reconciliation-20260910.json",
+          "sha256": "a4208365a2110860f60d4b9a8eb7f9f37bd30b8d0b4487c110b726e756d766f2",
+          "expected_sha256": "a4208365a2110860f60d4b9a8eb7f9f37bd30b8d0b4487c110b726e756d766f2",
+          "matches_expected": true,
+          "phase": "pre_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/release-20260910/RELEASE_READBACK.md",
+          "sha256": "1079cbf3f672ff7d6a83d92e17d23509166c125145cc9f051c9e5ac9d3f00d00",
+          "expected_sha256": "1079cbf3f672ff7d6a83d92e17d23509166c125145cc9f051c9e5ac9d3f00d00",
+          "matches_expected": true,
+          "phase": "pre_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/SUNSHINE_EXECUTION_20260910.json",
+          "sha256": "754387f952a3c0edecb181f5f5e6f5df916bf97d0d7b1863934d94b5e258b4b5",
+          "expected_sha256": "754387f952a3c0edecb181f5f5e6f5df916bf97d0d7b1863934d94b5e258b4b5",
+          "matches_expected": true,
+          "phase": "pre_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/NATIVE_SCHEDULED_READBACKS_20260911.json",
+          "sha256": "090502b3746e450e7290a6dadf3cd5f4193bddefeab1090ee8dcad0a9c58017f",
+          "expected_sha256": "090502b3746e450e7290a6dadf3cd5f4193bddefeab1090ee8dcad0a9c58017f",
+          "matches_expected": true,
+          "phase": "pre_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/pinterest_p1_publication_readback_20260913.json",
+          "sha256": "52c5556ae8c589686a5b76809f453382361e1894b3e438d0185e3b0c2d113baf",
+          "expected_sha256": "52c5556ae8c589686a5b76809f453382361e1894b3e438d0185e3b0c2d113baf",
+          "matches_expected": true,
+          "phase": "pre_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-request.json",
+          "sha256": "bb6b43f953f560da6f3541695c5a7ff47386c7c723edad4a8fd576a76141a200",
+          "expected_sha256": "bb6b43f953f560da6f3541695c5a7ff47386c7c723edad4a8fd576a76141a200",
+          "matches_expected": true,
+          "phase": "post_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-before.toml",
+          "sha256": "4e6297a752052ba2b15c758d7be49f1a96f3790d4a3e695ddee484958aa5ba3e",
+          "expected_sha256": "4e6297a752052ba2b15c758d7be49f1a96f3790d4a3e695ddee484958aa5ba3e",
+          "matches_expected": true,
+          "phase": "post_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-after.toml",
+          "sha256": "94495966b2efad60e3a7efb00d36ffe1f2ce1c734f8e6c3ae91c11186032dbdf",
+          "expected_sha256": "94495966b2efad60e3a7efb00d36ffe1f2ce1c734f8e6c3ae91c11186032dbdf",
+          "matches_expected": true,
+          "phase": "post_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-inventory-before.json",
+          "sha256": "43fe70409c28d6c9e1077f910bcf08ccfa9130ad7cf59334c4b7b3eb754502db",
+          "expected_sha256": "43fe70409c28d6c9e1077f910bcf08ccfa9130ad7cf59334c4b7b3eb754502db",
+          "matches_expected": true,
+          "phase": "post_apply"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260914/automation-readback.json",
+          "sha256": "a0fb4c5b591b318fd650b49dcb4f4caf38ee0f171926805670d7e34fbefa2e12",
+          "expected_sha256": "a0fb4c5b591b318fd650b49dcb4f4caf38ee0f171926805670d7e34fbefa2e12",
+          "matches_expected": true,
+          "phase": "post_apply"
+        },
+        {
+          "path": "/Users/fsuels/.codex/automations/review-organic-article-and-sunshine-results/automation.toml",
+          "sha256": "94495966b2efad60e3a7efb00d36ffe1f2ce1c734f8e6c3ae91c11186032dbdf",
+          "expected_sha256": "94495966b2efad60e3a7efb00d36ffe1f2ce1c734f8e6c3ae91c11186032dbdf",
+          "matches_expected": true,
+          "phase": "post_apply"
+        }
+      ],
+      "goal_qualification": {
+        "status": "ONGOING_BUSINESS_OBJECTIVE_IN_VERIFIED_SAVED_PROMPT__NO_TARGET_GOAL_OBJECT_READBACK_SUPPLIED",
+        "meaning": "Daily qualified unpaid buyer acquisition, distinct paid orders and supported contribution profit until the user stops; no certified lift from scheduling."
+      },
+      "preserved_review_windows": {
+        "article": {
+          "asset_id": "559471919201",
+          "first_full_date": "2026-09-10",
+          "reviews": {
+            "7": {
+              "from": "2026-09-10",
+              "through": "2026-09-16",
+              "review": "2026-09-17"
+            },
+            "14": {
+              "from": "2026-09-10",
+              "through": "2026-09-23",
+              "review": "2026-09-24"
+            },
+            "30": {
+              "from": "2026-09-10",
+              "through": "2026-10-09",
+              "review": "2026-10-10"
+            }
+          }
+        },
+        "Sunshine": {
+          "asset_id": "343118065387544334",
+          "first_full_date": "2026-09-11",
+          "reviews": {
+            "7": {
+              "from": "2026-09-11",
+              "through": "2026-09-17",
+              "review": "2026-09-18"
+            },
+            "14": {
+              "from": "2026-09-11",
+              "through": "2026-09-24",
+              "review": "2026-09-25"
+            },
+            "30": {
+              "from": "2026-09-11",
+              "through": "2026-10-10",
+              "review": "2026-10-11"
+            }
+          }
+        },
+        "P1": {
+          "asset_id": "343118065387567020",
+          "first_full_date": "2026-09-14",
+          "reviews": {
+            "7": {
+              "from": "2026-09-14",
+              "through": "2026-09-20",
+              "review": "2026-09-21"
+            }
+          },
+          "exact_publication_timestamp": "UNKNOWN_SOURCE_RECORDED",
+          "overlap": "Source segment of article traffic; not additive"
+        }
+      },
+      "proposed_factual_canonical_deltas": [],
+      "review_limits": [
+        "Current saved configuration and specified date windows are independently checked; no future scheduled wake or editorial publication is verified.",
+        "Sixteen prewrite, eighteen after-state and fourteen owner checks are source-reported reviewer/operator evidence, not this reviewer check totals.",
+        "Mutable ops/marketing and coordination file hashes were deliberately not rechecked during the shared writer interval; historical review bindings do not certify their current bytes.",
+        "Other-schedule preservation is the previous reviewer receipt. This review independently reads only the four specifically named current automations and does not claim a global duplicate/scheduler audit.",
+        "No new private analytics query or account/browser action was performed. Analytics figures and newer attribution follow-ups are excluded from proposed canonical deltas."
+      ],
+      "check_count": 13,
+      "checks_passed": 13,
+      "defects": [],
+      "verified_source_facts_to_preserve": [
+        "Record exact September 14 user renewal as ongoing daily owned organic buyer acquisition until stop. Replace the prior two-review-only operational scope with the same saved existing daily 09:00 New York heartbeat, no expiry; original identity, task and creation are preserved.",
+        "Record routine reversible zero-ad-spend editorial execution in the existing store/blog ownership, with exact target, factual source, before-state/rollback, required independent material-public-change review and published desktop/mobile readback. This does not transfer Pinterest/X/Merchant/theme/tracking or paid ownership.",
+        "Retain original article and Sunshine 7/14/30-day windows plus conservative P1 September 14–20 review on September 21. Preserve QA and overlap exclusions; future P2–P6 outcome clocks require actual owner publication receipts.",
+        "Retain Pinterest cap of three total organic Pins per rolling seven days including published/scheduled items; consume owner receipts and use at most an already authorized exact unfinished step through its idle owner. Do not overlap active owners or duplicate releases.",
+        "Record next sizing-guide correction as source-reported editorial preparation only; this schedule review does not approve an exact body change or verify publication. New automation executions observed under this configuration remain source-reported zero; no traffic, sales or profit lift is claimed."
+      ],
+      "canonical_integration_disposition": "PARENT_REPORTED_ALREADY_APPLIED_AND_RELEASED; preserve TA-20 owner current deltas, do not re-apply. Current canonical was not read or edited by this reviewer."
+    },
+    "Microsoft Ads": {
+      "verdict": "PASS_WITH_LIMITS",
+      "source_receipt": {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/research-20260914/handoff.json",
+        "sha256": "cdfc969ebe83812ab51eaaba21d89ce5bdae4f0b90927b8435852b2ce2d6be40"
+      },
+      "authority": {
+        "basis": "PARENT_VERIFIED_ACTUAL_USER_EXCERPT_NOT_REPLAYED_BY_THIS_REVIEWER",
+        "parent_artifact_path": "/private/tmp/dlm-peer-latest-user-renewals-20260914.json",
+        "parent_artifact_sha256": "16a412981c31ef799b5cbb54896fa155c1f641b82f193ff82fd418741b89e290",
+        "thread_id": "01a08703-644f-7940-8f67-9a2fa63722bb",
+        "message_id": "msg_01a0a136-d2b6-7511-a91f-0be2d037c471",
+        "timestamp": "2026-09-14T18:38:39.798Z",
+        "rollout_line": 13935,
+        "user_text_sha256": "a351f9b164114df7944031352c19d6aeed8c410e00b18f6e12310bc13fb2481b",
+        "meaning": "Renewed continuing Microsoft ownership and goal; research/scheduling does not independently authorize account changes, launch, customer-data upload or spending."
+      },
+      "saved_automation": {
+        "path": "/Users/fsuels/.codex/automations/microsoft-ads-profitable-growth-operator/automation.toml",
+        "sha256": "76a85d3bd095762209d6c8ddd5b39c28a9dddff33b51b450ea047e52797bfcdf",
+        "id": "microsoft-ads-profitable-growth-operator",
+        "kind": "heartbeat",
+        "name": "Microsoft Ads profitable-growth operator",
+        "status": "ACTIVE",
+        "target_thread_id": "01a08703-644f-7940-8f67-9a2fa63722bb",
+        "rrule": "FREQ=HOURLY;INTERVAL=4",
+        "created_at": 1789151873961,
+        "updated_at": 1789411218466,
+        "prompt_sha256": "bfc3ef831866616abedf2ef476c7a08e8c5f276f8f3ae9b259585329e1d4c2d7",
+        "future_execution": "NOT_VERIFIED",
+        "before_after_preservation": "Source reports existing four-hour cadence unchanged; current same-target four-hour configuration independently read. No prior raw configuration was supplied in this bounded packet, so full before/after preservation was not independently reconstructed."
+      },
+      "evidence_and_review_bindings": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/research-20260914/operating_receipt.json",
+          "sha256": "aa6e662a4d883d55bdd4ccd94eb9d200fa10f4ec89ff2aa462b20b828150881e"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/research-20260914/validation.json",
+          "sha256": "74ebe862de218dbb13395d05eab11352794fcd803874ba1b35c54eac2e740ec9"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/research-20260914/review/independent_review.json",
+          "sha256": "6fe3ca6c8369bd432338b7d51db6830f1d510d023703614167b1f54f6e0f82d0"
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/research-20260914/MICROSOFT_OPERATING_PLAN.md",
+          "sha256": "a0ad90443edb52e279d119f785b5d0e0d0eb241a689edd36e927371c1f410a29"
+        }
+      ],
+      "checks": {
+        "exact_report_bytes_match_three_report_hash_receipts": true,
+        "named_existing_ACTIVE_four_hour_target_matches_operating_receipt": true,
+        "source_goal_active_same_target_no_achieved_profit_claim": true,
+        "paid_live_and_uncertainty_gates_explicitly_preserved": true,
+        "prior_review_independence_and_zero_remaining_report_fixes_consistent": true,
+        "operator_validation_fifteen_checks_internally_consistent_not_rerun": true,
+        "source_no_business_mutation_and_one_already_requested_input_action": true,
+        "exact_parent_verified_user_excerpt_binds_MS_renewal": true
+      },
+      "check_count": 8,
+      "checks_passed": 8,
+      "defects": [],
+      "source_ready": "COMPLETE_BOUND_RESEARCH_HANDOFF_AND_SAVED_SCHEDULER__LAUNCH_NO_GO",
+      "goal_qualification": {
+        "status": "SOURCE_REPORTED_ACTIVE_NOT_DIRECT_TARGET_GET_GOAL_READBACK",
+        "created_at_epoch": 1789411164,
+        "objective": "Increase Dress Like Mommy’s verified Microsoft Advertising contribution profit and distinct attributed purchases through an ongoing daily operating cycle: resolve purchase and consent measurement, qualify U.S. and international campaigns, execute only currently authorized changes within the existing $0.15 CPC ceiling and approved cash/loss limits, and optimize from reconciled Shopify sales, actual costs, and Microsoft spend. Keep the existing scheduled follow-up running and advance useful work without waiting for another user prompt; never treat traffic, configuration, or forecasts as proven profit.",
+        "profit_increase_proven": false
+      },
+      "proposed_factual_canonical_deltas": [
+        "Index the exact renewed Microsoft owner request, source-reported ACTIVE standing contribution-profit goal and completed research handoff/report with bound PASS_WITH_GATES planning review.",
+        "Record current existing microsoft-ads-profitable-growth-operator saved ACTIVE every four hours on the same Microsoft task. Source reports cadence preserved; no duplicate or future-execution/profit claim follows from this narrow current-file read.",
+        "Keep launch NO_GO, STALE_READBACK_REQUIRED, approved scope NONE, autonomous_action_ready false and fresh action-time approval required. Retain USD0.15 CPC and explicit cash/test-loss gates.",
+        "Next operator work is supported purchase/value/currency/consent/deduplication repair specification and exact acceptance evidence, with product-country economics and language readiness as disjoint gated lanes. Preserve paused builds and other owners.",
+        "Keep the already-requested actual-cost and cash/test-loss input action pending once. Root chooses the existing single owner-facing action; do not create another question or infer sales from the report or schedule."
+      ],
+      "review_limits": [
+        "Report file was hashed only. Its 53 links, research conclusions, hypothetical calculations and 15 operator checks were not re-executed; validation/reviewer claims are dated source evidence.",
+        "Current saved four-hour scheduler is independently verified; prior full configuration preservation and goal creation/readback remain source-reported in this bounded packet.",
+        "Dated campaign and purchase-receiver evidence are inherited handoff references, not fresh live account proof.",
+        "No launch, enabled runtime change, paid authority, customer upload, future wake, attributed purchase or contribution improvement is verified here."
+      ]
+    }
+  },
+  "shared_integration": "NOT_APPLIED_BY_REVIEWER. Parent reports TA-20 and Pinterest shared canonical intervals completed and RELEASED; preserve their own current deltas without re-applying. Root owns remaining X/Ads/Microsoft plus other integrations.",
+  "single_owner_action_preservation": "These are channel ownership renewals, not replacements of the root one-owner-facing-action slot. Preserve existing pending X connection and Ads normal identity/Save dependencies once; do not generate duplicate questions or promote readiness.",
+  "no_authority_broadening": "No new spend, financial, theme, tracking, third-party account or cross-owner authority is created by this review. Renewed responsibility and configured cadence are not channel outcomes.",
+  "execution_boundaries": {
+    "owned_output": "/private/tmp/dlm-peer-renewal-source-review-20260914.json",
+    "other_file_writes": 0,
+    "scheduler_writes": 0,
+    "canonical_writes": 0,
+    "account_or_browser_calls": 0,
+    "private_analytics_tool_calls": 0,
+    "goal_api_calls": 0,
+    "messages_to_channel_owners": 0,
+    "agents_spawned": 0,
+    "candidate_edits": 0
+  },
+  "skipped_checks": [
+    "No protected canonical or global scheduler inventory audit; parent owns integration and confirms writer releases.",
+    "No account/browser, private analytics, raw customer data or target get_goal/read_thread calls.",
+    "No visual/rights/native X re-review; exact existing reviews and source limits retained.",
+    "No Microsoft 53-link/research/math rerun; hash binding and goal/configuration/source gates only.",
+    "No missing/in-progress publication, campaign Save, launch or business outcome promoted to readiness."
+  ],
+  "prior_intermediate_review_sha256": "01af464c0630b1fd4c2ab2cd911f46b35164cf50c5dbe6adc0dfa364faaeb2cd",
+  "final_binding_recheck": {
+    "existing_binding_entries_rechecked": 40,
+    "existing_distinct_paths_rechecked": 32,
+    "all_match": true,
+    "scope": "Exact three initial source receipts, three saved automations and their previously bound support files; latest Microsoft/X additions checked separately in this artifact. No mutable canonical files read."
+  },
+  "review_check_totals": {
+    "initial_three_lanes": 34,
+    "X_supplement": 9,
+    "Microsoft": 8,
+    "total": 51,
+    "source_reported_operator_or_prior_review_checks_counted": 0
+  }
+}

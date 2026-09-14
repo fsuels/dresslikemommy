@@ -1,0 +1,341 @@
+{
+  "schema": "dlm.merchant_combined_rendered_verification.v1",
+  "status": "PASS_BOUNDED_UNPUBLISHED_PREVIEW",
+  "source": "Root normal in-app browser preview; read-only DOM, screenshots and one exact cart add/removal",
+  "theme_id": "137881223265",
+  "theme_role": "UNPUBLISHED",
+  "candidate_revision": 2,
+  "observed_date": "2026-09-09",
+  "preview_identity": {
+    "toolbar": "DLM Merchant Landing Fixes 2026-09-09 — Draft",
+    "product_section": "ProductInfo-template--18478674346081__main"
+  },
+  "cases": [
+    {
+      "id": "adult_explicit_us",
+      "result": "PASS",
+      "variant": "41498026442849",
+      "selection": [
+        "Mother",
+        "S",
+        "Pink"
+      ],
+      "quantity": 1,
+      "visible_price": "19.99 USD",
+      "offer_price": 19.99,
+      "offer_currency": "USD"
+    },
+    {
+      "id": "manual_role_change",
+      "result": "PASS",
+      "evidence": "Mother to Child clears size/color and shows 16.99–19.99 range; no one-time seed repeats. Choosing Child/2-3 Years/Pink enables one 16.99 USD piece."
+    },
+    {
+      "id": "cart_exact_child",
+      "result": "PASS",
+      "variant": "41498026573921",
+      "quantity": 1,
+      "unit_minor": 1699,
+      "total_minor": 1699,
+      "currency": "USD",
+      "before_items": 0,
+      "after_items": 1,
+      "cleanup_items": 0,
+      "evidence": "Clicked visible custom Add this piece to bag once. WebMCP get_cart exact variant/quantity/price; removed only returned test line via update_cart and independently read cart0."
+    },
+    {
+      "id": "child_explicit_us",
+      "result": "PASS",
+      "variant": "41498026573921",
+      "selection": [
+        "Child",
+        "2-3 Years",
+        "Pink"
+      ],
+      "visible_price": "16.99 USD",
+      "offer_price": 16.99,
+      "offer_currency": "USD"
+    },
+    {
+      "id": "generic_link",
+      "result": "PASS",
+      "selection": [
+        "Mother"
+      ],
+      "quantity": 1,
+      "visible_price": "16.99 USD - 19.99 USD",
+      "button": "Pick a size",
+      "disabled": true,
+      "evidence": "Role default remains; size/color unselected."
+    },
+    {
+      "id": "invalid_variant_link",
+      "result": "PASS",
+      "query": "variant=invalid",
+      "selection": [
+        "Mother"
+      ],
+      "quantity": 1,
+      "visible_price": "16.99 USD - 19.99 USD",
+      "button": "Pick a size",
+      "disabled": true
+    },
+    {
+      "id": "spanish_spain_mobile",
+      "result": "PASS",
+      "viewport": [
+        390,
+        844
+      ],
+      "country": "ES",
+      "language": "es",
+      "variant": "41498026442849",
+      "selection": [
+        "Mamá",
+        "S",
+        "Rosa"
+      ],
+      "quantity": 1,
+      "visible_price": "€17,95 EUR",
+      "offer_price": 17.95,
+      "offer_currency": "EUR",
+      "admin_contextual_parity": true,
+      "literal_html_entity": false,
+      "horizontal_overflow": false,
+      "screenshot": "Observed inline; not saved as a file"
+    },
+    {
+      "id": "spanish_qualified_policy_copy",
+      "result": "PASS",
+      "shipping": "Consulta las opciones de envío al finalizar la compra.",
+      "returns": "Devoluciones de artículos elegibles",
+      "return_request": "Solicita la devolución o el cambio de artículos elegibles dentro de los 30 días posteriores a la entrega.",
+      "date_estimate_element_absent": true
+    },
+    {
+      "id": "spanish_description_images",
+      "result": "PASS",
+      "image_count": 6,
+      "all_complete": true,
+      "all_dimensions": [
+        800,
+        800
+      ],
+      "evidence": "Normal page scrolling caused lazy loading; all six natural dimensions and complete states read after scrolling."
+    },
+    {
+      "id": "danish_dresses_metadata",
+      "result": "PASS",
+      "lang": "da",
+      "title": "Kjoler til mor og datter | Dress Like Mommy",
+      "description": "Find matchende kjoler til mor og datter. Se styles til familiebilleder, fester og ferier, og tjek størrelser og mål på produktsiden, før du vælger.",
+      "canonical": "https://www.dresslikemommy.com/da/collections/dresses",
+      "horizontal_overflow": false
+    },
+    {
+      "id": "dutch_dresses_metadata",
+      "result": "PASS",
+      "lang": "nl",
+      "title": "Jurken voor moeder en dochter | Dress Like Mommy",
+      "description": "Ontdek bijpassende jurken voor moeder en dochter. Bekijk stijlen voor familiefoto’s, feestjes en vakanties en controleer de maten op de productpagina.",
+      "canonical": "https://www.dresslikemommy.com/nl/collections/dresses",
+      "horizontal_overflow": false
+    },
+    {
+      "id": "gtin_present_schema",
+      "result": "PASS",
+      "variant": "41496508432481",
+      "gtin13": "5173849917893",
+      "visible_price": "17.99 USD",
+      "offer_price": 17.99,
+      "offer_currency": "USD",
+      "manufacturer_assignment": "UNVERIFIED; existing string preserved only"
+    },
+    {
+      "id": "restored_dress_schema",
+      "result": "PASS",
+      "variant": "41871499591777",
+      "selection": [
+        "Mother",
+        "S",
+        "Blue"
+      ],
+      "visible_price": "27.99 USD",
+      "offer_price": 27.99,
+      "offer_currency": "USD"
+    },
+    {
+      "id": "structured_data_parse_and_claims",
+      "result": "PASS",
+      "sample_variants": [
+        "41498026442849",
+        "41498026573921",
+        "41496508432481",
+        "41871499591777"
+      ],
+      "languages": [
+        "en",
+        "es"
+      ],
+      "observed_types": [
+        "WebSite",
+        "BreadcrumbList",
+        "Product"
+      ],
+      "parse_errors": 0,
+      "product_offer_count": 1,
+      "removed": [
+        "priceValidUntil",
+        "hasMerchantReturnPolicy",
+        "FAQPage"
+      ],
+      "preserved": [
+        "selected variant URL",
+        "price",
+        "priceCurrency",
+        "availability",
+        "condition",
+        "SKU",
+        "conditional GTIN",
+        "configured standard shipping rate and destination"
+      ]
+    },
+    {
+      "id": "desktop_cookie_open_close",
+      "result": "PASS",
+      "dialog": "Cookie and privacy preferences",
+      "close_focus_returns_to": "Cookie preferences",
+      "consent_saved_or_changed": false
+    },
+    {
+      "id": "v2_mobile_cookie_390",
+      "result": "PASS",
+      "viewport": [
+        390,
+        844
+      ],
+      "country": "ES",
+      "lang": "es",
+      "max_scroll": 10355,
+      "scroll_y": 10355,
+      "cookie_top": 680.171875,
+      "cookie_bottom": 724.171875,
+      "cookie_height": 44,
+      "sticky_top": 764,
+      "sticky_height": 80,
+      "body_padding": "80px",
+      "hit_test_cookie": true,
+      "pointer_open": true,
+      "keyboard_enter_reopen": true,
+      "dialog": "Preferencias de cookies y privacidad",
+      "close_focus": "Preferencias de cookies",
+      "consent_saved_or_changed": false,
+      "overflow": false
+    },
+    {
+      "id": "v2_mobile_cookie_320",
+      "result": "PASS",
+      "viewport": [
+        320,
+        740
+      ],
+      "max_scroll": 10190,
+      "scroll_y": 10190,
+      "cookie_top": 575.578125,
+      "cookie_bottom": 619.578125,
+      "sticky_top": 646,
+      "sticky_height": 94,
+      "body_padding": "80px",
+      "hit_test_cookie": true,
+      "overflow": false,
+      "limit": "Existing resized bar94px retained padding80px;44px button remained fully clear. This does not certify exact offset tracking for every resize."
+    },
+    {
+      "id": "v2_mobile_bar_hidden",
+      "result": "PASS",
+      "viewport": [
+        320,
+        740
+      ],
+      "scroll_y": 0,
+      "sticky_visible_class": false,
+      "body_padding": "0px",
+      "overflow": false
+    },
+    {
+      "id": "v2_desktop_spacing",
+      "result": "PASS",
+      "viewport": [
+        1280,
+        720
+      ],
+      "sticky_display": "none",
+      "body_padding": "0px",
+      "overflow": false
+    },
+    {
+      "id": "final_restoration",
+      "result": "PASS",
+      "country": "US",
+      "currency": "USD",
+      "lang": "en",
+      "viewport": [
+        1280,
+        720
+      ],
+      "cart_items": 0,
+      "cart_minor": 0,
+      "root_consent_changed": false,
+      "preview_variant": "41498026442849",
+      "preview_price": "19.99 USD",
+      "preview_section": "ProductInfo-template--18478674346081__main"
+    }
+  ],
+  "limits": [
+    "No checkout entered on combined preview; later checkout auto-review refusal in peer task was respected.",
+    "Unavailable-variant guard is locally tested; no unavailable live variant was created or claimed tested.",
+    "Country coverage is a sample (US and Spain), not all65 checkout acceptance.",
+    "Norway Admin17.95EUR versus MAIN public19.99USD remains CONFLICTED.",
+    "SDK dialog remains English on Arabic in peer consent QA.",
+    "Cart heading test16 expects unrelated dirty-root markup;15/16 original cart suite, no new subtotal failure claimed.",
+    "No publication, Merchant receiving-offer approval, impressions, acquisition or retained-profit outcome established.",
+    "Nonzero physical-device safe-area and every possible font/resize combination are not rendered-certified. The pre-existing safe-area expression is preserved."
+  ],
+  "restoration": {
+    "country": "US",
+    "currency": "USD",
+    "language": "en",
+    "viewport": "default 1280x720",
+    "cart_items": 0,
+    "root_consent_changed": false,
+    "preview_left_active": true
+  },
+  "source_verification": "release_candidate_v2/post_verification.json; independent read20:11:53UTC, all527 preview files exact, MAIN525 unchanged",
+  "historical_failures": [
+    {
+      "id": "mobile_cookie_control_obscured",
+      "result": "FAILED",
+      "viewport": [
+        390,
+        844
+      ],
+      "language": "es",
+      "at_max_scroll": true,
+      "body_class": "gradient animate--hover-default sticky-mobile-atc-visible",
+      "cookie_rect": {
+        "top": 760.171875,
+        "bottom": 804.171875,
+        "height": 44
+      },
+      "sticky_rect": {
+        "top": 764,
+        "height": 80
+      },
+      "hit_test": "Sticky purchase button intercepts cookie button at x190/y780",
+      "disposition": "Superseded by verified one-selector V2 amendment below; original failure retained in revision1 checkpoint."
+    }
+  ],
+  "checks_passed": 20,
+  "open_rendered_failures": 0,
+  "report_recorded_at_utc": "2026-09-09T20:15:46Z"
+}

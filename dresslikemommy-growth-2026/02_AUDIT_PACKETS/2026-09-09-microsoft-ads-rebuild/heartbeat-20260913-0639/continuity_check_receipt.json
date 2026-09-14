@@ -1,0 +1,16 @@
+{
+  "scoped_git_diff_check": {
+    "status": "PASS",
+    "exit_code": 0,
+    "limit": "No tracked diff in this new packet; direct whitespace and frozen-byte validation performed separately."
+  },
+  "strict_continuity": {
+    "command": "bundled Python3.12 ops/scripts/check_continuity_integrity.py --strict",
+    "status": "PASS",
+    "exit_code": 0,
+    "checks": 10,
+    "result": "CONTINUITY_OK",
+    "limit": "Canonical consistency check does not mean this new packet is indexed or live purchase acceptance is complete."
+  },
+  "shared_canonical_writes": 0
+}

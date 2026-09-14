@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-09-10T05:02:35.778Z",
+  "integration": {
+    "command": "Bundled Python ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk",
+    "exitCode": 0,
+    "sideDocumentRisks": 0
+  },
+  "strict": {
+    "command": "Bundled Python ops/scripts/check_continuity_integrity.py --strict",
+    "sessionId": 24108,
+    "exitCode": 0,
+    "result": "CONTINUITY_OK",
+    "latestAnchor": "2026-09-10-storefront-localized-pdp-v6-preview-verified"
+  },
+  "scopedDiff": {
+    "command": "git diff --check -- owning canonical files and storefront UX packet",
+    "exitCode": 0
+  },
+  "reasonForRepeat": "Independent reviewer identified a stale current Next3 storefront bullet; only that bullet and generated cockpit changed after the earlier passing check."
+}

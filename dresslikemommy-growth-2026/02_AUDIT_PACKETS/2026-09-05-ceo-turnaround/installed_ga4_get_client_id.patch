@@ -1,0 +1,19 @@
+--- installed/getClientId.before
++++ proposed/getClientId.after
+@@ -1,14 +1,8 @@
+ async function getClientId() {
+     const ga = await cookies.get("_ga");
+     if (ga && typeof ga === "string") {
+-      const parts = ga.split(".");
+-      if (parts.length >= 4) {
+-        const candidate = parts.slice(2, parts.length - 1).join(".");
+-        if (candidate) {
+-          await storage.set(CLIENT_ID_STORAGE_KEY, candidate);
+-          return candidate;
+-        }
+-      }
++      await storage.set(CLIENT_ID_STORAGE_KEY, ga);
++      return ga;
+     }
+     const stored = await storage.get(CLIENT_ID_STORAGE_KEY);
+     if (stored) return stored;

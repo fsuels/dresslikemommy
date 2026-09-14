@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-14T10:56:06.003756+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "source_receipt": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/greek_seo_window_20260914.json",
+    "sha256": "352dc7db47c9d2c1535c3bd40c20064d1dc2af82ef2d4e8045d96b11b17239fe"
+  },
+  "browser_source": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/greek_seo_window_20260914_source.json",
+    "sha256": "8a8552c79d3d42a5db137146b1800897b999a62a4ec61dcd896b91e149f060b3"
+  },
+  "release_source": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/greek_traffic_release_execution.json",
+    "sha256": "d0e483618789ba7e8ae248d45bc9c37d9019fb93e13971d465dea543bead6296"
+  },
+  "independence": "DID_NOT_BUILD_OR_EXECUTE. Independent arithmetic/table extraction and interpretation of root-executed saved evidence; no independent live measurement, network/browser, private-order data or source/canonical writes.",
+  "check_counts": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "id": "C01",
+      "check": "Frozen report, saved browser source and exact release hashes",
+      "status": "PASS",
+      "conditions": {
+        "report": true,
+        "browser_source": true,
+        "release": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "report": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/greek_seo_window_20260914.json",
+        "source": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/greek_seo_window_20260914_source.json",
+        "release": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/greek_traffic_release_execution.json"
+      }
+    },
+    {
+      "id": "C02",
+      "check": "Correct Greek article, release instant and exact URL binding",
+      "status": "PASS",
+      "conditions": {
+        "article_identity": true,
+        "locale": true,
+        "exact_url": true,
+        "release_time": true,
+        "release_scope": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "article_id": "559471329377",
+        "url": "https://www.dresslikemommy.com/el/blogs/news/mommy-and-me-matching-outfit-ideas",
+        "release_at": "2026-09-06T14:35:42.924Z",
+        "limit": "Historical US/USD Greek-language route, not Greece checkout or new release"
+      }
+    },
+    {
+      "id": "C03",
+      "check": "Twelve source records have qualified owner and call provenance",
+      "status": "PASS",
+      "conditions": {
+        "twelve_unique_calls": true,
+        "ordered_intervals": true,
+        "same_owner_surface": true,
+        "selected_source_disclosed": true,
+        "close_receipt": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "record_indexes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "first_call": "2026-09-14T10:39:18.771Z",
+        "last_return": "2026-09-14T10:49:59.078Z",
+        "limit": "Root-selected and sanitized saved outputs; neither complete-session replay nor independent live read"
+      }
+    },
+    {
+      "id": "C04",
+      "check": "Current and comparison windows and native headline values agree",
+      "status": "PASS",
+      "conditions": {
+        "property_exact": true,
+        "exact_page_filter": true,
+        "date_filters": true,
+        "scope_web_daily": true,
+        "comparison_headlines": true,
+        "single_period_headlines": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "comparison_record": 1,
+        "single_period_record": 8,
+        "current": [
+          11,
+          106
+        ],
+        "comparison": [
+          8,
+          134
+        ]
+      }
+    },
+    {
+      "id": "C05",
+      "check": "Headline descriptive arithmetic is correct",
+      "status": "PASS",
+      "conditions": {
+        "values": true,
+        "deltas": true,
+        "percentages": true,
+        "ctr": true,
+        "position": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "click_delta": 3,
+        "impression_delta": -28,
+        "current_ctr_percent": 10.377358490566039,
+        "comparison_ctr_percent": 5.970149253731343,
+        "position_delta": 1.0,
+        "interpretation": "Descriptive only; higher average position number is not an improvement"
+      }
+    },
+    {
+      "id": "C06",
+      "check": "All seven current daily rows independently reproduce headline totals",
+      "status": "PASS",
+      "conditions": {
+        "exact_rows": true,
+        "complete_dates": true,
+        "totals": true,
+        "pagination": true,
+        "comparison_not_read": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "record_index": 9,
+        "table_header": "Day",
+        "source_rows": [
+          [
+            "2026-09-07",
+            2,
+            21
+          ],
+          [
+            "2026-09-08",
+            3,
+            21
+          ],
+          [
+            "2026-09-09",
+            0,
+            12
+          ],
+          [
+            "2026-09-10",
+            0,
+            20
+          ],
+          [
+            "2026-09-11",
+            3,
+            9
+          ],
+          [
+            "2026-09-12",
+            3,
+            18
+          ],
+          [
+            "2026-09-13",
+            0,
+            5
+          ]
+        ],
+        "sums": [
+          11,
+          106
+        ],
+        "note": "Record9 is titled country breakdown but its retained table explicitly says Day; evaluated actual table content"
+      }
+    },
+    {
+      "id": "C07",
+      "check": "All seventeen query rows and comparative differences match source",
+      "status": "PASS",
+      "conditions": {
+        "exact_rows": true,
+        "complete_unique": true,
+        "row_difference_columns": true,
+        "sums": true,
+        "not_all_headline": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "record_index": 3,
+        "table_header": "Top queries",
+        "source_rows_count": 17,
+        "sums": [
+          5,
+          2,
+          41,
+          47
+        ],
+        "normalized_rows_sha256": "a627e298f7aed9d8ba061b2453b4dc92983d5d50d008ab267e782c223713cae7"
+      }
+    },
+    {
+      "id": "C08",
+      "check": "Three comparison and two current country rows match source",
+      "status": "PASS",
+      "conditions": {
+        "comparison_rows": true,
+        "single_rows": true,
+        "difference_columns": true,
+        "pagination": true,
+        "country_sums": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "comparison_record": 4,
+        "single_period_record": 10,
+        "comparison_rows": [
+          [
+            "Greece",
+            5,
+            2,
+            40,
+            46
+          ],
+          [
+            "Germany",
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            "Albania",
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "single_period_rows": [
+          [
+            "Greece",
+            5,
+            40
+          ],
+          [
+            "Germany",
+            0,
+            1
+          ]
+        ],
+        "sums": [
+          5,
+          2,
+          41,
+          47
+        ]
+      }
+    },
+    {
+      "id": "C09",
+      "check": "Headline versus detail discrepancy stays unresolved",
+      "status": "PASS",
+      "conditions": {
+        "unassigned_math": true,
+        "country_detail_still_disagrees": true,
+        "unresolved_status": true,
+        "no_country_inference": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "current_detail": [
+          5,
+          41
+        ],
+        "current_headline": [
+          11,
+          106
+        ],
+        "unassigned": {
+          "current_clicks": 6,
+          "comparison_clicks": 6,
+          "current_impressions": 65,
+          "comparison_impressions": 87
+        },
+        "cause": "UNKNOWN"
+      }
+    },
+    {
+      "id": "C10",
+      "check": "Source failure history and excluded initial lookup remain qualified",
+      "status": "PASS",
+      "conditions": {
+        "single_recorded_locator_failure": true,
+        "subsequent_different_path": true,
+        "failure_not_hidden": true,
+        "comparison_AX_date_defect_preserved": true,
+        "wrong_guide_excluded": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "failure_record_index": 5,
+        "following_record_indexes": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "limit": "One failure/no retry is supported within twelve selected records. The excluded initial lookup is disclosed by root; its discarded lookup was not independently reconstructed."
+      }
+    },
+    {
+      "id": "C11",
+      "check": "Tiny-sample/finality limits and separate prospective decision are sound",
+      "status": "PASS",
+      "conditions": {
+        "sample_not_causal": true,
+        "comparison_contains_release_day": true,
+        "finality_and_timezone_unproved": true,
+        "retain_repair": true,
+        "prospective_fourteen_dates": true,
+        "business_outcomes_not_inferred": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "prospective_start": "2026-09-07",
+        "prospective_end_inclusive": "2026-09-20",
+        "earliest_assessment": "2026-09-21",
+        "limit": "Calendar completeness does not certify processing finality; no causal lift, customer, sales, paid CPA/ROAS or profit proof"
+      }
+    },
+    {
+      "id": "C12",
+      "check": "No write/authority/clock expansion and no source drift",
+      "status": "PASS",
+      "conditions": {
+        "zero_actions": true,
+        "read_only_controls": true,
+        "no_repeated_release": true,
+        "source_drift_absent": true
+      },
+      "failed_conditions": [],
+      "evidence": {
+        "review_writes": "Only assigned independent review",
+        "live_replays": 0,
+        "canonical_and_other_clock_edits": 0,
+        "limit": "Separate September17/18 article/Sunshine, P1, X and full-sales clocks are not revised by this receipt. Their external schedules were not re-audited."
+      }
+    }
+  ],
+  "unresolved_findings": [],
+  "conclusion": "Current page headline11clicks/106impressions and seven daily rows reconcile, compared with8/134. All17 query rows and three comparative/two current country rows match their retained table literals. Detail sums5/41 remain below headline11/106; the missing6clicks/65impressions are not assigned to Greece or a cause.",
+  "limits": [
+    "The12 whitelisted output records are a sanitized source selection. Hash and chronology validation do not establish that every original call or omitted account-profile line was independently reviewed.",
+    "Comparison Days was omitted and one locator failure is preserved. The single-period daily table supplies the seven-day reconciliation; no prior daily table was read.",
+    "The initial different-guide lookup is disclosed and excluded; correct release/URL identity is independently verified, but the discarded lookup itself is not re-created.",
+    "Current country and query totals disagree with page headline. No causal explanation, all-country allocation, anonymous-query explanation for the country table, or acquisition attribution is established.",
+    "Eleven reported search clicks are a small descriptive sample. Comparison includes the release day; finality and timezone conversion remain unverified. No guide-to-product, cart, qualified-order, paid CPA/ROAS or profit read exists.",
+    "Official documentation links were retained as source references and were not fetched in this offline review.",
+    "September21-or-later is a prospective14-displayed-date assessment, with processing limits retained. No new automation or other cohort-clock change is authorized."
+  ],
+  "recommendation": "Retain the existing repair; preserve the country-detail/finality limitations and assess the separate September7–20 window on or after September21 unless a meaningful buyer/source issue arises."
+}

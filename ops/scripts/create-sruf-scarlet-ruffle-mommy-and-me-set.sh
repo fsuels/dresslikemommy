@@ -42,7 +42,7 @@ PRINT_NAME = "Scarlet Ruffle"
 SHORTCODE = "SRUF"
 COLOR_TOKEN = "RED"
 COLOR_NAME = "Scarlet Red"
-VENDOR_URL = "https://detail.1688.com/offer/1044710581583.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
@@ -320,7 +320,7 @@ def validate_preflight(body: str, variants: list[dict]) -> None:
             errors.append("FORCE_SPEC_PRICES guard failed")
         if variant["inventoryItem"]["cost"] != cost_for(variant["price"]):
             errors.append("cost is not 50 percent of price")
-    if VENDOR_URL in ", ".join(tags()):
+    if VENDOR_URL and VENDOR_URL in ", ".join(tags()):
         errors.append("source URL leaked into tags")
     if errors:
         raise RuntimeError("PREFLIGHT FAILED:\n- " + "\n- ".join(errors))
@@ -493,7 +493,7 @@ def verify_product(product: dict, variants: list[dict]) -> tuple[list[str], list
             "spec_cost": spec["inventoryItem"]["cost"],
             "match": match,
         })
-    if VENDOR_URL in " ".join(product["tags"]) or VENDOR_URL in product["descriptionHtml"] or VENDOR_URL in json.dumps(product["metafields"]["nodes"]):
+    if VENDOR_URL and (VENDOR_URL in " ".join(product["tags"]) or VENDOR_URL in product["descriptionHtml"] or VENDOR_URL in json.dumps(product["metafields"]["nodes"])):
         errors.append("source URL leaked into Shopify-visible product data")
     return errors, price_rows
 

@@ -1,0 +1,21 @@
+query MerchantSourceRefreshProducts($after: String) {
+  shop { id }
+  products(first: 50, after: $after, sortKey: ID, query: "status:active") {
+    nodes {
+      id status
+      variantsCount { count precision }
+      google: publishedOnPublication(publicationId: "gid://shopify/Publication/21969633377")
+      online: publishedOnPublication(publicationId: "gid://shopify/Publication/55169925")
+      feedback {
+        summary
+        details {
+          feedbackGeneratedAt state
+          app { id title }
+          messages { message }
+          link { label url }
+        }
+      }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}

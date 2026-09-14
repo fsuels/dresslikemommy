@@ -1,0 +1,569 @@
+{%- unless product.has_only_default_variant -%}
+  {%- liquid
+    assign variant_picker_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
+    assign size_guide_summary_label = 'products.product.size_guide.guide_and_fit' | t
+    assign has_type_or_style_option = false
+    assign selected_type_value = blank
+    assign selected_type_family_group = blank
+    for product_option in product.options_with_values
+      assign product_option_name_downcased = product_option.name | downcase
+      if product_option_name_downcased contains 'type' or product_option_name_downcased contains 'style' or product_option_name_downcased contains 'tipo' or product_option_name_downcased contains 'estilo' or product_option_name_downcased contains 'genre' or product_option_name_downcased contains 'typ' or product_option_name_downcased contains 'tip' or product_option_name_downcased contains 'τύπος' or product_option_name_downcased contains 'tyyppi' or product_option_name_downcased contains 'sug' or product_option_name_downcased contains 'סוג' or product_option_name_downcased contains 'प्रकार' or product_option_name_downcased contains 'タイプ' or product_option_name_downcased contains '유형' or product_option_name_downcased contains 'тип' or product_option_name_downcased contains 'نوع' or product_option_name_downcased contains 'ستايل' or product_option_name_downcased contains 'نمط'
+        assign has_type_or_style_option = true
+        case product_option.position
+          when 1
+            assign selected_type_value = product.selected_or_first_available_variant.option1
+          when 2
+            assign selected_type_value = product.selected_or_first_available_variant.option2
+          when 3
+            assign selected_type_value = product.selected_or_first_available_variant.option3
+        endcase
+        break
+      endif
+    endfor
+
+    assign selected_type_value_downcased = selected_type_value | downcase
+    if selected_type_value_downcased contains 'dress' or selected_type_value_downcased contains 'skirt'
+      assign selected_type_family_group = 'female'
+    elsif selected_type_value_downcased contains 'shirt'
+      assign selected_type_family_group = 'male'
+    elsif selected_type_value_downcased contains 'tee'
+      assign selected_type_family_group = 'male'
+    elsif selected_type_value_downcased contains 'short'
+      assign selected_type_family_group = 'male'
+    elsif selected_type_value_downcased contains 'trunk'
+      assign selected_type_family_group = 'male'
+    endif
+
+    assign has_size_option = false
+    for product_option in product.options_with_values
+      assign product_option_name_downcased = product_option.name | downcase
+      if product_option_name_downcased contains 'size' or product_option_name_downcased contains 'talla' or product_option_name_downcased contains 'tamano' or product_option_name_downcased contains 'tamaño' or product_option_name_downcased contains 'taille' or product_option_name_downcased contains 'pointure' or product_option_name_downcased contains 'taglia' or product_option_name_downcased contains 'tamanho' or product_option_name_downcased contains 'mărime' or product_option_name_downcased contains 'marime' or product_option_name_downcased contains 'größe' or product_option_name_downcased contains 'große' or product_option_name_downcased contains 'grosse' or product_option_name_downcased contains 'groesse' or product_option_name_downcased contains 'velikost' or product_option_name_downcased contains 'størrelse' or product_option_name_downcased contains 'storrelse' or product_option_name_downcased contains 'μέγεθος' or product_option_name_downcased contains 'koko' or product_option_name_downcased contains 'מידה' or product_option_name_downcased contains 'आकार' or product_option_name_downcased contains 'साइज़' or product_option_name_downcased contains 'サイズ' or product_option_name_downcased contains '사이즈' or product_option_name_downcased contains '크기' or product_option_name_downcased contains 'rozmiar' or product_option_name_downcased contains 'размер' or product_option_name_downcased contains 'storlek' or product_option_name_downcased contains '尺寸' or product_option_name_downcased contains '尺码' or product_option_name_downcased contains 'مقاس' or product_option_name_downcased contains 'مقاسات' or product_option_name_downcased contains 'الحجم' or product_option_name_downcased contains 'الأحجام' or product_option_name_downcased contains 'الاحجام'
+        assign has_size_option = true
+        break
+      endif
+    endfor
+
+  -%}
+  {%- assign rendered_size_help = false -%}
+  {%- assign visible_option_index = 0 -%}
+  <variant-selects
+    id="variant-selects-{{ section.id }}"
+    data-section="{{ section.id }}"
+    data-url="{{ product.url }}"
+    {% if update_url == false %}
+      data-update-url="false"
+    {% endif %}
+    {{ block.shopify_attributes }}
+  >
+    {%- for option in product.options_with_values -%}
+      {%- liquid
+        assign swatch_count = option.values | map: 'swatch' | compact | size
+        assign picker_type = block.settings.picker_type
+        assign option_name_downcased = option.name | downcase
+        assign option_label = option.name | strip
+        assign is_size_option = false
+        assign option_last_char = option_label | slice: -1
+        if option_label != blank and option_last_char == ':'
+          assign option_label_length = option_label | size
+          assign option_label_without_trailing_colon_length = option_label_length | minus: 1
+          assign option_label = option_label | slice: 0, option_label_without_trailing_colon_length
+        endif
+        assign is_color_option = false
+        assign hide_single_value_color_option = false
+        assign available_color_value_count = 0
+        assign seen_available_color_values = ''
+        assign single_available_color_value = blank
+        assign hide_unavailable_dropdown_options = false
+
+        if swatch_count > 0 and block.settings.swatch_shape != 'none'
+          if block.settings.picker_type == 'dropdown'
+            assign picker_type = 'swatch_dropdown'
+          else
+            assign picker_type = 'swatch'
+          endif
+        endif
+
+        if option_name_downcased contains 'color' or option_name_downcased contains 'colour' or option_name_downcased contains 'couleur' or option_name_downcased contains 'لون'
+          assign is_color_option = true
+        endif
+
+        if is_color_option and block.settings.picker_type == 'dropdown'
+          assign picker_type = 'color_image'
+        endif
+
+        if option_name_downcased contains 'size' or option_name_downcased contains 'talla' or option_name_downcased contains 'tamano' or option_name_downcased contains 'tamaño' or option_name_downcased contains 'taille' or option_name_downcased contains 'pointure' or option_name_downcased contains 'taglia' or option_name_downcased contains 'tamanho' or option_name_downcased contains 'mărime' or option_name_downcased contains 'marime' or option_name_downcased contains 'größe' or option_name_downcased contains 'große' or option_name_downcased contains 'grosse' or option_name_downcased contains 'groesse' or option_name_downcased contains 'velikost' or option_name_downcased contains 'størrelse' or option_name_downcased contains 'storrelse' or option_name_downcased contains 'μέγεθος' or option_name_downcased contains 'koko' or option_name_downcased contains 'מידה' or option_name_downcased contains 'आकार' or option_name_downcased contains 'साइज़' or option_name_downcased contains 'サイズ' or option_name_downcased contains '사이즈' or option_name_downcased contains '크기' or option_name_downcased contains 'rozmiar' or option_name_downcased contains 'размер' or option_name_downcased contains 'storlek' or option_name_downcased contains '尺寸' or option_name_downcased contains '尺码' or option_name_downcased contains 'مقاس' or option_name_downcased contains 'مقاسات' or option_name_downcased contains 'الحجم' or option_name_downcased contains 'الأحجام' or option_name_downcased contains 'الاحجام'
+          assign is_size_option = true
+        endif
+
+        if is_size_option and has_type_or_style_option
+          assign hide_unavailable_dropdown_options = true
+        endif
+
+        comment
+          CRO Tier 1 (May 2026): apparel converts better when sizes are
+          pill buttons rather than a dropdown — faster scanning, bigger
+          tap targets, easier comparison, and disabled-OOS visibility.
+          Force the size option to render as pill buttons regardless of
+          the section setting. Other options (color, family, type) keep
+          whatever picker the theme settings asked for.
+        endcomment
+        if is_size_option
+          assign picker_type = 'button'
+        endif
+
+        if is_color_option
+          for variant in product.variants
+            if variant.available
+              assign option_value_for_variant = blank
+              case option.position
+                when 1
+                  assign option_value_for_variant = variant.option1
+                when 2
+                  assign option_value_for_variant = variant.option2
+                when 3
+                  assign option_value_for_variant = variant.option3
+              endcase
+
+              if option_value_for_variant != blank
+                assign option_value_token = '|' | append: option_value_for_variant | append: '|'
+                unless seen_available_color_values contains option_value_token
+                  assign seen_available_color_values = seen_available_color_values | append: option_value_token
+                  assign available_color_value_count = available_color_value_count | plus: 1
+                  if single_available_color_value == blank
+                    assign single_available_color_value = option_value_for_variant
+                  endif
+                endunless
+              endif
+            endif
+          endfor
+
+          if available_color_value_count == 0
+            assign available_color_value_count = option.values | size
+          endif
+
+          if available_color_value_count <= 1
+            assign hide_single_value_color_option = true
+          endif
+        endif
+
+        comment
+          CRO hygiene (May 2026): collapse ANY option that only has a
+          single effective value. The legacy code only did this for
+          Color; Shopify happily exposes a 1-value Type, Style, Material,
+          etc. and Dawn renders it as a useless single-button row (see
+          Scarlet Ruffle Mommy and Me Tank Top — Type: "Tank Top" only).
+          Generalise the existing color trick: count distinct AVAILABLE
+          values across product.variants for this option; if <=1 we render
+          a hidden <select> below so the variant form still submits the
+          required option value but no visible chooser is drawn.
+
+          Color keeps its own dedicated logic above
+          (hide_single_value_color_option) because that one also handles
+          "all unavailable but option has values" → still hide. Other
+          options use a simpler count.
+        endcomment
+        assign hide_single_value_other_option = false
+        unless is_color_option
+          assign other_seen_values = ''
+          assign other_available_value_count = 0
+          assign other_single_value = blank
+          for variant in product.variants
+            if variant.available
+              assign other_option_value_for_variant = blank
+              case option.position
+                when 1
+                  assign other_option_value_for_variant = variant.option1
+                when 2
+                  assign other_option_value_for_variant = variant.option2
+                when 3
+                  assign other_option_value_for_variant = variant.option3
+              endcase
+              if other_option_value_for_variant != blank
+                assign other_option_value_token = '|' | append: other_option_value_for_variant | append: '|'
+                unless other_seen_values contains other_option_value_token
+                  assign other_seen_values = other_seen_values | append: other_option_value_token
+                  assign other_available_value_count = other_available_value_count | plus: 1
+                  if other_single_value == blank
+                    assign other_single_value = other_option_value_for_variant
+                  endif
+                endunless
+              endif
+            endif
+          endfor
+          if other_available_value_count == 0
+            assign other_available_value_count = option.values | size
+          endif
+          if other_available_value_count <= 1
+            assign hide_single_value_other_option = true
+            if other_single_value == blank
+              assign other_single_value = option.selected_value | default: option.values.first
+            endif
+          endif
+        endunless
+      -%}
+      {%- comment -%}
+        CRO Step 4: step-mini-headings above each option group.
+        Renders a small numbered label so the shopper sees a clear flow.
+        The number reflects the option's actual visible position (we
+        increment a running counter only when the option will render);
+        the phrase reflects the option's role (Family / Type / Size /
+        Color / generic). Gated on section setting (default on) and
+        only on multi-option products to avoid label noise.
+      {%- endcomment -%}
+      {%- liquid
+        assign show_step_heading = false
+        if hide_single_value_color_option == false and hide_single_value_other_option == false and section.settings.show_picker_step_headings != false and product.options.size >= 2
+          assign show_step_heading = true
+          assign visible_option_index = visible_option_index | plus: 1
+        endif
+        assign step_phrase = blank
+        if show_step_heading
+          if variant_picker_locale_root == 'es'
+            if option_name_downcased contains 'family' or option_name_downcased contains 'who' or option_name_downcased contains 'wearer'
+              assign step_phrase = '¿Para quién es?'
+            elsif is_size_option
+              assign step_phrase = 'Elegir talla'
+            elsif is_color_option
+              assign step_phrase = 'Elegir color'
+            elsif has_type_or_style_option and option_name_downcased contains 'type' or option_name_downcased contains 'style' or option_name_downcased contains 'piece' or option_name_downcased contains 'tipo' or option_name_downcased contains 'estilo'
+              assign step_phrase = 'Elegir prenda'
+            else
+              assign step_phrase = 'Elegir ' | append: option_label | downcase
+            endif
+          else
+            if option_name_downcased contains 'family' or option_name_downcased contains 'who' or option_name_downcased contains 'wearer'
+              assign step_phrase = 'Who is this for?'
+            elsif is_size_option
+              assign step_phrase = 'Choose size'
+            elsif is_color_option
+              assign step_phrase = 'Choose color'
+            elsif has_type_or_style_option and option_name_downcased contains 'type' or option_name_downcased contains 'style' or option_name_downcased contains 'piece'
+              assign step_phrase = 'Choose piece'
+            else
+              assign step_phrase = 'Choose ' | append: option_label | downcase
+            endif
+          endif
+        endif
+      -%}
+      {%- if show_step_heading and step_phrase != blank -%}
+        <p class="product-form__step-heading" aria-hidden="true" style="margin: 14px 0 4px; font-size: 0.78em; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #1D8656;">{{ visible_option_index }}. {{ step_phrase }}</p>
+      {%- endif -%}
+      {%- if hide_single_value_color_option -%}
+        {%- assign hidden_color_value = single_available_color_value | default: option.selected_value | default: option.values.first -%}
+        <select
+          class="visually-hidden"
+          name="options[{{ option.name | escape }}]"
+          form="{{ product_form_id }}"
+          hidden
+          aria-hidden="true"
+          tabindex="-1"
+          data-single-value-color-option="true"
+        >
+          <option value="{{ hidden_color_value | escape }}" selected>{{ hidden_color_value }}</option>
+        </select>
+      {%- elsif hide_single_value_other_option -%}
+        {%- comment -%}
+          Single-value non-color option (e.g. Type: "Tank Top" on a
+          mommy-and-me single-piece product). Submit the value via a
+          visually-hidden <select> so the cart form posts the right
+          variant; render no visible row. See generalisation comment
+          above where hide_single_value_other_option is computed.
+        {%- endcomment -%}
+        {%- assign hidden_other_value = other_single_value | default: option.selected_value | default: option.values.first -%}
+        <select
+          class="visually-hidden"
+          name="options[{{ option.name | escape }}]"
+          form="{{ product_form_id }}"
+          hidden
+          aria-hidden="true"
+          tabindex="-1"
+          data-single-value-option="true"
+        >
+          <option value="{{ hidden_other_value | escape }}" selected>{{ hidden_other_value }}</option>
+        </select>
+      {%- elsif picker_type == 'swatch' -%}
+        <fieldset
+          class="js product-form__input product-form__input--swatch"
+          {% if is_size_option %}
+            aria-describedby="size-conversion-message"
+          {% endif %}
+        >
+          <legend class="form__label">
+            {{ option_label }}:
+            <span data-selected-swatch-value="{{ option.name }}">
+              {{- option.selected_value -}}
+            </span>
+          </legend>
+          {% render 'product-variant-options',
+            product: product,
+            option: option,
+            block: block,
+            picker_type: picker_type,
+            hide_unavailable_dropdown_options: hide_unavailable_dropdown_options,
+            selected_type_family_group: selected_type_family_group
+          %}
+        </fieldset>
+      {%- elsif picker_type == 'color_image' -%}
+        <fieldset
+          class="js product-form__input product-form__input--color-image"
+          {% if is_size_option %}
+            aria-describedby="size-conversion-message"
+          {% endif %}
+        >
+          <legend class="form__label">
+            {{ option_label }}:
+            <span data-selected-swatch-value="{{ option.name }}">
+              {{- option.selected_value -}}
+            </span>
+          </legend>
+          {% render 'product-variant-options',
+            product: product,
+            option: option,
+            block: block,
+            picker_type: picker_type,
+            hide_unavailable_dropdown_options: hide_unavailable_dropdown_options,
+            selected_type_family_group: selected_type_family_group
+          %}
+        </fieldset>
+      {%- elsif picker_type == 'button' -%}
+        <fieldset
+          class="js product-form__input product-form__input--pill"
+          {% if is_size_option %}
+            aria-describedby="size-conversion-message"
+          {% endif %}
+        >
+          <legend class="form__label">{{ option.name }}</legend>
+          {% render 'product-variant-options',
+            product: product,
+            option: option,
+            block: block,
+            picker_type: picker_type,
+            hide_unavailable_dropdown_options: hide_unavailable_dropdown_options,
+            selected_type_family_group: selected_type_family_group
+          %}
+        </fieldset>
+      {%- else -%}
+        <div class="product-form__input product-form__input--dropdown">
+          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+            {{ option.name }}
+          </label>
+          <div class="select">
+            {%- if picker_type == 'swatch_dropdown' -%}
+              <span
+                data-selected-dropdown-swatch="options[{{ option.name | escape }}]"
+                class="dropdown-swatch"
+              >
+                {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
+              </span>
+            {%- endif -%}
+            <select
+              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+              class="select__select {% if is_size_option %} size-select {% endif %}"
+              name="options[{{ option.name | escape }}]"
+              form="{{ product_form_id }}"
+              data-option-name="{{ option_name_downcased | escape }}"
+              {% if is_size_option %}
+                data-size-option="true"
+                aria-describedby="size-conversion-message"
+              {% endif %}
+              {% if hide_unavailable_dropdown_options %}
+                data-hide-unavailable-options="true"
+              {% endif %}
+            >
+              {%- if is_size_option -%}
+                <option value="" disabled {% if option.selected_value == blank %}selected{% endif %}>
+                  {{- 'products.product.select_size' | t -}}
+                </option>
+              {%- endif -%}
+              
+              {% render 'product-variant-options',
+                product: product,
+                option: option,
+                block: block,
+                picker_type: picker_type,
+                hide_unavailable_dropdown_options: hide_unavailable_dropdown_options,
+                selected_type_family_group: selected_type_family_group
+              %}
+            </select>
+            {% render 'icon-caret' %}
+          </div>
+        </div>
+      {%- endif -%}
+      {%- assign render_size_help = false -%}
+      {%- if is_size_option and rendered_size_help == false -%}
+        {%- assign render_size_help = true -%}
+      {%- elsif has_size_option == false and forloop.first and rendered_size_help == false -%}
+        {%- assign render_size_help = true -%}
+      {%- endif -%}
+      {%- if render_size_help -%}
+        {%- liquid
+          assign has_size_guide_source = false
+          if product.description contains '<table' or product.description contains 'size-chart'
+            assign has_size_guide_source = true
+          endif
+        -%}
+        <div
+          id="size-conversion-message"
+          class="product-form__size-conversion-message"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          hidden
+        ></div>
+        <div
+          class="matching-size-guide__snapshot{% if has_size_guide_source %} matching-size-guide__snapshot--reserved{% endif %}"
+          data-matching-size-guide-snapshot
+          {% unless has_size_guide_source %}hidden{% endunless %}
+        ></div>
+        <details
+          class="matching-size-guide"
+          data-matching-size-guide
+          {% unless has_size_guide_source %}hidden{% endunless %}
+        >
+          <summary>{{ size_guide_summary_label }}</summary>
+          <div class="matching-size-guide__content" data-matching-size-guide-content></div>
+        </details>
+        <div class="size-chart-wrapper">
+          <div id="size-chart-content"></div>
+        </div>
+        {% liquid
+          assign has_swim_chart_image_pair = false
+          if product.description contains 'woman_86d0fc65-6aab-46ac-8dcd-8c274e23f4a7_1024x1024.jpg' and product.description contains 'child_ca8d901b-b6a6-4ff1-b96a-6dbe8472e5df_1024x1024.jpg'
+            assign has_swim_chart_image_pair = true
+          endif
+        %}
+        {% if has_swim_chart_image_pair %}
+          {% unless product.description contains 'size-chart' %}
+            <table id="size-chart" class="size-chart" style="display: none !important;" aria-hidden="true">
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>US Size</th>
+                  <th>Bust (cm/in)</th>
+                  <th>Waist (cm/in)</th>
+                  <th>Hips (cm/in)</th>
+                  <th>Height (cm/in)</th>
+                  <th>Weight (kg)</th>
+                  <th>Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>S</td>
+                  <td>4-6</td>
+                  <td>86.36-88.9 / 34-35</td>
+                  <td>66-68.58 / 26-27</td>
+                  <td>92.71-95.25 / 36.5-37.5</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>M</td>
+                  <td>8-10</td>
+                  <td>91.44-93.98 / 36-37</td>
+                  <td>71.12-73.66 / 28-29</td>
+                  <td>97.79-100.33 / 38.5-39.5</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>L</td>
+                  <td>12-14</td>
+                  <td>97.79-101.6 / 38.5-40</td>
+                  <td>77.47-81.28 / 30.5-32</td>
+                  <td>104.14-107.95 / 41-42.5</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>XL</td>
+                  <td>16-18</td>
+                  <td>105.41-109.22 / 41.5-43</td>
+                  <td>85.09-88.9 / 33.5-35</td>
+                  <td>111.76-115.57 / 44-45.5</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Child 2-3T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>80-100 / 31.5-39.4</td>
+                  <td>10-15</td>
+                  <td>2-3</td>
+                </tr>
+                <tr>
+                  <td>Child 4-5T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>102-110 / 40.2-43.3</td>
+                  <td>15.5-17.5</td>
+                  <td>4-5</td>
+                </tr>
+                <tr>
+                  <td>Child 5-6T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>110-120 / 43.3-47.2</td>
+                  <td>17.5-20</td>
+                  <td>5-6</td>
+                </tr>
+                <tr>
+                  <td>Child 6-8T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>120-130 / 47.2-51.2</td>
+                  <td>19-22.5</td>
+                  <td>6-8</td>
+                </tr>
+                <tr>
+                  <td>Child 8-10T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>131-145 / 51.6-57.1</td>
+                  <td>22.5-31</td>
+                  <td>8-10</td>
+                </tr>
+                <tr>
+                  <td>Child 10-12T</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>145-153 / 57.1-60.2</td>
+                  <td>31-37.5</td>
+                  <td>10-12</td>
+                </tr>
+              </tbody>
+            </table>
+            <script>
+              window.DLM_SIZE_ALIASES = Object.assign({}, window.DLM_SIZE_ALIASES, {
+                "Child 3-4T": "Child 4-5T",
+                "Child 3-4 years": "Child 4-5T",
+                "Child 3-4 Years": "Child 4-5T"
+              });
+            </script>
+          {% endunless %}
+        {% endif %}
+        {%- assign rendered_size_help = true -%}
+      {%- endif -%}
+    {%- endfor -%}
+    <script type="application/json">
+      {{ product.variants | json }}
+    </script>
+  </variant-selects>
+{%- endunless -%}

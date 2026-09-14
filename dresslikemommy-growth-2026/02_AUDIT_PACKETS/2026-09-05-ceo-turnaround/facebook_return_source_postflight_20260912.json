@@ -1,0 +1,190 @@
+{
+  "schema": "dlm.existing_checkpoint_closeout.v1",
+  "status": "PASS_WITH_META_SOURCE_EDIT_ACCESS_GATE",
+  "recorded_at_utc": "2026-09-12T16:22:41.346179+00:00",
+  "wake_id": "2026-09-12T16:00:48.710Z",
+  "action_id": "TA18-RETURN-SOURCE-20260912-1600",
+  "source_receipt": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/facebook_return_policy_source_20260912.json",
+  "source_sha256": "c1ec12832cafaaef009145134013bad2c59b90396dab871c425766c1d9715f60",
+  "parent_checkpoint": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+  "parent_checkpoint_sha256": "01e99bfde957f751dbd8ae936886feec9fb952f9b594d424dd1fc0340bd36f69",
+  "canonical_anchor": "2026-09-12-facebook-return-policy-source-qualified",
+  "root_postflight_checks": {
+    "current_after_hash ops/AGENT_COORDINATION.md": true,
+    "current_after_hash ops/AGENT_WORKLOG.md": true,
+    "current_after_hash ops/PROBLEM_TRACKER.md": true,
+    "current_after_hash ops/marketing/action_queue.md": true,
+    "current_after_hash ops/marketing/current_marketing_state.md": true,
+    "current_after_hash ops/marketing/decision_log.md": true,
+    "current_after_hash ops/marketing/operator_cockpit.md": true,
+    "frozen_source_hash": true,
+    "final_parent_hash": true,
+    "all_prior_parent_fields_preserved": true,
+    "guarded_plan_embedded_exactly": true,
+    "context_diagnostics_ok": true,
+    "latest_relevant_anchor": true,
+    "all_nine_authority_fields": true,
+    "root_meta_owner_recovered": true,
+    "one_owner_action_unchanged": true,
+    "old_worklog_wholly_preserved": true,
+    "five_command_exits_zero": true,
+    "ten_strict_passes": true
+  },
+  "checks_passed": 19,
+  "independent_review": {
+    "reviewer": "/root/together_heart_runner",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "verdict": "PASS_WITH_LIMITS",
+    "checks_passed": 121,
+    "scope": "Independent local exact-delta and saved-evidence interpretation; no second live provider check."
+  },
+  "parent_append": {
+    "status": "APPENDED_ONCE_AND_READ_BACK",
+    "before_sha256": "a58c968e336bdab43a51a12db8c029e7556d5bde71ea28136e660ab501ea3cc6",
+    "after_sha256": "01e99bfde957f751dbd8ae936886feec9fb952f9b594d424dd1fc0340bd36f69",
+    "prior_parent_every_field_preserved": true,
+    "new_wake_id": "2026-09-12T16:00:48.710Z",
+    "scheduled_wakes": 6,
+    "guarded_plan_durable_in_existing_checkpoint": true
+  },
+  "validation_commands": [
+    {
+      "name": "render",
+      "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/render_marketing_cockpit.py",
+      "chunk_id": "831fec",
+      "wall_time_seconds": 3.208e-06,
+      "exit_code": 0,
+      "original_token_count": 12,
+      "output": "Rendered ops/marketing/operator_cockpit.html\n"
+    },
+    {
+      "name": "integration",
+      "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "chunk_id": "cb67f8",
+      "wall_time_seconds": 2.875e-06,
+      "exit_code": 0,
+      "original_token_count": 895,
+      "output": "# Marketing Command Layer Integration Audit\n\nIntegration status: `GENERATED`\n\nLast generated: 2026-09-12 12:21\n\nPurpose: identify command-layer files that risk becoming side documents nobody uses.\n\n## Summary\n\n- Tracked files: `25`\n- Integrated/generated/archive files: `25`\n- Side-document risks: `0`\n\nA side-document risk means a file is missing from the source registry, has too few command-loop references, or is not connected to an action surface.\n\n## Required Rule\n\nNo new `ops/marketing/` artifact counts as done unless it is either:\n\n- registered in `ops/marketing/AGENTS.md`,\n- linked from an action surface such as `action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `operator_cockpit.md`, or `ops/PROBLEM_TRACKER.md`,\n- logged in continuity files such as `ops/AGENT_WORKLOG.md`, `ops/AGENT_COORDINATION.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, or `memory_digest.md`,\n- or explicitly marked as `Integration status: ARCHIVE_REFERENCE` or `Integration status: GENERATED`.\n\n## File Results\n\n| File | Status | Registered | Ref count | Action surface | Fix |\n|---|---|---:|---:|---:|---|\n| `ops/marketing/AGENTS.md` | `PASS_CORE` | `true` | `11` | `true` | none |\n| `ops/marketing/action_queue.md` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/assumption_log.md` | `PASS_CORE` | `true` | `3` | `false` | none |\n| `ops/marketing/blocker_board.md` | `PASS_CORE` | `true` | `7` | `true` | none |\n| `ops/marketing/campaign_explorer.json` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/command_layer_integration_audit.md` | `PASS_GENERATED` | `true` | `9` | `true` | generated integration audit |\n| `ops/marketing/current_marketing_state.md` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/daily_scorecard.md` | `PASS_CORE` | `true` | `9` | `true` | none |\n| `ops/marketing/decision_log.md` | `PASS_CORE` | `true` | `6` | `true` | none |\n| `ops/marketing/dream_consolidation_prompt.md` | `PASS_INTEGRATED` | `true` | `4` | `true` | none |\n| `ops/marketing/expert_growth_playbook_2026.md` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |\n| `ops/marketing/keyword_factory_015_cpc_criteria.md` | `PASS_INTEGRATED` | `true` | `12` | `true` | none |\n| `ops/marketing/keyword_scoring_rubric.md` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |\n| `ops/marketing/keyword_strategy.md` | `PASS_INTEGRATED` | `true` | `13` | `true` | none |\n| `ops/marketing/keyword_universe.csv` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |\n| `ops/marketing/memory_digest.md` | `PASS_CORE` | `true` | `2` | `false` | none |\n| `ops/marketing/migration_trace.md` | `PASS_ARCHIVE_REFERENCE` | `true` | `4` | `true` | none |\n| `ops/marketing/operator_cockpit.html` | `PASS_GENERATED` | `true` | `9` | `true` | generated cockpit |\n| `ops/marketing/operator_cockpit.md` | `PASS_CORE` | `true` | `5` | `true` | none |\n| `ops/marketing/prompt_log.md` | `PASS_CORE` | `true` | `2` | `false` | none |\n| `ops/marketing/review_log.md` | `PASS_CORE` | `true` | `5` | `true` | none |\n| `ops/marketing/reviewer_checklist.md` | `PASS_CORE` | `true` | `7` | `true` | none |\n| `ops/marketing/spend_authorization.md` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/team_registry.md` | `PASS_CORE` | `true` | `3` | `false` | none |\n| `ops/marketing/us_primary_keyword_lane.md` | `PASS_INTEGRATED` | `true` | `11` | `true` | none |\n\n## Risks To Fix\n\n- None.\n\n## Command\n\n```bash\npython3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk\n```\n\n"
+    },
+    {
+      "name": "continuity",
+      "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/check_continuity_integrity.py --strict",
+      "chunk_id": "9953a5",
+      "wall_time_seconds": 4.010504708,
+      "exit_code": 0,
+      "original_token_count": 334,
+      "output": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 50866 lines; latest anchor 2026-09-12-facebook-return-policy-source-qualified\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-12-facebook-return-policy-source-qualified\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n"
+    },
+    {
+      "name": "context",
+      "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/compile_task_context.py --query 'continue Facebook' --entity TA-18 --format json --output /private/tmp/dlm-meta-returns-20260912-1600/context-after.json > /private/tmp/dlm-meta-returns-20260912-1600/context-command-output.json",
+      "chunk_id": "69dcb3",
+      "wall_time_seconds": 1.9654080409999999,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "name": "diff",
+      "command": "git diff --check -- ops/AGENT_COORDINATION.md ops/AGENT_WORKLOG.md ops/PROBLEM_TRACKER.md ops/marketing/action_queue.md ops/marketing/current_marketing_state.md ops/marketing/decision_log.md ops/marketing/operator_cockpit.md ops/marketing/operator_cockpit.html dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/facebook_return_policy_source_20260912.json",
+      "chunk_id": "db3231",
+      "wall_time_seconds": 2.583e-06,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    }
+  ],
+  "fresh_context": {
+    "diagnostics": {
+      "errors": [],
+      "status": "OK",
+      "warnings": []
+    },
+    "selected_anchor": {
+      "anchor_id": "2026-09-12-facebook-return-policy-source-qualified",
+      "end_line": 50866,
+      "entity_hits": [
+        "TA-18"
+      ],
+      "metadata": {
+        "next_action_id": "READ_ONLY_MARKETING_RECONCILIATION",
+        "task_entities": [
+          "14695685",
+          "240386145",
+          "942388912516328",
+          "PROB-2026-09-06-META-ACCOUNT-QUALIFICATION",
+          "TA-18"
+        ],
+        "task_stage": "BLOCKED"
+      },
+      "relevance_score": 101,
+      "source_path": "ops/AGENT_WORKLOG.md",
+      "start_line": 50840,
+      "token_hits": [
+        "facebook"
+      ]
+    },
+    "authority": {
+      "end_line": 18,
+      "evidence_grade": "LIVE_READBACK_REQUIRED",
+      "fields": {
+        "approved_external_scope": "NONE",
+        "autonomous_action_ready": "false",
+        "control_as_of": "2026-09-05",
+        "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+        "live_readback_fresh_until": "EXPIRED",
+        "live_state_mode": "STALE_READBACK_REQUIRED",
+        "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+        "source_live_evidence_as_of": "2026-06-01",
+        "supersedes_execution_readiness_below": "true"
+      },
+      "source_path": "ops/marketing/current_marketing_state.md",
+      "start_line": 8
+    },
+    "claims": [
+      {
+        "end_line": 50,
+        "evidence_grade": "REPO_KNOWN",
+        "fields": {
+          "Allowed Actions": "Current read-only Meta qualification and existing reviewed nonspend photo-post release after its exact saved authority, usable publisher, buyer, duplicate and native gates",
+          "Blocked Actions": "No paid launch, broad reconnect, new Page, account switch, permission expansion, tracking/consent or return-policy change; no rejected-cart workaround or unchanged access retry",
+          "Last Evidence / Handoff": "facebook_native_qualification_20260912.json; facebook_native_qualification_review_20260912.json; facebook_sunshine_buyer_readback_20260912.json; anchor2026-09-12-facebook-page-bound-and-publishing-gates-qualified; facebook_return_policy_source_20260912.json; anchor2026-09-12-facebook-return-policy-source-qualified",
+          "Notes": "Root task-owned IAB1/tab11Shopify Meta and tab12exact Page-management handoff. Page resolves public dresslikemommy;257Approved is summary only; Maximum is configuration only. Publisher role unproved. Adult/child selector checks pass within US/en, cart add rejected/0effects/exact question pending; displayed returns inconsistency recorded. Original creative and September8 organic authority preserved;32native-interpretation and16buyer-preservation checks, no publication or sales claim. Historical cross-platform claim transferred September9; Merchant/Microsoft/Pinterest ownership is unchanged. September12 16:00 source follow-up: written30-day policy and disabled default return/cancellation rules verified. Exact Meta return mapping remains unknown under a passive Connect Facebook account prompt; no connection/rule/policy action. Own read-only rule tab14 closed; Meta settings tab11 retained. These handles are scoped to root01a08223/browser1.",
+          "Owner / Agent": "root01a08223 sole Meta/Facebook writer; order_delta_1934 independent receipt reviewer; other platform owners retain their surfaces",
+          "Status": "`PAGE_IDENTITY_VERIFIED__PUBLISHER_AND_CART_QA_GATED`",
+          "Surface": "TA-18; Facebook Page942388912516328; Shopify app2329312/publication29172400225; dataset547553035448852; refundPolicy14695685/defaultRule240386145 read-only",
+          "Workstream": "Facebook organic release and Meta qualification"
+        },
+        "line": 50,
+        "matched_entities": [
+          "TA-18"
+        ],
+        "matched_tokens": [
+          "facebook"
+        ],
+        "record_date": "2026-09-12",
+        "source_path": "ops/AGENT_COORDINATION.md",
+        "start_line": 50,
+        "text": "| Facebook organic release and Meta qualification | TA-18; Facebook Page942388912516328; Shopify app2329312/publication29172400225; dataset547553035448852; refundPolicy14695685/defaultRule240386145 read-only | `PAGE_IDENTITY_VERIFIED__PUBLISHER_AND_CART_QA_GATED` | root01a08223 sole Meta/Facebook writer; order_delta_1934 independent receipt reviewer; other platform owners retain their surfaces | Current read-only Meta qualification and existing reviewed nonspend photo-post release after its exact saved authority, usable publisher, buyer, duplicate and native gates | No paid launch, broad reconnect, new Page, account switch, permission expansion, tracking/consent or return-policy change; no rejected-cart workaround or unchanged access retry | facebook_native_qualification_20260912.json; facebook_native_qualification_review_20260912.json; facebook_sunshine_buyer_readback_20260912.json; anchor2026-09-12-facebook-page-bound-and-publishing-gates-qualified; facebook_return_policy_source_20260912.json; anchor2026-09-12-facebook-return-policy-source-qualified | Root task-owned IAB1/tab11Shopify Meta and tab12exact Page-management handoff. Page resolves public dresslikemommy;257Approved is summary only; Maximum is configuration only. Publisher role unproved. Adult/child selector checks pass within US/en, cart add rejected/0effects/exact question pending; displayed returns inconsistency recorded. Original creative and September8 organic authority preserved;32native-interpretation and16buyer-preservation checks, no publication or sales claim. Historical cross-platform claim transferred September9; Merchant/Microsoft/Pinterest ownership is unchanged. September12 16:00 source follow-up: written30-day policy and disabled default return/cancellation rules verified. Exact Meta return mapping remains unknown under a passive Connect Facebook account prompt; no connection/rule/policy action. Own read-only rule tab14 closed; Meta settings tab11 retained. These handles are scoped to root01a08223/browser1. |"
+      }
+    ]
+  },
+  "canonical_files_after_sha256": {
+    "ops/AGENT_COORDINATION.md": "833b46bb99dd26e3458201f5c49dab05e6b014491bae6dac82f184d7191e1711",
+    "ops/AGENT_WORKLOG.md": "5e18faf046356455ab6418545b898fa1fbfa67edde1c4c3fe5e7b27d766bcbcb",
+    "ops/PROBLEM_TRACKER.md": "91acd12fd267c67cf265e0823c7d9ea273b40ec2d426dd0938410af6a7f9af36",
+    "ops/marketing/action_queue.md": "e339bedd366b38fc7268870c032b4c7b84b9231676565fe238a6acfff4951482",
+    "ops/marketing/current_marketing_state.md": "97f951acb653cde5ac859504d33c990a3b03c212aedfa18856b04eba991b56ce",
+    "ops/marketing/decision_log.md": "f584bbf33776c67687129e0bf07791d39b125daa9e8ba0781c1001333d5cb9dc",
+    "ops/marketing/operator_cockpit.md": "63c8d83b06ef8f6392a8bdee216bf2fbf9962e485a5267e1ca3f7a969ed8c466"
+  },
+  "generated_files_sha256": {
+    "ops/marketing/operator_cockpit.html": "c94ea78f09cd7074859b95591dd6e9cafe7f87cc3e7f43eff1938e6e16153544",
+    "ops/marketing/command_layer_integration_audit.md": "ee44709ccd51b26790e1f8ac921d3746bbaa2ac1f428dcfed100b7cad6e3aa76"
+  },
+  "scope_limit": "Independent local/saved-source review and current root UI/Admin reads. No independent provider replay, Meta source/override proof, public canonical refund rendering, new policy rule, publication, acquired sale or profit proof.",
+  "root_external_business_writes": 0,
+  "next_action": "Owner Admin publication of existing verified theme137888792673; unchanged",
+  "canonical_prompt": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "continuation": "Recover this exact TA-18 source-qualified anchor or a newer relevant one, preserve existing owners/approvals and blocked paths, and resume only after the next dependency or evidence changes."
+}

@@ -1,0 +1,61 @@
+{
+  "prepared_at_utc": "2026-09-06T02:24:19.812669+00:00",
+  "status": "SUPERSEDED_BY_VERIFIED_UNPUBLISHED_DRAFT_PLATFORM_PUBLICATION_GATE",
+  "decision_id": "DLM-DEC-2026-09-06-SEO-TRAFFIC-RELEASE",
+  "target_theme_id": "gid://shopify/OnlineStoreTheme/133290917985",
+  "target_theme_role": "MAIN",
+  "changed_keys_total": 4,
+  "files_total": 2,
+  "changes": [
+    {
+      "locale": "da",
+      "file": "locales/da.json",
+      "url": "https://www.dresslikemommy.com/da/collections/dresses",
+      "alias_handle": "mother-daughter-matching-dresses",
+      "before": {
+        "sections.collection_seo.meta_descriptions.dresses": "Shop mommy and me dresses and mother daughter matching dresses for photos, parties, vacations, and polished everyday wear.",
+        "sections.collection_seo.meta_titles.dresses": "Mommy and Me Kjoler | Moder Datter"
+      },
+      "after": {
+        "sections.collection_seo.meta_descriptions.dresses": "Find matchende kjoler til mor og datter. Se styles til familiebilleder, fester og ferier, og tjek størrelser og mål på produktsiden, før du vælger.",
+        "sections.collection_seo.meta_titles.dresses": "Kjoler til mor og datter | Dress Like Mommy"
+      }
+    },
+    {
+      "locale": "nl",
+      "file": "locales/nl.json",
+      "url": "https://www.dresslikemommy.com/nl/collections/dresses",
+      "alias_handle": "mother-daughter-matching-dresses",
+      "before": {
+        "sections.collection_seo.meta_descriptions.dresses": "Koop mama en mij-jurken en bijpassende moeder-dochterjurken voor foto's, feestjes, vakanties en verzorgde dagelijkse kleding.",
+        "sections.collection_seo.meta_titles.dresses": "Mama en ik Jurken | Moeder Dochter"
+      },
+      "after": {
+        "sections.collection_seo.meta_descriptions.dresses": "Ontdek bijpassende jurken voor moeder en dochter. Bekijk stijlen voor familiefoto's, feestjes en vakanties en controleer de maten op de productpagina.",
+        "sections.collection_seo.meta_titles.dresses": "Jurken voor moeder en dochter | Dress Like Mommy"
+      }
+    }
+  ],
+  "surface_effect": "HTML title, meta description, Open Graph/Twitter description/title where overridden, collection schema description. Alias mother-daughter-matching-dresses uses same keys. No visible H1/body, route, pricing, product scope, feed, tag or ad change.",
+  "authority": "Historical four-key preparation. User requested continued work; the connector prohibits MAIN file writes and theme publication. Exact values are staged and API-verified on the unpublished draft; use the new draft-bound payload and current receipt.",
+  "before_source": "traffic_live_theme_before/locales/ verified current MAIN-theme API read; JSON key equality vs local before edit was exact.",
+  "guards": [
+    "Fresh-read MAIN theme identity and both files immediately before applying.",
+    "Abort if either file differs from frozen baseline except benign final newline; do not overwrite others.",
+    "Upload only two exact locale files; never broad theme push.",
+    "Read back exact four values and public titles/descriptions; verify title/meta+OG/schema effects in both locales.",
+    "Rollback only scoped four values using fresh current files if evidence disproves change."
+  ],
+  "expected_outcome": "Clear localized search copy for existing dress demand; no guaranteed ranking, CTR or sales increase.",
+  "measurement": "Compare same exact GSC pages and top buyer-query clicks/CTR/position at14 and28 complete days; Shopify-linked organic orders and net contribution alongside, with known GA4 purchase gaps.",
+  "remaining_independent_lanes": [
+    "Greek article exact paragraph/link proposal prepared; live mutation automatically rejected, no write, exact approval pending. See continuous_growth_greek_execution.json.",
+    "Sunshine Stripe product body has supplier/draft process language; prepare targeted cleanup independently.",
+    "Focused paid Search materials use Vintage Cottage; Google operating-account access, current overlap/budget isolation, true contribution and launch authority remain open."
+  ],
+  "independent_review": "traffic_seo_independent_review.md",
+  "approval_request": "Prior four-key approval question superseded by continuation and supported draft execution. Authenticated preview is Mac-lock gated; owner Shopify Admin publication is still necessary under platform restrictions. Separate Greek article exact publication approval is pending and does not concern this payload.",
+  "current_execution_receipt": "continuous_growth_execution.json",
+  "current_draft_theme_id": "gid://shopify/OnlineStoreTheme/137782591585",
+  "old_main_payload_executable": false
+}

@@ -1,0 +1,9 @@
+Confidence: H. **PASS — independent V2 post-stage source verification.** Fresh Shopify read: **2026-09-09 20:11:52–20:11:53 UTC**. This reviewer did not build or execute either upload and performed no external write.
+
+Target **137881223265** remains **UNPUBLISHED**. All **527 files** match the frozen V2 expected manifest by filename, MD5 and normalized byte size. No missing, extra, duplicate or mismatched files. Exactly one file changed from root’s immediate V2 before-state: `assets/theme-inline-body-static-04.css`, MD5 `ec036a8da2c7bacabd239bada8cde919`, **18,322 bytes**. All **526 other files** retain revision1 content. There are **47 total differences from MAIN**, including the previous46 release changes.
+
+Published MAIN **133290917985** remains MAIN with **all525 files unchanged** against the root before-state and frozen baseline. Both full manifests returned in one complete page (hasNextPage=false), with processing=false and processingFailed=false. All three older drafts remain present and UNPUBLISHED; their bodies were not reread.
+
+Frozen one-file payload SHA-256: `e97ace48d341776e0ef8697bcbc1ecb28af70e1894b9c2d7adc18b9a76a4db9e`. Expected527-file manifest SHA-256: `a182a69685fce3b2b95ec61ca9c973402954818843897709233fa923b8822985`. Payload, patch, rollback, expected manifest, and both original V1 independent reports retain their recorded hashes. [Complete fresh readback, source bindings and reconciliation](/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/release_candidate_v2/post_verification.json).
+
+Next: root completes actual max-scroll/mobile/desktop hit tests. Source correctness does not certify rendered reachability or publication readiness. Continuation: “Complete the V2 rendered acceptance checks before the release decision.”

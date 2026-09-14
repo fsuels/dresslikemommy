@@ -1,0 +1,359 @@
+{
+  "artifact_type": "organic_pinterest_local_drafts",
+  "task_reference": "TA-11",
+  "product_id": "7533081133153",
+  "source_snapshot": "pinterest_organic_product_source.json",
+  "source_captured_at_utc": "2026-09-06T03:29:03.417Z",
+  "canonical_product_url": "https://www.dresslikemommy.com/products/vintage-cottage-floral-mommy-and-me-pajama-set",
+  "scope": "Exactly two organic local candidates. VC_ORGANIC_01 remains the original uninspected photo candidate. VC_ORGANIC_02 had one private native upload and full editor rendering; same-device persistence FAILED. No published Pin, scheduling, new board or spend.",
+  "execution_allowed": false,
+  "platform_upload_status": "ONE_NATIVE_UPLOAD__DRAFT_PERSISTENCE_FAILED",
+  "browser_visual_preview": "Pin2 exact image/title/description/link/alt/board/AI flags passed native desktop editor review. Same-tab/profile reopen returned an empty builder; no retrieved or verified saved draft. Public Pin rendering and mobile/checkout NOT RUN.",
+  "asset_inspection": "PARTIAL: VC_ORGANIC_02 generated guide independently viewed; VC_ORGANIC_01 source photo remains uninspected.",
+  "specification_references": [
+    {
+      "url": "https://help.pinterest.com/en-gb/article/review-pin-specs",
+      "applied": "Title <= 100 characters; description <= 800 characters. Descriptions are not shown in every feed context; title includes separate-sale wording, but its display can also be truncated."
+    },
+    {
+      "url": "https://help.pinterest.com/en/business/article/pinterest-product-specs",
+      "applied": "PNG/JPEG; 2:3 recommended; desktop maximum20MB. Pin2 locally verified PNG1024x1536 and1663621bytes. Pin1 source image not inspected."
+    }
+  ],
+  "utm_rationale": {
+    "source": "https://support.google.com/analytics/answer/9756891?hl=en",
+    "rationale": "Google documents medium=social under Organic Social manual traffic rules. Source=pinterest, medium=social, fixed campaign and distinct content tags support draft-level segmentation if collected.",
+    "limitation": "UTMs and channel classification do not restore missing purchases, prove paid attribution, deduplicate events or establish profit."
+  },
+  "publication_gates": [
+    {
+      "gate": "Visual product and image review",
+      "status": "VC_ORGANIC_02_LOCAL_AND_NATIVE_DESKTOP_EDITOR_PASS; PERSISTENCE_FAILED; VC_ORGANIC_01_NOT_RUN",
+      "required": "Pin2 guide and actual desktop editor image/copy/board/AI flags verified. Reopen lost the draft. Public Pin/mobile rendering, checkout, broader visual/URL duplicate coverage and exact release authority remain. No native saved draft was retrieved or verified, and no Pin was published."
+    },
+    {
+      "gate": "Image specification verification",
+      "status": "VC_ORGANIC_02_FORMAT_DIMENSIONS_SIZE_PASS; VC_ORGANIC_01_NOT_RUN",
+      "required": "VC_ORGANIC_02 PNG1024x1536, RGB,1663621bytes satisfies checked format/2:3/desktop-size requirements. No embedded ICC profile. VC_ORGANIC_01 uninspected; no requirement inferred from extension alone."
+    },
+    {
+      "gate": "Existing board and duplicate check",
+      "status": "EXISTING_BOARD_VERIFIED; BOUNDED_BOARD_AND_OWN_PIN_TEXT_SEARCHES_NO_MATCH",
+      "required": "Public Family Matching Pajamas board343118134050368775 displayed21Pins. Board Vintage and size searches returned none; Your Pins Vintage Cottage search returned0 and end-of-own-results marker. Recommendations excluded. This is not exhaustive visual/URL or unpublished-draft duplication proof."
+    },
+    {
+      "gate": "Current publication authority and exact draft review",
+      "status": "OUTSIDE_THIS_SUBTASK",
+      "required": "Independent prewrite review covered reversible private preparation only; exact public release remains outside scope. One upload/render attempt does not grant publication, scheduling or spend."
+    },
+    {
+      "gate": "Destination review",
+      "status": "VC_ORGANIC_02_PASS_BOUNDED_DESKTOP_MAIN; VC_ORGANIC_01_TAGGED_ROUTE_NOT_RUN",
+      "required": "Earlier Pin2 exact tagged desktop MAIN US/USD destination and MotherS/Child2Years selections passed; see organic_pin2_destination_readback.json. No new public request after429. Mobile/checkout and actual public Pin render remain; native desktop editor passed separately."
+    }
+  ],
+  "measurement_limits": "Earlier sales do not establish Pinterest demand. Clicks and saves are diagnostic; attributable purchases, purchase-event completeness and actual landed/payment/refund costs remain necessary to assess profitable sales. No demand, sales or profit forecast is made.",
+  "pins": [
+    {
+      "local_draft_id": "VC_ORGANIC_01",
+      "platform_pin_id": null,
+      "status": "LOCAL_DRAFT_ONLY",
+      "published": false,
+      "scheduled": false,
+      "shopping_intent": "Discover the floral mother-and-child pajama style",
+      "title": "Floral Mommy & Me Pajamas | Each Person's Set Sold Separately",
+      "description": "Vintage Cottage floral pajamas feature a short-sleeve button-down top and shorts. Each person's set is sold separately. Explore the floral style and view the product details.",
+      "primary_cta": "Explore the floral style",
+      "character_counts": {
+        "title": 61,
+        "description": 174,
+        "primary_cta": 24,
+        "alt_text": 65
+      },
+      "destination_url": "https://www.dresslikemommy.com/products/vintage-cottage-floral-mommy-and-me-pajama-set?utm_source=pinterest&utm_medium=social&utm_campaign=dlm_vintage_organic_20260906&utm_content=floral_style",
+      "utm_parameters": {
+        "utm_source": "pinterest",
+        "utm_medium": "social",
+        "utm_campaign": "dlm_vintage_organic_20260906",
+        "utm_content": "floral_style"
+      },
+      "image": {
+        "source_url": "https://cdn.shopify.com/s/files/1/1557/1635/files/vintage-cottage-floral-mommy-and-me-pajama-set-01.png?v=1776718594",
+        "source_json_pointer": "/images/0/url",
+        "modified": false,
+        "downloaded": false,
+        "appearance_independently_inspected": false,
+        "dimensions": null,
+        "file_size_bytes": null,
+        "format_bytes_verified": false,
+        "alt_text_draft": "Vintage Cottage Floral mommy and me pajama set — product image 1.",
+        "alt_text_status": "SOURCE_METADATA_DERIVED_PENDING_VISUAL_REVIEW"
+      },
+      "board_selection": {
+        "suggested_existing_board_category": "Mommy-and-me pajamas / matching sleepwear",
+        "board_name": null,
+        "board_id": null,
+        "existing_board_presence": "NOT_VERIFIED",
+        "instruction": "Use a relevant existing board only after verifying its actual name and fit; do not create a board for this draft."
+      },
+      "claims": [
+        {
+          "claim": "Vintage Cottage floral mother-and-child pajamas",
+          "source": "pinterest_organic_product_source.json",
+          "pointers": [
+            "/title",
+            "/variants"
+          ]
+        },
+        {
+          "claim": "Each person's set is sold separately",
+          "source": "focused_paid_test.md:7",
+          "basis": "Root recorded current rendered PDP wording: each selection is sold separately."
+        },
+        {
+          "claim": "Short-sleeve button-down top and shorts",
+          "source": "pinterest_organic_product_source.json",
+          "pointers": [
+            "/descriptionHtml",
+            "/images/0/altText"
+          ],
+          "corroboration": "focused_paid_test.md:7"
+        }
+      ]
+    },
+    {
+      "local_draft_id": "VC_ORGANIC_02",
+      "platform_pin_id": null,
+      "status": "NATIVE_EDITOR_RENDER_VERIFIED__PERSISTENCE_FAILED__LOCAL_RELEASE_GATED",
+      "published": false,
+      "scheduled": false,
+      "shopping_intent": "Choose a separate size for each wearer",
+      "title": "Choose Mother & Child Pajama Sizes | Each Set Sold Separately",
+      "description": "Mother S–XL and Child 2–10 Years are separate size choices for Vintage Cottage floral pajamas. Each person's set is sold separately. See the options and choose each person's size on the product page.",
+      "primary_cta": "Choose each person's size",
+      "character_counts": {
+        "title": 61,
+        "description": 199,
+        "primary_cta": 25,
+        "alt_text": 163
+      },
+      "destination_url": "https://www.dresslikemommy.com/products/vintage-cottage-floral-mommy-and-me-pajama-set?utm_source=pinterest&utm_medium=social&utm_campaign=dlm_vintage_organic_20260906&utm_content=size_pairing",
+      "utm_parameters": {
+        "utm_source": "pinterest",
+        "utm_medium": "social",
+        "utm_campaign": "dlm_vintage_organic_20260906",
+        "utm_content": "size_pairing"
+      },
+      "image": {
+        "source_type": "GENERATED_ORIGINAL_TYPOGRAPHIC_GUIDE",
+        "source_url": null,
+        "local_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/vintage_pinterest_size_guide_v1.png",
+        "local_filename": "vintage_pinterest_size_guide_v1.png",
+        "sha256": "c7aaa94cbdd8118ec4617f06cdad13016c7b1e7507cbe18470d5f2c198ccbcec",
+        "modified_source_photo": false,
+        "downloaded": false,
+        "appearance_independently_inspected": true,
+        "dimensions": {
+          "width": 1024,
+          "height": 1536
+        },
+        "file_size_bytes": 1663621,
+        "format": "PNG",
+        "color_mode": "RGB",
+        "embedded_icc_profile": false,
+        "format_bytes_verified": true,
+        "alt_text_draft": "Shopping guide for matching mom-and-child pajamas: choose mom's size, choose your child's size, then add each set separately. Each person's set is sold separately.",
+        "alt_text_status": "LOCAL_VISUAL_REVIEW_BASED",
+        "review": "vintage_pinterest_size_guide_review.md",
+        "readback": "vintage_pinterest_size_guide_readback.json"
+      },
+      "board_selection": {
+        "suggested_existing_board_category": "Mother-and-child matching outfits",
+        "board_name": "Family Matching Pajamas",
+        "board_id": "343118134050368775",
+        "existing_board_presence": "LIVE_VERIFIED_PUBLIC_21_PINS",
+        "instruction": "Use a relevant existing board only after verifying its actual name and fit; do not create a board for this draft.",
+        "board_url": "https://www.pinterest.com/dresslikemommy/family-matching-pajamas/",
+        "duplicate_check": "BOUNDED_BOARD_VINTAGE_AND_SIZE_SEARCHES_NO_MATCH; YOUR_PINS_VINTAGE_COTTAGE_0",
+        "readback": "pinterest_organic_release_readback.json"
+      },
+      "claims": [
+        {
+          "claim": "Vintage Cottage floral mother-and-child pajamas",
+          "source": "pinterest_organic_product_source.json",
+          "pointers": [
+            "/title",
+            "/variants"
+          ]
+        },
+        {
+          "claim": "Each person's set is sold separately",
+          "source": "focused_paid_test.md:7",
+          "basis": "Root recorded current rendered PDP wording: each selection is sold separately."
+        },
+        {
+          "claim": "Mother S–XL and Child 2–10 Years size choices",
+          "source": "pinterest_organic_product_source.json",
+          "pointers": [
+            "/variants"
+          ],
+          "limitation": "Variant labels establish listed choices, not a fit guarantee or future availability."
+        }
+      ],
+      "prior_uninspected_image_candidate": {
+        "source_url": "https://cdn.shopify.com/s/files/1/1557/1635/files/vintage-cottage-floral-mommy-and-me-pajama-set-02.png?v=1776718594",
+        "source_json_pointer": "/images/1/url",
+        "modified": false,
+        "downloaded": false,
+        "appearance_independently_inspected": false,
+        "dimensions": null,
+        "file_size_bytes": null,
+        "format_bytes_verified": false,
+        "alt_text_draft": "Vintage Cottage Floral mommy and me pajama set — product image 2.",
+        "alt_text_status": "SOURCE_METADATA_DERIVED_PENDING_VISUAL_REVIEW"
+      },
+      "native_preparation": {
+        "evidence": "pin2_native_draft_execution.json",
+        "upload_count": 1,
+        "saved_draft_count": 0,
+        "saved_draft_id": null,
+        "published_pin_id": null,
+        "desktop_editor_render": "PASS",
+        "persistence": "FAILED",
+        "ai_modified_at_render": true,
+        "ai_person_at_render": false,
+        "current_builder": "EMPTY",
+        "next": "Preserve local versioned content; resume only from a supported draft-save path or exact approved release stage. Do not refill/reopen unchanged."
+      },
+      "current_product_verification": {
+        "evidence": "pin2_current_product_readback.json",
+        "captured_at_utc": "2026-09-06T07:55:25Z",
+        "scope": "ACTIVE product, all 11 separate wearer-size variants; does not prove shipping, fit, future availability or profit."
+      }
+    }
+  ],
+  "updated_at_utc": "2026-09-06T08:14:54.004342+00:00",
+  "prior_local_validation": {
+    "assertions_passed": 27,
+    "checks": [
+      {
+        "check": "Exactly two drafts",
+        "result": "PASS"
+      },
+      {
+        "check": "Distinct title",
+        "result": "PASS"
+      },
+      {
+        "check": "Distinct description",
+        "result": "PASS"
+      },
+      {
+        "check": "Distinct primary_cta",
+        "result": "PASS"
+      },
+      {
+        "check": "Distinct shopping_intent",
+        "result": "PASS"
+      },
+      {
+        "check": "Distinct provisional source-image URLs",
+        "result": "PASS"
+      },
+      {
+        "check": "Distinct UTM content",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_01 title <= 100 characters",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_01 description <= 800 characters",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_01 exact separate-person disclosure",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_01 separate-sale wording also in title",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_01 exact canonical destination",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_01 exact UTM values",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_01 original image URL unchanged",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_01 no invented platform or board identifiers",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_01 publication and scheduling disabled",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_01 excluded claims absent from publishable copy",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_02 title <= 100 characters",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_02 description <= 800 characters",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_02 exact separate-person disclosure",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_02 separate-sale wording also in title",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_02 exact canonical destination",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_02 exact UTM values",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_02 original image URL unchanged",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_02 no invented platform or board identifiers",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_02 publication and scheduling disabled",
+        "result": "PASS"
+      },
+      {
+        "check": "VC_ORGANIC_02 excluded claims absent from publishable copy",
+        "result": "PASS"
+      }
+    ],
+    "character_count_method": "Python len of exact Unicode copy strings; no astral Unicode characters used."
+  },
+  "current_mapping_validation": {
+    "timeUtc": "2026-09-06T05:27:14.569055+00:00",
+    "pin1Unchanged": true,
+    "pin2CopyAndDestinationUnchanged": true,
+    "pin2LocalFileHashMatches": true,
+    "pin2AltTextMatchesGuide": true,
+    "publicationDisabled": true,
+    "priorValidationScope": "Historical assertions below refer to original two unedited image-URL candidates; original image02 is superseded only for VC_ORGANIC_02."
+  }
+}

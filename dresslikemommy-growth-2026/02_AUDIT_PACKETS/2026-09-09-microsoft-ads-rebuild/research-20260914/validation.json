@@ -1,0 +1,64 @@
+{
+  "schema": "dlm.microsoft.research.validation.v1",
+  "as_of_date": "2026-09-14",
+  "checks": {
+    "ten_numbered_sections": true,
+    "qa_columns": true,
+    "experiment_columns": true,
+    "strategy_columns": true,
+    "no_go_explicit": true,
+    "research_date": true,
+    "scenario_allowances_correct": true,
+    "zero_purchase_screen": true,
+    "illustrative_spend": true,
+    "all_external_report_urls_registered": true,
+    "local_links_exist": true,
+    "capi_consent_omission_warning": true,
+    "feed_description_category_pattern_sale_mapping": true,
+    "sale_expiry_preserves_available_variant": true,
+    "no_trailing_whitespace": true
+  },
+  "all_pass": true,
+  "illustrations_not_actual_costs": [
+    {
+      "R": "70",
+      "K": "35",
+      "C": "35",
+      "P": "21.00",
+      "break_even_roas": "2",
+      "allowable": "10.49",
+      "required_cvr_percent": "1.429933269780743565300285987"
+    },
+    {
+      "R": "70",
+      "K": "42",
+      "C": "28",
+      "P": "21.00",
+      "break_even_roas": "2.5",
+      "allowable": "7.00",
+      "required_cvr_percent": "2.142857142857142857142857143"
+    },
+    {
+      "R": "70",
+      "K": "56",
+      "C": "14",
+      "P": "21.00",
+      "break_even_roas": "5",
+      "allowable": null,
+      "required_cvr_percent": null
+    }
+  ],
+  "zero_purchase_probability": 0.04940943287156358,
+  "external_urls": 53,
+  "registered_urls": 53,
+  "unregistered_urls": [],
+  "missing_local_links": [],
+  "scope": "Local report checks only. No live account, checkout, purchase or profit validation.",
+  "revision": 2,
+  "report_sha256": "a0ad90443edb52e279d119f785b5d0e0d0eb241a689edd36e927371c1f410a29",
+  "standard_check": {
+    "command": "check_continuity_integrity.py --strict",
+    "result": "CONTINUITY_OK",
+    "limitations": "Read-only repository check; shared parent integration of this new packet still pending."
+  }
+}

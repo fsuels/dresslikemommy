@@ -1,0 +1,53 @@
+{
+  "schema": "dlm.all_market.targeting_plan_addendum.v1",
+  "status": "PREPARED_LOCAL_NOT_STAGED_NOT_SAVED",
+  "existing_plan": "../../TARGETING_REPAIR_PLAN.json",
+  "before_evidence": "ADS_TARGETING_LIVE_READBACK.json",
+  "retained_exact_repair": [
+    "location include option: PRESENCE_OR_INTEREST -> PRESENCE",
+    "final URL expansion: true -> false",
+    "text customization: true -> false"
+  ],
+  "negative_campaign_additions": [
+    {
+      "text": "sewing pattern",
+      "match_type": "PHRASE"
+    },
+    {
+      "text": "sewing patterns",
+      "match_type": "PHRASE"
+    },
+    {
+      "text": "how to sew",
+      "match_type": "PHRASE"
+    },
+    {
+      "text": "sewing tutorial",
+      "match_type": "PHRASE"
+    }
+  ],
+  "negative_revision": "Retains 2 original PMax phrases; adds 2 existing Search-draft phrases to candidate PMax repair for current user's explicit bad-click request. Final independent review and inherited-list dedup required. No created records.",
+  "target_campaign_id": "24247604341",
+  "keep_current_pmax_geography": "US; create future country-specific Search plans rather than converting existing English PMax into worldwide advertising",
+  "preserve": [
+    "PAUSED",
+    "USD5/day",
+    "650% tROAS",
+    "account-default Purchases",
+    "Merchant relationships",
+    "existing media and peer campaign/settings"
+  ],
+  "normal_save_gate": "Do not retry failed Save/authentication until a changed normal verification/Save result. Existing user question remains pending, no repeat permission request.",
+  "before_save": [
+    "Fresh exact target/account readback, current authority and one-writer claim",
+    "Account/shared/campaign negative list dedup and reviewer acceptance",
+    "Reconcile actual field values with this frozen payload; if drift, amend before action"
+  ],
+  "after_save": [
+    "Reopen each changed control and verify saved values; record new negative IDs/match type/campaign level",
+    "Verify preserved paused status, budget, ROAS, country, primary goal and media",
+    "Separate saved setting evidence from later serving outcomes"
+  ],
+  "rollback": "Restore the captured3control values; remove only exact4new negative IDs. Preserve all unrelated list entries and records.",
+  "paid_creation_gate": "New local country plans have no native GooglegeoIDs/budgets/launch-qualified keywords. Do not upload/create/enable from this addendum."
+}

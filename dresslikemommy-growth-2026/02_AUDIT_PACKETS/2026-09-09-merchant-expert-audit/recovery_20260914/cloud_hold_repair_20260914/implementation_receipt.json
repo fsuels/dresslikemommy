@@ -1,0 +1,99 @@
+{
+  "action": "TA07-CLOUD-HOLD-REPAIR-20260914",
+  "status": "IMPLEMENTED_LOCAL_ONLY__INDEPENDENT_REVIEW_AND_ACTIVATION_NOT_RUN",
+  "completedAt": "2026-09-14T20:38:45.559869+00:00",
+  "owner": "/root/merchant_cloud_hold_repair",
+  "scope": "Prepared cloud Merchant lifecycle held-parent enforcement only; parent root retains live action, integration and review ownership.",
+  "changedFiles": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/config.json": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/eligibility.js": "5441bb6aade0f2900f3770602109e14f0e4e964d3e819fff77bf935350038ac8",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/eligibility.test.mjs": "a17f679b3713d1fb264e43b9ba4919ad6adacb4496e16b1969646c087c7eb945"
+  },
+  "preservedFiles": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/checkpoint.js": "a4c5101f8627e2cde1362d92ee507b9c0b7ebd2a6f02d4f33f14471b23a82839",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/feed.test.mjs": "e1a1a58895beef4acf76abb37793f3ae7e38d0447053d2f9f137b38ce8b270c5",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/checkpoint.test.mjs": "d442fa322fc97faa8312b8594c48b1798a07a586e92dd1f80fad543cba6e633f"
+  },
+  "canonicalHoldSource": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/eligibility_holds_20260911.json",
+    "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733"
+  },
+  "behavior": [
+    "The six unchanged held-parent entries apply to every country and locale using this configuration.",
+    "Complete source, manifest, identity, freshness, publication and market-context validation still run before eligibility exclusions.",
+    "Available held variants retain valid ID, boolean availability and native contextual money checks, then receive one reviewed_parent_eligibility_hold exclusion with the canonical reason.",
+    "Known-held customer translations, descriptions, images and options do not have to qualify for the remainder of a complete catalog to refresh.",
+    "Unavailable and unpublished variants retain their existing exclusion precedence; no double counting.",
+    "A held parent legitimately absent from the complete active source does not stop the refresh. Its hold persists so reactivation remains contained.",
+    "Unheld row content and TSV bytes are unchanged. Held parents do not inflate emitted return-exception counts or return cohorts.",
+    "Config provenance is recorded in diagnostics; malformed configured scope, IDs, duplicate entries or evidence fail closed."
+  ],
+  "validation": {
+    "baselineRuntimeSuite": {
+      "command": "node --test test/*.test.mjs",
+      "tests": 45,
+      "passed": 45,
+      "failed": 0,
+      "artifact": "baseline-tests.txt"
+    },
+    "repairedRuntimeSuite": {
+      "command": "node --test test/*.test.mjs",
+      "tests": 56,
+      "passed": 56,
+      "failed": 0,
+      "newFocusedTests": 11,
+      "artifact": "runtime-tests.txt"
+    },
+    "savedSourceRegression": {
+      "status": "PASS",
+      "artifact": "saved-source-validation.json",
+      "sha256": "8e591eb59251ceee2b809534cb00ad56ba624d4cc0362848ee92b0b282d74cf7",
+      "cases": 5,
+      "realUSandAUBytesMatchCurrentContainedFiles": true,
+      "nativeMoneyAndPartitionPreserved": true,
+      "noTsvWritten": true
+    },
+    "syntax": "PASS: node --check src/generator.js; src/eligibility.js; test/eligibility.test.mjs",
+    "scopedGitDiffCheck": "PASS; the pipeline is untracked so a separate final-newline/trailing-whitespace check also covered every changed/new source file.",
+    "strictContinuity": {
+      "status": "PASS",
+      "command": "python3 ops/scripts/check_continuity_integrity.py --strict",
+      "artifact": "strict-continuity.txt"
+    },
+    "unrelatedConfigFields": "Exact deep equality with captured before-state after removing only eligibilityHolds.",
+    "canonicalHoldsAndProtectedRuntime": "Exact original SHA equality verified.",
+    "testHarnessCorrection": "The first focused run had one incorrect assertion against refreshMarket return shape; corrected to result.manifest.rows and final suite passed."
+  },
+  "runtimeNode": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "runtimePython": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "deploymentBinding": {
+    "requiredConfigVariable": "MERCHANT_CONFIG_JSON",
+    "reviewedPreparedConfigSha256": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+    "enabledMarketsUnchanged": [
+      "us-en"
+    ],
+    "disabledMarketsUnchanged": [
+      "au-en",
+      "ca-en",
+      "gb-en"
+    ],
+    "note": "The existing Worker and checkpoint paths pass runtime config to buildFeed. Activation must include the reviewed config and new src/eligibility.js in the bundle. No additional runtime-file edit was required."
+  },
+  "limits": [
+    "No deployment, hosting or queue change, credentials, Shopify/Google write, live collection, feed-file write, or canonical queue/worklog edit occurred.",
+    "Optional missing eligibilityHolds retains the existing generator contract for backward compatibility; activating an older config without this block would not enforce these holds.",
+    "The source SHA is provenance for the reviewed embedded hold entries, not a cloud fetch of the local canonical hold file. Future hold changes require a reviewed config update.",
+    "CA/GB and US/es actual false landing gates still reject. Their success-path regression was an in-memory test-only landing flag change and proves no buyer readiness.",
+    "The Spanish saved input predates later September14 translation repairs; its4552 rows and189 translation exclusions are a regression fixture, not current live eligibility.",
+    "Runtime tests are45 before and56 after in this checkout. The parent historical47 count is not asserted by this run.",
+    "Independent review and all cloud activation remain parent-owned and NOT RUN by this subagent."
+  ],
+  "rollback": {
+    "action": "If rejected before activation, restore only config.json and src/generator.js from this packet before/ copies after checking they still match this receipt after hashes; remove only this task new src/eligibility.js and test/eligibility.test.mjs after the same check. Do not alter any other worktree content.",
+    "executed": false
+  },
+  "nextAction": "Root arranges independent review of implementation.patch, exact changed file hashes and saved-source-validation.json before any cloud activation.",
+  "canonicalIntegration": "Root retains the worklog, problem tracker, claim and checkpoint integration; this receipt is evidence, not a competing state ledger."
+}

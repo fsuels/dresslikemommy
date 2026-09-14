@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-14T10:59:42.547734+00:00",
+  "task": "TA-15",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "review_scope": "Saved-source and claim audit only; no independent live replay.",
+  "verdict": "PASS_WITH_LIMITS",
+  "input_sha256": {
+    "receiver_readback.json": "827b9b549e50f3e29177578acacf513af85b34cef6ee8c8006676f638c069041",
+    "READBACK.md": "2b747fc3bc26fe06c7b3b05472c22cde8fbaf07c9df2793d0106f7e04623e908",
+    "support_addendum.md": "36bd994efe07db1edeeeb1eb8904f8e9f13aecdbc5fd46cb2ba8bdc1af1297ac",
+    "review/purchase_source_prerequisites.json": "1e3458bd01c2ffa1a723da14ee314c28a26896b922e992ed6cdebef1e431ef30"
+  },
+  "check_count": 27,
+  "checks": [
+    {
+      "name": "four_frozen_source_hashes",
+      "pass": true,
+      "evidence": "Three root packet inputs and the independently prepared source prerequisite receipt match their observed SHA256 values."
+    },
+    {
+      "name": "json_structure_and_provenance",
+      "pass": true,
+      "evidence": "Valid JSON with explicit root-native transcription provenance. This reviewer did not operate the account."
+    },
+    {
+      "name": "account_customer_tag_and_urls",
+      "pass": true,
+      "evidence": "The named account/customer/UET and all three recorded native URLs agree."
+    },
+    {
+      "name": "selected_yesterday_date",
+      "pass": true,
+      "evidence": "September13 is the selected totals date; selection alone does not give a raw event timestamp."
+    },
+    {
+      "name": "timezone_evidence_qualified",
+      "pass": true,
+      "evidence": "Campaign footer text is not a separately verified UET timezone. No fixed-minus-five or daylight-saving normalization is invented."
+    },
+    {
+      "name": "last_received_window_not_joined_to_selected_date",
+      "pass": true,
+      "evidence": "Relative Last Received is qualified independently of the selected-date event totals; exact UTC receipt is unavailable."
+    },
+    {
+      "name": "six_event_rows_counts_and_types",
+      "pass": true,
+      "evidence": "Exactly six rows including purchase:533/1/1/14/86/11. These are event counts, not distinct purchasers, unique sender events or attributed conversion counts."
+    },
+    {
+      "name": "custom_purchase_receipt_only",
+      "pass": true,
+      "evidence": "Native Custom purchase count1 supports event-receipt language, not exact order or conversion-goal acceptance."
+    },
+    {
+      "name": "four_parameter_names_without_values",
+      "pass": true,
+      "evidence": "Four names only; value, currency code, product values, quantities, data types and identity cannot be inferred."
+    },
+    {
+      "name": "payload_and_order_match_unknown",
+      "pass": true,
+      "evidence": "No111.96/USD/item/identity payload value is asserted from the name popup."
+    },
+    {
+      "name": "healthy_is_no_regional_sample",
+      "pass": true,
+      "evidence": "Healthy is the explained absence of a relevant regional sample, not a denied/granted/revoked or individual-consent test."
+    },
+    {
+      "name": "other_consent_labels_do_not_resolve_prior_trace",
+      "pass": true,
+      "evidence": "Generic notice/current labels do not repair or independently retest the separate September12 source trace."
+    },
+    {
+      "name": "two_failed_export_receipts_bounded",
+      "pass": true,
+      "evidence": "Two native attempts produced no available file; second listener timed out15seconds. Cause and unseen export contents remain unknown."
+    },
+    {
+      "name": "export_help_not_raw_payload_promise",
+      "pass": true,
+      "evidence": "Native help describes count-oriented output; no successful export, exact identity or raw payload claim is made."
+    },
+    {
+      "name": "test_form_read_only",
+      "pass": true,
+      "evidence": "Form inspection only: no URL entry, website open, test event or staged checkout."
+    },
+    {
+      "name": "settings_readback_and_no_save",
+      "pass": true,
+      "evidence": "Observed tagging/options match the explicit scope; previously inspected automatic-RSA setting is not claimed freshly reread."
+    },
+    {
+      "name": "source_prerequisite_hash_and_amount_date_binding",
+      "pass": true,
+      "evidence": "The source22-check receipt binds the genuine transaction prerequisites; no private identity or raw source is reopened."
+    },
+    {
+      "name": "correlation_only_across_receivers",
+      "pass": true,
+      "evidence": "Timing/value expectation remains a candidate correlation, not an exact Microsoft source join. GA4 matching does not transfer receiver acceptance."
+    },
+    {
+      "name": "open_acceptance_gates",
+      "pass": true,
+      "evidence": "Only purchase-event receipt is advanced; exact identity, payload, consent, deduplication, paid attribution, profit and launch remain open."
+    },
+    {
+      "name": "no_recorded_business_writes",
+      "pass": true,
+      "evidence": "Root reports zero listed business writes and a paused-campaign banner; this is not a new independent campaign inventory."
+    },
+    {
+      "name": "support_unsent_pending_and_original_preserved",
+      "pass": true,
+      "evidence": "Addendum is local and unsent. Existing contact question and original support sources are preserved; review grants no send authority."
+    },
+    {
+      "name": "reuse_existing_ownership_and_automation",
+      "pass": true,
+      "evidence": "Existing automation/ownership are reported preserved. No duplicate task or automation is requested or created by this review; no global inventory inspection was performed."
+    },
+    {
+      "name": "authority_still_none",
+      "pass": true,
+      "evidence": "Event receipt does not expand paid authority or authorize tag/source changes."
+    },
+    {
+      "name": "four_local_markdown_links",
+      "pass": true,
+      "evidence": [
+        {
+          "source": "READBACK.md",
+          "target": "receiver_readback.json",
+          "exists": true,
+          "within_workspace": true
+        },
+        {
+          "source": "READBACK.md",
+          "target": "review/purchase_source_prerequisites.json",
+          "exists": true,
+          "within_workspace": true
+        },
+        {
+          "source": "READBACK.md",
+          "target": "support_addendum.md",
+          "exists": true,
+          "within_workspace": true
+        },
+        {
+          "source": "READBACK.md",
+          "target": "../../../../ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+          "exists": true,
+          "within_workspace": true
+        }
+      ]
+    },
+    {
+      "name": "readback_and_support_claims_consistent",
+      "pass": true,
+      "evidence": "Both narrative files retain the receiver/payload boundary, export failure and unknown cause. Detailed date/time-window limitations live in receiver_readback.json."
+    },
+    {
+      "name": "narrow_privacy_and_source_preservation",
+      "pass": true,
+      "evidence": "No raw order/transaction value was found by the narrow identifier scan; no private source was accessed. All four bound inputs remain byte-identical."
+    },
+    {
+      "name": "packet_whitespace",
+      "pass": true,
+      "evidence": "The three reviewed root packet files have no trailing whitespace."
+    }
+  ],
+  "material_defects": [],
+  "adverse_interpretation_challenge": {
+    "tempting_claim": "One purchase, a7-hour Last Received value and a Healthy label prove this genuine order and its consent are correctly tracked.",
+    "rebuttal": "The selected date scopes totals; Last Received can have a different window and lacks exact timestamp/UET timezone proof. Parameter names carry no values or identity. Healthy explicitly reflects no EEA/UK/Swiss sample. The event can be unrelated, duplicated upstream or emitted by a different publisher path sharing the UET tag.",
+    "decision": "Accept only root-observed Custom purchase event receipt. Keep exact order, source path, value/currency/items, goal-level conversion acceptance, sender deduplication, consent and paid attribution separate."
+  },
+  "limitations": [
+    "Root-native observations, repeated counts, action receipts and saved settings were audited for internal consistency, not independently replayed live.",
+    "The UET timezone is not separately exposed; the campaign footer must not be treated as a fixed offset or exact UET timestamp. Relative Last Received is not bound to the selected date.",
+    "No downloaded export exists, and the described export schema does not promise raw values or exact identity.",
+    "The purchase publisher/source stream and conversion-goal-level acceptance were not established by the event summary.",
+    "No denial/grant/revocation behavior or regional purchase sample was verified. The September12 consent finding remains separately dated evidence.",
+    "No global task/automation inventory or fresh campaign enumeration was performed; the packet reports preservation and this review creates no task/automation.",
+    "The support addendum remains unsent; its correctness review is not authorization to contact support or change tracking/paid settings."
+  ],
+  "optional_clarity_improvement": "If the concise READBACK or support addendum is sent alone, carry forward the JSON qualification that Last Received may be outside the selected-date totals and UET has no separately exposed timezone/exact timestamp. The current linked packet is not contradictory.",
+  "next_action": "Continue the existing supported publisher/support path on the already-pending answer or supported source change; seek supported exact purchase payload/identity evidence without repeating the unchanged export/test paths or creating a duplicate task."
+}

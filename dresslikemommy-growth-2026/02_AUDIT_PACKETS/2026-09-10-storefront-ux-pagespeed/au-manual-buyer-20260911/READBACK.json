@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "status": "VERIFIED_MANUAL_AU_PILOT_ON_CURRENT_MAIN_WITH_LIMITS",
+  "ownerTask": "01a088c3-c890-71a1-98ee-f19b6905af55",
+  "observationWindowUtc": {
+    "start": "2026-09-11T20:29:16Z",
+    "end": "2026-09-11T20:34:32.937Z",
+    "limit": "Window includes retrieval before navigation; individual action timestamps were not separately recorded.",
+    "cartCaptureAttemptAt": "2026-09-11T20:32:29.931Z"
+  },
+  "authority": "Parent current explicit authorization for one ordinary recovery navigation after coordination/backoff; if normal load, manual selector/Add/cart verification and cleanup only.",
+  "recoveryBasis": {
+    "lastRecorded429": "2026-09-11T18:54:59.267793Z",
+    "backoffBeforeAttemptMinutesAtLeast": 94,
+    "peerPositiveEvidence": "Pinterest NATIVE_SUBMISSION_EXECUTION_20260911.json tagged_landing_checks P1-P6; parent later supplied reliable 20:08:07-20:30:55 UTC session window, with no per-URL times.",
+    "originalRetryAfter": "NOT_CAPTURED; no expiry was inferred",
+    "result": "Ordinary task-owned browser rendered exact target with meaningful product controls; no 429/login/CAPTCHA/challenge appeared.",
+    "rawHttpStatus": "NOT_CAPTURED"
+  },
+  "surface": {
+    "browser": "Codex In-app Browser",
+    "browserId": "1",
+    "tabId": "9",
+    "taskOwned": true,
+    "visible": false,
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "theme": {
+      "id": "133290917985",
+      "name": "dresslikemommy/main",
+      "role": "main",
+      "basis": "Shopify.theme text in the currently rendered DOM script"
+    },
+    "locale": "en",
+    "exactUrl": "https://www.dresslikemommy.com/products/mom-child-matching-two-piece-swimsuit?country=AU&currency=AUD&variant=39756755861601"
+  },
+  "pilot": {
+    "productId": "6718945034337",
+    "variantId": "39756755861601",
+    "feedOfferId": "shopify_AU_6718945034337_39756755861601",
+    "title": "Mom & Child Matching Two Piece Swimsuit",
+    "size": "Child 2-3 years",
+    "color": "Black",
+    "expectedAmount": "26.00",
+    "currency": "AUD"
+  },
+  "initialState": {
+    "cartCount": 0,
+    "country": "Australia",
+    "currency": "AUD",
+    "visiblePrice": "$26.00 AUD - $34.00 AUD",
+    "pressedRole": "Mother",
+    "targetChildPreselected": false,
+    "sizeSelected": false,
+    "colorSelected": false,
+    "addEnabled": false,
+    "addText": "PICK A SIZE",
+    "productFormVariantInput": "",
+    "classification": "DEFAULT_VARIANT_PRESELECTION_DEFECT_REPRODUCED; this state alone does not prove the manual buying path is broken."
+  },
+  "manualActions": [
+    {
+      "order": 1,
+      "action": "Click visible Child button",
+      "after": "Child pressed; child age choices exposed."
+    },
+    {
+      "order": 2,
+      "action": "Click visible 2-3 Years size control",
+      "after": "2-3 Years checked; button asks PICK A COLOR."
+    },
+    {
+      "order": 3,
+      "action": "Click visible Black control",
+      "after": "Black selected; Ready to add Child - 2-3 Years - A$26.00; ADD THIS PIECE TO BAG enabled; Total A$26.00: Child 2-3 Years."
+    },
+    {
+      "order": 4,
+      "action": "Click visible ADD THIS PIECE TO BAG exactly once",
+      "after": "Your cart (1) dialog with exact variant URL, selected options and 26.00 AUD total."
+    }
+  ],
+  "cartAfter": {
+    "method": "Visible button interaction through CUA; no WebMCP/direct cart mutation",
+    "variantHref": "/products/mom-child-matching-two-piece-swimsuit?variant=39756755861601",
+    "variantId": "39756755861601",
+    "size": "Child 2-3 years",
+    "color": "Black",
+    "quantity": 1,
+    "unitPrice": "26.00",
+    "linePrice": "26.00",
+    "estimatedTotal": "26.00",
+    "currency": "AUD",
+    "shippingCountry": "Australia",
+    "checkoutButtonPresent": true,
+    "checkoutClicked": false
+  },
+  "checks": {
+    "pageIdentity": "PASS",
+    "meaningfulPageContent": "PASS",
+    "frameworkOverlay": "NONE_OBSERVED",
+    "console": "Captured error/warn list was []",
+    "screenshots": "Initial product, ready-to-add area and exact cart images emitted in this task",
+    "manualSelector": "PASS",
+    "exactVisibleSelectedPrice": "PASS",
+    "manualAdd": "PASS",
+    "exactCartVariantCurrencyQuantity": "PASS",
+    "cleanup": "PASS",
+    "mobile": "NOT_RUN; bounded desktop pilot only",
+    "payment": "NOT_RUN",
+    "pageSpeed": "NOT_RUN"
+  },
+  "cleanup": {
+    "removedOnlyTestLine": true,
+    "removeControl": "Remove Mom & Child Matching Two Piece Swimsuit - Child 2-3 years / Black",
+    "emptyCartHeading": "Your cart is empty",
+    "cartCount": 0,
+    "countryRestored": "United States",
+    "currencyRestored": "USD",
+    "language": "English",
+    "restoredUrl": "https://www.dresslikemommy.com/products/mom-child-matching-two-piece-swimsuit?variant=39756755861601",
+    "baselineLimit": "No pre-navigation cookie read. US/USD is the prior documented UX cleanup baseline; restored visible state was verified.",
+    "ownTabClosed": true,
+    "closeCompletedAt": "2026-09-11T20:34:32.937Z",
+    "temporaryViewportOverride": false
+  },
+  "executionLimits": {
+    "recoveryNavigations": 1,
+    "perUrlRetry": false,
+    "reloads": 0,
+    "cleanupCountryNavigation": 1,
+    "bulkOrParallelProbes": false,
+    "alternateUserAgentProxyIdentity": false,
+    "webmcpCartWrites": 0,
+    "cartAdds": 1,
+    "cartRemovals": 1,
+    "themeWrites": 0,
+    "publicationAttempts": 0,
+    "productOrPriceWrites": 0,
+    "checkoutOrPaymentActions": 0,
+    "canonicalWrites": 0
+  },
+  "harnessNotes": [
+    "Initial Playwright checkbox locator matched zero elements and clicked nothing; fresh DOM showed button role, which succeeded. This is locator adaptation, not a repeated page probe.",
+    "Cart Add and Remove briefly showed pending UI; state was read to completion without resubmission.",
+    "IAB content.export is unsupported; no export file was produced. Raw AX/DOM evidence and screenshots are in the original CUA transcript; this receipt contains exact relevant excerpts."
+  ],
+  "decision": "This one AU offer now has current exact manual selector-to-cart and selected-price proof on existing MAIN. V7 publication is not a prerequisite for that narrow proof. Default preselection remains a separate UX defect.",
+  "remainingLimits": [
+    "Not Google approval, source-receipt completion or all4923 offer qualification.",
+    "Not V7 published acceptance, all-app/payment acceptance, conversion uplift or PageSpeed improvement.",
+    "No general permission for renewed batch probing. Further tests require the existing owner coordination and bounded scope."
+  ],
+  "handoff": "Parent and Merchant retain feed release/eligibility ownership; exact manual evidence supersedes only the old missing manual-selector/Add proof for this pilot."
+}

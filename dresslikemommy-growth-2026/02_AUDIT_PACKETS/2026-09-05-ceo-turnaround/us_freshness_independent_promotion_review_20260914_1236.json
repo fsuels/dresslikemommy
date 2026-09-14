@@ -1,0 +1,393 @@
+{
+  "reviewed_at_utc": "2026-09-14T13:27:52.472884+00:00",
+  "source_completed_at": "2026-09-14T13:16:10.466Z",
+  "source_valid_until_utc": "2026-09-14T15:16:10.466000+00:00",
+  "candidate_packet_sha256": "6d4784b8526d08a35726988fb2eb6cb40f8c80c90622679c0643b16f8b57a27e",
+  "check_counts": {
+    "total": 26,
+    "passed": 26,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "id": "U01",
+      "name": "All15 artifact hashes and source timestamp binding",
+      "status": "PASS",
+      "evidence": "Candidate all15 SHA fields resolve to exact current bytes; sourceCompletedAt is separately checked below."
+    },
+    {
+      "id": "U02",
+      "name": "Unchanged independently reviewed executable and holds",
+      "status": "PASS",
+      "evidence": "September11 revision6 accepted lifecycle/filter/hold/config/qualification bytes reused; no prior tests rerun or counted anew."
+    },
+    {
+      "id": "U03",
+      "name": "Frozen28-file builder unchanged",
+      "status": "PASS",
+      "evidence": "All28 files match the frozen manifest, paths stay within existing builder directory."
+    },
+    {
+      "id": "U04",
+      "name": "Exact16-field review contract",
+      "status": "PASS",
+      "evidence": "Read current validate_review AST without executing lifecycle.py. Approval requires exact decision, independent identity, three evidence-backed booleans and matching16fields."
+    },
+    {
+      "id": "U05",
+      "name": "Actual fresh scan timestamps and success",
+      "status": "PASS",
+      "evidence": "Source13:13:45.808\u201313:16:10.466UTC lies within successful saved live build; source advances. Promotion expires15:16:10.466UTC and must be rechecked immediately before commit."
+    },
+    {
+      "id": "U06",
+      "name": "Exact shop and country context stability",
+      "status": "PASS",
+      "evidence": "DLM15571635, US/en/USD market/catalog/online publication bindings match initial and final source context."
+    },
+    {
+      "id": "U07",
+      "name": "Exact complete product and variant counts",
+      "status": "PASS",
+      "evidence": "238 unique ACTIVE parents/4925 unique variants; per-parent EXACT counts and final status/update/publication manifests agree."
+    },
+    {
+      "id": "U08",
+      "name": "Every saved pagination chain completes",
+      "status": "PASS",
+      "evidence": "10product pages,5final manifest pages,238complete per-parent variant chains and2complete catalog reads. Trace278entries; no incompleteness hidden by aggregate flag."
+    },
+    {
+      "id": "U09",
+      "name": "Manifest byte/SHA/MD5/ID integrity",
+      "status": "PASS",
+      "evidence": "Exact candidate16,504,238bytes/4741unique row IDs. Before4761 feed hash matches September11 accepted contained release."
+    },
+    {
+      "id": "U10",
+      "name": "No generation errors; diagnostics warnings qualified",
+      "status": "PASS",
+      "evidence": "0generation errors;6177 retained diagnostics warnings are not blanket quality acceptance. Labels are not emitted; returnPolicyLabelsConfirmed compatibility flag is not proof of saved return policies."
+    },
+    {
+      "id": "U11",
+      "name": "Full source eligibility independently filtered",
+      "status": "PASS",
+      "evidence": "4925 source variants independently partition into4903 available eligible and22 unavailable; six holds remove162 to leave exactly4741offers/232parents."
+    },
+    {
+      "id": "U12",
+      "name": "Every retained price and availability matches source",
+      "status": "PASS",
+      "evidence": "All4741 retained contextual source amounts/currencies/availability agree exactly, with positive cent-formatted USD prices and no extreme-price repair."
+    },
+    {
+      "id": "U13",
+      "name": "Every retained market/group/buyer link preserves source identity",
+      "status": "PASS",
+      "evidence": "All4741 exact product/variant links use existing US/en route and Shopping_ads exclusion. No new buyer routes or other-market URL/context are introduced; no live buyer replay claimed."
+    },
+    {
+      "id": "U14",
+      "name": "Every retained field/raw line and order unchanged",
+      "status": "PASS",
+      "evidence": "All18 fields on4741 retained rows and exact raw-line byte/order match the prior accepted feed. Exactly20removed/0added/0changed; no new content/price/image/policy promises."
+    },
+    {
+      "id": "U15",
+      "name": "Exact six-parent hold containment unchanged",
+      "status": "PASS",
+      "evidence": "Six complete source parents/162 available offers held; raw filter removes only their whole-parent IDs, every retained byte/order preserved, source snapshot untouched and active hold hash unchanged."
+    },
+    {
+      "id": "U16",
+      "name": "Pilot and five corrected-price variants retained",
+      "status": "PASS",
+      "evidence": "Protected pilot17.99USD and allfive22.99USD variants are retained unchanged."
+    },
+    {
+      "id": "U17",
+      "name": "Removal identity exact but current cause requires direct status evidence",
+      "status": "PASS",
+      "evidence": "Only two named parents/10rows each absent from fresh ACTIVE scan. Their exact current status is not inferred from absence; pending owner receipt must explain source eligibility before approval."
+    },
+    {
+      "id": "U18",
+      "name": "Current sole writer and narrow scope",
+      "status": "PASS",
+      "evidence": "Current claim33 assigns sole Merchant writer with nonspend existing-source lifecycle scope; parent promises byte preservation until promotion. No peer/paid scope changed by this review."
+    },
+    {
+      "id": "U19",
+      "name": "Existing destination and before-state bindings",
+      "status": "PASS",
+      "evidence": "Saved existing US pointer and bothWorker metadata bound; current action-time reread required. Neither AU source nor scheduler/TTL/security/credentials changes are in the candidate."
+    },
+    {
+      "id": "U20",
+      "name": "Unchanged precommit and rollback safeguards read",
+      "status": "PASS",
+      "evidence": "Read existing guarded promotion: local nonblocking sole-writer lock, immutable byte/SHA/MD5/allowedETag validation, pointer/Worker drift checks,16-field review/candidate/hold rebind and120-minute age check immediately before one pointerPUT; ambiguous response resolves by reads only, no CAS claim. Before pointer/feed remain forensic rollback evidence; do not restore expired4761 or two now-ineligible parents without fresh qualified recovery, and never restore full4923 held/broken-price feeds."
+    },
+    {
+      "id": "U21",
+      "name": "Exact ACTIVE-only eligibility query and successful collector binding",
+      "status": "PASS",
+      "evidence": "Frozen identity/count, initial products and final manifest all explicitly query status:active. Saved successful build passed count and complete manifest stability checks. Membership absence, not a lifecycle-cause label, is the applicable removal criterion."
+    },
+    {
+      "id": "U22",
+      "name": "Exact previous/current whole-source reconciliation",
+      "status": "PASS",
+      "evidence": "The two named parents are the entire old/new ACTIVE-set difference. All retained238 parent records, including all variant/content/publication/price fields, are identical except one updatedAt timestamp. No archive/draft/deletion cause inferred."
+    },
+    {
+      "id": "U23",
+      "name": "Owner comparison independently reconciles",
+      "status": "PASS",
+      "evidence": "Frozen owner comparison matches the independent source, row and removal arithmetic. Its28 executor checks are not counted as our tests. Exact reason for loss of ACTIVE membership stays unknown; membership evidence suffices."
+    },
+    {
+      "id": "U24",
+      "name": "Exact scope and rollback receipt bound",
+      "status": "PASS",
+      "evidence": "Before/after pointer and byte bindings agree. Before pointer is already expired; preserve it for evidence, do not automatically restore or restamp it. Any needed recovery requires fresh source-true reviewed contained evidence. Public/GCS retries remain excluded."
+    },
+    {
+      "id": "U25",
+      "name": "Final current bindings, writer claim and freshness remain stable",
+      "status": "PASS",
+      "evidence": "All15 bound files and candidate hash unchanged after review, claim33 byte-identical and source currently younger than120minutes. These checks expire and must be repeated by exact guarded action-time path before15:16:10.466UTC."
+    },
+    {
+      "id": "U26",
+      "name": "Executable review schema binds evidence-backed16 fields",
+      "status": "PASS",
+      "evidence": "Exact schema verified by parsing current contract and comparing values locally; lifecycle execution/validate_review was not run. The three true flags are backed by the independent source/price, holds and fresh claim checks above."
+    }
+  ],
+  "bindings": {
+    "eligibility_holds_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/eligibility_holds.json",
+      "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733"
+    },
+    "source_qualification_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.full_cohort_qualification_20260911.json",
+      "sha256": "7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a"
+    },
+    "cohort_filter_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/cohort_filter.py",
+      "sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9"
+    },
+    "containment_receipt_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/contain.receipt.json",
+      "sha256": "42ca2b23f88dfa1fae6587c7995a20c3708bed1ad0e6cec13fc8282d30b708b5"
+    },
+    "prepare_receipt_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/prepare.json",
+      "sha256": "5d4c25c37d31262bbfab135709c3b06d0ed77f2fa5958de95f7e473d8958ea20"
+    },
+    "live_build_receipt_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/build.json",
+      "sha256": "ec5cb09dc142067479f22816b2e7411a75097f76eb0b7d0f9fc88bad144fe80e"
+    },
+    "live_build_intent_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/build.intent.json",
+      "sha256": "caba63dc524ebe7f42ce332f247df24f3de95ddaf1cd811b598dfc75c21b6a7c"
+    },
+    "before_pointer_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/before.pointer.json",
+      "sha256": "17855aeacc1185c2356270d6ed46fd0f42dc2226da3940f760e705fadca3db39"
+    },
+    "candidate_manifest_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/candidate/us-en.manifest.json",
+      "sha256": "6084e8c519b7621fd7763ccb0af26fe72b1395ffc0d02a834762a4a5dc946b59"
+    },
+    "candidate_feed_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/candidate/us-en.tsv",
+      "sha256": "b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571"
+    },
+    "candidate_snapshot_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/candidate/us-en.snapshot.json",
+      "sha256": "816bcef890d04a232b20c268f236d568e18be21d817d10d80fdd1a22425bd77a"
+    },
+    "candidate_diagnostics_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/candidate/us-en.diagnostics.json",
+      "sha256": "7a4a794e4e47ef9481dd72e3e95e1f15513c0b2aff21e8f47374795ac0c86f9f"
+    },
+    "uploader_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+      "sha256": "4e6457f5d76fa37e46caf29a2f9c791bce615211a77713fbd7c0d98ee3749b9f"
+    },
+    "config_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/config.json",
+      "sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b"
+    },
+    "builder_freeze_sha256": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/freeze_manifest.json",
+      "sha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed"
+    }
+  },
+  "single_writer_claim_line_sha256": "b58385f824d09e9f52695d45ee936f53cdd79fee3eb8c43c881750c0759dd943",
+  "source_counts": {
+    "parents": 238,
+    "variants": 4925,
+    "available_before_holds": 4903,
+    "unavailable": 22,
+    "held": 162,
+    "candidate_offers": 4741,
+    "candidate_parents": 232
+  },
+  "delta": {
+    "added": 0,
+    "removed": 20,
+    "changed": 0,
+    "removed_rows_by_parent": {
+      "7108998987873": 10,
+      "7109117280353": 10
+    }
+  },
+  "warning_counts": {
+    "identifier_status_unknown": 4779,
+    "missing_age_group": 179,
+    "missing_color": 1027,
+    "missing_gender": 192
+  },
+  "remaining_dependency": "No unresolved saved-source promotion blocker. Action-time exact pointer/Worker/hold/claim/freshness guards and parent runtime/dispatch remain mandatory.",
+  "verdict": "PASS_WITH_LIMITS__EXACT_EXISTING_US_POINTER_PROMOTION_APPROVED",
+  "decision": "APPROVE_EXACT_US_FEED_POINTER",
+  "independent": true,
+  "reviewer": "/root/order_delta_1934",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE. Local independent calculations on saved source; no live reads, code execution, external writes or credential access.",
+  "run_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness",
+  "source_eligibility_and_all_prices_verified": true,
+  "source_eligibility_holds_verified": true,
+  "single_writer_claim_verified": true,
+  "buyer_qualified_added_ids": [],
+  "eligibility_holds_sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+  "source_qualification_sha256": "7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a",
+  "cohort_filter_sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9",
+  "containment_receipt_sha256": "42ca2b23f88dfa1fae6587c7995a20c3708bed1ad0e6cec13fc8282d30b708b5",
+  "prepare_receipt_sha256": "5d4c25c37d31262bbfab135709c3b06d0ed77f2fa5958de95f7e473d8958ea20",
+  "live_build_receipt_sha256": "ec5cb09dc142067479f22816b2e7411a75097f76eb0b7d0f9fc88bad144fe80e",
+  "live_build_intent_sha256": "caba63dc524ebe7f42ce332f247df24f3de95ddaf1cd811b598dfc75c21b6a7c",
+  "before_pointer_sha256": "17855aeacc1185c2356270d6ed46fd0f42dc2226da3940f760e705fadca3db39",
+  "candidate_manifest_sha256": "6084e8c519b7621fd7763ccb0af26fe72b1395ffc0d02a834762a4a5dc946b59",
+  "candidate_feed_sha256": "b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571",
+  "candidate_snapshot_sha256": "816bcef890d04a232b20c268f236d568e18be21d817d10d80fdd1a22425bd77a",
+  "candidate_diagnostics_sha256": "7a4a794e4e47ef9481dd72e3e95e1f15513c0b2aff21e8f47374795ac0c86f9f",
+  "uploader_sha256": "4e6457f5d76fa37e46caf29a2f9c791bce615211a77713fbd7c0d98ee3749b9f",
+  "config_sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b",
+  "builder_freeze_sha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed",
+  "mass_removal_explicitly_verified": true,
+  "valid_until_utc": "2026-09-14T15:16:10.466000+00:00",
+  "review_history": [
+    {
+      "sha256": "42adec1fe9d5aa8546445991bad117144390933e67ef7ad13f9262314f540f1b",
+      "verdict": "REVIEW_IN_PROGRESS__REMOVAL_STATUS_EVIDENCE_PENDING",
+      "checks": {
+        "total": 20,
+        "passed": 20,
+        "failed": 0
+      },
+      "resolution": "The exact frozen ACTIVE query/count/final-manifest contract and owner comparison now substantiate the two-parent membership removal. A separate archive/draft/deletion label is neither inferred nor needed. Earlier pending qualification is retained as history."
+    }
+  ],
+  "additional_bindings": {
+    "prior_source_snapshot": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260911T211600Z-us-six-parent-f345/candidate/us-en.snapshot.json",
+      "sha256": "fca7d568d26d4d01383c9bc2149e3447663e0bb70d9c9ddfdf560c3e48aa8a05"
+    },
+    "active_query": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/queries.js",
+      "sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9"
+    },
+    "collector": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js",
+      "sha256": "81748e4882ecb5b3b414db997f1902eb730c2ff612937f1c9cacb74ab6e3cb6d"
+    },
+    "owner_comparison": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/candidate_source_delta_checks.json",
+      "sha256": "f295980d4a8e4407fd127832b77d89b335f594f8197299e6c42cad9707fd7cbf"
+    },
+    "owner_rollback": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/release_and_rollback_bindings.json",
+      "sha256": "31bc187a6a3cce758ebb98bd77a79a6fbded382770ef0b27797e196f8cd67411"
+    },
+    "prior_code_acceptance": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/code_review_20260911.json",
+      "sha256": "afb3e40d09622e72fb54243e602cf0dd495eb7fd4315546198ff2b3814d21201"
+    }
+  },
+  "source_and_change_interpretation": {
+    "membership_rule": "Complete current Shopify ACTIVE-only source, then online/country/catalog/availability eligibility, then unchanged six-parent holds.",
+    "removed_parent_ids": [
+      "gid://shopify/Product/7108998987873",
+      "gid://shopify/Product/7109117280353"
+    ],
+    "removed_offer_count": 20,
+    "reason": "Absent from both complete current ACTIVE product scan and matching final ACTIVE manifest.",
+    "lifecycle_cause": "UNKNOWN; no assertion of archive/draft/deletion.",
+    "retained_source_metadata_only_change": {
+      "gid://shopify/Product/7505374838881": [
+        "updatedAt"
+      ]
+    },
+    "all_retained_feed_fields_and_raw_bytes_preserved": true
+  },
+  "approved_change": {
+    "target": "Merchant513542500 / existing US source10727274744",
+    "pointer": "merchant/us-en/current.json",
+    "country": "US",
+    "language": "en",
+    "currency": "USD",
+    "destination": "Free listings; Shopping_ads excluded",
+    "before_offers": 4761,
+    "after_offers": 4741,
+    "removed_offers": 20,
+    "added_offers": 0,
+    "retained_changed_rows": 0,
+    "source_completed_at": "2026-09-14T13:16:10.466Z",
+    "new_immutable_object_key": "merchant/us-en/b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571.tsv",
+    "candidate_bytes": 16504238,
+    "scope": "One exact guarded existing-US immutable object/pointer promotion. No other market/source, Shopify product/status/price/content, return-policy, theme, account, Worker, scheduler, TTL, security or credential change."
+  },
+  "execution_conditions": [
+    "Parent checks Merchant owner completion/idle state and dispatches only that sole writer; all other US pointer writers remain idle and claim33 unchanged.",
+    "Use only the exact reviewed lifecycle.py and candidate/run/review bytes through the existing nonblocking writer lock. Existing code must compare current pointer and bothWorker metadata, verify immutable bytes/SHA/MD5/allowedETag, and rebind16 fields/active holds/qualification/current age immediately before one pointerPUT. Stop on drift, auth, permission, schema, new retained-product hold or expiry.",
+    "Promotion must commit no later than2026-09-14T15:16:10.466Z; this approval cannot restamp or extend the source clock. If it expires, obtain a fresh source and exact new review.",
+    "An ambiguous pointer response is resolved through the existing read-only readback branch; do not blindly repeatPUT or use alternate transports. No claim of server-side CAS.",
+    "Do not execute the public readback phase where it would retry a blocked public/GCS path. Supported authenticated object/pointer readback and the separate exact native Google receiving path remain distinct.",
+    "Any native Google Update is a separate parent-gated step after exact hosted promotion readback, with current source identity and no duplicate processing. This pointer approval does not itself claim or execute Google Update."
+  ],
+  "expected_readback": [
+    "Remote semantic pointer equals this exact manifest; immutable object equals16,504,238bytes/SHA b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571/MD5 3a16d1062f58170ebb546769777ae76b; current Worker metadata unchanged.",
+    "All4741candidate IDs and retained fields exact;20 current ACTIVE-source exclusions and162held IDs absent locally/hosted. No full162-offer native UI absence claim without corresponding readback.",
+    "Separately capture actual native source receipt time/count/errors/processing result and protected offer prices; hosted success is not Google receipt, approval, traffic, sales or profit."
+  ],
+  "rollback": {
+    "before_pointer_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/before.pointer.json",
+    "before_pointer_sha256": "17855aeacc1185c2356270d6ed46fd0f42dc2226da3940f760e705fadca3db39",
+    "before_feed_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/before.tsv",
+    "before_feed_sha256": "f12d84e3e4bb6ecabfe6b86d2a439f16913be3b2e65c8725d76edba5524c1323",
+    "restriction": "Before pointer already expired and includes20 now-absent ACTIVE-source offers. Do not automatically restore/restamp it or resurrect full4923held/broken-price feeds. Preserve receipts; any necessary recovery uses fresh exact source-true contained data and independent review under existing authority."
+  },
+  "limitations": [
+    "Saved-source verification only; reviewer did not execute the build/promotion, replay source/API/browser or inspect credentials. Source success is supported by saved complete snapshot, trace, build receipts and unchanged reader; no new native export or per-request live replay.",
+    "Prior revision6 code tests/probes are reused only by exact hash; no broad test suite rerun, and code acceptance is not proof this live promotion has happened.",
+    "6177diagnostic warnings describe the complete source, including held rows; they are not new output errors or blanket product-quality acceptance.",
+    "No new buyer routes. Existing retained route/source/buyer qualification remains representative, with six known holds; not every-offer DOM/cart/checkout proof.",
+    "Return labels remain absent. Compatibility returnPolicyLabelsConfirmed flag does not prove a live no-returns policy, US/AU return coverage or StoreQuality improvement.",
+    "Host/Mac/source-run availability and existing48hour serving safeguard remain; no always-on lifecycle or fresh Google fetch success yet."
+  ],
+  "unresolved_findings": [],
+  "boundaries": {
+    "external_reads": 0,
+    "external_writes": 0,
+    "credential_reads": 0,
+    "source_or_code_edits": 0,
+    "canonical_edits": 0,
+    "live_or_builder_executions": 0,
+    "new_tasks_agents_automations": 0
+  }
+}

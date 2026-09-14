@@ -1,0 +1,27 @@
+{
+  "status": "PASS_SAVED_RECEIPT",
+  "reviewer": "root did not execute order or fulfillment queries",
+  "checks": {
+    "source_hash_matches_sender": true,
+    "baseline_hash_matches_last_checkpoint": true,
+    "shop_identity_unchanged": true,
+    "aggregate_totals_unchanged": true,
+    "all32_source_checks_pass": true,
+    "comparison_window_contiguous": true,
+    "three_windows_zero_new_orders": true,
+    "basket_revenue_reconciles": true,
+    "basket_units_reconcile": true,
+    "no_refunds_or_cancellations_delta": true,
+    "no_shipment_events_delta": true,
+    "rainbow_same_fulfilled_quantity": true,
+    "mermaid_unfulfilled_no_records": true,
+    "no_delivery_acceptance_inferred": true,
+    "pagination_complete": true,
+    "no_external_mutations_or_browser": true,
+    "receiver_not_inferred": true,
+    "privacy_flags_false": true
+  },
+  "checks_passed": 18,
+  "checks_total": 18,
+  "limits": "Independent arithmetic, scope, windows and interpretation review from sanitized source receipt; not a second API replay."
+}

@@ -6,7 +6,7 @@ This protocol applies to every session.
 
 ## Files And Roles
 
-- `AGENTS.md`: automatic bootstrap memory. Store durable, high-level rules, current critical state, persistent guardrails, North Star, and pointers to deeper files.
+- `AGENTS.md`: automatic bootstrap instructions. Store durable rules, guardrails, North Star and pointers; changing business state belongs in its canonical record.
 - `ops/AGENT_WORKLOG.md`: chronological session log. Store every completed/deferred workstream, evidence packet, commands, readbacks, blockers, and `AGENT_CONTINUITY_ANCHOR`.
 - `ops/AGENT_COORDINATION.md`: active and completed coordination registry. Store write claims, locks, blocked actions, and handoff status for shared/external surfaces.
 - `ops/PROBLEM_SOLVING_PROTOCOL.md`: required workflow for turning a discovered problem into attempts, learning, solution, readback, and closure.
@@ -20,24 +20,33 @@ This protocol applies to every session.
 
 ## Start-Of-Session Checklist
 
-Every session must:
+Use `AGENTS.md` for project routing. For paid growth, follow `ops/marketing/AGENTS.md` `Required First Loop`; it is the sole detailed retrieval sequence and begins with authoritative current control.
 
-1. Read `AGENTS.md`.
-2. Read `ops/PROBLEM_SOLVING_PROTOCOL.md` and `ops/PROBLEM_TRACKER.md` when the task involves any known issue, failed readback, blocker, diagnostic, regression, or repeated uncertainty.
-3. Read the latest entries at the bottom of `ops/AGENT_WORKLOG.md`.
-4. Read `ops/AGENT_COORDINATION.md` before touching external systems or shared surfaces.
-5. For paid-media work, read `ops/GOOGLE_ADS_CONTINUITY.md`.
-6. For multi-agent/browser work, read `ops/BROWSER_SUBAGENT_COORDINATION.md`.
-7. For paid-growth execution, read `ops/marketing/AGENTS.md` and `ops/marketing/current_marketing_state.md`.
-8. For growth strategy, read `ops/GROWTH_NORTH_STAR.md`.
-9. Search for relevant prior anchors/surfaces before fixing:
-   - campaign name or ID
-   - product/cohort ID
-   - Merchant source/feed ID
-   - theme ID
-   - pixel/tag name
-   - file path
-   - exact issue text
+For every task:
+
+1. Search the worklog, problem tracker, and coordination registry by exact campaign, product/cohort, feed/source, market, theme, pixel/tag, file, error, problem, or decision identifier.
+2. Select the latest relevant anchor rather than the latest unrelated global anchor. Use `ops/scripts/compile_task_context.py` when semantic continuity matters.
+3. Retrieve the matching decision and observed outcome before acting. A copied mention or historical prediction is not a new outcome.
+4. Read only the owning workflow and narrowly relevant evidence unless targeted retrieval cannot resolve the task.
+5. Before shared or external work, confirm the current coordination claim, authority, and approval boundary.
+
+### Plain-language continuation in a new task
+
+Open the new Codex task in this saved project using the same local checkout to read the current shared files. A separate worktree has its own snapshot; it does not automatically contain the latest uncommitted work or checkpoints. Separate conversations do not automatically share their complete chat history.
+
+For a bare channel request such as "continue Google Ads", "continue Google Merchant", "continue Shopify" or "continue Google Analytics", run:
+
+```bash
+python3 ops/scripts/compile_task_context.py --query "continue Google Ads" --format brief
+```
+
+If a suitable Python interpreter is unavailable, use the configured bundled Python runtime located through the workspace-dependencies tool; missing PATH entries are not a continuity failure. This command is read-only unless an output file is explicitly requested.
+
+Read the derived session brief and its cited canonical source lines. Explain the goal, already-completed work, current owner, remaining dependency and next action before proceeding. Broad Shopify requests may cover products, themes, feeds and tracking: show that inventory and resolve the workstream before choosing a write. A successful retrieval is not approval, a live account readback, or proof that a previous conversation completed all of its work.
+
+The brief is built on demand from the existing command layer, worklog and coordination records; it is not a second state store. Omit `--format brief` to obtain the complete machine-readable JSON, optionally with `--output` to a local temporary file. Read conflicting source records and preserve the restrictive gate until the conflict is resolved. Use the detailed exact-entity path for a particular campaign/product/error. Do not substitute a global-latest anchor for missing relevant evidence.
+
+If another task owns the requested workstream, retain its claim and offer independent read-only/local work or continuation in that existing task. Parallel tasks need disjoint ownership even when each has a separate browser. Checkpoint completed milestones, evidence and next steps in the owning canonical task record and worklog before handoff; unsaved reasoning in a chat is not recoverable project memory. Do not record tokens, cookies, passwords or personal browser content.
 
 ## Before Fixing Anything
 
@@ -68,6 +77,14 @@ Every session that changes code, theme files, Shopify data, ads, feeds, pixels, 
 - Remaining blockers.
 - Next best action.
 
+For every new anchor, also add compact retrieval metadata:
+
+- `task_entities`: comma-separated stable product, campaign, feed, market, problem, error, file, or decision IDs; omit loose topic words.
+- `task_stage`: one of `DIAGNOSE`, `BUILD`, `VERIFY`, `HANDOFF`, or `BLOCKED`.
+- `next_action_id`: the canonical action ID when one exists. For paid growth it must not contradict `current_marketing_state.md`'s authoritative `next_best_action`.
+
+Legacy anchors without these fields remain historical evidence; do not guess missing metadata. Use `ops/scripts/compile_task_context.py` to fail closed on missing, ambiguous, or contradictory task context.
+
 Update `ops/AGENT_COORDINATION.md` when:
 
 - A write claim starts.
@@ -89,7 +106,7 @@ Update `AGENTS.md` when the new state is durable bootstrap memory, such as:
 
 - A major workflow or protocol is created.
 - A persistent guardrail changes.
-- A critical external-system state changes.
+- A durable routing rule changes; changing external state stays in the owning command record and worklog.
 - A repeated blocker or "do not redo this" instruction must be visible to every future agent.
 - The North Star, continuation rule, or subagent orchestration model changes.
 

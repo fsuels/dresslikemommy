@@ -1,0 +1,137 @@
+{
+  "schema": "dlm.rainbow_title_independent_postreview.v1",
+  "reviewed_at_utc": "2026-09-07T00:23:11.347243+00:00",
+  "verdict": "PASS_API_SCOPE__NATIVE_BLOCKED_MAC_LOCKED",
+  "independence": "Local receipt consistency review only; reviewer did not author or execute either write and did not independently inspect the API/UI source.",
+  "source_sha256": {
+    "rainbow_title_plan.json": "abf14f61d0d764cd46ccbe0a0dd3fef56b563a8b815cabb27b257a457a79bc80",
+    "rainbow_title_preflight.json": "65e5c88823d4bdc1021bc581bc76eb03ba899ed95251cbd8ab205bfa3ca4230e",
+    "rainbow_title_preflight.md": "14798c1e87e408edc38e923e1a82d31e34a235e55a52ccfdbcd099031703bcab",
+    "rainbow_title_preflight_source.json": "1b0143d0f87f2321f148fb98aa1ce4fc09123b3218e50df258163b22d5a5470a",
+    "rainbow_title_source_query.graphql": "4bc6127a9bed841596ab5acf3647dd7e0273c6bf56ed6329ae6b74c5142eb789",
+    "rainbow_dutch_title_mutation.graphql": "77adadeef71c7ab15841bdc89a924648abe1850a24c3ec4e97fd19bc306c419b",
+    "rainbow_title_live_before.json": "56e05455a907504a7ab6d8f199129b92f8152143f5962df80342216b90d299f0",
+    "rainbow_title_english_mutation_receipt.json": "d319e125ff0ef8aece254a7118b62d465401b3aeb2a9a82b5c3bca77f0ec2ea7",
+    "rainbow_title_english_after.json": "68d4de0c16757de69dc5fb453c52899caceec7521a1678a90d16eb88e8b27a9e",
+    "rainbow_dutch_title_variables.json": "1eb7dd827cbdc2bfea776874cfd6cde9719a98ebc94183c85e1944dec7e780d6",
+    "rainbow_title_dutch_mutation_receipt.json": "7f74b533e93a4824d190948fe481db9becef9e3d638d18d6e8288610fd04b02c",
+    "rainbow_title_live_after.json": "589bbef2089b7dfed0d4ee9ccd9db1bfa67dfe469c65a9a8050cf27eeaa897db"
+  },
+  "checks": [
+    {
+      "check": "frozen plan/preflight/source/document hash binding",
+      "pass": true
+    },
+    {
+      "check": "fresh guard exact reviewed source and product identity",
+      "pass": true
+    },
+    {
+      "check": "one dedicated English title-only call and matching successful response",
+      "pass": true
+    },
+    {
+      "check": "guard mutation intermediate read and second mutation final read chronology",
+      "pass": true
+    },
+    {
+      "check": "intermediate exact English source title and fresh digest with five other source entries preserved",
+      "pass": true
+    },
+    {
+      "check": "intermediate other product fields and all ninety-two translation values preserved",
+      "pass": true
+    },
+    {
+      "check": "submitted Dutch variables exact one title using observed fresh digest",
+      "pass": true
+    },
+    {
+      "check": "one Dutch mutation returned exact one row and no GraphQL or user errors",
+      "pass": true
+    },
+    {
+      "check": "separate final exact English and Dutch titles and stable source title digest",
+      "pass": true
+    },
+    {
+      "check": "all final non-title product fields eight variants and four images preserved",
+      "pass": true
+    },
+    {
+      "check": "ninety-two row structure only one NL value delta with ninety-one others and five English source entries preserved",
+      "pass": true
+    },
+    {
+      "check": "exact seventeen other title flags false-to-true and NL false with no other row effects",
+      "pass": true
+    },
+    {
+      "check": "both planned operations resolved and rollback remains unused/content-scoped",
+      "pass": true
+    },
+    {
+      "check": "root eleven after checks consistent and native remains explicitly blocked without sales claim",
+      "pass": true
+    },
+    {
+      "check": "all reviewed source and frozen preflight files remained unchanged",
+      "pass": true
+    }
+  ],
+  "check_count": 15,
+  "passed_count": 15,
+  "failed_checks": [],
+  "product_id": "gid://shopify/Product/7229023846497",
+  "implemented_titles": {
+    "english": "Vibrant Rainbow Mommy and Me Maxi Dresses",
+    "dutch": "Regenboogmaxijurken voor moeder en dochter"
+  },
+  "fresh_title_digest": "eb15a0ec0f786866886b10446c4a7c4856abf442fe02907c93096e1aa656a385",
+  "observed_scope": {
+    "english_title_updates_reported": 1,
+    "dutch_title_registrations_reported": 1,
+    "final_translation_rows": 92,
+    "changed_translation_values": 1,
+    "preserved_other_translation_values": 91,
+    "preserved_other_english_source_entries": 5,
+    "preserved_variants": 8,
+    "preserved_images": 4,
+    "outdated_false_to_true": 17,
+    "outdated_changed_locales": [
+      "ar",
+      "cs",
+      "da",
+      "de",
+      "el",
+      "es",
+      "fi",
+      "fr",
+      "he",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "no",
+      "pl",
+      "pt-BR",
+      "ro"
+    ],
+    "nl_outdated": false,
+    "rollback_used": false
+  },
+  "atomicity": "Two sequential operations with a separate intermediate source/digest read. Final independent read resolves both candidate values; no unresolved English-only partial success in supplied receipts.",
+  "limits": [
+    "Action count is internally consistent operator evidence, not an independent account-wide activity audit.",
+    "Content rollback remains available only under fresh no-drift/digest guards; timestamps and outdated flags are not fully reversible.",
+    "Existing body/SEO and other localized copy remain preserved, not certified for product truth or full translation parity.",
+    "Native English/NL H1 and buyer routes remain NOT RUN because Mac is locked. No indexing, incremental traffic, retained sales, profit or paid authority is established."
+  ],
+  "next_action": "After normal unlock, check rendered English and Dutch product titles on the affected buyer routes.",
+  "external_calls": 0,
+  "external_writes": 0,
+  "written_files": [
+    "rainbow_title_postreview.json",
+    "rainbow_title_postreview.md"
+  ]
+}

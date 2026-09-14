@@ -1,0 +1,141 @@
+{
+  "reviewed_at_utc": "2026-09-11T18:51:50.004744+00:00",
+  "status": "PASS_LOCAL_SEMANTIC_REVIEW__ROOT_REVIEW_BEFORE_CANDIDATE_EDITS",
+  "input_hashes_verified_before_and_after": {
+    "campaign_plan.md": "1617edecc07323215c080245930d051a8e5e7017fdc216d20f73d4cf843a58f0",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839",
+    "keywords.csv": "658a8fef354ae4a299b2692d0dfda50f8c08a9d5f0c2d4fceb0c78351e53e94e",
+    "ad_groups.csv": "448a80f4b78fd0fdc5f94a557e2c512f0959f7d2390743923e4f365eb6b868d8",
+    "responsive_search_ads.csv": "0f8e442dbc8e7d5fc8e5424892ee4a357bf412edd0afdf843eac04c97f000eaa",
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "microsoft_deployed_app_pixel.js": "bdf85b114cb9d9ef5c790dee198f38dd8032c46bc13bdf7ca9f4ee034abc7f29",
+    "microsoft_deployed_storefront_script.js": "171802eab48befd7660099e6ad8c6d0423c14bfeb2b866b14b30694d7f7bce3a",
+    "launch-plan-20260911/shopify_candidate_readback.json": "53716ee712fbbb7f3ca187ffdf8176ecf7503cbf9e3de82e8f9f39874a1e393d",
+    "launch-plan-20260911/launch_contract.json": "06c9a560060b9d46048b50d5ee829a538d2512ed7f8cad39be718c523a8181b1"
+  },
+  "counts": {
+    "source_negatives": 180,
+    "held_reviewed": 103,
+    "untouched_existing_proposals": 77,
+    "decisions": {
+      "KEEP_HELD": 44,
+      "QUALIFIED_LOCAL_SEED": 48,
+      "REJECT": 11
+    },
+    "us_en_germany_de_priority": {
+      "KEEP_HELD": 8,
+      "QUALIFIED_LOCAL_SEED": 11,
+      "REJECT": 1
+    },
+    "by_campaign": {
+      "ms_us_en_202609": {
+        "KEEP_HELD": 4,
+        "QUALIFIED_LOCAL_SEED": 6
+      },
+      "ms_us_es_202609": {
+        "KEEP_HELD": 4,
+        "REJECT": 2,
+        "QUALIFIED_LOCAL_SEED": 4
+      },
+      "ms_es_es_202609": {
+        "KEEP_HELD": 4,
+        "REJECT": 2,
+        "QUALIFIED_LOCAL_SEED": 4
+      },
+      "ms_fr_fr_202609": {
+        "KEEP_HELD": 3,
+        "REJECT": 2,
+        "QUALIFIED_LOCAL_SEED": 5
+      },
+      "ms_de_de_202609": {
+        "KEEP_HELD": 4,
+        "QUALIFIED_LOCAL_SEED": 5,
+        "REJECT": 1
+      },
+      "ms_dk_da_202609": {
+        "KEEP_HELD": 4,
+        "QUALIFIED_LOCAL_SEED": 6
+      },
+      "ms_nl_nl_202609": {
+        "KEEP_HELD": 4,
+        "QUALIFIED_LOCAL_SEED": 6
+      },
+      "ms_it_it_202609": {
+        "KEEP_HELD": 4,
+        "REJECT": 4,
+        "QUALIFIED_LOCAL_SEED": 2
+      },
+      "ms_cz_cs_202609": {
+        "KEEP_HELD": 5,
+        "QUALIFIED_LOCAL_SEED": 4
+      },
+      "ms_ro_ro_202609": {
+        "KEEP_HELD": 4,
+        "QUALIFIED_LOCAL_SEED": 6
+      },
+      "ms_au_en_202609": {
+        "KEEP_HELD": 4
+      }
+    }
+  },
+  "scope": {
+    "browser_account_or_shopify_writes": 0,
+    "canonical_or_original_csv_edits": 0,
+    "campaign_scope_promotions": 0,
+    "qualified_new_negatives_for_minimal_dress_stage": 0,
+    "qualified_tee_reserve_rows": 48
+  },
+  "validation": {
+    "unique_source_keys": 103,
+    "exact_source_row_coverage": true,
+    "same_group_literal_collisions": 0,
+    "same_group_ordered_token_warning_collisions": 0,
+    "qualified_rows_stay_ad_group_only": true,
+    "all_qualified_rows_target_exact_sunshine_pdp": true,
+    "all_reviewed_locales_published_in_frozen_receipt": true,
+    "native_language_certification": false
+  },
+  "upscope_warning": {
+    "rows_with_literal_sibling_positive_conflicts": 24,
+    "qualified_rows_with_literal_sibling_positive_conflicts": 8,
+    "meaning": "Counterfactual local text screen only: these conflicts matter if an AdGroup exclusion is wrongly promoted to Campaign/shared scope."
+  },
+  "decisions_defined": {
+    "QUALIFIED_LOCAL_SEED": "Semantically defensible local proposal for the exact fixed tee ad-group offer; not a performance finding, native-language certificate, import acceptance or new campaign scope.",
+    "KEEP_HELD": "A specific assortment or linguistic-context gap remains; do not promote the original row.",
+    "REJECT": "Reject this wording and scope as proposed because a documented broader meaning can exclude relevant garment intent; replacement suggestions are not added."
+  },
+  "screen_limits": "NFKC/casefold/punctuation-token comparison, retaining accents, plus a conservative ordered-token warning. This is not Microsoft serving/normalization emulation, has no query logs, and does not certify close-variant behavior. Zero static collisions is not proof of no future buyer loss.",
+  "primary_sources": [
+    "https://learn.microsoft.com/en-us/advertising/guides/negative-keywords?view=bingads-13",
+    "https://learn.microsoft.com/en-us/advertising/campaign-management-service/negativekeyword?view=bingads-13",
+    "https://www.larousse.fr/dictionnaires/francais/maillot/48685",
+    "https://www.duden.de/rechtschreibung/Kleid",
+    "https://dle.rae.es/vestido",
+    "https://www.treccani.it/vocabolario/abito/",
+    "https://www.treccani.it/vocabolario/vestito/"
+  ],
+  "files": {
+    "us_germany_priority.csv": "0e74e3e3acf94f514fc2c7c29af6ec23df0e3a63c396d52301a75cfde487788a",
+    "negative_review.csv": "185f4b21b3680611197daa65c50e569727099ab64aa91b9f4a599ea916c7ccf2",
+    "qualified_local_seeds.csv": "42b803e1e04d245334a9b84a52e3e8862d3a361a5ce5b262676378ca9a08b49b",
+    "review_summary.md": "0b060f972d887b5218a3784294bc0e60b5d4068ef7f0cc24dbad772a0cac228f",
+    "build_negative_review.py": "601923173948f5ef83a7296d0dffb0fd4e662291f2bd19056ab04df543da1c94"
+  },
+  "final_validation": {
+    "status": "PASS",
+    "checked_at_utc": "2026-09-11T18:51:50.176410+00:00",
+    "independent_source_row_identity_checks": 103,
+    "exact_decision_file_subset_checks": true,
+    "nine_campaign_languages_reviewed": true,
+    "priority_rows": 20,
+    "qualified_seed_rows": 48,
+    "qualified_initial_dress_stage_rows": 0,
+    "summary_words": 462,
+    "local_links_resolve": 4,
+    "all_10_original_input_hashes_unchanged": true,
+    "script_syntax": "PASS",
+    "json_roundtrip": "PASS",
+    "text_whitespace": "PASS"
+  }
+}

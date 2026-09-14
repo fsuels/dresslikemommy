@@ -1,0 +1,81 @@
+{
+  "prepared_at": "2026-09-12T08:41:22.283113+00:00",
+  "status": "MAPPER_ONLY_NOT_IMPORT_READY",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "campaign_bindings": [
+    {
+      "campaign_id": "506254907",
+      "campaign_name": "DLM | MS | US | EN | Search | 202609",
+      "required_existing_ad_group_name": "Mother Daughter | Matching Dresses",
+      "ad_group_id": null
+    },
+    {
+      "campaign_id": "506254908",
+      "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+      "required_existing_ad_group_name": "Mother Daughter | Matching Dresses",
+      "ad_group_id": null
+    }
+  ],
+  "parent_readback_required_before_upload": true,
+  "native_mapping_qualified": false,
+  "native_row_values_accepted": false,
+  "native_import_authorized": false,
+  "paid_activation_authorized": false,
+  "csv": "combined_ads_negatives.ui_candidate.csv",
+  "csv_sha256": "3deba07cadfc6bd09189b9f204a5f101ece37c78b2e2abc46d6b374bde2bad1e",
+  "checks": "combined_ads_negatives.checks.json",
+  "checks_sha256": "33145002ea693a3ec0699d4f45d40bd1adfd23cc795078319fc0318ed8cedc1f",
+  "row_counts": {
+    "Campaign Negative Keyword": 14,
+    "Responsive Search Ad": 2
+  },
+  "column_aliases": {
+    "Campaign Name": "Campaign",
+    "Ad Group Name": "Ad Group",
+    "Final URLs": "Final Url"
+  },
+  "header_count": 29,
+  "frozen_preview_sha256": {
+    "campaign_negatives.ui_candidate.csv": "b566c095bfc152088b88ee9f450a87a9f7a25ee41c953e35c66488f9c9f122ae",
+    "rsa_mapper_only_not_import_ready.csv": "1a6525d2a6682474a826f08fc763604c47a830c43e68e94c0ec75d259dcc8926",
+    "paused_groups_keywords.ui_candidate.csv": "15287d329200ac4c62f4af9e6a0cdb15738240484694c83377a9213b53cee370",
+    "network_schema_review.ui_candidate.csv": "efef91e3cf011753a936e2f9695dd5498efb1d27ea063fab9fba757eac0abc68"
+  },
+  "main_source_sha256": {
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "ad_groups.csv": "dbf27dfc5ccd5cfb27c5aed898f202c76060b5b484ec353b3140ad701d950f92",
+    "keywords.csv": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012",
+    "responsive_search_ads.csv": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839"
+  },
+  "unchanged_semantics": {
+    "negative_status": "Active association; does not activate campaign/ad",
+    "negative_scope": "Campaign, Ad Group blank",
+    "negative_match_type": "Phrase",
+    "rsa_status": "Paused",
+    "rsa_copy": "Exact source text",
+    "rsa_unused_assets": "Blank, unpinned",
+    "budget_bid_status_parent_changes": "None"
+  },
+  "candidate_use": [
+    "This single file replaces separate14-negative and2-RSA preview submissions; do not import all three or repeat blindly.",
+    "Root must first verify successful group/keyword preparation and exact existing ad-group IDs in both campaign IDs before any16-row upload.",
+    "Use Microsoft Advertising native file-import format. Preview all29 columns and all16 rows, including Negative/Match Type, individual RSA fields and Final Url Suffix.",
+    "Campaign/Ad Group/Final Url use native-template aliases; mapping recognition does not prove row-enum or server acceptance.",
+    "Do not map Negative into positive Keyword; do not apply RSA StatusPaused to exclusion associations or inherit their Active value onto ads.",
+    "Final Import remains held pending independent review of exact current parent state, file hash, selected new-item categories and no existing-item updates or campaign/bid/budget/URL rewrites.",
+    "After any separately authorized import, enumerate exact created IDs/counts and existing campaign/group settings before another submission; partial or uncertain results require readback, not a duplicate create."
+  ],
+  "limitations": [
+    "This builder made no native UI call and does not certify current group existence or saved network/targeting state.",
+    "The existing UTM Replace setting and actual attribution behavior remain separate checks; source suffix strings are preserved, not validated at runtime.",
+    "All purchase/consent, actual economics/cash, landing, editorial/native-language and paid-activation gates persist."
+  ],
+  "provenance": [
+    "../schema-review/import_schema_review.json",
+    "network_schema_review.json",
+    "rsa_mapper_checks.json",
+    "manifest.json"
+  ]
+}

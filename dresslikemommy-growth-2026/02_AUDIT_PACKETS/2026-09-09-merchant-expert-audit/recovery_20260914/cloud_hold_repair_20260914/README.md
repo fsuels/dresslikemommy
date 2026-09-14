@@ -1,0 +1,5 @@
+The prepared cloud feed generator now preserves all six parent holds across every country and language. Unheld feed rows remain byte-identical; source completeness and native-money checks remain enforced. Known-held customer content can no longer stop the healthy remainder of the catalog from refreshing.
+
+Validation: 56/56 runtime tests passed (45 baseline + 11 focused tests), five saved-source regressions passed, and strict continuity passed. Current contained US/AU bytes match exactly: 4,741 rows each, 162 available held variants and 22 unavailable variants. CA/GB/Spanish real landing gates remain closed. No external changes or deployment occurred.
+
+Review implementation_receipt.json, implementation.patch and saved-source-validation.json. Activation must bind the reviewed config.json to MERCHANT_CONFIG_JSON and include src/eligibility.js. Root owns independent review, canonical integration and any later activation. Before-state copies and exact rollback conditions are in the receipt.

@@ -1,0 +1,359 @@
+{
+  "version": 2,
+  "defaults": {
+    "product_type_ids": ["dresses", "sets"],
+    "occasion_ids": ["casual", "formal"],
+    "max_queries_per_lane": 6
+  },
+  "query_strategy": {
+    "max_terms": 4,
+    "max_chinese_characters": 18,
+    "relationship_first": true,
+    "post_search_checks": [
+      "current-year/new-arrival evidence",
+      "available-now evidence",
+      "one-piece dropship evidence",
+      "supplier identity, rating, and at least 5 verified years",
+      "US/Europe style fit"
+    ]
+  },
+  "review_gate": {
+    "required": true,
+    "plan_label": "Fall/Winter/Holiday returned-vocabulary redesign",
+    "paused_reason": "review the 12 replacement searches and 3 controls before any next run",
+    "deferred_category_ids": ["maternity"],
+    "deferred_reason": "Maternity is deferred after all 3 first-batch searches returned 0 titles proving maternity, family matching, garment, and season together."
+  },
+  "fixed_query_overrides": [
+    {
+      "category_id": "mommy-and-me",
+      "season_id": "fall",
+      "product_type_id": "dresses",
+      "occasion_id": "casual",
+      "search_role": "replacement",
+      "merchandise_label": "Long-sleeve dresses",
+      "chinese": "母女亲子装 长袖连衣裙 秋季",
+      "previous_chinese": "母女亲子装 连衣裙 秋季",
+      "first_batch_match": "2/25",
+      "evidence_note": "Returned mother-daughter titles included a 2026 autumn long-sleeve dress; the concrete long-sleeve garment replaces the broad dress wording."
+    },
+    {
+      "category_id": "mommy-and-me",
+      "season_id": "winter",
+      "product_type_id": "sets",
+      "occasion_id": "formal",
+      "search_role": "replacement",
+      "merchandise_label": "Sweatshirts",
+      "chinese": "母女亲子装 卫衣 冬季",
+      "previous_chinese": "母女亲子装 礼服 冬季",
+      "first_batch_match": "1/21",
+      "evidence_note": "The relevant returned titles used sweatshirts and knitwear, not formalwear; sweatshirts were the stronger recurring winter product."
+    },
+    {
+      "category_id": "mommy-and-me",
+      "season_id": "holiday",
+      "product_type_id": "dresses",
+      "occasion_id": "formal",
+      "search_role": "replacement",
+      "merchandise_label": "Christmas sweatshirts",
+      "chinese": "母女亲子装 圣诞卫衣",
+      "previous_chinese": "母女亲子装 礼服 圣诞",
+      "first_batch_match": "1/42",
+      "evidence_note": "Returned Christmas mother-daughter titles repeatedly used party tops and sweatshirts; the compound Christmas-sweatshirt product removes weak formalwear wording."
+    },
+    {
+      "category_id": "daddy-and-me",
+      "season_id": "fall",
+      "product_type_id": "dresses",
+      "occasion_id": "casual",
+      "search_role": "replacement",
+      "merchandise_label": "Long-sleeve T-shirts",
+      "chinese": "父子亲子装 长袖T恤 秋季",
+      "previous_chinese": "父女亲子装 连衣裙 秋季",
+      "first_batch_match": "0/26",
+      "evidence_note": "The returned Daddy & Me supply used father-son shirts and autumn long-sleeve T-shirts; the weak father-daughter dress combination is replaced."
+    },
+    {
+      "category_id": "daddy-and-me",
+      "season_id": "winter",
+      "product_type_id": "sets",
+      "occasion_id": "formal",
+      "search_role": "replacement",
+      "merchandise_label": "Sweaters",
+      "chinese": "父子亲子装 毛衣 冬季",
+      "previous_chinese": "父子亲子装 西装 冬季",
+      "first_batch_match": "0/43",
+      "evidence_note": "Relevant father-son results returned sweaters and knit cardigans while only one title mentioned a suit."
+    },
+    {
+      "category_id": "daddy-and-me",
+      "season_id": "holiday",
+      "product_type_id": "dresses",
+      "occasion_id": "formal",
+      "search_role": "replacement",
+      "merchandise_label": "Christmas sweaters",
+      "chinese": "父子亲子装 圣诞毛衣",
+      "previous_chinese": "父女亲子装 礼服 圣诞",
+      "first_batch_match": "0/36",
+      "evidence_note": "The direct holiday query had no Daddy & Me matches, while returned father-son titles included Christmas and New Year knitwear."
+    },
+    {
+      "category_id": "siblings-matching",
+      "season_id": "fall",
+      "product_type_id": "dresses",
+      "occasion_id": "casual",
+      "search_role": "control",
+      "merchandise_label": "Dresses",
+      "chinese": "姐妹装 连衣裙 秋季",
+      "first_batch_match": "22/52",
+      "evidence_note": "Unchanged control: this was the strongest Siblings discovery search in the first fixed batch."
+    },
+    {
+      "category_id": "siblings-matching",
+      "season_id": "winter",
+      "product_type_id": "sets",
+      "occasion_id": "formal",
+      "search_role": "replacement",
+      "merchandise_label": "Sweatshirts",
+      "chinese": "兄妹装 卫衣 冬季",
+      "previous_chinese": "兄妹装 礼服 冬季",
+      "first_batch_match": "3/48",
+      "evidence_note": "Formalwear returned sparse toddler ceremony products; winter matching results across the batch repeatedly used family sweatshirts."
+    },
+    {
+      "category_id": "siblings-matching",
+      "season_id": "holiday",
+      "product_type_id": "dresses",
+      "occasion_id": "formal",
+      "search_role": "replacement",
+      "merchandise_label": "Christmas sweatshirts",
+      "chinese": "兄妹装 圣诞卫衣",
+      "previous_chinese": "姐妹装 礼服 圣诞",
+      "first_batch_match": "1/43",
+      "evidence_note": "The sisters-plus-formal query drifted into wedding accessories; brother-sister plus Christmas sweatshirts keeps both a child relationship and a concrete garment."
+    },
+    {
+      "category_id": "family-matching",
+      "season_id": "fall",
+      "product_type_id": "dresses",
+      "occasion_id": "casual",
+      "search_role": "replacement",
+      "merchandise_label": "Sweatshirts",
+      "chinese": "全家亲子装 卫衣 秋季",
+      "previous_chinese": "全家亲子装 连衣裙 秋季",
+      "first_batch_match": "0/33",
+      "evidence_note": "Returned family titles repeatedly paired autumn family sets with sweatshirts; the family-wide garment replaces a women-and-girls dress bias."
+    },
+    {
+      "category_id": "family-matching",
+      "season_id": "winter",
+      "product_type_id": "sets",
+      "occasion_id": "formal",
+      "search_role": "replacement",
+      "merchandise_label": "Sweatshirts",
+      "chinese": "全家亲子装 卫衣 冬季",
+      "previous_chinese": "全家亲子装 礼服 冬季",
+      "first_batch_match": "1/28",
+      "evidence_note": "Eight relevant returned titles used sweatshirts and eleven used winter; this exact replacement also led the earlier controlled relevance check."
+    },
+    {
+      "category_id": "family-matching",
+      "season_id": "holiday",
+      "product_type_id": "dresses",
+      "occasion_id": "formal",
+      "search_role": "replacement",
+      "merchandise_label": "Christmas pajamas",
+      "chinese": "全家亲子装 圣诞睡衣",
+      "previous_chinese": "全家亲子装 礼服 圣诞",
+      "first_batch_match": "0/19",
+      "evidence_note": "The holiday results included 2026 Christmas family homewear and pajama sets; pajamas are a concrete whole-family product where formalwear was not."
+    },
+    {
+      "category_id": "couples",
+      "season_id": "fall",
+      "product_type_id": "dresses",
+      "occasion_id": "casual",
+      "search_role": "control",
+      "merchandise_label": "Dresses",
+      "chinese": "情侣装 连衣裙 秋季",
+      "first_batch_match": "28/53",
+      "evidence_note": "Unchanged control: this was the strongest Couples discovery search in the first fixed batch."
+    },
+    {
+      "category_id": "couples",
+      "season_id": "winter",
+      "product_type_id": "sets",
+      "occasion_id": "formal",
+      "search_role": "control",
+      "merchandise_label": "Formalwear",
+      "chinese": "情侣装 礼服 冬季",
+      "first_batch_match": "10/46",
+      "evidence_note": "Unchanged control: this was the second strongest Couples discovery search in the first fixed batch."
+    },
+    {
+      "category_id": "couples",
+      "season_id": "holiday",
+      "product_type_id": "dresses",
+      "occasion_id": "formal",
+      "search_role": "replacement",
+      "merchandise_label": "Christmas sweatshirts",
+      "chinese": "情侣卫衣 圣诞",
+      "previous_chinese": "情侣装 礼服 圣诞",
+      "first_batch_match": "0/28",
+      "evidence_note": "The formal Christmas query returned no couple matches; the previously measured short couples-sweatshirt phrase was strong, with Christmas retained as the holiday filter."
+    }
+  ],
+  "chinese_term_translations": {
+    "母女亲子装": "Mother-daughter matching outfits",
+    "父女亲子装": "Father-daughter matching outfits",
+    "父子亲子装": "Father-son matching outfits",
+    "姐妹装": "Sisters matching outfits",
+    "兄弟装": "Brothers matching outfits",
+    "兄妹装": "Brother-sister matching outfits",
+    "全家亲子装": "Family matching outfits",
+    "情侣装": "Couples matching outfits",
+    "孕妇亲子装": "Maternity parent-child matching outfits",
+    "连衣裙": "Dresses",
+    "套装": "Outfit sets",
+    "上衣": "Tops",
+    "睡衣": "Pajamas",
+    "针织衫": "Sweaters",
+    "外套": "Outerwear",
+    "泳装": "Swimwear",
+    "卫衣": "Sweatshirts",
+    "礼服": "Formalwear",
+    "西装": "Suits",
+    "长袖连衣裙": "Long-sleeve dresses",
+    "长袖T恤": "Long-sleeve T-shirts",
+    "毛衣": "Sweaters",
+    "圣诞卫衣": "Christmas sweatshirts",
+    "圣诞毛衣": "Christmas sweaters",
+    "圣诞睡衣": "Christmas pajamas",
+    "情侣卫衣": "Couples matching sweatshirts",
+    "春季": "Spring",
+    "夏季": "Summer",
+    "秋季": "Fall",
+    "冬季": "Winter",
+    "圣诞": "Christmas",
+    "四季款": "Year-round",
+    "写真": "Photoshoot",
+    "度假": "Vacation",
+    "校园": "School"
+  },
+  "seasons": [
+    {"id": "spring", "label": "Spring", "chinese": "春季"},
+    {"id": "summer", "label": "Summer", "chinese": "夏季"},
+    {"id": "fall", "label": "Fall", "chinese": "秋季"},
+    {"id": "winter", "label": "Winter", "chinese": "冬季"},
+    {"id": "holiday", "label": "Holiday", "chinese": "圣诞"},
+    {"id": "evergreen", "label": "Evergreen", "chinese": "四季款"}
+  ],
+  "phases": {
+    "sell_now": "Sell now",
+    "source_ahead": "Source ahead"
+  },
+  "calendar": {
+    "1": [
+      {"season_id": "winter", "phase": "sell_now"},
+      {"season_id": "spring", "phase": "source_ahead"}
+    ],
+    "2": [
+      {"season_id": "winter", "phase": "sell_now"},
+      {"season_id": "spring", "phase": "source_ahead"},
+      {"season_id": "summer", "phase": "source_ahead"}
+    ],
+    "3": [
+      {"season_id": "spring", "phase": "sell_now"},
+      {"season_id": "summer", "phase": "source_ahead"}
+    ],
+    "4": [
+      {"season_id": "spring", "phase": "sell_now"},
+      {"season_id": "summer", "phase": "source_ahead"}
+    ],
+    "5": [
+      {"season_id": "summer", "phase": "sell_now"},
+      {"season_id": "fall", "phase": "source_ahead"}
+    ],
+    "6": [
+      {"season_id": "summer", "phase": "sell_now"},
+      {"season_id": "fall", "phase": "source_ahead"}
+    ],
+    "7": [
+      {"season_id": "summer", "phase": "sell_now"},
+      {"season_id": "fall", "phase": "source_ahead"},
+      {"season_id": "winter", "phase": "source_ahead"}
+    ],
+    "8": [
+      {"season_id": "fall", "phase": "source_ahead"},
+      {"season_id": "winter", "phase": "source_ahead"},
+      {"season_id": "holiday", "phase": "source_ahead"}
+    ],
+    "9": [
+      {"season_id": "fall", "phase": "sell_now"},
+      {"season_id": "winter", "phase": "source_ahead"},
+      {"season_id": "holiday", "phase": "source_ahead"}
+    ],
+    "10": [
+      {"season_id": "fall", "phase": "sell_now"},
+      {"season_id": "winter", "phase": "source_ahead"},
+      {"season_id": "holiday", "phase": "source_ahead"}
+    ],
+    "11": [
+      {"season_id": "winter", "phase": "sell_now"},
+      {"season_id": "holiday", "phase": "sell_now"},
+      {"season_id": "spring", "phase": "source_ahead"}
+    ],
+    "12": [
+      {"season_id": "winter", "phase": "sell_now"},
+      {"season_id": "holiday", "phase": "sell_now"},
+      {"season_id": "spring", "phase": "source_ahead"}
+    ]
+  },
+  "product_types": [
+    {"id": "dresses", "label": "Dresses", "chinese": "连衣裙", "occasion_terms": {"formal": "礼服"}},
+    {"id": "sets", "label": "Sets", "chinese": "套装", "occasion_terms": {"formal": "礼服"}},
+    {"id": "tops", "label": "Tops", "chinese": "上衣"},
+    {"id": "pajamas", "label": "Pajamas", "chinese": "睡衣"},
+    {"id": "sweaters", "label": "Sweaters", "chinese": "针织衫"},
+    {"id": "outerwear", "label": "Outerwear", "chinese": "外套"},
+    {"id": "swimwear", "label": "Swimwear", "chinese": "泳装"}
+  ],
+  "occasions": [
+    {"id": "casual", "label": "Casual", "chinese": ""},
+    {"id": "formal", "label": "Formal", "chinese": ""},
+    {"id": "holiday", "label": "Holiday", "chinese": "圣诞"},
+    {"id": "photoshoot", "label": "Photoshoot", "chinese": "写真"},
+    {"id": "vacation", "label": "Vacation", "chinese": "度假"},
+    {"id": "school", "label": "School", "chinese": "校园"}
+  ],
+  "category_terms": {
+    "mommy-and-me": ["母女亲子装"],
+    "daddy-and-me": ["父女亲子装", "父子亲子装"],
+    "siblings-matching": ["姐妹装", "兄弟装", "兄妹装"],
+    "family-matching": ["全家亲子装"],
+    "couples": ["情侣装"],
+    "maternity": ["孕妇亲子装"]
+  },
+  "category_product_overrides": {
+    "daddy-and-me": {
+      "dresses": {"base": "父女亲子装", "chinese": "连衣裙", "label": "Dresses + coordinating shirts", "occasion_terms": {"formal": "礼服"}},
+      "sets": {"base": "父子亲子装", "chinese": "卫衣", "label": "Coordinating outfits", "occasion_terms": {"formal": "西装"}}
+    },
+    "siblings-matching": {
+      "dresses": {"base": "姐妹装", "chinese": "连衣裙", "label": "Sisters' dresses", "occasion_terms": {"formal": "礼服"}},
+      "sets": {"base": "兄妹装", "chinese": "套装", "label": "Sibling outfits", "occasion_terms": {"formal": "礼服"}}
+    },
+    "family-matching": {
+      "dresses": {"base": "全家亲子装", "chinese": "连衣裙", "label": "Dresses + coordinating shirts", "occasion_terms": {"formal": "礼服"}},
+      "sets": {"base": "全家亲子装", "chinese": "卫衣", "label": "Family outfits", "occasion_terms": {"formal": "礼服"}}
+    },
+    "couples": {
+      "dresses": {"base": "情侣装", "chinese": "连衣裙", "label": "Coordinating dresses", "occasion_terms": {"formal": "礼服"}},
+      "sets": {"base": "情侣装", "chinese": "卫衣", "label": "Couples outfits", "occasion_terms": {"formal": "礼服"}}
+    },
+    "maternity": {
+      "dresses": {"base": "孕妇亲子装", "chinese": "连衣裙", "label": "Maternity matching dresses", "occasion_terms": {"formal": "礼服"}},
+      "sets": {"base": "孕妇亲子装", "chinese": "套装", "label": "Maternity matching outfits", "occasion_terms": {"formal": "礼服"}}
+    }
+  }
+}

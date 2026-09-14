@@ -60,7 +60,7 @@ MERCH_STYLE = "Matching Family Set"
 MERCH_TYPE = "Two-Piece Set"
 MERCH_COLLECTION_TAG = "Matching Family Set"
 SEASON = "Summer"
-VENDOR_URL = "https://detail.1688.com/offer/938601981390.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 CHILD_PRICE = "28.99"
 ADULT_PRICE = "31.99"
@@ -401,7 +401,7 @@ tags = sorted(dict.fromkeys([
     "Child 4 Years", "Child 5 Years", "Child 6-7 Years", "Child 8 Years",
     "Child 9-10 Years", "Mother S", "Mother M", "Mother L", "Mother XL",
     "Mother 2XL", "Father S", "Father M", "Father L", "Father XL", "Father 2XL",
-    "Father 3XL", "Father 4XL", VENDOR_URL,
+    "Father 3XL", "Father 4XL",
 ]))
 
 derived = {
@@ -450,7 +450,7 @@ if taxonomy_full_name != EXPECTED_TAXONOMY_FULL_NAME:
     raise SystemExit(f"Taxonomy mismatch: {taxonomy_full_name}")
 
 try:
-    req = urllib.request.Request(VENDOR_URL, headers={"User-Agent": "Mozilla/5.0"})
+    req = urllib.request.Request(headers={"User-Agent": "Mozilla/5.0"})
     direct_page = urllib.request.urlopen(req, timeout=20).read(2000).decode("utf-8", "ignore")
     vendor_fetch_status = "blocked" if "_____tmd_____" in direct_page or "punish" in direct_page.lower() or "captcha" in direct_page.lower() else "readable"
 except (urllib.error.URLError, TimeoutError) as exc:

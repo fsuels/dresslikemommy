@@ -1,0 +1,11 @@
+name = "dlm-merchant-feed-worker"
+main = "host.js"
+compatibility_date = "2026-07-01"
+workers_dev = true
+
+[vars]
+MERCHANT_CONFIG_JSON = '''{"shopId":"gid://shopify/Shop/15571635","storeDomain":"dresslikemommy-com.myshopify.com","apiVersion":"2026-07","onlinePublicationId":"gid://shopify/Publication/55169925","sourceLocale":"en","maxSnapshotAgeHours":24,"maxFeedAgeHours":48,"returnPolicy":{"exceptionLabel":"no_returns","nativeLabelConfirmed":false,"productTypes":["swimwear","swimsuits","intimates","lingerie"],"taxonomyNames":["Swimwear","Underwear","Lingerie"],"finalSaleTags":["Final Sale","final-sale"],"emitLabels":false},"markets":[{"key":"us-en","country":"US","locale":"en","currency":"USD","minorUnits":2,"marketId":null,"landingBaseUrl":"https://www.dresslikemommy.com","landingQuery":{},"landingContextVerified":true,"enabled":true},{"key":"au-en","country":"AU","locale":"en","currency":"AUD","minorUnits":2,"marketId":null,"landingBaseUrl":"https://www.dresslikemommy.com","landingQuery":{},"landingContextVerified":false,"enabled":false},{"key":"ca-en","country":"CA","locale":"en","currency":"CAD","minorUnits":2,"marketId":null,"landingBaseUrl":"https://www.dresslikemommy.com","landingQuery":{},"landingContextVerified":false,"enabled":false},{"key":"gb-en","country":"GB","locale":"en","currency":"GBP","minorUnits":2,"marketId":null,"landingBaseUrl":"https://www.dresslikemommy.com","landingQuery":{},"landingContextVerified":false,"enabled":false}],"schedules":{}}'''
+
+[[r2_buckets]]
+binding = "MERCHANT_FEED_BUCKET"
+bucket_name = "dlm-merchant-feeds"

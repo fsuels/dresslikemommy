@@ -1,0 +1,66 @@
+{
+  "schema": "dlm.native-guide-independent-review.v1",
+  "reviewed_at_utc": "2026-09-11T22:20:50Z",
+  "reviewer": "theme_audit_review",
+  "verdict": "PASS_WITH_LIMITS",
+  "scope": "Independent source and offline tests for one fallback-only table-label guard. Reviewer did not build the change or perform browser/API/canonical writes. Only this receipt is reviewer-owned.",
+  "approved_target": {"theme_id": "137888792673", "role": "UNPUBLISHED", "filename": "assets/size-conversion.js"},
+  "approved_action_boundary": "Suitable for staging this exact asset after root's current-source guard, inverse and successful composite check. Same four-file selector-recovery union; no publication approval or rendered buyer acceptance.",
+  "baseline": {
+    "sha256": "73aa1d9a808e5001d11f80bef578c383b3074f21ebdf059f7e2da35c7ecfe5ed",
+    "md5": "0a629a8075f5880eafb30de976221cd2",
+    "bytes": 45109,
+    "path": "cart-label-repair/proposed/assets/size-conversion.js",
+    "saved_readback": "cart-label-repair/after-source.json",
+    "saved_readback_at_utc": "2026-09-11T22:14:02.686Z",
+    "matches_saved_unpublished_asset_checksum_and_size": true
+  },
+  "proposal": {
+    "sha256": "1d57ccf7f571187ac71734d79a0fa165a8bef6f833c7e13a7e69bdb99601c6af",
+    "md5": "735edfa74bfc8738f4df9532cff082d8",
+    "bytes": 45294,
+    "path": "native-guide-label-repair/proposed/assets/size-conversion.js",
+    "manifest_sha256": "e370e353039369c9d680c951ee3ae39de8c4abd1f1c7f53d6043a29564954492",
+    "independent_hash_size_checks": "PASS",
+    "removing_exact_four_line_guard_reconstructs_staged_baseline_bytes": true
+  },
+  "source_findings": [
+    "applySizeChartDisplayLabels now restores the saved data-size-display-raw value, or existing raw text, only in the detected Size column of tables under data-matching-set-fallback=true; it returns before age mapping for that cell.",
+    "Measurement columns, raw attributes, row selection state and table structure are untouched. All other asset bytes, including cart/native label repairs, measurement conversion, exported formatter, nonfallback table behavior and event listeners, are identical to the staged baseline.",
+    "Ordinary initial-page ordering is consistent: the deferred ruler script occurs inside content_for_layout before layout/theme.liquid:1308 loads size-conversion.js. Its builder preflight assigns fallback state before the latter's initial DOMContentLoaded formatting pass.",
+    "The unchanged observer handles newly inserted tables and wrappers; cart:updated reprocesses the document. Text-only restoration does not loop through the observer's element-only added-node branch."
+  ],
+  "independent_regressions": {
+    "command": "node --test selector-recovery-20260911/native-guide-label-repair/native-guide.test.mjs",
+    "test_sha256": "062849f52de28ce60908cd4d7499e6cbaf4ac57a2c00b7131a1b45b052c7c21e",
+    "parent_result_sha256": "3428932a287fc8c2945e2ba882e8aa9c97524f8850a3972228f5c9729269166d",
+    "reviewer_reran": true,
+    "passed": 6,
+    "failed": 0,
+    "exit_code": 0,
+    "duration_ms": 303.406959,
+    "runtime_errors": 0,
+    "coverage": "Raw cart/native labels, dynamic replacement, unit/helper holdouts, fallback table restoration and unchanged nonfallback guides."
+  },
+  "additional_independent_dynamic_check": {
+    "method": "Executed the exact staged baseline and proposed scripts in separate jsdom documents with original #size-chart and modern .matching-size-guide__table markup.",
+    "staged_initial_size_cells": ["2–3Y", "2–3Y"],
+    "proposed_initial_size_cells": ["100cm", "100cm"],
+    "proposed_dynamic_regeneration_with_saved_raw_attributes": "PASS: both restore 100cm after an observer turn; both measurement cells remain 69 / 27.2.",
+    "nonfallback_holdout": "Still 2–3Y, preserving existing nonfallback formatting.",
+    "exit_code": 0,
+    "runtime_errors": 0
+  },
+  "theme_check_evidence": {
+    "diagnostics_file": "native-guide-label-repair/theme-check.json",
+    "observed_diagnostics": [],
+    "observed_stderr_empty": true,
+    "prepared_theme_files": 527,
+    "reviewer_confirmed_checked_asset_matches_proposed_sha256": true,
+    "reviewer_reran_CLI": false,
+    "command_exit_status": "Root owns final command-completion confirmation; reviewer inspected saved results and checked asset."
+  },
+  "caption_scope_clarification": "formatSelectedGuideDisplay belongs to initMatchingSizeGuide, which runs before the builder, not inside the builder's early-return path. Root reports no selected-guide caption in the actual E1 DOM. No caption failure, repair, or blocker is asserted here; this review covers only the two observed tables.",
+  "limits": "Constructed-DOM source tests are not a second browser replay or full Liquid render. Preserved mappings are not certified as supplier-backed size guidance. This review makes no catalog-wide, all-language or publication claim.",
+  "remaining_acceptance": "Root completes current-target guard/inverse, stages the reviewed asset, reads its hash back, and rechecks actual original/modern guide tables after opening and regenerating them, including unchanged measurements and cart cleanup."
+}

@@ -1,0 +1,119 @@
+TAP version 13
+# Subtest: Drawer: a cached DKK amount never appears as dollars or any stale price
+ok 1 - Drawer: a cached DKK amount never appears as dollars or any stale price
+  ---
+  duration_ms: 2.618875
+  type: 'test'
+  ...
+# Subtest: Page: a cached DKK amount never appears as dollars or any stale price
+ok 2 - Page: a cached DKK amount never appears as dollars or any stale price
+  ---
+  duration_ms: 0.362125
+  type: 'test'
+  ...
+# Subtest: switch from /da/products/skyfade-family-matching-set to /fr/ keeps exactly the current locale
+ok 3 - switch from /da/products/skyfade-family-matching-set to /fr/ keeps exactly the current locale
+  ---
+  duration_ms: 0.338542
+  type: 'test'
+  ...
+# Subtest: switch from /fr/products/skyfade-family-matching-set to /da/ keeps exactly the current locale
+ok 4 - switch from /fr/products/skyfade-family-matching-set to /da/ keeps exactly the current locale
+  ---
+  duration_ms: 0.276167
+  type: 'test'
+  ...
+# Subtest: switch from /da/products/skyfade-family-matching-set to / keeps exactly the current locale
+ok 5 - switch from /da/products/skyfade-family-matching-set to / keeps exactly the current locale
+  ---
+  duration_ms: 0.258416
+  type: 'test'
+  ...
+# Subtest: switch from /da/products/skyfade-family-matching-set to /da/ keeps exactly the current locale
+ok 6 - switch from /da/products/skyfade-family-matching-set to /da/ keeps exactly the current locale
+  ---
+  duration_ms: 0.252375
+  type: 'test'
+  ...
+# Subtest: switch from /fr-ca/products/skyfade-family-matching-set?currency=CAD&country=CA to /da keeps exactly the current locale
+ok 7 - switch from /fr-ca/products/skyfade-family-matching-set?currency=CAD&country=CA to /da keeps exactly the current locale
+  ---
+  duration_ms: 0.990208
+  type: 'test'
+  ...
+# Subtest: untrusted stored text remains text and image attributes cannot break out
+ok 8 - untrusted stored text remains text and image attributes cannot break out
+  ---
+  duration_ms: 0.431792
+  type: 'test'
+  ...
+# Subtest: external, executable, invalid, and non-product links are not rendered
+ok 9 - external, executable, invalid, and non-product links are not rendered
+  ---
+  duration_ms: 0.69825
+  type: 'test'
+  ...
+# Subtest: unsafe image schemes are omitted while a valid product remains clickable
+ok 10 - unsafe image schemes are omitted while a valid product remains clickable
+  ---
+  duration_ms: 1.125
+  type: 'test'
+  ...
+# Subtest: malformed, non-array, or unavailable storage leaves the empty cart usable
+ok 11 - malformed, non-array, or unavailable storage leaves the empty cart usable
+  ---
+  duration_ms: 1.369125
+  type: 'test'
+  ...
+# Subtest: a localized product visit is tracked once and its empty-cart drawer renders
+ok 12 - a localized product visit is tracked once and its empty-cart drawer renders
+  ---
+  duration_ms: 0.306458
+  type: 'test'
+  ...
+# Subtest: a product visit recovers from non-array history and storage denial remains harmless
+ok 13 - a product visit recovers from non-array history and storage denial remains harmless
+  ---
+  duration_ms: 1.044375
+  type: 'test'
+  ...
+# Subtest: history stays bounded, deduplicates past locales, and respects card limits
+ok 14 - history stays bounded, deduplicates past locales, and respects card limits
+  ---
+  duration_ms: 0.375584
+  type: 'test'
+  ...
+# Subtest: DOM readiness and an empty-cart replacement both render history
+ok 15 - DOM readiness and an empty-cart replacement both render history
+  ---
+  duration_ms: 0.703458
+  type: 'test'
+  ...
+# Subtest: the existing quantity count and subtotal refresh targets stay intact
+not ok 16 - the existing quantity count and subtotal refresh targets stay intact
+  ---
+  duration_ms: 0.3445
+  type: 'test'
+  location: '/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/release_candidate/cart_regression.test.mjs:231:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'selector')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/release_candidate/cart_regression.test.mjs:234:76)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 15
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 58.119041

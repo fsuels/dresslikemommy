@@ -1,0 +1,2165 @@
+--- a/assets/cart.js
++++ b/assets/cart.js
+@@ -382,22 +382,65 @@
+   const STORAGE_KEY = 'dlm_recently_viewed';
+   const MAX_ITEMS = 6;
+ 
++  function productPath(value) {
++    if (typeof value !== 'string' || !value.startsWith('/')) return '';
++    try {
++      const url = new URL(value, window.location.origin);
++      if (url.origin !== window.location.origin) return '';
++      // Remove a previous language/market prefix before applying the active route root.
++      const match = url.pathname.match(/^(?:\/[a-z]{2}(?:-[a-z]{2})?)?(\/products\/[^/]+)\/?$/i);
++      return match ? match[1] : '';
++    } catch (e) {
++      return '';
++    }
++  }
++
++  function imageUrl(value) {
++    if (typeof value !== 'string' || !value.trim()) return '';
++    try {
++      const url = new URL(value, window.location.origin);
++      return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : '';
++    } catch (e) {
++      return '';
++    }
++  }
++
++  function escapeHtml(value) {
++    return value.replace(/[&<>"']/g, function(character) {
++      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character];
++    });
++  }
++
++  function readRecentlyViewed() {
++    try {
++      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
++      if (!Array.isArray(stored)) return [];
++      const seen = new Set();
++      return stored.reduce(function(viewed, item) {
++        const url = item && productPath(item.url);
++        if (!url || typeof item.title !== 'string' || !item.title.trim() || seen.has(url)) return viewed;
++        seen.add(url);
++        viewed.push({ url, title: item.title, image: imageUrl(item.image), time: item.time });
++        return viewed;
++      }, []).slice(0, MAX_ITEMS);
++    } catch (e) {
++      return []; // Unavailable or malformed storage must not interrupt the cart.
++    }
++  }
++
+   // Track current product page (lightweight — just localStorage write)
+-  if (window.location.pathname.startsWith('/products/')) {
++  const currentProductPath = productPath(window.location.pathname);
++  if (currentProductPath) {
+     try {
+       const titleTag = document.querySelector('meta[property="og:title"]');
+       const imageTag = document.querySelector('meta[property="og:image"]');
+-      const priceTag = document.querySelector('meta[property="product:price:amount"]');
+ 
+       if (titleTag) {
+-        const viewed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+-        const url = window.location.pathname;
+-        const filtered = viewed.filter(item => item.url !== url);
+-        filtered.unshift({ url, title: titleTag.content || '', image: imageTag ? imageTag.content : '', price: priceTag ? priceTag.content : '', time: Date.now() });
++        const filtered = readRecentlyViewed().filter(item => item.url !== currentProductPath);
++        filtered.unshift({ url: currentProductPath, title: titleTag.content || '', image: imageTag ? imageUrl(imageTag.content) : '', time: Date.now() });
+         localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered.slice(0, MAX_ITEMS)));
+       }
+     } catch(e) { /* localStorage not available */ }
+-    return; // Exit early — no rendering needed on product pages
+   }
+ 
+   // Only render if empty-cart containers exist on page
+@@ -407,17 +450,17 @@
+     if (!drawerContainer && !pageContainer) return; // No containers — skip entirely
+ 
+     try {
+-      const viewed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
++      const viewed = readRecentlyViewed();
+       if (viewed.length === 0) return;
+ 
++      // Cached prices have no reliable currency/market context. The linked PDP owns current pricing.
+       if (drawerContainer) {
+         const drawerGrid = document.getElementById('CartDrawer-RecentlyViewedGrid');
+         if (drawerGrid) {
+           drawerGrid.innerHTML = viewed.slice(0, 3).map(function(item) {
+-            return '<a href="' + item.url + '" class="cart-drawer__upsell-item">' +
+-              (item.image ? '<img src="' + item.image + '" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img">' : '') +
+-              '<div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">' + item.title.split(' | ')[0] + '</span>' +
+-              (item.price ? '<span class="cart-drawer__upsell-price">$' + item.price + '</span>' : '') +
++            return '<a href="' + escapeHtml(getLocaleAwareRoute(item.url)) + '" class="cart-drawer__upsell-item">' +
++              (item.image ? '<img src="' + escapeHtml(item.image) + '" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img">' : '') +
++              '<div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">' + escapeHtml(item.title.split(' | ')[0]) + '</span>' +
+               '</div></a>';
+           }).join('');
+           drawerContainer.style.display = '';
+@@ -428,10 +471,9 @@
+         const pageGrid = document.getElementById('CartPage-RecentlyViewedGrid');
+         if (pageGrid) {
+           pageGrid.innerHTML = viewed.slice(0, 4).map(function(item) {
+-            return '<a href="' + item.url + '" class="cart-page__cross-sell-item">' +
+-              (item.image ? '<div class="cart-page__cross-sell-img-wrap"><img src="' + item.image + '" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div>' : '') +
+-              '<div class="cart-page__cross-sell-info"><span class="cart-page__cross-sell-name">' + item.title.split(' | ')[0] + '</span>' +
+-              (item.price ? '<span class="cart-page__cross-sell-price">$' + item.price + '</span>' : '') +
++            return '<a href="' + escapeHtml(getLocaleAwareRoute(item.url)) + '" class="cart-page__cross-sell-item">' +
++              (item.image ? '<div class="cart-page__cross-sell-img-wrap"><img src="' + escapeHtml(item.image) + '" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div>' : '') +
++              '<div class="cart-page__cross-sell-info"><span class="cart-page__cross-sell-name">' + escapeHtml(item.title.split(' | ')[0]) + '</span>' +
+               '</div></a>';
+           }).join('');
+           pageContainer.style.display = '';
+@@ -445,6 +487,9 @@
+   } else {
+     renderRecentlyViewed();
+   }
++
++  // Quantity removal can replace the empty-cart markup after the initial page render.
++  subscribe(PUB_SUB_EVENTS.cartUpdate, renderRecentlyViewed);
+ })();
+ 
+ /* ── Swipe-to-remove on mobile — only init on touch devices with cart items ── */
+--- a/assets/cookie-preferences.css
++++ b/assets/cookie-preferences.css
+@@ -0,0 +1,28 @@
++.footer__cookie-preferences {
++  display: block;
++  margin-top: 0.8rem;
++}
++
++.footer__cookie-preferences-button {
++  min-height: 4.4rem;
++  max-width: 100%;
++  padding: 0.8rem 0;
++  white-space: normal;
++}
++
++.footer .footer__cookie-preferences .footer__cookie-preferences-button,
++.footer .footer__cookie-preferences .footer__cookie-preferences-status {
++  color: #ccc;
++  font-size: 1.4rem;
++  line-height: 1.5;
++  overflow-wrap: anywhere;
++}
++
++.footer .footer__cookie-preferences .footer__cookie-preferences-button:hover,
++.footer .footer__cookie-preferences .footer__cookie-preferences-button:focus-visible {
++  color: #fff;
++}
++
++.footer__cookie-preferences-status {
++  display: block;
++}
+--- a/assets/cookie-preferences.js
++++ b/assets/cookie-preferences.js
+@@ -0,0 +1,91 @@
++if (!customElements.get('cookie-preferences')) {
++  customElements.define('cookie-preferences', class extends HTMLElement {
++    connectedCallback() {
++      if (this.button) return;
++      this.button = this.querySelector('button');
++      this.status = this.querySelector('[role="status"]');
++      if (!this.button || !this.status) return;
++      this.handleClick = this.openPreferences.bind(this);
++      this.button.addEventListener('click', this.handleClick);
++    }
++
++    disconnectedCallback() {
++      this.button?.removeEventListener('click', this.handleClick);
++      this.finishOpening(false);
++      this.button = null;
++    }
++
++    visibleDialog() {
++      return [...document.querySelectorAll('.shopify-pc__prefs__dialog, .shopify-pc__prefs')]
++        .find((dialog) => dialog.getClientRects().length > 0
++          && window.getComputedStyle(dialog).visibility !== 'hidden'
++          && !dialog.closest('[hidden], [aria-hidden="true"]'));
++    }
++
++    openPreferences() {
++      if (this.attempt) return;
++      this.status.textContent = '';
++      const privacyBanner = window.privacyBanner;
++      if (!privacyBanner || typeof privacyBanner.showPreferences !== 'function') {
++        this.status.textContent = this.dataset.unavailableMessage;
++        return;
++      }
++
++      const attempt = {};
++      this.attempt = attempt;
++      this.button.disabled = true;
++      this.button.setAttribute('aria-busy', 'true');
++      const checkDialog = () => {
++        if (this.attempt !== attempt) return;
++        const dialog = this.visibleDialog();
++        if (dialog) {
++          this.dialog = dialog;
++          clearTimeout(this.openTimeout);
++          this.button.removeAttribute('aria-busy');
++        } else if (this.dialog) {
++          this.finishOpening(true);
++        }
++      };
++
++      this.observer = new MutationObserver(checkDialog);
++      this.observer.observe(document.body, {
++        childList: true,
++        subtree: true,
++        attributes: true,
++        attributeFilter: ['class', 'style', 'hidden', 'aria-hidden'],
++      });
++      this.openTimeout = setTimeout(() => this.openFailed(attempt), 10000);
++
++      try {
++        const result = privacyBanner.showPreferences();
++        checkDialog();
++        // The API result is not a dialog-close signal. Shopify owns dialog focus.
++        Promise.resolve(result).catch(() => this.openFailed(attempt));
++      } catch (_error) {
++        this.openFailed(attempt);
++      }
++    }
++
++    openFailed(attempt) {
++      if (this.attempt !== attempt) return;
++      this.finishOpening(false);
++      this.status.textContent = this.dataset.unavailableMessage;
++    }
++
++    finishOpening(restoreFocus) {
++      clearTimeout(this.openTimeout);
++      this.observer?.disconnect();
++      const activeElement = document.activeElement;
++      const focusNeedsReturn = !activeElement || activeElement === document.body
++        || !activeElement.isConnected || this.dialog?.contains(activeElement);
++      this.dialog = null;
++      this.attempt = null;
++      if (!this.button) return;
++      this.button.disabled = false;
++      this.button.removeAttribute('aria-busy');
++      if (restoreFocus && focusNeedsReturn && this.button.isConnected) {
++        this.button.focus({ preventScroll: true });
++      }
++    }
++  });
++}
+--- a/assets/product-desktop-ux-20260513-ruler-sync.js
++++ b/assets/product-desktop-ux-20260513-ruler-sync.js
+@@ -403,6 +403,11 @@
+     addRole: '+ Přidat {role}',
+     addAnotherFamilyMember: 'Přidat dalšího člena rodiny',
+     customerPhotos: 'Fotky zákazníků',
++    chooseRoleStep: "Vyberte, pro koho je tento kus",
++    chooseOptionsStep: "Vyberte velikost a možnosti",
++    chooseRoleCta: "Vyberte člena rodiny",
++    addCurrentPiece: "Přidat tento kus do košíku",
++    readyToAdd: "Připraveno k přidání",
+   },
+   da: {
+     pieceOne: '1 matchende del',
+@@ -422,6 +427,11 @@
+     addRole: '+ Tilføj {role}',
+     addAnotherFamilyMember: 'Tilføj endnu et familiemedlem',
+     customerPhotos: 'Kundebilleder',
++    chooseRoleStep: "Vælg, hvem dette stykke tøj er til",
++    chooseOptionsStep: "Vælg størrelse og muligheder",
++    chooseRoleCta: "Vælg et familiemedlem",
++    addCurrentPiece: "Læg denne vare i indkøbskurven",
++    readyToAdd: "Klar til at lægge i kurven",
+   },
+   de: {
+     pieceOne: '1 passendes Teil',
+@@ -441,6 +451,11 @@
+     addRole: '+ {role} hinzufügen',
+     addAnotherFamilyMember: 'Weiteres Familienmitglied hinzufügen',
+     customerPhotos: 'Kundenfotos',
++    chooseRoleStep: "Wähle, für wen dieses Teil ist",
++    chooseOptionsStep: "Wähle Größe und Optionen",
++    chooseRoleCta: "Wähle ein Familienmitglied",
++    addCurrentPiece: "Dieses Teil in den Warenkorb",
++    readyToAdd: "Bereit zum Hinzufügen",
+   },
+   el: {
+     pieceOne: '1 ασορτί κομμάτι',
+@@ -460,6 +475,11 @@
+     addRole: '+ Προσθήκη {role}',
+     addAnotherFamilyMember: 'Προσθήκη άλλου μέλους οικογένειας',
+     customerPhotos: 'Φωτογραφίες πελατών',
++    chooseRoleStep: "Επιλέξτε για ποιον είναι αυτό το κομμάτι",
++    chooseOptionsStep: "Επιλέξτε μέγεθος και επιλογές",
++    chooseRoleCta: "Επιλέξτε μέλος της οικογένειας",
++    addCurrentPiece: "Προσθήκη αυτού του κομματιού στο καλάθι",
++    readyToAdd: "Έτοιμο για προσθήκη",
+   },
+   es: {
+     pieceOne: '1 pieza a juego',
+@@ -481,6 +501,9 @@
+     customerPhotos: 'Fotos de clientes',
+     chooseRoleStep: 'Elige para quién es esta pieza',
+     chooseOptionsStep: 'Elige talla y opciones',
++    chooseRoleCta: "Elige un familiar",
++    addCurrentPiece: "Añadir esta pieza al carrito",
++    readyToAdd: "Listo para añadir",
+   },
+   fr: {
+     pieceOne: '1 pièce assortie',
+@@ -500,6 +523,11 @@
+     addRole: '+ Ajouter {role}',
+     addAnotherFamilyMember: 'Ajouter un autre membre de la famille',
+     customerPhotos: 'Photos clients',
++    chooseRoleStep: "Choisissez à qui cette pièce est destinée",
++    chooseOptionsStep: "Choisissez la taille et les options",
++    chooseRoleCta: "Choisissez un membre de la famille",
++    addCurrentPiece: "Ajouter cette pièce au panier",
++    readyToAdd: "Prête à être ajoutée",
+   },
+   it: {
+     pieceOne: '1 capo coordinato',
+@@ -519,6 +547,11 @@
+     addRole: '+ Aggiungi {role}',
+     addAnotherFamilyMember: 'Aggiungi un altro familiare',
+     customerPhotos: 'Foto dei clienti',
++    chooseRoleStep: "Scegli per chi è questo capo",
++    chooseOptionsStep: "Scegli taglia e opzioni",
++    chooseRoleCta: "Scegli un familiare",
++    addCurrentPiece: "Aggiungi questo capo al carrello",
++    readyToAdd: "Pronto da aggiungere",
+   },
+   nl: {
+     pieceOne: '1 matchend item',
+@@ -538,6 +571,11 @@
+     addRole: '+ {role} toevoegen',
+     addAnotherFamilyMember: 'Nog een gezinslid toevoegen',
+     customerPhotos: "Foto's van klanten",
++    chooseRoleStep: "Kies voor wie dit kledingstuk is",
++    chooseOptionsStep: "Kies de maat en opties",
++    chooseRoleCta: "Kies een gezinslid",
++    addCurrentPiece: "Dit kledingstuk in de winkelwagen",
++    readyToAdd: "Klaar om toe te voegen",
+   },
+   pl: {
+     pieceOne: '1 pasujący element',
+@@ -557,6 +595,11 @@
+     addRole: '+ Dodaj {role}',
+     addAnotherFamilyMember: 'Dodaj kolejnego członka rodziny',
+     customerPhotos: 'Zdjęcia klientów',
++    chooseRoleStep: "Wybierz, dla kogo jest ta część stroju",
++    chooseOptionsStep: "Wybierz rozmiar i opcje",
++    chooseRoleCta: "Wybierz członka rodziny",
++    addCurrentPiece: "Dodaj tę część stroju do koszyka",
++    readyToAdd: "Gotowe do dodania",
+   },
+   pt: {
+     pieceOne: '1 peça combinando',
+@@ -576,6 +619,11 @@
+     addRole: '+ Adicionar {role}',
+     addAnotherFamilyMember: 'Adicionar outro familiar',
+     customerPhotos: 'Fotos de clientes',
++    chooseRoleStep: "Escolha para quem é esta peça",
++    chooseOptionsStep: "Escolha o tamanho e as opções",
++    chooseRoleCta: "Escolha um familiar",
++    addCurrentPiece: "Adicionar esta peça ao carrinho",
++    readyToAdd: "Pronto para adicionar",
+   },
+   ro: {
+     pieceOne: '1 piesă asortată',
+@@ -595,6 +643,11 @@
+     addRole: '+ Adaugă {role}',
+     addAnotherFamilyMember: 'Adaugă un alt membru al familiei',
+     customerPhotos: 'Fotografii de la clienți',
++    chooseRoleStep: "Alege pentru cine este această piesă",
++    chooseOptionsStep: "Alege mărimea și opțiunile",
++    chooseRoleCta: "Alege un membru al familiei",
++    addCurrentPiece: "Adaugă această piesă în coș",
++    readyToAdd: "Gata de adăugat",
+   },
+   sv: {
+     pieceOne: '1 matchande del',
+@@ -614,6 +667,67 @@
+     addRole: '+ Lägg till {role}',
+     addAnotherFamilyMember: 'Lägg till en familjemedlem',
+     customerPhotos: 'Kundfoton',
++    chooseRoleStep: "Välj vem det här plagget är till",
++    chooseOptionsStep: "Välj storlek och alternativ",
++    chooseRoleCta: "Välj en familjemedlem",
++    addCurrentPiece: "Lägg det här plagget i varukorgen",
++    readyToAdd: "Redo att läggas i varukorgen",
++  },
++  ar: {
++    chooseRoleStep: "اختر من سيرتدي هذه القطعة",
++    chooseOptionsStep: "اختر المقاس والخيارات",
++    chooseRoleCta: "اختر فردًا من العائلة",
++    addCurrentPiece: "أضف هذه القطعة إلى السلة",
++    readyToAdd: "جاهزة للإضافة",
++  },
++  fi: {
++    chooseRoleStep: "Valitse, kenelle tämä vaate on",
++    chooseOptionsStep: "Valitse koko ja vaihtoehdot",
++    chooseRoleCta: "Valitse perheenjäsen",
++    addCurrentPiece: "Lisää tämä vaate ostoskoriin",
++    readyToAdd: "Valmis lisättäväksi",
++  },
++  he: {
++    chooseRoleStep: "בחרו למי מיועד הפריט",
++    chooseOptionsStep: "בחרו מידה ואפשרויות",
++    chooseRoleCta: "בחרו בן או בת משפחה",
++    addCurrentPiece: "הוספת הפריט לסל",
++    readyToAdd: "מוכן להוספה",
++  },
++  hi: {
++    chooseRoleStep: "चुनें कि यह कपड़ा किसके लिए है",
++    chooseOptionsStep: "साइज़ और विकल्प चुनें",
++    chooseRoleCta: "परिवार का सदस्य चुनें",
++    addCurrentPiece: "यह कपड़ा कार्ट में जोड़ें",
++    readyToAdd: "जोड़ने के लिए तैयार",
++  },
++  ja: {
++    chooseRoleStep: "この服を着る方を選んでください",
++    chooseOptionsStep: "サイズとオプションを選んでください",
++    chooseRoleCta: "着る方を選んでください",
++    addCurrentPiece: "この商品をカートに追加",
++    readyToAdd: "カートに追加できます",
++  },
++  ko: {
++    chooseRoleStep: "이 옷을 입을 가족을 선택하세요",
++    chooseOptionsStep: "사이즈와 옵션을 선택하세요",
++    chooseRoleCta: "가족 구성원을 선택하세요",
++    addCurrentPiece: "이 상품을 장바구니에 담기",
++    readyToAdd: "장바구니에 담을 수 있어요",
++  },
++  no: {
++    chooseRoleStep: "Velg hvem dette plagget er til",
++    chooseOptionsStep: "Velg størrelse og alternativer",
++    chooseRoleCta: "Velg et familiemedlem",
++    addCurrentPiece: "Legg dette plagget i handlekurven",
++    readyToAdd: "Klart til å legges i handlekurven",
++  },
++  ru: {
++    chooseRoleStep: "Выберите, для кого эта вещь",
++    chooseOptionsStep: "Выберите размер и параметры",
++    chooseRoleCta: "Выберите члена семьи",
++    addCurrentPiece: "Добавить эту вещь в корзину",
++    readyToAdd: "Готово к добавлению",
+   },
+ };
+ var GUIDE_MEASUREMENT_TOKENS = [
+@@ -1639,6 +1753,7 @@
+   var instanceCounter = 0;
+   var roleGroupsCache = [];
+   var currentGroupKey = '';
++  var bootstrapComplete = false;
+   // Tracks the last Type axis value seen (e.g. "shirt" / "dress").
+   // When the global Type picker changes, the bundle resets its
+   // default-visible cards. null sentinel = first render — don't reset.
+@@ -2375,9 +2490,9 @@
+     return 'inst-' + instanceCounter;
+   }
+ 
+-  function getCurrentVariant() {
+-    if (!selectedVariantInput || !selectedVariantInput.value) return null;
+-    var selectedId = String(selectedVariantInput.value);
++  function getExplicitLandingVariant() {
++    if (!productData.selected_variant_id) return null;
++    var selectedId = String(productData.selected_variant_id);
+     return (
+       productData.variants.find(function (variant) {
+         return String(variant.id) === selectedId;
+@@ -2663,6 +2778,10 @@
+         return uiLabel('pickAxis', 'Pick a {axis}', { axis: requiredAxes[i].toLowerCase() });
+       }
+     }
++    var selectedOption = resolveVariantInGroup(activeGroup, activeInstance.sizeLabel, selections);
++    if (selectedOption && selectedOption.available === false) {
++      return uiLabel('outOfStockCurrent', 'Out of stock for current selection');
++    }
+     return uiLabel('chooseOptionsStep', 'Choose size and options');
+   }
+ 
+@@ -2672,7 +2791,7 @@
+       if (!inst.variantId || !inst.quantity) return;
+       var group = getGroupByKey(inst.groupKey);
+       var option = getOptionByVariantId(group, inst.variantId);
+-      if (!group || !option) return;
++      if (!group || !option || option.available === false) return;
+       items.push({
+         instanceId: inst.instanceId,
+         roleKey: inst.roleKey,
+@@ -2702,7 +2821,68 @@
+     renderBuilder();
+   }
+ 
++  function getDisplayedMatchingVariant() {
++    var inst = instances[0];
++    if (!inst || !inst.sizeLabel) return null;
++    var group = getGroupByKey(inst.groupKey);
++    if (!group) return null;
++    var selections = inst.axisSelections || {};
++    var requiredAxes = getRequiredAxesForGroup(group);
++    if (requiredAxes.some(function (axis) { return !selections[axis]; })) return null;
++    var option = resolveVariantInGroup(group, inst.sizeLabel, selections);
++    if (!option) return null;
++    return productData.variants.find(function (variant) {
++      return String(variant.id) === String(option.id);
++    }) || null;
++  }
++
++  function decodeMatchingPriceText(value) {
++    var decoder = document.createElement('textarea');
++    decoder.innerHTML = String(value).replace(/</g, '&lt;').replace(/>/g, '&gt;');
++    return decoder.textContent;
++  }
++
++  function updateMatchingPrice() {
++    if (!infoContainer || !productData.default_price_html) return;
++    var priceContainer = document.getElementById('price-' + sectionId);
++    if (!priceContainer) return;
++    var template = document.createElement('template');
++    template.innerHTML = productData.default_price_html;
++    var price = template.content.querySelector('.price');
++    if (!price) return;
++    var variant = getDisplayedMatchingVariant();
++    if (variant) {
++      var regularPrice = price.querySelector('.price__regular .price-item--regular');
++      if (!regularPrice || typeof variant.price_text !== 'string') return;
++      var priceText = decodeMatchingPriceText(variant.price_text);
++      regularPrice.textContent = priceText;
++      price.classList.remove('price--range', 'price--on-sale', 'price--sold-out');
++      price.setAttribute('data-price-variant-id', String(variant.id));
++      price.setAttribute('data-price-current-text', priceText);
++      price.setAttribute('data-price-compare-text', '');
++      price.setAttribute('data-price-available', String(variant.available !== false));
++      price.setAttribute('data-price-on-sale', 'false');
++    }
++    var unitPrice = price.querySelector('.unit-price');
++    if (unitPrice) {
++      var hasUnitPrice = !!(variant && variant.unit_price_text && variant.unit_price_reference_unit);
++      unitPrice.hidden = !hasUnitPrice;
++      unitPrice.classList.toggle('hidden', !hasUnitPrice);
++      if (hasUnitPrice) {
++        var unitValue = unitPrice.querySelector('.price-item > span:first-child');
++        var unitReference = unitPrice.querySelector('.price-item > span:last-child');
++        if (unitValue) unitValue.textContent = decodeMatchingPriceText(variant.unit_price_text);
++        if (unitReference) unitReference.textContent =
++          (Number(variant.unit_price_reference_value) === 1 ? '' : String(variant.unit_price_reference_value)) +
++          variant.unit_price_reference_unit;
++      }
++    }
++    var nextHtml = template.innerHTML;
++    if (priceContainer.innerHTML !== nextHtml) priceContainer.replaceChildren(template.content.cloneNode(true));
++  }
++
+   function updateSummary() {
++    updateMatchingPrice();
+     var items = getSelectedItems();
+     var pieceCount = items.reduce(function (sum, item) {
+       return sum + item.quantity;
+@@ -3353,6 +3533,12 @@
+     // groups stay available regardless of which Type the legacy picker
+     // happens to have selected.
+     var currentCtx = getCurrentOptionContext(variantSelects);
++    var landingVariant = !bootstrapComplete ? getExplicitLandingVariant() : null;
++    if (landingVariant) {
++      productData.options.forEach(function (option, index) {
++        currentCtx[normalizeText(option.name)] = getOptionValue(landingVariant, index);
++      });
++    }
+     var groups = buildRoleGroups(productData, currentCtx, true, {
+       skipTypeFilter: typeIsImplicit,
+     });
+@@ -3426,6 +3612,21 @@
+       instances = [];
+     }
+ 
++    if (!bootstrapComplete) {
++      bootstrapComplete = true;
++      var landingGroup = landingVariant && groups.find(function (group) {
++        return !!getOptionByVariantId(group, landingVariant.id);
++      });
++      if (landingGroup) {
++        var landingOption = getOptionByVariantId(landingGroup, landingVariant.id);
++        var landingInstance = addInstanceForGroup(landingGroup);
++        currentGroupKey = landingGroup.key;
++        landingInstance.sizeLabel = landingOption.sizeLabel || '';
++        landingInstance.axisSelections = Object.assign({}, landingOption.axes || {});
++        landingInstance.variantId = landingOption.available !== false ? String(landingOption.id) : '';
++      }
++    }
++
+     if (!currentGroupKey) {
+       var defaultGroup = getDefaultGroupForBootstrap(groups);
+       if (defaultGroup) {
+@@ -3601,6 +3802,12 @@
+   });
+ 
+   renderBuilder();
++
++  var matchingPriceContainer = document.getElementById('price-' + sectionId);
++  if (infoContainer && matchingPriceContainer && typeof MutationObserver === 'function') {
++    var matchingPriceObserver = new MutationObserver(updateMatchingPrice);
++    matchingPriceObserver.observe(matchingPriceContainer, { childList: true, subtree: true });
++  }
+ 
+   if (variantSelects) {
+     variantSelects.addEventListener('change', function () {
+--- a/layout/theme.liquid
++++ b/layout/theme.liquid
+@@ -418,10 +418,7 @@
+     }
+ 
+     html:not(.dlm-shopify-privacy-banner-visible) #shopify-pc__banner,
+-    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__banner__wrapper,
+-    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__prefs,
+-    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__prefs__overlay,
+-    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__prefs__dialog {
++    html:not(.dlm-shopify-privacy-banner-visible) .shopify-pc__banner__wrapper {
+       display: none !important;
+       visibility: hidden !important;
+     }
+@@ -434,9 +431,6 @@
+       var bannerSelectors = [
+         '#shopify-pc__banner',
+         '.shopify-pc__banner__wrapper',
+-        '.shopify-pc__prefs',
+-        '.shopify-pc__prefs__overlay',
+-        '.shopify-pc__prefs__dialog',
+       ];
+ 
+       function showPrivacyBanner() {
+--- a/locales/ar.json
++++ b/locales/ar.json
+@@ -269,6 +269,7 @@
+       "assistance_note": "بحاجة الى مساعدة؟ نقوم عادةً بالرد خلال يوم عمل واحد."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "اطّلع على خيارات الشحن عند إتمام الشراء.",
+       "shipping_headline": "شحن قياسي مجاني",
+       "estimate_to_country": "التسليم المقدر إلى {{ country }}: ",
+       "estimate_default": "التسليم المقدر: ",
+@@ -279,11 +280,13 @@
+       "shipping_details_body": "الشحن القياسي مجاني لهذا المنتج حيثما كان متاحًا. تظهر ترقيات الشحن السريع وخيارات الناقل الدقيقة قبل الدفع.",
+       "security_details_body": "المدفوعات مشفرة ومعالجة بشكل آمن من قبل مزودي الدفع لدينا. لا نخزن رقم بطاقتك الكامل.",
+       "privacy_link_label": "عرض سياسة الخصوصية",
+-      "returns_headline": "إرجاع واستبدال خلال 30 يومًا",
+-      "returns_summary": "هذا المنتج قابل للإرجاع إذا كان غير ملبوس وغير مغسول ومعه التسميات.",
++      "returns_headline": "إرجاع المنتجات المؤهلة",
++      "returns_summary": "يمكن طلب إرجاع المنتجات المؤهلة أو استبدالها خلال 30 يومًا من التسليم.",
+       "returns_details_label": "سياسة الإرجاع",
+-      "returns_eligible": "يمكن إرجاع هذا المنتج أو استبداله خلال 30 يومًا من التسليم إذا كان غير ملبوس وغير مغسول وأُعيد مع التسميات.",
+-      "returns_exclusions": "منتجات التصفية النهائية والمنتجات المخصصة وملابس السباحة والملابس الداخلية قد تكون مستثناة.",
++      "returns_eligible": "يجب أن تكون المنتجات المؤهلة غير مستخدمة وغير مغسولة وأن تُعاد مع بطاقاتها المرفقة.",
++      "returns_exclusions": "تُستثنى ملابس السباحة والملابس الداخلية ومنتجات البيع النهائي وبطاقات الهدايا. راجع سياسة الإرجاع الكاملة لمعرفة شروط الأهلية والاستثناءات.",
++      "returns_damaged": "هل المنتج تالف أو معيب؟ تواصل مع الدعم خلال 7 أيام وأرفق صورًا.",
++      "returns_shipping": "يتحمل العميل تكلفة شحن الإرجاع، إلا إذا وصل المنتج تالفًا أو معيبًا.",
+       "returns_full_link_label": "عرض سياسة الإرجاع الكاملة",
+       "security_headline": "دفع آمن",
+       "security_summary": "دفع مشفر. نقبل البطاقات الرئيسية وخيارات الدفع السريع.",
+@@ -518,6 +521,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "تفضيلات ملفات تعريف الارتباط",
++      "cookie_preferences_unavailable": "تعذّر فتح تفضيلات ملفات تعريف الارتباط. يرجى المحاولة مرة أخرى.",
+       "payment": "طرق الدفع"
+     },
+     "featured_blog": {
+--- a/locales/cs.json
++++ b/locales/cs.json
+@@ -269,6 +269,7 @@
+       "assistance_note": "Potřebujete pomoc? Obvykle odpovídáme do jednoho pracovního dne."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Možnosti dopravy najdete při placení.",
+       "shipping_headline": "Standardní doprava zdarma",
+       "estimate_to_country": "Odhadované doručení do {{ country }}: ",
+       "estimate_default": "Odhadované doručení: ",
+@@ -279,11 +280,13 @@
+       "shipping_details_body": "Standardní doprava je u této položky zdarma, pokud je dostupná. Možnosti expresní dopravy a přesní přepravci se zobrazí před platbou.",
+       "security_details_body": "Platby jsou šifrované a bezpečně zpracovávané našimi poskytovateli plateb. Neukládáme úplné číslo tvé karty.",
+       "privacy_link_label": "Zobrazit zásady ochrany osobních údajů",
+-      "returns_headline": "30 dní na vrácení a výměnu",
+-      "returns_summary": "Tuto položku lze vrátit, pokud je nepoužitá, nevypraná a má visačky.",
++      "returns_headline": "Vrácení způsobilého zboží",
++      "returns_summary": "O vrácení nebo výměnu způsobilého zboží požádejte do 30 dnů od doručení.",
+       "returns_details_label": "Zásady vrácení",
+-      "returns_eligible": "Tuto položku lze vrátit nebo vyměnit do 30 dnů od doručení, pokud je nepoužitá, nevypraná a vrácená s visačkami.",
+-      "returns_exclusions": "Zboží ve výprodeji, personalizované zboží, plavky a spodní prádlo mohou být vyloučeny.",
++      "returns_eligible": "Způsobilé zboží musí být nenošené, neprané a vrácené s připevněnými visačkami.",
++      "returns_exclusions": "Plavky, spodní prádlo, zboží označené jako konečný prodej a dárkové karty jsou vyloučeny. Podmínky a výjimky najdete v úplných zásadách vrácení.",
++      "returns_damaged": "Poškozené nebo vadné zboží? Do 7 dnů kontaktujte podporu a přiložte fotografie.",
++      "returns_shipping": "Dopravu při vrácení hradí zákazník, pokud zboží nedorazilo poškozené nebo vadné.",
+       "returns_full_link_label": "Zobrazit úplné zásady vrácení",
+       "security_headline": "Zabezpečená pokladna",
+       "security_summary": "Šifrovaná platba. Přijímáme hlavní karty a expresní možnosti pokladny.",
+@@ -670,6 +673,8 @@
+       "shipping_country_reassurance": "Doprava do {{ country }}. Standardní doprava je v ceně; přesný odhad doručení a případné expresní rozšíření se zobrazí před platbou."
+     },
+     "footer": {
++      "cookie_preferences": "Předvolby souborů cookie",
++      "cookie_preferences_unavailable": "Předvolby souborů cookie se nepodařilo otevřít. Zkuste to prosím znovu.",
+       "payment": "Platební metody"
+     },
+     "featured_blog": {
+--- a/locales/da.json
++++ b/locales/da.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Har du brug for hjælp? Vi svarer typisk inden for en hverdag."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Se leveringsmuligheder ved betaling.",
+       "shipping_headline": "Gratis standardforsendelse",
+       "estimate_to_country": "Forventet levering til {{ country }}: ",
+       "estimate_default": "Forventet levering: ",
+@@ -310,11 +311,13 @@
+       "shipping_details_body": "Standardforsendelse er gratis for denne vare, hvor det er tilgængeligt. Ekspresopgraderinger og præcise forsendelsesmuligheder vises før betaling.",
+       "security_details_body": "Betalinger er krypterede og behandles sikkert af vores betalingsudbydere. Vi gemmer ikke dit fulde kortnummer.",
+       "privacy_link_label": "Se privatlivspolitikken",
+-      "returns_headline": "30 dages retur og bytte",
+-      "returns_summary": "Denne vare kan returneres, hvis den er ubrugt, uvasket og har mærker.",
++      "returns_headline": "Returnering af berettigede varer",
++      "returns_summary": "Anmod om returnering eller ombytning af berettigede varer inden for 30 dage efter levering.",
+       "returns_details_label": "Returpolitik",
+-      "returns_eligible": "Denne vare kan returneres eller byttes inden for 30 dage efter levering, hvis den er ubrugt, uvasket og returneres med mærker.",
+-      "returns_exclusions": "Slutudsalg, personaliserede varer, badetøj og undertøj kan være undtaget.",
++      "returns_eligible": "Berettigede varer skal være ubrugte, uvaskede og returneres med mærkerne på.",
++      "returns_exclusions": "Badetøj, undertøj, varer solgt som endeligt salg og gavekort er undtaget. Se den fulde returpolitik for betingelser og undtagelser.",
++      "returns_damaged": "Beskadiget eller defekt vare? Kontakt kundeservice inden for 7 dage med billeder.",
++      "returns_shipping": "Kunden betaler returfragten, medmindre varen ankom beskadiget eller defekt.",
+       "returns_full_link_label": "Se hele returpolitikken",
+       "security_headline": "Sikkert checkout",
+       "security_summary": "Krypteret betaling. Større kort og ekspres-checkout-muligheder accepteres.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Forsendelse til {{ country }}. Standardforsendelse er inkluderet; præcist leveringsestimat og eventuel ekspresopgradering vises før betaling."
+     },
+     "footer": {
++      "cookie_preferences": "Cookieindstillinger",
++      "cookie_preferences_unavailable": "Cookieindstillingerne kunne ikke åbnes. Prøv igen.",
+       "payment": "Betalingsmetoder"
+     },
+     "featured_blog": {
+@@ -693,7 +698,7 @@
+         "family_sets": "Matchende familieferietøj | Strand- og rejsesæt",
+         "family_matching": "Matchende familietøj | Mor og mig",
+         "new_women_outfits": "Matchende familietøj | Kjoler, badetøj og familiesæt",
+-        "dresses": "Mommy and Me Kjoler | Moder Datter",
++        "dresses": "Kjoler til mor og datter | Dress Like Mommy",
+         "maxi_dresses": "Matchende Maxikjoler | Mor og datter",
+         "best_sellers": "Bedst sælgende Mommy and Me Outfits | Kjoler, badedragter og meget mere",
+         "daddy_me": "Daddy and Me skjorter, t-shirts og matchende outfits",
+@@ -707,7 +712,7 @@
+         "all": "Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Komfortable stilarter med hurtig forsendelse.",
+         "mommy_and_me": "Shop mommy and me outfits, dresses, swimsuits, and matching sets for birthdays, family photos, vacations, and everyday twinning moments.",
+         "spring_matching": "Shop mommy and me Easter dresses and spring matching outfits for church, brunch, egg hunts, family photos, and other seasonal celebrations.",
+-        "dresses": "Shop mommy and me dresses and mother daughter matching dresses for photos, parties, vacations, and polished everyday wear.",
++        "dresses": "Find matchende kjoler til mor og datter. Se styles til familiebilleder, fester og ferier, og tjek størrelser og mål på produktsiden, før du vælger.",
+         "maxi_dresses": "Shop mommy and me maxi dresses and matching maxi dresses for photos, travel, celebrations, and easy polished everyday wear.",
+         "swimsuits": "Shop matching family swimsuits and mom and daughter matching swimsuits for beach trips, pool days, cruises, and coordinated summer photos.",
+         "family_swimsuits": "Shop matching family bathing suits and family swimwear for beach vacations, pool days, cruises, and coordinated summer photos.",
+--- a/locales/de.json
++++ b/locales/de.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Brauchen Sie Hilfe? Wir antworten in der Regel innerhalb eines Werktages."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Versandoptionen werden an der Kasse angezeigt.",
+       "shipping_headline": "Kostenloser Standardversand",
+       "estimate_to_country": "Voraussichtliche Lieferung nach {{ country }}: ",
+       "estimate_default": "Voraussichtliche Lieferung: ",
+@@ -310,11 +311,13 @@
+       "shipping_details_body": "Standardversand ist für diesen Artikel kostenlos, sofern verfügbar. Express-Upgrades und genaue Versandoptionen werden vor der Zahlung angezeigt.",
+       "security_details_body": "Zahlungen sind verschlüsselt und werden sicher von unseren Zahlungsanbietern verarbeitet. Wir speichern deine vollständige Kartennummer nicht.",
+       "privacy_link_label": "Datenschutzerklärung ansehen",
+-      "returns_headline": "30 Tage Rückgabe & Umtausch",
+-      "returns_summary": "Dieser Artikel ist rückgabefähig, wenn er ungetragen und ungewaschen ist und die Etiketten dran sind.",
++      "returns_headline": "Rückgabe berechtigter Artikel",
++      "returns_summary": "Beantragen Sie die Rückgabe oder den Umtausch berechtigter Artikel innerhalb von 30 Tagen nach Lieferung.",
+       "returns_details_label": "Rückgaberichtlinie",
+-      "returns_eligible": "Dieser Artikel kann innerhalb von 30 Tagen nach Lieferung zurückgegeben oder umgetauscht werden, wenn er ungetragen, ungewaschen und mit Etiketten zurückgesendet wird.",
+-      "returns_exclusions": "Sale-Endartikel, personalisierte Artikel, Bademode und Unterwäsche können ausgeschlossen sein.",
++      "returns_eligible": "Berechtigte Artikel müssen ungetragen, ungewaschen und mit befestigten Etiketten zurückgegeben werden.",
++      "returns_exclusions": "Bademode, Unterwäsche, als vom Umtausch ausgeschlossen verkaufte Artikel und Geschenkkarten sind ausgeschlossen. Bedingungen und Ausnahmen finden Sie in der vollständigen Rückgaberichtlinie.",
++      "returns_damaged": "Beschädigter oder mangelhafter Artikel? Kontaktieren Sie den Support innerhalb von 7 Tagen mit Fotos.",
++      "returns_shipping": "Die Rücksendekosten trägt der Kunde, es sei denn, der Artikel kam beschädigt oder mangelhaft an.",
+       "returns_full_link_label": "Vollständige Rückgaberichtlinie ansehen",
+       "security_headline": "Sicherer Checkout",
+       "security_summary": "Verschlüsselte Zahlung. Gängige Karten und Express-Checkout-Optionen werden akzeptiert.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Versand nach {{ country }}. Standardversand ist enthalten; genaue Lieferprognose und mögliche Express-Upgrades erscheinen vor der Zahlung."
+     },
+     "footer": {
++      "cookie_preferences": "Cookie-Einstellungen",
++      "cookie_preferences_unavailable": "Die Cookie-Einstellungen konnten nicht geöffnet werden. Bitte versuchen Sie es erneut.",
+       "payment": "Zahlungsmethoden"
+     },
+     "featured_blog": {
+--- a/locales/el.json
++++ b/locales/el.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Χρειάζεστε βοήθεια; Συνήθως απαντάμε εντός μιας εργάσιμης ημέρας."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Δείτε τις επιλογές αποστολής στο ταμείο.",
+       "shipping_headline": "Δωρεάν τυπική αποστολή",
+       "estimate_to_country": "Εκτιμώμενη παράδοση σε {{ country }}: ",
+       "estimate_default": "Εκτιμώμενη παράδοση: ",
+@@ -310,11 +311,13 @@
+       "shipping_details_body": "Η τυπική αποστολή είναι δωρεάν για αυτό το προϊόν όπου είναι διαθέσιμη. Οι αναβαθμίσεις express και οι ακριβείς επιλογές μεταφορέα εμφανίζονται πριν από την πληρωμή.",
+       "security_details_body": "Οι πληρωμές είναι κρυπτογραφημένες και επεξεργάζονται με ασφάλεια από τους παρόχους πληρωμών μας. Δεν αποθηκεύουμε τον πλήρη αριθμό κάρτας σας.",
+       "privacy_link_label": "Δείτε την πολιτική απορρήτου",
+-      "returns_headline": "Επιστροφές και αλλαγές 30 ημερών",
+-      "returns_summary": "Αυτό το προϊόν επιστρέφεται αν είναι αφόρετο, άπλυτο και με ετικέτες.",
++      "returns_headline": "Επιστροφές επιλέξιμων ειδών",
++      "returns_summary": "Ζητήστε επιστροφή ή αλλαγή επιλέξιμων ειδών εντός 30 ημερών από την παράδοση.",
+       "returns_details_label": "Πολιτική επιστροφών",
+-      "returns_eligible": "Αυτό το προϊόν μπορεί να επιστραφεί ή να αλλαχθεί εντός 30 ημερών από την παράδοση εάν είναι αφόρετο, άπλυτο και επιστραφεί με τις ετικέτες.",
+-      "returns_exclusions": "Τελικές προσφορές, εξατομικευμένα είδη, μαγιό και εσώρουχα μπορεί να εξαιρούνται.",
++      "returns_eligible": "Τα επιλέξιμα είδη πρέπει να είναι αφόρετα, άπλυτα και να επιστρέφονται με τις ετικέτες τους.",
++      "returns_exclusions": "Εξαιρούνται τα μαγιό, τα εσώρουχα, τα είδη οριστικής πώλησης και οι δωροκάρτες. Δείτε την πλήρη πολιτική επιστροφών για τους όρους και τις εξαιρέσεις.",
++      "returns_damaged": "Κατεστραμμένο ή ελαττωματικό είδος; Επικοινωνήστε με την υποστήριξη εντός 7 ημερών, επισυνάπτοντας φωτογραφίες.",
++      "returns_shipping": "Ο πελάτης πληρώνει τα έξοδα επιστροφής, εκτός αν το είδος παραδόθηκε κατεστραμμένο ή ελαττωματικό.",
+       "returns_full_link_label": "Δείτε την πλήρη πολιτική επιστροφών",
+       "security_headline": "Ασφαλές ταμείο",
+       "security_summary": "Κρυπτογραφημένη πληρωμή. Αποδεκτές οι κύριες κάρτες και επιλογές express ταμείου.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Αποστολή προς {{ country }}. Η τυπική αποστολή περιλαμβάνεται· η ακριβής εκτίμηση παράδοσης και τυχόν αναβάθμιση express εμφανίζονται πριν από την πληρωμή."
+     },
+     "footer": {
++      "cookie_preferences": "Προτιμήσεις cookie",
++      "cookie_preferences_unavailable": "Δεν ήταν δυνατό το άνοιγμα των προτιμήσεων cookie. Δοκιμάστε ξανά.",
+       "payment": "Μέθοδοι πληρωμής"
+     },
+     "featured_blog": {
+--- a/locales/en.default.json
++++ b/locales/en.default.json
+@@ -269,6 +269,7 @@
+       "assistance_note": "Need help? We typically reply within one business day."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "See shipping options at checkout.",
+       "shipping_headline": "Standard shipping included",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -277,11 +278,13 @@
+       "change_short": "Change",
+       "shipping_details_label": "Shipping details",
+       "shipping_details_body": "Standard shipping is included in product prices where available. Express upgrades and exact carrier options are shown before payment.",
+-      "returns_headline": "30-day returns & exchanges",
+-      "returns_summary": "This item is returnable if unworn, unwashed, and tags are attached.",
++      "returns_headline": "Returns on eligible items",
++      "returns_summary": "Request a return or exchange within 30 days of delivery for eligible items.",
+       "returns_details_label": "Return policy",
+-      "returns_eligible": "This item can be returned or exchanged within 30 days of delivery if unworn, unwashed, and returned with tags attached.",
+-      "returns_exclusions": "Final-sale, personalized, swimwear, and intimate items may be excluded.",
++      "returns_eligible": "Eligible items must be unworn, unwashed, and returned with tags attached.",
++      "returns_exclusions": "Swimwear, intimate items, final-sale items, and gift cards are excluded. See the full return policy for eligibility and exceptions.",
++      "returns_damaged": "Damaged or defective item? Contact support within 7 days with photos.",
++      "returns_shipping": "Return shipping is customer-paid unless the item arrived damaged or defective.",
+       "returns_full_link_label": "View full return policy",
+       "security_headline": "Secure checkout",
+       "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+@@ -518,6 +521,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Cookie preferences",
++      "cookie_preferences_unavailable": "Cookie preferences could not open. Please try again.",
+       "payment": "Payment methods"
+     },
+     "featured_blog": {
+--- a/locales/es.json
++++ b/locales/es.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "¿Necesitas ayuda? Normalmente respondemos dentro de un día hábil."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Consulta las opciones de envío al finalizar la compra.",
+       "shipping_headline": "Envío estándar gratis",
+       "estimate_to_country": "Entrega estimada a {{ country }}: ",
+       "estimate_default": "Entrega estimada: ",
+@@ -314,11 +315,13 @@
+       "shipping_details_body": "El envío estándar es gratis para este artículo donde esté disponible. Las opciones de envío exprés y el transportista exacto aparecen antes del pago.",
+       "security_details_body": "Los pagos están cifrados y son procesados de forma segura por nuestros proveedores de pago. No almacenamos el número completo de tu tarjeta.",
+       "privacy_link_label": "Ver política de privacidad",
+-      "returns_headline": "Devoluciones y cambios en 30 días",
+-      "returns_summary": "Este artículo es retornable si está sin usar, sin lavar y con etiquetas.",
++      "returns_headline": "Devoluciones de artículos elegibles",
++      "returns_summary": "Solicita la devolución o el cambio de artículos elegibles dentro de los 30 días posteriores a la entrega.",
+       "returns_details_label": "Política de devolución",
+-      "returns_eligible": "Este artículo puede devolverse o cambiarse dentro de 30 días desde la entrega si está sin usar, sin lavar y se devuelve con las etiquetas.",
+-      "returns_exclusions": "Los artículos de venta final, personalizados, trajes de baño y ropa íntima pueden estar excluidos.",
++      "returns_eligible": "Los artículos elegibles deben estar sin usar, sin lavar y devolverse con las etiquetas puestas.",
++      "returns_exclusions": "Quedan excluidos los trajes de baño, la ropa íntima, los artículos de venta final y las tarjetas de regalo. Consulta la política completa para conocer los requisitos y las excepciones.",
++      "returns_damaged": "¿Artículo dañado o defectuoso? Contacta a soporte dentro de 7 días y adjunta fotos.",
++      "returns_shipping": "El envío de devolución corre por cuenta del cliente, excepto si el artículo llegó dañado o defectuoso.",
+       "returns_full_link_label": "Ver política de devolución completa",
+       "security_headline": "Pago seguro",
+       "security_summary": "Pago cifrado. Aceptamos tarjetas principales y opciones de pago exprés.",
+@@ -519,6 +522,8 @@
+       "shipping_country_reassurance": "Envío a {{ country }}. El envío estándar está incluido; la estimación exacta de entrega y cualquier mejora exprés aparecen antes del pago."
+     },
+     "footer": {
++      "cookie_preferences": "Preferencias de cookies",
++      "cookie_preferences_unavailable": "No se pudieron abrir las preferencias de cookies. Inténtalo de nuevo.",
+       "payment": "Formas de pago"
+     },
+     "featured_blog": {
+--- a/locales/fi.json
++++ b/locales/fi.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Tarvitsetko apua? Vastaamme yleensä yhden arkipäivän kuluessa."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Katso toimitusvaihtoehdot kassalla.",
+       "shipping_headline": "Ilmainen vakiotoimitus",
+       "estimate_to_country": "Arvioitu toimitus maahan {{ country }}: ",
+       "estimate_default": "Arvioitu toimitus: ",
+@@ -310,11 +311,13 @@
+       "shipping_details_body": "Vakiotoimitus on ilmainen tälle tuotteelle siellä, missä saatavilla. Pikatoimitus­päivitykset ja tarkat kuljetus­vaihtoehdot näkyvät ennen maksua.",
+       "security_details_body": "Maksut on salattu ja maksupalveluntarjoajat käsittelevät ne turvallisesti. Emme tallenna täydellistä korttinumeroasi.",
+       "privacy_link_label": "Katso tietosuojakäytäntö",
+-      "returns_headline": "30 päivän palautukset ja vaihdot",
+-      "returns_summary": "Tämä tuote on palautettavissa, jos se on käyttämätön, pesemätön ja etiketit ovat kiinnitettyinä.",
++      "returns_headline": "Palautuskelpoisten tuotteiden palautukset",
++      "returns_summary": "Pyydä palautuskelpoisen tuotteen palautusta tai vaihtoa 30 päivän kuluessa toimituksesta.",
+       "returns_details_label": "Palautuskäytäntö",
+-      "returns_eligible": "Tämän tuotteen voi palauttaa tai vaihtaa 30 päivän kuluessa toimituksesta, jos se on käyttämätön, pesemätön ja palautetaan etiketit kiinnitettyinä.",
+-      "returns_exclusions": "Loppuunmyynti, räätälöidyt tuotteet, uima-asut ja alusvaatteet voivat olla poissuljettuja.",
++      "returns_eligible": "Palautuskelpoisten tuotteiden on oltava käyttämättömiä ja pesemättömiä, ja tuotelappujen on oltava kiinni.",
++      "returns_exclusions": "Uima-asut, alusvaatteet, lopullisena myyntinä myydyt tuotteet ja lahjakortit eivät kuulu palautusoikeuden piiriin. Katso ehdot ja poikkeukset täydellisistä palautusehdoista.",
++      "returns_damaged": "Vaurioitunut tai viallinen tuote? Ota yhteyttä asiakastukeen 7 päivän kuluessa ja liitä mukaan kuvat.",
++      "returns_shipping": "Asiakas maksaa palautuskulut, ellei tuote saapunut vaurioituneena tai viallisena.",
+       "returns_full_link_label": "Katso täydellinen palautuskäytäntö",
+       "security_headline": "Turvallinen kassa",
+       "security_summary": "Salattu maksu. Suurimmat kortit ja pikakassan vaihtoehdot hyväksytään.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Toimitus maahan {{ country }}. Vakiotoimitus sisältyy; tarkka toimitusarvio ja mahdollinen pikapäivitys näkyvät ennen maksua."
+     },
+     "footer": {
++      "cookie_preferences": "Evästeasetukset",
++      "cookie_preferences_unavailable": "Evästeasetuksia ei voitu avata. Yritä uudelleen.",
+       "payment": "Maksutavat"
+     },
+     "featured_blog": {
+--- a/locales/fr.json
++++ b/locales/fr.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Besoin d'aide ? Nous répondons généralement dans un délai d'un jour ouvrable."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Consultez les options de livraison au moment du paiement.",
+       "shipping_headline": "Livraison standard gratuite",
+       "estimate_to_country": "Livraison estimée vers {{ country }} : ",
+       "estimate_default": "Livraison estimée : ",
+@@ -314,11 +315,13 @@
+       "shipping_details_body": "La livraison standard est gratuite pour cet article lorsque disponible. Les options express et les transporteurs exacts s’affichent avant le paiement.",
+       "security_details_body": "Les paiements sont chiffrés et traités en toute sécurité par nos prestataires de paiement. Nous ne stockons pas votre numéro de carte complet.",
+       "privacy_link_label": "Voir la politique de confidentialité",
+-      "returns_headline": "Retours et échanges sous 30 jours",
+-      "returns_summary": "Cet article peut être retourné s’il est non porté, non lavé et avec les étiquettes.",
++      "returns_headline": "Retours des articles admissibles",
++      "returns_summary": "Demandez le retour ou l’échange des articles admissibles dans les 30 jours suivant la livraison.",
+       "returns_details_label": "Politique de retour",
+-      "returns_eligible": "Cet article peut être retourné ou échangé dans les 30 jours suivant la livraison s’il est non porté, non lavé et retourné avec ses étiquettes.",
+-      "returns_exclusions": "Les articles soldés, personnalisés, maillots de bain et sous-vêtements peuvent être exclus.",
++      "returns_eligible": "Les articles admissibles doivent être non portés, non lavés et retournés avec leurs étiquettes attachées.",
++      "returns_exclusions": "Les maillots de bain, les sous-vêtements, les articles en vente finale et les cartes-cadeaux sont exclus. Consultez la politique complète pour connaître les conditions et les exceptions.",
++      "returns_damaged": "Article endommagé ou défectueux ? Contactez l’assistance sous 7 jours avec des photos.",
++      "returns_shipping": "Les frais de retour sont à la charge du client, sauf si l’article est arrivé endommagé ou défectueux.",
+       "returns_full_link_label": "Voir la politique de retour complète",
+       "security_headline": "Paiement sécurisé",
+       "security_summary": "Paiement chiffré. Cartes principales et options de paiement express acceptées.",
+@@ -519,6 +522,8 @@
+       "shipping_country_reassurance": "Livraison vers {{ country }}. La livraison standard est incluse; l’estimation exacte et toute option express s’affichent avant le paiement."
+     },
+     "footer": {
++      "cookie_preferences": "Préférences de cookies",
++      "cookie_preferences_unavailable": "Impossible d’ouvrir les préférences de cookies. Veuillez réessayer.",
+       "payment": "Moyens de paiement"
+     },
+     "featured_blog": {
+--- a/locales/he.json
++++ b/locales/he.json
+@@ -3401,6 +3401,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "העדפות קובצי Cookie",
++      "cookie_preferences_unavailable": "לא ניתן לפתוח את העדפות קובצי ה-Cookie. נסו שוב.",
+       "payment": "שיטות תשלום"
+     },
+     "breadcrumbs": {
+@@ -3918,6 +3920,7 @@
+       "ssl_encrypted": "SSL מוצפן"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "אפשרויות המשלוח מוצגות בקופה.",
+       "shipping_headline": "משלוח רגיל חינם",
+       "estimate_to_country": "אספקה משוערת אל {{ country }}: ",
+       "estimate_default": "אספקה משוערת: ",
+@@ -3928,11 +3931,13 @@
+       "shipping_details_body": "משלוח רגיל הוא חינם עבור פריט זה היכן שזמין. שדרוגי משלוח אקספרס ואפשרויות מובילים מדויקות מוצגים לפני התשלום.",
+       "security_details_body": "התשלומים מוצפנים ומעובדים בצורה מאובטחת על ידי ספקי התשלום שלנו. איננו מאחסנים את מספר הכרטיס המלא שלך.",
+       "privacy_link_label": "צפה במדיניות הפרטיות",
+-      "returns_headline": "החזרות והחלפות תוך 30 יום",
+-      "returns_summary": "פריט זה ניתן להחזרה אם לא נלבש, לא נכבס, ועם תוויות.",
++      "returns_headline": "החזרת פריטים זכאים",
++      "returns_summary": "אפשר לבקש החזרה או החלפה של פריטים זכאים בתוך 30 יום מהמסירה.",
+       "returns_details_label": "מדיניות החזרות",
+-      "returns_eligible": "פריט זה ניתן להחזרה או החלפה תוך 30 יום מהאספקה אם לא נלבש, לא נכבס והוחזר עם התוויות.",
+-      "returns_exclusions": "פריטי מבצע סופי, מותאמים אישית, בגדי ים והלבשה תחתונה עשויים להיות מוחרגים.",
++      "returns_eligible": "פריטים זכאים חייבים להיות ללא שימוש וללא כביסה, ולהישלח חזרה עם התוויות מחוברות.",
++      "returns_exclusions": "בגדי ים, הלבשה תחתונה, פריטים במכירה סופית וכרטיסי מתנה אינם כלולים. לתנאי הזכאות ולחריגים יש לעיין במדיניות ההחזרות המלאה.",
++      "returns_damaged": "פריט פגום או שניזוק? פנו לתמיכה בתוך 7 ימים וצרפו תמונות.",
++      "returns_shipping": "עלות משלוח ההחזרה חלה על הלקוח, אלא אם הפריט הגיע פגום או ניזוק.",
+       "returns_full_link_label": "ראה מדיניות החזרות מלאה",
+       "security_headline": "תשלום מאובטח",
+       "security_summary": "תשלום מוצפן. מתקבלים כרטיסים עיקריים ואפשרויות צ'אקאאוט אקספרס.",
+--- a/locales/hi.json
++++ b/locales/hi.json
+@@ -269,6 +269,7 @@
+       "assistance_note": "मदद की ज़रूरत है? हम आम तौर पर एक कार्यदिवस के भीतर उत्तर देते हैं।"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "चेकआउट पर शिपिंग के विकल्प देखें।",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -279,11 +280,13 @@
+       "shipping_details_body": "Standard shipping is free for this item where available. Express upgrades and exact carrier options are shown before payment.",
+       "security_details_body": "Payments are encrypted and processed securely by our payment providers. We do not store your full card number.",
+       "privacy_link_label": "View privacy policy",
+-      "returns_headline": "30-day returns & exchanges",
+-      "returns_summary": "This item is returnable if unworn, unwashed, and tags are attached.",
++      "returns_headline": "पात्र वस्तुओं की वापसी",
++      "returns_summary": "पात्र वस्तुओं की वापसी या बदलाव का अनुरोध डिलीवरी के 30 दिनों के भीतर करें।",
+       "returns_details_label": "Return policy",
+-      "returns_eligible": "This item can be returned or exchanged within 30 days of delivery if unworn, unwashed, and returned with tags attached.",
+-      "returns_exclusions": "Final-sale, personalized, swimwear, and intimate items may be excluded.",
++      "returns_eligible": "पात्र वस्तुएँ बिना पहनी और बिना धुली होनी चाहिए तथा लगे हुए टैग के साथ लौटाई जानी चाहिए।",
++      "returns_exclusions": "स्विमवियर, अंतर्वस्त्र, अंतिम बिक्री वाली वस्तुएँ और गिफ़्ट कार्ड शामिल नहीं हैं। पात्रता और अपवादों के लिए पूरी वापसी नीति देखें।",
++      "returns_damaged": "वस्तु क्षतिग्रस्त या दोषपूर्ण है? फ़ोटो के साथ 7 दिनों के भीतर सहायता टीम से संपर्क करें।",
++      "returns_shipping": "वापसी की शिपिंग का खर्च ग्राहक देता है, जब तक कि वस्तु क्षतिग्रस्त या दोषपूर्ण अवस्था में न पहुँची हो।",
+       "returns_full_link_label": "View full return policy",
+       "security_headline": "Secure checkout",
+       "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+@@ -518,6 +521,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "कुकी प्राथमिकताएँ",
++      "cookie_preferences_unavailable": "कुकी प्राथमिकताएँ नहीं खोली जा सकीं। कृपया फिर से कोशिश करें।",
+       "payment": "भुगतान के तरीके"
+     },
+     "featured_blog": {
+--- a/locales/hr-HR.json
++++ b/locales/hr-HR.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Trebate pomoć? Obično odgovaramo u roku od jednog radnog dana."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Opcije dostave pogledajte pri završetku kupnje.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -319,6 +320,8 @@
+       "returns_details_label": "Return policy",
+       "returns_eligible": "This item can be returned or exchanged within 30 days of delivery if unworn, unwashed, and returned with tags attached.",
+       "returns_exclusions": "Final-sale, personalized, swimwear, and intimate items may be excluded.",
++      "returns_damaged": "Oštećen ili neispravan artikl? Obratite se podršci u roku od 7 dana i priložite fotografije.",
++      "returns_shipping": "Troškove povratne dostave snosi kupac, osim ako je artikl stigao oštećen ili neispravan.",
+       "returns_full_link_label": "View full return policy",
+       "security_headline": "Secure checkout",
+       "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+@@ -519,6 +522,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Postavke kolačića",
++      "cookie_preferences_unavailable": "Nije moguće otvoriti postavke kolačića. Pokušajte ponovno.",
+       "payment": "Načini plaćanja"
+     },
+     "featured_blog": {
+--- a/locales/hu.json
++++ b/locales/hu.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Segítségre van szüksége? Általában egy munkanapon belül válaszolunk."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "A szállítási lehetőségeket a pénztárnál tekintheti meg.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -315,6 +316,8 @@
+       "returns_details_label": "Return policy",
+       "returns_eligible": "This item can be returned or exchanged within 30 days of delivery if unworn, unwashed, and returned with tags attached.",
+       "returns_exclusions": "Final-sale, personalized, swimwear, and intimate items may be excluded.",
++      "returns_damaged": "Sérült vagy hibás termék? Fényképekkel együtt lépjen kapcsolatba az ügyfélszolgálattal 7 napon belül.",
++      "returns_shipping": "A visszaküldés költségét a vásárló fizeti, kivéve, ha a termék sérülten vagy hibásan érkezett.",
+       "returns_full_link_label": "View full return policy",
+       "security_headline": "Secure checkout",
+       "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Sütibeállítások",
++      "cookie_preferences_unavailable": "Nem sikerült megnyitni a sütibeállításokat. Próbálja újra.",
+       "payment": "Fizetési módok"
+     },
+     "featured_blog": {
+--- a/locales/id.json
++++ b/locales/id.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Butuh bantuan? Kami biasanya membalas dalam satu hari kerja."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Lihat pilihan pengiriman saat checkout.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -315,6 +316,8 @@
+       "returns_details_label": "Return policy",
+       "returns_eligible": "This item can be returned or exchanged within 30 days of delivery if unworn, unwashed, and returned with tags attached.",
+       "returns_exclusions": "Final-sale, personalized, swimwear, and intimate items may be excluded.",
++      "returns_damaged": "Barang rusak atau cacat? Hubungi layanan pelanggan dalam 7 hari dengan menyertakan foto.",
++      "returns_shipping": "Biaya pengiriman pengembalian ditanggung pelanggan, kecuali barang tiba dalam keadaan rusak atau cacat.",
+       "returns_full_link_label": "View full return policy",
+       "security_headline": "Secure checkout",
+       "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Preferensi cookie",
++      "cookie_preferences_unavailable": "Preferensi cookie tidak dapat dibuka. Silakan coba lagi.",
+       "payment": "Metode pembayaran"
+     },
+     "featured_blog": {
+--- a/locales/it.json
++++ b/locales/it.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Hai bisogno di aiuto? Solitamente rispondiamo entro un giorno lavorativo."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Consulta le opzioni di spedizione al momento del pagamento.",
+       "shipping_headline": "Spedizione standard gratuita",
+       "estimate_to_country": "Consegna stimata in {{ country }}: ",
+       "estimate_default": "Consegna stimata: ",
+@@ -314,11 +315,13 @@
+       "shipping_details_body": "La spedizione standard è gratuita per questo articolo dove disponibile. Gli upgrade express e le opzioni del corriere vengono mostrati prima del pagamento.",
+       "security_details_body": "I pagamenti sono cifrati ed elaborati in modo sicuro dai nostri fornitori di pagamento. Non memorizziamo il numero completo della tua carta.",
+       "privacy_link_label": "Visualizza l’informativa sulla privacy",
+-      "returns_headline": "Resi e cambi entro 30 giorni",
+-      "returns_summary": "Questo articolo è restituibile se non indossato, non lavato e con le etichette.",
++      "returns_headline": "Resi degli articoli idonei",
++      "returns_summary": "Richiedi il reso o il cambio degli articoli idonei entro 30 giorni dalla consegna.",
+       "returns_details_label": "Politica di reso",
+-      "returns_eligible": "Questo articolo può essere reso o cambiato entro 30 giorni dalla consegna se non indossato, non lavato e restituito con le etichette.",
+-      "returns_exclusions": "Articoli in saldo finale, personalizzati, costumi da bagno e intimo possono essere esclusi.",
++      "returns_eligible": "Gli articoli idonei devono essere mai indossati, non lavati e restituiti con le etichette attaccate.",
++      "returns_exclusions": "Sono esclusi costumi da bagno, intimo, articoli in vendita definitiva e buoni regalo. Consulta la politica completa per condizioni ed eccezioni.",
++      "returns_damaged": "Articolo danneggiato o difettoso? Contatta l’assistenza entro 7 giorni con delle foto.",
++      "returns_shipping": "Le spese di spedizione del reso sono a carico del cliente, salvo se l’articolo è arrivato danneggiato o difettoso.",
+       "returns_full_link_label": "Vedi la politica di reso completa",
+       "security_headline": "Checkout sicuro",
+       "security_summary": "Pagamento cifrato. Accettiamo le principali carte e le opzioni di checkout express.",
+@@ -519,6 +522,8 @@
+       "shipping_country_reassurance": "Spedizione verso {{ country }}. La spedizione standard è inclusa; stima esatta ed eventuale upgrade express appaiono prima del pagamento."
+     },
+     "footer": {
++      "cookie_preferences": "Preferenze sui cookie",
++      "cookie_preferences_unavailable": "Impossibile aprire le preferenze sui cookie. Riprova.",
+       "payment": "Metodi di pagamento"
+     },
+     "featured_blog": {
+--- a/locales/ja.json
++++ b/locales/ja.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "お困りですか？通常、1営業日以内に返信します。"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "配送方法はチェックアウト時にご確認ください。",
+       "shipping_headline": "標準配送無料",
+       "estimate_to_country": "{{ country }}へのお届け予定: ",
+       "estimate_default": "お届け予定: ",
+@@ -310,11 +311,13 @@
+       "shipping_details_body": "本商品の標準配送は対象地域で無料です。エクスプレスへのアップグレードと配送業者の選択肢は、お支払い前に表示されます。",
+       "security_details_body": "決済は暗号化され、決済プロバイダーによって安全に処理されます。お客様のクレジットカード番号全体は保存されません。",
+       "privacy_link_label": "プライバシーポリシーを見る",
+-      "returns_headline": "30日間の返品・交換",
+-      "returns_summary": "未使用・未洗濯でタグが付いていれば返品可能です。",
++      "returns_headline": "返品対象商品の返品について",
++      "returns_summary": "返品対象商品の返品・交換は、配達から30日以内にご申請ください。",
+       "returns_details_label": "返品ポリシー",
+-      "returns_eligible": "本商品は、配送後30日以内に未使用・未洗濯・タグ付きで返送された場合、返品または交換が可能です。",
+-      "returns_exclusions": "ファイナルセール、パーソナライズ商品、水着、下着などは対象外となる場合があります。",
++      "returns_eligible": "返品対象商品は未着用・未洗濯で、タグが付いた状態で返送する必要があります。",
++      "returns_exclusions": "水着、下着、返品不可として販売された商品、ギフトカードは対象外です。対象条件と例外については返品ポリシー全文をご確認ください。",
++      "returns_damaged": "破損品・不良品が届いた場合は、7日以内に写真を添えてサポートにご連絡ください。",
++      "returns_shipping": "届いた商品が破損品・不良品の場合を除き、返品送料はお客様のご負担となります。",
+       "returns_full_link_label": "返品ポリシー全文を見る",
+       "security_headline": "安全なお支払い",
+       "security_summary": "暗号化された決済。主要カードおよびエクスプレス決済に対応しています。",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Cookieの設定",
++      "cookie_preferences_unavailable": "Cookieの設定を開けませんでした。もう一度お試しください。",
+       "payment": "決済方法"
+     },
+     "featured_blog": {
+--- a/locales/ko.json
++++ b/locales/ko.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "도움이 필요하신가요? 일반적으로 영업일 기준 1일 이내에 답변해 드립니다."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "결제 시 배송 옵션을 확인하세요.",
+       "shipping_headline": "무료 일반 배송",
+       "estimate_to_country": "{{ country }} 예상 도착: ",
+       "estimate_default": "예상 도착: ",
+@@ -310,11 +311,13 @@
+       "shipping_details_body": "이 상품의 일반 배송은 가능한 지역에서 무료입니다. 빠른 배송 옵션과 정확한 운송사 선택은 결제 전에 표시됩니다.",
+       "security_details_body": "결제는 암호화되며, 결제 제공업체에서 안전하게 처리됩니다. 카드 번호 전체는 저장되지 않습니다.",
+       "privacy_link_label": "개인정보처리방침 보기",
+-      "returns_headline": "30일 반품 및 교환",
+-      "returns_summary": "이 상품은 착용하지 않고 세탁하지 않으며 태그가 부착되어 있으면 반품 가능합니다.",
++      "returns_headline": "반품 가능한 상품의 반품 안내",
++      "returns_summary": "반품 가능한 상품은 배송 완료 후 30일 이내에 반품 또는 교환을 요청하세요.",
+       "returns_details_label": "반품 정책",
+-      "returns_eligible": "이 상품은 배송 후 30일 이내에 착용하지 않고 세탁하지 않으며 태그가 부착된 상태로 반품되면 반품 또는 교환이 가능합니다.",
+-      "returns_exclusions": "최종 세일, 맞춤 상품, 수영복, 속옷은 제외될 수 있습니다.",
++      "returns_eligible": "반품 가능한 상품은 착용하거나 세탁하지 않은 상태여야 하며, 태그가 부착된 채로 반송해야 합니다.",
++      "returns_exclusions": "수영복, 속옷, 반품 불가로 판매된 상품 및 기프트 카드는 제외됩니다. 조건과 예외는 전체 반품 정책을 확인하세요.",
++      "returns_damaged": "상품이 손상되었거나 불량인가요? 7일 이내에 사진과 함께 고객 지원팀에 문의하세요.",
++      "returns_shipping": "상품이 손상되거나 불량인 상태로 도착한 경우를 제외하고 반품 배송비는 고객이 부담합니다.",
+       "returns_full_link_label": "전체 반품 정책 보기",
+       "security_headline": "안전한 결제",
+       "security_summary": "암호화된 결제. 주요 카드 및 간편 결제 옵션이 지원됩니다.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "쿠키 설정",
++      "cookie_preferences_unavailable": "쿠키 설정을 열 수 없습니다. 다시 시도해 주세요.",
+       "payment": "결제 방법"
+     },
+     "featured_blog": {
+--- a/locales/lt-LT.json
++++ b/locales/lt-LT.json
+@@ -308,6 +308,7 @@
+       "assistance_note": "Reikia pagalbos? Paprastai atsakome per vieną darbo dieną."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Pristatymo būdus peržiūrėkite atsiskaitydami.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -323,6 +324,8 @@
+       "returns_details_label": "Return policy",
+       "returns_eligible": "This item can be returned or exchanged within 30 days of delivery if unworn, unwashed, and returned with tags attached.",
+       "returns_exclusions": "Final-sale, personalized, swimwear, and intimate items may be excluded.",
++      "returns_damaged": "Prekė pažeista ar nekokybiška? Per 7 dienas susisiekite su klientų aptarnavimo skyriumi ir pridėkite nuotraukas.",
++      "returns_shipping": "Grąžinimo siuntimo išlaidas apmoka klientas, nebent prekė buvo pristatyta pažeista arba nekokybiška.",
+       "returns_full_link_label": "View full return policy",
+       "security_headline": "Secure checkout",
+       "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+@@ -529,6 +532,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Slapukų nuostatos",
++      "cookie_preferences_unavailable": "Nepavyko atidaryti slapukų nuostatų. Bandykite dar kartą.",
+       "payment": "Mokėjimo būdai"
+     },
+     "featured_blog": {
+--- a/locales/nb.json
++++ b/locales/nb.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Trenger du hjelp? Vi svarer vanligvis innen én virkedag."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Se leveringsalternativer i kassen.",
+       "shipping_headline": "Gratis standardfrakt",
+       "estimate_to_country": "Estimert levering til {{ country }}: ",
+       "estimate_default": "Estimert levering: ",
+@@ -315,6 +316,8 @@
+       "returns_details_label": "Returpolicy",
+       "returns_eligible": "Denne varen kan returneres eller byttes innen 30 dager etter levering hvis den er ubrukt, uvasket og returneres med merkelapper.",
+       "returns_exclusions": "Sluttsalg, personaliserte varer, badetøy og undertøy kan være ekskludert.",
++      "returns_damaged": "Skadet eller defekt vare? Kontakt kundestøtte innen 7 dager og legg ved bilder.",
++      "returns_shipping": "Kunden betaler returfrakten, med mindre varen kom frem skadet eller defekt.",
+       "returns_full_link_label": "Se hele returpolicyen",
+       "security_headline": "Sikker betaling",
+       "security_summary": "Kryptert betaling. Store kort og ekspress-checkout-alternativer aksepteres.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Frakt til {{ country }}. Standard frakt er inkludert; nøyaktig leveringsestimat og eventuell ekspressoppgradering vises før betaling."
+     },
+     "footer": {
++      "cookie_preferences": "Innstillinger for informasjonskapsler",
++      "cookie_preferences_unavailable": "Innstillingene for informasjonskapsler kunne ikke åpnes. Prøv igjen.",
+       "payment": "Betalingsmåter"
+     },
+     "featured_blog": {
+--- a/locales/nl.json
++++ b/locales/nl.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Hulp nodig? Wij antwoorden doorgaans binnen één werkdag."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Bekijk de verzendopties bij het afrekenen.",
+       "shipping_headline": "Gratis standaardverzending",
+       "estimate_to_country": "Geschatte levering naar {{ country }}: ",
+       "estimate_default": "Geschatte levering: ",
+@@ -310,11 +311,13 @@
+       "shipping_details_body": "Standaardverzending is gratis voor dit artikel waar beschikbaar. Express-upgrades en exacte vervoerderopties worden vóór de betaling getoond.",
+       "security_details_body": "Betalingen worden versleuteld en veilig verwerkt door onze betalingsproviders. We slaan je volledige kaartnummer niet op.",
+       "privacy_link_label": "Privacybeleid bekijken",
+-      "returns_headline": "Retourneren en ruilen binnen 30 dagen",
+-      "returns_summary": "Dit artikel kan worden geretourneerd als het ongedragen, ongewassen en met labels is.",
++      "returns_headline": "Retourneren van in aanmerking komende artikelen",
++      "returns_summary": "Vraag binnen 30 dagen na levering een retour of omruiling aan voor artikelen die daarvoor in aanmerking komen.",
+       "returns_details_label": "Retourbeleid",
+-      "returns_eligible": "Dit artikel kan binnen 30 dagen na levering worden geretourneerd of geruild als het ongedragen, ongewassen en met labels wordt teruggestuurd.",
+-      "returns_exclusions": "Final-sale, gepersonaliseerde, badkleding en ondergoed kunnen worden uitgesloten.",
++      "returns_eligible": "Deze artikelen moeten ongedragen en ongewassen zijn en met de aangehechte labels worden teruggestuurd.",
++      "returns_exclusions": "Badkleding, ondergoed, artikelen uit definitieve verkoop en cadeaubonnen zijn uitgesloten. Bekijk het volledige retourbeleid voor voorwaarden en uitzonderingen.",
++      "returns_damaged": "Beschadigd of defect artikel? Neem binnen 7 dagen contact op met de klantenservice en voeg foto's toe.",
++      "returns_shipping": "De klant betaalt de retourkosten, tenzij het artikel beschadigd of defect is aangekomen.",
+       "returns_full_link_label": "Bekijk het volledige retourbeleid",
+       "security_headline": "Veilige checkout",
+       "security_summary": "Versleutelde betaling. Grote creditcards en express-checkout-opties worden geaccepteerd.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Verzending naar {{ country }}. Standaard verzending is inbegrepen; de exacte leveringsschatting en eventuele express-upgrade verschijnen vóór betaling."
+     },
+     "footer": {
++      "cookie_preferences": "Cookievoorkeuren",
++      "cookie_preferences_unavailable": "De cookievoorkeuren konden niet worden geopend. Probeer het opnieuw.",
+       "payment": "Betaalmethoden"
+     },
+     "featured_blog": {
+@@ -693,7 +698,7 @@
+         "family_sets": "Bijpassende gezinsvakantie-outfits | Strand en reizen Sets",
+         "family_matching": "Bijpassende outfits voor het hele gezin | Mama en ik",
+         "new_women_outfits": "Bijpassende outfits voor het hele gezin | Jurken, badkleding en familie Sets",
+-        "dresses": "Mama en ik Jurken | Moeder Dochter",
++        "dresses": "Jurken voor moeder en dochter | Dress Like Mommy",
+         "maxi_dresses": "Bijpassende maxi-jurken | Moeder en dochter",
+         "best_sellers": "Best verkochte Mama en ik-outfits | Jurken, Badpakken en meer",
+         "daddy_me": "Papa en ik Shirts, T-shirts en bijpassende outfits",
+@@ -707,7 +712,7 @@
+         "all": "Koop alle bijpassende outfits op één plek, inclusief mama en ik, papa en ik, koppels en familiesets. Comfortabele stijlen met snelle verzending.",
+         "mommy_and_me": "Koop mama en mij-outfits, jurken, badpakken en bijpassende sets voor verjaardagen, familiefoto's, vakanties en alledaagse twinning-momenten.",
+         "spring_matching": "Koop paasjurken voor mama en mij en bijpassende lente-outfits voor de kerk, brunch, eieren zoeken, familiefoto's en andere seizoensvieringen.",
+-        "dresses": "Koop mama en mij-jurken en bijpassende moeder-dochterjurken voor foto's, feestjes, vakanties en verzorgde dagelijkse kleding.",
++        "dresses": "Ontdek bijpassende jurken voor moeder en dochter. Bekijk stijlen voor familiefoto’s, feestjes en vakanties en controleer de maten op de productpagina.",
+         "maxi_dresses": "Shop maxi-jurken voor mama en mij en bijpassende maxi-jurken voor foto's, reizen, feesten en gemakkelijk verzorgde dagelijkse kleding.",
+         "swimsuits": "Koop bijpassende gezinsbadpakken en bijpassende moeder- en dochterbadpakken voor strandtrips, zwembaddagen, cruises en bijpassende zomerfoto's.",
+         "family_swimsuits": "Koop bijpassende gezinsbadpakken en gezinsbadkleding voor strandvakanties, zwembaddagen, cruises en bijpassende zomerfoto's.",
+--- a/locales/no.json
++++ b/locales/no.json
+@@ -3333,6 +3333,8 @@
+       "shipping_country_reassurance": "Frakt til {{ country }}. Standard frakt er inkludert; nøyaktig leveringsestimat og eventuell ekspressoppgradering vises før betaling."
+     },
+     "footer": {
++      "cookie_preferences": "Innstillinger for informasjonskapsler",
++      "cookie_preferences_unavailable": "Innstillingene for informasjonskapsler kunne ikke åpnes. Prøv igjen.",
+       "payment": "Betalingsmåter"
+     },
+     "featured_blog": {
+@@ -3865,6 +3867,7 @@
+       "ssl_encrypted": "SSL kryptert"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Se leveringsalternativer i kassen.",
+       "shipping_headline": "Gratis standardfrakt",
+       "estimate_to_country": "Estimert levering til {{ country }}: ",
+       "estimate_default": "Estimert levering: ",
+@@ -3875,11 +3878,13 @@
+       "shipping_details_body": "Standardfrakt er gratis for denne varen der det er tilgjengelig. Ekspressoppgraderinger og nøyaktige fraktalternativer vises før betaling.",
+       "security_details_body": "Betalinger er kryptert og behandles sikkert av våre betalingsleverandører. Vi lagrer ikke ditt fullstendige kortnummer.",
+       "privacy_link_label": "Se personvernerklæringen",
+-      "returns_headline": "30 dagers retur og bytte",
+-      "returns_summary": "Denne varen kan returneres hvis den er ubrukt, uvasket og har merkelapper.",
++      "returns_headline": "Retur av kvalifiserte varer",
++      "returns_summary": "Be om retur eller bytte av kvalifiserte varer innen 30 dager etter levering.",
+       "returns_details_label": "Returpolicy",
+-      "returns_eligible": "Denne varen kan returneres eller byttes innen 30 dager etter levering hvis den er ubrukt, uvasket og returneres med merkelapper.",
+-      "returns_exclusions": "Sluttsalg, personaliserte varer, badetøy og undertøy kan være ekskludert.",
++      "returns_eligible": "Kvalifiserte varer må være ubrukte, uvaskede og returneres med merkelappene på.",
++      "returns_exclusions": "Badetøy, undertøy, varer solgt som endelig salg og gavekort er unntatt. Se de fullstendige returvilkårene for betingelser og unntak.",
++      "returns_damaged": "Skadet eller defekt vare? Kontakt kundestøtte innen 7 dager og legg ved bilder.",
++      "returns_shipping": "Kunden betaler returfrakten, med mindre varen kom frem skadet eller defekt.",
+       "returns_full_link_label": "Se hele returpolicyen",
+       "security_headline": "Sikker betaling",
+       "security_summary": "Kryptert betaling. Store kort og ekspress-checkout-alternativer aksepteres.",
+--- a/locales/pl.json
++++ b/locales/pl.json
+@@ -308,6 +308,7 @@
+       "assistance_note": "Potrzebujesz pomocy? Zazwyczaj odpowiadamy w ciągu jednego dnia roboczego."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Sprawdź opcje dostawy przy finalizacji zakupu.",
+       "shipping_headline": "Darmowa wysyłka standardowa",
+       "estimate_to_country": "Szacowana dostawa do {{ country }}: ",
+       "estimate_default": "Szacowana dostawa: ",
+@@ -318,11 +319,13 @@
+       "shipping_details_body": "Standardowa wysyłka jest darmowa dla tego produktu, gdy jest dostępna. Opcje przyspieszonej wysyłki i przewoźnika są wyświetlane przed płatnością.",
+       "security_details_body": "Płatności są szyfrowane i przetwarzane bezpiecznie przez naszych dostawców płatności. Nie przechowujemy pełnego numeru karty.",
+       "privacy_link_label": "Zobacz politykę prywatności",
+-      "returns_headline": "30 dni na zwrot i wymianę",
+-      "returns_summary": "Ten produkt można zwrócić, jeśli jest nieużywany, nieprany i z metkami.",
++      "returns_headline": "Zwroty kwalifikujących się produktów",
++      "returns_summary": "Poproś o zwrot lub wymianę kwalifikujących się produktów w ciągu 30 dni od dostawy.",
+       "returns_details_label": "Polityka zwrotów",
+-      "returns_eligible": "Ten produkt można zwrócić lub wymienić w ciągu 30 dni od dostawy, jeśli jest nieużywany, nieprany i zwrócony z metkami.",
+-      "returns_exclusions": "Produkty wyprzedaży, spersonalizowane, stroje kąpielowe i bielizna mogą być wyłączone.",
++      "returns_eligible": "Kwalifikujące się produkty muszą być nienoszone, nieprane i zwrócone z przymocowanymi metkami.",
++      "returns_exclusions": "Wyłączone są stroje kąpielowe, bielizna, produkty sprzedawane bez możliwości zwrotu i karty podarunkowe. Warunki i wyjątki znajdziesz w pełnej polityce zwrotów.",
++      "returns_damaged": "Produkt uszkodzony lub wadliwy? Skontaktuj się z obsługą w ciągu 7 dni i dołącz zdjęcia.",
++      "returns_shipping": "Koszty wysyłki zwrotnej ponosi klient, chyba że produkt dotarł uszkodzony lub wadliwy.",
+       "returns_full_link_label": "Zobacz pełną politykę zwrotów",
+       "security_headline": "Bezpieczny checkout",
+       "security_summary": "Zaszyfrowana płatność. Akceptujemy główne karty i ekspresowe opcje płatności.",
+@@ -529,6 +532,8 @@
+       "shipping_country_reassurance": "Wysyłka do {{ country }}. Standardowa wysyłka jest w cenie; dokładny termin i ewentualna opcja ekspresowa pojawią się przed płatnością."
+     },
+     "footer": {
++      "cookie_preferences": "Preferencje plików cookie",
++      "cookie_preferences_unavailable": "Nie udało się otworzyć preferencji plików cookie. Spróbuj ponownie.",
+       "payment": "Metody płatności"
+     },
+     "featured_blog": {
+--- a/locales/pt-BR.json
++++ b/locales/pt-BR.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Precisar de ajuda? Normalmente respondemos dentro de um dia útil."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Veja as opções de frete ao finalizar a compra.",
+       "shipping_headline": "Envio padrão grátis",
+       "estimate_to_country": "Entrega estimada para {{ country }}: ",
+       "estimate_default": "Entrega estimada: ",
+@@ -314,11 +315,13 @@
+       "shipping_details_body": "O envio padrão é grátis para este item onde disponível. Os upgrades para envio expresso e as opções da transportadora aparecem antes do pagamento.",
+       "security_details_body": "Os pagamentos são criptografados e processados com segurança pelos nossos provedores de pagamento. Não armazenamos o número completo do seu cartão.",
+       "privacy_link_label": "Ver política de privacidade",
+-      "returns_headline": "Trocas e devoluções em 30 dias",
+-      "returns_summary": "Este item é retornável se não usado, sem lavar e com etiquetas.",
++      "returns_headline": "Devolução de itens elegíveis",
++      "returns_summary": "Solicite a devolução ou troca de itens elegíveis em até 30 dias após a entrega.",
+       "returns_details_label": "Política de devolução",
+-      "returns_eligible": "Este item pode ser devolvido ou trocado em até 30 dias após a entrega se não tiver sido usado, lavado e for devolvido com as etiquetas.",
+-      "returns_exclusions": "Itens de promoção final, personalizados, trajes de banho e peças íntimas podem estar excluídos.",
++      "returns_eligible": "Os itens elegíveis devem estar sem uso, sem lavagem e ser devolvidos com as etiquetas afixadas.",
++      "returns_exclusions": "Moda praia, peças íntimas, itens de venda final e cartões-presente estão excluídos. Consulte a política completa para conhecer os critérios e as exceções.",
++      "returns_damaged": "Item danificado ou com defeito? Entre em contato com o suporte em até 7 dias e envie fotos.",
++      "returns_shipping": "O frete de devolução é pago pelo cliente, exceto se o item chegou danificado ou com defeito.",
+       "returns_full_link_label": "Ver política de devolução completa",
+       "security_headline": "Checkout seguro",
+       "security_summary": "Pagamento criptografado. Aceitamos os principais cartões e opções de checkout expresso.",
+@@ -519,6 +522,8 @@
+       "shipping_country_reassurance": "Envio para {{ country }}. O envio padrão está incluído; a estimativa exata e qualquer upgrade expresso aparecem antes do pagamento."
+     },
+     "footer": {
++      "cookie_preferences": "Preferências de cookies",
++      "cookie_preferences_unavailable": "Não foi possível abrir as preferências de cookies. Tente novamente.",
+       "payment": "Formas de pagamento"
+     },
+     "featured_blog": {
+--- a/locales/pt-PT.json
++++ b/locales/pt-PT.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Precisar de ajuda? Normalmente respondemos dentro de um dia útil."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Veja as opções de envio ao finalizar a compra.",
+       "shipping_headline": "Envio padrão gratuito",
+       "estimate_to_country": "Entrega estimada para {{ country }}: ",
+       "estimate_default": "Entrega estimada: ",
+@@ -319,6 +320,8 @@
+       "returns_details_label": "Política de devolução",
+       "returns_eligible": "Este artigo pode ser devolvido ou trocado dentro de 30 dias após a entrega se não tiver sido usado, lavado e for devolvido com as etiquetas.",
+       "returns_exclusions": "Artigos em saldo final, personalizados, fatos de banho e roupa interior podem estar excluídos.",
++      "returns_damaged": "Artigo danificado ou com defeito? Contacte o apoio ao cliente no prazo de 7 dias e envie fotografias.",
++      "returns_shipping": "Os portes de devolução são pagos pelo cliente, exceto se o artigo chegou danificado ou com defeito.",
+       "returns_full_link_label": "Ver política de devolução completa",
+       "security_headline": "Checkout seguro",
+       "security_summary": "Pagamento cifrado. Aceitamos os principais cartões e opções de checkout expresso.",
+@@ -519,6 +522,8 @@
+       "shipping_country_reassurance": "Envio para {{ country }}. O envio padrão está incluído; a estimativa exata e qualquer upgrade expresso aparecem antes do pagamento."
+     },
+     "footer": {
++      "cookie_preferences": "Preferências de cookies",
++      "cookie_preferences_unavailable": "Não foi possível abrir as preferências de cookies. Tente novamente.",
+       "payment": "Métodos de pagamento"
+     },
+     "featured_blog": {
+--- a/locales/ro-RO.json
++++ b/locales/ro-RO.json
+@@ -304,6 +304,7 @@
+       "assistance_note": "Ai nevoie de ajutor? De obicei, răspundem în termen de o zi lucrătoare."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Consultați opțiunile de livrare la finalizarea comenzii.",
+       "shipping_headline": "Livrare standard inclusă",
+       "estimate_to_country": "Livrare estimată în {{ country }}: ",
+       "estimate_default": "Livrare estimată: ",
+@@ -319,6 +320,8 @@
+       "returns_details_label": "Return policy",
+       "returns_eligible": "This item can be returned or exchanged within 30 days of delivery if unworn, unwashed, and returned with tags attached.",
+       "returns_exclusions": "Final-sale, personalized, swimwear, and intimate items may be excluded.",
++      "returns_damaged": "Articol deteriorat sau defect? Contactați serviciul de asistență în termen de 7 zile și atașați fotografii.",
++      "returns_shipping": "Transportul returului este plătit de client, cu excepția cazului în care articolul a sosit deteriorat sau defect.",
+       "returns_full_link_label": "View full return policy",
+       "security_headline": "Secure checkout",
+       "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+@@ -519,6 +522,8 @@
+       "shipping_country_reassurance": "Livrare către {{ country }}. Livrarea standard este inclusă; estimarea exactă și orice upgrade expres apar înainte de plată."
+     },
+     "footer": {
++      "cookie_preferences": "Preferințe pentru cookie-uri",
++      "cookie_preferences_unavailable": "Preferințele pentru cookie-uri nu au putut fi deschise. Încercați din nou.",
+       "payment": "Metode de plată"
+     },
+     "featured_blog": {
+--- a/locales/ro.json
++++ b/locales/ro.json
+@@ -269,6 +269,7 @@
+       "assistance_note": "Ai nevoie de ajutor? De obicei, răspundem în termen de o zi lucrătoare."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Consultați opțiunile de livrare la finalizarea comenzii.",
+       "shipping_headline": "Livrare standard inclusă",
+       "estimate_to_country": "Livrare estimată în {{ country }}: ",
+       "estimate_default": "Livrare estimată: ",
+@@ -279,11 +280,13 @@
+       "shipping_details_body": "Livrarea standard este inclusă în prețurile produselor unde este disponibilă. Opțiunile express și transportatorul exact sunt afișate înainte de plată.",
+       "security_details_body": "Payments are encrypted and processed securely by our payment providers. We do not store your full card number.",
+       "privacy_link_label": "View privacy policy",
+-      "returns_headline": "30-day returns & exchanges",
+-      "returns_summary": "This item is returnable if unworn, unwashed, and tags are attached.",
++      "returns_headline": "Returul articolelor eligibile",
++      "returns_summary": "Solicitați returul sau schimbul articolelor eligibile în termen de 30 de zile de la livrare.",
+       "returns_details_label": "Return policy",
+-      "returns_eligible": "This item can be returned or exchanged within 30 days of delivery if unworn, unwashed, and returned with tags attached.",
+-      "returns_exclusions": "Final-sale, personalized, swimwear, and intimate items may be excluded.",
++      "returns_eligible": "Articolele eligibile trebuie să fie nepurtate, nespălate și returnate cu etichetele atașate.",
++      "returns_exclusions": "Costumele de baie, lenjeria intimă, articolele vândute fără drept de retur și cardurile cadou sunt excluse. Consultați politica integrală pentru condiții și excepții.",
++      "returns_damaged": "Articol deteriorat sau defect? Contactați serviciul de asistență în termen de 7 zile și atașați fotografii.",
++      "returns_shipping": "Transportul returului este plătit de client, cu excepția cazului în care articolul a sosit deteriorat sau defect.",
+       "returns_full_link_label": "View full return policy",
+       "security_headline": "Secure checkout",
+       "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+@@ -670,6 +673,8 @@
+       "shipping_country_reassurance": "Livrare către {{ country }}. Livrarea standard este inclusă; estimarea exactă și orice upgrade expres apar înainte de plată."
+     },
+     "footer": {
++      "cookie_preferences": "Preferințe pentru cookie-uri",
++      "cookie_preferences_unavailable": "Preferințele pentru cookie-uri nu au putut fi deschise. Încercați din nou.",
+       "payment": "Metode de plată"
+     },
+     "featured_blog": {
+--- a/locales/ru.json
++++ b/locales/ru.json
+@@ -308,6 +308,7 @@
+       "assistance_note": "Нужна помощь? Обычно мы отвечаем в течение одного рабочего дня."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Варианты доставки можно посмотреть при оформлении заказа.",
+       "shipping_headline": "Бесплатная стандартная доставка",
+       "estimate_to_country": "Ожидаемая доставка в {{ country }}: ",
+       "estimate_default": "Ожидаемая доставка: ",
+@@ -318,11 +319,13 @@
+       "shipping_details_body": "Стандартная доставка для этого товара бесплатна там, где доступна. Опции экспресс-доставки и точные варианты перевозчика отображаются до оплаты.",
+       "security_details_body": "Платежи шифруются и безопасно обрабатываются нашими платёжными провайдерами. Мы не храним полный номер вашей карты.",
+       "privacy_link_label": "Посмотреть политику конфиденциальности",
+-      "returns_headline": "30-дневный возврат и обмен",
+-      "returns_summary": "Этот товар можно вернуть, если он неношеный, нестираный и с бирками.",
++      "returns_headline": "Возврат товаров, соответствующих условиям",
++      "returns_summary": "Запросите возврат или обмен товаров, соответствующих условиям, в течение 30 дней после доставки.",
+       "returns_details_label": "Политика возврата",
+-      "returns_eligible": "Этот товар можно вернуть или обменять в течение 30 дней с момента доставки, если он неношеный, нестираный и возвращён с бирками.",
+-      "returns_exclusions": "Товары финальной распродажи, персонализированные товары, купальники и нижнее бельё могут быть исключены.",
++      "returns_eligible": "Такие товары должны быть неношеными, нестиранными и возвращаться с прикреплёнными бирками.",
++      "returns_exclusions": "Купальники, нижнее бельё, товары окончательной распродажи и подарочные карты исключены. Условия и исключения указаны в полной политике возврата.",
++      "returns_damaged": "Товар повреждён или имеет дефект? Обратитесь в поддержку в течение 7 дней и приложите фотографии.",
++      "returns_shipping": "Обратную доставку оплачивает покупатель, кроме случаев, когда товар прибыл повреждённым или с дефектом.",
+       "returns_full_link_label": "Посмотреть полную политику возврата",
+       "security_headline": "Безопасная оплата",
+       "security_summary": "Шифрованная оплата. Принимаются основные карты и экспресс-методы оформления заказа.",
+@@ -529,6 +532,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Настройки файлов cookie",
++      "cookie_preferences_unavailable": "Не удалось открыть настройки файлов cookie. Попробуйте ещё раз.",
+       "payment": "Способы оплаты"
+     },
+     "featured_blog": {
+--- a/locales/sk-SK.json
++++ b/locales/sk-SK.json
+@@ -308,6 +308,7 @@
+       "assistance_note": "Potrebujete pomoc? Zvyčajne odpovedáme do jedného pracovného dňa."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Možnosti dopravy nájdete pri platbe.",
+       "shipping_headline": "Standardní doprava zdarma",
+       "estimate_to_country": "Odhadované doručení do {{ country }}: ",
+       "estimate_default": "Odhadované doručení: ",
+@@ -323,6 +324,8 @@
+       "returns_details_label": "Zásady vrácení",
+       "returns_eligible": "Tuto položku lze vrátit nebo vyměnit do 30 dnů od doručení, pokud je nepoužitá, nevypraná a vrácená s visačkami.",
+       "returns_exclusions": "Zboží ve výprodeji, personalizované zboží, plavky a spodní prádlo mohou být vyloučeny.",
++      "returns_damaged": "Poškodený alebo chybný tovar? Do 7 dní kontaktujte podporu a priložte fotografie.",
++      "returns_shipping": "Náklady na spätnú dopravu hradí zákazník, pokiaľ tovar neprišiel poškodený alebo chybný.",
+       "returns_full_link_label": "Zobrazit úplné zásady vrácení",
+       "security_headline": "Zabezpečená pokladna",
+       "security_summary": "Šifrovaná platba. Přijímáme hlavní karty a expresní možnosti pokladny.",
+@@ -529,6 +532,8 @@
+       "shipping_country_reassurance": "Doprava do {{ country }}. Standardní doprava je v ceně; přesný odhad doručení a případné expresní rozšíření se zobrazí před platbou."
+     },
+     "footer": {
++      "cookie_preferences": "Predvoľby súborov cookie",
++      "cookie_preferences_unavailable": "Predvoľby súborov cookie sa nepodarilo otvoriť. Skúste to znova.",
+       "payment": "Spôsoby platby"
+     },
+     "featured_blog": {
+--- a/locales/sl-SI.json
++++ b/locales/sl-SI.json
+@@ -308,6 +308,7 @@
+       "assistance_note": "Potrebujete pomoč? Običajno odgovorimo v enem delovnem dnevu."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Možnosti dostave si oglejte ob zaključku nakupa.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -323,6 +324,8 @@
+       "returns_details_label": "Return policy",
+       "returns_eligible": "This item can be returned or exchanged within 30 days of delivery if unworn, unwashed, and returned with tags attached.",
+       "returns_exclusions": "Final-sale, personalized, swimwear, and intimate items may be excluded.",
++      "returns_damaged": "Poškodovan ali pokvarjen izdelek? V 7 dneh se obrnite na podporo in priložite fotografije.",
++      "returns_shipping": "Stroške povratne dostave plača kupec, razen če je izdelek prispel poškodovan ali pokvarjen.",
+       "returns_full_link_label": "View full return policy",
+       "security_headline": "Secure checkout",
+       "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+@@ -529,6 +532,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Nastavitve piškotkov",
++      "cookie_preferences_unavailable": "Nastavitev piškotkov ni bilo mogoče odpreti. Poskusite znova.",
+       "payment": "Načini plačila"
+     },
+     "featured_blog": {
+--- a/locales/sv.json
++++ b/locales/sv.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Behöver du hjälp? Vi svarar vanligtvis inom en arbetsdag."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Se fraktalternativ i kassan.",
+       "shipping_headline": "Fri standardfrakt",
+       "estimate_to_country": "Beräknad leverans till {{ country }}: ",
+       "estimate_default": "Beräknad leverans: ",
+@@ -310,11 +311,13 @@
+       "shipping_details_body": "Standardfrakt är gratis för denna vara där tillgänglig. Express-uppgraderingar och exakta fraktalternativ visas före betalning.",
+       "security_details_body": "Betalningar är krypterade och behandlas säkert av våra betalningsleverantörer. Vi lagrar inte ditt fullständiga kortnummer.",
+       "privacy_link_label": "Visa integritetspolicy",
+-      "returns_headline": "30 dagars retur och byte",
+-      "returns_summary": "Den här varan är returnerbar om den är oanvänd, otvättad och har etiketter.",
++      "returns_headline": "Retur av berättigade varor",
++      "returns_summary": "Begär retur eller byte av berättigade varor inom 30 dagar efter leverans.",
+       "returns_details_label": "Returpolicy",
+-      "returns_eligible": "Den här varan kan returneras eller bytas inom 30 dagar efter leverans om den är oanvänd, otvättad och returneras med etiketter.",
+-      "returns_exclusions": "Slutreaartiklar, personliga artiklar, baddräkter och underkläder kan vara uteslutna.",
++      "returns_eligible": "Berättigade varor måste vara oanvända, otvättade och returneras med etiketterna kvar.",
++      "returns_exclusions": "Badkläder, underkläder, varor sålda som slutgiltiga köp och presentkort är undantagna. Se den fullständiga returpolicyn för villkor och undantag.",
++      "returns_damaged": "Skadad eller defekt vara? Kontakta kundsupport inom 7 dagar och bifoga bilder.",
++      "returns_shipping": "Kunden betalar returfrakten, om inte varan anlände skadad eller defekt.",
+       "returns_full_link_label": "Se hela returpolicyn",
+       "security_headline": "Säker betalning",
+       "security_summary": "Krypterad betalning. Större kort och express-checkout-alternativ accepteras.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Frakt till {{ country }}. Standardfrakt ingår; exakt leveransestimat och eventuell expressuppgradering visas före betalning."
+     },
+     "footer": {
++      "cookie_preferences": "Cookieinställningar",
++      "cookie_preferences_unavailable": "Det gick inte att öppna cookieinställningarna. Försök igen.",
+       "payment": "Betalningsmetoder"
+     },
+     "featured_blog": {
+--- a/locales/th.json
++++ b/locales/th.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "ต้องการความช่วยเหลือ? โดยทั่วไปเราจะตอบกลับภายในหนึ่งวันทำการ"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "ดูตัวเลือกการจัดส่งในขั้นตอนชำระเงิน",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -315,6 +316,8 @@
+       "returns_details_label": "Return policy",
+       "returns_eligible": "This item can be returned or exchanged within 30 days of delivery if unworn, unwashed, and returned with tags attached.",
+       "returns_exclusions": "Final-sale, personalized, swimwear, and intimate items may be excluded.",
++      "returns_damaged": "สินค้าเสียหายหรือชำรุดหรือไม่? ติดต่อฝ่ายบริการลูกค้าภายใน 7 วัน พร้อมแนบรูปภาพ",
++      "returns_shipping": "ลูกค้าเป็นผู้ชำระค่าจัดส่งคืน เว้นแต่สินค้าจะมาถึงในสภาพเสียหายหรือชำรุด",
+       "returns_full_link_label": "View full return policy",
+       "security_headline": "Secure checkout",
+       "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "การตั้งค่าคุกกี้",
++      "cookie_preferences_unavailable": "ไม่สามารถเปิดการตั้งค่าคุกกี้ได้ โปรดลองอีกครั้ง",
+       "payment": "วิธีการชำระเงิน"
+     },
+     "featured_blog": {
+--- a/locales/tr.json
++++ b/locales/tr.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Yardıma mı ihtiyacınız var? Genellikle bir iş günü içinde yanıt veririz."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Kargo seçeneklerini ödeme adımında görebilirsiniz.",
+       "shipping_headline": "Ücretsiz standart kargo",
+       "estimate_to_country": "Tahmini teslimat {{ country }} ülkesine: ",
+       "estimate_default": "Tahmini teslimat: ",
+@@ -315,6 +316,8 @@
+       "returns_details_label": "İade politikası",
+       "returns_eligible": "Bu ürün, teslimattan sonraki 30 gün içinde giyilmemiş, yıkanmamış ve etiketleriyle birlikte iade edilirse iade veya değişim için uygundur.",
+       "returns_exclusions": "Son indirim, kişiselleştirilmiş ürünler, mayolar ve iç giyim hariç tutulabilir.",
++      "returns_damaged": "Ürün hasarlı veya kusurlu mu? Fotoğraflarla birlikte 7 gün içinde destek ekibiyle iletişime geçin.",
++      "returns_shipping": "Ürün hasarlı veya kusurlu olarak teslim edilmedikçe iade kargo ücretini müşteri öder.",
+       "returns_full_link_label": "Tam iade politikasını görüntüle",
+       "security_headline": "Güvenli ödeme",
+       "security_summary": "Şifreli ödeme. Başlıca kartlar ve ekspres ödeme seçenekleri kabul edilir.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Çerez tercihleri",
++      "cookie_preferences_unavailable": "Çerez tercihleri açılamadı. Lütfen tekrar deneyin.",
+       "payment": "Ödeme yöntemleri"
+     },
+     "featured_blog": {
+--- a/locales/vi.json
++++ b/locales/vi.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "Cần giúp đỡ? Chúng tôi thường trả lời trong vòng một ngày làm việc."
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "Xem các lựa chọn giao hàng khi thanh toán.",
+       "shipping_headline": "Free standard shipping",
+       "estimate_to_country": "Estimated delivery to {{ country }}: ",
+       "estimate_default": "Estimated delivery: ",
+@@ -315,6 +316,8 @@
+       "returns_details_label": "Return policy",
+       "returns_eligible": "This item can be returned or exchanged within 30 days of delivery if unworn, unwashed, and returned with tags attached.",
+       "returns_exclusions": "Final-sale, personalized, swimwear, and intimate items may be excluded.",
++      "returns_damaged": "Sản phẩm bị hư hỏng hoặc có lỗi? Hãy liên hệ bộ phận hỗ trợ trong vòng 7 ngày và gửi kèm ảnh.",
++      "returns_shipping": "Khách hàng chịu phí vận chuyển hàng trả lại, trừ khi sản phẩm được giao trong tình trạng hư hỏng hoặc có lỗi.",
+       "returns_full_link_label": "View full return policy",
+       "security_headline": "Secure checkout",
+       "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Tùy chọn cookie",
++      "cookie_preferences_unavailable": "Không thể mở tùy chọn cookie. Vui lòng thử lại.",
+       "payment": "Phương thức thanh toán"
+     },
+     "featured_blog": {
+--- a/locales/zh-CN.json
++++ b/locales/zh-CN.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "需要帮助吗？我们通常会在一个工作日内回复。"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "请在结账时查看配送选项。",
+       "shipping_headline": "免费标准配送",
+       "estimate_to_country": "预计送达 {{ country }}: ",
+       "estimate_default": "预计送达: ",
+@@ -315,6 +316,8 @@
+       "returns_details_label": "退货政策",
+       "returns_eligible": "本商品在送达后 30 天内,在未穿着、未清洗且吊牌完整的情况下,可以退货或换货。",
+       "returns_exclusions": "最终促销、定制商品、泳衣和内衣可能不可退货。",
++      "returns_damaged": "商品破损或存在缺陷？请在7天内联系客户支持并提供照片。",
++      "returns_shipping": "退货运费由客户承担，商品送达时已破损或存在缺陷的情况除外。",
+       "returns_full_link_label": "查看完整退货政策",
+       "security_headline": "安全结账",
+       "security_summary": "加密支付。支持主流银行卡和快捷结账方式。",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Cookie偏好设置",
++      "cookie_preferences_unavailable": "无法打开Cookie偏好设置。请重试。",
+       "payment": "付款方式"
+     },
+     "featured_blog": {
+--- a/locales/zh-TW.json
++++ b/locales/zh-TW.json
+@@ -300,6 +300,7 @@
+       "assistance_note": "需要幫助嗎？我們通常會在一個工作天內回覆。"
+     },
+     "purchase_confidence": {
++      "shipping_checkout": "請在結帳時查看配送選項。",
+       "shipping_headline": "免費標準配送",
+       "estimate_to_country": "預計送達 {{ country }}: ",
+       "estimate_default": "預計送達: ",
+@@ -315,6 +316,8 @@
+       "returns_details_label": "退貨政策",
+       "returns_eligible": "本商品在送達後 30 天內,在未穿著、未清洗且吊牌完整的情況下,可以退貨或換貨。",
+       "returns_exclusions": "最終促銷、訂製商品、泳裝和內衣可能不可退貨。",
++      "returns_damaged": "商品破損或有瑕疵？請在7天內聯絡客戶支援並提供照片。",
++      "returns_shipping": "退貨運費由客戶承擔，商品送達時已破損或有瑕疵的情況除外。",
+       "returns_full_link_label": "查看完整退貨政策",
+       "security_headline": "安全結帳",
+       "security_summary": "加密支付。支援主流卡片和快捷結帳方式。",
+@@ -509,6 +512,8 @@
+       "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+     },
+     "footer": {
++      "cookie_preferences": "Cookie偏好設定",
++      "cookie_preferences_unavailable": "無法開啟Cookie偏好設定。請再試一次。",
+       "payment": "付款方式"
+     },
+     "featured_blog": {
+--- a/sections/footer.liquid
++++ b/sections/footer.liquid
+@@ -4,6 +4,8 @@
+ {{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+ {{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+ {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
++{{ 'cookie-preferences.css' | asset_url | stylesheet_tag }}
++<script src="{{ 'cookie-preferences.js' | asset_url }}" defer="defer"></script>
+ 
+ 
+ 
+@@ -390,6 +392,26 @@
+         {%- elsif journal_blog != blank and section.settings.show_journal_link -%}
+           <small class="copyright__content"><a href="{{ journal_blog.url }}">{{ section.settings.journal_link_label | escape }}</a></small>
+         {%- endif -%}
++        <cookie-preferences
++          class="footer__cookie-preferences"
++          data-unavailable-message="{{ 'sections.footer.cookie_preferences_unavailable' | t | escape }}"
++        >
++          <button
++            type="button"
++            class="link link--text footer__cookie-preferences-button"
++            aria-haspopup="dialog"
++            aria-describedby="CookiePreferencesStatus-{{ section.id }}"
++          >
++            {{ 'sections.footer.cookie_preferences' | t | escape }}
++          </button>
++          <span
++            id="CookiePreferencesStatus-{{ section.id }}"
++            class="footer__cookie-preferences-status"
++            role="status"
++            aria-live="polite"
++            aria-atomic="true"
++          ></span>
++        </cookie-preferences>
+       </div>
+     </div>
+   </div>
+--- a/sections/main-product.liquid
++++ b/sections/main-product.liquid
+@@ -1061,9 +1061,15 @@
+                   assign pdp_sale_pct = 0
+                   assign pdp_show_price_badges = true
+                   assign pdp_use_variant_price = true
++                  assign pdp_show_price_range = false
++                  assign pdp_show_compare_at_price = true
+                   if has_matching_set_context
+                     assign pdp_show_price_badges = false
+-                    assign pdp_use_variant_price = false
++                    assign pdp_show_compare_at_price = false
++                    if product.selected_variant == nil
++                      assign pdp_use_variant_price = false
++                      assign pdp_show_price_range = true
++                    endif
+                   elsif pdp_variant.compare_at_price and pdp_variant.compare_at_price > pdp_variant.price
+                     assign pdp_diff = pdp_variant.compare_at_price | minus: pdp_variant.price
+                     assign pdp_diff_x100 = pdp_diff | times: 100
+@@ -1079,7 +1085,8 @@
+                   {%- render 'price',
+                     product: product,
+                     use_variant: pdp_use_variant_price,
+-                    show_price_range: has_matching_set_context,
++                    show_price_range: pdp_show_price_range,
++                    show_compare_at_price: pdp_show_compare_at_price,
+                     show_badges: pdp_show_price_badges,
+                     show_sold_out_badge: false,
+                     price_class: 'price--large'
+@@ -2829,7 +2836,6 @@
+   })();
+ </script>
+ 
+-{% render 'product-faq-schema', product: product %}
+ 
+ {% schema %}
+ {
+--- a/snippets/jsonld-seo.liquid
++++ b/snippets/jsonld-seo.liquid
+@@ -230,8 +230,6 @@
+     {%- assign currency_code = 'USD' -%}
+   {%- endif -%}
+   {%- assign shipping_country_code = localization.country.iso_code | default: shop.address.country_code | append: '' | strip | upcase -%}
+-  {%- assign price_valid_until_year = 'now' | date: '%Y' | plus: 1 -%}
+-  {%- assign price_valid_until = price_valid_until_year | append: '-12-31' -%}
+   {%- assign taxonomy_category1 = product.metafields.custom.category1 | default: '' | strip -%}
+   {%- assign taxonomy_subcategory = product.metafields.custom.subcategory | default: '' | strip -%}
+   {%- assign taxonomy_type = product.metafields.custom.type | default: product.type | default: '' | strip -%}
+@@ -299,7 +297,6 @@
+       "@type": "Offer",
+       "priceCurrency": {{ currency_code | json }},
+       "price": {{ selected_variant_price | json }},
+-      "priceValidUntil": {{ price_valid_until | json }},
+       "availability": "https://schema.org/{% if selected_variant.available %}InStock{% else %}OutOfStock{% endif %}",
+       "url": {{ selected_variant_offer_url | json }},
+       "sku": {{ selected_sku_value | json }},
+@@ -316,16 +313,6 @@
+       "gtin14": {{ selected_variant_barcode | json }},
+       {%- endif -%}
+       "itemCondition": "https://schema.org/NewCondition",
+-      "hasMerchantReturnPolicy": {
+-        "@type": "MerchantReturnPolicy",
+-        {%- if shipping_country_code != blank -%}
+-        "applicableCountry": {{ shipping_country_code | json }},
+-        {%- endif -%}
+-        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+-        "merchantReturnDays": 30,
+-        "returnMethod": "https://schema.org/ReturnByMail",
+-        "returnFees": "https://schema.org/ReturnShippingFees"
+-      },
+       "shippingDetails": {
+         "@type": "OfferShippingDetails",
+         "name": {{ 'products.shipping_country.schema_standard_shipping' | t | json }},
+--- a/snippets/pdp-policy-modals.liquid
++++ b/snippets/pdp-policy-modals.liquid
+@@ -39,13 +39,6 @@
+   endif
+ 
+   assign dpm_close_label = 'Close'
+-  assign dpm_return_title = '30-day returns & exchanges'
+-  assign dpm_return_line_1 = 'Return or exchange within <strong>30 days of delivery</strong>.'
+-  assign dpm_return_line_2 = 'Items must be <strong>unworn, unwashed, and have tags attached</strong>.'
+-  assign dpm_return_line_3 = 'Final-sale, swimwear, intimate, gift card, or late-return items may be excluded.'
+-  assign dpm_return_line_4 = 'Damaged or defective item? Contact support within <strong>7 days with photos</strong>.'
+-  assign dpm_return_line_5 = 'Return shipping is customer-paid unless the item arrived damaged or defective.'
+-  assign dpm_return_full_link = 'Open full return policy in a new tab'
+   assign dpm_privacy_title = 'Privacy & secure checkout'
+   assign dpm_privacy_line_1 = 'Checkout is <strong>encrypted</strong>.'
+   assign dpm_privacy_line_2 = 'Payments are processed securely by Shopify and our payment providers.'
+@@ -56,13 +49,6 @@
+ 
+   if dpm_locale_root == 'es'
+     assign dpm_close_label = 'Cerrar'
+-    assign dpm_return_title = 'Devoluciones y cambios en 30 días'
+-    assign dpm_return_line_1 = 'Puedes devolver o cambiar dentro de los <strong>30 días posteriores a la entrega</strong>.'
+-    assign dpm_return_line_2 = 'Los artículos deben estar <strong>sin usar, sin lavar y con las etiquetas puestas</strong>.'
+-    assign dpm_return_line_3 = 'Los artículos de venta final, trajes de baño, ropa íntima, tarjetas de regalo o devoluciones tardías pueden quedar excluidos.'
+-    assign dpm_return_line_4 = '¿Artículo dañado o defectuoso? Contacta a soporte dentro de <strong>7 días con fotos</strong>.'
+-    assign dpm_return_line_5 = 'El envío de devolución corre por cuenta del cliente, excepto si el artículo llegó dañado o defectuoso.'
+-    assign dpm_return_full_link = 'Abrir la política completa de devoluciones en una nueva pestaña'
+     assign dpm_privacy_title = 'Privacidad y pago seguro'
+     assign dpm_privacy_line_1 = 'El pago está <strong>cifrado</strong>.'
+     assign dpm_privacy_line_2 = 'Los pagos se procesan de forma segura a través de Shopify y nuestros proveedores de pago.'
+@@ -71,6 +57,14 @@
+     assign dpm_privacy_line_5 = '<strong>No vendemos</strong> tu información personal.'
+     assign dpm_privacy_full_link = 'Abrir la política completa de privacidad en una nueva pestaña'
+   endif
++  assign dpm_close_label = 'accessibility.close' | t
++  assign dpm_return_title = 'products.purchase_confidence.returns_headline' | t
++  assign dpm_return_line_1 = 'products.purchase_confidence.returns_summary' | t
++  assign dpm_return_line_2 = 'products.purchase_confidence.returns_eligible' | t
++  assign dpm_return_line_3 = 'products.purchase_confidence.returns_exclusions' | t
++  assign dpm_return_line_4 = 'products.purchase_confidence.returns_damaged' | t
++  assign dpm_return_line_5 = 'products.purchase_confidence.returns_shipping' | t
++  assign dpm_return_full_link = 'products.purchase_confidence.returns_full_link_label' | t
+ -%}
+ 
+ <style>
+--- a/snippets/pdp-purchase-confidence.liquid
++++ b/snippets/pdp-purchase-confidence.liquid
+@@ -1,55 +1,20 @@
+ {%- comment -%}
+-  PDP Purchase Confidence module (Baymard-aligned).
+-
+-  Consolidates shipping, returns, and security into a single visual block
+-  with three promise-first summaries and three collapsed <details>:
+-
+-    🚚  Standard shipping included
+-        Estimated delivery to United States: May 27 – June 1
+-        Change country
+-
+-    🔄  30-day returns & exchanges
+-        Unworn, unwashed items with tags attached. Some exclusions apply.
+-
+-    🛡  Secure checkout
+-        Encrypted payment. Major cards and express payment options accepted.
+-
+-    ▾ Shipping details
+-    ▾ Return policy
+-    ▾ Payment & privacy
+-
+-  The key principle: show the promise first, hide the policy detail until
+-  requested. Replaces three separate auto-expanded accordions on the PDP.
+-
+-  Inputs (all optional, all driven by the same liquid scope as before):
+-    - shipping_label_copy:      "Standard shipping included" (still used
+-                                 for the aria-label / meta channels)
+-    - delivery_estimate_copy:   "Estimated delivery:" — only used as fallback
+-    - standard_delivery_window: "12-16 days" calendar-day fallback text
+-    - standard_delivery_copy:   combined fallback line
++  Purchase confidence: localized shipping options, qualified returns and secure checkout.
++  Destination and currency reflect the current Shopify localization.
+ {%- endcomment -%}
+ 
+ {%- liquid
+   assign pc_label_copy = shipping_label_copy | default: 'Standard shipping included'
+-  # CRO: standardized delivery window in calendar days so today's
+-  # displayed range matches across every country and auto-rolls daily.
+-  # The "min-max days" values are read by layout/theme.liquid's
+-  # calculateDeliveryDates() (calendar-day mode for #dlm-shipping-card-date).
+-  assign pc_window = standard_delivery_window | default: '12-16 days'
+   assign pc_country = localization.country.name | default: ''
+-  assign pc_country_code = localization.country.iso_code | default: ''
+   assign pc_currency_code = localization.country.currency.iso_code | default: ''
+   assign pc_country_count = localization.available_countries.size
+ 
+   assign pc_localized_root_url = routes.root_url | default: '/'
+   assign pc_localized_root_url_last = pc_localized_root_url | slice: -1
+   if pc_localized_root_url_last == '/'
+-    assign pc_shipping_info_url = pc_localized_root_url | append: 'pages/shipping-info'
++    assign pc_shipping_policy_url = pc_localized_root_url | append: 'policies/shipping-policy'
+   else
+-    assign pc_shipping_info_url = pc_localized_root_url | append: '/pages/shipping-info'
+-  endif
+-  if pc_country_code != blank
+-    assign pc_shipping_info_url = pc_shipping_info_url | append: '?country=' | append: pc_country_code
++    assign pc_shipping_policy_url = pc_localized_root_url | append: '/policies/shipping-policy'
+   endif
+ 
+   # Headline — avoids "free" wording because standard shipping is included in product prices.
+@@ -59,22 +24,9 @@
+     assign pc_shipping_headline = 'Standard shipping included'
+   endif
+ 
+-  # Estimate line — combines destination + window into one scannable line:
+-  #   "Estimated delivery to United States: May 27 – June 1"
+-  # The date span is populated live by the existing JS hook in theme.liquid
+-  # (looks up #dlm-shipping-card-date) with the computed range.
+-  if pc_country != blank
+-    assign pc_estimate_template = 'products.purchase_confidence.estimate_to_country' | t: country: pc_country
+-  else
+-    assign pc_estimate_template = 'products.purchase_confidence.estimate_default' | t
+-  endif
+-  assign pc_estimate_check = pc_estimate_template | downcase
+-  if pc_estimate_template == blank or pc_estimate_check contains 'translation missing'
+-    if pc_country != blank
+-      assign pc_estimate_template = 'Estimated delivery to ' | append: pc_country | append: ': '
+-    else
+-      assign pc_estimate_template = 'Estimated delivery: '
+-    endif
++  assign pc_shipping_checkout = 'products.purchase_confidence.shipping_checkout' | t
++  if pc_shipping_checkout == blank or pc_shipping_checkout contains 'translation missing'
++    assign pc_shipping_checkout = 'See shipping options at checkout.'
+   endif
+ 
+   # "Ships to {{ country }}" label — gives the orphan "USD" line context.
+@@ -121,11 +73,11 @@
+   # === Returns summary ===
+   assign pc_returns_headline = 'products.purchase_confidence.returns_headline' | t
+   if pc_returns_headline == blank or pc_returns_headline contains 'translation missing'
+-    assign pc_returns_headline = '30-day returns & exchanges'
++    assign pc_returns_headline = 'Returns on eligible items'
+   endif
+   assign pc_returns_summary = 'products.purchase_confidence.returns_summary' | t
+   if pc_returns_summary == blank or pc_returns_summary contains 'translation missing'
+-    assign pc_returns_summary = 'Return or exchange within 30 days of delivery if unworn, unwashed, and tags are attached.'
++    assign pc_returns_summary = 'Request a return or exchange within 30 days of delivery for eligible items.'
+   endif
+   assign pc_returns_details_label = 'products.purchase_confidence.returns_details_label' | t
+   if pc_returns_details_label == blank or pc_returns_details_label contains 'translation missing'
+@@ -133,11 +85,11 @@
+   endif
+   assign pc_returns_eligible = 'products.purchase_confidence.returns_eligible' | t
+   if pc_returns_eligible == blank or pc_returns_eligible contains 'translation missing'
+-    assign pc_returns_eligible = 'This item is eligible for return or exchange within 30 days if unworn, unwashed, and returned with tags attached.'
++    assign pc_returns_eligible = 'Eligible items must be unworn, unwashed, and returned with tags attached.'
+   endif
+   assign pc_returns_exclusions = 'products.purchase_confidence.returns_exclusions' | t
+   if pc_returns_exclusions == blank or pc_returns_exclusions contains 'translation missing'
+-    assign pc_returns_exclusions = 'Final-sale, personalized, swimwear, and intimate items may be excluded.'
++    assign pc_returns_exclusions = 'Swimwear, intimate items, final-sale items, and gift cards are excluded. See the full return policy for eligibility and exceptions.'
+   endif
+   assign pc_returns_full_link_label = 'products.purchase_confidence.returns_full_link_label' | t
+   if pc_returns_full_link_label == blank or pc_returns_full_link_label contains 'translation missing'
+@@ -418,21 +370,7 @@
+     </span>
+     <div class="dlm-pc-row__body">
+       <p class="dlm-pc-row__title">{{ pc_shipping_headline }}</p>
+-      <p
+-        class="dlm-pc-row__estimate"
+-        data-delivery-estimate-row
+-        data-delivery-estimate-tier="standard"
+-        data-delivery-fallback-visible
+-      >
+-        {{ pc_estimate_template }}<span
+-          class="dlm-pc-row__estimate-date"
+-          id="dlm-shipping-card-date"
+-          data-delivery-prefix=""
+-          data-delivery-window="{{ pc_window | escape }}"
+-          data-delivery-window-mode="calendar"
+-          data-delivery-fallback="{{ pc_window | escape }}"
+-        >{{ pc_window }}</span>
+-      </p>
++      <p class="dlm-pc-row__estimate">{{ pc_shipping_checkout }}</p>
+       <p class="dlm-pc-row__action-row">
+         <span class="dlm-pc-row__ships-to">{{ pc_ships_to }}</span>
+         {%- if pc_currency_code != blank -%}
+@@ -482,6 +420,7 @@
+       <summary>{{ pc_shipping_details_label }}</summary>
+       <div class="dlm-pc-details__body">
+         <p>{{ pc_shipping_details_body }}</p>
++        <p><a class="dlm-pc-link" href="{{ pc_shipping_policy_url }}">{{ pc_shipping_details_label }}</a></p>
+         {%- if pc_country_count > 0 -%}
+           <p>
+             <button
+--- a/snippets/product-desktop-ux.liquid
++++ b/snippets/product-desktop-ux.liquid
+@@ -173,9 +173,14 @@
+   </section>
+ </div>
+ 
++{%- capture matching_default_price_html -%}
++  {%- render 'price', product: product, use_variant: false, show_price_range: true, show_badges: false, show_sold_out_badge: false, price_class: 'price--large' -%}
++{%- endcapture -%}
+ <script type="application/json" id="ProductMatchingSetData-{{ section.id }}">
+   {
+     "currency": {{ cart.currency.iso_code | json }},
++    "selected_variant_id": {{ product.selected_variant.id | json }},
++    "default_price_html": {{ matching_default_price_html | json }},
+     "options": [
+       {%- for option in product.options_with_values -%}
+         {
+@@ -190,6 +195,10 @@
+           "id": {{ variant.id | json }},
+           "available": {{ variant.available | json }},
+           "price": {{ variant.price | json }},
++          "price_text": {% if settings.currency_code_enabled %}{{ variant.price | money_with_currency | strip_html | json }}{% else %}{{ variant.price | money | strip_html | json }}{% endif %},
++          "unit_price_text": {{ variant.unit_price | money | strip_html | json }},
++          "unit_price_reference_value": {{ variant.unit_price_measurement.reference_value | json }},
++          "unit_price_reference_unit": {{ variant.unit_price_measurement.reference_unit | json }},
+           "sku": {{ variant.sku | json }},
+           "title": {{ variant.title | json }},
+           "option1": {{ variant.option1 | json }},

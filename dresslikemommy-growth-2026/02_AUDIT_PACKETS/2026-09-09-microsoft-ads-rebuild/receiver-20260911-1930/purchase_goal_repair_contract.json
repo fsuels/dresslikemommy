@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "decision_id": "DLM-DEC-2026-09-11-MICROSOFT-SINGLE-PURCHASE-GOAL",
+  "status": "FROZEN_AWAITING_INDEPENDENT_REVIEW",
+  "frozen_at_utc": "2026-09-11 19:43:15 UTC",
+  "target": {
+    "account_id": 477439,
+    "customer_id": 770182,
+    "account_number": "X0875435",
+    "uet_id": 36005151
+  },
+  "authority": {
+    "source": "Current owner request to fix Microsoft Ads tracking end-to-end; saved canonical bounded nonspend tracking repair",
+    "claim": "ops/AGENT_COORDINATION.md Current owner Microsoft Ads tracking and campaign rebuild; root01a08703 sole Microsoft writer",
+    "scope": "Four fields on three existing uniquely named purchase goals",
+    "full_paid_control": "NONE; unchanged",
+    "advertising_exposure_usd": 0
+  },
+  "before_file": "live_before.json",
+  "preconditions": [
+    "Authenticated exact account477439/customer770182",
+    "All11campaigns Paused",
+    "Unique goal names,type,scope,tag,criteria unchanged",
+    "MSCLKID auto-tagging already enabled",
+    "Independent exact-contract PASS before Save"
+  ],
+  "mutations": [
+    {
+      "goal": "ShopifyCheckoutCompleteEventTracking",
+      "changes": [
+        {
+          "field": "count",
+          "from": "Unique",
+          "to": "All"
+        },
+        {
+          "field": "fallback_value",
+          "from": "1.00",
+          "to": "0.00"
+        }
+      ]
+    },
+    {
+      "goal": "ShopifyCheckoutCompleteTracking",
+      "changes": [
+        {
+          "field": "auto_bidding",
+          "from": true,
+          "to": false
+        }
+      ]
+    },
+    {
+      "goal": "Purchases",
+      "changes": [
+        {
+          "field": "auto_bidding",
+          "from": true,
+          "to": false
+        }
+      ]
+    }
+  ],
+  "preserve": [
+    "Every goal Active/name/category/trigger/scope/tag",
+    "Variable revenue/currency and app source",
+    "All unlisted fallback/windows/attribution/enhanced conversion/Clarity",
+    "Smart and AddToCart bidding exclusions",
+    "Campaign count/status/budgets/bids/ads/keywords/targeting",
+    "Account URL settings and all reporting/history"
+  ],
+  "hypothesis": "One event-based primary purchase goal matches installed checkout_completed purchase stream and removes competing checkout URL definitions from future bidding. All counts multiple purchases per click; zero fallback avoids fabricated positive revenue when value is absent.",
+  "alternative": "Leave three purchase goals primary and Unique/positive fallback; retains inconsistent sales semantics and overlapping eligibility.",
+  "verification": [
+    "One native Save per exact goal after staged readback",
+    "Reopen all three saved goals and compare all fields",
+    "Grid exactly one biddingYes purchase goal/CountAll",
+    "Reload account options: MSCLKIDOn and all captured settings preserved",
+    "Campaign settings retains11Paused and budgets unchanged"
+  ],
+  "success": "Four exact fields persisted, one primary Event purchase All/variable revenue/zero fallback, all unlisted settings preserved.",
+  "kill": [
+    "Wrong/ambiguous account/goal/tag",
+    "Before drift",
+    "Permission/terms/account switch/billing prompt",
+    "Save error/unlisted change",
+    "Campaign enabled",
+    "New source/stream required"
+  ],
+  "rollback": {
+    "type": "Exact inverse through same dialogs only if required within current scope; no bulk reset",
+    "changes": [
+      {
+        "goal": "ShopifyCheckoutCompleteEventTracking",
+        "count": "Unique",
+        "fallback_value": "1.00"
+      },
+      {
+        "goal": "ShopifyCheckoutCompleteTracking",
+        "auto_bidding": true
+      },
+      {
+        "goal": "Purchases",
+        "auto_bidding": true
+      }
+    ],
+    "msclkid": "true before and after; never disable as rollback"
+  },
+  "limitations": [
+    "Configuration overlap is not historical order duplication proof",
+    "All is not order dedup",
+    "Parameter names/Healthy do not certify individual values or full consent",
+    "Paid attribution/profit unknown",
+    "No source,consent or campaign-spend change"
+  ],
+  "next_action": "Execute reviewed four-field correction then consent diagnosis and qualified paused campaign work",
+  "deadline": "Current authenticated session; re-read exact targets before each Save"
+}

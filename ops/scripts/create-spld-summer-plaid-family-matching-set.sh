@@ -41,7 +41,7 @@ PRINT_NAME = "Summer Plaid"
 SHORTCODE = "SPLD"
 COLOR_TOKEN = "PLAID"
 COLOR_NAME = "Beige Plaid"
-VENDOR_URL = "https://detail.1688.com/offer/1031073458269.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
@@ -299,7 +299,7 @@ def tags() -> list[str]:
         "Hooded Shirt", "T-Shirt", "Cargo Shorts", "Summer", "Resort", "Vacation",
         PRINT_NAME, "Beige", "Cream", "Plaid", "Gray Green", "Neutral Plaid",
         "Child Hooded Shirt", "Adult Hooded Shirt", "Child T-Shirt", "Adult T-Shirt", "Child Shorts", "Adult Shorts",
-        VENDOR_URL,
+
     ]
     values.extend(sorted({row["picker_label"] for row in SIZE_CHART}))
     values.extend(sorted({row["role"] for row in SIZE_CHART}))

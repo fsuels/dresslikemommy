@@ -1,0 +1,378 @@
+--- /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/before/collector.js
++++ /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js
+@@ -57,9 +57,25 @@
+   return rows;
+ }
+ 
++function resolvedTranslations(globalRows, marketRows, locale) {
++  const values = new Map(), sources = {};
++  for (const [source, rows] of [['global', globalRows], ['market', marketRows]]) {
++    assert(Array.isArray(rows), 'invalid_translation_records');
++    const keys = new Set();
++    for (const row of rows) {
++      assert(row?.locale === locale && typeof row.key === 'string' && row.key.length > 0 &&
++        typeof row.value === 'string' && typeof row.outdated === 'boolean', 'invalid_translation_record');
++      assert(!keys.has(row.key), 'duplicate_translation_key'); keys.add(row.key);
++      // An empty or stale market override must remain visible to the validator.
++      values.set(row.key, row); sources[row.key] = source;
++    }
++  }
++  return { translations: [...values.values()], translationSources: sources };
++}
++
+ // graphql is injectable: the authenticated reader and a connector-backed adapter
+ // both use this same completeness contract. No fixture or previous-feed fallback.
+-export async function collectCatalog(graphql, config, market, { now = () => new Date(), progress = () => {} } = {}) {
++export async function collectCatalog(graphql, config, market, { now = () => new Date(), progress = () => {}, readObservedAt = now } = {}) {
+   const startedAt = now().toISOString(), trace = [];
+   const first = await graphql(IDENTITY_QUERY, {});
+   assert(first?.shop?.id === config.shopId, 'wrong_shop');
+@@ -72,8 +88,19 @@
+   const marketContext = verifyCatalog ? await readMarketContext(graphql, market, trace) : null;
+   const publicationVariables = { onlinePublicationId: config.onlinePublicationId, verifyCatalog, catalogPublicationId: verifyCatalog ? market.expectedCatalogs[0].publicationId : config.onlinePublicationId };
+   const variables = { country: market.country, locale: market.locale, marketId: market.marketId ?? null, ...publicationVariables };
++  const contentObservations = [];
++  const observedProducts = async (args, observations) => {
++    const response = await graphql(PRODUCTS_QUERY, args);
++    const observed = readObservedAt();
++    assert(Number.isFinite(observed?.getTime()), 'invalid_source_observation_time');
++    observations.push(observed.toISOString()); return response;
++  };
++  const readWindow = (observations, parents) => {
++    const sorted = [...observations].sort();
++    return { firstObservedAt: sorted[0], lastObservedAt: sorted.at(-1), parents };
++  };
+   const products = await paginate(
+-    after => graphql(PRODUCTS_QUERY, { ...variables, after }), d => d.products, 'products', trace
++    after => observedProducts({ ...variables, after }, contentObservations), d => d.products, 'products', trace
+   );
+   assert(products.length === expectedParents, 'active_parent_count_mismatch');
+   const variantIds = new Set();
+@@ -95,6 +122,29 @@
+     }
+     progress({ productsRead: index + 1, totalProducts: products.length, variantsRead: variantIds.size });
+   }
++  let translationContext;
++  if (market.locale !== config.sourceLocale) {
++    const scopedRead = readWindow(contentObservations, products.length);
++    let globals = products, globalRead = scopedRead;
++    if (market.marketId) {
++      const globalObservations = [];
++      // Only this separate translation view uses null; the real market/catalog
++      // identity and both source-manifest checks remain bound to the country.
++      globals = await paginate(
++        after => observedProducts({ ...variables, marketId: null, after }, globalObservations),
++        d => d.products, 'global_translations', trace
++      );
++      globalRead = readWindow(globalObservations, globals.length);
++      assert(JSON.stringify(manifestRows(globals)) === JSON.stringify(manifestRows(products)), 'translation_source_manifest_mismatch');
++    }
++    const byId = new Map(globals.map(p => [p.id, p]));
++    for (const product of products) {
++      Object.assign(product, resolvedTranslations(byId.get(product.id).translations,
++        market.marketId ? product.translations : [], market.locale));
++    }
++    translationContext = { strategy: 'global_with_market_overrides', clockBasis: 'page_response_observations', locale: market.locale,
++      marketId: market.marketId ?? null, global: globalRead, market: market.marketId ? scopedRead : null };
++  }
+   const finalManifest = await paginate(
+     after => graphql(MANIFEST_QUERY, { country: market.country, ...publicationVariables, after }),
+     d => d.products, 'final_manifest', trace
+@@ -123,6 +173,7 @@
+     activeCount: first.activeCount, finalActiveCount: last.activeCount,
+     products, finalManifest: manifestRows(finalManifest),
+     paginationComplete: true, trace,
++    ...(translationContext ? { translationContext } : {}),
+     sanitization: { omittedUrlTags, customerOrOrderFieldsRequested: false },
+   };
+ }
+--- /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/before/generator.js
++++ /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js
+@@ -149,6 +149,18 @@
+   assert(snapshot.market?.key === market.key && snapshot.market.country === market.country && snapshot.market.locale === market.locale && snapshot.market.currency === market.currency && (snapshot.market.marketId ?? null) === (market.marketId ?? null), 'snapshot_market_mismatch');
+   const completed = Date.parse(snapshot.completedAt), age = now.getTime() - completed;
+   assert(Number.isFinite(completed) && age >= -60000 && age <= (config.maxSnapshotAgeHours ?? 24) * 3600000, 'stale_or_future_snapshot');
++  if (snapshot.translationContext) {
++    const context = snapshot.translationContext;
++    assert(context.strategy === 'global_with_market_overrides' && context.clockBasis === 'page_response_observations' && context.locale === market.locale &&
++      context.marketId === (market.marketId ?? null) && context.global &&
++      Boolean(context.market) === Boolean(market.marketId), 'translation_context_mismatch');
++    for (const component of [context.global, context.market].filter(Boolean)) {
++      const start = Date.parse(component.firstObservedAt), end = Date.parse(component.lastObservedAt);
++      assert(Number.isFinite(start) && Number.isFinite(end) && start <= end && end <= completed &&
++        now.getTime() - start >= -60000 && now.getTime() - start <= (config.maxSnapshotAgeHours ?? 24) * 3600000 &&
++        component.parents === snapshot.products?.length, 'stale_or_incomplete_translation_context');
++    }
++  }
+   assert(snapshot.activeCount?.precision === 'EXACT' && Number.isSafeInteger(snapshot.activeCount.count) && snapshot.activeCount.count >= 0, 'non_exact_parent_count');
+   assert(JSON.stringify(snapshot.activeCount) === JSON.stringify(snapshot.finalActiveCount), 'active_count_changed');
+   assert(Array.isArray(snapshot.products) && snapshot.products.length === snapshot.activeCount.count, 'parent_count_mismatch');
+@@ -174,6 +186,12 @@
+ export async function buildFeed(snapshot, config, market, { now = new Date(), previousIds = [], materialize = true } = {}) {
+   const sourceCounts = validateSnapshot(snapshot, config, market, now);
+   assert(/^[a-z]{2}-[a-z]{2}(?:-[a-z]{2})?$/.test(market.key) && /^[A-Z]{2}$/.test(market.country) && /^[A-Z]{3}$/.test(market.currency), 'invalid_market_configuration');
++  const translationFailureMode = market.translationFailureMode ?? 'reject_feed';
++  assert(['reject_feed', 'exclude_product'].includes(translationFailureMode), 'invalid_translation_failure_mode');
++  if (translationFailureMode === 'exclude_product') {
++    assert(market.locale !== config.sourceLocale, 'translation_exclusion_requires_foreign_locale');
++    assert(market.landingContextVerified === true, 'landing_context_unverified');
++  }
+   const rows = [], errors = [], warnings = [], exclusions = [], returnCohorts = [];
+   let exceptionRows = 0;
+   for (const product of snapshot.products) {
+@@ -182,18 +200,23 @@
+     }
+     const returns = classifyReturnPolicy(product, config.returnPolicy);
+     returnCohorts.push({ productId: product.id, variants: product.variants.length, ...returns });
+-    let content;
++    let content, translationRejectedCode;
+     try {
+       content = localizedContent(product, config, market);
+       // All variants share these parent strings; do not make thousands of copies.
+       content.title = [...content.title].slice(0, 150).join('');
+       content.description = [...content.description].slice(0, 5000).join('');
+-    } catch (e) { errors.push({ productId: product.id, code: e.code || 'invalid_product_content' }); continue; }
++    } catch (e) {
++      if (translationFailureMode === 'exclude_product' &&
++          ['missing_or_stale_translation', 'stale_handle_translation'].includes(e.code)) {
++        translationRejectedCode = e.code;
++      } else { errors.push({ productId: product.id, code: e.code || 'invalid_product_content' }); continue; }
++    }
+     for (const variant of product.variants) {
+       const id = `shopify_${market.country}_${numericId(product.id, 'Product')}_${numericId(variant.id, 'ProductVariant')}`;
+       try {
+         assert(id.length <= 50, 'offer_id_too_long');
+-        assert(content.title && content.description, 'missing_title_or_description');
++        if (!translationRejectedCode) assert(content.title && content.description, 'missing_title_or_description');
+         assert(typeof variant.availableForSale === 'boolean', 'missing_variant_availability');
+         if (!variant.availableForSale) {
+           exclusions.push({ productId: product.id, variantId: variant.id, id, variants: 1, code: 'variant_not_available_for_sale' });
+@@ -227,8 +250,8 @@
+         }
+         const row = {
+           id, item_group_id: `shopify_${market.country}_${numericId(product.id, 'Product')}`,
+-          title: content.title, description: content.description,
+-          link: landingLink(product, variant, content, market), image_link: imageUrl,
++          title: content?.title || '', description: content?.description || '',
++          link: landingLink(product, variant, content || { handle: product.handle }, market), image_link: imageUrl,
+           availability: variant.availableForSale ? 'in_stock' : 'out_of_stock',
+           price: formatPrice(variant.contextualPricing?.price, market),
+           condition: enumValue(value(variant, 'gCondition') || value(product, 'gCondition'), CONDITION),
+@@ -236,6 +259,13 @@
+           return_policy_label: config.returnPolicy?.emitLabels === false ? '' : returns.label, excluded_destination: 'Shopping_ads',
+         };
+         assert(!SUPPLIER.test(JSON.stringify(row)), 'supplier_reference_in_output');
++        if (translationRejectedCode) {
++          // Validate source price, identity, image and landing safety first. A
++          // translation exclusion must never conceal a malformed buyable row.
++          exclusions.push({ productId: product.id, variantId: variant.id, id, variants: 1,
++            code: translationRejectedCode, reason: 'translation_unusable' });
++          continue;
++        }
+         rows.push(row);
+       } catch (e) { errors.push({ productId: product.id, variantId: variant.id, id, code: e.code || 'invalid_variant' }); }
+     }
+@@ -246,6 +276,7 @@
+     generatedAt: now.toISOString(), sourceCompletedAt: snapshot.completedAt, market: market.key,
+     sourceCounts, rows: rows.length, outOfStock: rows.filter(r => r.availability === 'out_of_stock').length,
+     errors, warnings, exclusions, returnCohorts, exceptionRows,
++    translationFailureMode,
+     returnPolicyLabelsEmitted: config.returnPolicy?.emitLabels !== false,
+     returnPolicyLabelsConfirmed: config.returnPolicy?.emitLabels === false || exceptionRows === 0 || config.returnPolicy?.nativeLabelConfirmed === true,
+     lifecycle: { added: rowIds.filter(id => !previous.has(id)), removed: previousIds.filter(id => !current.has(id)), retained: rowIds.filter(id => previous.has(id)), previousIdsProvided: previousIds.length > 0 },
+--- /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/before/feed.test.mjs
++++ /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/feed.test.mjs
+@@ -109,6 +109,114 @@
+   assert.equal(result.ok, false); assert.equal(result.diagnostics.errors[0].code, 'landing_context_unverified');
+   p.translations[0].outdated = true; assert.equal((await build(snapshot([p], target), config, target)).ok, false);
+ });
++test('collector inherits global translations while retaining market overrides and their stale flags', async () => {
++  const target = { ...market, key: 'us-fr', locale: 'fr', marketId: 'gid://shopify/Market/544735329',
++    landingBaseUrl: `${market.landingBaseUrl}/fr`, translationFailureMode: 'exclude_product' };
++  const globalRows = [
++    { locale: 'fr', key: 'title', value: 'Tenue globale', outdated: false },
++    { locale: 'fr', key: 'body_html', value: '<p>Description globale</p>', outdated: false },
++  ];
++  const overrides = new Map();
++  const seenMarkets = [];
++  const api = source([product(1), product(2)], { productPageSize: 1, intercept: (r, q, variables) => {
++    if (q.includes('query MerchantFeedProducts')) {
++      seenMarkets.push(variables.marketId);
++      for (const p of r.products.nodes) p.translations = structuredClone(variables.marketId === null ? globalRows : overrides.get(p.id) || []);
++    }
++  } });
++  let collected = await collectCatalog(api.graphql, config, target, { now: () => now });
++  assert.deepEqual(seenMarkets, [target.marketId, target.marketId, null, null]);
++  assert.equal(collected.market.marketId, target.marketId);
++  assert.deepEqual(collected.products[0].translationSources, { title: 'global', body_html: 'global' });
++  assert.equal(collected.translationContext.global.parents, 2);
++  assert.equal(collected.translationContext.market.lastObservedAt, now.toISOString());
++  assert.equal((await build(collected, config, target)).rows.length, 2);
++  overrides.set('gid://shopify/Product/1', [
++    { locale: 'fr', key: 'title', value: 'Ancien titre du marché', outdated: true },
++    { locale: 'fr', key: 'body_html', value: '<p>Description du marché</p>', outdated: false },
++  ]);
++  collected = await collectCatalog(api.graphql, config, target, { now: () => now });
++  assert.equal(collected.products[0].translations.find(t => t.key === 'title').outdated, true);
++  assert.equal(collected.products[0].translations.find(t => t.key === 'body_html').value, '<p>Description du marché</p>');
++  assert.equal(collected.products[0].translationSources.title, 'market');
++  let result = await build(collected, config, target);
++  assert.equal(result.ok, true); assert.deepEqual(result.rowIds, ['shopify_US_2_201']);
++  assert.equal(result.diagnostics.exclusions[0].code, 'missing_or_stale_translation');
++  overrides.get('gid://shopify/Product/1')[0].outdated = false;
++  collected = await collectCatalog(api.graphql, config, target, { now: () => now });
++  result = await build(collected, config, target);
++  assert.equal(result.rows[0].title, 'Ancien titre du marché');
++  assert.equal(result.rows[0].description, 'Description du marché');
++});
++test('global translation views reject source drift, missing records, duplicate keys and incomplete pagination', async () => {
++  const target = { ...market, key: 'us-fr', locale: 'fr', marketId: 'gid://shopify/Market/544735329' };
++  for (const fault of ['drift', 'missing_array', 'duplicate_key', 'wrong_locale', 'incomplete']) {
++    const api = source([product()], { intercept: (r, q, variables) => {
++      if (!q.includes('query MerchantFeedProducts') || variables.marketId !== null) return;
++      const p = r.products.nodes[0];
++      p.translations = [{ locale: 'fr', key: 'title', value: 'Tenue', outdated: false }];
++      if (fault === 'drift') p.updatedAt = '2026-09-11T13:59:00Z';
++      if (fault === 'missing_array') delete p.translations;
++      if (fault === 'duplicate_key') p.translations.push({ ...p.translations[0] });
++      if (fault === 'wrong_locale') p.translations[0].locale = 'en';
++      if (fault === 'incomplete') r.products.pageInfo = { hasNextPage: true, endCursor: null };
++    } });
++    await assert.rejects(collectCatalog(api.graphql, config, target, { now: () => now }), SourceError, fault);
++  }
++});
++test('explicit translation exclusions reconcile replacement lifecycle without hiding unavailable rows', async () => {
++  const target = { ...market, key: 'us-fr', locale: 'fr', landingBaseUrl: `${market.landingBaseUrl}/fr`, translationFailureMode: 'exclude_product' };
++  const translated = id => {
++    const p = product(id);
++    p.translations = [{ locale: 'fr', key: 'title', value: 'Tenue', outdated: false }, { locale: 'fr', key: 'body_html', value: '<p>Bleue</p>', outdated: false }];
++    return p;
++  };
++  const before = await build(snapshot([translated(1), translated(2)], target), config, target);
++  const stale = translated(1); stale.translations[0].outdated = true;
++  const unavailable = translated(4); unavailable.variants[0].availableForSale = false; unavailable.translations = [];
++  const after = await build(snapshot([stale, translated(3), unavailable], target), config, target, { previousIds: before.rowIds });
++  assert.equal(after.ok, true); assert.deepEqual(after.rowIds, ['shopify_US_3_301']);
++  assert.deepEqual(after.diagnostics.lifecycle.removed.sort(), ['shopify_US_1_101', 'shopify_US_2_201']);
++  assert.deepEqual(after.diagnostics.lifecycle.added, ['shopify_US_3_301']);
++  assert.equal(after.diagnostics.exclusions.find(e => e.variantId.endsWith('/101')).reason, 'translation_unusable');
++  assert.equal(after.diagnostics.exclusions.find(e => e.variantId.endsWith('/401')).code, 'variant_not_available_for_sale');
++  stale.translations[0].outdated = false;
++  const restored = await build(snapshot([stale, translated(3)], target), config, target, { previousIds: after.rowIds });
++  assert.deepEqual(restored.diagnostics.lifecycle.added, ['shopify_US_1_101']);
++  const strict = await build(snapshot([product(1), translated(3)], target), config, { ...target, translationFailureMode: 'reject_feed' });
++  assert.equal(strict.ok, false); assert.equal(strict.tsv, null);
++});
++test('translation exclusion never bypasses source integrity or the landing gate', async () => {
++  const target = { ...market, key: 'us-fr', locale: 'fr', landingBaseUrl: `${market.landingBaseUrl}/fr`, translationFailureMode: 'exclude_product' };
++  for (const mutate of [p => { p.variants[0].contextualPricing.price.currencyCode = 'CAD'; },
++    p => { p.variants[0].availableForSale = undefined; }, p => { p.variants[0].media.nodes[0].image.url = 'http://invalid.example/image'; },
++    p => { p.onlineStoreUrl = 'https://wrong.example/products/item'; }]) {
++    const p = product(); mutate(p);
++    const result = await build(snapshot([p], target), config, target);
++    assert.equal(result.ok, false); assert.equal(result.tsv, null); assert.deepEqual(result.rows, []);
++    assert.ok(result.diagnostics.errors.length);
++  }
++  await assert.rejects(build(snapshot([], target), config, { ...target, landingContextVerified: false }), /landing_context_unverified/);
++  await assert.rejects(build(snapshot(), config, { ...market, translationFailureMode: 'exclude_product' }), /translation_exclusion_requires_foreign_locale/);
++});
++test('translation component clocks and parent counts are independently validated', async () => {
++  const target = { ...market, key: 'us-fr', locale: 'fr' };
++  const api = source([product()], { intercept: (r, q) => {
++    if (q.includes('query MerchantFeedProducts')) r.products.nodes[0].translations = [
++      { locale: 'fr', key: 'title', value: 'Tenue', outdated: false },
++      { locale: 'fr', key: 'body_html', value: '<p>Bleue</p>', outdated: false },
++    ];
++  } });
++  const collected = await collectCatalog(api.graphql, config, target, { now: () => now });
++  assert.equal(collected.translationContext.market, null);
++  assert.equal((await build(collected, config, target)).ok, true);
++  for (const mutate of [s => { s.translationContext.global.firstObservedAt = '2026-09-09T14:00:00Z'; },
++    s => { s.translationContext.global.lastObservedAt = '2026-09-11T15:00:00Z'; },
++    s => { s.translationContext.global.parents = 2; }, s => { s.translationContext.locale = 'es'; }]) {
++    const bad = structuredClone(collected); mutate(bad);
++    await assert.rejects(build(bad, config, target), SourceError);
++  }
++});
+ test('variant identity/image/availability survive and optional identifiers are not invented', async () => {
+   const result = await build(); const row = result.rows[0];
+   assert.equal(row.link, 'https://www.dresslikemommy.com/products/matching-outfit-1?variant=101');
+--- /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/before/checkpoint.js
++++ /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/checkpoint.js
+@@ -105,18 +105,22 @@
+     await discardJournal(bucket, control);
+     return { complete: true, recoveredPromotion: true, rows: present.manifest.rows };
+   }
+-  let index = 0, newCalls = 0, firstClock = true;
++  let index = 0, newCalls = 0, firstClock = true, lastReadObservedAt = control.startedAt;
+   const reader = graphql || createAdminReader({ domain: config.storeDomain, token: env.SHOPIFY_ADMIN_ACCESS_TOKEN, apiVersion: config.apiVersion });
+   const replayReader = async (query, variables) => {
+     const key = await sha256(query + '\n' + JSON.stringify(variables));
+     if (index < journal.entries.length) {
+       const saved = journal.entries[index++]; requireValue(saved.key === key, 'refresh_replay_mismatch');
++      // Older journals lack this field; the original job start is a safe lower
++      // bound. Replaying data must not make its source observation newer.
++      lastReadObservedAt = saved.observedAt ?? control.startedAt;
+       return structuredClone(saved.data);
+     }
+     if (newCalls >= maxCalls) throw new CheckpointNeeded();
+     newCalls++;
+     const data = sanitize(await reader(query, variables));
+-    journal.entries.push({ key, data }); index++;
++    lastReadObservedAt = now().toISOString();
++    journal.entries.push({ key, data, observedAt: lastReadObservedAt }); index++;
+     requireValue(journal.entries.length <= 10000, 'refresh_request_limit');
+     return structuredClone(data);
+   };
+@@ -125,7 +129,7 @@
+     snapshot = await collectCatalog(replayReader, config, market, { now: () => {
+       if (firstClock) { firstClock = false; return new Date(control.startedAt); }
+       return now();
+-    } });
++    }, readObservedAt: () => new Date(lastReadObservedAt) });
+   } catch (error) {
+     if (!(error instanceof CheckpointNeeded)) return fail(error instanceof SourceError ? error.code : 'refresh_source_failed');
+     const journalKey = `merchant/jobs/${market.key}/${control.jobId}/${control.revision + 1}-${randomId()}.json`;
+--- /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/before/checkpoint.test.mjs
++++ /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/checkpoint.test.mjs
+@@ -41,6 +41,40 @@
+   const env = environment({ refresh: { maxSourceCallsPerInvocation: 2 } });
+   const api = source([product(1, Array.from({ length: 91 }, (_, i) => variant(i + 100)))]);
+   const steps = await run(env, api); assert.equal(steps.at(-1).rows, 91); assert.equal(api.calls(), 7);
++});
++test('resumed foreign feeds preserve translation observation age, including legacy journals', async () => {
++  const target = { ...market, key: 'us-fr', locale: 'fr', marketId: 'gid://shopify/Market/544735329',
++    landingBaseUrl: `${market.landingBaseUrl}/fr`, translationFailureMode: 'exclude_product' };
++  for (const [minutes, legacy, expectedSuccess] of [[30, false, true], [90, false, false], [90, true, false]]) {
++    const env = environment({ markets: [target], maxSnapshotAgeHours: 1,
++      refresh: { maxSourceCallsPerInvocation: 4, maxJobAgeMinutes: 120, minRefreshMinutes: 60 } });
++    const api = source([product()], { intercept: (r, q, variables) => {
++      if (q.includes('query MerchantFeedProducts')) r.products.nodes[0].translations = variables.marketId === null ? [
++        { locale: 'fr', key: 'title', value: 'Tenue', outdated: false },
++        { locale: 'fr', key: 'body_html', value: '<p>Bleue</p>', outdated: false },
++      ] : [];
++    } });
++    await enqueueRefresh(env, target.key, { now: () => now });
++    const first = await consumeRefresh(env, env.MERCHANT_REFRESH_QUEUE.messages.shift(), { streamOptions, graphql: api.graphql, now: () => now });
++    assert.equal(first.checkpointed, true); assert.equal(api.calls(), 4);
++    const journalKey = [...env.MERCHANT_FEED_BUCKET.objects.keys()].find(k => k.startsWith('merchant/jobs/'));
++    const journal = JSON.parse(await (await env.MERCHANT_FEED_BUCKET.get(journalKey)).text());
++    assert.ok(journal.entries.every(e => e.observedAt === now.toISOString()));
++    if (legacy) {
++      for (const entry of journal.entries) delete entry.observedAt;
++      await env.MERCHANT_FEED_BUCKET.put(journalKey, JSON.stringify(journal));
++    }
++    const resumedAt = new Date(now.getTime() + minutes * 60000);
++    const result = await consumeRefresh(env, env.MERCHANT_REFRESH_QUEUE.messages.shift(), { streamOptions, graphql: api.graphql, now: () => resumedAt });
++    assert.equal(api.calls(), 6, 'cached translation pages are replayed without new source requests');
++    if (expectedSuccess) {
++      assert.equal(result.complete, true);
++      assert.equal((await currentManifest(env.MERCHANT_FEED_BUCKET, target.key)).manifest.rows, 1);
++    } else {
++      assert.equal(result.code, 'stale_or_incomplete_translation_context');
++      assert.equal((await currentManifest(env.MERCHANT_FEED_BUCKET, target.key)).manifest, null);
++    }
++  }
+ });
+ test('new, deleted, archived, unpublished, unavailable and returned variants reconcile on every successful run', async () => {
+   const env = environment();

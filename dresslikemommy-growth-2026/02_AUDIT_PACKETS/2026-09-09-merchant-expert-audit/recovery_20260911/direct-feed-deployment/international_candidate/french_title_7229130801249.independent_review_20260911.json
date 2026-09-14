@@ -1,0 +1,507 @@
+{
+  "schema": "dlm-single-french-title-independent-review.v1",
+  "reviewed_at": "2026-09-11T20:44:41.699180+00:00",
+  "reviewer": "/root/together_heart_runner",
+  "verdict": "PASS",
+  "status": "PASS_EXACT_SINGLE_GLOBAL_FRENCH_TITLE__SAVED_AFTER_READBACK_VERIFIED",
+  "title_verdict": "PASS",
+  "execution_packet_verdict": "PASS",
+  "candidate": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/french_title_7229130801249.candidate_20260911.json",
+    "sha256": "c417c3b205c4329fc410aba46c471cff6946d8f4b25cbb3fb9ae381bb3113464",
+    "record_clock_utc": "2026-09-11 20:35:10 UTC"
+  },
+  "scope": "Independent narrow review only: only this review JSON updated. Wording approval retained. No source/API/browser/translation/product/market/publication or canonical mutation; Merchant remains sole executor within existing authority.",
+  "approved_wording": "Robes d’été assorties mère-fille en mousseline beige",
+  "character_count": 52,
+  "linguistic_findings": [
+    "Natural French ecommerce title; mère-fille clearly denotes the mother-daughter matching relationship.",
+    "Robes d’été preserves Summer Dresses; assorties preserves Matching; beige preserves Beige.",
+    "Mousseline is the appropriate French textile term for the supplied Chiffon wording. It does not add a silk, cotton, polyester or other fiber-composition assertion, and this review does not independently certify the original material claim.",
+    "No shipping, delivery, discount, availability, size, quality or set-quantity promise added. The outdated ellipsis and DLM suffix are removed."
+  ],
+  "findings": [],
+  "expected_variables": {
+    "resourceId": "gid://shopify/Product/7229130801249",
+    "translations": [
+      {
+        "locale": "fr",
+        "key": "title",
+        "value": "Robes d’été assorties mère-fille en mousseline beige",
+        "translatableContentDigest": "7dacef21b53e25f3f466cf071a6940aaaef7a2332c29f5973b9d9df14adf9062"
+      }
+    ]
+  },
+  "validated_reference_operation": "mutation MerchantFrenchTitleRepair($resourceId: ID!, $translations: [TranslationInput!]!) { translationsRegister(resourceId: $resourceId, translations: $translations) { translations { key value locale outdated } userErrors { field message } } }",
+  "expected_rollback_rule": {
+    "resourceId": "gid://shopify/Product/7229130801249",
+    "locale": "fr",
+    "key": "title",
+    "value": "Robes élégantes en mousseline beige pour mère et fille - Été... | DLM",
+    "marketId": "omit; global translation",
+    "translatableContentDigest": "fresh current English title digest at rollback, never fabricated",
+    "conflict_guard": "Rollback only if the current French title still equals the applied reviewed value and no new writer owns the field; otherwise stop and reconcile. Restores prior text only, not prior outdated=true."
+  },
+  "execution_acceptance": [
+    "Merchant remains sole executor within existing user authority; do not widen to the 142-parent cohort.",
+    "Immediately before mutation, require exact resource, current English title/digest, and unchanged prior global French title; retain all other French values as the preservation baseline. Source digest alone does not protect against another French-title writer.",
+    "Submit exactly one TranslationInput with locale fr, key title, the approved value and matching translatableContentDigest; omit marketId.",
+    "Require empty userErrors and then independent source/translation readback: exact new global French title, outdated=false, all other French values unchanged and original English source unchanged.",
+    "Do not infer Google ingestion, a complete locale repair, indexing, conversions or profit from translation acceptance."
+  ],
+  "checks": {
+    "exact_product_resource": true,
+    "exact_english_title": true,
+    "exact_source_digest": true,
+    "source_key_and_locale_title_en": true,
+    "exact_proposed_french_title": true,
+    "target_one_locale_one_key": true,
+    "natural_french_and_clear_apparel_title": true,
+    "summer_dresses_matching_mother_daughter_beige_chiffon_preserved": true,
+    "no_added_fiber_composition_or_fulfillment_claim": true,
+    "no_ellipsis_or_brand_suffix_in_proposed_title": true,
+    "narrative_fresh_source_and_french_conflict_guard_present": true,
+    "narrative_after_plan_all_other_french_values_preserved": true,
+    "rollback_acknowledges_outdated_flag_not_restored": true,
+    "expected_payload_mapping_is_one_resource_one_translation": true,
+    "expected_translation_has_only_four_permitted_fields": true,
+    "expected_global_translation_omits_market_id": true,
+    "reference_operation_local_schema_validation": true,
+    "full_fresh_source_translation_before_state_available": true,
+    "actual_executor_mutation_and_variables_available": true,
+    "candidate_content_unchanged": true,
+    "product_snapshot_equals_candidate": true,
+    "resource_id_exact": true,
+    "six_unique_english_source_keys": true,
+    "every_source_digest_present": true,
+    "full_title_source_exact": true,
+    "five_french_values_complete": true,
+    "french_key_set_unique_expected": true,
+    "prior_french_title_exact": true,
+    "mutation_matches_before_packet": true,
+    "two_forward_payloads_exact_match": true,
+    "forward_equals_independently_reviewed_mapping": true,
+    "one_forward_input_only": true,
+    "forward_only_required_fields": true,
+    "no_market_override_forward_or_rollback": true,
+    "rollback_only_differs_by_prior_title_value": true,
+    "rollback_outdated_limit_explicit": true,
+    "immediate_before_source_and_all_french_requery_bound": true,
+    "current_french_before_and_english_digest_match_bound": true,
+    "all_other_french_values_and_source_digests_preservation_bound": true,
+    "same_source_query_bound": true,
+    "exact_executor_mutation_schema_validated": true,
+    "still_not_applied_in_submitted_artifacts": true
+  },
+  "pass_count": 42,
+  "fail_count": 0,
+  "schema_validation": {
+    "tool": "shopify-admin/scripts/validate.mjs",
+    "status": "VALID",
+    "exit_code": 0,
+    "artifact_id": "6c37ba44-e9ad-41eb-9e6b-fd0f5c8d3461",
+    "revision": 2,
+    "scope": "Exact saved executor mutation structure independently validated locally; exact JSON inputs checked against the reviewed resource/locale/key/value/digest. No API execution."
+  },
+  "documentation": [
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/mutations/translationsregister",
+      "supports": "Translation registration resource, digest and supplied entry semantics."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/input-objects/translationinput",
+      "supports": "Four required input fields; omitted marketId makes the translation global."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/Translation",
+      "supports": "outdated flag reports source change; rollback cannot set that flag directly."
+    }
+  ],
+  "tool_note": "Prior official Shopify documentation references remain applicable. This revision independently validated the exact saved mutation with the local bundled schema and instrumentation disabled; no failed documentation or account-access path was retried.",
+  "authorization": "Current Merchant language-completion authorization is preserved. The two findings are missing concrete review evidence, not generic reapproval requirements.",
+  "review_history": [
+    {
+      "revision": 1,
+      "report_sha256": "2065b623a964441c1f7154a315b2212e67644493d7f168627c904cb948d7ce74",
+      "record": {
+        "schema": "dlm-single-french-title-independent-review.v1",
+        "reviewed_at": "2026-09-11T20:41:48.239419+00:00",
+        "reviewer": "/root/together_heart_runner",
+        "verdict": "FAIL",
+        "status": "WORDING_PASS__EXECUTION_PACKET_EVIDENCE_INCOMPLETE",
+        "title_verdict": "PASS",
+        "execution_packet_verdict": "FAIL_INCOMPLETE_EVIDENCE",
+        "candidate": {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/french_title_7229130801249.candidate_20260911.json",
+          "sha256": "c417c3b205c4329fc410aba46c471cff6946d8f4b25cbb3fb9ae381bb3113464",
+          "record_clock_utc": "2026-09-11 20:35:10 UTC"
+        },
+        "scope": "Independent read-only review of only Product7229130801249 global fr title. No source, API, browser, translation, English, body, size, price, market, publication or shared canonical mutation. This report is the only file written.",
+        "approved_wording": "Robes d’été assorties mère-fille en mousseline beige",
+        "character_count": 52,
+        "linguistic_findings": [
+          "Natural French ecommerce title; mère-fille clearly denotes the mother-daughter matching relationship.",
+          "Robes d’été preserves Summer Dresses; assorties preserves Matching; beige preserves Beige.",
+          "Mousseline is the appropriate French textile term for the supplied Chiffon wording. It does not add a silk, cotton, polyester or other fiber-composition assertion, and this review does not independently certify the original material claim.",
+          "No shipping, delivery, discount, availability, size, quality or set-quantity promise added. The outdated ellipsis and DLM suffix are removed."
+        ],
+        "findings": [
+          {
+            "severity": "required_evidence",
+            "item": "Full fresh before-state absent",
+            "detail": "The candidate contains a source_query string and selected product/title fields, but does not contain or reference the complete saved query result. Exact prior global French title provenance and all other French values cannot be independently bound for preservation.",
+            "correction": "Save and reference the fresh source query result with source-read timestamp and hash, including all French keys/values. Bind global title and unchanged English digest to this candidate immediately before execution."
+          },
+          {
+            "severity": "required_evidence",
+            "item": "Actual execution payload absent",
+            "detail": "No translationsRegister mutation/variables or concrete rollback payload is included in or referenced by the submitted candidate. The exact expected mapping below is reviewed, but it is not evidence of the executor actual payload.",
+            "correction": "Save the executor exact mutation and variables matching expected_variables below, plus the prior-text rollback and its fresh-digest rule; have this narrow evidence binding checked. No new owner approval is requested."
+          }
+        ],
+        "expected_variables": {
+          "resourceId": "gid://shopify/Product/7229130801249",
+          "translations": [
+            {
+              "locale": "fr",
+              "key": "title",
+              "value": "Robes d’été assorties mère-fille en mousseline beige",
+              "translatableContentDigest": "7dacef21b53e25f3f466cf071a6940aaaef7a2332c29f5973b9d9df14adf9062"
+            }
+          ]
+        },
+        "validated_reference_operation": "mutation MerchantFrenchTitleRegister($resourceId: ID!, $translations: [TranslationInput!]!) { translationsRegister(resourceId: $resourceId, translations: $translations) { userErrors { field message } translations { key value locale outdated } } }",
+        "expected_rollback_rule": {
+          "resourceId": "gid://shopify/Product/7229130801249",
+          "locale": "fr",
+          "key": "title",
+          "value": "Robes élégantes en mousseline beige pour mère et fille - Été... | DLM",
+          "marketId": "omit; global translation",
+          "translatableContentDigest": "fresh current English title digest at rollback, never fabricated",
+          "conflict_guard": "Rollback only if the current French title still equals the applied reviewed value and no new writer owns the field; otherwise stop and reconcile. Restores prior text only, not prior outdated=true."
+        },
+        "execution_acceptance": [
+          "Merchant remains sole executor within existing user authority; do not widen to the 142-parent cohort.",
+          "Immediately before mutation, require exact resource, current English title/digest, and unchanged prior global French title; retain all other French values as the preservation baseline. Source digest alone does not protect against another French-title writer.",
+          "Submit exactly one TranslationInput with locale fr, key title, the approved value and matching translatableContentDigest; omit marketId.",
+          "Require empty userErrors and then independent source/translation readback: exact new global French title, outdated=false, all other French values unchanged and original English source unchanged.",
+          "Do not infer Google ingestion, a complete locale repair, indexing, conversions or profit from translation acceptance."
+        ],
+        "checks": {
+          "exact_product_resource": true,
+          "exact_english_title": true,
+          "exact_source_digest": true,
+          "source_key_and_locale_title_en": true,
+          "exact_proposed_french_title": true,
+          "target_one_locale_one_key": true,
+          "natural_french_and_clear_apparel_title": true,
+          "summer_dresses_matching_mother_daughter_beige_chiffon_preserved": true,
+          "no_added_fiber_composition_or_fulfillment_claim": true,
+          "no_ellipsis_or_brand_suffix_in_proposed_title": true,
+          "narrative_fresh_source_and_french_conflict_guard_present": true,
+          "narrative_after_plan_all_other_french_values_preserved": true,
+          "rollback_acknowledges_outdated_flag_not_restored": true,
+          "expected_payload_mapping_is_one_resource_one_translation": true,
+          "expected_translation_has_only_four_permitted_fields": true,
+          "expected_global_translation_omits_market_id": true,
+          "reference_operation_local_schema_validation": true,
+          "full_fresh_source_translation_before_state_available": false,
+          "actual_executor_mutation_and_variables_available": false
+        },
+        "pass_count": 17,
+        "fail_count": 2,
+        "schema_validation": {
+          "tool": "shopify-admin/scripts/validate.mjs",
+          "status": "VALID",
+          "exit_code": 0,
+          "artifact_id": "6c37ba44-e9ad-41eb-9e6b-fd0f5c8d3461",
+          "revision": 1,
+          "scope": "Reference operation structure only; no API execution or JSON-variable coercion performed."
+        },
+        "documentation": [
+          {
+            "url": "https://shopify.dev/docs/api/admin-graphql/latest/mutations/translationsregister",
+            "supports": "Translation registration resource, digest and supplied entry semantics."
+          },
+          {
+            "url": "https://shopify.dev/docs/api/admin-graphql/latest/input-objects/translationinput",
+            "supports": "Four required input fields; omitted marketId makes the translation global."
+          },
+          {
+            "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/Translation",
+            "supports": "outdated flag reports source change; rollback cannot set that flag directly."
+          }
+        ],
+        "tool_note": "Skill search_docs.mjs returned fetch failed. The normal official Shopify documentation web-search path supplied the documentation; the bundled local mutation validator then passed with instrumentation disabled. No restricted account path was retried.",
+        "authorization": "Current Merchant language-completion authorization is preserved. The two findings are missing concrete review evidence, not generic reapproval requirements."
+      }
+    },
+    {
+      "revision": 2,
+      "phase": "prewrite",
+      "report_sha256": "ffadce5fc65fcdb20dd3eee4ae84cef1b5505f63c3eb948759e4e698168c16aa",
+      "reviewed_at": "2026-09-11T20:44:41.699180+00:00",
+      "status": "PASS_EXACT_SINGLE_GLOBAL_FRENCH_TITLE_PACKET__NOT_EXECUTED",
+      "verdict": "PASS",
+      "pass_count": 42,
+      "fail_count": 0,
+      "checks": {
+        "exact_product_resource": true,
+        "exact_english_title": true,
+        "exact_source_digest": true,
+        "source_key_and_locale_title_en": true,
+        "exact_proposed_french_title": true,
+        "target_one_locale_one_key": true,
+        "natural_french_and_clear_apparel_title": true,
+        "summer_dresses_matching_mother_daughter_beige_chiffon_preserved": true,
+        "no_added_fiber_composition_or_fulfillment_claim": true,
+        "no_ellipsis_or_brand_suffix_in_proposed_title": true,
+        "narrative_fresh_source_and_french_conflict_guard_present": true,
+        "narrative_after_plan_all_other_french_values_preserved": true,
+        "rollback_acknowledges_outdated_flag_not_restored": true,
+        "expected_payload_mapping_is_one_resource_one_translation": true,
+        "expected_translation_has_only_four_permitted_fields": true,
+        "expected_global_translation_omits_market_id": true,
+        "reference_operation_local_schema_validation": true,
+        "full_fresh_source_translation_before_state_available": true,
+        "actual_executor_mutation_and_variables_available": true,
+        "candidate_content_unchanged": true,
+        "product_snapshot_equals_candidate": true,
+        "resource_id_exact": true,
+        "six_unique_english_source_keys": true,
+        "every_source_digest_present": true,
+        "full_title_source_exact": true,
+        "five_french_values_complete": true,
+        "french_key_set_unique_expected": true,
+        "prior_french_title_exact": true,
+        "mutation_matches_before_packet": true,
+        "two_forward_payloads_exact_match": true,
+        "forward_equals_independently_reviewed_mapping": true,
+        "one_forward_input_only": true,
+        "forward_only_required_fields": true,
+        "no_market_override_forward_or_rollback": true,
+        "rollback_only_differs_by_prior_title_value": true,
+        "rollback_outdated_limit_explicit": true,
+        "immediate_before_source_and_all_french_requery_bound": true,
+        "current_french_before_and_english_digest_match_bound": true,
+        "all_other_french_values_and_source_digests_preservation_bound": true,
+        "same_source_query_bound": true,
+        "exact_executor_mutation_schema_validated": true,
+        "still_not_applied_in_submitted_artifacts": true
+      },
+      "reviewed_inputs": {
+        "candidate": {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/french_title_7229130801249.candidate_20260911.json",
+          "sha256": "c417c3b205c4329fc410aba46c471cff6946d8f4b25cbb3fb9ae381bb3113464",
+          "bytes": 2437
+        },
+        "mutation": {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/french_title_7229130801249.mutation_20260911.json",
+          "sha256": "451b6e6f02d140431271d19470a7f3dfe9d81e7ff9d86adac30dd5c24f686127",
+          "bytes": 661
+        },
+        "before_payloads": {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/french_title_7229130801249.before_and_payloads_20260911.json",
+          "sha256": "aec4602a9b1107bb779f7da09b6ec2267d63b43a6ec4fe90c787a8031bb936bf",
+          "bytes": 7704
+        }
+      },
+      "schema_validation": {
+        "tool": "shopify-admin/scripts/validate.mjs",
+        "status": "VALID",
+        "exit_code": 0,
+        "artifact_id": "6c37ba44-e9ad-41eb-9e6b-fd0f5c8d3461",
+        "revision": 2,
+        "scope": "Exact saved executor mutation structure independently validated locally; exact JSON inputs checked against the reviewed resource/locale/key/value/digest. No API execution."
+      }
+    }
+  ],
+  "revision": 3,
+  "resolved_findings": [
+    {
+      "initial_item": "Full fresh before-state absent",
+      "resolution": "Full saved provider-result baseline and exact forward/rollback inputs supplied in before_and_payloads; exact standalone mutation/variables independently matched and schema-validated."
+    },
+    {
+      "initial_item": "Actual execution payload absent",
+      "resolution": "Full saved provider-result baseline and exact forward/rollback inputs supplied in before_and_payloads; exact standalone mutation/variables independently matched and schema-validated."
+    }
+  ],
+  "reviewed_inputs": {
+    "candidate": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/french_title_7229130801249.candidate_20260911.json",
+      "sha256": "c417c3b205c4329fc410aba46c471cff6946d8f4b25cbb3fb9ae381bb3113464",
+      "bytes": 2437
+    },
+    "mutation": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/french_title_7229130801249.mutation_20260911.json",
+      "sha256": "451b6e6f02d140431271d19470a7f3dfe9d81e7ff9d86adac30dd5c24f686127",
+      "bytes": 661
+    },
+    "before_payloads": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/french_title_7229130801249.before_and_payloads_20260911.json",
+      "sha256": "aec4602a9b1107bb779f7da09b6ec2267d63b43a6ec4fe90c787a8031bb936bf",
+      "bytes": 7704
+    }
+  },
+  "actual_variables": {
+    "resourceId": "gid://shopify/Product/7229130801249",
+    "translations": [
+      {
+        "locale": "fr",
+        "key": "title",
+        "value": "Robes d’été assorties mère-fille en mousseline beige",
+        "translatableContentDigest": "7dacef21b53e25f3f466cf071a6940aaaef7a2332c29f5973b9d9df14adf9062"
+      }
+    ]
+  },
+  "actual_rollback_variables": {
+    "resourceId": "gid://shopify/Product/7229130801249",
+    "translations": [
+      {
+        "locale": "fr",
+        "key": "title",
+        "value": "Robes élégantes en mousseline beige pour mère et fille - Été... | DLM",
+        "translatableContentDigest": "7dacef21b53e25f3f466cf071a6940aaaef7a2332c29f5973b9d9df14adf9062"
+      }
+    ]
+  },
+  "preservation_baseline": {
+    "french_value_count": 5,
+    "unchanged_french_value_count": 4,
+    "source_digest_count": 6,
+    "french_values": [
+      {
+        "key": "title",
+        "value": "Robes élégantes en mousseline beige pour mère et fille - Été... | DLM",
+        "locale": "fr",
+        "outdated": true,
+        "value_sha256": "8588966f994a6a8f011c3442c1c95a652673341fc65fb9ba66d5f7979a3fd0be"
+      },
+      {
+        "key": "body_html",
+        "value": "<p> Capturez l'élégance estivale avec ces robes assorties en mousseline pour mères et filles. Confectionnées dans un doux beige, ces robes présentent de délicats plis et des manches bouffantes, créant un look aérien et intemporel, parfait pour la plage, les photos de famille ou toute autre occasion spéciale. La mousseline légère offre un confort optimal, idéal pour les chaudes journées d'été. Affichez un style impeccable avec votre enfant et créez des souvenirs inoubliables grâce à ces magnifiques tenues assorties !</p>\n\n\n<p> <strong>Détails du produit :</strong></p>\n\n\n<ul>\n\n<li> Mousseline beige douce et légère pour un look élégant et aérien</li>\n\n\t <li>Une coupe fluide avec des détails plissés pour un style estival intemporel</li>\n\n<li> Parfait pour les sorties à la plage, les photos de famille et les occasions spéciales</li>\n\n<li> Les manches bouffantes à poignets froncés ajoutent une touche de sophistication.</li>\n\n<li> Coupe ample et confortable, idéale pour être portée toute la journée.</li>\n\n<li> Disponible en tailles pour mamans et filles. </li>\n\n\n</ul>\n\n\n<table id=\"size-chart\">\n\n<thead>\n\n<tr>\n\n<th> Taille</th>\n\n<th> Longueur (cm / po)</th>\n\n<th> Tour de poitrine (cm / po)</th>\n\n<th> Poids recommandé (kg / lbs)</th>\n\n<th> Taille recommandée (cm) </th>\n\n\n</tr>\n\n\n</thead>\n\n<tbody>\n\n<!-- Children’s Sizes -->\n<tr>\n\n<td>Enfant de 2 ans</td>\n\n<td> 63 / 24,8</td>\n\n<td> 56 / 22,0</td>\n\n<td> 7,5 à 11 kg / 16,5 à 24,3 lbs</td>\n\n<td> 80-90 cm</td>\n\n\n</tr>\n\n<tr>\n\n<td> Enfant de 3 à 4 ans</td>\n\n<td> 67 / 26,4</td>\n\n<td> 60 / 23,6</td>\n\n<td> 11-15 kg / 24,3-33,1 lbs</td>\n\n<td> 90-100 cm</td>\n\n\n</tr>\n\n<tr>\n\n<td> Enfant de 5 à 6 ans</td>\n\n<td> 71 / 28,0</td>\n\n<td> 64 / 25,2</td>\n\n<td> 15-19 kg / 33,1-41,9 lbs</td>\n\n<td> 100-110 cm</td>\n\n\n</tr>\n\n<tr>\n\n<td> Enfant de 7 à 8 ans</td>\n\n<td> 75 / 29,5</td>\n\n<td> 68 / 26,8</td>\n\n<td> 19-22,5 kg / 41,9-49,6 lbs</td>\n\n<td> 110-120 cm</td>\n\n\n</tr>\n\n<tr>\n\n<td> Enfant de 9 à 10 ans</td>\n\n<td> 79 / 31,1</td>\n\n<td> 72 / 28,3</td>\n\n<td> 22,5-27,5 kg / 49,6-60,6 lbs</td>\n\n<td> 120-130 cm</td>\n\n\n</tr>\n\n<tr>\n\n<td> Enfant de 11 à 12 ans</td>\n\n<td> 83 / 32,7</td>\n\n<td> 76 / 29,9</td>\n\n       <td>27,5-32,5 kg / 60,6-71,7 lbs</td>\n\n<td> 130-140 cm</td>\n\n\n</tr>\n\n<tr>\n\n<td> Enfant de 13 à 14 ans</td>\n\n<td> 87 / 34,3</td>\n\n<td> 80 / 31,5</td>\n\n<td> 32,5-40 kg / 71,7-88,2 lbs</td>\n\n<td> 140-150 cm</td>\n\n\n</tr>\n\n\n<!-- Mother Sizes -->\n<tr>\n\n<td> Mère S</td>\n\n<td> 98 / 38,6</td>\n\n<td> 78 / 30,7</td>\n\n<td> 40-50 kg / 88-110 lbs</td>\n\n<td> 155-160 cm</td>\n\n\n</tr>\n\n<tr>\n\n<td> Mère M</td>\n\n<td> 104 / 40,9</td>\n\n<td> 82 / 32,3</td>\n\n<td> 50-55 kg / 110-121 lbs</td>\n\n<td> 155-160 cm</td>\n\n\n</tr>\n\n<tr>\n\n<td> Mère L</td>\n\n<td> 106 / 41,7</td>\n\n<td> 86 / 33,9</td>\n\n<td> 55-60 kg / 121-132 lbs</td>\n\n<td> 155-165 cm</td>\n\n\n</tr>\n\n<tr>\n\n<td> Mère XL</td>\n\n<td> 110 / 43,3</td>\n\n<td> 90 / 35,4</td>\n\n<td> 60-70 kg / 132-154 lbs</td>\n\n<td> 165-170 cm</td>\n\n\n</tr>\n\n<tr>\n\n<td> Taille 2XL mère</td>\n\n<td> 114 / 44,9</td>\n\n<td> 94 / 37,0</td>\n\n<td> 70-80 kg / 154-176 lbs</td>\n\n<td> 170-175 cm</td>\n\n\n</tr>\n\n\n</tbody>\n\n\n</table>\n\n",
+        "locale": "fr",
+        "outdated": false,
+        "value_sha256": "49890be23383c2a3feb873ed70df6760b0db28dfade4118566eb3e04711f9259"
+      },
+      {
+        "key": "product_type",
+        "value": "Ensembles",
+        "locale": "fr",
+        "outdated": false,
+        "value_sha256": "ab5ce430947eed79b90209e7a03f5a0e6e0b5df33f0d9dc44d9361b1842e68ff"
+      },
+      {
+        "key": "meta_title",
+        "value": "Ensembles assortis Famille - Beige | Habille-toi comme Maman",
+        "locale": "fr",
+        "outdated": false,
+        "value_sha256": "63beac95354f317d6f4c5d538bdc239ab7b3855d2283cb19fa99ba0554775ed1"
+      },
+      {
+        "key": "meta_description",
+        "value": "Découvrez des ensembles assortis pour parents et enfants en beige. Parfaits pour des looks coordonnés faciles, les vacances et les photos de famille. Achetez dès maintenant sur Dress Like Mommy. Livraison gratuite + retours sous 30 jours.",
+        "locale": "fr",
+        "outdated": false,
+        "value_sha256": "a076d8c9a07901a08102f48784654f212e3f83a35365d9b9e5790f30ed1cea70"
+      }
+    ],
+    "english_source_digests": {
+      "title": "7dacef21b53e25f3f466cf071a6940aaaef7a2332c29f5973b9d9df14adf9062",
+      "body_html": "1de8db3b22551d9c35378ff200f32ea6f1f093d88c8b0c09868ee8a3b9d5d5fd",
+      "handle": "d0aaa3971b849b7b99c78699b118bc174f797be1602e99e4072666752a666957",
+      "product_type": "fbb0f1b48888c1213ed6d214e58b88f98b885fde7be5ea69b81caa8d32ffce29",
+      "meta_title": "56b2d1f50220a57fd3a1df178a2f01e2fe89aa3e3f83d3165254e1f2385341f3",
+      "meta_description": "4595926508c32be50cee6c18caff609ce287fe6cb2f54d54af44ce0ade788f2c"
+    }
+  },
+  "freshness_limit": "This pass binds the supplied saved baseline and requires the already specified immediate prewrite requery. Product updatedAt and the candidate record clock are not proof of action-time freshness; any source digest or prior French value conflict stops this exact mutation for reconciliation.",
+  "rollback_limit": "Use the exact saved prior title text. The provided rollback digest matches this baseline; refresh the current English title digest at rollback and require the French title still equals the applied reviewed value before restoring. Prior outdated=true cannot be restored by this operation.",
+  "latest_phase": "POSTWRITE",
+  "after_review": {
+    "reviewer": "/root/together_heart_runner",
+    "reviewed_at": "2026-09-11T20:49:07.163929+00:00",
+    "verdict": "PASS",
+    "receipt": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/french_title_7229130801249.saved_receipt_20260911.json",
+      "sha256": "b30f09fafe59493e9888f427f9b25e0ec1a8fd0a950f760fcbe33de783b1d598",
+      "record_clock_utc": "2026-09-11 20:46:00 UTC"
+    },
+    "approved_prewrite_report_sha256": "ffadce5fc65fcdb20dd3eee4ae84cef1b5505f63c3eb948759e4e698168c16aa",
+    "scope": "Independent saved-receipt comparison against the 42/42 approved packet. Reviewer did not execute the mutation or make external queries; Merchant remains sole executor.",
+    "checks": {
+      "approved_input_hash_unchanged:candidate": true,
+      "approved_input_hash_unchanged:mutation": true,
+      "approved_input_hash_unchanged:before_payloads": true,
+      "approved_target_one_global_french_title": true,
+      "saved_mutation_variables_still_exact": true,
+      "receipt_claims_implemented_provider_readback": true,
+      "receipt_prewrite_checks_all_five_pass": true,
+      "receipt_after_checks_all_six_pass": true,
+      "mutation_envelope_has_no_top_level_errors": true,
+      "mutation_user_errors_empty": true,
+      "exactly_one_returned_translation_exact": true,
+      "after_product_identity_exact": true,
+      "all_five_product_fields_unchanged": true,
+      "product_updated_at_unchanged": true,
+      "five_french_records_and_order_preserved": true,
+      "french_record_keys_unique": true,
+      "french_locale_all_unchanged": true,
+      "after_french_title_exact_current": true,
+      "all_four_other_french_records_exact": true,
+      "other_french_value_hash_unchanged:body_html": true,
+      "other_french_value_hash_unchanged:product_type": true,
+      "other_french_value_hash_unchanged:meta_title": true,
+      "other_french_value_hash_unchanged:meta_description": true,
+      "only_title_value_and_outdated_changed": true,
+      "all_six_english_source_digests_exact": true,
+      "source_key_set_unchanged": true,
+      "english_title_text_and_digest_unchanged": true,
+      "receipt_points_to_reviewed_before_payloads": true,
+      "receipt_points_to_this_approved_review": true,
+      "receipt_scope_exact_product_and_field": true,
+      "no_google_or_full_locale_success_claim": true
+    },
+    "pass_count": 31,
+    "fail_count": 0,
+    "observed_translation": {
+      "key": "title",
+      "value": "Robes d’été assorties mère-fille en mousseline beige",
+      "locale": "fr",
+      "outdated": false
+    },
+    "exact_changed_french_fields": [
+      {
+        "key": "title",
+        "field": "value",
+        "before": "Robes élégantes en mousseline beige pour mère et fille - Été... | DLM",
+        "after": "Robes d’été assorties mère-fille en mousseline beige"
+      },
+      {
+        "key": "title",
+        "field": "outdated",
+        "before": true,
+        "after": false
+      }
+    ],
+    "preservation": {
+      "other_french_records": 4,
+      "english_source_digest_records": 6,
+      "product_fields": 5,
+      "updatedAt": "unchanged"
+    },
+    "evidence_distinctions": [
+      "The stored mutation result contains one returned fr/title translation with no userErrors. The exact server-wide number of execution calls is not independently observable from this local receipt; one call is the Merchant-reported execution.",
+      "The receipt reports five immediate prewrite checks. This reviewer independently compared saved before/after values and input hashes, not the timing or raw result of that immediate external query.",
+      "All six English source digests match directly; English title text matches directly. Non-title English raw values are omitted from the saved after receipt, so their preservation is verified through source digests, not a separate raw-text comparison."
+    ],
+    "limits": [
+      "No public French rendered-page check by this reviewer.",
+      "No French Google feed submission, ingestion or approval verified.",
+      "No entire-locale, 142-parent, other-language, price or variant quality certificate; the packet changes only the reviewed fr/title field.",
+      "No indexing, traffic, conversion or profit impact established."
+    ],
+    "next_action": "Merchant may close this exact French-title repair as source/readback verified and continue its existing queue without repeating this mutation."
+  }
+}

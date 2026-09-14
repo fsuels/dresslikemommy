@@ -1,0 +1,94 @@
+{
+  "as_of_utc": "2026-09-10T00:39:49.823260+00:00",
+  "status": "LIVE_SOURCE_REFRESH_VERIFIED__RECEIVER_AND_NATIVE_STAGE_BLOCKED",
+  "live_public_source": {
+    "receipt": "public_microsoft_source_refresh_20260910.json",
+    "captured_at": "2026-09-10T00:37:28.958389+00:00",
+    "main_theme_id": 133290917985,
+    "pixel_id": "931561569",
+    "uet_tag_id": "36005151",
+    "app_source_unchanged": true
+  },
+  "isolated_browser": {
+    "source": "normal public in-app tab2",
+    "url": "https://www.dresslikemommy.com/",
+    "theme_id": 137881223265,
+    "theme_role": "unpublished",
+    "preexisting_preview": true,
+    "production_runtime_proof": false,
+    "country": "US",
+    "currency": "USD",
+    "language": "en",
+    "cart_item_count": 0,
+    "preferences_before": {
+      "personalization": false,
+      "marketing": false,
+      "analytics": false
+    },
+    "preferences_after": {
+      "personalization": false,
+      "marketing": false,
+      "analytics": false
+    },
+    "consent_changes": 0,
+    "cart_changes": 0,
+    "country_changes": 0,
+    "temporary_tab_closed": true,
+    "exit_preview_control_observed": false,
+    "preexisting_preview_state_changed": false
+  },
+  "network_capture": {
+    "status": "BLOCKED_OBSERVABILITY",
+    "truncated": false,
+    "event_filters": [
+      "Network.requestWillBeSent",
+      "Network.responseReceived",
+      "Target.attachedToTarget"
+    ],
+    "matching_events": 0,
+    "other_events_observed": [
+      "Page.frameNavigated",
+      "Page.lifecycleEvent",
+      "Page.domContentEventFired",
+      "Page.loadEventFired"
+    ],
+    "all_event_count": 38,
+    "conclusion": "Recorder had page events but no Network events; no UET absence, consent failure or success can be inferred",
+    "grant_revocation_checks": "NOT RUN because the required network observations were unavailable",
+    "effective_privacy_api_and_geo": "NOT RUN; UI preferences are not API permission or EEA geolocation proof"
+  },
+  "independent_consent_review": {
+    "file": "microsoft_consent_assessment.md",
+    "reviewer": "international_campaign_build",
+    "independence": "DID_NOT_BUILD_OR_EXECUTE_MICROSOFT_CODE",
+    "status": "RUNTIME_CONSENT_UNVERIFIED",
+    "source": "https://github.com/MicrosoftDocs/Advertising/blob/main/advertising/msa-help/hlp_BA_CONC_UET_Consent.md",
+    "source_retrieval_correction": "Initial Help endpoint failed direct open; accessible official MicrosoftDocs body independently opened by root and reviewer"
+  },
+  "native_access": {
+    "root_native_attempts_this_turn": 0,
+    "root_microsoft_account_read_this_turn": false,
+    "initial_peer_gate": "Automatic approval review rejected native Chrome while prior lock/private-content issue lacked owner clearance",
+    "latest_peer_evidence": "Pinterest owner-confirmed scoped attempt found Chrome readable but two selected-target reads were interrupted by user-driven Chrome changes; stopped with no third attempt",
+    "current_gate": "STABLE_SELECTED_MICROSOFT_TAB_REQUIRED and serialized operator handback",
+    "microsoft_readiness_question": "PENDING",
+    "private_content_copied": false,
+    "workaround_attempted": false
+  },
+  "mutations_this_checkpoint": {
+    "microsoft_configuration": 0,
+    "shopify_production": 0,
+    "campaign_native_create_import_enable": 0,
+    "new_spend": 0,
+    "tracking_sender_or_consent_code": 0
+  },
+  "preserved_findings": [
+    "Publisher-managed msclkid cookie serialization defect remains;90day localStorage fallback prevents quantifying loss",
+    "Current purchase receiver/value/currency/consent and goal-overlap remain unverified",
+    "11campaign designs across9languages remain local review tables; no native staging",
+    "Coral21body repair and earlier narrow tests remain separately dated",
+    "Combined translated-CTA/consent theme remains unpublished according fresh public MAIN and Merchant role readback"
+  ],
+  "next_owner_action": "Select the supplied Microsoft477439 tab, leave Chrome unused for10minutes and confirm readiness",
+  "continuation_anchor": "2026-09-09-microsoft-live-source-consent-access-checkpoint"
+}

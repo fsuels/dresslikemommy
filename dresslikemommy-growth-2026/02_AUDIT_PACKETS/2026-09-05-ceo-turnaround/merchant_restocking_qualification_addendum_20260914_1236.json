@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-14T13:14:51.947729+00:00",
+  "verdict": "PASS_WITH_LIMITS__RESTOCKING_OWNER_DECISION_PROVENANCE_RESOLVED",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE. Independently read one exact saved user record; no account/browser/API replay, policy change or canonical edit.",
+  "prior_review": {
+    "path": "/private/tmp/dlm-merchant-eligibility-review-20260914-1236.json",
+    "sha256": "e0a5095e492458827b22219371213ace08932b68a44092228ca3a8e2ba901554",
+    "unchanged": true
+  },
+  "source": {
+    "path": "/Users/fsuels/.codex/sessions/2026/09/09/rollout-2026-09-09T12-36-03-01a08706-c63a-7e01-ba48-7777bcb1788a.jsonl",
+    "line": 7532,
+    "record_type": "response_item",
+    "timestamp": "2026-09-11T13:56:59.009Z",
+    "message_id": "msg_01a090c1-dc01-7fb2-99c9-f703b90180c8",
+    "role": "user",
+    "exact_record_sha256": "a6f081141ec1518f8f98abf98ca19590d4c73175cec3c0da0bf907d0d7be305a"
+  },
+  "sanitized_user_decision": {
+    "question": "For approved returns, do you charge a restocking fee? Your published policy does not state one, and Google requires this field before I can save the return setup.",
+    "answer": "No restocking fee"
+  },
+  "resolution": {
+    "finding": "F1 in the prior review",
+    "status": "MISSING_OWNER_DECISION_EVIDENCE_RESOLVED_BY_EXACT_USER_REPLY",
+    "supported": "Zero restocking for approved returns has unrestricted owner-decision provenance and can support the proposed US/AU fee field. No repeated restocking question is needed.",
+    "not_supported": "This does not make the written refund/Terms page state a fee, resolve contradictory exclusions/postage, approve ineligible returns, prove current product-policy assignments or authorize executing a return-policy/feed change.",
+    "original_review_history": "Preserved unchanged; the prior failure is not relabeled as if the later evidence was known then."
+  },
+  "check_counts": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "id": "A1",
+      "status": "PASS",
+      "check": "Original review is immutable",
+      "evidence": "Original finding and all17 executed check records are preserved byte-for-byte; this separate addendum supplies later-retrieved evidence."
+    },
+    {
+      "id": "A2",
+      "status": "PASS",
+      "check": "Exact one-record identity",
+      "evidence": "Owning Merchant rollout line7532 is an actual user message at the specified timestamp."
+    },
+    {
+      "id": "A3",
+      "status": "PASS",
+      "check": "Unique exact question and answer",
+      "evidence": "One exact matched reply; no adjacent record or unrelated answer used."
+    },
+    {
+      "id": "A4",
+      "status": "PASS",
+      "check": "Unrestricted approved-return fee answer",
+      "evidence": "The question covers approved returns and the answer states no fee without a country qualifier. It provides owner-decision provenance for proposing zero restocking in US/AU; it does not expand which returns are approved."
+    },
+    {
+      "id": "A5",
+      "status": "PASS",
+      "check": "Website truth and remaining holds remain separate",
+      "evidence": "The fee is owner-confirmed, not independently stated by the written policy. Terms/refund/page conflicts, affected-country/offer/exception coverage, defective remedy, optional ambiguous Days and exact reviewed sequence/readback/rollback still require qualification. No Save/feed write is approved here."
+    },
+    {
+      "id": "A6",
+      "status": "PASS",
+      "check": "Sanitized evidence allowlist",
+      "evidence": "Only the exact return-fee question/answer and record metadata/hash retained; no ambient context, unrelated reply, private account/order/customer data or credentials retained."
+    },
+    {
+      "id": "A7",
+      "status": "PASS",
+      "check": "Source and original-review stability at close",
+      "evidence": "Exact cited record hash and original review hash match; no source, canonical or original review write occurred."
+    }
+  ],
+  "unresolved_findings": [],
+  "remaining_release_gates": [
+    "Resolve Terms/refund/page exclusion and postage wording for affected products without inventing terms.",
+    "Current complete country/source/offer exception and effective-policy coverage, including any products outside controlled feeds.",
+    "Truthful defective-item remedy representation and optional blank refund-processing Days preserved until a supported mapping exists.",
+    "Exact before-state, candidate sequence, independent prewrite review, after-state and rollback; no production authorization supplied by this addendum."
+  ],
+  "next_action": "Parent may use the exact user reply as fee-decision provenance. Remain available for a concrete completed US feed candidate; none reviewed or started in this addendum.",
+  "boundaries": {
+    "external_reads": 0,
+    "external_writes": 0,
+    "source_edits": 0,
+    "canonical_edits": 0,
+    "original_review_edits": 0,
+    "new_tasks_agents_automations": 0
+  }
+}

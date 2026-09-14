@@ -1,0 +1,152 @@
+{
+  "schema": "dlm.google_ads_followup_evidence.v1",
+  "recorded_at_utc": "2026-09-11T22:50:20Z",
+  "trigger": {
+    "type": "existing_heartbeat",
+    "automation_id": "google-ads-markets-and-purchase-follow-up",
+    "fired_at_utc": "2026-09-11T22:46:44.079Z"
+  },
+  "decision": "HOLD_WITH_EVIDENCE; unchanged campaign spend and purchase gate, with bounded local market-source comparison delegated separately.",
+  "scope": "Read-only exact Ads campaign and existing GA4 Transactions report, Shopify new-order counts, existing Merchant source evidence. No further Save/authentication attempt.",
+  "ads": {
+    "customer_id_retained": "6509972886",
+    "campaign_id_retained": "24247604341",
+    "asset_group_id": "6746545742",
+    "identity_basis": "Previously verified account/campaign mapping, same task-owned IAB session1 and exact ocid8520129103 URL; only Campaign #1 in fresh account report. No account switch.",
+    "report_window": "Today, September 11, 2026",
+    "timezone_display": "(GMT-04:00) Eastern Time",
+    "status": "PAUSED",
+    "configured_average_daily_budget_usd": 5,
+    "cost_usd": 0.8,
+    "clicks": 5,
+    "calculated_average_cpc_usd": 0.16,
+    "reported_conversions": 0,
+    "reported_conversion_value": 0,
+    "impressions": {
+      "initial_loading_row": 359,
+      "fully_loaded_campaign_row": 358,
+      "fully_loaded_chart": 358,
+      "fully_loaded_view_and_account_totals": 359,
+      "status": "CONFLICTED_BY_ONE_IMPRESSION",
+      "interpretation": "Reporting surfaces disagree by one impression. Cost, clicks, paused state and zero reported conversions agree. No delivery-change or cause inference."
+    },
+    "ctr_percent_displayed": 1.39,
+    "channels": "NOT_REREAD",
+    "editor": {
+      "tab": "8",
+      "provider_tab_id": "browser-use:6df684ff-5579-4724-8d4a-55ffbed64371",
+      "reviewed_copy_visible": true,
+      "displayed_strength": "Poor",
+      "save_attempts": 0,
+      "identity_completion": "UNVERIFIED",
+      "saved_after_state": "NOT_REREAD; prior failed Save evidence still controls"
+    },
+    "ui_warning": {
+      "surface": "Fresh task-owned readback tab10",
+      "dom_dialog_heading": "Turn off ad blockers",
+      "body": "Google Ads can't work when you're using an ad blocker. To use Google Ads, please turn off any ad blockers for now.",
+      "visible_blocking_state": "NOT_INDEPENDENTLY_CONFIRMED; DOM warning only",
+      "response": "No browser settings, dismissal, disabling or alternate access attempted; temporary tab closed after read."
+    },
+    "source_capture": "Fresh UI creation plus fully rendered DOM report; no hidden state/private API."
+  },
+  "shopify": {
+    "window": {
+      "from_exclusive": "2026-09-11T21:21:23Z",
+      "until_exclusive": "2026-09-11T22:48:55Z"
+    },
+    "query": "query AdsHeartbeatNewOrderCounts {\n shop { id name ianaTimezone }\n allNew: ordersCount(query: \"created_at:>'2026-09-11T21:21:23Z' created_at:<'2026-09-11T22:48:55Z'\", limit: null) { count precision }\n webNonTest: ordersCount(query: \"created_at:>'2026-09-11T21:21:23Z' created_at:<'2026-09-11T22:48:55Z' source_name:web test:false\", limit: null) { count precision }\n paidWebNonTest: ordersCount(query: \"created_at:>'2026-09-11T21:21:23Z' created_at:<'2026-09-11T22:48:55Z' source_name:web test:false financial_status:paid\", limit: null) { count precision }\n}",
+    "result": {
+      "shop": {
+        "id": "gid://shopify/Shop/15571635",
+        "name": "Dress Like Mommy",
+        "ianaTimezone": "America/New_York"
+      },
+      "allNew": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "webNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "paidWebNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      }
+    },
+    "workflow": "QueryRoot/Count/Shop schema discovery, successful validator, then authenticated read-only query",
+    "inference": "No newly created order in this exact window is available as a genuine purchase sample.",
+    "limits": [
+      "This window is not the GA4 Sep10–11 report window.",
+      "Creation counts do not reread earlier payment/refund/cancellation or fulfillment changes.",
+      "No customer identifiers, order identifiers, payment details, addresses or tokens requested.",
+      "Zero new orders does not diagnose tracking failure."
+    ]
+  },
+  "ga4": {
+    "account_id": "88409806",
+    "property_id": "330266838",
+    "property_label": "dresslikemommy.com - GA4",
+    "report": "Transactions: Transaction ID",
+    "date_from": "2026-09-10",
+    "date_to": "2026-09-11",
+    "audience": "All Users",
+    "ecommerce_purchases": 0,
+    "purchase_revenue_display": "$0.00",
+    "rows": "No data available",
+    "quality_indicator": "100% of available data",
+    "fresh_access": "VERIFIED in new temporary task-owned IAB tab11",
+    "timezone_currency": "NOT_REREAD; dollar display recorded without a new currency-code claim.",
+    "items_report": "NOT_REREAD; 97 views/8 cart items remain separately dated 21:40 evidence.",
+    "limits": [
+      "Sep11 is intraday/partial.",
+      "Available-data indicator does not prove complete capture or no processing lag.",
+      "No genuine transaction join, consent acceptance, value/currency/items parity, deduplication or Ads Purchase7760272273 acceptance is established."
+    ]
+  },
+  "continuity": {
+    "runtime_goal_status_verified": "BLOCKED",
+    "runtime_goal_changed": false,
+    "existing_heartbeat": "ACTIVE per delivered trigger; no schedule mutation",
+    "shared_canonical_owner": "Parent01a08223; its current closing interval retained",
+    "shared_canonical_writes": 0,
+    "global_paid_control": "UNCHANGED",
+    "older_packets": "Preserved; prior metrics remain dated rather than rewritten"
+  },
+  "browser_cleanup": {
+    "temporary_tabs_closed": [
+      "10",
+      "11"
+    ],
+    "handoff_tabs_preserved": [
+      "8",
+      "9"
+    ],
+    "user_tab4_untouched": true,
+    "native_chrome_access": false
+  },
+  "changes": {
+    "save_apply_attempts": 0,
+    "campaign_budget_bid_status_goal_changes": 0,
+    "keyword_or_negative_imports": 0,
+    "creative_uploads": 0,
+    "tracking_or_consent_writes": 0,
+    "public_storefront_requests": 0,
+    "purchases_or_payments": 0
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-11T22:50:20Z",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "Normal owner verification and successful Save with saved-value readback; genuine purchase receiver match; exact market buyer/economics evidence and paid authorization.",
+    "if_evidence_supports_recommendation": "Resume only the next exact authorized repair or receiver check, retaining separate paid launch gates.",
+    "if_evidence_opposes_recommendation": "Retain reviewed drafts and hold paid actions; do not repeat unchanged Save/authentication attempts."
+  },
+  "next_action": "Preserve the pending normal owner Save/identity result without another prompt; integrate only a meaningful new exact market-source delta.",
+  "continuation_source": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

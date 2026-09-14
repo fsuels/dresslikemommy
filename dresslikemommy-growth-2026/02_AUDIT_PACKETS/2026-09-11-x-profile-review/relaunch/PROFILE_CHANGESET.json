@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "target": "https://x.com/dresslikemommy",
+  "state": "PREPARED_TARGET_LOGIN_REQUIRED",
+  "authority": {
+    "source": "current user request",
+    "scope": "Professional profile refresh and bounded organic publishing to bring qualified visitors to the store",
+    "user_quote": "fix everything in that account. make it polish! more professional. less start using it smart to bring traffic to website. I need you to create a plan and work making this expertly professional run!",
+    "public_profile_and_initial_post_intent_authorized": true,
+    "spend_authorized": false,
+    "security_changes_authorized": false,
+    "permanent_deletion_authorized": false
+  },
+  "previous_public_snapshot": "../EVIDENCE.json",
+  "proposed_fields": {
+    "display_name": "Dress Like Mommy",
+    "bio": "Matching outfits for family photos, vacations & everyday moments. Mommy & me, daddy & me & family styles. Outfit ideas, fit tips & buying guides.",
+    "website": "https://www.dresslikemommy.com/"
+  },
+  "preserved_fields": [
+    "handle @dresslikemommy",
+    "location United States unless owner-view contradicts it",
+    "birth date and account security",
+    "all existing posts and replies",
+    "billing, subscriptions and advertising",
+    "other accounts and store configuration"
+  ],
+  "assets": [
+    {
+      "field": "header",
+      "path": "assets/x-header-v1.png",
+      "sha256": "166adccbb2ea15263cc805a14f412cbdb2a0172c0401e931a71eebfc6274b059",
+      "decorative_not_product_photo": true
+    },
+    {
+      "field": "avatar",
+      "path": "assets/x-avatar-v1.png",
+      "sha256": "2f9315410d78a8994038cb2c72e64b762bebc81047ca5864c292a83f2a4bc035",
+      "purpose": "X-only DLM social monogram"
+    }
+  ],
+  "initial_publish": {
+    "queue": "POST_QUEUE.json",
+    "selection": "Pinned introductory guide post only for first release; subsequent pieces follow reviewed relative-day queue.",
+    "duplicate_check_required": true,
+    "pin_after_publish_readback": true,
+    "post_id": "DLM-X-202609-R001",
+    "body_with_url": "Family moments, thoughtfully coordinated. We share mommy & me, daddy & me, and family outfit ideas, with help on sizes and what each selection includes. Planning photos? Start with our guide:\nhttps://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_pinned_family_photo_guide",
+    "media": {
+      "mode": "EDITORIAL_CARD",
+      "required": true,
+      "state": "CREATED_PENDING_INDEPENDENT_REVIEW",
+      "brief": "An original, readable text card in the approved profile palette: 'Plan a family-photo look' with three short lines: 'Choose a shared palette', 'Check each person's size', 'Confirm what each selection includes'. Use brand typography and ample spacing. No garment, price, customer, or delivery illustration.",
+      "alt_text_required_if_attached": true,
+      "alt_text_candidate": "Dress Like Mommy. Plan a family-photo look: 01 Choose a shared palette; 02 Check each person's size; 03 Confirm what each selection includes. Ivory background with plum text and rose accents.",
+      "alt_text_state": "ACTUAL_IMAGE_ROOT_CHECKED_PENDING_INDEPENDENT_REVIEW",
+      "path": "assets/x-pinned-checklist-v1.png",
+      "sha256": "6a52c13ae2cc60151a71179d4174fe23128000ca19e526819e0ab0ab52bd02d0"
+    }
+  },
+  "live_preconditions": [
+    "Owner finishes sign-in; selected account and Edit profile must explicitly match @dresslikemommy",
+    "Independent review accepts exact copy, images and measured rollout",
+    "Fresh owner-view text plus downloadable original header/avatar saved before replacement",
+    "Image crop and exact field values reviewed before Save",
+    "Exact post URL, composer text/media/alt text and duplicate checks before Post"
+  ],
+  "rollback": {
+    "profile": "Restore captured original field values and original header/avatar, then verify public readback.",
+    "pinned_post": "Unpin only the newly published intro if needed. Do not claim unpinning retracts its distribution. Permanent deletion requires specific authorization. If a prior pinned post exists in the fresh before-state, capture its exact URL and restore that prior pin after unpinning the new one.",
+    "reach": "Public distribution cannot be fully reversed; no guaranteed recovery of past reach or engagement.",
+    "missing_before_assets": "Blocks avatar/header replacement until original assets are captured."
+  },
+  "measurements": {
+    "campaign": "organic_202609",
+    "source": "x",
+    "medium": "social",
+    "baseline_profile_followers": 5,
+    "baseline_posts_displayed": 474,
+    "baseline_orders_from_x": null,
+    "clock_starts": "actual first X publication; first full reporting day afterward in America/New_York",
+    "qa_exclusions": "All September 11 prepublication visits; one tagged QA visit already recorded in ../EVIDENCE.json."
+  },
+  "residuals": [
+    "Exact target account currently requires owner sign-in",
+    "No live profile/post changes yet",
+    "No earned traffic, orders or profit established"
+  ]
+}

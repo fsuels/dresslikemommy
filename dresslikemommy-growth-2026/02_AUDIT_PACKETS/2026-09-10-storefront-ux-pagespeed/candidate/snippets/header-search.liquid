@@ -1,0 +1,198 @@
+{% comment %}
+  Renders a header search modal. Should be used with 'header.liquid'
+
+  Accepts:
+  - input_id: {String} Id for the search input element (required)
+  - menu_handle: {String} Navigation menu handle used to resolve collection URLs (optional)
+
+  Usage:
+{% endcomment %}
+
+<details-modal class="header__search">
+  <details>
+    <summary
+      class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
+      aria-haspopup="dialog"
+      aria-label="{{ 'general.search.search' | t }}"
+    >
+      <span>
+        <svg class="modal__toggle-open icon icon-search" aria-hidden="true" focusable="false">
+          <use href="#icon-search">
+        </svg>
+        <svg class="modal__toggle-close icon icon-close" aria-hidden="true" focusable="false">
+          <use href="#icon-close">
+        </svg>
+      </span>
+    </summary>
+    <div
+      class="search-modal modal__content gradient"
+      role="dialog"
+      aria-modal="true"
+      aria-label="{{ 'general.search.search' | t }}"
+    >
+      <div class="modal-overlay"></div>
+      <div
+        class="search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} search-modal__content-top{% else %} search-modal__content-bottom{% endif %}"
+        tabindex="-1"
+      >
+        {%- if settings.predictive_search_enabled -%}
+          <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+        {%- else -%}
+          <search-form class="search-modal__form">
+        {%- endif -%}
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          class="search search-modal__form"
+          data-collection-fallback-url="{{ routes.all_products_collection_url }}"
+          data-pajama-collection-url="{{ collections['pajamas'].url | default: '/collections/pajamas' }}"
+        >
+          <div class="field">
+            <input
+              class="search__input field__input"
+              id="{{ input_id }}"
+              type="search"
+              name="q"
+              value="{{ search.terms | escape }}"
+              placeholder="{{ 'general.search.search' | t }}"
+              {%- if settings.predictive_search_enabled -%}
+                role="combobox"
+                aria-expanded="false"
+                aria-owns="predictive-search-results"
+                aria-controls="predictive-search-results"
+                aria-haspopup="listbox"
+                aria-autocomplete="list"
+                autocorrect="off"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+              {%- endif -%}
+            >
+            <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>
+            <input type="hidden" name="options[prefix]" value="last">
+            <input type="hidden" name="type" value="product">
+            <button
+              type="reset"
+              class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+              aria-label="{{ 'general.search.reset' | t }}"
+            >
+              <svg class="icon icon-close" aria-hidden="true" focusable="false">
+                <use xlink:href="#icon-reset">
+              </svg>
+            </button>
+            <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+              <svg class="icon icon-search" aria-hidden="true" focusable="false">
+                <use href="#icon-search">
+              </svg>
+            </button>
+          </div>
+
+          <div class="mobile-search-empty-state" data-mobile-search-empty-state hidden>
+            <p class="mobile-search-empty-state__title">Collections</p>
+            <ul class="mobile-search-empty-state__list list-unstyled" role="list">
+              {%- assign mobile_search_collection_targets = 'Pajamas::pajamas,family-pajamas::pajama,pajamas,pjs,matching pjs,matching pajamas,family pajamas,mommy and me pajamas,mother daughter pajamas|Mommy and Me::mommy-and-me,dresses::mommy,mother,mommy and me,mommy & me,mother and me|Daddy and Me::daddy-me,daddy-me-t-shirts,daddy-me-shirts::daddy,father,daddy and me,daddy & me,father and me,daddy and me shirts,daddy and me outfits|Dad and Son Shirts::daddy-me-shirts,daddy-me::dad and son matching shirts,dad and son matching button up shirts,dad and son matching dress shirts,father son matching hawaiian shirts|Family Matching::new-women-outfits,family-matching,matching-outfits,family-sets::family matching,matching family,family,matching outfits,family sets|Couples Matching::couples,matching-couples-t-shirts,couple-matching::couples matching outfits,couple matching outfits,couples,couple outfits,his and hers,matching couple|Couple T-Shirts::matching-couples-t-shirts,couples::couple shirts,couple t shirts,couples t shirts,couple t shirt|Maternity::maternity::maternity,pregnancy,pregnant,mama' | split: '|' -%}
+              {%- for target in mobile_search_collection_targets -%}
+                {%- assign target_parts = target | split: '::' -%}
+                {%- assign collection_title = target_parts[0] | strip -%}
+                {%- assign collection_handle_candidates = target_parts[1] | split: ',' -%}
+                {%- assign collection_handle = collection_handle_candidates.first | strip -%}
+                {%- assign collection_keywords = target_parts[2] | strip -%}
+                {%- assign collection_url = routes.collections_url | append: '/' | append: collection_handle -%}
+
+                {%- for candidate_handle in collection_handle_candidates -%}
+                  {%- assign candidate_handle = candidate_handle | strip -%}
+                  {%- if collections[candidate_handle] != blank -%}
+                    {%- assign collection_handle = candidate_handle -%}
+                    {%- assign collection_url = collections[candidate_handle].url -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                {%- capture collection_target_is_visible -%}
+                  {%- render 'collection-storefront-visible', collection_handle: collection_handle -%}
+                {%- endcapture -%}
+                {%- assign collection_target_is_visible = collection_target_is_visible | strip -%}
+                {%- if collection_target_is_visible != 'true' -%}
+                  {% continue %}
+                {%- endif -%}
+
+                {%- if menu_handle != blank and linklists[menu_handle] != blank -%}
+                  {%- assign requested_title = collection_title | downcase | replace: '&', 'and' | replace: '-', ' ' | replace: '  ', ' ' | strip -%}
+                  {%- assign menu_match_found = false -%}
+
+                  {%- for menu_link in linklists[menu_handle].links -%}
+                    {%- assign menu_title = menu_link.title | downcase | replace: '&', 'and' | replace: '-', ' ' | replace: '  ', ' ' | strip -%}
+                    {%- assign menu_title_matches = false -%}
+                    {%- if menu_title == requested_title or menu_title contains requested_title or requested_title contains menu_title -%}
+                      {%- assign menu_title_matches = true -%}
+                    {%- endif -%}
+
+                    {%- if menu_title != blank and menu_title_matches -%}
+                      {%- assign collection_url = menu_link.url -%}
+                      {%- assign menu_match_found = true -%}
+                      {%- break -%}
+                    {%- endif -%}
+
+                    {%- if menu_link.links != blank -%}
+                      {%- for child_link in menu_link.links -%}
+                        {%- assign child_title = child_link.title | downcase | replace: '&', 'and' | replace: '-', ' ' | replace: '  ', ' ' | strip -%}
+                        {%- assign child_title_matches = false -%}
+                        {%- if child_title == requested_title or child_title contains requested_title or requested_title contains child_title -%}
+                          {%- assign child_title_matches = true -%}
+                        {%- endif -%}
+
+                        {%- if child_title != blank and child_title_matches -%}
+                          {%- assign collection_url = child_link.url -%}
+                          {%- assign menu_match_found = true -%}
+                          {%- break -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+
+                      {%- if menu_match_found -%}
+                        {%- break -%}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
+
+                <li class="mobile-search-empty-state__item">
+                  <a
+                    href="{{ collection_url }}"
+                    class="mobile-search-empty-state__link link link--text"
+                    data-collection-keywords="{{ collection_keywords | escape }}"
+                    data-collection-handle="{{ collection_handle | escape }}"
+                  >
+                    {{- collection_title -}}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+
+          {%- if settings.predictive_search_enabled -%}
+            <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+              {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+            </div>
+
+            <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+          {%- endif -%}
+        </form>
+        {%- if settings.predictive_search_enabled -%}
+          </predictive-search>
+        {%- else -%}
+          </search-form>
+        {%- endif -%}
+        <button
+          type="button"
+          class="search-modal__close-button modal__close-button link link--text focus-inset"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          <svg class="icon icon-close" aria-hidden="true" focusable="false">
+            <use href="#icon-close">
+          </svg>
+        </button>
+      </div>
+    </div>
+  </details>
+</details-modal>

@@ -1,0 +1,28 @@
+{
+  "status": "PREPARED_NOT_APPLIED",
+  "action_id": "TA16-CLOCK-ALIGN-20260914-0846",
+  "prepared_at_utc": "2026-09-14T08:54:39.942711+00:00",
+  "path": "ops/marketing/action_queue.md",
+  "before_snapshot": "/private/tmp/dlm-ta16-next-clock-20260914-0846-before.md",
+  "before_sha256": "dcee2243e79527e65e017858a4974ac6df48b4cae79ce093323e0cdf581e5e81",
+  "after_sha256": "c0bf38ef2528ed5a38c9d66b1bf40a354cbb6223e949551b6a13f093fd9a1136",
+  "old": "| P1 | YELLOW | `TA-16` Qualify actual delivery costs for the two recent Google-sourced orders | root read-only provider/cost owner; independent reviewer | Exact four variants and native-currency payment fees verified. Supplier/item/service/freight costs and paid-versus-organic source remain unknown; recorded Shopify unit costs still match the50% template. No financial action or paid launch | order_fulfillment_checkpoint_20260913_2045.json; order_fulfillment_checkpoint_20260913_evening_review.json; order_fulfillment_checkpoint_20260913_0841.json; current_sales_checkpoint_20260908_evening.json; recent_order_payment_fees_20260907.json; recent_order_basket_variants_20260907.json; PROB-2026-09-06-RECENT-ORDER-PROFIT-QUALIFICATION | Measurement + profit | Needs evidence | None | September13 20:49 UTC full read: same2 PAID orders/4units/USD86.45; no new creations since08:42:09UTC, trailing24h or completedSeptember12NY, and no lifecycle change. Rainbow marked fulfilled without transit/delivery proof; Mermaid unfulfilled. Actual costs, settlement, attribution and profit UNKNOWN; existing access gates unchanged. | Obtain actual Rainbow item/service/freight/duty and settlement evidence after authenticated task-owned provider access or a new invoice. No unchanged sign-in/API retry. Next full sales read September14 08:49:22UTC; earlier only on a meaningful order/payment/refund/fulfillment or actual-cost signal. | 2026-09-13 | Confirm actual costs of recent orders |",
+  "new": "| P1 | YELLOW | `TA-16` Qualify actual delivery costs for the two recent Google-sourced orders | root read-only provider/cost owner; independent reviewer | Exact four variants and native-currency payment fees verified. Supplier/item/service/freight costs and paid-versus-organic source remain unknown; recorded Shopify unit costs still match the50% template. No financial action or paid launch | order_fulfillment_checkpoint_20260914_0704.json; order_fulfillment_checkpoint_20260914_review.json; order_fulfillment_checkpoint_20260913_2045.json; order_fulfillment_checkpoint_20260913_evening_review.json; order_fulfillment_checkpoint_20260913_0841.json; current_sales_checkpoint_20260908_evening.json; recent_order_payment_fees_20260907.json; recent_order_basket_variants_20260907.json; PROB-2026-09-06-RECENT-ORDER-PROFIT-QUALIFICATION | Measurement + profit | Needs evidence | None | September14 07:04:53–54UTC full read confirms3 qualifying PAID/non-test/noncancelled web orders,8units/USD198.41, including1 new4unit/USD111.96 order. Original2orders/4units/USD86.45 are unchanged. Fulfillment07:06:24–26UTC: Rainbow marked fulfilled without carrier transit/delivery proof; Mermaid and new order unfulfilled. Actual supplier/service/freight/duty costs, settlement, paid attribution and profit remain UNKNOWN. Existing payment-fee evidence and access gates are preserved. | Obtain actual Rainbow item/service/freight/duty and settlement evidence after authenticated task-owned provider access or a new invoice. No unchanged sign-in/API retry. Next full sales read September14 19:04:53UTC (the completed07:04:53 new-order check supersedes the prior08:49:22 due time); earlier only on a meaningful order/payment/refund/fulfillment or actual-cost signal. | 2026-09-14 | Confirm actual costs of recent orders |",
+  "changed_cell_indices": [
+    5,
+    9,
+    10,
+    11
+  ],
+  "source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_0704.json",
+    "sha256": "7eab5039ded43cceada676ca48778e97554c3e1610f976b840399dfccbd6c3fd"
+  },
+  "independent_source_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_review.json",
+    "sha256": "b990fb65b995823d5f82820c2a29237cc025771cc67a6518f3c9ee9e2eed2f47"
+  },
+  "scope": "Correct root-owned TA16 current sales milestone/evidence/date and next full read. Preserve original two-order actual-cost cohort, permission, every peer row, owner action and paid controls. No business query or write.",
+  "reason": "TA16 still directs08:49:22 while the accepted meaningful-signal full source and parent state now govern19:04:53; prevents duplicate private-order read.",
+  "rollback": "Exact new row to old row using frozen before snapshot; restore only own row if needed."
+}

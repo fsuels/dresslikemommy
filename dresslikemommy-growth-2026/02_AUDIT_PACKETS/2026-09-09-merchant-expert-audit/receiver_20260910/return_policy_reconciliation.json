@@ -1,0 +1,1016 @@
+{
+  "schema": "dlm.return_policy_reconciliation.v1",
+  "status": "VERIFIED_CURRENT_SOURCE_30_DAYS__NO_PAGE_CORRECTION_NEEDED",
+  "read_only": true,
+  "external_writes": 0,
+  "source_edits": 0,
+  "query": {
+    "artifact_id": "return-policy-27dbb83b-1218-4b58-b1d6-9609a2fc4339",
+    "revision": 1,
+    "content": "query ReturnPolicyReconciliation($pageAfter: String, $redirectAfter: String) {\n  shop {\n    id name\n    shopPolicies { id type title body url updatedAt }\n  }\n  pages(first: 50, after: $pageAfter, query: \"handle:return-policy\") {\n    nodes { id title handle body isPublished publishedAt updatedAt templateSuffix }\n    pageInfo { hasNextPage endCursor }\n  }\n  urlRedirects(first: 50, after: $redirectAfter, query: \"path:/pages/return-policy\") {\n    nodes { id path target }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+    "variables": {
+      "pageAfter": null,
+      "redirectAfter": null
+    },
+    "schema_discovery": {
+      "QueryRoot": {
+        "name": "QueryRoot",
+        "kind": "OBJECT",
+        "fields": [
+          {
+            "name": "pages",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "PageConnection",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            },
+            "args": [
+              {
+                "name": "first",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "name": "Boolean",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "name": "PageSortKeys",
+                  "kind": "ENUM",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "query",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "savedSearchId",
+                "type": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          {
+            "name": "shop",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Shop",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "urlRedirects",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "UrlRedirectConnection",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            },
+            "args": [
+              {
+                "name": "first",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "name": "Boolean",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "name": "UrlRedirectSortKeys",
+                  "kind": "ENUM",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "query",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "savedSearchId",
+                "type": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "Page": {
+        "name": "Page",
+        "kind": "OBJECT",
+        "fields": [
+          {
+            "name": "body",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "HTML",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "bodySummary",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "createdAt",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "DateTime",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "defaultCursor",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "events",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "EventConnection",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            },
+            "args": [
+              {
+                "name": "first",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "name": "Boolean",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "sortKey",
+                "type": {
+                  "name": "EventSortKeys",
+                  "kind": "ENUM",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "query",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          {
+            "name": "handle",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "id",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "isPublished",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "metafield",
+            "type": {
+              "name": "Metafield",
+              "kind": "OBJECT",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "namespace",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "key",
+                "type": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "String",
+                    "kind": "SCALAR",
+                    "ofType": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "metafields",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "MetafieldConnection",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            },
+            "args": [
+              {
+                "name": "namespace",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "keys",
+                "type": {
+                  "name": null,
+                  "kind": "LIST",
+                  "ofType": {
+                    "name": null,
+                    "kind": "NON_NULL",
+                    "ofType": {
+                      "name": "String",
+                      "kind": "SCALAR",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "reverse",
+                "type": {
+                  "name": "Boolean",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          {
+            "name": "publishedAt",
+            "type": {
+              "name": "DateTime",
+              "kind": "SCALAR",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "templateSuffix",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "title",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "translations",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": null,
+                "kind": "LIST",
+                "ofType": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "Translation",
+                    "kind": "OBJECT",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "args": [
+              {
+                "name": "locale",
+                "type": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "String",
+                    "kind": "SCALAR",
+                    "ofType": null
+                  }
+                }
+              },
+              {
+                "name": "marketId",
+                "type": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          {
+            "name": "updatedAt",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "DateTime",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          }
+        ]
+      },
+      "Shop": {
+        "name": "Shop",
+        "kind": "OBJECT",
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "name",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "shopPolicies",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": null,
+                "kind": "LIST",
+                "ofType": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "ShopPolicy",
+                    "kind": "OBJECT",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "args": []
+          }
+        ]
+      },
+      "ShopPolicy": {
+        "name": "ShopPolicy",
+        "kind": "OBJECT",
+        "fields": [
+          {
+            "name": "body",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "HTML",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "createdAt",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Date",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "id",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "title",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "translations",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": null,
+                "kind": "LIST",
+                "ofType": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "Translation",
+                    "kind": "OBJECT",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "args": [
+              {
+                "name": "locale",
+                "type": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "String",
+                    "kind": "SCALAR",
+                    "ofType": null
+                  }
+                }
+              },
+              {
+                "name": "marketId",
+                "type": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          {
+            "name": "type",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "ShopPolicyType",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "updatedAt",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Date",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "url",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "URL",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          }
+        ]
+      },
+      "UrlRedirect": {
+        "name": "UrlRedirect",
+        "kind": "OBJECT",
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "path",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "target",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": []
+          }
+        ]
+      }
+    },
+    "structured_validation": {
+      "content": [
+        {
+          "type": "text",
+          "text": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** return-policy-27dbb83b-1218-4b58-b1d6-9609a2fc4339\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_legal_policies, read_content, read_online_store_pages, read_online_store_navigation\n\n"
+        }
+      ],
+      "isError": false
+    },
+    "skill_validation": {
+      "chunk_id": "5823b8",
+      "wall_time_seconds": 3.25e-06,
+      "exit_code": 0,
+      "original_token_count": 121,
+      "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** return-policy-27dbb83b-1218-4b58-b1d6-9609a2fc4339\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_legal_policies, read_content, read_online_store_pages, read_online_store_navigation\n\n\n"
+    },
+    "skill_documentation_search": {
+      "local_helper": {
+        "chunk_id": "a149ea",
+        "wall_time_seconds": 2.834e-06,
+        "exit_code": 1,
+        "original_token_count": 7,
+        "output": "Search failed: fetch failed\n"
+      },
+      "structured_fallback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "[\n  {\n    \"score\": 0.7673024,\n    \"content\": \"examples Get all pages for a shop curl -X GET \\\" \\\\ -H \\\"X-Shopify-Access-Token: {access_token}\\\" response HTTP/1.1 200 OK{\\\"pages\\\":[{\\\"id\\\":108828309,\\\"title\\\":\\\"Sample Page\\\",\\\"shop_id\\\":548380009,\\\"handle\\\":\\\"sample\\\",\\\"body_html\\\":\\\"<p>this is a <strong>sample</strong> page.</p>\\\",\\\"author\\\":\\\"Dennis\\\",\\\"created_at\\\":\\\"2008-07-15T20:00:00-04:00\\\",\\\"updated_at\\\":\\\"2008-07-16T20:00:00-04:00\\\",\\\"published_at\\\":null,\\\"template_suffix\\\":null,\\\"admin_graphql_api_id\\\":\\\"gid://shopify/Page/108828309\\\"},{\\\"id\\\":169524623,\\\"title\\\":\\\"Store hours\\\",\\\"shop_id\\\":548380009,\\\"handle\\\":\\\"store-hours\\\",\\\"body_html\\\":\\\"<p>We never close.</p>\\\",\\\"author\\\":\\\"Jobs\\\",\\\"created_at\\\":\\\"2013-12-31T19:00:00-05:00\\\",\\\"updated_at\\\":\\\"2013-12-31T19:00:00-05:00\\\",\\\"published_at\\\":\\\"2014-02-01T19:00:00-05:00\\\",\\\"template_suffix\\\":null,\\\"admin_graphql_api_id\\\":\\\"gid://shopify/Page/169524623\\\"},{\\\"id\\\":322471,\\\"title\\\":\\\"Support\\\",\\\"shop_id\\\":548380009,\\\"handle\\\":\\\"support\\\",\\\"body_html\\\":\\\"<p>Come in store for support.</p>\\\",\\\"author\",\n    \"url\": \"https://shopify.dev/docs/api/admin-rest/2026-07/resources/page\",\n    \"title\": \"Page\",\n    \"domain\": \"admin-rest\"\n  },\n  {\n    \"score\": 0.7626958,\n    \"content\": \"Properties title ->title The name of the policy. body ->body A description of the policy. url ->url The public URL of the policy. created_at ->createdAt The date and time (ISO 8601 format) when the policy was created. updated_at ->updatedAt The date and time (ISO 8601 format) when the policy was last modified. handle ->type A unique identifer for the policy used to build the policy's URL. {} The Policy resource { \\\"title\\\": { \\\"title\\\": \\\"Refund Policy\\\" }, \\\"body\\\": { \\\"body\\\": \\\"You have 30 days to get a refund\\\" }, \\\"url\\\": { \\\"url\\\": \\\" }, \\\"created_at\\\": { \\\"created_at\\\": \\\"2012-02-15T15:12:21-05:00\\\" }, \\\"updated_at\\\": { \\\"updated_at\\\": \\\"2012-08-24T14:01:47-04:00\\\" }, \\\"handle\\\": { \\\"handle\\\": \\\"terms-of-service\\\" } } getRetrieves a list of the shop's policies shop Retrieves a list of the shop's policies\",\n    \"url\": \"https://shopify.dev/docs/api/admin-rest/2026-07/resources/policy\",\n    \"title\": \"Policy\",\n    \"domain\": \"admin-rest\"\n  }\n]"
+          }
+        ],
+        "isError": false
+      },
+      "instrumentation_opt_out": true
+    }
+  },
+  "read_window": {
+    "started_at_utc": "2026-09-10 18:49:51 UTC",
+    "completed_at_utc": "2026-09-10 18:49:51 UTC"
+  },
+  "shop": {
+    "id": "gid://shopify/Shop/15571635",
+    "name": "Dress Like Mommy"
+  },
+  "page_before": {
+    "id": "gid://shopify/Page/161929989",
+    "title": "RETURN POLICY",
+    "handle": "return-policy",
+    "body": "<h2>Returns &amp; Exchanges</h2>\n<p>We want you and your family to love your matching outfits! If something isn't right, we're here to help.</p>\n<h3>Return Window</h3>\n<p>You have <strong>30 days</strong> from the date of delivery to request a return or exchange.</p>\n<h3>Eligibility</h3>\n<p>To be eligible for a return, items must be:</p>\n<ul>\n<li>Unworn, unwashed, and in original condition</li>\n<li>In their original packaging with all tags attached</li>\n<li>Free of stains, pet hair, perfume, or signs of wear</li>\n</ul>\n<h3>Non-Returnable Items</h3>\n<ul>\n<li>Swimwear and intimates (for hygiene reasons)</li>\n<li>Items marked as \"Final Sale\"</li>\n<li>Gift cards</li>\n<li>Items returned after 30 days</li>\n</ul>\n<h3>How to Start a Return</h3>\n<ol>\n<li>\n<strong>Email us</strong> at info@dresslikemommy.com with your order number and reason for return</li>\n<li>Our team will review your request and respond within 1 business day</li>\n<li>We'll provide return instructions and a return shipping address</li>\n<li>Ship the item(s) back in their original packaging</li>\n</ol>\n<h3>Refunds</h3>\n<p>Once we receive and inspect your return:</p>\n<ul>\n<li>You'll receive an email confirming we received your item</li>\n<li>If approved, your refund will be processed to your original payment method within <strong>5–10 business days</strong>\n</li>\n<li>Depending on your bank, it may take an additional 2–5 business days to appear on your statement</li>\n</ul>\n<h3>Exchanges</h3>\n<p>Want a different size or color? Email us at info@dresslikemommy.com with your order number and we'll help you get the right item.</p>\n<h3>Damaged or Defective Items</h3>\n<p>Received a damaged or defective item? Contact us within 7 days of delivery with photos of the issue. We'll send a replacement or issue a full refund — no need to return the damaged item.</p>\n<h3>Late or Missing Refunds</h3>\n<p>If you haven't received your refund within 10 business days of our confirmation email:</p>\n<ol>\n<li>Check your bank account or credit card statement</li>\n<li>Contact your credit card company — processing times vary</li>\n<li>Contact your bank — there may be additional processing time</li>\n<li>Email us at info@dresslikemommy.com and we'll investigate</li>\n</ol>\n<h3>Shipping Costs</h3>\n<ul>\n<li>Return shipping costs are the customer's responsibility, unless the item arrived damaged or defective</li>\n<li>Original shipping costs are non-refundable</li>\n</ul>\n<h3>Questions?</h3>\n<p>Email us at <strong>info@dresslikemommy.com</strong> or call <strong>(786) 309-6006</strong> (Mon–Fri, 9 AM – 5 PM EST).</p>\n<p><em>Last updated: January 2026</em></p>",
+    "isPublished": true,
+    "publishedAt": "2016-10-23T03:21:00Z",
+    "updatedAt": "2026-04-28T06:57:45Z",
+    "templateSuffix": "",
+    "body_sha256": "6f63f061500595080c381f33b3bccc90264b13f7bc2f7d6ebbf3770a170f44b5",
+    "body_bytes_utf8": 2636
+  },
+  "refund_policy_before": {
+    "id": "gid://shopify/ShopPolicy/14695685",
+    "type": "REFUND_POLICY",
+    "title": "Refund policy",
+    "body": "<h2>Returns &amp; Exchanges</h2>\n<p>We want you and your family to love your matching outfits! If something isn't right, we're here to help.</p>\n<h3>Return Window</h3>\n<p>You have <strong>30 days</strong> from the date of delivery to request a return or exchange.</p>\n<h3>Eligibility</h3>\n<p>To be eligible for a return, items must be:</p>\n<ul>\n<li>Unworn, unwashed, and in original condition</li>\n<li>In their original packaging with all tags attached</li>\n<li>Free of stains, pet hair, perfume, or signs of wear</li>\n</ul>\n<h3>Non-Returnable Items</h3>\n<ul>\n<li>Swimwear and intimates (for hygiene reasons)</li>\n<li>Items marked as \"Final Sale\"</li>\n<li>Gift cards</li>\n<li>Items returned after 30 days</li>\n</ul>\n<h3>How to Start a Return</h3>\n<ol>\n<li><strong>Email us</strong> at info@dresslikemommy.com with your order number and reason for return</li>\n<li>Our team will review your request and respond within 1 business day</li>\n<li>We'll provide return instructions and a return shipping address</li>\n<li>Ship the item(s) back in their original packaging</li>\n</ol>\n<h3>Refunds</h3>\n<p>Once we receive and inspect your return:</p>\n<ul>\n<li>You'll receive an email confirming we received your item</li>\n<li>If approved, your refund will be processed to your original payment method within <strong>5–10 business days</strong></li>\n<li>Depending on your bank, it may take an additional 2–5 business days to appear on your statement</li>\n</ul>\n<h3>Exchanges</h3>\n<p>Want a different size or color? Email us at info@dresslikemommy.com with your order number and we'll help you get the right item.</p>\n<h3>Damaged or Defective Items</h3>\n<p>Received a damaged or defective item? Contact us within 7 days of delivery with photos of the issue. We'll send a replacement or issue a full refund — no need to return the damaged item.</p>\n<h3>Late or Missing Refunds</h3>\n<p>If you haven't received your refund within 10 business days of our confirmation email:</p>\n<ol>\n<li>Check your bank account or credit card statement</li>\n<li>Contact your credit card company — processing times vary</li>\n<li>Contact your bank — there may be additional processing time</li>\n<li>Email us at info@dresslikemommy.com and we'll investigate</li>\n</ol>\n<h3>Shipping Costs</h3>\n<ul>\n<li>Return shipping costs are the customer's responsibility, unless the item arrived damaged or defective</li>\n<li>Original shipping costs are non-refundable</li>\n</ul>\n<h3>Questions?</h3>\n<p>Email us at <strong>info@dresslikemommy.com</strong> or call <strong>(786) 309-6006</strong> (Mon–Fri, 9 AM – 5 PM EST).</p>\n<p><em>Last updated: January 2026</em></p>",
+    "url": "https://checkout.shopify.com/15571635/policies/14695685.html?locale=en",
+    "updatedAt": "2026-01-26T14:46:23-05:00",
+    "body_sha256": "a0e7f90e201df7169edf00073d48b47aa58afc69ae7b6003ee8b93720e58d7fb",
+    "body_bytes_utf8": 2634
+  },
+  "terms_note": {
+    "id": "gid://shopify/ShopPolicy/14695813",
+    "type": "TERMS_OF_SERVICE",
+    "updatedAt": "2026-05-09T02:26:47-04:00",
+    "returns_section_html": "<h2>6. Returns and Refunds</h2>\n<ul>\n<li>Returns accepted within <strong>30 days</strong> of delivery</li>\n<li>Items must be unworn, unwashed, with original tags attached</li>\n<li>Return shipping costs are the customer’s responsibility unless we made an error</li>\n<li>Refunds processed to original payment method within <strong>5–10 business days</strong></li>\n<li>Sale items and personalized items are final sale</li>\n</ul>\n<p>For full return details, see our <a href=\"https://dresslikemommy.com/policies/refund-policy\">Return Policy</a>.</p>\n",
+    "conflicts": [
+      {
+        "topic": "Non-returnable items",
+        "terms": "Sale items and personalized items are final sale.",
+        "refund_policy": "Excludes swimwear/intimates, items explicitly marked Final Sale, gift cards, and items returned after 30 days.",
+        "assessment": "Terms expands all sale/personalized items beyond the refund policy; no legal wording changed."
+      },
+      {
+        "topic": "Return shipping exception",
+        "terms": "Customer responsibility unless we made an error.",
+        "refund_policy": "Customer responsibility unless item arrived damaged or defective.",
+        "assessment": "Exception language differs; preserve official policy and raise for reconciliation without inventing scope."
+      }
+    ],
+    "proposed_edit": null,
+    "returns_section_sha256": "4f945c85f044dc4b4c32fde28ed02577875f7a48298d3d5ac924cf25614c8ff4"
+  },
+  "publication_and_redirects": {
+    "isPublished": true,
+    "publishedAt": "2016-10-23T03:21:00Z",
+    "updatedAt": "2026-04-28T06:57:45Z",
+    "templateSuffix": "",
+    "exact_handle_matches": 1,
+    "page_connection": {
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjoxNjE5Mjk5ODksImxhc3RfdmFsdWUiOiIxNjE5Mjk5ODkifQ=="
+    },
+    "redirect_query": "path:/pages/return-policy",
+    "redirect_results": {
+      "nodes": [],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": null
+      }
+    },
+    "limitation": "No matching Shopify URL redirect record; API does not prove the full HTTP redirect chain."
+  },
+  "merchant_native_observation": {
+    "provenance": "Parent root's fresh native Merchant report; not independently operated by this read-only lane",
+    "merchant_account_id": "513542500",
+    "policy_url": "https://www.dresslikemommy.com/pages/return-policy",
+    "suggested_return_window_days": 15,
+    "listed_country_examples": [
+      "Japan",
+      "Australia",
+      "United States"
+    ],
+    "additional_country_count": 7,
+    "accepted_or_submitted": false
+  },
+  "public_web_read": {
+    "url": "https://www.dresslikemommy.com/pages/return-policy",
+    "retrieved_during_assignment": true,
+    "reported_crawl_age": "3 weeks ago",
+    "observed_window_days": 30,
+    "source_role": "Corroborating cached public content only; fresh Shopify API is current source evidence",
+    "page_title": "RETURN POLICY - Dresslikemommy.com – Dress Like Mommy",
+    "redirect_chain_or_http_status_verified": false,
+    "canonical_refund_url": "https://www.dresslikemommy.com/policies/refund-policy",
+    "canonical_web_read_status": "BLOCKED_TOOL_SAFE_OPEN_NON_RETRYABLE",
+    "canonical_web_read_retried": false
+  },
+  "reconciliation": {
+    "current_page_window_days": 30,
+    "official_refund_window_days": 30,
+    "merchant_suggestion_window_days": 15,
+    "conclusion": "The Merchant 15-day suggestion does not describe the current published legacy page. Stale or incorrect extraction is plausible; its exact cause and extraction date are UNKNOWN.",
+    "source_correction_needed": false,
+    "no_op_candidate_body": "<h2>Returns &amp; Exchanges</h2>\n<p>We want you and your family to love your matching outfits! If something isn't right, we're here to help.</p>\n<h3>Return Window</h3>\n<p>You have <strong>30 days</strong> from the date of delivery to request a return or exchange.</p>\n<h3>Eligibility</h3>\n<p>To be eligible for a return, items must be:</p>\n<ul>\n<li>Unworn, unwashed, and in original condition</li>\n<li>In their original packaging with all tags attached</li>\n<li>Free of stains, pet hair, perfume, or signs of wear</li>\n</ul>\n<h3>Non-Returnable Items</h3>\n<ul>\n<li>Swimwear and intimates (for hygiene reasons)</li>\n<li>Items marked as \"Final Sale\"</li>\n<li>Gift cards</li>\n<li>Items returned after 30 days</li>\n</ul>\n<h3>How to Start a Return</h3>\n<ol>\n<li>\n<strong>Email us</strong> at info@dresslikemommy.com with your order number and reason for return</li>\n<li>Our team will review your request and respond within 1 business day</li>\n<li>We'll provide return instructions and a return shipping address</li>\n<li>Ship the item(s) back in their original packaging</li>\n</ol>\n<h3>Refunds</h3>\n<p>Once we receive and inspect your return:</p>\n<ul>\n<li>You'll receive an email confirming we received your item</li>\n<li>If approved, your refund will be processed to your original payment method within <strong>5–10 business days</strong>\n</li>\n<li>Depending on your bank, it may take an additional 2–5 business days to appear on your statement</li>\n</ul>\n<h3>Exchanges</h3>\n<p>Want a different size or color? Email us at info@dresslikemommy.com with your order number and we'll help you get the right item.</p>\n<h3>Damaged or Defective Items</h3>\n<p>Received a damaged or defective item? Contact us within 7 days of delivery with photos of the issue. We'll send a replacement or issue a full refund — no need to return the damaged item.</p>\n<h3>Late or Missing Refunds</h3>\n<p>If you haven't received your refund within 10 business days of our confirmation email:</p>\n<ol>\n<li>Check your bank account or credit card statement</li>\n<li>Contact your credit card company — processing times vary</li>\n<li>Contact your bank — there may be additional processing time</li>\n<li>Email us at info@dresslikemommy.com and we'll investigate</li>\n</ol>\n<h3>Shipping Costs</h3>\n<ul>\n<li>Return shipping costs are the customer's responsibility, unless the item arrived damaged or defective</li>\n<li>Original shipping costs are non-refundable</li>\n</ul>\n<h3>Questions?</h3>\n<p>Email us at <strong>info@dresslikemommy.com</strong> or call <strong>(786) 309-6006</strong> (Mon–Fri, 9 AM – 5 PM EST).</p>\n<p><em>Last updated: January 2026</em></p>",
+    "mutation": null,
+    "operations": [],
+    "rollback": {
+      "required": false,
+      "body": "<h2>Returns &amp; Exchanges</h2>\n<p>We want you and your family to love your matching outfits! If something isn't right, we're here to help.</p>\n<h3>Return Window</h3>\n<p>You have <strong>30 days</strong> from the date of delivery to request a return or exchange.</p>\n<h3>Eligibility</h3>\n<p>To be eligible for a return, items must be:</p>\n<ul>\n<li>Unworn, unwashed, and in original condition</li>\n<li>In their original packaging with all tags attached</li>\n<li>Free of stains, pet hair, perfume, or signs of wear</li>\n</ul>\n<h3>Non-Returnable Items</h3>\n<ul>\n<li>Swimwear and intimates (for hygiene reasons)</li>\n<li>Items marked as \"Final Sale\"</li>\n<li>Gift cards</li>\n<li>Items returned after 30 days</li>\n</ul>\n<h3>How to Start a Return</h3>\n<ol>\n<li>\n<strong>Email us</strong> at info@dresslikemommy.com with your order number and reason for return</li>\n<li>Our team will review your request and respond within 1 business day</li>\n<li>We'll provide return instructions and a return shipping address</li>\n<li>Ship the item(s) back in their original packaging</li>\n</ol>\n<h3>Refunds</h3>\n<p>Once we receive and inspect your return:</p>\n<ul>\n<li>You'll receive an email confirming we received your item</li>\n<li>If approved, your refund will be processed to your original payment method within <strong>5–10 business days</strong>\n</li>\n<li>Depending on your bank, it may take an additional 2–5 business days to appear on your statement</li>\n</ul>\n<h3>Exchanges</h3>\n<p>Want a different size or color? Email us at info@dresslikemommy.com with your order number and we'll help you get the right item.</p>\n<h3>Damaged or Defective Items</h3>\n<p>Received a damaged or defective item? Contact us within 7 days of delivery with photos of the issue. We'll send a replacement or issue a full refund — no need to return the damaged item.</p>\n<h3>Late or Missing Refunds</h3>\n<p>If you haven't received your refund within 10 business days of our confirmation email:</p>\n<ol>\n<li>Check your bank account or credit card statement</li>\n<li>Contact your credit card company — processing times vary</li>\n<li>Contact your bank — there may be additional processing time</li>\n<li>Email us at info@dresslikemommy.com and we'll investigate</li>\n</ol>\n<h3>Shipping Costs</h3>\n<ul>\n<li>Return shipping costs are the customer's responsibility, unless the item arrived damaged or defective</li>\n<li>Original shipping costs are non-refundable</li>\n</ul>\n<h3>Questions?</h3>\n<p>Email us at <strong>info@dresslikemommy.com</strong> or call <strong>(786) 309-6006</strong> (Mon–Fri, 9 AM – 5 PM EST).</p>\n<p><em>Last updated: January 2026</em></p>",
+      "body_sha256": "6f63f061500595080c381f33b3bccc90264b13f7bc2f7d6ebbf3770a170f44b5"
+    },
+    "preserve_fields": [
+      "id",
+      "title",
+      "handle",
+      "isPublished",
+      "publishedAt",
+      "templateSuffix"
+    ],
+    "before_body_sha256": "6f63f061500595080c381f33b3bccc90264b13f7bc2f7d6ebbf3770a170f44b5",
+    "candidate_body_sha256": "6f63f061500595080c381f33b3bccc90264b13f7bc2f7d6ebbf3770a170f44b5",
+    "normalized_visible_text_sha256": "c21394bf9fb8bcfe633d900f98f2313be35048fd14fc6bfe66fe7af24eb08b04",
+    "only_page_vs_refund_html_differences": [
+      {
+        "operation": "insert",
+        "refund_start": 756,
+        "refund_end": 756,
+        "page_start": 756,
+        "page_end": 757,
+        "refund_segment": "",
+        "page_segment": "\n"
+      },
+      {
+        "operation": "insert",
+        "refund_start": 1331,
+        "refund_end": 1331,
+        "page_start": 1332,
+        "page_end": 1333,
+        "refund_segment": "",
+        "page_segment": "\n"
+      }
+    ]
+  },
+  "privacy": {
+    "customer_or_order_data_requested": false,
+    "credentials_or_session_urls_logged": false,
+    "business_public_contact_in_exact_policy_bodies": true,
+    "unrelated_policy_bodies_omitted": [
+      "CONTACT_INFORMATION",
+      "PRIVACY_POLICY",
+      "SHIPPING_POLICY"
+    ],
+    "full_terms_body_omitted": true,
+    "terms_retained_scope": "Returns section 6 only"
+  },
+  "validation": {
+    "binary_checks": {
+      "shop_identity_matches": true,
+      "page_handle_exactly_matches": true,
+      "page_is_published": true,
+      "page_pagination_complete": true,
+      "redirect_pagination_complete": true,
+      "no_matching_stored_redirect": true,
+      "official_refund_policy_identity_matches": true,
+      "page_has_30_day_return_window": true,
+      "official_refund_has_30_day_return_window": true,
+      "page_has_no_15_day_return_window": true,
+      "official_refund_has_no_15_day_return_window": true,
+      "normalized_visible_text_identical": true,
+      "normalized_html_event_stream_identical": true,
+      "html_differences_only_two_added_newlines": true,
+      "candidate_is_exact_noop": true,
+      "rollback_matches_before": true,
+      "no_mutation_proposed_or_executed": true,
+      "structured_query_validation_passed": true,
+      "skill_query_validation_passed": true,
+      "terms_scope_only_section_6": true
+    },
+    "passed": 20,
+    "failed": 0,
+    "method": "Exact IDs, full filtered pagination, published flag, policy window checks, independent HTML-parser text/event comparison, byte-delta and no-op/rollback hash checks."
+  },
+  "evidence_limitations": [
+    "Current source content verified via Shopify at the recorded time; no mutation performed.",
+    "Public web result reports a crawl three weeks ago, so it is corroboration rather than a fresh browser render.",
+    "No browser/native action in this lane; root owns Merchant suggestion handling and any write.",
+    "No policy addresses, fees, countries, timelines or eligibility promises added.",
+    "Terms inconsistency is recorded for owner/legal reconciliation; no terms rewrite or precedence judgment made."
+  ],
+  "next_owner_action": "Root should use the verified 30-day policy when reviewing the incorrect 15-day suggestion and retain all verified exceptions; do not accept the detected 15-day policy as current source truth."
+}

@@ -37,7 +37,7 @@ SETTINGS_JSON=$(cat <<'JSON'
   "merch_style": "Plaid Button-Up Shirt",
   "merch_type": "Top",
   "season": "Fall",
-  "vendor_url": "https://detail.1688.com/offer/885251894864.html",
+  "vendor_url": "",
   "vendor": "dresslikemommy.com",
   "force_spec_prices": true,
   "child_price": "24.99",
@@ -337,7 +337,7 @@ tags = sorted({
     "Child 1-2yr", "Child 2-3yr", "Child 4-5yr", "Child 6-8yr", "Child 9-10yr",
     "Mother S", "Mother M", "Mother L", "Mother XL", "Mother 2XL", "Mother 3XL",
     "Father S", "Father M", "Father L", "Father XL", "Father 2XL", "Father 3XL",
-    settings["vendor_url"],
+
 })
 
 size_chart_out_path.write_text(json.dumps(size_chart, indent=2), encoding="utf-8")

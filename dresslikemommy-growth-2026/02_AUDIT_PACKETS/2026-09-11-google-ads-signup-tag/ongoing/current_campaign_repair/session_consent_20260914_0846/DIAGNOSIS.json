@@ -1,0 +1,230 @@
+{
+  "schema": "dlm.session_consent_diagnosis.v1",
+  "delegation": "TA02-SESSION-CONSENT-20260914-0846",
+  "recorded_at_utc": "2026-09-14T09:09:03Z",
+  "owner_task": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+  "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "classification": "DIAGNOSE",
+  "status": "EVIDENCE_RECONCILED_CURRENT_CAUSAL_DEFECT_NOT_PROVEN",
+  "review_status_at_creation": "PENDING_SEPARATE_INDEPENDENT_RECEIPT",
+  "objective": "Diagnose the native missing-session/ad_user_data warning using installed-sender evidence without reopening accepted purchase work or changing consent, production or paid scope.",
+  "strongest_supported_conclusion": {
+    "status": "UNKNOWN_CURRENT_CAUSE",
+    "conclusion": "The native GA4 report diagnosed missing session data and events preceding ad_user_data at report/stream scope. The evidence does not reproduce that event ordering in the installed sender, identify the affected period/session, or establish the real purchaser consent choice. Therefore it supports a specific verification need, not an exact current production repair.",
+    "established_facts": [
+      "The accepted GA4 receiver receipt verifies a real purchase and item totals; it does not establish consent order or ad attribution.",
+      "The legacy custom GA4 pixel remains disconnected in the fresh Shopify actions menu.",
+      "Google & YouTube is connected, currently Optimized with Access on, and conversion measurement is On.",
+      "The historical Tag Assistant consent-default discrepancy was never a complete current default/update/event sequence."
+    ],
+    "not_conclusions": [
+      "Tracking is fully accepted in every market.",
+      "The particular real purchase lacked a session_start or consent.",
+      "The real customer chose or failed to choose a particular consent state.",
+      "Data-access optimization caused the warning.",
+      "The tag migration or duplicate cleanup must be repeated.",
+      "Session campaign ID alone proves a sender defect."
+    ]
+  },
+  "sources": [
+    {
+      "id": "E1",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/session_consent_20260914_0846/SENDER_READBACK.json",
+      "sha256": "36619b54f7aa42f1ff8dc86f0da0533d876825dc9e4c05eef03f54fe6efd9242",
+      "freshness": "CURRENT_CONFIGURATION_ONLY",
+      "scope": "Native Shopify configuration observations; operator-transcribed and no independent live replay."
+    },
+    {
+      "id": "E2",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/session_consent_20260914_0846/OFFICIAL_GUIDANCE.json",
+      "sha256": "6d7ec182ea0dc225c175bf37f2e22fb86879224a4392db86b73d415bd1783c25",
+      "freshness": "OFFICIAL_DOCS_RETRIEVED_2026_09_14",
+      "scope": "Eleven primary sources; documentation research is not independent verification of this diagnosis."
+    },
+    {
+      "id": "E3",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/GA4_REAL_PURCHASE_RECEIVER_20260914_0718_v2.json",
+      "sha256": "3f829246566c87089456d80ae355d6b5be8c4ea85dbd988a964081737c1c33a1",
+      "freshness": "ACCEPTED_EARLIER_TODAY_NOT_REPLAYED",
+      "scope": "Native September 13 New York report-level warning and Session campaign ID. No private transaction/order replay."
+    },
+    {
+      "id": "E4",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/MIGRATION_READBACK.md",
+      "sha256": "e3a0de990563fd0912d0710c002f04f0f434c00ec9355e094f3e945c5202d107",
+      "freshness": "HISTORICAL_2026_09_09",
+      "scope": "Installed-app migration and contradictory Tag Assistant default views; test-only hit is not real customer consent."
+    },
+    {
+      "id": "E5",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/CLEANUP_VERIFICATION.json",
+      "sha256": "ad68808a76de344b3fe79de5d0352334a84c23a7950e6025492a867e221d15d0",
+      "freshness": "HISTORICAL_2026_09_09",
+      "scope": "Exact legacy custom pixel disconnected after migration; no full-system deduplication claim."
+    },
+    {
+      "id": "E6",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/GA4_EXPERT_ACCEPTANCE_20260910.json",
+      "sha256": "6559c4784098069b8b641de02351e829d513b82ea153b1c86a6f76c7efc6827f",
+      "freshness": "HISTORICAL_2026_09_10",
+      "scope": "QA sender transport and consent observations with incomplete traces. Not current runtime proof."
+    },
+    {
+      "id": "E7",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/execution_receipt.json",
+      "sha256": "473528af33306d272124af45d8a2194819b70cd6f10446dd2ae608ac92045d22",
+      "freshness": "HISTORICAL_2026_09_11_TAG_MAPPING_ONLY",
+      "scope": "Saved GT-T5R7JFVL, G-N4EQNK0MMB and AW-18433316477; current exact list expansion failed. Historical campaign status is superseded by the paused baseline."
+    }
+  ],
+  "report_interpretation": {
+    "property": "330266838",
+    "stream_measurement_id": "G-N4EQNK0MMB",
+    "report_date": "2026-09-13",
+    "report_timezone": "America/New_York",
+    "native_diagnostic": "Report-level missing session_start warning associates the issue with the stream sending events before ad_user_data.",
+    "individual_session_diagnosis": "NOT_ESTABLISHED",
+    "session_campaign_id": "(not set)",
+    "distinction": "Missing campaign-ID information is compatible with incomplete campaign tagging/linkage or noncampaign traffic. Missing session_start is documented as a cause under Session source/medium. Neither this row value nor the warning establishes the purchaser actual consent sequence.",
+    "direct_traffic": "Separate dated Shopify journey evidence exists in the accepted purchase packet. No new journey query ran, and campaign ID is not used to infer direct traffic.",
+    "raw_event_delivery_and_named_consent": "UNKNOWN",
+    "source_refs": [
+      "E2:F1",
+      "E3"
+    ]
+  },
+  "hypotheses": [
+    {
+      "id": "H1",
+      "hypothesis": "The currently installed app sender uses or updates consent before the proper default, or fails to send the appropriate ad_user_data update.",
+      "status": "PLAUSIBLE_UNPROVEN",
+      "support": [
+        "The native report diagnostic identifies events preceding ad_user_data.",
+        "Historical Tag Assistant expanded default and Consent tab disagreed."
+      ],
+      "limitations": [
+        "No complete time-ordered current trace retained.",
+        "No session-specific consent record for the real purchase.",
+        "Historical QA grant command and successful dispatch do not prove customer choice or correct startup."
+      ],
+      "falsifier": "A complete new-session trace identifies the actual GA4 sender, shows all four named consent defaults before any consent read/event, correct subsequent updates for observed choices, and matching event execution. This falsifies the failure only for the captured path."
+    },
+    {
+      "id": "H2",
+      "hypothesis": "Shopify Optimized data access caused missing GA4 session events.",
+      "status": "NOT_SUPPORTED_AS_CAUSAL_REPAIR_TARGET",
+      "support": [
+        "Optimized can pause/resume marketing sharing."
+      ],
+      "opposing_evidence": [
+        "Current Access on.",
+        "Official Shopify documentation excludes standalone analytics events from optimization, including mixed-use apps."
+      ],
+      "limitations": [
+        "Current access does not establish historical access.",
+        "The affected event/use case must be identified before applying the analytics exemption to a specific app event."
+      ],
+      "next_discriminator": "Only if the missing event is shown to fall under optimized marketing sharing, inspect the activity log for the exact period and reconcile it with that sender trace. Do not switch to Always on as a diagnostic shortcut."
+    },
+    {
+      "id": "H3",
+      "hypothesis": "The previously disconnected legacy GA4 custom pixel is an active duplicate sender causing the warning.",
+      "status": "WEAKENED_FOR_THIS_EXACT_PIXEL",
+      "opposing_evidence": [
+        "Fresh menu exposes Connect for pixel111181921, consistent with the accepted disconnection."
+      ],
+      "limitations": [
+        "Not a whole-store inventory or event-deduplication acceptance.",
+        "No evidence that this legacy pixel caused the native warning."
+      ],
+      "next_discriminator": "Identify sender provenance in a permitted trace; do not reconnect or repeat migration."
+    },
+    {
+      "id": "H4",
+      "hypothesis": "Session campaign ID (not set) independently proves this real purchase lost its session or consent.",
+      "status": "UNSUPPORTED_INFERENCE",
+      "opposing_evidence": [
+        "Campaign ID is a campaign dimension; it is not a recorded consent-state or session_start event.",
+        "Native warning is report-level and does not identify an individual purchaser consent choice."
+      ],
+      "next_discriminator": "Use actual session/event identifiers and named consent ordering for the captured path. Do not rerun accepted order/item matching."
+    }
+  ],
+  "adversarial_challenge": {
+    "challenge": "Could purchase receipt or Shopify connection status be enough to declare tracking repaired, or could the warning alone justify a new tag/Always on change?",
+    "answer": "No. Purchase receipt proves its stated receiver facts; settings prove configuration. Neither provides the missing event sequence, and the warning alone does not identify a safe code/configuration repair.",
+    "conclusion": "Retain the verified implementation and narrow the unresolved gate to current sender consent/session sequencing."
+  },
+  "smallest_exact_path": {
+    "action_now": "Return this evidence and independent review to the parent for the existing original tag/consent owner. No production repair is specified because no current defect has been reproduced.",
+    "single_next_executable_action": "The existing tag/consent owner should capture one permitted, complete new-session trace of the current Google & YouTube sender under the normal account/browser path when that observation is available.",
+    "owner": "01a086fc-0bf7-71a2-ba21-aa3564fafe30",
+    "prerequisites": [
+      "A normal permitted diagnostic surface exposing the actual sender and named consent sequence; no blocked URL, public429 or authentication workaround.",
+      "Existing customer choice is only observed. An owner-controlled QA choice-transition test requires scope that permits it; this delegation does not."
+    ],
+    "trace_fields": [
+      "exact GA4 destination and sender provenance",
+      "page/session freshness and timestamps",
+      "analytics_storage, ad_storage, ad_user_data and ad_personalization named default values before reads/updates/events",
+      "observed subsequent choice and named consent update, if any",
+      "page_view/session identifier and session_start evidence where the receiver/privacy settings permit observation"
+    ],
+    "verification_scope": "Nonpurchase observation; no synthetic purchase, private order replay or manual session_start emission. A correct trace accepts only the sampled path, not every country/visitor.",
+    "if_failure_reproduced": "Preserve the failing trace and identify the owning layer. For an app-maintained sender, prepare the exact Shopify/Google support case or supported-setting repair proposal for the existing owner; do not inject a duplicate theme/custom Google sender. Apply only an exact subsequently authorized remedy with before/after verification.",
+    "if_correct_trace": "Do not change consent configuration. Mark that path verified and assess the diagnostic affected window/processing state through normal read-only report access; avoid calling historical warnings current runtime failure.",
+    "if_trace_unavailable": "Record the exact normal access or observation capability dependency and stop that path; keep independent paid-readiness work moving.",
+    "repair_status": "NOT_IMPLEMENTED_NO_CAUSAL_REPAIR_PROVEN",
+    "rollback": "No production mutation in this delegation; no rollback required. Existing source and retained tag mapping remain preserved.",
+    "forbidden_shortcuts": [
+      "Force consent granted",
+      "Set Always on without event-specific causal evidence",
+      "Manually send session_start",
+      "Add a second GA4 tag",
+      "Reconnect pixel111181921",
+      "Repeat tag migration or private purchase replay",
+      "Enable campaigns to generate diagnostic data"
+    ]
+  },
+  "preservation": {
+    "campaign": "24247604341",
+    "asset_group": "6746545742",
+    "conversion_action": "7760272273",
+    "ads_owner": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+    "original_migration_owner": "01a086fc-0bf7-71a2-ba21-aa3564fafe30",
+    "ads_editor_23": "27 reviewed unsaved copy fields preserved; no touch or Save in this delegation",
+    "campaign_status": "Last accepted baseline PAUSED; not re-read or changed in this delegation",
+    "paid_authority": "NONE",
+    "existing_links_and_tags": "No GA4/Ads/Shopify link or tag changes",
+    "owner_publication_action": {
+      "theme": "137888792673",
+      "state": "PRESERVED_PARENT_OWNED_ACTION",
+      "not_a_diagnostic_acceptance": "Publishing the existing preferences/landing release would not itself prove downstream GA4 consent/session ordering."
+    },
+    "parent_sales_cadence": {
+      "cohort": "3 orders / 8 units / USD198.41, parent-provided; not independently re-queried",
+      "next_full_read_utc": "2026-09-14T19:04:53Z"
+    },
+    "shared_canonical_writes": 0,
+    "new_task_goal_or_automation": 0
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-14T09:05:58Z; Shopify configuration only. Report and migration sources retain their own dates.",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+    "canonical_source_live_evidence_as_of": "2026-06-01",
+    "autonomous_action_ready": false,
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "authority_status": "STALE_READBACK_REQUIRED / EXPIRED",
+    "delegation_read_scope": "Bounded read-only session/consent diagnosis and dated local evidence; parent owns canonical integration.",
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "MATERIAL",
+    "decision_changing_evidence": "Complete actual-sender default/update/event sequence and receiver session evidence for a clearly scoped normal test session.",
+    "if_evidence_supports_recommendation": "Prepare the smallest proven owning-layer remedy for exact authorization; independently verify its after-state before any tracking acceptance.",
+    "if_evidence_opposes_recommendation": "Do not alter production consent/tag settings; record sampled acceptance and resolve remaining diagnostic/report scope.",
+    "independent_verifier": "/root/tag_repair_review",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "independent_review_receipt": "INDEPENDENT_REVIEW.json"
+  }
+}

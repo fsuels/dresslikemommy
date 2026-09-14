@@ -37,7 +37,7 @@ SETTINGS_JSON=$(cat <<'JSON'
   "merch_style": "Matching Family Top",
   "merch_type": "Top",
   "season": "Spring/Summer",
-  "vendor_url": "https://detail.1688.com/offer/824675471063.html",
+  "vendor_url": "",
   "vendor": "dresslikemommy.com",
   "force_spec_prices": true,
   "child_price": "24.99",
@@ -97,7 +97,6 @@ SETTINGS_JSON=$(cat <<'JSON'
     "Child 6-7 Years",
     "Child 8 Years",
     "Child 9-10 Years",
-    "https://detail.1688.com/offer/824675471063.html"
   ]
 }
 JSON
@@ -440,7 +439,7 @@ tags = sorted(
         "Child 6-7 Years",
         "Child 8 Years",
         "Child 9-10 Years",
-        settings["vendor_url"],
+
     }
 )
 

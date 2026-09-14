@@ -1,0 +1,150 @@
+{
+  "schema": "dlm.merchant.receiver_closeout.v1",
+  "recorded_at_utc": "2026-09-10T19:10:03.965054+00:00",
+  "anchor": "2026-09-10-merchant-source-receiver-audit-and-timezone-alignment",
+  "task_status": "BLOCKED_NATIVE_MAC_UNLOCK_REQUIRED; overall Merchant goal incomplete",
+  "changes": {
+    "merchant_timezone": "IMPLEMENTED_AND_ROOT_RELOAD_VERIFIED",
+    "timezone_settings_saves": 1,
+    "product_or_source_changes_this_checkpoint": 0,
+    "return_policy_changes": 0,
+    "logo_uploads": 0,
+    "paid_or_billing_changes": 0
+  },
+  "verification": {
+    "timezone_independent_saved_receipt_checks": "8/8 PASS; no native/API replay",
+    "return_policy_source_checks": "20/20 PASS; both sources NO_CHANGE",
+    "render_marketing_cockpit.py": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "audit_marketing_command_integration.py --write-report --fail-on-risk": {
+      "status": "PASS",
+      "exit_code": 0,
+      "tracked": 25,
+      "integrated_generated_archive": 25,
+      "risks": 0
+    },
+    "check_continuity_integrity.py --strict": {
+      "status": "PASS",
+      "exit_code": 0,
+      "checks": 10,
+      "result": "CONTINUITY_OK"
+    },
+    "scoped_git_diff_check": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "packet_json_parse": {
+      "status": "PASS",
+      "files_at_run": 11
+    },
+    "canonical_independent_review": "PASS_WITH_GATES;15 inverse operations/six files;11 substantive checks; paid506bytes/289otherrows/worklog history preserved"
+  },
+  "preservation": {
+    "root_canonical_files": 6,
+    "exact_operations": 15,
+    "paid_control_bytes": 506,
+    "paid_control_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+    "other_coordination_rows": 289,
+    "ux_successor": "137888792673",
+    "previous_source_repairs": "Preserved; not repeated"
+  },
+  "gates": {
+    "native": "Actual Mac lock; automatic unlock failed; existing question pending; no repeated native attempt",
+    "product_sync_details": "Separate automatic-review rejection twice; exact-click question pending; no click or bypass",
+    "receiving": "Existing source10014302986 and connected app zero; cause UNKNOWN",
+    "returns": "15-day Merchant suggestion conflicts with both current 30-day sources; not saved",
+    "branding": "Current logo/approval UNKNOWN"
+  },
+  "next_owner_action": "Unlock the Mac using the existing pending question",
+  "limits": [
+    "On badges do not prove lifecycle or receiving success",
+    "Configured/derived country counts do not prove approved all-market coverage",
+    "Timezone correction is not a submission repair or profit outcome",
+    "No user unlock response received as of this local record",
+    "Independent verifier reviews saved evidence, not live account replay"
+  ],
+  "bindings": {
+    "README.md": {
+      "sha256": "4d929f3fa59645039c22e249cab73b89aef46e14cba5046bfa19cc53e51c4e29",
+      "bytes": 6990
+    },
+    "access_checkpoint.json": {
+      "sha256": "6fabd5e5825be756c9c9471e53c3448e66d0e25d837c01cb461359a1da83892e",
+      "bytes": 2961
+    },
+    "live_baseline.json": {
+      "sha256": "e38a999d33b6fae049b1426c801242a55f757b0f62aa27ddc1a854d4c78d3ed7",
+      "bytes": 6304
+    },
+    "account_requirements.json": {
+      "sha256": "6a9a63b3270fce9e84c44eaafe1b7daac7e14bdbdfe7fcfb217aa0cdf8ffeb3e",
+      "bytes": 2322
+    },
+    "timezone_change_plan.json": {
+      "sha256": "bf43ef43a5b5e6c8fead5a9e4df8f299b3eb3dd49278d8ea5b7d6b4b6dfd5c96",
+      "bytes": 1806
+    },
+    "timezone_receipt.json": {
+      "sha256": "e5fcd24c2f3a334702e254b2828d9915988fc4bf050729dc888a129db0a08503",
+      "bytes": 1938
+    },
+    "timezone_review.md": {
+      "sha256": "ef84c92e352427d91d4eff1120988c31291cb58aaea8f153abdc01681dc7c421",
+      "bytes": 1736
+    },
+    "timezone_review.json": {
+      "sha256": "eb0fd92ab293ae957a25d9f96fd5bf84988ddfa8592e1e688e42bca2c372e21d",
+      "bytes": 7010
+    },
+    "return_policy_reconciliation.md": {
+      "sha256": "61d7645e974343a2dadbf82c25a6bba6ed304ba69c8047f11e89f89659542190",
+      "bytes": 2933
+    },
+    "return_policy_reconciliation.json": {
+      "sha256": "d6ea283a1e9ac159e0545e582bf82daadc5f91fc8fad0e65357d93b60f2221f7",
+      "bytes": 44019
+    },
+    "standards_reconciliation.md": {
+      "sha256": "4ee67f84b9642760f26c0ceadfcab94d8fc4802620a31d7b346c3cdea836286f",
+      "bytes": 5411
+    },
+    "standards_reconciliation.json": {
+      "sha256": "082979d913543b0dc65696b65302f2599ad3422521da698eb30adf1a59dd17ff",
+      "bytes": 7291
+    },
+    "canonical_before.json": {
+      "sha256": "764d0d776b75708fee9d8c00166007a38bdf7e541875265732841cf6a12c5113",
+      "bytes": 1692
+    },
+    "canonical_patch.json": {
+      "sha256": "11aa98e1824ec88f741a2dfbd0b8c56b0030e4fd52e00e4138157afa93fcca4c",
+      "bytes": 38508
+    },
+    "canonical_after.json": {
+      "sha256": "564195a869cdb0e6ff6a736f9051cc926fd8d000e0390d6b19de86e56d4689fe",
+      "bytes": 1125
+    }
+  },
+  "independent_final_review": {
+    "recorded_at_utc": "2026-09-10T19:12:39.327923+00:00",
+    "pre_verdict_closeout_sha256": "f3a061d90ab1d8f196e7e4d4a8ec4306addfff949566a3cbcb5416614b63e81b",
+    "reviewed_snapshot": "Reviewer bound the PENDING pre-verdict closeout; only final pointer/status and coordination release are added afterward. No shared/canonical/evidence input changed.",
+    "files": {
+      "canonical_review.json": {
+        "sha256": "f4bb515f664ade645d32c9d4dd0038212c8f327d995135c10b26ccc286a7a382",
+        "bytes": 11864
+      },
+      "canonical_review.md": {
+        "sha256": "40fb62fe3f10251b85f03213601e156c676e7420646789bd0292d197925b605d",
+        "bytes": 2394
+      }
+    }
+  },
+  "coordination": {
+    "shared_canonical_interval": "RELEASED; parent acknowledged",
+    "native": "Paused with Merchant pending existing Mac unlock; no call in flight or unsaved production form",
+    "peer_claims_and_authority": "Preserved; no duplicate patch/probe or new approval question"
+  }
+}

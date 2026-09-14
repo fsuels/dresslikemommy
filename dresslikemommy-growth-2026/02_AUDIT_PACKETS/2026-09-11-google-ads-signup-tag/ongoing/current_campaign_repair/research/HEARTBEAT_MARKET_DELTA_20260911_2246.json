@@ -1,0 +1,90 @@
+{
+  "schema": "dlm.google_ads_market_source_delta.v1",
+  "recorded_at_utc": "2026-09-11T22:58:43Z",
+  "status": "LOCAL_INCLUSION_VERIFIED_NO_LAUNCH_READINESS_CHANGE",
+  "root": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+  "comparison_operator": "/root/google_launch_research",
+  "comparison_scope": "Existing frozen Navy Sprig Search cohort against four existing qualified local feed files, with receipt reading stopped on observed concurrent Merchant edit.",
+  "product_id": "7670609346657",
+  "variant_count_in_frozen_draft": 24,
+  "files": [
+    {
+      "market": "US",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260911T211600Z-us-six-parent-f345/candidate/us-en.tsv",
+      "sha256": "f12d84e3e4bb6ecabfe6b86d2a439f16913be3b2e65c8725d76edba5524c1323",
+      "source_snapshot_completed_utc": "2026-09-11T21:18:15Z",
+      "all_feed_offers": 4761,
+      "all_feed_parents": 234,
+      "navy_variants_retained": 24,
+      "exact_variant_ids_match_frozen_draft": true
+    },
+    {
+      "market": "AU",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.contained_release_20260911/au-en.tsv",
+      "sha256": "3857b029a134868c6de8cdfda75d926710651a9e5600beff5ab645a5d61559ae",
+      "source_snapshot_completed_utc": "2026-09-11T21:48:12Z",
+      "all_feed_offers": 4761,
+      "all_feed_parents": 234,
+      "navy_variants_retained": 24,
+      "exact_variant_ids_match_frozen_draft": true
+    },
+    {
+      "market": "CA",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/ca-en.contained_local_prep_20260911/ca-en.tsv",
+      "sha256": "d99f64ab4ad4bf2a2bd8ef7616e87198e43e833efdfe154b48f94ce4f6084fbf",
+      "source_snapshot_completed_utc": "2026-09-11T22:13:08Z",
+      "all_feed_offers": 4761,
+      "all_feed_parents": 234,
+      "navy_variants_retained": 24,
+      "exact_variant_ids_match_frozen_draft": true
+    },
+    {
+      "market": "GB",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.contained_local_prep_20260911/gb-en.tsv",
+      "sha256": "c32c827692510ad8170ae56d0f163571da7a076f725a759d38fd2de34f91253f",
+      "source_snapshot_completed_utc": "2026-09-11T22:15:43Z",
+      "all_feed_offers": 4761,
+      "all_feed_parents": 234,
+      "navy_variants_retained": 24,
+      "exact_variant_ids_match_frozen_draft": true
+    }
+  ],
+  "provenance": {
+    "local_inclusion": "Delegated existing-file comparison; exact source hashes independently reread by root and all four still match.",
+    "snapshot_times": "As reported by the delegated comparison; not newly queried from Shopify by root.",
+    "current_source_label": "REPO_KNOWN",
+    "root_external_Merchant_read": "NOT_RUN",
+    "prior_submission_counts": "Parent command layer reports US/AU batch receipt, but this comparison does not promote batch counts to exact Navy receipt/approval."
+  },
+  "limits": [
+    "US google_receipt_20260911.json changed during verification; dependent receipt reading stopped and no changing snapshot was promoted to current evidence.",
+    "Current Navy receiving, effective approval, Shopping eligibility, buyer qualification and economics are not established.",
+    "The operator reported that a combined GB row-detail comparison failed; cause was not isolated within this bounded pass. Unchanged GB prices/options/routes are not claimed.",
+    "Only local inclusion and exact variant-ID parity are accepted here, not every-field parity in any market.",
+    "No keyword or market was promoted to launch-ready."
+  ],
+  "decision": "Preserve four frozen Search draft structures and existing launch gates. Reconcile exact receiver/buyer/economics evidence only when current owner receipts support a new action.",
+  "changes": {
+    "frozen_draft_edits": 0,
+    "feed_edits": 0,
+    "external_calls": 0,
+    "shared_canonical_writes": 0,
+    "new_campaigns": 0
+  },
+  "validation": {
+    "all_four_current_feed_hashes_match_delegated_read": true,
+    "full_independent_business_acceptance": "NOT_RUN_NOT_CLAIMED"
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "NOT_APPLICABLE_LOCAL_COMPARISON",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "Exact current received/effective product and buyer/economics evidence for the proposed cohort; separate current paid authorization.",
+    "if_evidence_supports_recommendation": "Advance only the corresponding preparation gate, preserving paid launch limits.",
+    "if_evidence_opposes_recommendation": "Keep the affected market/cohort held and diagnose only the demonstrated mismatch."
+  },
+  "continuation_source": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

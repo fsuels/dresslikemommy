@@ -1,0 +1,145 @@
+{
+  "schema": "dlm.heartbeat_trigger_delta.v1",
+  "status": "READBACK_COMPLETE__CHANNEL_EXECUTION_CONTINUES",
+  "trigger_at_utc": "2026-09-10T15:41:07.577Z",
+  "read_completed_at_utc": "2026-09-10T15:42:33Z",
+  "source_live_evidence_as_of": "2026-09-10T15:42:33Z",
+  "source": "Existing documented and newly validated Shopify Admin GraphQL operation; read-only.",
+  "new_order_window": {
+    "start_inclusive": "2026-09-10T11:40:25Z",
+    "end_exclusive": "2026-09-10T15:42:19Z",
+    "all_order_creations": 0,
+    "pagination_complete": true
+  },
+  "shop": {
+    "name": "Dress Like Mommy",
+    "ianaTimezone": "America/New_York",
+    "currencyCode": "USD",
+    "primaryDomain": {
+      "host": "www.dresslikemommy.com"
+    }
+  },
+  "themes": {
+    "nodes": [
+      {
+        "id": "gid://shopify/OnlineStoreTheme/133290917985",
+        "name": "dresslikemommy/main",
+        "role": "MAIN",
+        "updatedAt": "2026-07-02T16:47:21Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137782591585",
+        "name": "DLM SEO DA NL 2026-09-06",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-06T07:03:53Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137850814561",
+        "name": "DLM DA NL SEO only 2026-09-08",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-08T19:01:09Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137880666209",
+        "name": "DLM Consent Preferences 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T18:58:13Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137881223265",
+        "name": "DLM Merchant Landing Fixes 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T20:10:58Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137888792673",
+        "name": "DLM UX Performance QA 2026-09-10",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-10T04:34:55Z"
+      }
+    ],
+    "pageInfo": {
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjoxMzc4ODg3OTI2NzMsImxhc3RfdmFsdWUiOjEzNzg4ODc5MjY3M30="
+    }
+  },
+  "checks": {
+    "shop_name": true,
+    "shop_domain": true,
+    "shop_currency": true,
+    "shop_timezone": true,
+    "order_window_complete": true,
+    "no_new_creations": true,
+    "theme_list_complete": true,
+    "one_expected_main": true,
+    "current_candidate_unpublished": true
+  },
+  "checks_passed": 9,
+  "coordination": {
+    "merchant_task_active": true,
+    "pinterest_task_active": true,
+    "shared_canonical_write_interval": "PARENT_EXPLICITLY_GRANTED__CLOSED_AFTER_CHECKS",
+    "existing_native_owners_preserved": true,
+    "parent_message_sent": "Read-only scope and explicit handback request only",
+    "merchant_report": "Renewed task reached an unrelated foreground surface, then Chrome selection was rejected by automatic approval review. Native stopped; exact selected-Merchant confirmation remains with its owner. No parent retry.",
+    "pinterest_report": "Original Chrome path succeeded and correct dresslikemommy Business Hub was read. Pinterest owner retains native work and continues Event Quality and the existing Pin. No tracking or publication success inferred.",
+    "provenance": "Direct current messages from the existing channel owners; parent did not replay native reads.",
+    "canonical_grant": "Both owners reported no shared interval; Pinterest explicitly granted it. Both notified before parent edits."
+  },
+  "dashboard_status": "EXISTING_SERVICE_HEALTHY",
+  "prior_full_order_fulfillment_checkpoint": "growth_heartbeat_20260910_0738.json",
+  "prior_trigger_checkpoint": "growth_heartbeat_trigger_20260910_1140.json",
+  "limits": [
+    "Only new creations and theme roles were refreshed; the07:44UTC full-cohort/fulfillment checkpoint remains historical.",
+    "Current active operator status is not evidence that access has been restored or a release occurred.",
+    "No full source-file conflict, buyer, traffic, spend, cost or profit verification."
+  ],
+  "execution": {
+    "external_mutations": 0,
+    "browser_calls": 0,
+    "account_probes": 0,
+    "new_goal_or_automation": 0
+  },
+  "live_state_mode": "STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+  "approved_external_scope": "NONE",
+  "authority_context": "Read-only heartbeat and own evidence only; other scopes and pending gates preserved.",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "Active channel owner's explicit current gate/source outcome, new genuine order or published combined theme.",
+  "if_evidence_supports_recommendation": "Continue the matching qualified lane with its existing owner.",
+  "if_evidence_opposes_recommendation": "Preserve hold and do not repeat blocked probes or completed work.",
+  "material_decision": "NOT_MATERIAL",
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "owner_action_preserved": "Merchant selected-tab confirmation remains in the Merchant task; no duplicate parent question.",
+  "latest_anchor": "2026-09-10-ceo-turnaround-channel-execution-resumed",
+  "before_snapshot": "/private/tmp/dlm-heartbeat-1541-before-20260910",
+  "local_preservation_checks": {
+    "protected_files_exact": true,
+    "other_claims_exact": true,
+    "prior_worklog_bytes_exact": true,
+    "only_latest_dashboard_note_changed": true,
+    "nine_prior_sales_entries_preserved": true
+  },
+  "local_edit_attempts": {
+    "first": "Syntax error before execution; no file changes. Earlier checks applied to pre-edit state.",
+    "corrected": "Completed; final checks run separately after these edits."
+  },
+  "closeout": {
+    "integration_audit": {
+      "exit_code": 0,
+      "tracked_files": 25,
+      "side_document_risks": 0
+    },
+    "strict_continuity": {
+      "exit_code": 0,
+      "result": "CONTINUITY_OK",
+      "pinterest_limit": "fix-in-progress mode; not current live-feed eligibility proof"
+    },
+    "scoped_git_diff_check": {
+      "exit_code": 0,
+      "diagnostics": 0
+    },
+    "dashboard_regenerated": true,
+    "shared_interval": "RELEASED_AFTER_FINAL_CHECKS"
+  }
+}

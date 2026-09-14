@@ -1,0 +1,123 @@
+{
+  "verdict": "PASS_WITH_LIMITS",
+  "decision": "PASS for the exact five-file local canonical correction after root rechecks baseline hashes; no external or paid action authorized.",
+  "reviewed_at_utc": "2026-09-11 18:58:41 UTC",
+  "reviewer": "tag_repair_review",
+  "builder": "google_launch_research",
+  "independent_of_builder_and_native_executor": true,
+  "native_replay": "NOT RUN",
+  "writes_by_reviewer": "Only reviewer-owned ongoing/measurement_economics artifacts",
+  "candidate_patch_sha256": "74f2552167eb67458048bda26ed8341556805d1b075062f36eb9a294bac9fb5f",
+  "candidate_manifest_sha256": "697d55fbe2f0b75f656ea661eec72e30895f39e552c9b0fe525262c58e248d31",
+  "frozen_evaluator_sha256": "024ead81acacbe575f8cf7c13fda88b1c8bd2690337eb47763d5d19d49650673",
+  "frozen_predicate_source_sha256": "dadc39a4a29cc99f77b8baeb6aae97387b45119daf0af67134eeb03c8883bda6",
+  "evidence_rule_sha256": "3f1c99e6ad779d560d8440dfccad483267edd23362c9c58d40fb4c87015c8e90",
+  "builder_validation_sha256": "85053b7b3dfd4197ee7a1daa932bcbae4c7cc43e9021371e5434b21ddd239f86",
+  "independent_checks": {
+    "checks": {
+      "exact_five_targets": true,
+      "baseline_keyword_strategy.md": true,
+      "candidate_keyword_strategy.md": true,
+      "baseline_keyword_factory_015_cpc_criteria.md": true,
+      "candidate_keyword_factory_015_cpc_criteria.md": true,
+      "baseline_keyword_scoring_rubric.md": true,
+      "candidate_keyword_scoring_rubric.md": true,
+      "baseline_us_primary_keyword_lane.md": true,
+      "candidate_us_primary_keyword_lane.md": true,
+      "baseline_keyword_universe.csv": true,
+      "candidate_keyword_universe.csv": true,
+      "patch_exact_baseline_candidate_diff": true,
+      "git_apply_check_no_write": true,
+      "schema_18_columns_105_rows": true,
+      "every_nonallowed_field_and_order_preserved": true,
+      "all_row_arithmetic_and_thresholds": true,
+      "unknown_evidence_credit_zero": true,
+      "manifest_all_and_only_changed_rows": true,
+      "manifest_exact_row_fields": true,
+      "eight_watchlists_preserved": true,
+      "threshold_counts": true,
+      "single_identical_evidence_rule": true,
+      "zero_credit_not_zero_demand_all_guides": true,
+      "constraints_and_revenue_basis_all_guides": true,
+      "authority_not_promoted_all_guides": true,
+      "history_qualified": true,
+      "negative_protections": true,
+      "negative_meaning_guidance": true,
+      "all_candidate_activations_held": true,
+      "existing_campaign_overlap_unknown": true,
+      "same_frozen_five_predicates_improve": true,
+      "sunshine_hypothetical_ROAS_term": true,
+      "original_64_example": true,
+      "shipping_and_overhead_denominator_holdout": true,
+      "baseline_unchanged_after_check": true
+    },
+    "checks_passed": 35,
+    "checks_total": 35,
+    "failed": [],
+    "frozen_failures": {
+      "baseline": {
+        "F1_unknown_economic_serveability_points": false,
+        "F2_unearned_green_scores": false,
+        "F3_unqualified_historical_live_labels": false,
+        "F4_fixed_assumed_CPA_stop_threshold": false,
+        "F5_broad_negative_false_positives": false
+      },
+      "candidate": {
+        "F1_unknown_economic_serveability_points": true,
+        "F2_unearned_green_scores": true,
+        "F3_unqualified_historical_live_labels": true,
+        "F4_fixed_assumed_CPA_stop_threshold": true,
+        "F5_broad_negative_false_positives": true
+      }
+    },
+    "changed_rows": 105,
+    "components": [
+      "buyer_intent_25",
+      "product_match_20",
+      "occasion_deadline_15",
+      "landing_match_15",
+      "economic_fit_10",
+      "serveability_10",
+      "waste_risk_5"
+    ],
+    "patch_check_error": "",
+    "hashes": {
+      "canonical_corrections.patch": "74f2552167eb67458048bda26ed8341556805d1b075062f36eb9a294bac9fb5f",
+      "canonical_corrections_manifest.json": "697d55fbe2f0b75f656ea661eec72e30895f39e552c9b0fe525262c58e248d31",
+      "validate_packet.py": "024ead81acacbe575f8cf7c13fda88b1c8bd2690337eb47763d5d19d49650673",
+      "validation.json": "85053b7b3dfd4197ee7a1daa932bcbae4c7cc43e9021371e5434b21ddd239f86",
+      "CANONICAL_CHANGE_REVIEW.md": "fa275760cd925b26a2c665aa7657efe81de8882995c49256e168f6ecc2a1fd79"
+    },
+    "frozen_predicate_source_sha256": "dadc39a4a29cc99f77b8baeb6aae97387b45119daf0af67134eeb03c8883bda6",
+    "rule_sha256": "3f1c99e6ad779d560d8440dfccad483267edd23362c9c58d40fb4c87015c8e90",
+    "sunshine_ROAS_only_illustration_usd": "7.23",
+    "external_calls": 0,
+    "writes": 0
+  },
+  "semantic_review": {
+    "missing_economic_and_serveability_proof": "Zero evidence credit is explicitly not zero demand. Remaining non-economic scores are preserved historical judgments, not fresh verification.",
+    "preserved": "18-column schema, 105 rows/order/identities, promotion_status, routes, live_action, non-economic score components, eight content watchlists. Only four allowed score/threshold fields change.",
+    "evidence_rule": "One identical evidence-grounding rule appears in four guides. Current facts require exact dated evidence; scores never confer live readiness. Formula and negative-meaning corrections restore existing constraints.",
+    "frozen_cases": "The same five frozen predicates were executed against exact original snapshots and released candidates. All five baseline failures improve. Reviewer did not edit builder evaluator or candidate.",
+    "economics": "R includes retained merchandise plus retained shipping excluding tax; V actual disjoint variable costs; H overhead/other costs excluded from V; CM=R-V. A<=min(R/6.5,CM-H-0.30R,approved cash/loss allowance). USD0.15 CPC constraint retained.",
+    "arithmetic_holdouts": "R64,V37,H0 permits7.80 before cash allowance; R50,V30,H2 permits3.00. Sunshine46.98/6.5=7.227692... is only a hypothetical ROAS term, never actual allowable CAC.",
+    "historical_account_separation": "Historical account3990976848 and May CPC/AOV/CVR observations remain dated research. Present account6509972886 campaign24247604341 targeting/themes/negatives remain UNKNOWN.",
+    "negative_protection": "11 blanket-negative risks protected, including adult/free/pattern/costume/costumi and apparel categories.38 narrower sewing-pattern proposals remain campaign-scoped HELD with native meaning/query/dedup checks.",
+    "authority": "All60 candidate activations HELD; configured5/day budget is not approved exposure. Exact pause24247604341 remains pending. This review permits no import, campaign, bid, negative, budget, pause, consent or conversion write."
+  },
+  "material_issues": [],
+  "nonblocking_precision_note": "RESOLVED: reviewer readback confirms README now states approximately USD7.23 and strict cent-denominated cap USD7.22 rounded down. Canonical patch and manifest hashes are unchanged.",
+  "precision_correction_readback": {
+    "status": "PASS",
+    "readme_sha256": "f3bb377165dce3f0eca4038856f9d5f107471807e0d3f9692cfa0d03a8955b18",
+    "patch_sha256": "74f2552167eb67458048bda26ed8341556805d1b075062f36eb9a294bac9fb5f",
+    "manifest_sha256": "697d55fbe2f0b75f656ea661eec72e30895f39e552c9b0fe525262c58e248d31"
+  },
+  "limitations": [
+    "Local deterministic/textual predicates and semantic review do not prove real demand, CPC, eligibility, native fluency, current live keyword sets, revenue or profit.",
+    "Candidate's preserved non-economic points may still require fresh offer and landing proof.",
+    "Root detector/bootstrap receipts are evidence of configuration only; passive root-network absence remains CAPABILITY_LIMIT, and genuine purchase/receiver acceptance remains open.",
+    "Root must recheck all five baseline hashes immediately before application and run required canonical continuity checks afterward. Changed hashes require a new scoped review."
+  ],
+  "root_next_action": "Recheck five baselines, apply only the frozen local patch, verify exact candidate hashes and run canonical continuity. For the account itself, obtain current PMax scope at owned handback before proposing overlap or CPC changes."
+}

@@ -28,9 +28,10 @@ dlm-pinterest-feeds/pinterest/pinterest_unified_all_markets.tsv
 
 ```bash
 cd ops/cloudflare/pinterest-feed-worker
-npm install
-npm test
+node --test
 ```
+
+If dependencies need to be installed in a fresh shell, use the package manager available for this subproject and record the binary used. Do not treat a missing `npm` binary in the bundled Codex runtime as a Worker test failure.
 
 ## Deployment checklist
 

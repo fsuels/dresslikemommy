@@ -1,0 +1,127 @@
+{
+  "schema": "dlm.exact_variant_price_provenance.v1",
+  "status": "HISTORICAL_EXACT_PRICE_VERIFIED__CURRENT_INTENT_UNKNOWN",
+  "reviewed_at_utc": "2026-09-11T16:10:22.845535+00:00",
+  "reviewer": "/root/together_heart_source",
+  "product_id": "7230336729185",
+  "scope": "One bounded repo-only price provenance trail. Exact ledgers and artifact discovery followed by two historical snapshots; stopped after decisive historical source. No browser, network, API, account/feed/theme or canonical action.",
+  "search_observations": {
+    "exact_ID_or_anomaly_hits_in_worklog_problem_state_decision": 0,
+    "minimalist_heart_name_hits_in_same_ledgers": 0,
+    "September7_anchored_price_mentions": 0,
+    "artifact_discovery": "Exact product/variant-ID filename-only search within ops/listings, ops/scripts and audit packets; 259 matching artifacts identified, without dumping supplier/credential values. Selected the direct Shopify read-only snapshot and explicit price cost-basis artifact.",
+    "limit": "Absence applies to the searched repo scope at retrieval time, not all possible history or external Shopify activity."
+  },
+  "sources": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-06-live-visual-qa-merchant-age-group-gate/shopify_products_readonly.json",
+      "sha256": "b0b3cec6b7d606c7016f730ffe3c7d3ef858e01301745fa9dbc6de73db1bedc6",
+      "exported_at_utc": "2026-05-06T18:47:28Z",
+      "provenance": "Saved Shopify read-only product export; exact five variant IDs and parent match.",
+      "currency_note": "Each historical variant price field is a numeric string; no currency field is carried by these rows. This report does not invent a historical row currency."
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-shopify-margin-cac-export-pack/active_variants_cost_basis.csv",
+      "sha256": "bda854d60b457c9aa595addf98ce3ca67cb411092bcfa1603b9f8ed86afaed92",
+      "dated_packet": "2026-04-29",
+      "provenance": "Saved active variant cost-basis export, corroborating the exact same five IDs at18.99; packet date is not asserted as a separately verified API call timestamp."
+    }
+  ],
+  "exact_historical_variants": [
+    {
+      "variant_id": "41883237220449",
+      "variant_title": "Adult 2XL / White",
+      "historical_price_raw": "18.99",
+      "json_pointer": "$.products[541].variants[55]",
+      "json_id_line": 483281,
+      "json_price_line": 483284,
+      "variant_updated_at": "2026-05-04T01:09:40-04:00",
+      "corroborating_csv_record_ordinal_including_header": 4452
+    },
+    {
+      "variant_id": "41883237285985",
+      "variant_title": "Adult 2XL / Blue",
+      "historical_price_raw": "18.99",
+      "json_pointer": "$.products[541].variants[56]",
+      "json_id_line": 483309,
+      "json_price_line": 483312,
+      "variant_updated_at": "2026-05-04T01:09:41-04:00",
+      "corroborating_csv_record_ordinal_including_header": 4453
+    },
+    {
+      "variant_id": "41883237318753",
+      "variant_title": "Adult 2XL / Pink",
+      "historical_price_raw": "18.99",
+      "json_pointer": "$.products[541].variants[57]",
+      "json_id_line": 483337,
+      "json_price_line": 483340,
+      "variant_updated_at": "2026-05-04T01:09:41-04:00",
+      "corroborating_csv_record_ordinal_including_header": 4454
+    },
+    {
+      "variant_id": "41883238465633",
+      "variant_title": "Adult 2XL / Black",
+      "historical_price_raw": "18.99",
+      "json_pointer": "$.products[541].variants[58]",
+      "json_id_line": 483365,
+      "json_price_line": 483368,
+      "variant_updated_at": "2026-05-04T01:09:41-04:00",
+      "corroborating_csv_record_ordinal_including_header": 4486
+    },
+    {
+      "variant_id": "41883238498401",
+      "variant_title": "Adult 2XL / Red",
+      "historical_price_raw": "18.99",
+      "json_pointer": "$.products[541].variants[59]",
+      "json_id_line": 483393,
+      "json_price_line": 483396,
+      "variant_updated_at": "2026-05-04T01:09:41-04:00",
+      "corroborating_csv_record_ordinal_including_header": 4487
+    }
+  ],
+  "historical_same_product_context": {
+    "total_variants": 75,
+    "all_price_distribution": {
+      "16.99": 35,
+      "18.99": 40
+    },
+    "adult_variants": 40,
+    "adult_price_distribution": {
+      "18.99": 40
+    },
+    "affected_adult_2XL_variants": 5,
+    "other_adult_variants": 35,
+    "other_adult_price_distribution": {
+      "18.99": 35
+    },
+    "other_adult_sizes": [
+      "Adult 3XL",
+      "Adult 4XL",
+      "Adult 5XL",
+      "Adult L",
+      "Adult M",
+      "Adult S",
+      "Adult XL"
+    ]
+  },
+  "current_comparison": {
+    "source": "Parent fresh Shopify readback and previously verified frozen feed; parent live-source readback was not independently replayed here.",
+    "reported_current_distribution": {
+      "19.99": 35,
+      "22.99": 35,
+      "229918.99": 5
+    },
+    "affected_variant_updated_at_parent_report": "2026-09-07T18:07:50Z through2026-09-07T18:07:52Z",
+    "interpretation": "All35 other adult variants were also18.99 historically, so their current22.99 may reflect intervening repricing. Neither18.99 nor22.99 is thereby established as the intended current price for the affected five."
+  },
+  "findings": {
+    "exact_older_before_state_found": true,
+    "owner_or_seller_current_intended_price_found": false,
+    "September7_price_change_actor_or_mutation_receipt_found": false,
+    "immediately_pre_September7_snapshot_found": false,
+    "current_22_99_authority_inferred": false,
+    "full_product_price_rollback_justified": false
+  },
+  "decision_boundary": "Root owns any corrective decision. Historical18.99 is an exact older observation, not current pricing intent, a September7 immediate rollback payload, or permission to change other variants. No cause or parsing error is inferred.",
+  "completion": "Bounded trail stopped after historical evidence and requested same-adult context were recorded."
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "dlm.pinterest_repair_verification.v1",
+  "recordedAtUtc": "2026-09-09T19:16:50.190146+00:00",
+  "anchor": "2026-09-09-pinterest-consent-preview-verified",
+  "status": "UNPUBLISHED_CONSENT_REPAIR_VERIFIED__NATIVE_PINTEREST_BLOCKED",
+  "confidence": {
+    "scoped_source_and_rendered_repair": "HIGH",
+    "complete_pinterest_tracking_and_growth_readiness": "MEDIUM"
+  },
+  "source": {
+    "themeId": "gid://shopify/OnlineStoreTheme/137880666209",
+    "themeRole": "UNPUBLISHED",
+    "exactEffectiveFiles": 39,
+    "freshMainFilesPreserved": 37,
+    "finalManifest": "CONSENT_RELEASE_HANDOFF.json",
+    "cssV2Sha256": "e2b78b61877ea1ebcac30dd9faa3ae2ab834283e3aa1aecd28ced984bd5b7515",
+    "historicalV1ManifestPreserved": true
+  },
+  "checks": [
+    {
+      "check": "Focused consent regression tests",
+      "result": "PASS",
+      "passed": 28,
+      "failed": 0,
+      "command": "bundled node --test ops/scripts/test_privacy_preferences_preservation.mjs"
+    },
+    {
+      "check": "Shopify Theme Check after CSS v2",
+      "result": "PASS",
+      "offenses": 0,
+      "command": "Shopify CLI theme check --output json"
+    },
+    {
+      "check": "Scoped git diff --check",
+      "result": "PASS",
+      "note": "Initial added EOF blank line was corrected; the repeated check exited 0."
+    },
+    {
+      "check": "check_pinterest_feed_grouping.py --strict",
+      "result": "PASS_WITH_HISTORICAL_WARNINGS",
+      "snapshots": 10,
+      "failures": 0,
+      "warnings": 3,
+      "note": "Historical snapshot validation, not a current catalog certification."
+    },
+    {
+      "check": "render_marketing_cockpit.py --output packet/cockpit-preview.html",
+      "result": "PASS"
+    },
+    {
+      "check": "audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "result": "PASS",
+      "integratedFiles": 25,
+      "trackedFiles": 25,
+      "risks": 0
+    },
+    {
+      "check": "check_continuity_integrity.py --strict",
+      "result": "PASS",
+      "checksPassed": 10,
+      "summary": "CONTINUITY_OK"
+    },
+    {
+      "check": "Independent source and receipt review",
+      "result": "PASS_WITH_EXPLICIT_OPEN_GATES",
+      "evidence": "CONSENT_INDEPENDENT_REVIEW.md"
+    },
+    {
+      "check": "Rendered desktop, mobile, keyboard and consent persistence",
+      "result": "PASS_WITH_EXPLICIT_OPEN_GATES",
+      "evidence": "CONSENT_RUNTIME_QA.json"
+    },
+    {
+      "check": "Final manifest and local evidence reference consistency",
+      "result": "PASS",
+      "effectiveFileCount": 39
+    }
+  ],
+  "externalActions": {
+    "themeDuplicates": 1,
+    "successfulInitialFileUpsertBatches": 10,
+    "successfulCssV2Upserts": 1,
+    "mainThemeWrites": 0,
+    "themePublications": 0,
+    "pinPublications": 0,
+    "campaignWrites": 0,
+    "paidSpendInitiated": 0,
+    "pixelSettingWrites": 0,
+    "catalogWrites": 0
+  },
+  "resolvedExecutionIssues": [
+    "One oversized 39-file request returned HTTP 413 before execution. Independent readback showed unchanged preview. The identical reviewed payload was then split into ten verified smaller batches.",
+    "The first CSS v2 readback returned new checksum metadata with the old body. A separate read, without a repeated write, verified the exact new 669-byte body and checksum."
+  ],
+  "openGates": [
+    "Mac locked: unlock is required for the Chrome profile test Pinterest diagnostics and already-approved Sunshine Pin final checks/publication.",
+    "Shopify managed preferences dialog remained English on the Arabic route; supported privacy translation configuration is not yet verified.",
+    "Pinterest receiver acceptance, consent suppression, event identity, value and currency parity, deduplication, product matching and real click continuity are not certified.",
+    "Merchant task owns integration into one combined unpublished release; independent combined verification and owner Shopify Admin publication remain pending.",
+    "The proposed paid experiment is not launch-ready: exact billed click metric, hard total cap, account controls, attribution and economics remain unresolved."
+  ],
+  "testSession": {
+    "scope": "isolated Codex in-app storefront session",
+    "finalOptionalConsent": "DECLINED",
+    "originalBlankConsentRestored": false,
+    "reason": "No legacy tracking consent cookie was present; no supported exact blank-state reset was established. No essential or authentication cookie was cleared.",
+    "previewExited": true,
+    "finalObservedThemeId": "133290917985",
+    "locale": "en",
+    "market": "US",
+    "cartItems": 0,
+    "viewportRestored": true,
+    "temporaryTabClosed": true,
+    "chromeOrStorewidePrivacySettingsChanged": false
+  },
+  "limits": [
+    "No new purchases, attributed orders, revenue or growth effect was measured.",
+    "Earlier account metrics remain separately dated audit evidence.",
+    "Full network suppression was not established from the incomplete capture.",
+    "Preview exit was browser navigation, not theme publication or rollback."
+  ],
+  "nextOwnerAction": "Unlock the Mac running Codex and leave Chrome profile test on the Dress Like Mommy Pinterest tab, then reply Ready.",
+  "integrationOwnerTaskId": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "evidence": [
+    "CONSENT_PREVIEW_BEFORE.json",
+    "CONSENT_PREVIEW_MANIFEST.json",
+    "CONSENT_PREVIEW_AFTER.json",
+    "CONSENT_CSS_V2_AFTER.json",
+    "CONSENT_RUNTIME_QA.json",
+    "CONSENT_INDEPENDENT_REVIEW.md",
+    "CONSENT_RELEASE_HANDOFF.json",
+    "REPAIR_EXECUTION.md",
+    "REPAIR_INDEPENDENT_REVIEW.md",
+    "AUDIT_REPORT.md"
+  ],
+  "historicalVerification": "VERIFICATION.json"
+}

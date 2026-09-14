@@ -1,0 +1,60 @@
+{
+  "asOfUtc": "2026-09-06T05:01:57.841629+00:00",
+  "decisionId": "DLM-DEC-2026-09-06-DANISH-BUYER-COPY",
+  "taskStage": "BUILD",
+  "objective": "Remove verified English fallback from Danish product purchase guidance in an unpublished review copy; prepare only the exact internal prose omission, while preserving unresolved measurements",
+  "entities": [
+    "UNPUBLISHED137782591585",
+    "assets/product-desktop-ux-20260513-ruler-sync.js",
+    "product7536992976993 da/body_html"
+  ],
+  "authority": {
+    "userInstruction": "Continue; create goals necessary to increase sales via free and paid traffic, preserve continuity and execute improvements",
+    "interpretation": "Continued reversible unpublished draft preparation; exact active-product or MAIN publication is not covered",
+    "actionTimeToolReview": "PASSED_NORMAL_CONNECTOR_FLOW",
+    "paidControl": "UNCHANGED_NONE",
+    "prosePublication": "NOT_RUN_SEPARATE_EXACT_APPROVAL_REQUIRED"
+  },
+  "hypothesis": "Five absent da runtime keys fall back to current English map; adding only these keys removes that fallback",
+  "falsifier": "Different active source, existing non-English values, more than five keys/bytes changed, changed non-Danish behavior, MAIN/draft prewrite mismatch or denied action-time review",
+  "alternative": "Keep candidate local only if draft action is rejected or any prewrite check fails",
+  "action": {
+    "operation": "themeFilesUpsert",
+    "themeId": "gid://shopify/OnlineStoreTheme/137782591585",
+    "role": "UNPUBLISHED",
+    "files": [
+      "assets/product-desktop-ux-20260513-ruler-sync.js"
+    ],
+    "status": "IMPLEMENTED_UNPUBLISHED__CHECKSUM_AND_FULL_MANIFEST_VERIFIED__RENDER_GATED"
+  },
+  "currentFullManifest": {
+    "mainFiles": 525,
+    "draftFiles": 525,
+    "differences": [
+      "assets/cart.js",
+      "locales/da.json",
+      "locales/nl.json"
+    ],
+    "paginationComplete": true
+  },
+  "verification": [
+    "Candidate node syntax check",
+    "Actual dictionary/helper baseline and candidate checks with da regional forms and non-Danish holdouts",
+    "Independent reviewer who did not build or execute candidates",
+    "Fresh exact prewrite role/checksum recheck",
+    "Full postwrite MAIN/draft manifests and target checksum"
+  ],
+  "rollback": {
+    "file": "danish_runtime_before.js",
+    "scope": "Same draft target file only after exact-current checksum conflict check",
+    "execution": "NOT_RUN"
+  },
+  "sourceTruthConflict": "Current English and recorded seller-chart-derived tables have 8 substantive conflicts; original named screenshot not recovered; no numeric repair or Denmark paid readiness",
+  "limits": [
+    "No Shopify rendered preview while Mac locked",
+    "No native speaker certification",
+    "No publication or spend",
+    "No measured traffic/conversion lift"
+  ],
+  "deadline": "This goal turn for draft preparation; next normal Mac unlock for authenticated preview"
+}

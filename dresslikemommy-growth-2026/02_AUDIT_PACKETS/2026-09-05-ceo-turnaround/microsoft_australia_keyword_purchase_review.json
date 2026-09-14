@@ -1,0 +1,532 @@
+{
+  "reviewed_at_utc": "2026-09-06T17:39:58.484048+00:00",
+  "verdict": "PASS_NUMERIC_RECONCILIATION_WITH_EXPERIMENT_GATES",
+  "independence": "Independent local parsing, exact joins and Decimal arithmetic only. Native UI, account/source identity and report generation were supplied by root, not independently inspected.",
+  "sources": [
+    {
+      "file": "microsoft_australia_keyword_goal_readback.json",
+      "sha256": "7364b87d1cd7de506372b95529cdd5a41982b191aa42e2033d2324f3f60c741b"
+    },
+    {
+      "file": "microsoft_australia_query_readback.json",
+      "sha256": "2cf8bad856f3f97cb9da5a11f340ebc48b5f0bb06b8088b00a3e187c37383525"
+    },
+    {
+      "file": "microsoft_australia_query_revenue_readback.json",
+      "sha256": "f65032971a059942e3ca24502e54251101351d5f9a43c5057110da4e5b935707"
+    },
+    {
+      "file": "microsoft_australia_query_qualification.json",
+      "sha256": "1596847a2b0539429716e955a63bbb71d964355653bf478aedfba649b16811fc"
+    },
+    {
+      "file": "microsoft_purchase_goal_semantics.md",
+      "sha256": "451c0a1654db8c1aac8df91e82dd9a2e7a4ae755ce716af6081bb8f95a16141f"
+    }
+  ],
+  "report": {
+    "captured_at_utc": "2026-09-06T17:34:31.923Z",
+    "account_id": "477439",
+    "customer_id": "770182",
+    "campaign_id": "402056810",
+    "template_url": "https://ui.ads.microsoft.com/campaign/vnext/reporting/create/keywordreport?aid=477439&campaignId=402056810&cid=770182",
+    "date_label": "All time(9/6/2023 - 9/6/2026)",
+    "timezone": "Eastern Time (U.S. & Canada)",
+    "currency": "USD",
+    "coverage": {
+      "reported_rows": 87,
+      "native_rows": 87,
+      "dom_data_rows": 87,
+      "page_size": 100,
+      "pages": 1,
+      "all_rows_captured": true,
+      "retention_note": "Report warns last36months for chosen time unit"
+    }
+  },
+  "join_contract": {
+    "key_fields": [
+      "Campaign label within exact campaign402056810",
+      "Ad group label",
+      "Keyword ID",
+      "Keyword text",
+      "Bid match type",
+      "Ad distribution",
+      "Currency"
+    ],
+    "parent_condition": "Goal Id=0",
+    "goal_condition": "Goal Id is one of56000751/163001526/163000100",
+    "denominator_rule": "Sum each of71uniqueparentcost/click/impressionrows exactlyonce. Goal-row zeros are structural placement, not free conversions.",
+    "ad_group_id_limit": "Only ad-group names are present; no numerical AdGroupId claimed. Exact KeywordId plus matching ad-group label/match/network uniquely bind all16joins.",
+    "unique_keyword_ids": 37,
+    "unique_parent_rows": 71,
+    "goal_rows": 16
+  },
+  "checks": {
+    "all_87_rows_have_20_columns": true,
+    "coverage_metadata_agrees": true,
+    "all_campaign_and_currency_rows_agree": true,
+    "71_unique_parent_keys": true,
+    "16_goal_rows": true,
+    "all_goal_keys_join_one_parent": true,
+    "current_maximum_cpc_preserved_in_goal_join": true,
+    "all_goal_denominators_zero": true,
+    "all_parent_conversion_value_cells_zero": true,
+    "only_known_goal_ids_and_exact_names": true,
+    "parent_totals_equal_campaign_baseline": true,
+    "goals_reconcile_5_4_29_and_663_4_0": true,
+    "summary_impressions_clicks_conversions_reconcile": true,
+    "full_search_network_matches_prior_query_report_header": true,
+    "revenue_equals_prior_five_value_query_total": true
+  },
+  "all_checks_pass": true,
+  "goal_parent_join_evidence": [
+    {
+      "goal_source_row_1based": 50,
+      "parent_source_row_1based": 7,
+      "keyword_id": "78890368487214",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "goal_id": "56000751",
+      "goal_count": "1.00",
+      "goal_value_usd": "159.00"
+    },
+    {
+      "goal_source_row_1based": 51,
+      "parent_source_row_1based": 7,
+      "keyword_id": "78890368487214",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "goal_id": "163001526",
+      "goal_count": "1.00",
+      "goal_value_usd": "1.00"
+    },
+    {
+      "goal_source_row_1based": 52,
+      "parent_source_row_1based": 7,
+      "keyword_id": "78890368487214",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "goal_id": "163000100",
+      "goal_count": "1.00",
+      "goal_value_usd": "0.00"
+    },
+    {
+      "goal_source_row_1based": 55,
+      "parent_source_row_1based": 21,
+      "keyword_id": "78890368487360",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "goal_id": "56000751",
+      "goal_count": "1.00",
+      "goal_value_usd": "70.00"
+    },
+    {
+      "goal_source_row_1based": 56,
+      "parent_source_row_1based": 21,
+      "keyword_id": "78890368487360",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "goal_id": "163001526",
+      "goal_count": "1.00",
+      "goal_value_usd": "1.00"
+    },
+    {
+      "goal_source_row_1based": 57,
+      "parent_source_row_1based": 21,
+      "keyword_id": "78890368487360",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "goal_id": "163000100",
+      "goal_count": "1.00",
+      "goal_value_usd": "0.00"
+    },
+    {
+      "goal_source_row_1based": 59,
+      "parent_source_row_1based": 6,
+      "keyword_id": "78890368487371",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "goal_id": "56000751",
+      "goal_count": "1.00",
+      "goal_value_usd": "81.00"
+    },
+    {
+      "goal_source_row_1based": 60,
+      "parent_source_row_1based": 6,
+      "keyword_id": "78890368487371",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "goal_id": "163001526",
+      "goal_count": "1.00",
+      "goal_value_usd": "1.00"
+    },
+    {
+      "goal_source_row_1based": 61,
+      "parent_source_row_1based": 6,
+      "keyword_id": "78890368487371",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "goal_id": "163000100",
+      "goal_count": "1.00",
+      "goal_value_usd": "0.00"
+    },
+    {
+      "goal_source_row_1based": 62,
+      "parent_source_row_1based": 14,
+      "keyword_id": "78890368487406",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "goal_id": "163000100",
+      "goal_count": "5.00",
+      "goal_value_usd": "0.00"
+    },
+    {
+      "goal_source_row_1based": 67,
+      "parent_source_row_1based": 8,
+      "keyword_id": "78890368487511",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "goal_id": "163000100",
+      "goal_count": "1.00",
+      "goal_value_usd": "0.00"
+    },
+    {
+      "goal_source_row_1based": 74,
+      "parent_source_row_1based": 1,
+      "keyword_id": "78890368487991",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Phrase",
+      "ad_distribution": "Search",
+      "goal_id": "163000100",
+      "goal_count": "6.00",
+      "goal_value_usd": "0.00"
+    },
+    {
+      "goal_source_row_1based": 80,
+      "parent_source_row_1based": 18,
+      "keyword_id": "78890368488658",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Phrase",
+      "ad_distribution": "Search",
+      "goal_id": "163000100",
+      "goal_count": "1.00",
+      "goal_value_usd": "0.00"
+    },
+    {
+      "goal_source_row_1based": 83,
+      "parent_source_row_1based": 2,
+      "keyword_id": "78890368488693",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Broad",
+      "ad_distribution": "Search",
+      "goal_id": "56000751",
+      "goal_count": "2.00",
+      "goal_value_usd": "353.00"
+    },
+    {
+      "goal_source_row_1based": 84,
+      "parent_source_row_1based": 2,
+      "keyword_id": "78890368488693",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Broad",
+      "ad_distribution": "Search",
+      "goal_id": "163001526",
+      "goal_count": "1.00",
+      "goal_value_usd": "1.00"
+    },
+    {
+      "goal_source_row_1based": 85,
+      "parent_source_row_1based": 2,
+      "keyword_id": "78890368488693",
+      "ad_group_label": "Mommy & Me",
+      "bid_match_type": "Broad",
+      "ad_distribution": "Search",
+      "goal_id": "163000100",
+      "goal_count": "13.00",
+      "goal_value_usd": "0.00"
+    }
+  ],
+  "goal_totals": {
+    "56000751": {
+      "name": "Purchases",
+      "rows": 4,
+      "conversions": "5.00",
+      "reported_revenue_usd": "663.00"
+    },
+    "163001526": {
+      "name": "ShopifyCheckoutCompleteEventTracking",
+      "rows": 4,
+      "conversions": "4.00",
+      "reported_revenue_usd": "4.00"
+    },
+    "163000100": {
+      "name": "Smart goal [X0875435]",
+      "rows": 8,
+      "conversions": "29.00",
+      "reported_revenue_usd": "0.00"
+    }
+  },
+  "campaign_totals": {
+    "spend_usd": "88.72",
+    "clicks": 374,
+    "impressions": 10716,
+    "mixed_goal_count": "38.00",
+    "mixed_goal_revenue_usd": "667.00",
+    "purchases_goal_count": "5.00",
+    "purchases_goal_value_usd": "663.00",
+    "purchases_goal_cpa_usd": "17.744000",
+    "purchases_goal_roas": "7.472949",
+    "retained_orders": null,
+    "retained_revenue_usd": null,
+    "actual_profit_usd": null
+  },
+  "network_totals": {
+    "Search": {
+      "parent_rows": 35,
+      "spend_usd": "75.03",
+      "clicks": 304,
+      "impressions": 4515,
+      "purchases_goal_count": "5.00",
+      "purchases_goal_value_usd": "663.00",
+      "purchases_goal_cpa_usd": "15.006000",
+      "purchases_goal_roas": "8.836465",
+      "average_cpc_usd": "0.246809"
+    },
+    "Audience": {
+      "parent_rows": 36,
+      "spend_usd": "13.69",
+      "clicks": 70,
+      "impressions": 6201,
+      "purchases_goal_count": "0",
+      "purchases_goal_value_usd": "0",
+      "purchases_goal_cpa_usd": null,
+      "purchases_goal_roas": "0.000000",
+      "average_cpc_usd": "0.195571"
+    }
+  },
+  "positive_purchase_keyword_contexts": [
+    {
+      "keyword_id": "78890368487360",
+      "keyword": "mommy and me matching dresses",
+      "ad_group_label": "Mommy & Me",
+      "ad_group_id": null,
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "parent_source_row_1based": 21,
+      "purchases_goal_source_row_1based": 55,
+      "spend_usd": "1.67",
+      "clicks": 6,
+      "purchases_goal_count": "1.00",
+      "purchases_goal_value_usd": "70.00",
+      "purchases_goal_cpa_usd": "1.670000",
+      "purchases_goal_roas": "41.916168",
+      "historical_average_cpc_usd_from_spend_clicks": "0.278333",
+      "displayed_historical_average_cpc_usd": "0.28",
+      "current_maximum_cpc_usd": "0.25",
+      "historical_cpc_at_or_below_0_15": false,
+      "current_maximum_bid_at_or_below_0_15": false,
+      "purchase_goal_cpa_below_legacy_10_77_reference": true,
+      "lowering_nominal_current_max_to_0_15_percent": "40.000000",
+      "all_network_keyword_context": {
+        "spend_usd": "1.67",
+        "clicks": 6,
+        "purchase_goal_cpa_usd": "1.670000",
+        "purchase_goal_roas": "41.916168"
+      },
+      "previous_visible_positive_value_queries": [
+        {
+          "source_row_1based": 4,
+          "query": "mommy and me matching dresses",
+          "delivered_match_type": "Exact",
+          "clicks": 1,
+          "spend_usd_now_account_currency_verified": "0.15",
+          "mixed_conversions": "3.00",
+          "mixed_goal_revenue": "71.00"
+        }
+      ],
+      "query_join_limit": "Keyword/ad-group text association is reported; no query-level GoalId split or unique-order join is proved."
+    },
+    {
+      "keyword_id": "78890368487371",
+      "keyword": "mother daughter dresses that match",
+      "ad_group_label": "Mommy & Me",
+      "ad_group_id": null,
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "parent_source_row_1based": 6,
+      "purchases_goal_source_row_1based": 59,
+      "spend_usd": "4.47",
+      "clicks": 17,
+      "purchases_goal_count": "1.00",
+      "purchases_goal_value_usd": "81.00",
+      "purchases_goal_cpa_usd": "4.470000",
+      "purchases_goal_roas": "18.120805",
+      "historical_average_cpc_usd_from_spend_clicks": "0.262941",
+      "displayed_historical_average_cpc_usd": "0.26",
+      "current_maximum_cpc_usd": "0.25",
+      "historical_cpc_at_or_below_0_15": false,
+      "current_maximum_bid_at_or_below_0_15": false,
+      "purchase_goal_cpa_below_legacy_10_77_reference": true,
+      "lowering_nominal_current_max_to_0_15_percent": "40.000000",
+      "all_network_keyword_context": {
+        "spend_usd": "4.90",
+        "clicks": 20,
+        "purchase_goal_cpa_usd": "4.900000",
+        "purchase_goal_roas": "16.530612"
+      },
+      "previous_visible_positive_value_queries": [
+        {
+          "source_row_1based": 3,
+          "query": "matching mummy and daughter dresses",
+          "delivered_match_type": "Exact (close variant)",
+          "clicks": 1,
+          "spend_usd_now_account_currency_verified": "0.13",
+          "mixed_conversions": "3.00",
+          "mixed_goal_revenue": "82.00"
+        }
+      ],
+      "query_join_limit": "Keyword/ad-group text association is reported; no query-level GoalId split or unique-order join is proved."
+    },
+    {
+      "keyword_id": "78890368487214",
+      "keyword": "mommy and me clothes",
+      "ad_group_label": "Mommy & Me",
+      "ad_group_id": null,
+      "bid_match_type": "Exact",
+      "ad_distribution": "Search",
+      "parent_source_row_1based": 7,
+      "purchases_goal_source_row_1based": 50,
+      "spend_usd": "4.09",
+      "clicks": 14,
+      "purchases_goal_count": "1.00",
+      "purchases_goal_value_usd": "159.00",
+      "purchases_goal_cpa_usd": "4.090000",
+      "purchases_goal_roas": "38.875306",
+      "historical_average_cpc_usd_from_spend_clicks": "0.292143",
+      "displayed_historical_average_cpc_usd": "0.29",
+      "current_maximum_cpc_usd": "0.40",
+      "historical_cpc_at_or_below_0_15": false,
+      "current_maximum_bid_at_or_below_0_15": false,
+      "purchase_goal_cpa_below_legacy_10_77_reference": true,
+      "lowering_nominal_current_max_to_0_15_percent": "62.500000",
+      "all_network_keyword_context": {
+        "spend_usd": "4.09",
+        "clicks": 14,
+        "purchase_goal_cpa_usd": "4.090000",
+        "purchase_goal_roas": "38.875306"
+      },
+      "previous_visible_positive_value_queries": [
+        {
+          "source_row_1based": 5,
+          "query": "mommy and me outfit",
+          "delivered_match_type": "Exact (close variant)",
+          "clicks": 2,
+          "spend_usd_now_account_currency_verified": "0.97",
+          "mixed_conversions": "3.00",
+          "mixed_goal_revenue": "160.00"
+        }
+      ],
+      "query_join_limit": "Keyword/ad-group text association is reported; no query-level GoalId split or unique-order join is proved."
+    },
+    {
+      "keyword_id": "78890368488693",
+      "keyword": "+mommy and +me +dresses",
+      "ad_group_label": "Mommy & Me",
+      "ad_group_id": null,
+      "bid_match_type": "Broad",
+      "ad_distribution": "Search",
+      "parent_source_row_1based": 2,
+      "purchases_goal_source_row_1based": 83,
+      "spend_usd": "8.85",
+      "clicks": 36,
+      "purchases_goal_count": "2.00",
+      "purchases_goal_value_usd": "353.00",
+      "purchases_goal_cpa_usd": "4.425000",
+      "purchases_goal_roas": "39.887006",
+      "historical_average_cpc_usd_from_spend_clicks": "0.245833",
+      "displayed_historical_average_cpc_usd": "0.25",
+      "current_maximum_cpc_usd": "0.17",
+      "historical_cpc_at_or_below_0_15": false,
+      "current_maximum_bid_at_or_below_0_15": false,
+      "purchase_goal_cpa_below_legacy_10_77_reference": true,
+      "lowering_nominal_current_max_to_0_15_percent": "11.764706",
+      "all_network_keyword_context": {
+        "spend_usd": "8.85",
+        "clicks": 36,
+        "purchase_goal_cpa_usd": "4.425000",
+        "purchase_goal_roas": "39.887006"
+      },
+      "previous_visible_positive_value_queries": [
+        {
+          "source_row_1based": 6,
+          "query": "mommy and me dresses",
+          "delivered_match_type": "Exact",
+          "clicks": 1,
+          "spend_usd_now_account_currency_verified": "0.23",
+          "mixed_conversions": "2.00",
+          "mixed_goal_revenue": "184.00"
+        },
+        {
+          "source_row_1based": 7,
+          "query": "matching family outfit quality sets",
+          "delivered_match_type": "Broad",
+          "clicks": 1,
+          "spend_usd_now_account_currency_verified": "0.37",
+          "mixed_conversions": "2.00",
+          "mixed_goal_revenue": "170.00"
+        }
+      ],
+      "query_join_limit": "Keyword/ad-group text association is reported; no query-level GoalId split or unique-order join is proved."
+    }
+  ],
+  "two_exact_dress_search_contexts": {
+    "keyword_ids": [
+      "78890368487360",
+      "78890368487371"
+    ],
+    "spend_usd": "6.14",
+    "clicks": 23,
+    "purchases_goal_count": "2.00",
+    "purchases_goal_value_usd": "151.00",
+    "historical_average_cpc_usd": "0.266957",
+    "purchases_goal_cpa_usd": "3.070000",
+    "purchases_goal_roas": "24.592834",
+    "current_maximum_cpc_each_usd": "0.25",
+    "future_serving_at_0_15_proved": false
+  },
+  "historical_query_reconciliation": {
+    "same_account_currency_now_verified": "USD; earlier frozen query receipts remain unchanged and correctly recorded UNKNOWN at that time.",
+    "query_header_matches_search_only": true,
+    "campaign_minus_query_header": {
+      "audience_spend_usd": "13.69",
+      "audience_clicks": 70,
+      "audience_impressions": 6201
+    },
+    "earlier_20_row_conversion_gap_remains": 8,
+    "gap_limit": "Full keyword×goal report does not identify the eight mixed conversions absent from the20visiblequeries or prove why they were omitted.",
+    "isolated_low_cost_queries": "The prior0.13and0.15USDsinglequeryclicks are consistent with this account currency but do not override full parentkeywordCPC0.262941/0.278333.",
+    "broad_vs_exact": "Previously deliveredExact query mommy and me dresses is associated with +mommy and +me +dresses; this keyword report explicitly identifies its bid match as Broad/current maximum0.17, not an existing Exact keyword."
+  },
+  "experiment_hypothesis": "After current product/landing fit and purchase value/count verification, test whether the existing two exact dress intents can still serve qualified Search traffic with effective CPC constrained aroundUSD0.15. Reuse/trim currentcoverage rather than duplicate exact/phrase synonyms. Nominal0.25to0.15is a40%bidreduction, not a prediction of traffic or a guarantee on effectiveCPC; verify bidding mode/adjustments and stop criteria before any execution.",
+  "decision": "Prepare a bounded exact-dress experiment conditional on root offer review and numerical allowableCPA/exposure/authority gates. Do not reactivate the entire historical campaign or the Broad headset because its selected historical ratio is high.",
+  "limits": [
+    "Fresh report read; performance is a three-year historical aggregate throughSeptember6,2026, not recent learning or a same-product cohort.",
+    "Purchases56000751 is a configured goal, not five deduplicated retained Shopify orders. Event/Smart overlap, cancellations/refunds, actual sale value and product attribution remain unresolved.",
+    "Historical onegoalperexactheadset gives highly unstable conversionrate/ROAS estimates; selecting on positive outcomes excludes other costs and does not establish repeatability.",
+    "AllfourpurchasebearingSearchheadsets have historicalaverageCPCandcurrentmaxbidaboveUSD0.15. CurrentmaximumCPCis not the historicalbid and does not explain historical CPC or prove effective bid limits.",
+    "ExactdresshistoricalgoalCPA1.67/4.47is below10.77reference, but campaignpurchasegoalCPA17.744is above it. Neither establishes a product-specific allowableCPA or retainedprofit; approximately6.5xreportedROAS alone is insufficient.",
+    "Search-onlycost75.03andall-networkcost88.72are different valid scopes; Audience13.69cannot be silently dropped from campaign economics.",
+    "No account/UI/canonical/source changes, campaign enablement, bids, keywords, negatives or spend authorization were made or granted."
+  ]
+}

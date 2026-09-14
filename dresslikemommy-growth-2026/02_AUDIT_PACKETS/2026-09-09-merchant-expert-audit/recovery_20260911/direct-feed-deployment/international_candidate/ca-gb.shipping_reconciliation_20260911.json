@@ -1,0 +1,319 @@
+{
+  "account": "513542500",
+  "recorded_at_utc": "2026-09-11T23:04:56.978Z",
+  "read_window_start_utc": "2026-09-11T23:00:59Z",
+  "status": "READ_ONLY_SHIPPING_RECONCILIATION__CA_DELIVERY_TRUTH_UNRESOLVED",
+  "shopify": {
+    "source": "Validated Admin GraphQL merchant-ca-gb-shipping-readonly-20260911 revision2",
+    "query": "query MerchantShippingReadback {\n deliveryProfiles(first: 10) {\n  pageInfo { hasNextPage endCursor }\n  nodes {\n   id name default activeMethodDefinitionsCount zoneCountryCount\n   profileLocationGroups {\n    locationGroupZones(first: 20) {\n     pageInfo { hasNextPage endCursor }\n     nodes {\n      zone { id name countries { name } }\n      methodDefinitions(first: 10) {\n       pageInfo { hasNextPage endCursor }\n       nodes {\n        id name description active\n        methodConditions { field operator conditionCriteria { __typename } }\n        rateProvider { __typename ... on DeliveryRateDefinition { id price { amount currencyCode } } }\n       }\n      }\n     }\n    }\n   }\n  }\n }\n}",
+    "data": {
+      "deliveryProfiles": {
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoxMDY2NDA1MDc4NSwibGFzdF92YWx1ZSI6IjEwNjY0MDUwNzg1In0="
+        },
+        "nodes": [
+          {
+            "id": "gid://shopify/DeliveryProfile/10664050785",
+            "name": "General profile",
+            "default": true,
+            "activeMethodDefinitionsCount": 4,
+            "zoneCountryCount": 244,
+            "profileLocationGroups": [
+              {
+                "locationGroupZones": {
+                  "pageInfo": {
+                    "hasNextPage": false,
+                    "endCursor": "eyJsYXN0X2lkIjoyMTQwMDcxNTM2MSwibGFzdF92YWx1ZSI6IlJlc3Qgb2Ygd29ybGQifQ=="
+                  },
+                  "nodes": [
+                    {
+                      "zone": {
+                        "id": "gid://shopify/DeliveryZone/21400485985",
+                        "name": "Countries Epacket",
+                        "countries": [
+                          {
+                            "name": "United States"
+                          },
+                          {
+                            "name": "Australia"
+                          },
+                          {
+                            "name": "Canada"
+                          },
+                          {
+                            "name": "France"
+                          },
+                          {
+                            "name": "Israel"
+                          },
+                          {
+                            "name": "Norway"
+                          },
+                          {
+                            "name": "Russia"
+                          },
+                          {
+                            "name": "Saudi Arabia"
+                          },
+                          {
+                            "name": "Ukraine"
+                          },
+                          {
+                            "name": "United Kingdom"
+                          }
+                        ]
+                      },
+                      "methodDefinitions": {
+                        "pageInfo": {
+                          "hasNextPage": false,
+                          "endCursor": "eyJsYXN0X2lkIjozNjI5ODAzMTIwMSwibGFzdF92YWx1ZSI6eyJtZXRob2RfZGVmaW5pdGlvbl9pZCI6MzYyOTgwMzEyMDEsInZpcnR1YWxfcmVjb3JkX3NvdXJjZV9rZXkiOm51bGwsInByZXZfZGJfbWV0aG9kX2RlZmluaXRpb25faWQiOjM2Mjk3OTY1NjY1LCJuZXh0X2RiX21ldGhvZF9kZWZpbml0aW9uX2lkIjpudWxsfX0="
+                        },
+                        "nodes": [
+                          {
+                            "id": "gid://shopify/DeliveryMethodDefinition/36297965665",
+                            "name": "Free Standard Shipping",
+                            "description": "",
+                            "active": true,
+                            "methodConditions": [],
+                            "rateProvider": {
+                              "__typename": "DeliveryRateDefinition",
+                              "id": "gid://shopify/DeliveryRateDefinition/28908748897",
+                              "price": {
+                                "amount": "0.0",
+                                "currencyCode": "USD"
+                              }
+                            }
+                          },
+                          {
+                            "id": "gid://shopify/DeliveryMethodDefinition/36298031201",
+                            "name": "Priority Shipping",
+                            "description": "",
+                            "active": true,
+                            "methodConditions": [
+                              {
+                                "field": "TOTAL_WEIGHT",
+                                "operator": "GREATER_THAN_OR_EQUAL_TO",
+                                "conditionCriteria": {
+                                  "__typename": "Weight"
+                                }
+                              },
+                              {
+                                "field": "TOTAL_WEIGHT",
+                                "operator": "LESS_THAN_OR_EQUAL_TO",
+                                "conditionCriteria": {
+                                  "__typename": "Weight"
+                                }
+                              }
+                            ],
+                            "rateProvider": {
+                              "__typename": "DeliveryRateDefinition",
+                              "id": "gid://shopify/DeliveryRateDefinition/28908814433",
+                              "price": {
+                                "amount": "12.99",
+                                "currencyCode": "USD"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "zone": {
+                        "id": "gid://shopify/DeliveryZone/21400715361",
+                        "name": "Rest of world",
+                        "countries": [
+                          {
+                            "name": "Rest of World"
+                          }
+                        ]
+                      },
+                      "methodDefinitions": {
+                        "pageInfo": {
+                          "hasNextPage": false,
+                          "endCursor": "eyJsYXN0X2lkIjozNjI5ODA5NjczNywibGFzdF92YWx1ZSI6eyJtZXRob2RfZGVmaW5pdGlvbl9pZCI6MzYyOTgwOTY3MzcsInZpcnR1YWxfcmVjb3JkX3NvdXJjZV9rZXkiOm51bGwsInByZXZfZGJfbWV0aG9kX2RlZmluaXRpb25faWQiOjM2Mjk4MDYzOTY5LCJuZXh0X2RiX21ldGhvZF9kZWZpbml0aW9uX2lkIjpudWxsfX0="
+                        },
+                        "nodes": [
+                          {
+                            "id": "gid://shopify/DeliveryMethodDefinition/36298063969",
+                            "name": "Free Standard Shipping",
+                            "description": "",
+                            "active": true,
+                            "methodConditions": [],
+                            "rateProvider": {
+                              "__typename": "DeliveryRateDefinition",
+                              "id": "gid://shopify/DeliveryRateDefinition/28908847201",
+                              "price": {
+                                "amount": "0.0",
+                                "currencyCode": "USD"
+                              }
+                            }
+                          },
+                          {
+                            "id": "gid://shopify/DeliveryMethodDefinition/36298096737",
+                            "name": "Priority Shipping",
+                            "description": "",
+                            "active": true,
+                            "methodConditions": [
+                              {
+                                "field": "TOTAL_WEIGHT",
+                                "operator": "GREATER_THAN_OR_EQUAL_TO",
+                                "conditionCriteria": {
+                                  "__typename": "Weight"
+                                }
+                              },
+                              {
+                                "field": "TOTAL_WEIGHT",
+                                "operator": "LESS_THAN_OR_EQUAL_TO",
+                                "conditionCriteria": {
+                                  "__typename": "Weight"
+                                }
+                              }
+                            ],
+                            "rateProvider": {
+                              "__typename": "DeliveryRateDefinition",
+                              "id": "gid://shopify/DeliveryRateDefinition/28908879969",
+                              "price": {
+                                "amount": "12.99",
+                                "currencyCode": "USD"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "pagination_complete": true,
+    "scope_limit": "Rates and zones only; no customer/address data; API schema exposes no delivery estimate in DeliveryMethodDefinition."
+  },
+  "merchant": {
+    "native_rows_recognized": 76,
+    "countries_with_complete_services": 31,
+    "summary_country_codes": [
+      "AT",
+      "AU",
+      "BE",
+      "CA",
+      "CH",
+      "CY",
+      "CZ",
+      "DE",
+      "DK",
+      "ES",
+      "FI",
+      "FR",
+      "GB",
+      "GR",
+      "IE",
+      "IT",
+      "LT",
+      "LU",
+      "LV",
+      "MX",
+      "NL",
+      "NO",
+      "NZ",
+      "PL",
+      "PT",
+      "RO",
+      "RU",
+      "SE",
+      "SK",
+      "SV",
+      "US"
+    ],
+    "CA": {
+      "services": 4,
+      "visibility": "Show on Google",
+      "status": "Complete",
+      "products": "All",
+      "summary_days": [
+        5,
+        6
+      ],
+      "free_service": "flat_0.00_CAD_21400485985_36297965665_free standard shipping",
+      "handling_days": [
+        3,
+        3
+      ],
+      "transit_days": [
+        2,
+        3
+      ],
+      "handling_and_transit_weekdays": "Monday to Friday",
+      "order_cutoff": "12:00 AM",
+      "timezone": "Not rendered in native selector; not independently verified",
+      "cost_types": [
+        "Free",
+        "Weight"
+      ],
+      "inspection_exit": "Cancel without changing fields"
+    },
+    "GB": {
+      "services": 4,
+      "visibility": "Show on Google",
+      "status": "Complete",
+      "products": "All",
+      "summary_days": [
+        9,
+        15
+      ],
+      "free_service": "flat_0.00_GBP_21400485985_36297965665_free standard shipping",
+      "handling_days": [
+        3,
+        3
+      ],
+      "transit_days": [
+        6,
+        12
+      ],
+      "handling_and_transit_weekdays": "Monday to Friday",
+      "order_cutoff": "12:00 AM",
+      "timezone": "Not rendered in native selector; not independently verified",
+      "cost_types": [
+        "Free",
+        "Weight"
+      ],
+      "inspection_exit": "Cancel without changing fields"
+    },
+    "other_summary_exceptions": {
+      "US": [
+        6,
+        7
+      ],
+      "MX": [
+        5,
+        6
+      ],
+      "all_other_observed_countries": [
+        9,
+        15
+      ]
+    },
+    "important_limit": "Current Merchant promises are configuration facts, not proof of actual fulfillment or checkout delivery promises."
+  },
+  "comparison": {
+    "free_standard_rate": "VERIFIED active Shopify base rate0USD for explicit CA/GB zone21400485985; local currencies are separately provided by Merchant rates",
+    "processing": "Current Merchant3day handling lies within published1–3business-day processing; actual transit still needs evidence.",
+    "CA": "2–3business-day transit is unsubstantiated by available Shopify fields/published policy. Do not invent a correction.",
+    "GB": "Current9–15business-day Merchant total is read back; buyer/fulfillment truth not independently established by this read.",
+    "countries_in_prior_served_merchant_picker_intersection_without_observed_shipping": [
+      "BG",
+      "HR",
+      "ME",
+      "MT",
+      "RS"
+    ],
+    "international_rollout": "Neither CA/GB production submission nor all-language coverage is established by this receipt."
+  },
+  "external_writes": 0,
+  "schema_query_limit_note": "First query was rejected before execution due estimated cost1327>1000; narrowed pagination validated and succeeded. All successful query connections have hasNextPage=false.",
+  "next_action": "Reconcile CA/GB current delivery promises with actual buyer/fulfillment evidence before preparing exact release reviews."
+}

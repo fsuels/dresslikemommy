@@ -1,0 +1,53 @@
+{
+  "decision_id": "DLM-DEC-2026-09-06-GUIDE-SEO-DESCRIPTION",
+  "problem_id": "PROB-2026-09-06-GUIDE-SEARCH-DESCRIPTION",
+  "scope": "Create only Article559471886433 global.description_tag via atomic metafieldsSet; compareDigest null prevents overwriting a concurrently created field. No articleUpdate, title, body, handle, status or publication mutation.",
+  "authority": "Current direct owner automatic implementation instruction covers independently reviewed reversible organic marketing repair; no agent self-approval and no paid standing authority used.",
+  "candidate": {
+    "metafields": [
+      {
+        "ownerId": "gid://shopify/Article/559471886433",
+        "namespace": "global",
+        "key": "description_tag",
+        "type": "single_line_text_field",
+        "value": "Explore family matching pajama styles and sizing tips. Browse mommy-and-me pajamas, check each person's size, and confirm what each selection includes.",
+        "compareDigest": null
+      }
+    ]
+  },
+  "body_sha256": "01c2e9ab6b5c02346c0653bcc526205b5d52c856679e4f8446698999ba53522d",
+  "before_description_tag": null,
+  "before_title_tag": null,
+  "docs": "https://shopify.dev/docs/apps/build/marketing/optimize-storefront-seo",
+  "schema_discovered": [
+    "Mutation.metafieldsSet",
+    "MetafieldsSetInput",
+    "MetafieldsSetPayload",
+    "Metafield",
+    "MetafieldIdentifierInput"
+  ],
+  "validators": {
+    "connector": "PASS revision1 guide-search-meta-set-20260906",
+    "local": "PASS revision1 5974bafc-0a44-4ea6-b9d7-1dce63da516a"
+  },
+  "fresh_guard": "Immediately before write re-query exact article; all returned fields equal before, descriptionTag and titleTag null. Abort on drift. Atomic compareDigest null separately prevents field-create collision.",
+  "after": "One successful mutation without userErrors, separate article read identical except descriptionTag (and possibly updatedAt), exact candidate description plus normal MAIN head/meta/title/canonical readback.",
+  "rollback": {
+    "type": "Delete newly created description_tag only if needed after confirming exact article/field ID/value/digest still equals applied receipt.",
+    "prior": "ABSENT",
+    "path": "Supported metafieldsDelete for ownerId gid://shopify/Article/559471886433 namespace global key description_tag; validation required before any rollback. No rollback currently needed.",
+    "concurrency": "Delete operation has no compareDigest input. Fresh value/digest recheck is not atomic; stop if any concurrent writer or drift. Coordinate sole writer and do not delete on ambiguity."
+  },
+  "business_hypothesis": "A concise accurate summary may improve qualified organic click-through from existing guide impressions. No quantitative lift promised.",
+  "comparison": "Preserve current title/body. No-change alternative leaves320-character midword automatic excerpt.",
+  "measurement_window": "First full week September7-13,2026; record GSC reporting cutoff and page-level queries/clicks plus onward PDP engagement and retained orders. Small zero-click baseline cannot establish causal lift.",
+  "kill": "Rollback only for wrong render, altered other fields, misleading copy or observed material regression with sufficient evidence; no automated rollback from sparse clicks.",
+  "source_sha256": {
+    "pajamas_guide_meta_before.json": "2165d2fa6e1bd304e149c5ae77a03f381769d8e9864d37cd91d12b7cd9a4bc02",
+    "pajamas_guide_meta_description_plan.json": "e7069427183cc2e9e24c9f9c39d7c4722fab23a3221855d949d360a5dc4a0805",
+    "pajamas_guide_meta_description_plan.md": "415d64119d47cae34d29f6aa1f8d417799b9755dae5a5c11cf36398e0be20a55",
+    "pajamas_guide_meta_mutation.graphql": "d6c0d99c08ef43b085ab79f5a84e36bc476b8bd6ac1f2f8c9ee275da71720482",
+    "pajamas_guide_meta_variables.json": "5b2216673fee8d2df932ed89b884b1a6dff668409b42070a85863773b4cc0c00",
+    "pajamas_guide_search_head_readback.json": "971448a9308790a6803aaa631cabc107d29f73bbb7bb65ee579030422edb6ba9"
+  }
+}

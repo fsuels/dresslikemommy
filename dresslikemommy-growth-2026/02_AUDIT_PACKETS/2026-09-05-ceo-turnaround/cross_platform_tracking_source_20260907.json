@@ -1,0 +1,239 @@
+{
+  "status": "NO_QUALIFIED_SOURCE_BOUND_FIX",
+  "observed_at_utc": "2026-09-07T01:13:45.174911+00:00",
+  "operator": "/root/shopify_merchant_connection_repair",
+  "scope": "Local Microsoft UET and Facebook/Meta emitter and catalog-event inventory only; no account identity audit.",
+  "inventory": {
+    "directories": [
+      "pixels",
+      "assets",
+      "snippets",
+      "sections",
+      "layout",
+      "templates",
+      "config",
+      "agent-backend"
+    ],
+    "extensions": [
+      ".js",
+      ".cjs",
+      ".liquid",
+      ".json"
+    ],
+    "excluded": [
+      "package-lock.json",
+      "*.map",
+      "rg-ignored paths"
+    ],
+    "file_count": 256,
+    "selection_command": [
+      "rg",
+      "--files",
+      "pixels",
+      "assets",
+      "snippets",
+      "sections",
+      "layout",
+      "templates",
+      "config",
+      "agent-backend",
+      "-g",
+      "*.js",
+      "-g",
+      "*.cjs",
+      "-g",
+      "*.liquid",
+      "-g",
+      "*.json",
+      "-g",
+      "!package-lock.json",
+      "-g",
+      "!*.map"
+    ],
+    "case_insensitive_pattern": "uetq|bat\\.bing\\.com|ShopifyCheckoutCompleteEventTracking|36005151|36000629|fbq|fbevents|547553035448852|facebook.*pixel|meta.*pixel|catalog[_-]?id|content[_-]?ids|event[_-]?id|revenue[_-]?value",
+    "matching_files_count": 1,
+    "matching_lines_count": 3,
+    "matches": [
+      {
+        "path": "pixels/google-ads-custom-pixel.js",
+        "line": 43,
+        "matched_tokens": [
+          "eventId",
+          "EventId"
+        ]
+      },
+      {
+        "path": "pixels/google-ads-custom-pixel.js",
+        "line": 64,
+        "matched_tokens": [
+          "eventId",
+          "EventId"
+        ]
+      },
+      {
+        "path": "pixels/google-ads-custom-pixel.js",
+        "line": 225,
+        "matched_tokens": [
+          "EventId"
+        ]
+      }
+    ],
+    "sorted_path_sha256_pairs_digest": "1057ef46434b06339b02f520aff0d863a49e327c5c824d5eb60dac05fcce935b",
+    "binding": "REPO_KNOWN_ONLY; no fresh MAIN or installed app-pixel source binding",
+    "not_a_full_live_theme_manifest": true,
+    "vendor_sender_or_catalog_mapping_matches_count": 0,
+    "generic_matches_explanation": "Three case-insensitive eventId/safeEventId matches occur only in the existing Google Ads template at lines43,64,225. They are not Microsoft/Meta purchase or catalog implementation. No vendor-specific token matched."
+  },
+  "findings": [
+    {
+      "id": "LOCAL_SENDERS",
+      "classification": "VERIFIED_LOCAL",
+      "fact": "No Microsoft UET/Meta sender or catalog-ID mapping matched the bounded source inventory. pixels contains GA4/Google Ads templates and a GA4 test, not Microsoft/Meta implementations.",
+      "source_refs": [
+        "pixels/README.md:1-11"
+      ]
+    },
+    {
+      "id": "LOCAL_DATA_LAYER",
+      "classification": "VERIFIED_LOCAL",
+      "fact": "Theme source pushes language/context and local ecommerce dataLayer events. assets/analytics.js exposes begin_checkout, not a vendor-bound Microsoft/Meta purchase sender. These statements do not establish a live vendor consumer or receiver.",
+      "source_refs": [
+        "assets/analytics.js:115-155",
+        "assets/analytics.js:952-975",
+        "layout/theme.liquid:304-313",
+        "snippets/shipping-country-checker-modal.liquid:144-154"
+      ]
+    },
+    {
+      "id": "HISTORICAL_INSTALLED_IDS",
+      "classification": "HISTORICAL_RECORDED_READBACK",
+      "observed_date": "2026-03-26",
+      "fact": "Worklog records storefront webPixelsConfigList with UET tag36005151 and Facebook pixel547553035448852. The same record lists fbevents.js. This proves only that dated recorded runtime inventory, not current checkout source/value/currency/dedup behavior.",
+      "source_refs": [
+        "ops/AGENT_WORKLOG.md:8540-8584"
+      ]
+    },
+    {
+      "id": "HISTORICAL_SOURCE_REVIEW",
+      "classification": "HISTORICAL_RECORDED_REVIEW",
+      "observed_date": "2026-04-29",
+      "fact": "Prior theme review found no hardcoded fbq/uetq and attributed tags to Shopify runtime/web pixels/apps. Current local source scan is consistent with that limited finding.",
+      "source_refs": [
+        "ops/AGENT_WORKLOG.md:24697-24703"
+      ]
+    },
+    {
+      "id": "CURRENT_SAVED_CAPTURE_SCOPE",
+      "classification": "SAVED_PARENT_READBACK",
+      "observed_window": "2026-09-06T11:11:59Z–2026-09-06T11:40:19.332779+00:00",
+      "fact": "Saved installed purchase-capture inventory covers GA4 custom pixel111181921, Google Ads custom pixel111214689 and Google & YouTube app pixel216367201. It supplies no current Microsoft/Meta purchase payload. Absence here is not proof that Microsoft/Meta is absent live.",
+      "source_refs": [
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/purchase_capture_current_readback.json"
+      ]
+    },
+    {
+      "id": "UET_VALUE_GAP",
+      "classification": "UNKNOWN",
+      "fact": "The earlier report of98 event conversions/value98 and variable-value goal with1 fallback does not demonstrate hardcoded1, fallback use, missing revenue_value/currency, or duplicate purchases. Tag36000629 and36005151 are UET tag IDs, not goal IDs. No catalog identifier or content-ID match is established by this code inventory.",
+      "source_refs": [
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_uet_purchase_source_review.md"
+      ]
+    }
+  ],
+  "already_completed_do_not_reapply": [
+    {
+      "target": "GA4 custom pixel111181921",
+      "scope": "getClientId helper repair",
+      "evidence": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/pixel_repair_execution.json",
+      "limit": "Source save/readback is separate from receiver or purchase recovery proof."
+    },
+    {
+      "target": "Microsoft goal163000100",
+      "scope": "Include in Conversions off; Active preserved",
+      "evidence": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_smart_goal_execution.json",
+      "limit": "No other goal/tag/campaign change is authorized by this inventory."
+    }
+  ],
+  "fix_candidate": null,
+  "patch_and_reproducer": "NOT_CREATED; no source-bound Microsoft/Meta defect demonstrated. A synthetic replacement sender would invent an installation and risk adding duplicate tracking.",
+  "next_exact_check": {
+    "owner": "/root",
+    "dependency": "Normal native access restored; no bypass",
+    "surface": "Existing Shopify Customer events/app-pixel settings and existing channel diagnostic evidence",
+    "read_only_request": "Bind the actual Microsoft UET and Meta app pixels/datasets to current installed integration IDs. Inspect existing purchase diagnostic payload evidence, if exposed, for Microsoft revenue_value/currency and Meta value/currency/event identity plus catalog content-ID mapping. Preserve customer/secret data privately; record only sanitized mapping/equality findings. Do not send a purchase or create a replacement pixel.",
+    "kill": "Stop if installed source/diagnostics is not exposed, target is ambiguous, or login/permission/consent change is required; retain UNKNOWN.",
+    "why_first": "A proven purchase-value defect could distort profitable campaign selection; without source binding a patch could create additional senders rather than fix the existing integration."
+  },
+  "actions": {
+    "browser_calls": 0,
+    "external_api_calls": 0,
+    "event_sends": 0,
+    "production_writes": 0,
+    "existing_source_edits": 0,
+    "local_artifacts_created": 2
+  },
+  "checks": {
+    "emitter_inventory_completed": true,
+    "no_current_installed_binding_claim": true,
+    "prior_ga4_repair_not_reapplied": true,
+    "prior_smart_goal_repair_not_reapplied": true,
+    "patch_not_fabricated": true,
+    "local_only": true,
+    "vendor_specific_sender_or_catalog_mapping_matches_zero": true
+  },
+  "environment_note": "python3.13 was unavailable in PATH; the configured bundled Python completed the local inventory. No external fallback was used.",
+  "sources": [
+    {
+      "path": "assets/analytics.js",
+      "sha256": "bbc1760934d6e923a30b8573816fef72c67569ae881dec5e0d27099a8a4e523c"
+    },
+    {
+      "path": "layout/theme.liquid",
+      "sha256": "39962e58bdfa8ede189a82071ef5d2b164b66f7ec8b0a0f8de9e9e623dc00a49"
+    },
+    {
+      "path": "snippets/shipping-country-checker-modal.liquid",
+      "sha256": "5ae06f52a1a88c15043af913f09696204019f7017087f933d8e998b5e9e727b7"
+    },
+    {
+      "path": "pixels/README.md",
+      "sha256": "5d99f21af35ff853db16c0ed2ca9002fc7f501d3e6ed678c8c86b7cf0107272a"
+    },
+    {
+      "path": "docs/tracking-setup.md",
+      "sha256": "90f147f18af1d44f566f63716133dd9ebe58ad7f7f67ba162a7cf3485fb5786a"
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "lines": [
+        8540,
+        8584
+      ],
+      "sha256_excerpt_utf8": "a9d3b0449bf47b09f3021574389fccd8c17fdb5439b019e31bbaa806aa83920f"
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "lines": [
+        24697,
+        24703
+      ],
+      "sha256_excerpt_utf8": "d3fd56e6b46befc923826e9f84c4516a47d0b827d126d8eed7f9c063f26c437e"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_uet_purchase_source_review.md",
+      "sha256": "35ca04d8013c045ae55712825aa9f348ad0a8ddf4c4c281799779e1fbf2b83f6"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/purchase_capture_current_readback.json",
+      "sha256": "0ff5397d735b8ab9e4c0ee83b084570d195b75be58fe701d16f41e2ebb6f5855"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/pixel_repair_execution.json",
+      "sha256": "a9b84d836aa318c939f3585c64b3bbdb833bbd8ca9dad0079411612b68a50c17"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_smart_goal_execution.json",
+      "sha256": "349b77874910c0e508eae0090eb3cffcc7ce06b749b71894941f795c1144a661"
+    }
+  ]
+}

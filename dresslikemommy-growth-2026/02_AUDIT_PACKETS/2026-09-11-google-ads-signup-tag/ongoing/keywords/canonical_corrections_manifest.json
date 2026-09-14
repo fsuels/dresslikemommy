@@ -1,0 +1,3119 @@
+{
+  "generated_at_utc": "2026-09-11T18:53:05.450785+00:00",
+  "status": "CANDIDATE_NOT_APPLIED",
+  "owner": "root after independent review",
+  "apply_gate": "Exact baseline hash match for all five targets; review failure cases and holdouts; apply only scoped patch; after-state readback and canonical continuity checks. No live or paid authority is conferred.",
+  "changed_csv_fields_only": [
+    "economic_fit_10",
+    "serveability_10",
+    "total_score",
+    "threshold"
+  ],
+  "preserved": "CSV header, row count/order, keyword/market/language/category/match, all other score components, promotion_status, landing_route and live_action.",
+  "score_interpretation": "Zero economic/serveability evidence credit denotes unavailable current proof, not zero market demand or empirically bad performance. Local threshold retains existing numerical schema; no promotion_status is changed.",
+  "totals_before": {
+    "GREEN": 77,
+    "YELLOW": 20,
+    "RED": 8
+  },
+  "totals_candidate": {
+    "YELLOW": 77,
+    "RED": 28
+  },
+  "frozen_failure_and_holdout_checks": {
+    "F1_unknown_economics_scores_removed": true,
+    "F2_unearned_green_removed": true,
+    "F3_old_current_live_labels_qualified": true,
+    "F4_fixed_modeled_stop_threshold_retired": true,
+    "F5_negative_false_positives_qualified": true,
+    "H1_watchlists_preserved": true,
+    "H2_schema_identity_order_status_preserved": true,
+    "H3_canonical_baselines_unchanged": true,
+    "H5_scores_arithmetic_and_thresholds": true,
+    "H6_change_fields_limited": true,
+    "N1_owner_limits_present": true,
+    "N2_existing_reviewed_economics_convention": true
+  },
+  "targets": {
+    "ops/marketing/keyword_strategy.md": {
+      "baseline_sha256": "dbcf01afa65f288f0f84f70ac00a741a443b1ba77788d357be4c907689076f4c",
+      "candidate_sha256": "fe150678a9d935d5d39f4cc3c001a333606fa93a095a99267196ffec30b32ded",
+      "baseline_bytes": 6633,
+      "candidate_bytes": 7796,
+      "candidate_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/canonical_candidate/ops/marketing/keyword_strategy.md",
+      "baseline_snapshot_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/canonical_baseline/ops/marketing/keyword_strategy.md"
+    },
+    "ops/marketing/keyword_factory_015_cpc_criteria.md": {
+      "baseline_sha256": "e54c1e18c4b01cc08213fb06020a78767aa5f7842a248583a70c9e9e1cc64f06",
+      "candidate_sha256": "785d042642fa7424903cae78bc653cd662896a446ed825d7934964b431ae0961",
+      "baseline_bytes": 8789,
+      "candidate_bytes": 10214,
+      "candidate_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/canonical_candidate/ops/marketing/keyword_factory_015_cpc_criteria.md",
+      "baseline_snapshot_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/canonical_baseline/ops/marketing/keyword_factory_015_cpc_criteria.md"
+    },
+    "ops/marketing/keyword_scoring_rubric.md": {
+      "baseline_sha256": "349caaf03f1f9a13ebc2c18bc74b363f5325353dbc0270f0f1bf16c3fa8484d6",
+      "candidate_sha256": "1e5b1bab896e592b200a845a78db101a3322d5c014aab54cd6340965333ed14d",
+      "baseline_bytes": 3798,
+      "candidate_bytes": 5294,
+      "candidate_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/canonical_candidate/ops/marketing/keyword_scoring_rubric.md",
+      "baseline_snapshot_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/canonical_baseline/ops/marketing/keyword_scoring_rubric.md"
+    },
+    "ops/marketing/us_primary_keyword_lane.md": {
+      "baseline_sha256": "2fa8d209b94b1d3d221f18f948ddb767a5882a95704e06b3198e3b4129adb3c4",
+      "candidate_sha256": "ca136c5c59922011a37b7d616f7c42df6310ef2e447e5c44e2378d1516d6dca6",
+      "baseline_bytes": 3003,
+      "candidate_bytes": 4405,
+      "candidate_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/canonical_candidate/ops/marketing/us_primary_keyword_lane.md",
+      "baseline_snapshot_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/canonical_baseline/ops/marketing/us_primary_keyword_lane.md"
+    },
+    "ops/marketing/keyword_universe.csv": {
+      "baseline_sha256": "54b465396a377eef78d91fbbaded0033c098fe1199f04d6b5bb3804b10117138",
+      "candidate_sha256": "523e111faa770b73a2ba42bcf174ca1a183ddab57454d787284e964603830167",
+      "baseline_bytes": 24480,
+      "candidate_bytes": 24497,
+      "candidate_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/canonical_candidate/ops/marketing/keyword_universe.csv",
+      "baseline_snapshot_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/canonical_baseline/ops/marketing/keyword_universe.csv"
+    }
+  },
+  "row_changes": [
+    {
+      "csv_line": 2,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "family outfits for beach photos",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "92",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "77",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 3,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "matching family vacation outfits",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "92",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "77",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 4,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mommy and me dresses for pictures",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "92",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "77",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 5,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mother daughter outfits for photoshoot",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "91",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 6,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mom daughter family photo dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "92",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "77",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 7,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mommy daughter picture outfits",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "91",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 8,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Beach Days",
+        "keyword": "mother daughter beach photo dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "91",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 9,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Birthdays",
+        "keyword": "mommy and me birthday dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "91",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 10,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Matching Dresses",
+        "keyword": "mother daughter wedding guest dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "75",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 11,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "mommy daughter vacation dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "91",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 12,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "matching family photo dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 13,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "matching family picture outfits",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 14,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Beach Days",
+        "keyword": "matching family beach dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 15,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Matching Dresses",
+        "keyword": "mommy and me summer dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 16,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Matching Dresses",
+        "keyword": "beige mother daughter dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "8",
+        "total_score": "84",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "68",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 17,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Matching Dresses",
+        "keyword": "chiffon mother daughter dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "8",
+        "total_score": "84",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "68",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 18,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Matching Dresses",
+        "keyword": "floral mommy daughter dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "8",
+        "total_score": "86",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "70",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 19,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "core_obvious",
+        "category": "Pajamas",
+        "keyword": "mommy and me pajamas",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "8",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "72",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 20,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "core_obvious",
+        "category": "Pajamas",
+        "keyword": "matching family pajamas",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "8",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "72",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 21,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Pajamas",
+        "keyword": "mommy and me pajama set",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "8",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "72",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 22,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "core_obvious",
+        "category": "Swimsuits",
+        "keyword": "matching family swimsuits",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 23,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Swimsuits",
+        "keyword": "mommy and me swimsuits",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 24,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Swimsuits",
+        "keyword": "mother daughter bathing suits",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 25,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "core_obvious",
+        "category": "Daddy & Me",
+        "keyword": "daddy and me shirts",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "8",
+        "total_score": "84",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "68",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 26,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Daddy & Me",
+        "keyword": "dad and son vacation shirts",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 27,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Daddy & Me",
+        "keyword": "dad son matching shirts",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "8",
+        "total_score": "84",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "68",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 28,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "family cruise outfits",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "75",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 29,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Vacation",
+        "keyword": "family tropical outfits matching",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "86",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "71",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 30,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Vacation",
+        "keyword": "matching family hawaiian outfits",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "83",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "68",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 31,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Beach Days",
+        "keyword": "mother daughter beach dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "75",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 32,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Beach Days",
+        "keyword": "mommy and me beach dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "75",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 33,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Matching Dresses",
+        "keyword": "mother daughter matching maxi dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "8",
+        "total_score": "86",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "70",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 34,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Matching Dresses",
+        "keyword": "mommy and me floral maxi dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "8",
+        "total_score": "86",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "70",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 35,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "family vacation matching outfits for pictures",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "75",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 36,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Birthdays",
+        "keyword": "mom and daughter birthday outfits",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 37,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "girls and mom matching dresses for photos",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 38,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mother daughter dresses for family pictures",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 39,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "matching family outfits for beach vacation",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 40,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "family matching outfits for photoshoot",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 41,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "mother daughter matching vacation outfits",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 42,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mommy and daughter matching photo dresses",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 43,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Birthdays",
+        "keyword": "family birthday matching outfits",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "86",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "72",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 44,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "matching family outfits for cruise pictures",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 45,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Vacation",
+        "keyword": "family resort outfits matching",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "83",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "68",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 46,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Vacation",
+        "keyword": "mommy and me tropical dresses",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "85",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "71",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 47,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Beach Days",
+        "keyword": "family beach outfits matching white",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "7",
+        "serveability_10": "7",
+        "total_score": "79",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "65",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 48,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Matching Dresses",
+        "keyword": "mom daughter matching sundresses",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "82",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "67",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 49,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "high_intent_long_tail",
+        "category": "Daddy & Me",
+        "keyword": "daddy son matching beach shirts",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "86",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "72",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 50,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Couples",
+        "keyword": "matching couples beach outfits",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "7",
+        "serveability_10": "7",
+        "total_score": "81",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "67",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 51,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Couples",
+        "keyword": "couple matching vacation outfits",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "7",
+        "serveability_10": "7",
+        "total_score": "81",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "67",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 52,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Couples",
+        "keyword": "matching couple beach outfits",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "7",
+        "serveability_10": "7",
+        "total_score": "81",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "67",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 53,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Matching Dresses",
+        "keyword": "mother daughter holiday dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "7",
+        "serveability_10": "7",
+        "total_score": "80",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "66",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 54,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Pajamas",
+        "keyword": "family holiday pajamas",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "8",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "72",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 55,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Pajamas",
+        "keyword": "mommy and me christmas pajamas",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "7",
+        "serveability_10": "7",
+        "total_score": "82",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "68",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 56,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "product_category",
+        "category": "Pajamas",
+        "keyword": "matching family christmas pajamas",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "7",
+        "serveability_10": "7",
+        "total_score": "82",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "68",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 57,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "research_watchlist",
+        "category": "Photo Days",
+        "keyword": "family picture outfit ideas",
+        "match_candidate": "watchlist"
+      },
+      "expected_before": {
+        "economic_fit_10": "5",
+        "serveability_10": "8",
+        "total_score": "56",
+        "threshold": "RED"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "43",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score"
+      ]
+    },
+    {
+      "csv_line": 58,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "research_watchlist",
+        "category": "Family Matching",
+        "keyword": "family outfit ideas",
+        "match_candidate": "watchlist"
+      },
+      "expected_before": {
+        "economic_fit_10": "5",
+        "serveability_10": "8",
+        "total_score": "53",
+        "threshold": "RED"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "40",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score"
+      ]
+    },
+    {
+      "csv_line": 59,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "research_watchlist",
+        "category": "Photo Days",
+        "keyword": "what to wear for family photos",
+        "match_candidate": "watchlist"
+      },
+      "expected_before": {
+        "economic_fit_10": "5",
+        "serveability_10": "8",
+        "total_score": "57",
+        "threshold": "RED"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "44",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score"
+      ]
+    },
+    {
+      "csv_line": 60,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "research_watchlist",
+        "category": "Beach Days",
+        "keyword": "beach family photo outfit ideas",
+        "match_candidate": "watchlist"
+      },
+      "expected_before": {
+        "economic_fit_10": "5",
+        "serveability_10": "8",
+        "total_score": "58",
+        "threshold": "RED"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "45",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score"
+      ]
+    },
+    {
+      "csv_line": 61,
+      "identity": {
+        "market": "US",
+        "language": "en-US",
+        "layer": "research_watchlist",
+        "category": "Family Matching",
+        "keyword": "cute matching family outfits",
+        "match_candidate": "watchlist"
+      },
+      "expected_before": {
+        "economic_fit_10": "6",
+        "serveability_10": "8",
+        "total_score": "65",
+        "threshold": "RED"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "51",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score"
+      ]
+    },
+    {
+      "csv_line": 62,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mum and daughter dresses for photos",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 63,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mummy and me dresses for family photos",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 64,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "mother daughter holiday dresses uk",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 65,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "matching family holiday outfits",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 66,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "high_intent_long_tail",
+        "category": "Beach Days",
+        "keyword": "family beach photo outfits uk",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 67,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "matching family outfits for holiday photos",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 68,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "high_intent_long_tail",
+        "category": "Matching Dresses",
+        "keyword": "mum daughter wedding guest dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "75",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 69,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "high_intent_long_tail",
+        "category": "Beach Days",
+        "keyword": "mummy and me beach dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "75",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 70,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "product_category",
+        "category": "Swimsuits",
+        "keyword": "matching family swimwear uk",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 71,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "product_category",
+        "category": "Pajamas",
+        "keyword": "family matching pyjamas",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "72",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 72,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "product_category",
+        "category": "Pajamas",
+        "keyword": "mummy and me pyjamas",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "72",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 73,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "high_intent_long_tail",
+        "category": "Daddy & Me",
+        "keyword": "dad and son holiday shirts",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 74,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "product_category",
+        "category": "Daddy & Me",
+        "keyword": "daddy and me shirts uk",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "82",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "67",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 75,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "product_category",
+        "category": "Vacation",
+        "keyword": "matching family tropical outfits uk",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "82",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "68",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 76,
+      "identity": {
+        "market": "GB",
+        "language": "en-GB",
+        "layer": "research_watchlist",
+        "category": "Photo Days",
+        "keyword": "family photo outfit ideas uk",
+        "match_candidate": "watchlist"
+      },
+      "expected_before": {
+        "economic_fit_10": "5",
+        "serveability_10": "8",
+        "total_score": "57",
+        "threshold": "RED"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "44",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score"
+      ]
+    },
+    {
+      "csv_line": 77,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mommy and me dresses canada pictures",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 78,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mom daughter family picture dresses canada",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 79,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mother daughter outfits for family pictures",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 80,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "matching family outfits canada photos",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 81,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "high_intent_long_tail",
+        "category": "Beach Days",
+        "keyword": "family beach photo outfits canada",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 82,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "matching family vacation outfits canada",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 83,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "product_category",
+        "category": "Pajamas",
+        "keyword": "mommy and me pajamas canada",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "72",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 84,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "product_category",
+        "category": "Pajamas",
+        "keyword": "matching family pajamas canada",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "72",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 85,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "product_category",
+        "category": "Swimsuits",
+        "keyword": "mommy and me swimsuits canada",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 86,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "product_category",
+        "category": "Swimsuits",
+        "keyword": "matching family swimwear canada",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 87,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "product_category",
+        "category": "Daddy & Me",
+        "keyword": "dad and son shirts canada",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "82",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "67",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 88,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "family cruise outfits canada",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 89,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "high_intent_long_tail",
+        "category": "Matching Dresses",
+        "keyword": "mother daughter wedding guest dresses canada",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "75",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 90,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "family cottage photo outfits",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "7",
+        "serveability_10": "6",
+        "total_score": "77",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "64",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 91,
+      "identity": {
+        "market": "CA",
+        "language": "en-CA",
+        "layer": "research_watchlist",
+        "category": "Photo Days",
+        "keyword": "family picture outfit ideas canada",
+        "match_candidate": "watchlist"
+      },
+      "expected_before": {
+        "economic_fit_10": "5",
+        "serveability_10": "8",
+        "total_score": "57",
+        "threshold": "RED"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "44",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score"
+      ]
+    },
+    {
+      "csv_line": 92,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mum and daughter dresses for photos australia",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 93,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "high_intent_long_tail",
+        "category": "Photo Days",
+        "keyword": "mummy and me dresses for family photos",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "90",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "76",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 94,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "mother daughter holiday dresses australia",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 95,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "high_intent_long_tail",
+        "category": "Vacation",
+        "keyword": "matching family holiday outfits australia",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 96,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "high_intent_long_tail",
+        "category": "Beach Days",
+        "keyword": "family beach photo outfits australia",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 97,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "high_intent_long_tail",
+        "category": "Beach Days",
+        "keyword": "mum daughter beach dresses",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "75",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 98,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "high_intent_long_tail",
+        "category": "Beach Days",
+        "keyword": "mummy and me beach dresses australia",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "75",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 99,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "product_category",
+        "category": "Swimsuits",
+        "keyword": "matching family swimwear australia",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 100,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "product_category",
+        "category": "Swimsuits",
+        "keyword": "mummy and me swimwear australia",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "73",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 101,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "product_category",
+        "category": "Pajamas",
+        "keyword": "family matching pyjamas australia",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "7",
+        "total_score": "87",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "72",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 102,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "high_intent_long_tail",
+        "category": "Daddy & Me",
+        "keyword": "dad and son holiday shirts australia",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "88",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "74",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 103,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "product_category",
+        "category": "Vacation",
+        "keyword": "matching family tropical outfits australia",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "82",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "68",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 104,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "product_category",
+        "category": "Vacation",
+        "keyword": "family resort outfits australia",
+        "match_candidate": "phrase"
+      },
+      "expected_before": {
+        "economic_fit_10": "7",
+        "serveability_10": "6",
+        "total_score": "78",
+        "threshold": "YELLOW"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "65",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 105,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "high_intent_long_tail",
+        "category": "Matching Dresses",
+        "keyword": "mother daughter wedding guest dresses australia",
+        "match_candidate": "exact"
+      },
+      "expected_before": {
+        "economic_fit_10": "8",
+        "serveability_10": "6",
+        "total_score": "89",
+        "threshold": "GREEN"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "75",
+        "threshold": "YELLOW"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score",
+        "threshold"
+      ]
+    },
+    {
+      "csv_line": 106,
+      "identity": {
+        "market": "AU",
+        "language": "en-AU",
+        "layer": "research_watchlist",
+        "category": "Photo Days",
+        "keyword": "family photo outfit ideas australia",
+        "match_candidate": "watchlist"
+      },
+      "expected_before": {
+        "economic_fit_10": "5",
+        "serveability_10": "8",
+        "total_score": "57",
+        "threshold": "RED"
+      },
+      "candidate_after": {
+        "economic_fit_10": "0",
+        "serveability_10": "0",
+        "total_score": "44",
+        "threshold": "RED"
+      },
+      "changed_fields": [
+        "economic_fit_10",
+        "serveability_10",
+        "total_score"
+      ]
+    }
+  ],
+  "economics_convention_source": "STRATEGY_PLAYBOOK.md section 4 and ongoing/measurement_economics/READINESS.md; R includes retained shipping; H is overhead/other costs, never shipping income."
+}

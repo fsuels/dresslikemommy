@@ -1,0 +1,180 @@
+{
+  "mutation": {
+    "name": "publicationUpdate",
+    "description": "Updates a [`Publication`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Publication).\n\nYou can add or remove [products](https://shopify.dev/docs/api/admin-graphql/latest/objects/Product) from the publication, with a maximum of 50 items per operation. The [`autoPublish`](https://shopify.dev/docs/api/admin-graphql/latest/mutations/publicationUpdate#arguments-input.fields.autoPublish) field determines whether new products automatically display in this publication.",
+    "type": {
+      "name": "PublicationUpdatePayload",
+      "kind": "OBJECT",
+      "ofType": null
+    },
+    "args": [
+      {
+        "name": "id",
+        "description": "The ID of the publication to update.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "input",
+        "description": "The input fields to use when updating the publication.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "PublicationUpdateInput",
+            "kind": "INPUT_OBJECT",
+            "ofType": null
+          }
+        }
+      }
+    ]
+  },
+  "input": {
+    "data": {
+      "__type": {
+        "name": "PublicationUpdateInput",
+        "kind": "INPUT_OBJECT",
+        "description": "The input fields for updating a publication.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "publishablesToAdd",
+            "description": "A list of publishable IDs to add. The maximum number of publishables to update simultaneously is 50.",
+            "type": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          {
+            "name": "publishablesToRemove",
+            "description": "A list of publishable IDs to remove. The maximum number of publishables to update simultaneously is 50.",
+            "type": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          {
+            "name": "autoPublish",
+            "description": "Whether new products should be automatically published to the publication.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "enumValues": null
+      }
+    }
+  },
+  "errorCodes": {
+    "data": {
+      "__type": {
+        "name": "PublicationUserErrorCode",
+        "kind": "ENUM",
+        "description": "Possible error codes that can be returned by `PublicationUserError`.",
+        "fields": null,
+        "inputFields": null,
+        "enumValues": [
+          {
+            "name": "UNSUPPORTED_PUBLICATION_ACTION",
+            "description": "Can't perform this action on a publication."
+          },
+          {
+            "name": "PUBLICATION_NOT_FOUND",
+            "description": "Publication not found."
+          },
+          {
+            "name": "PUBLICATION_LOCKED",
+            "description": "The publication is currently being modified. Please try again later."
+          },
+          {
+            "name": "UNSUPPORTED_PUBLISHABLE_TYPE",
+            "description": "A catalog publication can only contain products."
+          },
+          {
+            "name": "INVALID_PUBLISHABLE_ID",
+            "description": "Publishable ID not found."
+          },
+          {
+            "name": "MARKET_NOT_FOUND",
+            "description": "Market does not exist."
+          },
+          {
+            "name": "CATALOG_NOT_FOUND",
+            "description": "Catalog does not exist."
+          },
+          {
+            "name": "CANNOT_MODIFY_APP_CATALOG_PUBLICATION",
+            "description": "Can't modify a publication that belongs to an app catalog."
+          },
+          {
+            "name": "CANNOT_MODIFY_MARKET_CATALOG_PUBLICATION",
+            "description": "Can't modify a publication that belongs to a market catalog."
+          },
+          {
+            "name": "CANNOT_MODIFY_APP_CATALOG",
+            "description": "Cannot modify a catalog for an app."
+          },
+          {
+            "name": "CANNOT_MODIFY_MARKET_CATALOG",
+            "description": "Cannot modify a catalog for a market."
+          },
+          {
+            "name": "INVALID",
+            "description": "The input value is invalid."
+          },
+          {
+            "name": "TAKEN",
+            "description": "The input value is already taken."
+          },
+          {
+            "name": "TOO_LONG",
+            "description": "The input value is too long."
+          },
+          {
+            "name": "TOO_SHORT",
+            "description": "The input value is too short."
+          },
+          {
+            "name": "BLANK",
+            "description": "The input value is blank."
+          },
+          {
+            "name": "PRODUCT_TYPE_INCOMPATIBLE_WITH_CATALOG_TYPE",
+            "description": "A product publication cannot be created because the catalog type associated with this publication does not permit publications of this product type."
+          },
+          {
+            "name": "PUBLICATION_UPDATE_LIMIT_EXCEEDED",
+            "description": "The limit for simultaneous publication updates has been exceeded."
+          }
+        ]
+      }
+    }
+  }
+}

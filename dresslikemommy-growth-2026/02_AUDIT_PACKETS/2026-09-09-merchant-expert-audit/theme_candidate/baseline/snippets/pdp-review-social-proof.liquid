@@ -1,0 +1,167 @@
+{%- comment -%}
+  PDP above-the-fold review/social-proof gate.
+
+  Replaces the "No reviews" social proof signal that third-party review
+  widgets (Judge.me etc.) render near the title when a product has zero
+  reviews. We:
+
+    - Render NOTHING above the fold if the product has reviews (the
+      third-party widget will continue to show its real star count).
+    - Render a "New arrival" pill + a soft store-level social-proof line
+      when the product has no reviews yet, and hide any zero-review
+      preview badge the third-party widget might still try to inject.
+
+  The lower-page reviews section is intentionally untouched so customers
+  can still leave reviews.
+
+  Inputs (optional):
+    - show_new_arrival_badge: boolean (default true)
+    - social_proof_text: string fallback if locale string is missing
+
+  Render anywhere above the variant picker — typically right under the
+  product title block.
+{%- endcomment -%}
+
+{%- liquid
+  assign rsp_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
+  assign rsp_rating_count_raw = product.metafields.reviews.rating_count.value | default: product.metafields.reviews.rating_count
+  assign rsp_rating_count = rsp_rating_count_raw | plus: 0
+
+  if rsp_rating_count <= 0
+    assign rsp_judgeme_badge_metafield = product.metafields.judgeme.badge
+    assign rsp_judgeme_badge_markup = rsp_judgeme_badge_metafield.value | default: rsp_judgeme_badge_metafield | default: '' | append: '' | strip_newlines
+    if rsp_judgeme_badge_markup != blank
+      if rsp_judgeme_badge_markup contains 'data-number-of-reviews="'
+        assign rsp_rating_count = rsp_judgeme_badge_markup | split: 'data-number-of-reviews="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_badge_markup contains "data-number-of-reviews='"
+        assign rsp_rating_count = rsp_judgeme_badge_markup | split: "data-number-of-reviews='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_badge_markup contains 'data-reviews-count="'
+        assign rsp_rating_count = rsp_judgeme_badge_markup | split: 'data-reviews-count="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_badge_markup contains "data-reviews-count='"
+        assign rsp_rating_count = rsp_judgeme_badge_markup | split: "data-reviews-count='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      endif
+    endif
+  endif
+
+  if rsp_rating_count <= 0
+    assign rsp_judgeme_widget_metafield = product.metafields.judgeme.widget
+    assign rsp_judgeme_widget_markup = rsp_judgeme_widget_metafield.value | default: rsp_judgeme_widget_metafield | default: '' | append: '' | strip_newlines
+    if rsp_judgeme_widget_markup != blank
+      if rsp_judgeme_widget_markup contains 'data-number-of-reviews="'
+        assign rsp_rating_count = rsp_judgeme_widget_markup | split: 'data-number-of-reviews="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_widget_markup contains "data-number-of-reviews='"
+        assign rsp_rating_count = rsp_judgeme_widget_markup | split: "data-number-of-reviews='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_widget_markup contains 'data-reviews-count="'
+        assign rsp_rating_count = rsp_judgeme_widget_markup | split: 'data-reviews-count="' | last | split: '"' | first | replace: ',', '' | plus: 0
+      elsif rsp_judgeme_widget_markup contains "data-reviews-count='"
+        assign rsp_rating_count = rsp_judgeme_widget_markup | split: "data-reviews-count='" | last | split: "'" | first | replace: ',', '' | plus: 0
+      endif
+    endif
+  endif
+
+  assign rsp_has_reviews = false
+  if rsp_rating_count > 0
+    assign rsp_has_reviews = true
+  endif
+
+  assign rsp_show_badge = show_new_arrival_badge
+  if rsp_show_badge == nil
+    assign rsp_show_badge = true
+  endif
+
+  assign rsp_badge_label = 'products.product.social_proof.new_arrival' | t
+  if rsp_badge_label == blank or rsp_badge_label contains 'translation missing'
+    assign rsp_badge_label = 'New arrival'
+  endif
+
+  assign rsp_default_social_proof = 'Family matching styles loved by moms for vacations, birthdays, and photos.'
+  assign rsp_social_proof = social_proof_text | default: blank
+  if rsp_locale_root != 'en' and rsp_social_proof == rsp_default_social_proof
+    assign rsp_localized_social_proof = 'products.product.social_proof.line' | t
+    unless rsp_localized_social_proof == blank or rsp_localized_social_proof contains 'translation missing'
+      assign rsp_social_proof = rsp_localized_social_proof
+    endunless
+  endif
+  if rsp_social_proof == blank
+    assign rsp_social_proof = 'products.product.social_proof.line' | t
+    if rsp_social_proof == blank or rsp_social_proof contains 'translation missing'
+      assign rsp_social_proof = rsp_default_social_proof
+    endif
+  endif
+
+  if product.handle == 'golden-daisy-mommy-and-me-set' and rsp_locale_root == 'en'
+    assign rsp_social_proof = 'A sunny mom-and-daughter look for vacations, picnics, and family photos.'
+  endif
+-%}
+
+{%- unless rsp_has_reviews -%}
+  <style>
+    /* Hide all above-fold third-party preview output for true zero-review
+       products. The full review widget lower on the page is unaffected. */
+    .product__info-container [id*="judge_me_reviews_preview_badge"],
+    .product__info-container [id*="judge-me-reviews"][id*="preview"],
+    .product__info-container .shopify-block:has(.jdgm-prev-badge),
+    .product__info-container .shopify-app-block:has(.jdgm-prev-badge),
+    .product__info-container .shopify-block:has(.jdgm-preview-badge),
+    .product__info-container .shopify-app-block:has(.jdgm-preview-badge),
+    .product__info-container .jdgm-widget,
+    .product__info-container .jdgm-preview-badge,
+    .product__info-container [class*="jdgm-preview"],
+    .product__info-container [class*="jdgm-prev"],
+    .product__info-container .jdgm-prev-badge[data-average-rating="0.00"],
+    .product__info-container .jdgm-prev-badge[data-number-of-reviews="0"],
+    .product__info-container .spr-badge[data-rating="0.0"],
+    .product__info-container .spr-badge:not(.spr-badge--has-reviews),
+    .product__info-container .jdgm-widget.jdgm-no-reviews,
+    .product__info-container [data-review-count="0"] {
+      display: none !important;
+    }
+
+    .dlm-pdp-social-proof {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 12px;
+      margin: 6px 0 10px;
+      font-size: 0.92em;
+      line-height: 1.4;
+      color: #4a5560;
+    }
+    .dlm-pdp-social-proof__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #ecf7f1;
+      color: #1D8656;
+      font-weight: 600;
+      font-size: 0.85em;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .dlm-pdp-social-proof__badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #1D8656;
+    }
+    .dlm-pdp-social-proof__line {
+      color: #4a5560;
+    }
+    @media (max-width: 480px) {
+      .dlm-pdp-social-proof { font-size: 0.88em; margin: 4px 0 8px; }
+    }
+  </style>
+
+  <div class="dlm-pdp-social-proof" data-pdp-social-proof>
+    {%- if rsp_show_badge -%}
+      <span class="dlm-pdp-social-proof__badge">{{ rsp_badge_label }}</span>
+    {%- endif -%}
+    {%- if rsp_social_proof != blank -%}
+      <span class="dlm-pdp-social-proof__line">{{ rsp_social_proof }}</span>
+    {%- endif -%}
+  </div>
+{%- endunless -%}

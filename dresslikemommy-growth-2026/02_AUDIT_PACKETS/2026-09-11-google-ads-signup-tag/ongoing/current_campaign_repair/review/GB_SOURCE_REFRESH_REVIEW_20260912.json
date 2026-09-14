@@ -1,0 +1,402 @@
+{
+  "schema": "dlm.independent_gb_source_refresh_review.v1",
+  "reviewed_at_utc": "2026-09-12T10:57:20.458471+00:00",
+  "reviewer": "/root/tag_repair_review",
+  "verdict": "PASS_WITH_LIMITS",
+  "scope": "LOCAL_GB_SOURCE_PRICE_REFRESH_ONLY",
+  "independent_of_builder_and_executor": true,
+  "reviewed_payload": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+    "sha256": "99aad3484b86cf758412a037c9cdb0361da8800cebe781ec5ba1f54ac95218c8"
+  },
+  "immutable_baseline": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/SEARCH_CAMPAIGN_DRAFTS.json",
+    "sha256": "962486705f12e585f03717712aec164ec28617df0143d9d363fc66a41a8d7792"
+  },
+  "exact_frozen_sources": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.contained_local_prep_20260911/gb-en.snapshot.json",
+      "sha256": "cfc7ad13b7d25518439f0c4c21ad185d848119b1ae8e2843bccf3c7d6e122412"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.contained_local_prep_20260911/gb-en.tsv",
+      "sha256": "c32c827692510ad8170ae56d0f163571da7a076f725a759d38fd2de34f91253f"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/gb-en.contained_local_prep_20260911/candidate_receipt.json",
+      "sha256": "92043fbd8b205dd47edd4763fdc9623d8c43795ff37f44912793ab7249e92776"
+    }
+  ],
+  "source_completed_at_utc": "2026-09-11T22:15:43.812Z",
+  "source_receipt_at_utc": "2026-09-11T22:18:11.215750+00:00",
+  "checks": [
+    {
+      "check": "new_payload_exact_hash",
+      "result": "PASS"
+    },
+    {
+      "check": "immutable_baseline_exact_hash",
+      "result": "PASS"
+    },
+    {
+      "check": "three_exact_source_hashes_match",
+      "result": "PASS"
+    },
+    {
+      "check": "receipt_binds_exact_snapshot_and_feed",
+      "result": "PASS"
+    },
+    {
+      "check": "dated_local_source_and_no_upload_qualification",
+      "result": "PASS"
+    },
+    {
+      "check": "source_country_locale_currency",
+      "result": "PASS"
+    },
+    {
+      "check": "four_country_identities_and_order_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "other_three_country_objects_identical",
+      "result": "PASS"
+    },
+    {
+      "check": "GB_all_non_source_fields_unchanged",
+      "result": "PASS"
+    },
+    {
+      "check": "all_other_top_level_objects_unchanged",
+      "result": "PASS",
+      "detail": "Includes status, all keywords/copy through unchanged campaign objects, negatives, authority, budgets, gates, economics and qualification counts."
+    },
+    {
+      "check": "prior_validation_preserved_as_historical",
+      "result": "PASS"
+    },
+    {
+      "check": "original_source_pointer_list_preserved_plus_only_three",
+      "result": "PASS"
+    },
+    {
+      "check": "original_revision_history_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "24_unique_IDs_no_added_removed_reordered_variants",
+      "result": "PASS"
+    },
+    {
+      "check": "24_ID_type_size_route_price_joins",
+      "result": "PASS"
+    },
+    {
+      "check": "only_twelve_Dress_prices_changed",
+      "result": "PASS"
+    },
+    {
+      "check": "seven_child_dresses_19_to18_five_mother_22_to21",
+      "result": "PASS"
+    },
+    {
+      "check": "twelve_cardigan_prices_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "both_change_receipts_exactly_match_computed_changes",
+      "result": "PASS"
+    },
+    {
+      "check": "fresh_source_pointer_timestamp_and_identity",
+      "result": "PASS"
+    },
+    {
+      "check": "GB_source_changes_allowlisted_only",
+      "result": "PASS"
+    },
+    {
+      "check": "source_scope_explicitly_not_live_or_launch_proof",
+      "result": "PASS"
+    },
+    {
+      "check": "all_exact_targets_still_match_after_read_only_checks",
+      "result": "PASS"
+    }
+  ],
+  "check_summary": {
+    "passed": 23,
+    "failed": 0,
+    "exact_variant_joins": 24,
+    "dress_prices_changed": 12,
+    "cardigan_prices_unchanged": 12,
+    "other_country_objects_identical": 3
+  },
+  "price_groups": [
+    {
+      "type": "Dress",
+      "shopper": "Child",
+      "old_gbp": "19.0",
+      "updated_gbp": "18.0",
+      "variant_count": 7
+    },
+    {
+      "type": "Dress",
+      "shopper": "Mother",
+      "old_gbp": "22.0",
+      "updated_gbp": "21.0",
+      "variant_count": 5
+    },
+    {
+      "type": "Cardigan",
+      "shopper": "Child",
+      "old_gbp": "14.0",
+      "updated_gbp": "14.0",
+      "variant_count": 7
+    },
+    {
+      "type": "Cardigan",
+      "shopper": "Mother",
+      "old_gbp": "15.0",
+      "updated_gbp": "15.0",
+      "variant_count": 5
+    }
+  ],
+  "variant_joins": [
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139349601",
+      "type": "Dress",
+      "size": "Child 2 Years",
+      "old_amount_gbp": "19.0",
+      "new_amount_gbp": "18.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139382369",
+      "type": "Dress",
+      "size": "Child 3 Years",
+      "old_amount_gbp": "19.0",
+      "new_amount_gbp": "18.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139415137",
+      "type": "Dress",
+      "size": "Child 4 Years",
+      "old_amount_gbp": "19.0",
+      "new_amount_gbp": "18.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139447905",
+      "type": "Dress",
+      "size": "Child 5 Years",
+      "old_amount_gbp": "19.0",
+      "new_amount_gbp": "18.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139480673",
+      "type": "Dress",
+      "size": "Child 6-7 Years",
+      "old_amount_gbp": "19.0",
+      "new_amount_gbp": "18.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139513441",
+      "type": "Dress",
+      "size": "Child 8 Years",
+      "old_amount_gbp": "19.0",
+      "new_amount_gbp": "18.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139546209",
+      "type": "Dress",
+      "size": "Child 9-10 Years",
+      "old_amount_gbp": "19.0",
+      "new_amount_gbp": "18.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139578977",
+      "type": "Dress",
+      "size": "Mother S",
+      "old_amount_gbp": "22.0",
+      "new_amount_gbp": "21.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139611745",
+      "type": "Dress",
+      "size": "Mother M",
+      "old_amount_gbp": "22.0",
+      "new_amount_gbp": "21.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139644513",
+      "type": "Dress",
+      "size": "Mother L",
+      "old_amount_gbp": "22.0",
+      "new_amount_gbp": "21.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139677281",
+      "type": "Dress",
+      "size": "Mother XL",
+      "old_amount_gbp": "22.0",
+      "new_amount_gbp": "21.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139710049",
+      "type": "Dress",
+      "size": "Mother 2XL",
+      "old_amount_gbp": "22.0",
+      "new_amount_gbp": "21.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139742817",
+      "type": "Cardigan",
+      "size": "Child 2 Years",
+      "old_amount_gbp": "14.0",
+      "new_amount_gbp": "14.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139775585",
+      "type": "Cardigan",
+      "size": "Child 3 Years",
+      "old_amount_gbp": "14.0",
+      "new_amount_gbp": "14.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139808353",
+      "type": "Cardigan",
+      "size": "Child 4 Years",
+      "old_amount_gbp": "14.0",
+      "new_amount_gbp": "14.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139841121",
+      "type": "Cardigan",
+      "size": "Child 5 Years",
+      "old_amount_gbp": "14.0",
+      "new_amount_gbp": "14.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139873889",
+      "type": "Cardigan",
+      "size": "Child 6-7 Years",
+      "old_amount_gbp": "14.0",
+      "new_amount_gbp": "14.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139906657",
+      "type": "Cardigan",
+      "size": "Child 8 Years",
+      "old_amount_gbp": "14.0",
+      "new_amount_gbp": "14.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139939425",
+      "type": "Cardigan",
+      "size": "Child 9-10 Years",
+      "old_amount_gbp": "14.0",
+      "new_amount_gbp": "14.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501139972193",
+      "type": "Cardigan",
+      "size": "Mother S",
+      "old_amount_gbp": "15.0",
+      "new_amount_gbp": "15.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501140004961",
+      "type": "Cardigan",
+      "size": "Mother M",
+      "old_amount_gbp": "15.0",
+      "new_amount_gbp": "15.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501140037729",
+      "type": "Cardigan",
+      "size": "Mother L",
+      "old_amount_gbp": "15.0",
+      "new_amount_gbp": "15.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501140070497",
+      "type": "Cardigan",
+      "size": "Mother XL",
+      "old_amount_gbp": "15.0",
+      "new_amount_gbp": "15.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/46501140103265",
+      "type": "Cardigan",
+      "size": "Mother 2XL",
+      "old_amount_gbp": "15.0",
+      "new_amount_gbp": "15.0",
+      "source_and_feed_match": true,
+      "route_unchanged": true
+    }
+  ],
+  "preservation": "All other country campaign objects and all keyword, RSA, negative, budget, status, authority, economics and launch-qualification fields are unchanged. Only the twelve GB dress prices, GB source metadata and refresh provenance/validation envelope differ. Prior validation and source hashes remain historical, not recertified current.",
+  "limitations": [
+    "The source completed 2026-09-11T22:15:43.812Z and was reconciled locally on September 12. This is dated REPO_KNOWN evidence, not a fresh live Shopify or storefront price check.",
+    "The underlying reason for the GBP 1 dress-price change is unknown.",
+    "No buyer route, Google upload/approval, shipping, supplier cost, purchase capture, profitability or launch readiness is established.",
+    "Only the three exact source_refresh pointers were hashed/read. No mutable Merchant receipt references were followed and no wider source-hash audit ran."
+  ],
+  "actions": {
+    "owned_receipt_writes": 1,
+    "producer_payload_writes": 0,
+    "baseline_writes": 0,
+    "source_file_writes": 0,
+    "canonical_writes": 0,
+    "browser_or_connector_calls": 0,
+    "web_requests": 0,
+    "account_changes": 0
+  },
+  "material_defects": [],
+  "next_action": "Root integrates this receipt with the exact refreshed payload; existing launch gates and canonical ownership remain unchanged."
+}

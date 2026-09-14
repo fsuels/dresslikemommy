@@ -1,0 +1,404 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at_utc": "2026-09-10 16:28:39 UTC",
+  "review_type": "READ_ONLY_OFFICIAL_DOCUMENTATION",
+  "api_reference_version_observed": "2026-07 latest",
+  "account_execution": "NOT_RUN",
+  "recommendation": "Preserve native Google automatic sync; verify lifecycle. Add explicit status-aware publication only for demonstrated publication gaps.",
+  "parent_provided_context": {
+    "publication_readback_time_as_reported": "Approximately 2026-09-10 16:23 UTC; exact query timestamp not captured here.",
+    "merchant_id": "513542500",
+    "google_publication": "21969633377",
+    "online_store_publication": "55169925",
+    "active_parents": 240,
+    "variants": 4945,
+    "served_countries": 65,
+    "published_languages": 21,
+    "publication_observation": {
+      "publication_count": 9,
+      "catalog": null,
+      "autoPublish": false,
+      "includedProductsCount": 815
+    },
+    "independently_refreshed_in_this_lane": false,
+    "catalog_reconciliation": {
+      "complete_catalog_count": 13,
+      "exact_query_time_utc": null,
+      "query_window_utc": {
+        "start": "2026-09-10T16:23:19Z",
+        "end": "2026-09-10T16:28:00Z"
+      },
+      "google_catalog_id": "7676067937",
+      "google_catalog_type": "AppCatalog",
+      "google_catalog_status": "ACTIVE",
+      "reverse_catalog_null_is_not_proof_of_catalogless_publication": true,
+      "served_market_publications": [
+        {
+          "id": "77105823841",
+          "name": "International",
+          "autoPublish": true
+        },
+        {
+          "id": "77105660001",
+          "name": "Eurozone",
+          "autoPublish": true
+        },
+        {
+          "id": "77106053217",
+          "name": "US",
+          "autoPublish": true
+        }
+      ]
+    }
+  },
+  "autopublish": {
+    "field_exists": true,
+    "documented_trigger": "New product creation",
+    "is_google_app_sync_setting": false,
+    "backfill_guaranteed": false,
+    "existing_draft_activation_guaranteed": false,
+    "delete_propagation_guaranteed": false,
+    "shared_error_codes_are_not_target_specific_proof": true,
+    "known_error_codes": [
+      "CANNOT_MODIFY_APP_CATALOG_PUBLICATION",
+      "UNSUPPORTED_PUBLICATION_ACTION"
+    ],
+    "mutation_recommended": false,
+    "reason": "Google is bound to an AppCatalog by root's forward catalog read; documented restrictions make a generic flag update unjustified. Prefer documented explicit channel publication.",
+    "source_ids": [
+      "publication",
+      "input",
+      "mutation",
+      "errors"
+    ],
+    "google_appcatalog_publication_writability": "UNKNOWN"
+  },
+  "semantics": [
+    {
+      "state": "ACTIVE",
+      "shopify": "Ready to sell; publication and market inclusion separate.",
+      "desired_google": "Eligible offers submitted with true price/availability; approval separate.",
+      "source_ids": [
+        "status",
+        "availability"
+      ]
+    },
+    {
+      "state": "DRAFT",
+      "shopify": "Not ready to sell.",
+      "desired_google": "Withdraw from Google selling; do not auto-activate.",
+      "source_ids": [
+        "status"
+      ]
+    },
+    {
+      "state": "ARCHIVED",
+      "shopify": "Retained, no longer for sale.",
+      "desired_google": "Withdraw source offers and verify non-serving.",
+      "source_ids": [
+        "status",
+        "withdrawal"
+      ]
+    },
+    {
+      "state": "UNLISTED",
+      "shopify": "Direct URL may sell; cannot publish to third-party channels.",
+      "desired_google": "Excluded from ACTIVE-only delivery.",
+      "source_ids": [
+        "status"
+      ]
+    },
+    {
+      "state": "DELETED",
+      "shopify": "Permanent deletion.",
+      "desired_google": "Remove mapped offers; receipt proof required.",
+      "source_ids": [
+        "availability",
+        "merchant_api"
+      ]
+    },
+    {
+      "state": "MERCHANT_UI_ARCHIVED",
+      "shopify": "Independent of Shopify status.",
+      "desired_google": "Manual restoration required even if source resends.",
+      "source_ids": [
+        "archive"
+      ]
+    },
+    {
+      "state": "INCLUDED_IN_PUBLICATION",
+      "shopify": "Not necessarily published.",
+      "desired_google": "No submission or approval inference.",
+      "source_ids": [
+        "publication"
+      ]
+    }
+  ],
+  "native_controls": {
+    "checks": [
+      "Automatic product sync selected",
+      "Exact receiving Merchant513 source identified",
+      "Google and Online Store product availability",
+      "Active Markets and General shipping",
+      "Supported current country selection",
+      "Future-country preference intentional",
+      "Free-listing source destination"
+    ],
+    "future_language_guarantee": "NOT_DOCUMENTED",
+    "source_ids": [
+      "google",
+      "free"
+    ]
+  },
+  "coverage": {
+    "reused_artifact": "resumed_20260910/coverage_standards/coverage_matrix.json",
+    "all_21_languages_theoretically_supported": true,
+    "app_table_intersection": {
+      "countries": 36,
+      "pairs": 63
+    },
+    "is_google_global_ceiling": false,
+    "all_65_country_eligibility_certified": false,
+    "missing_language_lifecycle_requires": "Primary inputs with maintained translations and independent ownership",
+    "source_ids": [
+      "languages",
+      "primary"
+    ]
+  },
+  "options": [
+    {
+      "id": "native_only",
+      "priority": 1,
+      "condition": "Native lifecycle passes observed events.",
+      "action": "Keep current integration; correct only demonstrated native-setting gaps.",
+      "source_ids": [
+        "google",
+        "shopify_google"
+      ]
+    },
+    {
+      "id": "explicit_publication",
+      "priority": 2,
+      "condition": "Creation or activation leaves an intended ACTIVE product unpublished.",
+      "action": "Use available Flow create/status triggers and Publish/Unpublish actions or existing supported publisher; preserve product status.",
+      "runtime_availability": "UNKNOWN",
+      "targets": [
+        "21969633377"
+      ],
+      "online_store_and_markets": "Follow existing owner-approved listing policy; ensure valid landing.",
+      "source_ids": [
+        "flow_create",
+        "flow_status",
+        "flow_publish",
+        "flow_unpublish",
+        "publishing"
+      ]
+    },
+    {
+      "id": "owned_delivery_integration",
+      "priority": 3,
+      "condition": "Native sync fails or app cannot cover required supported-language identities.",
+      "action": "Prepare event-driven primary delivery with reconciliation and source-specific lifecycle operations.",
+      "deployment": "NOT_AUTHORIZED_BY_THIS_READ_ONLY_ASSIGNMENT",
+      "runtime_access": "UNKNOWN",
+      "source_ids": [
+        "webhooks",
+        "merchant_api",
+        "primary"
+      ]
+    }
+  ],
+  "acceptance": {
+    "events": [
+      "Genuine new ACTIVE product",
+      "DRAFT to ACTIVE",
+      "Product data edit",
+      "Variant added",
+      "Variant removed",
+      "ACTIVE to ARCHIVED",
+      "Reactivation",
+      "Source deletion during genuine retirement"
+    ],
+    "layers": [
+      "Exact Shopify publication",
+      "Exact Merchant processed offer identity",
+      "Free-listing country status"
+    ],
+    "identity_dimensions": [
+      "Shopify product and variant IDs",
+      "contentLanguage",
+      "feedLabel",
+      "offerId",
+      "dataSource"
+    ],
+    "falsifier": "Any required offer missing, stale, duplicated or still serving after its source event and receiving processing complete.",
+    "stock_claims": "Never infer actual stock from ACTIVE or publication.",
+    "test_products": "No fabricated public test products; use genuine approved lifecycle events."
+  },
+  "unknowns": [
+    "Google-owned AppCatalog publication autoPublish writability and effective semantics",
+    "Current native product-sync and future-country controls",
+    "Flow installed/available and current publisher behavior",
+    "Guaranteed Shopify archive/delete-to-Google deletion timing",
+    "Merchant513 receiving offer state and per-country eligibility",
+    "Exact all-language source coverage",
+    "Variant-specific channel exclusions",
+    "Secondary crawled/manual sources or Merchant UI archives that obstruct reactivation"
+  ],
+  "sources": [
+    {
+      "id": "publication",
+      "title": "Publication semantics",
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/Publication",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "input",
+      "title": "PublicationUpdateInput",
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/input-objects/PublicationUpdateInput",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "mutation",
+      "title": "publicationUpdate",
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/mutations/publicationUpdate",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "errors",
+      "title": "Publication errors",
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/enums/PublicationUserErrorCode",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "status",
+      "title": "Product status",
+      "url": "https://help.shopify.com/en/manual/products/details/product-details-page",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "availability",
+      "title": "Sales-channel availability",
+      "url": "https://help.shopify.com/en/manual/products/add-update-products",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "google",
+      "title": "Google app sync",
+      "url": "https://support.google.com/merchants/answer/13693394?hl=en",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "shopify_google",
+      "title": "Shopify Google channel",
+      "url": "https://help.shopify.com/en/manual/online-sales-channels/marketplaces/google",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "flow_create",
+      "title": "Flow product creation",
+      "url": "https://help.shopify.com/en/manual/shopify-flow/reference/triggers/product-added-to-store",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "flow_status",
+      "title": "Flow status changes",
+      "url": "https://help.shopify.com/en/manual/shopify-flow/reference/triggers/product-status-updated",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "flow_publish",
+      "title": "Flow publication",
+      "url": "https://help.shopify.com/en/manual/shopify-flow/reference/actions/publish-product",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "flow_unpublish",
+      "title": "Flow withdrawal",
+      "url": "https://help.shopify.com/en/manual/shopify-flow/reference/actions/unpublish-product",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "publishing",
+      "title": "Product and variant publishing",
+      "url": "https://shopify.dev/docs/apps/build/sales-channels/product-publishing",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "archive",
+      "title": "Merchant archive behavior",
+      "url": "https://support.google.com/merchants/answer/160541?hl=en",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "withdrawal",
+      "title": "Merchant product removal",
+      "url": "https://support.google.com/merchants/answer/14996874?hl=en",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "primary",
+      "title": "Primary-source lifecycle",
+      "url": "https://support.google.com/merchants/answer/14990942?hl=en",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "merchant_api",
+      "title": "Merchant API lifecycle",
+      "url": "https://developers.google.com/merchant/api/guides/products/add-manage?hl=en",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "webhooks",
+      "title": "Shopify webhook topics",
+      "url": "https://shopify.dev/docs/api/webhooks/latest",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "languages",
+      "title": "Google language support",
+      "url": "https://support.google.com/merchants/answer/160637?hl=en",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "free",
+      "title": "Free-listing source opt-in",
+      "url": "https://support.google.com/merchants/answer/13692890?hl=en",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    },
+    {
+      "id": "imports",
+      "title": "CSV channel selection",
+      "url": "https://help.shopify.com/en/manual/products/import-export/import-products",
+      "reviewed_date_utc": "2026-09-10",
+      "primary": true
+    }
+  ],
+  "source_exclusions": [
+    "Community/forum/reddit assertions were not used as authority.",
+    "No authenticated account endpoints called.",
+    "No old scripts, RPC, credentials or account workarounds used."
+  ],
+  "next_action": "Root reads native Google app product-sync/country controls and receiving Merchant513 source.",
+  "report_word_count": 832
+}

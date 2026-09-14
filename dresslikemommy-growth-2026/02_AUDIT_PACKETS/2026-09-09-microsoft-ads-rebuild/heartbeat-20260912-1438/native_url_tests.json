@@ -1,0 +1,83 @@
+{
+  "recorded_at_utc": "2026-09-12T14:57:24.611388+00:00",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "tests": [
+    {
+      "ad_id": "79508657389070",
+      "campaign_id": "506254907",
+      "group_id": "1272136755587035",
+      "editor_surface": "Ads grid",
+      "method": "Root clicked native Test in the unchanged existing ad editor, then opened the result details; exact Click URL and status read from rendered UI.",
+      "tracking_template_display": "(None)",
+      "status": "Landing page found",
+      "click_url": "https://www.dresslikemommy.com/collections/dresses?msclkid=123abc&utm_source=bing&utm_medium=cpc&utm_campaign=DLM%20%7C%20MS%20%7C%20US%20%7C%20EN%20%7C%20Search%20%7C%20202609&utm_term=keyword&utm_content=Mother%20Daughter%20%7C%20Matching%20Dresses",
+      "saved_suffix": "utm_source=bing&utm_medium=cpc&utm_campaign=ms_us_en_202609&utm_content=ms_us_en_202609_dresses_rsa_1",
+      "ad_final_url": "https://www.dresslikemommy.com/collections/dresses",
+      "parameter_values": {
+        "msclkid": "123abc",
+        "utm_source": "bing",
+        "utm_medium": "cpc",
+        "utm_campaign": "DLM | MS | US | EN | Search | 202609",
+        "utm_term": "keyword",
+        "utm_content": "Mother Daughter | Matching Dresses"
+      },
+      "duplicate_keys": [],
+      "same_as_manual_campaign_content": false,
+      "editor_fields_frozen_source_match": true,
+      "saves": 0
+    },
+    {
+      "ad_id": "78890182372245",
+      "campaign_id": "506254908",
+      "group_id": "1262241151661314",
+      "editor_surface": "Assets detail",
+      "method": "Root clicked native Test in the unchanged existing ad editor, then opened the result details; exact Click URL and status read from rendered UI.",
+      "tracking_template_display": "(None)",
+      "status": "Landing page found",
+      "click_url": "https://www.dresslikemommy.com/de/collections/dresses?msclkid=123abc&utm_source=bing&utm_medium=cpc&utm_campaign=DLM%20%7C%20MS%20%7C%20DE%20%7C%20DE%20%7C%20Search%20%7C%20202609&utm_term=keyword&utm_content=Mother%20Daughter%20%7C%20Matching%20Dresses",
+      "saved_suffix": "utm_source=bing&utm_medium=cpc&utm_campaign=ms_de_de_202609&utm_content=ms_de_de_202609_dresses_rsa_1",
+      "ad_final_url": "https://www.dresslikemommy.com/de/collections/dresses",
+      "parameter_values": {
+        "msclkid": "123abc",
+        "utm_source": "bing",
+        "utm_medium": "cpc",
+        "utm_campaign": "DLM | MS | DE | DE | Search | 202609",
+        "utm_term": "keyword",
+        "utm_content": "Mother Daughter | Matching Dresses"
+      },
+      "duplicate_keys": [],
+      "same_as_manual_campaign_content": false,
+      "editor_fields_frozen_source_match": true,
+      "saves": 0
+    }
+  ],
+  "decision": "NO_EXTERNAL_CHANGE_AFTER_TWO_PASSING_NATIVE_TESTS",
+  "interpretation": "Both native tests resolve the localized destination, contain one value for each shown UTM key, and use account automatic campaign-name/ad-group attribution rather than the bespoke campaign/content identifiers in the saved suffixes. No duplicate-UTM defect was reproduced. Existing settings and source artifacts stay intact; use the observed automatic mapping in subsequent measurement qualification.",
+  "official_source": "https://help.ads.microsoft.com/apex/index/3/en/56762",
+  "source_access": "Official article body retrieved by web search; direct open returned Oops. Microsoft warns coexistence can duplicate under some circumstances and recommends URL testing.",
+  "alternatives": [
+    {
+      "option": "Disable account UTM auto-tagging",
+      "decision": "REJECTED",
+      "reason": "Would alter legacy campaign tagging and remove automatic keyword/campaign identification across the account."
+    },
+    {
+      "option": "Clear only two new RSA suffixes",
+      "decision": "NOT_EXECUTED",
+      "reason": "Neither native test reproduces duplicate parameters. Saves would cause new editorial review without correcting a demonstrated runtime fault; revisit only with new evidence or an exact revised attribution contract."
+    },
+    {
+      "option": "Keep mode plus migrate tags to two tracking templates",
+      "decision": "REJECTED",
+      "reason": "Adds account-wide precedence change and multiple ad edits without a verified need."
+    }
+  ],
+  "limits": [
+    "These native tests use placeholder msclkid=123abc and utm_term=keyword; neither is a real paid click or visitor identifier.",
+    "Landing page found is not full ad editorial approval; the UI explicitly says the test does not check policy violations.",
+    "No live advertised click, GA4 ingestion, consent fix, order join, purchase deduplication or profitable performance was verified.",
+    "Native URL testing is not exhaustive for all keywords/devices/redirects/placements.",
+    "Both ads remain Paused; all numeric paid authority remains absent."
+  ]
+}

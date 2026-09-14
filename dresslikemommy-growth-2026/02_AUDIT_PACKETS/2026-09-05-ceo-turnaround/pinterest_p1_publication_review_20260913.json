@@ -1,0 +1,335 @@
+{
+  "schema": "dlm.independent_pinterest_publication_review.v1",
+  "reviewed_at_utc": "2026-09-13T16:57:42.869113+00:00",
+  "reviewer": "/root/order_delta_1934",
+  "verdict": "PASS_WITH_LIMITS",
+  "source_bindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/NATIVE_SCHEDULED_READBACKS_20260911.json",
+      "sha256": "090502b3746e450e7290a6dadf3cd5f4193bddefeab1090ee8dcad0a9c58017f"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/pinterest_p1_publication_readback_20260913.json",
+      "sha256": "52c5556ae8c589686a5b76809f453382361e1894b3e438d0185e3b0c2d113baf"
+    }
+  ],
+  "independence": {
+    "built_or_executed_publication_readback": false,
+    "independent_live_replay": false,
+    "method": "Exact saved schedule comparison, URL/UTM parsing, typed identity checks and independent interpretation of the parent\u2019s frozen UI observation receipt."
+  },
+  "check_count": 54,
+  "passed_checks": 54,
+  "failed_checks": [],
+  "checks": [
+    {
+      "check": "schedule_hash",
+      "pass": true,
+      "basis": "Exact assigned September11 schedule bytes."
+    },
+    {
+      "check": "publication_receipt_hash",
+      "pass": true,
+      "basis": "Exact parent-frozen September13 readback."
+    },
+    {
+      "check": "before_source_binding",
+      "pass": true,
+      "basis": "Root receipt identifies the actual schedule and dated status."
+    },
+    {
+      "check": "six_unique_original_records",
+      "pass": true,
+      "basis": "Six original scheduled records, without numeric rounding."
+    },
+    {
+      "check": "P1_scheduled_identity_exact",
+      "pass": true,
+      "basis": "Scheduled record identity is preserved as a string."
+    },
+    {
+      "check": "P1_schedule_label_exact",
+      "pass": true,
+      "basis": "Saved UI label copied exactly, not an inferred UTC time."
+    },
+    {
+      "check": "schedule_timezone_qualified",
+      "pass": true,
+      "basis": "Host EDT does not supply an explicit native schedule timezone."
+    },
+    {
+      "check": "public_identity_is_distinct_string",
+      "pass": true,
+      "basis": "Public Pin ID is not the scheduled record ID."
+    },
+    {
+      "check": "public_url_identity",
+      "pass": true,
+      "basis": "Durable public /pin/ route contains the observed public ID."
+    },
+    {
+      "check": "old_schedule_route_is_not_standalone_proof",
+      "pass": true,
+      "basis": "The missing scheduled body alone does not establish publication."
+    },
+    {
+      "check": "publication_evidence_has_created_and_detail_observations",
+      "pass": true,
+      "basis": "Two root-observed public surfaces plus queue state; no independent live replay."
+    },
+    {
+      "check": "profile_identity_scoped",
+      "pass": true,
+      "basis": "Root source identifies the expected organic profile without account switching."
+    },
+    {
+      "check": "advertiser_identity_not_promoted_to_fresh_evidence",
+      "pass": true,
+      "basis": "Organic profile evidence does not refresh advertiser-account identity."
+    },
+    {
+      "check": "P1_title_exact",
+      "pass": true,
+      "basis": "Exact case, punctuation and straight apostrophe; no normalization needed."
+    },
+    {
+      "check": "P1_description_exact",
+      "pass": true,
+      "basis": "Exact saved wording, including size-chart and delivery-estimate qualifications."
+    },
+    {
+      "check": "P1_Visit_href_exact",
+      "pass": true,
+      "basis": "Exact scheduled destination including UTM order and values."
+    },
+    {
+      "check": "P1_board_exact",
+      "pass": true,
+      "basis": "Saved and observed board labels agree."
+    },
+    {
+      "check": "destination_domain_path_query_no_duplicates",
+      "pass": true,
+      "basis": "Exact first-party article route and four unique UTM parameters."
+    },
+    {
+      "check": "image_evidence_limited_to_visual_concept",
+      "pass": true,
+      "basis": "Source supports root visual concept only, not image byte equality."
+    },
+    {
+      "check": "AI_label_only_current_root_observation",
+      "pass": true,
+      "basis": "Current visible AI label is reported by root; historical scheduled detail did not independently expose it."
+    },
+    {
+      "check": "actual_publication_time_unknown",
+      "pass": true,
+      "basis": "No exact publication event time is invented."
+    },
+    {
+      "check": "observation_window_ordered_and_bound",
+      "pass": true,
+      "basis": "Session bounds describe observation, not scheduler execution."
+    },
+    {
+      "check": "five_remaining_count_and_visibility",
+      "pass": true,
+      "basis": "Current profile count and private queue label are root-observed."
+    },
+    {
+      "check": "remaining_titles_exact_distinct_and_no_P1",
+      "pass": true,
+      "basis": "P2-P6 associations rely on five distinct saved titles."
+    },
+    {
+      "check": "remaining_relative_labels_preserved",
+      "pass": true,
+      "basis": "Relative native labels are retained without converting them into exact timestamps."
+    },
+    {
+      "check": "remaining_exact_dates_and_IDs_not_falsely_refreshed",
+      "pass": true,
+      "basis": "Current queue read does not prove refreshed scheduled detail IDs or dates."
+    },
+    {
+      "check": "next_saved_P2_identity_label_matches",
+      "pass": true,
+      "basis": "P2 remains linked to the dated source; no duplicate scheduling is proposed."
+    },
+    {
+      "check": "P2_date_freshness_explicit",
+      "pass": true,
+      "basis": "Future schedule date is explicitly historical, with current title confirmation only."
+    },
+    {
+      "check": "profile_zero_displays_kept_as_strings",
+      "pass": true,
+      "basis": "These are displayed profile labels before QA, not a validated acquisition report."
+    },
+    {
+      "check": "detail_missing_stats_not_zero",
+      "pass": true,
+      "basis": "Three unavailable detail headings are not converted into numeric zeros."
+    },
+    {
+      "check": "statistics_early_estimate_window_retained",
+      "pass": true,
+      "basis": "Native estimate and window qualifications remain intact."
+    },
+    {
+      "check": "no_zero_demand_or_growth_inference",
+      "pass": true,
+      "basis": "Public displays do not support zero buyer demand or measured growth claims."
+    },
+    {
+      "check": "native_Visit_attempt_limited",
+      "pass": true,
+      "basis": "One click was attempted; neither arrival nor the cause of no observed tab is established."
+    },
+    {
+      "check": "direct_navigation_exact_and_separate",
+      "pass": true,
+      "basis": "Direct rendering is distinct from native clickthrough verification."
+    },
+    {
+      "check": "rendered_guide_identity",
+      "pass": true,
+      "basis": "Root observed the expected guide title and planning heading."
+    },
+    {
+      "check": "visible_product_link_paths_match_saved_targets",
+      "pass": true,
+      "basis": "Only link paths were observed; no product traversal is inferred."
+    },
+    {
+      "check": "render_scope_and_cart_observation_limited",
+      "pass": true,
+      "basis": "Root rendered the US/English guide with an empty cart; other markets/languages untested."
+    },
+    {
+      "check": "native_arrival_unverified_explicit",
+      "pass": true,
+      "basis": "Avoids upgrading the direct render to proof of native Visit arrival."
+    },
+    {
+      "check": "downstream_buyer_measurement_not_claimed",
+      "pass": true,
+      "basis": "No checkout acceptance, HTTP-code proof or receiver verification is asserted."
+    },
+    {
+      "check": "QA_UTM_cohort_exact",
+      "pass": true,
+      "basis": "Operator navigation is tagged to the exact P1 content cohort."
+    },
+    {
+      "check": "QA_action_counts_and_window_bound",
+      "pass": true,
+      "basis": "QA actions are bounded to the source observation session."
+    },
+    {
+      "check": "QA_exclusion_without_arbitrary_subtraction",
+      "pass": true,
+      "basis": "QA is flagged for reconciliation; event/session count or ingestion is not assumed."
+    },
+    {
+      "check": "task_owned_tabs_and_cleanup_scoped",
+      "pass": true,
+      "basis": "Root reports use and closure of its own two tabs only."
+    },
+    {
+      "check": "no_login_or_account_reset_inferred",
+      "pass": true,
+      "basis": "JavaScript-binding reset is distinguished from an account reset."
+    },
+    {
+      "check": "no_business_or_tracking_or_money_actions",
+      "pass": true,
+      "basis": "The receipt reports no submission, schedule edit, profile edit, tracking change, cart/checkout, query, dispatch or new automation."
+    },
+    {
+      "check": "named_article_Sunshine_clocks_retained_in_receipt",
+      "pass": true,
+      "basis": "Root-carried clocks are explicitly retained; no independent canonical before/after audit was performed in this review."
+    },
+    {
+      "check": "full_sales_clock_matches_prior_independent_review",
+      "pass": true,
+      "basis": "Agrees with this reviewer\u2019s already-completed TA-16 review, SHA f1da20f658232fa771d6cbfebc4606a66bb037ab7dacabce36afe9c15c9704df; that file was not reopened for this task."
+    },
+    {
+      "check": "X_clock_carried_and_no_new_P1_schedule",
+      "pass": true,
+      "basis": "Receipt carries the existing X assessment clock and explicitly creates no P1 scheduler."
+    },
+    {
+      "check": "release_cohorts_not_merged",
+      "pass": true,
+      "basis": "P1 observation does not reset or merge earlier release cohorts."
+    },
+    {
+      "check": "paid_authority_remains_closed",
+      "pass": true,
+      "basis": "Publication observation does not supply paid authority."
+    },
+    {
+      "check": "owner_gates_and_no_duplicate_submission",
+      "pass": true,
+      "basis": "Parent integration preserves the existing owner action and future P2 submission identity."
+    },
+    {
+      "check": "growth_unmeasured_status",
+      "pass": true,
+      "basis": "Root source status remains separate from this local independent review."
+    },
+    {
+      "check": "no_secret_or_customer_payload",
+      "pass": true,
+      "basis": "No secret/customer payload patterns observed; public/account identifiers retain their typed scope."
+    },
+    {
+      "check": "both_source_hashes_unchanged_at_close",
+      "pass": true,
+      "basis": "No source drift during bounded review."
+    }
+  ],
+  "findings": [],
+  "verified_from_saved_evidence": {
+    "scheduled_record_id": "3849553469980361600",
+    "observed_public_pin_id": "343118065387567020",
+    "public_pin_url": "https://www.pinterest.com/pin/343118065387567020/",
+    "title_description_board_and_Visit_href_match_saved_P1": true,
+    "remaining_current_queue_count": 5,
+    "remaining_title_matches": [
+      "P2",
+      "P3",
+      "P4",
+      "P5",
+      "P6"
+    ],
+    "actual_publication_time": "UNKNOWN_NOT_EXPOSED",
+    "native_Visit_arrival": "UNVERIFIED",
+    "separate_exact_URL_render": "ROOT_OBSERVED_US_ENGLISH",
+    "statistics": "Profile displayed zeros; three detail values unavailable. Acquired visits, orders, CPA, ROAS and profit unverified.",
+    "operator_QA": "One native Visit attempt and one separate tagged guide navigation; reconcile as QA without inventing ingested events or subtracting a fixed session count."
+  },
+  "limits": [
+    "This review verifies the saved root receipt and its interpretation, not a second live Pinterest or website observation.",
+    "The historical schedule record is not the new public Pin ID; the session observation interval does not reveal exact publication time or native schedule timezone.",
+    "P2-P6 are currently matched by distinct titles and queue count only. Their exact current native record IDs/dates were not reopened.",
+    "Image bytes, hidden alt metadata, advertiser account identity, all markets/languages, product/cart/checkout behavior and GA4 ingestion were not independently verified.",
+    "The two allowed source files do not provide a separate canonical before-state for every organic review clock. This review confirms the root receipt explicitly carries the named clocks without creating a new schedule; full-sales timing agrees with this reviewer\u2019s previously completed TA-16 evidence.",
+    "No traffic lift, zero buyer demand, acquisition, sales, profit, tracking acceptance or paid approval follows from this publication observation."
+  ],
+  "next_action": "Parent may integrate the qualified publication milestone and P1 QA window into its existing organic measurement, preserving native-click arrival and growth limits. Follow the existing P2 schedule rather than recreating it.",
+  "actions": {
+    "review_file_writes": 1,
+    "other_file_writes": 0,
+    "source_changes": 0,
+    "canonical_changes": 0,
+    "browser_or_web_calls": 0,
+    "account_or_metrics_queries": 0,
+    "external_writes": 0,
+    "new_agents": 0
+  }
+}

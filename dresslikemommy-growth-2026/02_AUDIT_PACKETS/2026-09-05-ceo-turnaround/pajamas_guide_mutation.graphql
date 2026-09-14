@@ -1,0 +1,6 @@
+mutation RepairPajamasGuide($id: ID!, $article: ArticleUpdateInput!) {
+  articleUpdate(id: $id, article: $article) {
+    article { id body updatedAt }
+    userErrors { code field message }
+  }
+}

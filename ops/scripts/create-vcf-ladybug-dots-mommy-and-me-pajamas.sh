@@ -50,7 +50,7 @@ CUSTOM_TYPE="Two-Piece Pajama Set"
 TAXONOMY_GID="gid://shopify/TaxonomyCategory/aa-1-17-4"
 GOOGLE_PRODUCT_CATEGORY="Apparel & Accessories > Clothing > Sleepwear & Loungewear > Pajamas"
 VENDOR="dresslikemommy.com"
-VENDOR_URL="https://detail.1688.com/offer/1026510859610.html"
+VENDOR_URL=""
 VENDOR_HISTORY_TITLE="安旦26新品春夏竹棉纱布亲子家居服甜美荷叶边短袖长裤居家套装 - 阿里巴巴"
 DESIGNS_TO_LIST="瓢虫点点（成人款-小V领）, 瓢虫点点（儿童款-前扣娃娃领）"
 SEASON="Summer"
@@ -251,7 +251,7 @@ else
         vendor: $vendor,
         productType: $product_type,
         tags: $tags,
-        status: "ACTIVE",
+        status: "DRAFT",
         category: $category,
         seo: {title:$seo_title, description:$seo_desc},
         productOptions: [
@@ -344,23 +344,9 @@ MF_RESP=$(gql "$MF_QUERY" "$MF_VARS")
 check_user_errors "$MF_RESP" '.data.metafieldsSet.userErrors' "metafieldsSet"
 MF_COUNT=$(echo "$MF_RESP" | jq '.data.metafieldsSet.metafields | length')
 
-PUB_QUERY='mutation PublishablePublish($id: ID!, $input: [PublicationInput!]!) {
-  publishablePublish(id: $id, input: $input) {
-    publishable { availablePublicationsCount { count } }
-    userErrors { field message }
-  }
-}'
-PUB_VARS=$(jq -nc --arg pid "$PRODUCT_ID" '
-  {id:$pid,input:[
-    {publicationId:"gid://shopify/Publication/55169925"},
-    {publicationId:"gid://shopify/Publication/21969633377"},
-    {publicationId:"gid://shopify/Publication/29172400225"},
-    {publicationId:"gid://shopify/Publication/76582879329"},
-    {publicationId:"gid://shopify/Publication/76604768353"}
-  ]}')
-echo ">>> publishablePublish" >&2
-PUB_RESP=$(gql "$PUB_QUERY" "$PUB_VARS")
-check_user_errors "$PUB_RESP" '.data.publishablePublish.userErrors' "publishablePublish"
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+echo "Sales-channel publication skipped; product remains a draft pending approval."
 
 if [[ -d "$MEDIA_DIR" ]]; then
   shopt -s nullglob
@@ -470,7 +456,7 @@ import json
 import re
 import sys
 
-verify_path, row_count, title, seo_title, seo_desc, variants_json, size_chart_json, vendor_url = sys.argv[1:]
+verify_path, row_count, title, seo_title, seo_desc, variants_json, size_chart_json = sys.argv[1:]
 row_count = int(row_count)
 verify = json.load(open(verify_path))
 product = verify["data"]["product"]
@@ -519,7 +505,7 @@ required_tags = {
     "Matching Family Pajamas",
     "Short Sleeve Pajamas",
     "Summer",
-    vendor_url,
+
     "Child 2-3yr",
     "Child 4-5yr",
     "Child 6-8yr",
@@ -546,7 +532,7 @@ import csv
 import json
 import sys
 
-verify_path, size_chart_json, out_listing, out_csv, title, seo_title, seo_desc, child_price, child_compare, mother_price, mother_compare, vendor_url, designs_to_list, vendor_history_title, print_name, handle = sys.argv[1:]
+verify_path, size_chart_json, out_listing, out_csv, title, seo_title, seo_desc, child_price, child_compare, mother_price, mother_compare, designs_to_list, vendor_history_title, print_name, handle = sys.argv[1:]
 verify = json.load(open(verify_path))
 product = verify["data"]["product"]
 chart = json.loads(size_chart_json)

@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "action_id": "PINTEREST-P1-PUBLICATION-20260913",
+  "classification": "VERIFY",
+  "status": "PUBLICATION_LIVE_VERIFIED__DESTINATION_RENDERED__GROWTH_UNMEASURED",
+  "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "platform_owner_task": "01a08704-8176-7171-b6f5-928a09d7c3f9",
+  "wake_utc": "2026-09-13T16:45:55.477Z",
+  "recorded_at_utc": "2026-09-13T16:53:58.960074+00:00",
+  "observation_window_utc": {
+    "from": "2026-09-13T16:45:55.477Z",
+    "until": "2026-09-13T16:53:58.960074+00:00",
+    "qualification": "Bounds for this root verification session, not the actual Pinterest publication timestamp."
+  },
+  "scope": "Parent-owned read-only destination verification of an existing authorized native submission. No owner execution checkpoint or peer account record edited.",
+  "before_source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/NATIVE_SCHEDULED_READBACKS_20260911.json",
+    "sha256": "090502b3746e450e7290a6dadf3cd5f4193bddefeab1090ee8dcad0a9c58017f",
+    "observed_date": "2026-09-11",
+    "source_status": "SIX_NATIVE_SCHEDULES_VERIFIED_BY_ROOT"
+  },
+  "identity": {
+    "profile_url": "https://www.pinterest.com/dresslikemommy/",
+    "visible_profile": "Dress Like Mommy | Matching Family Outfits",
+    "account_switching": false,
+    "advertiser_id": "549756244483",
+    "advertiser_id_evidence": "REPO_KNOWN; not independently exposed on this organic profile/detail readback"
+  },
+  "native_scheduled_record": {
+    "id": "P1",
+    "scheduled_record_id": "3849553469980361600",
+    "saved_schedule": "Scheduled for Sun, 9/13 12:30 PM",
+    "saved_schedule_timezone": "UNKNOWN: native detail lacked explicit timezone; prior host EDT is separate evidence.",
+    "direct_old_schedule_route_result": "Loaded the authenticated profile header and footer but no scheduled-Pin body; not treated as publication proof by itself."
+  },
+  "publication": {
+    "public_pin_id": "343118065387567020",
+    "public_url": "https://www.pinterest.com/pin/343118065387567020/",
+    "title": "Family Photo Outfit Checklist: Plan Every Person's Look",
+    "description": "Planning family photos? Start with a shared color palette, then choose each person's outfit and size. Our guide helps you coordinate clothes you already own with matching pieces you want to add. Check the current product size charts and delivery estimates before ordering.",
+    "visit_href": "https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=pinterest&utm_medium=social&utm_campaign=organic_202609&utm_content=p1",
+    "board_display": "Mommy & Me Matching Outfits",
+    "ai_modified_label_visible": true,
+    "public_pin_distinct_from_scheduled_record": true,
+    "actual_publication_timestamp": "UNKNOWN_NOT_EXPOSED",
+    "status_evidence": [
+      "The P1 title appears as the first Created Pin card on the correct profile.",
+      "Following that card opens the durable /pin/343118065387567020/ detail with matching title, description, image concept, profile, board and exact Visit href.",
+      "Native profile now displays Scheduled Pins 5 Pins; P1 is outside the remaining scheduled-title list."
+    ],
+    "image_check": "Root screenshot shows the cream and gold four-step family-photo checklist and Dress Like Mommy branding. Source asset bytes were not compared."
+  },
+  "remaining_schedule": {
+    "native_count": 5,
+    "raw_profile_label": "Scheduled Pins 5 Pins \u2027 Only visible to you",
+    "visible_title_and_relative_time": [
+      {
+        "id": "P2",
+        "title": "Rainbow Mommy and Me Maxi Dresses for Family Photos",
+        "relative_time": "1d"
+      },
+      {
+        "id": "P3",
+        "title": "Pastel Floral Mommy and Me Dresses for Photo Days",
+        "relative_time": "3d"
+      },
+      {
+        "id": "P4",
+        "title": "How to Coordinate Family Photo Outfits Using What You Own",
+        "relative_time": "7d"
+      },
+      {
+        "id": "P5",
+        "title": "Matching Mother-Daughter Dresses: Choose Each Size",
+        "relative_time": "9d"
+      },
+      {
+        "id": "P6",
+        "title": "Pastel Mother-Daughter Photo Outfits: Build Your Look",
+        "relative_time": "11d"
+      }
+    ],
+    "current_scheduled_record_ids_and_exact_dates": "NOT_REREAD; P2-P6 mapping is by their distinct matching saved titles. Prior saved IDs/dates are retained as dated source only.",
+    "next_saved_native_schedule": {
+      "id": "P2",
+      "scheduled_record_id": "3849559926893516544",
+      "label": "Scheduled for Tue, 9/15 12:30 PM",
+      "evidence": "September11 saved detail plus current matching title in five-item queue; exact date/time not refreshed."
+    }
+  },
+  "statistics": {
+    "profile_P1_card_before_QA": {
+      "impressions_display": "0",
+      "saves_display": "0",
+      "pin_clicks_display": "0"
+    },
+    "detail_stats": {
+      "unavailable_heading_count": 3,
+      "display": "This stat is not available yet / \u2014",
+      "qualifier": "Stats may vary in the first 48 hours after your Pin is published; Real-time estimates; Last 30 days"
+    },
+    "interpretation": "Fresh publication; detail values are unavailable. Profile zeros are native displays, not a verified absence of acquired visits or orders. No marketing-lift, buyer-attribution, CPA, ROAS or profit conclusion."
+  },
+  "destination_verification": {
+    "native_Visit_site_click_attempts": 1,
+    "observed_result_of_native_click": "Source Pin stayed open; no new task-owned browser tab appeared in two post-action inventories. No destination arrival was observed from that click. Cause unknown; no repeat click.",
+    "method": "Separate direct navigation once to the exact visible Visit href in a new task-owned background tab.",
+    "direct_destination_url": "https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=pinterest&utm_medium=social&utm_campaign=organic_202609&utm_content=p1",
+    "direct_destination_title": "What to Wear for Family Photos: Matching Outfit Ideas \u2013 Dress Like Mommy",
+    "planning_heading": "Plan each person's outfit before you order",
+    "buyer_guidance": "Select each piece and size, count garments, check delivery timing; separate mother/daughter dress disclosure visible.",
+    "product_links_visible": {
+      "rainbow": "/products/vibrant-rainbow-maxi-dress-set-for-mom-and-daughter-colorful-summer-matching-outfits",
+      "pastel": "/products/pastel-bloom-mommy-and-me-dresses"
+    },
+    "market_and_language_display": "United States | USD $; English",
+    "cart_display": "0 items",
+    "result": "EXACT_URL_RENDER_VERIFIED; native clickthrough arrival UNVERIFIED",
+    "limits": "No product-link traversal, cart addition, checkout, purchase, HTTP status inspection or GA4 receiver test in this session."
+  },
+  "qa_exclusion": {
+    "utm_source": "pinterest",
+    "utm_medium": "social",
+    "utm_campaign": "organic_202609",
+    "utm_content": "p1",
+    "native_pin_click_attempts": 1,
+    "direct_tagged_article_navigations": 1,
+    "date": "2026-09-13",
+    "operator_window_utc": {
+      "from": "2026-09-13T16:45:55.477Z",
+      "until": "2026-09-13T16:53:58.960074+00:00"
+    },
+    "rule": "Treat these operator actions as QA, not acquired traffic. Do not blindly subtract one session/click: server-side ingestion, identity, actual event counts and attribution are unverified."
+  },
+  "browser_receipt": {
+    "owning_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+    "browser": "Codex In-app Browser",
+    "browser_id": "1",
+    "pin_tab_id": "15",
+    "pin_provider_tab_id": "browser-use:2153d48d-2e58-45ec-8ee1-2ef0ac05f4d2",
+    "direct_destination_tab_id": "16",
+    "visibility": "hidden requested",
+    "method": "CUA accessibility readbacks, root screenshot and read-only DOM literal field extraction",
+    "closed_own_tabs": [
+      "15",
+      "16"
+    ],
+    "user_or_peer_tabs_touched": false,
+    "login_or_auth_attempts": 0,
+    "session_reset": "CUA JavaScript bindings reset once to reload current API documentation; the same existing root tab15 was then rebound. No account state reset."
+  },
+  "actions": {
+    "business_writes": 0,
+    "new_pin_submissions": 0,
+    "resubmissions": 0,
+    "save_react_comment_promote_actions": 0,
+    "schedule_changes": 0,
+    "profile_edits": 0,
+    "consent_or_tracking_changes": 0,
+    "cart_changes": 0,
+    "checkout_or_purchases": 0,
+    "order_or_GA4_queries": 0,
+    "owner_execution_dispatches": 0,
+    "new_owner_questions": 0,
+    "new_tasks_automations_or_goals": 0
+  },
+  "review_clocks_preserved": {
+    "article_first_week": "2026-09-17 09:00 America/New_York (September10-16 cohort)",
+    "sunshine_first_week": "2026-09-18 09:00 America/New_York (September11-17 cohort)",
+    "X_next_existing_assessment": "2026-09-13 16:00 America/New_York",
+    "parent_full_sales": "2026-09-13T20:42:09Z",
+    "new_P1_review_schedule_created": false,
+    "separate_cohorts": "P1 is a distinct content=p1 release, not the earlier Sunshine Pin or original article release. Existing later14/30-day clocks remain unchanged."
+  },
+  "machine_fields": {
+    "source_live_evidence_as_of": "2026-09-13T16:53:58.960074+00:00",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "material_decision": "NOT_MATERIAL",
+    "decision_depends_on_uncertain_state": true,
+    "decision_changing_evidence": "New publication/serving receipt, genuine attributed buyer evidence, supported tracking acceptance, actual costs or exact paid authority.",
+    "if_evidence_supports_recommendation": "Integrate the qualified outcome in its own cohort and continue the corresponding authorized next action.",
+    "if_evidence_opposes_recommendation": "Preserve the existing release and recheck the failed premise without duplicate submission, arbitrary metric adjustment or paid activation."
+  },
+  "next_action": "Retain public Pin343118065387567020 and its P1 QA exclusion for existing organic measurement. Follow P2 on its saved September15 native schedule with timezone qualification; do not recreate it. Root owner theme-publication action and all purchase/profit gates remain.",
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "independent_review": "PENDING_SEPARATE_RECEIPT"
+}

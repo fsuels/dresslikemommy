@@ -41,7 +41,7 @@ PRINT_NAME = "Fruit Green"
 SHORTCODE = "FRGN"
 COLOR_TOKEN = "FGRN"
 COLOR_NAME = "Fruit Green"
-VENDOR_URL = "https://detail.1688.com/offer/717596507399.html?"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
@@ -267,7 +267,7 @@ def tags() -> list[str]:
         "Matching Family Outfits", "Matching Family Dresses", "Matching Family Top",
         "Summer Family Matching Set", "Dress", "Shirt", "Polo Dress", "Polo Shirt",
         "Fruit Green", "Green", "Light Green", "Cream", "Heart", "Solid", "Summer", "Spring",
-        "Vacation", "Girl Dress", "Mother Dress", "Father Shirt", VENDOR_URL,
+        "Vacation", "Girl Dress", "Mother Dress", "Father Shirt",
     ]
     values.extend(sorted({row["picker_label"] for row in SIZE_CHART}))
     values.extend(sorted({row["role"] for row in SIZE_CHART}))

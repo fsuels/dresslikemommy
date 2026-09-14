@@ -1,0 +1,31 @@
+{
+  "status": "PASS_WITH_LIMITS",
+  "verified_at_utc": "2026-09-14T09:21:42.242068+00:00",
+  "action_id": "TA02-SESSION-CONSENT-20260914-0846",
+  "execution_receipt": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/session_consent_20260914_0846/execution_checkpoint.json",
+    "sha256": "986bd231d6c74f902f035e7ec50abc0eef4d6e8bbc1a276aec66828c4440d196"
+  },
+  "five_manifest_bindings": "PASS",
+  "eight_independent_review_source_bindings": "PASS",
+  "operator_checks": 36,
+  "independent_checks": 34,
+  "independence": "Source verifier did not build or execute diagnosis; root did not repeat native evidence.",
+  "current_causal_defect": "NOT_PROVEN",
+  "next_owner_task": "01a086fc-0bf7-71a2-ba21-aa3564fafe30",
+  "next_action": {
+    "owner_task": "01a086fc-0bf7-71a2-ba21-aa3564fafe30",
+    "action": "Capture one permitted complete current sender/session sequence via normal read-only diagnostic access, observing existing consent; apply the separately scoped QA boundary if choice transitions are required.",
+    "why_first": "It distinguishes a current sender defect from a report-level/historical diagnostic before any production repair can be specified.",
+    "scope": "Passive observation only within current delegation; no blocked URL/public429/authentication workaround, consent change or purchase replay."
+  },
+  "source_status": "COMPLETED_BOUNDED_DIAGNOSIS_WITH_LIMITS_NO_PRODUCTION_REPAIR",
+  "limitations": [
+    "Settings readback does not prove historical customer consent or complete event ordering.",
+    "Exact tag-list expansion stopped after two locator failures; September11 mapping remains historical.",
+    "Passive sender observation remains unfinished; no consent changes or production repair authorized by this result."
+  ],
+  "production_writes": 0,
+  "private_order_queries": 0,
+  "goal_or_scheduler_changes": 0
+}

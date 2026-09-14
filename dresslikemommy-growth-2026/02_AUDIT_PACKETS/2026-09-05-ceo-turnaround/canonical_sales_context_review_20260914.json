@@ -1,0 +1,952 @@
+{
+  "schema": "dlm.independent_canonical_plan_review.v1",
+  "reviewed_at_utc": "2026-09-14T07:56:07.937Z",
+  "task_classification": "VERIFY",
+  "verdict": "PASS_WITH_LIMITS",
+  "applicable_plan": {
+    "path": "/private/tmp/dlm-sale-and-context-20260914-canonical-plan-r2.json",
+    "sha256": "e9d3a4637507bf3738602cec2422e7ccd6b0e01db26832180a1f22019fcc3a4b",
+    "operations": 23,
+    "files": 9,
+    "applied_by_reviewer": false
+  },
+  "original_plan": {
+    "path": "/private/tmp/dlm-sale-and-context-20260914-canonical-plan.json",
+    "sha256": "c2470bf8e01b8312336f0314ba87f8dcde3c398a78f9c22f436185f8ea70f7be",
+    "original_verdict": "CORRECTIONS_REQUIRED_BEFORE_APPLY",
+    "immutable_preserved": true
+  },
+  "before_snapshot": {
+    "path": "/private/tmp/dlm-sale-and-context-20260914-canonical-before.json",
+    "sha256": "be3a2b131489dfa5a36024901ebb2cf714f5e07626d9c79ab3887fe48cc51303"
+  },
+  "independence": {
+    "classification": "DID_NOT_BUILD_OR_EXECUTE",
+    "root_plan_builder_or_source_builder_run": false,
+    "browser_API_external_compiler_renderer_or_source_queries": "NOT RUN",
+    "source_or_canonical_edits": "NOT RUN",
+    "output_ownership": "Only /private/tmp/dlm-sale-and-context-20260914-canonical-review.json",
+    "method": "Read exact proposed operations and narrow source receipts; freeze criteria; independently simulate sequential replacements/inverses; compare full before/after bytes and protected fields; inspect semantic differences and review bindings. R2 checks only the bounded text corrections, updated exact simulation and final GA4 source/review prerequisite.",
+    "scope_limit": "No duplicate live/raw source replay, receiver parser replay or broad continuity audit. Root retains application and subsequent current-source/render/audit/strict checks."
+  },
+  "frozen_criteria": {
+    "frozen_at_utc": "2026-09-14T07:44:09.815Z",
+    "criteria": [
+      "Exact plan/before/source hashes and current nine canonical before hashes.",
+      "All23 operations uniquely applicable in order; declared after hashes match simulation; inverse restores every before byte; only nine authorized files change.",
+      "Complete nine-field paid-control block and complete One Owner Action byte-preserved.",
+      "Only authorized TA-02 fields, TA-01 evidence and root/Ads notes change in action/coordination state; peer owner/status/permission fields and other queue rows stay exact.",
+      "Every promoted factual statement is supported by separately reviewed source receipts and retains measurement/receiver limitations.",
+      "Old receipts, dates, preserved comparisons, original sales cohort and history remain intact; worklog only appends despite full-text operation.",
+      "Current Goal first-paragraph reorder changes Markdown content only and preserves current theme-publication owner/gate.",
+      "GA4 assertions remain report-level US transaction/item evidence with no currency/dedup/international/consent/attribution/profit or individual-warning-cause overclaim; final application requires final GA4 source/review acceptance.",
+      "No external/compiler/renderer execution or canonical edit; independent final review records actual checks and exact blocking conditions."
+    ]
+  },
+  "check_counts": {
+    "original_structural_executed": 96,
+    "original_structural_passed": 95,
+    "original_structural_failed": 1,
+    "original_source_wording_executed": 18,
+    "original_source_wording_passed": 18,
+    "original_total_executed": 114,
+    "original_total_passed": 113,
+    "r2_correction_executed": 25,
+    "r2_correction_passed": 25,
+    "total_checks_executed": 139,
+    "passed_executions": 138,
+    "initial_failed_checks_resolved": 1,
+    "unresolved": 0
+  },
+  "checks": [
+    {
+      "check": "plan_and_before_binding",
+      "result": "PASS",
+      "evidence": "Exact supplied plan and frozen before snapshot hashes validated; plan points to same snapshot."
+    },
+    {
+      "check": "exact_nine_file_23_operation_scope",
+      "result": "PASS",
+      "evidence": "Only nine named Markdown canonical files are in plan; no code, renderer, source receipt, goal or automation target."
+    },
+    {
+      "check": "current_before_hash:ops/marketing/current_marketing_state.md",
+      "result": "PASS",
+      "evidence": "Snapshot text, snapshot hash, plan before hash and current file bytes equal."
+    },
+    {
+      "check": "current_before_hash:ops/marketing/daily_scorecard.md",
+      "result": "PASS",
+      "evidence": "Snapshot text, snapshot hash, plan before hash and current file bytes equal."
+    },
+    {
+      "check": "current_before_hash:ops/marketing/action_queue.md",
+      "result": "PASS",
+      "evidence": "Snapshot text, snapshot hash, plan before hash and current file bytes equal."
+    },
+    {
+      "check": "current_before_hash:ops/marketing/blocker_board.md",
+      "result": "PASS",
+      "evidence": "Snapshot text, snapshot hash, plan before hash and current file bytes equal."
+    },
+    {
+      "check": "current_before_hash:ops/marketing/operator_cockpit.md",
+      "result": "PASS",
+      "evidence": "Snapshot text, snapshot hash, plan before hash and current file bytes equal."
+    },
+    {
+      "check": "current_before_hash:ops/marketing/memory_digest.md",
+      "result": "PASS",
+      "evidence": "Snapshot text, snapshot hash, plan before hash and current file bytes equal."
+    },
+    {
+      "check": "current_before_hash:ops/AGENT_COORDINATION.md",
+      "result": "PASS",
+      "evidence": "Snapshot text, snapshot hash, plan before hash and current file bytes equal."
+    },
+    {
+      "check": "current_before_hash:ops/PROBLEM_TRACKER.md",
+      "result": "PASS",
+      "evidence": "Snapshot text, snapshot hash, plan before hash and current file bytes equal."
+    },
+    {
+      "check": "current_before_hash:ops/AGENT_WORKLOG.md",
+      "result": "PASS",
+      "evidence": "Snapshot text, snapshot hash, plan before hash and current file bytes equal."
+    },
+    {
+      "check": "operation_unique_apply:1",
+      "result": "PASS",
+      "evidence": "Operation1 exact old text occurs once at its sequential application point in ops/marketing/current_marketing_state.md."
+    },
+    {
+      "check": "operation_unique_apply:2",
+      "result": "PASS",
+      "evidence": "Operation2 exact old text occurs once at its sequential application point in ops/marketing/daily_scorecard.md."
+    },
+    {
+      "check": "operation_unique_apply:3",
+      "result": "PASS",
+      "evidence": "Operation3 exact old text occurs once at its sequential application point in ops/marketing/blocker_board.md."
+    },
+    {
+      "check": "operation_unique_apply:4",
+      "result": "PASS",
+      "evidence": "Operation4 exact old text occurs once at its sequential application point in ops/marketing/operator_cockpit.md."
+    },
+    {
+      "check": "operation_unique_apply:5",
+      "result": "PASS",
+      "evidence": "Operation5 exact old text occurs once at its sequential application point in ops/marketing/current_marketing_state.md."
+    },
+    {
+      "check": "operation_unique_apply:6",
+      "result": "PASS",
+      "evidence": "Operation6 exact old text occurs once at its sequential application point in ops/marketing/daily_scorecard.md."
+    },
+    {
+      "check": "operation_unique_apply:7",
+      "result": "PASS",
+      "evidence": "Operation7 exact old text occurs once at its sequential application point in ops/marketing/action_queue.md."
+    },
+    {
+      "check": "operation_unique_apply:8",
+      "result": "PASS",
+      "evidence": "Operation8 exact old text occurs once at its sequential application point in ops/marketing/blocker_board.md."
+    },
+    {
+      "check": "operation_unique_apply:9",
+      "result": "PASS",
+      "evidence": "Operation9 exact old text occurs once at its sequential application point in ops/marketing/operator_cockpit.md."
+    },
+    {
+      "check": "operation_unique_apply:10",
+      "result": "PASS",
+      "evidence": "Operation10 exact old text occurs once at its sequential application point in ops/marketing/current_marketing_state.md."
+    },
+    {
+      "check": "operation_unique_apply:11",
+      "result": "PASS",
+      "evidence": "Operation11 exact old text occurs once at its sequential application point in ops/marketing/current_marketing_state.md."
+    },
+    {
+      "check": "operation_unique_apply:12",
+      "result": "PASS",
+      "evidence": "Operation12 exact old text occurs once at its sequential application point in ops/marketing/daily_scorecard.md."
+    },
+    {
+      "check": "operation_unique_apply:13",
+      "result": "PASS",
+      "evidence": "Operation13 exact old text occurs once at its sequential application point in ops/marketing/blocker_board.md."
+    },
+    {
+      "check": "operation_unique_apply:14",
+      "result": "PASS",
+      "evidence": "Operation14 exact old text occurs once at its sequential application point in ops/marketing/memory_digest.md."
+    },
+    {
+      "check": "operation_unique_apply:15",
+      "result": "PASS",
+      "evidence": "Operation15 exact old text occurs once at its sequential application point in ops/marketing/operator_cockpit.md."
+    },
+    {
+      "check": "operation_unique_apply:16",
+      "result": "PASS",
+      "evidence": "Operation16 exact old text occurs once at its sequential application point in ops/marketing/operator_cockpit.md."
+    },
+    {
+      "check": "operation_unique_apply:17",
+      "result": "PASS",
+      "evidence": "Operation17 exact old text occurs once at its sequential application point in ops/marketing/operator_cockpit.md."
+    },
+    {
+      "check": "operation_unique_apply:18",
+      "result": "PASS",
+      "evidence": "Operation18 exact old text occurs once at its sequential application point in ops/marketing/action_queue.md."
+    },
+    {
+      "check": "operation_unique_apply:19",
+      "result": "PASS",
+      "evidence": "Operation19 exact old text occurs once at its sequential application point in ops/marketing/action_queue.md."
+    },
+    {
+      "check": "operation_unique_apply:20",
+      "result": "PASS",
+      "evidence": "Operation20 exact old text occurs once at its sequential application point in ops/AGENT_COORDINATION.md."
+    },
+    {
+      "check": "operation_unique_apply:21",
+      "result": "PASS",
+      "evidence": "Operation21 exact old text occurs once at its sequential application point in ops/AGENT_COORDINATION.md."
+    },
+    {
+      "check": "operation_unique_apply:22",
+      "result": "PASS",
+      "evidence": "Operation22 exact old text occurs once at its sequential application point in ops/PROBLEM_TRACKER.md."
+    },
+    {
+      "check": "operation_unique_apply:23",
+      "result": "PASS",
+      "evidence": "Operation23 exact old text occurs once at its sequential application point in ops/AGENT_WORKLOG.md."
+    },
+    {
+      "check": "simulated_after_hash:ops/marketing/current_marketing_state.md",
+      "result": "PASS",
+      "evidence": "Exact sequential simulation matches declared after SHA; file actually changes."
+    },
+    {
+      "check": "simulated_after_hash:ops/marketing/daily_scorecard.md",
+      "result": "PASS",
+      "evidence": "Exact sequential simulation matches declared after SHA; file actually changes."
+    },
+    {
+      "check": "simulated_after_hash:ops/marketing/action_queue.md",
+      "result": "PASS",
+      "evidence": "Exact sequential simulation matches declared after SHA; file actually changes."
+    },
+    {
+      "check": "simulated_after_hash:ops/marketing/blocker_board.md",
+      "result": "PASS",
+      "evidence": "Exact sequential simulation matches declared after SHA; file actually changes."
+    },
+    {
+      "check": "simulated_after_hash:ops/marketing/operator_cockpit.md",
+      "result": "PASS",
+      "evidence": "Exact sequential simulation matches declared after SHA; file actually changes."
+    },
+    {
+      "check": "simulated_after_hash:ops/marketing/memory_digest.md",
+      "result": "PASS",
+      "evidence": "Exact sequential simulation matches declared after SHA; file actually changes."
+    },
+    {
+      "check": "simulated_after_hash:ops/AGENT_COORDINATION.md",
+      "result": "PASS",
+      "evidence": "Exact sequential simulation matches declared after SHA; file actually changes."
+    },
+    {
+      "check": "simulated_after_hash:ops/PROBLEM_TRACKER.md",
+      "result": "PASS",
+      "evidence": "Exact sequential simulation matches declared after SHA; file actually changes."
+    },
+    {
+      "check": "simulated_after_hash:ops/AGENT_WORKLOG.md",
+      "result": "PASS",
+      "evidence": "Exact sequential simulation matches declared after SHA; file actually changes."
+    },
+    {
+      "check": "operation_unique_inverse:23",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:22",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:21",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:20",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:19",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:18",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:17",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:16",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:15",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:14",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:13",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:12",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:11",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:10",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:9",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:8",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:7",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:6",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:5",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:4",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:3",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:2",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "operation_unique_inverse:1",
+      "result": "PASS",
+      "evidence": "Exact new text occurs once at reverse-operation point; inverse is unambiguous."
+    },
+    {
+      "check": "full_before_bytes_restored:ops/marketing/current_marketing_state.md",
+      "result": "PASS",
+      "evidence": "Reversed all operations to exact original complete text and hash."
+    },
+    {
+      "check": "full_before_bytes_restored:ops/marketing/daily_scorecard.md",
+      "result": "PASS",
+      "evidence": "Reversed all operations to exact original complete text and hash."
+    },
+    {
+      "check": "full_before_bytes_restored:ops/marketing/action_queue.md",
+      "result": "PASS",
+      "evidence": "Reversed all operations to exact original complete text and hash."
+    },
+    {
+      "check": "full_before_bytes_restored:ops/marketing/blocker_board.md",
+      "result": "PASS",
+      "evidence": "Reversed all operations to exact original complete text and hash."
+    },
+    {
+      "check": "full_before_bytes_restored:ops/marketing/operator_cockpit.md",
+      "result": "PASS",
+      "evidence": "Reversed all operations to exact original complete text and hash."
+    },
+    {
+      "check": "full_before_bytes_restored:ops/marketing/memory_digest.md",
+      "result": "PASS",
+      "evidence": "Reversed all operations to exact original complete text and hash."
+    },
+    {
+      "check": "full_before_bytes_restored:ops/AGENT_COORDINATION.md",
+      "result": "PASS",
+      "evidence": "Reversed all operations to exact original complete text and hash."
+    },
+    {
+      "check": "full_before_bytes_restored:ops/PROBLEM_TRACKER.md",
+      "result": "PASS",
+      "evidence": "Reversed all operations to exact original complete text and hash."
+    },
+    {
+      "check": "full_before_bytes_restored:ops/AGENT_WORKLOG.md",
+      "result": "PASS",
+      "evidence": "Reversed all operations to exact original complete text and hash."
+    },
+    {
+      "check": "complete_authoritative_block_byte_preserved",
+      "result": "PASS",
+      "evidence": "Full start/end-delimited nine-field authoritative control block is byte-identical."
+    },
+    {
+      "check": "all_nine_control_values_preserved",
+      "result": "PASS",
+      "evidence": "All nine exact current controls retained, includingNONE/false/stale/fresh-approval/READ_ONLY."
+    },
+    {
+      "check": "complete_one_owner_action_byte_preserved",
+      "result": "PASS",
+      "evidence": "Whole One Owner Action section unchanged, including exact137888792673/release binding, MAINrollback, owner Admin requirement and post-publication UX verification."
+    },
+    {
+      "check": "TA02_only_permitted_fields",
+      "result": "PASS",
+      "evidence": "TA02 text/evidence/acceptance/next/date/objective fields only; P0/YELLOW, exact owner, measurement lane and ordinary-read/no-synthetic permission preserved."
+    },
+    {
+      "check": "TA01_evidence_only",
+      "result": "PASS",
+      "evidence": "TA01 only evidence cell adds06:56source/review; all other owner/status/permission/task/next fields identical."
+    },
+    {
+      "check": "coordination_notes_only:20",
+      "result": "PASS",
+      "evidence": "Exact Ads/root row notes only; subject/scope/status/owner/authority/blocked-actions/evidence cells unchanged."
+    },
+    {
+      "check": "coordination_notes_only:21",
+      "result": "PASS",
+      "evidence": "Exact Ads/root row notes only; subject/scope/status/owner/authority/blocked-actions/evidence cells unchanged."
+    },
+    {
+      "check": "all_other_queue_table_rows_exact",
+      "result": "PASS",
+      "evidence": "All other queue rows/headers preserve full bytes and sequence, includingTA15/TA16/TA25 and peer lanes."
+    },
+    {
+      "check": "all_other_coordination_bytes_exact",
+      "result": "PASS",
+      "evidence": "Masking the two exact target note rows leaves every other coordination byte unchanged; context/Microsoft/Merchant/Pinterest/UX owners preserved."
+    },
+    {
+      "check": "worklog_strictly_append_only",
+      "result": "PASS",
+      "evidence": "Whole before history is an exact prefix; full-text plan operation only appends new anchor block."
+    },
+    {
+      "check": "worklog_anchor_unique",
+      "result": "PASS",
+      "evidence": "Exactly one new anchor, no duplicate or rewritten historical anchor."
+    },
+    {
+      "check": "worklog_task_entities_and_stage_present",
+      "result": "PASS",
+      "evidence": "New anchor retains scopedstableentities andHANDOFF stage."
+    },
+    {
+      "check": "worklog_required_next_action_id_present",
+      "result": "FAIL",
+      "evidence": "MEMORY_CONTINUITY_PROTOCOL.md:80–84 requires this field for new anchor; must agree with authoritative next_best_action."
+    },
+    {
+      "check": "worklog_authority_and_independence_qualified",
+      "result": "PASS",
+      "evidence": "New handoff preserves restrictive machine fields, verification independence and financial/attribution distinction."
+    },
+    {
+      "check": "cockpit_goal_first_paragraph_restored_without_rewriting_goal",
+      "result": "PASS",
+      "evidence": "Previously existing business objective becomes first paragraph; wording identical, including target/forecast qualification; GA4 moved into separate heading."
+    },
+    {
+      "check": "cockpit_new_receiver_section_preserves_content",
+      "result": "PASS",
+      "evidence": "Separate GA4 section retains exact proposed paragraph; renderer implementation untouched."
+    },
+    {
+      "check": "current_summary_sources_consistent",
+      "result": "PASS",
+      "evidence": "Four full-sales summaries and five exact GA4 paragraphs are internally identical; no mismatched current counts/dates."
+    },
+    {
+      "check": "superseded_sales_dates_retained_as_history",
+      "result": "PASS",
+      "evidence": "New source replaces current no-new-order prose while dated earlier source files and worklog prefix remain untouched."
+    },
+    {
+      "check": "GA4_no_sample_and_parity_scopes_separate",
+      "result": "PASS",
+      "evidence": "Only no-sample gate superseded; historical parity and full measurement problem stayopen."
+    },
+    {
+      "check": "plan_explicit_final_GA4_apply_gate",
+      "result": "PASS",
+      "evidence": "Known source review dependency is explicit; this simulation does not authorize application before final source/review acceptance."
+    },
+    {
+      "check": "plan_and_current_before_still_unchanged",
+      "result": "PASS",
+      "evidence": "Exact frozen plan/snapshot and all nine real files unchanged at end; no application or peer writes by reviewer."
+    },
+    {
+      "check": "sales_receipt_review_exact_binding",
+      "result": "PASS",
+      "evidence": "The repo review is byte-identical to completed independent96-check report and binds this source."
+    },
+    {
+      "check": "sales_current_totals_and_new_order_wording",
+      "result": "PASS",
+      "evidence": "Current paragraph numbers match independently accepted full source, not a daily paid-growth inference."
+    },
+    {
+      "check": "sales_overlap_and_original_lifecycle_scoped",
+      "result": "PASS",
+      "evidence": "One shared order across overlapping windows; original cohort unchanged, no multiplicative new sales or old-lifecycle claim."
+    },
+    {
+      "check": "sales_cadence_and_business_limits",
+      "result": "PASS",
+      "evidence": "Actual12hour clock and attribution/cost/profit unknowns carried, no source-cost or delivery proof."
+    },
+    {
+      "check": "ads_final85_review_accepted",
+      "result": "PASS",
+      "evidence": "Ads review counts85final/88executions preserve evaluator-shape history; no new independent Ads replay by this reviewer."
+    },
+    {
+      "check": "ads_copy_and_zero_report_limits_retained",
+      "result": "PASS",
+      "evidence": "Wording respects reviewed Ads observation, separate report dates and unverified processing/receiver attribution.",
+      "limit": "Detailed conversion-action settings are summarized owner observations without raw settings rows, as explicitly limited by the85-check source review."
+    },
+    {
+      "check": "ads_source_links_still_frozen",
+      "result": "PASS",
+      "evidence": "Two cited06:56source/candidate files still match the completed85-criteria review bindings; no full private-source re-review."
+    },
+    {
+      "check": "context_source_and_acceptance_binding",
+      "result": "PASS",
+      "evidence": "Root18check acceptance binds exact completed context-owner source; no compiler/tests run here."
+    },
+    {
+      "check": "context_counts_and_limits_supported",
+      "result": "PASS",
+      "evidence": "Frozen-before regressions, bounded helper repair and24/10counts are source-supported; no universal isolation/platform guarantee."
+    },
+    {
+      "check": "context_current_query_ownership_supported",
+      "result": "PASS",
+      "evidence": "Parent saved current-source query acceptance supports the stated owner resolution without this reviewer rerunning compiler."
+    },
+    {
+      "check": "theme_role_source_matches_current_wording",
+      "result": "PASS",
+      "evidence": "Actual root metadata read supports unpublished candidate and same release timestamp; preview/source acceptance remains dated."
+    },
+    {
+      "check": "GA4_provisional_scope_and_report_totals",
+      "result": "PASS",
+      "evidence": "Exact provisional source supports report-level identity/transaction/revenue and aggregate-item wording; private identity values not replayed."
+    },
+    {
+      "check": "GA4_provisional_aggregate_item_math",
+      "result": "PASS",
+      "evidence": "Four recorded item rows sum111.96 at quantity1; this bounded arithmetic is not a raw-event/transaction-item join."
+    },
+    {
+      "check": "GA4_provisional_dates_settings_intraday_limits",
+      "result": "PASS",
+      "evidence": "CurrentNY/USD report settings and complete-calendar/intraday distinction match provisional source."
+    },
+    {
+      "check": "GA4_warning_not_customer_cause_claim",
+      "result": "PASS",
+      "evidence": "Warning remains report-level diagnostic; no captured per-customer consent/session cause."
+    },
+    {
+      "check": "GA4_acceptance_boundaries_retained",
+      "result": "PASS",
+      "evidence": "Report-level US receiver finding does not claim raw currency/dedup/consent/international/Ads acceptance/profit or new paid authority."
+    },
+    {
+      "check": "current_GA4_first_page_wording_is_version_bound",
+      "result": "PASS",
+      "evidence": "Original plan is consistent with suppliedeb137source only.",
+      "limit": "Root reports later36-row read underway/completed; final source/review and corrected pagination wording must replace this version before application. This is not certification of the pending final source."
+    },
+    {
+      "check": "stable_non_GA4_source_hashes_end",
+      "result": "PASS",
+      "evidence": "Sales/reviews/context/theme sources unchanged at end; GA4 remains intentionally final-review gated."
+    },
+    {
+      "check": "r2_original_and_snapshot_hashes_preserved",
+      "result": "PASS",
+      "evidence": "Original immutable plan and before snapshot preserved while separate R2 reviewed."
+    },
+    {
+      "check": "r2_metadata_and_scope_unchanged",
+      "result": "PASS",
+      "evidence": "Only operations/after hashes changed; same nine files, before hashes, scope and exact authority prerequisites."
+    },
+    {
+      "check": "r2_exact_allowed_text_transform",
+      "result": "PASS",
+      "evidence": "All23 operations exactly equal original plus v2reference/full36-row wording and one appended next_action_id. Only operation16 old text changes to reflect its earlier intermediate GA4 replacement."
+    },
+    {
+      "check": "r2_all23_operations_uniquely_simulated",
+      "result": "PASS",
+      "evidence": "All23 exact old strings occurred once in sequential R2 simulation; no canonical file changed."
+    },
+    {
+      "check": "r2_current_before_and_after_hash:ops/marketing/current_marketing_state.md",
+      "result": "PASS",
+      "evidence": "Current before bytes still match original nine-file snapshot and simulated after equals exact R2 after hash."
+    },
+    {
+      "check": "r2_current_before_and_after_hash:ops/marketing/daily_scorecard.md",
+      "result": "PASS",
+      "evidence": "Current before bytes still match original nine-file snapshot and simulated after equals exact R2 after hash."
+    },
+    {
+      "check": "r2_current_before_and_after_hash:ops/marketing/action_queue.md",
+      "result": "PASS",
+      "evidence": "Current before bytes still match original nine-file snapshot and simulated after equals exact R2 after hash."
+    },
+    {
+      "check": "r2_current_before_and_after_hash:ops/marketing/blocker_board.md",
+      "result": "PASS",
+      "evidence": "Current before bytes still match original nine-file snapshot and simulated after equals exact R2 after hash."
+    },
+    {
+      "check": "r2_current_before_and_after_hash:ops/marketing/operator_cockpit.md",
+      "result": "PASS",
+      "evidence": "Current before bytes still match original nine-file snapshot and simulated after equals exact R2 after hash."
+    },
+    {
+      "check": "r2_current_before_and_after_hash:ops/marketing/memory_digest.md",
+      "result": "PASS",
+      "evidence": "Current before bytes still match original nine-file snapshot and simulated after equals exact R2 after hash."
+    },
+    {
+      "check": "r2_current_before_and_after_hash:ops/AGENT_COORDINATION.md",
+      "result": "PASS",
+      "evidence": "Current before bytes still match original nine-file snapshot and simulated after equals exact R2 after hash."
+    },
+    {
+      "check": "r2_current_before_and_after_hash:ops/PROBLEM_TRACKER.md",
+      "result": "PASS",
+      "evidence": "Current before bytes still match original nine-file snapshot and simulated after equals exact R2 after hash."
+    },
+    {
+      "check": "r2_current_before_and_after_hash:ops/AGENT_WORKLOG.md",
+      "result": "PASS",
+      "evidence": "Current before bytes still match original nine-file snapshot and simulated after equals exact R2 after hash."
+    },
+    {
+      "check": "r2_all23_inverses_and_nine_original_bytes",
+      "result": "PASS",
+      "evidence": "Reverse-order exact inverses restore every one of the nine complete before texts; no lost non-target bytes."
+    },
+    {
+      "check": "r2_missing_metadata_resolved",
+      "result": "PASS",
+      "evidence": "Original failed metadata check is now resolved in appended anchor only; all historical worklog bytes intact."
+    },
+    {
+      "check": "r2_paid_controls_and_complete_owner_action_unchanged",
+      "result": "PASS",
+      "evidence": "Complete nine-field block and whole One Owner Action remain byte-identical under R2."
+    },
+    {
+      "check": "r2_peer_and_queue_changes_not_broadened",
+      "result": "PASS",
+      "evidence": "TA01 evidence and root note changes identical; TA02/Ads note differences only allowed v2 reference. Previously verified peer/status/permission preservation remains exact."
+    },
+    {
+      "check": "final_GA4_source_and_independent_review_bound",
+      "result": "PASS",
+      "evidence": "Final v2 source and43-check separate independent review match supplied hashes; no unresolved material contradictions."
+    },
+    {
+      "check": "six_receiver_review_input_hashes_match",
+      "result": "PASS",
+      "evidence": "All six existing review source bindings match, including immutable provisional receipts/checks. These are hash checks, not a rerun of receiver math or native/private joins."
+    },
+    {
+      "check": "operator48_check_receipt_binding",
+      "result": "PASS",
+      "evidence": "48operatorchecks/strict10 remain source-reported; not counted as our independent executions."
+    },
+    {
+      "check": "R2_full_pagination_wording_supported",
+      "result": "PASS",
+      "evidence": "Final saved source and matched review support36complete rows/4nonzero/32zero and unchanged totals; no inference from first-page arithmetic remains."
+    },
+    {
+      "check": "GA4_first_page_finding_resolved_with_history",
+      "result": "PASS",
+      "evidence": "Earlier coverage limitation remains in immutable source/review history; current added wording uses verified complete source."
+    },
+    {
+      "check": "final_GA4_private_native_independence_limits_retained",
+      "result": "PASS",
+      "evidence": "Separate43-check review qualifies saved-source report ingestion only; no live/private transaction,raw currency,dedup,consent,international,Ads-attribution or profit proof."
+    },
+    {
+      "check": "final_receiver_apply_condition_met",
+      "result": "PASS",
+      "evidence": "Root-specified final-source/review condition is now satisfied by matched completed artifacts. Plan retains preparation-time pending labels; this review records later acceptance."
+    },
+    {
+      "check": "final_plan_source_before_hashes_stable",
+      "result": "PASS",
+      "evidence": "Original/R2 plans,snapshot,final GA4 source/review and all nine canonical before hashes remain unchanged at final recheck."
+    }
+  ],
+  "before_hashes": {
+    "ops/marketing/current_marketing_state.md": "245b48c3ad7b606af215ac893ca98e6f15eb145ce3b4187407e5627a7da6412e",
+    "ops/marketing/daily_scorecard.md": "dc2345e0cb4dcf897f21e7b2442a8e59b6ed198c5b3a0b790d819d3f8c3e0fcf",
+    "ops/marketing/action_queue.md": "d399d839620ddf8d20043efb3f6ec065b3b327f28c6257ab3279a22ab2b5bc35",
+    "ops/marketing/blocker_board.md": "c7b4785792919d33c9601fef1ebd0a3e19a3485496f9c7604193b400a4b76223",
+    "ops/marketing/operator_cockpit.md": "a5904fb0ffcd1e859240b9c472b048fa8b7fc6fdbbd782f6095e66b9afae0427",
+    "ops/marketing/memory_digest.md": "81057bdc448235f80749e60dfcd183e8569715955362ed57c0dd67a4efb1f6f6",
+    "ops/AGENT_COORDINATION.md": "2fd63ad0fef86dc9c39b8d4c709209788b9984a2322c3ffa84c68b3af051b552",
+    "ops/PROBLEM_TRACKER.md": "3ba3d7835643291c31d5aba0a1e37b2204b193a484db59b410f52f6e15bd4656",
+    "ops/AGENT_WORKLOG.md": "5b0b4785237c6bbe24069e5868a2837b9f3c3caf4f663bdab209be0bc3de9770"
+  },
+  "original_simulated_after_hashes": {
+    "ops/marketing/current_marketing_state.md": "481f240b2bf24382415365f5c96a4959cf7c4a05e1a77d2b8daedd36a03a8578",
+    "ops/marketing/daily_scorecard.md": "c67732d8dcf54d28ec81b720623e983bbe5b104b7bdee00ffbecbc523af1714f",
+    "ops/marketing/action_queue.md": "f048ebe554b12a0733bc3b4d93db202204ddf7ea6ddcda029c05142ee065e7b1",
+    "ops/marketing/blocker_board.md": "9d0d6206470cdde9c2285e61a49862a6ec3c543cc4a0667fd5348f948eab9ee0",
+    "ops/marketing/operator_cockpit.md": "4b9857f3aac3e6513530d8c8a2891563d2c2cbd3ac1dc5d7210b9f1752d0224c",
+    "ops/marketing/memory_digest.md": "12c02ebc7a54b8af7f4c7c8fa08c519b95b7f8602e4d29ff71c94f2acc5dff95",
+    "ops/AGENT_COORDINATION.md": "f5035f37c1d060589a5295d10015723f67dbea00f464ad4b96b22b2afb4bd4c5",
+    "ops/PROBLEM_TRACKER.md": "abfcc59ea2d2ac6d4c5f948be7d8aacdaba1b2967d36aed9c52f00e6cb18c10e",
+    "ops/AGENT_WORKLOG.md": "02be6d978e013c2b49927de121a2f671b3fdde8d6fa23cc086448eb1d4779c16"
+  },
+  "final_r2_simulated_after_hashes": {
+    "ops/marketing/current_marketing_state.md": "18189dad59ebd3f9bea4810ef788ab5364c35e2e822a0d67d71c783ad2dd7f53",
+    "ops/marketing/daily_scorecard.md": "724a633357db6f2f2529176ca518a308e15a1bb9ebc2c64d1fb9caaec39019a2",
+    "ops/marketing/action_queue.md": "dcee2243e79527e65e017858a4974ac6df48b4cae79ce093323e0cdf581e5e81",
+    "ops/marketing/blocker_board.md": "9410ef2bd96c983860105307792a6f4a8fe15ee18354e4ab7a19da09c6fccf86",
+    "ops/marketing/operator_cockpit.md": "dd07c8ca52ad5d8b5a9e2706416a1c443db47b823b3cca894dfe787bdb48067d",
+    "ops/marketing/memory_digest.md": "73e724495459a3cb0ce809a1a50f10feccc5896c91552c82ecdca1c6ed77f921",
+    "ops/AGENT_COORDINATION.md": "6b8d91b76ab2d54afba631bc3b22367d0ba2b5e9e5bb106dfe9874f8c67fcea2",
+    "ops/PROBLEM_TRACKER.md": "b83778b2d65b158a2addd1301db04ce7aaabcffa004c551be6dbc32d76185902",
+    "ops/AGENT_WORKLOG.md": "65616ec19e0f78f80b1c0eac1f6c8a45f7f2e0b103b274bf730b6146634325da"
+  },
+  "protected_bindings": {
+    "complete_nine_field_authoritative_control_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+    "complete_one_owner_action_sha256": "fbd1edcc162c77a507eab6699f73456d34b48a1c43afaa079ca54a9cbac9312b",
+    "original_worklog_append_sha256": "f9e631d8035e80755156f6f996c185ed1d0bf33bd631dd4c42ff594aa2958b34",
+    "final_r2_worklog_append_sha256": "bae03a6cd32d09a830645883144647f7334cc44b9f4c5906a688e068f44e668d",
+    "exact_all_nine_before_bytes_recoverable": true,
+    "whole_worklog_history_prefix_preserved": true
+  },
+  "row_scope": [
+    {
+      "operation": 18,
+      "file": "ops/marketing/action_queue.md",
+      "cell_count_before": 13,
+      "cell_count_after": 13,
+      "changed_zero_based_columns": [
+        2,
+        4,
+        5,
+        7,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "operation": 19,
+      "file": "ops/marketing/action_queue.md",
+      "cell_count_before": 13,
+      "cell_count_after": 13,
+      "changed_zero_based_columns": [
+        5
+      ]
+    },
+    {
+      "operation": 20,
+      "file": "ops/AGENT_COORDINATION.md",
+      "cell_count_before": 8,
+      "cell_count_after": 8,
+      "changed_zero_based_columns": [
+        7
+      ]
+    },
+    {
+      "operation": 21,
+      "file": "ops/AGENT_COORDINATION.md",
+      "cell_count_before": 8,
+      "cell_count_after": 8,
+      "changed_zero_based_columns": [
+        7
+      ]
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_0704.json",
+      "sha256": "7eab5039ded43cceada676ca48778e97554c3e1610f976b840399dfccbd6c3fd",
+      "bytes": 25957
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_review.json",
+      "sha256": "b990fb65b995823d5f82820c2a29237cc025771cc67a6518f3c9ee9e2eed2f47",
+      "bytes": 42630
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/google_ads_0656_root_review_20260914.json",
+      "sha256": "9071102b1c941c8fe0fd8b46c5bf18ceb43c6c8ce984f9c4f18656f7a02e6bfc",
+      "bytes": 18175
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/action-date-context-repair-20260914.json",
+      "sha256": "a33ebcdf8a52ce1e5bf607a22c25236f947f3ce662334b50609ea6045c150933",
+      "bytes": 118554
+    },
+    {
+      "path": "/private/tmp/dlm-context-action-date-20260914-parent-acceptance.json",
+      "sha256": "6b57868524924840f122372ade6b53f73b211163dc9805869f800caeaed7dd99",
+      "bytes": 4877
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_publication_role_readback_20260914.json",
+      "sha256": "4d8e127201647fd39cf9c0fcaf9b9764fef72c806bd835199ac6d8c38a50ddd7",
+      "bytes": 2652
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/GA4_REAL_PURCHASE_RECEIVER_20260914_0718.json",
+      "sha256": "eb1371589bcc5e24a6aac5a962ec53fe809c2d702a1ef97cf468c64a33bd0ea3",
+      "bytes": 12523
+    }
+  ],
+  "final_GA4_source_and_review_bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/GA4_REAL_PURCHASE_RECEIVER_20260914_0718_v2.json",
+      "sha256": "3f829246566c87089456d80ae355d6b5be8c4ea85dbd988a964081737c1c33a1"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/GA4_REAL_PURCHASE_RECEIVER_INDEPENDENT_REVIEW_20260914_0718.json",
+      "sha256": "61e0283b8879aa1ba6050ebc1b58610a2d0d956fafbb7c4999cf40cc320162d6"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/GA4_REAL_PURCHASE_RECEIVER_CHECKS_20260914_0718_v2.json",
+      "sha256": "3f934f25b3cbcee11c4b766a2b0b19e59a4b8dc856a853683a14c4ace9e548c9",
+      "role": "reviewed_current_source"
+    }
+  ],
+  "final_GA4_condition": {
+    "status": "MET",
+    "reviewed_source_sha256": "3f829246566c87089456d80ae355d6b5be8c4ea85dbd988a964081737c1c33a1",
+    "independent_review_sha256": "61e0283b8879aa1ba6050ebc1b58610a2d0d956fafbb7c4999cf40cc320162d6",
+    "independent_review": "PASS_WITH_LIMITS,43/43 local checks, six matching source hashes,0 material unresolved contradictions; no private or native replay",
+    "operator_checks": "48/48 and strict10 are source-reported; their bound48-check artifact was hashed, not rerun.",
+    "interpretation": "R2's preparation-time pending labels remain frozen. The matched completed final source/review supplied later satisfy that application prerequisite; they do not broaden paid or tracking authority."
+  },
+  "resolved_findings": [
+    {
+      "id": "F1_REQUIRED_ANCHOR_NEXT_ACTION_ID",
+      "provenance": "This independent canonical review",
+      "original_plan_sha256": "c2470bf8e01b8312336f0314ba87f8dcde3c398a78f9c22f436185f8ea70f7be",
+      "check": "worklog_required_next_action_id_present",
+      "original_status": "FAIL",
+      "evidence": "The new worklog anchor omitted next_action_id, required by ops/MEMORY_CONTINUITY_PROTOCOL.md:80–84 and constrained by authoritative next_best_action.",
+      "correction": "R2 adds exactly next_action_id: READ_ONLY_MARKETING_RECONCILIATION to the appended anchor, without touching historical worklog bytes.",
+      "resolution": "PASS_R2_BOUNDED_CORRECTION",
+      "prior_failure_preserved": true
+    },
+    {
+      "id": "DEPENDENCY_GA4_FINAL_COVERAGE_AND_REVIEW",
+      "provenance": "Existing receiver independent source review and root supplemental native read; not a new live finding by this reviewer",
+      "original_status": "PENDING_FINAL_SOURCE_REVIEW; original plan referred to the provisional first-page source",
+      "correction": "Separate immutable v2 records complete36-row read,4 nonzero rows and32 zero rows; R2 changes only current GA4 references/coverage wording. Matched43-check source review accepted.",
+      "resolution": "FINAL_SOURCE_CONDITION_MET",
+      "historical_provisional_source_preserved": true,
+      "limitation": "This review verified final source/review binding and exact wording support, not private transaction matching or native report replay."
+    }
+  ],
+  "unresolved_findings": [],
+  "qualified_results": [
+    "All23 operations apply uniquely in order to the same nine current before files. R2 simulated after hashes match, and all23 exact inverses restore every original byte.",
+    "All nine authoritative paid controls and the complete One Owner Action are byte-preserved. Current owner Admin theme137888792673 publication, release binding and MAIN133290917985 rollback remain unchanged.",
+    "Only permittedTA02 fields change; TA01 adds evidence only. Ads and parent coordination rows change notes only. Every other queue table row and every other coordination byte remain exact; no peer owner/status/permission or paid scope change.",
+    "The entire historical worklog is an exact prefix. R2 adds one uniquely scoped anchor, required retrieval metadata and source-qualified handoff. Old receipts/cohort evidence and independent review histories were not rewritten.",
+    "The existing business goal paragraph becomes the Cockpit Current Goal's first paragraph without changing its wording. GA4 moves into a separate section; no renderer or code change is part of this plan.",
+    "Current full-sales wording reflects accepted3orders/8units/USD198.41 and one new4-unit/USD111.96 order, while original2/4/USD86.45 lifecycle remains unchanged. Old08:49:22due is explicitly historical; current full-sales clock is19:04:53UTC.",
+    "Final GA4 wording supports report-level US transaction/revenue and separate aggregate-item evidence, complete36-row coverage and retained intraday/unsampled limitations. Raw currency/value/items, deduplication, consent/session ordering, international accuracy, Ads attribution and profit remain open.",
+    "The native missing-session/ad_user_data warning remains a report-level diagnostic, not proof of an individual customer's consent or captured event ordering. The old migration and May parity history are preserved; no migration/Purchase-action recreation is indicated.",
+    "The bounded context repair is supported by the existing independent source review and root18-check acceptance. Current Microsoft/Analytics ownership resolution is source-supported; separate-task/browser isolation and all future grammar are not certified.",
+    "Fresh root Shopify role metadata supports MAIN133290917985 and candidate137888792673UNPUBLISHED at07:31:49UTC. It does not reverify527 source files or buyer paths, and the plan makes that limitation explicit."
+  ],
+  "remaining_limits": [
+    "This is an unapplied documentation-plan acceptance. No real canonical application, fresh renderer output, audit integration or strict continuity outcome is certified here; root owns those final checks.",
+    "Apply only exact R2 bytes after a fresh before-hash guard. Any intervening change in the nine canonical files or named final source/review requires bounded reconciliation rather than overwriting peer work.",
+    "GA4 acceptance rests on completed saved operator evidence and its43-check independent local review. The private transaction join, native36-row report and runtime cleanup were not independently replayed by this reviewer.",
+    "Detailed Ads conversion-action settings and country/direct-journey details remain owner-source observations with the85-check review's limits. FinanciallyPAID and direct journey do not establish or exclude paid acquisition.",
+    "Runtime goal/heartbeat statements are retained parent-state assertions, not a new goal or scheduler query by this reviewer. The plan does not change either mechanism.",
+    "One new sale and one reported GA4 transaction do not establish profitable growth, final attribution, sender deduplication, correct raw event currency or international measurement acceptance.",
+    "Root private-source cleanup is separate. This canonical review did not reopen, delete or modify the private order source or call bindings."
+  ],
+  "recommendation": "Apply exact R2 under the current canonical writer claim with fresh before-hash checks, then run the planned current-source queries, cockpit render, integration audit and strict continuity. Preserve the existing owner theme-publication action and all paid/tracking gates.",
+  "continuation": "Use this review for exact R2 application only; retain the original failed-plan history and matched final receiver acceptance."
+}

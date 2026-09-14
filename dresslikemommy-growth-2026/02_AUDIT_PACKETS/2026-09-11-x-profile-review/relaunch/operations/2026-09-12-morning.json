@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "checkpoint": "2026-09-12 morning X traffic review",
+  "recorded_at_utc": "2026-09-12 13:09:48 UTC",
+  "automation_id": "run-dress-like-mommy-x-organic-pilot",
+  "actual_heartbeat_utc": "2026-09-12T13:02:18.221Z",
+  "actual_heartbeat_local": "2026-09-12T09:02:18.221-04:00",
+  "scope": "Read-only analytics and task-owned current records. No X/account, automation, storefront, tracking, paid, financial or other-channel mutation.",
+  "overall_requested_outcome": "PARTIAL: professional relaunch and first native queue were released; future unattended publishing is blocked on the existing approved-connection dependency, and traffic growth has not been verified.",
+  "observed_store": {
+    "domain": "www.dresslikemommy.com",
+    "currency": "USD",
+    "timezone_label": "EDT",
+    "country": "United States",
+    "query_shop_domain": "dresslikemommy-com.myshopify.com",
+    "source": "Live connected shop-info and accepted analytics replies; no private/customer fields retained"
+  },
+  "report_windows": [
+    {
+      "date": "2026-09-11",
+      "timezone_label": "EDT",
+      "coverage": "Full calendar day; includes prepublication hours and known launch QA. R001 published at14:41EDT."
+    },
+    {
+      "date": "2026-09-12",
+      "timezone_label": "EDT",
+      "coverage": "Current calendar day, partial as of this morning query; first full X reporting day is not complete."
+    }
+  ],
+  "initial_failed_queries": [
+    {
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY day, utm_content SINCE '2026-09-11' UNTIL '2026-09-12'",
+      "isError": true,
+      "columns": [],
+      "rows": [],
+      "rowCount": 0,
+      "error_code": "INVALID_ARGUMENT"
+    },
+    {
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout GROUP BY day, referrer_source, referrer_name SINCE '2026-09-11' UNTIL '2026-09-12' ORDER BY sessions DESC LIMIT 30",
+      "isError": true,
+      "columns": [],
+      "rows": [],
+      "rowCount": 0,
+      "error_code": "INVALID_ARGUMENT"
+    }
+  ],
+  "failure_handling": "Both INVALID_ARGUMENT replies were treated as failed queries, never as traffic data. Stopped that format, read current primary documentation, then used unquoted absolute dates and category-only grouping. Accepted replies passed explicit error/isError and shop-identity checks.",
+  "syntax_sources": [
+    "https://shopify.dev/docs/api/shopifyql/latest/syntax/since-until-during",
+    "https://shopify.dev/docs/api/shopifyql/latest/syntax/timeseries"
+  ],
+  "accepted_reports": [
+    {
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-11 UNTIL 2026-09-11",
+      "isError": false,
+      "columns": [],
+      "rows": [],
+      "rowCount": 0,
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    {
+      "query": "FROM sessions SHOW sessions WHERE referrer_source = 'social' GROUP BY referrer_name SINCE 2026-09-11 UNTIL 2026-09-11",
+      "isError": false,
+      "columns": [
+        {
+          "name": "referrer_name",
+          "dataType": "STRING"
+        },
+        {
+          "name": "sessions",
+          "dataType": "INTEGER"
+        }
+      ],
+      "rows": [
+        [
+          "facebook",
+          "7"
+        ]
+      ],
+      "rowCount": 1,
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    {
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-12 UNTIL 2026-09-12",
+      "isError": false,
+      "columns": [],
+      "rows": [],
+      "rowCount": 0,
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    {
+      "query": "FROM sessions SHOW sessions WHERE referrer_source = 'social' GROUP BY referrer_name SINCE 2026-09-12 UNTIL 2026-09-12",
+      "isError": false,
+      "columns": [],
+      "rows": [],
+      "rowCount": 0,
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    }
+  ],
+  "findings": {
+    "x_tagged_rows_for_september11": 0,
+    "x_tagged_rows_for_partial_september12": 0,
+    "x_rows_in_social_referrer_reports": 0,
+    "non_x_social_rows_yesterday": 1,
+    "non_x_social_rows_today": 0,
+    "interpretation": "No X campaign or X/Twitter social-referrer row appeared in these requested reports. Accepted empty replies have no column metadata; absent rows do not prove that all visits or orders were absent. No new visitor or sales result is established.",
+    "acquired_x_visits": null,
+    "confirmed_x_orders": null,
+    "supported_contribution": null
+  },
+  "known_limits": [
+    "First full reporting day is incomplete; no mature comparison window.",
+    "Attribution, consent, delay, direct/unknown referrals and operator QA limit inference.",
+    "Social-referrer reports are not all-source referrer reports.",
+    "No product, cart or order drilldown was justified by an observed X session in these results.",
+    "No new tagged browser visit, image fetch, HEAD request or synthetic purchase was made during this checkpoint."
+  ],
+  "next_planned_post": {
+    "id": "DLM-X-202609-R002",
+    "scheduled_local": "2026-09-13T12:15:00-04:00",
+    "basis": "Original verified native schedule receipt; not a new remote queue read or publication claim",
+    "due_today": false
+  },
+  "next_action": "Continue the existing4PM permitted assessment; keep the single approved-publisher connection question pending without repeating it. Preserve the native baseline and existing R009/R010 drafts until supported publication and current buyer-route/cadence gates pass.",
+  "decision": "HOLD additional X actions with unchanged connection evidence; do not increase cadence or create filler drafts from an early empty report. Read-only reporting remains executable.",
+  "retrieval": {
+    "shorthand": "continue X now finds the X claim but fails closed with NO_CURRENT_CHANNEL_TASKS; it misses existing TA-24 and the newest X anchor",
+    "supported_exact_entity": "--query Xdresslikemommy --entity Xdresslikemommy --format brief returned RetrievalOK and current2026-09-11-x-proactive-traffic-loop-and-api-boundary; paidNONE and false preserved",
+    "code_changes": 0
+  },
+  "prior_report_audit": "The four September11 analytics calls are marked completed in actual task history, unlike today's two invalid calls. Their raw outputs were not exposed in that compact history; prior frozen evidence remains separate and no historical error was invented.",
+  "external_writes": 0,
+  "new_posts_replies_or_schedules": 0,
+  "new_spend": 0,
+  "repeated_owner_questions": 0,
+  "shared_canonical_writes": 0,
+  "shared_note": "No authority or publication status changed; latest own receipt is linked through the existing TA-24 readback. Parent receives concise result/retrieval issue without a competing shared writer.",
+  "checks": {
+    "status": "PASS",
+    "results": {
+      "same_active_heartbeat": true,
+      "reviewed_prompt_and_schedule_unchanged": true,
+      "four_accepted_reports_have_identity_and_no_error": true,
+      "two_errors_excluded": true,
+      "explicit_two_day_windows": true,
+      "utm_reports_empty_not_zero_outcomes": true,
+      "frozen_live_projection_unchanged": true,
+      "seven_original_receipts_not_promoted": true,
+      "current_record_text_format": true
+    },
+    "count": 9,
+    "strict_continuity_snapshot": {
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/check_continuity_integrity.py",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 50716 lines; latest anchor 2026-09-12-meow-google-title-adoption-gated\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-12-meow-google-title-adoption-gated\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+      "stderr": "",
+      "scope": "Read-only current shared repository snapshot; no new X canonical write this run."
+    }
+  },
+  "completed_at_utc": "2026-09-12T13:11:30.331397+00:00",
+  "elapsed_wall_minutes": 9.2,
+  "effort_note": "Elapsed current recurring check time includes query diagnosis and tools; previous setup/recurring time is separately recorded and cumulative weekly effort is not certified.",
+  "parent_notice": "Sent concise morning result, recovered query failure and exact shorthand retrieval issue to existing parent; no additional user question or shared writer requested.",
+  "scoped_diff_check": "PASS exit0; explicit local text checks also cover the untracked packet."
+}

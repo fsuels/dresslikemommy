@@ -1,0 +1,415 @@
+{
+  "reviewed_at_utc": "2026-09-06T18:19:10.966583+00:00",
+  "verdict": "PASS_COMPLETED_RELEASE_RECEIPT_CONSISTENCY",
+  "independence": "Independent local parsing, exact string/value comparisons and hash checks. Reviewer did not author copy, build/execute mutations, visit MAIN pages or inspect Shopify UI. Source, native-head and mutation receipts are operator-supplied. No new browser/API or external actions.",
+  "check_count": 35,
+  "passed_count": 35,
+  "checks": {
+    "execution_hash_matches_assignment": true,
+    "all_execution_evidence_hashes_bind": true,
+    "frozen_plan_and_preflight_bound": true,
+    "addendum_hash_bound": true,
+    "four_recorded_successful_mutations_no_user_errors": true,
+    "primary_create_payload_exact_reviewed": true,
+    "initial_single_metafield_result_exact": true,
+    "punctuation_delta_only_U0027_to_U2019": true,
+    "punctuation_addendum_only_changes_value_and_cas": true,
+    "punctuation_cas_matches_captured_current_field": true,
+    "same_metafield_after_punctuation": true,
+    "first_registration_exact17_result": true,
+    "last_registration_exact_same17_results": true,
+    "final_registration_exact_resource_fields_values": true,
+    "final_registration_uses_live_meta_description_digest": true,
+    "source_digest_distinct_from_metafield_compareDigest": true,
+    "same_article_and_only_allowed_changes": true,
+    "body_hash_exact_previous_repair": true,
+    "title_tag_remains_absent": true,
+    "four_old_translatable_source_entries_preserved": true,
+    "all20_old_locale_containers_preserved": true,
+    "old36_translation_values_plus17_only": true,
+    "exact17_new_metadata_current": true,
+    "no_metadata_added_for_three_held": true,
+    "all17_existing_bodies_still_outdated": true,
+    "21_unique_before_first_final_routes": true,
+    "all21_final_description_literal_exact": true,
+    "all21_titles_canonicals_routes_languages_preserved": true,
+    "seventeen_localized_four_english_fallback": true,
+    "first_four_english_failures_retained": true,
+    "seventeen_localized_heads_unchanged_through_correction": true,
+    "no_literal_apostrophe_entity_in_final_descriptions": true,
+    "root_reports_english_restored_cart_zero": true,
+    "root18checks_and_6api_checks_consistent": true,
+    "rollback_reported_unused": true
+  },
+  "target": {
+    "article_id": "gid://shopify/Article/559471886433",
+    "metafield_id": "gid://shopify/Metafield/38590996545633",
+    "namespace": "global",
+    "key": "description_tag"
+  },
+  "recorded_execution": {
+    "successful_mutations": 4,
+    "sequence": [
+      "create one primary English field",
+      "register17localizedmetadata values",
+      "update one English apostrophe under compareDigest",
+      "re-register same17values using new source digest"
+    ],
+    "initial_primary_at": "2026-09-06 18:08:37 UTC",
+    "initial_translation_at": "2026-09-06 18:09:18 UTC",
+    "punctuation_at": "2026-09-06 18:12:30 UTC",
+    "final_translation_at": "2026-09-06 18:12:53 UTC",
+    "completed_at_utc": "2026-09-06T18:15:04.684718+00:00",
+    "rollback": "reported unused"
+  },
+  "punctuation": {
+    "unicode_codepoints_before_and_after": 151,
+    "changed_index_zero_based": 101,
+    "before": "U+0027",
+    "after": "U+2019",
+    "final_value": "Explore family matching pajama styles and sizing tips. Browse mommy-and-me pajamas, check each person’s size, and confirm what each selection includes.",
+    "metafield_compare_digest_before": "e90a59817c97d6ad6b53920c56108ef450ece5dd2d91e782f784caf7ab2f9bc0",
+    "metafield_compare_digest_after": "16d149fdec0ddbff3704dfdff989169882e83a76ca594a9ea98b6239dc48c1c4",
+    "translation_source_digest_after": "4f64e7c30500a6a6b03f20cfa30740dcac7e14ac92a45e457f9c13cc37de5ba8",
+    "digest_roles": "MetafieldcompareDigest protects the primary update; translation source digest binds the current English meta_description source. They are different values and were not substituted."
+  },
+  "preservation": {
+    "article_changes": [
+      "updatedAt",
+      "descriptionTag"
+    ],
+    "english_body_sha256": "01c2e9ab6b5c02346c0653bcc526205b5d52c856679e4f8446698999ba53522d",
+    "old_locale_containers": 20,
+    "old_translation_values": 36,
+    "old_title_values": 19,
+    "old_body_values": 17,
+    "new_metadata_values": 17,
+    "total_translation_values_after": 53,
+    "old_body_outdated_flags_retained": 17,
+    "new_metadata_outdated_false": 17,
+    "held_locales_without_metadata": [
+      "pl",
+      "ru",
+      "sv"
+    ],
+    "rendered_route_count": 21,
+    "localized_descriptions": 17,
+    "english_descriptions": 4,
+    "old_base_source_entries_preserved": 4
+  },
+  "locale_checks": [
+    {
+      "locale": "en",
+      "route": "https://www.dresslikemommy.com/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "4f64e7c30500a6a6b03f20cfa30740dcac7e14ac92a45e457f9c13cc37de5ba8",
+      "description_characters": 151,
+      "expected_source": "English punctuation addendum",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": false,
+      "body_translation_status": "primary English preserved"
+    },
+    {
+      "locale": "es",
+      "route": "https://www.dresslikemommy.com/es/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "f2a782c654ee9ab52b2e150134204f9db453877daa64dd5e0f691bd8858e2806",
+      "description_characters": 147,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "fr",
+      "route": "https://www.dresslikemommy.com/fr/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "474943dc652cde13d8c1c982f8076b51c34d48987e9333f00a7ecad92b708e88",
+      "description_characters": 166,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "ar",
+      "route": "https://www.dresslikemommy.com/ar/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "25ef148b05213083bebe8a7c97ad41e2e4a21f10c009c4afdec9127598aacc7b",
+      "description_characters": 120,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "nl",
+      "route": "https://www.dresslikemommy.com/nl/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "b8793f772f30268bd9da746415e86ea41cbe463035a26d0bdf64d63ff678ee50",
+      "description_characters": 140,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "de",
+      "route": "https://www.dresslikemommy.com/de/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "b9b1a0608a3b7ffc1c169254ead4fcb42771a367c95f17532e273c0088650cd2",
+      "description_characters": 160,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "hi",
+      "route": "https://www.dresslikemommy.com/hi/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "6b388c73805900c74b5db86134300af8b7a37ea829a53da38962d8b10c4ee2fd",
+      "description_characters": 147,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "it",
+      "route": "https://www.dresslikemommy.com/it/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "e3e25ffe0c6c76735d87798dc8099a547b61c60c4b647dea3478a115b3595853",
+      "description_characters": 155,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "ja",
+      "route": "https://www.dresslikemommy.com/ja/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "a24fad3a966740bdd3f69b018ef01a57e36bd04d669940294424afa8293c5625",
+      "description_characters": 70,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "ko",
+      "route": "https://www.dresslikemommy.com/ko/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "ef389d132296af384bbdd3eaba825d0470734f6b25d4ae17de7f8c5b01d2196b",
+      "description_characters": 75,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "pl",
+      "route": "https://www.dresslikemommy.com/pl/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "4f64e7c30500a6a6b03f20cfa30740dcac7e14ac92a45e457f9c13cc37de5ba8",
+      "description_characters": 151,
+      "expected_source": "English punctuation addendum",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": false,
+      "body_translation_status": "no localized body; English fallback"
+    },
+    {
+      "locale": "pt-BR",
+      "route": "https://www.dresslikemommy.com/pt/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "ca403c73b7f2f43a9da500cf73809d5c63fbda5a321d3e86d90dd52d4924a37b",
+      "description_characters": 146,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "ru",
+      "route": "https://www.dresslikemommy.com/ru/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "4f64e7c30500a6a6b03f20cfa30740dcac7e14ac92a45e457f9c13cc37de5ba8",
+      "description_characters": 151,
+      "expected_source": "English punctuation addendum",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": false,
+      "body_translation_status": "no localized body; English fallback"
+    },
+    {
+      "locale": "sv",
+      "route": "https://www.dresslikemommy.com/sv/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "4f64e7c30500a6a6b03f20cfa30740dcac7e14ac92a45e457f9c13cc37de5ba8",
+      "description_characters": 151,
+      "expected_source": "English punctuation addendum",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": false,
+      "body_translation_status": "no localized body; English fallback"
+    },
+    {
+      "locale": "da",
+      "route": "https://www.dresslikemommy.com/da/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "7275d821a43c34a51d1e85c265ea006026938b848d39f1cdd2095f863f64fb61",
+      "description_characters": 144,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "no",
+      "route": "https://www.dresslikemommy.com/no/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "a6c6453b7814f3455c799cc8aa1b3aa64c58f6039c989c717345cb928fdd611c",
+      "description_characters": 153,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "el",
+      "route": "https://www.dresslikemommy.com/el/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "38ac4f11c349a3e480d143b648a4c890c7cbbfb5248fb3bacc51a8460f9b2c87",
+      "description_characters": 132,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "ro",
+      "route": "https://www.dresslikemommy.com/ro/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "ee485584748bd2baa0807cb7a86e20a365f04d0992b17937e8fdc36a772432f8",
+      "description_characters": 147,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "fi",
+      "route": "https://www.dresslikemommy.com/fi/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "fef6bf792bca5eb3078086d424f6d1568e59d374a10bb37ba6c760d16444b798",
+      "description_characters": 152,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "he",
+      "route": "https://www.dresslikemommy.com/he/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "f32d7f12eb0d401facdf464ee464b2390479220d6c8ac8347581b73ac2d27960",
+      "description_characters": 118,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    },
+    {
+      "locale": "cs",
+      "route": "https://www.dresslikemommy.com/cs/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "description_sha256": "946fb9e709ee720ba6a1b6393bde49dba539f0ced2a028c3e00a7712b1393cb4",
+      "description_characters": 145,
+      "expected_source": "localized frozen candidate",
+      "description_literal_exact": true,
+      "title_canonical_route_language_unchanged": true,
+      "metadata_translation_added": true,
+      "body_translation_status": "existing outdated body preserved"
+    }
+  ],
+  "initial_failure": {
+    "file": "pajamas_guide_meta_locale_heads_after.json",
+    "status": "FAILED exact English description on en/pl/ru/sv",
+    "detail": "Literal each person&#39;s appeared in DOM metadata. The failure is retained; final checks use direct Unicode equality with no entity decoding, whitespace rewriting or normalization to manufacture a pass.",
+    "correction": "One source punctuation change; localized values unchanged."
+  },
+  "evidence_limits": [
+    "Four successful mutations are the recorded operations, not an independent account activity audit. Rootcart0/Englishrestoration flags are supplied observations, not recreated buyer-flow tests.",
+    "The initial translation receipt stores resourceId/submittedcount/results but does not retain its exact submitted request/digest. Its17results and separate afterstate are consistent; final registration explicitly records all17variables and live source digest.",
+    "Metadata-only scope preserves rather than repairs the17outdatedlocalizedbodies. No native-speaker acceptance, full-page translation, productfit, checkout, safety or profitability certification follows.",
+    "No Google-displayed snippet, index refresh, ranking, incrementalvisit, retainedorder or revenue gain was observed by this review. Publication progress is not traffic outcome proof.",
+    "Recovery remains guarded and non-atomic if ever needed; no deletion or rollback was executed by this reviewer."
+  ],
+  "source_bindings": [
+    {
+      "file": "pajamas_guide_meta_localized_execution.json",
+      "sha256": "e10fedcd99e963cbcc9bfe8deab81a80dbf2861ce0e3aaf6a095421971b8f6d2"
+    },
+    {
+      "file": "pajamas_guide_meta_localized_execution_plan.json",
+      "sha256": "957aeef06edfb70a20c49e0c2a3b942a69ea87df8b0d97a7624a4896f244c570"
+    },
+    {
+      "file": "pajamas_guide_meta_localized_review.json",
+      "sha256": "6165b0296396c848b9b9afc1c23e4c95ab01d40e550e973654937da5fcb1bec1"
+    },
+    {
+      "file": "pajamas_guide_meta_localized_candidate.json",
+      "sha256": "c199ad6c58f1a40d78ee268335528ac86542fbed393d30eb8f3cb73d9ba984c1"
+    },
+    {
+      "file": "pajamas_guide_meta_punctuation_addendum.json",
+      "sha256": "57c969295a02b1c0e7c5c47c0e881f482927fa39503b05df1daa5b6ac9844d2d"
+    },
+    {
+      "file": "pajamas_guide_meta_before.json",
+      "sha256": "2165d2fa6e1bd304e149c5ae77a03f381769d8e9864d37cd91d12b7cd9a4bc02"
+    },
+    {
+      "file": "pajamas_guide_meta_all_locale_before.json",
+      "sha256": "5cf39cda08f8232b3056ca41e822d70135e56c8d19a5560692a3a9dee05011be"
+    },
+    {
+      "file": "pajamas_guide_meta_locale_heads_before.json",
+      "sha256": "f2788c7a5968b8447f53ed6015c5e5c8be632c3cf80c989ad2cbd63e032ee850"
+    },
+    {
+      "file": "pajamas_guide_meta_localized_api_after.json",
+      "sha256": "c9d046796807c9fa24e565509390b500a8af952f8001dd8a3b8236bec6df5d6b"
+    },
+    {
+      "file": "pajamas_guide_meta_locale_heads_after.json",
+      "sha256": "2a3c916aaf995b7fc8fd4e9f12dbda75695030f556f1933a0eeb6a5a7b3516e2"
+    },
+    {
+      "file": "pajamas_guide_meta_final_api_after.json",
+      "sha256": "21bf9dd2f1049ff00eabd91da891348dd77f0503f537bbfc805a17681386c5a5"
+    },
+    {
+      "file": "pajamas_guide_meta_locale_heads_final.json",
+      "sha256": "e85af9982a734f9820043e61286d1d18fd185a36b1ac90e8c667f624df810ad4"
+    },
+    {
+      "file": "pajamas_guide_meta_primary_mutation_receipt.json",
+      "sha256": "8ab9c1b300a8a95ba7b8516ff8fc1cd37f8f20a87deb0d79a91eb432e3e2344d"
+    },
+    {
+      "file": "pajamas_guide_meta_translation_mutation_receipt.json",
+      "sha256": "622958909d907eea88de444b4e44f13ce930c114652efb79ed38232b74bb4b1f"
+    },
+    {
+      "file": "pajamas_guide_meta_punctuation_mutation_receipt.json",
+      "sha256": "6c7c78e28e438b9c7b0d62f76dd812a68701e5a0978f825c785cf179d249bf58"
+    },
+    {
+      "file": "pajamas_guide_meta_final_translation_receipt.json",
+      "sha256": "c952fabc9bd9653bf2b4965feed4d879aa92a49c8fef4b702c297a994d368121"
+    }
+  ],
+  "next_measurement": "Use September7–13 as the first full observation week; retain exactGSCcompletedcutoff and page/query scope, then reconcile downstream retained orders without attributing pre-edit changes or agent traffic as lift. No new schedule or spend action created.",
+  "reviewer_external_actions": 0,
+  "reviewer_canonical_edits": 0
+}

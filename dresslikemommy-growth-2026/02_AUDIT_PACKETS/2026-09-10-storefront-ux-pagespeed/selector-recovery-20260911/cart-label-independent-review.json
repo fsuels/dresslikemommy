@@ -1,0 +1,179 @@
+{
+  "schema": "dlm.cart-label-independent-review.v2",
+  "reviewed_at_utc": "2026-09-11T22:08:55.731133+00:00",
+  "reviewer": "theme_audit_review",
+  "verdict": "PASS_WITH_LIMITS",
+  "proposal_state_at_review": "LOCAL_ONLY",
+  "scope": "Independent source and offline regression review of exactly two proposed files against the already uploaded three-file selector repair. Reviewer did not build the change or perform browser/API actions. Only this review file is reviewer-owned.",
+  "target_theme_id": "137888792673",
+  "target_role_from_saved_readback": "UNPUBLISHED",
+  "approved_scope": "Stage only the two exact files and hashes below on the existing unpublished draft after root completes the fresh guard, exact inverse and composite Theme Check. These overlap one previously staged file, so the complete selector recovery modifies four distinct theme files. This is not publication approval or rendered buyer acceptance.",
+  "summary": "The revised proposal preserves source size labels in tagged cart/order fields, native dropdown options and the native mobile sticky. It also appends the missing sticky size placeholder only when absent. Existing global guide formatting, unit conversions and role/variant resolvers are preserved. Independent tests pass 5/5 plus 11/11, including actual extracted mobile code, the missing-placeholder case, bypass of an incorrect age formatter, disabled native Add and unchanged matching-set routing. No blocking source defect was found. Actual updated-draft buyer verification remains required.",
+  "superseded_single_asset_review": {
+    "verdict": "PASS_WITH_LIMITS",
+    "scope": "One-asset tagged cart/order display correction only; superseded by this two-file review.",
+    "asset_sha256": "595baa05bd0e9198a3d62b7b31679116ef3426ab9cb8baf3551711d990284587",
+    "independent_tests_passed": 4,
+    "finding_retained": "Reviewer identified native mobile sticky and native dropdown age-formatting paths still open; root then confirmed missing mobile size text and expanded only the affected display consumers."
+  },
+  "assets": [
+    {
+      "filename": "assets/size-conversion.js",
+      "baseline_sha256": "1d10cacb423cec6a5b1685a717b2ac36c11fe010578773bd1ae7c4cd797e8652",
+      "baseline_md5": "dd0b261f9fceca1fd216d47a13638f43",
+      "baseline_bytes": 45146,
+      "proposed_sha256": "73aa1d9a808e5001d11f80bef578c383b3074f21ebdf059f7e2da35c7ecfe5ed",
+      "proposed_md5": "0a629a8075f5880eafb30de976221cd2",
+      "proposed_bytes": 45109
+    },
+    {
+      "filename": "sections/main-product.liquid",
+      "baseline_sha256": "465f76abe0565ff88ffcc01ef3e0f187bece84a1f636cff4f19e75de82ce0c6e",
+      "baseline_md5": "865200e2da003da2ab89bf32340fbd87",
+      "baseline_bytes": 190561,
+      "proposed_sha256": "754fab75e951e02ce26fb69f3d9ec633d19eafa4e081239b93ed20feeffcd429",
+      "proposed_md5": "90c30ffea4c784f7dea0f822f9a0c42f",
+      "proposed_bytes": 190415
+    }
+  ],
+  "manifest": "cart-label-repair/manifest.json",
+  "manifest_sha256": "30d099bae7c19fb8b6e022d35e6d72ca1c7aa3c9714be81e1e2dd2937af82728",
+  "exact_diffs": [
+    "cart-label-repair/size-conversion.js.diff",
+    "cart-label-repair/main-product.liquid.diff"
+  ],
+  "independent_hash_MD5_size_checks": "PASS",
+  "outside_declared_display_blocks_bytes_identical": true,
+  "source_binding": {
+    "file": "cart-label-repair/before-source.json",
+    "captured_at_utc": "2026-09-11T22:02:27.863Z",
+    "preview_id": "137888792673",
+    "preview_role": "UNPUBLISHED",
+    "both_baseline_md5_and_size_match_saved_preview": true,
+    "main_id": "133290917985",
+    "main_role": "MAIN",
+    "note": "main-product baseline is the already uploaded selector-repair body (MD5 865200e2da003da2ab89bf32340fbd87), not the earlier frozen V7 body. size-conversion baseline matches both saved draft and MAIN. Reviewer performed no fresh API query."
+  },
+  "root_cause": {
+    "source": "../candidate/assets/size-conversion.js:279",
+    "description": "applyFormattedSizeLabels applies getFrontendSizeDisplayLabel or replaceSizeTokensInText to data-size-display-value. The global height map therefore changes exact commercial sizes, including 100cm and height tokens in full order variant titles, into age labels.",
+    "parent_browser_observation": "Root reports ordinary E1 100cm selection added exact variant 43821479526497 at AUD 34; drawer visible size became 2–3Y while Remove aria text retained 100cm. This reviewer did not repeat that browser action.",
+    "independent_baseline_reproduction": "Executing the actual baseline script in jsdom converts a tagged 100cm span to 2–3Y."
+  },
+  "tagged_Liquid_consumers": [
+    {
+      "file": "snippets/cart-drawer.liquid",
+      "lines": [
+        280,
+        307
+      ],
+      "values": "Size option and size line property"
+    },
+    {
+      "file": "sections/main-cart-items.liquid",
+      "lines": [
+        242,
+        263
+      ],
+      "values": "Size option and size line property"
+    },
+    {
+      "file": "sections/cart-notification-product.liquid",
+      "lines": [
+        44,
+        64
+      ],
+      "values": "Size option and size line property"
+    },
+    {
+      "file": "sections/main-order.liquid",
+      "lines": [
+        73,
+        90
+      ],
+      "values": "Full variant title and size line property"
+    }
+  ],
+  "reviewed_changes": [
+    "size-conversion.js:279 now writes tagged raw attribute text through textContent, trimming only surrounding whitespace; it no longer converts purchased height labels into age recommendations.",
+    "size-conversion.js:444 preserves native size option display text and data-display-label from option.value. Submitted values and selected option remain intact.",
+    "main-product.liquid:1876 appends __SIZE__ only when the existing localized selected-size template omits it; present placeholders and localized prefix text remain intact.",
+    "main-product.liquid:2362 uses raw selected native size values rather than DLMSizeLabelFormatter. Matching-set summary and Add routing code remain unchanged."
+  ],
+  "preservation_findings": [
+    "Initial document processing, added-element/fragment observation and cart:updated processing remain byte-identical. Text-only writes do not re-enter the element-only mutation path.",
+    "All size-conversion bytes outside applyFormattedSizeLabels and applyFrontendSizeOptionLabels are identical. Measurement functions, size-chart handling and exported formatter remain unchanged.",
+    "All main-product bytes outside the single placeholder guard and syncStickySize display function are identical to the already uploaded three-file revision, preserving fallback event routing and observer rebinding.",
+    "Existing guide label lookup in ruler-sync JS4002–4027 includes raw option.value and the preserved formatter-derived alias, so displaying the raw dropdown value does not remove the prior guide matching alias.",
+    "No variant ID, SKU, option value, quantity, price, source measurement, cart API path, event name or eligibility condition is changed."
+  ],
+  "independent_tests": [
+    {
+      "file": "cart-label-repair/cart-label.test.mjs",
+      "sha256": "13dc57db283dc241b91fd3a4c032db6bde25519c8391c50689895a6919236d90",
+      "command": "node --test selector-recovery-20260911/cart-label-repair/cart-label.test.mjs",
+      "passed": 5,
+      "failed": 0,
+      "exit_code": 0,
+      "duration_ms": 359.124917,
+      "runtime_errors": 0,
+      "parent_result_sha256": "4d50915959e4c7d9baa9214e7efbd3028b32a9b3d908f3230a77c827c0786818",
+      "checks": [
+        "Actual baseline100cm→2–3Y reproduction",
+        "Raw tagged heights, adult editions, explicit roles and whole order titles",
+        "Added-node and cart:updated source-label restoration",
+        "Native dropdown display and submitted values",
+        "Representative cm/in/kg/lb conversion and exported guide formatter preservation"
+      ]
+    },
+    {
+      "file": "selector-recovery-current.test.mjs",
+      "sha256": "828164f17083bd305fd5a8683629d86948a5a81fe5dea0c1f7721c2178688436",
+      "command": "node --test selector-recovery-20260911/selector-recovery-current.test.mjs",
+      "passed": 11,
+      "failed": 0,
+      "exit_code": 0,
+      "duration_ms": 4670.743625,
+      "runtime_errors": 0,
+      "checks": [
+        "Exact source SKU/option replay of E1/E2/Trail and six buyer holdouts",
+        "All240 source products: grouping changes only Trail and fallback onlyE1/E2",
+        "Actual latest extracted mobile script tested with a missing __SIZE__ template and an intentionally incorrect old age formatter; raw selected size appears after its scheduled animation frame",
+        "Both native sticky routes forward to native Add and respect disabled state at390/1280px",
+        "Supported matching-set sticky routes remain bundle-routed"
+      ]
+    }
+  ],
+  "test_limits": "Offline jsdom constructed-DOM tests, not full Liquid/browser rendering. Unit tests expose existing unit helpers for inspection. Existing guide formatter preservation is not guide-truth certification. The mobile regression now waits for the actual scheduled animation frame; root reports its earlier pre-frame assertion failure was retained as history and required no source change.",
+  "prior_residual_resolution": {
+    "native_dropdown": "Addressed in the revised size-conversion proposal; independently tested.",
+    "native_mobile_selected_size": "Addressed in revised main-product proposal; independently tested against missing-placeholder copy and an incorrect old formatter.",
+    "actual_buyer_acceptance": "PENDING_ROOT_UPDATED_DRAFT_RECHECK"
+  },
+  "theme_check": {
+    "status": "PASS_ROOT_RUN_EVIDENCE_REVIEWED",
+    "root_reported_exit_code": 0,
+    "observed_diagnostics": [],
+    "observed_stderr_empty": true,
+    "checked_copy_files": 527,
+    "reviewer_copy_mismatches": 0,
+    "basis": "Checked copy is byte-identical to the four-file final overlay plus523frozenV7files. Reviewer verified copy and results, not a second CLI run.",
+    "reviewer_reran": false
+  },
+  "remaining_acceptance": [
+    "Root completes current-target guard and exact before-state inverse before staging; composite Theme Check evidence now passed.",
+    "Read back both uploaded hashes and verify ordinary E1 100cm selection, raw native sticky/cart size, exact variant43821479526497, AUD34 price, removal text and cleanup on the updated draft.",
+    "Complete affected E1/E2/Trail ordinary desktop/mobile selector/cart proof and confirm actual guide interaction and preserved matching-set behavior.",
+    "No MAIN write, publication, source-product edit, all-language certification or whole-store perfection is implied."
+  ],
+  "complete_overlay_review": {
+    "plan": "cart-label-repair/complete-plan.json",
+    "verified_four_changed_523_preserved_vs_frozen": true,
+    "verified_63_differences_vs_saved_current_MAIN": true,
+    "MAIN_modified": 61,
+    "MAIN_added": 2,
+    "MAIN_deleted": 0,
+    "MAIN_preserved": 464,
+    "note": "Local expected overlay comparison; second upsert and buyer acceptance are still pending."
+  }
+}

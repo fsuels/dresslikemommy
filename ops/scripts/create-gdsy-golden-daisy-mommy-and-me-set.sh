@@ -42,7 +42,7 @@ PRINT_NAME = "Golden Daisy"
 SHORTCODE = "GDSY"
 COLOR_TOKEN = "GOLDIV"
 COLOR_NAME = "Golden Daisy"
-VENDOR_URL = "https://detail.1688.com/offer/942751267608.html?"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
@@ -415,7 +415,7 @@ def validate_preflight(body: str, variants: list[dict]) -> None:
             errors.append("FORCE_SPEC_PRICES guard failed")
         if variant["inventoryItem"]["cost"] != cost_for(variant["price"]):
             errors.append("cost is not 50 percent of price")
-    forbidden = ["1688", "Alibaba", "detail.1688.com", VENDOR_URL]
+    forbidden = ["1688", "Alibaba", "detail.1688.com"]
     shopper_payload = "\n".join([TITLE, SEO_TITLE, SEO_DESCRIPTION, body, PRODUCT_TYPE, ", ".join(tags())]).lower()
     for token in forbidden:
         if token.lower() in shopper_payload:

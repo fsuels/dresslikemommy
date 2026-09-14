@@ -1,0 +1,155 @@
+{
+  "schema": "dlm.merchant_return_assignment_capability.v1",
+  "task_id": "TA07-RETURN-ASSIGNMENT-20260914-1658",
+  "executor_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "account_id": "513542500",
+  "sources": [
+    {
+      "country": "US",
+      "source_id": "10727274744",
+      "feed_sha256": "b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571",
+      "source_completed_at_utc": "2026-09-14T13:16:10.466Z"
+    },
+    {
+      "country": "AU",
+      "source_id": "10727245667",
+      "feed_sha256": "f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236",
+      "source_completed_at_utc": "2026-09-14T15:03:55.842Z"
+    }
+  ],
+  "scope": "Read-only capability inspection and current frozen source-to-offer mapping. No policy or assignment mutation.",
+  "structured_access": {
+    "merchant_account_connector_available": false,
+    "method": "Callable tool metadata discovery; no Merchant account return-policy read connector found",
+    "shopify_live_refresh": "NOT RUN; current submitted frozen snapshots reused"
+  },
+  "browser": {
+    "id": "1",
+    "tab_id": "1",
+    "task_owned": true,
+    "native_chrome_or_mac_inspection": false,
+    "account_identity": "513542500",
+    "handoff_marked_at_utc": "2026-09-14T17:16:53.000Z"
+  },
+  "policy_table": {
+    "url": "https://merchants.google.com/mc/returnoverview?a=513542500&hl=en",
+    "snapshot_capture_window_utc": [
+      "2026-09-14T17:08:38.346Z",
+      "2026-09-14T17:13:47.610Z"
+    ],
+    "timestamp_limit": "Per-snapshot timestamp was not saved; this is the bounded capture window, not an exact read clock.",
+    "heading": "Return policies",
+    "rows": [
+      {
+        "id": "9309759641",
+        "name": "Standard for Austria",
+        "status": "Verified",
+        "return_window": "30 days",
+        "return_cost": "Customer responsibility",
+        "products_literal": "-",
+        "exceptions_displayed": 0
+      }
+    ],
+    "assignment_or_export_control_exposed_in_table": false,
+    "prior_country_editor_readback": {
+      "receipt": "../eligibility_returns_1244/return_policy_source_qualification.json",
+      "observed_on": "2026-09-14",
+      "recorded_at_utc": "2026-09-14T12:59:36Z",
+      "countries": [
+        "AT"
+      ],
+      "refund_processing_days": null
+    },
+    "country_limit": "Current grid confirms the same sole policy ID/name but does not independently expose the full country editor. Prior same-day AT-only editor result is reused, not restamped as a new country-field read. US/AU configured or inferred effective assignment is not established."
+  },
+  "representatives": [
+    {
+      "country": "AU",
+      "source_id": "10727245667",
+      "offer_id": "shopify_AU_6718945034337_39756755861601",
+      "source_name_observed": "DLM AU English Free Listings",
+      "product_title": "Mom & Child Matching Two Piece Swimsuit",
+      "source_eligibility": "EXCLUDED_NONDEFECTIVE_SOURCE_EXCEPTION",
+      "additional_details_expanded_at_utc": "2026-09-14T17:14:13.185Z",
+      "raw_and_site_details_expanded_at_utc": "2026-09-14T17:14:43.324Z",
+      "additional_processed_rows": [
+        "destination_excluded shopping ads",
+        "item_group_id shopify_AU_6718945034337"
+      ],
+      "raw_return_policy_label_present": false,
+      "raw_returns_override_present": false,
+      "information_found_on_site_region_text": "",
+      "effective_return_policy_exposed": false,
+      "effective_return_policy": "UNKNOWN"
+    },
+    {
+      "country": "US",
+      "source_id": "10727274744",
+      "offer_id": "shopify_US_7230336729185_41883237220449",
+      "source_name_observed": "PRODUCTS SOURCE 3",
+      "product_title": "Minimalist Heart T-Shirt Set - Simple Love Design i... | DLM",
+      "source_eligibility": "UNKNOWN",
+      "additional_details_expanded_at_utc": "2026-09-14T17:15:51.245Z",
+      "raw_and_site_details_expanded_at_utc": "2026-09-14T17:15:59.872Z",
+      "additional_processed_rows": [
+        "destination_excluded shopping ads",
+        "item_group_id shopify_US_7230336729185"
+      ],
+      "raw_return_policy_label_present": false,
+      "raw_returns_override_present": false,
+      "information_found_on_site_region_text": "",
+      "effective_return_policy_exposed": false,
+      "effective_return_policy": "UNKNOWN"
+    }
+  ],
+  "disclosure_verification": "Read aria-expanded=false before opening AU Additional details; verified true. Opened both raw source and information-found-on-site disclosures for AU and US. Icons alone were not used as expanded-state evidence.",
+  "complete_export": {
+    "status": "NOT OBTAINED",
+    "new_export_attempt": "NOT RUN",
+    "reason": "The ordinary representative UI plus policy table did not expose effective assignment. The dispatch authorized stopping this unsupported readback branch. No claim that an export button is currently disabled; no repeated blocked export or hidden API path."
+  },
+  "capability_prerequisite": "COMPLETE_WITH_EXPLICIT_LIMIT",
+  "effective_assignment_prerequisite": "INCOMPLETE_SUPPORTED_READBACK_NOT_OBTAINED",
+  "effective_assignment_verified_offers": 0,
+  "individually_inspected_offers": 2,
+  "remaining_offers_not_individually_inspected": 9480,
+  "operations": {
+    "external_writes": 0,
+    "new_source_refreshes": 0,
+    "uploads": 0,
+    "saves": 0,
+    "policy_edits": 0,
+    "label_edits": 0,
+    "product_edits": 0,
+    "theme_edits": 0,
+    "order_reads": 0,
+    "consent_or_test_purchase_actions": 0,
+    "hosting_or_scheduler_changes": 0
+  },
+  "limits": [
+    "No absent or unmatched label is interpreted as ordinary return eligibility.",
+    "The inspected detail views do not expose effective assignment; this is not proof that Google has no inferred return data.",
+    "The source-backed category exclusion concerns ordinary/nondefective returns; damaged/defective remedies remain separately qualified.",
+    "No all-offer approval, serving, Store Quality, or all-market completion claim.",
+    "Standard for Austria and optional refund-processing days were not edited."
+  ],
+  "official_sources": [
+    {
+      "url": "https://support.google.com/merchants/answer/9445425?hl=en",
+      "use": "Return-policy labels associate offers with nondefault policies; source absence alone does not prove an appropriate country default exists."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/15092880?hl=en",
+      "use": "Absent or unmatched labels may fall back to a configured default, not a certification that this shop has a suitable default or that a product qualifies."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/14011730?hl=en",
+      "use": "Account-level policies and exceptions; Google may collect website return data; uploaded verified policies take precedence."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/17081382?hl=en",
+      "use": "Offer-level returns data can override account policy; no such override exists in these submitted files."
+    }
+  ],
+  "recorded_at_utc": "2026-09-14T17:23:34.331Z"
+}

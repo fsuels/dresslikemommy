@@ -42,7 +42,7 @@ PRINT_NAME = "Peach Sparkle"
 SHORTCODE = "PSPK"
 COLOR_TOKEN = "PEACH"
 COLOR_NAME = "Peach Sparkle"
-VENDOR_URL = "https://detail.1688.com/offer/784122696506.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Dresses"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-4"
@@ -200,7 +200,7 @@ def tags() -> list[str]:
         "Mother L",
         "Mother XL",
         "Mother 2XL",
-        VENDOR_URL,
+
     ]
     return sorted(dict.fromkeys(values))
 

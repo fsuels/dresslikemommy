@@ -1,0 +1,178 @@
+TAP version 13
+# Subtest: the suppression CSS hides only automatic banner selectors
+ok 1 - the suppression CSS hides only automatic banner selectors
+  ---
+  duration_ms: 36.15125
+  type: 'test'
+  ...
+# Subtest: initial preferences survive while automatic banners remain suppressed
+ok 2 - initial preferences survive while automatic banners remain suppressed
+  ---
+  duration_ms: 1.236
+  type: 'test'
+  ...
+# Subtest: preferences opened later survive the existing mutation observer
+ok 3 - preferences opened later survive the existing mutation observer
+  ---
+  duration_ms: 1.41375
+  type: 'test'
+  ...
+# Subtest: required banner preserves the existing visible-banner path
+ok 4 - required banner preserves the existing visible-banner path
+  ---
+  duration_ms: 0.635916
+  type: 'test'
+  ...
+# Subtest: sale-of-data region preserves the existing visible-banner path
+ok 5 - sale-of-data region preserves the existing visible-banner path
+  ---
+  duration_ms: 0.638041
+  type: 'test'
+  ...
+# Subtest: missing Shopify preserves the existing visible-banner path
+ok 6 - missing Shopify preserves the existing visible-banner path
+  ---
+  duration_ms: 0.501625
+  type: 'test'
+  ...
+# Subtest: missing feature loader preserves the existing visible-banner path
+ok 7 - missing feature loader preserves the existing visible-banner path
+  ---
+  duration_ms: 0.329292
+  type: 'test'
+  ...
+# Subtest: feature load error preserves the existing visible-banner path
+ok 8 - feature load error preserves the existing visible-banner path
+  ---
+  duration_ms: 0.541917
+  type: 'test'
+  ...
+# Subtest: missing privacy API preserves the existing visible-banner path
+ok 9 - missing privacy API preserves the existing visible-banner path
+  ---
+  duration_ms: 0.477417
+  type: 'test'
+  ...
+# Subtest: required banner with failing region lookup preserves the existing visible-banner path
+ok 10 - required banner with failing region lookup preserves the existing visible-banner path
+  ---
+  duration_ms: 0.512292
+  type: 'test'
+  ...
+# Subtest: sale-of-data region with failing banner lookup preserves the existing visible-banner path
+ok 11 - sale-of-data region with failing banner lookup preserves the existing visible-banner path
+  ---
+  duration_ms: 0.490333
+  type: 'test'
+  ...
+# Subtest: predicate errors preserve the existing banner choice without deleting preferences
+ok 12 - predicate errors preserve the existing banner choice without deleting preferences
+  ---
+  duration_ms: 0.31675
+  type: 'test'
+  ...
+# Subtest: loading documents wait for DOMContentLoaded before applying the gate
+ok 13 - loading documents wait for DOMContentLoaded before applying the gate
+  ---
+  duration_ms: 0.273125
+  type: 'test'
+  ...
+# Subtest: the observer still stops suppression if the banner becomes visible
+ok 14 - the observer still stops suppression if the banner becomes visible
+  ---
+  duration_ms: 0.334583
+  type: 'test'
+  ...
+# Subtest: a missing body retains the existing no-observer behavior
+ok 15 - a missing body retains the existing no-observer behavior
+  ---
+  duration_ms: 0.313
+  type: 'test'
+  ...
+# Subtest: the footer offers a native translated button and an adjacent polite status outside policy visibility
+ok 16 - the footer offers a native translated button and an adjacent polite status outside policy visibility
+  ---
+  duration_ms: 0.234167
+  type: 'test'
+  ...
+# Subtest: both preferences messages exist in all 35 theme locales, including the 21 published locales
+ok 17 - both preferences messages exist in all 35 theme locales, including the 21 published locales
+  ---
+  duration_ms: 17.253709
+  type: 'test'
+  ...
+# Subtest: connecting the footer never opens preferences or writes consent automatically
+ok 18 - connecting the footer never opens preferences or writes consent automatically
+  ---
+  duration_ms: 0.7955
+  type: 'test'
+  ...
+# Subtest: an unavailable API reports the translated status and permits retry
+ok 19 - an unavailable API reports the translated status and permits retry
+  ---
+  duration_ms: 0.613125
+  type: 'test'
+  ...
+# Subtest: an unavailable method reports the translated status and permits retry
+ok 20 - an unavailable method reports the translated status and permits retry
+  ---
+  duration_ms: 0.347208
+  type: 'test'
+  ...
+# Subtest: repeated clicks call the existing API once, with its receiver and no consent arguments
+ok 21 - repeated clicks call the existing API once, with its receiver and no consent arguments
+  ---
+  duration_ms: 0.590291
+  type: 'test'
+  ...
+# Subtest: a resolved API Promise never restores focus; an observed dialog close does
+ok 22 - a resolved API Promise never restores focus; an observed dialog close does
+  ---
+  duration_ms: 5.1545
+  type: 'test'
+  ...
+# Subtest: closing a dialog does not steal focus already moved to another page control
+ok 23 - closing a dialog does not steal focus already moved to another page control
+  ---
+  duration_ms: 0.946834
+  type: 'test'
+  ...
+# Subtest: synchronous exception reports the translated error, cleans up and allows retry
+ok 24 - synchronous exception reports the translated error, cleans up and allows retry
+  ---
+  duration_ms: 1.200209
+  type: 'test'
+  ...
+# Subtest: rejected Promise reports the translated error, cleans up and allows retry
+ok 25 - rejected Promise reports the translated error, cleans up and allows retry
+  ---
+  duration_ms: 1.086083
+  type: 'test'
+  ...
+# Subtest: an API call with no visible dialog has a bounded retry path
+ok 26 - an API call with no visible dialog has a bounded retry path
+  ---
+  duration_ms: 1.131709
+  type: 'test'
+  ...
+# Subtest: a late rejection from an expired attempt cannot disrupt a newer opening
+ok 27 - a late rejection from an expired attempt cannot disrupt a newer opening
+  ---
+  duration_ms: 0.627625
+  type: 'test'
+  ...
+# Subtest: removing the footer cleans up without moving focus or accepting a late error
+ok 28 - removing the footer cleans up without moving focus or accepting a late error
+  ---
+  duration_ms: 0.607833
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 122.867833

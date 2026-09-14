@@ -1,0 +1,140 @@
+{
+  "schema": "dlm.ga4_sender_parent_acceptance.v1",
+  "action_id": "TA02-PASSIVE-SENDER-20260914-0846",
+  "recorded_at_utc": "2026-09-14T09:52:53.424712+00:00",
+  "parent_before_sha256": "2d10e26828f860e8190ab10df7d2b03b01fa9b4a1f18d0a0f109c58d29be2e20",
+  "source_bindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/execution_checkpoint.json",
+      "sha256": "e9e0e2041dd9d069307a6dc7b1ebc723920fb2a0453436f42ae99f836cb82e34"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/OBSERVATION.json",
+      "sha256": "3fab3be81f3f184ec10a4cb69730e8c041e586e383b637fd5224a2b305c26181"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/READBACK.md",
+      "sha256": "b672e4f0836ed6f3c20b099385ee47ecb5b82dea0e3fb53ceb00be127bd4eac7"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/OPERATOR_CHECKS.json",
+      "sha256": "4673412553b506d0c51fee63cf3961ae7f3fb4fd5246e84285e73fcd758124a9"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/passive_sender_20260914_0846/INDEPENDENT_REVIEW.json",
+      "sha256": "e06ca6c4b8827d58fc2be83edbf5875b44bf2ddfb2fd9424958f5431b65ac667"
+    }
+  ],
+  "bound_manifest_references": {
+    "owner_artifacts": 4,
+    "owner_source_references": 4,
+    "independent_source_references": 2,
+    "all_match": true
+  },
+  "owner_runtime_completion": {
+    "schemaVersion": 1,
+    "cursor": "67d20e47-cfee-4762-8141-4eab957ed9fe:6",
+    "revision": 6,
+    "changed": true,
+    "thread": {
+      "id": "01a086fc-0bf7-71a2-ba21-aa3564fafe30",
+      "hostId": "local",
+      "status": {
+        "type": "idle"
+      }
+    },
+    "latestTurn": {
+      "id": "01a09f3a-9d5e-7a41-8140-be9463e03637",
+      "status": "completed",
+      "error": null,
+      "startedAt": 1789377813,
+      "completedAt": 1789378894,
+      "durationMs": 1080739
+    },
+    "latestAssistantMessageId": null,
+    "latestAssistantMessage": null,
+    "latestToolMarkerId": null,
+    "latestToolMarker": null
+  },
+  "scope": "Accept corrected source reporting and exact failure; not runtime measurement acceptance.",
+  "evidence_reporting_acceptance": "PASS_FOR_CORRECTED_EVIDENCE_REPORTING_WITH_LIMITS",
+  "runtime_acceptance": "NOT_ACCEPTED__COLLECTOR_SUMMARY_COVERAGE_FAILED__CONSENT_SESSION_SEQUENCE_UNKNOWN",
+  "failure": "Ephemeral request matcher omitted analytics.google.com/g/collect; raw records cleared before review, so collector presence cannot be recovered.",
+  "observability_limits": [
+    "Single source context only; child and worker coverage not established.",
+    "Named consent defaults/updates, page_view and session sequence unknown.",
+    "Page opening/reload does not prove a new analytics session."
+  ],
+  "source_review": {
+    "independent_saved_source_checks": 8,
+    "operator_artifact_consistency_checks": 18,
+    "runtime_replayed_by_parent": false,
+    "independent_reviewer": "/root/tag_cleanup_verifier",
+    "independent_capture_executor": false
+  },
+  "existing_matcher_qualification": {
+    "source_path": "ops/scripts/run_google_ads_paid_checkout_capture.py",
+    "source_sha256": "ede408060aae44a751490f5dc68d42a3a306467847cccadd9f88ac68efc1350e",
+    "function": "sanitize_request",
+    "lines": [
+      40,
+      245,
+      251
+    ],
+    "method": "AST extraction of exact existing literal constants and six pure functions; now_iso stubbed to a synthetic label. No module import or CLI execution.",
+    "checks": [
+      {
+        "case": "expected_collector",
+        "expected_match": true,
+        "actual_match": true,
+        "status": "PASS"
+      },
+      {
+        "case": "alternate_collector",
+        "expected_match": true,
+        "actual_match": true,
+        "status": "PASS"
+      },
+      {
+        "case": "collection_path_no_query",
+        "expected_match": true,
+        "actual_match": true,
+        "status": "PASS"
+      },
+      {
+        "case": "lookalike_host_rejected",
+        "expected_match": false,
+        "actual_match": false,
+        "status": "PASS"
+      },
+      {
+        "case": "nonmeasurement_host_rejected",
+        "expected_match": false,
+        "actual_match": false,
+        "status": "PASS"
+      }
+    ],
+    "result": "PASS_5_OF_5_NARROW_SYNTHETIC_ENDPOINT_CASES",
+    "no_code_change_justified": true,
+    "limitations": "This confirms existing expected-endpoint matching only, not complete regional/proxy hosts, child/worker execution coverage or current network behavior. The whole checkout sanitizer can retain transaction fields and must not be reused blindly for a passive trace privacy scope.",
+    "raw_or_customer_data_used": false,
+    "network_requests": 0,
+    "source_code_changes": 0
+  },
+  "preserved": [
+    "Accepted real US GA4 report receipt USD111.96/four variants.",
+    "Completed migration and legacy111181921 disconnection.",
+    "Current Shopify app1780363 Connected/Optimized/access on and conversion measurement On, as of09:05:58UTC.",
+    "No production remedy, reconnect, Always on, manual session_start or new sender inferred.",
+    "Existing native suspension, current paidNONE, owner theme publication and all separate cohort clocks."
+  ],
+  "next_executable_step": "Record the failed attempt and continue independent authorized lanes. Before any future permitted trace, qualify expected-collector matching and actual sender context coverage; no automatic repeat or new harness.",
+  "boundaries": {
+    "production_changes": 0,
+    "second_captures": 0,
+    "order_queries": 0,
+    "consent_changes": 0,
+    "owner_dispatches_after_two": 0,
+    "goal_schedule_changes": 0
+  }
+}

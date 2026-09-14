@@ -58,6 +58,7 @@ def build_program_arguments(parsed: argparse.Namespace) -> list[str]:
         "--pause-ms",
         str(max(parsed.pause_ms, 0)),
         "--initialize-now",
+        "--force-refresh",
     ]
     if parsed.execute:
         args.append("--execute")

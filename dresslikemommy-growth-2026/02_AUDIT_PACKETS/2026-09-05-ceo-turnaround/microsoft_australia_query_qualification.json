@@ -1,0 +1,247 @@
+{
+  "reviewed_at_utc": "2026-09-06T17:19:57.947216+00:00",
+  "verdict": "PASS_FOR_BOUNDED_QUALIFICATION_ONLY",
+  "scope": "Independent local receipt consistency and public primary-document research. No account UI/API, campaign/keyword writes, source UI recreation, retained-order join or launch authorization.",
+  "source_receipts": [
+    {
+      "file": "microsoft_australia_query_readback.json",
+      "sha256": "2cf8bad856f3f97cb9da5a11f340ebc48b5f0bb06b8088b00a3e187c37383525",
+      "captured_at_utc": "2026-09-06T17:10:20.363Z"
+    },
+    {
+      "file": "microsoft_australia_query_revenue_readback.json",
+      "sha256": "f65032971a059942e3ca24502e54251101351d5f9a43c5057110da4e5b935707",
+      "captured_at_utc": "2026-09-06T17:13:02.682Z"
+    }
+  ],
+  "report_identity": {
+    "account_id": "477439",
+    "customer_id": "770182",
+    "campaign_id": "402056810",
+    "campaign_name": "Australia - Cold Traffic New",
+    "date_label": "Entire time: 9/6/2023 - 9/6/2026",
+    "timezone": "Eastern Time (U.S. & Canada)"
+  },
+  "report_currency": "UNKNOWN",
+  "freshness": "Fresh September 6 read of September 6, 2023–September 6, 2026 historical aggregates, including the then-current calendar day; not current test performance.",
+  "machine_checks": {
+    "exact_20_row_order_and_first_19_cells_unchanged": true,
+    "unique_query_rows": 20,
+    "all_headers_match_except_added_revenue": true,
+    "receipt_identity_and_dates_match": true,
+    "positive_mixed_conversion_rows": 9,
+    "zero_mixed_conversion_rows": 11,
+    "positive_revenue_rows": 5,
+    "positive_conversion_zero_revenue_rows": 4,
+    "visible_totals": {
+      "spend": "5.08",
+      "clicks": "23",
+      "impressions": "33",
+      "mixed_conversions": "30.00",
+      "reported_revenue": "667.00"
+    },
+    "positive_revenue_totals": {
+      "spend": "1.85",
+      "clicks": "6",
+      "impressions": "14",
+      "mixed_conversions": "13.00",
+      "reported_revenue": "667.00"
+    },
+    "positive_conversion_zero_revenue_totals": {
+      "spend": "1.77",
+      "clicks": "8",
+      "impressions": "8",
+      "mixed_conversions": "17.00",
+      "reported_revenue": "0.00"
+    },
+    "whole_search_terms_report_header": {
+      "reported_terms": 307,
+      "spend": "75.03",
+      "clicks": "304",
+      "impressions": "4515",
+      "mixed_conversions": "38.00"
+    },
+    "header_minus_visible_rows": {
+      "spend": "69.95",
+      "clicks": "281",
+      "impressions": "4482",
+      "mixed_conversions": "8.00"
+    },
+    "five_positive_revenue_rows_equal_receipt_campaign_revenue": true,
+    "coverage_conclusion": "Only 20 rendered rows, not all 307 terms or a verified export. The 8-conversion residual remains unrepresented despite descending sort; no causal explanation or row allocation is proved. Threshold and rendering limits do not prove the exact cause.",
+    "account_currency_resolved": false,
+    "query_goal_join_verified": false,
+    "order_deduplication_verified": false
+  },
+  "ranked_intent_candidates": [
+    {
+      "rank": 1,
+      "source_row_1based": 3,
+      "query": "matching mummy and daughter dresses",
+      "historical_added_excluded_label": "None",
+      "historical_delivered_match_type": "Exact (close variant)",
+      "ad_group_name": "Mommy & Me",
+      "reported_keyword": "mother daughter dresses that match",
+      "spend": "0.13",
+      "clicks": 1,
+      "impressions": 1,
+      "mixed_conversions": "3.00",
+      "reported_revenue": "82.00",
+      "classification": "FIRST_READ_EXACT_DRESS_INTENT",
+      "proposed_scope": "Exact-intent qualification only; not an executable new keyword. Phrase is a later bounded alternative if overlap and current product fit permit.",
+      "unique_orders": null,
+      "verified_purchase_goal_count": null,
+      "currency_code": null,
+      "profit": null
+    },
+    {
+      "rank": 2,
+      "source_row_1based": 4,
+      "query": "mommy and me matching dresses",
+      "historical_added_excluded_label": "Added",
+      "historical_delivered_match_type": "Exact",
+      "ad_group_name": "Mommy & Me",
+      "reported_keyword": "mommy and me matching dresses",
+      "spend": "0.15",
+      "clicks": 1,
+      "impressions": 1,
+      "mixed_conversions": "3.00",
+      "reported_revenue": "71.00",
+      "classification": "FIRST_READ_EXACT_DRESS_INTENT_REUSE_ADDED",
+      "proposed_scope": "Exact-intent qualification only; not an executable new keyword. Phrase is a later bounded alternative if overlap and current product fit permit.",
+      "unique_orders": null,
+      "verified_purchase_goal_count": null,
+      "currency_code": null,
+      "profit": null
+    },
+    {
+      "rank": 3,
+      "source_row_1based": 6,
+      "query": "mommy and me dresses",
+      "historical_added_excluded_label": "Added",
+      "historical_delivered_match_type": "Exact",
+      "ad_group_name": "Mommy & Me",
+      "reported_keyword": "+mommy and +me +dresses",
+      "spend": "0.23",
+      "clicks": 1,
+      "impressions": 8,
+      "mixed_conversions": "2.00",
+      "reported_revenue": "184.00",
+      "classification": "FIRST_READ_EXACT_DRESS_INTENT_REUSE_ADDED",
+      "proposed_scope": "Exact-intent qualification only; not an executable new keyword. Phrase is a later bounded alternative if overlap and current product fit permit.",
+      "unique_orders": null,
+      "verified_purchase_goal_count": null,
+      "currency_code": null,
+      "profit": null
+    },
+    {
+      "rank": 4,
+      "source_row_1based": 5,
+      "query": "mommy and me outfit",
+      "historical_added_excluded_label": "None",
+      "historical_delivered_match_type": "Exact (close variant)",
+      "ad_group_name": "Mommy & Me",
+      "reported_keyword": "mommy and me clothes",
+      "spend": "0.97",
+      "clicks": 2,
+      "impressions": 3,
+      "mixed_conversions": "3.00",
+      "reported_revenue": "160.00",
+      "classification": "RESERVE_BROADER_OUTFIT_INTENT",
+      "proposed_scope": "Exact-intent qualification only; not an executable new keyword. Phrase is a later bounded alternative if overlap and current product fit permit.",
+      "unique_orders": null,
+      "verified_purchase_goal_count": null,
+      "currency_code": null,
+      "profit": null
+    }
+  ],
+  "additional_value_bearing_reserve": {
+    "source_row_1based": 7,
+    "query": "matching family outfit quality sets",
+    "spend": "0.37",
+    "clicks": 1,
+    "mixed_conversions": "2.00",
+    "reported_revenue": "170.00",
+    "reason": "Broader family/set language does not establish dress or separate-piece landing fit; retain for later review, not the first narrow dress test. Query wording is not a substantiated product-quality claim."
+  },
+  "exclusions_and_holds": [
+    {
+      "source_rows_1based": [
+        12,
+        19
+      ],
+      "status": "EXCLUDE_FROM_INITIAL_NONBRAND_DRESS_CANDIDATE_SET_ONLY",
+      "reason": "Inferred named-retailer intent; not a verified account-wide irrelevant negative or proved wasted spend. No negative write proposed."
+    },
+    {
+      "source_rows_1based": [
+        2,
+        10,
+        11,
+        14,
+        18,
+        20
+      ],
+      "status": "HOLD_FOR_EXACT_PRODUCT_AND_SEASON_FIT",
+      "reason": "Shirts, oodie/sweatshirt, precise colour/style/size, and Christmas intent require corresponding current offers; no blanket negative inferred."
+    },
+    {
+      "source_rows_1based": [
+        1,
+        8,
+        9
+      ],
+      "status": "NO_PURCHASE_PRIORITY_FROM_GOAL_COUNT_ALONE",
+      "reason": "17 mixed conversions across these rows and the shirt row have zero reported revenue. In particular 11 conversions on one click is not 11 orders."
+    },
+    {
+      "source_rows_1based": [
+        13,
+        15,
+        16,
+        17
+      ],
+      "status": "RETAIN_AS_UNRESOLVED_RELEVANT_LANGUAGE",
+      "reason": "Zero reported goals in this tiny historical sample do not establish irrelevance, no orders, or low future value."
+    }
+  ],
+  "anti_cannibalization": "Rows 4 and 6 already show Added. Use exact current keyword IDs, bid match type and statuses before any proposal; delivered Exact/close variant and plus-sign spelling do not prove current configured bid match type. Reuse or consolidate coverage; do not create overlapping exact/phrase synonym clones.",
+  "one_next_native_read": {
+    "path": "Reporting > Templates > Keyword > Modify",
+    "scope": "Account 477439, campaign 402056810, September 6, 2023–September 6, 2026; summary by reported keyword and goal, prioritizing the candidate keyword names already evidenced.",
+    "requested_dimensions": [
+      "Keyword",
+      "KeywordId",
+      "AdGroupId",
+      "CampaignId",
+      "Goal",
+      "GoalId",
+      "GoalType",
+      "Currency (schema: CurrencyCode)"
+    ],
+    "requested_metrics": [
+      "Conversions / All conversions",
+      "Revenue / All revenue",
+      "Spend",
+      "Clicks"
+    ],
+    "interpretation": "Read goal-specific counts and values separately. Keep each unsegmented keyword spend/click denominator once; never sum repeated goal-row costs or treat blank goal cost as zero.",
+    "practical_limit": "The native Keyword template and Modify path are documented; Goal/GoalId/GoalType and CurrencyCode coexist in the official KeywordPerformanceReportColumn schema. Their simultaneous availability in this exact native picker is unverified; inspect it once and report a precise missing-field limitation if absent. Do not assume API schema proves this UI combination.",
+    "currency_limit": "CurrencyCode denotes account currency. Native Attributes search returning no Currency field does not settle all reports. The ConversionPerformanceReportColumn schema lacks CurrencyCode, so it alone is not a documented single-report answer to both questions.",
+    "no_save_or_bypass": "Use ordinary permitted read/preview controls; no report schedule, account change, campaign mutation, or workaround for blocked chrome://downloads.",
+    "primary_sources": {
+      "native_keyword_template": "https://help.ads.microsoft.com/apex/index/3/en-us/50833",
+      "keyword_report_schema": "https://learn.microsoft.com/en-us/advertising/reporting-service/keywordperformancereportcolumn?view=bingads-13",
+      "native_currency_definition": "https://help.ads.microsoft.com/apex/index/3/en/50824",
+      "conversion_report_schema": "https://learn.microsoft.com/en-us/advertising/reporting-service/conversionperformancereportcolumn?view=bingads-13"
+    }
+  },
+  "decision_limits": [
+    "Reported 667 equals campaign value, not 667 of verified retained merchandise revenue; never allocate URL versus event goal counts to queries without the join.",
+    "Every positive-value query has only 1–2 clicks; selection on conversions/revenue is biased and cannot establish repeatable CPA, CVR or return.",
+    "Do not compare 0.13/0.15 account-unit observations with USD 0.15, claim USD 10.77 CPA viability, or infer the approximately 6.5x profitable-growth objective is met.",
+    "Candidate landing/product fit, actual allowable CPA, current matching/status/exposure and exact spend authority remain separate gates. No live test or negative authorized by this report.",
+    "Historical attributed traffic does not prove incremental traffic, new customers, lift or profitable sales. Zero rows are only zero as displayed.",
+    "The source records historical conversions still present after Smart exclusion; no retroactive recalculation or current result claimed."
+  ]
+}

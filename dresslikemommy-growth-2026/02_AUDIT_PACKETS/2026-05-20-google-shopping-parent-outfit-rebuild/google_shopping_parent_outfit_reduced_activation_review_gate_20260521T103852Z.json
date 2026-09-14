@@ -1,0 +1,80 @@
+{
+  "candidate_scope": {
+    "parent_products": 203,
+    "parent_products_by_lane": {
+      "daddy_and_me": 34,
+      "family_matching": 77,
+      "mommy_and_me": 92
+    },
+    "rows": 4370,
+    "rows_by_lane": {
+      "daddy_and_me": 522,
+      "family_matching": 2571,
+      "mommy_and_me": 1277
+    },
+    "rows_by_subgroup": {
+      "dresses": 503,
+      "pajamas": 252,
+      "sets": 167,
+      "sweaters_outerwear": 236,
+      "swimwear": 484,
+      "tops_shirts": 2728
+    }
+  },
+  "evidence": {
+    "candidate_csv": "google_shopping_parent_outfit_reduced_activation_review_candidates_20260521T103852Z.csv",
+    "gate_json": "google_shopping_parent_outfit_merchant_feed_gate_20260521T103730Z.json",
+    "json": "google_shopping_parent_outfit_reduced_activation_review_gate_20260521T103852Z.json",
+    "out_of_stock_hold_csv": "google_shopping_parent_outfit_eligibility_out_of_stock_rows_20260521T095911Z.csv",
+    "ready_products_csv": "google_shopping_parent_outfit_ready_products_20260521T103730Z.csv",
+    "report_md": "GOOGLE_SHOPPING_PARENT_OUTFIT_REDUCED_ACTIVATION_REVIEW_GATE_20260521T103852Z.md",
+    "unresolved_scope_csv": "google_shopping_parent_outfit_unresolved_offer_exclusion_scope_20260521T095911Z.csv"
+  },
+  "gate_passed": true,
+  "generated_at_utc": "20260521T103852Z",
+  "guardrails": [
+    "No external reads or writes.",
+    "No Shopping activation or unpause.",
+    "No Merchant feed/source change.",
+    "No Shopify product/publication/inventory/product-data change.",
+    "No Google Ads campaign/product-group/budget/bid/status/conversion/billing change.",
+    "No broad sync or source reset."
+  ],
+  "held_scope": {
+    "out_of_stock_hold_rows": 20,
+    "unresolved_offer_exclusion_rows": 141,
+    "unresolved_rows_now_ready_but_still_held": [
+      "shopify_US_7535944368225_44861276684385",
+      "shopify_US_7535944368225_44861276782689"
+    ]
+  },
+  "reason": "REDUCED_READ_ONLY_ACTIVATION_REVIEW_SCOPE_CLEAN",
+  "safety_checks": {
+    "bad_catchall_units": 0,
+    "campaign_status_ok": true,
+    "candidate_all_in_spec": true,
+    "candidate_all_in_stock": true,
+    "candidate_all_ready": true,
+    "candidate_excludes_out_of_stock_hold": true,
+    "candidate_excludes_unresolved_scope": true,
+    "candidate_images_match_spec": true,
+    "candidate_labels_match_spec": true,
+    "latest_gate_image_mismatches": 0,
+    "latest_gate_label_mismatches": 0,
+    "latest_gate_missing_live_images": 0,
+    "old_campaign_paused": true
+  },
+  "samples": {
+    "image_mismatch_ids": [],
+    "label_mismatch_ids": [],
+    "not_in_stock_ids": []
+  },
+  "source_counts": {
+    "included_spec_rows": 4531,
+    "latest_ready_label_rows": 4392,
+    "out_of_stock_hold_rows": 20,
+    "out_of_stock_rows_in_latest_ready": 20,
+    "unresolved_rows_now_ready_but_held": 2,
+    "unresolved_scope_rows": 141
+  }
+}

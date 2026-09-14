@@ -1,0 +1,24 @@
+{
+  "verified_at": "2026-09-07 03:26:57 UTC",
+  "checks": {
+    "source_no_drift": true,
+    "translations_no_drift": true,
+    "review_pass": true,
+    "payload_checks_pass": true
+  },
+  "fresh_guard_evidence": "The immediately preceding full Shopify source and100-row queries returned exact matches to restored_source/restored_translations; both comparisons printed true. No intervening mutation.",
+  "review_verdict": "GO_PASS_WITH_GATES",
+  "translation_rows": 40,
+  "payload_check_details": {
+    "exactly40_existing_rows": true,
+    "unique_locale_keys": true,
+    "title_count20": true,
+    "description_count20": true,
+    "title_values_reviewed": true,
+    "description_values_original": true,
+    "digest_bound_by_key": true,
+    "fields_limited": true
+  },
+  "mutations_so_far": 2,
+  "local_validation_note": "Initial verdict literal check expected PASS_WITH_GATES and stopped on GO_PASS_WITH_GATES; actual explicit GO and20/20 checks were inspected before proceeding. Review file/criteria unchanged."
+}

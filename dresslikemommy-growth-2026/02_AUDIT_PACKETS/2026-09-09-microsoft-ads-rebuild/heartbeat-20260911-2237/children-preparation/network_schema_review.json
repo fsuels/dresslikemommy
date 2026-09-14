@@ -1,0 +1,180 @@
+{
+  "reviewed_at": "2026-09-12T08:31:41.730874+00:00",
+  "classification": "VERIFY_DOCUMENTATION_AND_BUILD_LOCAL_CANDIDATE",
+  "status": "MAPPER_ONLY_NOT_IMPORT_READY",
+  "scope": "Network distribution only; no frozen candidate, main CSV, browser/account or shared canonical mutation.",
+  "findings": [
+    {
+      "id": 1,
+      "status": "VERIFIED_DOCUMENTED",
+      "finding": "The native template has Network Distribution (column77). Its SearchStandard sample leaves it blank; only the Shopping sample supplies the entire-network enum. The header is native-template evidence, while new SearchStandard value support comes from current Bulk documentation.",
+      "sources": [
+        "native_template",
+        "bulk_ad_group"
+      ]
+    },
+    {
+      "id": 2,
+      "status": "VERIFIED_DOCUMENTED",
+      "finding": "Supported Search network enums are OwnedAndOperatedOnly = Microsoft sites and select traffic, and OwnedAndOperatedAndSyndicatedSearch = entire Microsoft Advertising Network (default in Bulk). Neither label is a Google-style Search partners boolean.",
+      "sources": [
+        "network_enum",
+        "bulk_ad_group"
+      ]
+    },
+    {
+      "id": 3,
+      "status": "VERIFIED_DOCUMENTED_LIMIT",
+      "finding": "Both native ad-distribution options include Search and Audience ads. OwnedAndOperatedOnly narrows partner distribution but does not establish search-results-only delivery; select partner traffic remains aggregated.",
+      "sources": [
+        "native_distribution"
+      ]
+    },
+    {
+      "id": 4,
+      "status": "CONFLICTED_SURFACE_AND_TIME",
+      "finding": "Native template also has generic Bid Adjustment (column41). Bulk help/current Bulk Ad Group docs describe -100..900 for Audience participation, with -100 exclusion; CMS calls it AudienceAdsBidAdjustment. Microsoft announced UI Audience modifier removal for all advertisers by February21,2023. Current importer acceptance, account availability and MaxClicks interaction are unproved; do not add -100, infer an opt-out, or use Content Network=off as a substitute.",
+      "sources": [
+        "native_template",
+        "bulk_ad_group",
+        "native_bulk_help",
+        "audience_rollout",
+        "cms_ad_group"
+      ]
+    },
+    {
+      "id": 5,
+      "status": "VERIFIED_TEMPORAL_LIMIT",
+      "finding": "SyndicatedSearchOnly is rejected since July2024 despite remaining in the schema; InHousePromotion is only for Shopping for brands. The September7,2026 NetworkDistributionSetting.NetworkOption remains Reserved, not a supported new Search/Audience control. No deprecated enum or reserved setting is proposed.",
+      "sources": [
+        "network_enum",
+        "reserved_setting"
+      ]
+    },
+    {
+      "id": 6,
+      "status": "LOCAL_CANDIDATE_NATIVE_ACCEPTANCE_UNPROVED",
+      "finding": "The separate8-row candidate changes only the appended Network Distribution cells on2new group rows to OwnedAndOperatedOnly, leaving6keyword cells blank. All72original cells and24prior entity rows remain unchanged. Existing Paused states and inherited MaxClicks are preserved; no numeric bids, budgets, broad match, Audience modifier or paid authority is added. Root must qualify native mapping, row acceptance and saved distribution separately.",
+      "sources": [
+        "bulk_ad_group",
+        "network_enum"
+      ]
+    }
+  ],
+  "sources": {
+    "native_template": {
+      "url": "https://adsuxprodfd-awb5gsddabddbqgv.z01.azurefd.net/cmuiresources-2/files/templates/Import/ImportTemplateWithAdExtensionsAndBSCAndAdGroupType.csv",
+      "evidence": "Previously fetched official native UI template, retained in the same task. Parsed with CSV quoting, not naive comma splitting.",
+      "sha256": "05f8f0a590e2054a77c64ca1b7939612e5df938beed34374f05f74a92d7ade04",
+      "network_header_column_1based": 77,
+      "bid_adjustment_header_column_1based": 41,
+      "SearchStandard_example_Network_Distribution": "",
+      "Shopping_example_Network_Distribution": "OwnedAndOperatedAndSyndicatedSearch"
+    },
+    "bulk_ad_group": {
+      "url": "https://learn.microsoft.com/en-us/advertising/bulk-service/ad-group?view=bingads-13",
+      "last_updated_observed": "2026-06-05",
+      "sections": [
+        "Network Distribution",
+        "Bid Adjustment",
+        "Bid Strategy Type"
+      ]
+    },
+    "network_enum": {
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/network?view=bingads-13",
+      "last_updated_observed": "2026-06-03"
+    },
+    "native_distribution": {
+      "url": "https://help.ads.microsoft.com/apex/index/3/en/60146?t_id=c15a5cec-63c6-41c4-a8ab-8faf433b123b",
+      "access": "Official full help content returned by search index; not authenticated UI."
+    },
+    "native_bulk_help": {
+      "url": "https://help.ads.microsoft.com/apex/index/3/en/56763",
+      "access": "Official full content returned by search index; direct open returned Oops and is not a successful direct-page read."
+    },
+    "audience_rollout": {
+      "url": "https://about.ads.microsoft.com/en/blog/post/february-2023/maximizing-the-power-of-search-intent-with-microsoft-advertising",
+      "published": "2023-02-02"
+    },
+    "reserved_setting": {
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/networkdistributionsetting?view=bingads-13",
+      "last_updated_observed": "2026-09-07",
+      "evidence": "NetworkOption is Reserved."
+    },
+    "cms_ad_group": {
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/adgroup?view=bingads-13",
+      "last_updated_observed": "2024-11-13",
+      "section": "AudienceAdsBidAdjustment"
+    }
+  },
+  "candidate": {
+    "file": "network_schema_review.ui_candidate.csv",
+    "sha256": "efef91e3cf011753a936e2f9695dd5498efb1d27ea063fab9fba757eac0abc68",
+    "rows": 8,
+    "original_cells_unchanged": 72,
+    "new_network_values": 2,
+    "blank_keyword_network_values": 6,
+    "new_field": "Network Distribution",
+    "value": "OwnedAndOperatedOnly",
+    "intended_native_label": "Microsoft sites and select traffic",
+    "native_mapping_verified": false,
+    "native_value_accepted": false,
+    "saved_value_verified": false,
+    "Audience_optout_verified": false,
+    "original8row_file_replacement_only": true,
+    "import_authorized": false,
+    "paid_activation_authorized": false,
+    "preserve": [
+      "Both campaign IDs506254907/506254908 and exact names",
+      "All parent and child Paused states",
+      "Current inherited MaxClicks and existing USD0.15 cap",
+      "All existing 6 Exact keywords and URLs",
+      "Budget/currency/language/AI settings"
+    ]
+  },
+  "checks_passed": 6,
+  "checks": [
+    {
+      "check": "only_new_network_column",
+      "result": "PASS",
+      "detail": "9 original columns stay ordered; Network Distribution appended as column10."
+    },
+    {
+      "check": "all72_original_cells_equal",
+      "result": "PASS",
+      "detail": "All8 rows ×9 prior columns compared directly; original row order, text, Paused status, Exact match and dresses URLs unchanged."
+    },
+    {
+      "check": "two_group_values_six_keyword_blanks",
+      "result": "PASS",
+      "detail": "Only both SearchStandard group rows gain the documented network enum."
+    },
+    {
+      "check": "no_numeric_bid_budget_or_audience_modifier",
+      "result": "PASS",
+      "detail": "No invented default bid, Audience modifier or legacy network flag; inherited campaign strategy untouched."
+    },
+    {
+      "check": "all24_prior_entities_preserved",
+      "result": "PASS",
+      "detail": "Original8 group/keyword +14 negative +2 RSA rows are preserved in frozen files; new candidate replaces only the8-row preview, never supplements it."
+    },
+    {
+      "check": "protected_files_byte_identical",
+      "result": "PASS",
+      "detail": "All5 main CSVs and all3 frozen child candidate CSVs unchanged after creating the separate file."
+    }
+  ],
+  "frozen_input_sha256": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/ad_groups.csv": "dbf27dfc5ccd5cfb27c5aed898f202c76060b5b484ec353b3140ad701d950f92",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/keywords.csv": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/responsive_search_ads.csv": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260911-2237/children-preparation/paused_groups_keywords.ui_candidate.csv": "15287d329200ac4c62f4af9e6a0cdb15738240484694c83377a9213b53cee370",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260911-2237/children-preparation/campaign_negatives.ui_candidate.csv": "b566c095bfc152088b88ee9f450a87a9f7a25ee41c953e35c66488f9c9f122ae",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260911-2237/children-preparation/rsa_mapper_only_not_import_ready.csv": "1a6525d2a6682474a826f08fc763604c47a830c43e68e94c0ec75d259dcc8926"
+  },
+  "next_action": "Root may substitute this separately reviewed file for the original8row preview, verify all10columns and every row, and obtain independent approval before any native Import. Keep Audience delivery unresolved until supported exact evidence is obtained.",
+  "review_markdown_sha256": "121c20afe149008dce075207ec6f15a6762c5bfe4000bb69a0a977af0afc06c8"
+}

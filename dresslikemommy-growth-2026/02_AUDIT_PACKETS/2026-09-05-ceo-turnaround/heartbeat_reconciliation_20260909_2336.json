@@ -1,0 +1,261 @@
+{
+  "schema": "dlm.heartbeat_reconciliation.v1",
+  "as_of": "2026-09-09T23:36:04Z",
+  "owner_thread": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "task_stage": "HANDOFF",
+  "scope": "Read-only Shopify order/fulfillment and publication-role delta; six parent-owned channel claim corrections; normal public in-app40-route title verification and three separate parent product claim closeouts; existing canonical harness only.",
+  "canonical_lease_basis": "Merchant operator handback after its completed September9 combined-preview closeout; current task received and verified handback.",
+  "theme_role_readback": {
+    "source": "Shopify Admin GraphQL connector",
+    "started_at": "2026-09-09 23:38:00 UTC",
+    "completed_at": "2026-09-09 23:38:00 UTC",
+    "query": "query HeartbeatThemeRoleReadback { shop { name primaryDomain { host } } themes(first:50) { nodes { id name role processing updatedAt } pageInfo { hasNextPage endCursor } } }",
+    "schema_discovery": [
+      "QueryRoot",
+      "OnlineStoreTheme",
+      "Shop"
+    ],
+    "validation": "PASS",
+    "shop": {
+      "name": "Dress Like Mommy",
+      "primaryDomain": {
+        "host": "www.dresslikemommy.com"
+      }
+    },
+    "themes": [
+      {
+        "id": "gid://shopify/OnlineStoreTheme/133290917985",
+        "name": "dresslikemommy/main",
+        "role": "MAIN",
+        "processing": false,
+        "updatedAt": "2026-07-02T16:47:21Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137782591585",
+        "name": "DLM SEO DA NL 2026-09-06",
+        "role": "UNPUBLISHED",
+        "processing": false,
+        "updatedAt": "2026-09-06T07:03:53Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137850814561",
+        "name": "DLM DA NL SEO only 2026-09-08",
+        "role": "UNPUBLISHED",
+        "processing": false,
+        "updatedAt": "2026-09-08T19:01:09Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137880666209",
+        "name": "DLM Consent Preferences 2026-09-09",
+        "role": "UNPUBLISHED",
+        "processing": false,
+        "updatedAt": "2026-09-09T18:58:13Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137881223265",
+        "name": "DLM Merchant Landing Fixes 2026-09-09",
+        "role": "UNPUBLISHED",
+        "processing": false,
+        "updatedAt": "2026-09-09T20:10:58Z"
+      }
+    ],
+    "pagination_complete": true,
+    "checks": {
+      "shop_name_exact": true,
+      "shop_domain_exact": true,
+      "complete_theme_inventory": true,
+      "single_existing_main": true,
+      "combined_target_unpublished": true,
+      "all_five_known_ids_present": true,
+      "processing_complete": true
+    },
+    "check_count": 7,
+    "classification": "LIVE_VERIFIED_ROLE_ONLY",
+    "limitation": "Theme role and timestamps do not replace the required fresh full-source conflict check before publication. No publication, file upload, native browser or rendering test occurred."
+  },
+  "order_readback": {
+    "source_file": "current_sales_checkpoint_20260908_evening.json",
+    "entry_index": 6,
+    "source_receipt_sha256": "62acf986697f7471d2143970b2c26cad00b8a64da4f23e4f173fd12071c60572",
+    "as_of": "2026-09-09T23:37:27Z",
+    "source_checks": 26,
+    "operator_local_assertions": 6,
+    "independent_review": {
+      "schema": "dlm.heartbeat_order_fulfillment_review.v1",
+      "verdict": "PASS",
+      "reviewer": "/root",
+      "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE_SOURCE_READ",
+      "source_sha256": "62acf986697f7471d2143970b2c26cad00b8a64da4f23e4f173fd12071c60572",
+      "checks": {
+        "source_hash_matches_operator": true,
+        "all26_source_checks_true": true,
+        "shop_identity_exact": true,
+        "orders_and_units_reconcile": true,
+        "revenue_reconciles": true,
+        "refunds_reconcile": true,
+        "prior_aggregate_product_fulfillment_unchanged": true,
+        "comparison_starts_at_prior_order_cutoff": true,
+        "comparison_and24h_windows_covered": true,
+        "ga4_candidate_window_covered": true,
+        "zero_new_counts_consistent": true,
+        "pagination_complete": true,
+        "fulfilled_not_delivery_or_receipt_claim": true,
+        "profit_and_fees_not_inferred": true,
+        "private_identifier_paths_absent": true,
+        "no_external_browser_or_repo_write": true
+      },
+      "check_count": 16,
+      "limits": "Independent saved-receipt/aggregation review; not a second API query or GA4 receiver check."
+    },
+    "prior_entries_preserved": 6
+  },
+  "claim_reconciliation": {
+    "schema": "dlm.parent_claim_handoff_reconciliation.v1",
+    "as_of": "2026-09-09T23:39:02.862162+00:00",
+    "owner": "01a08223-036e-7fa3-8961-ecd297163fb5",
+    "scope": "Only six historical claims owned by this parent; no other operator row, rule, approval or external state change.",
+    "before_sha256": "6f87e501491f4b228ac072cf1d5164e860fddb13feb21e6025c5d85c91255316",
+    "after_sha256": "145efedfa72e97e70b36c103bde94519e711ca3dc81619472622854ff1b50ba0",
+    "changes": [
+      {
+        "workstream": "Microsoft and Pinterest priority continuation",
+        "before": "| Microsoft and Pinterest priority continuation | Microsoft477439/customer770182; Pinterest549756244483/catalog3041764155561548387; existing Sunshine product-detail release | `HANDOFF_EXACT_TARGETS__MAC_UNLOCK_PENDING` | root sole browser/external/canonical writer; microsoft_growth read-only Microsoft; tracking_inventory read-only release/source routing; independent google_replacement_review | Current user prioritizes both channels alongside Google. Reuse finished work, exact nonspend diagnostics and previously authorized Pin publication after current target/buyer/duplicate checks | No new paid launch/budget/bids or unproved goal/feed/availability changes; no blocked endpoint/desktop bypass, credential disclosure or new draft/harness | cross_platform_restart_plan_20260907.json September8 extension; 2026-09-08-ceo-turnaround-microsoft-pinterest-execution-priority | Specialists complete. Native inventory still locked; existing unlock request pending. No external writes this pass; all earlier claims and Google repairs preserved |",
+        "after": "| Microsoft and Pinterest priority continuation | Microsoft477439/customer770182; Pinterest549756244483/catalog3041764155561548387; existing Sunshine product-detail release | `HANDOFF_TO_CURRENT_CHANNEL_OPERATORS` | root 01a08223 parent coordination only; Microsoft 01a08703-644f-7940-8f67-9a2fa63722bb and Pinterest 01a08704-8176-7171-b6f5-928a09d7c3f9 retain their exact live surfaces | Preserve this historical preparation and saved authority; current channel operators execute their bounded repairs and existing Pin release after current gates. Parent may reconcile dated evidence read-only. | No new paid launch/budget/bids or unproved goal/feed/availability changes; no blocked endpoint/desktop bypass, credential disclosure or new draft/harness | cross_platform_restart_plan_20260907.json September8 extension; 2026-09-08-ceo-turnaround-microsoft-pinterest-execution-priority | September9 later channel claims supersede this earlier root execution claim. Preserve completed buyer-copy/consent work and pending access questions; no duplicate operator, draft, request or paid authority. |"
+      },
+      {
+        "workstream": "Finished-growth publication under explicit owner request",
+        "before": "| Finished-growth publication under explicit owner request | Combined theme137782591585; preserve MAIN133290917985 and SEO-only137850814561; prepared Sunshine Pin/Facebook assets | `AUTHORIZED__PUBLICATION_TOOL_BLOCKED` | root sole canonical/release owner; google_replacement_review independent; tracking_inventory organic inventory | Current user publish-all-finished instruction; live themes/articles/pages read, exact snapshot comparisons, one source-bound owner release. Root handles all external actions | No forbidden themePublish/MAIN or CUA workaround, sequential theme publication, archived-duplicate release, unbound social target, paid launch or unrelated product-draft publication | draft_publication_current_20260908.json; DRAFT_PUBLICATION_INVENTORY_20260908.md; 2026-09-08-ceo-turnaround-publication-authorized | No external marketing writes; exact manual editor open queued only. Other claims preserved |",
+        "after": "| Finished-growth publication under explicit owner request | Historical combined137782591585 and SEO-only137850814561; current combined release137881223265 under Merchant owner; saved Sunshine assets under current channel owners | `SUPERSEDED_BY_CURRENT_COMBINED_RELEASE` | root 01a08223 historical release preparation complete; Merchant 01a08706-c63a-7e01-ba48-7777bcb1788a owns current combined theme; Pinterest owner retains its Pin | Preserve explicit publication authority and historical source receipts. Current TA-06 selects137881223265 after fresh MAIN conflict check and owner Admin publication; no successive clone publication. | No forbidden themePublish/MAIN or CUA workaround, sequential theme publication, archived-duplicate release, unbound social target, paid launch or unrelated product-draft publication | draft_publication_current_20260908.json; DRAFT_PUBLICATION_INVENTORY_20260908.md; 2026-09-08-ceo-turnaround-publication-authorized | September9 combined-preview handoff supersedes the old137782591585 release target and root execution claim. Existing account operators and platform restrictions are unchanged. |"
+      },
+      {
+        "workstream": "Google account connection and tracking cutover, replacement task",
+        "before": "| Google account connection and tracking cutover, replacement task | Owner-selected Merchant513542500; manager7001079966; allACTIVE products/allpublished languages; retained GA4330266838 | `HANDOFF_EXACT_FEEDBACK_BINDING__NATIVE_ACCESS_REQUIRED` | root01a08223-036e-7fa3-8961-ecd297163fb5 sole Merchant/browser/external writer; tracking_inventory owns policy/shipping evidence; google_replacement_review independent | User explicitly selects513542500 and Chrome test, reports Shopify connection and requests complete DLM setup. Native Business info verifies DLM name and www domain Verified/Claimed. Complete exact non-spend configuration after current link/source/effect checks under saved authority | Exact MC513↔Ads399 link retirement confirmed in UI under current replacement scope; no account/history/BusinessProfile deletion, billing/security/terms step or unbounded paid eligibility expansion | google_channel_feedback_20260909.json; merchant_513542500_execution_20260908.json September9 extension; 2026-09-09-ceo-turnaround-google-feedback-binding | FreshMC513claim/Shopify0submitted;240productfeedback/32variant source check,232recent/6historical/2absent. NoMerchantIDinfeedback. LaterMaclock/currentownerclarification;0newwrites. Rootretainssoleexecutionclaim; prior2repairs andpaidNONEpreserved. |",
+        "after": "| Google account connection and tracking cutover, replacement task | Owner-selected Merchant513542500; manager7001079966; allACTIVE products/allpublished languages; retained GA4330266838 | `PARENT_READ_ONLY_HEARTBEAT__CHANNEL_HANDOFFS_PRESERVED` | root 01a08223-036e-7fa3-8961-ecd297163fb5 owns this read-only heartbeat/canonical integration and pending Ads reconciliation; Merchant 01a08706 owns Merchant/channel/combined preview; GA4 migration 01a086fc completed its exact cutover | Current23:36 heartbeat: read-only orders, fulfillment and theme-role delta; reconcile only parent-owned historical claims and dated scorecard. Shared canonical lease released by Merchant after20:22 checks. Retain saved Ads650/manager700 reconciliation for changed current access; no held-channel takeover. | Exact MC513↔Ads399 link retirement confirmed in UI under current replacement scope; no account/history/BusinessProfile deletion, billing/security/terms step or unbounded paid eligibility expansion | google_channel_feedback_20260909.json; merchant_513542500_execution_20260908.json September9 extension; 2026-09-09-ceo-turnaround-google-feedback-binding | Current Merchant and completed GA4 claims above supersede the older root sole-Merchant/browser claim. Prior two root Merchant repairs, newer source/market/preview repairs, legacy GA4 disconnection and full-paid NONE persist. Pending native access request stays with the Merchant owner. Root has no native lease this heartbeat. |"
+      },
+      {
+        "workstream": "Google new operating account creation",
+        "before": "| Google new operating account creation | TA-01; manager7001079966; new customer ID unknown | `TRANSFERRED_EXISTING_CANDIDATE_RECONCILIATION` | root sole account/canonical writer; prior independent plan review complete | Create one new Ads operating account without campaign after native identity/target checks; approval saved | No financial step, campaign launch, blind Merchant transfer, locked-computer bypass or repeated approval | 2026-09-06-ceo-turnaround-new-google-account-authorized; google_new_account_authorization_20260907.json | September8 notices establish new Ads4683483813; current replacement-task lane owns reconciliation before any further creation. Original approval preserved; other claims unchanged |",
+        "after": "| Google new operating account creation | TA-01; manager7001079966; new customer ID unknown | `TRANSFERRED_EXISTING_CANDIDATE_RECONCILIATION` | root 01a08223 parent and existing Ads reconciliation owner; current Merchant/GA4 operators retain their separate scopes | Historical new-account authority is retained as provenance. Current TA-01 reconciles the already identified operating Ads6509972886 and manager7001079966 before any further creation; read-only access only while current gates remain. | No financial step, campaign launch, blind Merchant transfer, locked-computer bypass or repeated approval | 2026-09-06-ceo-turnaround-new-google-account-authorized; google_new_account_authorization_20260907.json | Earlier creation instruction is superseded operationally by current existing-account reconciliation; do not create another account from this historical row. Preserve original authority record and all other owners. |"
+      },
+      {
+        "workstream": "Four-platform growth restart and Facebook organic handoff",
+        "before": "| Four-platform growth restart and Facebook organic handoff | Microsoft477439/770182; Google3990976848/Merchant124884876; Pinterest; Shopify Facebook2329312/29172400225; TA-18 | `HANDOFF_FOUR_PLATFORM_SHOPIFY_VERIFIED_NATIVE_GATED` | root sole external/canonical writer; Kant Meta identity; Feed Ops tracking source; Analytics independent review | Current Shopify publication read complete; reuse exact Sunshine Facebook post_text and existing Pinterest payload after normal native identity/duplicate/product gates | No current paid launch, broad reconnect, tracking patch, new Page inference, auth/billing/consent change or locked-browser bypass | 2026-09-06-ceo-turnaround-four-platform-restart; cross_platform_shopify_publications_20260907.json; cross_platform_restart_review_20260907.json |16/16 Shopify relationships; native tool lock/state clarification pending; no public change this turn; all other claims preserved |",
+        "after": "| Four-platform growth restart and Facebook organic handoff | Microsoft477439/770182; Google3990976848/Merchant124884876; Pinterest; Shopify Facebook2329312/29172400225; TA-18 | `HANDOFF_META_PENDING__OTHER_CHANNELS_TRANSFERRED` | root 01a08223 retains the pending exact Facebook/Meta identity and organic post lane; current Merchant, Microsoft and Pinterest operators retain their accounts | Preserve the16/16 dated Shopify publication relationships and existing Sunshine Facebook payload. Parent may perform read-only Meta qualification after changed normal access and exact target gates; other channels use their current owners. | No current paid launch, broad reconnect, tracking patch, new Page inference, auth/billing/consent change or locked-browser bypass | 2026-09-06-ceo-turnaround-four-platform-restart; cross_platform_shopify_publications_20260907.json; cross_platform_restart_review_20260907.json | Later September9 Merchant/GA4/Microsoft/Pinterest handoffs supersede any earlier root-wide execution claim. Facebook identity/duplicate/buyer gates and saved post authority remain; no unchanged browser retry or new publication. |"
+      },
+      {
+        "workstream": "Sunshine product-detail organic creative",
+        "before": "| Sunshine product-detail organic creative | Product7545279512673; one unpublished product-detail Pin; existing Mommy & Me Matching Outfits board; TA-11; PROB-2026-09-05-GROWTH-BROWSER-MAC-LOCKED | `HANDOFF_SOURCE_REVERIFIED__NATIVE_ACCESS_REQUIRED` | root sole asset/Pin/canonical writer; Feed Ops copy author; Analytics independent visual verifier | Reuse completed exact image/copy and4UTMs; after normal unlock fresh account/board/duplicate/buyer checks, then one authorized publication and separate readback if valid | No publication before native gates; no duplicate existing Pin, regeneration, paid/account/product/theme/price/offer change or access bypass | sunshine_product_detail_release_plan.json September9source_preflight_history; 2026-09-09-ceo-turnaround-google-feedback-binding | Current29sourcechecksPASS/14variants/per-shirtcopy; sameasset/payload.0uploads/0publishes. Nativeprofile/board/duplicate/buyerchecksNOTRUNafterlaterMaclock. Savedone-Pinauthoritypreserved; rootsolewriter. |",
+        "after": "| Sunshine product-detail organic creative | Product7545279512673; one unpublished product-detail Pin; existing Mommy & Me Matching Outfits board; TA-11; PROB-2026-09-05-GROWTH-BROWSER-MAC-LOCKED | `SOURCE_COMPLETE__HANDED_TO_PINTEREST_OPERATOR` | root 01a08223 asset preparation complete; Pinterest 01a08704-8176-7171-b6f5-928a09d7c3f9 is the current sole Pin release operator; original copy/visual reviews retained | Reuse the existing source-bound image, copy and four UTMs under the current Pinterest owner. Complete current board/duplicate/preview/buyer gates before the one authorized publication and separate public readback. | No publication before native gates; no duplicate existing Pin, regeneration, paid/account/product/theme/price/offer change or access bypass | sunshine_product_detail_release_plan.json September9source_preflight_history; 2026-09-09-ceo-turnaround-google-feedback-binding | September9 Pinterest claim and consent-preview handoff supersede the older root sole-Pin claim. Preserve29 source checks,14 variants, saved publication authority and0 published new Pins at the dated checkpoint. Do not regenerate or double-publish. |"
+      }
+    ],
+    "basis": [
+      "2026-09-09-merchant-combined-preview-verified",
+      "2026-09-09-google-tag-duplicate-cleanup-verified",
+      "2026-09-09-pinterest-consent-preview-verified",
+      "2026-09-09-microsoft-coral-copy-repair-verified",
+      "Merchant explicit canonical handback in current task"
+    ],
+    "production_writes": 0,
+    "independent_review": {
+      "verdict": "PASS",
+      "reviewer": "/root/order_delta_1934",
+      "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+      "checks": "Exact six substitutions reproduce the current file byte-for-byte; other operator rows and all six blocked-action/evidence cells unchanged; current owners, combined release and paid/platform boundaries preserved."
+    }
+  },
+  "authority": {
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "goal_status": "blocked",
+    "existing_heartbeat": "active"
+  },
+  "next_action": "Existing Merchant owner resumes exact source receipt and eligible-market verification once normal access changes; no duplicate access question.",
+  "production_mutations": 0,
+  "native_browser_calls": 0,
+  "continuation_prompt": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "anchor": "2026-09-09-ceo-turnaround-public-titles-verified",
+  "disposition": "REROUTED_TO_PUBLIC_STOREFRONT__40_TITLE_FIELDS_VERIFIED",
+  "authoritative_control_preserved": true,
+  "validation": {
+    "completed_at": "2026-09-10T00:06:47.508871+00:00",
+    "integration_audit": {
+      "command": "audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "exit_code": 0,
+      "integrated_files": 25,
+      "side_document_risks": 0
+    },
+    "strict_continuity": {
+      "command": "check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "result": "CONTINUITY_OK",
+      "checks_passed": 10,
+      "latest_anchor": "2026-09-09-ceo-turnaround-public-titles-verified"
+    },
+    "scoped_git_diff_check": {
+      "exit_code": 0,
+      "output": ""
+    },
+    "existing_dashboard_service_autorender": {
+      "freshness_check": "PASS",
+      "rainbow_completed_title_present": true,
+      "meow_serp_pending_title_present": true,
+      "no_competing_renderer_or_service_created": true
+    },
+    "claim_and_authority_preservation": {
+      "only3additional_parent_product_rows_changed": true,
+      "prior6channel_handoff_rows_exact": true,
+      "all_other_claim_rows_preserved": true,
+      "full_paid_control_bytes_unchanged": true
+    },
+    "public_receipt_review": {
+      "verdict": "PASS",
+      "checks_passed": 32,
+      "checks_total": 32,
+      "hash_bound": true
+    },
+    "testing_scope": "No code or production setting changed in this title-verification addendum; rendered readback, independent evidence review, scope assertions and existing continuity checks were the applicable validation."
+  },
+  "canonical_files_updated": [
+    "ops/marketing/current_marketing_state.md",
+    "ops/marketing/daily_scorecard.md",
+    "ops/marketing/operator_cockpit.md",
+    "ops/marketing/action_queue.md",
+    "ops/marketing/decision_log.md",
+    "ops/marketing/review_log.md",
+    "ops/AGENT_WORKLOG.md",
+    "ops/AGENT_COORDINATION.md",
+    "ops/PROBLEM_TRACKER.md",
+    "ops/marketing/blocker_board.md"
+  ],
+  "source_windows_not_atomic": true,
+  "pre_public_reroute_anchor": "2026-09-09-ceo-turnaround-channel-handoffs-reconciled",
+  "pre_public_reroute_disposition": "HOLD_WITH_EVIDENCE__PARENT_CLAIM_CONFLICTS_FIXED",
+  "public_title_readback": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/public_title_readback_20260909.json",
+    "source_sha256": "c10eb8b5d6088c92679bf5a72a7dea77e8f3fa6f5f4233f0d3cfd103b6e4a219",
+    "independent_review": "public_title_postreview_20260909.json",
+    "verdict": "PASS",
+    "checks_passed": 32,
+    "checks_total": 32,
+    "production_writes": 0,
+    "native_account_access_inferred": false
+  },
+  "subsequent_parent_product_claim_changes": [
+    {
+      "before": "| Meow Star Garden search identity correction | Product7533458194529; English SEO title and20 meta_title translations, exact restoration of own SEO-description side effect | `COMPLETED_API_VERIFIED_NATIVE_PENDING` | root external write released; Feed Ops copy complete; Kant independent32-check postreview complete | Three normal mutations saved21 titles and restored original description plus20 unchanged translated-description flags. Root23/independent32 checks and September8 current source/100-row read pass | No new description copy/body/measurements/material/variant/price/handle/status/tags/images/publication/theme/feed/account/paid change; native/SERP/sales outcomes unverified | meow_identity_execution_20260908.json; meow_identity_postreview_20260907.json; 2026-09-07-ceo-turnaround-meow-search-identity | Initial two preservation failures retained and resolved; rollback_v3 current, do not reapply. Other claims preserved |",
+      "after": "| Meow Star Garden search identity correction | Product7533458194529; English SEO title and20 meta_title translations; TA-19 | `COMPLETED_SOURCE_AND_PUBLIC_HEAD_VERIFIED__SERP_PENDING` | root original external write released; original copy/preservation reviews retained; order_delta_1934 independent public-receipt reviewer | Original21-title repair and exact description-preservation recovery remain complete. September9 public in-app readback verifies all21 exact document titles and route/canonical/single-visible-H1 observations; no new mutation | No source reapplication or unrelated product/theme/account/paid change; Google-selected SERP, crawl, traffic, sales and profit remain unverified | meow_identity_execution_20260908.json; meow_identity_postreview_20260907.json; public_title_readback_20260909.json; public_title_postreview_20260909.json | Initial preservation failures retained and resolved. Public title gap closed; Arabic ltr and duplicate alternate observations retained. Current anchor2026-09-09-ceo-turnaround-public-titles-verified; other owners unchanged |"
+    },
+    {
+      "before": "| Rainbow remaining localized product titles | Product7229023846497;17 existing translated title rows; TA-17 | `IMPLEMENTED_API_VERIFIED_NATIVE_GATED` | root sole external/canonical writer complete; Feed Ops copy; Analytics independent review | One registration complete; reuse captured before/after, exact rollback and review; native heading check after normal access | No reapplication, EN/NL or ru/sv creation, explicitSEO/body/variant/price/handle/theme/paid/account change, or native/lift claim | 2026-09-06-ceo-turnaround-rainbow-language-titles; rainbow_remaining_titles_execution_20260907.json |17exact mappings/outdatedfalse;75otherrows and returned product fields unchanged; zero userErrors |",
+      "after": "| Rainbow remaining localized product titles | Product7229023846497;17 existing translated title rows; TA-17 | `COMPLETED_API_AND_PUBLIC_HEADINGS_VERIFIED` | root original writer complete; original copy/reviews retained; order_delta_1934 independent public-receipt reviewer | One original registration remains complete; September9 public in-app readback verifies all17 exact repaired headings, matching routes/canonicals and one visible product H1. Finnish390px heading fits; no new mutation | No reapplication, EN/NL or ru/sv creation, explicit SEO/body/variant/price/handle/theme/paid/account change or measured lift claim | rainbow_remaining_titles_execution_20260907.json; public_title_readback_20260909.json; public_title_postreview_20260909.json | Original17 mappings and75 preserved rows remain source evidence; current scoped rendered-heading gap closed. Native account access and broader localization remain separate |"
+    },
+    {
+      "before": "| Rainbow dress English and Dutch titles | Product7229023846497; English title and existing nl/title; TA-17; PROB-2026-09-06-RAINBOW-TRUNCATED-TITLES | `HANDOFF_RAINBOW_TITLES_API_VERIFIED_NATIVE_BLOCKED` | root sole external/canonical writer complete; Feed Ops source/Dutch author; Analytics independent verifier | Two direct-owner-authorized exact writes complete; separate API after-state verifies both titles. Next normal native English/Dutch route check after pending unlock | No repeat mutation or body/SEO/price/variant/handle/status/image/other translation value change; no browser bypass, paid, theme, feed-sync or account action | rainbow_title_plan.json; rainbow_title_live_after.json; independent postreview; 2026-09-06-ceo-turnaround-rainbow-titles-and-order-fees | Eight variants and91translationvalues preserved;17other title flags outdated. Rollback unused; no sales-lift claim |",
+      "after": "| Rainbow dress English and Dutch titles | Product7229023846497; English title and existing nl/title; TA-17; PROB-2026-09-06-RAINBOW-TRUNCATED-TITLES | `COMPLETED_API_AND_PUBLIC_HEADINGS_VERIFIED` | root original writer complete; Feed Ops source/copy and Analytics original review retained; order_delta_1934 independent public-receipt reviewer | Two original authorized writes remain complete. September9 normal public in-app rendered English and Dutch headings exactly match the saved reviewed copy, with matching routes/canonicals and one visible product H1 | No repeat mutation or body/SEO/price/variant/handle/status/image/other translation value change; no native account bypass, paid, theme, feed-sync or account action | rainbow_title_plan.json; rainbow_title_live_after.json; public_title_readback_20260909.json; public_title_postreview_20260909.json | Earlier eight-variant/91-value preservation proof retained; later17-title repair separately completed. Scoped heading verification closed, unused rollback preserved; no sales-lift claim |"
+    }
+  ],
+  "prior_channel_claim_review_scope": "The earlier six-row exact reconstruction applies to its frozen pre-public-title checkpoint. This later addendum changes only three separate root product rows; all six channel handoff rows remain exact.",
+  "public_verification_completed_at": "2026-09-09T23:51:50.100Z",
+  "canonical_integrated_at": "2026-09-10T00:05:23.670693+00:00"
+}

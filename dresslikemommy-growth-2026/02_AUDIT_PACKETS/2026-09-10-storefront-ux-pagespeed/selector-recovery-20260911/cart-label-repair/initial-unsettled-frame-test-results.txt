@@ -1,0 +1,63 @@
+✔ frozen V7 reproduces E1 empty builder and E2 six omitted height variants (61.4765ms)
+✔ E1 and E2 use native picker for all raw size labels without invented roles or altered source (11.915416ms)
+✔ currency and contextual price do not change coverage or role collision behavior (533.8655ms)
+✔ all 56 Trail Plaid variants retain exact explicit role and distinct selection identity (23.085375ms)
+✔ six tested core products preserve the complete prior selector result (245.428833ms)
+✔ all 240 exact-SKU source products change grouping only for Trail Plaid; native fallback exactly E1/E2 (3303.841666ms)
+✖ native fallback restores controls and both sticky routes at 390px (56.35925ms)
+✖ native fallback restores controls and both sticky routes at 1280px (20.390042ms)
+✔ frozen V7 bytes unchanged and proposal changes exactly the three declared files (5.026708ms)
+✔ supported matching-set sticky controls keep their original bundle route at 390px (36.517708ms)
+✔ supported matching-set sticky controls keep their original bundle route at 1280px (33.882625ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4565.032208
+
+✖ failing tests:
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/selector-recovery-current.test.mjs:98:31
+✖ native fallback restores controls and both sticky routes at 390px (56.35925ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(doc.querySelector('[data-sticky-mobile-atc-size]').textContent.includes(selectedRaw))
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/selector-recovery-current.test.mjs:111:92)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/selector-recovery-current.test.mjs:98:31
+✖ native fallback restores controls and both sticky routes at 1280px (20.390042ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(doc.querySelector('[data-sticky-mobile-atc-size]').textContent.includes(selectedRaw))
+  
+      at TestContext.<anonymous> (file:///Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/selector-recovery-current.test.mjs:111:92)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,578 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-09-14T14:18:57.648Z",
+  "reviewer": "/root/claim_lookup_cause",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "HIGH_FOR_EXACT_SAVED_SOURCES_AND_CANONICAL_CANDIDATES",
+  "scope": "Final independent content and preservation review of the exact nine-file, eighteen-operation parent-owned canonical integration, including the completed US source receiving and twenty-ID current-source-list reconciliation.",
+  "independence": {
+    "candidate_builder": false,
+    "source_executor": false,
+    "native_live_replay": false,
+    "canonical_writes": 0,
+    "external_calls": 0,
+    "new_harnesses": 0,
+    "artifact_ownership": "/private/tmp/dlm-hb1236-final-canonical-review.json"
+  },
+  "bindings": {
+    "manifest": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1236.json",
+      "sha256": "8356cdbc9e9523dcf050fc85c75e486a8aeafe9da8b8a4ff626678d9486a0254"
+    },
+    "source_acceptance": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1236.json",
+      "sha256": "b887e8045e5c8affe8602b244958e1b10b75e8072e4d5bce547b3978183dca09"
+    },
+    "completed_US_after_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/us_freshness_independent_after_review_20260914_1236.json",
+      "sha256": "034ae32d6a34b7835c546b4a9d71fd90cbea2930b24943c2946bdc469029d720"
+    },
+    "completed_native_reconciliation": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/native_removal_reconciliation_20260914T1405Z.json",
+      "sha256": "ac0be5d239e416afa57fe9bddd27baa25ee543d5053b85ab26a23720dea11fa4"
+    }
+  },
+  "canonical_validation": {
+    "target_count": 9,
+    "operation_count": 18,
+    "current_canon_equals_before_for_all_targets": true,
+    "exact_apply_and_reverse_for_all_operations": true,
+    "targets": [
+      {
+        "path": "ops/marketing/current_marketing_state.md",
+        "before_sha256": "417924c65386a0be4f8034078d4667c829be2e2a144d370c13550b31fa00680a",
+        "candidate_sha256": "4779e0fd9aee927738b99deed4950c2bb5cd5ac45eda977544273e0d52cf0fb0",
+        "operation_count": 2,
+        "current_before_hash_match": true,
+        "exact_apply_and_reverse": true
+      },
+      {
+        "path": "ops/marketing/action_queue.md",
+        "before_sha256": "da8fc1b3d53ef15de7b73f8c4242290f51f60b7208a293122419a9a6cb9f0a03",
+        "candidate_sha256": "5e722705102766d233c4c35fbc9775bd3f983cb6210016ca1e875efa708e6af2",
+        "operation_count": 3,
+        "current_before_hash_match": true,
+        "exact_apply_and_reverse": true
+      },
+      {
+        "path": "ops/marketing/daily_scorecard.md",
+        "before_sha256": "cb8a1461e090aebe491cac94b0abc2bfd0d75e2667454d546681b0ad4f311b27",
+        "candidate_sha256": "649860fe1e4e9a78019f61ac1008a34454476fdc8f1942e1566645b887580554",
+        "operation_count": 1,
+        "current_before_hash_match": true,
+        "exact_apply_and_reverse": true
+      },
+      {
+        "path": "ops/marketing/blocker_board.md",
+        "before_sha256": "9410ef2bd96c983860105307792a6f4a8fe15ee18354e4ab7a19da09c6fccf86",
+        "candidate_sha256": "5ae5ba78cba1fd104f0f25925eb5b0d3ebaf85a740258d60a1c2466cc82f7935",
+        "operation_count": 1,
+        "current_before_hash_match": true,
+        "exact_apply_and_reverse": true
+      },
+      {
+        "path": "ops/marketing/operator_cockpit.md",
+        "before_sha256": "73944c6742c39b01dd12d216ad3d085f54e4298b79575b1c0c1c09d568dc0be7",
+        "candidate_sha256": "0dd2d0c269c9b7c18a5e751d3c35cce671527a898da07a9daafe9dee5d6b4e51",
+        "operation_count": 2,
+        "current_before_hash_match": true,
+        "exact_apply_and_reverse": true
+      },
+      {
+        "path": "ops/AGENT_COORDINATION.md",
+        "before_sha256": "691cec1f1c7d2a8d9b610304d65b25dabf8515d7da2f9769919e11e32f83fbc4",
+        "candidate_sha256": "7610e042b39806939dd4adf9ead09cbb3f86cba6ed0537ee423a0ab3b8d786b5",
+        "operation_count": 3,
+        "current_before_hash_match": true,
+        "exact_apply_and_reverse": true
+      },
+      {
+        "path": "ops/PROBLEM_TRACKER.md",
+        "before_sha256": "3187f022981126b35d8d5970e621228b3b6d2729e5b3701702f6104fb84a2963",
+        "candidate_sha256": "46af596212b3bd4d6ee847b71a8d0431a711ee76fe6702dfb580c2bd6bdd0746",
+        "operation_count": 4,
+        "current_before_hash_match": true,
+        "exact_apply_and_reverse": true
+      },
+      {
+        "path": "ops/marketing/decision_log.md",
+        "before_sha256": "2fa749797455a8f5f3d48b1ffdd3f5deea39ae83e19e05f2c29b898061aebed1",
+        "candidate_sha256": "eef7de6d410d30fe778ed84611ebc0a492080e7cfde26aa2c7f34c76af4afd46",
+        "operation_count": 1,
+        "current_before_hash_match": true,
+        "exact_apply_and_reverse": true
+      },
+      {
+        "path": "ops/AGENT_WORKLOG.md",
+        "before_sha256": "ea61ed386fff540e9febecc90a821d047372f2363786a8594ca4aa2066302743",
+        "candidate_sha256": "20ba27578f1555dc3852639f51b8f611ab6c3dc6af6a7a0b0cf454efae067527",
+        "operation_count": 1,
+        "current_before_hash_match": true,
+        "exact_apply_and_reverse": true
+      }
+    ],
+    "preserved_sections": [
+      {
+        "path": "ops/marketing/current_marketing_state.md",
+        "section": "authority_control",
+        "identical": true,
+        "sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57"
+      },
+      {
+        "path": "ops/marketing/operator_cockpit.md",
+        "section": "Current Goal",
+        "identical": true,
+        "sha256": "41d905b1107d897b8f54c7ee1e3f81050912cb75600fb8e6148c50fc111a0bf7"
+      },
+      {
+        "path": "ops/marketing/operator_cockpit.md",
+        "section": "One Owner Action",
+        "identical": true,
+        "sha256": "fbd1edcc162c77a507eab6699f73456d34b48a1c43afaa079ca54a9cbac9312b"
+      }
+    ],
+    "tables": [
+      {
+        "path": "ops/marketing/action_queue.md",
+        "rows_before": 133,
+        "rows_after": 133,
+        "changed_rows": 3,
+        "all_other_rows_preserved": true,
+        "protected_cells_0_based": [
+          0,
+          1,
+          3,
+          6,
+          8
+        ],
+        "changed_cells": [
+          {
+            "operation": 2,
+            "total_cells": 13,
+            "changed_cells_0_based": [
+              4,
+              5,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "operation": 3,
+            "total_cells": 13,
+            "changed_cells_0_based": [
+              2,
+              4,
+              5,
+              7,
+              9,
+              10,
+              11,
+              12
+            ]
+          },
+          {
+            "operation": 4,
+            "total_cells": 13,
+            "changed_cells_0_based": [
+              2,
+              4,
+              5,
+              9,
+              10
+            ]
+          }
+        ]
+      },
+      {
+        "path": "ops/AGENT_COORDINATION.md",
+        "rows_before": 299,
+        "rows_after": 299,
+        "changed_rows": 3,
+        "all_other_rows_preserved": true,
+        "protected_cells_0_based": [
+          0,
+          1,
+          3,
+          4,
+          5
+        ],
+        "changed_cells": [
+          {
+            "operation": 9,
+            "total_cells": 8,
+            "changed_cells_0_based": [
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "operation": 10,
+            "total_cells": 8,
+            "changed_cells_0_based": [
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "operation": 11,
+            "total_cells": 8,
+            "changed_cells_0_based": [
+              2
+            ]
+          }
+        ]
+      }
+    ],
+    "intended_rows": "Only TA-01, TA-07 and TA-10 in the action queue; only Merchant, international demand and parent replacement coordination rows. All other table rows, and protected owner/scope/authority cells in changed rows, are byte-identical.",
+    "paid_controls": "Entire authoritative control block preserved, including approved_external_scope NONE, autonomous_action_ready false, expired freshness and READ_ONLY_MARKETING_RECONCILIATION. No paid enablement, spending or broader business authority added.",
+    "full_goal_and_owner_action": "Complete Current Goal and One Owner Action are byte-identical, including existing theme137888792673, owner Admin step, rollback MAIN133290917985, original UX verification and binding.",
+    "sales_and_content_clocks": "Existing 3 orders / 8 units / USD198.41 source07:04:53UTC and next full read19:04:53UTC retained. Greek11/106 versus8/134 and Sep21 assessment remain separate; articleSep17, SunshinePinSep18, P1Sep21 and existing X clocks preserved.",
+    "continuation": "Existing Merchant owner and parent30minuteheartbeat carry the Sep15 refresh action; no new scheduler, task, goal or harness, and no claim that future execution already occurred.",
+    "worklog_completion_context": [
+      "The root12:36wake resumed exactly two distinct existing owners, Ads and Merchant; the completed Merchant diagnosis led to one additional scoped continuation to that same idle owner. Its preparation then awaited the requested independent review; parent returned that exact decision on the existing action, distinct from a new owner assignment or duplicated preparation. After the successful release turn completed, a fresh14:03:54UTC idle/completed read preceded one bounded native exact20-ID/count verification continuation to the same Merchant owner, with no further Update or release. Its completed receipt verified4,741 source/header counts and20/20 current-source-list absence; individual/accountwide/serving removal remains unverified. The checkpoint separately records actual task completion. Dispatch and actual completed turns are separate in the existing parent checkpoint. No new task, goal, scheduler or harness. Root full-sales source remains3orders/8units/USD198.41 at07:04:53UTC, next19:04:53UTC; no root order query. Report-level GA4 purchase, incomplete attribution/costs/profit, all organic/Pinterest/X clocks and original owners remain."
+    ]
+  },
+  "source_hash_validation": {
+    "bindings_checked": 30,
+    "all_match": true,
+    "bindings": [
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_remaining_native_demand_20260914_1236/execution_checkpoint.json",
+        "sha256": "7a15e7145ae1d071c93f1591f2a5691f7076456b5b51ac8167b6f14ed16b2704",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_remaining_native_demand_20260914_1236/QUALIFICATION.json",
+        "sha256": "7ac580266430d1197e3a36aa8da368bb5ad88c504af34f4c704e5ff2c537eba9",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_remaining_native_demand_20260914_1236/NATIVE_SOURCE_FRAGMENTS.json",
+        "sha256": "971000e580659383cbdbc11b41f77508e55013e16e6492bc07ee776149ee2357",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_remaining_native_demand_20260914_1236/OPERATOR_CHECKS.json",
+        "sha256": "16719535b63f3f10a1a1fc91dfa0fd96275b3669ffa3c76716f291c84ec74ae8",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/ta10_remaining_native_demand_20260914_1236/INDEPENDENT_REVIEW.json",
+        "sha256": "40016e2b47626ac3f7273ca3f2fbc2f591359f884d4722ec2e357f2d240164e8",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sunshine_organic_demand_20260914_1236.json",
+        "sha256": "cd0b5d5acbcd7cbae2b08618eee3640b2ef4e97e48c621492badc7b5ac2f5574",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sunshine_gsc_independent_review_20260914_1236.json",
+        "sha256": "6404033fb2d9b7d87796439d1ce0622f2385b573b8618a99295839aa2f9a14e4",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_return_capability_review_20260914_1236.json",
+        "sha256": "406f8d1ac1eba437bee0773f82fccd903ca57b60fb29d36aff5e120505176640",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_eligibility_independent_review_20260914_1236.json",
+        "sha256": "e0a5095e492458827b22219371213ace08932b68a44092228ca3a8e2ba901554",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_restocking_qualification_addendum_20260914_1236.json",
+        "sha256": "d4faed4532c133e6e39b773f0bc3670049a595d59bda63b3f381fa06486662c3",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/eligibility_returns_1244/native_eligibility_and_source_health.json",
+        "sha256": "c7a21822bce387ead35b2c880153ee0a00131137a0dfa1e36ade5cd9439bcc4b",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/eligibility_returns_1244/return_policy_source_qualification.json",
+        "sha256": "3c809470e0f007da1e372546f499249891a50d0f50740ffb7bcadc9d99b5a494",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/eligibility_returns_1244/decision_and_handoff.json",
+        "sha256": "6215c0c080e19e3e5a1ea83912badcc3e20bca4fe0e2c9ab419566ab4867a46c",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/eligibility_returns_1244/local_receipt_checks.json",
+        "sha256": "7e2ebf2aa651ffca9a8e89b65396b4b12556d92996bcba2bc5a185839920f773",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/pointer_first_read.json",
+        "sha256": "5cfde15eab4b3686251a886e1e7c82600c627c663070ff280c00ed2169df394c",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/release_execution_handoff.json",
+        "sha256": "e4e591455b31db4b5f84c3a454d8f8f40757d41df61d32dcab5cf63859fec7a6",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/host_promotion_receipt.json",
+        "sha256": "d4377e1ef55e64f35bff178bbfd8b53dc11d6890aae941991280288e901578c6",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/promotion_action_time_guard.json",
+        "sha256": "aa0531ce6dac70905d1c07a6787653b043d73dbf6239ab884b3c9b69baeab5b8",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/native_google_update_intent.json",
+        "sha256": "e54d5c88969524ea56ddb879fc3f2817ebad2803b0bb71bff7617f73f89a49b3",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/native_google_receiving_result.json",
+        "sha256": "89704f41b7e10d9fa03374c0a337e1603b0b72ddfe5ee6e5320cb172f60c1dd3",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/native_protected_after_readback.json",
+        "sha256": "5b027005590b986dcfa73d6a86a2b93cb22e3fcd2172a361a18d15f4074b05bc",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/release_receipt_checks.json",
+        "sha256": "88bae140f9f313cf828c8e9273893d5358eb73da26ef93475366dd3b1f38ebad",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/checkpoint_release_receipt.json",
+        "sha256": "f738208e41bdcf4f550c2fd16d3ee2b7bb7aaa85ba09d6075d13e5af6c2c7b35",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/candidate_source_delta_checks.json",
+        "sha256": "f295980d4a8e4407fd127832b77d89b335f594f8197299e6c42cad9707fd7cbf",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/release_and_rollback_bindings.json",
+        "sha256": "31bc187a6a3cce758ebb98bd77a79a6fbded382770ef0b27797e196f8cd67411",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/promote.result-20260914T133317275985Z.json",
+        "sha256": "2fc9307ac5db05eb9cdb1de71a36743ede7296432099513ec1a9e7add0dc15e9",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/us_freshness_independent_promotion_review_20260914_1236.json",
+        "sha256": "10580fc050f86d61e15ecbcb196dbd9a21b0d603d52b37e2cc915f9e8aa59a51",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/us_freshness_independent_after_review_20260914_1236.json",
+        "sha256": "034ae32d6a34b7835c546b4a9d71fd90cbea2930b24943c2946bdc469029d720",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_count_delay_guidance_20260914_1236.json",
+        "sha256": "b12ef923b64f16baf26220756dc6d6afc76aae36b2aceb37e1e3363bac0f3753",
+        "match": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/native_removal_reconciliation_20260914T1405Z.json",
+        "sha256": "ac0be5d239e416afa57fe9bddd27baa25ee543d5053b85ab26a23720dea11fa4",
+        "match": true
+      }
+    ]
+  },
+  "accepted_facts": {
+    "US_host": "Fresh complete ACTIVE-only Shopify source finished2026-09-14T13:16:10.466Z; reviewed4741-row/232-parent candidate removed20, added0, retained all4741 fields/prices, preserved six-parent/162-offer holds. Existing pointer promotion COMMITTED_VERIFIED at13:33:17.275931UTC; immutable and pointer match; Worker metadata unchanged.",
+    "Google_fetch": "One Google Update received4741 updated /0 new, All recognized, No issues found; previous Connection failed absent. Native timestamp9:34:09AM converted to13:34:09UTC from retained New York context; account timezone independently unverified.",
+    "protected_offers": "Six exact US protected offer readbacks Approved/In stock/Free listings: five Adult2XL at22.99USD and pilot at17.99USD. Their33hours-ago labels do not prove each record was rewritten during this fetch.",
+    "current_native_source_list": "Historical source/list4761 at13:36/13:42 retained as dated history. Current header4741 at14:05:57.330UTC and source-filtered table4741; two loaded source-qualified parent-ID prefix predicates at14:07:14.007UTC and14:07:55.261UTC show No results and exhaust the frozen20 omitted IDs exactly once.",
+    "freshness": {
+      "fresh_source_at_utc": "2026-09-14T13:16:10.466Z",
+      "proactive_refresh_target_at_utc": "2026-09-15T13:16:10.466Z",
+      "unchanged_host_expiry_at_utc": "2026-09-16T13:16:10.466Z",
+      "canonical_due_seconds_floor_is_conservative": true
+    },
+    "eligibility": "Sep14 12:47–12:50 exact account issue absent and four initial US/AU protected samples approved; aggregate9522 total /54 Not showing is datedSep13. The separately displayed54 image-processing issue is not assumed to be the same set. No full approval count inferred.",
+    "demand": "All18 original DK/DE/CZ/RO/IT/NL hypotheses have native historical reads forSep2025–Aug2026, isolated by country/language and Google-only:17 in0–10; IT-03 in10–100/High. No bid pairs. Paid funding qualification remains deferred for all18; no summed independent demand, whole-country rejection, CPC affordability, spend, launch or profit claim.",
+    "GSC": "Sunshine handle-containing3month report1click/69impressions,1.4%CTR,10.5position;17page rows reconcile. Query and country dimensions each0clicks/22impressions, leaving1click/47impressions unassigned, with native partial-data warning. No causal, conversion or profit inference.",
+    "returns_and_markets": "AT-only Verified return-policy evidence is separated from US/AU absent configured coverage and unknown effective offer overrides. Saved no-restocking owner decision is separated from website silence; broader market synchronization, policy wording, defective-item remedies and delivery truth remain open."
+  },
+  "independent_native_reconciliation": {
+    "status": "PASS_WITH_LIMITS__SAVED_SOURCE_MEMBERSHIP_RECONCILIATION",
+    "receipt_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/source_freshness_1310/native_removal_reconciliation_20260914T1405Z.json",
+    "receipt_sha256": "ac0be5d239e416afa57fe9bddd27baa25ee543d5053b85ab26a23720dea11fa4",
+    "frozen_packet_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/candidate_review_packet.json",
+    "frozen_packet_sha256": "6d4784b8526d08a35726988fb2eb6cb40f8c80c90622679c0643b16f8b57a27e",
+    "checks": [
+      {
+        "check": "native_receipt_exact_hash",
+        "result": "PASS"
+      },
+      {
+        "check": "frozen_candidate_hash_binding",
+        "result": "PASS"
+      },
+      {
+        "check": "twenty_unique_frozen_removed_ids_no_added_rows",
+        "result": "PASS"
+      },
+      {
+        "check": "delta_receipt_equals_frozen_ids",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_two_source_qualified_prefixes",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_ten_id_prefix_coverage_shopify_US_7108998987873_",
+        "result": "PASS"
+      },
+      {
+        "check": "loaded_no_results_without_error_shopify_US_7108998987873_",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_ten_id_prefix_coverage_shopify_US_7109117280353_",
+        "result": "PASS"
+      },
+      {
+        "check": "loaded_no_results_without_error_shopify_US_7109117280353_",
+        "result": "PASS"
+      },
+      {
+        "check": "all_twenty_covered_exactly_once_no_extra_ids",
+        "result": "PASS"
+      },
+      {
+        "check": "twenty_individual_receipt_rows_match_frozen_set_once",
+        "result": "PASS"
+      },
+      {
+        "check": "exact_account_source_country_language",
+        "result": "PASS"
+      },
+      {
+        "check": "header_table_and_received_rows_4741_no_new",
+        "result": "PASS"
+      },
+      {
+        "check": "loaded_count_4741_observed_after_historical_4761",
+        "result": "PASS"
+      },
+      {
+        "check": "individual_archive_deletion_and_owner_status_unknown",
+        "result": "PASS"
+      },
+      {
+        "check": "no_accountwide_or_serving_absence_claim",
+        "result": "PASS"
+      },
+      {
+        "check": "no_repeated_update_or_business_mutation",
+        "result": "PASS"
+      },
+      {
+        "check": "source_24h_target_and_48h_expiry_unchanged",
+        "result": "PASS"
+      }
+    ],
+    "exact_ids": [
+      "shopify_US_7108998987873_41496666669153",
+      "shopify_US_7108998987873_41496666701921",
+      "shopify_US_7108998987873_41496666734689",
+      "shopify_US_7108998987873_41496666767457",
+      "shopify_US_7108998987873_41496666800225",
+      "shopify_US_7108998987873_41496666832993",
+      "shopify_US_7108998987873_41496666865761",
+      "shopify_US_7108998987873_41496666898529",
+      "shopify_US_7108998987873_41496666931297",
+      "shopify_US_7108998987873_41496666964065",
+      "shopify_US_7109117280353_41497061785697",
+      "shopify_US_7109117280353_41497061818465",
+      "shopify_US_7109117280353_41497061851233",
+      "shopify_US_7109117280353_41497061884001",
+      "shopify_US_7109117280353_41497061916769",
+      "shopify_US_7109117280353_41497061949537",
+      "shopify_US_7109117280353_41497061982305",
+      "shopify_US_7109117280353_41497062015073",
+      "shopify_US_7109117280353_41497062080609",
+      "shopify_US_7109117280353_41497062113377"
+    ],
+    "prefix_counts": {
+      "shopify_US_7108998987873_": 10,
+      "shopify_US_7109117280353_": 10
+    },
+    "source_header_count": 4741,
+    "source_table_count": 4741,
+    "header_observed_at_utc": "2026-09-14T14:05:57.330Z",
+    "query_observations_at_utc": [
+      "2026-09-14T14:07:14.007Z",
+      "2026-09-14T14:07:55.261Z"
+    ],
+    "lines": {
+      "\"source\": {": 8,
+      "\"queries\": [": 29,
+      "\"ids\": [": 85,
+      "\"coverage\": {": 287,
+      "\"interpretation\": {": 297,
+      "\"actions\": {": 316,
+      "\"freshness\": {": 328,
+      "\"input_bindings\": {": 334
+    },
+    "limits": [
+      "Independent saved-receipt verification only; no independent live replay.",
+      "Twenty IDs absent from current source10727274744 product list; individual deletion, archive, current per-ID owner, accountwide and serving absence remain unknown.",
+      "No inference explaining why header counts converged.",
+      "No extra Update, public fetch, credential or business mutation."
+    ]
+  },
+  "resolved_findings": [
+    {
+      "id": "F01",
+      "issue": "UTC13:34:09 was previously insufficiently qualified.",
+      "resolution": "All changed shared prose, TA-07 and Merchant claim explicitly retain native9:34:09AM and the unverified account-timezone limit.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "F02",
+      "issue": "Earlier13:19 pointer-expiry/build-ongoing acceptance text could read as current.",
+      "resolution": "Original text retained under explicit HISTORICAL_13_19_CHECKPOINT__SUPERSEDED_BY_COMPLETED_US_SOURCE_RECOVERY wrapper, with references to completed recovery.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "F03",
+      "issue": "After the new20-ID receipt, acceptance text still described the current source-list gap as open and briefly joined broader market gates to a superseded gap.",
+      "resolution": "Historical gap explicitly superseded by accepted.US_native_reconciliation; broader all-market synchronization and return truth explicitly remain open; individual/archive/accountwide/serving limits remain unverified.",
+      "status": "RESOLVED"
+    }
+  ],
+  "residual_limits": [
+    "Review accepts saved sources and exact candidate content; no independent live account replay.",
+    "Twenty IDs are absent from the current source10727274744 product list. Individual archive/deletion, current per-ID owner/status, accountwide absence and serving removal are unknown.",
+    "Google-received full byte equality, native absence of all162 held offers and all-offer approval remain unverified.",
+    "Observed fetch recovery and later count reconciliation do not prove the sole historical failure or convergence cause, a guaranteed convergence deadline, traffic, orders, attribution, costs or profit.",
+    "AU current synchronization and broader market/return/delivery gates remain open.",
+    "Old before-pointer was expired and is not a healthy automatic rollback; no timestamp restamping.",
+    "Future source renewal is due through the existing owner/heartbeat; future execution is not yet observed.",
+    "Parent reported actual omission-owner turn completion separately; this review verifies the bound completed source receipt and preserves the distinction between dispatch and completion."
+  ],
+  "blockers": [],
+  "parent_next_action": "Apply only the exact reviewed9-target/18-operation candidate after matching current-before hashes, then run the existing relevant continuity and cockpit checks and record the resulting canonical hashes.",
+  "post_apply_checks": "NOT RUN by this read-only reviewer; root owns integration and standard post-application verification.",
+  "approval_scope": "PASS_WITH_LIMITS accepts only these exact saved-source/canonical candidates. It adds no live production, paid, credential, scheduler or account authority.",
+  "source_acceptance_final_corrections": {
+    "source_expiry_qualification": "The statements awaiting Google afterstate and owner preparation ongoing describe only the earlier 13:19 checkpoint. Reviewed host promotion and successful Google receiving outcome are completed. The later current-source-list20-ID gap is superseded by accepted.US_native_reconciliation; individual archive/deletion and accountwide/serving absence remain unverified.",
+    "last_source_limit": "The scheduled-fetch connection error cleared after fresh publication; this is observed recovery, not proof of the sole historical runtime cause. Broader all-market synchronization and return truth remain open. The historical native 20-ID removal gap is superseded for the current source product list by accepted.US_native_reconciliation; individual archive/deletion and accountwide/serving absence remain unverified."
+  }
+}

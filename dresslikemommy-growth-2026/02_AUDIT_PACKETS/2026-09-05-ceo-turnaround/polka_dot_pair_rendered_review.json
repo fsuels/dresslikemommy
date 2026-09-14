@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at_utc": "2026-09-06T17:52:28.845619+00:00",
+  "status": "PASS_SOURCE_RENDER_RECONCILIATION__PAID_NOT_READY",
+  "product_id": "gid://shopify/Product/7536988520545",
+  "root_rendered_capture_at_utc": "2026-09-06T17:48:51.208Z",
+  "evidence_ownership": {
+    "root": "Normal storefront observation and fit-button expansion; receipt scope MAIN US/en, cart 0.",
+    "reviewer": "Local independent comparison of saved source and rendered receipt only. No browser/API/public reads or mutations.",
+    "theme_id": "Root identified MAIN133290917985 in task context; this JSON receipt itself contains no numeric theme ID."
+  },
+  "comparisons": {
+    "rendered_mother_chart_columns": [
+      "Size",
+      "Weight (kg)",
+      "Height (cm)",
+      "Chest/Bust (cm)",
+      "Skirt Length (cm)",
+      "Hip (cm)",
+      "Waist (cm)",
+      "Garment Length (cm)"
+    ],
+    "rendered_mother_chart_rows": [
+      [
+        "S",
+        "45-52.5",
+        "165",
+        "92",
+        "107",
+        "98",
+        "90",
+        "107"
+      ],
+      [
+        "M",
+        "52.5-60",
+        "170",
+        "96",
+        "109",
+        "102",
+        "94",
+        "109"
+      ],
+      [
+        "L",
+        "60-67.5",
+        "175",
+        "100",
+        "111",
+        "106",
+        "98",
+        "111"
+      ],
+      [
+        "XL",
+        "67.5-75",
+        "180",
+        "104",
+        "113",
+        "110",
+        "102",
+        "113"
+      ]
+    ],
+    "all_4_adult_rows_match_current_derived_source": true,
+    "current_caption_in_body": "Size Chart - Dress",
+    "child_chart_rendered_check": "NOT_RUN in supplied fit snapshot; only Mother chart expanded",
+    "rendered_size_estimate_qualifier": "NONE in saved expanded Mother chart context",
+    "unrelated_estimate_text": "US delivery estimate does not qualify chart measurements"
+  },
+  "paid_readiness": {
+    "eligible": false,
+    "qualifier_alone_sufficient": false,
+    "qualifier_effect": "May improve disclosure of estimates; cannot establish garment-measurement accuracy, fit, source material or AU delivered economics. No disclosure change was made.",
+    "customer_harm": "NOT_ESTABLISHED by this source/render comparison.",
+    "requires": [
+      "Original product-specific measurement evidence for the selected Mother and Child dresses, reconciled with current chart and picker labels",
+      "Exact selected-pair Australian delivered quote plus disjoint fees/returns/tax/FX basis sufficient to evaluate 30% net and ROAS",
+      "Final AU buyer-path and paid measurement/authority checks retained by root"
+    ],
+    "shortest_next_step": "Obtain original measurement evidence and an itemized Australian delivered quote for the same pink Mother S plus Child 4 pair; confirm the normal provider quote surface before any send. Do not treat a simple estimated-label addition as paid clearance."
+  },
+  "already_reviewed_alternative_dresses": {
+    "verified_original_chart_and_paid_qualification_found": false,
+    "scope": "No new catalog/source scan; only the previously reviewed sold-dress/cost packet subset and exact linked receipts.",
+    "items": [
+      {
+        "product_id": "7536992976993",
+        "name": "Skyfade",
+        "state": "Known EN/source chart conflicts; mixed-basket and Italian fulfillment limitations remain."
+      },
+      {
+        "product_id": "7585867628641",
+        "name": "Sky Blue",
+        "state": "No verified original chart proof in examined packet; small US basket fails exact 6.5x screen before remaining expenses."
+      }
+    ],
+    "others": "The old dress candidate/sales CSVs establish titles/sales/status subsets, not original measurements. No storewide claim of absence is made."
+  },
+  "validation": {
+    "count": 10,
+    "passed": 10,
+    "checks": [
+      {
+        "id": "identity",
+        "pass": true,
+        "evidence": "Exact known product URL and H1 agree."
+      },
+      {
+        "id": "observed_locale",
+        "pass": true,
+        "evidence": "US/USD visible in both snapshots; US/en and MAIN are root-attributed scope. Theme numeric ID is not embedded in this receipt."
+      },
+      {
+        "id": "visible_price_matches_source",
+        "pass": true,
+        "evidence": "Rendered default range matches current source prices."
+      },
+      {
+        "id": "mother_chart_expanded",
+        "pass": true,
+        "evidence": "Expanded control observed in saved root DOM."
+      },
+      {
+        "id": "four_adult_rows_equal_source",
+        "pass": true,
+        "evidence": "All seven numeric fields per adult row match the current Admin chart."
+      },
+      {
+        "id": "no_size_estimate_disclosure_in_chart",
+        "pass": true,
+        "evidence": "No estimate/derivation qualification in expanded-chart context. Unrelated Estimated delivery text excluded."
+      },
+      {
+        "id": "cart_zero_both_snapshots",
+        "pass": true,
+        "evidence": "Root records no variant/cart/checkout action; independent review did not replay browser."
+      },
+      {
+        "id": "source_body_and_provenance_still_bound",
+        "pass": true,
+        "evidence": "Captured body and four exact historical source-file hashes still match."
+      },
+      {
+        "id": "au_source_not_checkout",
+        "pass": true,
+        "evidence": "Earlier current Admin AU publication/context price retained separately from root US rendered read."
+      },
+      {
+        "id": "no_actual_cost_or_margin_promoted",
+        "pass": true,
+        "evidence": "USD33.50 is recorded/model cost, with no actual AU delivered-cost qualification."
+      }
+    ]
+  },
+  "source_sha256": {
+    "polka_dot_pair_current_source.json": "7735fd9ae5b55d831e702778814e20c63ee9a5e7a3d98972766355a9f4a04008",
+    "polka_dot_pair_rendered_readback.json": "84ebdc557a97e7d51d51b377660586c1851cefa3b2918ad0997c30aa52f2a368",
+    "microsoft_dress_offer_cost_screen.json": "c4afae612141978010fddf6a2618c2bb84e9d707a378a1d7ce3b6b1570f8e636",
+    "italian_search_landing_source.md": "4bee32bd900bbded403b70d79de783c989044c83e07f4cb790dc86dbad797154"
+  }
+}

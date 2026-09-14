@@ -1,8 +1,675 @@
 # Marketing Safety Review Log
 
-Last updated: 2026-05-15 09:45 EDT
+## 2026-09-11 — Ongoing Google keyword correction
+
+Independent /root/tag_repair_review DID_NOT_BUILD_OR_EXECUTE: PASS_WITH_LIMITS for exact five-file patch74f2552167eb67458048bda26ed8341556805d1b075062f36eb9a294bac9fb5f and manifest697d55fbe2f0b75f656ea661eec72e30895f39e552c9b0fe525262c58e248d31.35independent checks, regenerated diff, patch applicability, all105identities/statuses, eight watchlists, five frozen failures and negative protections pass. Earlier R/H conflict was corrected before review. Illustrative rounding now distinguishes approximate7.23from strict-cent7.22. Root then read exact baseline/candidate hashes and applied only the five local files.
+
+Market source integrity531checks and measurement38checks are specialist validations, not independent proof of business outcomes. Root published tag evidence stays configuration-only; genuine Purchase/receiver/consent/dedup and actual per-market profit/CAC remain UNKNOWN. No current PMax keyword/settings, new spend, translation quality or65-country checkout certification. Evidence: ongoing/measurement_economics/KEYWORD_INDEPENDENT_REVIEW.md/.json and keywords/APPLICATION_RECEIPT.json; anchor 2026-09-11-google-ads-ongoing-markets-keyword-correction
+
+
+## 2026-09-11 — Existing-records Data pilot
+
+Reviewer `/root/data_pilot_verifier`, `DID_NOT_BUILD_OR_EXECUTE`: `PASS_WITH_LIMITS`. Reproduced 45 checks, independently checked 39 baseline/period/aggregation conditions and 28 cost conditions, verified all ten input hashes/byte counts, and confirmed the older 7,324 variant costs follow half-price modeling. No material packet fault; scoped privacy scan clear. The prepared reference analysis preserves different periods, top-N residuals, missing costs, currency limits and unknown financial outputs. It does not certify actual contribution, CPA/ROAS, new sales, account availability or the new OpenAI Data plugin's performance. No live/account/authority change or blocker reclassification. Existing TA-16 cost evidence is the next pilot input, without changing the global owner priority. Evidence: `2026-09-11-data-pilot/independent_review.json`; anchor `2026-09-11-read-only-data-pilot`. Material decision `NOT_MATERIAL`.
+
+## 2026-09-10 — Together Heart exact source and recurrence review
+
+/root/order_delta_1934 DID_NOT_BUILD_OR_EXECUTE: prewrite231body/table and17payload/rollback checks plus21locale semantic review passed; actual after-state200/200 checks passed.21exact bodies/current100translations;98variants,11publication relationships,80non-body records and2352other table cells preserved. Root136source checks, canonical0missing/0planned/0errors and1960variant-language mappings pass. /root/together_heart_source independently verified56source measurements,64local recurrence checks and12runtime diagnosis checks; no product creation/import occurred. Backup sync21builder/12root preservation checks pass.
+
+Root public-browser evidence remains distinct:21exact tables;19exact copy sets, French-only semicolon spacing accepted, Japanese stripping FAILED; Arabic child selection FAILED. The failures are not waived by source tests. Checksum-bound causal reproduction links them to existing MAIN/UX theme code and current UX owner accepted narrow repair. No independent second browser replay or traffic/profit proof. Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/postwrite_review.json, runner_independent_review.json, public_checks.json, public_discrepancies.json and runtime_diagnosis.json.
+
+## 2026-09-09 — Approved organic article release review
+
+Reviewer /root/organic_plan_review, DID_NOT_BUILD_OR_EXECUTE: final PASS_WITH_LIMITS with22independent checks, including prewrite source/payload/rollback and post-source/scope preservation. Exact seven list-item newlines account for Shopify normalization; all other original bytes and eight non-body/non-updatedAt fields preserved. All36translation values preserved,17body flags/timestamps changed,19title records unchanged. Actual after-body hash binds safe rollback. Final rendered evidence is root-owned desktop/mobile and two locale samples; independent reviewer reviewed those receipts without claiming a separate browser replay. Article release complete; new acquisition, checkout/purchase and profit acceptance remain unmeasured. Prior preparation/quota notes below are dated history. Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/release-20260910/independent-release-review.md and buyer-route-readback.json.
+
+## 2026-09-09 — Organic buyer pilot review
+
+Independent review PASS_WITH_GATES binds the unchanged live article payload. The reviewer then hit a usage limit before refreshing formatting/schedule refinements. Root separately verified the final 38 checks and all 21 manifest hashes; the final artifact pass is not presented as a fresh independent replay. Independent reviewer /root/organic_plan_review DID_NOT_BUILD_OR_EXECUTE checked arithmetic/date/top-N tails, the two exact article-body edits/rollback,17body+19title translations, unsupported-claim exclusions, tracking links, one-page/two-link PDF and account/release separation. No blocking preparation error. Root resolved display newline and Sunshine/weekly-cap alignment without changing the reviewed live body payload, then corrected the authority citation. New public scope still requires exact approval and fresh before/after checks. PDF/browser views are root-owned, not independently replayed. Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/review.md and verification.json; decision DLM-DEC-2026-09-09-ORGANIC-BUYER-PILOT.
+
+## 2026-09-09 — Pinterest tracking and traffic audit review
+
+/root/independent_review, DID_NOT_BUILD_OR_EXECUTE: PASS_WITH_GATES forcurrentaudit andexistingSunshine asset; paidNOT_LAUNCH_READY. Threepublicrouteappconfigs,255localsourcefiles, exactcreative/reference hashes andappearance, sourcevalue/identity/consent limits, eightaggregatearithmetic checks andCPCversusoutboundsemantics reviewed. ShopifyanalyticsoriginalcurrencyreceiptUSD retained. Noadditionalmanualtagjustified; noorder/eventparityorprofitcertification. Nativeaccount/rootreadbacks arenotindependentlyreplayed; exactDLMsession, board/duplicate/buyer/preview andpublicreceipt remainrequired. Correctedstrategy preservesnativehardtotalcaprequirement and distinguishesP+biddingfromfullcampaignbundle. Paidlocalspec'sdates/targeting/samplingcontractremainunfrozen. Zeroexternalwrites. Currentwrongaccountisolatedbrowser gate doesnotcreateneworganicapprovalneed. Evidence2026-09-09-pinterest-expert-audit/INDEPENDENT_REVIEW.md; decisionDLM-DEC-2026-09-09-PINTEREST-TRAFFIC-QUALITY.
+
+## 2026-09-09 — GA4 migration partial completion independent review
+
+Decision DLM-DEC-2026-09-09-GA4-TAG-MIGRATION; reviewer /root/tag_migration_review, DID_NOT_BUILD_OR_EXECUTE. Initial exactGA4 migration PASS_WITH_GATES; later reversible duplicate cleanup conditional on app delivery/consent/source checks with purchase parity separately open. Final review PASS for accurate partial-completion reporting: one migration saved and app setting read back; Tag Assistant Page View sent is browser dispatch only; wizard2/3 and legacy111181921 connected preserve unfinished cleanup/duplicate risk. Ads111214689 and other integrations unchanged. Chrome title-only/emptyAX and Finder success support a scoped readback gate, not an inferred login or Mac-lock cause. Full cutover remains UNRESOLVED. Evidence:2026-09-09-google-tag-migration/MIGRATION_READBACK.md; anchor2026-09-09-google-tag-migration-partial-readback.
+
+## 2026-09-09 — Persistent local dashboard independent review
+
+Reviewer verdict: `PASS_PREINSTALL_CODE_AND_SOURCE_INTERPRETATION`; reviewer `/root/task_state_review`, `DID_NOT_BUILD_OR_EXECUTE`. Independent27tests pass. Reproduced final-source-snapshot race and cold-start empty-revision recovery defects were repaired before installation; empty handoffs and source-error labeling corrected. Loopback/GET-only/origin/traversal/symlink/allowlist, atomic last-good cache, malformed/truncated source recovery and narrow reversible installer controls pass. Exact paid authority and existing manual publication gate remain intact. Root subsequently verified service install/restart, Chrome test live pinned tab, persistent Dock app and desktop/narrow owner-input rendering. Final evidence: live_dashboard_verification_20260909.json, anchor2026-09-09-live-growth-dashboard. External analytics and running-agent status are explicitly separate from service health.
+
+Last updated: 2026-09-09
 
 Use this log for reviewer outcomes or simulated checklist runs. Keep entries short and tied to evidence.
+
+## 2026-07-09 - Weekly dream review local loop
+
+Reviewer verdict: `LOCAL_ONLY_REVIEW_PACKET_GENERATED__NO_LIVE_AUTHORITY`
+
+Checked:
+
+- The loop reads local continuity and command-layer files only.
+- The first generated packet names recurring signals, proposed local rules, and one recommended next action.
+- The packet preserves approval boundaries and states it does not authorize live writes.
+- The loop points back to the existing self-improvement scorecard instead of creating a competing paid-growth prompt or command layer.
+
+Guardrails:
+
+- No Shopify Admin, Google Ads, Pinterest, Merchant Center, GA4/GTM, feed, campaign, product, theme, billing, credential, payment, order, publication, or live-account write occurred.
+- Prompt/checklist promotion remains a human-reviewed local change with continuity checks.
+
+Evidence:
+
+- `docs/agent-loops/weekly-dream-review-loop.md`
+- `ops/scripts/generate_weekly_dream_review.py`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-07-09-weekly-dream-review/WEEKLY_DREAM_REVIEW.md`
+
+Next action:
+
+- Use the weekly dream review before future recurring prompt/checklist improvements; the business next action remains the existing Pinterest Phase 1 paused replacement setup gate if the owner chooses Pinterest next.
+
+## 2026-05-20 - Pinterest US Spanish source submitted, product groups gated
+
+Reviewer verdict: `SOURCE_SUBMITTED__INGESTION_PROCESSING__PRODUCT_GROUPS_NOT_CREATED`
+
+Checked:
+
+- Owner approved only the exact Pinterest US Spanish source/product-group prep phrase.
+- Repaired local feed readback remained `210` rows with expected counts `99/77/34`, `custom_label_0=us_es`, `custom_label_4=collection_intent_parent_es_v20260520`, `0` missing required fields, `0` supplier/source-host hits, and SHA `f4679594f0112105f814be617ff62919019cd711be147d7d0dcae4eb73ef4a69`.
+- Cloudflare R2 upload and Worker route readback passed for `https://dlm-pinterest-feed-worker.dresslikemommy.workers.dev/pinterest-paid-parent-es-feed.tsv`.
+- Pinterest created source `3041760893334979315` named `DLM US ES Paid Parent Collection Intent 2026-05-20`, country United States, language `Español (Américas)`, TSV, USD, daily `03:45 America/New_York`.
+- Pinterest after-state still reads `Processing`: product count `Processing`, images `Processing`, May 20 6:36 AM EDT ingestion successful `0`, failed `0`, warnings `0` while processing.
+
+Guardrails:
+
+- Product groups were not created because completed ingestion and confirmed `99/77/34` label counts are not available yet.
+- No campaign/ad group/ad was created or launched; no spend was enabled.
+- No budget, bid, status, tracking, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM change occurred.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-us-spanish-parent-test/PINTEREST_US_SPANISH_PARENT_TEST_PACKET.md`
+- Pinterest source detail URL: `https://www.pinterest.com/business/catalogs/3041764155561548387/data-sources/3041760893334979315/detail/?subjectBusinessId=343118202768859516`
+
+Next action:
+
+- Poll source `3041760893334979315` until it completes. If it reads `210` successful uploads, `0` failed, and `0` warnings, create only the three approved Spanish product groups for `custom_label_0=us_es`, `custom_label_2=mommy_and_me/family_matching/daddy_and_me`, and `custom_label_4=collection_intent_parent_es_v20260520`, expected counts `99/77/34`. Campaign launch remains a separate approval.
+
+## 2026-05-20 - Pinterest US Spanish copy gate repaired
+
+Reviewer verdict: `LOCAL_SPANISH_COPY_GATE_PASSED__LIVE_APPROVAL_STILL_REQUIRED`
+
+Checked:
+
+- Owner directed `do that` after the exact next action was identified as completing the local Spanish feed-copy gate.
+- Builder now uses exact/normalized cache matches, strict prefix/contains matching, and explicit local machine-translation fallback for true gaps.
+- Final repeatable builder run passed from the local cache with `machine_translation_enabled=false`.
+- First regenerated sample inspection caught an overly-broad matcher that pulled option labels into product copy; final builder tightened match direction and regenerated.
+- Final repaired feed has `210` rows, unique parents `210`, exact counts Mommy `99`, Family `77`, Daddy `34`, `0` duplicate IDs, and `0` missing required fields.
+- Spanish copy is complete: `210/210` titles and `210/210` descriptions; machine translation failures `0`.
+- Supplier/source-host TSV scan returned `0` hits for `1688`, `alicdn`, `alibaba`, `aliexpress`, `taobao`, `tmall`, `vendor_url`, `source_url`, or `detail.1688`.
+
+Guardrails:
+
+- No Pinterest source upload/reingestion, product-group creation, campaign/ad group/ad creation, status, budget, bid, tracking, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM change occurred.
+- Campaign/source/product-group work remains separately approval-gated.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-us-spanish-parent-test/PINTEREST_US_SPANISH_PARENT_TEST_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-us-spanish-parent-test/feeds/pinterest_us_es_paid_parent_collection_intent.summary.json`
+
+Next action:
+
+- If approved separately, upload/connect the repaired feed as a Spanish Pinterest source, read back ingestion, then create only the `99/77/34` Spanish product groups. Campaign launch stays a final separate approval.
+
+## 2026-05-20 - Pinterest US Spanish parent test prep
+
+Reviewer verdict: `SPANISH_PARENT_TEST_PREPARED__NOT_LAUNCH_GREEN`
+
+Checked:
+
+- Owner directed `Do the spanish !`.
+- Direct Spanish collection URLs for Mommy & Me, Family Matching, and Daddy & Me returned `200`.
+- Three Spanish PDP samples returned `200`, had `/es` product context, USD price, and `Agregar al carrito`.
+- Draft Spanish parent feed has `210` rows, unique parents `210`, exact counts Mommy `99`, Family `77`, Daddy `34`, `0` duplicate IDs, and `0` missing required fields.
+- Spanish catalog copy is incomplete: title translations `83/210`, description translations `0/210` from the local cache exact-match pass.
+- Spanish homepage `/es` and `/es/` returned `500` during public fetch; direct collection/PDP traffic remained usable.
+
+Guardrails:
+
+- No Pinterest source upload/reingestion, product-group creation, campaign/ad group/ad creation, status, budget, bid, tracking, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM change occurred.
+- Do not launch Spanish Shopping/catalog ads with partial English catalog copy.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-us-spanish-parent-test/PINTEREST_US_SPANISH_PARENT_TEST_PACKET.md`
+
+Next action:
+
+- Complete the local Spanish feed-copy gate, then request separate approval for any source upload/product-group/campaign work.
+
+## 2026-05-20 - Pinterest campaign renamed
+
+Reviewer verdict: `CAMPAIGN_RENAMED_PARENT_COLLECTIONS__READBACK_PASSED`
+
+Checked:
+
+- Owner gave exact campaign-rename-only approval.
+- Campaign `626758581530` was renamed from `DLM_PIN_US_CATALOG_333_EXACT_20260518` to `DLM_PIN_US_PARENT_COLLECTIONS_99_77_34_20260520`.
+- Before save, status still read `Active`, budget still read `10.00` USD, schedule still read `Run continuously`, and no validation error appeared.
+- Save exited to reporting with no visible error.
+- Campaign readback shows `DLM_PIN_US_PARENT_COLLECTIONS_99_77_34_20260520`, ID `626758581530`, `Active`, `1 currently being served`.
+- Clean ad group readback still shows only `DLM_PIN_US_PARENT_COLLECTIONS_ADGROUP_20260520` / `2680090331049`, Active, bid `$0.15`.
+- Clean product-group readback still shows only Mommy `99`, Family `77`, Daddy `34`, all Active Shopping.
+
+Guardrails:
+
+- No status, budget, bid, tracking, ad group, product-group, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM change occurred.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`
+
+Next action:
+
+- Continue read-only delivery/spend-quality monitoring for the active parent campaign.
+
+## 2026-05-20 - Pinterest old ad group archived
+
+Reviewer verdict: `OLD_AD_GROUP_ARCHIVED__CLEAN_VIEW_SHOWS_ONLY_PARENT_99_77_34__READBACK_PASSED`
+
+Checked:
+
+- Owner gave exact approval to archive/remove only old paused ad group `2680090307739` from campaign `626758581530`.
+- Before action, the old ad group `2680090307739` was selected and new ad group `2680090331049` was not selected.
+- Pinterest exposed `Archive` under More Options for the selected old ad group.
+- Pinterest showed the irreversible archive confirmation; archive was confirmed only for the selected old ad group.
+- Immediate readback showed old ad group `2680090307739` changed to `Archived`, new ad group `2680090331049` remained `Active`, and campaign still had `1 currently being served`.
+- Clean campaign readback excluding archived ad groups shows `1 campaign`, `1 currently being served`, campaign `626758581530` Active.
+- Clean ad group readback shows `1 ad group`: only `DLM_PIN_US_PARENT_COLLECTIONS_ADGROUP_20260520` / `2680090331049`, Active.
+- Clean product-group readback shows exactly `3 product groups`: Mommy `99`, Family `77`, Daddy `34`, all Active Shopping.
+
+Guardrails:
+
+- No budget, bid, tracking, product-group, new ad group, campaign status, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM change occurred.
+- Old `166/29/103` rows are no longer visible in the normal campaign product-groups view; reporting history remains available if archived ad groups are deliberately included.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`
+
+Next action:
+
+- Continue read-only delivery/spend-quality monitoring for the active parent campaign.
+
+## 2026-05-20 - Pinterest parent campaign restarted
+
+Reviewer verdict: `RESTART_EXECUTED__SERVING_STATE_ACTIVE__READBACK_PASSED`
+
+Checked:
+
+- Owner gave exact restart-only approval for campaign `626758581530`.
+- Before action, campaign status read `Paused`, daily budget `10.00` USD, schedule `Run continuously`, and campaign automatic URL parameters unchecked.
+- Only campaign status was changed from `Paused` to `Active`; pre-save readback still showed budget `10.00`, schedule `Run continuously`, automatic URL parameters unchecked, and no validation errors.
+- Save exited to reporting with no visible error.
+- Campaign reporting now reads `Active` and `1 currently being served`.
+- Ad group reporting now reads `1 currently being served`; new ad group `2680090331049` is `Active`, bid `$0.15`, and old ad group `2680090307739` is `Paused`.
+- Product-group reporting for new ad group `2680090331049` still reads three Active Shopping product groups at Mommy `99`, Family `77`, Daddy `34`, with zero new metrics.
+
+Guardrails:
+
+- No budget, bid, tracking, product-group, ad-group status, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM change occurred.
+- No optimization action occurred.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`
+
+Next action:
+
+- Monitor read-only after delivery starts: spend, impressions, Pin clicks, outbound clicks, CPC, product-group distribution, checkout/purchase events, and policy/delivery issues. Do not optimize or mutate without fresh approval unless a spend-safety stop is explicitly approved.
+
+## 2026-05-20 - Pinterest pre-restart read-only review
+
+Reviewer verdict: `PRE_RESTART_READBACK_PASSED__OWNER_APPROVAL_REQUIRED`
+
+Checked:
+
+- Campaign `DLM_PIN_US_CATALOG_333_EXACT_20260518` / `626758581530` reads `Paused` and `0 currently being served`.
+- Campaign objective remains `Catalog sales`.
+- Campaign budget reads `Daily` / `10.00` USD; campaign schedule reads `Run continuously`.
+- Campaign-level automatic URL parameters are not enabled.
+- New ad group `DLM_PIN_US_PARENT_COLLECTIONS_ADGROUP_20260520` / `2680090331049` reads `Active` inside the paused campaign, with `Pin clicks`, `Custom`, max CPC `0.15`, Shopping format, URL tracking `None`, CTA `Shop now`, Performance+ creative optimization `Off`, all U.S. broad targeting, and Browse/search placement.
+- Product groups on the new ad group are exactly the verified parent groups: Mommy `99`, Family `77`, Daddy `34`; reporting shows all three Active, Shopping, and zero metrics.
+- Old ad group `DLM_PIN_US_CATALOG_333_EXACT_ADGROUP_20260518` / `2680090307739` reads `Paused`.
+
+Guardrails:
+
+- No `Save edits`, restart, publish, enable, campaign budget, bid, tracking, status, billing, tag/CAPI, Shopify, Merchant, Google Ads, GA4, or GTM change occurred.
+- The campaign is structurally ready for restart, but still cannot serve until the owner gives fresh explicit restart approval.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`
+
+Next action:
+
+- Ask the owner for exact restart approval. If approved, change only campaign `626758581530` status from `Paused` to `Active`, save, and immediately read back campaign/ad group/product-group status plus serving state. Do not change budget, bid, tracking, product groups, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM.
+
+## 2026-05-20 - Pinterest replacement ad group saved
+
+Reviewer verdict: `LIVE_SAVED__CAMPAIGN_STILL_PAUSED__RESTART_APPROVAL_REQUIRED`
+
+Checked:
+
+- Owner gave fresh clean-retry approval after the first Pinterest bid-validation loop.
+- Replacement ad group `DLM_PIN_US_PARENT_COLLECTIONS_ADGROUP_20260520` / `2680090331049` was created under paused campaign `626758581530`.
+- Parent source `3041760889836768751` and only the three verified parent groups were attached: Daddy `4673019642938` / `34`, Family `4673019642929` / `77`, Mommy `4673019642885` / `99`.
+- `$0.15` custom CPC cleared validation before old ad group `2680090307739` was set to `Paused`.
+- Saved readback shows campaign still `Paused`, `0 currently being served`, `2 ad groups`, new group `Active`, old group `Paused`, and new product-group reporting at `99/77/34`.
+- Reviewed settings: `Pin clicks`, `Custom`, max CPC `0.15`, Shopping format, Performance+ creative optimization `Off`, URL tracking `None`, CTA `Shop now`, all U.S. broad targeting, and Browse/search.
+
+Guardrails:
+
+- No campaign restart, publish, enable, campaign budget, billing, tag/CAPI, Shopify, Merchant, Google Ads, GA4, or GTM change occurred.
+- No broad `All Products` group is attached to the replacement ad group.
+- Restart still requires fresh explicit owner approval.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`
+
+Next action:
+
+- Before any restart, run a final read-only review of campaign status, budget, ad group statuses, product-group counts, bid, optimization, and tracking, then request fresh explicit restart approval.
+
+## 2026-05-20 - Pinterest replacement ad group save blocked
+
+Reviewer verdict: `BLOCKED__BID_VALIDATION_LOOP__NO_SAVE_READBACK`
+
+Checked:
+
+- Owner gave fresh approval for only the replacement ad group under paused campaign `626758581530`.
+- Replacement was staged against parent source `3041760889836768751` with the three verified parent groups: Daddy `4673019642938` / `34`, Family `4673019642929` / `77`, Mommy `4673019642885` / `99`.
+- Settings were reviewed/copied as requested: `Pin clicks`, `Custom`, visible max CPC `0.15`, Shopping-only format, Performance+ creative optimization `Off`, URL tracking `None`, CTA `Shop now`, U.S. targeting, and Browse/search placement.
+- Old ad group `2680090307739` was staged as `Paused` before save.
+- Pinterest blocked final persistence: first authenticated editor did not save/exit; separate authenticated retry still found saved state with `1` ad group, then final save was disabled by `Bid is required` despite visible bid `0.15`.
+
+Risks:
+
+- The replacement ad group is not confirmed created.
+- The old ad group is not confirmed paused or neutralized.
+- There may be unsaved staged edits in the browser; do not claim live change until a saved readback proves it.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`
+
+Safest next sales-moving action:
+
+- Continue only from a clean Pinterest editor state or supported alternate route; confirm the bid field clears validation before pausing the old group and saving. If Pinterest repeats `Bid is required` while `0.15` is visible, escalate to manual UI/API support instead of forcing or discarding unsaved edits.
+
+## 2026-05-20 - Pinterest parent-paid source created, processing
+
+Reviewer verdict: `PARENT_SOURCE_CREATED__INGESTION_PROCESSING__NO_RESTART`
+
+Checked:
+
+- Owner approved the recommended parent-only paid Pinterest source path after rejecting variant-row selector counts as the wrong business structure.
+- Local parent feed has exact lane counts: Mommy & Me `99`, Family Matching `77`, Daddy & Me `34`, total `210`.
+- Feed guardrails passed: `0` duplicate IDs, `0` missing required fields, `0` supplier/source host hits, and `custom_label_4=collection_intent_parent_v20260520`.
+- Cloudflare R2 object and Worker route are live; `/pinterest-paid-parent-feed.tsv` reads `200`, `X-DLM-Feed-Rows: 210`, and SHA `e990b912ecc80d1c73e72b19f421f10d8a0d21aea13628506ea9230df1c114b6`.
+- Pinterest source `DLM US Paid Parent Collection Intent 2026-05-20`, ID `3041760889836768751`, was created under catalog `3041764155561548387`; validation completed and submission succeeded.
+- Pinterest readback still shows current ingestion `Processing`, product count `-`, images `Processing`, failed `0`, warnings `0`.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/feeds/pinterest_us_paid_parent_collection_intent.summary.json`
+- `ops/scripts/build_pinterest_parent_paid_feed.py`
+- `ops/cloudflare/pinterest-feed-worker/src/worker.js`
+
+Guardrails:
+
+- No parent product groups were created yet because Pinterest ingestion is not complete.
+- No campaign/ad group/ad attachment, restart, publish, enable, budget, bid, status, tag/CAPI, billing, Shopify product/theme/app-proxy, Merchant, Google Ads, GA4, or GTM write occurred.
+
+Next action:
+
+- Poll source `3041760889836768751`. If ingestion completes cleanly, create only the three parent groups from `custom_label_0=us`, `custom_label_2` lane, and `custom_label_4=collection_intent_parent_v20260520`; verify selector counts `99/77/34`; stop before restart pending fresh owner approval.
+
+## 2026-05-19 - IT_IT native Search exact live test enabled
+
+Reviewer verdict: `LIVE_ENABLED__READBACK_PASSED__MONITOR_24H`
+
+Checked:
+
+- Owner gave current-session approval to create/enable the exact IT_IT packet and then run the guarded executor.
+- Google Ads API before-state readback ran, validate-only passed, and live mutate executed `87` operations.
+- Campaign `DLM_IT_SEARCH_NATIVE_IT_EXACT_015_TEST_20260519`, ID `23866684201`, reads back `ENABLED` / `ELIGIBLE`.
+- Scope matches the packet: Italy, Italian, Manual CPC, Google Search only, max `$0.15` CPC, max `$5/day`, `9` enabled exact positive keywords, `47` campaign negatives, `19` ad-group negatives, `4` enabled RSAs, Enhanced CPC off, Search Partners/Search Network off, Display/content off, partner search off, AI Max off, and presence-only location targeting.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-it-it-native-search-exact-015-approval/IT_IT_SEARCH_EXACT_015_APPROVAL_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-it-it-native-search-exact-015-approval/google_ads_api_it_it_execution_report_20260519T135836Z.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-it-it-native-search-exact-015-approval/google_ads_api_it_it_before_readback_20260519T135836Z.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-it-it-native-search-exact-015-approval/google_ads_api_it_it_after_readback_20260519T135836Z.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-it-it-native-search-exact-015-approval/execute_it_it_search_exact_015_live.py`
+
+Guardrails:
+
+- No conversion-goal, Merchant, Shopify, Pinterest, GA4/GTM, billing, feed, product, broad, phrase-positive, PMax, Search Partners, or Display write occurred.
+- The attempted Codex heartbeat automation failed with `No handler registered`; the 24-hour monitor is recorded in the command layer, not scheduled by this thread.
+
+Next action:
+
+- Run the 24-hour IT_IT read-only monitor, then classify the result as hold, negative-approval packet, pause-approval packet, or continue monitoring. Do not mutate without fresh exact approval.
+
+## 2026-05-19 - Pinterest current-active R2 replacement readback
+
+Reviewer verdict: `APPROVED_FEED_ONLY_WRITE_EXECUTED__SOURCE_PROCESSING__NO_OPTIMIZATION_WRITE`
+
+Checked:
+
+- Owner approval covered only replacing the R2 TSV, keeping the same Worker URL, triggering/waiting for source `3041760873378113572`, and reading back source + campaign before touching optimization surfaces.
+- Worker body readback matches current-active TSV SHA `789b85804c01126885fae1ac791d28101b8e04eee39a94f77ce93cd6b1ae5efd` with `28,122` data rows; POST remains `405`.
+- Pinterest accepted one manual trigger at May 19 9:48 AM EDT; source remains `Processing` through 10:15 EDT with images `Processing`, product count `-`, and no visible failed/warning state.
+- Campaign/ad group are Active/serving Today UTC with `$4.44`, `2,505` impressions, `31` Pin clicks, `$0.14` CPC, and `0` actions; ad group bid column reads `$0.15`.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/PINTEREST_2026_05_19_ARCHIVE_FEED_AND_SERVING_READBACK.md`
+- `ops/marketing/action_queue.md`
+- `ops/PROBLEM_TRACKER.md`
+
+Guardrails:
+
+- No Pinterest campaign, ad group, ad, product group, keyword, negative keyword, audience, budget, bid, status, tag/CAPI, billing, legacy feed pause/remove, Shopify product/theme/app-proxy, Merchant, Google Ads, GA4, GTM, or Worker metadata change occurred.
+
+Next action:
+
+- Poll the May 19 9:48 AM EDT ingestion until completion or error, then read exact product groups and campaign/ad tabs before making any optimization recommendation.
+
+## 2026-05-19 - IT_IT native Search exact packet validate-only
+
+Reviewer verdict: `APPROVAL_PACKET_READY__VALIDATE_ONLY_PASSED__NO_LIVE_WRITE`
+
+Checked:
+
+- Approval packet is exact-only: `9` positive exact keywords, `0` phrase/broad positives, and `9` phrase rows held out.
+- Campaign scope is `DLM_IT_SEARCH_NATIVE_IT_EXACT_015_TEST_20260519`, Italy, Italian, Google Search only, Manual CPC, max `$0.15`, max `$5/day`, Enhanced CPC off, AI Max off, Search Partners off, Display off, and purchase-only measurement unchanged.
+- Localized landing readback has `4/4` IT URLs returning `200`, collection-grid signal present, and `0` supplier/source hits.
+- Google Ads API validate-only passed for `87` operations.
+- Before-state and after-state readbacks both showed `0` campaigns with this name; live mutate executed `False`.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-it-it-native-search-exact-015-approval/IT_IT_SEARCH_EXACT_015_APPROVAL_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-it-it-native-search-exact-015-approval/google_ads_api_it_it_execution_report_20260519T134851Z.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-it-it-native-search-exact-015-approval/google_ads_api_it_it_before_readback_20260519T134851Z.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-it-it-native-search-exact-015-approval/google_ads_api_it_it_after_readback_20260519T134851Z.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-it-it-native-search-exact-015-approval/execute_it_it_search_exact_015_live.py`
+
+Guardrails:
+
+- No Google Ads campaign, keyword, ad, negative, bid, budget, status, conversion-goal, Merchant, Shopify, Pinterest, GA4/GTM, billing, credential, or product/feed write occurred.
+
+Next action:
+
+- Execute only if the owner gives the exact enabled approval phrase in the packet; re-run before-state and validate-only immediately before live mutate.
+
+## 2026-05-19 - Multimarket native Search organization
+
+Reviewer verdict: `PASS_READ_ONLY_NATIVE_SEARCH_PACKET__NO_DUPLICATE_UPLOAD`
+
+Checked:
+
+- Live Google Ads Search inventory was read before expansion decisions.
+- Existing non-US country campaigns for ES/IT/PL/CZ and other markets are English-language (`languageConstants/1000`), so native-language keywords are not duplicates of existing same country/language campaign scope.
+- Priority forecast kept only rows with positive historical low top-of-page bid at or below `$0.15` and then explicit single-keyword forecasts at `max_cpc_bid_micros=150000`.
+- Forecastable native rows after duplicate checks: IT_IT `18`, PL_PL `8`, ES_ES `7`, RO_RO `2`, CZ_CS `2`.
+- Corrected localized landing readback passed for all `13` market/theme URLs: HTTP `200`, collection-grid signal present, and `0` supplier/source hits.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-multimarket-search-forecast-organization/MULTIMARKET_NATIVE_SEARCH_EXPANSION_DECISION_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-multimarket-search-forecast-organization/native_language_launch_candidates_all_markets.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-multimarket-search-forecast-organization/live_search_campaign_language_summary.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-multimarket-search-forecast-organization/winning_market_localized_landing_readback_corrected.csv`
+
+Guardrails:
+
+- No Google Ads campaign, keyword, bid, budget, status, negative, conversion-goal, Merchant, Shopify, Pinterest, GA4/GTM, billing, or credential write occurred.
+
+Next action:
+
+- Prepare IT_IT exact-only phase 1 as the first native Search approval packet. Keep PL phrase rows held until exact Polish rows prove search-term quality.
+
+## 2026-05-18 - Pinterest owner-published campaign readback
+
+Reviewer verdict: `PUBLISHED_BY_OWNER__EXACT_PRODUCT_GROUPS_ACTIVE__DELIVERY_NOT_PROVEN__EXPERT_GAPS`
+
+Checked:
+
+- Campaign `DLM_PIN_US_CATALOG_333_EXACT_20260518`, ID `626758581530`, showed `Active` in today's readback.
+- Ad group `DLM_PIN_US_CATALOG_333_EXACT_ADGROUP_20260518`, ID `2680090307739`, showed `Not started`, bid `$0.10`, `$0.00` spend, `0` impressions, and `0` clicks.
+- Product groups for the ad group showed active exact groups: Mommy & Me `201`, Family Matching `103`, Pajamas `29`.
+- Ads readback showed `0 ads` and `0 currently being served`.
+- Keyword readback showed `0 keywords`; negative keyword readback showed `No data`.
+
+Assessment:
+
+- Empty keywords are not automatically wrong for Pinterest Catalog sales; Pinterest Business help says keyword or interest targeting is not necessary for catalog sales campaigns.
+- The real expert-level gap is delivery/readiness: ad group `Not started`, ads `0`, and no impressions/spend/conversion value yet.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/PINTEREST_POST_OWNER_PUBLISH_READBACK.md`
+
+Guardrails:
+
+- No live write occurred during this readback.
+
+Next action:
+
+- Re-read after Pinterest review/propagation. If still not serving, inspect edit screens read-only for budget/schedule/review/ad/shopping-object blockers before any corrective approval packet.
+
+## 2026-05-18 - Pinterest publish approval follow-up, no launch
+
+Reviewer verdict: `OWNER_OVERRIDE_RECEIVED__APPROVED_REVIEW_SCREEN_NOT_RECOVERABLE__NO_PUBLISH`
+
+Checked:
+
+- Owner gave the exact override phrase to publish the already-prepared Pinterest Catalog sales Review screen for advertiser `549756244483`.
+- The selected Chrome/Pinterest tab was re-read before clicking Publish.
+- The approved Review screen was no longer current/recoverable.
+- Current page showed a create-campaign page with `Consideration` selected, `Consideration Campaign | 2026-05-18 19:03 UTC`, `Consideration Ad group | 2026-05-18 19:03 UTC`, and budget `10.00`.
+- The current page did not show approved campaign `DLM_PIN_US_CATALOG_333_EXACT_20260518`, `Catalog sales`, exact groups `29/103/201`, `USD 5.00`, or max CPC `0.15`.
+
+Guardrails:
+
+- No Publish click occurred.
+- No campaign/ad group/ad/budget/bid/status/source/tag/CAPI/billing/feed/product/Shopify/Merchant/Google Ads/GA4/GTM change occurred.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/PINTEREST_CAMPAIGN_REVIEW_STOP_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/raw/publish-approval-followup-current-page-readback.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/raw/publish-approval-followup-unsafe-create-page.png`
+
+Next action:
+
+- Do not rebuild or publish a Pinterest campaign from the default/create page. A fresh approval is required for any new create-flow attempt because the previously approved Review screen is gone.
+
+## 2026-05-18 - Pinterest review reached, publish stopped
+
+Reviewer verdict: `PASS_EXACT_GROUPS_SELECTABLE__STOP_PUBLISH_FINAL_REVIEW_INCOMPLETE`
+
+Checked:
+
+- Same-profile Chrome recovery succeeded and Pajamas detail readback passed for `DLM_PIN_US_SHOPPING_PAJAMAS_333`, ID `4673019468480`, `29` products, source `DLM Cloudflare Grouped Feed 2026-05-18`.
+- Campaign flow was switched from default Consideration / Performance+ campaign mode to Manual Campaign + `Catalog sales`.
+- Product-group selector initially defaulted to an unapproved broad/legacy `All Products` group `4673008376478` / `5,594` products from `../ication%2Fjsonl`; this was not used.
+- Source selector exposed clean source `DLM Cloudflare Grouped Feed 2026-05-18` / `3041760873378113572`.
+- After source switch, `All Products` was deselected and only exact groups were selected: Pajamas `29`, Family Matching `103`, Mommy & Me `201`.
+- Create-flow settings read back `Pin clicks`, `Custom`, and max CPC `0.15`; Review screen read back Catalog sales, exact groups, daily budget `USD 5.00`, and max CPC `0.15`.
+- Publish was not clicked because final Review screen did not explicitly show `Pin clicks`, did not show `Custom`, did not directly show the source name, and displayed Performance+ targeting / expanded targeting language.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/PINTEREST_CAMPAIGN_REVIEW_STOP_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/raw/campaign-product-groups-clean-source-switch-confirmed.snapshot.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/raw/campaign-adgroup-after-exact-groups-added.snapshot.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/raw/campaign-optimization-pin-clicks-selected.snapshot.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/raw/campaign-bidding-custom-selected.snapshot.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/raw/campaign-review-screen.snapshot.txt`
+
+Guardrails:
+
+- No Publish, Promote, campaign launch, legacy-source pause/remove, Shopify, Merchant, Google Ads, GA4/GTM, tag/CAPI, billing, Worker metadata, or product-data write occurred.
+
+Next action:
+
+- Do not publish from the current Review screen unless the owner gives a fresh explicit override naming the visible review-screen caveats.
+
+## 2026-05-18 - Pinterest exact groups created, launch not started
+
+Reviewer verdict: `PASS_EXACT_GROUPS_CREATED__BROWSER_RETRY_REQUIRED__NO_LAUNCH`
+
+Checked:
+
+- Exact groups were created under clean source `3041760873378113572`, not old feed profile `3041760867124595727`.
+- Mommy & Me group `4673019468477` read back `201` products and detail preview rows.
+- Family Matching group `4673019468479` read back `103` products and detail preview rows.
+- Pajamas group `4673019468480` read back `29` products on the list after create; detail capture remains pending because the Chrome automation bridge dropped.
+- No campaign launch/save/publish occurred.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/PINTEREST_EXACT_GROUPS_EXECUTION_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/raw/mommy-me-precreate-201-preview.snapshot.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/raw/dlm-pin-us-shopping-mommy-me-333-detail-readback.snapshot.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/raw/dlm-pin-us-shopping-family-matching-333-detail-readback.snapshot.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/raw/dlm-pin-us-shopping-pajamas-333-after-create.snapshot.txt`
+
+Guardrails:
+
+- No broad `All Products` launch, old feed profile use, campaign/ad group/ad/audience/budget/bid/status/tag/CAPI/billing change, legacy-source pause/remove, Shopify/Merchant/Google Ads/GA4/GTM write, or Worker metadata redeploy occurred.
+
+Next action:
+
+- Recover Chrome bridge with a fresh same-profile Chrome window, capture Pajamas detail readback, then continue campaign preflight only if exact groups are selectable and all packet constraints hold.
+
+## 2026-05-18 - Pinterest final launch/scope approval packet prepared
+
+Reviewer verdict: `PASS_PACKET_READY__NO_LAUNCH`
+
+Checked:
+
+- Clean source `DLM Cloudflare Grouped Feed 2026-05-18` / `3041760873378113572` remains the only valid feed source for the next Pinterest launch step.
+- The launch packet preserves the refreshed exact whitelist: Mommy & Me `201`, Family Matching `103`, Pajamas `29`, total `333` item IDs / `30` unique products after overlap.
+- The packet explicitly blocks broad `All Products`, old feed profile `3041760867124595727`, legacy source pause/remove, and any campaign/feed/tag/CAPI/billing/Shopify/Merchant/Google Ads/GA4/GTM mutation outside the exact approval phrase.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/PINTEREST_FINAL_LAUNCH_SCOPE_APPROVAL_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/pinterest_final_launch_scope_summary.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-pinterest-paused-draft-scope-refresh/pinterest_paused_draft_refreshed_clean_scope.csv`
+
+Guardrails:
+
+- No Pinterest Promote click, product-group creation, campaign launch, budget/bid/status change, legacy-source cleanup, Shopify/Merchant/Google Ads/GA4/GTM write, billing change, or Worker metadata redeploy occurred.
+
+Next action:
+
+- Use the exact approval phrase in the packet only if the owner wants the next live-gated Pinterest launch/scope step.
+
+## 2026-05-18 - Pinterest repaired ingestion completed clean
+
+Reviewer verdict: `PASS_FEED_SOURCE_CLEAN__LAUNCH_APPROVAL_REQUIRED`
+
+Checked:
+
+- Pinterest source `3041760873378113572` repaired ingestion completed at `May 18 at 5:24 AM EDT`.
+- Source detail readback: `41,814 of 41,814`, `41,814` successful uploads, `0` failed, `0` warnings, `0` videos, images completed.
+- Diagnostics readback: successful uploads `41.81k` / `100%`, failed `0`, warnings `0`, and `There are no ingestion issues for this data source`.
+- Product groups readback: feed profile `DLM Cloudflare Grouped Feed 2026-05-18`, auto-created `All Products` group `4673019439386`, `41,694` products, product previews load, and `Promote` is visible.
+
+Required gates/fixes:
+
+- Do not launch Pinterest, click Promote, use broad `All Products`, pause/remove legacy sources, or change campaign/product-group/tag/CAPI/billing surfaces without a separate exact action-time approval and final scope review.
+- Product-group count is `120` below successful-upload count; diagnostics are clean, so treat it as Pinterest product-group eligibility/display filtering unless item-level export proves otherwise.
+- Do not attest `FIX_LANDED_FRESHNESS_MARKER.txt` yet; the strict marker still calls for explicit per-market after-state summaries.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/raw/source-detail-reingest-completed-41814-0-0.snapshot.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/raw/diagnostics-reingest-clean-41814-0-0.snapshot.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/raw/product-group-detail-all-products-41694-preview.snapshot.txt`
+
+Safest next sales-moving action:
+
+- Prepare a separate final Pinterest launch/scope review packet if the owner wants campaign activation.
+
+## 2026-05-18 - Pinterest repaired R2 upload and reingestion trigger
+
+Reviewer verdict: `PASS_UPLOAD_DONE__REINGESTION_PROCESSING__NO_LAUNCH`
+
+Checked:
+
+- Owner approved the exact repaired-feed upload/reingestion phrase.
+- Cloudflare R2 object `pinterest/pinterest_unified_all_markets.tsv` was replaced.
+- Same Worker URL body readback returns repaired SHA-256 `809d48e96832ffc4db8a30de685250273412c2988678b5364d48c627699e8863`, `41,814` rows, `0` shallow category rows, `0` bad GTIN rows, and grouping/image guards intact.
+- Pinterest manual ingestion was triggered for source `3041760873378113572`.
+- Current processing row: `May 18 at 5:24 AM EDT`, `41,087` successful uploads visible, `0` failed, `0` warnings, `0` videos, images processing.
+
+Required gates/fixes:
+
+- Do not launch Pinterest, click Promote, pause/remove legacy sources, or change campaign/product-group/tag/CAPI/billing surfaces while the repaired ingestion is still processing.
+- Refresh the source until the 5:24 AM ingestion is `Completed`, then read back final successful uploads, failed uploads, warnings, diagnostics, grouping, parent images, and product-group usability.
+- The Worker body is correct, but the custom `X-DLM-Feed-SHA256` header still has the old SHA because it is Worker config metadata. Update only under separate approval if needed.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/raw/worker-repaired-r2-readback.summary.txt`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/raw/source-detail-reingest-processing-41087-second-poll.snapshot.txt`
+
+Safest next sales-moving action:
+
+- Complete the repaired ingestion readback before any Pinterest launch or legacy-source cleanup.
+
+## 2026-05-18 - Pinterest Gate B-3 local feed repair
+
+Reviewer verdict: `PASS_LOCAL_REPAIR_READY__UPLOAD_APPROVAL_REQUIRED`
+
+Checked:
+
+- Local repaired unified TSV has `41,814` rows and SHA-256 `809d48e96832ffc4db8a30de685250273412c2988678b5364d48c627699e8863`.
+- Repaired category mapping leaves `0` shallow `google_product_category` rows.
+- GTIN cleanup leaves `0` bad format/checksum rows, with `852` valid GTIN rows and `40,962` suppressed GTIN rows.
+- Grouping/image guards remain clean: `0` missing `item_group_id`, `0` missing `image_link`, and `0` parent-image drift groups.
+- `check_pinterest_feed_grouping.py --report-only --strict` still passes all `7` generated Path B feeds; `3` upstream/live-equivalent snapshots remain expected FAIL until live repaired ingestion readback exists.
+
+Required gates/fixes:
+
+- Do not upload the repaired TSV without fresh owner approval for the Cloudflare R2 object replacement and Pinterest reingestion/readback.
+- Do not launch Pinterest, click Promote, pause/remove legacy sources, or change campaign/product-group/tag/CAPI/billing surfaces from this local repair.
+- After upload approval, read back source `3041760873378113572` successful uploads, failures, warnings, grouping, parent images, and product-group usability.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/GATE_B3_LOCAL_FEED_REPAIR_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`
+- `ops/scripts/generate_pinterest_feed_grouped.py`
+- `ops/scripts/check_pinterest_feed_grouping.py`
+
+Safest next sales-moving action:
+
+- Get exact owner approval, replace only Cloudflare R2 object `pinterest/pinterest_unified_all_markets.tsv`, keep the same Worker URL, then reingest/read back before launch or legacy-source cleanup.
 
 ## 2026-05-15 - Pinterest feed grouping guard readback
 
@@ -2374,3 +3041,1078 @@ Evidence:
 Safest next sales-moving action:
 
 - Ask owner whether Gate B-3 should use the verified direct Cloudflare URL, or whether to stop and first create/link a Shopify app proxy.
+
+## 2026-05-18 - Pinterest Gate B-3 Cloudflare Source
+
+Reviewer verdict: `PASS_SOURCE_SUBMITTED_PROCESSING__NO_LAUNCH__SYNC_READBACK_PENDING`
+
+Checked:
+
+- Owner approved Gate B-3 using the verified Cloudflare Worker URL.
+- Pinterest accepted validation for `https://dlm-pinterest-feed-worker.dresslikemommy.workers.dev/pinterest-feed.tsv`.
+- New Pinterest data source `3041760873378113572` / `DLM Cloudflare Grouped Feed 2026-05-18` was submitted for catalog `3041764155561548387`.
+- Detail readback shows exact URL match, TSV, United States, English (US), USD, daily `03:00 America/New_York`, current ingestion `Processing`, images `Processing`, and next scheduled update `May 18 at 3:00 AM EDT`.
+- No campaign/ad group/ad/audience/budget/bid/status/tag/CAPI/billing, legacy-source pause/remove, Shopify, Merchant, Google Ads, GA4/GTM, or product write occurred.
+
+Risks:
+
+- Pinterest has not finished ingestion; product count, issue counts, grouped item visibility, and exact product-group usability are not yet confirmed.
+- Legacy Shopify/URL sources remain untouched by design until clean grouped readback passes.
+
+Required gates/fixes:
+
+- Wait for Pinterest ingestion completion.
+- Capture source/catalog after-state readback before launch or legacy-source cleanup.
+- Do not attest the freshness marker until grouped live readback proves the final catalog shape.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/raw/after-detail-processing-repoll.png`
+- `ops/PROBLEM_TRACKER.md`
+
+Safest next sales-moving action:
+
+- Reopen source `3041760873378113572` after processing completes, then verify product count, warnings/errors, `item_group_id`, parent image parity, and exact product-group usability before any campaign launch.
+
+## 2026-05-18 - Pinterest Gate B-3 Product Group Count Visible
+
+Reviewer verdict: `POSITIVE_PRODUCT_COUNT_SIGNAL__SOURCE_DETAIL_PROCESSING__DIAGNOSTICS_REQUIRED`
+
+Checked:
+
+- Owner screenshot showed Product groups URL with `feedProfileId=3041760873378113572`.
+- Selected feed profile: `DLM Cloudflare Grouped Feed 2026-05-18`.
+- Auto-created product group: `All Products`, ID `4673019439386`.
+- Visible products: `41,126`.
+- Last updated: `5/18/2026`.
+- Follow-up source-detail screenshot still showed ingestion `Processing` and product count `-`.
+
+Risks:
+
+- The submitted TSV has `41,814` rows, so the current visible count is `688` products lower.
+- Product count alone does not prove `item_group_id` grouping, parent image parity, or exact product-group usability.
+
+Required gates/fixes:
+
+- Read Pinterest diagnostics/issues after processing settles.
+- Explain the `688` product delta.
+- Verify grouping and parent image behavior before launch or legacy-source cleanup.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/raw/product-groups-owner-screenshot-2026-05-18-0312.png`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/raw/current-detail-processing-after-product-group-count.png`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`
+
+Safest next sales-moving action:
+
+- Open Diagnostics for data source `3041760873378113572` after processing settles, then verify errors/warnings, final product count, grouping, parent images, and exact group usability.
+
+## 2026-05-18 - Pinterest Gate B-3 Completed With Feed Diagnostics
+
+Reviewer verdict: `INGESTION_COMPLETED_NOT_CLEAN__LOCAL_FEED_REPAIR_REQUIRED__NO_LAUNCH`
+
+Checked:
+
+- Source `3041760873378113572` current ingestion completed.
+- Product count / successful uploads: `41,056`.
+- Failed uploads: `758`.
+- Warnings: `40,998`.
+- Images: completed.
+- Next scheduled update: `May 19 at 3:00 AM EDT`.
+- Diagnostics summary: successful uploads `41.06k` / `98.19%`, failed uploads `758` / `1.81%`, warnings `41k` / `98.05%`.
+- Visible diagnostics: warning `126` shallow `google_product_category` on `41,814` rows; warning `179` incorrectly formatted `gtin` on `7,710` rows; warning `1011` additional image ingestion on `6 + 1`; error `1009` image ingestion on `1`.
+
+Risks:
+
+- Ingestion is complete but not clean, so launch remains blocked.
+- The `758` failed uploads exactly match the difference between submitted feed rows `41,814` and successful uploads `41,056`.
+- The largest warning is locally confirmed: the current TSV uses shallow `Apparel & Accessories > Clothing` on every row.
+
+Required gates/fixes:
+
+- Locally repair the Pinterest-only feed generator for deeper `google_product_category`.
+- Suppress uncertain/malformed GTINs in the Pinterest-only TSV unless identifiers are known valid.
+- Keep grouping/image/source-host guardrails intact.
+- Get fresh owner approval before replacing the R2 object or forcing/relying on Pinterest reingestion.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/raw/source-detail-completed-41056-758-failed-40998-warnings.png`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/raw/diagnostics-ingestion-issues-summary.png`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-gate-b3-cloudflare-source/GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`
+
+Safest next sales-moving action:
+
+- Build and verify the repaired TSV locally, then request exact approval to replace the Cloudflare R2 feed object and read back the next Pinterest ingestion.
+
+## 2026-05-19 - Google Ads API Basic Access Approved And US Search $0.20 Export Completed
+
+Reviewer verdict: `US_SEARCH_API_DATA_READY__LAUNCH_PACKET_REQUIRED__NO_LIVE_WRITE`
+
+Checked:
+
+- Owner reported Google Ads API Basic Access Approval for manager account `700-107-9966`.
+- API rerun used client `399-097-6848`, United States geo `2840`, English language `1000`, Google Search, `26` exact rows, `3` phrase rows, and `max_cpc_bid_micros=200000`.
+- Historical export returned `29` rows.
+- Forecast export returned `29` rows after adding paced single-keyword forecast calls.
+- Joined decision file classifies `8` launch-priority exact rows, `2` micro-tests, and `19` hold rows with zero forecast clicks at `$0.20`.
+
+Risks:
+
+- No historical low top-of-page bid is at or below `$0.20`, so the CPC cap can constrain delivery and should not be interpreted as top-of-page coverage.
+- Forecast rows are US-only and do not validate the separate GB/CA/AU `$0.15` packet.
+- Forecast conversions and average CPA are `0`, so ROAS still needs live purchase data.
+
+Required gates/fixes:
+
+- Build a separate launch approval packet before any Search keyword/ad/bid/status/budget write.
+- Use only the forecastable priority rows unless the owner explicitly approves a micro-test or phrase-discovery lane.
+- Rerun the GB/CA/AU canonical `$0.15` API validation separately now that Basic Access is available.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-search-keyword-planner-us-020/EXPORT_REPORT.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-search-keyword-planner-us-020/google_ads_api_us_search_joined_decision_rows.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-search-keyword-planner-us-020/google_ads_api_us_search_keyword_summary.json`
+
+Safest next sales-moving action:
+
+- Prepare the US Search launch approval packet from the `8` priority exact rows under the `$0.20` cap, or first rerun GB/CA/AU `$0.15` validation if non-US Search remains the higher priority.
+
+## 2026-05-19 - US Search Exact $0.20 Launch Approval Packet Ready
+
+Reviewer verdict: `APPROVAL_PACKET_READY__NO_LIVE_WRITE__EXACT_ONLY`
+
+Checked:
+
+- Built packet for campaign `DLM_US_SEARCH_EXACT_020_TEST_20260519`.
+- Launch set uses `8` forecastable exact keywords from the completed API export.
+- Settings are Google Search only, United States, English, exact match only, `$5/day` max, `$0.20` max CPC, purchase-only conversion, no Search Partners, no Display, no broad, no AI Max, and no PMax.
+- Public landing readbacks were run for Pajamas, Family Swimsuits, Matching Family Vacation Outfits, Matching Outfits, and Daddy & Me routes.
+- CSVs are present for launch keywords, negatives, and RSA assets.
+
+Risks:
+
+- No keyword has historical low top-of-page bid at or below `$0.20`, so delivery may be constrained.
+- Daddy & Me route is relevant and source-clean but has hidden Christmas-pattern swim product attributes, so it is watch-tier rather than a clean priority group.
+- ROAS cannot be proven until live purchase data exists.
+
+Required gates/fixes:
+
+- Owner must use one of the exact approval phrases in the packet before any Google Ads upload/apply/enable action.
+- If enabled live, after-state readback must confirm campaign settings, budget, max CPC, exact keywords, negatives, final URLs, and status.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-us-search-exact-020-launch-approval/US_SEARCH_EXACT_020_LAUNCH_APPROVAL_PACKET.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-us-search-exact-020-launch-approval/us_search_exact_020_launch_keywords.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-us-search-exact-020-launch-approval/us_search_exact_020_negative_keywords.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-us-search-exact-020-launch-approval/us_search_exact_020_rsa_assets.csv`
+
+Safest next sales-moving action:
+
+- If the owner wants a live US Search test, create the campaign as paused first, then enable only after a final readback matches the packet.
+
+## 2026-05-19 - US Search Exact $0.20 Live Test Enabled
+
+Reviewer verdict: `LIVE_ENABLED__READBACK_PASSED__MONITOR_DAILY`
+
+Checked:
+
+- Owner gave current-session action-time approval for the enabled live-test approval phrase in `US_SEARCH_EXACT_020_LAUNCH_APPROVAL_PACKET.md`.
+- Before-state readback found `0` existing campaigns named `DLM_US_SEARCH_EXACT_020_TEST_20260519`.
+- Google Ads API validate-only passed for the real `69`-operation mutate payload.
+- Live API execution created campaign `23866096027` in client `399-097-6848`.
+- After-state readback: campaign `ENABLED`, primary status `ELIGIBLE`, Search, Manual CPC, daily budget `5,000,000` micros, Enhanced CPC off, Google Search on, Search Partners off, Display/content off, partner search off, presence-only location targeting, AI Max off.
+- Created `4` enabled ad groups, `8` enabled exact positive keywords at `200000` micros, `4` enabled RSAs, `35` campaign-scoped negatives, and `14` ad-group negatives.
+- The `21` CSV account-scope negative rows were applied only to this campaign to avoid mutating account-wide behavior for existing campaigns.
+- Conversion goal readback showed account customer goal `PURCHASE / WEBSITE / biddable=True`; campaign goal config uses customer goals.
+
+Risks:
+
+- Delivery may be constrained because no launch keyword had historical low top-of-page bid at or below `$0.20`.
+- Daddy & Me remains watch-tier because the route is relevant/source-clean but contains hidden Christmas-pattern swim attributes.
+- Google policy review and early serving/search-term quality are not yet proven.
+
+Required gates/fixes:
+
+- Pull first serving/readback within 24 hours: status, impressions, clicks, average CPC, spend, search terms, conversion value, and ad/policy issues.
+- Stop or adjust inside the packet rules if average CPC exceeds `$0.20`, Search Partners/Display/AI Max/broad appears, final URLs drift, or search terms are irrelevant.
+- Do not expand keywords, match types, budgets, broad match, AI Max, PMax, or conversion goals without a fresh exact approval packet.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-us-search-exact-020-launch-approval/google_ads_api_live_execution_report_20260519T105307Z.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-us-search-exact-020-launch-approval/google_ads_api_live_before_readback_20260519T105307Z.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-us-search-exact-020-launch-approval/google_ads_api_live_after_readback_20260519T105307Z.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-us-search-exact-020-launch-approval/execute_us_search_exact_020_live.py`
+
+Safest next sales-moving action:
+
+- Run the 24-hour Google Ads readback and search-term mining pass; add negatives immediately for wrong intent and pause/hold anything that violates the packet stop rules.
+
+## 2026-05-20 - Pinterest Collection-Intent Selector Gate Review
+
+Reviewer verdict: `BLOCKED__SOURCE_CLEAN__SELECTOR_COUNTS_VARIANT_ROWS__NO_RESTART`
+
+Checked:
+
+- Pinterest source `3041760873378113572` completed the May 20 12:53 AM EDT ingestion: `28,122/28,122`, `0` failed, `0` warnings, images completed.
+- Approved group filters were tested in the product-group builder: `custom_label_0=us`, `custom_label_2=mommy_and_me`, `custom_label_4=collection_intent_v20260520`.
+- Selector preview returned `1,419` products selected instead of expected parent count `99`.
+- Local feed row/parent readback explains the mismatch: Mommy `1,419/99`, Family `2,590/77`, Daddy `522/34`.
+- Unsaved draft was dismissed; no product group was created.
+- Campaign readback: `DLM_PIN_US_CATALOG_333_EXACT_20260518` / `626758581530` is `Paused`, `0 currently being served`; ad group bid column `$0.15`; old item-ID groups `29/103/166` remain selected.
+
+Risks:
+
+- Creating new groups from the current all-variant feed would produce selector counts that do not match the owner's approved inventory counts.
+- Restarting against old item-ID groups or old `custom_label_1` groups would repeat the wrong-structure problem.
+
+Required gates/fixes:
+
+- Decide whether Pinterest can be operated with variant-row selector counts while parent lane inventory is verified by unique `item_group_id`, or build a parent-only ads source/feed so selectors display `99/77/34`.
+- Fresh approval is still required before replacing campaign groups or restarting.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_COLLECTION_INTENT_UPLOAD_REINGESTION_READBACK.md`
+
+Safest next sales-moving action:
+
+- Prepare the exact parent-only source plan versus variant-row-accepted plan, then ask for one bounded approval path before any Pinterest account write.
+
+## 2026-05-20 - Pinterest Parent-Only Product Group Gate
+
+Reviewer verdict: `PASSED__PARENT_GROUPS_CREATED__NO_RESTART`
+
+Checked:
+
+- Pinterest source `3041760889836768751` completed the May 20 1:58 AM EDT ingestion: `210` products, `210` successful uploads, `0` failed uploads, `0` warnings, images `Completed`.
+- Product group filters were created from `custom_label_0=us`, lane `custom_label_2`, and `custom_label_4=collection_intent_parent_v20260520`.
+- Final list counts: Mommy & Me `DLM_PIN_US_PARENT_MOMMY_AND_ME_99_20260520` / `4673019642885` / `99`; Family Matching `DLM_PIN_US_PARENT_FAMILY_MATCHING_77_20260520` / `4673019642929` / `77`; Daddy & Me `DLM_PIN_US_PARENT_DADDY_AND_ME_34_20260520` / `4673019642938` / `34`.
+- Campaign `626758581530` was not attached to these groups and was not restarted.
+
+Risks:
+
+- The old broken item-ID/variant product groups still need to be replaced in the paused campaign before this structure can serve.
+- Restart still needs a separate budget/CPC/optimization/status review and fresh owner approval.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`
+
+Safest next sales-moving action:
+
+- With fresh approval only, open the paused campaign selector, swap in the three verified parent groups, review budget/CPC/optimization/status, and stop before restart.
+
+## 2026-05-20 - Pinterest Campaign Replacement Attempt
+
+Reviewer verdict: `BLOCKED__DATA_SOURCE_SWITCH_NOT_ALLOWED__NO_SAVE`
+
+Checked:
+
+- Owner gave fresh approval for paused campaign group replacement only.
+- Campaign `626758581530` read back `Paused` with `0 currently being served`.
+- Ad group `2680090307739` read back `Active` under the paused campaign, bid `$0.15`, optimization `Pin clicks`, bidding `Custom`.
+- Existing selected groups were still the old source groups: Mommy `166`, Pajamas `29`, Family `103`.
+- Product-group selector blocked switching from `DLM Cloudflare Grouped Feed 2026-05-18` to parent source `3041760889836768751`.
+
+Risks:
+
+- Pinterest will not allow true replacement across data sources in the existing ad group.
+- A duplicate/new ad group is now the likely required path, but that is a new account-object/structure change and needs fresh approval.
+
+Evidence:
+
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`
+
+Safest next sales-moving action:
+
+- Prepare an exact replacement-ad-group approval: create a new ad group under paused campaign `626758581530` using parent source `3041760889836768751`, attach the three verified parent groups, copy/review existing settings, neutralize old ad group `2680090307739`, and stop before restart.
+## 2026-05-20 - Google Shopping Missing-Offer Publication Repair
+
+Verdict: `PUBLICATION_REPAIR_DONE__MERCHANT_PROPAGATION_PENDING__NO_ACTIVATION`
+
+Findings:
+- Owner pasted the exact missing-offer primary-source repair approval phrase.
+- Before-state gate `20260520T072949Z` failed closed with ready-label rows `47`, V2 paused, old test paused, bad catchalls `0`.
+- Shopify publication readback showed 5 of the 8 diagnosed Mommy & Me products were not published to Google & YouTube; 3 were already published.
+- Shopify Admin GraphQL `publishablePublish` was applied only to Google & YouTube publication `gid://shopify/Publication/21969633377` and the 8 diagnosed parent products.
+- Result: `8/8` mutations succeeded, `0` Shopify userErrors, all products remained `ACTIVE`, and all 8 read back published to Google & YouTube.
+- Processing poll showed ready-label rows moving `54 -> 73`, but gate `20260520T073815Z` still failed closed with ready rows `72`.
+
+Guardrails:
+- No Shopping campaign activation, unpause, budget, bid, status, product-group, conversion, or billing change occurred.
+- No title, price, handle, body, SEO, inventory, or unrelated Shopify product edit occurred.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_MISSING_OFFERS_REPAIR_EXECUTION_20260520.md`
+
+Next action:
+- Wait for Merchant/Google Ads propagation and rerun the parent-outfit gate. Activation remains blocked until the gate proves live counts, hero images, exclusions, and no catchall leakage.
+
+## 2026-05-20 - Google Shopping Parent-Outfit Merchant Supplemental Upload Readback
+
+Verdict: `ACTIVATION_BLOCKED__SUPPLEMENTAL_PARTIAL_MATCH__PRIMARY_OFFERS_MISSING`
+
+Findings:
+- Merchant supplemental source `10663204023` was created from the approved parent-outfit TSV.
+- Merchant processed `4,531` rows, matched `4,390`, recognized all attributes, and reported `141` rows with `Offer does not exist`.
+- After-state gate `20260520T070653Z` still failed closed: live ready-label rows `0`, V2 campaign status ok `true`, old test campaign paused `true`, bad catchalls `0`.
+- Missing-offer diagnosis found `139` spec IDs absent from Google Ads Shopping-product readback, all Mommy & Me, across `8` active Shopify parent products.
+
+Guardrails:
+- No Shopping activation, campaign unpause, budget, bid, status, product-group, conversion, or billing change occurred.
+- No Shopify product edit occurred.
+- Do not discuss activation until primary offers are repaired or explicitly excluded and the counts/images/no-catchall gate passes.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_MERCHANT_FEED_UPDATE_EXECUTION_READBACK_20260520.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_MISSING_OFFERS_REPAIR_APPROVAL_PACKET.md`
+
+Next action:
+- Use the missing-offers repair approval packet only if the owner approves the exact phrase; otherwise keep all V2 Shopping campaigns paused and rerun the gate after normal Merchant/Ads propagation.
+
+## 2026-05-20 - Shopify/Ads Truth Paid Optimization Review
+
+Reviewer verdict: `PASS_READ_ONLY_DECISION__GA4_EXCLUDED_UNTIL_PARITY_REPAIRED__NO_LIVE_WRITE`
+
+Checked:
+- GA4 parity is outside target for Apr 22-May 19: Shopify `23` paid orders / `$1,596.06`; GA4 `18` transaction IDs / `$1,113.53`.
+- Paid optimization packet uses Shopify paid-order truth, Shopify line items, and Google Ads cost/click/product readbacks rather than GA4 channel revenue.
+- Google Ads May 20 readback shows `0` clicks / `$0.00` cost, so there is no same-day Google Ads spend leak in the readback.
+- Standard Shopping has weak/negative proof: `158` clicks / `$30.62` cost / `0` Shopify Google-paid orders; product join has `154` clicks / `$29.79` on clicked item/product rows with no Shopify sale in the window.
+- Brand Search is capped/defensive only: clicked terms are exact brand terms with `$2.50` cost / `26` clicks / `0` Shopify Google-paid orders.
+
+Guardrails:
+- No Google Ads, Shopify, Merchant, GA4, GTM, billing, campaign, budget, bid, status, keyword, negative, product group, conversion-goal, feed, or product write occurred.
+- Do not pause, enable, scale, restructure, upload, or change Shopping/Search without fresh exact approval and before/after readback.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-paid-optimization-shopify-ads-truth/PAID_OPTIMIZATION_FROM_SHOPIFY_ADS_TRUTH_2026-05-20.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-paid-optimization-shopify-ads-truth/paid_optimization_product_join_summary.json`
+
+Next action:
+- Prepare a narrow approval-gated paid retest from Shopify-sold product truth and clean landing proof; keep GA4 channel revenue excluded until parity is within about `+/-5%`.
+
+## 2026-05-21 - Shopify-Sold Product Paid Retest Approval Packet Review
+
+Reviewer verdict: `PASS_APPROVAL_PACKET_READY__NO_LIVE_WRITE__SEPARATE_ENABLE_REQUIRED`
+
+Checked:
+- Candidate source stayed inside the approved truth rule: Shopify sold products/variants with no matching Google Ads Shopping click in the Apr 22-May 19 source audit window.
+- Live public proof checked `24` top sold products; `13` passed; the approval packet narrows to the top `8` products and `19` exact sold variant item IDs.
+- The top `8` candidate pages returned product page HTTP `200` and product JSON HTTP `200`, had current product availability, had at least one sold variant currently available, had add-to-cart or size-flow evidence, had no supplier/source-host hit in scanned HTML/product JSON, and did not have old literal ellipses or `| DLM` suffixes in current public titles.
+- Held rows were not silently included: old/404 handles `5`, unavailable sold variants `5`, supplier/source-host hits `4`, old truncated/DLM-title rows `7`.
+- Economics are capped: max CPC `$0.15`, shared daily cap `$5`, 72-hour or `$15` initial spend stop, `650% ROAS` target, no PMax, no broad catchall, no Search Partners, no Display, no AI Max, no remarketing, no GA4 optimization.
+
+Guardrails:
+- No Google Ads, Shopify, Merchant, GA4, GTM, billing, campaign, budget, bid, status, keyword, negative, product group, feed, product, or conversion-goal write occurred.
+- The exact approval phrase authorizes paused-ready setup/readback only; enabling spend requires a separate fresh approval after readback.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-21-shopify-sold-product-paid-retest/GOOGLE_PAID_RETEST_SHOPIFY_SOLD_PRODUCTS_APPROVAL_PACKET_2026-05-21.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-21-shopify-sold-product-paid-retest/google_ads_retest_candidate_item_scope_2026-05-21.csv`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-21-shopify-sold-product-paid-retest/shopify_sold_product_retest_candidates_2026-05-21.csv`
+
+Next action:
+- If the owner approves the exact phrase, create only the paused-ready/readback setup from the packet scope, stop before enabling spend, and capture before/after readbacks. Do not touch Merchant, Shopify products/feeds, conversion goals, billing, or broader Shopping scope.
+
+## 2026-05-21 - Shopify-Sold Product Google Shopping Paused Setup Execution Review
+
+Reviewer verdict: `PASS_PAUSED_SETUP_READBACK__SPEND_NOT_ENABLED__SEPARATE_ENABLE_REQUIRED`
+
+Checked:
+- Owner pasted the exact approval phrase for paused-ready setup/readback only.
+- Before-state readback found no existing retest campaign and old Standard Shopping `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` was `PAUSED`.
+- First validate-only failed before any write because the excluded catchall was encoded as an empty item string instead of a true product-item "others" case.
+- Script was patched, second validate-only passed, and live mutate created only the paused-ready setup.
+- Final readback: campaign `DLM_US_SHOPPING_SHOPIFY_SOLD_RETEST_PAUSED_20260521` / `23867953136` is `PAUSED`, primary status `PAUSED`, Shopping, Manual CPC, `$5/day` budget, Merchant `124884876`, feed label `US`.
+- Network readback: Google Search `true`, Search Network `false`, Display/content `false`, Search Partners `false`.
+- Ad group `Shopify Sold Products Exact Item IDs 20260521` is `PAUSED`, CPC `150000` micros.
+- Product ad is `PAUSED`.
+- Listing groups: `21` total, `19` included exact item-ID units, `1` excluded catchall, bad catchalls `0`.
+- May 21 metrics readback: retest campaign `0` impressions / `0` clicks / `$0.00` cost; old Standard Shopping also `PAUSED` with `0` cost today.
+
+Guardrails:
+- No campaign was enabled and no spend was enabled.
+- No Merchant, Shopify, product/feed, conversion-goal, billing, PMax, Search Partners, Display, broad catchall, GA4 optimization, or existing campaign write occurred.
+- Enabling spend requires a separate fresh approval.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-21-shopify-sold-product-paid-retest/GOOGLE_SHOPPING_SHOPIFY_SOLD_RETEST_PAUSED_SETUP_FINAL_READBACK_20260521.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-21-shopify-sold-product-paid-retest/GOOGLE_SHOPPING_SHOPIFY_SOLD_RETEST_PAUSED_SETUP_EXECUTION_20260521T085320Z.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-21-shopify-sold-product-paid-retest/google_ads_shopify_sold_retest_after_20260521T085351Z.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-21-shopify-sold-product-paid-retest/google_ads_shopify_sold_retest_today_metrics_readback_20260521.json`
+
+Next action:
+- Stop. If the owner wants spend enabled, first re-read the final setup and today's cost, then request a separate enable-spend approval phrase.
+
+## 2026-05-28 - Pinterest Parent Campaign Zero-ROAS Verification Review
+
+Reviewer verdict: `PASS_READONLY_VERIFICATION__SPEND_SAFETY_PAUSE_RECOMMENDED__NO_LIVE_WRITE`
+
+Checked:
+- The pasted ad-group metrics for `2026-05-12` through `2026-05-25` match the active Pinterest ad group `2680090331049`: `$59.32` spend, `46,191` impressions, `564` Pin clicks, `549` outbound clicks, `0` Checkout conversions, `$0.00` Checkout value, ROAS `0`.
+- The campaign-level row for the same visible window is higher than the pasted number (`$67.40` spend and `605` outbound clicks), so finance summaries must distinguish campaign spend from ad-group spend.
+- Rolling campaign readback through `2026-05-27` shows spend has continued to `$87.69` with `805` outbound clicks and still `0` Checkout conversions/value/ROAS.
+- Current edit readback shows the campaign is Active, daily budget `10.00`, ad group Active, parent groups `99/77/34` nonzero, optimization `Pin clicks`, `Custom` bidding, and max CPC `0.10`.
+- Shopify aggregate order truth through `<2026-05-29` shows `16` non-cancelled/non-test orders / `$885.13` aggregate revenue but `0` Pinterest/campaign/ad-group-attributed orders.
+
+Guardrails:
+- No external write occurred.
+- Do not accept Pinterest budget-increase recommendations or optimize around cheap clicks while ROAS is `0`.
+- Do not change status, budget, bid, product groups, source/feed, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM without fresh exact action-time approval and after-state readback.
+- Broken Pinterest Checkout tracking is plausible but not proven; Shopify order truth also shows no Pinterest-attributed purchases.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-28-pinterest-parent-campaign-audit-verification/PINTEREST_PARENT_CAMPAIGN_AUDIT_VERIFICATION_20260528.md`
+
+Next action:
+- Request or execute the exact spend-safety pause/hold approval first. If the owner explicitly keeps the campaign live, run tracking/landing attribution diagnostics read-only before any optimization or scale decision.
+
+## 2026-05-29 - Pinterest Spend-Safety Pause Execution Review
+
+Reviewer verdict: `PASS_APPROVED_PAUSE_ONLY__AFTER_READBACK_PASSED`
+
+Checked:
+- Owner pasted the exact May 28 approval phrase authorizing only the pause for campaign `626758581530` / `DLM_PIN_US_PARENT_COLLECTIONS_99_77_34_20260520`.
+- Before-state Pinterest readback matched the approved scope: campaign ID/name matched, objective `Catalog sales`, row status `Active`, switch on, and spend `$105.00` for `2026-05-18` through `2026-05-29` UTC.
+- The only live write was toggling that campaign-level switch off and accepting Pinterest's early-pause warning.
+- After-state UI readback showed the same campaign row `Paused`, switch off, and spend `$105.00`.
+- Independent authenticated API readback showed `status=PAUSED`, `summary_status=PAUSED`, daily cap `10000000` micro-USD unchanged, and spend `105.002796`.
+
+Guardrails:
+- No budget, bid, product group, source/feed, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or other campaign change occurred.
+- No other Pinterest campaign was changed.
+- The campaign should remain paused until read-only tracking/landing attribution diagnostics justify a fresh owner-approved relaunch or test plan.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-29-pinterest-spend-safety-pause-execution/PINTEREST_SPEND_SAFETY_PAUSE_EXECUTION_20260529.md`
+
+Next action:
+- Run read-only Pinterest Events Manager Checkout/tag readback, then 5-10 ad/PDP deep-link checks and Shopify/Pinterest UTM attribution propagation. Do not relaunch, optimize, or change budgets/bids/product groups/sources/tracking without fresh exact approval.
+
+## 2026-05-29 - Pinterest Post-Pause Tracking And Landing Diagnostics Review
+
+Reviewer verdict: `PASS_READONLY_DIAGNOSTICS__KEEP_PAUSED__UTM_SOURCE_GAP_FOUND`
+
+Checked:
+- Campaign `626758581530` still read `Paused`; refreshed reporting row showed `$105.30`, `75,021` impressions, and `1,005` Pin clicks for `2026-05-18` through `2026-05-29` UTC.
+- Events Overview showed `Checkout` received from both `Api + Tag`: `34` total, last received `2026-05-27 23:38 UTC`; Tag Manager showed `conversion_tracker` latest event `2026-05-29 16:36 UTC`.
+- Event Quality was `Fair` for both Conversions API and Pinterest Tag, with priority gaps around `Click ID` quality on Checkout/AddToCart and related checkout-path events.
+- Ten catalog ad/PDP source checks loaded `10/10` PDPs with add-to-cart surfaces and `0` source/vendor-host hits in sampled storefront HTML.
+- Current parent source has `0/210` UTM or `dlm_pg` links; the later isolated candidate source has `210/210`, but it was not applied to this paused campaign.
+- Manual UTM probes were preserved by Shopify redirects `10/10`, so the attribution break is upstream in the source/tracking setup rather than Shopify stripping query params.
+
+Guardrails:
+- No relaunch occurred.
+- No campaign status, budget, bid, product group, source/feed, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or other campaign change occurred.
+- Do not relaunch the current parent campaign from the no-UTM source as-is.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-29-pinterest-post-pause-tracking-landing-diagnostics/PINTEREST_POST_PAUSE_TRACKING_LANDING_DIAGNOSTICS_20260529.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-29-pinterest-post-pause-tracking-landing-diagnostics/pinterest_events_tag_campaign_readback.json`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-29-pinterest-post-pause-tracking-landing-diagnostics/pinterest_parent_feed_deeplink_utm_summary.json`
+
+Next action:
+- Keep campaign `626758581530` paused. Prepare an exact approval packet for a UTM-bearing source or equivalent attribution-safe relaunch/test plan, plus Event Quality click-ID repair/readback, before any Pinterest relaunch or optimization.
+
+## 2026-05-29 - Pinterest Attribution-Safe Relaunch Approval Packet Review
+
+Reviewer verdict: `PASS_LOCAL_APPROVAL_PACKET__PHASE_1_FIRST__NO_LIVE_WRITE`
+
+Checked:
+- Packet keeps campaign `626758581530` paused and does not authorize live action by itself.
+- Recommended first action is Phase 1 paused replacement setup only, using isolated UTM-bearing source `3041760890485574219` and product groups `4673019914864`, `4673019915037`, and `4673019915140`.
+- Packet explicitly separates Phase 2 Event Quality click-ID root-cause/repair readback from Phase 3 relaunch.
+- Packet blocks relaunch from the current no-UTM source `3041760889836768751` as-is.
+- Packet includes exact approval wording, stop conditions, before/after readback requirements, and excluded surfaces.
+
+Guardrails:
+- No Pinterest, Shopify, Merchant, Google Ads, GA4, tag/CAPI, billing, campaign, budget, bid, product-group, source/feed, or status write occurred.
+- Any future Phase 1/2/3 action requires the owner to paste the exact approval phrase for that phase.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-29-pinterest-attribution-safe-relaunch-approval/PINTEREST_ATTRIBUTION_SAFE_RELAUNCH_APPROVAL_PACKET_20260529.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-29-pinterest-attribution-safe-relaunch-approval/pinterest_attribution_safe_relaunch_plan_summary.json`
+
+Next action:
+- Ask for Phase 1 only if Pinterest is the next chosen lane. Do not ask for relaunch until Phase 1 paused replacement setup and Phase 2 Event Quality readback/repair status are complete.
+
+## 2026-06-01 - Pinterest Phase 1 Preapproval Readback Review
+
+Reviewer verdict: `PASS_READONLY_HOLD__NO_APPROVAL_NO_WRITE`
+
+Checked:
+- Owner continued from `AGENT_CONTINUITY_ANCHOR: 2026-05-29-pinterest-attribution-safe-relaunch-approval-packet-ready` but did not paste the exact Phase 1 approval phrase.
+- Authenticated Pinterest reporting for `2026-05-18` through `2026-06-01` UTC showed campaign `626758581530` / `DLM_PIN_US_PARENT_COLLECTIONS_99_77_34_20260520` still `Paused`, `0 currently being served`, spend `$105.30`, impressions `75,037`, Pin clicks `1,005`, outbound clicks `973`, Checkout conversions `0`, and Checkout ROAS `0`.
+- Ad group `2680090331049` remained `Active` inside the paused campaign with `0 currently being served`, spend `$97.23`, `949` Pin clicks, `917` outbound clicks, `0` Checkout conversions, and `$0.00` Checkout value.
+- Current no-UTM product groups remained active at Mommy `99`, Family `77`, Daddy `34`; Phase 1 isolated replacement setup was not executed.
+
+Guardrails:
+- No Phase 1 setup, relaunch, campaign status, budget, bid, product group, source/feed, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or other campaign write occurred.
+- A future Phase 1 attempt still needs the exact approval phrase and action-time before/after readbacks.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-06-01-pinterest-phase1-preapproval-readback/PINTEREST_PHASE1_PREAPPROVAL_READBACK_20260601.md`
+
+Next action:
+- Keep campaign `626758581530` paused. If Pinterest is the next lane, require the exact Phase 1 phrase from the 2026-05-29 packet before executing paused replacement setup.
+
+## 2026-06-01 - Pinterest Phase 1 Isolated Source Preflight Review
+
+Reviewer verdict: `PASS_READONLY_SOURCE_PREFLIGHT__NO_APPROVAL_NO_WRITE`
+
+Checked:
+- Owner continued from the attribution-safe packet anchor but did not paste the exact Phase 1 approval phrase.
+- Isolated source `DLM US Paid Parent Isolated 2026-05-21` / `3041760890485574219` read back authenticated, `Completed`, `210 of 210`, images completed, last ingestion `May 31 at 9:18 PM EDT`, with visible recent ingestion rows showing `210` successful uploads, `0` failed uploads, and `0` warnings.
+- Product groups still read back under that isolated source: Mommy `4673019914864` / `99`, Family `4673019915037` / `77`, Daddy `4673019915140` / `34`, each with in-stock preview rows.
+- Public isolated feed route readback returned `200`, `210` rows, lane counts `99/77/34`, `210/210` UTM rows, `210/210` `dlm_pg` rows, and `0` missing required fields.
+
+Guardrails:
+- No Phase 1 setup, source/product-group attachment, relaunch, campaign status, budget, bid, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or other campaign write occurred.
+- A future Phase 1 attempt still needs the exact approval phrase and action-time before/after readbacks.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-06-01-pinterest-phase1-isolated-source-preflight/PINTEREST_PHASE1_ISOLATED_SOURCE_PREFLIGHT_20260601.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-06-01-pinterest-phase1-isolated-source-preflight/raw/pinterest_phase1_isolated_source_preflight_summary.json`
+
+Next action:
+- Keep campaign `626758581530` paused. If Pinterest is the next lane, require the exact Phase 1 phrase from the 2026-05-29 packet before executing paused replacement setup using source `3041760890485574219` and product groups `4673019914864` / `4673019915037` / `4673019915140`.
+
+## 2026-07-09 - Paid-Growth Handoff Self-Improvement Pilot Review
+
+Reviewer verdict: `PASS_LOCAL_ONLY__NO_LIVE_WRITE`
+
+Checked:
+- The new loop is local-only and advisory.
+- The scorecard reads handoff text and writes an optional report; it does not call external systems.
+- The canonical prompt remains the single operating prompt.
+- The pilot preserves fresh approval boundaries before live spend, campaign, budget, bid, feed/source, product, conversion, billing, publication, or theme writes.
+- Sample handoff scored `9/9`.
+
+Guardrails:
+- No Shopify Admin, Google Ads, Pinterest, Merchant Center, GA4/GTM, billing, campaign, budget, bid, status, feed/source, product, conversion, live theme, or product-publication write occurred.
+- Future prompt/checklist changes still require human review and continuity checks.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-07-09-paid-growth-handoff-self-improvement-pilot/SELF_IMPROVEMENT_PILOT_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-07-09-paid-growth-handoff-self-improvement-pilot/paid_growth_handoff_scorecard_report.md`
+
+Next action:
+- Use `ops/scripts/score_paid_growth_handoff.py` before changing the canonical paid-growth prompt or closing a handoff where next-action clarity or approval-boundary drift is a risk.
+
+## 2026-07-23 - Semantic Freshness And Material-Decision Challenge Review
+
+Reviewer verdict: `PASS_WITH_GATES__GATE_FIXED_AND_RERUN_PASSED`
+
+Checked:
+- Stale state fails closed and cannot coexist with a `GREEN` action-queue row.
+- `LIVE_CURRENT` requires evidence/control dates within seven days, no command-layer date older than the source evidence, an unexpired evidence-bounded fresh-until date, and explicit effective authority.
+- Autonomous authority requires the actual standing spend record to be `APPROVED_ACTIVE`, at least one `GREEN` row, and the exact backticked `approved_external_scope` value inside that row.
+- The Pinterest restart retrospective distinguishes dated repo evidence, counterfactual prediction, observed outcome, and the limit that it does not prove which alternative would have produced sales.
+- The implementation adds no persona, competing command layer, live authority, external write, or unsupported current-platform claim.
+
+Finding and resolution:
+- Initial independent review found that autonomous `LIVE_CURRENT` could pass without a `GREEN` row.
+- The evaluator and frozen fixtures were repaired to require a green row plus exact backticked scope matching. The reviewer reran the latest state and returned `PASS_WITH_GATES`; the only remaining gate is operational, not implementation: run a fresh read-only marketing reconciliation before treating historical readiness as current.
+
+Verification:
+- Focused test: `6` grouped fixtures passed.
+- Strict continuity: `CONTINUITY_OK`.
+- Marketing integration: `25/25` files integrated/generated/archive; `0` risks.
+- Scoped `git diff --check`: passed.
+
+Guardrails:
+- No Shopify, Google Ads, Pinterest, Merchant, GA4/GTM, campaign, budget, bid, status, feed, product, conversion, publication, billing, credential, infrastructure, or theme write occurred.
+- Current effective authority remains `STALE_READBACK_REQUIRED`; only read-only reconciliation is valid.
+
+Evidence:
+- `ops/scripts/check_continuity_integrity.py`
+- `ops/scripts/render_marketing_cockpit.py`
+- `ops/tests/test_marketing_decision_challenge.py`
+- `ops/marketing/current_marketing_state.md`
+- `ops/marketing/reviewer_checklist.md`
+- `ops/marketing/decision_log.md`
+- `ops/PROBLEM_TRACKER.md`
+
+Next action:
+- Run a fresh read-only marketing reconciliation before any historical `LIVE_VERIFIED`, `GREEN`, readiness, or approval label is treated as current action authority.
+
+## 2026-08-12 - TTT Retrieval, Outcome Learning, And Prompt Compaction Review
+
+Reviewer verdict: `PASS_WITH_GATES__NO_UNRESOLVED_HIGH_OR_MEDIUM_FINDINGS`
+
+Checked:
+- Current authoritative control outranks historical readiness and still allows only `READ_ONLY_MARKETING_RECONCILIATION`.
+- Explicit multi-entity retrieval requires every supplied entity in one anchor and fails closed with `REQUIRED_ENTITIES_NOT_COLOCATED` otherwise.
+- Semantic certification rejects mismatched authority, anchor, next action, evidence grade, and task stage while the frozen legacy 12-criterion contract remains unchanged.
+- Weekly recurrence counts only observed-result evidence, keeps the newest exact anchor, deduplicates identical normalized observed-result blocks even under renamed anchors, and requires two independent events.
+- Root and nested prompts remain compact while preserving approval, freshness, customer-truth, and independent-verifier gates.
+- No live authority or external-write capability was added.
+
+Findings and resolution:
+- First adversarial pass found that renamed copies of the same observed outcome could count as two events. The generator now fingerprints normalized outcome content; a regression proves the renamed copy counts once.
+- Second adversarial pass found that two explicit entities could select a partial match when token scores differed. Explicit entities are now mandatory intersection constraints; an asymmetric-token regression proves partial context fails closed.
+- Final reviewer found no unresolved high or medium issue.
+
+Verification:
+- Five focused Python suites passed, including the frozen legacy handoff regression.
+- Real semantic handoff: `17/17`.
+- Strict continuity: `CONTINUITY_OK`.
+- Marketing integration: `25/25`, `0` risks.
+- Root guide parity and instruction budgets passed.
+- Targeted `git diff --check` passed.
+
+Guardrails:
+- No Shopify, Google Ads, Pinterest, Merchant, GA4/GTM, campaign, budget, bid, status, feed, source, product, conversion, publication, billing, credential, infrastructure, live-theme, order, payment, or other external-system write occurred.
+- The weekly report remains advisory and did not automatically promote a rule. The current authority remains stale and fail-closed.
+
+Evidence:
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-08-12-ttt-retrieval-outcome-learning/TTT_IMPLEMENTATION_READBACK.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-08-12-ttt-retrieval-outcome-learning/SEMANTIC_HANDOFF.md`
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-08-12-weekly-dream-review/WEEKLY_DREAM_REVIEW.md`
+
+Next action:
+- Perform one same-window `READ_ONLY_MARKETING_RECONCILIATION` before treating any dated readiness or approval as current execution authority.
+
+
+## 2026-09-05 — CEO turnaround and local cart correction, pre-closeout review
+
+Reviewer: `/root/turnaround_independent_review`, independent read-only marketing safety reviewer; did not build, execute, edit files or operate external accounts.
+
+Verdict: `PASS_WITH_GATES` for the local preparation and narrowly assigned cart fix; final integrated closeout is reviewed separately below.
+
+- Frozen review concerns: account identity and freshness, external authority, honest economics/attribution, customer truth, disjoint preservation of earlier work, and reproducible verification.
+- Reviewer caught a stale-mode GREEN queue contradiction; current preparation rows were changed to YELLOW without weakening the evaluator.
+- Reviewer caught an ambiguous 'launch gates remain open' phrase and a GA4 USD assertion despite unverified currency configuration; both were corrected.
+- Reviewer required a new final scoped patch manifest after the cart worker's change; the earlier five-file snapshot remains historical evidence.
+- New cart scope: omit untrustworthy cached price, localize validated product paths once, handle malformed storage safely, escape displayed strings, preserve current quantity/subtotal fixes, and verify page plus drawer rendering before any live release.
+- Renderer review: no old PASS substring as a current verdict; stale campaign snapshots remain collapsed, explicitly historical, and preserve their original data. Independent in-memory checks passed for stale and explicit-current rendering behavior.
+- Launch, publication, exact order parity, actual cohort margins, full Merchant/current Ads scope and Danish product-copy correction remain gated. No low CPC, source ingestion or site Checkout receipt is promoted into paid-sales proof.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/`; `ops/scripts/plan_marketing_economics.py`; `ops/scripts/render_marketing_cockpit.py`; exact cart scope in `ops/AGENT_COORDINATION.md`.
+
+
+### September 5 access-premise correction
+
+Independent reviewer requires superseding the wrong-identity inference: current and historically authorized identities match; Business Manager role and app permissions are distinct; intended auto-link email is not execution/causal proof. Root corrected the current owner action and owning records and prepared the exact support request without submitting. Final review includes `google_access_recovery.md`. No credential values are saved in that packet.
+
+
+### September 5 — exact support send review and blocked after-state
+
+- Independent reviewer PASS_WITH_GATES for one owner-authorized Google request to the exact Merchant/Ads/Business Manager IDs. The final964-character text preserves verification, unknown cause and excluded account/billing/campaign/feed/link changes.
+- Same-contact-only CC adaptation was independently approved after blank CC validation failed: no new recipient or scope. Visual address equality did not resolve contradictory zero-length text readback and lingering CC/Summary errors.
+- Automatic approval review rejected Next for those unresolved errors and missing contact text readback. Root stopped; NOT SUBMITTED, no receipt/case ID. Owner requested to manually correct the email fields; the same send remains authorized after consistent fresh readback. No workaround or repeated approval request.
+- Final local verification evidence: economics6/6, renderer3/3, cart16/16, JS syntax, scoped diff, desktop/narrow fixture and dashboard readbacks, integration25/25 zero risks, strict CONTINUITY_OK. Final integrated independent verdict pending separately.
+
+
+### September 5 — final integrated independent verdict
+
+Reviewer `/root/turnaround_independent_review`: PASS_WITH_GATES, no unresolved high/medium findings within the frozen criteria. Reviewer did not build/execute/write accounts or files. Independently verified economics6/6, cart16/16, renderer3/3, five final file/two patch hashes, scoped JSON/whitespace/source/credential checks and the three final fact-wording corrections. Root's dated record supplies desktop/narrow browser and integration/strict evidence. This is local implementation review, not paid-launch or publication clearance.
+
+Support remains owner-authorized but NOT SUBMITTED; no case ID. Automatic approval review's Next rejection is preserved, with manual email correction/current consistent readback required before the same approved send. No bypass or second permission request. Local validation outcome is linked separately; profitable-cohort prediction remains unresolved. Final record-only cockpit regeneration and strict check follow.
+
+### September 5 — independent fresh-session continuity verification
+
+Scope: owner explicitly prioritizes preserving the turnaround for any new session. Root owns only local continuity records; no business action or permanent rule change.
+
+Baseline reader `/root/continuity_cold_read`, without original chat, recovered the major facts but independently reproduced FAILED_CLOSED operator-action metadata and identified malformed entity delimiters, scattered runtime instructions and a superseded login recommendation. Root's actual handoff scored8/17. The frozen compiler/scorer/prompt/tests were not edited.
+
+After root repaired the records, separate `/root/continuity_fresh_resume`, also without original chat and instructed not to read previous reader/evaluator answers, returned ConfidenceH/PASS. It reconstructed the business goal/economics, conditional USD50-to-USD500+ budget, completed/unpublished work, exact Google identities/app access, owner-approved but NOT SUBMITTED support request, pending manual input and independent queue. It independently ran the documented compiler/scorer: OK and17/17. No essential resumption defect found. Its verdict is for recovery from local records; root owns final integration/strict receipts.
+
+Root verified five relevant retrieval cases, all7 unchanged frozen source hashes,19 durable references, byte-identical fixture source preservation, direct regression scripts, unchanged12/12 holdout, syntax and scoped diff. Integration25/25 with0 risks and strict CONTINUITY_OK passed; final refreshed receipts are in the packet's `continuity_verification/final_checks.json`. Record-only repairs improved the handoff8/17 to17/17; no evaluation rule or current authority was weakened.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/continuity_verification/CONTINUITY_VERIFICATION.md`. Local continuity defect closed; paid-growth prediction remains unresolved, support unsent and launch/publication gates unchanged.
+
+
+### September5 EDT / September6 UTC — current sales/candidate reconciliation
+
+Reviewer: `/root/historical_google_access_paths`, independent of root's calculator/output construction; read-only, no external actions. Verdict: PASS after two corrections. Root changed product first/last dates from UTC slicing to America/New_York and replaced per-transaction CPC output with campaign/source aggregates. Independent Decimal recomputation verified36unique ID/date matches,45retained orders plus2cancelled/refunded,3/11missing in28/90d,49product aggregates,8candidate rows,57CSV rows,135modeled half-price costs, native-currency fee separation and unchanged private-input hash. Narrative distinguishes137.15cash-refund receipts from136.71reversed merchandise, preserves GA4CPC/ShopifySEO conflict and leaves actual net margin unknown. No outstanding findings in this bounded scope. Live account state, supplier invoices and future growth are not certified. Evidence: current packet reconciliation files and final check receipt.
+
+### September5 EDT / September6 UTC — concrete SEO release and focused paid materials
+
+Reviewer: `/root/cart_market_fix`, independent of root's SEO implementation and historical specialist's paid preparation. Reviewer edited only traffic_seo_independent_review.md and performed no external action. Final verdicts: SEO PASS_WITH_RELEASE_GATES; paid PASS_LOCAL_REVIEW_ONLY, no remaining local implementation blocker.
+
+Verified exactly four locale-value differences from saved current MAIN-theme files; unchanged other keys/comment headers/placeholders; clear copy without unsupported customer claims; title/description limits and shared alias/social/schema effects. Exact publication approval, fresh conflict check and isolated after-state verification remain required; AI language review is not native-speaker certification.
+
+Paid review covered eight paused keyword rows (six starters, two held replacements), one RSA, USD0.15 caps, text limits, purchase-per-person clarity, unchanged CSV hashes and the final MD/settings hashes. Reviewer identified Google's highest-budget-on-an-edited-date caveat. The author corrected the exposure prerequisites; reviewer verified the explicit history/effective-limit gate remains false and execution disabled. Sunshine raw Admin text is not treated as proven shopper exposure. Actual costs, purchase attribution, complete buyer path, current account/budget routing and exact launch authority remain unresolved. No present traffic, revenue or profit lift is certified.
+
+Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/traffic_seo_independent_review.md and traffic_execution_checks.json. This review binds the prepared local artifacts; it does not approve a live action.
+
+### September5 EDT / September6 UTC — continuous goals, Shopify draft and exact paragraph
+
+Independent reviewer /root/cart_market_fix did not create goal/schedule/draft or author the paragraph. Verified the ACTIVE same-task4hheartbeat and PAUSED legacy cron; root-specific active-goal receipt; complete525-file manifests with exactly2locale differences/523matches; new draft-bound payload matching reviewed SHA256s; reversing only4values exactly restores saved before-files. MAIN role/sample checksums unchanged. Verdict VERIFIED_DRAFT_FILES_PREVIEW_GATED: public preview returned MAIN, normal authenticated rendering/alias checks and eventual full-MAIN conflict check remain outstanding. No live publication claim.
+
+Greek paragraph prewrite verdict PASS_EXACT_PARAGRAPH_WITH_READBACK:7937to7928characters, both hashes/source digest, oneparagraph/onehref, other8collection+2sociallinks/everyotherbyte unchanged. Copy removes unavailable Christmas-pattern claims and accurately describes separate mom/child selections. Destination English/QZ/control limitations remain recorded; Greece fulfillment is unproven. Automatic approval review subsequently rejected live publication because broad Continue was not exact approval; no write, fresh unchanged readback, pending exact user question. Independent content review does not override automatic approval review.
+
+Evidence: continuous_growth_independent_review.md, continuous_growth_execution.json, continuous_growth_greek_execution.json and final continuous_growth_checks.json in the existing turnaround packet. No permanent evaluator, prompt, safety or root instruction change.
+
+
+### September5 EDT / September6 UTC — Italian attribution and organic Pin pair
+
+Independent reviewer /root/cart_market_fix did not execute the Shopify reads or author the diagnostic/Pin drafts. Diagnostic PASS_BOUNDED_DIAGNOSTIC:13 initial checks plus8 follow-up checks; ready/exact/pagination-complete one-visit scope, null marketingEvent and organic referral text do not establish no ad touch, a tracking defect or profitable Italian demand. The two initially unexamined fields were queried through a separate validated read and closed without changing the unresolved attribution conclusion. Private input hash is root-verified; the reviewer did not access private inputs.
+
+Pin verdict PASS_LOCAL_COPY_AND_STRUCTURE_ONLY:36 independent checks verified two factual drafts, separate-person disclosures, titles61/61 and descriptions174/199, canonical product URLs and distinct pinterest/social UTM content, two unchanged image URLs, null platform/board IDs and HTML/JSON agreement. No browser/render/fetch/account access by reviewer. Image appearance/specifications/alt text, meaningful visual distinction, current board/duplicates, live tagged destination and exact publication authority remain gates. No upload, publication or sales/traffic lift certified.
+
+Evidence: current packet italian_organic_independent_review.md and italian_organic_checks.json. Existing paid payloads and full-account authority are unchanged.
+
+### September 6 — current-source cart stage, independent before/after review
+
+Reviewer /root/historical_google_access_paths did not build the candidate or execute the Shopify mutation. Prewrite PASS_WITH_GATES bound the exact fresh baseline, four-hunk isolated delta, forward/rollback payloads and UNPUBLISHED target. The builder is cart_market_fix and cannot serve as independent verifier for this action. Root retained the sole external writer claim and completed a fresh role/body/SEO conflict check before normal tool confirmation.
+
+After-state PASS_WITH_GATES independently compares actual returned source bytes in cart_draft_after_source.json with baseline/candidate, saved after-body files and rollback/forward payloads. Recomputed both complete 525-file manifests: MAIN unchanged; draft only cart.js changed; three current differences including prior DA/NL locale files, 522 identical. All four locale checksums and unpublished role preserved. The reviewed test distinction is 15 candidate passes and one identical pre-existing quantity/subtotal failure; no new failures. No full-cart or 16/16 claim.
+
+Evidence: current packet cart_draft_independent_review.md and cart_draft_checks.json. Authenticated Shopify rendering remains NOT RUN while Mac is locked; live publication false, business lift unproven, paid authority unchanged. This review does not grant permission to publish or spend. Canonical preservation checks are appended in the same independent report after integration.
+
+### September 6 — bounded organic URL recovery diagnostic
+
+Independent reviewer /root/cart_market_fix did not execute the public/API reads or author the source extraction. Verdict PASS_BOUNDED_DIAGNOSTIC: 24 local assertions and six extraction-source hash comparisons passed. Four normalized source path leads exactly match the current HTTP404 receipts and four ARCHIVED product handles; localized/root redirect result sets are empty and complete. Missing original full URLs, last-crawl dates,5xx examples, demand, archival intent and replacement equivalence remain unknown. Source-only nulls are clearly separated from root's later live status evidence.
+
+Static query/GET and saved-output review found no privacy leak or mutation contradiction. No redirect/restoration, whole-site health, lost-sales or business-lift conclusion is supported. Exact GSC exports are an operator dependency after normal browser access, not a replacement owner question. The pending Greek approval and all other access/cost/release gates remain unchanged. Reviewer wrote only organic_url_recovery_independent_review.md, no external calls or shared edits. Root owns canonical checks separately; evidence is organic_url_recovery_checks.json in the same packet.
+
+
+### September 6 — Danish runtime and Skyfade omission, independent before/after review
+
+Reviewer /root/current_ga4_sales_reconciliation did not author the runtime/prose candidates or execute external reads/writes. Prewrite PASS verified one five-line insertion, all other runtime bytes, current MAIN/draft/include checksum binding, patch reconstruction and syntax. Independent extraction of the actual dictionary/seven unchanged helpers reproduced English fallback, then verified three Danish locale forms and22-key English/Spanish/Dutch/unknown holdouts. Root's initial missing-helper extraction failure was corrected without changing the candidate. The local Skyfade omission removes one92-character clause, preserving every other body byte, all numbers/links and three tables/40rows; it does not resolve size truth.
+
+Postwrite PASS independently recomputed complete525-file manifests: MAIN0changes, draft exactly1runtime change, candidate checksum match, four cross-theme differences and521matches. UNPUBLISHED/MAIN roles and prior cart/DA/NL edits preserved. Saved execution receipt agrees. No API rerun or action by reviewer; no rendered/native-language/measurement/customer-lift certification. Active-product prose local only, original chart gate and normal Mac unlock remain. Exact Greek approval is the existing sole owner action, not the completed root staging step.
+
+Evidence: current packet danish_buyer_copy_independent_review.md (final SHA256 bd1eac2f23b0925758c57aaeaf8f4708f17329e810975b472de1c873c66b9b6d), danish_runtime_execution.json and danish_buyer_copy_checks.json. This review does not grant MAIN publication or spend. Root owns canonical preservation/continuity checks separately.
+
+## September 6 Google settings repair and Pinterest preparation
+
+Independent prewrite PASS_WITH_GATES: exact local-retail Off/one Save is covered by the current named settings-repair request; require persisted Off and preserved online controls. Independent final PASS_WITH_RESIDUAL_GATES:15 local consistency checks, root-supplied UI proof explicitly identified, no broader or repeated mutation, no restoration/profit overclaim. Stale specialist receipt hash/pending-cancel instruction corrected before final review. Reviews: shopify_local_inventory_repair_review.md and shopify_google_settings_final_review.md in current CEO packet.
+
+Pinterest source review HOLD_REFRESH_TARGET_UNIDENTIFIED; local generated Pin2 image review PASS for copy/format/visibility, not performance or publication. No source/stock mutation or Pin post. Same official Google support form recheck did not clear contact readback conflict; no Next/send. Final command-layer continuity/preservation results are recorded separately in google_settings_traffic_checks.json.
+
+
+## 2026-09-06 profile-open traffic continuation
+
+Independent verifier /root/current_ga4_sales_reconciliation: PASS for local receipt/queue consistency. Browser proof is explicitly operator-supplied, not independently replayed. Pin2 exact URL/allUTMs/copy/ranges and PNG/four-paid-file hashes agree; current browser access does not imply Google permission/submission. A stale generic destination-gate sentence was corrected and narrowly reread. HTML rendering NOT RUN. Review: profile_open_traffic_review.md. Feed specialist separately recorded19/19 local source-readback checks and no external writes; source100 mutation remains held. Parent integration does not broaden evidence, spend or release authority.
+
+## 2026-09-06 draft rendering and exact NL correction
+
+Independent Analytics prewrite PASS: one character/one leaf among779, all other bytes unchanged, one file/exact unpublished target and rollback. Postwrite consistency PASS: candidate/payload unchanged, source and two-route/four-sink receipts agree; browser evidence is root-supplied. Feed Ops independent current complete manifest PASS:525each, allMAIN and other524draft preserved,4cross-theme differences/521matches. Final owner release review is draft_release_readiness_review.md; its verdict is limited to the exact packet and does not grant publication/spend or certify native-language/measurement/profit outcomes. Root later added bounded cart cleanup evidence to the rendered receipt.
+
+Final independent release verdict: PASS for owner Shopify Admin review/publication decision, confidenceH for consistency/M for bounded readiness; no demonstrated new release-blocking regression. No automated publication/spend authority. Review SHA256 ec0e7db896d59f7ee0efe9b80142134c2aed21c640f6c73d6904c5efd1716694.
+
+## 2026-09-06 — Exact GSC server-error classification review
+
+Reviewer: `/root/current_ga4_sales_reconciliation`; did not build or execute root/Feed Ops source reads. Verdict: `PASS_BOUNDED_DIAGNOSIS_AFTER_TWO_WORDING_CORRECTIONS`.
+
+Recomputed 12 original URLs, 11 public attempts, ten404s, one429 and finalAtom NOT RUN; original membership/dates/queries and source bindings pass. Seven archived-product404s plus three published-resource404 URLs across two resources; exact missing locale codes do not prove market/alias causation. Root corrected causal wording to consistent-with and preserved documented mistaken withdrawal/approved restoration as an additional reopening branch. Ordinary-client429 is not Googlebot evidence; dated Google host health is not current whole-site proof.
+
+Approved conclusion: hold this cohort with evidence and reroute to prepared organic release; no qualified restoration, redirect, validation/index request or measured lift. Existing four-file draft owner action, Google support approval/manual field gate, Greek approval, actual costs and full-account paid-control gates remain. No external mutation. Root source/control/artifact/continuity checks are recorded separately in gsc_server_error_checks.json.
+
+Evidence: current CEO packet gsc_server_error_independent_review.md, SHA256 `319177c53d7068e958d9078f038ef11f7ee641f9e7806359f74db1fe9263014b`; gsc_server_error_classification.json; ORGANIC_URL_RECOVERY.md. Linked decision: DLM-DEC-2026-09-06-ORGANIC-URL-RECOVERY. This review grants no publication or spend authority.
+
+## 2026-09-06 — Pin2 native preparation post-action review
+
+Verdict: PASS_WITH_FAILED_PERSISTENCE. Independent /root/current_ga4_sales_reconciliation verified frozen plan/prewrite/source/guide hashes, exact current Pin2 fields and unchanged Pin1. Root executed one chooser upload/editor fill and supplied the historical desktop DOM/screenshot. Native preview passed, but same-device reopen recovered no draft; no saved identity verified. Empty reopen does not prove remote deletion/absence. Root corrected the overstrong ID field and retained UNKNOWN remote draft/image retention and root cause.
+
+Review covers record correctness, not successful saved-draft preparation or public release. No duplicate upload, Publish/schedule, new board, paid, source/catalog or public-storefront retry. Local guide/copy remain the recovery source; re-entry needs supported-save evidence or exact approved publication stage after remaining gates. Source15/15 is separate from mobile/checkout/profit. Postreview SHA256 228070d15c785635c7f6dd401a56038b4abf35204e82fe0de303ba36dfb9122c; execution SHA256 5214326328705c46999c67fbff66318a0e89e8facdd3c7df221bcf1fa2743b05. Existing full-account authority and single Shopify owner action remain unchanged.
+
+## 2026-09-06 actual-cost and customer-resolution review
+
+- Material decision: DLM-DEC-2026-09-06-ACTUAL-COST-CANDIDATE-ORDER; root source/operator, independent /root/current_ga4_sales_reconciliation local verifier, DID_NOT_BUILD_OR_EXECUTE.
+- Verdict: PASS_NUMERICAL_CONSISTENCY_WITH_LIVE_GATES. Six provider totals, signed adjustments, eight funding rates/handling once, six USD payout identities and both conditional endpoints reproduce. Root incorporated net-international wording and null Italian revenue-derived fields before final review. No actual bank/funding-lot verification, repeat-order AOV or net-margin certification.
+- Outcome: Sunshine first candidate for further validation; current Vintage6.5x stage held. Danish pre-ad30% shortfall cannot be repaired by lower CPA alone under tested assumptions. Paid Italian two-item resolution is first owner action; all financial/refund/customer contact and spend gates remain.
+- Evidence: current packet actual_fulfillment_cost_independent_review.md (frozen core/funding review), actual_cost_final_review.md (six payout/fee-inclusive/candidate review), ACTUAL_COST_RECONCILIATION.md. Final review SHA256943afa0a48b7a146c315895603b60d990d503547993ac641b8d3783ca104775e. Canonical integrity checks recorded separately in actual_cost_checks.json; reviewer did not perform browser or bank reads.
+
+## 2026-09-06 — Local purchase-capture correction review
+
+Verdict: PASS_WITH_GATES for the local helper only. Independent /root/current_ga4_sales_reconciliation did not author the correction or execute an installed change. It repeated the actual-helper tests against frozen baseline4fail/3holdouts and candidate7/7, verified syntax/whitespace and every byte outside getClientId/fallback preserved. Ads template, README, runbook and prior inventory stayed unchanged. Root supplied live UI observations; this reviewer did not independently replay browser evidence or fetch the cited MP reference. Feed Ops independently checked primary-platform requirements, and root verified the current full-cookie reference.
+
+Checklist application: repo-local fix/read-only UI are in scope; production tracking/account/consent/spend changes are not granted by this verdict. Correct store/pixel/stream, explicit missing evidence, private-data minimization, exact local rollback and frozen prior artifacts are recorded. Source/ingestion/consent and complete installed-code binding remain gates; no new pixel, historic-purchase replay, whole-template installation or public429 retry. Routine local decision DLM-DEC-2026-09-06-GA4-CLIENT-ID-CORRECTION; no retroactive material release contract. Candidate SHA25651fdb8617cf9949bc02985b63435bb5e6abcb06b6eb7a19250b9d0ad14dbd80b; review SHA2568d62b5c8ce7a1ff8ba11eaa543ef8f7f8d89c2367dac7b0bb51fd118bb2566e5. Evidence: purchase_capture_client_id_review.md and purchase_capture_checks.json. No actual capture/profit certification.
+
+## 2026-09-06 — Exact installed-helper proposal review
+
+Verdict PASS_FOR_EXACT_OWNER_REVIEW, not deployment/capture certification. Independent /root/current_ga4_sales_reconciliation did not build the candidate or execute installed capture/Save. Actual helper-only byte comparison, exact diff, fallback preservation, both helper syntax checks and unchanged test repeat pass:4expected baseline failures/3holdouts, candidate7/7. Follow-up reconciles root-supplied complete-editor fingerprints/delta/rollback; full-buffer EvalError leaves that syntax check unverified. Review SHA2564843794bfdea64811fe2070f3a9be1422e519167cf7d19617304b0c82f6abdca; binding receipt fd962922b8673651762f6334a8b5ddde806d814f3832965195da95ff86327afc.
+
+Fresh authority, source match at Save, private rollback preservation and permitted live receipt validation remain. No installed code/consent/account/spend change. Root separately integrated the bounded Italian negative mail receipt without claiming no outside remedy; no additional owner question. Evidence: installed_ga4_helper_review.md, installed_pixel_validation_plan.md, INSTALLED_GA4_HELPER_RELEASE_PACKET.md and installed_ga4_binding_checks.json. Prior reviews/predictions remain unchanged.
+
+## 2026-09-06 — Challenge inference and confirmed Sunshine exposure
+
+Independent Analytics: CORRECTION_REQUIRED to blanket browser/event-validation blocking from one cookie-free Turkish429. Subsequent bounded review supports a distinct ordinary observed-link click, with no held-URL retry or injected event and immediate stop on actual challenge. Source review SHA256089430a835d70f1dec975e7fe9049797a600edd0995ebe8ecdde0f24bb33f561. Root then discovered preview context, used official Exit preview and verified MAIN; that browser evidence is operator-supplied, not the reviewer's own read.
+
+Independent Feed Ops: PASS for the same frozen Sunshine five-replacement proposal, now mapped to root's confirmed MAIN strings. Exact replay/table14rows/all-other-byte preservation passed; no material/measurement/checkout/mobile/profit certification or release authority. New review SHA25622c175bf3cecdaec71f1b868f71b66d35a87c9416c4ed8bfe36256b5e1de7a3b. Proposal430c0d25fbb21e591f744eecdecceef2ba75954e9b9f29307cffe5197c63cd31/candidate9bd9fdf5817bff247fa3576eb06c149b18e3239038b613b0773d864c00fcdbfa unchanged. The pending exact GA4 question creates no approval until answered. Evidence normal_buyer_path_readback.json, both reviews and normal_buyer_path_checks.json.
+
+## 2026-09-06 — Sunshine mobile cart evidence review
+
+Root supplied the browser receipt; independent Analytics owns sunshine_mobile_cart_review.md and did not execute the flow. Review must distinguish pair/cart success from completed checkout, interactive DOM heading from a verified outage, and normal test activity from pixel receipt or sale. Feed Ops owns cart_return_source_review.md, limited to existing exact-MAIN source evidence, with no browser or theme edit. Their final conclusions and file hashes are captured by sunshine_mobile_cart_checks.json. No prior client-ID test rerun, no release approval inferred, no evaluator or protected source changes.
+
+Independent closeout: Analytics receipt review PASS/no material correction (sunshine_mobile_cart_review.md); root browser observations were not independently replayed. Feed Ops mapped exact saved MAIN sources, excluded dirty root cart.js, and found the footer-selector mismatch/incomplete refresh; cart_return_source_review.md preserves the dated-source and unverified-cause limits. Next work is one local simulation, not another source audit or live change.
+
+## 2026-09-06 — Live helper and Sunshine copy execution
+
+Independent Analytics reviewed pixel authority/execution against the frozen release/test evidence and did not execute the change: PASS for exact candidate, one Save, reload persistence, connected state and unused rollback; no sender receipt or sales certification. Feed Ops independently reviews the exact copy execution against the frozen five-replacement payload/table and prior review; root supplied API/rendered receipts. See pixel_repair_execution_review.md and sunshine_copy_execution_review.md; final hashes/verdicts are in live_repairs_checks.json. Prior tests/evaluators/frozen artifacts are unchanged; current direct owner instruction resolves the old approval gate. No repeat approval required for these repairs.
+
+
+## 2026-09-06 — Organic traffic execution
+
+Analytics independently passed exact organic guide content/current authority and did not execute publication. Postreview checks onePublish/publicID/board increment/persisted exact fields, distinguishes rich-product metadata and unavailable metrics. Feed Ops independently passed24 Greek source/payload checks and did not execute mutation; postreview checks exact candidate and preserved article/other translation/source fields against root API/rendered receipts. Both reviews live in pin2_publication_postreview.md and greek_traffic_release_postreview.md. No repeated private-draft workflow, auto-review bypass, paid spend or claimed traffic lift. Current owner authority supersedes the earlier draft/Greek pending scope only for the completed actions.
+
+
+## 2026-09-06 — Product-detail organic release and existing-Pin copy correction
+
+Analytics independently viewed generated product graphic and full source screenshot: material print/trim/garment match, no people, exact truthful copy/disclosure; original lifestyle provenance remains unknown. Visual PASS preceded root Publish; final-chat/file timing limits recorded. Postreview binds public screenshot and13 exact root native checks, board22→23 and preserved prior guide. Kant independently reviewed Sunshine four-field scope after native description falsified title-only sufficiency:13 source/binding checks and visual alt review, plus fresh root destination/candidate conditions, passed before one Save. Separate reload/Editor/public result verified; link/image/flags preserved. See pin1_photo_preflight_review.md, pin1_detail_postreview.md, sunshine_pin_copy_release_review.md and sunshine_pin_copy_postreview.md. Neither reviewer executed external changes; root owns receipts. Audience and profit remain unproved.
+
+
+## 2026-09-06 — Three existing Pin corrections and Red Resort landing
+
+Kant independently checked three exact Pin source/copy/visual bindings (38 prewrite checks), then recomputed24 native after-state checks and inspected all three public screenshots. PASS; saved authored description is distinguished from Red/Golden product-derived public text. Feed Ops supplied39 current variants and exact Red two-clause candidate, not external writes. Analytics independently reviewed Red's exact forward/inverse, unchanged table/markup and source truth, then11-check execution receipt and all three desktop/mobile screenshots: PASS, with browser/API results explicitly operator-supplied. Root alone executed three Pin Saves and one product update. No sales lift, original-image provenance, measurement or other-locale certification. See pin_cohort_release_review.md/postreview and red_resort_landing_copy_review.md/postreview.
+
+
+## 2026-09-06 — Existing pajama guide and accessible Microsoft paid lane
+
+Kant independently reviewed exact eight replacements,31checks, source/public route evidence and primary CPSC/HealthCanada guidance; then reviewed one articleUpdate receipt,19checks and desktop/mobile images. Scope is exact body and supported route, not all-content/product certification or sales lift. Root alone wrote; all returned identity/title/URL/publication and5,083 untouched bytes preserved. Analytics independently reconciled guide GSC223/0/13.3 versus121/0/16.9 with first10query rows; unknown latest cutoff/timezone and collection307/3 kept separate. Feed Ops source read used normal supported Shopify connector. Microsoft account readbacks and arithmetic independently reviewed by Analytics; historical metrics, account currency and goal/purchase gaps preserved, no paid readiness. See pajamas_guide_copy_review/postreview and microsoft_paid_readback_review.
+
+
+## 2026-09-06 — Microsoft purchase measurement and bounded query review
+
+Analytics independently reconciled allfiveparent/15goalrows usingparentdenominators;284Smart/98event/101URL and values reconcile. Kant primarydocumentation plus exactnativeSmart163000100 beforeplan preflightPASS26/26; separate savedexecutionpostreviewPASS26/26, didnotbuild/execute. Root alone savedoneflag and verified othergoals/all11campaigns. Historical483remainsdisplayed; no distinctorder/profitclaim. FeedOps two targetedsourcepasses found historicalUETpresence but no installedpurchasepayload; unitvalue98 doesnotestablishcause. Root nativeAURevenueview supplies fivequeryvalues totaling667; scope/sparsesamples/currency/thresholdedcoverage preserved. See microsoft_smart_goal_repair_review/postreview, microsoft_purchase_breakdown_review, microsoft_uet_purchase_source_review and queryreceipts. No reviewer grants spendauthority.
+
+
+## 2026-09-06 — Localized guide metadata and Australian keyword economics
+Kant authored20translations,17candidate/3held; Analytics independently reviewed17copyvalues and frozenlocale-awareexecution plan, with after-state review. English-onlyreview FAIL/REVISE remainshistorical; noEnglish-onlywrite occurred. Root solewriter, exactschema/local+connector validators, freshsource/digestguards, separateAPI/21MAINheads. Existingbodytranslations preserved/outdated, notcertified. Analytics also reconciled87keyword-goal rows/15checks; FeedOps source+render reviews establishPolkaDot held,10renderchecks. See currentrelease checks and reviews; anchor 2026-09-06-ceo-turnaround-guide-seo-and-australia-economics. Noagent self-approval orpaidwrite.
+
+
+## 2026-09-06 — Localized guide shopping release
+
+Kant9locales/27blocks and FeedOps8locales/23blocks authored disjoint candidates. Analytics independently reviewed all50copy fragments and source/plan/inverses:32preflight checks. Root22execution checks and independent postreview support one mutation,17 normal native journeys and3 phone keyboard journeys. Earlier comparator and transient grid-loading captures remain retained; no production rewrite was needed. Phone pointer/touch behavior not certified. Remaining localized fit/sizing gaps and body outdatedflag caveat explicit. No agent self-approval, global rule change or paid launch. Anchor 2026-09-06-ceo-turnaround-localized-guide-shopping-released; guide_localized_routes_execution.json/postreview.
+
+
+## 2026-09-06 — French Pin and PDP release
+
+Analytics independent22PDP/12creative/32exactPin preflights; root appliedone9edittranslation andonePinpublication. SeparateAPI, desktopoptions/chart,390phonegeometry, nativecomposer/public/editor/board proofs. Postreview24receipt-consistencychecks confirmsactualEnglishclickresults anddoesnotcertifyFrenchentry. Subsequent independentlanguageassessment preserves enabledlocalization andnarrows expectedbehavior. Frozenfailedexpectationreceipt unchanged. Guide51fit packet separately271preflightchecks localonly. No broadenedspend or ownerapprovalrepetition. Evidence vintage_french_pin_execution.json/postreview/language_assessment; 2026-09-06-ceo-turnaround-french-pin-and-product-released.
+
+
+## 2026-09-06 — Localized guide buyer guidance
+
+Independent Analytics preflights/postreviews cover exact51 fit and34 choice/closing fragments. Root obtained current full source/digest/identity guards and used the supported connector twice; separate API results preserve previous shopping, source and metadata. Fit postreview194/194 passes; choice counts are recorded in its immutable review. Native verification remains BLOCKED_MAC_LOCKED; no full-parity, safety-certification, traffic or profit claim. Read-only source investigation establishes four DA/NL theme-language keys rather than a required four-file bundle; existing theme restriction remains, with no alternate mutation attempted. Anchor 2026-09-06-ceo-turnaround-localized-guide-buying-guidance.
+
+
+## 2026-09-06 — Sold Rainbow titles and exact recent-order fees
+
+Analytics independently reviewed the exact two-title plan and post-state; root alone executed two supported writes. Source digest, non-target fields and91translationvalues preserved;17flag changes recorded separately. Native remains blocked, not implied by API. Analytics reconciled payment fees and Kant reconciled exact sold variants/revenue/cost-template pattern; both read-only. Same cohort, currencies, source uncertainty and unknown delivered profit preserved. No paid/control/theme/account/financial changes. Evidence and verdicts: rainbow_title_preflight/postreview, recent_order_payment_fee_review, recent_order_basket_review. Anchor 2026-09-06-ceo-turnaround-rainbow-titles-and-order-fees.
+
+
+## 2026-09-06 — Sunshine creative readiness and native-access impasse
+
+Analytics independent visual/source review:12/12LOCAL READY, material garment appearance match, exact legible text, source-supported copy, direct4UTM product URL and distinct product-only image. No pixel-identity, native preview, upload, publication or sales claim. Kant independently inspected the bounded queue and two exact prior lock anchors; no qualified independent sales action remains after asset integration. The image/reference and copy are ready for normal native gates. Goal completion is unproved; runtime access checkpoint governs restart. Anchor 2026-09-06-ceo-turnaround-sunshine-creative-access-block.
+
+
+## 2026-09-06 — Four requested advertising platforms
+
+Kant bounded Meta identity review and Feed Ops256-file tracking-source inventory found no qualified current account/source repair; historical IDs are dated and source limitations explicit. Root current Shopify query establishes16candidate/channel joins with complete pagination. Analytics independently reviewed publication joins, source/copy, reuse, exact clickable Facebook post text, historical Microsoft USD/CPC semantics and paid/goal boundaries. Two proposed ambiguities were corrected before final review: date the observed bids and include the URL in actual photo-post text. No external mutation, publication or paid launch. Anchor 2026-09-06-ceo-turnaround-four-platform-restart; cross_platform_restart_review_20260907.json.
+
+## September 6 evening — Bounded Google recovery and replacement
+
+Analytics independently reviewed the material decision, five reconstruction inputs, source semantics, unknown tag/old-spend exposure, exact authority and goal boundaries. Two wording corrections distinguish prepared unpublished Sunshine drafts from existing published Pins and tool-reported Mac lock from pending owner desktop confirmation. No live implementation or recovered history is inferred. Review result and final input hashes: google_replacement_review_20260907.json. Anchor 2026-09-06-ceo-turnaround-google-replacement-decision.
+
+
+## September 6 evening — Remaining Rainbow product titles
+
+Feed Ops proposed17source-bound natural titles; Analytics independently passed14preflight checks on source/copy/variables/rollback. Root fresh exact guard and one normal mutation succeeded, followed by a separate alias-based readback of all17locales. Seventy-five other translationrows/flags and returned source/product fields are unchanged. Final independent postreview is linked at rainbow_remaining_titles_postreview_20260907.json. Native rendering and business impact are not certified. 2026-09-06-ceo-turnaround-rainbow-language-titles.
+
+
+### September 6 — New indexing-notice checkpoint
+
+Reviewer verdict: PASS_WITH_GATES. Decision status: NOT_MATERIAL read-only observation linked to DLM-DEC-2026-09-06-ORGANIC-URL-RECOVERY; no blocker reclassification or external action. Kant independently checked18 facts against three saved receipts, including dates, missing URL/count/crawl evidence, All known pages versus unidentified sitemap scope, separate achievement baseline and unreliable Outlook date filtering. Root accepted the exact-scope correction: bare-domain email wording does not prove a Domain-property type. Root collected emails; reviewer did not independently replay authentication/native data. Preserve saved Google creation approval, public429 stop and pending native dependency. Evidence: gsc_new_indexing_notices_review_20260907.json/.md. No business-lift claim.
+
+
+## September7 — Meow identity and description-preservation recovery
+
+Feed Ops authored English+20existing SEO title candidates. Kant independently passed24 preflight checks. The first mutation's non-target failure was caught and retained; an independent24-check exact-description correction and23-check40-row completion review supported recovery. Final32-check independent readback review confirms all21titles, all80non-target translations/flags and every other returned product/source field. Root23checks agree; a later current read still matches. Earlier failed gates and review hashes remain intact; no approval/evaluator rewrite or native/SERP/sales certification. Reference meow_identity_postreview_20260907.json and its prior review chain. Root sole external writer; verifier did not build or execute. Anchor2026-09-07-ceo-turnaround-meow-search-identity.
+
+
+## 2026-09-08 — Google cutover, legacy-doc retirement and runtime transfer
+
+Independent verifier: /root/google_replacement_review; DID_NOT_BUILD_OR_EXECUTE. Verdict PASS_WITH_GATES for design; live settings and purchase receipt remain unverified. Reviewer checked2/2 unchanged scripts,2/2 archive banners,26/26 historical headings,11/11 local links, exact506-byte paid-control preservation, source/notification semantics and narrow diff. Reviewer independently confirmed the original heartbeat ACTIVE on the new task at4h and legacy cron PAUSED; only2 DLM schedules exist. Child-scoped get_goal cannot verify root, so root saves its actual runtime receipt separately.
+
+Two sequencing corrections accepted: full destination/source inventory precedes all connection/claim writes, and Merchant requirements are independent of Ads/GA4 setup. Parent removed an unsupported illustrative AOV and normalized the full-paid handoff mode. Session receipt updated from actual goal/heartbeat reads after the review snapshot; original absent-goal state stays as baseline. No live Google/Shopify account or tracking change. Exact plan: GOOGLE_CONNECTION_AND_TRACKING_CUTOVER_20260908.md; runtime/verification: google_cutover_session_20260908.json. Anchor2026-09-08-ceo-turnaround-google-cutover-goal-transfer.
+
+
+## 2026-09-08 — International opportunity lanes, independent integration review
+
+Reviewer /root/google_replacement_review; DID_NOT_BUILD_OR_EXECUTE; final PASS_WITH_GATES. Verified18unique paid hypotheses/six countries,6/6historical country order/net-sales pairs, saved Sunshine14variant offer, market21locale/6ACTIVE/68membership/65country counts and15/15complete pagination objects,4/4final DA/NL keys, and18/18local report links. Country-wide sales remain distinct from tee demand, language roots from effective country selection, and four metadata keys from the older draft's2JS changes. No live CPC/forecast, native quality, delivery cost, purchase receipt or profitable-market certification.
+
+Root accepted the link-depth and CVRrounding corrections; SEO removed an unrelated70AOVexample and uses canonical STALE_READBACK_REQUIRED while dating its narrower source proof. Final independent check confirms2/2correction groups and6/6canonical sections, including Googlefirst, ACTIVEgoal/existing4htransfer, and unchanged nine-field paidcontrol. Root separately passed9/9local content/evidence/JSON/whitespace/control checks and18links. No external mutation. Integration audit25/25,0risks and cockpit renderPASS; final strict/diff results recorded in google_cutover_session_20260908.json. Anchor2026-09-08-ceo-turnaround-international-opportunity-lanes.
+
+
+## 2026-09-08 — Exact unpublished Danish/Dutch SEO stage
+
+Independent reviewer /root/google_replacement_review, DID_NOT_BUILD_OR_EXECUTE: PASS_WITH_GATES. Decision challenge accepted one distinct SEO copy because it isolates four existing metadata values from the old draft's two JavaScript changes; the two-theme inventory proved no equivalent copy existed. Preflight independently verified two source MD5s, two candidate MD5/SHA256s, four changed leaves, preserved preambles and exact byte inverse.
+
+After-state independently verifies three complete manifests of 525 unique files each. MAIN133290917985 and old draft137782591585 each preserve 525/525 files. New UNPUBLISHED137850814561 has exactly two files/four values changed and 523 files matching MAIN. Both returned bodies exactly equal the reviewed candidates; roles, IDs and completed processing match. The final receipt correctly records two mutations and zero upsert errors. No remaining correction. Native rendering, owner publication, Google connection and purchase proof remain unverified; no bypass or business-lift claim.
+
+Evidence: SEO_ONLY_DRAFT_RELEASE_20260908.md; seo_only_stage_execution_20260908.json; seo_only_stage_afterstate_20260908.json. Anchor2026-09-08-ceo-turnaround-seo-only-draft-staged. Final command results are recorded in the execution receipt.
+
+## 2026-09-08 — Repeated Google access gate and unchanged sales checkpoint
+
+Independent verifier /root/google_replacement_review, DID_NOT_BUILD_OR_EXECUTE: PASS_WITH_GATES for the impasse decision. Three consecutive goal turns are counted only within this replacement task: original goal/international preparation, actual SEO-only stage, and this unchanged-sales continuation. The first two made meaningful progress; older Mac-lock/task/quota episodes are not counted. Reviewer found no further qualified executable lane conditional on unchanged fresh sales; that condition is now met. The current TA-11 Mac-lock wording was corrected to the observed CUA policy/capability gate.
+
+/root/tracking_inventory completed one read-only Shopify checkpoint at19:10:23UTC. Eleven source checks pass. Root independently passed eleven aggregate, currency, pagination, variant-shape, query and baseline checks: same two paid/unfulfilled orders, four units/USD86.45, no new qualifying order in24hours. No persisted order-ID join or profit/attribution claim. All delegated work is finished; the prior SEO duplicate processing and upsert are terminal.
+
+Root update_goal returned blocked with the original objective preserved; receipt google_growth_blocked_runtime_20260908.json. The existing4h heartbeat was read back ACTIVE on the current task, with no mutation. No CUA/denied-field retry or external marketing write. Final canonical checks are recorded in google_growth_access_checkpoint_20260908.json. Anchor 2026-09-08-ceo-turnaround-google-access-blocked.
+
+## 2026-09-08 — Finished draft publication scope and source binding
+
+Independent /root/google_replacement_review, DID_NOT_BUILD_OR_EXECUTE: PASS_WITH_GATES. Fresh owner instruction authorizes finished organic publication, not another approval loop. The initial smaller-theme preference was revised after testing the decision-critical premise: existing combined137782591585 retains previously reviewed runtime/cart improvements and is the complete single release if every current source hash matches the reviewed525-file snapshots. Root's10checks pass this premise, finalSEOlocale equality, four differences/521matches, pagination/identity and archived-content exclusions. The reviewer separately checks the final artifact; exact final result is recorded in draft_publication_current_20260908.json.
+
+Tracking specialist inventoried existing Pin/Facebook payloads and preserved already published work: image hash and13links pass; no new creative or external mutation. Theme publishing/MAIN writes remain explicitly prohibited by the connector; CUA policy stop was not retried. One owner Admin Publish→Publish required, not reapproval. Native/test limits preserved; no customer-visible or profit success claimed. Anchor `2026-09-08-ceo-turnaround-publication-authorized`.
+
+## 2026-09-08 — Owner-selected Merchant identity, linking and tracking guard
+
+Independent /root/google_replacement_review, DID_NOT_BUILD_OR_EXECUTE: PASS for current accepted-link inspection; HOLD source changes until paid effects are bounded. Historical PMax18154132278/Ads3990976848 was PAUSED atUSD1/day on May19, not present spend protection. Adding eligible products can remove a serving barrier without a campaign edit. If current accepted links exclude the historical customer, record it without restarting that audit. No blind unlink.
+
+PASS_WITH_GATES for reconnecting retained GA4330266838 under the owner's existing instruction; no repeat approval. Conversion measurementOn and absent connected GA4 do not prove absence of collection. Finish existing Google tags/event mappings and custom sender111181921/111214689 inventory, then one exact retained-property Connect with persisted after-readback; receiver and actual-purchase deduplication remain separate acceptance gates. No root mutation occurred.
+
+Tracking specialist retrieved two Shopify policies and current General shipping profile: six policy and eight shipping source checks pass, complete pagination and explicit0–5lb inclusive Priority bounds. Root reviewed sanitized receipts. No invented numeric transit estimate, worldwide checkout assurance, physical retail claim or billing change. Native Chrome direct Admin/domain and Shopify saved Merchant readbacks are root evidence; independent review is scope/effect review, not a second live observation. Current window-control gate is documented, without auth/permission inference. Anchor `2026-09-08-ceo-turnaround-selected-merchant-test-profile`.
+
+## 2026-09-08 — Exact old catalog link retirement, local retail correction and complete product coverage
+
+Independent /root/google_replacement_review DID_NOT_BUILD_OR_EXECUTE reviewed exact MC513-only unlink confirmation and current authority; PASS_WITH_GATES. Root executed/read back both scoped changes. Reviewer validates account manager cannot link Merchant directly and Ads/GA4optionalforfree listings. Official country/language table agrees with current DK/DE/AT/CZ rows; aggregate20languagewarnings remain unresolved, not allnon-Englishdisabled. Preserve currentMarkets pending actualoffers. This is independent scope/documentation review, not a second live observation.
+
+Tracking specialist complete read-only coverage:240ACTIVEproducts,4945variants,240of240bothchannelpublications,21publishedlocales;11checksPASS/3successfulqueries. Merchant source count0 is separate root UI evidence and cannot be treated as submitted/approved. Parent will complete terminal canonical consistency and strict checks; results in merchant_513542500_execution_20260908.json.
+
+Terminal independent review PASS: exact two-mutation effects, product counts versus source-zero distinction, Ads650 candidate framing, language uncertainty, normal full-screen recovery versus later Mac lock, owning lock problem and cockpit next-task corrections all agree. Reviewer read-only, DID_NOT_BUILD_OR_EXECUTE; no second live account verification claimed. Root receipt11/11, control506bytes unchanged, integration25/25 with0risks, strict continuity and scoped diff checks pass. Final results in merchant_513542500_execution_20260908.json.
+
+## 2026-09-08 — Microsoft and Pinterest priority continuation
+
+Independent /root/google_replacement_review PASS, DID_NOT_BUILD_OR_EXECUTE. Checked current extension, canonical priorities, queue/cockpit/claim/problem/worklog: no new account readback or external action claim; Microsoft prior Smart repair/CPC/cost gates preserved; Pinterest exact PNG/hash/copy authority and source IDs remain separate; no420-source inference; new official October1/MCP findings are documentation only, with no setup/OAuth. Google repairs and all506paid-control bytes preserved. Existing owner unlock request remains the immediate dependency. Root cockpit, integration25/25 with0risks, strictcontinuity and scopeddiffchecks pass. Evidence cross_platform_restart_plan_20260907.json current_september8_extension; anchor2026-09-08-ceo-turnaround-microsoft-pinterest-execution-priority.
+
+## 2026-09-08 — Existing explicit-entity context repair independently verified
+
+Independent /root/microsoft_growth PASS, DID_NOT_BUILD_OR_EXECUTE. Compared both frozen before files with the final compiler/tests, ran the complete focused suite (ok), and independently replayed all five cases against both compiler versions. Three original failures reproduced and fixed; two passing holdouts preserved. Complete required-entity filtering, distinct-hit-set ambiguity, exact authority and newer contradiction guards remain; implicit semantic selection is unchanged. Compiler after SHA256 ee2451cdef200c237173191d1e759faec101e8b2992d661da766f0a43b19211a; tests4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943. Worklog unchanged during both replays; all nine authority fields identical. Root separately verifies exact506controlbytes/SHA256 against the original cutover receipt.
+
+The analytics specialist found no additional qualified GA4/GSC mutation from saved data: current receiver evidence and exact indexing URLs remain unavailable. Recency uses append order; broad explicit entities favor newer same-hit-set state. No live account or business-result certification. Current owner desktop-status clarification distinguishes actual lock from false control failure; no repeated unchanged probe or bypass. Evidence context_recency_regression_20260908.json; anchor2026-09-08-ceo-turnaround-analytics-context-recency-repair.
+
+## 2026-09-09 — Recorded Rainbow fulfillment independently interpreted
+
+/root/tracking_inventory PASS, DID_NOT_BUILD_OR_EXECUTE. Independently retrieved exact prior payment-fee, basket/template-cost and published-return-policy evidence; reviewed root's sanitized separate shipment readback. Successful Shopify fulfillment and YunExpress company do not prove carrier acceptance or delivery with null transit/delivery fields and0events. Existing revenue is unchanged, not new sales. EUR2.78 Rainbow fees andUSD1.42 Mermaid capture fee cannot be directly combined across currencies; template unit costs are not actual costs. Actual item/service/freight/duty/settlement, acquisition and return/reshipment exposure remain required; avoid double-counting fees/shared charges.
+
+Root verified18source checks, including exact two-variant/quantity match between the paid basket and separate fulfillment read, pagination, unchanged money and expected status delta. The unchanged-state guard correctly rejected a false hold before any save. Subsequent exact-reference connected-mailbox invoice search returned0; this is only a scoped miss. No order/customer/fulfillment/variant IDs, tracking numbers/URLs, private reference or contact data persisted. No financial, fulfillment, browser, account or paid action. Evidence current_sales_checkpoint_20260908_evening.json latest dated fulfillment checkpoint; anchor2026-09-09-ceo-turnaround-rainbow-fulfillment-observed.
+
+
+## 2026-09-09 — Owner dashboard independently verified
+
+/root/task_state_review PASS_WITH_GATES, DID_NOT_BUILD_OR_EXECUTE. Read-only comparison against targeted before-files,19exactTA IDs/history exclusion, source-link resolution,10focusedPython tests and full-paid-control SHA preservation. Already-authorized manual combined-theme137782591585 is distinct from TA-09RED/futurepaidapproval; TA-17/19source completion remains distinct from native verification. Same dated2-order/USD86.45 cohort is separate from8-orderbaseline; unknown profit/current channel metrics remain unknown.
+
+Review corrections implemented: identical duplicate headings and empty task sections fail visibly; owner action label is neutral with no fixed September8date; TA-16links its latest fulfillment checkpoint. Root separately passed localPlaywright desktop1440x1000/mobile390x844 interactions including filters/search/reload/evidence/continuation/modal/keyboard/nooverflow; no console/runtime errors. No external action, new scheduler or model/agent runtime claim. Existing unrelated changes and authority hash7085e95c11574b5b2c1f3594653c7a7f6e42f0fb325289a5c70922d0a3e99c18preserved. Evidence owner_dashboard_verification_20260909.json; anchor2026-09-09-owner-growth-dashboard-visibility. Business access, release and measured-profit gates remain open.
+
+
+## 2026-09-09 — Google feedback and exact cutover review
+
+/root/tracking_inventory DID_NOT_BUILD_OR_EXECUTE independently recomputed the240productfeedback source, date split and messagecounts.232recent/6June4/2absent; all4page-errors arehistorical. Sunshine14+Rainbow8+Mermaid10 is32; the parentassignment's34typo wascorrected beforecanonicalintegration. AppcontextURLs do notbindMerchant513; no currentdisapproval, claimtransfer or blanketcost/agefieldfix follows. Final independent review PASS:26 checks; source SHA256 abed85accfac158d5396fe6096359e7b27ebdcac76ad88e8ca65c3c41e35b992. The review is embedded in merchant_513542500_execution_20260908.json.
+
+/root/microsoft_growth verified existingPinasset/finalcopy/UTMs andcurrent14variant/per-shirt source:29checksPASS; nativeprofile/board/duplicate/buyerroutestillrequired beforeonesaved-authorizedpublication. Officialdocs confirmContentAPIlabelmigration ismanaged andAdsoptionalforfreesync; no blindreinstall/toggle. Analyticsdocumentreview preservesGA4history andrequiresalltagdestination/purchaseID/value/deduplication checks; oldtotalPrice andappmerchandisebasis differ. Currentdesktopgateislatertool-reportedMaclock, notglobalpermissionfailure. No newexternalwrite. Anchor `2026-09-09-ceo-turnaround-google-feedback-binding`.
+
+
+## 2026-09-09 — Completed GA4 configuration and duplicate cleanup review
+
+Decision DLM-DEC-2026-09-09-GA4-TAG-MIGRATION; independent /root/tag_cleanup_verifier, DID_NOT_BUILD_OR_EXECUTE. Fresh saved tag, matching legacy destination, Shopify page-view source marker, explicit granted test consent and reversible reconnect path satisfied scoped pre-cutover gates. Post-disconnect inventory reload and isolated new-page one-hit retest passed. Final verdict PASS for configuration migration and identified duplicate retirement; reopened wizard1/3 with No tags to migrate is CONFLICTED and no unavailable acknowledgement is manufactured. Receiver/purchase/denied-consent/custom-field/value acceptance remains open, and the Consent panel discrepancy is recorded. No Ads111214689, Merchant or other integration change. Full-paid NONE preserved. Evidence: 2026-09-09-google-tag-migration/MIGRATION_READBACK.md; CLEANUP_VERIFICATION.json; anchor2026-09-09-google-tag-duplicate-cleanup-verified.
+
+
+## 2026-09-09 — Merchant identifier, image and market repairs independently verified
+
+merchant_standards_review DID_NOT_BUILD_OR_EXECUTE reviewedexactsource containment andcatalogsemantics beforewrites, initiallyHOLD untilbadidentifiers/imagescontained, thenreleasedexacttwo-product/sixjoin correction. Freshindependentfive-node afterread at18:14:25UTC confirms sixjoins/240ACTIVEeachEXACT,48completeavailablevariants, nineapp-publications eachunchanged andqueriednonpublicationfields plusbothdescriptionhashes correct. Parentpublicationonly; connectorvariantpublicationfieldsabsent.
+
+shopify_market_inventory DID_NOT_BUILD_OR_EXECUTE independentlycheckedhostedimagevisiblecontent andsource/20translatedbody substitutions:126exactchanges/21bodies; no otherbodybytesorfields changed. All6hostedcopies800squaredecodeandhashchecks passed; originalsourcefidelity visuallyhigh butnotbyteidentity becauseShopifyreencoding. Root didpubliclocalizeddesktop/mobile checks separately.
+
+Freshindependent20-page completeidentifierread18:17:59–18:18:54UTC verifiesexact1,108clears/70parents andzerounexpectedbarcode/parent/statuschanges among4,945variants/240ACTIVEparents.24checks/15controlsPASS.125checksum-validstrings and2duplicates/fourvariants preserved; assignmentunproved. Firstexpandedreceipt hasrecoveredbodylength ratherthanpersistedoriginalfullbodyequality; reviewerretainslimitation. OriginalmanifestFULL_SCAN_PENDING supersededbyafterreport, notrewrittenafterhashbinding.
+
+Readiness PASS_WITH_GATES: Shopify repairscomplete; Merchantreceipt/countryeligibility/businessresultsunverified.36/65appsupportmatches and63languagepairs arenotGoogleeligibility. Currentexact513Productsloading/nooffertable; oldsource0notcurrent. Nativefocusrequiresownerhandoff; automaticapprovalreview privacyrefusalrespected. No claimofzeroindirectspendimpact fromno paidsettingmutation.
+
+Sourceboundlandingcandidate underindependentreview, rootnewUNPUBLISHED137881223265 clone525matchMAIN; nofileupsert/publicationatthis checkpoint. Evidence2026-09-09-merchant-expert-audit/readiness_review.md, proposed_market_repair_review.md, identifier_post_verification.json, image_rehosting_after.json, market_post_verification.json. Anchor2026-09-09-merchant-source-and-market-repairs-verified.
+
+
+## 2026-09-09-pinterest-consent-preview-verified
+
+Reviewer /root/consent_diagnosis DID_NOT_BUILD_OR_EXECUTE: PASS_EXACT_39_FILE_PAYLOAD_PARITY; PASS_STAGED_SOURCE_RECEIPT_CONSISTENCY; CSSv2sourcePASS; finalPASS_WITH_EXPLICIT_OPEN_GATES. Independently28tests,35localeexactadditions,37beforechecksums,39candidatehashes,19componentassertions,0ThemeCheckoffenses,39afterhashes andcomputedcontrast10.8375 verified. Fullnative/APIbodyobservationsremainroot-owned; ArabicmanageddialogEnglish andfullPinterestreceivers notcertified. OriginalblankconsentNOTrestored; testvisitoroptionalconsentleftdeclined, noauthentication/essentialcookiecleared. /root/release_verifier independentlyapprovedexistingSunshineasset/sourcewithnativepublicationgates,0newPins. SeeCONSENT_INDEPENDENT_REVIEW.md, CONSENT_RUNTIME_QA.json andCONSENT_RELEASE_HANDOFF.json.
+
+
+## 2026-09-09 — Merchant combined preview verified; exact release and access handoff
+
+Anchor: 2026-09-09-merchant-combined-preview-verified. Live Shopify repairs remain independently verified:1,108 invalid-checksum barcode clears across70 products;126 image-source substitutions across21 bodies; six parent market joins, restoring240 ACTIVE parents in US, Eurozone and International. Full4945-variant after-scan has0invalid and125 checksum-passing manufacturer-unverified identifiers. No invented identifier or blanket variant mapping.
+
+One combined UNPUBLISHED theme137881223265, DLM Merchant Landing Fixes 2026-09-09, is source-verified and passes20 bounded rendered cases. Final527 files:45 modified existing files,2 new consent assets and480 unchanged MAIN files. Independent20:11:53UTC read confirms exact V2 overlay and all525 MAIN files unchanged. Older drafts137782591585/137850814561/137880666209 remain preserved alternatives/history, not sequential releases. Theme publication is already authorized but requires the owner Shopify Admin path because the connector prohibits MAIN writes/themePublish. Publish only the current combined target after a fresh conflict check; then verify the published storefront.
+
+Root20 bounded rendered cases passed. The initial mobile cookie overlap was reproduced and resolved by the independently reviewed one-selector V2 amendment; pointer, Enter/focus return,390/320 widths, hidden bar and desktop passed. Existing bar94px/padding80px at320 remained clear; no universal resize or device safe-area claim.15/16 original cart assertions reflect one unrelated dirty-root markup contract; valid subtotal/cart truth passed. No new purchase, publication, receiver or profit claim.
+
+Latest native evidence is the coordinating Pinterest task's18:57–18:58UTC Mac-locked/automatic-unlock-failed observation; root did not repeat the unchanged attempt. This supersedes the earlier focus-only checkpoint. Earlier full-Chrome automatic-review privacy rejection was respected. Current513 Products showed Adding products to Google with no count; source10014302986 zero/no-time is September8 history.232 recent app feedback records lack a receiving Merchant ID. Receipt, country eligibility and consumed apparel fields remain unverified. Unlock the Mac normally and leave Data sources – Merchant Center for account513542500 selected, then reply ready. Current receiving-source evidence is the first unresolved dependency; native operators use serial leases. Existing correction authority remains valid.
+
+Current19:41UTC heartbeat remains the same2 orders/4 units/USD86.45 with no post-cutover creation or shipment event.26 source/14 independent receipt checks passed. Dated entry appended without changing five earlier checkpoints or the eight-order baseline.
+
+Evidence: 2026-09-09-merchant-expert-audit/AUDIT_AND_FIX_PLAN.md, release_rendered_verification.json, release_candidate_v2/independent_review.json and post_verification.json. Final canonical renderer/integration/strict/diff results are recorded in final_checks.json after execution.
+
+Independent merchant_landing_code_review DID_NOT_BUILD_OR_EXECUTE: V1 source/scope review and fresh527/525 readback PASS; V2 one-selector review, six focused tests and fresh527/525 readback PASS at20:11:53UTC. merchant_standards_review separately verified policy/structured-data scope. Root owns rendered observations, not a second independent browser replay.
+
+
+## September 9 23:36 heartbeat — parent handoff and dated-source review
+
+PASS. /root/order_delta_1934 independently verified the six root-owned claim substitutions, exact full-file reconstruction and unchanged other rows/blocked-action/evidence cells. Current Merchant, Pinterest, Microsoft, completed GA4 and combined137881223265 references agree with their later anchors. Root independently checked16 aggregation, window, privacy and scope assertions against the operator's26-check order receipt; this was a saved-receipt review, not a second API query. Root's theme-role read has7 checks and does not refresh source manifests or certify publication. Full-paid NONE, external owners and existing access requests remain unchanged. Evidence: heartbeat_reconciliation_20260909_2336.json; no blocker retry or new approval.
+
+
+## September9 — Independent public title and scope review
+
+PASS: /root/order_delta_1934, DID_NOT_BUILD_OR_EXECUTE. Exact19 Rainbow H1s and21 Meow document titles match frozen copy packets; per-route target/actual/canonical, visible H1, locale, mobile geometry and scope/cleanup assertions independently checked. Initial NEEDS_ROUTE_EVIDENCE verdict retained as resolved: the source receipt originally contained only aggregate routes; already captured DOM observations were added without browser revisit or expected-pattern reconstruction. Mixed object versus prefiltered-string H1 extraction correction retained. TA-17 original heading scope can close; TA-19 source/storefront head scope can close while Google-selected SERP/crawl/performance stays open. No full RTL/SEO/checkout/account/profit certification. Evidence: public_title_readback_20260909.json and public_title_postreview_20260909.json.
+
+
+## 2026-09-09-pinterest-source-refresh-and-selected-tab-gate
+
+Independent consent_diagnosis refreshed official Pinterest/Shopify acceptance criteria and recomputed all three public HTML hashes, exact APP configuration counts, app/asset hashes, product metadata and fourteen variants. PASS for saved-source consistency; receiver state remains unverified. Explicitly preserve Arabic managed translation uncertainty, correct purchased-item value semantics, scope denials, two native interruptions and the separate-browser automatic-review rejection. No browser action was performed by the reviewer. Evidence TRACKING_ACCEPTANCE_REVIEW_20260909_EVENING.md and EVENING_CHECKPOINT_20260909.json.
+
+
+## 2026-09-09 evening — independent GA4 storefront acceptance review
+
+/root/tag_cleanup_verifier reviewed the retained operator receipt and prior cleanup proof, without executing UI or receiver tests. Final verdict PASS for scoped transport findings after root renamed three normalized item_sku labels to the observed sku app key. Main/preview identity, capture truncation, bounded denied-consent result, zero-order cutoff and cart restoration are consistent. HTTP204 is not GA4 report ingestion; purchase, legacy parameter/value equivalence and theme publication remain open. Root did not repeat native/private-surface or failed grant attempts. Evidence: 2026-09-09-google-tag-migration/GA4_EXPERT_ACCEPTANCE_20260910.md; EXPERT_ACCEPTANCE_REVIEW.md; anchor2026-09-09-ga4-storefront-acceptance-verified.
+
+
+## 2026-09-10 — Pinterest live repair and closeout review
+
+release_verifier DID_NOT_BUILD_OR_EXECUTE independently passed the board-copy and failed-source future-ingestion pause scopes before their native writes. Root separately verified exact after states with full reloads. consent_diagnosis confirmed existing AddPaymentInfo/epik mapping with11 extracted-handler assertions; managed CAPI/runtime cause remains open. Parent16-check saved receipt comparison did not perform the publication/native check and predates the recorded board-status metadata correction.
+
+Final local closeout review PASS:26initial consistency checks and10followups. Resolved three record defects: Error100 was inspected rather than attributed to all ten runs; historical board-status metadata now reflects completed native checks; availability field corrected to availableForSale=false. Receipt hashes and no unsupported tracking/sales/spend claims checked. This is local evidence review, not another native receiver test. Stored feed guard10snapshots/0fail/3historical warnings does not certify current grouping. Evidence CLOSEOUT_INDEPENDENT_REVIEW_20260910.md and RESUMED_VERIFICATION_20260910.json; anchor2026-09-10-pinterest-organic-release-and-source-repair.
+
+
+## 2026-09-11 — Pinterest native diagnostic and checkpoint review
+
+Independent /root/consent_diagnosis verified documented helper and consent meanings, with earlier pre-Decline context preserved. /root/release_verifier DID_NOT_BUILD_OR_EXECUTE independently reviewed the September11 receipts:17scoped JSON checks and format checks pass; three stale/causal wording issues corrected and rechecked. Final PASS also covers the canonical updater's default dry run, exact BLOCKED metadata, own-row/additive-section scope, peer/TA-11 preservation, full-paid control and linked frozen decision/outcome. The root alone applied the reviewed updater afterward. No independent native, Pinterest receiver, consent enforcement or application replay is claimed.
+
+Observed local page/product green callbacks do not prove transmitted fields or receiver/purchase/catalog acceptance. Initial awaiting-to-Loaded transition remains CONFLICTED; Give consent was rejected/no retry, exact temporary test-consent question PENDING, final stored choice unknown, open test tab and cleanup incomplete after two user-changed-app stops. Current UX137888792673 remains unpublished; no new production configuration/spend. Evidence: 2026-09-09-pinterest-expert-audit/PIXEL_CHECKPOINT_REVIEW_20260911.md, SHOPIFY_PIXEL_NATIVE_20260911.json; anchor2026-09-11-pinterest-pixel-callback-and-consent-conflict.
+
+
+## September 11 Microsoft launch-plan independent review
+
+Scope: current primary-document claims and root's newly built launch contract/economics, not current account behavior. international_campaign_build owns platform_review.md/json and independent_reconciliation_review.md/json; did not build/execute root analytics/math/contract. Root preserves all existing campaign/source files and full-paid/peer controls. Independent result PASS_LOCAL_RECONCILIATION / HOLD_ACTIVATION: rational-arithmetic replay verifies129country rows,90reporting dates,sixbasket scenarios,eightlocal links andeightpreserved inputs. Exact reviewed hashes live in the receipt. Native receipt, actual cost and activation remain outside this review. Anchor2026-09-11-microsoft-launch-plan-reconciled.
+
+
+## September11 Pinterest supplied-plan and creative review
+
+/root/consent_diagnosis DID_NOT_BUILD_OR_EXECUTE independently checked eight current primary-source findings: Salescreative/event distinctions, Performance+campaign versus bidding, product/retargeting limits, fixed/average/lifetime budget semantics and scheduling. Account-specific availability/authority unverified. /root/release_verifier reviewed the implementation and viewed original P1asset; exact verdict, checks and any corrections are in PLAN_IMPLEMENTATION_REVIEW_20260911.md. Root19local structure/UTM/cadence/hash/arithmetic checksPASS. No independent native publisher, receiving-event, current-cost or conversion-performance proof. Evidence: 2026-09-09-pinterest-expert-audit/PLAN_SOURCE_CHECK_20260911.md; PLAN_ROOT_CHECKS_20260911.json; anchor2026-09-11-pinterest-owner-plan-and-guide-creative.
+
+
+## September11 Google Ads signup repair independent review
+
+DLM-DEC-2026-09-11-ADS-SHOPIFY-TAG-REPAIR; /root/tag_repair_review, DID_NOT_BUILD_OR_EXECUTE. Before-write conditional PASS resolved exactAW/label, one-primary Purchase and different legacy pixel; only two app writes permitted. After-review PASS_WITH_LIMITS for root-native configuration/detector evidence:16contract/receipt comparisons and10initial hypothetical calculations passed. Final correction review11packetchecks/8constraintcalculations PASS: optionalEC, approval-conditioned goal changes, evidence provenance/time, canonical prompt and0.15CPC/30%profit preserved. Genuine Purchase/consent/attribution runtime NOT RUN, not certified. Exact pending pause question supported; no status/launch authority inferred. Reviewer owns 2026-09-11-google-ads-signup-tag/INDEPENDENT_REVIEW.md. Root owns writes and canonical integration. Anchor2026-09-11-google-ads-tag-repair-verified.
+
+
+## September11 Microsoft recurring operator and negative integration
+
+Anchor2026-09-11-microsoft-recurring-operator-and-campaign-cleanup. international_campaign_build authored103 held-negative judgments; root independently challenged scope/semantics and ran16 source/subset/collision/initial-stage checks. Root integrated48 exact tee-group reserves,44 holds and11 rejected phrases into a local overlay while preserving77 prior proposals and14 initial dress-stage negatives. The same specialist independently recalculated root order baseline and checked root integration and exact heartbeat TOML; its final receipt is root_packet_independent_review.json. No native-language or live receiver/performance acceptance is inferred. No current paid authority changed. Evidence:2026-09-09-microsoft-ads-rebuild/operator-20260911-1836/READBACK.md.
+
+
+## September11 Microsoft exact native repair verification
+
+/root/international_campaign_build DID_NOT_BUILD_OR_EXECUTE: goal preflight21/postflight24checksPASS; exact two ad-creation opt-outs preflight8/postflight8PASS; corrected regional-consent interpretation12PASS. Contracts bind exact477439/770182 fields and rollback; after comparisons bind root's independently reopened native readbacks. Reviewer did not replay the browser. Both goal/existing11Paused/account-preservation observations reconcile. Unrecorded campaign ads/bids were not individually audited and current grid does not reverify every detailed goal field. Historical IDs in editors remain REPO_KNOWN where not exposed. Configuration is complete; real order/value/currency/dedup/EEA-UK-CH consent, supported source repair and profit remain unverified. Source purchase Healthy has no regional sample; previous generic>75% application is withdrawn, not applied as measured coverage. Evidence:2026-09-09-microsoft-ads-rebuild/receiver-20260911-1930/exact_goal_postflight_review.json, auto_creation_postflight_review.json, consent_diagnostic_independent_review.json; anchor2026-09-11-microsoft-purchase-goals-and-ad-controls.
+
+
+## September12 Microsoft paused native build review
+
+/root/paused_import_verifier, DID_NOT_BUILD_OR_EXECUTE, reviewed root's saved native evidence and frozen source files. Shell pre22/post26checks plus66originalcampaign fields; country pre19/post25; group/keyword finalpre30 with80native cells, DElanguage pre15 and correctedpost18; combined finalpre22 with290visible native cells and explicit six-row preview limit. Actual combined receiver is2Ads/14Campaignnegativekeywords with all other creations/syncs/deletes/errors0; both ad editors and fourteen negative rows read back exactly. Final preservation records all13campaign IDs/status/types/budgets/strategies and bothnewgroup/sixkeyword pause states. Final combined postflight32checks,30populated ad-asset comparisons and78campaign-field comparisons PASS_WITH_LIMITS. Reviewer did not independently replay the browser. Both editors expose8headlines/3descriptions and11Pin buttons, but no stronger perassetselectedpinmetadata proof. No native editorial, real purchase, regionalconsent, actualCPC or profit certification. Final bound reviews live in heartbeat-20260911-2237/import-review/; evidence:2026-09-09-microsoft-ads-rebuild/heartbeat-20260911-2237/READBACK.md; anchor2026-09-12-microsoft-paused-search-build-and-language-repair.

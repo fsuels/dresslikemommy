@@ -1,6 +1,6 @@
 # Pinterest Shopping Ads Gate Report
 
-Generated: 2026-04-29T05:34:56
+Generated: 2026-06-22T10:04:58
 
 ## Decision
 

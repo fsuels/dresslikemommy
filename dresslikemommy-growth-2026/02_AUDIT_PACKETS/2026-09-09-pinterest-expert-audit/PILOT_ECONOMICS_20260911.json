@@ -1,0 +1,62 @@
+{
+  "schema": "dlm.pinterest.actual-basket-qualification.v1",
+  "status": "DATED_SCENARIOS_ONLY__ACTUAL_ECONOMICS_MISSING",
+  "as_of_utc": "2026-09-11T16:58:58.023143+00:00",
+  "source": "../2026-09-05-ceo-turnaround/sunshine_stripe_basket_ceilings.json",
+  "method": "Decimal R/6.5 floored to cents. No displayed historical rounded CPA is promoted to a strict ceiling. This arithmetic excludes unknown costs and does not qualify spend.",
+  "rows": [
+    {
+      "scenario": "ONE_CHILD",
+      "units": 1,
+      "dated_merchandise_scenario_usd": "21.99",
+      "six_point_five_x_merchandise_only_cpa_ceiling_usd": "3.38",
+      "actual_current_product_and_fulfillment_cost_usd": null,
+      "actual_fees_duties_returns_and_overhead_usd": null,
+      "net_realized_revenue_usd": null,
+      "approved_purchase_cpa_usd": null,
+      "approved_new_customer_cac_usd": null,
+      "launch_qualified": false
+    },
+    {
+      "scenario": "ONE_ADULT",
+      "units": 1,
+      "dated_merchandise_scenario_usd": "24.99",
+      "six_point_five_x_merchandise_only_cpa_ceiling_usd": "3.84",
+      "actual_current_product_and_fulfillment_cost_usd": null,
+      "actual_fees_duties_returns_and_overhead_usd": null,
+      "net_realized_revenue_usd": null,
+      "approved_purchase_cpa_usd": null,
+      "approved_new_customer_cac_usd": null,
+      "launch_qualified": false
+    },
+    {
+      "scenario": "CHILD_ADULT_PAIR",
+      "units": 2,
+      "dated_merchandise_scenario_usd": "46.98",
+      "six_point_five_x_merchandise_only_cpa_ceiling_usd": "7.22",
+      "actual_current_product_and_fulfillment_cost_usd": null,
+      "actual_fees_duties_returns_and_overhead_usd": null,
+      "net_realized_revenue_usd": null,
+      "approved_purchase_cpa_usd": null,
+      "approved_new_customer_cac_usd": null,
+      "launch_qualified": false
+    },
+    {
+      "scenario": "THREE_TEES",
+      "units": 3,
+      "dated_merchandise_scenario_usd": "71.97",
+      "six_point_five_x_merchandise_only_cpa_ceiling_usd": "11.07",
+      "actual_current_product_and_fulfillment_cost_usd": null,
+      "actual_fees_duties_returns_and_overhead_usd": null,
+      "net_realized_revenue_usd": null,
+      "approved_purchase_cpa_usd": null,
+      "approved_new_customer_cac_usd": null,
+      "launch_qualified": false
+    }
+  ],
+  "required_input": "Actual dated source goods, fulfillment, destination shipping, fee/funding, duties/tax borne, refund/return loss and overhead allocation for the exact one-item and adult-child baskets. Do not divide observed five-item shipping linearly or substitute the plan's hypothetical USD90 basket.",
+  "decision_formula": "Permitted CPA is at most the smaller of the aligned-revenue6.5x ceiling and verified contribution available after the required profit/overhead reservation; preserve current30percent profit requirement. Unknown cost means no numeric approved CPA.",
+  "first_order_vs_repeat": "New customer CAC needs verified first-time customers; no speculative LTV exception.",
+  "maximum_test_loss_usd": null,
+  "current_spend_authority_usd": 0
+}

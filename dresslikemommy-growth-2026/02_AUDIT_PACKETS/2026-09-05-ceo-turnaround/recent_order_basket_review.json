@@ -1,0 +1,144 @@
+{
+  "status": "PASS_WITH_COST_AND_SETTLEMENT_LIMITS",
+  "reviewer": "historical_google_access_paths",
+  "independence": "Independent local Decimal reconciliation and source/query inspection; root supplied Shopify readbacks. No live calls.",
+  "source_sha256": {
+    "recent_order_basket_variants_20260907.json": "9782ec236e6608e690dbae0dbdfc5640b4bdbcfa57b775c008268b45ea9a930a",
+    "recent_order_basket_variants_query.graphql": "ac33175b9f2e7a50cf390a48c193b0bdc3169dd0d1e7a8ced95086acf946df4b",
+    "recent_paid_order_signal_20260906.json": "9d23a144fe81ec4f5ae12a5109013d38bec0707333932310c7c508ad26a385e8",
+    "recent_paid_order_countries_20260906.json": "68a1d79d8af581d44304ecf307e0ff79b7cdcef06df502f575d01e489828c70c",
+    "recent_order_payment_fees_20260907.json": "dc3e58c2e6be722ad26c9db180afd3540d77727b311b50a88d3762ba58728a79",
+    "recent_order_payment_fees_query.graphql": "d0a20b9e3b44e20aaa286d63cf5a883fc588e8f0aca51614b6d86636c1ddd5e5",
+    "recent_order_payment_fee_basis_query.graphql": "e660fdac565a4829625e4c3ea7e566c480bdca774b335901e293d5dc667e5241",
+    "CURRENT_SALES_CANDIDATE_RECONCILIATION.md": "82f96609d1b2fafc4501100269858f1e55ee288fc15f6d103ab8329010b8e90b"
+  },
+  "code_source": {
+    "path": "ops/scripts/sync_shopify_variant_costs.py",
+    "sha256": "95b97daa8ed9e4ea81ec3976cc0028b31eabf77da7d0477e6ad43670088e1979",
+    "lines": "114-122",
+    "use": "Existing rounding/formula implementation only; does not prove these specific costs were written by this script or represent supplier charges."
+  },
+  "checks": {
+    "exact_two_row_keys": true,
+    "two_unique_created_at_keys": true,
+    "created_at_identity_matches_signal_and_fees": true,
+    "same_start_inclusive": true,
+    "same_end_exclusive": true,
+    "all_recorded_pages_complete": true,
+    "two_items_each_four_distinct_variants": true,
+    "each_sold_and_current_quantity_one": true,
+    "two_plus_two_units": true,
+    "all_shop_line_totals_usd": true,
+    "be_shop_line_sum_54_47": true,
+    "be_presentment_line_sum_46_90_eur": true,
+    "us_shop_and_presentment_sum_31_98_usd": true,
+    "total_shop_revenue_86_45": true,
+    "line_shop_sums_match_order_subtotal_and_total": true,
+    "presentment_sums_match_fee_receipt_order_totals": true,
+    "successful_capture_or_sale_matches_each_order_once": true,
+    "be_and_us_shipping_join": true,
+    "paid_non_test_uncancelled_web_and_unfulfilled_unchanged": true,
+    "public_product_membership_matches_signal": true,
+    "current_be_default_pair_51_98": true,
+    "current_us_default_pair_31_98": true,
+    "all_recorded_costs_usd": true,
+    "be_cost_pair_12_and_14": true,
+    "us_cost_pair_7_50_and_8_50": true,
+    "four_costs_match_price_times_half_rounded_cents": true,
+    "be_native_fee_sum_2_78_eur": true,
+    "us_capture_fee_1_42_usd_authorization_not_counted": true,
+    "fee_taxes_zero": true,
+    "supplemental_query_contains_presentment_total_and_transaction_fields": true,
+    "usd_settlement_fee_scope_block_recorded": true
+  },
+  "check_count": 31,
+  "passed_count": 31,
+  "order_aggregate": {
+    "RECENT_01": {
+      "units": 2,
+      "shop_revenue_usd": "54.47",
+      "presentment_revenue": "46.90",
+      "presentment_currency": "EUR",
+      "current_default_price_pair_usd": "51.98",
+      "recorded_unqualified_unit_costs_usd": [
+        "12.00",
+        "14.00"
+      ],
+      "recorded_payment_fees": "2.78",
+      "payment_fee_currency": "EUR",
+      "actual_settled_usd_payment_fee": "UNKNOWN"
+    },
+    "RECENT_02": {
+      "units": 2,
+      "shop_revenue_usd": "31.98",
+      "presentment_revenue": "31.98",
+      "presentment_currency": "USD",
+      "current_default_price_pair_usd": "31.98",
+      "recorded_unqualified_unit_costs_usd": [
+        "7.50",
+        "8.50"
+      ],
+      "recorded_capture_fee_usd": "1.42",
+      "authorization_excluded": true
+    }
+  },
+  "follow_up_cost_worklist": [
+    {
+      "row_key": "RECENT_01",
+      "shipping_country": "BE",
+      "product_id": "7229023846497",
+      "variant_id": "41878198943841",
+      "exact_variant_label": "Girl 4-5 Years / Multi Color",
+      "quantity": 1,
+      "provider_status": "NOT_READ",
+      "actual_item_cost": "UNKNOWN",
+      "cost_follow_up": "Read the exact provider item mapping and status; separate product purchase, China service/inspection/local freight, international freight, duties and recoveries. Record original currencies, scope and whether quoted, charged or settled; allocate shared charges once."
+    },
+    {
+      "row_key": "RECENT_01",
+      "shipping_country": "BE",
+      "product_id": "7229023846497",
+      "variant_id": "41878199107681",
+      "exact_variant_label": "Mother M / Multi Color",
+      "quantity": 1,
+      "provider_status": "NOT_READ",
+      "actual_item_cost": "UNKNOWN",
+      "cost_follow_up": "Read the exact provider item mapping and status; separate product purchase, China service/inspection/local freight, international freight, duties and recoveries. Record original currencies, scope and whether quoted, charged or settled; allocate shared charges once."
+    },
+    {
+      "row_key": "RECENT_02",
+      "shipping_country": "US",
+      "product_id": "7109117280353",
+      "variant_id": "41497061949537",
+      "exact_variant_label": "Child 4-5 years / Multi-Color",
+      "quantity": 1,
+      "provider_status": "NOT_READ",
+      "actual_item_cost": "UNKNOWN",
+      "cost_follow_up": "Read the exact provider item mapping and status; separate product purchase, China service/inspection/local freight, international freight, duties and recoveries. Record original currencies, scope and whether quoted, charged or settled; allocate shared charges once."
+    },
+    {
+      "row_key": "RECENT_02",
+      "shipping_country": "US",
+      "product_id": "7109117280353",
+      "variant_id": "41497061851233",
+      "exact_variant_label": "Mother L / Multi-Color",
+      "quantity": 1,
+      "provider_status": "NOT_READ",
+      "actual_item_cost": "UNKNOWN",
+      "cost_follow_up": "Read the exact provider item mapping and status; separate product purchase, China service/inspection/local freight, international freight, duties and recoveries. Record original currencies, scope and whether quoted, charged or settled; allocate shared charges once."
+    }
+  ],
+  "limits": [
+    "Shipping country and language are separate; no customer location inference beyond the saved shipping country.",
+    "Current default price is not the historical order line total; no cause for the BE difference is established.",
+    "All four Shopify costs match the 50% template mathematically; supplier/delivered-cost provenance is UNKNOWN.",
+    "Payment fees are order-level: retain native currencies, count the capture/sale once, exclude authorization and allocate fees once across a basket if needed.",
+    "Do not convert EUR fees to claimed actual settled USD or add mixed currencies. Settlement account read remains permission-blocked; do not retry or alter scope.",
+    "No actual margin, CPA, paid-versus-organic attribution, sales lift or provider fulfillment claim is established.",
+    "Snapshot population completeness and source execution are parent-recorded; this review verifies only saved local evidence."
+  ],
+  "financial_actions": 0,
+  "external_calls": 0,
+  "canonical_edits": 0,
+  "validation": "Python Decimal with ROUND_HALF_UP; unique row/timestamp join; exact country and product membership; source/query field inspection."
+}

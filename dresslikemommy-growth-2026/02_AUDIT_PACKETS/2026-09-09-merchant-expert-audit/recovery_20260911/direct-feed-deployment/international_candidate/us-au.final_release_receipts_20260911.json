@@ -1,0 +1,43 @@
+{
+  "status": "US_AND_AU_EXACT_REPLACEMENTS_PROCESSED_AND_NATIVE_COUNTS_VERIFIED",
+  "at_utc": "2026-09-11T22:55:29.964013+00:00",
+  "files": {
+    "US": {
+      "receipt_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260911T211600Z-us-six-parent-f345/google_receipt_20260911.json",
+      "sha256": "6d6e8424eb2ffcb825d94d49dbb135d4035e05eb5671e4d3e79116d7ca190297",
+      "source_products": 4761,
+      "received_at_utc": "2026-09-11T22:37:57Z",
+      "six_protected_offer_receipt_sha256": "e02d2688612b7ae9c009f6b31e2baa39e2af289dabab919992dddae1a80856c3",
+      "received_byte_sha256_verified": false
+    },
+    "AU": {
+      "receipt_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.contained_release_20260911/google_receipt_20260911.json",
+      "sha256": "3cd97eb8acc94736e709dddf55b50d65d5a0335a0a74cbb229b93864d3164ba3",
+      "source_products": 4761,
+      "received_at_utc": "2026-09-11T22:43:01Z",
+      "six_protected_offer_receipt_sha256": "74891fb4462ddd7a7ac1ebac93810b619bb50040b6678952feeb0531a86bebdd",
+      "received_byte_sha256_verified": false
+    }
+  },
+  "combined_source_products": 9522,
+  "independent_before_review": {
+    "supplied_tests": 44,
+    "independent_probes": 22,
+    "exact_candidate_checks": 73
+  },
+  "production_operations": {
+    "new_immutable_object_put": 1,
+    "us_current_pointer_put": 1,
+    "us_native_update": 1,
+    "au_native_upload": 1,
+    "new_sources": 0
+  },
+  "unchanged_scope": "No Shopify price/status/content/theme mutation, no Worker deployment, no credential transfer/security/billing/paid change, no manualGooglearchive/delete, no secondappeal",
+  "limits": [
+    "All12checkedoffersareNotapproved; accountNoProductsDisplayed issue still present.",
+    "No fullGoogle-received byte comparison; exact signedGCSdownload was blockedbyclient.",
+    "LocalpublicCLIreadbackreturned403; Google nativefetch completed successfully.",
+    "CA/GBandotherlanguages remainunsubmitted; fullautomaticall-market lifecycle isnotimplemented."
+  ],
+  "next_step": "Independent after-review of these receipts; then continue boundedCA/GBshipping qualification and existingparentcadence integration."
+}

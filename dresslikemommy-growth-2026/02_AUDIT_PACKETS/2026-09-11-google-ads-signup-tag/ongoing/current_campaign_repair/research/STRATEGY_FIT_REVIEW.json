@@ -1,0 +1,310 @@
+{
+  "status": "PREPARED_DECISION_REVIEW_NOT_LAUNCH_READY",
+  "prepared_at_utc": "2026-09-11T19:57:08.176561+00:00",
+  "source_check_date": "2026-09-11",
+  "recommendation": "Keep existing PMax paused; qualify one US presence-only Google Search Manual CPC Sunshine Stripe cohort; do not launch until existing gates close.",
+  "authority_owner": "root",
+  "external_writes": 0,
+  "public_storefront_http_requests": 0,
+  "current_account_evidence": {
+    "provenance": "Root-reported authenticated UI; not independently read by this reviewer",
+    "reported_readback_at_utc": [
+      "2026-09-11 19:54 UTC",
+      "2026-09-11 19:56 UTC"
+    ],
+    "customer": "6509972886",
+    "campaign": "24247604341",
+    "asset_group": "6746545742",
+    "campaign_status": "PAUSED",
+    "asset_group_status": "ENABLED",
+    "location": "United States",
+    "location_option": "PRESENCE_OR_INTEREST",
+    "language_setting": "English",
+    "average_daily_budget_usd": 5,
+    "troas_percent": 650,
+    "merchant_campaign_setup": "NOT_SET_UP",
+    "campaign_negatives": 0,
+    "audience_signals": 0,
+    "relevant_themes_count": 2,
+    "final_url_expansion": true,
+    "text_customization": true,
+    "url_exclusions": "NONE_SELECTED",
+    "today_report": {
+      "impressions": 249,
+      "clicks": 4,
+      "ctr_percent": 1.61,
+      "cost_usd": 0.64,
+      "average_cpc_usd": 0.16,
+      "conversions_reported": 0,
+      "conversion_value_reported": 0,
+      "roas_reported": 0,
+      "channel": "YOUTUBE_100_PERCENT_OF_REPORTED_COST",
+      "google_search_clicks": 0,
+      "google_search_cost_usd": 0,
+      "search_terms": "No significant rows under current filter",
+      "limitation": "Non-realtime report; purchase acceptance unresolved; no performance inference from4clicks; individual CPCs/ad formats not read"
+    }
+  },
+  "fit": {
+    "pmax_can_enforce_retained_cpc_cap": false,
+    "basis": "Documented PMax conversion-based bidding has no manual CPC strategy; PMax portfolios unavailable; tROAS CPC limits only portfolio.",
+    "manual_cpc_cap_usd": 0.15,
+    "required_exceptions_disabled": [
+      "Search Partners",
+      "upward bid adjustments",
+      "automated strategy migration"
+    ],
+    "exact_match_is_literal_only": false,
+    "pmax_negatives_control_youtube": false,
+    "signals_are_mandatory": false
+  },
+  "proposed_first_test": {
+    "status": "HELD_PENDING_EXISTING_GATES",
+    "campaign_count": 1,
+    "ad_group_count": 1,
+    "country": "US",
+    "location_option": "PRESENCE",
+    "creative_language": "en",
+    "bidding": "MANUAL_CPC",
+    "default_and_keyword_max_cpc_usd": 0.15,
+    "network": "GOOGLE_SEARCH_ONLY",
+    "search_partners": false,
+    "display_network": false,
+    "ai_max_or_dynamic_expansion": false,
+    "rsa_count": 1,
+    "candidate_ids": [
+      "US_EN-01",
+      "US_EN-02",
+      "US_EN-03"
+    ],
+    "exact_keywords": [
+      "family matching striped t shirts",
+      "mother daughter striped t shirts",
+      "matching t shirts for family photos"
+    ],
+    "landing_candidate": "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops?country=US",
+    "existing_pmax_stays_paused": true,
+    "new_budget_is_additive": false,
+    "configured_envelope_usd_per_average_day": 5,
+    "current_demand_forecast": null,
+    "actual_profit_qualified": false,
+    "cash_loss_allowance_usd": null,
+    "other_country_count_held": 64
+  },
+  "economics": {
+    "R": "Retained merchandise after discounts/refunds plus retained shipping, excluding tax",
+    "V": "Disjoint actual variable costs net of evidenced recoveries",
+    "H": "Allocated overhead/other costs excluded from V",
+    "CM": "R-V",
+    "profit": "R-V-H-A",
+    "ad_capacity": "min(R/6.5, CM-H-0.30*R, authorized cash/loss allowance)",
+    "unknown_inputs_propagate": true,
+    "actual_maximum_CPA_usd": null,
+    "actual_profit_usd": null,
+    "maximum_non_ad_cost_share_at_6_5x": 0.5461538461538461,
+    "hypothetical_example": {
+      "not_actual": true,
+      "R": 100,
+      "V_plus_H": 55,
+      "ad_capacity_profit_term": 15,
+      "ad_capacity_roas_term": 15.384615384615385,
+      "required_roas": 6.666666666666667
+    },
+    "required_CVR": "actual CPC / qualified per-order allowable CPA",
+    "equal_daily_65_country_allocation_usd": 0.07692307692307693,
+    "daily_billing_limit_at_unchanged_5_usd_average_typical": 10,
+    "monthly_billing_limit_at_unchanged_5_usd_average_typical": 152,
+    "nonpositive_capacity_qualifies_spend": false
+  },
+  "launch_gates": [
+    {
+      "gate": "Exact purchase receiver/value/currency/identity/dedup/consent acceptance",
+      "status": "OPEN"
+    },
+    {
+      "gate": "Current basket actual costs and return/refund exposure",
+      "status": "OPEN"
+    },
+    {
+      "gate": "Current US product/variant/currency/checkout/shipping acceptance",
+      "status": "OPEN"
+    },
+    {
+      "gate": "Root binds authorized cumulative cash/loss allowance and fresh cutover state",
+      "status": "ROOT_OWNED_NOT_INFERRED"
+    },
+    {
+      "gate": "Native Manual CPC/no-exception controls and auction eligibility at0.15",
+      "status": "NOT_RUN"
+    }
+  ],
+  "local_source_hashes": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/markets/US_EN.csv",
+      "sha256": "21839c6c11d6578e5cc937bb529b7d9421bbf1c45496bb8b55e8487f821592b7"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/APPLICATION_RECEIPT.json",
+      "sha256": "6a846863ddbc5e5b3e93929dda497e3094076a0e064205526fb842e4575ff1da"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/negative_do_not_apply.csv",
+      "sha256": "f86af7873625f677908e51794e143d33f9a26977db889b0ea5296ddf5d56c123"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/keywords/negative_candidates.csv",
+      "sha256": "fb11e040f14319390ab585f004db310c4143637db59358122993e3da1c858033"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/measurement_economics/READINESS.md",
+      "sha256": "8b69941eb88ed3d9314d49d571a710acc5b45851f2284ea6f8fe93be6871002b"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/measurement_economics/acceptance.current.json",
+      "sha256": "64e40f406ffbecf58ac11fc8623003db0a0089334356f8fc9de988abda88d30c"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/markets/active_country_inventory.csv",
+      "sha256": "54c26aca0d196adb5ccd274a473a1408ad159f6d93ce70639908e3e75289fd8a"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/SUNSHINE_STRIPE_OFFER_QUALIFICATION.md",
+      "sha256": "d4f4bb635fd125e9c4a72a8636d7ee1db5855247cf8c3e5b0bb5dfee3fee36f2"
+    }
+  ],
+  "official_sources": [
+    {
+      "id": "G01",
+      "title": "PMax setup and conversion-based bidding",
+      "url": "https://support.google.com/google-ads/answer/14951594?hl=en",
+      "evidence_method": "OPENED",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "PMax uses conversion/conversion-value Smart Bidding; feeds optional; tROAS is an average goal."
+    },
+    {
+      "id": "G02",
+      "title": "Target ROAS requirements and bid limits",
+      "url": "https://support.google.com/google-ads/answer/6268637?hl=en",
+      "evidence_method": "OPENED",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "PMax has no portfolio strategy; CPC limits are portfolio-only. Search tROAS:15 conversions/30days, not a PMax minimum. Targets are averages, not guarantees."
+    },
+    {
+      "id": "G03",
+      "title": "Manual CPC and exceptions",
+      "url": "https://support.google.com/google-ads/answer/2390250?hl=en",
+      "evidence_method": "OPENED",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Max CPC controls click price; manual Search Partners and upward bid adjustments can exceed the base max."
+    },
+    {
+      "id": "G04",
+      "title": "PMax search themes",
+      "url": "https://support.google.com/google-ads/answer/14767319?hl=en",
+      "evidence_method": "SEARCH_RESULT_CONTENT",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Optional additive signals, not restrictive exact/phrase keywords."
+    },
+    {
+      "id": "G05",
+      "title": "PMax audience signals",
+      "url": "https://support.google.com/google-ads/answer/14530785?hl=en",
+      "evidence_method": "SEARCH_RESULT_CONTENT",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Optional; ads may serve outside audience signals."
+    },
+    {
+      "id": "G06",
+      "title": "PMax campaign negatives",
+      "url": "https://support.google.com/google-ads/answer/15726455?hl=en-EN",
+      "evidence_method": "OPENED",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Campaign/account negatives apply only to Search and Shopping inventory."
+    },
+    {
+      "id": "G07",
+      "title": "Keyword matching",
+      "url": "https://support.google.com/google-ads/answer/7478529?hl=en",
+      "evidence_method": "OPENED",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Exact match includes same meaning/intent; phrase broadens matching."
+    },
+    {
+      "id": "G08",
+      "title": "Negative keyword matching",
+      "url": "https://support.google.com/google-ads/answer/2453972?hl=en",
+      "evidence_method": "OPENED",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Negative exact/phrase/broad differ from positives; no close variant expansion."
+    },
+    {
+      "id": "G09",
+      "title": "Transaction-specific values",
+      "url": "https://support.google.com/google-ads/answer/6095947?hl=en",
+      "evidence_method": "SEARCH_RESULT_CONTENT",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Pass actual dynamic conversion value and currency to the selected conversion action."
+    },
+    {
+      "id": "G10",
+      "title": "Transaction ID deduplication",
+      "url": "https://support.google.com/google-ads/answer/6386790?hl=en",
+      "evidence_method": "SEARCH_RESULT_CONTENT",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Unique transaction identity prevents duplicate same-action conversions; Every and dedup are different."
+    },
+    {
+      "id": "G11",
+      "title": "Spending limits",
+      "url": "https://support.google.com/google-ads/answer/10486637?hl=en",
+      "evidence_method": "OPENED",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Most average daily budgets allow2x daily and30.4x monthly billing limits."
+    },
+    {
+      "id": "G12",
+      "title": "Location options",
+      "url": "https://support.google.com/google-ads/answer/1722038?hl=en",
+      "evidence_method": "OPENED",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Presence targeting excludes the interest-only targeting setting; physical presence is inferred, not guaranteed."
+    },
+    {
+      "id": "G13",
+      "title": "September2026 language transition",
+      "url": "https://support.google.com/google-ads/answer/1722078?hl=en",
+      "evidence_method": "SEARCH_RESULT_CONTENT",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Search language control removed during rollout; PMax Search portion follows ad language, other channels retain campaign language setting."
+    },
+    {
+      "id": "G14",
+      "title": "ECPC retirement",
+      "url": "https://support.google.com/google-ads/answer/2390590/enhanced-cpc-ecpc-definition?hl=en-AU",
+      "evidence_method": "SEARCH_RESULT_CONTENT",
+      "checked_at_utc": "2026-09-11T19:57:08.176561+00:00",
+      "supports": "Search/Display ECPC no longer available from weekMarch24,2025; do not prescribe an obsolete toggle."
+    }
+  ],
+  "superseded_local_assertions": [
+    "Historic keywords README enabled/unknown-targeting text superseded by root paused/current targeting evidence.",
+    "Historic keyword patch NOT_APPLIED text superseded by keywords/APPLICATION_RECEIPT.json.",
+    "Historic measurement pause-pending authority text is not current UI status; current authorization remains root-owned."
+  ],
+  "validation": {
+    "source_inventory_65": true,
+    "candidate_count3": true,
+    "no_current_CPC_forecast_fabricated": true,
+    "no_actual_cost_CPA_fabricated": true,
+    "no_account_mutation": true,
+    "status": "PASS",
+    "all_local_hashes_match": true,
+    "four_click_CPC_and_CTR_math": true,
+    "retained_profit_and_ROAS_math": true,
+    "single_cohort_controls": true,
+    "unknowns_preserved": true,
+    "absolute_local_links_exist": true,
+    "official_sources_primary_only": true,
+    "markdown_sha256": "168783e1d01c33c498847a54b5bccba3420899e04e898519dec85088dd59de86"
+  }
+}

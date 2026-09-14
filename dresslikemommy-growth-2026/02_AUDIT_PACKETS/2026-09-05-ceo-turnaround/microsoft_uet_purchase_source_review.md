@@ -1,0 +1,11 @@
+Confidence: H for the bounded evidence gap; UNKNOWN for the installed purchase payload. Read-only review, September 6, 2026.
+
+**No retrieved implementation establishes whether purchase sends `revenue_value`/`currency` or hardcodes 1.** Two targeted retrieval passes are complete; no browser, API, event send, or tracking change occurred.
+
+Historical integration evidence: [March 26 worklog](../../../ops/AGENT_WORKLOG.md:8572) records Microsoft/Bing tag `36005151` in the storefront’s Shopify `webPixelsConfigList`. The [April 29 source audit](../../../ops/AGENT_WORKLOG.md:24700) found no hardcoded `uetq` in the theme and attributed tags to Shopify runtime/web pixels/apps. These dated observations establish neither today’s installation nor the checkout payload. The local `pixels/` inventory contains GA4 and Google Ads scripts, README and GA4 tests; it contains no Microsoft/Bing script.
+
+Current parent-supplied native evidence: [initial readback](microsoft_paid_initial_readback.json), `checkout_event_goal_detail`, records `ShopifyCheckoutCompleteEventTracking`, custom event action equals `purchase`, variable value with USD1 fallback, UET label `ShopifyImport`. Tag `36005151` belongs to the checkout/purchase goals; `36000629` belongs to Smart. These are UET tag IDs, not goal IDs. A fallback is goal configuration, not observed client code.
+
+[Campaign-by-goal readback](microsoft_purchase_working_readback.json), captured 16:57:36.659 UTC for September 6, 2023–September 6, 2026, independently sums to 98 event conversions/value 98 versus 101 URL Purchases/value 7230.37. Reporting currency remains unknown in that receipt. The totals do not distinguish an omitted parameter, fallback use, literal value, or another cause; they also do not resolve goal overlap or retained orders.
+
+**Next source check:** root should inspect the existing Microsoft Channel/UET integration through its supported read-only settings or diagnostic view for a purchase payload explicitly attributed to tag `36005151`. Capture whether `revenue_value` and `currency` exist and their mapping to checkout totals; if unavailable, preserve UNKNOWN. Do not prescribe a code fix or send a synthetic purchase from aggregate values alone.

@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "checkpoint": "September 14 goal continuation \u2014 current X sessions and real-order attribution",
+  "task_stage": "VERIFY",
+  "started_at_utc": "2026-09-14T18:45:49Z",
+  "previous_goal_turn_classification": "PROGRESS: explicit goal was created/read back and R011 was independently reviewed as a local candidate. No business success was claimed.",
+  "current_goal_turn_classification": "PROGRESS_IN_VERIFICATION: first bounded order-journey inspection distinguishes genuine paid orders from supported X attribution and closes this current candidate-order branch without crediting unknown sales.",
+  "goal_status": "ACTIVE_NOT_ACHIEVED",
+  "blocker_audit": {
+    "condition": "Missing authorized official X API or verified API-backed publisher; cannot publish additional reviewed X content or obtain current account receipts through available tools.",
+    "consecutive_goal_turns_with_condition": 2,
+    "turns": [
+      "September14 owner-triggered goal creation/renewal",
+      "This first automatic goal continuation"
+    ],
+    "threshold_reached": false,
+    "independent_work_this_turn": "Two accepted analytics reports and a schema-discovered, validated order-attribution query; selected image-provenance metadata check.",
+    "no_new_owner_question": true
+  },
+  "accepted_current_day_campaign_report": {
+    "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-14 UNTIL 2026-09-14",
+    "columns": [],
+    "rows": [],
+    "rowCount": 0,
+    "shopDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "accepted_sales_referrer_report": {
+    "query": "FROM sales SHOW orders, total_sales GROUP BY order_referrer_source, order_referrer_name SINCE 2026-09-11 UNTIL 2026-09-14",
+    "columns": [
+      {
+        "name": "order_referrer_source",
+        "dataType": "STRING"
+      },
+      {
+        "name": "order_referrer_name",
+        "dataType": "STRING"
+      },
+      {
+        "name": "orders",
+        "dataType": "INTEGER"
+      },
+      {
+        "name": "total_sales",
+        "dataType": "MONEY"
+      }
+    ],
+    "rows": [
+      [
+        "",
+        "",
+        "2",
+        "152.78"
+      ],
+      [
+        "search",
+        "google",
+        "0",
+        "0"
+      ]
+    ],
+    "rowCount": 2,
+    "chartHint": {
+      "type": "bar",
+      "xAxisColumnIndex": 0,
+      "yAxisColumnIndices": [
+        2
+      ],
+      "yAxisFormat": "number"
+    },
+    "summaryMetric": {
+      "label": "orders",
+      "value": "2"
+    },
+    "shopDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "analytics_limits": "September14 is partial. Sales report September11-14 includes the whole September11 calendar day; order journey inspection starts at the exact September11 18:41UTC X launch. Calendar reports and creation-filtered order records are distinct scopes; no amount/order reconciliation is asserted beyond observed counts. Empty X rows are not proof of zero clicks or orders.",
+  "order_attribution": {
+    "schema_types": [
+      "QueryRoot",
+      "Order",
+      "OrderConnection",
+      "CustomerJourneySummary",
+      "CustomerVisit",
+      "CustomerMomentConnection",
+      "PageInfo",
+      "UTMParameters",
+      "CustomerMoment",
+      "Shop"
+    ],
+    "validated_operation": "query XOrderAttribution($first: Int!, $after: String, $search: String!) {\n  shop { myshopifyDomain }\n  orders(first: $first, after: $after, query: $search) {\n    nodes {\n      id\n      createdAt\n      test\n      cancelledAt\n      displayFinancialStatus\n      sourceName\n      customerJourneySummary {\n        ready\n        firstVisit { ...XVisit }\n        lastVisit { ...XVisit }\n        moments(first: 50) {\n          nodes { __typename ... on CustomerVisit { ...XVisit } }\n          pageInfo { hasNextPage endCursor }\n        }\n      }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n}\nfragment XVisit on CustomerVisit {\n  occurredAt\n  source\n  referrerUrl\n  landingPage\n  utmParameters { source medium campaign content }\n}",
+    "variables": {
+      "first": 50,
+      "after": null,
+      "search": "created_at:>='2026-09-11T18:41:00Z' created_at:<='2026-09-14T18:45:49Z'"
+    },
+    "validation": {
+      "artifact_id": "eb7b4c6e-e0fd-4bf8-b4cf-237d8d55117f",
+      "revision": 1,
+      "status": "VALID",
+      "errors": false
+    },
+    "reduced_readback": {
+      "isError": false,
+      "graphql_errors": [],
+      "shopDomain": "dresslikemommy-com.myshopify.com",
+      "window": "created_at:>='2026-09-11T18:41:00Z' created_at:<='2026-09-14T18:45:49Z'",
+      "order_count": 2,
+      "distinct_order_count": 2,
+      "orders_has_next_page": false,
+      "eligible_paid_non_test_non_cancelled_web_count": 2,
+      "orders_with_x_signal": 0,
+      "orders": [
+        {
+          "paid": true,
+          "not_test": true,
+          "not_cancelled": true,
+          "source_is_web": true,
+          "created_within_window": true,
+          "journey_present": true,
+          "journey_ready": true,
+          "moments_present": true,
+          "moments_count": 1,
+          "moments_has_next_page": false,
+          "first_visit": {
+            "occurred_after_launch": true,
+            "recognized_x_source": false,
+            "recognized_x_referrer_host": false,
+            "recognized_x_utm_source": false,
+            "recognized_x_landing_utm_source": false,
+            "exact_pilot_parameters": false,
+            "has_utm_parameters": false,
+            "has_referrer": false,
+            "source_category": "DIRECT"
+          },
+          "last_visit": {
+            "occurred_after_launch": true,
+            "recognized_x_source": false,
+            "recognized_x_referrer_host": false,
+            "recognized_x_utm_source": false,
+            "recognized_x_landing_utm_source": false,
+            "exact_pilot_parameters": false,
+            "has_utm_parameters": false,
+            "has_referrer": false,
+            "source_category": "DIRECT"
+          },
+          "visit_nodes_considered_with_boundary_repeats": 3,
+          "x_signal_count_with_boundary_repeats": 0,
+          "x_signal_after_launch": false
+        },
+        {
+          "paid": true,
+          "not_test": true,
+          "not_cancelled": true,
+          "source_is_web": true,
+          "created_within_window": true,
+          "journey_present": true,
+          "journey_ready": true,
+          "moments_present": true,
+          "moments_count": 0,
+          "moments_has_next_page": false,
+          "first_visit": null,
+          "last_visit": null,
+          "visit_nodes_considered_with_boundary_repeats": 0,
+          "x_signal_count_with_boundary_repeats": 0,
+          "x_signal_after_launch": false
+        }
+      ],
+      "privacy": "No order IDs, customer identity, full visit URLs, exact order timestamps, line items or amounts retained in this aggregate output. Raw result is transient in tool memory only.",
+      "limits": "First/last visits can repeat moments; signal counts are diagnostic, not unique acquired visitors. Missing journeys, not-ready status or incomplete pagination prevent a complete absence claim. Attribution evidence would still require QA and actual-cost review before goal success.",
+      "retained_moment_evidence": [
+        [
+          {
+            "is_customer_visit": true,
+            "source_is_direct": true,
+            "referrer_is_null": true,
+            "utm_parameters_is_null": true,
+            "landing_page_has_pilot_utm": false
+          }
+        ],
+        []
+      ]
+    },
+    "attribution_decision": "Two eligible genuine orders were returned; one journey contains one direct visit without UTM/referrer, and the other is ready but has no visits. Neither supplies an X signal. Do not credit either order or its revenue/profit to X; unrecorded source remains unknown.",
+    "not_a_new_full_sales_clock": "This is an X attribution inspection only. It does not replace the parent's full-sales or other-channel clocks."
+  },
+  "media_origin_check": {
+    "file": "product-photo-20260914/rainbow-storefront-original.png",
+    "metadata_keys": [
+      "exif",
+      "icc_profile",
+      "dpi"
+    ],
+    "selected_provenance_fields": {},
+    "searched_plain_text_markers": [
+      "c2pa",
+      "trainedAlgorithmicMedia",
+      "Gemini",
+      "Pomelli",
+      "SynthID"
+    ],
+    "found_markers": [],
+    "method": "Read-only Pillow EXIF and byte-marker inspection; no transformation/removal",
+    "result": "UNRESOLVED; absence of these markers cannot establish photographic origin or absence of AI generation. Retain R011 disclosure gate."
+  },
+  "next_action": "Use newly available permitted X publication evidence at the existing 4 PM run. No near-term repeat of these same reports/order journeys absent a new order or changed attribution data. Keep the existing supported-publisher question pending once and preserve all uncertain posts.",
+  "mutation_counts": {
+    "X_account_post_reply_schedule": 0,
+    "other_platform_production": 0,
+    "automation": 0,
+    "new_draft": 0,
+    "spend": 0,
+    "customer_message": 0,
+    "shared_canonical": 0
+  },
+  "verification": {
+    "status": "ROOT_PASS__INDEPENDENT_REVIEW_PENDING",
+    "root_checks": {
+      "correct_shop": true,
+      "explicit_launch_and_cutoff": true,
+      "exact_two_distinct_eligible_orders": true,
+      "order_and_moment_pagination_complete": true,
+      "one_direct_visit_one_empty_journey": true,
+      "no_recorded_x_signal_not_no_actual_source": true,
+      "no_x_success_claim": true,
+      "no_extra_mutations": true,
+      "no_private_order_ids_in_receipt": true,
+      "no_ai_origin_inference": true
+    },
+    "root_count": 10,
+    "source_freeze": "This source is final for independent review; current review/continuity result is indexed separately in EXECUTION_STATUS.json."
+  },
+  "effort": {
+    "start_basis": "First observed clock in this continuation",
+    "prior_recorded_rolling_minutes": 45.96,
+    "elapsed_minutes": 8.52,
+    "limit_minutes_per_week": 120,
+    "full_prior_time_accounting": "Incomplete; earlier setup/coordination gaps remain explicit.",
+    "known_recorded_rolling_minutes_at_source_freeze": 54.48
+  },
+  "overall_requested_outcome": "PARTIAL; no supported X-attributed paid order or positive contribution, no new X publication; existing daily operation remains active.",
+  "source_completed_at_utc": "2026-09-14T18:54:20.189495+00:00"
+}

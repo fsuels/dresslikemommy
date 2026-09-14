@@ -41,7 +41,7 @@ PRINT_NAME = "Geometric Blue"
 SHORTCODE = "GBLU"
 COLOR_TOKEN = "BLUE"
 COLOR_NAME = "Geometric Blue"
-VENDOR_URL = "https://detail.1688.com/offer/1040150618595.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
@@ -297,7 +297,7 @@ def tags() -> list[str]:
         "Matching Family Shorts", "Dress Shirt Shorts", "Summer", "Beach", "Resort", "Vacation",
         PRINT_NAME, "Blue", "Geometric", "Dot Print", "Medallion Print",
         "Girl Dress", "Mother Dress", "Boy Shirt", "Father Shirt", "Boy Shorts", "Father Shorts", "Four-Role Matching",
-        VENDOR_URL,
+
     ]
     values.extend(sorted({row["picker_label"] for row in SIZE_CHART}))
     values.extend(sorted({row["role"] for row in SIZE_CHART}))

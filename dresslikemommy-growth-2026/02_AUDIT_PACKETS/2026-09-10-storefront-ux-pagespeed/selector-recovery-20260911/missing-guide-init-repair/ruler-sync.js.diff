@@ -1,0 +1,11 @@
+--- current-unpublished/ruler-sync.js
++++ proposed/ruler-sync.js
+@@ -3861,7 +3861,7 @@
+   var compareHintLabel =
+     wrapper.getAttribute('data-size-guide-compare-hint') || 'Open the full chart below to compare nearby sizes.';
+   var unitToggleLabel = wrapper.getAttribute('data-size-guide-unit-toggle-label') || 'Size chart units';
+-  var groups = buildSizeGuideGroups(parsed);
++  var groups = parsed ? buildSizeGuideGroups(parsed) : [];
+   var selectedUnitSystem = getStoredSizeGuideUnitSystem() || 'metric';
+   var scheduledGuideRender = null;
+   var fitModal = null;

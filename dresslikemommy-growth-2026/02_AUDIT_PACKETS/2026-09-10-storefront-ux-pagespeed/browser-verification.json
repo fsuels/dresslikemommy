@@ -1,0 +1,125 @@
+{
+  "recordedAt": "2026-09-10T01:53:04.515Z",
+  "target": {
+    "id": "137888792673",
+    "name": "DLM UX Performance QA 2026-09-10",
+    "role": "UNPUBLISHED",
+    "verifiedBy": [
+      "visible draft preview bar",
+      "theme asset path /cdn/shop/t/105/",
+      "complete source manifest readback"
+    ]
+  },
+  "browser": "Codex in-app browser",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 900
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "checks": [
+    {
+      "id": "mobile_cart_layout",
+      "status": "VERIFIED",
+      "evidence": {
+        "footerPosition": "static",
+        "itemsBottom": 463.875,
+        "footerTop": 463.875,
+        "overlap": false
+      }
+    },
+    {
+      "id": "desktop_color_filter",
+      "status": "VERIFIED",
+      "evidence": "Actual Apricot selection showed1of118 products; removing Color:Apricot chip restored118."
+    },
+    {
+      "id": "cart_quantity_title_total",
+      "status": "VERIFIED",
+      "evidence": "AdultS/White TogetherHeart:1→2 changed heading/header to2,total53.98USD;2→1 changed heading to1,total26.99USD."
+    },
+    {
+      "id": "predictive_search_and_escape",
+      "status": "VERIFIED",
+      "evidence": "Pajamas returned12 results; Escape closed expanded state; subsequent checks did not reopen it. Async races independently regression-tested."
+    },
+    {
+      "id": "hero_controls",
+      "status": "VERIFIED",
+      "evidence": "All4 controls44×44px, accessible mobileh1, active image/ARIA changed after next/dot input."
+    },
+    {
+      "id": "desktop_hero_contrast",
+      "status": "VERIFIED",
+      "evidence": "Overlay display:block,height685px, visible dark gradient and white heading screenshot."
+    },
+    {
+      "id": "homepage_footer_contrast",
+      "status": "VERIFIED",
+      "evidence": "Footer background rgb26,26,26;text rgb204,204,204;spotlight badge rgb135,76,32;email focus/language selector readable."
+    },
+    {
+      "id": "mobile_menu",
+      "status": "VERIFIED",
+      "evidence": "Menu opened; Escape closed."
+    },
+    {
+      "id": "fit_guide",
+      "status": "VERIFIED",
+      "evidence": "Opened/closed, cm/in conversion interacted; restored cm. Does not validate unsupported source-derived measurements."
+    },
+    {
+      "id": "standard_checkout",
+      "status": "VERIFIED",
+      "evidence": "Desktop and mobile reached Contact/Delivery/Shipping method/Payment and expected53.98USD total. No contact/payment details or submission."
+    },
+    {
+      "id": "spanish_navigation",
+      "status": "VERIFIED",
+      "evidence": "No unprefixed main collection links or horizontal overflow on /es. Actual category click stayed /es/collections/mommy-and-me; V4hero click landed /es/collections/daddy-me."
+    },
+    {
+      "id": "danish_navigation",
+      "status": "VERIFIED",
+      "evidence": "No unprefixed main collection links or horizontal overflow on /da. V4hero click landed /da/collections/daddy-me."
+    },
+    {
+      "id": "cart_cleanup",
+      "status": "VERIFIED",
+      "evidence": "Only auditor testline removed, fresh empty-cart0 readback."
+    },
+    {
+      "id": "danish_footer_labels",
+      "status": "VERIFIED",
+      "evidence": "V5 rendered Virksomhedsoplysninger, hjælp og support, Kundeservice. Zero visible translation errors; actual company-heading click expanded the footer. Original failure retained in baseline narrative."
+    },
+    {
+      "id": "final_footer_en_es",
+      "status": "VERIFIED",
+      "evidence": "Spanish rendered Información de la empresa / Ayuda y soporte / Atención al cliente; English rendered Company info / Help & support / Customer care. Zero visible translation errors and no horizontal overflow."
+    }
+  ],
+  "limitations": [
+    "Root executed rendered checks; reviewers did not perform a second browser replay.",
+    "No completed payment, order or conversion lift.",
+    "Entire catalog, all21 locales, all devices and full WCAG certification not covered.",
+    "Fresh PageSpeed requested preview but measured MAIN; invalid candidate comparison."
+  ],
+  "finalVerifiedAt": "2026-09-10T02:06:38.102985+00:00",
+  "restoration": {
+    "viewportOverride": "RESET",
+    "finalViewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "finalLanguage": "en",
+    "cartCount": 0,
+    "finalUrl": "https://www.dresslikemommy.com/",
+    "themePreview": "137888792673 intentionally left open for owner review",
+    "cacheDisabled": false
+  }
+}

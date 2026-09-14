@@ -1,0 +1,227 @@
+{
+  "schema": "dlm.sales_lifecycle_independent_review.v1",
+  "verdict": "PASS_WITH_LIMITS__V2_SAVED_SOURCE_AND_LIFECYCLE_VERIFIED",
+  "confidence": "H_FOR_PRIVATE_RECOMPUTATION_AND_FROZEN_BINDINGS__NO_API_REPLAY",
+  "reviewed_at_utc": "2026-09-14T19:11:31.954846+00:00",
+  "reviewer": "independent source reviewer; did not execute or build the source checkpoint",
+  "source_bindings": [
+    {
+      "role": "initial_receipt",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_1900.json",
+      "sha256": "93596de59c897dbf710162ffc0b5e6be37336a680113343c60437515f25a93cc",
+      "mode": "0644",
+      "unchanged_at_review_close": true
+    },
+    {
+      "role": "accepted_receipt",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_1900_v2.json",
+      "sha256": "c108602199f1f963e6f9eec9e5377bb160b1cb8e58128c43a832097a404bb47f",
+      "mode": "0644",
+      "unchanged_at_review_close": true
+    },
+    {
+      "role": "private_source",
+      "path": "/private/tmp/dlm-sales-20260914-1900-source.json",
+      "sha256": "687e07a2a8a42133f35d1bf3ce2a0ce7cb55d2fa2765184f42acfd24bfaaae31",
+      "mode": "0600",
+      "unchanged_at_review_close": true
+    },
+    {
+      "role": "private_call_bindings",
+      "path": "/private/tmp/dlm-sales-20260914-1900-bindings.json",
+      "sha256": "245da10c3101181ad2c235c38d624e13e9484112397b3851b2714e3c488061fb",
+      "mode": "0600",
+      "unchanged_at_review_close": true
+    },
+    {
+      "role": "previous_full_receipt",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_0704.json",
+      "sha256": "7eab5039ded43cceada676ca48778e97554c3e1610f976b840399dfccbd6c3fd",
+      "unchanged_at_review_close": true
+    },
+    {
+      "role": "legacy_identity_reference",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/recent_order_basket_variants_20260907.json",
+      "sha256": "9782ec236e6608e690dbae0dbdfc5640b4bdbcfa57b775c008268b45ea9a930a",
+      "unchanged_at_review_close": true
+    },
+    {
+      "role": "meaningful_early_read_signal",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-14-goal-attribution.json",
+      "sha256": "fcb7514f7285f7fd7598ce95a120bd1519a026397f9596b14f5e4e22f045a32c",
+      "scope": "Only saved distinct/eligible count, success and order-pagination fields used; no attribution review repeated."
+    }
+  ],
+  "finding_history": [
+    {
+      "status": "RESOLVED_IN_V2",
+      "initial_receipt_sha256": "93596de59c897dbf710162ffc0b5e6be37336a680113343c60437515f25a93cc",
+      "field": "unchanged_gates.GA4_purchase_acceptance",
+      "finding": "Inherited blanket UNKNOWN could erase the separately accepted Tropical Palm report-level transaction/item receiver proof.",
+      "resolution": "V2 retains the prior Tropical Palm transaction and four item variants as separately dated report-level evidence, leaves Navy Floral receiver UNKNOWN, and preserves sender/consent/session/dedup/paid/profit gaps.",
+      "only_v1_to_v2_changes": [
+        "unchanged_gates.GA4_purchase_acceptance",
+        "revision_note"
+      ],
+      "amounts_cohorts_windows_private_sources_unchanged": true
+    }
+  ],
+  "blocking_findings": [],
+  "independently_recomputed": {
+    "bounded_cohort": {
+      "all_status_orders": 4,
+      "financial_status_paid": 4,
+      "cancelled": 1,
+      "test": 0,
+      "non_web": 0,
+      "qualifying_orders": 3,
+      "qualifying_current_units": 8,
+      "qualifying_current_subtotal_usd": "207.25",
+      "qualifying_current_total_usd": "207.25",
+      "qualifying_current_tax_usd": "0.00",
+      "qualifying_recorded_refunds_usd": "0.00",
+      "all_status_current_total_usd": "207.25",
+      "local_inclusion": "PAID, non-test, noncancelled, web; server filter contained creation bounds only."
+    },
+    "new_creation": {
+      "basket": "Navy Floral",
+      "qualifying_orders": 1,
+      "current_units": 2,
+      "current_total_usd": "40.82",
+      "fulfillment_status": "UNFULFILLED",
+      "new_receiver": "UNKNOWN"
+    },
+    "prior_order_lifecycle": {
+      "basket": "Mermaid",
+      "cancelled": true,
+      "financial_status": "PAID",
+      "current_units": 0,
+      "current_total_usd": "0.00",
+      "recorded_refunds_usd": "0.00",
+      "fulfillment_status": "UNFULFILLED",
+      "interpretation": "Current Shopify order state only. Neither a refund nor settlement, retained cash or cancellation cause is proved."
+    },
+    "original_comparable_cohort": {
+      "all_status_records_recovered": 2,
+      "currently_qualifying_orders": 1,
+      "current_units": 2,
+      "current_total_usd": "54.47",
+      "historical_total_usd_preserved": "86.45",
+      "historical_receipt_hash_unchanged": true,
+      "legacy_creation_and_exact_product_variant_sets_joined_privately": 2
+    },
+    "change_since_previous_full_read": {
+      "new_order_creations": 1,
+      "new_qualifying_orders": 1,
+      "net_qualifying_order_count_change": 0,
+      "net_current_unit_change": 0,
+      "net_current_total_change_usd": "8.84",
+      "interpretation": "The new USD40.82 order offsets the former USD31.98 current amount of the cancelled order; net change is not the new-order amount."
+    },
+    "window_summaries": {
+      "since_previous_full_read": {
+        "qualifying_orders": 1,
+        "current_units": 2,
+        "current_total_usd": "40.82"
+      },
+      "trailing_24_hours": {
+        "qualifying_orders": 2,
+        "current_units": 6,
+        "current_total_usd": "152.78"
+      },
+      "previous_completed_shop_calendar_day": {
+        "qualifying_orders": 1,
+        "current_units": 4,
+        "current_total_usd": "111.96"
+      },
+      "after_approximate_ga4_cutover": {
+        "qualifying_orders": 2,
+        "current_units": 6,
+        "current_total_usd": "152.78",
+        "meaning": "Candidates only; no new GA4 query or shared receiver acceptance."
+      }
+    },
+    "fulfillment": {
+      "request_variable_joins_verified_privately": 4,
+      "unique_order_bindings": 4,
+      "saved_call_successes": 4,
+      "financial_status_fulfillment_status_subtotal_refund_rechecks_match": true,
+      "order_line_records": 9,
+      "orders_with_fulfillments": 1,
+      "fulfillment_records": 1,
+      "fulfilled_current_units": 2,
+      "exact_matching_fulfillment_variant_selections": 2,
+      "fulfillment_lines_within_order_quantities": true,
+      "carrier_events": 0,
+      "new_carrier_events": 0,
+      "carrier_acceptance_or_delivery_proved": false
+    },
+    "pagination": {
+      "order_pages": 1,
+      "order_limit": 50,
+      "returned": 4,
+      "orders_has_next_page": false,
+      "all_order_lines_complete": true,
+      "fulfillment_limit": 50,
+      "limit_reached": false,
+      "all_fulfillment_lines_and_events_complete": true
+    },
+    "identity_and_accounting": {
+      "exact_shop_identity_and_currency_match_prior_receipt": true,
+      "raw_response_sequence_matches_all_unique_request_variables": true,
+      "fulfillment_response_does_not_return_order_id": "Join relies on frozen request-variable/result order, with matching money/status rechecks and exact fulfilled line identities; no identity guessed from basket labels.",
+      "integer_usd_cents_used": true,
+      "sanitized_rows_and_window_flags_match_private_source": true,
+      "basket_labels": "Semantic basket names retained from the parent receipt; this review independently verifies private identities, values, joins and lifecycle without re-querying product titles.",
+      "historical_28_day_baseline_unchanged_and_not_combined": true
+    }
+  },
+  "clocks_and_execution": {
+    "order_read_window_utc": {
+      "started": "2026-09-14T19:00:17Z",
+      "completed": "2026-09-14T19:00:18Z"
+    },
+    "fulfillment_read_window_utc": {
+      "started": "2026-09-14T19:01:24Z",
+      "completed": "2026-09-14T19:01:25Z",
+      "query_count": 4,
+      "parallel_read_only": true,
+      "clock_precision": "seconds"
+    },
+    "sequential_non_atomic_snapshot": true,
+    "early_read_seconds_before_previous_due": 276,
+    "early_read_basis": "Bound saved X signal reports two distinct qualifying recent orders versus one in the prior corresponding cohort; a meaningful creation/lifecycle signal permits the slightly early full read.",
+    "next_full_read_due_at_utc": "2026-09-15T07:00:17Z",
+    "next_due_is_exactly_12_hours_after_actual_order_cutoff": true,
+    "half_open_windows_and_new_york_previous_calendar_day_recomputed": true,
+    "stored_order_results": 1,
+    "stored_fulfillment_results": 4,
+    "source_processing_incident": "Parent reports failed local text/undefined serialization after a successful structured response, recovered from that same saved call without a second order query. The saved packet contains one order result and four fulfillment results; this reviewer verified those bindings but did not independently inspect execution/tool-call history."
+  },
+  "ga4_and_authority_limits": {
+    "prior_tropical_receiver": "Preserved as separately dated transaction/four-item report-level proof; not refreshed or independently re-audited by this sales review.",
+    "new_navy_receiver": "UNKNOWN",
+    "sender_consent_session_dedup": "OPEN",
+    "source_paid_attribution_CPA_ROAS": "UNKNOWN",
+    "actual_delivered_costs_settlement_retained_profit": "UNKNOWN",
+    "new_synthetic_events": 0,
+    "paid_authority": "NONE",
+    "existing_owner_action": "Existing owner Admin publication step remains unchanged; this sales review adds no release or spend authority."
+  },
+  "privacy": {
+    "private_source_files_remain_0600": true,
+    "no_private_order_ids_or_per_order_dates_or_product_variant_gids_in_review": true,
+    "no_customer_names_contacts_tracking_numbers_or_tracking_urls": true,
+    "global_source_and_checkpoint_clocks_only": true,
+    "private_sources_not_modified_or_removed_by_reviewer": true,
+    "cleanup_owner": "Parent retains responsibility for private source cleanup after accepted verification."
+  },
+  "boundaries": {
+    "api_replay": false,
+    "external_mutations": 0,
+    "canonical_source_peer_edits": 0,
+    "new_agents": 0,
+    "only_written_file": "/private/tmp/dlm-sales-20260914-1900-independent-review.json"
+  },
+  "next_action": "Parent can integrate the corrected v2 lifecycle facts and this exact review; retain the next full read at September15 07:00:17UTC unless a meaningful changed signal arrives. Do not infer refund, cash retention, attribution or profit."
+}

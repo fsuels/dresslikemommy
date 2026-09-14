@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-11T20:28:05.435281+00:00",
+  "status": "PASS_EXACT_LOCAL_V2_POSTFLIGHT",
+  "reviewer": "/root/international_campaign_build",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "check_count": 7,
+  "checks": [
+    {
+      "id": "P1",
+      "result": "PASS",
+      "finding": "Application receipt binds the exact independently reviewed V2 plan; all three saved before/current after file hashes match."
+    },
+    {
+      "id": "P2",
+      "result": "PASS",
+      "finding": "Independent parsed-cell diff equals the complete plan: exactly14fields, tenURLs/twoIDs/twoevidence descriptions across3files; no additional differences."
+    },
+    {
+      "id": "P3",
+      "result": "PASS",
+      "finding": "Independent literal row-byte application reproduces each current CSV exactly; inverse reproduces every saved before byte. Headers, line endings, unaffected cells and all unselected rows are preserved."
+    },
+    {
+      "id": "P4",
+      "result": "PASS",
+      "finding": "Initial local scope remains2dressgroups/6Exact keywords/2RSAs, allPaused and MINIMAL_PAUSED_STAGE for USEN/DEDE. Creative, reserves and rendered_buyer_path_verified=false unchanged."
+    },
+    {
+      "id": "P5",
+      "result": "PASS",
+      "finding": "Both ad-group provenance pairs bind collection240127941; source receipt identifies handle dresses. Admin134 and rendered37 are explicitly separate; no whole-catalog/buyer qualification inferred."
+    },
+    {
+      "id": "P6",
+      "result": "PASS",
+      "finding": "campaigns.csv, negative_keywords.csv and campaign_plan.md hashes remain identical to preflight; no new native creation or spend is claimed by application receipt."
+    },
+    {
+      "id": "P7",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "Root browser/connector evidence was not independently replayed; this proves local implementation only. Full buyer/native-language/consent/purchase/CPC/cost/launch holds remain."
+    }
+  ],
+  "inputs_sha256": {
+    "landing_revision_plan_v2.json": "973657f413ce2078eb37aa1318dc092381e093a485e648b492358b41a27a4184",
+    "landing_revision_application.json": "11358f8ec8d5a2a9eedf7c1575fbf0931924614930b85c77845fffb7c4730e3d",
+    "landing_revision_independent_review.json": "6da39d8bb1655ad600da896a7bb061f90fadd41ced0f8b0d65ed05c6213c6795",
+    "dresses_collection_source.json": "c6e4dead25d0548ecf0c21bef43b4ec91bef6f125f7d1254e149c1bd4f23c48b",
+    "landing_revision_receipt.json": "be0d3d58a56cec1655c9ece716cf6fe27a32717ee7340ed5412c077869bca0d7"
+  },
+  "files": [
+    {
+      "file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/ad_groups.csv",
+      "before_sha256": "448a80f4b78fd0fdc5f94a557e2c512f0959f7d2390743923e4f365eb6b868d8",
+      "current_after_sha256": "dbf27dfc5ccd5cfb27c5aed898f202c76060b5b484ec353b3140ad701d950f92",
+      "changed_fields": 6,
+      "changed_rows": 2,
+      "exact_raw_byte_inverse": true
+    },
+    {
+      "file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/keywords.csv",
+      "before_sha256": "658a8fef354ae4a299b2692d0dfda50f8c08a9d5f0c2d4fceb0c78351e53e94e",
+      "current_after_sha256": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012",
+      "changed_fields": 6,
+      "changed_rows": 6,
+      "exact_raw_byte_inverse": true
+    },
+    {
+      "file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/responsive_search_ads.csv",
+      "before_sha256": "0f8e442dbc8e7d5fc8e5424892ee4a357bf412edd0afdf843eac04c97f000eaa",
+      "current_after_sha256": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07",
+      "changed_fields": 2,
+      "changed_rows": 2,
+      "exact_raw_byte_inverse": true
+    }
+  ],
+  "protected_current_sha256": {
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839",
+    "campaign_plan.md": "1617edecc07323215c080245930d051a8e5e7017fdc216d20f73d4cf843a58f0"
+  },
+  "changed_fields": 14,
+  "native_or_external_write_by_reviewer": false,
+  "native_search_creation": "HOLD_NO_VERIFIED_PAUSED_SAVE",
+  "handoff_note": "READBACK.md currently refers to landing_revision_plan.json and says being corrected. Point the controlling handoff to V2 and the application/postflight receipts when closing; this is documentation lag, not an implementation failure.",
+  "next_action": "Root may describe local V2 as implemented/verified in the guarded canonical update. Preserve native launch holds and update handoff references."
+}

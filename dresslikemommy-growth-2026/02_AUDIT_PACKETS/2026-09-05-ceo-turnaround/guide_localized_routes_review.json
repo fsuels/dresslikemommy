@@ -1,0 +1,926 @@
+{
+  "reviewed_at_utc": "2026-09-06T18:44:01.455432+00:00",
+  "verdict": "PASS_EXACT_PREWRITE_SCOPE_WITH_RUNTIME_GATES",
+  "independence": "Did not author50blocks, buildcombinedpayload or execute/queryexternal systems. Independent model semantic review of all50afterblocks plus local HTML parsing, reconstruction,inverse,scope and sourcehash checks. Native/connector source evidence is root supplied.",
+  "check_count": 32,
+  "passed_count": 32,
+  "checks": {
+    "plan_hash_frozen": true,
+    "author_hashes_frozen": true,
+    "all_plan_source_hashes_bind": true,
+    "forward_hash_frozen": true,
+    "rollback_hash_frozen": true,
+    "same_exact_article_everywhere": true,
+    "disjoint9plus8_authors_exact17scope": true,
+    "forward_and_rollback_exact17body_inputs": true,
+    "current_english_source_digest_only": true,
+    "no_new_held_or_english_translation_input": true,
+    "exact_single_register_operation": true,
+    "supplied_connector_and_local_validators_pass": true,
+    "root_guard_reports_unchanged_article_and20containers": true,
+    "all17_before_hashes_match": true,
+    "all50_before_blocks_unique_nonoverlap_exact": true,
+    "all50_english_templates_match_completed_source": true,
+    "all50_before_after_hashes_match": true,
+    "all50_after_fragments_balanced_safe_exact_href": true,
+    "all17_candidates_exact_reconstruction": true,
+    "all17_inverse_restore_before_bytes": true,
+    "all17_forward_and_rollback_values_match": true,
+    "all17_plan_body_hashes_counts_cta_labels_match": true,
+    "all_non_target_segments_preserved": true,
+    "ptBR_unlinked_nightgown_preserved": true,
+    "french_native_target_is_localized_populated_pajamas": true,
+    "french_old_christmas_capture_empty": true,
+    "plan_keeps_fresh_guard_normal_api_and17_native_click_checks": true,
+    "rollback_content_only_and_flag_limits_explicit": true,
+    "remaining_sizing_gap_explicit": true,
+    "50block_split_recomputed": true,
+    "135before_to101after_anchors": true,
+    "127550outside_UTF8bytes_preserved": true
+  },
+  "sources": [
+    {
+      "file": "guide_localized_routes_execution_plan.json",
+      "sha256": "69f7b1e5b2440c1d1396453d150033c3aefa8a9ca22a39faa76977472157db6d"
+    },
+    {
+      "file": "guide_localized_routes_author_a.json",
+      "sha256": "2e0ac2f8d3b3b4b9d2d042147e34d78c71806ae7a098c73f70b6edf851e193ed"
+    },
+    {
+      "file": "guide_localized_routes_author_b.json",
+      "sha256": "18170f6e93d776dedd749d5dca7c6b64f276222e385e15a9f1d6d224439c0c75"
+    },
+    {
+      "file": "pajamas_guide_localized_shopping_route_screen.json",
+      "sha256": "cfcd2cbe90b33491fa1354bbd30b25c3396bf61ca73bdcaf6a1a53f38736aca1"
+    },
+    {
+      "file": "pajamas_guide_meta_final_api_after.json",
+      "sha256": "21bf9dd2f1049ff00eabd91da891348dd77f0503f537bbfc805a17681386c5a5"
+    },
+    {
+      "file": "guide_localized_routes_source_guard.json",
+      "sha256": "ab52381578ef6b8f1e19a353958f7df9d5cbe88e444cf19ef0a4bcea59de662f"
+    },
+    {
+      "file": "guide_localized_routes_variables.json",
+      "sha256": "0358400d4ce6be4d289a91d2f6c57fcf22fb15fd80a978261d57f777b3460253"
+    },
+    {
+      "file": "guide_localized_routes_rollback_variables.json",
+      "sha256": "5217bd98f2dd5db05fd756f5c5ff41628444804934a228a0e3d71482fca6c7e9"
+    },
+    {
+      "file": "guide_localized_routes_mutation.graphql",
+      "sha256": "690ee876a379e809336fcb52ba67e09cc03e6429bd2b30fd6073f7baf7bc7126"
+    },
+    {
+      "file": "guide_localized_routes_validators.json",
+      "sha256": "98117e8f03917173d246a95f5a3fd0d5e944df34fcd935735e41de7a7810d915"
+    },
+    {
+      "file": "guide_localized_routes_french_christmas_before.json",
+      "sha256": "96062e476903d2cba76cd4b1209c425b1190ab613971bc26607ae211297fb3d5"
+    },
+    {
+      "file": "guide_localized_routes_french_pajamas_native_before.json",
+      "sha256": "c77f730d8911db2a86c3aff48f7f83ef53a1bcbf932a2b53e71c5ceaefdc03ea"
+    }
+  ],
+  "scope": {
+    "article_id": "gid://shopify/Article/559471886433",
+    "translation_field": "body_html",
+    "locales": [
+      "ar",
+      "cs",
+      "da",
+      "de",
+      "el",
+      "es",
+      "fi",
+      "fr",
+      "he",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "no",
+      "pt-BR",
+      "ro"
+    ],
+    "blocks": 50,
+    "block_split": {
+      "nightgown_destination": 16,
+      "empty_christmas_destination": 17,
+      "shopping_cta": 17
+    },
+    "excluded_locales": [
+      "en",
+      "pl",
+      "ru",
+      "sv"
+    ],
+    "ptBR_exception": "Only Christmas and finalCTA; unlinked nightgown paragraph remains byte-identical.",
+    "preserved_outside_bytes_utf8": 127550,
+    "before_anchor_count": 135,
+    "after_anchor_count": 101,
+    "after_hrefs": {
+      "/collections/pajamas": 84,
+      "/collections/matching-outfits": 17
+    },
+    "mutation_fields": "Only resourceId and17TranslationInputrows each containinglocale/key/value/currentEnglishtranslatableContentDigest; no market or unrelated fields."
+  },
+  "locale_checks": [
+    {
+      "locale": "ar",
+      "blocks": 3,
+      "before_body_sha256": "08f74207d8105ebc6d5d0a3947a323fbc3292bbf229e845c61f4f6218c016a63",
+      "candidate_body_sha256": "f6b49aea220b6ec6358bb8733569c9a198740f0c438e199b1d8c44c7b20205bb",
+      "unchanged_segment_bytes": 8929,
+      "unchanged_segments_concatenated_sha256": "fdc489338f17497e1b6455821f72fab03c48b02865ad62f90a5cfa9ffb1adc74",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "10c1ec0bb08013a68553b568fcefe01f80643d96e0f4983f781f33f18ca93ad3",
+          "after_sha256": "d6eaaa764ec5b66aa72bfacc852af471a36c51bd8f77c68242b5e60679ac944e",
+          "href": "/collections/pajamas",
+          "anchor": "بيجاماتنا للأم وابنتها"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "32c0901d734319599b26be55c75fa30b69320d87a144bdcae25d14f38a0e6d07",
+          "after_sha256": "de87363bf0be70c79b5db36ced1b36dd0fd123039b66ea7dfc7292e351e7d88d",
+          "href": "/collections/pajamas",
+          "anchor": "البيجامات المتناسقة المتاحة حاليًا"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "2933bedf3d1a05a90b43813debe4c2e460f3321675795fb340b07e268bde39ca",
+          "after_sha256": "116d0f055ab78c32cd7f2cc2de27a7fd5963efbdec042cf16c8c4cef1e183c8b",
+          "href": "/collections/pajamas",
+          "anchor": "مجموعة بيجاماتنا للأم وطفلها"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "cs",
+      "blocks": 3,
+      "before_body_sha256": "f4af03999876bccb32e0b6c984f3377a7e5c5ca37e5e027e113f6c42fa5a822d",
+      "candidate_body_sha256": "9fe83f313ef5fcb93a1a6c0081d57f839cc2bfe02c7aea077a453e2a3c53997e",
+      "unchanged_segment_bytes": 6482,
+      "unchanged_segments_concatenated_sha256": "fa7fba5afdcc8dc60a93d1b98f69d327516a08376dfbb1ae410079b987a93bb5",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "057f33e202548dfa8eeaba138cab806ac035fbd40266a14ee019d8ab1a37a7bb",
+          "after_sha256": "fa4ca8ccab77e7660f3f6eead9bcd7e4f11a40d27493536ffe75902c07ced6c9",
+          "href": "/collections/pajamas",
+          "anchor": "pyžama pro maminku a dceru"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "2eb141a703354e44c9831a5932c30eb907c0b653a29efe4db9ce83c0d7760c65",
+          "after_sha256": "61073d742b41b6352e15c092cfcda77ced88bc247ace66f92947b8d0045b75bf",
+          "href": "/collections/pajamas",
+          "anchor": "aktuálně dostupná sladěná pyžama"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "9e1fe67f526a007a546a52be8f4e4f4a5265ab7fc3601f99b75260aa306a6981",
+          "after_sha256": "868a4a60f1462c414d5952f062b57f1eb3de3ca6bebec36d705cb2bbf586d141",
+          "href": "/collections/pajamas",
+          "anchor": "kolekci pyžam pro maminku a dítě"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "da",
+      "blocks": 3,
+      "before_body_sha256": "19fa053741f7907dcb3f50ec2182d678441f036cc7c83af2c43444f802694a48",
+      "candidate_body_sha256": "d3479bd31052eee0cffe0f2a4a0e414b5abd14eaf169606b143c6cedae8ea4d9",
+      "unchanged_segment_bytes": 6023,
+      "unchanged_segments_concatenated_sha256": "f14fb1545d417f577a2f7bb5e31fe412ab289adb5a5153f1acd6325f7a40fa13",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "0e2d66fdbac7d65b28a9184ecb9359a7ffbd7332c8761ae926ac644b663316b2",
+          "after_sha256": "ea7516778250a099268e6918fa67460b8c3498eb1dc76753e2efa524660b2863",
+          "href": "/collections/pajamas",
+          "anchor": "pyjamas til mor og datter"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "d84a20701cb684b7ab5a6ad1d26fcf67fe63a5d165e6864ab525a19907db5716",
+          "after_sha256": "bf41d610f6f3f77e2fa83178df298e177e523c208b9f2035ff7dff8b171e63df",
+          "href": "/collections/pajamas",
+          "anchor": "matchende pyjamas, der er tilgængelige nu"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "00de34aae0b1c9f50d1a965aa2efc480e25a254089cae9ed3654809adf8bd7a8",
+          "after_sha256": "e13f4f2b5810eb0e3b2420906e5272aeecd48608684c83874673e9e6c801f21a",
+          "href": "/collections/pajamas",
+          "anchor": "pyjamaskollektion til mor og barn"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "de",
+      "blocks": 3,
+      "before_body_sha256": "ac8daae7ed5834392170538d2c6e97af877598ebf8b4a7ae81ea470727364fcf",
+      "candidate_body_sha256": "2182f90f4f8d260ecb71b72ccb4cd549c697f9fdb73292f578494f2e4e8a7cd9",
+      "unchanged_segment_bytes": 5732,
+      "unchanged_segments_concatenated_sha256": "a12d71fbb32307f0eb3f7a9981fd5d7143ec764b80e6da03975e6740f7989ce0",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "d9a2309630e7dcb9636979f51bc681113f5125f5e6efa208fd260ee6f84f395b",
+          "after_sha256": "e04ebe45ff171861efacc2c037c035bdaf8d7c3246f58b8d88e50271f89bd52b",
+          "href": "/collections/pajamas",
+          "anchor": "Pyjamas für Mama und Tochter"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "c41685bfa95a45771b249ba91c5f892ed03425a35113781d085866e668235ed5",
+          "after_sha256": "640b31ddfc7c54a4be599651d05d9c98a6d07ecde7a295209f5b1e0d7d627c81",
+          "href": "/collections/pajamas",
+          "anchor": "aktuell verfügbaren Partnerlook-Pyjamas"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "68314d4e1d7725438a4dee7665aa19cc7473ceedd57ec7d3dea4ea6f54fd19cd",
+          "after_sha256": "f9683e6ff580548a84405ecf5f598596a578bba8ad27033e9b04236ce48b45c6",
+          "href": "/collections/pajamas",
+          "anchor": "Pyjama-Kollektion für Mama und Kind"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "el",
+      "blocks": 3,
+      "before_body_sha256": "8e865484f87e495150f6044427e5963a8d42070fd792ef44414453c91378a04e",
+      "candidate_body_sha256": "53c079c40d2f67cae52f30670ce5cf52a02338a3c75766352883441a64db526f",
+      "unchanged_segment_bytes": 11181,
+      "unchanged_segments_concatenated_sha256": "c3c6b45b559e30ffffd2880daeb9a80a1d89fd49048309b9b01ab36786d56be9",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "58632f3e4b0b44a9ec6630cdec4dc09b73e28a5de449dffbcc4a6a3beccc009d",
+          "after_sha256": "229981198383cf41ae66f2b9a2f86c20c8e8a4e96f7cdc5215628ed5db11e1b3",
+          "href": "/collections/pajamas",
+          "anchor": "πιτζάμες μας για μαμά και κόρη"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "a45383779c7aac8f684ce602e41ad71a9b420da79e79ca13dfa61853ef676e3f",
+          "after_sha256": "7a684d142bd622a94fc094a7ba95b398f108d9fb1831c8e046e610e79cf7f095",
+          "href": "/collections/pajamas",
+          "anchor": "διαθέσιμες ασορτί πιτζάμες μας"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "7fc2ac37b6ee28c334c10cb8cd0730cf13fd2b06a686778b3b55e0f58c859c17",
+          "after_sha256": "1fdf1259552e6605a4fdf07d15f96b5c913d33341340505f136888ca65a6e7a2",
+          "href": "/collections/pajamas",
+          "anchor": "συλλογή μας με πιτζάμες για μαμά και παιδί"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "es",
+      "blocks": 3,
+      "before_body_sha256": "fe1f5bba175c72757c585fd2331f05b43be790caf92b5103b003eef5fd4d9cb2",
+      "candidate_body_sha256": "733a14a1bd2f2bf727a6f750b17fc55121368c9fdce437221d15f2b57ebf41d3",
+      "unchanged_segment_bytes": 6906,
+      "unchanged_segments_concatenated_sha256": "105a32f4e629cfaa0e371e36f82ef4ca789001fd768666c4ba4faf5fae7b1c33",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "01d590014303e6e0e911409449d6b1f5c9e60a8f219f4c69e58d5a9fef3764b6",
+          "after_sha256": "7a798e3b05084c8f2ab1d2b3a4d49ad0702d64860d27b85c8372ba1db08a3add",
+          "href": "/collections/pajamas",
+          "anchor": "pijamas para madre e hija"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "311c9c6d1b33e9d4c11e871d4c35d88909ae9450147ce5df6e081aff54ea0eba",
+          "after_sha256": "33ff3387159507c32af02654bd41279003ffead3f0a5a36e8ed5d89ce2b41044",
+          "href": "/collections/pajamas",
+          "anchor": "pijamas a juego disponibles actualmente"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "796933ed68914370e5f7ea87ce805c72627ea144dcf4628b9d138e24b4401be4",
+          "after_sha256": "6fe7d6ad655bb1de25911e6817c4ab1b967083c0ded24215f91742d4e2717c20",
+          "href": "/collections/pajamas",
+          "anchor": "colección de pijamas para madres e hijos"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "fi",
+      "blocks": 3,
+      "before_body_sha256": "e5eb56b88679fcc9575241a1e56069cabd4a45317af8b062f764aa5490039f5e",
+      "candidate_body_sha256": "e6638ebd9d7b864244012f8c9c445ee5f7531741b2a54d7d0bc5ad4f43dcf731",
+      "unchanged_segment_bytes": 6391,
+      "unchanged_segments_concatenated_sha256": "50a76c0775886a54fa1ae5d3c3c866adef62912725710b1d90936a88b734f68f",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "3e7d24a18142f29fa98a6b543d1eeabc56ded27a4ed30bf4fcee7ed5ca4ba433",
+          "after_sha256": "67c10109185115a245def9038ed65bd7184d82b82ff517fe41e205ef2d885208",
+          "href": "/collections/pajamas",
+          "anchor": "äidin ja tyttären pyjamiimme"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "9a09bb1e4f242eb60281feb19cbabf72796fd1b8cbc2b323dc08f563e3d0d6b1",
+          "after_sha256": "8082c0409b0ccae45779d42e441ebd010bcac4acaaa079d28eacdd1110a3a995",
+          "href": "/collections/pajamas",
+          "anchor": "tällä hetkellä saatavilla oleviin samistelupyjamiimme"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "7623ddee67b09d4f7c9a2d8f14ecb631b2cf76ab79defe984160c6f200d21eb8",
+          "after_sha256": "6ecd30b16955eeaa2c61a09eda13c31d68c9e40aaed8cc8ec09face7e1d226d0",
+          "href": "/collections/pajamas",
+          "anchor": "äidin ja lapsen pyjamamallistoomme"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "fr",
+      "blocks": 3,
+      "before_body_sha256": "63f1a5885436a0a131c6edd90d089e23e453f7ee804fd83a9b5954cf88518d7f",
+      "candidate_body_sha256": "b289c99d158cc727b0438f388b45f7ce0aad43306a762275a2d8a2e79c7fa8e9",
+      "unchanged_segment_bytes": 7376,
+      "unchanged_segments_concatenated_sha256": "61e16abb6e82ac59d6e114fa1d9e2c26417ab80d298df6d6a5115a35315324bd",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "3083a8ac67969c5bef623e2cb9a7a9dc84db7effa6052873e7171b290c838ddf",
+          "after_sha256": "25c8c718ade73c42e8f7dffed50c70f2e8b27b0004ea03458a806acff9bd12fd",
+          "href": "/collections/pajamas",
+          "anchor": "pyjamas mère-fille"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "a7a5dbf088529c09309399bced1f37992b9297dfbfae6414ae2b60bfc179d6ef",
+          "after_sha256": "2439489dda4900e7a16d7be411ac2159fe526bf1db81ff6eedd1d61514e2cc07",
+          "href": "/collections/pajamas",
+          "anchor": "pyjamas assortis actuellement disponibles"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "78857140c8ca32998bcd97e27a9569f95ffda49f7c3a20a05150fd413cd3d083",
+          "after_sha256": "111f81db191d1bba058c0207c83ca7aee3a7c89950831c43d3724ba857a743ac",
+          "href": "/collections/pajamas",
+          "anchor": "collection de pyjamas pour maman et enfant"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "he",
+      "blocks": 3,
+      "before_body_sha256": "eb44ced79d693e8f34d3b6a6df6d83e748822c6c5590b58d31e9c7404c7ffa9e",
+      "candidate_body_sha256": "00c9120e05ad717425ade17e733969adddc65ef022ddf9db1518ccacfabccf47",
+      "unchanged_segment_bytes": 8096,
+      "unchanged_segments_concatenated_sha256": "254bd2ecabb400ef7120d5c5aa9a56a8ad7269f020234dd38e2fbe280994e6aa",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "78fc813d331845230c5a8cc748af2bd4edcda8aeef36c07d4794ca1bc6c67aba",
+          "after_sha256": "c33f0a555fa4f656d512236b64bc8fbe22122574c5cdbd642092d2c9f14dc606",
+          "href": "/collections/pajamas",
+          "anchor": "הפיג׳מות שלנו לאם ולבת"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "4564f719f82427184a085ea3facd0c5e182df5b5aadbc73858a8b1513d0eeba9",
+          "after_sha256": "8d2777323657e495aaf6e9a7e50613ba12a06ad88062c41c7e9e5681af43cfa4",
+          "href": "/collections/pajamas",
+          "anchor": "הפיג׳מות התואמות הזמינות כעת"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "fba955443fa19fd7fd0875451980a7cb440fffb1e355e32f0adcf390031a9dad",
+          "after_sha256": "1dadc5fa497928b133c5891ab85aad682635079c0a6336bad5698dd02088b7d3",
+          "href": "/collections/pajamas",
+          "anchor": "קולקציית הפיג׳מות שלנו לאימהות וילדים"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "hi",
+      "blocks": 3,
+      "before_body_sha256": "39b38b9505a08faf3b6202ee16f8d76ebf6c3097a02fcc7aedf7b60fa2ef7716",
+      "candidate_body_sha256": "936ee43498958b67907cc2e4ead9591190f7fad92c55edf77140133732fcd126",
+      "unchanged_segment_bytes": 13270,
+      "unchanged_segments_concatenated_sha256": "37bd83557e181478e96aa09433a04784e2fc0c3a03ac623ce41c98d1d70a7d86",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "1ef61ab8a070a041427fb7a253d431811e280b8b3b97c73b73941913bf423194",
+          "after_sha256": "0d4d2f5121a575612a41a9335c3eddc70b07f29e4dfffca2c4b9f0f95d7f5906",
+          "href": "/collections/pajamas",
+          "anchor": "माँ-बेटी के मैचिंग पजामे"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "01efdbcc3954ae0ecc9ecf9c5dd9cf14028894df87e3cafb11e90dcdacf313e7",
+          "after_sha256": "6e2ec14c4f14dbb3c07b871550c7b649387942c29a1a14239f8ca0faca663dd6",
+          "href": "/collections/pajamas",
+          "anchor": "फ़िलहाल उपलब्ध मैचिंग पजामे"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "4e26ceaac6e0e55e023b58ed1193ba7fce4f1e19e229f515781735e0240ac47a",
+          "after_sha256": "c033a20e5b7878aeac5d00c030d559ce169d4834e14859b145c95a3d0195eaed",
+          "href": "/collections/pajamas",
+          "anchor": "माँ-बेटी के मैचिंग पजामों का कलेक्शन"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "it",
+      "blocks": 3,
+      "before_body_sha256": "4ec461ef2351085a3b35a69524b6570b777d5d25e4b354f04054e392e94339a5",
+      "candidate_body_sha256": "085fd25c2a52626e0ae562695995a5998eda98c64df98ed17f0521b10cf13e1b",
+      "unchanged_segment_bytes": 6613,
+      "unchanged_segments_concatenated_sha256": "d42a19eaaf9e2276276aa950f081b738094cbc3678e12d64522ca32f067031e9",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "459aa1b951777c8918917603eb5a852d5f5b413ff8f048b1675f8b770c0378fe",
+          "after_sha256": "085d73ca2e5b4e5f5e3b8ea7674d8c294fb87b8bccdfcdb11bf4d1c391240bde",
+          "href": "/collections/pajamas",
+          "anchor": "pigiami coordinati mamma e figlia"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "21e612ae6a87b33d4199bb7e011fc3ccff3b9ce3ef8e21511b11f51246110f86",
+          "after_sha256": "09ae462201fbb88b844f3bc6eff2c1a6f132cb75df93f2f7c672344052b1b6ab",
+          "href": "/collections/pajamas",
+          "anchor": "pigiami coordinati attualmente disponibili"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "cdfdc78c3c930a631689233fa9b865d9f223f19212857f28a3958b57db7166d3",
+          "after_sha256": "4fad4354eae36a13635519341a8d70ae354a6d4530f2c8b831b090d81c47c26c",
+          "href": "/collections/pajamas",
+          "anchor": "collezione di pigiami mamma e figlia"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "ja",
+      "blocks": 3,
+      "before_body_sha256": "ecbfe1ba57f8d79f7cece5a90da9c94ebf9d5d5682b30d02f130572b9d354033",
+      "candidate_body_sha256": "4760e90e56063884bd3c40606fc7208d194ddde9dc727691d5b9a95eade297b9",
+      "unchanged_segment_bytes": 7420,
+      "unchanged_segments_concatenated_sha256": "c41b5ea68db2e804d2568b64e28ab4e5c63dcc0d9ff8f7f1de95dac407e4886d",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "87744438e0f60894193b01471cc64d53187604c5154d74171ea5c7ecdc4a37fa",
+          "after_sha256": "0331294e242db568120482029a63cdc89794ed4853f5ff9510bc41ed90be40c2",
+          "href": "/collections/pajamas",
+          "anchor": "ママと娘のお揃いパジャマ"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "87ab99bf7f76f0de6d7b3b45b94b6c7dbfe2fa6db2ef7e48844ca4480288c8c3",
+          "after_sha256": "7999a2a37d0e7d27f0ff0d527711180c0dd0b652813266bcd20d015d998d5e1c",
+          "href": "/collections/pajamas",
+          "anchor": "現在販売中のお揃いパジャマ"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "f634407e6593960a095647f34f3f016937fd60412074341733f3d57e0d4e9e17",
+          "after_sha256": "30aa583df8c35beb68a088723f483839849595d57555150b5f6717b9cb61c8f3",
+          "href": "/collections/pajamas",
+          "anchor": "ママと娘のお揃いパジャマコレクション"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "ko",
+      "blocks": 3,
+      "before_body_sha256": "9e0417baf799dd0b300ed441a7fc0b10aeab2f3c3529dc0cb0e1bac5c78d5617",
+      "candidate_body_sha256": "6c97405b23704d1a438f89ac4a5b835a2a217aeca2954d9907050ea141883de2",
+      "unchanged_segment_bytes": 6952,
+      "unchanged_segments_concatenated_sha256": "d94d5e1217c9a32a7e36bedbafb551a209708b3798edd63ef1f038100c2fe9bb",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "329c1eeeef0f7160c384111af1138b5eb8b344b0ac5541c0996d51dde23536fe",
+          "after_sha256": "32082ccc0d3ca320dc8c87184f71f0cf56d3ba4967a2afd5056014c427cadf45",
+          "href": "/collections/pajamas",
+          "anchor": "엄마와 딸의 커플 파자마"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "10a169b1ba3559dcf93b6536e1d02df8f4b52249d67ae85c9b2991f5feadc74b",
+          "after_sha256": "611c4c28485e2166d781074595743dd275636c3dcc1097d850b454b30732ddf7",
+          "href": "/collections/pajamas",
+          "anchor": "현재 판매 중인 커플 파자마"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "334f884299ee4181d16c7b7d65f2e6039151a01867c52df269c1482320a27ffa",
+          "after_sha256": "8c64ec81972bc367d061ce30f229e437de2b4d6bcbbd0eedf0d4180e09f42aa1",
+          "href": "/collections/pajamas",
+          "anchor": "엄마와 딸의 커플 파자마 컬렉션"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "nl",
+      "blocks": 3,
+      "before_body_sha256": "6c0ae849e6c808428479789e931d450fb4589d601603eed106cc8f87efa5fbba",
+      "candidate_body_sha256": "24f08973cf3f2848321f3f60a01404cb0473a08b4ee21bb0050bb3486379fcb7",
+      "unchanged_segment_bytes": 6250,
+      "unchanged_segments_concatenated_sha256": "11cdae22767a4f37a7757cc514db41746da6567f64ab7df94b08344f35e3e053",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "10583aa8c46ed4b8ad2f34c60734478d8ec6cc6fbfd1f4631d43ccea0c9af18d",
+          "after_sha256": "ba35ceed4dc825c7f975c93391ae7896832a442adf751545aa4e037fd46cd12b",
+          "href": "/collections/pajamas",
+          "anchor": "bijpassende pyjama's voor moeder en dochter"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "7f12624188e971a59d92e28b52f08ab7f4243cea30cfa3b9a1a603c2f5960a01",
+          "after_sha256": "07d333a9b248627d3cbeed494f5c22c6c6db38e1fc8e963f337e4fd442016b50",
+          "href": "/collections/pajamas",
+          "anchor": "momenteel beschikbare bijpassende pyjama's"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "9d65b090058121879fa8c93ebd603361d6397817dc6b2aa65eec7b2d6513b425",
+          "after_sha256": "47c77b657d8c10a3ce42be9a341a750fa74bc005232fbcff370c4983e4b13f2e",
+          "href": "/collections/pajamas",
+          "anchor": "pyjamacollectie voor moeder en dochter"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "no",
+      "blocks": 3,
+      "before_body_sha256": "99b7a62e6ceb710c78aaed2adead2baf6797c68178ce0ede4d4fc83f784bbbaf",
+      "candidate_body_sha256": "de55c262aae306c4a97efec6c91048e4f914943e62c62792166f1a00b2ade72e",
+      "unchanged_segment_bytes": 5985,
+      "unchanged_segments_concatenated_sha256": "591e5a545b020a35424a970eef0229ff476a0fe893586030ff0731f0cdcaf431",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "e2333a4a951d18e31a51f16dc41a21eeaf91e38cf1d2676c0eb4e81bd5ce6106",
+          "after_sha256": "90963a8777ea118b6a8bc156dcdbf8d593fa6c96bf7dd78da016e046c99b36ad",
+          "href": "/collections/pajamas",
+          "anchor": "matchende pysjamaser for mor og datter"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "04dcde054ad31f2040352e6e130a521150412effa6f0df193568948dc1781a9e",
+          "after_sha256": "743495351467e1421b8931a24f36794d0247fce0c9d751658524eb5a360088f7",
+          "href": "/collections/pajamas",
+          "anchor": "matchende pysjamaser som er tilgjengelige nå"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "aefa919c81ab4b9436d4515f7b50718e51b2738bd84567d37ddddb33d83285b0",
+          "after_sha256": "25279565604b055bcfd12a9c2b392af9510f4237e1cc0f43b2bee59511fe9bcc",
+          "href": "/collections/pajamas",
+          "anchor": "pysjamaskolleksjon for mor og datter"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "pt-BR",
+      "blocks": 2,
+      "before_body_sha256": "79d8b3b510b5fc2ef2083597bc118e5aaad3cf3c6d38dba1f3f4e331da2a05a2",
+      "candidate_body_sha256": "9e02c9e72232653b9bfbbada1a1e27c79c23b4830d03e49a5c879a5a8924f5ab",
+      "unchanged_segment_bytes": 6825,
+      "unchanged_segments_concatenated_sha256": "334a7719639b71f2b231fe214e0576ab2599f4359dcd3de9cac26c904cbbf611",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 4,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "300c83a0acb0b90655319a6dd71ef033b8ce64b660a412f33a7bbf0fee3995ad",
+          "after_sha256": "5f38db260ae49ec0e06952bbdadde1877667f647639ddfbc25910381b58e3e73",
+          "href": "/collections/pajamas",
+          "anchor": "pijamas combinando disponíveis no momento"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "4bc703b4fc677a5a115d01ff9b69b93062b8e20ba41ff7c540ae9d2ce3d40608",
+          "after_sha256": "f636a037e271b02162bed81b9414bd6c93fc6b85b8e66222a34e8336f61bacd6",
+          "href": "/collections/pajamas",
+          "anchor": "coleção de pijamas combinando para mãe e filha"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    },
+    {
+      "locale": "ro",
+      "blocks": 3,
+      "before_body_sha256": "d6c9acc623e199fe7a459cf93ba0a363b80227edafb76aaf175fcb47f7b58de0",
+      "candidate_body_sha256": "05195b91492853019a4623facc32d6fa425f3a6340fab60075c89b41fee514c2",
+      "unchanged_segment_bytes": 7119,
+      "unchanged_segments_concatenated_sha256": "37d927c6ca65c90198fef10a905fbaa260ac7731c93dfc09dd09ac0ede747f0d",
+      "exact_forward": true,
+      "exact_inverse": true,
+      "href_counts_before": {
+        "/collections/pajamas": 3,
+        "/collections/dresses": 1,
+        "/collections/christmas-pajamas": 2,
+        "/collections/matching-outfits": 1,
+        "/collections/family-pajamas": 1
+      },
+      "href_counts_after": {
+        "/collections/pajamas": 5,
+        "/collections/matching-outfits": 1
+      },
+      "replacements": [
+        {
+          "id": "nightgown_destination",
+          "before_sha256": "a369f931b488ca528e9af3dbeffa1863614de12512b986416ab3335ec5704bbf",
+          "after_sha256": "12b4eb1eaea474321ecbfd38d8e424faa4215ccd4dde2218f5c1dbb71a3d53a3",
+          "href": "/collections/pajamas",
+          "anchor": "pijamalele noastre asortate pentru mamă și fiică"
+        },
+        {
+          "id": "empty_christmas_destination",
+          "before_sha256": "e8b0021e1a307a5f1ad46574c6133acd94e4759613c39ac3197c4555c05387a9",
+          "after_sha256": "8a0397fe7f60a6cc29a2b96ee88c436a351810b5bab2daed9d91d9c627116732",
+          "href": "/collections/pajamas",
+          "anchor": "pijamalele asortate disponibile în prezent"
+        },
+        {
+          "id": "shopping_cta",
+          "before_sha256": "08a2746adfce137f69de4adcaf00bbe88a3444d3c57c5fdd17da932196477af5",
+          "after_sha256": "c9a6af1d9bbc7eaf6310f54e70d3f0d40d9156fcf0852405c43efaeda92f0a79",
+          "href": "/collections/pajamas",
+          "anchor": "colecția noastră de pijamale asortate pentru mamă și fiică"
+        }
+      ],
+      "semantic_review": "PASS: natural intelligible localized rendering of the corresponding frozen English templates; no material new claim found."
+    }
+  ],
+  "copy_verdict": {
+    "status": "PASS_MODEL_SEMANTIC_REVIEW",
+    "reviewed_blocks": 50,
+    "meaning": "Mother/daughter pajamas replace linked nightgown claims; Christmas is an occasion without a holidayprint promise; finalCTAs ask shoppers to select each wearer separately and verify sizes/includeditems. All addedlinks point to theexisting pajamacategory.",
+    "no_added_claims": "No new materials,measurements,shipping,stockquantities,discounts,urgency,dadavailability,safetycertification or guaranteedsales claim found.",
+    "limits": "Naturalness is independent model judgment, not native-speaker acceptance. Preserved surrounding clauses are not newly validated; oldchild/babyupsizing and otherEnglishrepairgaps remain open."
+  },
+  "destination_decision": {
+    "verdict": "SUPPORTED_BOUNDED_CATEGORY_REPAIR",
+    "evidence": "Root nativeFrench click reaches selfcanonical /fr/collections/pajamas with22productcount and relevantmother/childpajama links; actual oldChristmasclick reachesemptycollection. Sourcehrefs alreadyauto-localize.",
+    "alternative": "A bareURLswap would retain mismatched nightgown/holidayprint claims. A specificproductdeep-link would unnecessarily narrow a styleguide and require a separateproduct-fit choice; preserve the existingcategory while correcting surroundingcopy.",
+    "limits": "French before-state is not all17market or checkout proof. Do not cite the earlier richclick capture that remained onthearticle as a collection read. Runtimeall17nativeCTAjourneys remain required.",
+    "source_href": "/collections/pajamas",
+    "no_added_locale_prefixes": true
+  },
+  "authority_and_guards": {
+    "authority": "Existing directownerautomaticrepair instruction is supplied byparent; review grants no independentapproval or spendauthority.",
+    "required_before_write": "Root rereads exactArticle/all20localecontainers and currentEnglishbodydigest; all releasedmetadata,nonbodyvalues and17beforehashes must match, with solewriter coordination. Stop on drift or platformrefusal.",
+    "source_digest_limit": "Englishbody sourceDigest binds source freshness, not CAS on a concurrent localizedbody writer. Per-locale freshbeforevaluechecks are essential.",
+    "after": "SeparateAPI exact17bodies and preservednonbody/sourcefields; all17normalMAINnewblocks/heads/targetedhrefs, actualshoppingCTA to populatedlocale-preserving pajamacategory; representative narrowRTL andLatin; restoreviewport/Englishguide."
+  },
+  "rollback": {
+    "verdict": "PASS_CONTENT_ONLY_GUARDED_INVERSE",
+    "bytes": "All17frozenbeforebodyvalues independently match rollbackvariables and exactinverse. Restore only actuallychangedlocales after currentcandidatehash and unchangedEnglishdigest checks.",
+    "limits": "No prior-translation-valueCAS. Content restoration may leaveoutdatedfalse and differenttimestamps. Do not mutateEnglishsource toforceflags; no claim offull-state restoration or fullparity."
+  },
+  "remaining_open": "Old child/baby upsizing and other untranslated Englishrepairclauses outside these50blocks remainopen even if17bodyoutdatedflags clear. No new pl/ru/sv bodies; no full-language,checkout orproduct-safety certification.",
+  "measurement_limit": "English223impression/0clickbaseline is not localizeddemand. The Shopify8retainedpaidstatusorders/$734.99merchandise baseline is not proof of8ad-attributedorders. No increase inrankings,incrementaltraffic,retainedsales orprofit verified bythis preflight.",
+  "next_action": "Root freshguard, then the existingauthorizedsinglebodyregistration and scopedAPI/nativejourneys. A later independentpostreview must assess actualresult; this report doesnot claim implementation.",
+  "reviewer_external_writes": 0,
+  "reviewer_browser_actions": 0,
+  "reviewer_canonical_edits": 0
+}

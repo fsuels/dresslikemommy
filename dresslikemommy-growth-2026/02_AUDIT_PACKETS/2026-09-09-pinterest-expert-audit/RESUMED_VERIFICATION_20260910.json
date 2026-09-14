@@ -1,0 +1,119 @@
+{
+  "schema": "dlm.pinterest.resumed-verification.v1",
+  "assembled_at_utc": "2026-09-10T18:04:39.350463+00:00",
+  "anchor": "2026-09-10-pinterest-organic-release-and-source-repair",
+  "overall_status": "LIVE_REPAIRS_VERIFIED__TRACKING_ACCEPTANCE_OPEN",
+  "changes": {
+    "organic_pins_published": 1,
+    "new_pin_id": "343118065387544334",
+    "description_correction_same_pin_saves": 1,
+    "board_description_saves": 1,
+    "failed_source_ingestion_pauses": 1,
+    "source_deletions": 0,
+    "product_or_barcode_or_stock_writes": 0,
+    "pixel_or_consent_configuration_writes": 0,
+    "theme_publications": 0,
+    "campaign_or_spend_writes": 0
+  },
+  "native_verification": {
+    "published_pin_fields_after_full_reload": true,
+    "actual_visit_site_and_utm_readback": true,
+    "board_description_after_full_reload": true,
+    "source_unpause_menu_after_full_reload": true
+  },
+  "local_and_source_checks": {
+    "mapping_fixture_assertions_passed": 11,
+    "parent_saved_receipt_comparisons_passed": 16,
+    "invalid_gtin_sample_barcode_null": 4,
+    "out_of_stock_sample_current_shopify_unavailable": 10,
+    "json_receipts_parsed": 5,
+    "stored_feed_grouping_guard": {
+      "exit_code": 0,
+      "snapshots_scanned": 10,
+      "fail": 0,
+      "warn": 3,
+      "error": 0,
+      "scope": "Stored historical snapshots, not live all-market grouping certification"
+    }
+  },
+  "outcomes": {
+    "incremental_traffic_verified": false,
+    "sales_or_profit_improvement_verified": false,
+    "first_full_reporting_date": "2026-09-11",
+    "review_dates": [
+      "2026-09-18",
+      "2026-09-25",
+      "2026-10-11"
+    ],
+    "qa_exclusion_required": true,
+    "automation_created": false
+  },
+  "remaining": [
+    "Tag AddPaymentInfo Product ID percentage and managed app-pixel diagnostic",
+    "CAPI missing product/click fields cause and supported correction",
+    "Genuine purchase value, currency, discount, order identity and deduplication",
+    "Actual catalog-ID matching and current all-market grouping",
+    "Managed-feed refresh propagation and warning-summary conflict",
+    "Combined consent publication and receiver consent/managed Arabic content",
+    "Paid launch metric/cap/authority/economics"
+  ],
+  "access": {
+    "two_coordinate_click_failures": "noWindowsAvailable",
+    "system_settings_read_later_succeeded": true,
+    "chrome_shared_surface": "RELEASED_TO_MERCHANT",
+    "unsaved_form_from_this_task": false,
+    "missing_permission_or_mac_lock_inferred": false
+  },
+  "communication": {
+    "detailed_private_internal_handoff": "AUTO_REVIEW_REJECTED_NOT_RETRIED",
+    "later_minimal_surface_release": "SENT_SUCCESSFULLY",
+    "provider_packet": "DRAFT_NOT_SENT"
+  },
+  "receipt_sha256": {
+    "SUNSHINE_EXECUTION_20260910.json": "754387f952a3c0edecb181f5f5e6f5df916bf97d0d7b1863934d94b5e258b4b5",
+    "BOARD_DESCRIPTION_REPAIR_20260910.json": "5cd256cea68c122643b4bb3b03eb9174626f3eb6da84afefb64783a3c3f47766",
+    "FAILED_SOURCE_PAUSE_20260910.json": "67e3570c1617c706aa2f3cf79259abae41106a8ce0ea4adfae9bb781a52f32f9",
+    "NATIVE_HEALTH_20260910.json": "f93858d87712f0043880c1b1023a8e386ee4d337779d7d22765e2e85d5122bd7",
+    "CATALOG_RECONCILIATION_20260910.json": "be3fc066ec0dfcf3294bf8bf80859931d9f0ad257a529c8429aeb116f1ba1a99",
+    "TRACKING_MAPPING_REVIEW_20260910.md": "f67ffcd9e51d6e0089b9521b64077239cf925125bfe41ebeefb46947334b16b5",
+    "CLOSEOUT_INDEPENDENT_REVIEW_20260910.md": "d17764911abf81c784ea986b055cb4b24ed32f98610b6ad7d7824a105cad11fd",
+    "CANONICAL_CLOSEOUT_20260910.json": "07a3c340f15b9fc8a4cc8a037df129b7c400aab5bf760801a7b3ada0e2f470f0"
+  },
+  "canonical_closeout": {
+    "status": "VERIFIED",
+    "evidence": "CANONICAL_CLOSEOUT_20260910.json",
+    "checks": {
+      "cockpit_render": "PASS",
+      "command_integration": {
+        "status": "PASS",
+        "files": 25,
+        "risks": 0
+      },
+      "strict_continuity": {
+        "status": "PASS",
+        "checks": 10,
+        "result": "CONTINUITY_OK"
+      },
+      "scoped_git_diff_check": "PASS",
+      "canonical_after_hashes": 11,
+      "paid_control_bytes_unchanged": 506,
+      "TA_11_completed_TA_12_open": "PASS",
+      "rendered_html_task_content": "PASS"
+    }
+  },
+  "parent_review_limit": "The 16-check parent comparison used the execution receipt before its metadata-only board-status correction; original SHA256 d1fbb2d2c5bad1646dac222b2b83b32352ba53ea0e190d1c0a4a4d4a66e024f0.",
+  "independent_closeout_review": {
+    "status": "PASS",
+    "reviewer": "release_verifier",
+    "initial_consistency_checks": 26,
+    "followup_checks": 10,
+    "native_or_external_verification": false,
+    "corrections": [
+      "Error100 observed at inspected occurrence, not established for all ten failed runs",
+      "Carried board-status plan metadata superseded by actual execution checks",
+      "Shopify availability field spelling corrected"
+    ],
+    "evidence": "CLOSEOUT_INDEPENDENT_REVIEW_20260910.md"
+  },
+  "completed_at_utc": "2026-09-10T18:20:23.133128+00:00"
+}

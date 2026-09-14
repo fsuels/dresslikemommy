@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "task": "TA-15",
+  "reviewed_at_utc": "2026-09-14T10:50:09.398321+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "classification": "VERIFY",
+  "verdict": "SOURCE_PREREQUISITES_RECONCILED_WITH_LIMITS",
+  "microsoft_receiver_acceptance": "NOT_VERIFIED_BY_THIS_REVIEW",
+  "source_bindings": {
+    "shopify_checkpoint": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_0704.json",
+      "sha256": "7eab5039ded43cceada676ca48778e97554c3e1610f976b840399dfccbd6c3fd"
+    },
+    "checkpoint_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_review.json",
+      "sha256": "b990fb65b995823d5f82820c2a29237cc025771cc67a6518f3c9ee9e2eed2f47"
+    },
+    "ga4_receiver_v2": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/GA4_REAL_PURCHASE_RECEIVER_20260914_0718_v2.json",
+      "sha256": "3f829246566c87089456d80ae355d6b5be8c4ea85dbd988a964081737c1c33a1"
+    },
+    "purchase_candidate": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/REAL_PURCHASE_CANDIDATE_20260914_0656.json",
+      "sha256": "911e20bb2b92c01ef699673d8b93c5ea130eedbfe226e922a1581cf21339d04d"
+    }
+  },
+  "check_count": 22,
+  "checks": [
+    {
+      "name": "four_sanitized_source_hashes",
+      "pass": true,
+      "evidence": "All four selected source files match the hashes observed at the start of this review."
+    },
+    {
+      "name": "checkpoint_separate_review_binding",
+      "pass": true,
+      "evidence": "The separate prior review binds the current checkpoint; its96 source checks are not claimed as checks executed by this reviewer."
+    },
+    {
+      "name": "ga4_v2_candidate_binding",
+      "pass": true,
+      "evidence": "The later GA4 v2 receiver receipt binds the exact sanitized candidate source."
+    },
+    {
+      "name": "genuine_paid_non_test_web_candidate",
+      "pass": true,
+      "evidence": "A genuine positive-value web transaction is source-reported; PAID is financial status, not paid-media attribution."
+    },
+    {
+      "name": "usd_shop_and_presentment_amounts",
+      "pass": true,
+      "evidence": "Both shop and presentment currency are USD in the candidate."
+    },
+    {
+      "name": "total_subtotal_tax_shipping_refund",
+      "pass": true,
+      "evidence": "Order total and merchandise subtotal eachUSD111.96; tax, shipping and recorded refund amounts zero at capture."
+    },
+    {
+      "name": "four_public_variants_quantities_prices",
+      "pass": true,
+      "evidence": "Four public variants, quantity1 each; unit amounts equal line totals because every quantity is1. These are order amounts, not current storefront prices."
+    },
+    {
+      "name": "decimal_line_arithmetic",
+      "pass": true,
+      "evidence": "24.99 +24.99 +26.99 +34.99 =111.96, exactly4units."
+    },
+    {
+      "name": "checkpoint_new_cohort_reconciliation",
+      "pass": true,
+      "evidence": "One new qualifying4unit/USD111.96 record agrees across the later full checkpoint and candidate; no private identity is copied."
+    },
+    {
+      "name": "source_pagination_limits",
+      "pass": true,
+      "evidence": "Requested candidate/order-line scope is terminal according to the retained receipts; no new API read is performed."
+    },
+    {
+      "name": "creation_and_reporting_date_conversion",
+      "pass": true,
+      "evidence": "Creation is September14 UTC but September13 New York; processing is recorded7seconds earlier, preserved without inventing a cause."
+    },
+    {
+      "name": "creation_within_candidate_and_checkpoint_windows",
+      "pass": true,
+      "evidence": "Creation falls inside both recorded source windows."
+    },
+    {
+      "name": "ga4_reporting_day_currency_qualified",
+      "pass": true,
+      "evidence": "GA4 September13 New York corresponds to [September13 04:00UTC,September14 04:00UTC); reported currency is USD, raw event currency remains unverified."
+    },
+    {
+      "name": "ga4_reported_transaction_and_value",
+      "pass": true,
+      "evidence": "The source reports one GA4 transaction and exact private identity match, withUSD111.96. This reviewer did not inspect/replay the private identity comparison."
+    },
+    {
+      "name": "ga4_public_variant_report_match",
+      "pass": true,
+      "evidence": "Four public catalog variant suffixes, quantities and revenues match the candidate at report level; item report is not transaction-joined raw event proof."
+    },
+    {
+      "name": "provisional_candidate_then_receiver_evidence",
+      "pass": true,
+      "evidence": "The candidate provisional UNVERIFIED flag predates the later bound GA4 report receipt; originals are preserved rather than rewritten."
+    },
+    {
+      "name": "raw_currency_and_consent_limits",
+      "pass": true,
+      "evidence": "Raw event value/currency/items and consent/session ordering are not established by property reports."
+    },
+    {
+      "name": "sender_dedup_not_inferred",
+      "pass": true,
+      "evidence": "One visible transaction can coexist with duplicate sender events or downstream deduplication; sender uniqueness is unproved."
+    },
+    {
+      "name": "paid_attribution_remains_unknown",
+      "pass": true,
+      "evidence": "Direct/noUTM Shopify journey and GA4 campaign not-set neither prove nor exclude Microsoft attribution under other attribution models."
+    },
+    {
+      "name": "ads_profit_and_launch_not_accepted",
+      "pass": true,
+      "evidence": "No Microsoft receiver, attribution, retained profit, international accuracy or launch-readiness gate is closed by these files."
+    },
+    {
+      "name": "privacy_boundaries_preserved",
+      "pass": true,
+      "evidence": "Only the four sanitized files were opened. No private source, transaction/order/customer identifier or private digest is included in this review."
+    },
+    {
+      "name": "sources_unchanged",
+      "pass": true,
+      "evidence": "All four source hashes remain unchanged before this reviewer writes the assigned output."
+    }
+  ],
+  "minimum_source_facts": {
+    "genuine_order_status": "Source-reported non-test PAID web order, uncancelled and unfulfilled at capture.",
+    "value_usd": "111.96",
+    "currency": "USD",
+    "shop_and_presentment_currency": "USD",
+    "units": 4,
+    "merchandise_subtotal_usd": "111.96",
+    "tax_usd": "0.00",
+    "shipping_usd": "0.00",
+    "recorded_refund_usd": "0.00",
+    "created_at_utc": "2026-09-14T03:39:45Z",
+    "created_at_new_york": "2026-09-13T23:39:45-04:00",
+    "processed_at_utc": "2026-09-14T03:39:38Z",
+    "candidate_query_window": {
+      "from_inclusive": "2026-09-14T03:00:36Z",
+      "until_exclusive": "2026-09-14T06:59:06Z"
+    },
+    "later_checkpoint_capture_utc": {
+      "started": "2026-09-14T07:04:53Z",
+      "completed": "2026-09-14T07:04:54Z"
+    },
+    "ga4_report_day": "2026-09-13",
+    "ga4_report_timezone": "America/New_York",
+    "ga4_report_day_window_utc": {
+      "start_inclusive": "2026-09-13T04:00:00Z",
+      "end_exclusive": "2026-09-14T04:00:00Z"
+    },
+    "ga4_reporting_currency": "USD",
+    "public_variants_and_order_amounts": [
+      {
+        "public_variant_id": "43740397928545",
+        "quantity": 1,
+        "ordered_unit_amount_usd": "24.99",
+        "line_amount_usd": "24.99"
+      },
+      {
+        "public_variant_id": "43740397863009",
+        "quantity": 1,
+        "ordered_unit_amount_usd": "24.99",
+        "line_amount_usd": "24.99"
+      },
+      {
+        "public_variant_id": "43740397797473",
+        "quantity": 1,
+        "ordered_unit_amount_usd": "26.99",
+        "line_amount_usd": "26.99"
+      },
+      {
+        "public_variant_id": "43740398125153",
+        "quantity": 1,
+        "ordered_unit_amount_usd": "34.99",
+        "line_amount_usd": "34.99"
+      }
+    ]
+  },
+  "receiver_review_prerequisites": [
+    {
+      "need": "Correct Microsoft account and UET receiver identity",
+      "known": "Root-specified account477439 and UET36005151 are targets only; these four sources contain no Microsoft receipt."
+    },
+    {
+      "need": "Correct date and event-time window",
+      "known": "Use the UTC creation/processing timestamps and verify Microsoft reporting timezone/date boundaries. September13 New York is September14 UTC at this transaction time."
+    },
+    {
+      "need": "Purchase-specific receiver/value/currency evidence",
+      "known": "A UET page view, active-tag status, aggregated value or configured goal alone cannot establish receipt of this purchase. Match the actual relevant purchase goal/event andUSD111.96; distinguish reported/default currency from raw currency if unavailable."
+    },
+    {
+      "need": "Exact source-to-receiver identity",
+      "known": "Private order/transaction identifiers are absent from the permitted sanitized sources. The reported GA4 exact match cannot be transferred to Microsoft. Without a supported private exact comparison, label time/value/basket correlation as a candidate match only."
+    },
+    {
+      "need": "Item-level match if asserted",
+      "known": "The four public variant quantities and order amounts are provided. Confirm actual Microsoft item fields when exposed; their absence is an evidence limit, not automatically a broken conversion tag."
+    },
+    {
+      "need": "Sender duplication, consent and paid attribution assessed separately",
+      "known": "A single downstream reported transaction does not prove one sender event, correct consent ordering, Microsoft click linkage or attributed paid revenue. Those claims require their own evidence."
+    }
+  ],
+  "adverse_interpretation": "An apparent MicrosoftUSD111.96 result on the matching reporting day could still be an aggregate/coincidental or deduplicated value. One genuine Shopify order and one GA4 transaction do not prove the Microsoft sender fired correctly, Microsoft caused the sale, or acquisition was profitable. Exact identity, receiver payload scope and attribution must remain separate.",
+  "limits": [
+    "This is a local reconciliation of sanitized source reports, not an independent live replay of Shopify, GA4 or Microsoft.",
+    "No private identity value is available or accessed for a new exact Microsoft join. Source-reported GA4 private matching is not independently replayed here.",
+    "The GA4 item report is aggregate; raw purchase value/currency/items, consent/session order and sender deduplication remain open.",
+    "Intraday reporting may change. Order/fulfillment source captures are sequential rather than atomic; all statuses and amounts are dated.",
+    "No new API/browser/Shopify calls, contact, source/canonical changes, consent workaround, test event, purchase or paid action were performed or authorized."
+  ],
+  "next_action": "Root should inspect the Microsoft purchase receiver against these source facts and label any unresolved identity, currency or payload fields explicitly. Preserve existing ownership, pending contact and paid authority."
+}

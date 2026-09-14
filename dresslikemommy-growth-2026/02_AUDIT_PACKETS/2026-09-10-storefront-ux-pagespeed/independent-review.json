@@ -1,0 +1,54 @@
+{
+  "recordedAt": "2026-09-10T01:52:24.383Z",
+  "themeId": "gid://shopify/OnlineStoreTheme/137888792673",
+  "status": "FINAL_PREVIEW_SOURCE_AND_RENDERED_VERIFIED__OWNER_PUBLICATION_PENDING",
+  "stages": [
+    {
+      "stage": "clone",
+      "reviewer": "/root/theme_audit_review",
+      "result": "PASS",
+      "scope": "Clone current combined137881223265 into a separate unpublished theme; preserve original themes."
+    },
+    {
+      "stage": "V1",
+      "reviewer": "/root/theme_audit_review",
+      "result": "PASS",
+      "scope": "Exact10-file apply and inverse; source/preservation boundaries."
+    },
+    {
+      "stage": "V2",
+      "reviewer": "/root/theme_audit_review",
+      "result": "PASS",
+      "scope": "Hero overlay display:block correction."
+    },
+    {
+      "stage": "V3",
+      "reviewer": "/root/theme_audit_review",
+      "result": "PASS",
+      "scope": "Exact4-file locale and mobile-cart followup payload and inverse."
+    },
+    {
+      "stage": "V4",
+      "reviewer": "/root/theme_audit_review",
+      "result": "PASS",
+      "scope": "One hero file; route guards and existing ES/DA label keys; styles/scripts/picture markup unchanged.",
+      "applySha256": "d9114a52bfbbae9f4fde1b9a2aab3d8ae6d11cf92a65ac109e8830f165eb5bcc",
+      "heroSha256": "fb6c0f46d86be0052eb4c6f745cbcf115456c4701165769c53200f637ed540bd",
+      "rollbackMd5": "805859721958dd404c719ff8e7b68cca"
+    },
+    {
+      "stage": "V5",
+      "reviewer": "/root/theme_audit_review",
+      "result": "PASS",
+      "scope": "Exact2-file footer/DA payload and inverse; only3DA values and heading resolver changed; other locale/footer/consent content preserved. Eight contract checks independently passed.",
+      "applySha256": "2555e0c19f511f7148726a50acd094b21342bd5d77904319ee7199fadd52b2d5",
+      "rollbackSha256": "b8169d266c44f9f8a5bc633687e67801bb43d6726a328d7cb3f59f6dc860fad2"
+    }
+  ],
+  "independence": "Reviewer did not build or execute the root mutations. Root performed the live browser journeys; reviewer inspected saved evidence and independently ran bounded source/regression checks.",
+  "reviewLimits": [
+    "No production publication approval is conferred by review.",
+    "No independent second live browser replay or conversion outcome certification."
+  ],
+  "postwriteRootVerification": "Full527 source readback exact14 staged changes/513preserved fromcombined; MAIN/combined unchanged; DA/ES/EN actual rendered footer passed."
+}

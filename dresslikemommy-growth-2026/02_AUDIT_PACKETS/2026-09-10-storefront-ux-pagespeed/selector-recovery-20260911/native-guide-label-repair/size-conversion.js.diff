@@ -1,0 +1,13 @@
+--- staged-four-file/assets/size-conversion.js
++++ proposed/assets/size-conversion.js
+@@ -326,6 +326,10 @@
+         if (!sizeCell) return;
+ 
+         const rawValue = sizeCell.getAttribute("data-size-display-raw") || String(sizeCell.textContent || "").trim();
++        if (tableElement.closest('[data-matching-set-fallback="true"]')) {
++          if (sizeCell.textContent !== rawValue) sizeCell.textContent = rawValue;
++          return;
++        }
+         const exactDisplayLabel = getFrontendSizeDisplayLabel(rawValue);
+         const displayLabel = exactDisplayLabel !== rawValue
+           ? exactDisplayLabel

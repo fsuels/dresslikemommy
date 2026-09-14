@@ -1,0 +1,94 @@
+{
+  "schema": "dlm.passive_sender_operator_checks.v1",
+  "action": "TA02-PASSIVE-SENDER-20260914-0846",
+  "scope": "Saved artifact consistency and predecessor hashes; no added runtime evidence",
+  "status": "PASS_FOR_CORRECTED_ARTIFACT_CONSISTENCY_ONLY",
+  "checks": [
+    {
+      "name": "Predecessor hash: execution_checkpoint.json",
+      "status": "PASS"
+    },
+    {
+      "name": "Predecessor hash: DIAGNOSIS.json",
+      "status": "PASS"
+    },
+    {
+      "name": "Predecessor hash: INDEPENDENT_REVIEW.json",
+      "status": "PASS"
+    },
+    {
+      "name": "Single bounded reload",
+      "status": "PASS"
+    },
+    {
+      "name": "No forced session or inference of new session",
+      "status": "PASS"
+    },
+    {
+      "name": "Debugger record counts reconcile",
+      "status": "PASS"
+    },
+    {
+      "name": "No observed buffer loss or undrained tail",
+      "status": "PASS"
+    },
+    {
+      "name": "Source coverage limitation explicit",
+      "status": "PASS"
+    },
+    {
+      "name": "Incomplete collector filter cannot establish sender presence or absence",
+      "status": "PASS"
+    },
+    {
+      "name": "All four named consent states remain unknown",
+      "status": "PASS"
+    },
+    {
+      "name": "No session_start defect inferred",
+      "status": "PASS"
+    },
+    {
+      "name": "MAIN before-after target preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "Scope mutation counters remain zero",
+      "status": "PASS"
+    },
+    {
+      "name": "Privacy export counters remain zero",
+      "status": "PASS"
+    },
+    {
+      "name": "Diagnostics and disposable tab closed",
+      "status": "PASS"
+    },
+    {
+      "name": "Measurement acceptance remains PARTIAL",
+      "status": "PASS"
+    },
+    {
+      "name": "Parent owns shared integration",
+      "status": "PASS"
+    },
+    {
+      "name": "Review-discovered collector omission disclosed in JSON and narrative",
+      "status": "PASS"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "OBSERVATION.json",
+      "sha256": "3fab3be81f3f184ec10a4cb69730e8c041e586e383b637fd5224a2b305c26181"
+    },
+    {
+      "path": "READBACK.md",
+      "sha256": "b672e4f0836ed6f3c20b099385ee47ecb5b82dea0e3fb53ceb00be127bd4eac7"
+    }
+  ],
+  "runtime_acceptance": {
+    "status": "FAILED_COLLECTOR_SUMMARY_COVERAGE__REQUIRED_SEQUENCE_UNKNOWN",
+    "reason": "The actual matcher omitted analytics.google.com/g/collect. Raw ephemeral records are unavailable, so this attempt cannot be reprocessed; no second capture occurred. Static checks do not turn this into runtime acceptance."
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "schema": "dlm.google_ads_followup_evidence.v1",
+  "recorded_at_utc": "2026-09-12T14:58:23Z",
+  "trigger": {
+    "automation_id": "google-ads-markets-and-purchase-follow-up",
+    "fired_at_utc": "2026-09-12T14:49:18.483Z"
+  },
+  "decision": "RESTORED_REVIEWED_EDITOR_DRAFT_AND_RETAINED_LIVE_HOLD",
+  "ads": {
+    "customer_id_retained": "6509972886",
+    "campaign_id": "24247604341",
+    "asset_group_id": "6746545742",
+    "identity_basis": "Same assigned IAB session1; exact ocid8520129103 campaign/asset-group URL and sole Campaign #1 / Asset Group1. Customer ID is retained from the verified account binding; account picker not reopened.",
+    "status": "PAUSED",
+    "configured_average_daily_budget_usd": 5,
+    "today": {
+      "date": "2026-09-12",
+      "timezone": "America/New_York",
+      "partial": true,
+      "impressions": 0,
+      "clicks": 0,
+      "cost_usd": 0,
+      "conversions": 0,
+      "conversion_value": 0,
+      "asset_group_and_campaign_totals_agree": true
+    },
+    "yesterday": {
+      "date": "2026-09-11",
+      "timezone": "America/New_York",
+      "impressions": 356,
+      "clicks": 5,
+      "cost_usd": 0.8,
+      "ctr_percent_displayed": 1.4,
+      "average_cpc_usd_displayed": 0.16,
+      "conversions": 0,
+      "conversion_value": 0,
+      "asset_group_and_campaign_totals_agree": true,
+      "reporting_limit": "Google reporting is not real-time and may be adjusted; asset performance rows were not summed."
+    },
+    "search_themes_displayed": [
+      "mommy and me dresses",
+      "mother daughter matching outfits"
+    ],
+    "audience_signals_displayed": "No audience signals provided.",
+    "saved_copy": {
+      "source": "Fresh saved asset details, asset-group table and original editor fields in task-owned tab13.",
+      "reviewed_copy_saved": false,
+      "original_headline_examples": [
+        "Standard Shipping Included",
+        "Create Lasting Memories"
+      ],
+      "original_long_headline": "Shop Airy Four-Layer Cotton Gauze Pajamas & Chiffon Mommy and Me Dresses Today",
+      "original_description": "Keep the whole group in one clear color story with daddy and me shirts.",
+      "ad_strength_displayed": "Poor",
+      "last_updated_asset_report_label": "Sep 11, 2026 1:45 PM"
+    },
+    "editor_recovery": {
+      "former_tab_id": "8",
+      "former_tab_absent_from_fresh_inventory": true,
+      "disappearance_cause": "UNKNOWN",
+      "new_editor_tab_id": "13",
+      "provider_tab_id": "browser-use:c89eed6d-ae6a-470d-846b-36e8b2ae3008",
+      "browser_id": "1",
+      "url": "https://ads.google.com/aw/assetgroup/edit?campaignId=24247604341&ocid=8520129103&assetgroupId=6746545742&returnTo=%2Faw%2Fassetgroup%3FcampaignId%3D24247604341%26ocid%3D8520129103%26assetGroupTableMode%3Dtrue&euid=228618707&__u=2136917243&uscid=8520129103&__c=1852023447&authuser=0",
+      "exact_before_fields_matched": 18,
+      "reviewed_fields_restored": 18,
+      "all_textbox_checks_passed": 27,
+      "comparison_basis": "Current full DOM textbox lines equal the previously verified exact reviewed draft after stripping only the focus annotation [active]. Native accessibility readback separately shows all27 expected values.",
+      "full_regions_unchanged": [
+        "Images",
+        "Videos",
+        "Sitelinks"
+      ],
+      "selected_logos_unchanged": true,
+      "initial_full_logo_region_comparison": "FAILED because the suggestion panel changed from Looking for logos to suggest to four unselected suggestions. The region heading, both selected logo labels and Edit media control are identical. No suggested asset was selected.",
+      "final_url_unchanged": true,
+      "mark_handoff_called": true,
+      "save_attempts": 0,
+      "identity_attempts": 0,
+      "identity_completion": "UNVERIFIED",
+      "saved_after_state": "NOT_SAVED_NOT_CLAIMED",
+      "ad_strength_displayed": "Poor",
+      "remaining_quality_gaps_displayed": [
+        "Add 3 more horizontal images",
+        "Videos: 0",
+        "Add 5 more sitelinks"
+      ],
+      "new_copy_or_creative_authored": false,
+      "limits": "No Save, Apply, upload or operating-setting change. The absence of the old identity/error dialog in a reopened form does not resolve the earlier Save/verification failure."
+    },
+    "ui_warning": "Existing Turn off ad blockers text occurs in the DOM. Native account read navigation worked; no browser setting or extension changed and no claim of a visible blocking dialog."
+  },
+  "shopify": {
+    "window": {
+      "from_inclusive": "2026-09-12T10:49:23Z",
+      "until_exclusive": "2026-09-12T14:49:48Z"
+    },
+    "query": "query AdsHeartbeatSep12AfternoonOrderCounts {\nshop { id name ianaTimezone }\nallNew: ordersCount(query:\"created_at:>='2026-09-12T10:49:23Z' created_at:<'2026-09-12T14:49:48Z'\",limit:null){count precision}\nwebNonTest: ordersCount(query:\"created_at:>='2026-09-12T10:49:23Z' created_at:<'2026-09-12T14:49:48Z' source_name:web test:false\",limit:null){count precision}\npaidWebNonTest: ordersCount(query:\"created_at:>='2026-09-12T10:49:23Z' created_at:<'2026-09-12T14:49:48Z' source_name:web test:false financial_status:paid\",limit:null){count precision}\n}",
+    "result": {
+      "shop": {
+        "id": "gid://shopify/Shop/15571635",
+        "name": "Dress Like Mommy",
+        "ianaTimezone": "America/New_York"
+      },
+      "allNew": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "webNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "paidWebNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      }
+    },
+    "workflow": "QueryRoot/Count/Shop schema discovery; operation validated VALID; read-only query.",
+    "limits": [
+      "Creation-only delta. Older payment, cancellation, refund and fulfillment states were not reread.",
+      "No new genuine purchase candidate. This is not evidence of a tracking failure.",
+      "No customer identity, order ID, payment details or address requested."
+    ]
+  },
+  "purchase_receiver": {
+    "new_GA4_report_read": "NOT_RUN",
+    "reason": "No new genuine purchase candidate; do not repeat a zero-transaction report as purchase validation.",
+    "property_id": "330266838",
+    "Ads_purchase_action": "7760272273",
+    "acceptance": "UNVERIFIED",
+    "existing_property_settings_receipt": "GA4_PROPERTY_SETTINGS_20260912.json",
+    "existing_tab9_location": "GA4 Property details; preserved, not reread this pass.",
+    "synthetic_or_replayed_events": 0
+  },
+  "market_drafts": {
+    "status": "HELD_LOCAL_PREPARATION",
+    "countries": [
+      "US",
+      "AU",
+      "GB",
+      "CA"
+    ],
+    "latest_source_payload": "research/SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+    "latest_source_payload_sha256": "99aad3484b86cf758412a037c9cdb0361da8800cebe781ec5ba1f54ac95218c8",
+    "current_turn_changes": 0,
+    "source_limit": "Earlier dated GB source refresh and independent23/23 review already integrated by parent. No new feed, public route, Merchant eligibility or live price request; no market promoted."
+  },
+  "prior_copy_review": {
+    "payload": "COPY_CHANGE_PLAN.json",
+    "payload_sha256": "b1b7a7a475f6bec8beb7769dbcaf87981b83facb515635790bf449c9d0fa0a15",
+    "review": "review/EXACT_COPY_PRE_SAVE_REVIEW.json",
+    "review_verdict": "PASS_WITH_LIMITS",
+    "review_checks": 15,
+    "reviewer_provenance": "tag_repair_review was independent of final payload assembly and native execution but contributed preliminary wording. This is a reused review of an unchanged payload, not a new fully independent creative or native-execution review."
+  },
+  "preserved_parent_context": {
+    "owner": "01a08223-036e-7fa3-8961-ecd297163fb5",
+    "shared_canonical_writer": "Parent retains integration; this task did not edit shared files.",
+    "next_full_sales_read_utc": "2026-09-12T20:24:58Z",
+    "existing_owner_action": "Owner Admin publication of already verified existing theme137888792673; no duplicate request here.",
+    "other_platform_owners_preserved": true
+  },
+  "actions": {
+    "unsaved_editor_field_fills": 18,
+    "campaign_save_apply": 0,
+    "budget_bid_status_goal_changes": 0,
+    "keyword_negative_imports": 0,
+    "new_campaigns": 0,
+    "creative_uploads": 0,
+    "feed_mutations": 0,
+    "tracking_consent_changes": 0,
+    "public_storefront_requests": 0,
+    "purchases_payments": 0,
+    "shared_canonical_writes": 0,
+    "user_tab4_untouched": true,
+    "GA4_tab9_preserved": true,
+    "native_Chrome_used": false
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-12T14:58:23Z",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "exact_preparation_authority": "Existing current-campaign quality repair and reviewed reversible preparation; restoring the same18 fields does not authorize a new launch or spend.",
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "Normal owner Google Save/identity result, genuine transaction receiver match, qualified market/buyer/economic evidence and exact paid authority.",
+    "if_evidence_supports_recommendation": "Resume only the corresponding authorized repair or prepared market gate after exact readback.",
+    "if_evidence_opposes_recommendation": "Preserve drafts and dated evidence; do not repeat unchanged authentication attempts or enable spend.",
+    "verifier_independence": "CURRENT_UI_RESTORATION_SEQUENTIAL_READBACK; PRIOR_COPY_REVIEW_PROVENANCE_RETAINED"
+  },
+  "runtime_goal": {
+    "status_from_get_goal": "BLOCKED",
+    "new_goal_created": false,
+    "goal_status_changed": false,
+    "complete": false
+  },
+  "continuation_source": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "next_action": "Parent integrates this dated tab13 handoff and creation-count delta. The existing normal owner Save/Google identity step remains pending; do not ask it again or treat tab replacement as completed verification.",
+  "verification": {
+    "draft_text_readback": "PASS_27_OF_27",
+    "restored_fields": "PASS_18_OF_18",
+    "protected_selected_assets": "PASS_WITH_DOCUMENTED_ASYNC_SUGGESTION_DIFFERENCE",
+    "native_accessibility_readback": "PASS",
+    "receipt_and_frozen_file_checks": "PASS_10_OF_10",
+    "strict_continuity": "PASS_10_OF_10_CONTINUITY_OK",
+    "scope": "Unsaved reversible draft restoration and bounded read-only follow-up."
+  }
+}

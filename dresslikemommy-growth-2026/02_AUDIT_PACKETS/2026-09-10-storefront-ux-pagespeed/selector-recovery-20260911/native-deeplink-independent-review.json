@@ -1,0 +1,58 @@
+{
+  "schema": "dlm.native-deeplink-independent-review.v1",
+  "reviewed_at_utc": "2026-09-11T22:34:00Z",
+  "reviewer": "theme_audit_review",
+  "verdict": "PASS_WITH_LIMITS",
+  "scope": "Independent source and offline regression review of the four-line native-fallback confirmation guard. No reviewer browser/API/canonical actions or source edits.",
+  "target": {"theme_id": "137888792673", "role": "UNPUBLISHED", "filename": "sections/main-product.liquid"},
+  "approved_boundary": "Stage this exact reviewed file after root's fresh current-source guard, inverse and completed composite check. It remains within the existing four-file union. No publication or rendered buyer acceptance is implied.",
+  "baseline": {
+    "sha256": "754fab75e951e02ce26fb69f3d9ec633d19eafa4e081239b93ed20feeffcd429",
+    "md5": "90c30ffea4c784f7dea0f822f9a0c42f",
+    "bytes": 190415,
+    "saved_readback": "native-guide-label-repair/after-source.json",
+    "saved_readback_at_utc": "2026-09-11T22:26:31.785Z",
+    "saved_preview_md5_and_size_match": true
+  },
+  "proposal": {
+    "sha256": "01a345e7d32c7bb23c6ba159c9388d7f9a839116378a56ef3fdcb351f1f3e6f1",
+    "md5": "77eeac1100e8c1fdcd7cdef060872fff",
+    "bytes": 190639,
+    "path": "native-deeplink-repair/proposed/sections/main-product.liquid",
+    "manifest_sha256": "6612041882bf1f9735ed9a409127d151dd68ed7bc465f6a91b704f0b4cbf8141",
+    "removing_only_four_line_guard_reconstructs_staged_baseline": true
+  },
+  "findings": [
+    "The existing mobile sticky captures unconfirmed flags before the deferred native fallback runs. The new guard adopts complete native size/color selections only when Shopify emits a selected variant ID.",
+    "The handler remains restricted to its own section and active matching-to-native transition. Native target rebinding and class removal precede state inspection; observer reattachment and state synchronization follow it.",
+    "The guard does not choose a variant or modify options, price, quantity or hidden form ID. Incomplete visible controls still require selection. Native disabled-state and missing-option checks remain unchanged.",
+    "No current source defect was found. Supported matching-set flows do not emit this fallback event, and another section's event is ignored."
+  ],
+  "selected_variant_semantics": {
+    "contract_used": "product.selected_variant is the selected-variant property, distinct from selected_or_first_available_variant. The proposal consumes Shopify's resolved ID rather than treating any raw URL parameter as valid.",
+    "local_support": "Existing variant-deep-link-20260911/READBACK.md records a valid server-selected variant ID and successful exact-variant Add. The current root observation also has the correct E1 checked variant and price before this UI confirmation repair.",
+    "limitation": "The offline tests substitute a resolved ID or null; they do not execute Shopify Liquid or independently prove invalid URL handling. No fresh invalid-URL renderer check was performed by this reviewer."
+  },
+  "independent_suite": {
+    "file": "selector-recovery-deeplink.test.mjs",
+    "sha256": "d85d34ec5d3bb2597b44752ad864932e5789a219df3979b8d7e17cc6d2796e30",
+    "parent_result_sha256": "c6b64d299db8fa0a7d35d27c4214a31146b20d1111a316aa2cee4837feeb3d7f",
+    "command": "node --test selector-recovery-20260911/selector-recovery-deeplink.test.mjs",
+    "passed": 13,
+    "failed": 0,
+    "exit_code": 0,
+    "duration_ms": 4653.859375,
+    "runtime_errors": 0,
+    "coverage": "Resolved-ID and null confirmation branches, native disabled Add, both sticky routes, hidden-to-native transition, other-section event, supported bundle routing, exact-source role/coverage holdouts."
+  },
+  "additional_independent_radio_probe": {
+    "basis": "Exact captured E1 SKU/options and nonfirst variant43821479854177, S (Adult Normal Version); actual extracted proposed mobile code plus production builder preflight in jsdom.",
+    "cases": ["Valid complete radio selection enables Add and displays exact raw size", "Missing size radio retains Select size", "Missing color radio retains Select color", "Null server-resolved ID retains Select size"],
+    "passed": 4,
+    "form_variant_id_preserved": true,
+    "exit_code": 0,
+    "runtime_errors": 0
+  },
+  "theme_check_evidence": {"observed_diagnostics": [], "observed_stderr_empty": true, "prepared_theme_files": 527, "checked_asset_matches_reviewed_sha256": true, "reviewer_reran_CLI": false, "note": "Root owns command-completion confirmation and final composite source guard."},
+  "remaining_acceptance": "Root stages and reads back the reviewed file, then reloads the actual E1 Adult Normal link and verifies raw mobile size, enabled ordinary Add, exact variant/cart price and cleanup. Preserve the choice prompt when Shopify resolves no explicit variant. Offline tests are not a second browser replay."
+}

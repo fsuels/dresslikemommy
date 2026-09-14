@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "status": "PASS_LOCAL_AU_SOURCE_TO_FILE_RECONCILIATION",
+  "reviewed_at_utc": "2026-09-11T18:56:18.322261+00:00",
+  "reviewer": "Merchant builder operator; independent reviewer still required",
+  "checks_passed": 33,
+  "checks_total": 33,
+  "checks": {
+    "complete_snapshot": true,
+    "exact_parent_counts": true,
+    "exact_variant_counts": true,
+    "active_parents_only": true,
+    "shop_identity": true,
+    "country_language_currency": true,
+    "catalog_context_stable": true,
+    "eighteen_columns_unchanged": true,
+    "unique_offer_ids": true,
+    "exact_eligible_cohort": true,
+    "all_unavailable_omitted": true,
+    "all_rows_in_stock": true,
+    "row_order_unchanged": true,
+    "no_lifecycle_drift": true,
+    "exact_five_changed_rows": true,
+    "only_price_fields_changed": true,
+    "other_4918_rows_unchanged": true,
+    "old_extreme_prices_removed": true,
+    "all_contextual_prices_exact": true,
+    "exact_group_ids": true,
+    "exact_variant_market_links": true,
+    "paid_shopping_excluded": true,
+    "unconfirmed_return_labels_omitted": true,
+    "no_build_errors": true,
+    "manifest_ids_match": true,
+    "manifest_bytes_and_hash": true,
+    "old_files_frozen": true,
+    "fresh_source_after_price_repair": true,
+    "no_supplier_urls": true,
+    "all_product_variant_and_manifest_pages_complete": true,
+    "bytes_only_five_price_replacements": true,
+    "source_nonprice_parent_fields_unchanged": true,
+    "all_4945_source_variant_records_only_five_contextual_prices_changed": true
+  },
+  "old_sha256": "a7db8ec43fc6caa61054faa13cac4c0575a3a7d7658071ab7c21b0bb518fa184",
+  "new_sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+  "new_bytes": 17284594,
+  "source_started_at": "2026-09-11T18:50:44.476Z",
+  "source_completed_at": "2026-09-11T18:53:09.071Z",
+  "counts": {
+    "parents": 240,
+    "source_variants": 4945,
+    "rows": 4923,
+    "unavailable_omitted": 22,
+    "changed_rows": 5,
+    "unchanged_rows": 4918,
+    "columns": 18
+  },
+  "changed_rows": [
+    {
+      "id": "shopify_AU_7230336729185_41883237220449",
+      "changes": {
+        "price": {
+          "before": "325308.00 AUD",
+          "after": "33.00 AUD"
+        }
+      }
+    },
+    {
+      "id": "shopify_AU_7230336729185_41883237285985",
+      "changes": {
+        "price": {
+          "before": "325308.00 AUD",
+          "after": "33.00 AUD"
+        }
+      }
+    },
+    {
+      "id": "shopify_AU_7230336729185_41883237318753",
+      "changes": {
+        "price": {
+          "before": "325308.00 AUD",
+          "after": "33.00 AUD"
+        }
+      }
+    },
+    {
+      "id": "shopify_AU_7230336729185_41883238465633",
+      "changes": {
+        "price": {
+          "before": "325308.00 AUD",
+          "after": "33.00 AUD"
+        }
+      }
+    },
+    {
+      "id": "shopify_AU_7230336729185_41883238498401",
+      "changes": {
+        "price": {
+          "before": "325308.00 AUD",
+          "after": "33.00 AUD"
+        }
+      }
+    }
+  ],
+  "source_timestamp_drift": [
+    {
+      "product_id": "gid://shopify/Product/7230336729185",
+      "before": "2026-09-07T18:08:05Z",
+      "after": "2026-09-11T17:12:39Z"
+    }
+  ],
+  "source_nonprice_drift": [],
+  "warning_codes": {
+    "identifier_status_unknown": 4798,
+    "missing_age_group": 180,
+    "missing_color": 1027,
+    "missing_gender": 192
+  },
+  "return_exception_rows": 720,
+  "google_submission": "NOT_RUN",
+  "limitations": [
+    "Local candidate only; no Google receipt, approval, serving or sales claim.",
+    "Shopify availableForSale is buyability, not owned physical inventory.",
+    "Existing published numeric variant preselection issue remains separately tracked; this task does not certify all live AU buyer URLs.",
+    "Missing/unknown attributes and return setup remain unresolved; no facts invented."
+  ],
+  "source_variant_delta": [
+    {
+      "variant_id": "gid://shopify/ProductVariant/41883237220449",
+      "fields": [
+        "contextualPricing"
+      ],
+      "before_contextual_price": {
+        "amount": "325308.0",
+        "currencyCode": "AUD"
+      },
+      "after_contextual_price": {
+        "amount": "33.0",
+        "currencyCode": "AUD"
+      }
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/41883237285985",
+      "fields": [
+        "contextualPricing"
+      ],
+      "before_contextual_price": {
+        "amount": "325308.0",
+        "currencyCode": "AUD"
+      },
+      "after_contextual_price": {
+        "amount": "33.0",
+        "currencyCode": "AUD"
+      }
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/41883237318753",
+      "fields": [
+        "contextualPricing"
+      ],
+      "before_contextual_price": {
+        "amount": "325308.0",
+        "currencyCode": "AUD"
+      },
+      "after_contextual_price": {
+        "amount": "33.0",
+        "currencyCode": "AUD"
+      }
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/41883238465633",
+      "fields": [
+        "contextualPricing"
+      ],
+      "before_contextual_price": {
+        "amount": "325308.0",
+        "currencyCode": "AUD"
+      },
+      "after_contextual_price": {
+        "amount": "33.0",
+        "currencyCode": "AUD"
+      }
+    },
+    {
+      "variant_id": "gid://shopify/ProductVariant/41883238498401",
+      "fields": [
+        "contextualPricing"
+      ],
+      "before_contextual_price": {
+        "amount": "325308.0",
+        "currencyCode": "AUD"
+      },
+      "after_contextual_price": {
+        "amount": "33.0",
+        "currencyCode": "AUD"
+      }
+    }
+  ],
+  "source_variant_unchanged_count": 4940
+}

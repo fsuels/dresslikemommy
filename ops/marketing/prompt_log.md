@@ -10,6 +10,8 @@ Primary prompt:
 
 Do not create competing paid-growth continuation prompts. Packet-level prompts may point back to the canonical prompt and name the latest anchor, blockers, and gates.
 
+Retrieval authority: all dated prompts and `Read first` lists below are historical records. For current execution, follow `ops/marketing/AGENTS.md` `Required First Loop`, resolve the latest relevant anchor by exact identifiers, and let `current_marketing_state.md`'s authoritative control supersede stale readiness or approval text.
+
 ## Next Goal: Read-Only Live Reconciliation
 
 ```text

@@ -1,0 +1,16 @@
+query DlmItalianSaleJourney($id:ID!,$after:String){
+ order(id:$id){
+  displayFinancialStatus cancelledAt test
+  currentSubtotalPriceSet{shopMoney{amount currencyCode}}
+  customerJourneySummary{
+   ready daysToConversion momentsCount{count precision}
+   firstVisit{...VisitEvidence}
+   lastVisit{...VisitEvidence}
+   moments(first:50,after:$after){nodes{__typename ... on CustomerVisit{...VisitEvidence}}pageInfo{hasNextPage endCursor}}
+  }
+ }
+}
+fragment VisitEvidence on CustomerVisit{
+ occurredAt source sourceType sourceDescription landingPage referrerUrl referralCode
+ utmParameters{source medium campaign content term}
+}

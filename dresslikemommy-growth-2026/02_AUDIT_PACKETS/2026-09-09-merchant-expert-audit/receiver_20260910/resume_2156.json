@@ -1,0 +1,57 @@
+{
+  "schema": "dlm.merchant.receipt_resume.v1",
+  "anchor": "2026-09-10-merchant-receipt-resume-mac-lock",
+  "recorded_at_utc": "2026-09-10 21:56:33 UTC",
+  "observation_window_utc": "2026-09-10 21:55:29 through 21:56:33 UTC; individual call time not separately recorded",
+  "objective": "Prove actual receipt into existing Shopify source10014302986 in Merchant513542500, or identify the current specific blocker",
+  "authority": "Owner explicitly resumed the existing Merchant task through strategy-review01a08d40 and requested a normal current-access check. Existing bounded nonspend authority persists; general Merchant selection/operation permission is resolved.",
+  "supporting_review": "2026-09-10-merchant-strategy-review/CORRECTED_STRATEGY.md; supporting evidence only, not a new policy or paid authority",
+  "exact_attempt": {
+    "tool": "mcp__cua_repl.js",
+    "operation": "merchantChrome.getAXState({emit:false,disableDiffing:true}), with Merchant-only output filtering",
+    "native_calls": 1,
+    "result": "BLOCKED_MAC_LOCKED",
+    "tool_message": "The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing.",
+    "account_content_returned": false,
+    "retry_or_alternative_native_path": false
+  },
+  "receipt": {
+    "current_source_timestamp": null,
+    "current_source_count": null,
+    "processed_offer_ids": [],
+    "shopify_variant_binding": "NOT RUN; no processed offer returned",
+    "source_feed_language_country_destination_binding": "NOT RUN for new offers",
+    "status": "NOT_PROVED_ACCESS_BLOCKED",
+    "ingestion_cause": "UNKNOWN",
+    "last_receiver_evidence": "September10 18:29:50–18:43:46UTC: source10014302986 and connected app zero, source last update '-'; this remains dated evidence, not a current successful read"
+  },
+  "external_changes": {
+    "product_updates": 0,
+    "source_changes": 0,
+    "return_policy_changes": 0,
+    "sync_clicks": 0,
+    "paid_or_billing_changes": 0
+  },
+  "preserved": [
+    "Completed barcode, image, market-membership and reporting-timezone corrections",
+    "Both verified 30-day policy sources and their exceptions; neither changed to match Google's15-day suggestion",
+    "Existing Google publisher, completed tracking migration and current UX137888792673 successor",
+    "Skyfade's existing sizing hold and all peer ownership",
+    "Full-paid authority NONE",
+    "Separate Product sync exact-click automatic-review gate; no click or bypass"
+  ],
+  "decision_frame": {
+    "stage": "BLOCKED",
+    "hypothesis": "New owner continuation may allow normal access after the earlier lock",
+    "falsifier_observed": "The fresh native read again reports Mac locked and automatic unlock failed",
+    "chosen_action": "Stop dependent native work and retain the existing manual-unlock question",
+    "alternative_rejected": "Repeat the same locked-Mac probe or use an alternate native path without changed access",
+    "success": "Fresh exact-account source processing data and offer IDs bound to Shopify variants and destinations",
+    "kill_criterion": "Current access, platform or approval blocker prevents a receiving read",
+    "verification": "Save the exact tool result and independently preserve owning canonical edits; do not present prior zero as a new count",
+    "rollback": "No external mutation; no rollback needed",
+    "next_check": "After the owner resolves the existing Mac unlock question"
+  },
+  "one_owner_action": "Unlock the Mac and confirm in this existing Merchant task; no new general Merchant permission is required",
+  "continuation": "Use ops/prompts/paid-growth-ai-army-continuation-prompt.md and this anchor. After unlock, verify the exact account and existing source timestamp/count, then processed offer IDs and Shopify-variant/language/country/destination binding. Trace only a genuine authorized update if required."
+}

@@ -1,0 +1,138 @@
+{
+  "schema": "dlm.merchant_current_return_source.v1",
+  "task_id": "TA07-ELIGIBILITY-RETURN-COVERAGE-20260914-1236",
+  "recorded_at_utc": "2026-09-14T12:59:36Z",
+  "query_validation": "Both queries schema-discovered and validated; read-only, complete page pagination",
+  "refund_query": "query MerchantRefundPolicyReadback20260914 { shop { id myshopifyDomain shopPolicies { id type body url updatedAt } } }",
+  "page_query": "query MerchantReturnPageReadback20260914 { pages(first: 5, query: \"handle:return-policy\") { pageInfo { hasNextPage endCursor } nodes { id title handle body isPublished publishedAt updatedAt } } }",
+  "saved_refund_policy": {
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "policy": {
+      "id": "gid://shopify/ShopPolicy/14695685",
+      "type": "REFUND_POLICY",
+      "body": "<h2>Returns &amp; Exchanges</h2>\n<p>We want you and your family to love your matching outfits! If something isn't right, we're here to help.</p>\n<h3>Return Window</h3>\n<p>You have <strong>30 days</strong> from the date of delivery to request a return or exchange.</p>\n<h3>Eligibility</h3>\n<p>To be eligible for a return, items must be:</p>\n<ul>\n<li>Unworn, unwashed, and in original condition</li>\n<li>In their original packaging with all tags attached</li>\n<li>Free of stains, pet hair, perfume, or signs of wear</li>\n</ul>\n<h3>Non-Returnable Items</h3>\n<ul>\n<li>Swimwear and intimates (for hygiene reasons)</li>\n<li>Items marked as \"Final Sale\"</li>\n<li>Gift cards</li>\n<li>Items returned after 30 days</li>\n</ul>\n<h3>How to Start a Return</h3>\n<ol>\n<li><strong>Email us</strong> at [PUBLIC_BUSINESS_EMAIL_REDACTED] with your order number and reason for return</li>\n<li>Our team will review your request and respond within 1 business day</li>\n<li>We'll provide return instructions and a return shipping address</li>\n<li>Ship the item(s) back in their original packaging</li>\n</ol>\n<h3>Refunds</h3>\n<p>Once we receive and inspect your return:</p>\n<ul>\n<li>You'll receive an email confirming we received your item</li>\n<li>If approved, your refund will be processed to your original payment method within <strong>5–10 business days</strong></li>\n<li>Depending on your bank, it may take an additional 2–5 business days to appear on your statement</li>\n</ul>\n<h3>Exchanges</h3>\n<p>Want a different size or color? Email us at [PUBLIC_BUSINESS_EMAIL_REDACTED] with your order number and we'll help you get the right item.</p>\n<h3>Damaged or Defective Items</h3>\n<p>Received a damaged or defective item? Contact us within 7 days of delivery with photos of the issue. We'll send a replacement or issue a full refund — no need to return the damaged item.</p>\n<h3>Late or Missing Refunds</h3>\n<p>If you haven't received your refund within 10 business days of our confirmation email:</p>\n<ol>\n<li>Check your bank account or credit card statement</li>\n<li>Contact your credit card company — processing times vary</li>\n<li>Contact your bank — there may be additional processing time</li>\n<li>Email us at [PUBLIC_BUSINESS_EMAIL_REDACTED] and we'll investigate</li>\n</ol>\n<h3>Shipping Costs</h3>\n<ul>\n<li>Return shipping costs are the customer's responsibility, unless the item arrived damaged or defective</li>\n<li>Original shipping costs are non-refundable</li>\n</ul>\n<h3>Questions?</h3>\n<p>Email us at <strong>[PUBLIC_BUSINESS_EMAIL_REDACTED]</strong> or call <strong>[PUBLIC_BUSINESS_PHONE_REDACTED]</strong> (Mon–Fri, 9 AM – 5 PM EST).</p>\n<p><em>Last updated: January 2026</em></p>",
+      "url": "https://checkout.shopify.com/15571635/policies/14695685.html?locale=en",
+      "updatedAt": "2026-01-26T14:46:23-05:00"
+    }
+  },
+  "linked_return_page": {
+    "pages": {
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjoxNjE5Mjk5ODksImxhc3RfdmFsdWUiOiIxNjE5Mjk5ODkifQ=="
+      },
+      "nodes": [
+        {
+          "id": "gid://shopify/Page/161929989",
+          "title": "RETURN POLICY",
+          "handle": "return-policy",
+          "body": "<h2>Returns &amp; Exchanges</h2>\n<p>We want you and your family to love your matching outfits! If something isn't right, we're here to help.</p>\n<h3>Return Window</h3>\n<p>You have <strong>30 days</strong> from the date of delivery to request a return or exchange.</p>\n<h3>Eligibility</h3>\n<p>To be eligible for a return, items must be:</p>\n<ul>\n<li>Unworn, unwashed, and in original condition</li>\n<li>In their original packaging with all tags attached</li>\n<li>Free of stains, pet hair, perfume, or signs of wear</li>\n</ul>\n<h3>Non-Returnable Items</h3>\n<ul>\n<li>Swimwear and intimates (for hygiene reasons)</li>\n<li>Items marked as \"Final Sale\"</li>\n<li>Gift cards</li>\n<li>Items returned after 30 days</li>\n</ul>\n<h3>How to Start a Return</h3>\n<ol>\n<li>\n<strong>Email us</strong> at [PUBLIC_BUSINESS_EMAIL_REDACTED] with your order number and reason for return</li>\n<li>Our team will review your request and respond within 1 business day</li>\n<li>We'll provide return instructions and a return shipping address</li>\n<li>Ship the item(s) back in their original packaging</li>\n</ol>\n<h3>Refunds</h3>\n<p>Once we receive and inspect your return:</p>\n<ul>\n<li>You'll receive an email confirming we received your item</li>\n<li>If approved, your refund will be processed to your original payment method within <strong>5–10 business days</strong>\n</li>\n<li>Depending on your bank, it may take an additional 2–5 business days to appear on your statement</li>\n</ul>\n<h3>Exchanges</h3>\n<p>Want a different size or color? Email us at [PUBLIC_BUSINESS_EMAIL_REDACTED] with your order number and we'll help you get the right item.</p>\n<h3>Damaged or Defective Items</h3>\n<p>Received a damaged or defective item? Contact us within 7 days of delivery with photos of the issue. We'll send a replacement or issue a full refund — no need to return the damaged item.</p>\n<h3>Late or Missing Refunds</h3>\n<p>If you haven't received your refund within 10 business days of our confirmation email:</p>\n<ol>\n<li>Check your bank account or credit card statement</li>\n<li>Contact your credit card company — processing times vary</li>\n<li>Contact your bank — there may be additional processing time</li>\n<li>Email us at [PUBLIC_BUSINESS_EMAIL_REDACTED] and we'll investigate</li>\n</ol>\n<h3>Shipping Costs</h3>\n<ul>\n<li>Return shipping costs are the customer's responsibility, unless the item arrived damaged or defective</li>\n<li>Original shipping costs are non-refundable</li>\n</ul>\n<h3>Questions?</h3>\n<p>Email us at <strong>[PUBLIC_BUSINESS_EMAIL_REDACTED]</strong> or call <strong>[PUBLIC_BUSINESS_PHONE_REDACTED]</strong> (Mon–Fri, 9 AM – 5 PM EST).</p>\n<p><em>Last updated: January 2026</em></p>",
+          "isPublished": true,
+          "publishedAt": "2016-10-23T03:21:00Z",
+          "updatedAt": "2026-04-28T06:57:45Z"
+        }
+      ]
+    }
+  },
+  "redaction": "Business contacts redacted; no customer/order data requested or retained.",
+  "public_route": {
+    "url": "https://www.dresslikemommy.com/pages/return-policy",
+    "observed_at_utc": null,
+    "timestamp_limit": "Public page observation occurred after12:56:08UTC Store Quality read and before source receipt recording; exact per-call timestamp not captured",
+    "browser": "1 / Codex IAB",
+    "task_owned_tab": "10",
+    "visible": false,
+    "rendered_country": "United States",
+    "rendered_language": "English",
+    "rendered_policy_terms_match_saved_page": true,
+    "conditions": [
+      "30 days from delivery to request return or exchange",
+      "Unworn, unwashed, original condition/packaging/tags",
+      "Swimwear/intimates, explicitly Final Sale items and gift cards excluded",
+      "Mail after instructions; customer pays return postage except damaged/defective handling",
+      "Refund processed within5–10business days after receipt/inspection plus possible2–5bankbusiness days",
+      "Damaged/defective: contact within7days; replacement or refund without physical return"
+    ]
+  },
+  "current_terms_source": {
+    "tool": "Supported read-only WebMCP search_shop_policies_and_faqs",
+    "policy_types": [
+      "terms_of_service"
+    ],
+    "policy_id": "14695813",
+    "url": "https://checkout.shopify.com/15571635/policies/14695813.html?locale=en-US",
+    "retained_section_only": "6. Returns and Refunds",
+    "exclusions_literal": "Sale items and personalized items are final sale",
+    "postage_literal": "Return shipping costs are the customer’s responsibility unless we made an error",
+    "refund_processing": "5–10 business days",
+    "conflict": "Current Terms use a broader sale/personalized exclusion and different postage exception wording than the saved refund policy and linked public page. This is a source inconsistency, not a legal conclusion or authority to rewrite terms.",
+    "other_terms_not_retained": true
+  },
+  "native_policy": {
+    "id": "9309759641",
+    "name": "Standard for Austria",
+    "status": "Verified",
+    "countries": [
+      "AT"
+    ],
+    "other_native_policies": 0,
+    "exceptions": [],
+    "products_column_literal": "-",
+    "policy_url": "https://www.dresslikemommy.com/pages/return-policy",
+    "returns": "Accept returns for both defective and non-defective products",
+    "exchanges": "Accept exchanges",
+    "condition": "New only",
+    "window_days": 30,
+    "method": "By mail",
+    "return_label": "Customer responsibility",
+    "restocking_fee": "No cost",
+    "currency": "EUR",
+    "refund_processing_days": null,
+    "current_US_AU_configured_coverage": false,
+    "current_US_AU_inferred_or_offer_level_policy": "Not established by the policy list; effective product-level return data not read.",
+    "inspection_only": true
+  },
+  "native_capabilities": {
+    "existing_country_editor": "Austria rendered as text; no country-add control observed in existing policy editor",
+    "new_policy_country_picker": {
+      "US": true,
+      "AU": true,
+      "both_unselected": true,
+      "multi_country_supported": true
+    },
+    "exception_label": {
+      "max_UI_characters": 50,
+      "required": true,
+      "not_entered": true,
+      "assignment_helper": "You'll use this label to assign this exception to specific products in your feed",
+      "inherits_country": "Austria"
+    },
+    "acceptance_options": [
+      "Yes, I accept returns for defective and non-defective products",
+      "I accept returns for defective products only",
+      "No, I don't accept returns"
+    ],
+    "refund_processing_field": {
+      "label": "Days",
+      "value": null,
+      "required_marker": false,
+      "helper": "The amount of time it takes for the customer to receive a refund",
+      "explicit_business_or_calendar_unit": false
+    },
+    "no_physical_defective_return_option": "Not observed in this UI",
+    "all_flows_cancelled_without_change": true,
+    "after_state": "One Standard for Austria Verified30days/customer responsibility row; no exceptions; no unsaved-change prompt"
+  },
+  "external_writes": 0,
+  "parent_source_comparison": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/facebook_return_policy_source_20260912.json",
+    "sha256": "c1ec12832cafaaef009145134013bad2c59b90396dab871c425766c1d9715f60",
+    "same_policy_id": true,
+    "same_updatedAt": true,
+    "same_normalized_redacted_terms": true,
+    "page_and_refund_normalized_terms_match": true
+  }
+}

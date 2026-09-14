@@ -1,0 +1,301 @@
+{
+  "schema": "dlm.us_spanish_draft_variant_qualification_receipt.v1",
+  "action_id": "TA06-US-SPANISH-VARIANTS-20260914-1658",
+  "owning_task": "01a088c3-c890-71a1-98ee-f19b6905af55",
+  "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "recorded_at_utc": "2026-09-14T18:43:16Z",
+  "stage": "HANDOFF",
+  "status": "PASS_WITH_LIMITS_EXISTING_DRAFT_COVERS_BOTH_EXACT_VARIANT_LINKS",
+  "overall_requested_live_release": "BLOCKED_OWNER_ADMIN_PUBLICATION_REQUIRED",
+  "scope": "Read-only qualification of exactly two Spanish US/USD variant links in the existing reviewed draft. No broad audit or repeated source download.",
+  "decision_frame": {
+    "objective": "Determine whether the existing reviewed draft already covers the two new Spanish direct-variant failures reported on MAIN.",
+    "hypothesis": "The existing variant initialization repair covers both exact combinations.",
+    "falsifier": "Either settled draft page fails to select the requested role, size or color, shows a different USD price, or leaves Add disabled.",
+    "chosen_action": "Fresh narrow theme/source guard and ordinary background preview navigation for both exact URLs.",
+    "alternative": "Prepare a source-bound local correction only if either case fails; do not apply it.",
+    "outcome": "Both pass with no manual option selection. No new correction is indicated by these cases."
+  },
+  "source_guard": {
+    "readback_at_utc": "2026-09-14T18:38:48Z",
+    "query": "query SpanishVariantDraftGuard {\n  published: themes(first: 10, roles: [MAIN]) {\n    nodes { id name role processing processingFailed updatedAt }\n    pageInfo { hasNextPage endCursor }\n  }\n  candidate: theme(id: \"gid://shopify/OnlineStoreTheme/137888792673\") {\n    id name role processing processingFailed updatedAt\n    files(first: 10, filenames: [\"assets/product-desktop-ux-20260513-ruler-sync.js\", \"assets/component-product-desktop-ux-ruler-sync.css\", \"assets/size-conversion.js\", \"sections/main-product.liquid\", \"snippets/product-desktop-ux.liquid\", \"locales/es.json\"]) {\n      nodes { filename checksumMd5 size }\n      pageInfo { hasNextPage endCursor }\n    }\n  }\n}",
+    "graphql_schema_and_validation": "PASS",
+    "observed": {
+      "published": {
+        "nodes": [
+          {
+            "id": "gid://shopify/OnlineStoreTheme/133290917985",
+            "name": "dresslikemommy/main",
+            "role": "MAIN",
+            "processing": false,
+            "processingFailed": false,
+            "updatedAt": "2026-07-02T16:47:21Z"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjoxMzMyOTA5MTc5ODUsImxhc3RfdmFsdWUiOjEzMzI5MDkxNzk4NX0="
+        }
+      },
+      "candidate": {
+        "id": "gid://shopify/OnlineStoreTheme/137888792673",
+        "name": "DLM UX Performance QA 2026-09-10",
+        "role": "UNPUBLISHED",
+        "processing": false,
+        "processingFailed": false,
+        "updatedAt": "2026-09-11T23:12:13Z",
+        "files": {
+          "nodes": [
+            {
+              "filename": "assets/component-product-desktop-ux-ruler-sync.css",
+              "checksumMd5": "029c1976d556697b3761daad161a2ba5",
+              "size": "76575"
+            },
+            {
+              "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+              "checksumMd5": "6a41b03827ae4018d48fd9ae9fd9dfdc",
+              "size": "269931"
+            },
+            {
+              "filename": "assets/size-conversion.js",
+              "checksumMd5": "735edfa74bfc8738f4df9532cff082d8",
+              "size": "45294"
+            },
+            {
+              "filename": "locales/es.json",
+              "checksumMd5": "ebdca924c39a9d9e673366998536650b",
+              "size": "76777"
+            },
+            {
+              "filename": "sections/main-product.liquid",
+              "checksumMd5": "77eeac1100e8c1fdcd7cdef060872fff",
+              "size": "190639"
+            },
+            {
+              "filename": "snippets/product-desktop-ux.liquid",
+              "checksumMd5": "16f1a7f535b03cae542b9163f8248d92",
+              "size": "12132"
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "InNuaXBwZXRzXC9wcm9kdWN0LWRlc2t0b3AtdXgubGlxdWlkIg=="
+          }
+        }
+      }
+    },
+    "preserved_release_binding": "verified-release-20260912.json",
+    "preserved_release_binding_sha256": "13f693b864c90c3b82da07d2c59df85f0e1c33962af48d6932ea05b61343f029",
+    "last_full_source_readback_at_utc": "2026-09-12T08:29:57.420Z",
+    "current_check": "All 6 requested MD5/size pairs match the preserved release binding; theme IDs, roles and draft updatedAt also match. This is not a new full 527-file readback.",
+    "relevant_bound_files": [
+      {
+        "filename": "assets/component-product-desktop-ux-ruler-sync.css",
+        "checksumMd5": "029c1976d556697b3761daad161a2ba5",
+        "size": "76575",
+        "bound_sha256": "41c2cc05e469e33dc32da65357f21594d284f85d4e5608669b43f4224ee69497"
+      },
+      {
+        "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "checksumMd5": "6a41b03827ae4018d48fd9ae9fd9dfdc",
+        "size": "269931",
+        "bound_sha256": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20"
+      },
+      {
+        "filename": "assets/size-conversion.js",
+        "checksumMd5": "735edfa74bfc8738f4df9532cff082d8",
+        "size": "45294",
+        "bound_sha256": "1d57ccf7f571187ac71734d79a0fa165a8bef6f833c7e13a7e69bdb99601c6af"
+      },
+      {
+        "filename": "locales/es.json",
+        "checksumMd5": "ebdca924c39a9d9e673366998536650b",
+        "size": "76777",
+        "bound_sha256": "97ae63470ab28506009cab5e3b531a5c8d955532c50c4f5253783a6513b10400"
+      },
+      {
+        "filename": "sections/main-product.liquid",
+        "checksumMd5": "77eeac1100e8c1fdcd7cdef060872fff",
+        "size": "190639",
+        "bound_sha256": "01a345e7d32c7bb23c6ba159c9388d7f9a839116378a56ef3fdcb351f1f3e6f1"
+      },
+      {
+        "filename": "snippets/product-desktop-ux.liquid",
+        "checksumMd5": "16f1a7f535b03cae542b9163f8248d92",
+        "size": "12132",
+        "bound_sha256": "354c4f8a84c869645a7b6d35c4eb867b5445fc9aed3018ad40d883254c20f946"
+      }
+    ]
+  },
+  "merchant_MAIN_evidence": {
+    "source": "../../../2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/buyer_readback.json",
+    "source_sha256": "5512201b90d713d4bca5383fcddd77afa84480040f885aee69164134aa8609d7",
+    "recorded_at_utc": "2026-09-14T18:28:17.530208+00:00",
+    "evidence_label": "REPO_KNOWN",
+    "summary": "Merchant independently reported missing initial size/color and a price range on MAIN for both links, followed by correct manual selection. This turn tested the draft; it did not repeat Merchant's MAIN audit."
+  },
+  "buyer_evidence_label": "LIVE_VERIFIED",
+  "cases": [
+    {
+      "product_id": "6718945034337",
+      "variant_id": "39756755861601",
+      "url": "https://www.dresslikemommy.com/es/products/mom-child-matching-two-piece-swimsuit?country=US&currency=USD&variant=39756755861601",
+      "expected_source": {
+        "role": "Child",
+        "size": "2-3 years",
+        "color": "Black",
+        "price": 17.99,
+        "currency": "USD"
+      },
+      "settled_readback_at_utc": "2026-09-14T18:39:40.473Z",
+      "rendered": {
+        "role": "Niño",
+        "size": "2-3 años",
+        "color": "Negro",
+        "price_heading": "$17.99 USD",
+        "ready_summary": "Listo para añadir Niño - 2-3 años - 17,99 US$",
+        "selected_price_cents": 1799,
+        "primary_add_enabled": true,
+        "sticky_add_enabled": true,
+        "add_label": "Añadir esta pieza al carrito",
+        "quantity": 1,
+        "cart_count": 0
+      },
+      "selected_dom": {
+        "role_attribute": "data-select-role-group",
+        "role_value": "boy",
+        "size_attribute": "data-size-label",
+        "size_value": "2-3 años",
+        "axis_name": "Color",
+        "axis_value": "Negro"
+      },
+      "status": "PASS",
+      "preview_navigation_url": "https://www.dresslikemommy.com/es/products/mom-child-matching-two-piece-swimsuit?country=US&currency=USD&variant=39756755861601&preview_theme_id=137888792673",
+      "context": {
+        "country_label": "Estados Unidos | USD $",
+        "language_label": "Español",
+        "html_language": "es",
+        "browser_id": "1",
+        "task_owned_tab_id": "1",
+        "viewport": "Default desktop viewport; no override"
+      },
+      "theme": {
+        "id": "137888792673",
+        "name": "DLM UX Performance QA 2026-09-10",
+        "role": "unpublished",
+        "proof": "Rendered Shopify.theme script plus visible Shopify Draft preview bar"
+      },
+      "first_accessibility_snapshot_already_preselected": true,
+      "manual_option_actions": 0,
+      "cart_actions": 0,
+      "consent_actions": 0,
+      "screenshot_visually_reviewed": true
+    },
+    {
+      "product_id": "7230336729185",
+      "variant_id": "41883237220449",
+      "url": "https://www.dresslikemommy.com/es/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?country=US&currency=USD&variant=41883237220449",
+      "expected_source": {
+        "role": "Adult",
+        "size": "2XL",
+        "color": "White",
+        "price": 22.99,
+        "currency": "USD"
+      },
+      "settled_readback_at_utc": "2026-09-14T18:40:38.260Z",
+      "rendered": {
+        "role": "Adulto",
+        "size": "2XL",
+        "color": "Blanco",
+        "price_heading": "$22.99 USD",
+        "ready_summary": "Listo para añadir Adulto - 2XL - 22,99 US$",
+        "selected_price_cents": 2299,
+        "primary_add_enabled": true,
+        "sticky_add_enabled": true,
+        "add_label": "Añadir esta pieza al carrito",
+        "quantity": 1,
+        "cart_count": 0
+      },
+      "selected_dom": {
+        "role_attribute": "data-select-role-group",
+        "role_value": "adult",
+        "size_attribute": "data-size-label",
+        "size_value": "2XL",
+        "axis_name": "Color",
+        "axis_value": "Blanco"
+      },
+      "status": "PASS",
+      "preview_navigation_url": "https://www.dresslikemommy.com/es/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?country=US&currency=USD&variant=41883237220449&preview_theme_id=137888792673",
+      "context": {
+        "country_label": "Estados Unidos | USD $",
+        "language_label": "Español",
+        "html_language": "es",
+        "browser_id": "1",
+        "task_owned_tab_id": "1",
+        "viewport": "Default desktop viewport; no override"
+      },
+      "theme": {
+        "id": "137888792673",
+        "name": "DLM UX Performance QA 2026-09-10",
+        "role": "unpublished",
+        "proof": "Rendered Shopify.theme script plus visible Shopify Draft preview bar"
+      },
+      "first_accessibility_snapshot_already_preselected": true,
+      "manual_option_actions": 0,
+      "cart_actions": 0,
+      "consent_actions": 0,
+      "screenshot_visually_reviewed": true
+    }
+  ],
+  "variant_identity_limit": "Exact requested variant URL was paired with matching rendered selected role, size, color and price. No cart merchandise ID or submitted order was exercised.",
+  "browser_cleanup": {
+    "first_preview_exit_attempt": "Playwright iframe click intercepted by product card; no effect.",
+    "recovery": "Fresh accessibility state and visible Exit preview control succeeded.",
+    "restored_at_utc": "2026-09-14T18:42:07.258Z",
+    "url": "https://www.dresslikemommy.com/?country=US&currency=USD",
+    "theme_id": "133290917985",
+    "theme_role": "main",
+    "country_label": "United States | USD $",
+    "html_language": "en",
+    "language_label": "English",
+    "cart_count": 0,
+    "closed_own_tab_id": "1",
+    "closed_at_utc": "2026-09-14T18:42:16.731Z",
+    "viewport_override_used": false,
+    "user_tabs_touched": false,
+    "personal_desktop_accessed": false
+  },
+  "mutations": {
+    "theme_uploads": 0,
+    "theme_publishes": 0,
+    "MAIN_writes": 0,
+    "product_writes": 0,
+    "translation_writes": 0,
+    "feed_writes": 0,
+    "cart_actions": 0,
+    "consent_actions": 0,
+    "orders": 0,
+    "paid_changes": 0
+  },
+  "limits": [
+    "Two exact desktop Spanish US/USD preview cases only; no new mobile or broad nine-PDP repeat.",
+    "No new PageSpeed measurement, conversion lift, cart submission, checkout or purchase proof.",
+    "Selected size-guide measurements, descriptions and wider localized content are outside this qualification.",
+    "Draft acceptance does not clear MAIN acceptance, Merchant source holds, account eligibility or paid authority.",
+    "No new source correction, upload, theme or alternate publishing mechanism was used."
+  ],
+  "handoff": {
+    "source_live_evidence_as_of": "Theme/source guard 2026-09-14T18:38:48Z; draft case reads 18:39:40.473Z and 18:40:38.260Z; cleanup MAIN 18:42:07.258Z.",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "Standing full-paid NONE; this assignment permits read-only exact draft qualification. Existing user publication authorization remains, but the connector requires owner Admin publication.",
+    "decision_depends_on_uncertain_state": true,
+    "decision_changing_evidence": "Owner publication followed by exact new MAIN/source and live buyer acceptance.",
+    "if_evidence_supports_recommendation": "Verify the published exact candidate and affected buyer paths, then return the results to the sole Merchant owner for qualification.",
+    "if_evidence_opposes_recommendation": "Retain the affected gate and preserved rollback; stop on identity/source drift.",
+    "material_decision": "NOT_MATERIAL",
+    "smallest_next_release_step": "Owner publishes existing DLM UX Performance QA 2026-09-10 (137888792673) in Shopify Admin and retains current MAIN133290917985 for rollback; no reupload or new theme.",
+    "canonical_integration_owner": "Parent01a08223 owns queue, claim, worklog and cockpit updates.",
+    "continuation": "Continue TA-06/TA-07 from this receipt. After owner publication, verify MAIN137888792673 and source binding13f693b864c90c3b82da07d2c59df85f0e1c33962af48d6932ea05b61343f029, then check these exact live Spanish US/USD variant paths."
+  }
+}

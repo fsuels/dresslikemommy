@@ -1,0 +1,39 @@
+{
+  "schema": "dlm.merchant.combined_preview_staging.v1",
+  "status": "READY_TO_STAGE_REVIEWED_UNPUBLISHED_PAYLOAD",
+  "targetThemeId": "gid://shopify/OnlineStoreTheme/137881223265",
+  "mainThemeId": "gid://shopify/OnlineStoreTheme/133290917985",
+  "currentOwnerScope": "Current owner nonspend corrections; root sole own unpublished-preview writer; no MAIN or paid authority",
+  "claim": "ops/AGENT_COORDINATION.md root Merchant row",
+  "files": 46,
+  "modifiedExisting": 44,
+  "addedAssets": [
+    "assets/cookie-preferences.css",
+    "assets/cookie-preferences.js"
+  ],
+  "payloadSha256": "3b32bf05196772f7a1939c95f39c1f89601c54ee8bf5a36f0681e5c72c87cf60",
+  "patchSha256": "2a030eaf2da94ae841b9db08aebf2c0996f6fb27948bdec5c32a2a08ca2b491f",
+  "before": "release_staging_before.json",
+  "independentReview": {
+    "status": "PASS_UNPUBLISHED_STAGING_ONLY",
+    "report": "release_candidate_code_verification.md",
+    "reportSha256": "f608d8a760079aebc8049ed38f6f4728cc830a611bfd7c3226b4dfe847934c7a",
+    "reviewer": "merchant_landing_code_review",
+    "independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "payloadSha256": "3b32bf05196772f7a1939c95f39c1f89601c54ee8bf5a36f0681e5c72c87cf60",
+    "reviewedAtUtc": "2026-09-09T19:32:06Z"
+  },
+  "rollback": {
+    "path": "release_candidate/rollback_files.json",
+    "sha256": "90c13468aeb356acf61e54e3a649b0ec6b9673cfa577eb6d5c277db633c7a9fc",
+    "existingOriginals": 44,
+    "newAssetsToRemoveOnlyAfterOwnHashGuard": [
+      "assets/cookie-preferences.css",
+      "assets/cookie-preferences.js"
+    ],
+    "automaticallyApplied": false
+  },
+  "afterPlan": "Read every527 preview filename/checksum/size, match46 intended contents and481 unchanged originals; independently verify and reconfirm525 MAIN files unchanged, then rendered buyer checks.",
+  "paidAuthorityUnchanged": true,
+  "mainPublication": false
+}

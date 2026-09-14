@@ -1,0 +1,442 @@
+{
+  "verdict": "PASS_SCOPED_RECONCILIATION_AND_SMART_EXCLUSION_RECOMMENDATION_WITH_GATES",
+  "reviewed_at_utc": "2026-09-06T17:02:22.977806+00:00",
+  "reviewer": "/root/current_ga4_sales_reconciliation",
+  "source_hashes_at_review": {
+    "microsoft_purchase_working_readback.json": "9ddbe43ba1dbf6c0384727c8eeac3b1476661fb3ba4fe1b24dab5aaf59d8b9f1",
+    "campaign_goal_readback_canonical_subobject": "3168276d9347bebbb0c8a663baa7d92af7ff5e192460cc992bc2e24a18835fb1",
+    "microsoft_paid_initial_readback.json": "b1d6f0c754ff7e3d685bd31fd74b58ba0297bccbf74fb0f67b46d48ace416b10",
+    "microsoft_purchase_goal_semantics.md": "451c0a1654db8c1aac8df91e82dd9a2e7a4ae755ce716af6081bb8f95a16141f"
+  },
+  "subobject_hash_encoding": "UTF-8 JSON; ensure_ascii=False, sort_keys=True, separators=(comma,colon); no final newline",
+  "source_mutability_note": "Working receipt may gain unrelated root evidence; the separately bound campaign_goal_readback subobject is the exact reviewed scope.",
+  "provenance": "Root operated native Campaigns/Goal name segmentation. Independent local Decimal review only; no UI/API replay or mutation.",
+  "identity": {
+    "account_id": "477439",
+    "customer_id": "770182"
+  },
+  "captured_at_utc": "2026-09-06T16:57:36.659Z",
+  "period_label": "Entire time: 9/6/2023 - 9/6/2026",
+  "timezone_label": "(GMT-05:00) Eastern Time (U.S. & Canada)",
+  "currency": null,
+  "currency_status": "UNKNOWN account/reporting currency; USD goal fallback does not resolve it",
+  "campaign_parent_rows": [
+    {
+      "campaign_id": "291532658",
+      "campaign_name": "USA - Cold Traffic",
+      "spend": "2771.91",
+      "revenue": "5319.47",
+      "conversions": "372.00",
+      "clicks": 12655,
+      "goals": [
+        {
+          "goal_name": "Smart goal [X0875435]",
+          "standard_conversions": "218.00",
+          "reported_value": "0.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "12.715183",
+          "calculated_goal_roas_using_parent": "0.000000",
+          "displayed_cpa": "12.72",
+          "displayed_roas_percent": "0.00%",
+          "displayed_conversion_rate_percent": "1.72%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        },
+        {
+          "goal_name": "ShopifyCheckoutCompleteEventTracking",
+          "standard_conversions": "76.00",
+          "reported_value": "76.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "36.472500",
+          "calculated_goal_roas_using_parent": "0.027418",
+          "displayed_cpa": "36.47",
+          "displayed_roas_percent": "2.74%",
+          "displayed_conversion_rate_percent": "0.60%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        },
+        {
+          "goal_name": "Purchases",
+          "standard_conversions": "78.00",
+          "reported_value": "5243.47",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "35.537308",
+          "calculated_goal_roas_using_parent": "1.891645",
+          "displayed_cpa": "35.54",
+          "displayed_roas_percent": "189.16%",
+          "displayed_conversion_rate_percent": "0.62%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        }
+      ]
+    },
+    {
+      "campaign_id": "402056809",
+      "campaign_name": "United Kingdom- Cold Traffic New",
+      "spend": "434.39",
+      "revenue": "502.00",
+      "conversions": "40.00",
+      "clicks": 1680,
+      "goals": [
+        {
+          "goal_name": "Smart goal [X0875435]",
+          "standard_conversions": "16.00",
+          "reported_value": "0.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "27.149375",
+          "calculated_goal_roas_using_parent": "0.000000",
+          "displayed_cpa": "27.15",
+          "displayed_roas_percent": "0.00%",
+          "displayed_conversion_rate_percent": "0.95%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        },
+        {
+          "goal_name": "ShopifyCheckoutCompleteEventTracking",
+          "standard_conversions": "12.00",
+          "reported_value": "12.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "36.199167",
+          "calculated_goal_roas_using_parent": "0.027625",
+          "displayed_cpa": "36.20",
+          "displayed_roas_percent": "2.76%",
+          "displayed_conversion_rate_percent": "0.71%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        },
+        {
+          "goal_name": "Purchases",
+          "standard_conversions": "12.00",
+          "reported_value": "490.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "36.199167",
+          "calculated_goal_roas_using_parent": "1.128019",
+          "displayed_cpa": "36.20",
+          "displayed_roas_percent": "112.80%",
+          "displayed_conversion_rate_percent": "0.71%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        }
+      ]
+    },
+    {
+      "campaign_id": "402056810",
+      "campaign_name": "Australia - Cold Traffic New",
+      "spend": "88.72",
+      "revenue": "667.00",
+      "conversions": "38.00",
+      "clicks": 374,
+      "goals": [
+        {
+          "goal_name": "Smart goal [X0875435]",
+          "standard_conversions": "29.00",
+          "reported_value": "0.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "3.059310",
+          "calculated_goal_roas_using_parent": "0.000000",
+          "displayed_cpa": "3.06",
+          "displayed_roas_percent": "0.00%",
+          "displayed_conversion_rate_percent": "7.75%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        },
+        {
+          "goal_name": "ShopifyCheckoutCompleteEventTracking",
+          "standard_conversions": "4.00",
+          "reported_value": "4.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "22.180000",
+          "calculated_goal_roas_using_parent": "0.045086",
+          "displayed_cpa": "22.18",
+          "displayed_roas_percent": "4.51%",
+          "displayed_conversion_rate_percent": "1.07%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        },
+        {
+          "goal_name": "Purchases",
+          "standard_conversions": "5.00",
+          "reported_value": "663.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "17.744000",
+          "calculated_goal_roas_using_parent": "7.472949",
+          "displayed_cpa": "17.74",
+          "displayed_roas_percent": "747.29%",
+          "displayed_conversion_rate_percent": "1.34%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        }
+      ]
+    },
+    {
+      "campaign_id": "402056808",
+      "campaign_name": "Canada - Cold Traffic New",
+      "spend": "163.77",
+      "revenue": "767.00",
+      "conversions": "17.00",
+      "clicks": 684,
+      "goals": [
+        {
+          "goal_name": "Smart goal [X0875435]",
+          "standard_conversions": "7.00",
+          "reported_value": "0.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "23.395714",
+          "calculated_goal_roas_using_parent": "0.000000",
+          "displayed_cpa": "23.40",
+          "displayed_roas_percent": "0.00%",
+          "displayed_conversion_rate_percent": "1.02%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        },
+        {
+          "goal_name": "ShopifyCheckoutCompleteEventTracking",
+          "standard_conversions": "5.00",
+          "reported_value": "5.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "32.754000",
+          "calculated_goal_roas_using_parent": "0.030531",
+          "displayed_cpa": "32.75",
+          "displayed_roas_percent": "3.05%",
+          "displayed_conversion_rate_percent": "0.73%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        },
+        {
+          "goal_name": "Purchases",
+          "standard_conversions": "5.00",
+          "reported_value": "762.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "32.754000",
+          "calculated_goal_roas_using_parent": "4.652867",
+          "displayed_cpa": "32.75",
+          "displayed_roas_percent": "465.29%",
+          "displayed_conversion_rate_percent": "0.73%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        }
+      ]
+    },
+    {
+      "campaign_id": "402056811",
+      "campaign_name": "Rest Europe & World - Cold Traffic New",
+      "spend": "159.43",
+      "revenue": "72.90",
+      "conversions": "16.00",
+      "clicks": 634,
+      "goals": [
+        {
+          "goal_name": "Smart goal [X0875435]",
+          "standard_conversions": "14.00",
+          "reported_value": "0.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "11.387857",
+          "calculated_goal_roas_using_parent": "0.000000",
+          "displayed_cpa": "11.39",
+          "displayed_roas_percent": "0.00%",
+          "displayed_conversion_rate_percent": "2.21%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        },
+        {
+          "goal_name": "ShopifyCheckoutCompleteEventTracking",
+          "standard_conversions": "1.00",
+          "reported_value": "1.00",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "159.430000",
+          "calculated_goal_roas_using_parent": "0.006272",
+          "displayed_cpa": "159.43",
+          "displayed_roas_percent": "0.63%",
+          "displayed_conversion_rate_percent": "0.16%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        },
+        {
+          "goal_name": "Purchases",
+          "standard_conversions": "1.00",
+          "reported_value": "71.90",
+          "subrow_spend": null,
+          "subrow_clicks": null,
+          "calculated_cost_per_goal_conversion_using_parent": "159.430000",
+          "calculated_goal_roas_using_parent": "0.450982",
+          "displayed_cpa": "159.43",
+          "displayed_roas_percent": "45.10%",
+          "displayed_conversion_rate_percent": "0.16%",
+          "displayed_metrics_reproduce_from_parent": true,
+          "unique_retained_order_count": null
+        }
+      ]
+    },
+    {
+      "campaign_id": "291767342",
+      "campaign_name": "USA Shopping",
+      "spend": "0.00",
+      "revenue": "0.00",
+      "conversions": "0.00",
+      "clicks": 0,
+      "goals": []
+    },
+    {
+      "campaign_id": "291767159",
+      "campaign_name": "Europe - Cold Traffic",
+      "spend": "0.00",
+      "revenue": "0.00",
+      "conversions": "0.00",
+      "clicks": 0,
+      "goals": []
+    },
+    {
+      "campaign_id": "291767149",
+      "campaign_name": "India - Cold Traffic",
+      "spend": "0.00",
+      "revenue": "0.00",
+      "conversions": "0.00",
+      "clicks": 0,
+      "goals": []
+    },
+    {
+      "campaign_id": "291766588",
+      "campaign_name": "Australia - Cold Traffic",
+      "spend": "0.00",
+      "revenue": "0.00",
+      "conversions": "0.00",
+      "clicks": 0,
+      "goals": []
+    },
+    {
+      "campaign_id": "291766575",
+      "campaign_name": "UK - Cold Traffic",
+      "spend": "0.00",
+      "revenue": "0.00",
+      "conversions": "0.00",
+      "clicks": 0,
+      "goals": []
+    },
+    {
+      "campaign_id": "291536445",
+      "campaign_name": "Canada - Cold Traffic",
+      "spend": "0.00",
+      "revenue": "0.00",
+      "conversions": "0.00",
+      "clicks": 0,
+      "goals": []
+    }
+  ],
+  "parent_count": 11,
+  "positive_spend_parent_count": 5,
+  "zero_spend_parent_count": 6,
+  "goal_subrow_count": 15,
+  "summary_row_count": 5,
+  "parent_totals": {
+    "spend": "3618.22",
+    "reported_revenue": "7328.37",
+    "reported_conversions": "483.00",
+    "clicks": 16027
+  },
+  "goal_totals": [
+    {
+      "goal_name": "Smart goal [X0875435]",
+      "standard_conversions": "284.00",
+      "reported_value": "0.00",
+      "cost_per_goal_conversion_using_whole_parent_spend": "12.740211",
+      "goal_roas_using_whole_parent_spend": "0.000000"
+    },
+    {
+      "goal_name": "ShopifyCheckoutCompleteEventTracking",
+      "standard_conversions": "98.00",
+      "reported_value": "98.00",
+      "cost_per_goal_conversion_using_whole_parent_spend": "36.920612",
+      "goal_roas_using_whole_parent_spend": "0.027085"
+    },
+    {
+      "goal_name": "Purchases",
+      "standard_conversions": "101.00",
+      "reported_value": "7230.37",
+      "cost_per_goal_conversion_using_whole_parent_spend": "35.823960",
+      "goal_roas_using_whole_parent_spend": "1.998322"
+    }
+  ],
+  "machine_checks": {
+    "all_rows_match_34_column_schema": true,
+    "campaign_ids_match_exact_frozen_names": true,
+    "eleven_parent_rows_and_fifteen_goal_subrows": true,
+    "three_subrows_per_positive_spend_campaign": true,
+    "each_campaign_goal_count_sum": true,
+    "each_campaign_goal_value_sum": true,
+    "overall_spend_value_count_clicks_match_frozen": true,
+    "all_15_goal_cpa_match_parent_denominator_half_up_2dp": true,
+    "all_15_goal_roas_match_parent_denominator_half_up_2dp_percent": true,
+    "all_15_goal_conversion_rates_match_parent_clicks_half_up_2dp_percent": true,
+    "subrow_blank_cost_clicks_not_zero": true
+  },
+  "smart_excluded_arithmetic_screen": {
+    "is_postwrite_readback": false,
+    "remaining_standard_goal_count_if_only_smart_removed": "199.00",
+    "remaining_reported_value": "7328.37",
+    "cost_per_remaining_goal_conversion": "18.182010",
+    "reported_roas": "2.025408",
+    "smart_share_of_current_standard_counts_percent": "58.799172",
+    "not_unique_retained_orders": true,
+    "historical_reporting_behavior_requires_after_state": true
+  },
+  "purchases_url_only_arithmetic_screen": {
+    "goal_count": "101.00",
+    "reported_value": "7230.37",
+    "parent_spend": "3618.22",
+    "cost_per_url_goal_conversion": "35.823960",
+    "reported_goal_roas": "1.998322",
+    "not_verified_purchase_cpa_or_profit": true
+  },
+  "repair_assessment": {
+    "evidence_supported": true,
+    "exact_proposal": "Only Smart goal [X0875435], account 477439/customer770182: exclude from standard Conversions and auto-bidding optimization, retaining All-conversion reporting. Do not pause/delete the goal or change purchase/event definitions.",
+    "rationale": "Documented modeled session-quality proxy supplies 284 standard conversions with zero value; it is not the purchase outcome. Excluding it improves metric/bidding alignment without claiming that actual purchases increased.",
+    "numeric_identifier_limit": "36000629 is the Smart UET Tag ID; not a unique GoalId. Exact native target must be identified by name/account/type and actual GoalId if exposed.",
+    "execution_gates": [
+      "Exact current authority for this setting change",
+      "Fresh correct-account/goal before-state and native editability",
+      "Change only the reviewed exclusion/optimization flag",
+      "After-state proves exclusion and reporting retention; campaigns remain paused",
+      "Rollback restores only this flag if exact after-state still matches"
+    ],
+    "not_resolved": [
+      "URL/event order overlap",
+      "Fallback-value usage",
+      "Actual retained orders and margin",
+      "Currency qualification",
+      "Campaign launch authority"
+    ]
+  },
+  "query_read_priority": {
+    "rank": 1,
+    "campaign_id": "402056810",
+    "campaign_name": "Australia - Cold Traffic New",
+    "reason": "Highest historical Purchases URL-goal reported return after removing Smart counts and event value: 663/88.72 = 7.472949x, 5 URL-goal conversions, cost per goal17.744 in unknown account units. Small historical diagnostic lead only.",
+    "requested_slice": "Exact campaign Search terms for the same dates, with Purchases goal separated where natively supported; query/keyword/ad-group and matching-filter cost/click denominators. Keep other goals distinct and report unsupported dimensions.",
+    "scope_guard": "Parent campaign totals can include Audience placement costs; do not allocate blank goal costs or apply unmatched whole-campaign cost to a query/Search-only slice.",
+    "limits": "No current demand, unique retained sale, USD0.15 CPC viability, current allowable CPA, 6.5x actual-profit success or enablement authority inferred."
+  },
+  "residual_uncertainty": [
+    "Current definitions do not prove historical configuration across September2023–September2026",
+    "199 event+URL conversions may overlap; 101 URL counts use All counting and are not deduplicated retained orders",
+    "98 event value across98 events is consistent with unit-valued reporting; fallback use itself is unproved",
+    "Missing checkout-URL/AddToCart standard rows do not establish deletion or zero All-conversion counts",
+    "Sources are root-operated readbacks and independent supplied primary-documentation interpretation, not reviewer live inspection"
+  ],
+  "reviewer_external_writes": 0,
+  "canonical_edits": 0
+}

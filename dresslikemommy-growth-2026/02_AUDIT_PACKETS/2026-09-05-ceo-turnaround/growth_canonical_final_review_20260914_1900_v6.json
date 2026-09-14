@@ -1,0 +1,1531 @@
+{
+  "schema": "dlm.growth_canonical_amendment_review.v6",
+  "reviewed_at_utc": "2026-09-14T19:56:06.361312+00:00",
+  "reviewer": "/root/collector_global_fallback_fix",
+  "verdict": "PASS",
+  "apply_readiness": "READY_FOR_GUARDED_LOCAL_CANONICAL_APPLICATION_OF_EXACT_BOUND_V6",
+  "confidence": "H_FOR_EXACT_FINAL_CORRECTION_AND_REUSED_PRIOR_PROOF",
+  "final_manifest": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1900_v6.json",
+    "sha256": "a1cc9bd92957cf6a2f90dbe07a9f297bdc3a576beebd9da668ba02372887dfe1"
+  },
+  "source_acceptance": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1900_v4.json",
+    "sha256": "a90980dd01408b49a7a37cb1c57ad3704beaf7ba2241ca1499032e1a7a0d93b5"
+  },
+  "runtime_source_review": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_repair_runtime_source_review_20260914_1900.json",
+    "sha256": "e93a702337cc7a4fd7e767f5d7ef6e77fcf8de0f0aa0614169e1ea50e44de4cb"
+  },
+  "scope": "Only the exact final digest correction was checked in this pass. Reuse the preserved18 passing v5 status/binding checks,26 passing v4 checks and earlier v3/v1 proofs; no source or runtime retest.",
+  "execution_model": "22 original operations followed by53 ordered amendments, or the exact manifest-bound candidate files. Only memory_digest moves to candidate_v6; nine other candidate references are unchanged. Exact final inverse restores v5, which composes with the accepted prior inverse proofs.",
+  "final_correction": {
+    "id": "MICROSOFT_CURRENT_DIGEST_STALE_ACTIVE",
+    "status": "RESOLVED",
+    "file": "ops/marketing/memory_digest.md",
+    "candidate_path": "/private/tmp/dlm-hb1900-canonical/candidate_v6/ops/marketing/memory_digest.md",
+    "line": 14,
+    "old_exact_text": "Microsoft source-reported goalACTIVE/same4hACTIVE",
+    "new_exact_text": "Microsoft source-reported goalBLOCKED at19:44:31UTC/same4hACTIVE",
+    "meaning": "Current Microsoft owner-reported goal is BLOCKED at19:44:31UTC, with the same ACTIVE four-hour heartbeat. No peer-goal API or independent three-turn audit is claimed."
+  },
+  "changed_candidate_binding": {
+    "path": "ops/marketing/memory_digest.md",
+    "before_sha256": "ef5497caab988b32a18d17c40e46d37f77c6c0eea5f668f2ced5e3e8e6ad4b76",
+    "candidate_sha256": "5bc6d9eea536a73a408da1852327959e011145d49b17b3df7be87756d4344691",
+    "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/memory_digest.md",
+    "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v6/ops/marketing/memory_digest.md"
+  },
+  "unchanged_candidate_bindings": [
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "before_sha256": "963807288b8fce4ad8a6fb414259eb8d69755a047f9cd4b787c3acdaf1852d70",
+      "candidate_sha256": "3af4fda791390908b923432e3f12f4393e7ecf00dc1a1a112f6e5b46f2a47cf4",
+      "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/current_marketing_state.md",
+      "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/marketing/current_marketing_state.md"
+    },
+    {
+      "path": "ops/marketing/action_queue.md",
+      "before_sha256": "98cf76773d0502b99256e128ad34bb495874a05f9c9e96cb3c64bd55f32c5776",
+      "candidate_sha256": "9f2524a7e0a6533c12277e7de0b69578e3250effba4ec9d82d7127e184feecfd",
+      "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/action_queue.md",
+      "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/marketing/action_queue.md"
+    },
+    {
+      "path": "ops/marketing/daily_scorecard.md",
+      "before_sha256": "4b4eb4fd72a286ee2edd87bc872e44a9a4c4aed604d311bc38d1ec2bbdbce040",
+      "candidate_sha256": "0f398344cda15dbd6c80c8b147aa8025c77461a2f2e3244e4d4242a71efd7cec",
+      "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/daily_scorecard.md",
+      "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/marketing/daily_scorecard.md"
+    },
+    {
+      "path": "ops/marketing/blocker_board.md",
+      "before_sha256": "d2a53285ee83aa482651a508740b0f444bd5b93001f7335e45fd6aa323af6e3c",
+      "candidate_sha256": "5a0255820770f0be6ba4d9407f4b5ae004ee0f5349b4674619ba049c0056344d",
+      "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/blocker_board.md",
+      "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/blocker_board.md"
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "before_sha256": "f674dbdd61cbb466f6ebe6f6b02b72531c4d402011892a2a1ba4015f46ef1537",
+      "candidate_sha256": "a1e5a0d52fa82644cbd254592acdd747e575f80c89e8100f17e8a8efa5dd5543",
+      "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/operator_cockpit.md",
+      "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/marketing/operator_cockpit.md"
+    },
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "before_sha256": "89bdb40dad6a5abda82d56b9dc9c2f7fae8e6cab076b0068780f09611a326ab4",
+      "candidate_sha256": "bbc27aca533c64884fd67033063c7b9e8b7859190628ef33d70e0de2f2dcfa63",
+      "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/AGENT_COORDINATION.md",
+      "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/AGENT_COORDINATION.md"
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "before_sha256": "3372352e0c6b938c0c81943d0252d5ad5b14195e0ca38df1d13d84199c38498b",
+      "candidate_sha256": "679f592fa52ef1c112326ba30f89127be836b21f3acaf9533603921d60f02261",
+      "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/PROBLEM_TRACKER.md",
+      "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v4/ops/PROBLEM_TRACKER.md"
+    },
+    {
+      "path": "ops/marketing/decision_log.md",
+      "before_sha256": "90caaa6fb939ffefeb7dfeb21e5a964ee9bae11e3224fa55d6cb3cf539cf26a8",
+      "candidate_sha256": "1f78b02af079a2c039d03aa936684e42a1d50d6f1e08a7207cbfa62327e74dbb",
+      "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/decision_log.md",
+      "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/marketing/decision_log.md"
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "before_sha256": "49a2e901c5003ea7a86f585b630420f3df05b911beb5c67738ed56990bceda98",
+      "candidate_sha256": "062ea1cd5317ea42d16b2ffa499816ca9f347a261759c8c293ad1ea9d343d27e",
+      "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/AGENT_WORKLOG.md",
+      "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/AGENT_WORKLOG.md"
+    }
+  ],
+  "final_correction_checks": {
+    "exact_v5_review_v5_v6_manifest_and_acceptance_hashes_match": true,
+    "prior_v5_only_finding_is_current_digest_status": true,
+    "same22_base_operations_first52_amendments": true,
+    "53rd_amendment_exactly_matches_requested_correction": true,
+    "all_ten_before_bindings_unchanged": true,
+    "nine_other_candidates_exactly_unchanged": true,
+    "v5_v6_digest_hashes_match_manifests": true,
+    "sole_candidate_delta_is_requested_phrase_once": true,
+    "exact_inverse_restores_v5_digest": true,
+    "current_digest_status_BLOCKED_heartbeat_ACTIVE": true,
+    "source_acceptance_v4_exactly_preserved": true,
+    "current_canonical_digest_still_matches_before": true
+  },
+  "final_correction_check_count": 12,
+  "final_correction_checks_passed": 12,
+  "blocking_findings": [],
+  "required_corrections": [],
+  "review_history": [
+    {
+      "stage": "v5",
+      "sha256_of_prior_serialized_review": "affc5b4cb347bab2af548d3ce96fca26f0dee2cdf3d105ec1818907b7a476958",
+      "verdict": "CHANGES_REQUIRED",
+      "snapshot": {
+        "schema": "dlm.growth_canonical_amendment_review.v5",
+        "reviewed_at_utc": "2026-09-14T19:54:55.719661+00:00",
+        "reviewer": "/root/collector_global_fallback_fix",
+        "verdict": "CHANGES_REQUIRED",
+        "apply_readiness": "BLOCKED_ONLY_ON_ONE_CURRENT_MEMORY_DIGEST_STATUS",
+        "confidence": "H_FOR_BOUND_STATUS_DELTA_AND_EXACT_RESIDUAL_INCONSISTENCY",
+        "final_manifest": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1900_v5.json",
+          "sha256": "a1347c873f5959b393a5f6a82771b0f5a3aebff4386f40d941c0fb8dfed7aa30"
+        },
+        "source_acceptance": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1900_v4.json",
+          "sha256": "a90980dd01408b49a7a37cb1c57ad3704beaf7ba2241ca1499032e1a7a0d93b5"
+        },
+        "runtime_source_review": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_repair_runtime_source_review_20260914_1900.json",
+          "sha256": "e93a702337cc7a4fd7e767f5d7ef6e77fcf8de0f0aa0614169e1ea50e44de4cb"
+        },
+        "input_bindings": {
+          "v4_hold": {
+            "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_canonical_v4_hold_review_20260914_1900.json",
+            "sha256": "c75bd7bab79f54724657b5fafa5ee0be0bd014fdcd550f8c90fd7b3d7ef17668"
+          },
+          "v4_manifest": {
+            "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1900_v4.json",
+            "sha256": "9f99f43669bdb3f52f6bd5cfafa780bccf66d85d312f2cbf25293754dc3d06b4"
+          },
+          "v5_manifest": {
+            "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1900_v5.json",
+            "sha256": "a1347c873f5959b393a5f6a82771b0f5a3aebff4386f40d941c0fb8dfed7aa30"
+          },
+          "source_acceptance_v4": {
+            "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1900_v4.json",
+            "sha256": "a90980dd01408b49a7a37cb1c57ad3704beaf7ba2241ca1499032e1a7a0d93b5"
+          },
+          "source_acceptance_v3": {
+            "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1900_v3.json",
+            "sha256": "72065270991308ce505611bd357effc6056a5d720ff00c2b9f9b15a0e1408925"
+          },
+          "runtime_review": {
+            "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_repair_runtime_source_review_20260914_1900.json",
+            "sha256": "e93a702337cc7a4fd7e767f5d7ef6e77fcf8de0f0aa0614169e1ea50e44de4cb"
+          }
+        },
+        "scope": "Only the seven v5 Microsoft status/frozen-binding amendments; preserved v4 checks and earlier reviews reused, no broader retrieval or test replay.",
+        "file_bindings_and_delta": [
+          {
+            "path": "ops/marketing/current_marketing_state.md",
+            "before_sha256": "963807288b8fce4ad8a6fb414259eb8d69755a047f9cd4b787c3acdaf1852d70",
+            "candidate_sha256": "3af4fda791390908b923432e3f12f4393e7ecf00dc1a1a112f6e5b46f2a47cf4",
+            "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/current_marketing_state.md",
+            "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/marketing/current_marketing_state.md",
+            "v4_candidate_sha256": "5869c4865f1932998977ae10fd2ad81332896ff2932c028b4c1d9c9fa51ccaab",
+            "candidate_hash_bindings_match": true,
+            "exact_forward": true,
+            "exact_inverse": true,
+            "current_before_match": true
+          },
+          {
+            "path": "ops/marketing/action_queue.md",
+            "before_sha256": "98cf76773d0502b99256e128ad34bb495874a05f9c9e96cb3c64bd55f32c5776",
+            "candidate_sha256": "9f2524a7e0a6533c12277e7de0b69578e3250effba4ec9d82d7127e184feecfd",
+            "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/action_queue.md",
+            "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/marketing/action_queue.md",
+            "v4_candidate_sha256": "d3aa1976721578cd4fd5ea03638fe32b223a5cab31ee5a55b3a4e3566fdfe9db",
+            "candidate_hash_bindings_match": true,
+            "exact_forward": true,
+            "exact_inverse": true,
+            "current_before_match": true
+          },
+          {
+            "path": "ops/marketing/daily_scorecard.md",
+            "before_sha256": "4b4eb4fd72a286ee2edd87bc872e44a9a4c4aed604d311bc38d1ec2bbdbce040",
+            "candidate_sha256": "0f398344cda15dbd6c80c8b147aa8025c77461a2f2e3244e4d4242a71efd7cec",
+            "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/daily_scorecard.md",
+            "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/marketing/daily_scorecard.md",
+            "v4_candidate_sha256": "aded88d781ebe7301b6931b6cfe175aa58e0d7b30064515b46293359b9550c15",
+            "candidate_hash_bindings_match": true,
+            "exact_forward": true,
+            "exact_inverse": true,
+            "current_before_match": true
+          },
+          {
+            "path": "ops/marketing/blocker_board.md",
+            "before_sha256": "d2a53285ee83aa482651a508740b0f444bd5b93001f7335e45fd6aa323af6e3c",
+            "candidate_sha256": "5a0255820770f0be6ba4d9407f4b5ae004ee0f5349b4674619ba049c0056344d",
+            "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/blocker_board.md",
+            "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/blocker_board.md",
+            "v4_candidate_sha256": "5a0255820770f0be6ba4d9407f4b5ae004ee0f5349b4674619ba049c0056344d",
+            "candidate_hash_bindings_match": true,
+            "exact_forward": true,
+            "exact_inverse": true,
+            "current_before_match": true
+          },
+          {
+            "path": "ops/marketing/operator_cockpit.md",
+            "before_sha256": "f674dbdd61cbb466f6ebe6f6b02b72531c4d402011892a2a1ba4015f46ef1537",
+            "candidate_sha256": "a1e5a0d52fa82644cbd254592acdd747e575f80c89e8100f17e8a8efa5dd5543",
+            "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/operator_cockpit.md",
+            "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/marketing/operator_cockpit.md",
+            "v4_candidate_sha256": "94882804e3097d886e1bb5ec0692d62634f0086fa1e061e17a11bedbf8518772",
+            "candidate_hash_bindings_match": true,
+            "exact_forward": true,
+            "exact_inverse": true,
+            "current_before_match": true
+          },
+          {
+            "path": "ops/AGENT_COORDINATION.md",
+            "before_sha256": "89bdb40dad6a5abda82d56b9dc9c2f7fae8e6cab076b0068780f09611a326ab4",
+            "candidate_sha256": "bbc27aca533c64884fd67033063c7b9e8b7859190628ef33d70e0de2f2dcfa63",
+            "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/AGENT_COORDINATION.md",
+            "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/AGENT_COORDINATION.md",
+            "v4_candidate_sha256": "20dd1e905403520595f4bc8354551220a466102c1d87192a3f3a34acbe1897a8",
+            "candidate_hash_bindings_match": true,
+            "exact_forward": true,
+            "exact_inverse": true,
+            "current_before_match": true
+          },
+          {
+            "path": "ops/PROBLEM_TRACKER.md",
+            "before_sha256": "3372352e0c6b938c0c81943d0252d5ad5b14195e0ca38df1d13d84199c38498b",
+            "candidate_sha256": "679f592fa52ef1c112326ba30f89127be836b21f3acaf9533603921d60f02261",
+            "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/PROBLEM_TRACKER.md",
+            "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v4/ops/PROBLEM_TRACKER.md",
+            "v4_candidate_sha256": "679f592fa52ef1c112326ba30f89127be836b21f3acaf9533603921d60f02261",
+            "candidate_hash_bindings_match": true,
+            "exact_forward": true,
+            "exact_inverse": true,
+            "current_before_match": true
+          },
+          {
+            "path": "ops/marketing/decision_log.md",
+            "before_sha256": "90caaa6fb939ffefeb7dfeb21e5a964ee9bae11e3224fa55d6cb3cf539cf26a8",
+            "candidate_sha256": "1f78b02af079a2c039d03aa936684e42a1d50d6f1e08a7207cbfa62327e74dbb",
+            "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/decision_log.md",
+            "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/marketing/decision_log.md",
+            "v4_candidate_sha256": "2b178ac71f51035f0bddaad67951ac9fbed0cdbb3d7f2bcc7104d47b609ef96d",
+            "candidate_hash_bindings_match": true,
+            "exact_forward": true,
+            "exact_inverse": true,
+            "current_before_match": true
+          },
+          {
+            "path": "ops/AGENT_WORKLOG.md",
+            "before_sha256": "49a2e901c5003ea7a86f585b630420f3df05b911beb5c67738ed56990bceda98",
+            "candidate_sha256": "062ea1cd5317ea42d16b2ffa499816ca9f347a261759c8c293ad1ea9d343d27e",
+            "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/AGENT_WORKLOG.md",
+            "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v5/ops/AGENT_WORKLOG.md",
+            "v4_candidate_sha256": "bb74343279bf0051ef672365f5e8ba20393d7e84093f012b7c38ed9d8d74d53b",
+            "candidate_hash_bindings_match": true,
+            "exact_forward": true,
+            "exact_inverse": true,
+            "current_before_match": true
+          },
+          {
+            "path": "ops/marketing/memory_digest.md",
+            "before_sha256": "ef5497caab988b32a18d17c40e46d37f77c6c0eea5f668f2ced5e3e8e6ad4b76",
+            "candidate_sha256": "b5b1a470c958c73d5cc49708e1b3cb6b9c10fbf4c65415d27f4b5fa545c1fd44",
+            "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/memory_digest.md",
+            "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/memory_digest.md",
+            "v4_candidate_sha256": "b5b1a470c958c73d5cc49708e1b3cb6b9c10fbf4c65415d27f4b5fa545c1fd44",
+            "candidate_hash_bindings_match": true,
+            "exact_forward": true,
+            "exact_inverse": true,
+            "current_before_match": true
+          }
+        ],
+        "new_amendment_proof": [
+          {
+            "number": 46,
+            "path": "ops/marketing/current_marketing_state.md",
+            "old_sha256": "7c4bd6e37639521235598090cba05fc6a732086f2cd1ef19235e0e9676544086",
+            "new_sha256": "bc94cb3dc836dc112211588320aaec1d3661a85710cc4504d95dbd0a88eb3f76",
+            "verified_occurrences": 1
+          },
+          {
+            "number": 47,
+            "path": "ops/marketing/action_queue.md",
+            "old_sha256": "7c4bd6e37639521235598090cba05fc6a732086f2cd1ef19235e0e9676544086",
+            "new_sha256": "bc94cb3dc836dc112211588320aaec1d3661a85710cc4504d95dbd0a88eb3f76",
+            "verified_occurrences": 1
+          },
+          {
+            "number": 48,
+            "path": "ops/marketing/daily_scorecard.md",
+            "old_sha256": "7c4bd6e37639521235598090cba05fc6a732086f2cd1ef19235e0e9676544086",
+            "new_sha256": "bc94cb3dc836dc112211588320aaec1d3661a85710cc4504d95dbd0a88eb3f76",
+            "verified_occurrences": 1
+          },
+          {
+            "number": 49,
+            "path": "ops/marketing/operator_cockpit.md",
+            "old_sha256": "7c4bd6e37639521235598090cba05fc6a732086f2cd1ef19235e0e9676544086",
+            "new_sha256": "bc94cb3dc836dc112211588320aaec1d3661a85710cc4504d95dbd0a88eb3f76",
+            "verified_occurrences": 1
+          },
+          {
+            "number": 50,
+            "path": "ops/AGENT_COORDINATION.md",
+            "old_sha256": "7c4bd6e37639521235598090cba05fc6a732086f2cd1ef19235e0e9676544086",
+            "new_sha256": "bc94cb3dc836dc112211588320aaec1d3661a85710cc4504d95dbd0a88eb3f76",
+            "verified_occurrences": 1
+          },
+          {
+            "number": 51,
+            "path": "ops/marketing/decision_log.md",
+            "old_sha256": "c2734694c96f7f7808193371881f1161fbfc48caad3d219455a0a61ab151eab1",
+            "new_sha256": "2b85b9d4e2715591d472e7fbc723999f1c36560d6b3e82e92ae5a4cab258b596",
+            "verified_occurrences": 1
+          },
+          {
+            "number": 52,
+            "path": "ops/AGENT_WORKLOG.md",
+            "old_sha256": "7c4bd6e37639521235598090cba05fc6a732086f2cd1ef19235e0e9676544086",
+            "new_sha256": "bc94cb3dc836dc112211588320aaec1d3661a85710cc4504d95dbd0a88eb3f76",
+            "verified_occurrences": 1
+          }
+        ],
+        "checks": {
+          "all_exact_input_bindings_match": true,
+          "v4_26_passing_checks_preserved": true,
+          "same22_base_and_first45_amendments": true,
+          "same_original_before_paths_and_hashes": true,
+          "all_ten_bound_candidates_and_seven_delta_occurrences_match": true,
+          "exact_v4_to_v5_forward_and_inverse": true,
+          "all_ten_original_canonical_before_hashes_still_match": true,
+          "manifest_acceptance_pointer_is_exact_current_v4": true,
+          "runtime_review_accepts_only_dated_owner_reported_status": true,
+          "all_six_frozen_acceptance_hashes_align_with_independent_review": true,
+          "handoff_runtime_only_reversal_matches_prior_source": true,
+          "final_review_and_source_implementation_hashes_preserved": true,
+          "new_status_and_clock_match_frozen_owner_source": true,
+          "new_paragraphs_keep_owner_report_limit_and_ACTIVE_heartbeat": true,
+          "all_non_status_acceptance_facts_preserved": true,
+          "no_new_external_authority_or_three_turn_certification": true,
+          "deployment_support_and_measurement_decision_preserved": true,
+          "amendments_only_replace_known_Microsoft_status_clauses": true,
+          "current_memory_digest_Microsoft_status_consistent": false
+        },
+        "check_count": 19,
+        "checks_passed": 18,
+        "blocking_findings": [
+          {
+            "id": "MICROSOFT_CURRENT_DIGEST_STALE_ACTIVE",
+            "file": "ops/marketing/memory_digest.md",
+            "candidate_path": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/memory_digest.md",
+            "line": 14,
+            "old_exact_text": "Microsoft source-reported goalACTIVE/same4hACTIVE",
+            "required_exact_replacement": "Microsoft source-reported goalBLOCKED at19:44:31UTC/same4hACTIVE",
+            "occurrences": 1,
+            "reason": "The latest current-source digest still reports Microsoft goalACTIVE while the seven v5 changes and frozen source report goalBLOCKED. This is an unqualified current-status contradiction, not preserved dated history."
+          }
+        ],
+        "all_other_results": "PASS: seven declared amendments exactly compose/invert over v4; all ten current before hashes match; six frozen acceptance hashes align with the independent runtime review; three-field handoff reversal preserves all prior technical decisions; owner-report/three-turn/peer-goal limits and ACTIVE four-hour cadence remain.",
+        "review_history": [
+          {
+            "stage": "v4_hold",
+            "sha256": "c75bd7bab79f54724657b5fafa5ee0be0bd014fdcd550f8c90fd7b3d7ef17668",
+            "preserved_repo_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_canonical_v4_hold_review_20260914_1900.json",
+            "verdict": "HOLD_PENDING_V5_SOURCE_AND_GOAL_SUPERSESSION",
+            "snapshot": {
+              "schema": "dlm.growth_canonical_amendment_review.v4",
+              "recorded_at_utc": "2026-09-14T19:47:31.377074+00:00",
+              "reviewer": "/root/collector_global_fallback_fix",
+              "verdict": "HOLD_PENDING_V5_SOURCE_AND_GOAL_SUPERSESSION",
+              "apply_readiness": "NOT_CURRENTLY_APPLY_READY",
+              "reason": "After the exact v4 checks completed, parent reported Microsoft goal changed to BLOCKED after three gated turns and the mutable owner handoff bytes changed. Existing four-hour heartbeat remains ACTIVE. Parent is freezing current handoff/continuation evidence and a minimal v5 correction. This report does not independently verify those new bytes or re-audit source work.",
+              "preserved_v4_manifest": {
+                "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1900_v4.json",
+                "sha256": "9f99f43669bdb3f52f6bd5cfafa780bccf66d85d312f2cbf25293754dc3d06b4"
+              },
+              "completed_v4_checks": {
+                "passed": 26,
+                "total": 26,
+                "still_valid_for_exact_dated_v4": true,
+                "no_reaudit_needed": true
+              },
+              "frozen_review_history": [
+                {
+                  "stage": "v4_before_later_owner_update",
+                  "sha256": "ffe322a28c5f2e88e1e4f3c1e914a6ccdb7bd6d0c181b57bd27224eec4afadd1",
+                  "verdict": "PASS",
+                  "scope": "Exact frozen v4 candidate and then-accepted source bindings only",
+                  "snapshot": {
+                    "schema": "dlm.growth_canonical_amendment_review.v3",
+                    "reviewed_at_utc": "2026-09-14T19:46:47.946739+00:00",
+                    "reviewer": "/root/collector_global_fallback_fix",
+                    "verdict": "PASS",
+                    "apply_readiness": "READY_FOR_GUARDED_LOCAL_CANONICAL_APPLICATION_OF_EXACT_BOUND_V4",
+                    "confidence": "H_FOR_EXACT_V3_TO_V4_DELTA_AND_ACCEPTED_SOURCE_ALIGNMENT",
+                    "final_manifest": {
+                      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1900_v4.json",
+                      "sha256": "9f99f43669bdb3f52f6bd5cfafa780bccf66d85d312f2cbf25293754dc3d06b4"
+                    },
+                    "source_acceptance": {
+                      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1900_v3.json",
+                      "sha256": "72065270991308ce505611bd357effc6056a5d720ff00c2b9f9b15a0e1408925"
+                    },
+                    "Microsoft_source_review": {
+                      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_repair_parent_source_review_20260914_1900.json",
+                      "sha256": "90377b5f9ee4aadc5d6124768ad5d23533251effc0df1bd0d969e986dad6e67d"
+                    },
+                    "input_bindings": {
+                      "prior_v3_review": {
+                        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_canonical_v3_review_20260914_1900.json",
+                        "sha256": "c43238465bf4a95c8954259d4101566d52e2eb9966a8cced43ccd021a90f9261"
+                      },
+                      "prior_v3_manifest": {
+                        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1900_v3.json",
+                        "sha256": "2cb2396d05d0cd9fd860679ccf9502bdf9279e714aeecbf136b197e71af1da0d"
+                      },
+                      "final_v4_manifest": {
+                        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1900_v4.json",
+                        "sha256": "9f99f43669bdb3f52f6bd5cfafa780bccf66d85d312f2cbf25293754dc3d06b4"
+                      },
+                      "source_acceptance_v3": {
+                        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1900_v3.json",
+                        "sha256": "72065270991308ce505611bd357effc6056a5d720ff00c2b9f9b15a0e1408925"
+                      },
+                      "prior_source_acceptance_v2": {
+                        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1900_v2.json",
+                        "sha256": "8fa1c03215b2cd0ff8ea62f18f20637d0ffd1fedd4b516b78d87894156773af9"
+                      },
+                      "Microsoft_independent_source_review": {
+                        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_repair_parent_source_review_20260914_1900.json",
+                        "sha256": "90377b5f9ee4aadc5d6124768ad5d23533251effc0df1bd0d969e986dad6e67d"
+                      }
+                    },
+                    "scope": "Final ten Microsoft amendments only, reusing all accepted v3 work. No account/source/test re-execution and no review of later source receipts.",
+                    "execution_model": "22 original operations followed by45 ordered amendments, or the exact manifest-bound candidate files. Eight paths use candidate_v4 and two retain candidate_v2. Exact ten-amendment inverse restores v3; the preserved prior proof composes to the original before bytes. Parent guards current before hashes at application.",
+                    "file_bindings": [
+                      {
+                        "path": "ops/marketing/current_marketing_state.md",
+                        "before_sha256": "963807288b8fce4ad8a6fb414259eb8d69755a047f9cd4b787c3acdaf1852d70",
+                        "candidate_sha256": "5869c4865f1932998977ae10fd2ad81332896ff2932c028b4c1d9c9fa51ccaab",
+                        "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/current_marketing_state.md",
+                        "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v4/ops/marketing/current_marketing_state.md",
+                        "prior_v3_candidate_sha256": "2d108a13edd6010180e2a066f5a5d553bd3b20a3faae73cb62d74c02580ee266",
+                        "changed_from_v3": true,
+                        "before_v3_v4_binding_matches": true,
+                        "exact_declared_delta_forward": true,
+                        "exact_declared_delta_inverse": true,
+                        "current_canonical_matches_original_before": true
+                      },
+                      {
+                        "path": "ops/marketing/action_queue.md",
+                        "before_sha256": "98cf76773d0502b99256e128ad34bb495874a05f9c9e96cb3c64bd55f32c5776",
+                        "candidate_sha256": "d3aa1976721578cd4fd5ea03638fe32b223a5cab31ee5a55b3a4e3566fdfe9db",
+                        "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/action_queue.md",
+                        "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v4/ops/marketing/action_queue.md",
+                        "prior_v3_candidate_sha256": "77b26f7da49853348d2a3193b91f80124da837c83287def3aeae350c4c59c9dd",
+                        "changed_from_v3": true,
+                        "before_v3_v4_binding_matches": true,
+                        "exact_declared_delta_forward": true,
+                        "exact_declared_delta_inverse": true,
+                        "current_canonical_matches_original_before": true
+                      },
+                      {
+                        "path": "ops/marketing/daily_scorecard.md",
+                        "before_sha256": "4b4eb4fd72a286ee2edd87bc872e44a9a4c4aed604d311bc38d1ec2bbdbce040",
+                        "candidate_sha256": "aded88d781ebe7301b6931b6cfe175aa58e0d7b30064515b46293359b9550c15",
+                        "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/daily_scorecard.md",
+                        "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v4/ops/marketing/daily_scorecard.md",
+                        "prior_v3_candidate_sha256": "8f9a39b0015ecb5123e6cb2edc497279c9c36e1f92d0718d7cc4f0987717eb36",
+                        "changed_from_v3": true,
+                        "before_v3_v4_binding_matches": true,
+                        "exact_declared_delta_forward": true,
+                        "exact_declared_delta_inverse": true,
+                        "current_canonical_matches_original_before": true
+                      },
+                      {
+                        "path": "ops/marketing/blocker_board.md",
+                        "before_sha256": "d2a53285ee83aa482651a508740b0f444bd5b93001f7335e45fd6aa323af6e3c",
+                        "candidate_sha256": "5a0255820770f0be6ba4d9407f4b5ae004ee0f5349b4674619ba049c0056344d",
+                        "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/blocker_board.md",
+                        "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/blocker_board.md",
+                        "prior_v3_candidate_sha256": "5a0255820770f0be6ba4d9407f4b5ae004ee0f5349b4674619ba049c0056344d",
+                        "changed_from_v3": false,
+                        "before_v3_v4_binding_matches": true,
+                        "exact_declared_delta_forward": true,
+                        "exact_declared_delta_inverse": true,
+                        "current_canonical_matches_original_before": true
+                      },
+                      {
+                        "path": "ops/marketing/operator_cockpit.md",
+                        "before_sha256": "f674dbdd61cbb466f6ebe6f6b02b72531c4d402011892a2a1ba4015f46ef1537",
+                        "candidate_sha256": "94882804e3097d886e1bb5ec0692d62634f0086fa1e061e17a11bedbf8518772",
+                        "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/operator_cockpit.md",
+                        "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v4/ops/marketing/operator_cockpit.md",
+                        "prior_v3_candidate_sha256": "8972b2c78670f30e6a98a7b716c2996dbdbd2c31ee2bf82e11923749d77b399a",
+                        "changed_from_v3": true,
+                        "before_v3_v4_binding_matches": true,
+                        "exact_declared_delta_forward": true,
+                        "exact_declared_delta_inverse": true,
+                        "current_canonical_matches_original_before": true
+                      },
+                      {
+                        "path": "ops/AGENT_COORDINATION.md",
+                        "before_sha256": "89bdb40dad6a5abda82d56b9dc9c2f7fae8e6cab076b0068780f09611a326ab4",
+                        "candidate_sha256": "20dd1e905403520595f4bc8354551220a466102c1d87192a3f3a34acbe1897a8",
+                        "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/AGENT_COORDINATION.md",
+                        "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v4/ops/AGENT_COORDINATION.md",
+                        "prior_v3_candidate_sha256": "d010689ebcc7de156c40959b91909edc48f921284509e8ffad45d974860fd007",
+                        "changed_from_v3": true,
+                        "before_v3_v4_binding_matches": true,
+                        "exact_declared_delta_forward": true,
+                        "exact_declared_delta_inverse": true,
+                        "current_canonical_matches_original_before": true
+                      },
+                      {
+                        "path": "ops/PROBLEM_TRACKER.md",
+                        "before_sha256": "3372352e0c6b938c0c81943d0252d5ad5b14195e0ca38df1d13d84199c38498b",
+                        "candidate_sha256": "679f592fa52ef1c112326ba30f89127be836b21f3acaf9533603921d60f02261",
+                        "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/PROBLEM_TRACKER.md",
+                        "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v4/ops/PROBLEM_TRACKER.md",
+                        "prior_v3_candidate_sha256": "53421c8cc6049fb4c6682b191cef3810fc2d355cf8f40f8d08030cf8f2a8bf4e",
+                        "changed_from_v3": true,
+                        "before_v3_v4_binding_matches": true,
+                        "exact_declared_delta_forward": true,
+                        "exact_declared_delta_inverse": true,
+                        "current_canonical_matches_original_before": true
+                      },
+                      {
+                        "path": "ops/marketing/decision_log.md",
+                        "before_sha256": "90caaa6fb939ffefeb7dfeb21e5a964ee9bae11e3224fa55d6cb3cf539cf26a8",
+                        "candidate_sha256": "2b178ac71f51035f0bddaad67951ac9fbed0cdbb3d7f2bcc7104d47b609ef96d",
+                        "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/decision_log.md",
+                        "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v4/ops/marketing/decision_log.md",
+                        "prior_v3_candidate_sha256": "9d3b5440613d1daac024ce4719cbc9dc5fab52509cceec988ade2829ab6f448c",
+                        "changed_from_v3": true,
+                        "before_v3_v4_binding_matches": true,
+                        "exact_declared_delta_forward": true,
+                        "exact_declared_delta_inverse": true,
+                        "current_canonical_matches_original_before": true
+                      },
+                      {
+                        "path": "ops/AGENT_WORKLOG.md",
+                        "before_sha256": "49a2e901c5003ea7a86f585b630420f3df05b911beb5c67738ed56990bceda98",
+                        "candidate_sha256": "bb74343279bf0051ef672365f5e8ba20393d7e84093f012b7c38ed9d8d74d53b",
+                        "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/AGENT_WORKLOG.md",
+                        "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v4/ops/AGENT_WORKLOG.md",
+                        "prior_v3_candidate_sha256": "720ad5ce4557ed0f5ce0892206ecd6b657e37434325000db1c7deeb1984f43df",
+                        "changed_from_v3": true,
+                        "before_v3_v4_binding_matches": true,
+                        "exact_declared_delta_forward": true,
+                        "exact_declared_delta_inverse": true,
+                        "current_canonical_matches_original_before": true
+                      },
+                      {
+                        "path": "ops/marketing/memory_digest.md",
+                        "before_sha256": "ef5497caab988b32a18d17c40e46d37f77c6c0eea5f668f2ced5e3e8e6ad4b76",
+                        "candidate_sha256": "b5b1a470c958c73d5cc49708e1b3cb6b9c10fbf4c65415d27f4b5fa545c1fd44",
+                        "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/memory_digest.md",
+                        "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/memory_digest.md",
+                        "prior_v3_candidate_sha256": "b5b1a470c958c73d5cc49708e1b3cb6b9c10fbf4c65415d27f4b5fa545c1fd44",
+                        "changed_from_v3": false,
+                        "before_v3_v4_binding_matches": true,
+                        "exact_declared_delta_forward": true,
+                        "exact_declared_delta_inverse": true,
+                        "current_canonical_matches_original_before": true
+                      }
+                    ],
+                    "new_amendment_proof": [
+                      {
+                        "number": 36,
+                        "path": "ops/marketing/current_marketing_state.md",
+                        "old_sha256": "c8bb5fae3755d060093e0cbbf236f7522aec38ef664e48994fadc26d4e726ece",
+                        "new_sha256": "52ca96e70f0315b3e8c8dd2d44cc9a8cc968aa113bc7b893d4e85f90c7869e58",
+                        "occurrences_verified": 1
+                      },
+                      {
+                        "number": 37,
+                        "path": "ops/marketing/action_queue.md",
+                        "old_sha256": "c8bb5fae3755d060093e0cbbf236f7522aec38ef664e48994fadc26d4e726ece",
+                        "new_sha256": "52ca96e70f0315b3e8c8dd2d44cc9a8cc968aa113bc7b893d4e85f90c7869e58",
+                        "occurrences_verified": 1
+                      },
+                      {
+                        "number": 38,
+                        "path": "ops/marketing/action_queue.md",
+                        "old_sha256": "d1a9d657da24cbd838296f6302d3ac995c8742888bb34177e3c4211cc6c5faac",
+                        "new_sha256": "7425d99e07fa866694267ed81527fe7ef41a3be0a1cb220d185ebf9a7f871661",
+                        "occurrences_verified": 1
+                      },
+                      {
+                        "number": 39,
+                        "path": "ops/marketing/action_queue.md",
+                        "old_sha256": "97c6a210d3b3fd0c0e6e2beb5c94bb35baef98506157c1b621778555b9ce7f3c",
+                        "new_sha256": "4947e1f71a1499550589d2359a1d88ce889198c415838f68a0309bc1084abc90",
+                        "occurrences_verified": 1
+                      },
+                      {
+                        "number": 40,
+                        "path": "ops/marketing/daily_scorecard.md",
+                        "old_sha256": "c8bb5fae3755d060093e0cbbf236f7522aec38ef664e48994fadc26d4e726ece",
+                        "new_sha256": "52ca96e70f0315b3e8c8dd2d44cc9a8cc968aa113bc7b893d4e85f90c7869e58",
+                        "occurrences_verified": 1
+                      },
+                      {
+                        "number": 41,
+                        "path": "ops/marketing/operator_cockpit.md",
+                        "old_sha256": "c8bb5fae3755d060093e0cbbf236f7522aec38ef664e48994fadc26d4e726ece",
+                        "new_sha256": "52ca96e70f0315b3e8c8dd2d44cc9a8cc968aa113bc7b893d4e85f90c7869e58",
+                        "occurrences_verified": 1
+                      },
+                      {
+                        "number": 42,
+                        "path": "ops/AGENT_COORDINATION.md",
+                        "old_sha256": "c8bb5fae3755d060093e0cbbf236f7522aec38ef664e48994fadc26d4e726ece",
+                        "new_sha256": "52ca96e70f0315b3e8c8dd2d44cc9a8cc968aa113bc7b893d4e85f90c7869e58",
+                        "occurrences_verified": 1
+                      },
+                      {
+                        "number": 43,
+                        "path": "ops/PROBLEM_TRACKER.md",
+                        "old_sha256": "8f3f8a0f4ec1f32bc084692002e7b64802d9fae9e50fb3385c8de4bbb0e59631",
+                        "new_sha256": "63a75b27ebeb979c45bd03cbc10475ff111bcec792ba4f263836cf31345f0867",
+                        "occurrences_verified": 1
+                      },
+                      {
+                        "number": 44,
+                        "path": "ops/marketing/decision_log.md",
+                        "old_sha256": "0468b259a06587f309ea28b2dc1f2b144d3ec33284b993b671192b051a35a5d6",
+                        "new_sha256": "02fe5756124f43d7b1167ef7dbd419b24f372eaa29797b8bc7e2d56adc906652",
+                        "occurrences_verified": 1
+                      },
+                      {
+                        "number": 45,
+                        "path": "ops/AGENT_WORKLOG.md",
+                        "old_sha256": "c8bb5fae3755d060093e0cbbf236f7522aec38ef664e48994fadc26d4e726ece",
+                        "new_sha256": "52ca96e70f0315b3e8c8dd2d44cc9a8cc968aa113bc7b893d4e85f90c7869e58",
+                        "occurrences_verified": 1
+                      }
+                    ],
+                    "protected_blocks": [
+                      {
+                        "path": "ops/marketing/operator_cockpit.md",
+                        "section": "## Current Goal",
+                        "v3_sha256": "41d905b1107d897b8f54c7ee1e3f81050912cb75600fb8e6148c50fc111a0bf7",
+                        "v4_sha256": "41d905b1107d897b8f54c7ee1e3f81050912cb75600fb8e6148c50fc111a0bf7",
+                        "exact": true
+                      },
+                      {
+                        "path": "ops/marketing/operator_cockpit.md",
+                        "section": "## One Owner Action",
+                        "v3_sha256": "fbd1edcc162c77a507eab6699f73456d34b48a1c43afaa079ca54a9cbac9312b",
+                        "v4_sha256": "fbd1edcc162c77a507eab6699f73456d34b48a1c43afaa079ca54a9cbac9312b",
+                        "exact": true
+                      },
+                      {
+                        "path": "ops/marketing/operator_cockpit.md",
+                        "section": "## Risks / Approval Needed",
+                        "v3_sha256": "7ea75c516dce192e61538332cbd07a47e26c339af32e758e39ac46e0d580379f",
+                        "v4_sha256": "7ea75c516dce192e61538332cbd07a47e26c339af32e758e39ac46e0d580379f",
+                        "exact": true
+                      },
+                      {
+                        "path": "ops/marketing/current_marketing_state.md",
+                        "section": "complete_paid_control",
+                        "v3_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+                        "v4_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+                        "exact": true
+                      }
+                    ],
+                    "protected_task_rows": [
+                      {
+                        "task": "TA-01",
+                        "exact": true,
+                        "hashes": [
+                          "71c639404cc61de385b1bafa098e1c6c8484c5141717c9425de019d5a9cb9d1a"
+                        ]
+                      },
+                      {
+                        "task": "TA-02",
+                        "exact": true,
+                        "hashes": [
+                          "d23f49a55601d39348140c9dcca908c9f39bf54c40fda66c7a668b4202b8c099"
+                        ]
+                      },
+                      {
+                        "task": "TA-06",
+                        "exact": true,
+                        "hashes": [
+                          "4dba6d7b241448ad8387c72a8887d756df57549c346c76b0aef0d128d6f33ed1"
+                        ]
+                      },
+                      {
+                        "task": "TA-07",
+                        "exact": true,
+                        "hashes": [
+                          "fb59506a8ef20fc61fdfd2e93b4a57e60bf624d5afb7609028ec2ed438f623e9"
+                        ]
+                      },
+                      {
+                        "task": "TA-12",
+                        "exact": true,
+                        "hashes": [
+                          "d2f008cb29346835b605a0ad76f111a2fdabb1f28e20dd0d68ec38eb69410e9c"
+                        ]
+                      },
+                      {
+                        "task": "TA-16",
+                        "exact": true,
+                        "hashes": [
+                          "3d87825fc3dadcf7006314067a7f2472dd5e5eee9c170683659fd47eef993c31"
+                        ]
+                      },
+                      {
+                        "task": "TA-20",
+                        "exact": true,
+                        "hashes": [
+                          "fbb42a596713cccf9aba8d0429aaddc19509eae78eedf7f440938c1e38f38fc0"
+                        ]
+                      },
+                      {
+                        "task": "TA-24",
+                        "exact": true,
+                        "hashes": [
+                          "7e50e0a3585546086326efa9daa3d2e117d35e92e77faaec8d60144bbdf0d905"
+                        ]
+                      },
+                      {
+                        "task": "TA-25",
+                        "exact": true,
+                        "hashes": [
+                          "ea941af41a53a3f349373aa7fc786d5363f0ebcdbd39528cfcbf3d652913a76d"
+                        ]
+                      }
+                    ],
+                    "checks": {
+                      "all_exact_manifest_acceptance_review_bindings_match": true,
+                      "prior_v3_PASS_and_corrected_TA01_bound": true,
+                      "exact_22_base_and_first35_amendments_preserved": true,
+                      "same_ten_before_paths_and_hashes": true,
+                      "final_manifest_points_to_exact_acceptance_v3": true,
+                      "source_acceptance_prior_keys_preserved_except_revision": true,
+                      "all_ten_before_v3_v4_bindings_match": true,
+                      "exactly_eight_changed_candidates_two_unchanged": true,
+                      "all_ten_amendments_unique_and_only_changes": true,
+                      "v4_inverse_restores_entire_v3_candidate_set": true,
+                      "all_current_canonical_files_still_equal_original_before": true,
+                      "table_column_counts_preserved": true,
+                      "complete_CurrentGoal_OneOwnerAction_risks_paid_control_preserved": true,
+                      "all_nine_non_Microsoft_current_task_rows_exact": true,
+                      "every_non_Microsoft_coordination_row_unchanged": true,
+                      "problem_and_decision_notes_preserve_old_text_and_only_add": true,
+                      "prior_worklog_bytes_remain_unchanged_prefix": true,
+                      "Microsoft_packet_hashes_align_with_existing_source_verifier": true,
+                      "source_review_accepts_local_packet_rejects_deployment": true,
+                      "28_tests_include_two_counterexamples_not_runtime_acceptance": true,
+                      "standard_pageLoad_defect_separate_from_unproved_purchase_sandbox": true,
+                      "next_action_preserves_existing_contact_gate_no_new_sender": true,
+                      "Microsoft_and_parent_goal_schedule_paid_owner_boundaries_preserved": true,
+                      "obsolete_current_Microsoft_specification_pending_paragraph_replaced_in_six_targets": true,
+                      "source_sales_UX_clocks_and_prior_late_facts_unchanged": true,
+                      "final_source_freeze_explicit_and_no_further_expansion": true
+                    },
+                    "final_amendment_check_count": 26,
+                    "final_amendment_checks_passed": 26,
+                    "blocking_findings": [],
+                    "required_corrections": [],
+                    "accepted_delta": "The local Microsoft purchase specification/decision is complete. Its28 passing offline tests include two tests reproducing cross-tab duplicate dispatch/reservation loss; deployment of this custom candidate is rejected. Standard pageLoad consent defect remains separately demonstrated, purchase-sandbox defect unproved. Supported publisher contact still requires its existing authorization, then real consent/single-sender/purchase-receiver verification. No installed repair, support message, new sender or paid launch follows.",
+                    "preservation_notes": [
+                      "The corrected TA-01 aggregate approval wording, all non-Microsoft task/coordination rows, complete Current Goal/One Owner Action/paid controls, sales/UX/source clocks and prior release limits remain unchanged.",
+                      "The new Microsoft problem note is inserted after its intact historical paragraph. Original problem bytes are preserved through the declared insertion/inverse, rather than claiming the whole original problem file remains an unchanged prefix.",
+                      "The source-acceptance header retains its earlier initial acceptance time; the final Microsoft source cutoff19:35:47.890260 and separately dated source review19:40:59.459214 govern this added packet. No standing paid freshness is reset."
+                    ],
+                    "review_history": [
+                      {
+                        "stage": "v3",
+                        "sha256_of_prior_serialized_review": "c43238465bf4a95c8954259d4101566d52e2eb9966a8cced43ccd021a90f9261",
+                        "preserved_repo_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_canonical_v3_review_20260914_1900.json",
+                        "verdict": "PASS",
+                        "snapshot": {
+                          "schema": "dlm.growth_canonical_amendment_review.v2",
+                          "reviewed_at_utc": "2026-09-14T19:38:19.691038+00:00",
+                          "reviewer": "/root/collector_global_fallback_fix",
+                          "verdict": "PASS",
+                          "apply_readiness": "READY_FOR_GUARDED_LOCAL_CANONICAL_APPLICATION_OF_EXACT_BOUND_V3",
+                          "confidence": "H_FOR_THE_EXACT_REQUESTED_CORRECTION_AND_REUSED_FROZEN_PROOF",
+                          "final_manifest": {
+                            "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1900_v3.json",
+                            "sha256": "2cb2396d05d0cd9fd860679ccf9502bdf9279e714aeecbf136b197e71af1da0d"
+                          },
+                          "source_acceptance": {
+                            "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1900_v2.json",
+                            "sha256": "8fa1c03215b2cd0ff8ea62f18f20637d0ffd1fedd4b516b78d87894156773af9"
+                          },
+                          "scope": "Only the final TA-01 correction was reviewed in this pass. Reuse the bound v1 34-check review and v2 26 passing checks; do not treat their inherited source facts or runtime tests as freshly rerun.",
+                          "execution_model": "Apply22 original operations followed by35 ordered amendments, or exact manifest-bound candidates. The action_queue candidate is v3; the other nine candidate paths remain v2. Guard all current before hashes at the parent write boundary.",
+                          "correction": {
+                            "finding_id": "TA01_AGGREGATE_APPROVAL_AMBIGUITY",
+                            "file": "ops/marketing/action_queue.md",
+                            "candidate_path": "/private/tmp/dlm-hb1900-canonical/candidate_v3/ops/marketing/action_queue.md",
+                            "line": 165,
+                            "old_exact_text": "All530nativeprices/fullapproval/serving remain unproved;",
+                            "new_exact_text": "All530nativeprices, all-market/language readiness and serving remain unproved; US/AU Countries-view4,741/4,741 aggregate approval is now verified separately;",
+                            "status": "RESOLVED",
+                            "reason": "The row now explicitly accepts current US/AU Countries-view4741/4741 aggregate approval while retaining individual-price, serving and broader market/language limits."
+                          },
+                          "changed_candidate_binding": {
+                            "path": "ops/marketing/action_queue.md",
+                            "before_sha256": "98cf76773d0502b99256e128ad34bb495874a05f9c9e96cb3c64bd55f32c5776",
+                            "candidate_sha256": "77b26f7da49853348d2a3193b91f80124da837c83287def3aeae350c4c59c9dd",
+                            "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/action_queue.md",
+                            "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v3/ops/marketing/action_queue.md"
+                          },
+                          "unchanged_candidate_bindings": [
+                            {
+                              "path": "ops/marketing/current_marketing_state.md",
+                              "before_sha256": "963807288b8fce4ad8a6fb414259eb8d69755a047f9cd4b787c3acdaf1852d70",
+                              "candidate_sha256": "2d108a13edd6010180e2a066f5a5d553bd3b20a3faae73cb62d74c02580ee266",
+                              "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/current_marketing_state.md",
+                              "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/current_marketing_state.md"
+                            },
+                            {
+                              "path": "ops/marketing/daily_scorecard.md",
+                              "before_sha256": "4b4eb4fd72a286ee2edd87bc872e44a9a4c4aed604d311bc38d1ec2bbdbce040",
+                              "candidate_sha256": "8f9a39b0015ecb5123e6cb2edc497279c9c36e1f92d0718d7cc4f0987717eb36",
+                              "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/daily_scorecard.md",
+                              "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/daily_scorecard.md"
+                            },
+                            {
+                              "path": "ops/marketing/blocker_board.md",
+                              "before_sha256": "d2a53285ee83aa482651a508740b0f444bd5b93001f7335e45fd6aa323af6e3c",
+                              "candidate_sha256": "5a0255820770f0be6ba4d9407f4b5ae004ee0f5349b4674619ba049c0056344d",
+                              "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/blocker_board.md",
+                              "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/blocker_board.md"
+                            },
+                            {
+                              "path": "ops/marketing/operator_cockpit.md",
+                              "before_sha256": "f674dbdd61cbb466f6ebe6f6b02b72531c4d402011892a2a1ba4015f46ef1537",
+                              "candidate_sha256": "8972b2c78670f30e6a98a7b716c2996dbdbd2c31ee2bf82e11923749d77b399a",
+                              "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/operator_cockpit.md",
+                              "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/operator_cockpit.md"
+                            },
+                            {
+                              "path": "ops/AGENT_COORDINATION.md",
+                              "before_sha256": "89bdb40dad6a5abda82d56b9dc9c2f7fae8e6cab076b0068780f09611a326ab4",
+                              "candidate_sha256": "d010689ebcc7de156c40959b91909edc48f921284509e8ffad45d974860fd007",
+                              "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/AGENT_COORDINATION.md",
+                              "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/AGENT_COORDINATION.md"
+                            },
+                            {
+                              "path": "ops/PROBLEM_TRACKER.md",
+                              "before_sha256": "3372352e0c6b938c0c81943d0252d5ad5b14195e0ca38df1d13d84199c38498b",
+                              "candidate_sha256": "53421c8cc6049fb4c6682b191cef3810fc2d355cf8f40f8d08030cf8f2a8bf4e",
+                              "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/PROBLEM_TRACKER.md",
+                              "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/PROBLEM_TRACKER.md"
+                            },
+                            {
+                              "path": "ops/marketing/decision_log.md",
+                              "before_sha256": "90caaa6fb939ffefeb7dfeb21e5a964ee9bae11e3224fa55d6cb3cf539cf26a8",
+                              "candidate_sha256": "9d3b5440613d1daac024ce4719cbc9dc5fab52509cceec988ade2829ab6f448c",
+                              "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/decision_log.md",
+                              "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/decision_log.md"
+                            },
+                            {
+                              "path": "ops/AGENT_WORKLOG.md",
+                              "before_sha256": "49a2e901c5003ea7a86f585b630420f3df05b911beb5c67738ed56990bceda98",
+                              "candidate_sha256": "720ad5ce4557ed0f5ce0892206ecd6b657e37434325000db1c7deeb1984f43df",
+                              "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/AGENT_WORKLOG.md",
+                              "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/AGENT_WORKLOG.md"
+                            },
+                            {
+                              "path": "ops/marketing/memory_digest.md",
+                              "before_sha256": "ef5497caab988b32a18d17c40e46d37f77c6c0eea5f668f2ced5e3e8e6ad4b76",
+                              "candidate_sha256": "b5b1a470c958c73d5cc49708e1b3cb6b9c10fbf4c65415d27f4b5fa545c1fd44",
+                              "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/memory_digest.md",
+                              "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/memory_digest.md"
+                            }
+                          ],
+                          "final_correction_checks": {
+                            "v3_manifest_exact_hash": true,
+                            "v2_CHANGES_REQUIRED_review_exactly_bound_and_preserved": true,
+                            "same22_base_operations_and_first34_amendments": true,
+                            "35th_amendment_is_exact_requested_one_occurrence": true,
+                            "same_ten_target_before_bindings_and_v2_source_acceptance": true,
+                            "nine_other_candidate_references_and_hashes_unchanged": true,
+                            "exact_v2_and_v3_action_queue_hashes_match_manifests": true,
+                            "only_requested_TA01_text_replacement_changes_candidate": true,
+                            "inverse_exactly_restores_v2_action_queue": true,
+                            "changed_line_is_TA01_and_old_ambiguity_absent": true,
+                            "current_action_queue_still_matches_bound_before": true
+                          },
+                          "final_correction_check_count": 11,
+                          "final_correction_checks_passed": 11,
+                          "blocking_findings": [],
+                          "required_corrections": [],
+                          "review_history": [
+                            {
+                              "stage": "v2",
+                              "sha256_of_prior_serialized_review": "1e7c6902dea4a5c95da559c3fb27125f7c25f5e4000d84ea7717bbd8c8f71876",
+                              "verdict": "CHANGES_REQUIRED",
+                              "snapshot": {
+                                "schema": "dlm.growth_canonical_amendment_review.v1",
+                                "reviewed_at_utc": "2026-09-14T19:34:15.611048+00:00",
+                                "reviewer": "/root/collector_global_fallback_fix",
+                                "verdict": "CHANGES_REQUIRED",
+                                "apply_readiness": "BLOCKED_ONLY_ON_ONE_TA01_WORDING_CORRECTION",
+                                "confidence": "H_FOR_BOUNDED_SOURCE_ALIGNMENT_AND_BYTE_PRESERVATION",
+                                "inputs": {
+                                  "v1_review": {
+                                    "path": "/private/tmp/dlm-hb1900-canonical-independent-review.json",
+                                    "sha256": "e06cd1742f8825b5fc3a3af233975cb5967e11d487defc16dd518bcd9132c158"
+                                  },
+                                  "v1_manifest": {
+                                    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1900.json",
+                                    "sha256": "55e12a87159f9ef8eb5526a670785f8dfd7f76b0b5432bdb8697aa7d6dc29345"
+                                  },
+                                  "v1_acceptance": {
+                                    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1900.json",
+                                    "sha256": "9d4b98a90799af370a89dfc68f17fdecb4727b2c82c89b5acffdc2f318bc31f8"
+                                  },
+                                  "v2_manifest": {
+                                    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_manifest_20260914_1900_v2.json",
+                                    "sha256": "140c837c3ac01ce60c259e8a35a2ae8c4dc45ebfb27d2ea3368e3ee65536ce79"
+                                  },
+                                  "v2_acceptance": {
+                                    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1900_v2.json",
+                                    "sha256": "8fa1c03215b2cd0ff8ea62f18f20637d0ffd1fedd4b516b78d87894156773af9"
+                                  },
+                                  "late_review": {
+                                    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_ads_late_source_independent_review_20260914_1900.json",
+                                    "sha256": "17e9328a31cb1d0d906cbb18c7fcbf90099d6019631a891fb3cb4e3ceec43896"
+                                  }
+                                },
+                                "reused_v1_checks": 34,
+                                "execution_model": "V2 operations are the exact22 V1 base operations, followed by34 ordered amendments. This composition reaches candidate_v2; reverse34 amendments then reverse22 base operations restores every complete before file. The22 inherited operations alone intentionally produce V1 and must not be treated as the final V2 patch.",
+                                "file_bindings_and_composed_inverse": [
+                                  {
+                                    "path": "ops/marketing/current_marketing_state.md",
+                                    "before_sha256": "963807288b8fce4ad8a6fb414259eb8d69755a047f9cd4b787c3acdaf1852d70",
+                                    "candidate_sha256": "2d108a13edd6010180e2a066f5a5d553bd3b20a3faae73cb62d74c02580ee266",
+                                    "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/current_marketing_state.md",
+                                    "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/current_marketing_state.md",
+                                    "v1_candidate_sha256": "9285d2bf09759d3fffd16d2c2710ca1e407ae12297ab171d42a48abe4e7c5f9a",
+                                    "all_three_snapshot_bindings_match": true,
+                                    "composed_before_to_v2_exact": true,
+                                    "composed_v2_inverse_restores_before": true,
+                                    "live_current_equals_before": true
+                                  },
+                                  {
+                                    "path": "ops/marketing/action_queue.md",
+                                    "before_sha256": "98cf76773d0502b99256e128ad34bb495874a05f9c9e96cb3c64bd55f32c5776",
+                                    "candidate_sha256": "adbc037d43c5d52e308180bbeeb1eeb5ebcc2acd0d8ec8f7dd9f06cfd8c3fba8",
+                                    "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/action_queue.md",
+                                    "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/action_queue.md",
+                                    "v1_candidate_sha256": "f3408ed547fa522aa3b5818cdaa98190f2bdd3e0ee439b7555b47706340cd5f9",
+                                    "all_three_snapshot_bindings_match": true,
+                                    "composed_before_to_v2_exact": true,
+                                    "composed_v2_inverse_restores_before": true,
+                                    "live_current_equals_before": true
+                                  },
+                                  {
+                                    "path": "ops/marketing/daily_scorecard.md",
+                                    "before_sha256": "4b4eb4fd72a286ee2edd87bc872e44a9a4c4aed604d311bc38d1ec2bbdbce040",
+                                    "candidate_sha256": "8f9a39b0015ecb5123e6cb2edc497279c9c36e1f92d0718d7cc4f0987717eb36",
+                                    "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/daily_scorecard.md",
+                                    "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/daily_scorecard.md",
+                                    "v1_candidate_sha256": "d69c6ff17746a605b5a68d343171c3d2d95abf0fe772eb19b50cb2e69444b694",
+                                    "all_three_snapshot_bindings_match": true,
+                                    "composed_before_to_v2_exact": true,
+                                    "composed_v2_inverse_restores_before": true,
+                                    "live_current_equals_before": true
+                                  },
+                                  {
+                                    "path": "ops/marketing/blocker_board.md",
+                                    "before_sha256": "d2a53285ee83aa482651a508740b0f444bd5b93001f7335e45fd6aa323af6e3c",
+                                    "candidate_sha256": "5a0255820770f0be6ba4d9407f4b5ae004ee0f5349b4674619ba049c0056344d",
+                                    "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/blocker_board.md",
+                                    "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/blocker_board.md",
+                                    "v1_candidate_sha256": "cd576723c702beb2ae1e0e5bd53f6d07eebee40c0a9e437db3f794907f2c0739",
+                                    "all_three_snapshot_bindings_match": true,
+                                    "composed_before_to_v2_exact": true,
+                                    "composed_v2_inverse_restores_before": true,
+                                    "live_current_equals_before": true
+                                  },
+                                  {
+                                    "path": "ops/marketing/operator_cockpit.md",
+                                    "before_sha256": "f674dbdd61cbb466f6ebe6f6b02b72531c4d402011892a2a1ba4015f46ef1537",
+                                    "candidate_sha256": "8972b2c78670f30e6a98a7b716c2996dbdbd2c31ee2bf82e11923749d77b399a",
+                                    "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/operator_cockpit.md",
+                                    "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/operator_cockpit.md",
+                                    "v1_candidate_sha256": "4f0215764f3844956c54bb97de42c398115a83f6fe549b695a592978c6604759",
+                                    "all_three_snapshot_bindings_match": true,
+                                    "composed_before_to_v2_exact": true,
+                                    "composed_v2_inverse_restores_before": true,
+                                    "live_current_equals_before": true
+                                  },
+                                  {
+                                    "path": "ops/AGENT_COORDINATION.md",
+                                    "before_sha256": "89bdb40dad6a5abda82d56b9dc9c2f7fae8e6cab076b0068780f09611a326ab4",
+                                    "candidate_sha256": "d010689ebcc7de156c40959b91909edc48f921284509e8ffad45d974860fd007",
+                                    "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/AGENT_COORDINATION.md",
+                                    "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/AGENT_COORDINATION.md",
+                                    "v1_candidate_sha256": "2d8ad435e83308d90c1c0d612cc07d86752931c9ae02fdf0460a274597312dbc",
+                                    "all_three_snapshot_bindings_match": true,
+                                    "composed_before_to_v2_exact": true,
+                                    "composed_v2_inverse_restores_before": true,
+                                    "live_current_equals_before": true
+                                  },
+                                  {
+                                    "path": "ops/PROBLEM_TRACKER.md",
+                                    "before_sha256": "3372352e0c6b938c0c81943d0252d5ad5b14195e0ca38df1d13d84199c38498b",
+                                    "candidate_sha256": "53421c8cc6049fb4c6682b191cef3810fc2d355cf8f40f8d08030cf8f2a8bf4e",
+                                    "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/PROBLEM_TRACKER.md",
+                                    "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/PROBLEM_TRACKER.md",
+                                    "v1_candidate_sha256": "96738e36caaacbd400aac5057fbd0a3cc6b3b4dcc5fba49ac16b054d6eaaa57a",
+                                    "all_three_snapshot_bindings_match": true,
+                                    "composed_before_to_v2_exact": true,
+                                    "composed_v2_inverse_restores_before": true,
+                                    "live_current_equals_before": true
+                                  },
+                                  {
+                                    "path": "ops/marketing/decision_log.md",
+                                    "before_sha256": "90caaa6fb939ffefeb7dfeb21e5a964ee9bae11e3224fa55d6cb3cf539cf26a8",
+                                    "candidate_sha256": "9d3b5440613d1daac024ce4719cbc9dc5fab52509cceec988ade2829ab6f448c",
+                                    "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/decision_log.md",
+                                    "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/decision_log.md",
+                                    "v1_candidate_sha256": "4cdcc8272a47234bda3e8339fda6f1876f1a34f70a2cabcfbf6df111f4fff257",
+                                    "all_three_snapshot_bindings_match": true,
+                                    "composed_before_to_v2_exact": true,
+                                    "composed_v2_inverse_restores_before": true,
+                                    "live_current_equals_before": true
+                                  },
+                                  {
+                                    "path": "ops/AGENT_WORKLOG.md",
+                                    "before_sha256": "49a2e901c5003ea7a86f585b630420f3df05b911beb5c67738ed56990bceda98",
+                                    "candidate_sha256": "720ad5ce4557ed0f5ce0892206ecd6b657e37434325000db1c7deeb1984f43df",
+                                    "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/AGENT_WORKLOG.md",
+                                    "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/AGENT_WORKLOG.md",
+                                    "v1_candidate_sha256": "dd6a37ba1038ba16ad6ba07c2ca3d641756027bd3145331b033e11de9e9ad2f2",
+                                    "all_three_snapshot_bindings_match": true,
+                                    "composed_before_to_v2_exact": true,
+                                    "composed_v2_inverse_restores_before": true,
+                                    "live_current_equals_before": true
+                                  },
+                                  {
+                                    "path": "ops/marketing/memory_digest.md",
+                                    "before_sha256": "ef5497caab988b32a18d17c40e46d37f77c6c0eea5f668f2ced5e3e8e6ad4b76",
+                                    "candidate_sha256": "b5b1a470c958c73d5cc49708e1b3cb6b9c10fbf4c65415d27f4b5fa545c1fd44",
+                                    "before_snapshot": "/private/tmp/dlm-hb1900-canonical/before/ops/marketing/memory_digest.md",
+                                    "candidate_snapshot": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/memory_digest.md",
+                                    "v1_candidate_sha256": "b2cedd95b9efa9612e840fea721bf93205647fad764191f2d9b0e42f64bb42eb",
+                                    "all_three_snapshot_bindings_match": true,
+                                    "composed_before_to_v2_exact": true,
+                                    "composed_v2_inverse_restores_before": true,
+                                    "live_current_equals_before": true
+                                  }
+                                ],
+                                "amendment_proof": [
+                                  {
+                                    "number": 1,
+                                    "path": "ops/marketing/current_marketing_state.md",
+                                    "old_sha256": "f17a3da526838c31f4a87b50fab8257ce8a348d0bc228f231e86258223c8dce8",
+                                    "new_sha256": "994b5487a892849a99ef9fb0c9242abaedf610791df40a66bb21e07587dbaa7b",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 2,
+                                    "path": "ops/marketing/action_queue.md",
+                                    "old_sha256": "f17a3da526838c31f4a87b50fab8257ce8a348d0bc228f231e86258223c8dce8",
+                                    "new_sha256": "994b5487a892849a99ef9fb0c9242abaedf610791df40a66bb21e07587dbaa7b",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 3,
+                                    "path": "ops/marketing/daily_scorecard.md",
+                                    "old_sha256": "f17a3da526838c31f4a87b50fab8257ce8a348d0bc228f231e86258223c8dce8",
+                                    "new_sha256": "994b5487a892849a99ef9fb0c9242abaedf610791df40a66bb21e07587dbaa7b",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 4,
+                                    "path": "ops/marketing/blocker_board.md",
+                                    "old_sha256": "f17a3da526838c31f4a87b50fab8257ce8a348d0bc228f231e86258223c8dce8",
+                                    "new_sha256": "994b5487a892849a99ef9fb0c9242abaedf610791df40a66bb21e07587dbaa7b",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 5,
+                                    "path": "ops/marketing/operator_cockpit.md",
+                                    "old_sha256": "f17a3da526838c31f4a87b50fab8257ce8a348d0bc228f231e86258223c8dce8",
+                                    "new_sha256": "994b5487a892849a99ef9fb0c9242abaedf610791df40a66bb21e07587dbaa7b",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 6,
+                                    "path": "ops/AGENT_COORDINATION.md",
+                                    "old_sha256": "f17a3da526838c31f4a87b50fab8257ce8a348d0bc228f231e86258223c8dce8",
+                                    "new_sha256": "994b5487a892849a99ef9fb0c9242abaedf610791df40a66bb21e07587dbaa7b",
+                                    "matched_occurrences": 4
+                                  },
+                                  {
+                                    "number": 7,
+                                    "path": "ops/PROBLEM_TRACKER.md",
+                                    "old_sha256": "f17a3da526838c31f4a87b50fab8257ce8a348d0bc228f231e86258223c8dce8",
+                                    "new_sha256": "994b5487a892849a99ef9fb0c9242abaedf610791df40a66bb21e07587dbaa7b",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 8,
+                                    "path": "ops/marketing/decision_log.md",
+                                    "old_sha256": "f17a3da526838c31f4a87b50fab8257ce8a348d0bc228f231e86258223c8dce8",
+                                    "new_sha256": "994b5487a892849a99ef9fb0c9242abaedf610791df40a66bb21e07587dbaa7b",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 9,
+                                    "path": "ops/AGENT_WORKLOG.md",
+                                    "old_sha256": "f17a3da526838c31f4a87b50fab8257ce8a348d0bc228f231e86258223c8dce8",
+                                    "new_sha256": "994b5487a892849a99ef9fb0c9242abaedf610791df40a66bb21e07587dbaa7b",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 10,
+                                    "path": "ops/marketing/memory_digest.md",
+                                    "old_sha256": "f17a3da526838c31f4a87b50fab8257ce8a348d0bc228f231e86258223c8dce8",
+                                    "new_sha256": "994b5487a892849a99ef9fb0c9242abaedf610791df40a66bb21e07587dbaa7b",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 11,
+                                    "path": "ops/marketing/current_marketing_state.md",
+                                    "old_sha256": "9cafbdb2307c144ae72624e165b39ecb3f882bdd5cab6d59db647deceefefbd4",
+                                    "new_sha256": "9565932bfbc4e4a1925694bb6f2ca470c7ebfe1aa2f79fcb1f11c0d41c8396f2",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 12,
+                                    "path": "ops/marketing/blocker_board.md",
+                                    "old_sha256": "9cafbdb2307c144ae72624e165b39ecb3f882bdd5cab6d59db647deceefefbd4",
+                                    "new_sha256": "9565932bfbc4e4a1925694bb6f2ca470c7ebfe1aa2f79fcb1f11c0d41c8396f2",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 13,
+                                    "path": "ops/AGENT_COORDINATION.md",
+                                    "old_sha256": "9cafbdb2307c144ae72624e165b39ecb3f882bdd5cab6d59db647deceefefbd4",
+                                    "new_sha256": "9565932bfbc4e4a1925694bb6f2ca470c7ebfe1aa2f79fcb1f11c0d41c8396f2",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 14,
+                                    "path": "ops/PROBLEM_TRACKER.md",
+                                    "old_sha256": "9cafbdb2307c144ae72624e165b39ecb3f882bdd5cab6d59db647deceefefbd4",
+                                    "new_sha256": "9565932bfbc4e4a1925694bb6f2ca470c7ebfe1aa2f79fcb1f11c0d41c8396f2",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 15,
+                                    "path": "ops/AGENT_WORKLOG.md",
+                                    "old_sha256": "9cafbdb2307c144ae72624e165b39ecb3f882bdd5cab6d59db647deceefefbd4",
+                                    "new_sha256": "9565932bfbc4e4a1925694bb6f2ca470c7ebfe1aa2f79fcb1f11c0d41c8396f2",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 16,
+                                    "path": "ops/marketing/action_queue.md",
+                                    "old_sha256": "a4ce5ae5a2087ee179609a3bce962f3e204519af8a84c02e23d1e29746d624f4",
+                                    "new_sha256": "84ae97b570ac2242698cc82938bc92b57268a3c5fa0660640c76844b2e00621e",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 17,
+                                    "path": "ops/marketing/action_queue.md",
+                                    "old_sha256": "b0c1fee329241c0db070460cbc6ca6b707ab07161de0a043beff4063161a6ffb",
+                                    "new_sha256": "cfe609c21e10f6e8198735c5bfbcdb56c3ffaddc44507be5a84143e952ea4838",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 18,
+                                    "path": "ops/AGENT_COORDINATION.md",
+                                    "old_sha256": "44c69e16647466a0ba4b4e92697706e7915528c8507013f0bef10a7ba642adb2",
+                                    "new_sha256": "e4b87a0757e19d38e5b8e57cf40418739774043aa2b4a9ed8b4658e008e2c063",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 19,
+                                    "path": "ops/marketing/operator_cockpit.md",
+                                    "old_sha256": "1a8270b909224f4dce9b39fb0b26ea230abaeef9041ab98bf5d3acc41c88d51a",
+                                    "new_sha256": "939cdb85dd44e12e12abcae703b633dd90948654e6d27a250573a472b6bc8eb5",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 20,
+                                    "path": "ops/marketing/memory_digest.md",
+                                    "old_sha256": "f4ec51bdb29358b04ac6cda50719837c79f6a81e10440029c154f963b86a14a2",
+                                    "new_sha256": "8b0bc5dc8dd9d04d8397cc0f1bef56deba51e55d195e91db6936e2474163fb44",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 21,
+                                    "path": "ops/marketing/operator_cockpit.md",
+                                    "old_sha256": "0233645c6acd039ea7a57bec3d5ebbf8e763056af6fea6213bd5bf1f4ead4b65",
+                                    "new_sha256": "cd88ad8eb16573ad4858cb026353c64909cf5ac19c418b04a66fc0af90c2df22",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 22,
+                                    "path": "ops/PROBLEM_TRACKER.md",
+                                    "old_sha256": "4f4a01d44927e66231668e0afe69c77fc40822dca8fba17eeb50c6a88768bd39",
+                                    "new_sha256": "ad6a0158ba30bd73649a3787e49b2e8e07f00f62adbf7223144955620181cdb8",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 23,
+                                    "path": "ops/marketing/current_marketing_state.md",
+                                    "old_sha256": "c34ceac2182591d8373aa10ffde38bfaa3e5c387cf26ec40946f525ee259fb9f",
+                                    "new_sha256": "21eba683cb63398f0b33aa4d3058c4d3fd49ea529f81ec52fc8542aa63214ea5",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 24,
+                                    "path": "ops/marketing/daily_scorecard.md",
+                                    "old_sha256": "8e63545d1a8b6f947214b8430c927311fe080e7cfe0f6d8ea51b2fb40181fb3f",
+                                    "new_sha256": "83b03dc55a0c1b924877befe53a4504ca16ce1319235b55a5d4997afd180cd63",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 25,
+                                    "path": "ops/marketing/blocker_board.md",
+                                    "old_sha256": "a51b3571bd35f37bd73a37e2b2e724e43be5f4be8a1d933fe5422b38d919269b",
+                                    "new_sha256": "6e896edffb70f04df938fc69e84b9af7e3105ddcc870e4f49b9f5707e6f90672",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 26,
+                                    "path": "ops/marketing/operator_cockpit.md",
+                                    "old_sha256": "c8e7457e8efad3e3eb1711b158d507819f29e163045c721dd705dd41a214b1cf",
+                                    "new_sha256": "c1ed6bf79a9180b842d2d3df3a203d5b9a1ec431c71b5f8a4096c74fd4e87e69",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 27,
+                                    "path": "ops/marketing/memory_digest.md",
+                                    "old_sha256": "4a0dd196634d8d0a1677bfa198b1c5afa446aae29bafc15d10aa9e9bb6aa180b",
+                                    "new_sha256": "3897c224698c5683574b8f07229f17c36482205cafa7760703699b5abb9fa081",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 28,
+                                    "path": "ops/marketing/action_queue.md",
+                                    "old_sha256": "8df584fb55c4eb48864fc91fb4f108f862b0d00f5a9beddb3f7be77f2adaf2ec",
+                                    "new_sha256": "fb59506a8ef20fc61fdfd2e93b4a57e60bf624d5afb7609028ec2ed438f623e9",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 29,
+                                    "path": "ops/marketing/action_queue.md",
+                                    "old_sha256": "eb76bef6850fd66c823881fa5f3e91e56f3e7dc0326e9519fdfd56a7e999108c",
+                                    "new_sha256": "916e588f940aac8a447291c9ff1dd17938bfd677c0f742b6579ac2af2f75ad83",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 30,
+                                    "path": "ops/AGENT_COORDINATION.md",
+                                    "old_sha256": "4b9205ccfce82dd423eb7dc0307058fea80a2a13aa280b1a06c712b80d8fe99b",
+                                    "new_sha256": "99c2133013149181dc12865f993796744fceb53723cf47617d684b90ba6c9616",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 31,
+                                    "path": "ops/AGENT_COORDINATION.md",
+                                    "old_sha256": "be7014b8c46e4be04edb1fca94a517c293c53303876975ea4c988a6291aa8bb9",
+                                    "new_sha256": "84670a6b2a93fe83e52a93accfba5ee413d058ca56846af24cc9f12c150c656e",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 32,
+                                    "path": "ops/PROBLEM_TRACKER.md",
+                                    "old_sha256": "f3a82294b754fe82dd3df7f6c5b2a631e3c3fc84eaa4eb227943485c45791705",
+                                    "new_sha256": "15f03bafd10f1e0ce63e44c3bd98a8c1d6b6378318e3038d8808e299f8641ef4",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 33,
+                                    "path": "ops/marketing/decision_log.md",
+                                    "old_sha256": "6f4b9987b84415eb6e6d8a0602e4473b1960b1a4549dabe7e40b6d4ca29f9d8a",
+                                    "new_sha256": "0d0bbb2aba0b621f3e7d2093f41050eff0212312b15e7f30af9d0ab87c89cb79",
+                                    "matched_occurrences": 1
+                                  },
+                                  {
+                                    "number": 34,
+                                    "path": "ops/AGENT_WORKLOG.md",
+                                    "old_sha256": "68b6e8894405e3e19ec0fffb73a4ac771a22be47605166d93f729eb273ccaf3e",
+                                    "new_sha256": "e562bb80cde3c33fc88eb0ba47362d25a19b0697e87732d859ac62b4bff886fb",
+                                    "matched_occurrences": 1
+                                  }
+                                ],
+                                "amendments": 34,
+                                "matched_replacement_occurrences": 37,
+                                "protected_blocks": [
+                                  {
+                                    "file": "ops/marketing/operator_cockpit.md",
+                                    "section": "## Current Goal",
+                                    "expected_sha256": "41d905b1107d897b8f54c7ee1e3f81050912cb75600fb8e6148c50fc111a0bf7",
+                                    "actual_sha256": "41d905b1107d897b8f54c7ee1e3f81050912cb75600fb8e6148c50fc111a0bf7",
+                                    "match": true
+                                  },
+                                  {
+                                    "file": "ops/marketing/operator_cockpit.md",
+                                    "section": "## One Owner Action",
+                                    "expected_sha256": "fbd1edcc162c77a507eab6699f73456d34b48a1c43afaa079ca54a9cbac9312b",
+                                    "actual_sha256": "fbd1edcc162c77a507eab6699f73456d34b48a1c43afaa079ca54a9cbac9312b",
+                                    "match": true
+                                  },
+                                  {
+                                    "file": "ops/marketing/operator_cockpit.md",
+                                    "section": "## Risks / Approval Needed",
+                                    "expected_sha256": "7ea75c516dce192e61538332cbd07a47e26c339af32e758e39ac46e0d580379f",
+                                    "actual_sha256": "7ea75c516dce192e61538332cbd07a47e26c339af32e758e39ac46e0d580379f",
+                                    "match": true
+                                  },
+                                  {
+                                    "file": "ops/marketing/current_marketing_state.md",
+                                    "section": "MARKETING_AUTHORITATIVE_CONTROL",
+                                    "expected_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+                                    "actual_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+                                    "match": true
+                                  }
+                                ],
+                                "protected_task_rows": [
+                                  {
+                                    "task": "TA-20",
+                                    "hashes": [
+                                      "fbb42a596713cccf9aba8d0429aaddc19509eae78eedf7f440938c1e38f38fc0"
+                                    ],
+                                    "expected": [
+                                      "fbb42a596713cccf9aba8d0429aaddc19509eae78eedf7f440938c1e38f38fc0"
+                                    ],
+                                    "match": true
+                                  },
+                                  {
+                                    "task": "TA-25",
+                                    "hashes": [
+                                      "ea941af41a53a3f349373aa7fc786d5363f0ebcdbd39528cfcbf3d652913a76d"
+                                    ],
+                                    "expected": [
+                                      "ea941af41a53a3f349373aa7fc786d5363f0ebcdbd39528cfcbf3d652913a76d"
+                                    ],
+                                    "match": true
+                                  },
+                                  {
+                                    "task": "TA-12",
+                                    "hashes": [
+                                      "d2f008cb29346835b605a0ad76f111a2fdabb1f28e20dd0d68ec38eb69410e9c"
+                                    ],
+                                    "expected": [
+                                      "d2f008cb29346835b605a0ad76f111a2fdabb1f28e20dd0d68ec38eb69410e9c"
+                                    ],
+                                    "match": true
+                                  },
+                                  {
+                                    "task": "TA-02",
+                                    "hashes": [
+                                      "d23f49a55601d39348140c9dcca908c9f39bf54c40fda66c7a668b4202b8c099"
+                                    ],
+                                    "expected": [
+                                      "d23f49a55601d39348140c9dcca908c9f39bf54c40fda66c7a668b4202b8c099"
+                                    ],
+                                    "match": true
+                                  }
+                                ],
+                                "checks": {
+                                  "exact_input_hashes_match": true,
+                                  "v1_34_check_pass_reused": true,
+                                  "ten_targets_22_base_operations_34_amendments": true,
+                                  "base_operations_are_exact_bound_v1_operations": true,
+                                  "all_before_v1_v2_snapshot_hashes_match": true,
+                                  "all34_amendment_occurrence_counts_match": true,
+                                  "composed_forward_and_inverse_exact_for_all_ten": true,
+                                  "all_ten_live_targets_still_unchanged": true,
+                                  "complete_CurrentGoal_OneOwnerAction_risks_paid_control_preserved": true,
+                                  "TA20_TA25_TA12_TA02_exact_rows_preserved": true,
+                                  "prior_worklog_decision_problem_bytes_preserved": true,
+                                  "all293_unowned_coordination_rows_preserved": true,
+                                  "row_column_counts_preserved": true,
+                                  "late_review_PASS_no_blockers": true,
+                                  "new_acceptance_source_hashes_match_late_review": true,
+                                  "all_prior_acceptance_facts_other_than_declared_scope_preserved": true,
+                                  "47_saved_tests_and_fail_then_pass_review_history_accurate": true,
+                                  "local_change_not_deployment_or_Spanish_TSV": true,
+                                  "protected_sources_holds_production_config_distinct_from_changed_code": true,
+                                  "native_US_AU_4741_aggregate_approval_and_outcome_limits_match": true,
+                                  "CA_GB_configured_delivery_not_actual_truth": true,
+                                  "Ads_Awaiting_zero_not_nonad_purchase_failure": true,
+                                  "existing_draft_fixes_both_no_new_variant_repair": true,
+                                  "current_source_translation_and_landing_integrity_gates_retained": true,
+                                  "old_Merchant_pipeline_active_current_phrases_removed": true,
+                                  "sales_X_goal_and_clocks_preserved": true,
+                                  "TA01_current_fullapproval_limit_is_explicitly_scoped": false
+                                },
+                                "checks_passed": 26,
+                                "check_count": 27,
+                                "blocking_findings": [
+                                  {
+                                    "id": "TA01_AGGREGATE_APPROVAL_AMBIGUITY",
+                                    "file": "ops/marketing/action_queue.md",
+                                    "candidate_path": "/private/tmp/dlm-hb1900-canonical/candidate_v2/ops/marketing/action_queue.md",
+                                    "line": 165,
+                                    "task": "TA-01",
+                                    "current_exact_text": "All530nativeprices/fullapproval/serving remain unproved;",
+                                    "required_exact_replacement": "All530nativeprices, all-market/language readiness and serving remain unproved; US/AU Countries-view4,741/4,741 aggregate approval is now verified separately;",
+                                    "reason": "The unqualified current fullapproval limit can be read as denying newly accepted US/AU Countries-view4741/4741 aggregate approval. Separate that verified aggregate from unverified530individual price checks, serving and broader market/language readiness.",
+                                    "replacement_occurrences": 1
+                                  }
+                                ],
+                                "all_other_factual_findings": "PASS:47 saved tests with failed first review/cached-clock correction and round2PASS_WITH_LIMITS; not deployed/noSpanishTSV; source/config/sixholds separate from changed local code; native aggregate approval without serving/profit; CA/GB configuration-only; AdsAwaiting0 not non-ad ingestion failure; existing exact draft already fixes both and owner MAIN publication/readback remains next.",
+                                "limits": [
+                                  "No extra source/account/browser/private analytics/runtime tests or scheduler reads; new source facts align to the exact accepted late independent review.",
+                                  "Saved47-test result and prior review rounds are source evidence, not tests rerun by this reviewer.",
+                                  "Prior sales, UX, X/Ads/MS and schedule proofs are reused unchanged from the bound34-check V1 review.",
+                                  "Current ten canonical files still match their before hashes. No source, candidate or shared file changed by this reviewer.",
+                                  "Final applied-state renderer, integration audit and strict continuity are NOT RUN here."
+                                ],
+                                "execution_boundaries": {
+                                  "only_written_file": "/private/tmp/dlm-hb1900-canonical-amendment-review.json",
+                                  "shared_source_candidate_or_scheduler_writes": 0,
+                                  "account_private_queries": 0,
+                                  "runtime_tests": 0,
+                                  "new_agents_or_harnesses": 0
+                                },
+                                "single_next_action": "Parent makes the one exact TA-01 qualification, binds the corrected candidate/manifest, and requests only that final correction check before guarded application."
+                              }
+                            }
+                          ],
+                          "preserved_limits": [
+                            "No broad530price verification, serving, worldwide readiness or profit claim added.",
+                            "Existing owner Admin theme publication/new-MAIN source and buyer readback remain the next owner action.",
+                            "No source, account, browser, scheduler or runtime retest in this pass.",
+                            "Canonical application and final renderer/integration/strict-continuity checks remain for the parent; this reviewer made no shared writes."
+                          ],
+                          "execution_boundaries": {
+                            "only_written_file": "/private/tmp/dlm-hb1900-canonical-amendment-review.json",
+                            "shared_source_or_candidate_writes": 0,
+                            "account_or_browser_calls": 0,
+                            "scheduler_writes": 0,
+                            "runtime_tests": 0,
+                            "new_agents_or_harnesses": 0
+                          },
+                          "single_next_action": "Parent applies the exact guarded v3 candidate set and verifies the resulting canonical, generated cockpit and continuity state."
+                        }
+                      }
+                    ],
+                    "limits": [
+                      "Source file hashes/test interpretations were already independently checked by claim_lookup_cause. This pass bound that review and reconciled exact canonical wording, without reading or rerunning the underlying implementation/tests.",
+                      "No live SDK, sender, consent, purchase, support, campaign, goal or scheduler action occurred. Configuration and local tests do not prove runtime delivery or profit.",
+                      "Current ten canonical before hashes match, but root must guard them again immediately before writing.",
+                      "Application, cockpit renderer, integration audit and strict-continuity after-state checks remain NOT RUN by this reviewer and are the parent integration step."
+                    ],
+                    "execution_boundaries": {
+                      "only_written_file": "/private/tmp/dlm-hb1900-canonical-amendment-review.json",
+                      "shared_source_candidate_or_scheduler_writes": 0,
+                      "account_browser_or_private_queries": 0,
+                      "runtime_tests": 0,
+                      "new_agents_harnesses_or_owner_dispatches": 0
+                    },
+                    "single_next_action": "Root applies the exact guarded final v4 candidate set and verifies the complete resulting canonical/cockpit/continuity state. The existing owner Admin theme publication action remains unchanged."
+                  }
+                }
+              ],
+              "required_next_delta": "Bind frozen current Microsoft handoff/continuation receipt and correct only its current goal state/source references to BLOCKED while preserving ACTIVE four-hour cadence and all existing no-deployment/support/paid gates.",
+              "shared_application_performed_by_reviewer": false,
+              "execution_boundaries": {
+                "only_written_file": "/private/tmp/dlm-hb1900-canonical-amendment-review.json",
+                "shared_source_candidate_or_scheduler_writes": 0,
+                "account_browser_or_private_queries": 0,
+                "runtime_tests": 0
+              },
+              "single_next_action": "Parent supplies the minimal frozen v5 amendment and exact current source bindings for a narrow status/binding review."
+            }
+          }
+        ],
+        "limits": [
+          "No independent peer goal API, three-turn transcript audit, heartbeat read or source-code/test replay; status is dated owner-reported tool success only.",
+          "The six frozen source hashes are matched between acceptance and the already-completed independent source review; underlying source files were not re-read in this narrow pass.",
+          "No shared/candidate/source/scheduler writes occurred. Final application and standard after-state checks remain root-owned."
+        ],
+        "execution_boundaries": {
+          "only_written_file": "/private/tmp/dlm-hb1900-canonical-amendment-review.json",
+          "shared_source_candidate_or_scheduler_writes": 0,
+          "account_private_queries_or_runtime_tests": 0
+        },
+        "single_next_action": "Parent replaces the one current digest phrase and binds the final candidate/manifest; only that exact correction needs review before guarded application."
+      }
+    }
+  ],
+  "limits": [
+    "PASS is for guarded local canonical application only; it is not live deployment, publication, spend or support-contact authority.",
+    "Microsoft goal transition and three-turn condition remain dated owner-reported evidence; heartbeat configuration is not future-execution proof.",
+    "The accepted technical decision still rejects the custom browser candidate; source, consent, purchase, economics and existing support-contact gates remain.",
+    "Root guards all ten original before hashes at application and runs final renderer/integration/strict-continuity checks. This reviewer made no shared writes."
+  ],
+  "execution_boundaries": {
+    "only_written_file": "/private/tmp/dlm-hb1900-canonical-amendment-review.json",
+    "shared_source_candidate_or_scheduler_writes": 0,
+    "account_private_queries": 0,
+    "runtime_tests": 0,
+    "new_agents_harnesses_or_owner_dispatches": 0
+  },
+  "single_next_action": "Root applies the exact guarded final v6 candidate set and verifies the resulting canonical and generated state; preserve the existing owner Admin theme publication action."
+}

@@ -1,0 +1,107 @@
+{
+  "revision": 1,
+  "status": "FROZEN_FOR_INDEPENDENT_REVIEW",
+  "frozenAt": "2026-09-11T15:15:09.511544+00:00",
+  "entry": "src/automation.js",
+  "hostEntryUnchangedFromFirstRelease": true,
+  "workerName": "dlm-merchant-feed-worker",
+  "queueName": "dlm-merchant-feed-refresh",
+  "bucketName": "dlm-merchant-feeds",
+  "publicPath": "/feeds/us-en.tsv",
+  "trigger": "hourly",
+  "queueMaxBatchSize": 1,
+  "queueMaxConcurrency": 1,
+  "maxLogicalAdminCallsPerInvocation": 20,
+  "maxExternalAdminFetchesWithRetry": 40,
+  "testRunner": {
+    "behavioralTests": 39,
+    "failed": 0,
+    "syntax": "PASS",
+    "whitespace": "PASS",
+    "wranglerDryRun": "PASS"
+  },
+  "liveLocalRead": {
+    "parents": 240,
+    "variants": 4945,
+    "buyableRows": 4923,
+    "unavailableOmitted": 22,
+    "logicalRequests": 282,
+    "invocations": 15,
+    "maxNewLogicalRequests": 20,
+    "tsvSha256": "e96faeeb86a64898e3564581997ffde427bd593f061cf02a4dc19244520621c5"
+  },
+  "streamingFinalRehearsal": {
+    "fullCatalogReplay": true,
+    "freshFinalIdentityAndMarketReads": 2,
+    "sameTsvHash": true,
+    "nodeOldSpaceLimitMiB": 64,
+    "nodeSemiSpaceLimitMiB": 4,
+    "localCpuMs": 814.398,
+    "heapUsedAfterBytes": 27351096,
+    "externalAfterBytes": 7222131,
+    "processPeakRssKiB": 168016,
+    "isCloudflareResourceMeasurement": false
+  },
+  "runtimePrimitives": [
+    "FixedLengthStream",
+    "crypto.DigestStream",
+    "R2 SHA256 validation",
+    "R2 conditional pointer write"
+  ],
+  "externalWritesByBuilder": false,
+  "productionActivation": "NOT_RUN_BY_BUILDER",
+  "requiredRootReadbacks": [
+    "Queue/producer/consumer binding and secret",
+    "completed production hourly/Queue job",
+    "Worker resource/error metrics",
+    "Google scheduled fetch receipt and exact offer ownership",
+    "bounded old immutable version retention"
+  ],
+  "references": [
+    {
+      "path": "query_validation_receipts.json",
+      "bytes": 7288,
+      "sha256": "89669371af20a6ac4068a511f0af956e2d3dff49b8c587de80c5e1de86c4441a"
+    },
+    {
+      "path": "market_context_receipts.json",
+      "bytes": 3315,
+      "sha256": "2b9c690d6a0e415d48504fecb39d7da1d93419d5575a653241018b4823b620ad"
+    },
+    {
+      "path": "admin_market_context_proof.json",
+      "bytes": 1034,
+      "sha256": "f2ddbbd27e57ce9f840af44e8805e100bc5f25470176bc0e5fd9a427663758dc"
+    },
+    {
+      "path": "automation_query_validation.json",
+      "bytes": 4697,
+      "sha256": "746231b7179cfd507379e8ba86cd78d08c095a69c1c2a243f93b9006d128fea2"
+    },
+    {
+      "path": "automation_skill_validation.json",
+      "bytes": 2787,
+      "sha256": "9515738203a2680454bae599f08ad0eaf37df93446be55b281824b8a96f3b5fb"
+    },
+    {
+      "path": "automatic_live_read/queue-verification.json",
+      "bytes": 3360,
+      "sha256": "9a56cf5326ab4cd890f7d7723e848eceacf3d0f95c7c56de9fd523cde6b943b2"
+    },
+    {
+      "path": "automatic_memory_replay/queue-verification.json",
+      "bytes": 1144,
+      "sha256": "c3552bc907d4e22eabfaa0191b6b095ebc196e5292bc657faa915f092255038d"
+    },
+    {
+      "path": "automatic_streaming_memory_replay/queue-verification.json",
+      "bytes": 1141,
+      "sha256": "f5718af040352e7ba874b1033c2c4f254e219da054171c5d1054a5c85722a227"
+    },
+    {
+      "path": "first_release_v2/freeze_manifest.json",
+      "bytes": 4213,
+      "sha256": "43d5e68687b9620d3f4dfd406a5b0da93292a4505548dc1c18a7443b257cdb3d"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: preserves the complete synthetic cookie GA1.1.123456789.1700000000
+not ok 1 - preserves the complete synthetic cookie GA1.1.123456789.1700000000
+  ---
+  duration_ms: 1.939834
+  type: 'test'
+  location: '/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:46:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '123456789'
+    - 'GA1.1.123456789.1700000000'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'GA1.1.123456789.1700000000'
+  actual: '123456789'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:48:12)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: preserves the complete synthetic cookie GA1.2.987654321.1700000001
+not ok 2 - preserves the complete synthetic cookie GA1.2.987654321.1700000001
+  ---
+  duration_ms: 0.376209
+  type: 'test'
+  location: '/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:46:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '987654321'
+    - 'GA1.2.987654321.1700000001'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'GA1.2.987654321.1700000001'
+  actual: '987654321'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:48:12)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: preserves the complete synthetic cookie GA1.1.111111111.1700000002
+not ok 3 - preserves the complete synthetic cookie GA1.1.111111111.1700000002
+  ---
+  duration_ms: 1.824167
+  type: 'test'
+  location: '/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:46:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '111111111'
+    - 'GA1.1.111111111.1700000002'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'GA1.1.111111111.1700000002'
+  actual: '111111111'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:48:12)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: preserves the complete synthetic cookie GA1.1.222222222.1700000003
+not ok 4 - preserves the complete synthetic cookie GA1.1.222222222.1700000003
+  ---
+  duration_ms: 0.395083
+  type: 'test'
+  location: '/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:46:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '222222222'
+    - 'GA1.1.222222222.1700000003'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'GA1.1.222222222.1700000003'
+  actual: '222222222'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/fsuels/Projects/dresslikemommy/pixels/tests/ga4-client-id.test.cjs:48:12)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: keeps the existing stored identifier when the cookie is unavailable
+ok 5 - keeps the existing stored identifier when the cookie is unavailable
+  ---
+  duration_ms: 0.319916
+  type: 'test'
+  ...
+# Subtest: keeps the existing stored identifier when the cookie is empty
+ok 6 - keeps the existing stored identifier when the cookie is empty
+  ---
+  duration_ms: 0.261292
+  type: 'test'
+  ...
+# Subtest: retains the fallback identifier behavior without a cookie or stored value
+ok 7 - retains the fallback identifier behavior without a cookie or stored value
+  ---
+  duration_ms: 0.378417
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 3
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 67.52325

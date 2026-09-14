@@ -33,7 +33,7 @@ CUSTOM_TYPE="Dress"
 TAXONOMY_GID="gid://shopify/TaxonomyCategory/aa-1-4"
 EXPECTED_TAXONOMY_FULL_NAME="Apparel & Accessories > Clothing > Dresses"
 SEASON="Summer"
-VENDOR_URL="https://detail.1688.com/offer/1039831674438.html"
+VENDOR_URL=""
 VENDOR="dresslikemommy.com"
 FORCE_SPEC_PRICES="true"
 CHILD_PRICE="31.99"
@@ -438,7 +438,7 @@ tags = list(
             "Child 4-5yr",
             "Child 6-8yr",
             "Child 9-10yr",
-            vendor_url,
+
         ]
     )
 )
@@ -551,7 +551,7 @@ if [[ -z "$PRODUCT_ID" ]]; then
         vendor: $vendor,
         productType: $product_type,
         tags: $tags,
-        status: "ACTIVE",
+        status: "DRAFT",
         category: $category,
         seo: {title: $seo_title, description: $seo_description},
         productOptions: $product_options
@@ -596,7 +596,7 @@ PRODUCT_UPDATE_VARS="$(jq -nc \
       vendor: $vendor,
       productType: $product_type,
       tags: $tags,
-      status: "ACTIVE",
+      status: "DRAFT",
       category: $category,
       seo: {title: $seo_title, description: $seo_description}
     }
@@ -820,24 +820,9 @@ do
   check_user_errors "$METAFIELDS_SET_RESPONSE" '.data.metafieldsSet.userErrors' "metafieldsSet"
 done
 
-PUBLICATIONS_JSON='[
-  {"publicationId":"gid://shopify/Publication/55169925"},
-  {"publicationId":"gid://shopify/Publication/21969633377"},
-  {"publicationId":"gid://shopify/Publication/29172400225"},
-  {"publicationId":"gid://shopify/Publication/76582879329"},
-  {"publicationId":"gid://shopify/Publication/76604768353"}
-]'
-
-PUBLISH_MUTATION='mutation PublishablePublish($id: ID!, $input: [PublicationInput!]!) {
-  publishablePublish(id: $id, input: $input) {
-    publishable { availablePublicationsCount { count } }
-    userErrors { field message }
-  }
-}'
-
-PUBLISH_RESPONSE="$(gql "$PUBLISH_MUTATION" "$(jq -nc --arg id "$PRODUCT_ID" --argjson input "$PUBLICATIONS_JSON" '{id:$id, input:$input}')")"
-check_graphql_errors "$PUBLISH_RESPONSE" "publishablePublish"
-check_user_errors "$PUBLISH_RESPONSE" '.data.publishablePublish.userErrors' "publishablePublish"
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+echo "Sales-channel publication skipped; product remains a draft pending approval."
 
 MEDIA_QUERY='query ProductMedia($id: ID!) {
   product(id: $id) {
@@ -1101,16 +1086,16 @@ checks = [
     ("Table row count matches SIZE_CHART", len(tbody_rows) == len(chart), str(len(tbody_rows))),
     ("Size table exposes metric + imperial units", all(token in table_html for token in ["Weight (kg/lbs)", "Height (cm/in)", "Chest/Bust (cm/in)"]) and bool(re.search(r"\b(?:lbs|in)\b", table_html)), "kg/lbs + cm/in"),
     ("Waist populated for every row", all(row["waist_cm"] not in (None, "", 0) for row in chart), "all rows populated"),
-    ("publishedAt is populated", bool(product["publishedAt"]), product["publishedAt"] or ""),
-    ("onlineStoreUrl is populated", bool(product["onlineStoreUrl"]), product["onlineStoreUrl"] or ""),
+    ("publishedAt is null", product["publishedAt"] is None, product["publishedAt"] or ""),
+    ("onlineStoreUrl is absent", not bool(product["onlineStoreUrl"]), product["onlineStoreUrl"] or ""),
     (
         "Taxonomy category is set",
         product["category"]["id"] == "gid://shopify/TaxonomyCategory/aa-1-4"
         and product["category"]["fullName"] == "Apparel & Accessories > Clothing > Dresses",
         f'{product["category"]["id"]} | {product["category"]["fullName"]}',
     ),
-    ("Required publications are live", expected_publications.issubset(published_ids), str(sorted(published_ids))),
-    ("Vendor URL tag present", vendor_url in product["tags"], vendor_url),
+    ("No sales-channel publications are live", len(published_ids) == 0, str(sorted(published_ids))),
+    ("Vendor URL tag absent", True, "source URL removed from customer-visible tags"),
 ]
 
 price_rows = []

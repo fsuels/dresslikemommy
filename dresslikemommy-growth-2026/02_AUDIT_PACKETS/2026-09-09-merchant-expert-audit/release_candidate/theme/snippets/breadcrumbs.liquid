@@ -1,0 +1,274 @@
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' %}
+  {% comment %} --- Hardened breadcrumb generation with collection existence checks --- {% endcomment %}
+  {% assign category1_label = product.metafields.custom.category1 | default: "Mommy and Me" %}
+  {% assign category1_handle = category1_label | handleize %}
+  {% assign category1_collection = collections[category1_handle] %}
+  {% assign category1_display_label = category1_label %}
+
+  {% assign subcategory_label = product.metafields.custom.subcategory | default: "Dresses" %}
+  {% assign subcategory_handle = subcategory_label | handleize %}
+  {% assign subcategory_collection = collections[subcategory_handle] %}
+  {% assign subcategory_display_label = subcategory_label %}
+  {% assign product_collection_handles = product.collections | map: 'handle' | join: '|' %}
+  {% assign product_collection_handle_tokens = '|' | append: product_collection_handles | append: '|' %}
+  {% assign has_family_matching_context = false %}
+  {% if category1_handle == 'family-matching'
+    or category1_handle == 'matching-outfits'
+    or category1_handle == 'family-matching-outfits'
+    or category1_handle == 'new-women-outfits'
+    or product_collection_handle_tokens contains '|new-women-outfits|'
+    or product_collection_handle_tokens contains '|popular-family-matching|'
+    or product_collection_handle_tokens contains '|family-sets|'
+    or product_collection_handle_tokens contains '|matching-family-vacation-outfits|'
+    or product_collection_handle_tokens contains '|matching-hawaiian-outfits|'
+    or product_collection_handle_tokens contains '|family-tops|'
+    or product_collection_handle_tokens contains '|family-sweaters|'
+    or product_collection_handle_tokens contains '|family-pajamas|'
+    or product_collection_handle_tokens contains '|family-swimsuits|'
+  %}
+    {% assign has_family_matching_context = true %}
+  {% endif %}
+  {% assign has_family_sets_context = false %}
+  {% if product_collection_handle_tokens contains '|family-sets|' or subcategory_handle == 'family-sets' %}
+    {% assign has_family_sets_context = true %}
+  {% endif %}
+  {% if has_family_matching_context and category1_collection == blank %}
+    {% assign category1_handle = 'new-women-outfits' %}
+    {% assign category1_collection = collections[category1_handle] %}
+    {% assign category1_display_label = 'sections.breadcrumbs.cat_family_matching' | t %}
+  {% endif %}
+  {% if has_family_matching_context %}
+    {% if product_collection_handle_tokens contains '|family-sets|' or subcategory_handle == 'family-sets' %}
+      {% assign subcategory_handle = 'family-sets' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_sets' | t %}
+    {% elsif product_collection_handle_tokens contains '|family-tops|' or subcategory_handle == 'tops' %}
+      {% assign subcategory_handle = 'family-tops' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_tops' | t %}
+    {% elsif product_collection_handle_tokens contains '|family-sweaters|' or subcategory_handle == 'sweaters' %}
+      {% assign subcategory_handle = 'family-sweaters' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_sweaters' | t %}
+    {% elsif product_collection_handle_tokens contains '|family-pajamas|' or subcategory_handle == 'pajamas' %}
+      {% assign subcategory_handle = 'family-pajamas' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_pajamas' | t %}
+    {% elsif product_collection_handle_tokens contains '|family-swimsuits|' or subcategory_handle == 'swimsuits' %}
+      {% assign subcategory_handle = 'family-swimsuits' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_swimsuits' | t %}
+    {% elsif product_collection_handle_tokens contains '|matching-hawaiian-outfits|' or subcategory_handle == 'matching-hawaiian-outfits' %}
+      {% assign subcategory_handle = 'matching-hawaiian-outfits' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_hawaiian_outfits' | t %}
+    {% elsif product_collection_handle_tokens contains '|matching-family-vacation-outfits|' or subcategory_handle == 'matching-family-vacation-outfits' %}
+      {% assign subcategory_handle = 'matching-family-vacation-outfits' %}
+      {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% assign subcategory_display_label = 'sections.collection_seo.display_titles.family_sets' | t %}
+    {% endif %}
+  {% endif %}
+  {% assign family_sets_collection = collections['family-sets'] %}
+  {% if has_family_sets_context %}
+    {% if category1_collection == blank %}
+      {% assign category1_handle = 'new-women-outfits' %}
+      {% assign category1_collection = collections[category1_handle] %}
+      {% assign category1_display_label = 'sections.breadcrumbs.cat_family_matching' | t %}
+    {% endif %}
+    {% if subcategory_collection == blank and family_sets_collection != blank %}
+      {% assign subcategory_handle = 'family-sets' %}
+      {% assign subcategory_collection = family_sets_collection %}
+      {% assign subcategory_display_label = 'sections.breadcrumbs.label_sets' | t %}
+    {% endif %}
+  {% endif %}
+  {% assign back_to_results_url = blank %}
+  {% assign back_to_results_label = 'sections.product_navigation.back_to_results' | t %}
+  {% assign back_to_results_context = blank %}
+  {% assign similar_styles_collection = collection %}
+  {% assign similar_styles_label = 'sections.product_navigation.view_similar_styles' | t %}
+  {% assign similar_styles_aria_label = similar_styles_label %}
+  {% if category1_collection != blank and category1_collection.title != blank %}
+    {% assign category1_display_label = category1_collection.title %}
+  {% endif %}
+  {% if collection != blank %}
+    {% assign back_to_results_url = collection.url %}
+  {% elsif subcategory_collection != blank %}
+    {% assign back_to_results_url = subcategory_collection.url %}
+  {% elsif category1_collection != blank %}
+    {% assign back_to_results_url = category1_collection.url %}
+  {% endif %}
+  {% if back_to_results_url == blank %}
+    {% assign back_to_results_url = routes.all_products_collection_url | default: routes.root_url %}
+  {% endif %}
+  {% if subcategory_collection != blank and subcategory_collection.title != blank %}
+    {% assign subcategory_display_label = subcategory_collection.title %}
+  {% elsif subcategory_handle == 'daddy-me-t-shirts' %}
+    {% assign subcategory_display_label = 'sections.breadcrumbs.label_daddy_tshirts' | t %}
+  {% elsif subcategory_handle == 'daddy-me-shirts' %}
+    {% assign subcategory_display_label = 'sections.breadcrumbs.label_button_downs' | t %}
+  {% elsif subcategory_handle == 'matching-couples-t-shirts' %}
+    {% assign subcategory_display_label = 'sections.breadcrumbs.label_tshirts' | t %}
+  {% endif %}
+
+  {% capture resolved_category1_display_label %}
+    {% render 'breadcrumb-label', collection_handle: category1_handle, default_label: category1_display_label %}
+  {% endcapture %}
+  {% assign category1_display_label = resolved_category1_display_label | strip %}
+
+  {% capture resolved_subcategory_display_label %}
+    {% render 'breadcrumb-label', collection_handle: subcategory_handle, default_label: subcategory_display_label %}
+  {% endcapture %}
+  {% assign subcategory_display_label = resolved_subcategory_display_label | strip %}
+  {% assign rendered_subcategory_label_key = blank %}
+  {% if subcategory_collection != blank and subcategory_display_label != blank %}
+    {% assign rendered_subcategory_label_key = subcategory_display_label | handleize %}
+  {% endif %}
+
+  {% assign collection_display_label = blank %}
+  {% if collection != blank %}
+    {% capture resolved_collection_display_label %}
+      {% render 'breadcrumb-label', collection_handle: collection.handle, default_label: collection.title %}
+    {% endcapture %}
+    {% assign collection_display_label = resolved_collection_display_label | strip %}
+  {% endif %}
+
+  {% if collection != blank and collection_display_label != blank %}
+    {% assign back_to_results_context = collection_display_label %}
+  {% elsif subcategory_collection != blank and subcategory_display_label != blank %}
+    {% assign back_to_results_context = subcategory_display_label %}
+  {% elsif category1_collection != blank and category1_display_label != blank %}
+    {% assign back_to_results_context = category1_display_label %}
+  {% elsif has_family_sets_context and family_sets_collection != blank and family_sets_collection.title != blank %}
+    {% assign back_to_results_context = family_sets_collection.title %}
+  {% endif %}
+
+  {% if back_to_results_context != blank %}
+    {% assign back_to_results_label = 'sections.product_navigation.back_to_context' | t: context: back_to_results_context %}
+  {% endif %}
+
+  {% if similar_styles_collection == blank or similar_styles_collection.all_products_count < 5 %}
+    {% if has_family_sets_context and family_sets_collection != blank %}
+      {% assign similar_styles_collection = family_sets_collection %}
+    {% elsif subcategory_collection != blank and subcategory_collection.all_products_count > 0 %}
+      {% assign similar_styles_collection = subcategory_collection %}
+    {% elsif category1_collection != blank and category1_collection.all_products_count > 0 %}
+      {% assign similar_styles_collection = category1_collection %}
+    {% else %}
+      {% assign fallback_collection = blank %}
+      {% assign fallback_collection_count = 0 %}
+      {% for product_collection in product.collections %}
+        {% if product_collection.handle == 'all' or product_collection.all_products_count == 0 %}
+          {% continue %}
+        {% endif %}
+
+        {% if fallback_collection == blank or product_collection.all_products_count > fallback_collection_count %}
+          {% assign fallback_collection = product_collection %}
+          {% assign fallback_collection_count = product_collection.all_products_count %}
+        {% endif %}
+      {% endfor %}
+      {% assign similar_styles_collection = fallback_collection %}
+    {% endif %}
+  {% endif %}
+
+  {% if similar_styles_collection != blank and similar_styles_collection.title != blank %}
+    {% capture resolved_similar_styles_collection_label %}
+      {% render 'breadcrumb-label', collection_handle: similar_styles_collection.handle, default_label: similar_styles_collection.title %}
+    {% endcapture %}
+    {% assign resolved_similar_styles_collection_label = resolved_similar_styles_collection_label | strip %}
+    {% if resolved_similar_styles_collection_label != blank %}
+      {% assign similar_styles_aria_label = 'sections.product_navigation.view_similar_styles_in' | t: collection: resolved_similar_styles_collection_label %}
+    {% endif %}
+  {% endif %}
+
+  <div class="product-breadcrumb__handoff">
+    <p class="product-breadcrumb__eyebrow">{{ 'general.continue_shopping' | t }}</p>
+    <a
+      href="{{ back_to_results_url }}"
+      class="product-breadcrumb__back-link"
+      data-back-to-results
+      data-back-to-results-fallback="{{ back_to_results_url }}"
+      data-back-to-results-label-default="{{ back_to_results_label | escape }}"
+      data-back-to-results-template="{{ 'sections.product_navigation.back_to_context' | t: context: '__CONTEXT__' | escape }}"
+      data-back-to-search-results-label="{{ 'sections.product_navigation.back_to_search_results' | t | escape }}"
+      rel="prev"
+      aria-label="{{ back_to_results_label | escape }}"
+      title="{{ back_to_results_label | escape }}"
+    >
+      <span data-back-to-results-label>{{ back_to_results_label }}</span>
+    </a>
+    {% if similar_styles_collection != blank %}
+      <a
+        href="{{ similar_styles_collection.url }}"
+        class="product-breadcrumb__browse-link"
+        aria-label="{{ similar_styles_aria_label | escape }}"
+        title="{{ similar_styles_aria_label | escape }}"
+      >
+        {{ similar_styles_label }}
+      </a>
+    {% endif %}
+  </div>
+
+  <nav class="breadcrumb product-breadcrumb product-breadcrumb__trail" role="navigation" aria-label="breadcrumbs">
+    <a href="{{ routes.root_url }}" title="{{ 'sections.breadcrumbs.home' | t }}" class="product-breadcrumb__link mobile-hide">{{ 'sections.breadcrumbs.home' | t }}</a>
+
+    {% comment %} --- Category1 link only if collection exists --- {% endcomment %}
+    {% if category1_collection != blank %}
+      <span aria-hidden="true" class="product-breadcrumb__separator mobile-hide">&rsaquo;</span>
+      <a href="{{ category1_collection.url }}" title="{{ category1_display_label }}" class="product-breadcrumb__link mobile-hide">{{ category1_display_label }}</a>
+    {% endif %}
+
+    {% comment %} --- Subcategory link only if collection exists --- {% endcomment %}
+    {% if subcategory_collection != blank %}
+      <span aria-hidden="true" class="product-breadcrumb__separator mobile-hide">&rsaquo;</span>
+      <a href="{{ subcategory_collection.url }}" title="{{ subcategory_display_label }}" class="product-breadcrumb__link">{{ subcategory_display_label }}</a>
+    {% endif %}
+
+    {% assign subcategories = product.metafields.custom.subcategory2 | split: ',' %}
+
+    {% if subcategories.size > 0 %}
+      {% comment %} --- Build subcategory2 group with existence checks --- {% endcomment %}
+      {% assign valid_subcats = '' %}
+      {% assign seen_subcategory2_label_keys = '|' %}
+      {% for subcategory in subcategories %}
+        {% assign subcat_label = subcategory | strip %}
+        {% unless subcat_label == '' %}
+          {% assign subcat_handle = subcat_label | handleize %}
+          {% assign subcat_collection = collections[subcat_handle] %}
+          {% comment %} Only include if collection exists {% endcomment %}
+          {% if subcat_collection != blank %}
+            {% capture resolved_subcat_display_label %}
+              {% render 'breadcrumb-label', collection_handle: subcat_handle, default_label: subcat_collection.title | default: subcat_label %}
+            {% endcapture %}
+            {% assign subcat_display_label = resolved_subcat_display_label | strip %}
+            {% assign subcat_display_label_key = subcat_display_label | handleize %}
+            {% assign seen_subcategory2_label_key = '|' | append: subcat_display_label_key | append: '|' %}
+            {% unless subcat_display_label_key == blank or subcat_display_label_key == rendered_subcategory_label_key or seen_subcategory2_label_keys contains seen_subcategory2_label_key %}
+              {% if valid_subcats == '' %}
+                {% assign valid_subcats = subcat_handle | append: ':::' | append: subcat_display_label %}
+              {% else %}
+                {% assign valid_subcats = valid_subcats | append: '|||' | append: subcat_handle | append: ':::' | append: subcat_display_label %}
+              {% endif %}
+              {% assign seen_subcategory2_label_keys = seen_subcategory2_label_keys | append: subcat_display_label_key | append: '|' %}
+            {% endunless %}
+          {% endif %}
+        {% endunless %}
+      {% endfor %}
+
+      {% if valid_subcats != '' %}
+        <span aria-hidden="true" class="product-breadcrumb__separator">&rsaquo;</span>
+        <span class="product-breadcrumb__group">
+          {% assign valid_subcat_entries = valid_subcats | split: '|||' %}
+          {% for subcat_entry in valid_subcat_entries %}
+            {% assign subcat_parts = subcat_entry | split: ':::' %}
+            {% assign subcat_handle = subcat_parts[0] | strip %}
+            {% assign subcat_display_label = subcat_parts[1] | strip %}
+            {% assign subcat_collection = collections[subcat_handle] %}
+            {% if subcat_collection != blank and subcat_display_label != blank %}
+              <a href="{{ subcat_collection.url }}" class="product-breadcrumb__link">{{ subcat_display_label }}</a>{% if forloop.last == false %} <span class="product-breadcrumb__separator">/</span> {% endif %}
+            {% endif %}
+          {% endfor %}
+        </span>
+      {% endif %}
+    {% endif %}
+  </nav>
+{% endunless %}

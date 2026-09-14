@@ -1,0 +1,390 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-11T20:19:35.678Z",
+  "reviewer": "theme_audit_review",
+  "decision": "PASS_WITH_LIMITS",
+  "recommendation": "Use existing uploaded V7 theme 137888792673 as the publication target; keep V8 local until rendered acceptance.",
+  "reviewScope": "Bounded independent release/preservation review against MAIN using saved complete Admin manifests, source comparisons and earlier recorded browser/regression evidence. Not exhaustive certification of all 61 differing files or every storefront behavior.",
+  "independence": {
+    "builtOrMutatedTheme": false,
+    "apiOrPublicHttpRequests": 0,
+    "browserActions": 0,
+    "sourceOrCanonicalEdits": false,
+    "writes": [
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/preservation-independent-review-2010.json"
+    ],
+    "freshBrowserReplay": false
+  },
+  "sourceReadAt": "2026-09-11 20:14:01 UTC",
+  "target": {
+    "id": "gid://shopify/OnlineStoreTheme/137888792673",
+    "name": "DLM UX Performance QA 2026-09-10",
+    "role": "UNPUBLISHED",
+    "processing": false,
+    "updatedAt": "2026-09-11T17:40:34Z"
+  },
+  "completeFileCounts": {
+    "main": 525,
+    "preview": 527,
+    "predecessor": 527
+  },
+  "releaseBoundary": {
+    "fullDifferencesAgainstMain": 61,
+    "modifiedExistingFiles": 59,
+    "addedFiles": [
+      "assets/cookie-preferences.css",
+      "assets/cookie-preferences.js"
+    ],
+    "removedFiles": [],
+    "unchangedMainFiles": 466,
+    "predecessorDifferencesAgainstMain": 47,
+    "uxChangesAgainstPredecessor": 19,
+    "overlappingChangedFiles": [
+      "assets/cart.js",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "locales/da.json",
+      "sections/footer.liquid",
+      "sections/main-product.liquid"
+    ],
+    "inheritedOnlyFiles": 42,
+    "uxOnlyFiles": 14,
+    "unchangedFromPredecessor": 508,
+    "composition": "47 inherited + 19 subsequent changes - 5 overlapping paths = 61 distinct differences from MAIN.",
+    "all527CurrentCandidateMd5AndSizesMatched": true,
+    "sourceDriftSincePriorGate": 0,
+    "v7ReleaseFilesProtected": true
+  },
+  "importantIdenticalMainFiles": {
+    "assets/cart-drawer.js": "a692aade6744d3297d74690765ca3e3c",
+    "assets/cart-notification.js": "1454084009ebf6ee7da45c3ec95efae2",
+    "assets/customer.css": "a498a84e8f13c5698088890d21c15d30",
+    "assets/customer.js": "98fbac22e38fecdc715443845e497815",
+    "assets/product-form.js": "09ddebbac45e49c78a9c63838cfedf1b",
+    "config/settings_data.json": "c930f11c6c004cd13388be8892b9ae3d",
+    "config/settings_schema.json": "5ba5632deff58bb439305afd8ed22c44",
+    "sections/footer-group.json": "837af0b6864d25a60b6f34c793cb96d8",
+    "sections/header-group.json": "24e5b1d14008520ce4af061bf001ca0c",
+    "sections/header.liquid": "6c6faf66d247963f75bef448b0b70577",
+    "sections/main-account.liquid": "14b4f8ae9554eb48e1ba2c6e9e921a46",
+    "sections/main-activate-account.liquid": "02e45a32444782aea88c9189c91846f2",
+    "sections/main-addresses.liquid": "66fa5474c25f8149d90f078b781d3cc9",
+    "sections/main-cart-footer.liquid": "bb7d770807ffd2e45830679128fc3c8a",
+    "sections/main-login.liquid": "ad063eb0cab728ca1a46cc906c1fef89",
+    "sections/main-order.liquid": "306320872f9848fbe7fc1ff4e70ba500",
+    "sections/main-register.liquid": "19cc1b3477da8038b77bed3a7cea0c54",
+    "sections/main-reset-password.liquid": "5613bac27d8f4f8fe80cb5e6dff0b787",
+    "snippets/buy-buttons.liquid": "786cac83f4cd76ab69736101f00e5267",
+    "snippets/cart-drawer.liquid": "bc3582d051641085ef60219681c9d0cb",
+    "snippets/cart-notification.liquid": "f7b3ed2431d473d5c3fffbc54191793e",
+    "snippets/header-drawer.liquid": "ea25b3a082de86b0fd30435c440f76b6",
+    "snippets/header-dropdown-menu.liquid": "5af56865e42ac8d843942f7558d11137",
+    "snippets/header-mega-menu-feature-card.liquid": "51d9f93d1d5b5c33a421c45db9fc3167",
+    "snippets/header-mega-menu.liquid": "5295b2fa63f21d89c58d0f1129b889dc",
+    "snippets/header-search.liquid": "5ac0168d35e0b5c3a9b1d3204c4848f6",
+    "snippets/price.liquid": "31dd8b3c91696dea063d1f0409f58946",
+    "templates/404.json": "f14a0bd594f4fee47b13fc09543098ff",
+    "templates/article.json": "f71c7929b6684b178b32c1970e2f010c",
+    "templates/blog.json": "8c174adf67183db3cfa9f3665e882249",
+    "templates/cart.json": "9fd24919e0ceeb91c8bad827c76ea232",
+    "templates/collection.json": "3d95b22c3f8d954efda60814425c6c9f",
+    "templates/customers/account.json": "b76ec502d6fb60dddd5668caf60e13eb",
+    "templates/customers/activate_account.json": "19324e777a1a5824b2ae62d5164b16c2",
+    "templates/customers/addresses.json": "b76ff61f3721967b4d489fd879b11485",
+    "templates/customers/login.json": "0bc9649f5f524087d1ba4e0b7c941989",
+    "templates/customers/order.json": "218f05d49b934e788e0344c66373aed1",
+    "templates/customers/register.json": "2dacb5c8689dc6352dc99fe27f5bea83",
+    "templates/customers/reset_password.json": "686a49ce83d11f27584ce26b935b219f",
+    "templates/gift_card.liquid": "72afca1811cade4aa9b83973ab2c59ca",
+    "templates/index.json": "51383a25a0cb4be5a15f69df6936d787",
+    "templates/list-collections.json": "aafac6f0bd19e26173d49205948a5313",
+    "templates/page.contact.json": "deba72852cdfc01efb2dec5548a0ab5d",
+    "templates/page.json": "7d9167256b6b2817956965f3a4f448e1",
+    "templates/password.json": "2383a1adfbc891993598f07e6941ea8e",
+    "templates/product.json": "ceae465256f4ea9f2bbc716b4968dc94",
+    "templates/search.json": "e18b8dceddc729f1c629f6f314223fb9"
+  },
+  "featurePreservation": [
+    {
+      "area": "Saved settings and page configuration",
+      "status": "VERIFIED_SOURCE",
+      "evidence": "Both config files and all 20 templates are identical to MAIN. Header sections/snippets, footer-group settings, account/login/register/address/order/reset/activation surfaces are preserved.",
+      "limit": "A preserved setting/template is not certification of all external app or account behavior."
+    },
+    {
+      "area": "Navigation, search and collection filtering",
+      "status": "SOURCE_PRESERVED_OR_SCOPED_PREVIEW_VERIFIED",
+      "evidence": "Header/navigation files are unchanged. Root browser receipts record mobile menu open/Escape, predictive results/Escape, actual Apricot filtering/chip removal and localized hero/category navigation. Search races have focused regressions.",
+      "limit": "No new browser replay under the HTTP 429 stop."
+    },
+    {
+      "area": "Cart, price and checkout entry",
+      "status": "SOURCE_PRESERVED_AND_SCOPED_PREVIEW_VERIFIED",
+      "evidence": "buy-buttons, price, cart drawer/notification and main-cart-footer files are identical to MAIN. payment_button, named checkout submit, additional checkout buttons, discount and @app rendering remain. Root verified mobile cart placement, quantity/count/subtotal, exact Together Heart variant add and standard desktop/mobile checkout entry.",
+      "sourcePointers": [
+        {
+          "file": "snippets/buy-buttons.liquid",
+          "line": 131
+        },
+        {
+          "file": "sections/main-cart-footer.liquid",
+          "line": 168
+        },
+        {
+          "file": "sections/main-cart-footer.liquid",
+          "line": 179
+        }
+      ],
+      "limit": "No completed payment/order; Amazon Pay was unavailable on both MAIN and preview. Preserved express controls do not certify provider acceptance."
+    },
+    {
+      "area": "Reviews and app integration",
+      "status": "VERIFIED_SOURCE_AND_POSITIVE_REVIEW_SAMPLE",
+      "evidence": "Judge.me core embed remains enabled in unchanged settings_data; preview-badge and full-review-widget blocks remain enabled in unchanged product template. Modified main-product retains @app/render block and positive native rating logic. Existing 5.00/1-review badge and scroll-to-reviews passed actual root QA. Only zero-review unsupported arrival/endorsement fallback is removed.",
+      "sourcePointers": [
+        {
+          "file": "sections/main-product.liquid",
+          "line": 1022
+        },
+        {
+          "file": "sections/main-product.liquid",
+          "line": 1541
+        },
+        {
+          "file": "layout/theme.liquid",
+          "line": 426
+        },
+        {
+          "file": "layout/theme.liquid",
+          "line": 1151
+        }
+      ],
+      "limit": "One review sample, not review authenticity or all-app functional certification."
+    },
+    {
+      "area": "Consent and Shopify integration hooks",
+      "status": "VERIFIED_SOURCE",
+      "evidence": "content_for_header and content_for_layout hooks remain. Inherited layout delta stops hiding native preferences while retaining banner handling. Added cookie-preferences button calls Shopify privacyBanner.showPreferences only on click, exposes failure status, handles cleanup/focus and does not auto-set tracking consent.",
+      "sourcePointers": [
+        {
+          "file": "assets/cookie-preferences.js",
+          "line": 25
+        },
+        {
+          "file": "sections/footer.liquid",
+          "line": 433
+        }
+      ],
+      "limit": "This source review did not freshly render the consent dialog or validate regional consent/analytics receiver behavior."
+    },
+    {
+      "area": "Variant choices, fit guides and product descriptions",
+      "status": "SCOPED_PREVIEW_AND_REGRESSION_VERIFIED",
+      "evidence": "Saved preview evidence confirms automatic Adult 4XL/Green selection and exact USD26.99 cart line. V6 retains all 98 embedded variant fields/options, exposes Arabic child roles and preserves exact Japanese text/source tables through interaction. Fit guide open/close and cm/in interactions have root browser proof.",
+      "limit": "Source records were not rewritten by this release. Not an audit of all products/variants; five Minimalist AU links remain unverified by UX."
+    },
+    {
+      "area": "Shipping/returns presentation",
+      "status": "RETAINED_WITH_INTENTIONAL_TRUTHFULNESS_CHANGES",
+      "evidence": "Inherited purchase-confidence module retains country/currency selection, shipping details, returns eligibility and policy links. It replaces an ungrounded automatic delivery date with checkout shipping guidance and qualifies return statements. Visible review/FAQ/app controls were not removed by the reviewed main-product delta; removed product-faq-schema render is structured-data output.",
+      "limit": "Policy/source accuracy and all inherited structured-data changes were not re-certified in this bounded review."
+    }
+  ],
+  "importantFixesForOwner": [
+    "Variant deep links initialize the custom size/color selection; tested exact variant can be added.",
+    "Mobile cart footer no longer covers items; quantity updates refresh visible counts.",
+    "Filter stacking and predictive-search stale responses are corrected.",
+    "Responsive homepage images/hidden slide loading, contrast, heading hierarchy and hero controls are improved; no measured PageSpeed gain yet.",
+    "Language-preserving home/PDP navigation, Danish footer headings, Arabic child options and Japanese description preservation are repaired.",
+    "Collection context survives 105 templates across 35 locales, including literal punctuation.",
+    "Unsupported zero-review arrival/endorsement output is removed while existing reviews remain.",
+    "Prior combined consent, localized policy and Merchant landing work remains included."
+  ],
+  "comparisonWithV8": {
+    "v7": "Uploaded, checksum-bound to all 527 files, with original scoped browser acceptance plus 51 V7 regressions and complete zero-diagnostic Theme Check.",
+    "v8": "Seven-file local-only overlay, 36 focused offline tests and local full Theme Check; no storefront after-test because public HTTP 429 stop persists.",
+    "decision": "V7 is the currently supported publication choice. V8 may improve additional localization but must not be silently included or described as rendered/approved live."
+  },
+  "inheritedCoverage": {
+    "sourcePaths": [
+      "assets/cart.js",
+      "assets/cookie-preferences.css",
+      "assets/cookie-preferences.js",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "assets/theme-inline-body-static-04.css",
+      "layout/theme.liquid",
+      "locales/ar.json",
+      "locales/cs.json",
+      "locales/da.json",
+      "locales/de.json",
+      "locales/el.json",
+      "locales/en.default.json",
+      "locales/es.json",
+      "locales/fi.json",
+      "locales/fr.json",
+      "locales/he.json",
+      "locales/hi.json",
+      "locales/hr-HR.json",
+      "locales/hu.json",
+      "locales/id.json",
+      "locales/it.json",
+      "locales/ja.json",
+      "locales/ko.json",
+      "locales/lt-LT.json",
+      "locales/nb.json",
+      "locales/nl.json",
+      "locales/no.json",
+      "locales/pl.json",
+      "locales/pt-BR.json",
+      "locales/pt-PT.json",
+      "locales/ro-RO.json",
+      "locales/ro.json",
+      "locales/ru.json",
+      "locales/sk-SK.json",
+      "locales/sl-SI.json",
+      "locales/sv.json",
+      "locales/th.json",
+      "locales/tr.json",
+      "locales/vi.json",
+      "locales/zh-CN.json",
+      "locales/zh-TW.json",
+      "sections/footer.liquid",
+      "sections/main-product.liquid",
+      "snippets/jsonld-seo.liquid",
+      "snippets/pdp-policy-modals.liquid",
+      "snippets/pdp-purchase-confidence.liquid",
+      "snippets/product-desktop-ux.liquid"
+    ],
+    "subsequentPaths": [
+      "assets/cart.js",
+      "assets/component-cart.css",
+      "assets/component-facets.css",
+      "assets/global.js",
+      "assets/homepage-collection-card-images.js",
+      "assets/predictive-search.js",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "assets/section-home-curation.css",
+      "assets/theme-inline-body-static-05.css",
+      "locales/da.json",
+      "sections/category-icons.liquid",
+      "sections/curated-product-grid.liquid",
+      "sections/footer.liquid",
+      "sections/hero-banner.liquid",
+      "sections/main-cart-items.liquid",
+      "sections/main-product.liquid",
+      "snippets/home-spotlight-card.liquid",
+      "snippets/pdp-description-copy-cleanup.liquid",
+      "snippets/product-page-copy-map.liquid"
+    ],
+    "fullReleasePaths": [
+      "assets/cart.js",
+      "assets/component-cart.css",
+      "assets/component-facets.css",
+      "assets/cookie-preferences.css",
+      "assets/cookie-preferences.js",
+      "assets/global.js",
+      "assets/homepage-collection-card-images.js",
+      "assets/predictive-search.js",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "assets/section-home-curation.css",
+      "assets/theme-inline-body-static-04.css",
+      "assets/theme-inline-body-static-05.css",
+      "layout/theme.liquid",
+      "locales/ar.json",
+      "locales/cs.json",
+      "locales/da.json",
+      "locales/de.json",
+      "locales/el.json",
+      "locales/en.default.json",
+      "locales/es.json",
+      "locales/fi.json",
+      "locales/fr.json",
+      "locales/he.json",
+      "locales/hi.json",
+      "locales/hr-HR.json",
+      "locales/hu.json",
+      "locales/id.json",
+      "locales/it.json",
+      "locales/ja.json",
+      "locales/ko.json",
+      "locales/lt-LT.json",
+      "locales/nb.json",
+      "locales/nl.json",
+      "locales/no.json",
+      "locales/pl.json",
+      "locales/pt-BR.json",
+      "locales/pt-PT.json",
+      "locales/ro-RO.json",
+      "locales/ro.json",
+      "locales/ru.json",
+      "locales/sk-SK.json",
+      "locales/sl-SI.json",
+      "locales/sv.json",
+      "locales/th.json",
+      "locales/tr.json",
+      "locales/vi.json",
+      "locales/zh-CN.json",
+      "locales/zh-TW.json",
+      "sections/category-icons.liquid",
+      "sections/curated-product-grid.liquid",
+      "sections/footer.liquid",
+      "sections/hero-banner.liquid",
+      "sections/main-cart-items.liquid",
+      "sections/main-product.liquid",
+      "snippets/home-spotlight-card.liquid",
+      "snippets/jsonld-seo.liquid",
+      "snippets/pdp-description-copy-cleanup.liquid",
+      "snippets/pdp-policy-modals.liquid",
+      "snippets/pdp-purchase-confidence.liquid",
+      "snippets/product-desktop-ux.liquid",
+      "snippets/product-page-copy-map.liquid"
+    ],
+    "limits": "Preservation comparisons cover every filename/checksum, but semantic review is bounded to important flows and available MAIN snapshots. MAIN ruler-sync body remains unavailable; inherited receipt and scoped runtime/browser evidence are reused rather than claiming exhaustive re-audit."
+  },
+  "documentationFinding": {
+    "file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/release-boundary.json",
+    "status": "STALE_AUXILIARY_EXCLUDED_FROM_CURRENT_AUTHORITY",
+    "observedCounts": {
+      "changedFromCombined": 14,
+      "preservedCombined": 513,
+      "differencesFromMain": 58
+    },
+    "currentCounts": {
+      "changedFromCombined": 19,
+      "preservedCombined": 508,
+      "differencesFromMain": 61
+    },
+    "resolution": "Root identified the auxiliary as immutable historical evidence. Do not use its counts for the owner explanation; current final-release-manifest/readback and 20:14 comparison govern. No edit made."
+  },
+  "ownerExplanationReview": {
+    "file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/RELEASE_EXPLANATION.md",
+    "preservationAndScopeWording": "SUPPORTED",
+    "reason": "Distinguishes source preservation from runtime acceptance, 59 modifications plus two additions from no deletions, inherited work, unchanged settings/templates/account surfaces, V7 versus local V8, and payment/PageSpeed/429 limitations.",
+    "sixThemeInventoryClaim": "Reported and owned by root; this independent review compared the three named theme sources and the sole MAIN inventory, not a separate six-theme inventory."
+  },
+  "remainingGates": {
+    "userPublicationAuthority": "EXPLICIT; no generic reapproval needed.",
+    "connectorExecution": "Theme publication and MAIN writes explicitly blocked; user authority does not remove the platform restriction.",
+    "permittedNextOwnerAction": "Publish existing DLM UX Performance QA 2026-09-10 (137888792673) in Shopify Admin; preserve 133290917985 for owner rollback.",
+    "publicationExecuted": false,
+    "workaroundAllowed": false,
+    "publicAfterChecks": "BLOCKED_PUBLIC_HTTP_429_STOP until an actual access-condition change.",
+    "liveAcceptance": "UNFINISHED; verify new MAIN and exact source privately after publication, then actual buying paths, five AU links and published PageSpeed when access clears.",
+    "perfectionClaim": false,
+    "canonicalEdits": "None by reviewer; preserve current shared coordination."
+  },
+  "evidenceSha256": {
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/owner-release-2014-source.json": "f386ab6487f142958879cea1c2938ff205afc8ee98502ee849f9bd1cca82a9d0",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/owner-release-2014-comparison.json": "2f206dd4d1405af6b9da93b701216558b23c5d4eb58e71b3a4d61cd637606606",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/publication-gate-20260911/publication-restriction.json": "533bf1b86ce05f77273cfa30827153a581865dd4b10741b47859114380fb3ce9",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/final-release-manifest.json": "bb56268777cea883e7a127bda24a25391831a05ca5ca414f0d188229afcff291",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/final-release-readback.json": "1def707fb18bb99a0f61b3b8eab717392b2a26e4e970d9a08b7ecb9ff5833345",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/release-boundary.json": "148b2476b4f24e5f2b82df1cb75ed4468749aa18bbd6721cff146aa6696088dd",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/browser-verification.json": "80a1f7a75257131106bcefa423f79e7a54ce0a1a88e6546187c475104267240c",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/browser-after.json": "b54a1621abd8f3afc398799e4287904de0fb802a040c65e8ba9c6c3136cd1906",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/independent-after-review.json": "2464e71a5512594109dac588711bb3369b2d3fb00dcb693922f533bc0706e7bf",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/theme-check-receipt.json": "f92c842d8d37e17fbf604ad9419b0a735d7ebabc649f7d6c7952c4db02d49379",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-pdp-v6/independent-after-review.json": "6e9220c271ea9f022fc0f947d61e9a96ff9be42965398d3c7359d747bc1b8001",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-pdp-v6/selected-guide-recheck.json": "76e7582dd478e3f64b0658eb190bc049c913954fe15b74e66cfd07d336b6cd8d",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/independent-review.json": "148834430f33e67c91033192f38cb2fa9323f1cb4f186610f87b800c2d7af86f"
+  }
+}

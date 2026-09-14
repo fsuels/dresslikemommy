@@ -1,0 +1,198 @@
+{
+  "schema": "dlm.ga4_receiver_operator_checks.v1",
+  "recorded_at_utc": "2026-09-14T07:38:07Z",
+  "receiver_receipt": "../GA4_REAL_PURCHASE_RECEIVER_20260914_0718.json",
+  "receiver_sha256": "eb1371589bcc5e24a6aac5a962ec53fe809c2d702a1ef97cf468c64a33bd0ea3",
+  "status": "PASS_WITH_LIMITS",
+  "source_checks": {
+    "checks": [
+      {
+        "name": "private source unchanged",
+        "status": "PASS"
+      },
+      {
+        "name": "private file permission 0600",
+        "status": "PASS"
+      },
+      {
+        "name": "exact parent candidate count",
+        "status": "PASS"
+      },
+      {
+        "name": "parent candidate non-test paid web noncancelled",
+        "status": "PASS"
+      },
+      {
+        "name": "candidate immutable hash",
+        "status": "PASS"
+      },
+      {
+        "name": "Ads baseline immutable hash",
+        "status": "PASS"
+      },
+      {
+        "name": "candidate and parent current totals agree",
+        "status": "PASS"
+      },
+      {
+        "name": "candidate exact reporting date",
+        "status": "PASS"
+      },
+      {
+        "name": "New York UTC boundaries",
+        "status": "PASS"
+      },
+      {
+        "name": "candidate reporting and presentment USD",
+        "status": "PASS"
+      },
+      {
+        "name": "one displayed transaction and purchase",
+        "status": "PASS"
+      },
+      {
+        "name": "transaction revenue agrees with Shopify",
+        "status": "PASS"
+      },
+      {
+        "name": "exact four distinct purchased IDs",
+        "status": "PASS"
+      },
+      {
+        "name": "US item format",
+        "status": "PASS"
+      },
+      {
+        "name": "all four variant product quantity and price rows match candidate",
+        "status": "PASS"
+      },
+      {
+        "name": "parent private source variant quantity joins agree",
+        "status": "PASS"
+      },
+      {
+        "name": "parent item pagination complete",
+        "status": "PASS"
+      },
+      {
+        "name": "purchase quantity sum agrees",
+        "status": "PASS"
+      },
+      {
+        "name": "item price sum agrees",
+        "status": "PASS"
+      },
+      {
+        "name": "item name agrees with every Shopify line",
+        "status": "PASS"
+      },
+      {
+        "name": "item report aggregate limitation explicit",
+        "status": "PASS"
+      },
+      {
+        "name": "native missing session diagnostic retained",
+        "status": "PASS"
+      },
+      {
+        "name": "individual consent root cause not claimed",
+        "status": "PASS"
+      },
+      {
+        "name": "intraday processing finality qualified",
+        "status": "PASS"
+      },
+      {
+        "name": "transaction exact comparison performed",
+        "status": "PASS"
+      },
+      {
+        "name": "one minimal identity query",
+        "status": "PASS"
+      },
+      {
+        "name": "identifier query no extra fields",
+        "status": "PASS"
+      },
+      {
+        "name": "query validated before execution",
+        "status": "PASS"
+      },
+      {
+        "name": "raw-event currency unverified",
+        "status": "PASS"
+      },
+      {
+        "name": "dedup unverified",
+        "status": "PASS"
+      },
+      {
+        "name": "Ads and profit not promoted",
+        "status": "PASS"
+      },
+      {
+        "name": "US sample not promoted internationally",
+        "status": "PASS"
+      },
+      {
+        "name": "full measurement acceptance remains incomplete",
+        "status": "PASS"
+      },
+      {
+        "name": "no Ads action repetition",
+        "status": "PASS"
+      },
+      {
+        "name": "no business production writes",
+        "status": "PASS"
+      },
+      {
+        "name": "Ads editor and user tab untouched",
+        "status": "PASS"
+      },
+      {
+        "name": "spend authority unchanged",
+        "status": "PASS"
+      },
+      {
+        "name": "raw order GID and numeric component excluded",
+        "status": "PASS"
+      },
+      {
+        "name": "no order identifier or contact value keys",
+        "status": "PASS"
+      },
+      {
+        "name": "private SHA comparison digest excluded",
+        "status": "PASS"
+      },
+      {
+        "name": "old full-cohort cadence superseded",
+        "status": "PASS"
+      },
+      {
+        "name": "review does not imply independent private replay",
+        "status": "PASS"
+      },
+      {
+        "name": "exact query-returned private identifiers absent from saved receipt",
+        "status": "PASS"
+      }
+    ],
+    "passed": 43,
+    "total": 43
+  },
+  "strict_continuity": {
+    "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/check_continuity_integrity.py --strict",
+    "exit_code": 0,
+    "result": "PASS_10_OF_10_CONTINUITY_OK"
+  },
+  "limits": [
+    "Operator checks include transient private matching; independent review of redacted saved evidence cannot replay that private join.",
+    "Native report diagnostic was observed, not an independently reproduced consent implementation root cause.",
+    "No full raw event payload, individual consent state, sender deduplication, Google Ads attribution, profitability or international tracking acceptance was established."
+  ],
+  "parent_private_source_use_ended": true,
+  "private_raw_runtime_result_cleared": true,
+  "shared_canonical_writes": 0
+}

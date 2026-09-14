@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "status": "LOCAL_CANDIDATE_ONLY_REQUIRES_MARKET_AND_SHIPPING_REVIEW",
+  "markets": [
+    "ca-en",
+    "gb-en"
+  ],
+  "holds": [
+    {
+      "product_id": "gid://shopify/Product/7516369715297",
+      "reason": "Actual MAIN Australian buyer test found no usable options or Add to Cart control.",
+      "evidence": [
+        "international_candidate/au-en.full_cohort_qualification_20260911.json@sha256:7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a",
+        "Root sole-UX ordinary buyer receipt, September 11"
+      ],
+      "release_condition": "Current supported source/theme repair and exact role, size, price and manual Add/cart readback prove buyability."
+    },
+    {
+      "product_id": "gid://shopify/Product/7516479848545",
+      "reason": "Six child offers have unresolved null-role selector identity; runtime qualification is incomplete.",
+      "evidence": [
+        "international_candidate/au-en.full_cohort_qualification_20260911.json@sha256:7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a",
+        "international_candidate/au-en.sku-template-binding_20260911.json"
+      ],
+      "release_condition": "Resolve the actual SKU/options mapping and verify the affected child selection and cart identity."
+    },
+    {
+      "product_id": "gid://shopify/Product/7536337125473",
+      "reason": "Trail Plaid contains sixteen Girl/Boy selection-key collision pairs in the actual MAIN selector mapping.",
+      "evidence": [
+        "international_candidate/au-en.full_cohort_qualification_20260911.json@sha256:7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a",
+        "international_candidate/au-en.sku-template-binding_20260911.json"
+      ],
+      "release_condition": "Exact Girl/Boy variant identity is unambiguous and independently verified through the actual buyer path."
+    },
+    {
+      "product_id": "gid://shopify/Product/7536992976993",
+      "reason": "Existing English Skyfade measurement/source truth hold remains unresolved.",
+      "evidence": [
+        "international_candidate/au-en.full_cohort_qualification_20260911.json@sha256:7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a",
+        "Existing root source-truth review for Skyfade7536992976993, September 11"
+      ],
+      "release_condition": "Source-backed measurements and the applicable current English buyer size information pass the owning source review."
+    },
+    {
+      "product_id": "gid://shopify/Product/7536988520545",
+      "reason": "Existing English Polka Dot measurement/source truth hold remains unresolved.",
+      "evidence": [
+        "international_candidate/au-en.full_cohort_qualification_20260911.json@sha256:7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a",
+        "Existing root source-truth review for PolkaDot7536988520545, September 11"
+      ],
+      "release_condition": "Source-backed measurements and the applicable current English buyer size information pass the owning source review."
+    },
+    {
+      "product_id": "gid://shopify/Product/7536086089825",
+      "reason": "All nine current Pastel Bloom feed images map to the inspected flatlay with unresolved child-skirt proportions. This is a temporary image qualification hold, not a physical-defect or whole-parent noncompliance finding.",
+      "evidence": [
+        "international_candidate/au-en.full_cohort_qualification_20260911.json@sha256:7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a",
+        "Existing Pinterest flatlay inspection and root exact nine-offer image binding, September 11"
+      ],
+      "release_condition": "An accurate, independently reviewed source/lifestyle image is bound to all affected current offer IDs, then this temporary hold is explicitly released."
+    }
+  ],
+  "scope_note": "Preserve the same six English source/buyer/image holds while preparing Canada and United Kingdom candidates. This derivative is not the ACTIVE US/AU hold file and is not approval to create, upload, or activate either market.",
+  "source_qualification": {
+    "path": "international_candidate/au-en.full_cohort_qualification_20260911.json",
+    "sha256": "7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a",
+    "checks": "27/27 supplement checks plus input hashes independently verified; final six parents/162 exact offers."
+  }
+}

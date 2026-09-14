@@ -1,0 +1,1 @@
+query RecentGrowthOrderCountries($filter: String!) { orders(first: 50, query: $filter) { nodes { createdAt shippingAddress { countryCodeV2 } } pageInfo { hasNextPage endCursor } } }

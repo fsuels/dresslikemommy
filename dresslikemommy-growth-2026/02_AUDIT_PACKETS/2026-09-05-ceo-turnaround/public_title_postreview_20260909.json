@@ -1,0 +1,115 @@
+{
+  "schema": "dlm.public_title_independent_review.v1",
+  "reviewed_at_utc": "2026-09-10T00:03:27.549428+00:00",
+  "reviewer": "/root/order_delta_1934",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "review_method": "Independent file-only recomputation of captured per-route observations, frozen title/H1 values, locale aliases, scope, mobile geometry and cleanup assertions. No API/browser rerun or independent screenshot inspection performed.",
+  "source_file": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/public_title_readback_20260909.json",
+  "source_sha256": "c10eb8b5d6088c92679bf5a72a7dea77e8f3fa6f5f4233f0d3cfd103b6e4a219",
+  "source_completed_at": "2026-09-09T23:51:50.100Z",
+  "expected_source_hashes": {
+    "rainbow_remaining_title_copy_20260907.json": "1852c7c6c51e2ec45e525a04465560fae99ad941395509e9789233bbf515ff8b",
+    "meow_identity_copy_20260907.json": "02cd3e2e6c51c0d5228f8322a75d3f37cbfffc7d6bc886d372a0223ff954ba69"
+  },
+  "verdict": "PASS",
+  "checks": {
+    "rainbow_expected19": true,
+    "rainbow_exact_locale_set": true,
+    "rainbow_all19_exact": true,
+    "rainbow_ru_sv_excluded": true,
+    "rainbow_original17title_scope": true,
+    "meow_expected21": true,
+    "meow_exact_locale_set": true,
+    "meow_all21_exact": true,
+    "meow_original21seo_scope": true,
+    "mobile_exact_two_samples": true,
+    "mobile_390_844_both": true,
+    "mobile_rects_in_viewport": true,
+    "mobile_samples_match_scope": true,
+    "arabic_ltr_retained": true,
+    "cleanup_reset_closed_untouched": true,
+    "cleanup_en_1280_cart_zero_no_actions": true,
+    "both_expected_packet_hashes_match": true,
+    "review_input_hash_exact": true,
+    "route_records40": true,
+    "route_products_exact": true,
+    "unique_product_locale40": true,
+    "unique_actual_urls40": true,
+    "per_product_locales_exact": true,
+    "requested_locale_matches_published_route_alias": true,
+    "actual_equals_observed_target40": true,
+    "canonical_equals_actual40": true,
+    "visible_product_h1_count_one40": true,
+    "exact_frozen_copy40": true,
+    "record_fields_match_retained_maps40": true,
+    "exact_public_domain_all_urls": true,
+    "route_paths_match_recorded_product_and_locale": true,
+    "route_aggregate_recomputes_exactly": true
+  },
+  "checks_passed": 32,
+  "checks_total": 32,
+  "exact_field_matches": {
+    "rainbow_h1": 19,
+    "meow_document_title": 21,
+    "total": 40
+  },
+  "route_record_review": {
+    "expected": 40,
+    "per_route_records_retained": 40,
+    "recomputed": {
+      "routes": 40,
+      "actual_url_equals_observed_target": 40,
+      "canonical_equals_actual_url": 40,
+      "single_visible_product_h1": 40,
+      "failures": 0
+    },
+    "can_independently_recompute_route_counts": true,
+    "distinct_product_locale_pairs": 40,
+    "distinct_actual_urls": 40,
+    "product_counts": {
+      "Rainbow": 19,
+      "Meow": 21
+    },
+    "locale_alias_outlier": "Two requested pt routes map to published pt-BR, explicitly consistent with the recorded alternate-link route rule. Not a wrong-language redirect."
+  },
+  "corrections": [
+    {
+      "id": "retain_per_route_source_evidence",
+      "required": false,
+      "status": "RESOLVED",
+      "previous_source_sha256": "0204f71a03c2f3437645d3dde3a740f8a84d7975846fd7a2b101f200e348cbb3",
+      "resolution": "All40 observed per-route target/actual/canonical URLs, locale, visible-H1 count and observed target values are retained and independently recompute the aggregate checks. The root records recovery from existing CUA data without a new browser visit.",
+      "extraction_history_retained": "Initial saved receipt retained only aggregate route counts. Independent reviewer required the captured per-route observations; these are now retained. The first re-extraction mistakenly applied the initial object-row visible filter to later prefiltered text arrays, yielding zeros; inspecting original second/last records identified the schema difference. Corrected extraction handles object visible flags and prefiltered strings; all40 counts are1. No live page defect or source mutation was inferred."
+    }
+  ],
+  "scope_findings": [
+    "Rainbow English/Dutch plus17 named title translations match exactly; ru/sv are excluded. Explicit Rainbow SEO and descriptions remain outside this H1 review.",
+    "Meow English plus20 meta_title values match exactly; product H1s are not part of the identity rewrite.",
+    "Two recorded390x844 mobile geometry samples fit. Root visual-inspection and cleanup statements are recorded, not independently rerun.",
+    "Arabic computed ltr is retained. This does not certify full RTL layout.",
+    "Duplicate alternate-link sets remain an observation; no global hreflang or indexing claim.",
+    "SERP selection, indexing, traffic, orders, paid attribution and retained profit remain unverified. Public in-app access does not establish native account access."
+  ],
+  "closure_recommendation": {
+    "TA-17": "CLOSE the scoped rendered-heading verification gap for English/Dutch plus17 repaired locales. Exact19 values and routes pass; do not repeat source edits.",
+    "TA-19": "CLOSE the scoped storefront document-head verification gap for all21 SEO titles. Google-selected SERP title, crawl/indexing, ranking and business-outcome follow-up remain pending.",
+    "repeat_source_edits": false,
+    "serp_indexing_ranking_traffic_sales_profit_verified": false,
+    "complete_rtl_or_global_hreflang_verified": false
+  },
+  "actions": {
+    "browser_calls": 0,
+    "external_writes": 0,
+    "repo_writes": 0,
+    "owned_private_review_updated": 1
+  },
+  "review_history": [
+    {
+      "verdict": "NEEDS_ROUTE_EVIDENCE",
+      "reviewed_at_utc": "2026-09-09T23:58:29.841800+00:00",
+      "source_sha256": "0204f71a03c2f3437645d3dde3a740f8a84d7975846fd7a2b101f200e348cbb3",
+      "private_review_sha256": "6e60371dbd09d5a493a1dfb23c8d02eb0612fef609b7e18929f1a4bb33129c55",
+      "correction": "The source initially omitted individual route records; recovered observed rows now resolve the gap."
+    }
+  ]
+}

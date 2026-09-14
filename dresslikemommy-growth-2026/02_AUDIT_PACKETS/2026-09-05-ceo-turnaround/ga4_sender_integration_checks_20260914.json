@@ -1,0 +1,80 @@
+{
+  "schema": "dlm.ga4_sender_integration_checks.v1",
+  "action_id": "TA02-SENDER-INTEGRATE-20260914-0846",
+  "recorded_at_utc": "2026-09-14T10:01:03.003133+00:00",
+  "status": "PASS_WITH_RUNTIME_LIMITS",
+  "commands": [
+    {
+      "command": "render_marketing_cockpit.py",
+      "exit_code": 0,
+      "result": "RENDERED",
+      "tool_chunk": "2ac9ed"
+    },
+    {
+      "command": "audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "exit_code": 0,
+      "tracked": 25,
+      "integrated": 25,
+      "side_document_risks": 0,
+      "tool_chunk": "babddf"
+    },
+    {
+      "command": "check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "checks_passed": 10,
+      "result": "CONTINUITY_OK",
+      "tool_chunk": "3fa242"
+    },
+    {
+      "command": "git diff --check -- <five changed canonical files, two generated files and four sender receipt files>",
+      "exit_code": 0,
+      "tool_chunk": "ff0559",
+      "limit": "Untracked JSON bytes checked separately."
+    },
+    {
+      "command": "compile_task_context.py --query TA-02 sender diagnosis and capture limit --task-kind paid-growth --entity TA02-PASSIVE-SENDER-20260914-0846 --format json",
+      "exit_code": 0,
+      "selected_anchor": "2026-09-14-ceo-sender-diagnosis-and-capture-limit",
+      "source_lines": [
+        51233,
+        51262
+      ],
+      "tool_chunk": "a9772b"
+    }
+  ],
+  "current_source_readbacks": {
+    "five_planned_after_hashes_match": true,
+    "owner_action_section_byte_preserved": true,
+    "current_goal_section_byte_preserved": true,
+    "TA16_next19_04_53UTC_preserved": true,
+    "selected_worklog_source_confirms_failed_summary_and_no_repeat": true,
+    "four_owned_JSON_and_whitespace_checks": "PASS"
+  },
+  "independent_canonical_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ga4_sender_integration_review_20260914.json",
+    "sha256": "4521636d4863f1a2dd571aef1de8c6dc82b0dfb572a45ba00004baa2d68fe3f7",
+    "checks": 12,
+    "verdict": "PASS_WITH_LIMITS"
+  },
+  "source_receipt": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ga4_sender_parent_acceptance_20260914.json",
+    "sha256": "9ba64cd3bf64d17622cce5e097ae83855c128dfb1d2fc34f165353e6abe8d6ca"
+  },
+  "plan": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ga4_sender_integration_plan_20260914.json",
+    "sha256": "ca266183ab1cfa907de9cc9475502cc52d62a5464b5c4bab207c510ca2fadc26"
+  },
+  "after_hashes": {
+    "ops/marketing/action_queue.md": "618990493a4554371c9dc23e070b1c21605fd160c91d8485ee15f1c0c7a00982",
+    "ops/marketing/operator_cockpit.md": "f83dab19fb8c9a93eb03bd8728cbecbb43c04b96303f97c6e492035cf8a3b1b5",
+    "ops/PROBLEM_TRACKER.md": "63a4f431930d371044ac56035a2e7ae9474c4587bd7a84eeb36647ef2e09930b",
+    "ops/AGENT_COORDINATION.md": "368c6258be1c65df5cfa1950e79918ca44a94bf441eabdbf08d931ea75f978e0",
+    "ops/AGENT_WORKLOG.md": "f548fdebe45900426fa9a2d7e4f48f73409a8044d29d789c80e3e501e2d2a938"
+  },
+  "generated_files": {
+    "ops/marketing/operator_cockpit.html": "b21a83172542ea235653255febff280509f11e040f63208dc5ee7585b725bb8c",
+    "ops/marketing/command_layer_integration_audit.md": "8c8c74c8d8dfa668f8d93e337b3207c77f4eff269d83008290d60b9bb700325b"
+  },
+  "runtime_acceptance": "NOT_ACCEPTED__COLLECTOR_SUMMARY_COVERAGE_FAILED__CONSENT_SESSION_SEQUENCE_UNKNOWN",
+  "no_runtime_replay": true
+}

@@ -41,7 +41,7 @@ PRINT_NAME = "Coastal Blue Stripe"
 SHORTCODE = "CBST"
 COLOR_TOKEN = "BLUE"
 COLOR_NAME = "Blue Stripe"
-VENDOR_URL = "https://detail.1688.com/offer/906619827474.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
@@ -274,7 +274,7 @@ def tags() -> list[str]:
         "Family Matching", "Mommy and Me", "Daddy and Me", "Sets", "Summer Family Matching Set",
         "Matching Family Outfits", "Matching Family Set", "Matching Family Top", "Matching Family Dresses",
         "Shirt", "Dress", "Summer", "Vacation", "Blue", "Stripe", "Coastal", PRINT_NAME,
-        "Girl Dress", "Mother Dress", "Boy Shirt", "Father Shirt", VENDOR_URL,
+        "Girl Dress", "Mother Dress", "Boy Shirt", "Father Shirt",
     ]
     values.extend(sorted({row["picker_label"] for row in SIZE_CHART}))
     values.extend(sorted({row["role"] for row in SIZE_CHART}))

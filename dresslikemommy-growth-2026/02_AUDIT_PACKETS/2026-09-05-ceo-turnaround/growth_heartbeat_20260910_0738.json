@@ -1,0 +1,150 @@
+{
+  "schema": "dlm.growth_heartbeat_delta.v1",
+  "task_stage": "HANDOFF",
+  "trigger": "existing four-hour profitable-growth heartbeat",
+  "heartbeat_started_at_utc": "2026-09-10T07:38:05.897Z",
+  "role_readback_observed_by_utc": "2026-09-10T07:44:13Z",
+  "theme_role_readback": {
+    "source": "Validated read-only Shopify Admin GraphQL connector",
+    "nodes": [
+      {
+        "id": "gid://shopify/OnlineStoreTheme/133290917985",
+        "name": "dresslikemommy/main",
+        "role": "MAIN",
+        "updatedAt": "2026-07-02T16:47:21Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137782591585",
+        "name": "DLM SEO DA NL 2026-09-06",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-06T07:03:53Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137850814561",
+        "name": "DLM DA NL SEO only 2026-09-08",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-08T19:01:09Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137880666209",
+        "name": "DLM Consent Preferences 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T18:58:13Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137881223265",
+        "name": "DLM Merchant Landing Fixes 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T20:10:58Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137888792673",
+        "name": "DLM UX Performance QA 2026-09-10",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-10T04:34:55Z"
+      }
+    ],
+    "pageInfo": {
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjoxMzc4ODg3OTI2NzMsImxhc3RfdmFsdWUiOjEzNzg4ODc5MjY3M30="
+    },
+    "limits": "Role and update timestamp read only; not a new full-file conflict or buyer acceptance check."
+  },
+  "theme_result": {
+    "main": "133290917985",
+    "current_combined_candidate": "137888792673",
+    "candidate_role": "UNPUBLISHED",
+    "publication_observed": false,
+    "full_source_reverified": false
+  },
+  "dashboard": {
+    "status": "VERIFIED_EXISTING_SERVICE_HEALTHY",
+    "url": "http://127.0.0.1:8767/ops/marketing/operator_cockpit.html",
+    "check": "open_marketing_cockpit.py --no-open returned Marketing cockpit live",
+    "initial_sandbox_check": "PermissionError for localhost socket; opener fallback is not service failure",
+    "permitted_retry": "Normal require_escalated read of the same existing local service succeeded",
+    "installed_or_restarted": false,
+    "latest_order_checkpoint_present_in_generated_dashboard": true
+  },
+  "coordination": {
+    "latest_relevant_anchor": "2026-09-10-storefront-localized-pdp-v6-preview-verified",
+    "current_channel_owners_preserved": true,
+    "native_access_retried": false
+  },
+  "authority": {
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "exact_heartbeat_scope": "Read-only bounded delta and parent-owned checkpoint integration; completed nonspend repair authority and other owner claims retained"
+  },
+  "runtime": {
+    "existing_goal_status": "blocked",
+    "new_goal_created": false,
+    "new_automation_created": false,
+    "original_heartbeat": {
+      "id": "dress-like-mommy-profitable-growth",
+      "status": "ACTIVE",
+      "same_replacement_thread": true,
+      "original_interval_hours": 4,
+      "source": "Existing automation.toml read only; no update"
+    }
+  },
+  "execution": {
+    "external_writes": 0,
+    "browser_calls": 0,
+    "account_probes": 0,
+    "theme_writes": 0,
+    "paid_mutations": 0
+  },
+  "orders": {
+    "source_receipt": "/private/tmp/dlm-heartbeat-order-check-20260910-0738.json",
+    "source_sha256": "f1293881fefef18c1e8df70cb795e8ecb0e2d71a34352dfe22ec2831e017074e",
+    "canonical_checkpoint": "current_sales_checkpoint_20260908_evening.json",
+    "heartbeat_entry_index": 8,
+    "same_totals": {
+      "orders": 2,
+      "current_units": 4,
+      "current_subtotal_usd": "86.45",
+      "current_total_usd": "86.45",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00",
+      "financial_status_counts": {
+        "PAID": 2
+      },
+      "fulfillment_status_counts": {
+        "FULFILLED": 1,
+        "UNFULFILLED": 1
+      }
+    },
+    "changes": {
+      "orders": 0,
+      "units": 0,
+      "current_subtotal_usd": "0.00",
+      "recorded_refunds_usd": "0.00",
+      "cancelled_orders": 0,
+      "known_basket_status_change": false,
+      "new_carrier_events": 0,
+      "rainbow_fulfillment_unchanged": true,
+      "mermaid_current_fulfillment_records": 0
+    },
+    "source_checks_passed": 32,
+    "independent_receipt_checks_passed": 18
+  },
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "New genuine order, changed fulfillment/cost evidence, published candidate or stable selected Merchant account prerequisite.",
+  "if_evidence_supports_recommendation": "Route a new genuine order to receiver reconciliation or a published release to buyer verification; continue existing supported channel action after its access gate.",
+  "if_evidence_opposes_recommendation": "Hold dependent actions with evidence and preserve completed work; do not repeat blocked probes or closed repairs.",
+  "material_decision": "NOT_MATERIAL",
+  "next_owner_action": "Existing Merchant task: leave Merchant513542500 Data sources selected unchanged and reply Ready.",
+  "next_three_internal_tasks": [
+    "Merchant receiving-source and multilingual offer eligibility, then existing Ads/retained GA4 receiver",
+    "Owner publication of the current combined theme after fresh full-source conflict check, then published buyer/PageSpeed verification",
+    "Existing Sunshine Pin release through its current Pinterest owner after the saved native prerequisites"
+  ],
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "status": "HOLD_WITH_EVIDENCE__NO_NEW_ACTION_QUALIFIED",
+  "source_live_evidence_as_of": "2026-09-10T07:44:04Z",
+  "outcome": "No new order, carrier event or theme publication. Preserve current owner gates and completed work; no measured acquisition/profit improvement.",
+  "latest_anchor": "2026-09-10-ceo-turnaround-0744-no-change-checkpoint"
+}

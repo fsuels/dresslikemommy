@@ -1,0 +1,72 @@
+{
+  "schema": "dlm.us_es_existing_pipeline_correction_proposal.v1",
+  "action_id": "TA07-US-SPANISH-QUALIFY-20260914-1658",
+  "status": "PROPOSED_NOT_IMPLEMENTED",
+  "runtime_files_changed": [],
+  "premise_disproved": "The unchanged US-market-scoped translation read does not supply inherited global Spanish content: all 238 translation arrays are empty, despite complete global Spanish records.",
+  "evidence": {
+    "source_snapshot": "us-es.snapshot.json",
+    "global_supplement": "global_es_translation_supplement.json",
+    "unchanged_builder_diagnostics": "current_pipeline_readiness/us-es.diagnostics.json",
+    "unchanged_builder_exit_code": 2,
+    "errors": 238,
+    "code": "missing_or_stale_translation",
+    "feed_written": false
+  },
+  "bounded_existing_code_changes": [
+    {
+      "file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js",
+      "function": "collectCatalog",
+      "current_lines": "74–79, 100–113",
+      "proposal": "For a non-source locale, collect a separate fully paginated global translation view using the existing PRODUCTS_QUERY with translation marketId null. Preserve the actual US market/catalog/currency reads and final manifest checks. Compare parent IDs, updatedAt, counts and publication identity against the complete source; retain each component read clock. Merge translations per locale/key as global followed by exact-market overrides. An outdated exact-market override remains outdated and rejected; never silently replace it with the global or English text. Reject duplicate or mismatched translation records and incomplete views.",
+      "query_change_required": false
+    },
+    {
+      "file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js",
+      "functions": [
+        "localizedContent",
+        "buildFeed"
+      ],
+      "current_lines": "109–115, 255",
+      "proposal": "Add a narrowly enabled non-source-locale policy for explicit translation-only exclusions, retaining a complete parent/variant reconciliation. Missing/stale required content and stale handles must be visible rejected cohorts, never emitted as English or falsely marked fresh. Preserve whole-feed rejection for malformed buyable rows, duplicate identity, incomplete pagination, source drift, wrong country/catalog/currency and unverified landing context. Do not alter active counts or publication facts to hide rejected parents.",
+      "must_not_change": "Default fail-closed behavior for all current English paths; landingContextVerified remains false until supported buyer evidence passes."
+    },
+    {
+      "file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/cohort_filter.py",
+      "proposal": "Use the existing exact six-parent hold filter with the separately reviewed US/es market-scoped hold specification after a valid build. Do not change hold criteria, release any parent, or deploy the local hold copy through this qualification."
+    }
+  ],
+  "translation_outcomes": {
+    "fresh_required_field_parents": 227,
+    "stale_parents": 11,
+    "stale_fields": 13,
+    "available_stale_offers": 189,
+    "unavailable_variant_in_stale_parent": 1,
+    "stale_content_repairs_applied": false
+  },
+  "source_join_artifact": "derived_global_translation_input_NOT_RELEASED.json",
+  "source_join_claim": "Explicit derived review input, not unchanged-collector output or a fresh reread of variants. Original source completion time retained.",
+  "lifecycle_acceptance_requirements": [
+    "A complete source refresh adds newly active, published, available and adequately translated offers.",
+    "Deleted, archived, unpublished, unavailable or newly translation-rejected offers leave the exact replacement set.",
+    "A still-stale override remains rejected even if global content is fresh.",
+    "Truncated pagination, source drift or malformed buyable records stop the whole replacement rather than deleting unseen records.",
+    "Global and market-specific translation changes are reflected only from qualified complete views with separate freshness clocks.",
+    "No Spanish scheduler or hosting path is currently deployed; this packet does not claim unattended updates."
+  ],
+  "review_checks_required_for_future_patch": [
+    "Empty override plus fresh global content",
+    "Fresh market override wins over global",
+    "Stale market override is rejected",
+    "Explicit stale/missing translation partition matches all source rows",
+    "Complete replacement lifecycle including newly stale translated parents",
+    "Existing English fixtures and malformed/source-integrity rejection remain unchanged",
+    "Direct Spanish numeric variant URL settles correctly before landingContextVerified changes"
+  ],
+  "existing_guard_tests": "existing_translation_guard_tests.json",
+  "new_harness_created": false,
+  "official_reference": {
+    "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/Translation",
+    "use": "Global translations apply across markets; market-specific translations are optional; outdated reports source content changes."
+  }
+}

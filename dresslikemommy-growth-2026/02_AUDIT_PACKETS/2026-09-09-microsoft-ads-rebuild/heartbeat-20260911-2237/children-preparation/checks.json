@@ -1,0 +1,116 @@
+{
+  "prepared_at": "2026-09-11T23:06:52.066985+00:00",
+  "status": "PASS_LOCAL_PARTIAL_PREPARATION__RSA_UI_SCHEMA_BLOCKED__NO_NATIVE_ACTION_APPROVED",
+  "checks_passed": 10,
+  "checks": [
+    {
+      "check": "exact_source_selection",
+      "result": "PASS",
+      "detail": "2 groups / 6 Exact keywords / 14 campaign Phrase negatives in UI candidates; 2 exact RSAs preserved separately, not fabricated into unknown UI format."
+    },
+    {
+      "check": "exact_target_bindings",
+      "result": "PASS",
+      "detail": "Target names and IDs match root receipt dated 2026-09-11T23:00:15.281455+00:00; no campaign record in either CSV."
+    },
+    {
+      "check": "all_serving_children_paused",
+      "result": "PASS",
+      "detail": "Negative Active is exclusion association, not an ad activation; negative Paused is unsupported."
+    },
+    {
+      "check": "no_financial_or_targeting_fields",
+      "result": "PASS",
+      "detail": "Only two new group rows explicitly InheritFromParent. No campaign, bid, budget, cap, geography, language, network or targeting mutations in candidate fields."
+    },
+    {
+      "check": "exact_keywords_match_types_urls",
+      "result": "PASS",
+      "detail": "All 6 source keyword texts, Exact types and latest dresses URLs preserved; numeric candidate CPC values are not imported as bids."
+    },
+    {
+      "check": "negative_scope_and_no_held_terms",
+      "result": "PASS",
+      "detail": "7 per campaign, all Phrase; no AdGroup negative, held cross-garment term or tee reserve included."
+    },
+    {
+      "check": "no_positive_phrase_block",
+      "result": "PASS",
+      "detail": "Narrow lexical overlap check only, not a native-language or historical search-query performance certification."
+    },
+    {
+      "check": "rsa_copy_and_lengths",
+      "result": "PASS",
+      "detail": "Exact source copy kept: each 8 unique headlines <=30 and 3 descriptions <=90, paths <=15; no dynamic copy or pin added."
+    },
+    {
+      "check": "csv_utf8_roundtrip",
+      "result": "PASS",
+      "detail": "UTF-8 BOM / CRLF preserves German characters and standard comma-quoted values."
+    },
+    {
+      "check": "main_csv_bytes_unchanged",
+      "result": "PASS",
+      "detail": "All five protected source CSV hashes remain identical after preparation."
+    }
+  ],
+  "rsa_character_checks": [
+    {
+      "ad_key": "ms_us_en_202609_dresses_rsa_1",
+      "headlines": 8,
+      "headline_lengths": [
+        18,
+        25,
+        23,
+        25,
+        28,
+        26,
+        28,
+        16
+      ],
+      "descriptions": 3,
+      "description_lengths": [
+        79,
+        80,
+        78
+      ],
+      "path_lengths": [
+        12,
+        7
+      ],
+      "all_assets_unpinned": true
+    },
+    {
+      "ad_key": "ms_de_de_202609_dresses_rsa_1",
+      "headlines": 8,
+      "headline_lengths": [
+        22,
+        22,
+        25,
+        28,
+        29,
+        25,
+        24,
+        16
+      ],
+      "descriptions": 3,
+      "description_lengths": [
+        83,
+        77,
+        79
+      ],
+      "path_lengths": [
+        14,
+        7
+      ],
+      "all_assets_unpinned": true
+    }
+  ],
+  "source_sha256": {
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "ad_groups.csv": "dbf27dfc5ccd5cfb27c5aed898f202c76060b5b484ec353b3140ad701d950f92",
+    "keywords.csv": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012",
+    "responsive_search_ads.csv": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839"
+  }
+}

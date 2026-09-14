@@ -1,0 +1,103 @@
+{
+  "schema": "dlm.rainbow_title_repair.v1",
+  "created_at_utc": "2026-09-07 00:14:52 UTC",
+  "status": "PREPARED_FOR_INDEPENDENT_PREFLIGHT",
+  "objective": "Repair literal truncated shopper-facing English and Dutch names on the Rainbow product that appears in the new NL-to-Belgium paid basket. Improve buyer clarity without implying a mother-and-daughter bundle.",
+  "scope": {
+    "product_id": "gid://shopify/Product/7229023846497",
+    "shop_name": "Dress Like Mommy",
+    "host": "www.dresslikemommy.com",
+    "currency": "USD",
+    "fields": [
+      "product.title",
+      "translations[nl].title"
+    ],
+    "external_mutations": 2
+  },
+  "candidate": {
+    "english": "Vibrant Rainbow Mommy and Me Maxi Dresses",
+    "dutch": "Regenboogmaxijurken voor moeder en dochter"
+  },
+  "before": {
+    "english": "Vibrant Rainbow Maxi Dress Set for Colorful Summer ... | DLM",
+    "dutch": "Levendige regenboog maxi-jurkset voor kleurrijke zomer... | DLM",
+    "handle": "vibrant-rainbow-maxi-dress-set-for-mom-and-daughter-colorful-summer-matching-outfits",
+    "status": "ACTIVE",
+    "seo": {
+      "title": "Mommy and Me Matching Sets - Rainbow Stripe | Dress Like Mommy",
+      "description": "Shop mommy and me matching sets for moms and daughters featuring rainbow stripe. Perfect for easy coordinated looks, vacations, and family photos. Shop now at Dress Like Mommy. Free shipping + 30-day returns."
+    },
+    "title_digest": "8fe1cae885cc689248c1b60ffc5ab301cd261bfe0d4a4d987a0849ce79b18f3d",
+    "full_source_file": "rainbow_title_preflight_source.json"
+  },
+  "source_basis": {
+    "english_terms": "Current English body explicitly states rainbow-striped maxi dresses for mother and daughter; five Girl and three Mother variant names are individually priced. The candidate does not assert a bundled quantity or new material/fit/shipping facts.",
+    "dutch_review": "FeedOps independently recommended exact candidate as natural Dutch, identifies product clearly, avoids implying a bundled pair; final agent response after source review.",
+    "sold_signal": "RECENT_01 in recent_paid_order_signal_20260906.json / countries / basket variants; actual Google entry /nl/collections/dresses, shipping BE. Paid-versus-organic and incremental causality are unknown.",
+    "superseded": "The earlier selected_change containing Dress Set in recent_sold_product_landing_review.json was NOT EXECUTED. This root plan supersedes that candidate based on separate per-person options and a distinct truncated NL title."
+  },
+  "authority": {
+    "basis": "Current owner's direct instruction: I want you to do the approvals and implement automatically the changes; repeated request for actual sales-moving improvements. Persisted USER_AUTHORIZED_REPAIR_EXECUTION.",
+    "interpretation": "Reviewed reversible shopper-copy repair of these exact two fields; not agent self-approval or standing paid authority.",
+    "claim": "Rainbow dress English and Dutch titles in ops/AGENT_COORDINATION.md; root sole writer.",
+    "paid_controls": "All nine authoritative full-paid-account fields unchanged; no launch authority supplied."
+  },
+  "operations": [
+    {
+      "sequence": 1,
+      "tool": "shopify_update_product",
+      "args": {
+        "id": "gid://shopify/Product/7229023846497",
+        "title": "Vibrant Rainbow Mommy and Me Maxi Dresses"
+      },
+      "precondition": "Independent PASS plus same-session exact-source/dedicated product no-drift readback matching the reviewed before values. Only id and title arguments.",
+      "after": "Separate source and dedicated product readback: new English title, original NL title, same other product fields/source content/translation VALUES. updatedAt and title-related outdated flags may change."
+    },
+    {
+      "sequence": 2,
+      "tool": "shopify_graphql_mutation",
+      "document": "rainbow_dutch_title_mutation.graphql",
+      "variables_template": {
+        "resourceId": "gid://shopify/Product/7229023846497",
+        "translations": [
+          {
+            "locale": "nl",
+            "key": "title",
+            "value": "Regenboogmaxijurken voor moeder en dochter",
+            "translatableContentDigest": "BIND_FRESH_TITLE_DIGEST_AFTER_OPERATION_1"
+          }
+        ]
+      },
+      "precondition": "English operation independently read back. Obtain digest from translatableContent where key=title, locale=en, value equals exact English candidate. NL original value and all91 other translation values still match. Never reuse stale old digest or include any additional key.",
+      "after": "Exactly one returned NL title, zero GraphQL errors and zero userErrors. Separate final source and product readback verify both titles and preservation."
+    }
+  ],
+  "preservation": {
+    "product_detail": "All dedicated get_product fields except title must match; 8 variant identities, prices, option names, images, status and description unchanged.",
+    "product_source": "Preserve handle, descriptionHtml, status, seo.title, seo.description and onlineStoreUrl. updatedAt is expected system metadata.",
+    "translatable_source": "Only English source title value/digest may change; other English source values/digests preserved.",
+    "translations": "92 existing rows; only nl/title VALUE changes. Other91 values and row/key structure unchanged. Track all outdated-flag differences separately; do not claim flags unchanged.",
+    "excluded": "No other product, locale value, body, SEO, handle, variant, price, image, publication status, theme, feed source/sync, campaign, account, privacy, consent, billing or financial action."
+  },
+  "verification": {
+    "native": "BLOCKED_MAC_LOCKED as observed this turn; normal unlock request already pending. No browser bypass. API success does not certify rendered H1, search snippet, indexing or buyer conversion.",
+    "business": "Expected clearer product name; no claim of immediate visits/orders/profit. Measure qualified product/collection entries, retained orders and contribution after sufficient exposure; Sep7-13 initial comparison, exclude operator visits and preserve prior baseline."
+  },
+  "partial_success": "These are two sequential operations, not an atomic transaction. If English succeeds and NL fails, retain the verified English improvement and record Dutch pending; do not repeat the English write. If outcome is uncertain, use a normal exact readback, not blind mutation retry. Stop at permissions/schema errors. Mere browser lock is not a reason to revert improved copy.",
+  "rollback": {
+    "used": false,
+    "trigger": "Owner request or reproduced harmful regression; no automatic rollback for an unrelated browser/access blocker.",
+    "guard": "Fresh exact matching candidate state and no unrelated drift; never overwrite another writer.",
+    "sequence": [
+      "Restore original English title with dedicated update_product id/title only.",
+      "Read the resulting English title digest; register original NL title against that fresh digest, one locale/key only.",
+      "Separate readback of original values and preserved non-target fields."
+    ],
+    "original_english": "Vibrant Rainbow Maxi Dress Set for Colorful Summer ... | DLM",
+    "original_dutch": "Levendige regenboog maxi-jurkset voor kleurrijke zomer... | DLM",
+    "limits": "Content rollback does not restore system updatedAt/outdated metadata."
+  },
+  "executor": "/root",
+  "independent_verifier": "/root/current_ga4_sales_reconciliation",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE"
+}

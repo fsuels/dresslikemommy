@@ -1,0 +1,134 @@
+{
+  "status": "PASS_WITH_LIMITS_EXISTING_EVIDENCE_QUALIFIED",
+  "classification": "EXACT_US_ES_DIRECT_LINK_COMBINATIONS_UNVERIFIED",
+  "reviewed_at_utc": "2026-09-14T18:30:26.663381+00:00",
+  "source_bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/final-release/BUYER_READBACK.json",
+      "sha256": "4b4685d5457123c3e8f8cb195a622c6b6921126cba49830b0ed92fc4e3496ad7",
+      "bytes": 7619,
+      "verified_unchanged_at_close": true,
+      "selected_line_pointers": {
+        "3": "\"recorded_at_utc\": \"2026-09-11T22:49:49.560906+00:00\",",
+        "9": "\"country\": \"AU\",",
+        "11": "\"language\": \"en\",",
+        "97": "\"action\": \"mobile sticky button after explicit variant load\",",
+        "145": "\"action\": \"mobile sticky button after explicit variant load\",",
+        "199": "\"E1_normal_explicit_variant_load_mobile_size_and_add\": \"PASS\",",
+        "200": "\"E2_child_explicit_variant_load_mobile_size_and_add\": \"PASS\",",
+        "201": "\"no_explicit_variant_retains_mobile_Select_size_prompt\": \"PASS\",",
+        "209": "\"country\": \"US\",",
+        "211": "\"language\": \"en\","
+      }
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/couples-grid-repair/BUYER_READBACK-20260912.json",
+      "sha256": "eeae1ed1fcea646694e5018fa8dfa6ae7a2d43a9fcad040c37d50beaab8e957d",
+      "bytes": 11405,
+      "verified_unchanged_at_close": true,
+      "selected_line_pointers": {
+        "77": "\"locale\": \"es\",",
+        "174": "\"label\": \"Minimalist Heart\",",
+        "177": "\"variant_id\": \"41883238269025\",",
+        "193": "\"cart_link\": \"/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?variant=41883238269025\"",
+        "208": "\"country\": \"US\",",
+        "210": "\"language\": \"en\",",
+        "222": "\"prior_pdp_receipt\": \"../final-release/BUYER_READBACK.json\",",
+        "223": "\"prior_pdp_receipt_sha256\": \"4b4685d5457123c3e8f8cb195a622c6b6921126cba49830b0ed92fc4e3496ad7\","
+      }
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/couples-grid-repair/verified-release-20260912.json",
+      "sha256": "13f693b864c90c3b82da07d2c59df85f0e1c33962af48d6932ea05b61343f029",
+      "bytes": 206356,
+      "verified_unchanged_at_close": true,
+      "selected_line_pointers": {
+        "5886": "\"final_source_readback_at_utc\": \"2026-09-12T08:29:57.420Z\",",
+        "5890": "\"role\": \"UNPUBLISHED\",",
+        "5904": "\"publication\": \"NOT RUN;connector prohibits agent theme publishing and MAIN writes\",",
+        "5905": "\"live_buyers_after_publication\": \"NOT RUN\","
+      }
+    }
+  ],
+  "source_cross_bindings_verified": true,
+  "requested_cases": [
+    {
+      "product_id": "6718945034337",
+      "variant_id": "39756755861601",
+      "label": "child two-piece swimsuit",
+      "saved_exact_buyer_case": false
+    },
+    {
+      "product_id": "7230336729185",
+      "variant_id": "41883237220449",
+      "label": "Minimalist Heart Adult 2XL / White",
+      "saved_exact_buyer_case": false
+    }
+  ],
+  "evidence": {
+    "september_11": {
+      "recorded_at_utc": "2026-09-11T22:49:49.560906+00:00",
+      "theme_id": "137888792673",
+      "role_during_tests": "UNPUBLISHED",
+      "country": "AU",
+      "currency": "AUD",
+      "language": "en",
+      "cart_cases": 9,
+      "meaning": "Related explicit-variant-load passes exist for White Dress and Lavender variants on AU/AUD/en. Neither requested variant is a tested cart case. US/USD/en MAIN restoration is cleanup, not US buyer acceptance."
+    },
+    "september_12": {
+      "window_utc": {
+        "from": "2026-09-12T08:21:53.159Z",
+        "to": "2026-09-12T08:26:49.969Z"
+      },
+      "theme_id": "137888792673",
+      "role": "UNPUBLISHED",
+      "minimalist_cart": {
+        "label": "Minimalist Heart",
+        "at": "2026-09-12T08:26:02.859Z",
+        "product_id": "7230336729185",
+        "variant_id": "41883238269025",
+        "options": {
+          "Size": "Adult M",
+          "Color": "Black"
+        },
+        "quantity": 1,
+        "currency": "USD",
+        "pdp_price": "22.99",
+        "cart_total": "22.99",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "removed_at": "2026-09-12T08:26:03.441Z",
+        "after_remove_heading": "Your cart is empty",
+        "result": "PASS",
+        "cart_link": "/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?variant=41883238269025"
+      },
+      "meaning": "The same Minimalist parent has a USD cart pass through visible adult controls, but Adult M / Black is a different variant and no Spanish explicit-link initialization is recorded. Spanish proof concerns the Couples collection body, three cards and locale-prefixed product links; it is not Spanish PDP/variant or checkout proof."
+    },
+    "final_source_binding": {
+      "final_source_readback_at_utc": "2026-09-12T08:29:57.420Z",
+      "latest_uploaded_theme": {
+        "id": "gid://shopify/OnlineStoreTheme/137888792673",
+        "name": "DLM UX Performance QA 2026-09-10",
+        "role": "UNPUBLISHED",
+        "processing": false,
+        "updatedAt": "2026-09-11T23:12:13Z"
+      },
+      "publication": "NOT RUN;connector prohibits agent theme publishing and MAIN writes",
+      "live_buyers_after_publication": "NOT RUN",
+      "meaning": "September 12 composite release preserves the prior PDP source according to this saved release receipt. No fresh MAIN or current draft readback was performed by this reviewer."
+    }
+  },
+  "interpretation": "Saved evidence supports related selector repair and same-parent buyer usability. It cannot establish that the two current MAIN US/es direct-link failures are fixed in the unpublished theme, nor establish a distinct new defect or cause. The current failure description is owner-reported and was not replayed.",
+  "smallest_existing_ux_handoff": "Send the existing UX owner these two exact product/variant IDs and the owner-reported US/es + country US + currency USD preselection failure. Reuse theme137888792673 and its reviewed binding for two narrow direct-link readbacks of selected options and exact price. Preserve the existing one-owner Admin publication gate and required MAIN after-publication readback; do not create a second theme or change product data.",
+  "boundaries": {
+    "live_calls": 0,
+    "cart_actions": 0,
+    "source_or_canonical_writes": 0,
+    "theme_files_downloaded_or_audited": 0,
+    "new_build_or_harness": false,
+    "only_written_artifact": "/private/tmp/dlm-us-es-existing-ux-coverage-20260914.json"
+  }
+}

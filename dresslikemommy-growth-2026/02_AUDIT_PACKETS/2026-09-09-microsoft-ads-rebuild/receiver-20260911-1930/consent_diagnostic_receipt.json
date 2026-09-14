@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-09-11 19:56:06 UTC",
+  "status": "LIVE_VERIFIED_REGIONAL_CONSENT_GAP",
+  "account_id": 477439,
+  "customer_id": 770182,
+  "uet_id": 36005151,
+  "source": "Native UET dashboard per-event consent tooltip",
+  "window": "Last7days; only events from EEA,UK,Switzerland",
+  "observations": [
+    {
+      "event": "purchase",
+      "badge": "Healthy",
+      "tooltip": "No events from EEA, UK, or Switzerland detected so no action is needed. UET Consent Mode helps comply with regulations in these areas.",
+      "valid_regional_signal_percent": null,
+      "conclusion": "No qualifying regional purchase sample; badge does not establish consent coverage"
+    },
+    {
+      "event": "view_item",
+      "badge": "Missing",
+      "tooltip": "0% of events from EEA, UK, and Switzerland had a consent signal in the last 7 days. Other regions are not included. UET Consent Mode helps meet local regulations.",
+      "valid_regional_signal_percent": 0
+    },
+    {
+      "event": "page view",
+      "badge": "Moderate",
+      "tooltip": "27% of events from EEA, UK, and Switzerland had a consent signal in the last 7 days. Other regions are not included. UET Consent Mode helps meet local regulations.",
+      "valid_regional_signal_percent": 27
+    }
+  ],
+  "other_badges_only": {
+    "add_to_cart": "Missing",
+    "home": "Missing",
+    "begin_checkout": "Healthy",
+    "search": "Healthy"
+  },
+  "interpretation": "Receiver data establishes missing regional consent signals in page/product events. Does not by itself identify which installed stream or prove whether consent was granted, denied, or absent.",
+  "purchase_export": {
+    "attempt": "Native purchase Export data clicked with10s download wait",
+    "result": "No file/download event observed; tooltip/focus persisted",
+    "parameters_values_verified": false
+  },
+  "shopify_native": {
+    "surface": "task-owned background browser1/tab5",
+    "paths": [
+      "/store/dresslikemommy/apps",
+      "/store/dresslikemommy"
+    ],
+    "result": "Technical problem loading this page; apps route retried once, then store-home route failed similarly",
+    "not_a_login_diagnosis": true,
+    "app_setting_write": false
+  },
+  "supported_fix_scope": "Inspect publisher-supported Microsoft Shopify app update/consent controls or source-specific supported cutover; no unconditional granted signal or duplicate sender",
+  "international_launch": "Hold EEA/UK/CH activation until current permitted/denied/revoked receiver evidence passes",
+  "goal_repair": "Completed separately; selecting one primary purchase goal does not repair sender consent",
+  "follow_up": "Continue Microsoft campaign-cost and auto-apply controls while Shopify native/app-publisher path is unresolved",
+  "customer_data_persisted": false
+}

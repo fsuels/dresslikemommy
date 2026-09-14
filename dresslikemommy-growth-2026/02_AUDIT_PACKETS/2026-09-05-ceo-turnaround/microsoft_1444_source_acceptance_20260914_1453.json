@@ -1,0 +1,40 @@
+{
+  "schema": "dlm.source.acceptance.v1",
+  "recorded_at_utc": "2026-09-14T15:02:22.692765+00:00",
+  "action_id": "TA15-PAUSED-AD-QUALIFICATION-20260914-1444",
+  "status": "SOURCE_ACCEPTED_WITH_LIMITS__CANONICAL_INTEGRATION_PENDING",
+  "source_task": {
+    "thread_id": "01a08703-644f-7940-8f67-9a2fa63722bb",
+    "title": "Audit Microsoft Ads tracking"
+  },
+  "actual_completed_turn": {
+    "id": "01a0a060-4411-70f2-86cd-47b891c434ad",
+    "status": "completed",
+    "startedAt": 1789397058,
+    "completedAt": 1789397669
+  },
+  "source_files": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-1444/readback.json",
+      "sha256": "f1d938f657dcb36609ba7304eaf82b72324ba854d8e62ecc9eac5ff2d51d4d4e"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-1444/READBACK.md",
+      "sha256": "15c9d541fbcc0bc969296eda8c219ebf2372d1f6076b443653c86391fbc972ae"
+    }
+  ],
+  "independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_1444_independent_review_20260914_1453.json",
+    "sha256": "edd0fca8ee1eb01a80bcbb64c52cda0e7a58288f51fe59abf27435fd2fa634b3",
+    "checks": "30/30 PASS_WITH_LIMITS; saved-source only"
+  },
+  "accepted": "Exact US79508657389070 and DE78890182372245 changed from dated September12 grid ad strength Pending to current Good. Whole-ad editorial acceptance unverified. TodaySeptember14 partial13campaigns Paused with displayed zero activity; undefined ratios and reporting lag preserved. No feed-specific repair or purchase/profit progress inferred.",
+  "limits": [
+    "Ad strength is not editorial approval or serving",
+    "Owner reports a recovered task-owned exact-account tab; supplied files do not establish the final handoff operation",
+    "No independent live replay, new sender/consent proof, actualcosts or retained profit"
+  ],
+  "authority": "Existing paidNONE unchanged",
+  "root_dispatch_for_this_source": false,
+  "canonical_business_blocker_clearances": 0
+}

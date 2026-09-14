@@ -1,0 +1,266 @@
+{
+  "schema": "dlm.us_es_collector_independent_review.v1",
+  "verdict": "PASS_WITH_LIMITS__ISOLATED_LOCAL_PATCH_ONLY",
+  "confidence": "H_FOR_FROZEN_CODE_AND_SYNTHETIC_BEHAVIOR__LIVE_SCHEMA_AND_RESPONSE_UNVERIFIED",
+  "reviewed_at_utc": "2026-09-14T18:36:06.524724+00:00",
+  "reviewer": "/root/claim_lookup_cause",
+  "manifest": {
+    "path": "/private/tmp/dlm-us-es-collector-fallback-candidate/review-manifest.json",
+    "sha256": "f1fb27dc840c4ef4d6f6673ff83ce9f5b69ff2d7be26c5269d80493ebf43767c"
+  },
+  "patch": {
+    "path": "/private/tmp/dlm-us-es-collector-fallback-candidate/candidate.patch",
+    "sha256": "9076cb0e3a76d508f46afac200f4520e4360eb660251bf4fd56c2287568071bc"
+  },
+  "findings": [],
+  "file_bindings": [
+    {
+      "path": "package.json",
+      "before_sha256": "b9b3f45df1dcabae85da66410d29da4fb58c947108b472d52f6375e9cf432d0f",
+      "candidate_sha256": "b9b3f45df1dcabae85da66410d29da4fb58c947108b472d52f6375e9cf432d0f",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "src/automation.js",
+      "before_sha256": "d85d465ff5fe7ae0b9f2f564c6c30a11416b782e7a161509365770e7f3cb4be5",
+      "candidate_sha256": "d85d465ff5fe7ae0b9f2f564c6c30a11416b782e7a161509365770e7f3cb4be5",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "src/checkpoint.js",
+      "before_sha256": "9f1c52ec14d1dd899bf79855a9210d1a2269cf946320864901959b21cc7b5d89",
+      "candidate_sha256": "9f1c52ec14d1dd899bf79855a9210d1a2269cf946320864901959b21cc7b5d89",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "src/collector.js",
+      "before_sha256": "81748e4882ecb5b3b414db997f1902eb730c2ff612937f1c9cacb74ab6e3cb6d",
+      "candidate_sha256": "817a539c4a86590df537ba7f9470f3174513aaaf35024019b40e57fa4804a0f0",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "src/generator.js",
+      "before_sha256": "7eed96af11540a1b455b006fc04ccf51c268d8b674e35696a1f32a8a24957d84",
+      "candidate_sha256": "be56548187e3f50ce4755419ef1a1eac3070b838b066fa21cbadd0a6c8234da3",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "src/host.js",
+      "before_sha256": "666883d2d62989ef57f11e2a4b2ac5f067c2fc68478b14db908d219c5e7c6518",
+      "candidate_sha256": "666883d2d62989ef57f11e2a4b2ac5f067c2fc68478b14db908d219c5e7c6518",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "src/queries.js",
+      "before_sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+      "candidate_sha256": "9eb3492ec0c66bd0160cbb3d4b6f6e8a2a3fe5365090a2b0007a667c0412d04d",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "src/stream-publish.js",
+      "before_sha256": "bf49e3dedc35120edba1c6483260e1739f3953e92cca320f362a8c863afa508e",
+      "candidate_sha256": "bf49e3dedc35120edba1c6483260e1739f3953e92cca320f362a8c863afa508e",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "src/worker.js",
+      "before_sha256": "5fef8fa3755c3926b401bc1ed63df9ed8a5dec6c211d0ff85093f50bef0ecef8",
+      "candidate_sha256": "5fef8fa3755c3926b401bc1ed63df9ed8a5dec6c211d0ff85093f50bef0ecef8",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "test/checkpoint.test.mjs",
+      "before_sha256": "7e2030b46ec77a8d6265b2c6734f15457c1768030696f1432081ca5b05708ba2",
+      "candidate_sha256": "7e2030b46ec77a8d6265b2c6734f15457c1768030696f1432081ca5b05708ba2",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "test/feed.test.mjs",
+      "before_sha256": "ef124017ece71bd9272b5aa2387114fd5483a98e6002a29623ab3c7ed28cb8e2",
+      "candidate_sha256": "ef124017ece71bd9272b5aa2387114fd5483a98e6002a29623ab3c7ed28cb8e2",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "test/fixtures.js",
+      "before_sha256": "80423e206de23809597b1ad6c56e86784fd8c6c83bcaf08712e51408c03676dd",
+      "candidate_sha256": "80423e206de23809597b1ad6c56e86784fd8c6c83bcaf08712e51408c03676dd",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "test/node-streams.js",
+      "before_sha256": "f153ae1b49d3c788d33acd12f80f96e359764199e4d093370a5a7a13f2bf7767",
+      "candidate_sha256": "f153ae1b49d3c788d33acd12f80f96e359764199e4d093370a5a7a13f2bf7767",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "test/stream-publish.test.mjs",
+      "before_sha256": "de72902c664a72f56eb31c1761b0aab2d07f129a712b96e6b3727a828bd4edac",
+      "candidate_sha256": "de72902c664a72f56eb31c1761b0aab2d07f129a712b96e6b3727a828bd4edac",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    },
+    {
+      "path": "test/translation-scopes.test.mjs",
+      "before_sha256": null,
+      "candidate_sha256": "9800afb964567a8f30d0b14b301d6f12ff89a25735f1397f28293042dabe1c23",
+      "original_preserved": true,
+      "candidate_matches_frozen_manifest": true
+    }
+  ],
+  "preservation": {
+    "original_files_rechecked": 14,
+    "candidate_files_bound": 15,
+    "changed_source_modules": 3,
+    "new_regression_test_files": 1,
+    "unlisted_candidate_files": 0,
+    "forward_patch_replay_exact_files": [
+      "src/collector.js",
+      "src/generator.js",
+      "src/queries.js",
+      "test/translation-scopes.test.mjs"
+    ],
+    "forward_and_reverse_git_apply_check": {
+      "status": "PASS",
+      "exit_codes": [
+        0,
+        0
+      ],
+      "whitespace": "error-all"
+    },
+    "source_and_candidate_hashes_rechecked_at_close": true
+  },
+  "documentation_reused": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/us_spanish_shopify_translation_semantics_20260914_1658.json",
+      "sha256": "08ae5dbde75a8be3d4790b469783ed2d4fa1ff8e1a3664950663edbe52685155",
+      "scope": "Shopify published translations, market/global scope and presence-versus-outdated semantics"
+    },
+    {
+      "path": "/private/tmp/dlm-us-es-language-identity-review-20260914.json",
+      "sha256": "9298dfa3f8fc32c6371391701f2787c3d92bf85e5fb49054f9a46eb54872929d",
+      "scope": "Google US Spanish language, identity and buyer-path requirements; no account capability or language-quality inference"
+    }
+  ],
+  "observed_local_validation": {
+    "command": "node --test test/*.test.mjs",
+    "cwd": "/private/tmp/dlm-us-es-collector-fallback-candidate/candidate",
+    "exit_code": 0,
+    "tests": 52,
+    "passed": 52,
+    "failed": 0,
+    "skipped": 0,
+    "node": "v20.20.2",
+    "test_storage": "Existing in-memory Bucket/Queue fixtures and stubbed source/fetch adapters only",
+    "synthetic_english_output_sha256": "703b29f94edfe529c12335dfa0dfc6090bb04856a91d239e42058ff41a368c08",
+    "synthetic_legacy_spanish_output_sha256": "5e7380292abc62f88dafab3ec1e7f1f198a4f25b1c832d9fb9fa52d96775334d"
+  },
+  "builder_logs_verified_not_rerun_as_baseline": [
+    {
+      "path": "/private/tmp/dlm-us-es-collector-fallback-candidate/baseline-tests.txt",
+      "sha256": "6181fde111bbaf869c9562ca260df1f377d179a04922fd9e3db567b63ae86b39",
+      "builder_status": "PASS",
+      "reported_tests": 39,
+      "reported_passed": 39,
+      "reported_failed": 0,
+      "hash_verified": true
+    },
+    {
+      "path": "/private/tmp/dlm-us-es-collector-fallback-candidate/regressions-before.txt",
+      "sha256": "26782ed8b3441cd6a89a7e7439957ecdf792530946743fcf2fec79238ed02bcb",
+      "builder_status": "EXPECTED_FAILURE_BEFORE_FIX",
+      "reported_tests": 13,
+      "reported_passed": 0,
+      "reported_failed": 13,
+      "hash_verified": true
+    },
+    {
+      "path": "/private/tmp/dlm-us-es-collector-fallback-candidate/candidate-tests.txt",
+      "sha256": "c99b62b3333eecf06c0412aa3cf0915c1443042bccdf812d70dd251d1746f9a6",
+      "builder_status": "PASS",
+      "reported_tests": 52,
+      "reported_passed": 52,
+      "reported_failed": 0,
+      "hash_verified": true
+    }
+  ],
+  "behavior_review": [
+    {
+      "code": "src/queries.js:31-47; src/collector.js:99-124",
+      "conclusion": "One product pagination operation requests global and market aliases, returns Translation.market identity and includes both only for a non-primary published locale. With no configured market, only the global alias is requested. Country/currency/publication identity logic is unchanged."
+    },
+    {
+      "code": "src/collector.js:15-45; src/generator.js:109-119",
+      "conclusion": "Each requested title/body_html/handle resolves a present market override before global fallback and before outdated filtering. A selected stale required field or handle fails, rather than silently using fresh global content. Stale lower-priority records may remain raw when a current override wins; that is field precedence, not a stale-content bypass."
+    },
+    {
+      "code": "src/generator.js:116-119,126,191-205,258-260",
+      "conclusion": "Current title/body_html remain required; cleaned empty content fails the existing variant validation. Missing handle preserves the source handle, while explicit empty, stale or invalid selected handles fail. Any applicable product/variant error returns no rows/TSV; publication exclusions remain distinct and unchanged."
+    },
+    {
+      "code": "src/collector.js:31-45,120-123; src/generator.js:111-118; src/checkpoint.js:110-121",
+      "conclusion": "Raw alias arrays remain in snapshots; collector adds selected records and field provenance. Generator recomputes from raw scopes and rejects a provenance-marked object whose raw scopes are stripped. Checkpoint journals retain raw API responses and recompute derived provenance when replayed. Legacy snapshots remain compatible without a new provenance claim; these cannot establish global/market scope by themselves."
+    },
+    {
+      "code": "src/generator.js:110,122,144-168,197,232-240,258-260; test/translation-scopes.test.mjs:178-212",
+      "conclusion": "Primary-English and legacy-Spanish fixture feed bytes stay pinned. LandingContextVerified, freshness, complete-source checks, IDs, country/contextual pricing, exclusions and return logic are unchanged. No translation quality or exact live /es selection guarantee follows from passing these fixtures."
+    }
+  ],
+  "checkpoint_compatibility_probe": {
+    "status": "VERIFIED_IN_MEMORY",
+    "method": "Existing before enqueue/consume produced a two-read checkpoint; the candidate consumer attempted its next revision using the existing fixture Bucket/Queue/source. No persisted harness or files created.",
+    "before_result": {
+      "checkpointed": true,
+      "revision": 1,
+      "sourceRequests": 2
+    },
+    "candidate_result": {
+      "failed": true,
+      "code": "refresh_replay_mismatch"
+    },
+    "new_mock_source_calls": 0,
+    "pointer_promotions": 0,
+    "scope_limit": "Demonstrates a journal containing the changed product operation. A journal containing only unchanged earlier operations is not covered by this failure claim; already completed/promoted jobs have existing separate handling."
+  },
+  "required_before_owner_runs_new_collector": [
+    "Validate the exact frozen PRODUCTS_QUERY and variables against Admin GraphQL 2026-07, including Product.translations locale/marketId types, Translation.market{id} and both Boolean include directives. node --check and string/fixture tests are not GraphQL schema validation.",
+    "Parent must bind a deliberate versioned successor and exact existing pipeline caller/import paths while preserving automation_release_v1 as evidence. This private file subset is a reviewed patch and test tree, not a deployment/activation manifest.",
+    "Existing Merchant owner must use the authorized account and exact current US/es/market/catalog/publication context to verify raw global market=null and exact market-ID response scopes, locale/outdated/value shapes, permissions, and actual query cost/throttle behavior. Keep both alias arrays and dated scope provenance. Do not reuse an old-operation in-flight journal; use the existing supported fresh-run lifecycle under its own authority."
+  ],
+  "required_before_any_activation_or_feed_release": [
+    "Independently qualify a fresh complete source/candidate with all current holds and exclusions preserved. Do not force counts, drop stale products into a new partition or use legacy snapshots to claim newly verified scope.",
+    "Keep the reported stale-content cohort and exact current US/es direct-link/landing failures as separate unresolved gates; outdated=false alone does not prove correct Spanish or live storefront equivalence.",
+    "Only the parent can integrate or authorize a source/hosting/activation change after exact account identity, before-state, rollback and receiving validation are concrete. This review grants no upload, hosting, scheduler, source or paid authority."
+  ],
+  "not_run": [
+    "GraphQL schema validation",
+    "Account/API calls",
+    "Live scope or cost/throttle validation",
+    "Real source collection or feed candidate build",
+    "Public landing or checkout QA",
+    "Private runtime/deployment validation",
+    "Versioned integration",
+    "Production or scheduler activation"
+  ],
+  "boundaries": {
+    "reviewer_did_not_build_or_edit_candidate": true,
+    "source_or_canonical_or_production_writes": 0,
+    "credentials_read": false,
+    "network_calls": 0,
+    "new_agents": 0,
+    "only_written_file": "/private/tmp/dlm-us-es-collector-independent-review-20260914.json"
+  },
+  "next_action": "Parent validates the exact versioned integration and query schema before handing the existing Merchant owner a bounded read-only fresh scope collection; keep source freshness and landing acceptance independent."
+}

@@ -120,7 +120,11 @@ def build_map() -> dict[str, dict[str, str]]:
                 value = get_path(en_data, dotted)
             if missing_or_raw(value):
                 value = get_path(en_data, dotted)
-            locale_values[output_key] = str(value)
+            value = str(value)
+            if output_key in {"back_to_context", "view_similar_styles_in", "browse_more_from"}:
+                # Liquid must leave these placeholders for the browser's context substitution.
+                value = re.sub(r"\{\{\s*(?:context|collection)\s*\}\}", "__CONTEXT__", value)
+            locale_values[output_key] = value
         out[locale_code(path)] = locale_values
     return out
 

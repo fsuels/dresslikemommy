@@ -1,0 +1,33 @@
+{
+  "parent_reported_preview_id": "gid://shopify/OnlineStoreTheme/137881223265",
+  "source": "Root actual rendered preview geometry; worker performed no browser action",
+  "route_context": "Spanish, Spain, mobile, maximum scroll",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "body_class": "gradient animate--hover-default sticky-mobile-atc-visible",
+  "sticky": {
+    "class": "sticky-mobile-atc visible",
+    "top": 764,
+    "height": 80,
+    "bottom": 844
+  },
+  "cookie_button": {
+    "class": "footer__cookie-preferences-button",
+    "top": 760.17,
+    "bottom": 804.17,
+    "height": 44
+  },
+  "hit_test": {
+    "x": 190,
+    "y": 780,
+    "top_target": "sticky purchase button, before cookie button"
+  },
+  "root_cause": "The existing spacing selector additionally requires template-product, absent from the actual body. Existing JS already measures sticky.offsetHeight.",
+  "existing_rule": {
+    "media": "screen and (max-width: 749px)",
+    "declaration": "padding-bottom: calc(var(--sticky-mobile-atc-offset, 8.8rem) + env(safe-area-inset-bottom));"
+  },
+  "scope": "Remove only the obsolete template-product qualifier; no other CSS, JS, footer or frozen release edit."
+}

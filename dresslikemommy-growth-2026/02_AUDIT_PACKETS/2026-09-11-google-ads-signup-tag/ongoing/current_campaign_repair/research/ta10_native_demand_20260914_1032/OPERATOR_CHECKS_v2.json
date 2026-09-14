@@ -1,0 +1,61 @@
+{
+  "schema": "dlm.ta10.operator_checks.v2",
+  "delegation": "TA10-NATIVE-DEMAND-20260914-1032",
+  "recorded_at_utc": "2026-09-14 11:04:11 UTC",
+  "status": "PASS",
+  "supersedes_for_final_status": {
+    "path": "OPERATOR_CHECKS.json",
+    "sha256": "2566af0f37056562871b82e1c893a0d5e52fd37a3293464795fe262097f9eb20",
+    "prior_result": "59 of60 passed; theme ID field also contained explanatory prose."
+  },
+  "correction": "Split exact theme ID137888792673 from the preservation sentence. No native metric, seed, scope or decision changed.",
+  "prior_passed_checks_retained": 59,
+  "prior_passes_basis": "Only the expected metadata correction was independently compared against the original operator object. Prior passed conditions remain applicable; they are not presented as59 new executions.",
+  "failed_check_rerun": "owner_publication_and_sales_clock",
+  "fresh_check_count": 9,
+  "fresh_pass_count": 9,
+  "fresh_checks": [
+    {
+      "name": "source_hash_E1",
+      "pass": true
+    },
+    {
+      "name": "source_hash_E2",
+      "pass": true
+    },
+    {
+      "name": "source_hash_E3",
+      "pass": true
+    },
+    {
+      "name": "source_hash_E4",
+      "pass": true
+    },
+    {
+      "name": "source_hash_E5",
+      "pass": true
+    },
+    {
+      "name": "accepted_currency_context_matches_current_account",
+      "pass": true
+    },
+    {
+      "name": "owner_publication_and_sales_clock",
+      "pass": true
+    },
+    {
+      "name": "corrected_json_whitespace",
+      "pass": true
+    },
+    {
+      "name": "only_expected_metadata_correction",
+      "pass": true
+    }
+  ],
+  "qualification_sha256": "cc07fd002fc6fa1eef209d860bcca82f1e9cc8b5592b1d8aa0f0fefac7a74d11",
+  "limits": [
+    "Static source consistency only; no new native UI or private/account requests.",
+    "The explicit native ISO-currency observation remains unavailable and is not converted to a fresh verification.",
+    "Independent source review is separate."
+  ]
+}

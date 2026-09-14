@@ -1,0 +1,163 @@
+{
+  "schema": "dlm.rainbow_remaining_titles_independent_review.v1",
+  "reviewed_at_utc": "2026-09-07T02:26:27.423296+00:00",
+  "phase": "PREWRITE",
+  "verdict": "PASS_EXACT_17_TITLE_REPAIR_WITH_FRESH_GUARD__NATIVE_UNVERIFIED",
+  "independence": "Reviewer did not author copy/plan or execute source reads or mutation; independent local source, semantic, payload and inverse verification.",
+  "source_sha256": {
+    "rainbow_remaining_titles_before_20260907.json": "ad0242b660e63f491b433909e837f4f467e3920c7116b5233dab99fff611f4f7",
+    "rainbow_title_source_query.graphql": "4bc6127a9bed841596ab5acf3647dd7e0273c6bf56ed6329ae6b74c5142eb789",
+    "rainbow_remaining_title_copy_20260907.json": "1852c7c6c51e2ec45e525a04465560fae99ad941395509e9789233bbf515ff8b",
+    "rainbow_remaining_title_copy_20260907.md": "22bbaf555e863df3a6afcd2239043243678506c69d6082d4d5b10b558275a122",
+    "rainbow_remaining_titles_plan_20260907.json": "cd2b7cdab8c507f58e76a6423ff1fdb0c21f3bd3a8c3b9f860fae18d9d53e571",
+    "rainbow_remaining_titles_variables_20260907.json": "f546609163e22c84081f828d04e6a02660fc94bb07dcff31488d86048bdeb9f9",
+    "rainbow_remaining_titles_rollback_20260907.json": "87623c4bc8592fe801a4037754364ba8bce0ccad33b0acbfc8ca56082dbeda3f",
+    "rainbow_remaining_titles_mutation_20260907.graphql": "865b936fe497722b7eb3951b8d221cdc66b0111c1b6adc0ddd4413e2e811a3af"
+  },
+  "author_reference_bindings": [
+    {
+      "file": "rainbow_title_source_query.graphql",
+      "sha256": "4bc6127a9bed841596ab5acf3647dd7e0273c6bf56ed6329ae6b74c5142eb789",
+      "matches": true
+    },
+    {
+      "file": "rainbow_title_live_after.json",
+      "sha256": "589bbef2089b7dfed0d4ee9ccd9db1bfa67dfe469c65a9a8050cf27eeaa897db",
+      "matches": true
+    },
+    {
+      "file": "rainbow_title_plan.json",
+      "sha256": "abf14f61d0d764cd46ccbe0a0dd3fef56b563a8b815cabb27b257a457a79bc80",
+      "matches": true
+    },
+    {
+      "file": "rainbow_remaining_titles_before_20260907.json",
+      "sha256": "ad0242b660e63f491b433909e837f4f467e3920c7116b5233dab99fff611f4f7",
+      "matches": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "correct fresh shop product source English and repaired Dutch",
+      "pass": true,
+      "evidence": "Fresh operator source02:19:08UTC; existing title digest remains eb15a0ec... with correct product/source identity."
+    },
+    {
+      "check": "copy packet referenced source bindings all exact",
+      "pass": true,
+      "evidence": "Four author-referenced source hashes and final author JSON/MD bindings independently match."
+    },
+    {
+      "check": "seventeen exact existing published target locales and exclusions",
+      "pass": true,
+      "evidence": "Locale aliases come from the exact saved query. The plan reports all17 published among21; fresh shopLocales was supplied by root, not independently queried by reviewer."
+    },
+    {
+      "check": "all seventeen old strings and flags match fresh source",
+      "pass": true,
+      "evidence": "The defect assessment is based on actual wording; outdated flags alone are not a language-quality test."
+    },
+    {
+      "check": "all title UTF8 hashes and character counts exact",
+      "pass": true,
+      "evidence": "Lengths20–69 Unicode code points; no literal ellipsis or DLM fragment remains in candidates."
+    },
+    {
+      "check": "independent semantic and language review of all seventeen candidates",
+      "pass": true,
+      "evidence": "Each title preserves rainbow/rainbow-striped, maxi or long dress, and matching mother–daughter meaning. German mixed English and explicit set/conjunto/ensemble bundle words are removed. Arabic/Hindi long-dress wording, Japanese maxi-length one-piece and Korean long-dress wording are faithful. No material, sizing measurement, price, stock, shipping or fit guarantee is added. No material language defect identified; this is not human native-speaker certification."
+    },
+    {
+      "check": "forward payload is exactly seventeen reviewed title values at current source digest",
+      "pass": true,
+      "evidence": "No English source, Dutch, SEO/body, locale creation, product or advertising payload field is included. Root must freshly revalidate this digest immediately before the single write."
+    },
+    {
+      "check": "mutation/document and plan file bindings are limited to registration",
+      "pass": true,
+      "evidence": "One supported translationsRegister document. It returns value/key/outdated without locale, so the separate alias-based source read must establish final locale mapping."
+    },
+    {
+      "check": "rollback binds exact old values and current digest with guarded metadata caveat",
+      "pass": true,
+      "evidence": "Rollback is content-only. Do not reuse stale digest, restore unrelated fields or promise the old true flags/timestamps."
+    },
+    {
+      "check": "simulated seventeen value changes preserve all seventy-five other records and source",
+      "pass": true,
+      "evidence": "75 non-target records=74 non-title translated values plus the repaired Dutch title. English source and ru/sv body-only containers remain identical; no ru/sv title creation."
+    },
+    {
+      "check": "local content inverse restores complete original translatable resource",
+      "pass": true,
+      "evidence": "This is a local value simulation, not a promise of production system-flag/timestamp restoration or native rendering."
+    },
+    {
+      "check": "fresh guard and separate exact after-state are specified",
+      "pass": true,
+      "evidence": "Required execution handling: on GraphQL/user errors or uncertain outcome, stop and read exact state; no blind repeat or assumption all17 applied. Only a verified safe subset could support a later separately scoped correction."
+    },
+    {
+      "check": "current owner repair scope and native/outcome limits preserved",
+      "pass": true,
+      "evidence": "Title registration may clear target outdated flags but does not certify bodies, full locale parity, search snippets, buyer conversion or profit. This review creates no paid/financial/account authority."
+    },
+    {
+      "check": "all final inputs unchanged during review",
+      "pass": true,
+      "evidence": "Only the two new owned review files are written; source, copy, variables and canonical state are untouched."
+    }
+  ],
+  "check_count": 14,
+  "passed_count": 14,
+  "failed_checks": [],
+  "product_id": "gid://shopify/Product/7229023846497",
+  "target_locales": [
+    "ar",
+    "cs",
+    "da",
+    "de",
+    "el",
+    "es",
+    "fi",
+    "fr",
+    "he",
+    "hi",
+    "it",
+    "ja",
+    "ko",
+    "no",
+    "pl",
+    "pt-BR",
+    "ro"
+  ],
+  "target_count": 17,
+  "source_digest": "eb15a0ec0f786866886b10446c4a7c4856abf442fe02907c93096e1aa656a385",
+  "preservation": {
+    "total_translation_rows": 92,
+    "target_title_values": 17,
+    "other_values": 75,
+    "other_non_title_values": 74,
+    "english_source_unchanged": true,
+    "dutch_preserved": true,
+    "ru_sv_title_creation": false,
+    "outdated_flags": "Expected target true→false only after successful registration; verify separately, never call full locale parity.",
+    "product_scope": "Source product/explicit SEO remains unchanged; prices/variants/media are absent from the write. Fresh source query does not re-read variant arrays, so no independent new variant-availability proof is claimed."
+  },
+  "semantic_verdict": "No material defect found across all17 candidates. Source-faithful matching rainbow maxi/long dresses for mother and daughter; no bundled quantity or invented product promise. Naturalness reviewed by model, not certified by human native speakers.",
+  "execution_gates": [
+    "Immediately re-read and verify current source identity, English title/digest and all17 exact old values before one registration.",
+    "Use the schema-validated normal operation; stop on errors or uncertain outcome, obtain exact readback and do not blindly resubmit.",
+    "Separate final alias-based source read must confirm all17values/flags, all75 non-target records and complete queried source fields.",
+    "Native rendering remains unverified until normal computer access works; do not retry unchanged lock probes or infer lift."
+  ],
+  "rollback": "Exact old17 values at freshly validated unchanged source digest with candidate/no-drift guard; no metadata restoration promise.",
+  "external_calls": 0,
+  "external_writes": 0,
+  "post_execution_review": null,
+  "next_action": "Root performs the immediate no-drift guard and one exact registration, then supplies separate after-state for independent postreview.",
+  "written_files": [
+    "rainbow_remaining_titles_review_20260907.json",
+    "rainbow_remaining_titles_review_20260907.md"
+  ]
+}

@@ -5,8 +5,17 @@ workers_dev = true
 
 [vars]
 FEED_OBJECT_KEY = "pinterest/pinterest_unified_all_markets.tsv"
-FEED_SHA256 = "8aefb9cf4057497e4f56df36c2157b44c913e049fb1ecb2f75f505f1eb5470d7"
-FEED_ROW_COUNT = "41814"
+FEED_SHA256 = "b76539eb641fede467bd6a572f90689c5b1bbff12edd8707fc202c87b4f1b1c0"
+FEED_ROW_COUNT = "28122"
+PAID_PARENT_FEED_OBJECT_KEY = "pinterest/pinterest_us_paid_parent_collection_intent.tsv"
+PAID_PARENT_FEED_SHA256 = "e990b912ecc80d1c73e72b19f421f10d8a0d21aea13628506ea9230df1c114b6"
+PAID_PARENT_FEED_ROW_COUNT = "210"
+PAID_PARENT_ES_FEED_OBJECT_KEY = "pinterest/pinterest_us_es_paid_parent_collection_intent.tsv"
+PAID_PARENT_ES_FEED_SHA256 = "f4679594f0112105f814be617ff62919019cd711be147d7d0dcae4eb73ef4a69"
+PAID_PARENT_ES_FEED_ROW_COUNT = "210"
+PAID_PARENT_ISOLATED_FEED_OBJECT_KEY = "pinterest/pinterest_us_paid_parent_isolated_candidate.tsv"
+PAID_PARENT_ISOLATED_FEED_SHA256 = "db2fcddaa95609ccade30b5af11d3edd9d90e35c10f2d011b24fc4b57dce8113"
+PAID_PARENT_ISOLATED_FEED_ROW_COUNT = "210"
 # Public feed mode is required until the Shopify app-proxy owner/config exists.
 # Switch to "true" only after SHOPIFY_APP_PROXY_SECRET is set in Worker secrets
 # and the Shopify-proxied URL has been verified.

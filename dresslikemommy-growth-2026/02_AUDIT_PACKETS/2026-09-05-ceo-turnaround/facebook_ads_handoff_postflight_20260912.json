@@ -1,0 +1,89 @@
+{
+  "schema": "dlm.existing_checkpoint_closeout.v1",
+  "status": "PASS_WITH_RECORDED_BUSINESS_BLOCKERS",
+  "recorded_at_utc": "2026-09-12T15:30:17.578548+00:00",
+  "root_thread": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "wake_id": "2026-09-12T14:32:18.303Z",
+  "parent_checkpoint": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+  "parent_checkpoint_sha256": "a58c968e336bdab43a51a12db8c029e7556d5bde71ea28136e660ab501ea3cc6",
+  "canonical_anchor": "2026-09-12-facebook-page-bound-and-publishing-gates-qualified",
+  "google_ads_anchor": "2026-09-12-google-ads-editor-recovered-and-creation-delta-integrated",
+  "parent_application": {
+    "status": "FINALIZED_AND_READ_BACK",
+    "recorded_at_utc": "2026-09-12T15:28:51.795377+00:00",
+    "initial_parent_sha256": "c1b9f1ea0058123583c48b225d4c07529223f4506eab8be1a760a51102735317",
+    "first_attempt_sha256": "c2cf81ba9f3864382988e851054f6f423c1bbe6a86818176c9c9120de9335d4e",
+    "final_parent_sha256": "a58c968e336bdab43a51a12db8c029e7556d5bde71ea28136e660ab501ea3cc6",
+    "before_guard_passed": true,
+    "byte_readback_passed": true,
+    "immutable_json_readback_passed": true,
+    "all_pre_wake_history_preserved": true,
+    "new_wake_only": true,
+    "guarded_canonical_plan_embedded": true,
+    "report_checks": 78,
+    "frozen_report_count_matches": true,
+    "first_failure_preserved_in_checkpoint": true,
+    "external_writes": 0
+  },
+  "canonical_files_after_sha256": {
+    "ops/AGENT_COORDINATION.md": "9bc1de33ab0330a44abff7949563934be063b790c6c20e86dbc65df5035a1d79",
+    "ops/AGENT_WORKLOG.md": "d7712a1500bfc20c513bfa6521040d8709a3577729534a4d2b6b97d309276f4e",
+    "ops/PROBLEM_TRACKER.md": "8982b79c78d363692492b525bf8dd3adb10874dc808ddace4b05f68c4b41cc62",
+    "ops/marketing/action_queue.md": "81a729db4e3b366d0cdaa871078510088a0616df3aba7b76cd9b326a1bc4343f",
+    "ops/marketing/current_marketing_state.md": "76dd643bdd8d0e86534d52d24c77210142c1e613446c96afa206f4176b21a116",
+    "ops/marketing/daily_scorecard.md": "fe7b7cca9b779418203cfeed89e77e9f861e5edfb655522842600814aefdaaf1",
+    "ops/marketing/decision_log.md": "f70032dfbb16d229d0f155067cb2fcc0b070421ce923b3e0b7f98a285eef6b1c",
+    "ops/marketing/operator_cockpit.md": "80dd01c0f5b36659acef638b6c404e386dc63ff6adad6048d7d0d894a4f9cd2e"
+  },
+  "canonical_postflight": {
+    "checks_passed": 78,
+    "status": "PASS",
+    "full_evidence_location": "Existing parent wake canonical_integration.root_postflight",
+    "rollback_location": "Existing parent wake canonical_integration.guarded_plan.operations stores each old/new exact inverse; do not reapply the plan."
+  },
+  "independent_reviews": {
+    "canonical_preflight": 79,
+    "native_receipt_interpretation": 32,
+    "buyer_receipt_preservation": 16,
+    "ads_saved_handoff": 81,
+    "limits": "These are saved-evidence/local reviews, not independent new live account reads."
+  },
+  "validation": [
+    {
+      "command": "check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "terminal_chunk_id": "453b18",
+      "checks_passed": 10,
+      "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 50836 lines; latest anchor 2026-09-12-facebook-page-bound-and-publishing-gates-qualified\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-12-facebook-page-bound-and-publishing-gates-qualified\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n"
+    },
+    {
+      "command": "git diff --check -- affected canonical files, cockpit and root checkpoint",
+      "exit_code": 0,
+      "terminal_chunk_id": "8b0012",
+      "stdout": ""
+    },
+    {
+      "command": "audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "exit_code": 0,
+      "tracked": 25,
+      "integrated": 25,
+      "side_document_risks": 0,
+      "report_path": "ops/marketing/command_layer_integration_audit.md",
+      "report_sha256": "a4e75a682f9ba48b0fde04e07d4c706b177f34cee31c9b6a479627bf771a9f81"
+    }
+  ],
+  "context_readback": {
+    "facebook": "OK: exact current TA-18 anchor, root Meta owner, all nine paid controls preserved",
+    "google_ads": "OK: exact current customer6509972886 anchor, Ads owner01a09194 retained, all nine paid controls preserved",
+    "full_receipt_location": "Existing parent wake canonical_integration.fresh_context_readbacks"
+  },
+  "all_prior_wakes_owner_integrations_sales_clocks_and_microsoft_work_preserved": true,
+  "first_closeout_assertion_failure_preserved_and_corrected": true,
+  "root_external_writes": 0,
+  "cart_attempt": "AUTO_REVIEW_REJECTED_BEFORE_EXECUTION; exact temporary QA approval pending once; zero cart additions; no workaround",
+  "goal_status": "blocked, unchanged",
+  "new_goal_schedule_harness_or_task": false,
+  "no_new_sales_or_profit_claim": true,
+  "one_owner_action": "Owner Shopify Admin publication of existing independently verified theme137888792673; unchanged and already authorized, required by the Shopify tool's publication restriction.",
+  "continuation": "Recover the newest relevant worklog anchor and owning queue/claim before action. Preserve the qualified Facebook publisher/cart/policy gates, Ads identity-save gate, completed Microsoft handback, and existing owner-required theme publication. Do not restart audits, reapply canonical plans, repeat unchanged blocked routes, or create another harness."
+}

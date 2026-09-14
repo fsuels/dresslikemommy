@@ -1,0 +1,114 @@
+{
+  "schema": "dlm.au_existing_source_refresh_release_packet.v1",
+  "action": "TA07-AU-SOURCE-FRESHNESS-20260914-1453",
+  "created_at_utc": "2026-09-14T15:13:15.935303+00:00",
+  "status": "LOCAL_READY__INDEPENDENT_REVIEW_AND_EXACT_RELEASE_DISPATCH_REQUIRED",
+  "executor_thread_id": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "target": {
+    "account_id": "513542500",
+    "source_id": "10727245667",
+    "source_name": "DLM AU English Free Listings",
+    "type": "File (manual)",
+    "country": "Australia",
+    "language": "English",
+    "feed_label": "AU",
+    "currency": "AUD",
+    "marketing_methods": [
+      "Free listings"
+    ]
+  },
+  "authority": {
+    "user_scope": "Current owner request to submit accurate active available Shopify products to Merchant free listings across served markets and keep additions/removals/prices current.",
+    "current_dispatch": "TA07-AU-SOURCE-FRESHNESS-20260914-1453 permits existing AU source preparation; external replacement follows exact parent independent acceptance and release dispatch.",
+    "standing_future_release_authority": false,
+    "sole_writer_claim_line_sha256": "89899dcfeca86a54eb1b493720ec7c60ecb1cf87c9ea50801545bf23512e1837"
+  },
+  "candidate": {
+    "file_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/candidate/au-en.tsv",
+    "sha256": "f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236",
+    "expected_md5": "206a788dfa76767adb41ce385dd8d3d9",
+    "bytes": 16618022,
+    "rows": 4741,
+    "parents": 232,
+    "source_started_at": "2026-09-14T15:01:31.675Z",
+    "source_completed_at": "2026-09-14T15:03:55.842Z",
+    "proposed_max_release_age_hours": 2,
+    "proposed_release_deadline_utc": "2026-09-14T17:03:55.842000+00:00"
+  },
+  "changes": {
+    "prior_rows": 4761,
+    "new_rows": 4741,
+    "new_offers": 0,
+    "removed_offers": 20,
+    "removed_parent_ids": [
+      "7108998987873",
+      "7109117280353"
+    ],
+    "retained_price_updates": 530,
+    "price_update": "Each is +A$1 and matches fresh AU contextualPricing; no Shopify price mutation.",
+    "other_retained_fields_changed": 0,
+    "held_parents": 6,
+    "held_available_rows": 162,
+    "unavailable_variants_omitted": 22
+  },
+  "protected_offers": {
+    "shopify_AU_6718945034337_39756755861601": "26.00 AUD",
+    "shopify_AU_7230336729185_41883237220449": "33.00 AUD",
+    "shopify_AU_7230336729185_41883237285985": "33.00 AUD",
+    "shopify_AU_7230336729185_41883237318753": "33.00 AUD",
+    "shopify_AU_7230336729185_41883238465633": "33.00 AUD",
+    "shopify_AU_7230336729185_41883238498401": "33.00 AUD"
+  },
+  "changed_price_receipt_probe": {
+    "at_utc": "2026-09-14T15:13:47.309Z",
+    "id": "shopify_AU_6718945034337_39756756287585",
+    "native_before": "34.00 AUD",
+    "fresh_candidate": "35.00 AUD",
+    "native_before_approved": true,
+    "native_before_in_stock": true,
+    "exact_source_and_parent_filters_visible": true
+  },
+  "execution_conditions": [
+    "Fresh independent review accepts these exact bytes, deltas, bindings, source clock, scope and action-time guards.",
+    "Immediately before selecting and uploading, verify all frozen hashes, exact claim/dispatch, account/source settings, completed prior receiving state and no expiry.",
+    "Use the existing Update products in Merchant Center file chooser on source10727245667 only, select this exactau-en.tsv and click Upload once. No new source, host, scheduler or source-setting change.",
+    "Stop on auth, permissions, quota, safety refusal, changed source, unexpected destructive dialog, different count/delta, receiving failure or freshness expiry. No retry/reupload or automatic rollback."
+  ],
+  "expected_readback": [
+    "Native latest update/history shows this single new upload completed, 4,741 updated /0 new, all attributes recognized and no file issues. Capture timezone literally; any UTC conversion must state its assumption.",
+    "Native source product count and current source-filtered product list converge to4,741. Count alone does not prove removal.",
+    "Six protected AU IDs remain at33AUD for Adult2XL and26AUD for pilot, with effective availability and free-listing status read separately.",
+    "Changed-price representative39756756287585 shows35AUD from this AU source after processing. Receipt does not prove all530 effective offer prices until Google processing is complete.",
+    "Two exact native source plus parent-prefix queries reconcile the20 omissions. Record no results only after query completion, no stale/mismatched rows or errors.",
+    "Receipt, eligibility, serving, impressions, StoreQuality and profit are separate. No full Google file byte hash can be claimed without native byte access."
+  ],
+  "rollback": {
+    "before_file_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/before/au-en.tsv",
+    "before_sha256": "3857b029a134868c6de8cdfda75d926710651a9e5600beff5ab645a5d61559ae",
+    "restriction": "Before snapshot is historical recovery evidence, not safe automatic rollback: it includes20 no-longer-ACTIVE offers and530 stale prices. Do not restore it, the older1-row pilot, or held offers automatically. If recovery is needed, read current effective source and prepare exact fresh source-supported minimal correction for independent review.",
+    "no_automatic_rollback": true
+  },
+  "uncertainty_branches": {
+    "price_change_cause": "Unknown; only fresh Shopify AU price amounts are asserted.",
+    "return_policy_coverage": "No new return label or shipping promise is emitted; nativeAU return coverage remains an open issue from prior follow-up. Compatibilityflag is not policy proof.",
+    "google_processing_delay": "If source list remains older after successful upload, record receiving success and delayed per-offer/list reconciliation; do not repeat upload.",
+    "all_market_scope": "This action updatesAU only. CA/GB/othercountry activation and all-market lifecycle automation remain open with parent."
+  },
+  "independent_verifier": {
+    "required": true,
+    "executor_cannot_self_approve": true,
+    "review_artifact": null,
+    "review_decision": null
+  },
+  "excluded_operations": [
+    "US source or hosting write",
+    "new AU source or hosting deployment",
+    "new scheduler or harness",
+    "Shopify mutations",
+    "theme/policy/shipping setting edits",
+    "paid-media or billing",
+    "credential transfer or security/TTL change",
+    "appeal or blocked download retry",
+    "other-country source change"
+  ]
+}

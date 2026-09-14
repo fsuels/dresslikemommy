@@ -1,0 +1,514 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at_utc": "2026-09-10 15:49:54 UTC",
+  "objective": "Official-source acceptance checklist for root's native Merchant Center menu completion",
+  "merchant_account_to_verify": "513542500",
+  "storefront_to_verify": "www.dresslikemommy.com",
+  "account_completion": "NOT_EVALUATED",
+  "scope": {
+    "external_account_access": false,
+    "external_writes": false,
+    "browser_access": false,
+    "shopify_access": false,
+    "paid_actions": "READ_ONLY",
+    "artifact_ownership": [
+      "menu_completion_20260910/standards_menu.md",
+      "menu_completion_20260910/standards_menu.json"
+    ]
+  },
+  "business_model": {
+    "source": "Parent task context",
+    "model": "Dropshipping",
+    "physical_store": false,
+    "owned_physical_inventory": false
+  },
+  "reused_evidence": {
+    "coverage_review": "resumed_20260910/coverage_standards/README.md",
+    "coverage_matrix": "resumed_20260910/coverage_standards/coverage_matrix.json",
+    "baseline_inventory": {
+      "parents": 240,
+      "variants": 4945,
+      "status": "DATED_RECONCILIATION_BASELINE_NOT_CURRENT_MERCHANT_RECEIPT"
+    }
+  },
+  "acceptance_protocol": {
+    "evidence": [
+      "UTC timestamp",
+      "exact Merchant account ID",
+      "menu and field",
+      "before and after values when corrected",
+      "source/item/country binding where relevant",
+      "Google review or processing status"
+    ],
+    "operator_outcomes": [
+      "VERIFIED",
+      "PENDING",
+      "INTENTIONALLY_OFF",
+      "NOT_APPLICABLE",
+      "UNAVAILABLE"
+    ],
+    "separate_outcomes": [
+      "configuration",
+      "Google approval",
+      "actual serving",
+      "attributed purchases",
+      "retained profit"
+    ],
+    "new_approval_gate_added": false
+  },
+  "menu_items": [
+    {
+      "id": "overview",
+      "menu": "Overview",
+      "settings": "Confirm Merchant 513542500, domain, date range, account standing and setup cards.",
+      "accepted_evidence": "Dated overview reconciled to Products and Data sources; every blocking card has a resolved result or named pending dependency.",
+      "optional_off_conditions": "Dismissed cards and predicted growth benefits are not completion evidence.",
+      "source_ids": [
+        "notifications"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "notifications",
+      "menu": "Notifications",
+      "settings": "Triage policy, product-data and processing alerts; preserve useful operational alerts.",
+      "accepted_evidence": "Each issue has affected source/countries/products, corrective evidence and current status.",
+      "optional_off_conditions": "Optional recommendations and marketing messages may remain declined; do not enable a paid feature to clear a card.",
+      "source_ids": [
+        "notifications"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "products",
+      "menu": "Products",
+      "settings": "Reconcile the dated 240-parent/4,945-variant inventory to received identities. Check apparel age, gender, color, size, grouping, identifiers, selected-piece images, price/currency and availability.",
+      "accepted_evidence": "Offer-level free-listing country status plus matching translated landing/checkout and accurate schema. Review price, availability and condition automations against actual pages.",
+      "optional_off_conditions": "No fabricated GTIN/MPN or blanket in-stock claims. Disable price automation when ambiguous strike-through prices prevent accurate extraction; automations cannot replace feed updates or certify immediate stock.",
+      "source_ids": [
+        "products",
+        "automations"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "shipping_returns",
+      "menu": "Shipping and returns",
+      "settings": "Match serviced countries, rate currency, thresholds, handling/transit, cutoffs and exceptions to actual checkout. Shopify automatic imports cover General-profile rates; identify overwrite ownership. Set returns URL, countries, windows, methods, fees and product-exception labels.",
+      "accepted_evidence": "Checkout comparisons and Google's verified return-policy status; accurate swimwear/intimates/Final Sale exclusions wherever applicable.",
+      "optional_off_conditions": "No invented transit/refund duration, free returns or physical pickup. Automatic shipping updates require trustworthy crawl/tracking data and currently affect only U.S. destinations.",
+      "source_ids": [
+        "shipping",
+        "returns",
+        "automatic_shipping"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "store_quality",
+      "menu": "Store quality",
+      "settings": "Review shipping, returns, browsing and purchase signals by available country; prioritize truthful gaps, mobile speed and useful imagery.",
+      "accepted_evidence": "Current category metrics, data sufficiency and badge status; allow measurement lag.",
+      "optional_off_conditions": "Missing scores can reflect insufficient impressions. A badge is earned, not a setting. Never broaden returns, invent reviews or claim a badge to improve the score.",
+      "source_ids": [
+        "quality"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "creative",
+      "menu": "Creative content / brand logos",
+      "settings": "Use genuine DLM branding and inspect the actual upload slot. Brand-profile logos require 1:1, 500–2,000px, BMP/JPEG/PNG, ≤5MB; that surface requires super-admin access.",
+      "accepted_evidence": "Readable preview and actual review status, distinguishing pending from approved. Confirm any different native slot's own requirements.",
+      "optional_off_conditions": "Product Studio is optional. Publish creative only after product/quantity/color/copy accuracy checks; do not manufacture visuals or achievements merely to fill this menu.",
+      "source_ids": [
+        "logo",
+        "studio"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "ads",
+      "menu": "Ad campaigns",
+      "settings": "Read linked Ads IDs, campaign status, destinations, budgets and countries; assess existing campaign consumption of expanded products.",
+      "accepted_evidence": "Recorded current settings and no paid changes in this audit.",
+      "optional_off_conditions": "No campaign is required for free listings. Leave creation/enablement/bids/budgets untouched; an unused campaign menu is valid.",
+      "source_ids": [
+        "ads",
+        "free"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "promotions",
+      "menu": "Promotions",
+      "settings": "Submit only an existing, genuinely redeemable eligible offer with correct products, countries, dates/time zone, codes, minimums and exclusions.",
+      "accepted_evidence": "Checkout redemption evidence and both policy/product approval; pending review stays pending.",
+      "optional_off_conditions": "Leave empty when no qualifying live offer exists. Routine free shipping or an already-discounted product price is not automatically an additional promotion.",
+      "source_ids": [
+        "promotions",
+        "promotion_policy"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "marketing_methods",
+      "menu": "Marketing methods / free listings",
+      "settings": "Verify free-listing account permission, source/item destinations and country status. Reuse the existing 65-country/21-language matrix.",
+      "accepted_evidence": "Received offer eligibility by supported country/language; all 21 languages are theoretically supported, while 36 countries/63 pairs describe Shopify-app coverage only.",
+      "optional_off_conditions": "Unknown countries remain unresolved; opt-in does not guarantee display. Local-inventory/pickup methods are inapplicable to DLM.",
+      "source_ids": [
+        "free",
+        "languages",
+        "sync"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "analytics",
+      "menu": "Analytics",
+      "settings": "Use Organic traffic with consistent dates, country/product breakdowns, impressions, clicks and CTR; reconcile purchase/value tracking with the existing measurement owner.",
+      "accepted_evidence": "Saved report and verified event-source identity, attribution and deduplication; test tagged landing URLs.",
+      "optional_off_conditions": "Auto-tagging alone does not configure purchases. No-data remains no-data; traffic is not profit. Custom dashboards are optional.",
+      "source_ids": [
+        "analytics",
+        "tagging"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "general",
+      "menu": "Settings / General",
+      "settings": "Review interface language/time zone, existing CSS/free-listing selection, auto-tagging and key-event source. Keep account architecture appropriate to one merchant.",
+      "accepted_evidence": "Intentional settings, functioning tagged URLs and correct CSS where applicable.",
+      "optional_off_conditions": "Advanced-account conversion, data-sharing and marketing-content use need a concrete purpose. Product protection excludes API/automated sources: it cannot safeguard Shopify's API feed. For eligible file feeds, choose a justified threshold and genuine-removal procedure.",
+      "source_ids": [
+        "general",
+        "tagging",
+        "protection"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "business_info",
+      "menu": "Settings / Business info",
+      "settings": "Verify correct business identity, claimed storefront domain, genuine business address, support URL/contact channels and actual service availability.",
+      "accepted_evidence": "Verified/claimed domain and working public support/policy links matching the business.",
+      "optional_off_conditions": "Do not represent a mailing address as a retail location, warehouse or owned inventory. Physical-store/POS setup and unsupported identity attributes remain inapplicable.",
+      "source_ids": [
+        "business",
+        "support"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "data_sources",
+      "menu": "Settings / Data sources",
+      "settings": "Read exact Shopify source ownership, source type, languages/feed labels, countries, latest processing, offer counts, issues and quota. Reuse identities and inspect attribute rules.",
+      "accepted_evidence": "Fresh receipt in Merchant 513542500 reconciled to Shopify; no duplicate ownership and documented uncovered language offers.",
+      "optional_off_conditions": "Shopify feedback without Merchant ID is insufficient. Do not reinstall, relink or duplicate uploads to clear onboarding. Supplements enrich existing offers; they cannot create missing language offers. Automatic discovery is not complete-catalog proof.",
+      "source_ids": [
+        "sources",
+        "primary",
+        "quota"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "addons",
+      "menu": "Settings / Add-ons",
+      "settings": "Inventory available/active add-ons and their actual dependencies. Use advanced source management or custom reports only for a defined need.",
+      "accepted_evidence": "Each add-on has an enabled-with-evidence, intentionally-off, or unavailable outcome.",
+      "optional_off_conditions": "Leave local inventory, vehicles and unnecessary regional features off. Automated discounts need verified economics; remarketing is outside this free-listing lane. Reviews/loyalty/checkout integrations need real programs and working integration, not fabricated data.",
+      "source_ids": [
+        "addons"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    },
+    {
+      "id": "access_services",
+      "menu": "Settings / Access and services",
+      "settings": "Confirm owner recovery/admin access, appropriate roles, pending requests and exact existing Shopify/Google service links.",
+      "accepted_evidence": "Authorized service IDs and role inventory, without persisting personal contacts; Business Manager and linked-app permissions checked separately.",
+      "optional_off_conditions": "Do not invite users, approve unknown requests or connect extra apps for completeness. A physical Business Profile is inapplicable; preserve the separate tracking owner's configuration.",
+      "source_ids": [
+        "services",
+        "access"
+      ],
+      "account_evaluation": "NOT_EVALUATED",
+      "observed_evidence": []
+    }
+  ],
+  "material_applicability_notes": [
+    {
+      "feature": "Product protection",
+      "conclusion": "Not available for API or automated sources; do not count the toggle as protection for Shopify API ingestion.",
+      "source_ids": [
+        "protection"
+      ]
+    },
+    {
+      "feature": "Automatic shipping updates",
+      "conclusion": "Current effects limited to United States destinations; crawl or historical tracking data needed.",
+      "source_ids": [
+        "automatic_shipping"
+      ]
+    },
+    {
+      "feature": "Logo documentation",
+      "conclusion": "Product Studio's link labeled business logos currently resolves to the brand-profile logo guide. Apply specifications only to the exact observed slot; do not extrapolate legacy rectangular-logo requirements.",
+      "source_ids": [
+        "logo",
+        "studio"
+      ]
+    },
+    {
+      "feature": "Automatic availability updates",
+      "conclusion": "Google treats in_stock, preorder and backorder as compatible in some matching. Read actual availability and fulfillment evidence; automation is not stock certification.",
+      "source_ids": [
+        "automations"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "notifications",
+      "title": "Notifications",
+      "url": "https://support.google.com/merchants/answer/15294848?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "products",
+      "title": "Product specification",
+      "url": "https://support.google.com/merchants/answer/7052112?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Previously reviewed official documentation reused in this same task."
+    },
+    {
+      "id": "automations",
+      "title": "Product automations",
+      "url": "https://support.google.com/merchants/answer/12157888?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "shipping",
+      "title": "Shopify shipping",
+      "url": "https://support.google.com/merchants/answer/14232591?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "returns",
+      "title": "Return policies",
+      "url": "https://support.google.com/merchants/answer/14011730?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "automatic_shipping",
+      "title": "Automatic shipping",
+      "url": "https://support.google.com/merchants/answer/16371720?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "quality",
+      "title": "Store quality",
+      "url": "https://support.google.com/merchants/answer/14261098?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "logo",
+      "title": "Brand-profile logo",
+      "url": "https://support.google.com/merchants/answer/15098801?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "studio",
+      "title": "Product Studio",
+      "url": "https://support.google.com/merchants/answer/14959367?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "ads",
+      "title": "Linked Ads accounts",
+      "url": "https://support.google.com/merchants/answer/12499498?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "promotions",
+      "title": "Promotion eligibility",
+      "url": "https://support.google.com/merchants/answer/13422697?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "promotion_policy",
+      "title": "Promotion policy",
+      "url": "https://support.google.com/merchants/answer/2877565?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "free",
+      "title": "Free listings",
+      "url": "https://support.google.com/merchants/answer/13889434?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "languages",
+      "title": "Language rules",
+      "url": "https://support.google.com/merchants/answer/160637?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Previously reviewed official documentation reused in this same task."
+    },
+    {
+      "id": "sync",
+      "title": "Shopify sync",
+      "url": "https://support.google.com/merchants/answer/13693394?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Previously reviewed official documentation reused in this same task."
+    },
+    {
+      "id": "analytics",
+      "title": "Custom reports",
+      "url": "https://support.google.com/merchants/answer/14152817?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "tagging",
+      "title": "Auto-tagging",
+      "url": "https://support.google.com/merchants/answer/15191080?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "general",
+      "title": "General settings",
+      "url": "https://support.google.com/merchants/answer/17037187?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "protection",
+      "title": "Product protection scope",
+      "url": "https://support.google.com/merchants/answer/9596957?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "business",
+      "title": "Business information",
+      "url": "https://support.google.com/merchants/answer/14286818?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "support",
+      "title": "Customer support",
+      "url": "https://support.google.com/merchants/answer/13661344?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "sources",
+      "title": "Data sources",
+      "url": "https://support.google.com/merchants/answer/13982673?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "primary",
+      "title": "Primary and supplemental sources",
+      "url": "https://support.google.com/merchants/answer/14990942?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Previously reviewed official documentation reused in this same task."
+    },
+    {
+      "id": "quota",
+      "title": "Product limits",
+      "url": "https://support.google.com/merchants/answer/16564100?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Previously reviewed official documentation reused in this same task."
+    },
+    {
+      "id": "addons",
+      "title": "Add-ons",
+      "url": "https://support.google.com/merchants/answer/13762663?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Successful official search extract retained; later direct reopen failed and was not bypassed."
+    },
+    {
+      "id": "services",
+      "title": "Apps and services",
+      "url": "https://support.google.com/merchants/answer/14528389?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    },
+    {
+      "id": "access",
+      "title": "Access levels",
+      "url": "https://support.google.com/merchants/answer/14883496?hl=en",
+      "publisher": "Google",
+      "reviewed_date_utc": "2026-09-10",
+      "retrieval_basis": "Official documentation reviewed in this menu task."
+    }
+  ],
+  "limitations": [
+    "No native account menu inspected by this reviewer.",
+    "No universal country eligibility, language submission, product approval, display or profit certified.",
+    "Menu availability and review status must be confirmed in the live account.",
+    "Country matrix is reused; unknown cells remain unknown."
+  ],
+  "next_action": "Root: inspect exact Merchant account Data sources, latest processing and country/language receipt.",
+  "report_word_count": 1106
+}
+

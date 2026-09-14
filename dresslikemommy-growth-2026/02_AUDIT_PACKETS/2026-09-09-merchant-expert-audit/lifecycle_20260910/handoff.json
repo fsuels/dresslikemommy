@@ -1,0 +1,42 @@
+{
+  "schema": "dlm.merchant.lifecycle_handoff.v1",
+  "recorded_at_utc": "2026-09-10T16:34:43Z",
+  "task_stage": "BLOCKED",
+  "phase": "Automatic product lifecycle and international sync",
+  "next_action_id": "READ_ONLY_MARKETING_RECONCILIATION",
+  "approved_external_scope": "NONE in unchanged authoritative full-paid control; current user nonspend lifecycle corrections recorded separately",
+  "authority_context": "CURRENT_OWNER_AUTOMATIC_ACTIVE_PRODUCT_LIFECYCLE_ALL_SERVED_LANGUAGES_MARKETS",
+  "source_live_evidence_as_of": "2026-09-10 16:23:19–16:28:00 UTC bounded catalog read; full source240/4945 at15:46UTC",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "Selected Merchant513542500 source/account receipt and native Google Product sync/Countries and languages settings; actual supported language and country coverage",
+  "if_evidence_supports_recommendation": "Correct native automatic product sync and future-country settings if needed; reconcile receiving offers and observe lifecycle; add only proven missing maintained language sources",
+  "if_evidence_opposes_recommendation": "Preserve correct settings and diagnose actual source/receipt failure without duplicate feeds or unsupported flag changes",
+  "material_decision": "USE_SUPPORTED_NATIVE_SYNC_FIRST__NO_BLIND_PUBLICATION_FLAG_MUTATION",
+  "independent_verifier": "merchant_standards_review primary documentation; merchant_landing_code_review candidate challenge; merchant_lifecycle_code_inventory existing code",
+  "verifier_independence": "Reviewers did not execute root Shopify reads or native actions; code explorer read-only",
+  "no_native_or_external_write_this_phase": true,
+  "all_google_lifecycle_acceptance": "NOT RUN",
+  "shared_canonical_update": {
+    "status": "PENDING_EXPLICIT_PINTEREST_RELEASE",
+    "current_anchor_preserved": "2026-09-10-merchant-menu-coverage-and-access-checkpoint",
+    "proposed_anchor": "2026-09-10-merchant-automatic-lifecycle-configuration-gate",
+    "parent_informed": true,
+    "root_holds_interval": false,
+    "reason": "Parent explicitly confirmed Pinterest's prior shared-file interval has not been released; do not overwrite peers."
+  },
+  "paid_control": {
+    "bytes": 506,
+    "sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+    "unchanged": true
+  },
+  "checks": {
+    "root_saved_evidence": "10/10 PASS",
+    "official_standards": "10/10 PASS",
+    "candidate_schema": "VALID but target support/lifecycle fit unestablished; NOT RUN",
+    "scoped_diff_check": "PASS",
+    "bundled_skill_doc_search": "fetch failed; official docs connector/web used",
+    "bundled_skill_schema_validation": "PASS"
+  },
+  "owner_action": "Select Merchant Center513542500 in Chrome, keep it stable, and explicitly confirm selected-tab inspection/operation; existing async question is still pending.",
+  "continuation": "Use ops/prompts/paid-growth-ai-army-continuation-prompt.md with the preserved anchor and lifecycle_20260910/LIFECYCLE_SETUP.md."
+}

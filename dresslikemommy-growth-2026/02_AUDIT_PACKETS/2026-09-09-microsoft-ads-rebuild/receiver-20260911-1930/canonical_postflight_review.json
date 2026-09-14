@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-11T20:42:44.509358+00:00",
+  "status": "PASS_EXACT_CANONICAL_POSTFLIGHT",
+  "reviewer": "/root/international_campaign_build",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "scope": "Final local receipt/current-hash/inverse check only; no semantic re-audit or new research",
+  "check_count": 8,
+  "checks": [
+    {
+      "id": "F1",
+      "result": "PASS",
+      "finding": "Applied receipt binds exact frozen plan097ee49… and independent preflight92f459…. Ten-file sets agree."
+    },
+    {
+      "id": "F2",
+      "result": "PASS",
+      "finding": "All ten current file hashes equal both independently predicted after hashes and application receipt. All ten private snapshots match the reviewed before hashes."
+    },
+    {
+      "id": "F3",
+      "result": "PASS",
+      "finding": "Independent byte-exact forward/inverse checks reproduce every current/saved file. Each of six replacement blocks and four appended payloads occurs once; no extra canonical difference is present."
+    },
+    {
+      "id": "F4",
+      "result": "PASS",
+      "finding": "297 other coordination table lines and132 other queue table lines are unchanged. Full-paid and exact parent One Owner Action hashes match all reviewed guards; peer and historical bytes survive the inverse."
+    },
+    {
+      "id": "F5",
+      "result": "PASS",
+      "finding": "Closeout records12of12root checks passing after the application timestamp; renderer,25/25integration,10-groupstrict CONTINUITY_OK and scoped diff exit0 are recorded PASS. Reviewer inspected receipts rather than rerunning these commands."
+    },
+    {
+      "id": "F6",
+      "result": "PASS",
+      "finding": "Both generated-file hashes match closeout. Current HTML TA-15 card contains the five-Save/six-field checkpoint, all11Paused, MSCLKIDOn and explicit numeric/live-authority gates; V7 marker is present. This is content/hash checking, not rendered browser acceptance."
+    },
+    {
+      "id": "F7",
+      "result": "PASS",
+      "finding": "The three current landing CSV hashes still match the independent14-field V2 postflight. No new native campaign/spend acceptance follows from this canonical update."
+    },
+    {
+      "id": "F8",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "Application generated_checks=PENDING is earlier than the later passing closeout receipt; closeout independent_final/writer_release are still pending this verdict. This verifies local bytes and root evidence, not a second native/browser replay, purchase values, consent repair, CPC enforcement or business outcomes."
+    }
+  ],
+  "inputs_sha256": {
+    "canonical_update_plan.json": "097ee49abe7667ef5422eeb39ae53c8ee910ce104d8ae10924bb8ca39ed5d40b",
+    "canonical_preflight_review.json": "92f459e39bde3dd5ecd4487befb64815ad1868f71a0b7d75ae8b205691ac50e7",
+    "canonical_snapshot_location.json": "426cb425d1b34fb06c9af7bf26f1af52a391bf7ab48fe881310831624b178f7a",
+    "canonical_application_receipt.json": "265cce7c81b945e04835a9d9e4d0d76a0f90d9bf539054b7eaf7e2b2be01e4ac",
+    "closeout_checks.json": "a45984f2f59d0624650f1ced18624d8a0ec25601a73d98f115afc9c7f342acd0",
+    "landing_revision_postflight_review.json": "5d917a278e034d47846062f26a65184bf83bd50ec2ef16b4a027e150de7aad85"
+  },
+  "files": [
+    {
+      "file": "ops/AGENT_COORDINATION.md",
+      "before_sha256": "260aaedf590034e29a4e74b70351db4f27a9538bf715fbd9fe07ec8cbb2279fa",
+      "current_sha256": "e473049a45a8c2b20d9b4d5878cdc99e7d0fbcf99aaec254d3600ec2b6af39d6",
+      "matches_preflight_and_receipt": true,
+      "exact_inverse_matches_private_before": true
+    },
+    {
+      "file": "ops/marketing/action_queue.md",
+      "before_sha256": "69c8823052937964318092477ea389e9d9f21e670c4833b21f6b4e729423f487",
+      "current_sha256": "b545cb6ae561b730e313c760ac957bf71fb859fc730040453f4042fa4d8a98a9",
+      "matches_preflight_and_receipt": true,
+      "exact_inverse_matches_private_before": true
+    },
+    {
+      "file": "ops/marketing/current_marketing_state.md",
+      "before_sha256": "4b1bc7676403bc612607d499d77a1756432cddf2f6f122c93df5f9541aef2f5e",
+      "current_sha256": "ae74f0d58d694b681190d8eff6f3a33f4682a204cde6695adadf103b9caab419",
+      "matches_preflight_and_receipt": true,
+      "exact_inverse_matches_private_before": true
+    },
+    {
+      "file": "ops/marketing/operator_cockpit.md",
+      "before_sha256": "7dab5690713281cf434ff8c44ccc73a1ffe91d5bfc6bf2dc8a15a78f0ec99e8b",
+      "current_sha256": "072dee52b77f0b8b1fc64deb85133da1893e6d5deb037e60420403ae092d07a5",
+      "matches_preflight_and_receipt": true,
+      "exact_inverse_matches_private_before": true
+    },
+    {
+      "file": "ops/PROBLEM_TRACKER.md",
+      "before_sha256": "efb1333acf9ceb0e5e00ef7c2739fec9f8c01eb2b488b6127b6c8cc33ffdb683",
+      "current_sha256": "5d67749d00f57e12b6d0a7d4e4042df1edd1bc0f5125faa10bd207b9b99051d2",
+      "matches_preflight_and_receipt": true,
+      "exact_inverse_matches_private_before": true
+    },
+    {
+      "file": "ops/marketing/blocker_board.md",
+      "before_sha256": "d1a1b4c740b47de3e11e35f0075b6e0a0048ea48f0ac495f7bf084a3c0c00503",
+      "current_sha256": "55546d0f520be7a95a44ea7164835e4d23a2ebae9719f87cbb1feabb40187a12",
+      "matches_preflight_and_receipt": true,
+      "exact_inverse_matches_private_before": true
+    },
+    {
+      "file": "ops/marketing/daily_scorecard.md",
+      "before_sha256": "21ea46d3135d9ab3b63c4193dba5232aedf03e6aa2cd197fbd44cbefc87c22ea",
+      "current_sha256": "e7f370764f864cd3113af1f1f6c86a94f4f8a267513104cd5f32a22cf3bdd5e5",
+      "matches_preflight_and_receipt": true,
+      "exact_inverse_matches_private_before": true
+    },
+    {
+      "file": "ops/marketing/decision_log.md",
+      "before_sha256": "fd1ba3f0f0a17419f7eb5f9db5f6817f27758b38f5e39f4f8ee8a54031b82e67",
+      "current_sha256": "9ae2ccf883f15f55d621a1578401732546e876523d2da5c3c0070dcf0bef64cc",
+      "matches_preflight_and_receipt": true,
+      "exact_inverse_matches_private_before": true
+    },
+    {
+      "file": "ops/marketing/review_log.md",
+      "before_sha256": "d3251932c311a8db1616dc4cd0ca90c7049928c95f0a132a4e541af43120e708",
+      "current_sha256": "74a0e3549299a9711b7c7e9dfcb5f3de6411cac393bff210a3b3362c47633af7",
+      "matches_preflight_and_receipt": true,
+      "exact_inverse_matches_private_before": true
+    },
+    {
+      "file": "ops/AGENT_WORKLOG.md",
+      "before_sha256": "df953b8875f9eb30cbecfb5a7bbc0f155823aa6dee25a15d0dac6d34e44fe9b5",
+      "current_sha256": "f0eddeff08efd59697a8fb328e84522254ec990ad2012f6ba2736c75c2e8081a",
+      "matches_preflight_and_receipt": true,
+      "exact_inverse_matches_private_before": true
+    }
+  ],
+  "guarded_sections": {
+    "full_paid_control_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+    "parent_one_owner_action_sha256": "0bf2c56dae7b19b5d2ecc262499d32defd0ccae1563f2cd52d0d7144f9b52766"
+  },
+  "preserved_other_table_lines": {
+    "ops/AGENT_COORDINATION.md": 297,
+    "ops/marketing/action_queue.md": 132
+  },
+  "generated_current_sha256": {
+    "ops/marketing/operator_cockpit.html": "4e87a6fbd4f345ec886fe5378484fe499f836771b1339dbd40988193e1fd1144",
+    "ops/marketing/command_layer_integration_audit.md": "76b66df817f745e521f308c7ad0ec583133166bf123466b0b4d6e02c997b6f3c"
+  },
+  "root_command_results": {
+    "render_marketing_cockpit.py": "PASS rendered HTML",
+    "audit_marketing_command_integration.py --write-report --fail-on-risk": "PASS25/25 zero side-document risks",
+    "check_continuity_integrity.py --strict": "PASS10groups CONTINUITY_OK",
+    "git diff --check scoped15files": "PASS exit0"
+  },
+  "commands_rerun_by_reviewer": false,
+  "reviewer_check_adjustment": "An initial reviewer assertion expected the full worklog anchor literally inside generated HTML and failed. The renderer exposes the queue card instead; direct inspection confirms the expected TA-15 milestone and gates. Rechecked actual card content; no source/output changed and no artifact defect found.",
+  "shared_writes_by_reviewer": false,
+  "native_browser_replay_by_reviewer": false,
+  "activation_authority_added": false,
+  "limits": "Exact current-byte agreement holds at this review timestamp. Later peer mutations must be preserved and separately scoped; this verdict does not authorize overwriting them or establish purchase/consent/CPC/profit acceptance.",
+  "next_action": "Root may record this independent PASS and release the shared-file interval to X and parent. Preserve existing open native and paid-launch gates."
+}

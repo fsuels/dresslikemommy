@@ -1,0 +1,296 @@
+{
+  "status": "LOCAL_SILENT_VIDEO_DRAFT_READY_FOR_SEPARATE_VISUAL_REVIEW",
+  "campaign_id": "24247604341",
+  "asset_group_id": "6746545742",
+  "started_at": "2026-09-11T20:56:05.618076+00:00",
+  "finished_at": "2026-09-11T20:56:11.099109+00:00",
+  "acceptance_source": "../CREATIVE_ACCEPTANCE.json",
+  "acceptance_sha256": "f9d98b8ac845cecb0595c6ba31e0b15c57caf50f60b912a06490bdc3f372cf8b",
+  "video": {
+    "file": "mommy_and_me_15s_silent_draft.mp4",
+    "sha256": "afeb858bfae07607085019d59477ad2ecef20fa584cfb93756193921b1d39614",
+    "bytes": 3284399,
+    "duration_seconds": 15,
+    "width": 1920,
+    "height": 1080,
+    "aspect_ratio": "16:9",
+    "frame_rate": 30,
+    "frames": 450,
+    "video_codec": "h264",
+    "pixel_format": "yuv420p",
+    "audio": "SILENT_NO_AUDIO_STREAM",
+    "music": "NONE"
+  },
+  "sources": [
+    {
+      "file": "../creative_sources/generated/RGHM_landscape_v1.png",
+      "sha256": "93ffdfd063966ea230501ddf33be50cccc4d3739e0005a8043f87b152b2524b3",
+      "width": 1734,
+      "height": 907,
+      "source_rectangle": [
+        0,
+        0,
+        1734,
+        907
+      ],
+      "video_photo_rectangle": [
+        195,
+        162,
+        1724,
+        962
+      ],
+      "fit": "CONTAIN_FULL_IMAGE_NO_CROP",
+      "start_seconds": 0,
+      "end_seconds": 5,
+      "on_screen_copy": [
+        "Dress Like Mommy",
+        "Matching Mommy & Me Styles",
+        "Shop DressLikeMommy.com"
+      ],
+      "text_rectangles": [
+        [
+          778,
+          32,
+          1141,
+          69
+        ],
+        [
+          748,
+          101,
+          1171,
+          129
+        ],
+        [
+          767,
+          1009,
+          1153,
+          1035
+        ]
+      ]
+    },
+    {
+      "file": "../creative_sources/generated/TGHW_landscape_v1.png",
+      "sha256": "75d607b1f19f98236c7ad34f818e28073505b6262c2fb1d8e48d9853320cec9b",
+      "width": 1731,
+      "height": 908,
+      "source_rectangle": [
+        0,
+        0,
+        1731,
+        908
+      ],
+      "video_photo_rectangle": [
+        197,
+        162,
+        1722,
+        962
+      ],
+      "fit": "CONTAIN_FULL_IMAGE_NO_CROP",
+      "start_seconds": 5,
+      "end_seconds": 10,
+      "on_screen_copy": [
+        "Dress Like Mommy",
+        "Explore Matching Family Styles",
+        "Choose Each Person's Size"
+      ],
+      "text_rectangles": [
+        [
+          778,
+          32,
+          1141,
+          69
+        ],
+        [
+          742,
+          101,
+          1178,
+          129
+        ],
+        [
+          774,
+          1009,
+          1145,
+          1029
+        ]
+      ]
+    },
+    {
+      "file": "../creative_sources/generated/NSPR_landscape_v1.png",
+      "sha256": "7200c549ea8dcdb0145434f615a8f08273eb1ae08267c36a14dbb98cb228a4b8",
+      "width": 1735,
+      "height": 906,
+      "source_rectangle": [
+        0,
+        0,
+        1735,
+        906
+      ],
+      "video_photo_rectangle": [
+        194,
+        162,
+        1726,
+        962
+      ],
+      "fit": "CONTAIN_FULL_IMAGE_NO_CROP",
+      "start_seconds": 10,
+      "end_seconds": 15,
+      "on_screen_copy": [
+        "Dress Like Mommy",
+        "Choose Each Person's Size",
+        "Shop DressLikeMommy.com"
+      ],
+      "text_rectangles": [
+        [
+          778,
+          32,
+          1141,
+          69
+        ],
+        [
+          767,
+          101,
+          1152,
+          123
+        ],
+        [
+          767,
+          1009,
+          1153,
+          1035
+        ]
+      ]
+    }
+  ],
+  "sources_unchanged_after_render": true,
+  "allowed_copy": [
+    "Choose Each Person's Size",
+    "Dress Like Mommy",
+    "Explore Matching Family Styles",
+    "Matching Mommy & Me Styles",
+    "Shop DressLikeMommy.com"
+  ],
+  "claim_basis": "Exact parent-supplied whitelist only; no price, bundle, inventory, material, shipping, promotion or performance claims.",
+  "transitions": "Six-frame /0.2-second fade-in; first two scenes fade out over6frames to neutral background. Brand stays visible. No overlapping product-photo crossfade. Final CTA holds through end.",
+  "rendering": "Already-installed Pillow and system fonts compose video frames in memory; FFmpeg encodes piped raw RGB. No standalone altered product image is created.",
+  "font_files": [
+    "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+  ],
+  "encode_command": [
+    "/opt/homebrew/bin/ffmpeg",
+    "-hide_banner",
+    "-loglevel",
+    "warning",
+    "-n",
+    "-f",
+    "rawvideo",
+    "-pix_fmt",
+    "rgb24",
+    "-s:v",
+    "1920x1080",
+    "-r",
+    "30",
+    "-i",
+    "pipe:0",
+    "-an",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "medium",
+    "-tune",
+    "stillimage",
+    "-crf",
+    "18",
+    "-pix_fmt",
+    "yuv420p",
+    "-movflags",
+    "+faststart",
+    "-frames:v",
+    "450",
+    "-metadata",
+    "title=Matching Mommy & Me Styles",
+    "-metadata",
+    "comment=Silent local review draft; no audio track; no upload or platform acceptance implied",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/mommy_and_me_15s_silent_draft.mp4"
+  ],
+  "probe_command": [
+    "/opt/homebrew/bin/ffprobe",
+    "-v",
+    "error",
+    "-count_frames",
+    "-show_streams",
+    "-show_format",
+    "-of",
+    "json",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/mommy_and_me_15s_silent_draft.mp4"
+  ],
+  "decode_command": [
+    "/opt/homebrew/bin/ffmpeg",
+    "-hide_banner",
+    "-v",
+    "error",
+    "-i",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/mommy_and_me_15s_silent_draft.mp4",
+    "-f",
+    "null",
+    "-"
+  ],
+  "sampled_frames": [
+    {
+      "requested_time_seconds": 1.0,
+      "file": "keyframes/frame_01.000s.png",
+      "sha256": "b1943f8b1c611598c621e574658c9ea90f4046a7be304a0628e094a84ae1f49f"
+    },
+    {
+      "requested_time_seconds": 4.7,
+      "file": "keyframes/frame_04.700s.png",
+      "sha256": "486dafdf0fb8df72f71947c00c6808e85fda04fafb209d87d0b2ed156ad5f7bd"
+    },
+    {
+      "requested_time_seconds": 4.966667,
+      "file": "keyframes/frame_04.967s.png",
+      "sha256": "d7ae12f9b9598dca5b8ca1541deab6fcf16c9f52ae95e42940f2ace0bd95d2cc"
+    },
+    {
+      "requested_time_seconds": 5.3,
+      "file": "keyframes/frame_05.300s.png",
+      "sha256": "e633f495c8206bbb20fda4130a492bac87edff0f2083c0207918bb8fbd020702"
+    },
+    {
+      "requested_time_seconds": 7.5,
+      "file": "keyframes/frame_07.500s.png",
+      "sha256": "e2baa839ff0435edd98246be98bb0855109cc9fc086e94204ab78814a0233b69"
+    },
+    {
+      "requested_time_seconds": 9.966667,
+      "file": "keyframes/frame_09.967s.png",
+      "sha256": "5117c8f77dae29fb80b4f392c727f307a08c791fd4997cf22922a20cbcdf09aa"
+    },
+    {
+      "requested_time_seconds": 10.3,
+      "file": "keyframes/frame_10.300s.png",
+      "sha256": "a14acfe774fc3228aed05c45961818e4b0af0099cc72b414953b24b3faa1132c"
+    },
+    {
+      "requested_time_seconds": 12.5,
+      "file": "keyframes/frame_12.500s.png",
+      "sha256": "8b76f396cb978d01e4b984b23b8e29b0e407d39799f7f64e82698ccc2eb0e213"
+    },
+    {
+      "requested_time_seconds": 14.9,
+      "file": "keyframes/frame_14.900s.png",
+      "sha256": "8e503248c8d914d94f4d115fc64b10d93790cacad94cb40b05d5605ee33d4c71"
+    }
+  ],
+  "contact_sheet": {
+    "file": "review_contact_sheet.jpg",
+    "sha256": "9f779d894937c52d95b6f667e8e9ec11b09501ea14fec410a8cb710131e976de",
+    "purpose": "QA artifact only; thumbnails of decoded video frames"
+  },
+  "review_limit": "Underlying accepted images retain CREATIVE_ACCEPTANCE.json source-detail limitations. Technical validity does not prove Google upload eligibility, ad acceptance, Excellent Ad Strength, conversions or profit.",
+  "external_requests": 0,
+  "package_installs": 0,
+  "new_image_generation": 0,
+  "uploads": 0,
+  "publication": "NOT_RUN"
+}

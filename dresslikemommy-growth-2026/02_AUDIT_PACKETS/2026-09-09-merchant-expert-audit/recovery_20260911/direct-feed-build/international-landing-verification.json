@@ -1,0 +1,221 @@
+{
+  "schema": "dlm.merchant.international_landing_verification.v1",
+  "verdict": "ADMIN_CONTEXT_VERIFIED_PUBLIC_LANDING_AND_CHECKOUT_UNKNOWN",
+  "scope": "One real variant from the frozen first US release; read-only Shopify connector and attempted public web reads",
+  "observation_window_utc": {
+    "start": "2026-09-11 14:57:07 UTC",
+    "end": "2026-09-11 14:57:08 UTC"
+  },
+  "frozen_us_source": {
+    "path": "first_release_v2/us-en.tsv",
+    "sha256": "e96faeeb86a64898e3564581997ffde427bd593f061cf02a4dc19244520621c5",
+    "rows": 4923,
+    "selected_id": "shopify_US_6718945034337_39756755861601",
+    "selected_variant_occurrences": 1,
+    "us_price": "17.99 USD"
+  },
+  "shop": {
+    "id": "gid://shopify/Shop/15571635",
+    "currencyCode": "USD",
+    "primaryDomain": {
+      "url": "https://www.dresslikemommy.com"
+    }
+  },
+  "variant": {
+    "id": "gid://shopify/ProductVariant/39756755861601",
+    "product": {
+      "id": "gid://shopify/Product/6718945034337",
+      "handle": "mom-child-matching-two-piece-swimsuit",
+      "status": "ACTIVE",
+      "onlineStoreUrl": "https://www.dresslikemommy.com/products/mom-child-matching-two-piece-swimsuit"
+    },
+    "availableForSale": true,
+    "selectedOptions": [
+      {
+        "name": "Size",
+        "value": "Child 2-3 years"
+      },
+      {
+        "name": "Color",
+        "value": "Black"
+      }
+    ],
+    "us_context": {
+      "price": {
+        "amount": "17.99",
+        "currencyCode": "USD"
+      }
+    }
+  },
+  "query": "query DlmInternationalLandingContext($variantId: ID!) {\n shop { id currencyCode primaryDomain { url } }\n productVariant(id: $variantId) {\n  id availableForSale price selectedOptions { name value }\n  product { id handle status onlineStoreUrl }\n  us: contextualPricing(context: { country: US }) { price { amount currencyCode } }\n  au: contextualPricing(context: { country: AU }) { price { amount currencyCode } }\n  ca: contextualPricing(context: { country: CA }) { price { amount currencyCode } }\n  gb: contextualPricing(context: { country: GB }) { price { amount currencyCode } }\n }\n auMarket: marketsResolvedValues(buyerSignal: { countryCode: AU }) {\n  currencyCode webPresences(first: 20) { nodes { id rootUrls { locale url } } pageInfo { hasNextPage endCursor } }\n }\n caMarket: marketsResolvedValues(buyerSignal: { countryCode: CA }) {\n  currencyCode webPresences(first: 20) { nodes { id rootUrls { locale url } } pageInfo { hasNextPage endCursor } }\n }\n gbMarket: marketsResolvedValues(buyerSignal: { countryCode: GB }) {\n  currencyCode webPresences(first: 20) { nodes { id rootUrls { locale url } } pageInfo { hasNextPage endCursor } }\n }\n}",
+  "validation": {
+    "artifactId": "dlm-international-landing-context",
+    "revision": 1,
+    "status": "PASS",
+    "isError": false
+  },
+  "countries": [
+    {
+      "country": "AU",
+      "expected_currency": "AUD",
+      "admin_resolved_currency": "AUD",
+      "admin_contextual_price": {
+        "amount": "26.0",
+        "currencyCode": "AUD"
+      },
+      "admin_contextual_price_display_normalized": "26.00 AUD",
+      "english_root_url": "https://www.dresslikemommy.com/",
+      "web_presence_id": "gid://shopify/MarketWebPresence/259915873",
+      "web_presence_count": 1,
+      "web_presence_pagination_complete": true,
+      "locale_root_count": 21,
+      "candidate_export_config": {
+        "landingBaseUrl": "https://www.dresslikemommy.com",
+        "landingQuery": {
+          "country": "AU",
+          "currency": "AUD"
+        }
+      },
+      "candidate_product_url": "https://www.dresslikemommy.com/products/mom-child-matching-two-piece-swimsuit?variant=39756755861601&country=AU&currency=AUD",
+      "query_parameter_behavior_verified": false,
+      "public_web_tool_result": "not safe to open (non-retryable error)",
+      "site_http_status": null,
+      "observed_public_landing_price": null,
+      "observed_public_landing_currency": null,
+      "observed_selected_public_country": null,
+      "browser_rendered_check": "NOT RUN",
+      "checkout_price_and_currency": "NOT RUN",
+      "price_source": "Fresh Shopify Admin contextualPricing; not rendered landing or checkout",
+      "standalone_country_subfolder_established": false,
+      "ready_for_local_export_preparation": true,
+      "ready_for_merchant_submission_based_on_this_evidence": false
+    },
+    {
+      "country": "CA",
+      "expected_currency": "CAD",
+      "admin_resolved_currency": "CAD",
+      "admin_contextual_price": {
+        "amount": "26.0",
+        "currencyCode": "CAD"
+      },
+      "admin_contextual_price_display_normalized": "26.00 CAD",
+      "english_root_url": "https://www.dresslikemommy.com/",
+      "web_presence_id": "gid://shopify/MarketWebPresence/259915873",
+      "web_presence_count": 1,
+      "web_presence_pagination_complete": true,
+      "locale_root_count": 21,
+      "candidate_export_config": {
+        "landingBaseUrl": "https://www.dresslikemommy.com",
+        "landingQuery": {
+          "country": "CA",
+          "currency": "CAD"
+        }
+      },
+      "candidate_product_url": "https://www.dresslikemommy.com/products/mom-child-matching-two-piece-swimsuit?variant=39756755861601&country=CA&currency=CAD",
+      "query_parameter_behavior_verified": false,
+      "public_web_tool_result": "not safe to open (non-retryable error)",
+      "site_http_status": null,
+      "observed_public_landing_price": null,
+      "observed_public_landing_currency": null,
+      "observed_selected_public_country": null,
+      "browser_rendered_check": "NOT RUN",
+      "checkout_price_and_currency": "NOT RUN",
+      "price_source": "Fresh Shopify Admin contextualPricing; not rendered landing or checkout",
+      "standalone_country_subfolder_established": false,
+      "ready_for_local_export_preparation": true,
+      "ready_for_merchant_submission_based_on_this_evidence": false
+    },
+    {
+      "country": "GB",
+      "expected_currency": "GBP",
+      "admin_resolved_currency": "GBP",
+      "admin_contextual_price": {
+        "amount": "14.0",
+        "currencyCode": "GBP"
+      },
+      "admin_contextual_price_display_normalized": "14.00 GBP",
+      "english_root_url": "https://www.dresslikemommy.com/",
+      "web_presence_id": "gid://shopify/MarketWebPresence/259915873",
+      "web_presence_count": 1,
+      "web_presence_pagination_complete": true,
+      "locale_root_count": 21,
+      "candidate_export_config": {
+        "landingBaseUrl": "https://www.dresslikemommy.com",
+        "landingQuery": {
+          "country": "GB",
+          "currency": "GBP"
+        }
+      },
+      "candidate_product_url": "https://www.dresslikemommy.com/products/mom-child-matching-two-piece-swimsuit?variant=39756755861601&country=GB&currency=GBP",
+      "query_parameter_behavior_verified": false,
+      "public_web_tool_result": "not safe to open (non-retryable error)",
+      "site_http_status": null,
+      "observed_public_landing_price": null,
+      "observed_public_landing_currency": null,
+      "observed_selected_public_country": null,
+      "browser_rendered_check": "NOT RUN",
+      "checkout_price_and_currency": "NOT RUN",
+      "price_source": "Fresh Shopify Admin contextualPricing; not rendered landing or checkout",
+      "standalone_country_subfolder_established": false,
+      "ready_for_local_export_preparation": true,
+      "ready_for_merchant_submission_based_on_this_evidence": false
+    }
+  ],
+  "public_attempts": {
+    "tool": "web.open",
+    "country_currency_urls_attempted": 3,
+    "frozen_us_variant_url_also_attempted": true,
+    "all_results": "Tool rejected URL as not safe to open (non-retryable); no storefront content or HTTP response obtained",
+    "rejected_control_url": "https://www.dresslikemommy.com/products/mom-child-matching-two-piece-swimsuit?variant=39756755861601",
+    "rejection_means_site_failed": false,
+    "alternate_transport_or_browser_workaround_used": false
+  },
+  "historical_evidence": {
+    "path": "../../resumed_20260910/currency/public_main_country_menu.json",
+    "recorded_at_utc": "2026-09-10 00:36:38 UTC",
+    "country_currencies": {
+      "AU": "AUD",
+      "CA": "CAD",
+      "GB": "GBP"
+    },
+    "country_form_action": "/localization",
+    "limit": "Historical menu values; not a current price or query-parameter acceptance test"
+  },
+  "primary_docs": [
+    {
+      "url": "https://shopify.dev/docs/storefronts/themes/markets/multiple-currencies-languages",
+      "retrieved_date": "2026-09-11",
+      "finding": "Use locale-aware URLs and localization country selection; do not invent country subfolders"
+    },
+    {
+      "url": "https://shopify.dev/docs/apps/build/markets",
+      "retrieved_date": "2026-09-11",
+      "finding": "Configured market URL structure varies; default-root links may lose context"
+    }
+  ],
+  "required_native_checks": [
+    "Open each exact candidate in a clean country/locale session and confirm selected variant, country, visible currency and price",
+    "Verify structured Offer price/currency agrees with the displayed selected variant",
+    "Confirm the chosen country/currency persists through cart and checkout without submitting an order",
+    "If query parameters do not establish context, inspect the observed localization route; do not substitute invented /en-au, /en-ca or /en-gb paths"
+  ],
+  "limits": [
+    "availableForSale is an Admin variant flag, not independent target-country checkout eligibility",
+    "Contextual pricing and web-presence resolution do not prove URL query behavior",
+    "No public rendered content was obtained in this lane",
+    "Only one variant sampled; all-row contextual export and availability filtering remain builder responsibilities",
+    "US upload and optional-return-column decision are unaffected"
+  ],
+  "checks": {
+    "frozen_us_file_bound": true,
+    "variant_currently_active_and_available": true,
+    "shop_target_matches": true,
+    "all_country_currency_contexts_match": true,
+    "all_web_presence_pagination_complete": true,
+    "public_observation_not_fabricated": true,
+    "no_native_or_chrome_control": true,
+    "no_external_writes": true,
+    "only_owned_outputs_written": true
+  },
+  "next_action": "Root native read of the three exact candidate URLs and cart/checkout currency; local AU/CA/GB exports may be prepared from the verified Admin contexts meanwhile"
+}

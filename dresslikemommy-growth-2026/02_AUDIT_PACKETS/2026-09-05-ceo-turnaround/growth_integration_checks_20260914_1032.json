@@ -1,0 +1,85 @@
+{
+  "schema": "dlm.growth.integration.checks.v1",
+  "verified_at_utc": "2026-09-14T11:27:47.811204+00:00",
+  "status": "PASS_WITH_LIMITS",
+  "files": {
+    "ops/marketing/action_queue.md": {
+      "after_sha256": "05c9cc197b59b28fc6313a05ba7fbd1ea97a24bf10a06665091c0193dc0ea9dd",
+      "exact_reviewed_candidate": true
+    },
+    "ops/marketing/current_marketing_state.md": {
+      "after_sha256": "417924c65386a0be4f8034078d4667c829be2e2a144d370c13550b31fa00680a",
+      "exact_reviewed_candidate": true
+    },
+    "ops/marketing/daily_scorecard.md": {
+      "after_sha256": "cb8a1461e090aebe491cac94b0abc2bfd0d75e2667454d546681b0ad4f311b27",
+      "exact_reviewed_candidate": true
+    },
+    "ops/marketing/operator_cockpit.md": {
+      "after_sha256": "d479fbcedace460230724512963f264347530ed9eeef4ada29e42a600a46cfb8",
+      "exact_reviewed_candidate": true
+    },
+    "ops/marketing/decision_log.md": {
+      "after_sha256": "2fa749797455a8f5f3d48b1ffdd3f5deea39ae83e19e05f2c29b898061aebed1",
+      "exact_reviewed_candidate": true
+    },
+    "ops/AGENT_COORDINATION.md": {
+      "after_sha256": "0996d483f837f18bcc2a7e84c0a5e69456d98479a39be9d97677553a8c65868b",
+      "exact_reviewed_candidate": true
+    },
+    "ops/PROBLEM_TRACKER.md": {
+      "after_sha256": "d978568e252d1bc9ce10b1315d74dd3d82cd4cfcc82a7e7e18f9740f0eea151d",
+      "exact_reviewed_candidate": true
+    },
+    "ops/AGENT_WORKLOG.md": {
+      "after_sha256": "9219981559fb9fbaf971ddc1da6c81c0341973c0f3729cb4dc8a02f5d3e7ede0",
+      "exact_reviewed_candidate": true
+    }
+  },
+  "commands": {
+    "render_marketing_cockpit.py": {
+      "exit_code": 0,
+      "chunk_id": "74adec"
+    },
+    "scoped_git_diff_check": {
+      "exit_code": 0,
+      "chunk_id": "df5e8d"
+    },
+    "audit_marketing_command_integration.py --write-report --fail-on-risk": {
+      "exit_code": 0,
+      "chunk_id": "e4cdc2",
+      "integrated": 25,
+      "tracked": 25,
+      "risks": 0
+    },
+    "check_continuity_integrity.py --strict": {
+      "exit_code": 0,
+      "chunk_id": "3555ca",
+      "passed": 10,
+      "failed": 0
+    }
+  },
+  "independent_candidate_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_integration_review_20260914_1032.json",
+    "sha256": "5b9112cdf6b2b719a0ec28ab19c4c3e7770e10a26c3d987ca9029ad1563f2f56"
+  },
+  "source_acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_source_acceptance_20260914_1032.json",
+    "sha256": "b2eafebd1efc4bbd2c2bacd88f062fb4f9088b209f5815172d56fa35208e2d1f"
+  },
+  "context_check": {
+    "new_anchor_metadata": "Both Google and Microsoft candidate queries select the intended new anchor/HANDOFF/read-only next action; not complete claim-selection acceptance.",
+    "numeric_compact_claim_defect": "Pre-existing current and candidate Microsoft numeric-ID queries choose historical row54. Independently isolated; repair separately prepared under CTX-COMPACT-MS-UET-20260914-1032.",
+    "diagnosis": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/compact_id_diagnosis_20260914_1032.json",
+      "sha256": "5c2ae47f5cd834b25c55a4106c9baf7a28144f7fbd9e1275e11b2a8529a6ed9e"
+    },
+    "local_output_formatting_error": "One ancillary inspection assumed evidence was a dict; actual schema is a list. Inspection corrected, compiler output unchanged."
+  },
+  "counts": {
+    "business_writes": 0,
+    "new_goal_or_harness_or_scheduler": 0,
+    "private_order_queries": 0
+  },
+  "limits": "Scoped source and document acceptance, not new sales/profit, current external account replay or blanket harness/browser acceptance."
+}

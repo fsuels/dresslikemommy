@@ -1,0 +1,85 @@
+{
+  "status": "PREPARED_NOT_STAGED_NOT_SAVED",
+  "customer_id": "650-997-2886",
+  "campaign_id": "24247604341",
+  "before_evidence": "LIVE_TARGETING_AND_DELIVERY_READBACK.json",
+  "purpose": "Reduce avoidable mismatch in the existing paused US campaign; this does not make Performance Max compatible with a hard CPC ceiling or authorize launch.",
+  "changes": [
+    {
+      "field": "location_include_option",
+      "before": "PRESENCE_OR_INTEREST",
+      "after": "PRESENCE",
+      "reason": "Keep US-targeted advertising focused on people in or regularly in the US, instead of including interest alone. Location signals are not perfect guarantees.",
+      "rollback": "Restore the exact previous presence-or-interest radio option."
+    },
+    {
+      "field": "final_url_expansion",
+      "before": true,
+      "after": false,
+      "reason": "Keep the primary destination on the reviewed mommy-and-me collection while deliberate product and policy sitelinks remain separately reviewed.",
+      "rollback": "Restore final URL expansion only with text customization enabled, matching the original dependency."
+    },
+    {
+      "field": "text_customization",
+      "before": true,
+      "after": false,
+      "reason": "Prevent automated copy from reintroducing unsupported material, shipping, service or category statements while the broader source content remains under review.",
+      "rollback": "Restore the exact previous customization checkbox; review any subsequently generated copy separately."
+    }
+  ],
+  "negative_keyword_candidates": [
+    {
+      "text": "sewing pattern",
+      "match_type": "PHRASE",
+      "scope": "CAMPAIGN",
+      "observed_query": false
+    },
+    {
+      "text": "sewing patterns",
+      "match_type": "PHRASE",
+      "scope": "CAMPAIGN",
+      "observed_query": false
+    }
+  ],
+  "negative_rationale": "Finished apparel is the offer; sewing-instruction intent is a preventive relevance exclusion. No observed waste or savings are claimed. Singular and plural are kept explicit because negative keywords do not automatically cover close variants.",
+  "negative_source": "../keywords/negative_candidates.csv; two US_EN rows out of38 total market-specific candidates",
+  "negative_limit": "These candidates do not control YouTube or solve the observed current-channel spend. Confirm platform channel scope and inherited negatives before applying.",
+  "protected_terms": [
+    "free",
+    "wedding",
+    "pajamas",
+    "family",
+    "mommy",
+    "daughter",
+    "near me"
+  ],
+  "preserve": {
+    "campaign_status": "PAUSED",
+    "daily_budget_usd": 5,
+    "target_roas_percent": 650,
+    "country": "US",
+    "language": "English",
+    "conversion_goals": "ACCOUNT_DEFAULT_PURCHASES",
+    "search_themes": [
+      "mommy and me dresses",
+      "mother daughter matching outfits"
+    ],
+    "merchant_links": "NO_CHANGE",
+    "image_and_video_optimization": "NO_CHANGE_IN_THIS_PLAN",
+    "other_campaigns_and_account_settings": "NO_CHANGE"
+  },
+  "execution_requirements": [
+    "Complete the existing Google identity verification normally; do not bypass it with another surface.",
+    "Independent reviewer must accept this exact plan and campaign scope.",
+    "Read the exact before-state again and reconcile drift before each save.",
+    "Apply only the reviewed campaign controls, separately from creative edits; no new campaign or enablement is included.",
+    "Read back saved values after reopening and verify Paused, budget, target, geography and goal protection.",
+    "Verify account-level and campaign-level negative dedup before adding the two narrow phrases."
+  ],
+  "launch_status": "HELD_PENDING_CPC_COMPATIBLE_STRATEGY_PURCHASE_ACCEPTANCE_COSTS_AND_EXACT_SPEND_AUTHORITY",
+  "negative_rollback": "Capture inherited/current campaign negatives before write and exact new entry IDs after save; remove only the two newly created campaign entries to restore the baseline, leaving existing/shared lists untouched.",
+  "acceptance_limits": [
+    "Turning customization off does not save the pending supplied-copy edits or prevent automatic video creation.",
+    "Google URL-control serving effects can lag the saved setting; verify the setting immediately and subsequent serving behavior separately."
+  ]
+}

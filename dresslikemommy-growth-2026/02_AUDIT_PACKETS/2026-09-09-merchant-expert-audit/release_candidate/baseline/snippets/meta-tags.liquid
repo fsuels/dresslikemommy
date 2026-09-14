@@ -1,0 +1,356 @@
+{%- liquid
+  assign resolved_canonical_url = canonical_href | default: canonical_url | default: request.origin
+  assign og_title = page_title | default: shop.name
+  assign og_url = resolved_canonical_url
+  assign og_type = 'website'
+  assign og_description = page_description | default: shop.description | default: shop.name
+  assign should_noindex = false
+  assign noindex_follow = false
+  assign collection_seo_display_title = blank
+  assign collection_seo_meta_title = blank
+  assign collection_seo_meta_description = blank
+  assign collection_seo_force_theme = blank
+  assign product_seo_description = blank
+
+  if request.page_type == 'collection' and collection != blank
+    capture collection_seo_display_title
+      render 'collection-seo-fallback', collection: collection, field: 'display_title'
+    endcapture
+    assign collection_seo_display_title = collection_seo_display_title | strip
+
+    capture collection_seo_meta_title
+      render 'collection-seo-fallback', collection: collection, field: 'meta_title'
+    endcapture
+    assign collection_seo_meta_title = collection_seo_meta_title | strip
+
+    capture collection_seo_meta_description
+      render 'collection-seo-fallback', collection: collection, field: 'meta_description'
+    endcapture
+    assign collection_seo_meta_description = collection_seo_meta_description | strip
+
+    capture collection_seo_force_theme
+      render 'collection-seo-fallback', collection: collection, field: 'force_theme_seo'
+    endcapture
+    assign collection_seo_force_theme = collection_seo_force_theme | strip
+
+    if collection_seo_force_theme == 'true'
+      if collection_seo_meta_title != blank
+        assign og_title = collection_seo_meta_title
+      elsif collection_seo_display_title != blank
+        assign og_title = collection_seo_display_title
+      endif
+    elsif collection.handle == 'all' or collection.handle == 'swimsuits' or page_title == blank or page_title == collection.title
+      if collection_seo_meta_title != blank
+        assign og_title = collection_seo_meta_title
+      elsif collection_seo_display_title != blank
+        assign og_title = collection_seo_display_title
+      endif
+    endif
+
+    if collection_seo_force_theme == 'true' and collection_seo_meta_description != blank
+      assign og_description = collection_seo_meta_description
+    elsif page_description == blank and collection_seo_meta_description != blank
+      assign og_description = collection_seo_meta_description
+    endif
+  elsif request.page_type == 'product' and product != blank
+    assign product_title_locale_root = request.locale.iso_code | default: localization.language.iso_code | default: '' | split: '-' | first | downcase
+    if product.handle == 'golden-daisy-mommy-and-me-set' and product_title_locale_root == 'en'
+      assign og_title = 'Golden Daisy Mommy & Me Matching Separates'
+    endif
+    capture product_seo_description
+      render 'product-seo-description-fallback', product: product, collection: collection, page_description: page_description
+    endcapture
+    assign product_seo_description = product_seo_description | strip
+    if product_seo_description != blank
+      assign og_description = product_seo_description
+    endif
+  endif
+
+  if request.page_type == 'index'
+    assign og_title = 'Mommy and Me Dresses | Family Matching Outfits'
+    assign og_description = 'Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.'
+  elsif request.page_type == 'product'
+    assign og_type = 'product'
+  elsif request.page_type == 'article'
+    assign og_type = 'article'
+    if page_description == blank and article != blank
+      assign og_description = article.excerpt | default: article.content | strip_html | truncatewords: 28
+    endif
+  elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
+    assign og_title = 'Style Journal'
+    if page_description == blank
+      assign og_description = 'Outfit guides, styling tips, and shopping advice for mommy and me, daddy and me, and family matching looks.'
+    endif
+  elsif request.page_type == 'password'
+    assign og_url = request.origin
+  endif
+
+  if og_description != blank
+    assign og_description = og_description | replace: 'Free shipping + returns', 'Standard shipping included + easy returns'
+    assign og_description = og_description | replace: 'Free Shipping + Returns', 'Standard Shipping Included + Easy Returns'
+    assign og_description = og_description | replace: 'FREE SHIPPING + RETURNS', 'STANDARD SHIPPING INCLUDED + EASY RETURNS'
+    assign og_description = og_description | replace: 'Free shipping on all orders', 'Standard shipping included'
+    assign og_description = og_description | replace: 'FREE SHIPPING ON ALL ORDERS', 'STANDARD SHIPPING INCLUDED'
+    assign og_description = og_description | replace: 'Free shipping', 'Standard shipping included'
+    assign og_description = og_description | replace: 'Free Shipping', 'Standard Shipping Included'
+    assign og_description = og_description | replace: 'FREE SHIPPING', 'STANDARD SHIPPING INCLUDED'
+    assign og_description = og_description | replace: 'Standard shipping included + returns', 'Standard shipping included + easy returns'
+    assign og_description = og_description | replace: 'Standard Shipping Included + Returns', 'Standard Shipping Included + Easy Returns'
+    assign og_description = og_description | replace: 'STANDARD SHIPPING INCLUDED + RETURNS', 'STANDARD SHIPPING INCLUDED + EASY RETURNS'
+    assign og_description = og_description | replace: '+ returns', '+ easy returns'
+    assign og_description = og_description | replace: '+ Returns', '+ Easy Returns'
+    assign og_description = og_description | replace: '+ RETURNS', '+ EASY RETURNS'
+    assign og_description = og_description | replace: '30-day easy returns', 'easy returns'
+    assign og_description = og_description | replace: '30-Day Easy Returns', 'Easy Returns'
+    assign og_description = og_description | replace: '30-DAY EASY RETURNS', 'EASY RETURNS'
+    if og_description contains 'Standard shipping included' and og_description contains 'returns'
+      assign og_description_prefix = og_description | split: 'Standard shipping included' | first
+      assign og_description = og_description_prefix | append: 'Standard shipping included + easy returns.'
+    elsif og_description contains 'Standard Shipping Included' and og_description contains 'Returns'
+      assign og_description_prefix = og_description | split: 'Standard Shipping Included' | first
+      assign og_description = og_description_prefix | append: 'Standard Shipping Included + Easy Returns.'
+    elsif og_description contains 'STANDARD SHIPPING INCLUDED' and og_description contains 'RETURNS'
+      assign og_description_prefix = og_description | split: 'STANDARD SHIPPING INCLUDED' | first
+      assign og_description = og_description_prefix | append: 'STANDARD SHIPPING INCLUDED + EASY RETURNS.'
+    endif
+  endif
+
+  if request.page_type == 'search' or request.page_type == 'cart' or request.page_type == '404' or request.page_type == 'password'
+    assign should_noindex = true
+  endif
+
+  if template contains 'customers/'
+    assign should_noindex = true
+  endif
+
+  if request.page_type == 'page' and page != blank
+    assign utility_page_handles = 'wish-list,popular-searches,search-results-page,rewind-menu-backup-page' | split: ','
+    assign normalized_page_handle = page.handle | default: '' | strip
+    for utility_page_handle in utility_page_handles
+      assign utility_page_handle = utility_page_handle | strip
+      if utility_page_handle == normalized_page_handle
+        assign should_noindex = true
+        assign noindex_follow = true
+        break
+      endif
+    endfor
+  endif
+
+  assign current_request_path = request.path | default: request.url | default: ''
+  if current_request_path contains '/pages/search-results/'
+    assign should_noindex = true
+    assign noindex_follow = true
+  endif
+
+  if request.page_type == 'article' and article != blank
+    assign normalized_article_handle = article.handle | default: '' | strip | downcase
+    assign normalized_article_title = article.title | default: '' | strip | downcase
+    if normalized_article_handle contains 'arch-' or normalized_article_title contains '[archived duplicate]'
+      assign should_noindex = true
+      assign noindex_follow = true
+    endif
+  endif
+
+  if parameterized_product_noindex
+    assign should_noindex = true
+    assign noindex_follow = true
+  endif
+
+  comment
+    TSEO-005: Noindex collection pages with tags, filters, or sort params
+    to prevent index bloat from faceted navigation variants.
+    Indexable: base collection URLs and paginated-only URLs.
+  endcomment
+  if request.page_type == 'collection'
+    if current_tags and current_tags.size > 0
+      assign should_noindex = true
+      assign noindex_follow = true
+    endif
+    assign current_url_string = request.url | default: canonical_url | default: ''
+    assign current_query_string = request.query_string | default: ''
+    if current_url_string contains 'filter.' or current_url_string contains 'sort_by=' or current_url_string contains 'dlm-daddy-filter=' or current_query_string contains 'filter.' or current_query_string contains 'sort_by=' or current_query_string contains 'dlm-daddy-filter='
+      assign should_noindex = true
+      assign noindex_follow = true
+    endif
+  endif
+
+  assign social_image_url = blank
+  assign social_image_href = blank
+  assign social_image_width = blank
+  assign social_image_height = blank
+  assign social_image_alt = og_title
+
+  if request.page_type == 'index'
+    assign social_image_url = 'dlm-social-share-home-1200x628.jpg' | asset_url
+    assign social_image_width = 1200
+    assign social_image_height = 628
+  elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
+    assign social_image_url = 'hero-family-boardwalk-premium.jpg' | asset_url
+    assign social_image_width = 2400
+    assign social_image_height = 1000
+    assign social_image_alt = 'Family in matching outfits by the beach'
+  elsif page_image
+    assign social_image_url = page_image | image_url
+    assign social_image_width = page_image.width
+    assign social_image_height = page_image.height
+    assign social_image_alt = page_image.alt | default: og_title
+  endif
+
+  if social_image_url != blank
+    assign social_image_href = social_image_url | append: ''
+    assign social_image_origin = request.origin | default: shop.url
+    if social_image_origin == blank and resolved_canonical_url contains '://'
+      assign social_image_origin_protocol = resolved_canonical_url | split: '://' | first
+      assign social_image_origin_without_protocol = resolved_canonical_url | split: '://' | last
+      assign social_image_origin_host = social_image_origin_without_protocol | split: '/' | first
+      if social_image_origin_protocol != blank and social_image_origin_host != blank
+        assign social_image_origin = social_image_origin_protocol | append: '://' | append: social_image_origin_host
+      endif
+    endif
+    if social_image_origin == blank and shop.permanent_domain != blank
+      assign social_image_origin = 'https://' | append: shop.permanent_domain
+    endif
+    if social_image_origin == blank and request.host != blank
+      assign social_image_origin = 'https://' | append: request.host
+    endif
+    assign social_image_href_prefix = social_image_href | slice: 0, 2
+    assign social_image_href_prefix_one = social_image_href | slice: 0, 1
+    if social_image_href contains '://'
+      assign social_image_href = social_image_href
+    elsif social_image_href_prefix == '//'
+      assign social_image_href = 'https:' | append: social_image_href
+    elsif social_image_href contains '/cdn/'
+      assign social_image_href = 'https://www.dresslikemommy.com' | append: social_image_href
+    elsif social_image_href_prefix_one == '/'
+      if social_image_origin == blank
+        assign social_image_origin = 'https://www.dresslikemommy.com'
+      endif
+      assign social_image_href = social_image_origin | append: social_image_href
+    endif
+  endif
+%}
+
+{%- if request.page_type == 'article' and article != blank -%}
+  {%- if blog.handle == 'news' or article.image == blank -%}
+    {%- capture article_fallback_social_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
+    {%- capture article_fallback_social_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
+    {%- capture article_fallback_social_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
+    {%- capture article_fallback_social_image_alt -%}{% render 'article-featured-image-fallback', article: article, field: 'alt' %}{%- endcapture -%}
+    {%- assign article_fallback_social_image_url = article_fallback_social_image_url | strip -%}
+    {%- assign article_fallback_social_image_width = article_fallback_social_image_width | strip -%}
+    {%- assign article_fallback_social_image_height = article_fallback_social_image_height | strip -%}
+    {%- assign article_fallback_social_image_alt = article_fallback_social_image_alt | strip -%}
+    {%- if article_fallback_social_image_url != blank -%}
+      {%- assign social_image_url = article_fallback_social_image_url -%}
+      {%- assign social_image_href = article_fallback_social_image_url -%}
+      {%- assign social_image_width = article_fallback_social_image_width -%}
+      {%- assign social_image_height = article_fallback_social_image_height -%}
+      {%- assign social_image_alt = article_fallback_social_image_alt | default: og_title -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if should_noindex -%}
+  <meta name="robots" content="noindex,{% if noindex_follow %} follow{% else %} nofollow{% endif %}">
+{%- endif -%}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:title" content="{{ og_title | escape }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:description" content="{{ og_description | replace: '30-day ', '' | replace: '30-Day ', '' | replace: '30-DAY ', '' | escape }}">
+
+{%- if social_image_href != blank -%}
+  <meta property="og:image" content="{{ social_image_href }}">
+  <meta property="og:image:secure_url" content="{{ social_image_href }}">
+  <meta property="og:image:width" content="{{ social_image_width }}">
+  <meta property="og:image:height" content="{{ social_image_height }}">
+  <meta property="og:image:alt" content="{{ social_image_alt | escape }}">
+{%- endif -%}
+
+{%- if request.page_type == 'product' -%}
+  {%- assign product_price_amount = product.price | divided_by: 100.0 -%}
+  {%- assign shop_currency_code = shop.currency.iso_code | default: shop.currency | append: '' | strip | upcase | replace: ' ', '' | replace: '$', '' | replace: '.', '' | replace: '-', '' -%}
+  {%- assign product_price_currency = cart.currency.iso_code | default: localization.country.currency.iso_code | default: shop_currency_code -%}
+  {%- assign product_price_currency = product_price_currency | append: '' | strip | upcase | replace: ' ', '' | replace: '$', '' | replace: '.', '' | replace: '-', '' -%}
+  {%- if product_price_currency == blank or product_price_currency.size != 3 -%}
+    {%- assign product_price_currency = shop_currency_code -%}
+  {%- endif -%}
+  {%- if product_price_currency == blank or product_price_currency.size != 3 -%}
+    {%- assign product_price_currency = 'USD' -%}
+  {%- endif -%}
+  <meta property="og:price:amount" content="{{ product_price_amount }}">
+  <meta property="product:price:amount" content="{{ product_price_amount }}">
+  <meta property="og:price:currency" content="{{ product_price_currency }}">
+  <meta property="product:price:currency" content="{{ product_price_currency }}">
+{%- endif -%}
+
+{%- liquid
+  assign hreflang_origin = shop.url | default: request.origin
+  assign hreflang_canonical = resolved_canonical_url | default: request.url
+  assign hreflang_relative_path = hreflang_canonical | replace_first: hreflang_origin, ''
+  if hreflang_relative_path == hreflang_canonical
+    assign request_origin_fallback = request.origin | default: ''
+    if request_origin_fallback != blank
+      assign hreflang_relative_path = hreflang_canonical | replace_first: request_origin_fallback, ''
+    endif
+  endif
+  if hreflang_relative_path == hreflang_canonical
+    assign canonical_without_scheme = hreflang_canonical | split: '://' | last
+    assign canonical_parts = canonical_without_scheme | split: '/'
+    assign canonical_path_parts = canonical_parts | slice: 1, 200
+    assign hreflang_relative_path = canonical_path_parts | join: '/'
+    assign hreflang_relative_path = '/' | append: hreflang_relative_path
+  endif
+  assign current_locale_root = request.locale.root_url | default: localization.language.root_url | default: routes.root_url | default: '/'
+  assign current_locale_root_with_slash = current_locale_root | append: '/'
+
+  if current_locale_root != '/'
+    if hreflang_relative_path == current_locale_root
+      assign hreflang_relative_path = '/'
+    elsif hreflang_relative_path contains current_locale_root_with_slash
+      assign hreflang_relative_path = hreflang_relative_path | remove_first: current_locale_root
+    endif
+  endif
+
+  if hreflang_relative_path == blank
+    assign hreflang_relative_path = '/'
+  endif
+
+  assign hreflang_primary_href = hreflang_canonical
+-%}
+
+{%- if localization.available_languages and localization.available_languages.size > 0 -%}
+  {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+  {%- for language in localization.available_languages -%}
+    {%- liquid
+      assign hreflang_href = hreflang_origin
+      assign language_root = language.root_url | default: '/'
+      if language_root == '/'
+        assign hreflang_href = hreflang_href | append: hreflang_relative_path
+      else
+        assign hreflang_href = hreflang_href | append: language_root
+        if hreflang_relative_path != '/'
+          assign hreflang_href = hreflang_href | append: hreflang_relative_path
+        endif
+      endif
+      if language.primary
+        assign hreflang_primary_href = hreflang_href
+      endif
+    -%}
+    <link rel="alternate" hreflang="{{ language.iso_code | downcase | escape }}" href="{{ hreflang_href | escape }}">
+  {%- endfor -%}
+  <link rel="alternate" hreflang="x-default" href="{{ hreflang_primary_href | escape }}">
+  {% comment %}theme-check-enable RemoteAsset{% endcomment %}
+{%- endif -%}
+
+{%- if settings.social_twitter_link != blank -%}
+  <meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
+{%- endif -%}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title | escape }}">
+<meta name="twitter:description" content="{{ og_description | replace: '30-day ', '' | replace: '30-Day ', '' | replace: '30-DAY ', '' | escape }}">
+{%- if social_image_href != blank -%}
+  <meta name="twitter:image" content="{{ social_image_href }}">
+  <meta name="twitter:image:alt" content="{{ social_image_alt | escape }}">
+{%- endif -%}

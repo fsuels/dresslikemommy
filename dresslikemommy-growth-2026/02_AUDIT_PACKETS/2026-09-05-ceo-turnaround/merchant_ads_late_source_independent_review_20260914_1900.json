@@ -1,0 +1,363 @@
+{
+  "schema": "dlm.merchant_ads_late_source_independent_review.v1",
+  "verdict": "PASS_WITH_LIMITS__SAVED_FACTS_ACCEPTED_WITH_NEXT_ACTION_SUPERSESSION",
+  "reviewed_at_utc": "2026-09-14T19:24:34.296136+00:00",
+  "reviewer": "/root/claim_lookup_cause",
+  "confidence": "H_FOR_SAVED_BINDINGS_AND_SCOPE__NATIVE_OBSERVATIONS_AND_RUNTIME_EXECUTION_NOT_REPLAYED",
+  "principal_bindings": {
+    "merchant_handoff": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/execution_handoff.json",
+      "sha256": "8990c5db81209674c80bbc65dbcdd8e8654e2e991f60f50367101df0af5c8dda"
+    },
+    "merchant_freeze": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/artifact_freeze.json",
+      "sha256": "892baaac65c12026b7a31268158580587f3bdae2bf7df4596613a15a5320be91",
+      "bound_artifacts": 24
+    },
+    "merchant_checkpoint": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/all-markets.execution_checkpoint.json",
+      "sha256": "9ad277e7a14fc607cf17fd11a087b682975eb4cc7c63f1cf3e2fc0d8e3d4e20d"
+    },
+    "ads_receipt": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/RECEIVER_SIGNAL_20260914_1910.json",
+      "sha256": "01b852ca5abfc3f97ee5ae514aa58d9cc9f67c2ab0b77ed4b76d590e857462a7"
+    },
+    "delivery_receipt": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/delivery_readback_1914.json",
+      "sha256": "eac2b3de236d4fedd2a2660e99b6188435513017a1f5301dc7512c62780043db"
+    },
+    "accepted_ux_review": {
+      "path": "/private/tmp/dlm-us-es-ux-independent-review-20260914.json",
+      "sha256": "b4f46d5e4e82b2622124848f3d301dcb371c0a3cb542c115aa2c06c25e5c853b",
+      "source_receipt_sha256": "e71282505d5cf241d500663d09bdddf13382a648529584cd37f11287eb84ca4b"
+    },
+    "accepted_sales_review": {
+      "path": "/private/tmp/dlm-sales-20260914-1900-independent-review.json",
+      "sha256": "031245b9b1bd051ad06d1452b0f2f911d5c4b0b6aecc5346022eac530374f7e8",
+      "source_receipt_sha256": "c108602199f1f963e6f9eec9e5377bb160b1cb8e58128c43a832097a404bb47f"
+    }
+  },
+  "freeze_bindings_verified": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/README.md",
+      "sha256": "17328572b574cc6e77534f7edc27b7a9f4ae5a6fb0fa2beb92a61b993b0d5a84",
+      "bytes": 3182
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/automation_receipt.json",
+      "sha256": "07c6c0c3cecb32c474df790f75cacae81165687667beffa346712e8fe313c983",
+      "bytes": 5393
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/before/checkpoint.js",
+      "sha256": "9f1c52ec14d1dd899bf79855a9210d1a2269cf946320864901959b21cc7b5d89",
+      "bytes": 10815
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/before/checkpoint.test.mjs",
+      "sha256": "7e2030b46ec77a8d6265b2c6734f15457c1768030696f1432081ca5b05708ba2",
+      "bytes": 10639
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/before/collector.js",
+      "sha256": "81748e4882ecb5b3b414db997f1902eb730c2ff612937f1c9cacb74ab6e3cb6d",
+      "bytes": 9583
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/before/feed.test.mjs",
+      "sha256": "ef124017ece71bd9272b5aa2387114fd5483a98e6002a29623ab3c7ed28cb8e2",
+      "bytes": 17836
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/before/generator.js",
+      "sha256": "7eed96af11540a1b455b006fc04ccf51c268d8b674e35696a1f32a8a24957d84",
+      "bytes": 19653
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/checkpoint_change_receipt.json",
+      "sha256": "441157e8a94298ce6278f7982b15a99f618312a70816760f7eac2f0634903593",
+      "bytes": 600
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/completion_validation.json",
+      "sha256": "99179e60649523b6ceb9a46bd5e60fff9882665d66c40b750da5e6b27817ee3e",
+      "bytes": 4017
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/delivery_readback_1914.json",
+      "sha256": "eac2b3de236d4fedd2a2660e99b6188435513017a1f5301dc7512c62780043db",
+      "bytes": 1475
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/execution_handoff.json",
+      "sha256": "8990c5db81209674c80bbc65dbcdd8e8654e2e991f60f50367101df0af5c8dda",
+      "bytes": 7333
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/frozen_spanish_landing_gate_check.json",
+      "sha256": "f71404bd3f0ac356f41e900d1bb19dec04b38746756f1195fd1159d698edd2e0",
+      "bytes": 300
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/implementation.diff",
+      "sha256": "ec9654a2926a8063a97e3e870b8cc2c46b2fd6e2b12ab433e0a313dc18d4b5b8",
+      "bytes": 27100
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/independent_review.json",
+      "sha256": "4ed8fe3dd7f432dea21a54e40dace4d2f1c759fb53e617743ee915077a0d0c98",
+      "bytes": 13117
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/local_scope_validation.json",
+      "sha256": "986c27844329e160c1b9c19c1c13fb685b3e3649bb2750e161a9f5904994de52",
+      "bytes": 3932
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/native_account_readback.json",
+      "sha256": "1d3c67ac521642bd64897b42248414db70531ff0f3889193ec200659ff53c817",
+      "bytes": 3080
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/operating_plan.json",
+      "sha256": "a20d772990a0ef90e5b0b9f56580b38cee4d24dab805dc36da12ab420130dcaa",
+      "bytes": 6403
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/pipeline_after.json",
+      "sha256": "f4ea9cf9ea7743a2e4d08867ff28aebbccc857265e0df5d1d0e8990bd633e009",
+      "bytes": 1514
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/pipeline_before.json",
+      "sha256": "13dd1a0bbe82bb84bd1d30179aa98f42cb73d6837c758cf5685fff5c344896d4",
+      "bytes": 2970
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/pipeline_tests.json",
+      "sha256": "239d74405bc69f7cdd85c3446bdf5287e9113a067fe440fbaac9cf2e0b3944a0",
+      "bytes": 390
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/pipeline_tests.txt",
+      "sha256": "366b9f53ac9bf6fefac7755f12488fd1a42f491e76b41c47d01d1e161c68c935",
+      "bytes": 4388
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/pipeline_tests_after_clock_repair.json",
+      "sha256": "3dc4cc92bfda4dbca2b7952d03187e7b7aaf7d3539f36e93f8bf839c4f5782f9",
+      "bytes": 390
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/pipeline_tests_after_clock_repair.txt",
+      "sha256": "499a57410f6f277e5cdd6c518aa75de6215f9bffbd422ee0e889b1912f61077e",
+      "bytes": 4474
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/strict_continuity.txt",
+      "sha256": "e80fd34df7f49c8e38af1d27583a51c3a014e06e8da5a85e7e2fee1a99e97171",
+      "bytes": 1318
+    }
+  ],
+  "checkpoint_preservation": {
+    "current_hash_verified": true,
+    "added_key": "latest_autonomous_daily_operation_20260914",
+    "before_sha256": "392f417ef5603b0846b232d3ffcde2fe0c18804e17136f5fac39be2e1a594e63",
+    "proof": "Removed only the added key in memory and serialized using the original indent2/ensure_ascii=false/newline format; exact before hash reconstructed. All previous values and ordering preserved.",
+    "no_file_write_or_rollback_performed": true
+  },
+  "current_merchant_deltas": {
+    "native_observation_window_utc": [
+      "2026-09-14T18:42:50Z",
+      "2026-09-14T19:07:06.271763+00:00"
+    ],
+    "US": {
+      "approved": 4741,
+      "total": 4741
+    },
+    "AU": {
+      "approved": 4741,
+      "total": 4741
+    },
+    "free_listings": "Active and enabled",
+    "website": "Verified and claimed",
+    "coverage_limit": "Country readiness table supports these two current cohorts; only13 rendered country rows were observed. No exhaustive market/language matrix or native per-offer price verification.",
+    "wallets": "Apple Pay, Google Pay and Shop Pay recorded as present with warnings/pending review; summary card is unresolved. No duplicate declaration, activation acceptance or spend claim.",
+    "store_quality": "No score; UI lists possible reasons, actual cause not isolated. No guaranteed score/badge, exposure, visits, orders or profit.",
+    "current_logo_status": "NOT_VERIFIED"
+  },
+  "local_runtime_and_schedule": {
+    "owner_deliberately_changed_existing_pipeline": true,
+    "current_changed_runtime_and_test_files": [
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js",
+        "sha256": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8"
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js",
+        "sha256": "b5f69886a32a92a47ecff7c0c06a0eca05cb640ad3a08be7fb5f4f8592c5c6f0"
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/checkpoint.js",
+        "sha256": "a4c5101f8627e2cde1362d92ee507b9c0b7ebd2a6f02d4f33f14471b23a82839"
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/feed.test.mjs",
+        "sha256": "e1a1a58895beef4acf76abb37793f3ae7e38d0447053d2f9f137b38ce8b270c5"
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/checkpoint.test.mjs",
+        "sha256": "d442fa322fc97faa8312b8594c48b1798a07a586e92dd1f80fad543cba6e633f"
+      }
+    ],
+    "before_backups_verified": 5,
+    "source_modules_changed": 3,
+    "test_files_changed": 2,
+    "parent_private_reference_patch": "Remains the separate unchanged9076cb0e... patch; these owner changes are not that52-test candidate or evidence that runtime originals remained unchanged.",
+    "protected_current_bindings": [
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/eligibility_holds_20260911.json",
+        "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+        "unchanged": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/candidate/us-en.tsv",
+        "sha256": "b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571",
+        "unchanged": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453/candidate/au-en.tsv",
+        "sha256": "f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236",
+        "unchanged": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/config.json",
+        "sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b",
+        "unchanged": true
+      }
+    ],
+    "six_holds_preserved": true,
+    "english_live_feed_files_and_production_config_unchanged": true,
+    "test_result": {
+      "source": "Saved owner full-suite JSON/log and preserved independent review; not rerun by this reviewer",
+      "runner_reported_tests": 47,
+      "runner_reported_passed": 47,
+      "runner_reported_failed": 0,
+      "completed_at_utc": "2026-09-14T19:00:32.307409+00:00"
+    },
+    "independent_review_history": {
+      "sha256": "4ed8fe3dd7f432dea21a54e40dace4d2f1c759fb53e617743ee915077a0d0c98",
+      "round1": "FAIL: replayed translation pages were stamped with current time and could pass an inadequate TTL.",
+      "round2": "PASS_WITH_LIMITS after observedAt journaling, original observation reuse, conservative legacy job-start fallback and fresh/stale/legacy replay regression evidence.",
+      "important_limit": "One reviewer conducted two rounds; these are not two passing independent reviews. Independent reviewer ran bounded parity/replay checks and one existing regression, not the entire47-test suite.",
+      "final_frozen_bindings_match_current_local_files": true
+    },
+    "translation_mode": "Local global inheritance/market precedence and explicit opt-in translation-only exclusions were reviewed; default rejection and nontranslation integrity/landing guards remain. This source review does not approve activating a stale-content partition or uploading a foreign cohort.",
+    "spanish_gate": {
+      "expectedRejection": true,
+      "code": "landing_context_unverified",
+      "feedWritten": false,
+      "sourceClock": "2026-09-14T18:04:07.475Z",
+      "translationSupplementClock": "2026-09-14T18:07:06.528Z",
+      "landingContextVerified": false,
+      "enabled": false,
+      "recordedAt": "2026-09-14T19:04:33.599Z"
+    },
+    "no_spanish_tsv_in_packet": true,
+    "pipeline_deployed": false,
+    "new_feed_submitted": false,
+    "heartbeat": {
+      "kind": "heartbeat",
+      "status": "ACTIVE",
+      "schedule_as_recorded": "Daily09:00 and17:00 America/New_York in the existing Merchant task",
+      "configuration_sha256": "985408ea32adf7334efb6540707d52ccccd12ba268c1389e189332050d4dd546",
+      "current_local_config_hash_matches": true,
+      "first_future_execution": "NOT_OBSERVED",
+      "runtime_limit": "Local Codex/runtime must be available; configuration is not completed autonomous refresh or production deployment."
+    }
+  },
+  "delivery_qualification": {
+    "as_of_utc": "2026-09-14T19:14:42Z",
+    "CA_configured_total_days": [
+      5,
+      6
+    ],
+    "GB_configured_total_days": [
+      9,
+      15
+    ],
+    "services_each": 4,
+    "public_policy_processing_business_days": [
+      1,
+      3
+    ],
+    "public_policy_transit": "Destination-dependent checkout estimate; no numeric Canada/UK transit promise in the recorded policy.",
+    "verdict": "CONFIGURATION_ONLY__ACTUAL_DELIVERY_TRUTH_UNRESOLVED",
+    "limits": "No actual fulfillment performance, truthful replacement estimate, country product serving or new-source readiness inferred; no policy changed."
+  },
+  "ux_interpretation_correction": {
+    "status": "REQUIRED_FOR_CURRENT_INTEGRATION__RAW_OWNER_NEXT_ACTION_SUPERSEDED",
+    "locations": [
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/autonomous_daily_1841/execution_handoff.json:61",
+      "operating_plan.json/single_next_action",
+      "all-markets.execution_checkpoint.json/latest_autonomous_daily_operation_20260914/next_action"
+    ],
+    "issue": "These fields still ask the existing UX owner to perform a new Spanish variant-entry repair.",
+    "accepted_evidence": "Both exact US/es/USD links already preselect matching options and exact prices with Add-ready controls on the existing unpublished draft.",
+    "current_action": "Existing owner Admin publication of the reviewed draft, then exact new MAIN/source and buyer acceptance by the existing UX owner. Keep Merchant source/translation/freshness/delivery gates separate before submission. No new variant repair is established by these cases.",
+    "limits": "Draft Add readiness is not Add/cart/checkout execution or MAIN acceptance; the live landing gate remains open."
+  },
+  "ads_qualification": {
+    "verdict": "PASS_WITH_LIMITS__NO_NEW_ADS_RECEIVER_ACCEPTANCE",
+    "source_order_as_of_utc": "2026-09-14T19:01:25Z",
+    "native_read_window_utc": {
+      "start": "2026-09-14T19:10:48.975Z",
+      "end": "2026-09-14T19:15:14Z"
+    },
+    "purchase_action_id": "7760272273",
+    "native_status": "Awaiting conversions",
+    "reporting_period": "Today, September14,2026; partial date",
+    "all_conversions": 0,
+    "all_conversion_value": 0,
+    "attribution_scope": "Google paid channels",
+    "running_ads_banner": "None of your ads are running",
+    "meaning": "Partial Today zero and last-seven-day Awaiting status do not prove failing ingestion of a non-ad-attributed purchase. No exact new GA4 transaction/item or sender/consent/session/dedup proof obtained.",
+    "new_shopify_queries": 0,
+    "new_ga4_reads": "None reported by parent; no GA4 receipt claimed by the saved source.",
+    "save_identity_or_campaign_tracking_changes": 0,
+    "native_conversion_navigations": 1,
+    "editor": "Task-owned editor retained; owner reports inventory match and markHandoff without reopening, reloading, refilling or Save. Temporary receiver tab closed.",
+    "saved_authority_context": {
+      "source_live_evidence_as_of": "2026-06-01",
+      "live_state_mode": "STALE_READBACK_REQUIRED",
+      "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+      "approved_external_scope": "NONE",
+      "material_decision": "NOT_MATERIAL",
+      "decision_depends_on_uncertain_state": false
+    },
+    "clock_limit": "The carried authority-context date is not the time of this native read and is not refreshed into paid authority.",
+    "source_review_status": "The Ads receipt captured the order packet pending-review label at its observation time. The unchanged exact v2 order bytes are now accepted by the separately bound sales review; no second order audit performed here.",
+    "remaining_gates": "Exact new receiver and sender/consent/session/dedup, paid attribution, actual costs, retained cash and profit remain open."
+  },
+  "source_clocks_preserved": {
+    "native_account_window": [
+      "2026-09-14T18:42:50Z",
+      "2026-09-14T19:08:51.317808+00:00"
+    ],
+    "US_es_source": "2026-09-14T18:04:07.475Z",
+    "US_es_global_translation": "2026-09-14T18:07:06.528Z",
+    "US_en_source": "2026-09-14T13:16:10.466Z",
+    "AU_en_source": "2026-09-14T15:03:55.842Z"
+  },
+  "blockers_to_factual_acceptance": [],
+  "boundaries": {
+    "live_account_or_browser_calls": 0,
+    "full_runtime_tests_repeated": 0,
+    "source_code_or_config_or_canonical_or_peer_edits": 0,
+    "production_or_scheduling_changes": 0,
+    "private_order_reads": 0,
+    "new_agents": 0,
+    "only_written_file": "/private/tmp/dlm-merchant-ads-late-source-review-20260914.json"
+  },
+  "next_action": "Parent integrates the bounded Merchant and Ads deltas with the corrected existing-publication/new-MAIN action and separately preserved release gates; do not dispatch another variant repair or unchanged Ads receiver check."
+}

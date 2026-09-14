@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-09-14T18:40:56Z",
+  "reviewer": "/root/x_independent_review",
+  "candidate_id": "DLM-X-202609-R011",
+  "confidence": "H_FOR_LOCAL_REVIEW",
+  "verdict": "PASS_AS_LOCAL_CANDIDATE_WITH_GATES",
+  "summary": "R011 preserves R010's exact public copy and product destination. Only the proposed image/ALT and immutable ID/content tag change in the public package. The inspected image matches both saved manifests, and the ALT accurately describes the adult, child, setting and dress colors without claiming a customer experience. Local source evidence supports the separate-purchase wording. No corrections are required for the local candidate. This verdict does not clear publication, upstream rights, garment fidelity or image-origin disclosure.",
+  "independence": {
+    "authored_candidate_or_image": false,
+    "executed_download_or_head_check": false,
+    "used_browser_account_api_or_credentials": false,
+    "new_network_requests": 0,
+    "new_analytics_queries": 0,
+    "shared_canonical_writes": 0,
+    "files_written": ["product-photo-20260914/INDEPENDENT_REVIEW.json"],
+    "method": "Independent local JSON/hash/URL checks, Pillow integrity and dimension checks, and direct view_image inspection. Root-supplied public-content/download/HEAD receipts were checked for consistency, not independently fetched again."
+  },
+  "frozen_inputs": [
+    {
+      "path": "product-photo-20260914/CANDIDATE_R011.json",
+      "sha256": "641ebb6e2259f7184507652341f8d2de3c904f31eef0d7e600b06ac29d95bd07"
+    },
+    {
+      "path": "product-photo-20260914/SOURCE_EVIDENCE.json",
+      "sha256": "f6fbcfdbd1f6cb9ef2ba6a0577e6c9b314b4d8cf228ceab78e7ebe8d7ef582be"
+    },
+    {
+      "path": "product-photo-20260914/rainbow-storefront-original.png",
+      "sha256": "a9a5025333e17e8cb72ee0d54305be57e82301c387d23e71b753fe300c769ed0"
+    },
+    {
+      "path": "proactive-20260911/NEXT_EXPERIMENT_CANDIDATES.json",
+      "sha256": "895785aef5da692fbd55143765e536e190bc77c0040f53297a4b56720973d8c1"
+    }
+  ],
+  "check_results": {
+    "passed": 17,
+    "total": 17,
+    "programmatic_checks": 16,
+    "manual_visual_checks": 1,
+    "checks": [
+      {"id":"C01","status":"PASS","check":"Frozen R010 source hash and exact R011 target/account/variant identifiers match."},
+      {"id":"C02","status":"PASS","check":"Public body and product destination are exactly equal to R010."},
+      {"id":"C03","status":"PASS","check":"URL changes only utm_content; source=x, medium=social and campaign=organic_202609 remain exact; body-with-URL assembly matches."},
+      {"id":"C04","status":"PASS","check":"R011 ID/content tag are distinct from reviewed R009/R010; this is a bounded local comparison, not a live duplicate scan."},
+      {"id":"C05","status":"PASS","check":"ASCII body plus newline and 23-character URL estimate remains 214 characters, below 280."},
+      {"id":"C06","status":"PASS","check":"Published and scheduled are false; platform ID, URL and publication time are null."},
+      {"id":"C07","status":"PASS","check":"Image SHA-256 equals candidate and source-evidence manifests; original network-response provenance is root-supplied."},
+      {"id":"C08","status":"PASS","check":"Pillow open/verify passes; PNG 768x1365, 1579179 bytes; exif/icc_profile/dpi metadata-key set matches; no image transform performed."},
+      {"id":"C09","status":"PASS","check":"Source/final image URLs and local paths agree between manifests; candidate transformation is NONE."},
+      {"id":"C10","status":"PASS","method":"MANUAL_VIEW_IMAGE","check":"ALT accurately describes adult and child holding hands outdoors by palms, sleeveless dresses with broad horizontal color bands, red adult bodice and purple child bodice. It does not assert their relationship or customer status."},
+      {"id":"C11","status":"PASS","check":"Relevant source snippets corroborate Rainbow mommy-and-me title and separate selections; guide proof specifies mother/daughter selections separately. Unrelated serialized navigation snippets are explicitly excluded."},
+      {"id":"C12","status":"PASS","check":"Unverified image origin, absence of independent upstream rights/model-release proof, exclusion of customer-photo claims, preservation of provenance and supported disclosure gate remain explicit."},
+      {"id":"C13","status":"PASS","check":"Release requires an authorized official API-backed publisher plus fresh exact account and sole-writer readback."},
+      {"id":"C14","status":"PASS","check":"Current buyer route, actual existing-post/schedule receipt and duplicate/cadence gates remain; choose at most one R010/R011 variant after the September 19 checkpoint; initial native queue remains untouched."},
+      {"id":"C15","status":"PASS","check":"Root-supplied tagged HEAD receipt records 200, exact candidate URL/UTMs and no buyer-session claim; reviewer did not repeat the request."},
+      {"id":"C16","status":"PASS","check":"Image addition remains an unproved hypothesis; copy expressly excludes demonstrated lift or controlled A/B results."},
+      {"id":"C17","status":"PASS","check":"Root source-request accounting reports no JavaScript, cart/purchase actions or claimed buyer events; one tagged HEAD is QA."}
+    ]
+  },
+  "visual_observations": {
+    "alt_text_reviewed": "An adult and a child hold hands outdoors beside palm trees, wearing sleeveless dresses with broad horizontal rainbow-colored bands. The adult dress has a red bodice; the child's has a purple bodice.",
+    "origin": "UNVERIFIED. Store publication and the pomelli-image filename do not prove documentary origin, actual customers, rights clearance or independent garment fidelity.",
+    "native_x_crop_and_label": "NOT RUN. The source is a portrait image; no native X rendering, crop, ALT persistence or disclosure-label behavior was verified."
+  },
+  "remaining_release_gates": [
+    "The approved API-backed publishing connection is still missing according to the assigned current-state context; this review does not resolve it.",
+    "Resolve applicable image-origin disclosure and preserve provenance using the supported publisher before release; this is not approval for undisclosed media publication.",
+    "Verify the current buyer destination and actual published/scheduled state, including the still-unverified R002 publication, before any duplicate/cadence decision.",
+    "After the September 19 checkpoint, select at most one R010/R011 variant if evidence and existing cadence justify it. No new original is scheduled by this review.",
+    "Any eventual publication needs actual post/media/ALT/disclosure readback; local tests do not prove native publication or buyer results."
+  ],
+  "adversarial_challenge": "Adding a polished store image could increase apparent product certainty even when its origin and independent garment fidelity are unknown. The local candidate is acceptable because it preserves those limits and keeps release gated.",
+  "credible_alternative": "Retain text-only R010 if the image's required provenance/disclosure or accurate presentation cannot be established; never publish both near-identical variants merely to create activity.",
+  "business_outcomes": {
+    "new_publication": false,
+    "verified_acquired_visits": null,
+    "verified_orders": null,
+    "supported_profit": null
+  },
+  "next_action": "Root may present the reviewed local candidate in the owner preview while preserving the publishing, disclosure and actual-receipt gates.",
+  "scope_note": "No review or alteration of the separately created runtime goal or operating instructions. All peer artifacts and previous frozen reviews preserved."
+}

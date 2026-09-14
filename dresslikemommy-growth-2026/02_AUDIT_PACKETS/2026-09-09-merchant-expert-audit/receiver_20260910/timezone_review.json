@@ -1,0 +1,149 @@
+{
+  "schema": "dlm.merchant.timezone_independent_review.v1",
+  "revision": 2,
+  "phase": "SAVED_EXECUTION_RECEIPT_REVIEW",
+  "status": "PASS",
+  "confidence": "H",
+  "reviewed_at_utc": "2026-09-10T18:54:00.490430Z",
+  "checks": {
+    "target_identity_consistent": true,
+    "reference_timezone_exact": true,
+    "before_value_captured": true,
+    "historical_recalculation_not_claimed": true,
+    "exact_option_and_reload_gates": true,
+    "separate_rejected_navigation_untouched": true,
+    "prepared_not_executed": true
+  },
+  "local_zoneinfo_comparison": [
+    {
+      "date": "2026-09-10",
+      "America/New_York": {
+        "utc_offset": "-0400",
+        "abbreviation": "EDT"
+      },
+      "America/Blanc-Sablon": {
+        "utc_offset": "-0400",
+        "abbreviation": "AST"
+      }
+    },
+    {
+      "date": "2026-12-10",
+      "America/New_York": {
+        "utc_offset": "-0500",
+        "abbreviation": "EST"
+      },
+      "America/Blanc-Sablon": {
+        "utc_offset": "-0400",
+        "abbreviation": "AST"
+      }
+    }
+  ],
+  "source_bindings": {
+    "timezone_change_plan.json": {
+      "bytes": 1806,
+      "sha256": "bf43ef43a5b5e6c8fead5a9e4df8f299b3eb3dd49278d8ea5b7d6b4b6dfd5c96"
+    },
+    "timezone_receipt.json": {
+      "bytes": 1938,
+      "sha256": "e5fcd24c2f3a334702e254b2828d9915988fc4bf050729dc888a129db0a08503"
+    },
+    "live_baseline.json": {
+      "sha256": "e38a999d33b6fae049b1426c801242a55f757b0f62aa27ddc1a854d4c78d3ed7",
+      "bytes": 6304
+    }
+  },
+  "binary_fields": {
+    "preflight_pass": true,
+    "material_issue_found": false,
+    "current_authority_fits": true,
+    "one_field_scope": true,
+    "root_reported_exact_new_york_option_seen": true,
+    "independent_native_replay_performed": false,
+    "execution_receipt_reviewed": true,
+    "post_readback_pass": true,
+    "sync_navigation_bypass_recommended": false,
+    "metadata_only_plan_correction_verified": true,
+    "source_product_sync_or_paid_change_recorded": false
+  },
+  "target": "Merchant Center 513542500 / General / Account setup / Time zone",
+  "before": "(GMT-04:00) Atlantic Standard Time (Blanc-Sablon)",
+  "intended_after_iana": "America/New_York",
+  "root_reported_exact_option": "(GMT-05:00) Eastern Standard Time (New York)",
+  "exact_option_evidence": "Root coordination message during this preflight: exact option visible after opening/searching dropdown; before still selected; no selection/save yet. No independent native replay.",
+  "decision": "PASS: saved evidence records exact New York selection, separate Save, controls disappearing, and fresh reload under Merchant 513542500 retaining New York.",
+  "execution_status_at_preflight": "NOT RUN",
+  "after_state_status": "IMPLEMENTED_AND_ROOT_RELOAD_VERIFIED; independent saved-receipt review PASS",
+  "rationale": "Shopify's captured IANA timezone is America/New_York. Local named-zone comparison shows a seasonal difference from Blanc-Sablon despite the same September UTC offset. The decision does not depend on independently proving a Florida operating location.",
+  "rollback": {
+    "configuration": "Restore the captured Blanc-Sablon option through the same setting.",
+    "metric_limit": "Changes affect newly calculated metrics according to the saved UI warning. Restoring the prior setting does not undo metrics calculated under either interval; no historical recalculation is claimed."
+  },
+  "limits": [
+    "Independent saved-receipt review only; no native/API replay or current live-state assertion beyond the root's bounded receipt.",
+    "One timezone Save is recorded. The receipt also reads English (United States) and protection Off; no source/product/sync-navigation/paid/billing change is recorded.",
+    "Timezone alignment does not repair zero-product submission or prove traffic/profit. The separate Product sync On approval-review rejection remains pending and was not bypassed.",
+    "Restoring the prior timezone affects future configuration; it does not reverse already calculated metric intervals."
+  ],
+  "required_after_state": [
+    "Exact Merchant 513542500 identity remains bound.",
+    "Only the selected time-zone field changes to the exact New York option.",
+    "Save or immediate-selection behavior is observed and a reload shows the persisted field.",
+    "Record actual timestamps/bounds and any tool rejection without retrying through a bypass."
+  ],
+  "material_issues": [],
+  "preflight_reviewed_at_utc": "2026-09-10T18:50:00.604412Z",
+  "preflight_source_bindings": {
+    "timezone_change_plan.json": {
+      "sha256": "cae36d4c3a9c931a82368b443e146d912be2da2772a4ef176ee93a03c1310f94",
+      "bytes": 1772
+    },
+    "live_baseline.json": {
+      "sha256": "e38a999d33b6fae049b1426c801242a55f757b0f62aa27ddc1a854d4c78d3ed7",
+      "bytes": 6304
+    }
+  },
+  "preflight_review_artifact_bindings": {
+    "timezone_review.json": {
+      "bytes": 3994,
+      "sha256": "a999d66021046f251de5e862af24726063f3401dba62b3dd6e80de023606fc24"
+    },
+    "timezone_review.md": {
+      "bytes": 1754,
+      "sha256": "ef0ff74f8c76b4fbbdb9c92f2be916fd4349f7410f505f575a66e6822f857e92"
+    }
+  },
+  "execution_receipt_checks": {
+    "same_target_and_before": true,
+    "after_matches_exact_reviewed_option": true,
+    "separate_save_then_reload_recorded": true,
+    "reload_controls_recorded": true,
+    "one_save_no_other_scoped_mutation": true,
+    "metadata_only_plan_correction": true,
+    "bounded_execution_after_preflight": true,
+    "rollback_and_sync_gate_limits_retained": true
+  },
+  "execution_window_utc": "After 2026-09-10T18:50:00.604412Z and before 2026-09-10T18:51:58Z; individual selection/save/reload timestamps were not separately recorded.",
+  "post_readback_pass_scope": "Review of saved root native receipt; no independent browser/native/API replay.",
+  "observed_after": "(GMT-05:00) Eastern Standard Time (New York)",
+  "controls_after_reload": {
+    "account": "Dresslikemommy, 513542500",
+    "language": "English (United States)",
+    "product_protection": "Off; checkbox0"
+  },
+  "recorded_mutation_counts": {
+    "settings_saved": 1,
+    "source_or_product_changes": 0,
+    "sync_navigation_clicks": 0,
+    "paid_or_billing_changes": 0
+  },
+  "corrected_plan_metadata": {
+    "corrected_query_window_utc": "2026-09-10 18:47:53 through 18:51:58 UTC",
+    "exact_query_timestamp_recorded": false,
+    "prior_upper_bound": "18:48:15 UTC was not separately clocked and is superseded.",
+    "original_preflight_plan_sha256": "cae36d4c3a9c931a82368b443e146d912be2da2772a4ef176ee93a03c1310f94",
+    "restored_original_hash_by_reversing_only_window_text": true,
+    "mutation_facts_unchanged": true,
+    "plan_status_interpretation": "PREPARED_NOT_EXECUTED describes the plan artifact; the separate execution receipt is authoritative for subsequent implementation."
+  },
+  "continuation": "Timezone correction is closed within the bounded saved-evidence review. Continue the existing receiver/lifecycle investigation while retaining the separate sync-navigation gate."
+}

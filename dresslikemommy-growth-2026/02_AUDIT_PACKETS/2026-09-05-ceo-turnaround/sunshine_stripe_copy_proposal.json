@@ -1,0 +1,50 @@
+{
+  "status": "LOCAL_PROPOSAL_NOT_APPLIED",
+  "product_id": "gid://shopify/Product/7545279512673",
+  "field": "descriptionHtml",
+  "edits": [
+    {
+      "old": ", based on the attached vendor size-chart image.",
+      "new": "."
+    },
+    {
+      "old": "<p>The attached vendor chart publishes one child shirt ladder and one adult shirt ladder rather than separate girl, boy, mom, and dad tables. This draft keeps the variants honest with Child and Adult size labels, while the merchandising tags still route the look to Mommy and Me, Daddy and Me, and Family Matching collections.</p>",
+      "new": "<p>Each selection is one T-shirt. Choose a child or adult size and add one tee for each person you want to match.</p>"
+    },
+    {
+      "old": "Cotton-spandex fabric support is visible in the supplied size-chart evidence.",
+      "new": "Cotton-spandex blend."
+    },
+    {
+      "old": "<strong>Family-friendly range:</strong> Child sizes from 90 through 150 and adult sizes from S/160 through 4XL/190.",
+      "new": "<strong>Family size range:</strong> Child 2 Years to Child 9-10 Years and Adult S to Adult 4XL."
+    },
+    {
+      "old": "<strong>Chart-backed variants:</strong> Every size option is backed by a row from the attached vendor chart.",
+      "new": "<strong>Choose your fit:</strong> Compare the garment measurements in the size chart with a T-shirt that fits you well."
+    }
+  ],
+  "external_change_scope": "Exactly five text replacements in the English product description; all14 measurement rows/table bytes and all other description bytes preserved.",
+  "why": "Remove internal drafting/provenance/merchandising explanations and clarify one tee per selection so family-matching traffic understands what it buys.",
+  "preserve": [
+    "All prices/variants/status/images/tags",
+    "Complete size-chart table including values and label mapping",
+    "Existing material percentage claim without adding certification or new promises",
+    "Separate child/adult options and styling-only exclusions"
+  ],
+  "remaining_gates": [
+    "Exact current external-write authority and independent review",
+    "Fresh source-body conflict check immediately before any approved write",
+    "After-state product-field readback and rendered buyer verification when the existing public access gate permits",
+    "Original source material/measurement proof remains unknown; no new numeric claim"
+  ],
+  "financial_scope": "No price, discount, financial, order or campaign change; proposal creates no spend authority.",
+  "source_body_sha256": "7ef32c5a4696d61bd86bb609d0f24ec6d7accb57367352585dcbb76c5647ff00",
+  "candidate_body_sha256": "9bd9fdf5817bff247fa3576eb06c149b18e3239038b613b0773d864c00fcdbfa",
+  "table_sha256": "9bbfc89e5d3f2c563668367ee563243de49a077bf4ff44e5cc8ca4612c892d48",
+  "table_row_count": 14,
+  "source_body_bytes": 4258,
+  "candidate_body_bytes": 3933,
+  "quantity_evidence": "sunshine_stripe_procurement_readback.json",
+  "serialization": "HTML payload files are exact field bytes without an added terminal newline. JSON pretty-printing remains separate."
+}

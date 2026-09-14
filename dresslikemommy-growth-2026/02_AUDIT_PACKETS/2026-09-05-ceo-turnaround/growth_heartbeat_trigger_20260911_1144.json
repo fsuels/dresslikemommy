@@ -1,0 +1,162 @@
+{
+  "schema": "dlm.heartbeat_trigger_delta.v1",
+  "status": "LIVE_VERIFIED__UNCHANGED_HOLD",
+  "trigger_at_utc": "2026-09-11T11:44:12.025Z",
+  "source_live_evidence_as_of": "2026-09-11T11:45:20Z",
+  "new_order_window": {
+    "start_inclusive": "2026-09-11T07:45:33Z",
+    "end_exclusive": "2026-09-11T11:45:19Z",
+    "all_order_creations": 0,
+    "pagination_complete": true
+  },
+  "shop": {
+    "name": "Dress Like Mommy",
+    "ianaTimezone": "America/New_York",
+    "currencyCode": "USD",
+    "primaryDomain": {
+      "host": "www.dresslikemommy.com"
+    }
+  },
+  "themes": {
+    "nodes": [
+      {
+        "id": "gid://shopify/OnlineStoreTheme/133290917985",
+        "name": "dresslikemommy/main",
+        "role": "MAIN",
+        "updatedAt": "2026-07-02T16:47:21Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137782591585",
+        "name": "DLM SEO DA NL 2026-09-06",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-06T07:03:53Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137850814561",
+        "name": "DLM DA NL SEO only 2026-09-08",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-08T19:01:09Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137880666209",
+        "name": "DLM Consent Preferences 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T18:58:13Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137881223265",
+        "name": "DLM Merchant Landing Fixes 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T20:10:58Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137888792673",
+        "name": "DLM UX Performance QA 2026-09-10",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-10T04:34:55Z"
+      }
+    ],
+    "pageInfo": {
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjoxMzc4ODg3OTI2NzMsImxhc3RfdmFsdWUiOjEzNzg4ODc5MjY3M30="
+    }
+  },
+  "query": "query HeartbeatTriggerDelta($createdWindow:String!,$after:String){shop{name ianaTimezone currencyCode primaryDomain{host}} orders(first:50,after:$after,query:$createdWindow){nodes{test} pageInfo{hasNextPage endCursor}} themes(first:50){nodes{id name role updatedAt} pageInfo{hasNextPage endCursor}}}",
+  "source": "Previously discovered Shopify schema and documented query; freshly validated and executed read-only.",
+  "checks": {
+    "shop_name": true,
+    "shop_domain": true,
+    "shop_currency": true,
+    "shop_timezone": true,
+    "order_pagination_complete": true,
+    "no_new_orders": true,
+    "theme_pagination_complete": true,
+    "one_expected_main": true,
+    "current_ux_unpublished": true
+  },
+  "checks_passed": 9,
+  "latest_full_cohort_receipt": {
+    "path": "growth_heartbeat_full_cohort_20260911_0743.json",
+    "field": "full_cohort_receipt",
+    "orders_as_of": "2026-09-11T07:45:33Z",
+    "fulfillments_as_of": "2026-09-11T07:45:55Z",
+    "not_refreshed_here": true
+  },
+  "latest_relevant_root_anchor": "2026-09-10-ceo-turnaround-2342-trigger-check",
+  "latest_merchant_anchor": "2026-09-10-merchant-ta07-receiver-evidence-reconciled",
+  "task_stage": "HANDOFF",
+  "live_state_mode": "STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+  "approved_external_scope": "NONE",
+  "authority_context": "READ_ONLY_HEARTBEAT_AND_PARENT_SCHEDULED_NOTE",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "New genuine order, current UX publication or changed access reported by the existing owner.",
+  "if_evidence_supports_recommendation": "Continue the matching qualified action with its current owner.",
+  "if_evidence_opposes_recommendation": "Hold dependent actions with evidence; no blocked probe, repeated repair or publication.",
+  "material_decision": "NOT_MATERIAL",
+  "owner_action": "Existing Merchant unlock question unchanged; separate Product sync exact-click gate preserved.",
+  "internal_queue": [
+    "Merchant receiving/setup after existing unlock",
+    "Pinterest supported tracking comparison after explicit native handback",
+    "Current UX owner publication/buyer readback and established organic measurement dates"
+  ],
+  "execution": {
+    "external_mutations": 0,
+    "browser_calls": 0,
+    "account_probes": 0,
+    "new_goal_or_automation": 0,
+    "routine_peer_wakeups": 0
+  },
+  "limits": [
+    "Only order creations and theme roles were refreshed. Full-cohort status remains separately dated07:45UTC.",
+    "No fresh settlement, delivery, attribution, fees, costs, CPA, ROAS or profit proof.",
+    "Existing Merchant access gate is preserved; no new native observation or receiving-source count.",
+    "Article and Pin outcome dates remain separate and no full outcome review is due."
+  ],
+  "dashboard_status": "EXISTING_SERVICE_HEALTHY",
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "persistence_reason": "Unchanged read-only monitor; update only the existing scheduled cockpit note. No new claim, worklog anchor, decision, blocker or external action.",
+  "local_preservation_checks": {
+    "exact_one_paragraph_inverse": true,
+    "after_readback_exact": true,
+    "nine_protected_files_exact": true,
+    "themes_unchanged_from_last_full_checkpoint": true,
+    "creation_interval_contiguous": true
+  },
+  "local_preservation_checks_passed": 5,
+  "protected_sha256": {
+    "ops/marketing/current_marketing_state.md": "502aedafa5f4da85394e13d9aa5a3b219053e0a633b0d84c8748009d036ee5b6",
+    "ops/marketing/action_queue.md": "a9580073bcef8e9c2b2c05706eb406d0325712e26e6d04e4d6ff22d811d669ba",
+    "ops/marketing/blocker_board.md": "f265a0f4815915d3947f578983907af2bbcebb741b66edf02655c590bdcd4eb0",
+    "ops/marketing/decision_log.md": "61681a20fb0cf4219ddadcb4464f7e87a6697b205dbdf0139af4d33f2ebc3bbd",
+    "ops/marketing/spend_authorization.md": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+    "ops/PROBLEM_TRACKER.md": "5d0bc4e5c2a9e732ad385704ce4ab9401729c8f5c6211e56f8189544e30e4877",
+    "ops/AGENT_WORKLOG.md": "b958c7de7c68a3b9694fe313be51ac962a687b2b868f5345c880baa916a224ab",
+    "ops/AGENT_COORDINATION.md": "9e76a52446af48b30883e6dc23781b2e6b41bb13a7e81b65eddad0df61ae77d9",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json": "64a85a444b45932f93d33d4366c4cc8cab750b5064401dfbf6da55d86c31cb64"
+  },
+  "cockpit_after_sha256": "9cd0e36de42dd862018162feb575dff659acc9c5ea50637d25a626195ecb4488",
+  "before_snapshot": "/private/tmp/dlm-heartbeat-1144-before-20260911",
+  "checks_pending": [],
+  "closeout": {
+    "cockpit_render": "PASS",
+    "integration_audit": {
+      "exit_code": 0,
+      "tracked_files": 25,
+      "side_document_risks": 0
+    },
+    "strict_continuity": {
+      "exit_code": 0,
+      "checks_passed": 10,
+      "result": "CONTINUITY_OK"
+    },
+    "scoped_diff_check": {
+      "exit_code": 0,
+      "diagnostics": 0
+    },
+    "final_preservation": "PASS",
+    "parent_shared_writes_complete": true,
+    "parent_native_lease": "NONE"
+  },
+  "notification_decision": "DONT_NOTIFY: no new order/publication trigger or additional owner action."
+}

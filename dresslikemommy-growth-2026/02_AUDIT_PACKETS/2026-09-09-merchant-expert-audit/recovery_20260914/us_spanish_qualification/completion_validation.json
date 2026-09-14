@@ -1,0 +1,59 @@
+{
+  "schema": "dlm.us_es_completion_validation.v1",
+  "recorded_at_utc": "2026-09-14T18:33:21.164249+00:00",
+  "status": "PASS_LOCAL_QUALIFICATION_VALIDATION__RELEASE_REMAINS_BLOCKED",
+  "checks": {
+    "complete_source_checks": {
+      "pass": 491,
+      "fail": 0
+    },
+    "saved_artifact_checks": {
+      "pass": 22,
+      "fail": 0
+    },
+    "existing_focused_tests": {
+      "pass": 4,
+      "fail": 0,
+      "receipt": "existing_translation_guard_tests.json"
+    },
+    "unchanged_pipeline_build": {
+      "exit_code": 2,
+      "expected_rejection": true,
+      "error_count": 238,
+      "error_code": "missing_or_stale_translation",
+      "feed_written": false
+    },
+    "strict_continuity": {
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/check_continuity_integrity.py",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "completed_at_utc": "2026-09-14T18:32:37.575623+00:00",
+      "output_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/strict_continuity_output.txt"
+    },
+    "scoped_diff": {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/all-markets.execution_checkpoint.json"
+      ],
+      "exit_code": 0,
+      "completed_at_utc": "2026-09-14T18:32:32.968159+00:00",
+      "untracked_JSON_and_Markdown_whitespace_errors": [],
+      "JSON_files_parsed": 20,
+      "note": "Scoped diff cannot validate untracked artifacts; separate JSON parsing and trailing-whitespace checks cover this new packet."
+    },
+    "handoff_receipts_hashes_match": true,
+    "checkpoint_after_hash_and_handoff_binding_match": true,
+    "prior_checkpoint_keys_unchanged": true,
+    "all_bound_runtime_hold_and_English_feed_inputs_unchanged": true
+  },
+  "independent_parent_review": "PENDING",
+  "no_external_write": true,
+  "no_release_or_serving_claim": true
+}

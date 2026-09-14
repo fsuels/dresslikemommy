@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "dispatch_key": "TA-07:AU_CORRECTED_PRICE_REBUILD:2026-09-11:6ce4404257af85366",
+  "owner_thread": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "status": "COMPLETE_LOCAL_AU_REBUILD__GOOGLE_NOT_SUBMITTED",
+  "started_at_utc": "2026-09-11T18:50:44.244070+00:00",
+  "scope": "Existing local AU candidate only; fresh read-only Shopify AU contextual pricing; no external mutation/upload/publisher/credential/native action",
+  "before_directory": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/before_price_correction_20260911",
+  "before_files": {
+    "au-en.tsv": {
+      "sha256": "a7db8ec43fc6caa61054faa13cac4c0575a3a7d7658071ab7c21b0bb518fa184",
+      "bytes": 17284614
+    },
+    "au-en.manifest.json": {
+      "sha256": "ad43db59080b4e39bd9b3a3c6d6dea3282b96b5c835385c2814d9f17098e37ef",
+      "bytes": 232105
+    },
+    "au-en.diagnostics.json": {
+      "sha256": "e8f1e8c07f0e55b8c5da031dde04e8bb3af6af8f5f95722ca28c547c8cca56d5",
+      "bytes": 968258
+    },
+    "au-en.snapshot.json": {
+      "sha256": "de73bb037b7c8ee437b7aa1be2901b9dd74949f92a14a2edd46e7335dd01b942",
+      "bytes": 6786967
+    },
+    "au-en.independent_data_review.json": {
+      "sha256": "7bb3eff99a72e794705edd8a804d8400c2b5aaf2f246efb5f295418259d9eacd",
+      "bytes": 2052
+    }
+  },
+  "config_sha256": "6be63f2712324d9a3d0bddf750b1f46616e5e910e9cecb15073c3b17754163ed",
+  "builder_sha256": "08cfbfcbb4574507a5bb1ec52502eb9dcfa6b4a6e20ff81475cb4d7f3ce6ef83",
+  "market": {
+    "key": "au-en",
+    "country": "AU",
+    "locale": "en",
+    "currency": "AUD",
+    "minorUnits": 2,
+    "marketId": "gid://shopify/Market/544866401",
+    "landingBaseUrl": "https://www.dresslikemommy.com",
+    "landingQuery": {
+      "country": "AU",
+      "currency": "AUD"
+    },
+    "landingContextVerified": true,
+    "enabled": true,
+    "expectedCatalogs": [
+      {
+        "id": "gid://shopify/MarketCatalog/910622817",
+        "publicationId": "gid://shopify/Publication/77105823841"
+      }
+    ]
+  },
+  "candidate_output": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/corrected_price_build",
+  "canonical_shared_interval": "RELEASED_TO_MICROSOFT",
+  "google_submission": "NOT_RUN",
+  "query_validation": "PASS 5/5 unchanged operations through official Shopify schema validator",
+  "focused_feed_tests": "PASS 25/25, node --test test/feed.test.mjs",
+  "runtime": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "tooling_note": "Optional system Codex version read failed from missing Homebrew Node library, then desktop version path was absent; no repair attempted. Existing builder uses bundled Node. Official Shopify connector performed docs/schema validation.",
+  "builder_queries_sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+  "source_completed_at": "2026-09-11T18:53:09.071Z",
+  "candidate_sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+  "candidate_bytes": 17284594,
+  "validation_pass": "33/33",
+  "corrected_aud_prices": [
+    "33.00 AUD",
+    "33.00 AUD",
+    "33.00 AUD",
+    "33.00 AUD",
+    "33.00 AUD"
+  ],
+  "local_validation_receipt": "au-en.price_rebuild_validation.json",
+  "closure_plan": {
+    "candidate_promotion": "After independent PASS, replace only the existing local au-en.tsv/.snapshot/.manifest/.diagnostics with exact reviewed rebuilt bytes; keep before_price_correction_20260911 frozen",
+    "canonical_interval": "Requested from root; no shared edits before explicit grant",
+    "canonical_owned_regions": [
+      "ops/AGENT_COORDINATION.md: current owner Merchant row only",
+      "ops/marketing/action_queue.md: TA-07 only",
+      "ops/marketing/current_marketing_state.md: own Merchant AU paragraph only",
+      "ops/marketing/operator_cockpit.md: own Merchant AU paragraph only",
+      "ops/PROBLEM_TRACKER.md: new AU local outcome under existing price-outlier problem; preserve pending Google receiving status",
+      "ops/AGENT_WORKLOG.md: append one Merchant AU local outcome anchor"
+    ],
+    "global_one_owner_action": "Preserve current root-owned action and existing pending questions",
+    "checks": [
+      "Peer rows unchanged",
+      "Paid control unchanged",
+      "Frozen AU before-state unchanged",
+      "Current US published release files unchanged",
+      "Cockpit render",
+      "Command integration",
+      "Strict continuity",
+      "Targeted diff check"
+    ],
+    "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+  },
+  "independent_reviewer": "/root/together_heart_source",
+  "independent_review_file": "au-en.corrected_price_independent_review.json",
+  "shared_queue": "root then X then Merchant; wait for explicit handoff",
+  "preserve_priority": "Current parent pause-request priority and global owner action",
+  "preserved_us_files": {
+    "price_correction_approved_20260911/refreshed_feed/us-en.tsv": {
+      "sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+      "bytes": 17166442
+    },
+    "price_correction_approved_20260911/feed_publish_receipt.json": {
+      "sha256": "cb73a3c8a4947ec712cdff9943c418d82c112c16b0253bf5d35ca99119d2420d",
+      "bytes": 1890
+    },
+    "price_correction_approved_20260911/feed_readback_receipt.json": {
+      "sha256": "83a388396eed4ba965ebcf73043e50246febf6d15072035ab1639187cc110ba0",
+      "bytes": 717
+    }
+  },
+  "known_next_gates": [
+    "Google receipt and account review require existing selected Merchant tab readiness; no new access attempt in this task.",
+    "AU file is local only; no international source or publisher created.",
+    "Existing live numeric variant preselection issue remains in separate unpublished UX candidate; no browser recertification in this task.",
+    "Existing attribute warnings, native return setup, logo, and lifecycle activation remain separately tracked."
+  ],
+  "shared_interval_granted_at_utc": "2026-09-11T19:05:52.773177+00:00",
+  "shared_interval_provenance": "Explicit X release and root confirmation in current task messages",
+  "independent_review_sha256": "cb6c1243578c6aafdf65c07084d7fe7ac9609218fd82bc00124682309b0131b9",
+  "independent_review_result": "PASS 21/21; five AU contextual prices independently read at 18:59:28 UTC",
+  "independent_review_completed_at_utc": "2026-09-11T19:03:30.263345+00:00",
+  "next_shared_owner": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "closed_at_utc": "2026-09-11T19:05:52.991940+00:00",
+  "anchor": "2026-09-11-merchant-au-local-feed-corrected-prices-verified",
+  "current_candidate": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.tsv",
+  "canonical_files": [
+    "ops/AGENT_COORDINATION.md",
+    "ops/marketing/action_queue.md",
+    "ops/marketing/current_marketing_state.md",
+    "ops/marketing/operator_cockpit.md",
+    "ops/PROBLEM_TRACKER.md",
+    "ops/AGENT_WORKLOG.md"
+  ],
+  "shared_interval": "RELEASED",
+  "verification_completed_at_utc": "2026-09-11T19:07:02.981983+00:00",
+  "canonical_validation": {
+    "render_marketing_cockpit": "PASS exit0",
+    "command_integration": "PASS 25/25; zero risks",
+    "strict_continuity": "PASS 10/10; CONTINUITY_OK",
+    "targeted_git_diff_check": "PASS exit0",
+    "ops/AGENT_COORDINATION.md_all_peer_rows_preserved": true,
+    "ops/marketing/action_queue.md_all_peer_rows_preserved": true,
+    "paid_control_preserved": true,
+    "parent_one_owner_action_preserved": true,
+    "all_four_current_local_candidate_files_match_reviewed_bytes": true,
+    "frozen_five_file_before_state_preserved": true,
+    "us_release_files_preserved": true,
+    "independent_review_preserved": true,
+    "google_receiving_problem_remains_open": true
+  },
+  "canonical_after_sha256": {
+    "ops/AGENT_COORDINATION.md": "de9323423d420d7a54d874184d342969f496261dd30a6a47955b399a7e05d4f8",
+    "ops/marketing/action_queue.md": "7c5b73bafdbf781c822cf87e5d5222697db1fe1cf7f9554c71a89d008ff47f11",
+    "ops/marketing/current_marketing_state.md": "3f8040f1c8c801d865974e0b2c95b1be281fc3f6adbcd77046e30a6fb5ce3b69",
+    "ops/marketing/operator_cockpit.md": "994e96fd016a46ce216bc1d95e4710bb22f69bad97c423c97a0f8a6f5ec2e76e",
+    "ops/PROBLEM_TRACKER.md": "622f9ce9582cf3712b7bf1191bfe882853c685c132edcadbb016006921f0cc24",
+    "ops/AGENT_WORKLOG.md": "2a20d99455f4ed7d7714c57c0159b45c012bd4ce519e3a510d1a166c3ad38689"
+  },
+  "shared_release_at_utc": "2026-09-11T19:07:03.188119+00:00",
+  "release_recipients": [
+    "01a08703-644f-7940-8f67-9a2fa63722bb",
+    "01a08223-036e-7fa3-8961-ecd297163fb5"
+  ]
+}

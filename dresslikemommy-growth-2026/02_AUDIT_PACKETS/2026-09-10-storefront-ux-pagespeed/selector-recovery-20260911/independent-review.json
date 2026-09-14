@@ -1,0 +1,159 @@
+{
+  "schema": "dlm.selector-recovery.independent-review.v1",
+  "reviewed_at_utc": "2026-09-11T21:52:28Z",
+  "reviewer": "theme_audit_review",
+  "scope": "Independent source and local evidence review only. Reviewer did not build the proposal, perform browser QA, or make external writes.",
+  "verdict": "PASS_WITH_LIMITS",
+  "frozen_v7_verdict_for_new_failures": "FAIL",
+  "proposal_state": "LOCAL_ONLY_NOT_UPLOADED",
+  "publication_recommendation": "WITHHELD_PENDING_NEW_BUYER_FAILURE_RECONCILIATION",
+  "approved_scope": "Source review passes for staging only the three bound proposed files on existing unpublished theme 137888792673, subject to root's fresh source/target guard and exact before-state inverse. Actual updated-draft buyer verification remains pending. No MAIN or publication action is approved by this review.",
+  "summary": "Frozen V7 retains all three demonstrated or source-replayed selector failures. The three-file local proposal uses the existing native picker for all E1/E2 variants without assigning new roles or converting height labels. It preserves explicit Trail Plaid Girl/Boy roles and removes all 16 selection-key collisions. Both sticky routing changes are consistent with actual initialization order. No blocking source defect was found. The initial test teardown issue was corrected; the reviewer independently reran all 11 tests successfully with no runtime errors. Actual affected buyer-flow verification remains required.",
+  "authority_and_preservation": {
+    "saved_admin_source": "../pdp-clarity-v7/publication-gate-20260911/owner-release-2014-source.json",
+    "saved_admin_source_at_utc": "2026-09-11 20:14:01 UTC",
+    "saved_main_theme_id": "133290917985",
+    "saved_v7_theme_id": "137888792673",
+    "saved_v7_role": "UNPUBLISHED",
+    "frozen_candidate_files": 527,
+    "frozen_candidate_md5_and_size_matches": 527,
+    "frozen_candidate_mismatches": 0,
+    "frozen_candidate_extra_files": 0,
+    "note": "Compared local files with saved private source evidence; reviewer performed no fresh API query. API byte sizes were compared numerically because the saved size fields are strings.",
+    "source_records_modified": false,
+    "reviewer_only_write": "selector-recovery-20260911/independent-review.json"
+  },
+  "source_bindings": [
+    {
+      "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "main_md5": "61ded53111ee5002eb5c37b42a2c4b3f",
+      "v7_md5": "522339c5825769c499e1ad1488b8a138",
+      "v7_sha256": "e5a16e0cc2e9dca6cd5b40fce603b1cee54daa023943b1b5cd5033b401842438",
+      "proposed_sha256": "51aaa2d6492b65efe8132dd6f194a351b3a8106945616f4751a8beb00217bdab",
+      "proposed_bytes": 269917
+    },
+    {
+      "filename": "assets/component-product-desktop-ux-ruler-sync.css",
+      "v7_sha256": "ff26e2c07e837c404cb2171798ac4153762a7b4008b3f9a02f5d14d1ba357faf",
+      "proposed_sha256": "41c2cc05e469e33dc32da65357f21594d284f85d4e5608669b43f4224ee69497",
+      "proposed_bytes": 76575
+    },
+    {
+      "filename": "sections/main-product.liquid",
+      "main_md5": "8ef13387dda2b02fb6b4ce04df170424",
+      "v7_md5": "71ef37c28e45492bcc81639a629e4a40",
+      "v7_sha256": "fadfb327ebbac92ee57c04cf146914d90518ef801626f62cb09c81a7ff52b7c8",
+      "proposed_sha256": "465f76abe0565ff88ffcc01ef3e0f187bece84a1f636cff4f19e75de82ce0c6e",
+      "proposed_bytes": 190561
+    },
+    {
+      "filename": "snippets/product-desktop-ux.liquid",
+      "main_md5": "99665ca2bc9cd51e3c1d701275065b13",
+      "v7_md5": "16f1a7f535b03cae542b9163f8248d92",
+      "proposed_change": false
+    }
+  ],
+  "product_evidence": {
+    "sku_options_file": "../../2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.sku-template-binding_20260911.json",
+    "sku_options_sha256": "0b984b5a72b7374b88cdb43f81231c257c42575d52939b4a5e1631cf31c6c59d",
+    "qualification_sha256": "df5fae7cde0fa3c2c9725db219e7b39f77061eb74a02173cc364573b2832e417",
+    "au_snapshot_sha256": "bf2aadd8cf9cefdb387b8fe6b704420492b526905681182cd6ac08218b0cab4b",
+    "us_snapshot_sha256": "fca7d568d26d4d01383c9bc2149e3447663e0bb70d9c9ddfdf560c3e48aa8a05",
+    "target_variants": 79,
+    "exact_target_id_and_selected_options_sequences_match_sku_AU_US": true,
+    "target_AU_US_availability_equal": true,
+    "currency_conclusion": "The role classifier and selection keys do not use currency or contextual price. The same exact IDs/options/SKUs produce the same failure in US and AU source replay; this is not independent rendered US/AU buyer proof."
+  },
+  "findings": [
+    {
+      "id": "E1",
+      "product_id": "7516369715297",
+      "variants": 14,
+      "main_and_v7_unclassified": 14,
+      "cause": "Opaque numeric SKUs supply no role. The standalone-size regex excludes cm values and qualified adult labels such as S (Adult Normal Version) and S (Adult Extended Version). Role parsing recognizes aliases at the start or end, not inside those parentheses. Null-role variants are dropped, leaving no builder groups.",
+      "v7_refs": ["assets/product-desktop-ux-20260513-ruler-sync.js:1227", "assets/product-desktop-ux-20260513-ruler-sync.js:1257", "assets/product-desktop-ux-20260513-ruler-sync.js:1308", "assets/product-desktop-ux-20260513-ruler-sync.js:1434", "assets/product-desktop-ux-20260513-ruler-sync.js:1585", "assets/product-desktop-ux-20260513-ruler-sync.js:3584"],
+      "proposal": "Whole-product native fallback. All original raw Size/Color values and variant IDs remain available to the existing Dawn form; no role or height-to-age inference is added."
+    },
+    {
+      "id": "E2",
+      "product_id": "7516479848545",
+      "variants": 9,
+      "main_and_v7_unclassified": 6,
+      "cause": "Six 100cm–150cm variants fail the same classifier while S/M/L remain in an adult group. An empty-groups-only fallback would leave the six height variants unreachable.",
+      "v7_refs": ["assets/product-desktop-ux-20260513-ruler-sync.js:1257", "assets/product-desktop-ux-20260513-ruler-sync.js:1585", "assets/product-desktop-ux-20260513-ruler-sync.js:3584"],
+      "proposal": "The any-unclassified-variant preflight correctly selects whole-product native fallback, including the already recognized S/M/L variants."
+    },
+    {
+      "id": "E3_TRAIL_PLAID",
+      "product_id": "7536337125473",
+      "variants": 56,
+      "main_and_v7_collision_pairs": 16,
+      "proposal_collision_pairs": 0,
+      "cause": "Garment-derived Shirt/Shorts inference changes explicit or SKU-backed Girl to Boy. Girl and Boy then share role, age size and Type; the resolver returns the first matching option. Example: Girl 44080556343393 and Boy 44080556605537 share Boy / 1-2 Years / Shirt in V7.",
+      "v7_refs": ["assets/product-desktop-ux-20260513-ruler-sync.js:1315", "assets/product-desktop-ux-20260513-ruler-sync.js:2675"],
+      "proposal": "Garment inference refines only generic adult/child roles. Explicit Girl/Boy/Mother/Father remain distinct; the exact 56 variants have no duplicate selection identities."
+    },
+    {
+      "id": "NATIVE_FALLBACK_STICKY_ROUTING",
+      "cause": "V7 hides native Add and option controls via the matching-set class. Its empty builder branch only hides the builder. The inline mobile sticky executes during parsing and captures bundle mode before deferred DOMContentLoaded initialization; desktop mode originally used builder presence alone.",
+      "v7_refs": ["assets/component-product-desktop-ux-ruler-sync.css:965", "assets/component-product-desktop-ux-ruler-sync.css:981", "assets/component-product-desktop-ux-ruler-sync.css:1011", "sections/main-product.liquid:933", "sections/main-product.liquid:1846", "sections/main-product.liquid:1885", "sections/main-product.liquid:2441", "assets/product-desktop-ux-20260513-ruler-sync.js:1", "assets/product-desktop-ux-20260513-ruler-sync.js:136", "assets/product-desktop-ux-20260513-ruler-sync.js:6539"],
+      "proposal": "Fallback runs before the legacy guide-hide write, removes matching CSS/data flags, and dispatches a section-scoped event. Mobile resets captured bundle mode, CTA and both observers; desktop initializes afterward using the fallback marker. Added CSS keeps the existing desktop-UX/review wrapper displayed."
+    }
+  ],
+  "independent_checks_actually_run": [
+    "Evaluated complete actual MAIN, V7 and proposed JS in jsdom, then invoked their role functions using all 79 target variants with exact captured options and SKUs. MAIN/V7 produced E1 14 nulls, E2 6 nulls, Trail 16 collisions; proposal chose E1/E2 native fallback and removed Trail collisions.",
+    "Evaluated full V7/proposed JS on all 279 variants of the six ordinary-buyer holdout products. Exact role outputs remained equal and none activated fallback.",
+    "Matched all 79 target variant ID/options sequences across SKU binding, AU snapshot and fresh US snapshot; availability also matched.",
+    "Verified every proposed manifest hash and byte length against disk, all three baseline hashes, and targeted MAIN/V7 MD5 bindings.",
+    "Verified all 527 frozen candidate MD5/byte sizes against the saved 20:14:01 private manifest, with zero missing, extra or mismatched files.",
+    "Read the exact proposed diffs, the current source around initialization, both sticky handlers, native CSS and preserved guide handling.",
+    "Independently ran the corrected focused node --test suite: 11 passed, zero failed, exit 0, no uncaught runtime errors. It compares all 240 source products: only Trail Plaid grouping changes and only E1/E2 trigger native fallback."
+  ],
+  "parent_test_evidence": {
+    "file": "test-results.txt",
+    "assertions_passed": 11,
+    "assertions_failed": 0,
+    "initial_run_clean": false,
+    "latest_run_clean": true,
+    "finding": "Four asynchronous MutationObserver errors occur after jsdom window.close; syncBodyOffset reads a torn-down document. This appears to be test teardown rather than a candidate-browser defect, but the result must not be described as a clean runtime pass.",
+    "resolution": "VERIFIED: harness retains and disconnects MutationObservers before window.close, captures window errors, and asserts no captured errors. Parent rerun and reviewer independent rerun both passed all 11 tests with no uncaught errors; candidate source did not change for this test correction.",
+    "reviewer_reran_parent_suite": true,
+    "reviewer_command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node --test dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/selector-recovery.test.mjs",
+    "reviewer_exit_code": 0,
+    "reviewer_duration_ms": 4243.562875,
+    "test_source_sha256": "b04b940a79c77e6068e062e135aeb073ebbcf64244e663aa1b1dd15fd2159dbb",
+    "parent_clean_result_sha256": "74f11a891496c1d6b05325715d241c8e36c78a3aeb963d5264f7c4e21e4da6ce",
+    "proposed_manifest_sha256": "bf2288b39269a16dada56979fc94c59a040646a66914a6ba26f433d5b27b76ae",
+    "test_scope": "Production JS plus extracted inline mobile code, reconstructed DOM and simplified hiding CSS. Checks ordinary routing, disabled native Add, source-control preservation, two widths and bundle-route holdouts; does not render full Liquid or perform real cart writes."
+  },
+  "root_theme_check_evidence": {
+    "preparation": "theme-check-preparation.json",
+    "diagnostics_file": "theme-check.json",
+    "stderr_file": "theme-check-stderr.txt",
+    "root_reported_exit_code": 0,
+    "observed_diagnostics": [],
+    "observed_stderr_empty": true,
+    "reviewer_compared_checked_copy_files": 527,
+    "reviewer_checked_copy_mismatches": 0,
+    "checked_copy_basis": "All checked theme bytes equal the three bound proposed files plus the other 524 frozen V7 files.",
+    "reviewer_reran_theme_check": false
+  },
+  "actual_buyer_evidence_reviewed": {
+    "file": "../au-buyer-matrix-20260911/READBACK.json",
+    "sha256": "6b0a5a43fb095f9b266f95f405d2978170d4a1522dbaf0ecc55e5707b0762e3b",
+    "recorded_at_utc": "2026-09-11T21:36:37.971959+00:00",
+    "theme": "MAIN 133290917985",
+    "E1": "FAILED: ordinary Choose options click still exposed no usable main selectors or Add button.",
+    "E2_E3": "NOT RUN after E1 stop; diagnoses are independently replayed source findings.",
+    "V7_or_proposal_rendered_in_this_matrix": false,
+    "primary_cases": "Six scoped passes; 22 selected-price states, six actual Add/cart results and removals. Minimalist colors were selected, but only Red was cart-tested.",
+    "cleanup": "Receipt records US/USD English, cart zero, viewport reset and own tab closed.",
+    "new_429_or_auth_challenge_in_this_matrix": false,
+    "reviewer_performed_browser_checks": false
+  },
+  "remaining_acceptance": [
+    "Before any external staging, root must bind fresh target/before-state and exact apply/inverse; this local review is not a publication action or full release recommendation.",
+    "After staging, use ordinary desktop/mobile controls to verify all E1 raw height/Normal/Extended choices, E2 height/adult choices, and both Trail Girl/Boy Shirt/Shorts branches, with exact selected/cart variant identity, source price, availability and removal cleanup.",
+    "Verify actual sticky visibility/forwarding, native guide/source-size truth and preserved review behavior in the rendered theme. No catalog-wide or all-language perfection is claimed."
+  ]
+}

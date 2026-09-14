@@ -1,0 +1,15 @@
+{
+  "schema": "dlm.merchant.timezone_change_plan.v1",
+  "status": "PREPARED_NOT_EXECUTED",
+  "target": "Merchant Center 513542500 / Settings / General / Account setup / Time zone",
+  "before_display": "(GMT-04:00) Atlantic Standard Time (Blanc-Sablon)",
+  "shopify_after_query": {"shop_id":"15571635","domain":"dresslikemommy-com.myshopify.com","ianaTimezone":"America/New_York","read_window_utc":"2026-09-10 18:47:53 through 18:51:58 UTC; exact query timestamp not recorded; widened to observed clock bounds"},
+  "intended_after": "America/New_York; exact UI label must be verified before selection",
+  "reason": "Align Merchant reporting day boundaries with Shopify and the store's Florida operating timezone, including seasonal daylight-saving changes.",
+  "authority": "Current owner's explicit Merchant account audit and corrections, full control for nonspend settings; existing root Merchant account writer. No paid authority broadened.",
+  "effect": "Merchant UI states a timezone change affects only newly calculated performance metrics; no historical recalculation is claimed.",
+  "rollback": "Restore the captured Blanc-Sablon timezone through the same account setting. This reverses future configuration; it does not rewrite metrics calculated during either interval.",
+  "verification": ["Fresh exact account and existing timezone read", "Exact New York option visible", "Save or immediate-selection behavior observed", "Reload and independently read saved timezone", "Review saved evidence for scope and semantics"],
+  "exclusions": ["No language change", "No conversion, tracking, budget, bid, campaign, billing, source or product change"],
+  "stop": "No change if exact desired timezone is unavailable, account identity differs, control is immutable, or tool approval rejects the action."
+}

@@ -1,0 +1,510 @@
+{
+  "schema": "dlm.heartbeat_trigger_delta.v1",
+  "status": "READBACK_COMPLETE__KNOWN_DEPENDENCIES_UNCHANGED",
+  "trigger_at_utc": "2026-09-10T19:42:08.397Z",
+  "read_completed_at_utc": "2026-09-10T19:44:07Z",
+  "source_live_evidence_as_of": "2026-09-10T19:44:07Z",
+  "source": "Shopify Admin GraphQL schema discovery, validation and read-only execution",
+  "new_order_window": {
+    "start_inclusive": "2026-09-10T15:42:19Z",
+    "end_exclusive": "2026-09-10T19:44:06Z",
+    "all_order_creations": 0,
+    "pagination_complete": true
+  },
+  "shop": {
+    "name": "Dress Like Mommy",
+    "ianaTimezone": "America/New_York",
+    "currencyCode": "USD",
+    "primaryDomain": {
+      "host": "www.dresslikemommy.com"
+    }
+  },
+  "themes": {
+    "nodes": [
+      {
+        "id": "gid://shopify/OnlineStoreTheme/133290917985",
+        "name": "dresslikemommy/main",
+        "role": "MAIN",
+        "updatedAt": "2026-07-02T16:47:21Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137782591585",
+        "name": "DLM SEO DA NL 2026-09-06",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-06T07:03:53Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137850814561",
+        "name": "DLM DA NL SEO only 2026-09-08",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-08T19:01:09Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137880666209",
+        "name": "DLM Consent Preferences 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T18:58:13Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137881223265",
+        "name": "DLM Merchant Landing Fixes 2026-09-09",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-09T20:10:58Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/137888792673",
+        "name": "DLM UX Performance QA 2026-09-10",
+        "role": "UNPUBLISHED",
+        "updatedAt": "2026-09-10T04:34:55Z"
+      }
+    ],
+    "pageInfo": {
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjoxMzc4ODg3OTI2NzMsImxhc3RfdmFsdWUiOjEzNzg4ODc5MjY3M30="
+    }
+  },
+  "checks": {
+    "shop_name": true,
+    "shop_domain": true,
+    "shop_currency": true,
+    "shop_timezone": true,
+    "order_window_complete": true,
+    "no_new_creations": true,
+    "theme_list_complete": true,
+    "one_expected_main": true,
+    "current_candidate_unpublished": true
+  },
+  "checks_passed": 9,
+  "query": "query HeartbeatTriggerDelta($createdWindow:String!,$after:String){shop{name ianaTimezone currencyCode primaryDomain{host}} orders(first:50,after:$after,query:$createdWindow){nodes{test} pageInfo{hasNextPage endCursor}} themes(first:50){nodes{id name role updatedAt} pageInfo{hasNextPage endCursor}}}",
+  "prior_trigger_checkpoint": "growth_heartbeat_trigger_20260910_1541.json",
+  "prior_full_order_fulfillment_checkpoint": "growth_heartbeat_20260910_0738.json",
+  "coordination": {
+    "source": "Current channel-owner direct messages and canonical closeouts; parent did not replay native work",
+    "merchant": "Checkpoint released: zero receiving products, one verified timezone correction, actual Mac lock with existing unlock question, separate exact Product sync details-click gate",
+    "pinterest": "Completed one Sunshine Pin, board description repair and failed-source pause; tracking remains open; no native or shared interval held",
+    "native_lease": "NONE_PARENT__NO_LOCKED_MAC_RETRY",
+    "shared_interval": "RELEASED_AFTER_FINAL_CHECKS__MERCHANT_AND_PINTEREST_NOTIFIED"
+  },
+  "dashboard_status": "EXISTING_SERVICE_HEALTHY",
+  "limits": [
+    "The19:44UTC trigger covers only new creations and theme roles. A separate19:51UTC full-cohort followup is attached below; it confirms unchanged source status, not settlement, delivery, fees or profit. Earlier dated canonical baseline remains preserved.",
+    "Peer live outcomes are their verified receipts, not a second parent native replay.",
+    "No new acquisition, accurate purchase receiver, costs, CPA, ROAS, retained profit or published-theme source validation."
+  ],
+  "execution": {
+    "external_mutations": 0,
+    "browser_calls": 0,
+    "account_probes": 0,
+    "new_goal_or_automation": 0
+  },
+  "live_state_mode": "STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+  "approved_external_scope": "NONE",
+  "authority_context": "Read-only scheduled trigger and exact own canonical reconciliation; saved nonspend scopes and peer gates preserved.",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "New genuine order, verified publication of the current combined theme, or an existing operator's changed access/setup evidence.",
+  "if_evidence_supports_recommendation": "Continue the matching qualified action with its existing owner and current exact scope.",
+  "if_evidence_opposes_recommendation": "Hold dependent actions with evidence; do not replay blocked calls or completed work.",
+  "material_decision": "NOT_MATERIAL",
+  "owner_action_preserved": "Existing Merchant unlock question; separate Product sync details-click gate retained without duplicate request.",
+  "internal_queue": [
+    "Merchant source-backed returns setup and first received offers after existing unlock",
+    "Pinterest supported app-pixel and Tag/CAPI comparison after serial native handback",
+    "UX owner publication followed by published buyer verification; organic complete-date measurement when due"
+  ],
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "latest_anchor": "2026-09-10-ceo-turnaround-1942-trigger-and-handoff-reconciliation",
+  "before_snapshot": "/private/tmp/dlm-heartbeat-1942-before-20260910",
+  "local_preservation_checks": {
+    "all_three_owned_file_inverses_exact": true,
+    "seven_protected_files_exact": true,
+    "prior_worklog_exact_prefix": true,
+    "sales_checkpoint_and_nine_entries_unchanged": true,
+    "current_canonical_readback_matches_prepared": true
+  },
+  "exact_local_scope": {
+    "coordination_parent_rows": 3,
+    "scheduled_cockpit_notes": 1,
+    "append_only_worklog_blocks": 1,
+    "peer_rows_changed": 0,
+    "protected_files_changed": 0
+  },
+  "independent_prewrite_review": {
+    "path": "/private/tmp/dlm-heartbeat-1942-independent-review.json",
+    "verdict": "PASS",
+    "limit": "Saved-receipt and exact patch review; no second native replay or creative review.",
+    "sha256_at_prewrite": "bdbc0f7d10196f44c05f991b3dcfe5a2a90db2afe25a18d02995cf30c727a1ba"
+  },
+  "before_manifest": {
+    "ops/AGENT_COORDINATION.md": {
+      "sha256": "4c514450d39c5b9b4b57ad83dccd2c11ecaa5338b82080d8f4da87993b401582",
+      "bytes": 396802
+    },
+    "ops/marketing/operator_cockpit.md": {
+      "sha256": "a8c56ec67c19de255728f5b5aa7732bb9bea6932334391a50b12578667159d1d",
+      "bytes": 104982
+    },
+    "ops/AGENT_WORKLOG.md": {
+      "sha256": "f3931f995e2c25b2769bb883b03571983011204e1658f7c8e248948b2f729a04",
+      "bytes": 3999559
+    },
+    "ops/marketing/current_marketing_state.md": {
+      "sha256": "c50a00744bad61bcc85b76076e22fca737b9062843d9311d315681fc863aed97",
+      "bytes": 229324
+    },
+    "ops/marketing/action_queue.md": {
+      "sha256": "fdaef1f366cd1613dfab17c3e2332b15755c115936702055a432067afccc30a7",
+      "bytes": 151264
+    },
+    "ops/marketing/blocker_board.md": {
+      "sha256": "f265a0f4815915d3947f578983907af2bbcebb741b66edf02655c590bdcd4eb0",
+      "bytes": 59548
+    },
+    "ops/marketing/decision_log.md": {
+      "sha256": "61681a20fb0cf4219ddadcb4464f7e87a6697b205dbdf0139af4d33f2ebc3bbd",
+      "bytes": 203257
+    },
+    "ops/marketing/spend_authorization.md": {
+      "sha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+      "bytes": 5950
+    },
+    "ops/PROBLEM_TRACKER.md": {
+      "sha256": "de46a46a4bef174e0e680393b7671ec57dd7af1b2bec8894f84592824b8f769c",
+      "bytes": 856595
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json": {
+      "sha256": "64a85a444b45932f93d33d4366c4cc8cab750b5064401dfbf6da55d86c31cb64",
+      "bytes": 83356
+    }
+  },
+  "inverse_patch_plan": "/private/tmp/dlm-heartbeat-1942-patch-plan.json",
+  "checks_pending": [],
+  "post_trigger_full_cohort_followup": {
+    "source_receipt": {
+      "schema": "dlm.heartbeat_order_fulfillment_delta.v2",
+      "status": "LIVE_VERIFIED",
+      "source": "Read-only Shopify Admin GraphQL connector; fresh schema discovery and both prior bounded operations revalidated.",
+      "source_live_evidence_as_of": "2026-09-10T19:51:08Z",
+      "order_source_read_completed_at_utc": "2026-09-10T19:51:09Z",
+      "fulfillment_source_read_completed_at_utc": "2026-09-10T19:51:27Z",
+      "baseline_source_file": "/private/tmp/dlm-heartbeat-order-check-20260910-0738.json",
+      "baseline_source_sha256": "f1293881fefef18c1e8df70cb795e8ecb0e2d71a34352dfe22ec2831e017074e",
+      "baseline_aggregate_as_of": "2026-09-10T07:44:04Z",
+      "baseline_fulfillment_as_of": "2026-09-10T07:44:43Z",
+      "observed_window": {
+        "start_inclusive": "2026-09-05T04:00:00Z",
+        "end_exclusive": "2026-09-10T19:51:08Z"
+      },
+      "shop": {
+        "name": "Dress Like Mommy",
+        "ianaTimezone": "America/New_York",
+        "currencyCode": "USD",
+        "primaryDomain": {
+          "host": "www.dresslikemommy.com"
+        }
+      },
+      "cohort_definition": {
+        "server_filter": "Quoted created_at bounds only, preserving every returned status for refund/cancellation assessment.",
+        "local_inclusion": "displayFinancialStatus == PAID AND test == false AND cancelledAt == null AND sourceName == web",
+        "returned_orders": 2,
+        "qualifying_orders": 2,
+        "excluded_orders": 0,
+        "currently_cancelled_count": 0,
+        "current_test_count": 0
+      },
+      "totals": {
+        "orders": 2,
+        "current_units": 4,
+        "current_subtotal_usd": "86.45",
+        "current_total_usd": "86.45",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00",
+        "financial_status_counts": {
+          "PAID": 2
+        },
+        "fulfillment_status_counts": {
+          "FULFILLED": 1,
+          "UNFULFILLED": 1
+        }
+      },
+      "all_returned_order_totals": {
+        "orders": 2,
+        "current_units": 4,
+        "current_subtotal_usd": "86.45",
+        "current_total_usd": "86.45",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00"
+      },
+      "comparison_window": {
+        "start_inclusive": "2026-09-10T07:44:04Z",
+        "end_exclusive": "2026-09-10T19:51:08Z",
+        "new_order_creations": 0,
+        "qualifying_order_creations": {
+          "orders": 0,
+          "current_units": 0,
+          "current_subtotal_usd": "0.00",
+          "current_total_usd": "0.00",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        }
+      },
+      "parent_creation_trigger_crosscheck": {
+        "start_inclusive": "2026-09-10T15:42:19Z",
+        "end_exclusive": "2026-09-10T19:51:08Z",
+        "new_order_creations": 0,
+        "qualifying_order_creations": {
+          "orders": 0,
+          "current_units": 0,
+          "current_subtotal_usd": "0.00",
+          "current_total_usd": "0.00",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        }
+      },
+      "trailing_24_hours": {
+        "start_inclusive": "2026-09-09T19:51:08Z",
+        "end_exclusive": "2026-09-10T19:51:08Z",
+        "new_order_creations": 0,
+        "qualifying_order_creations": {
+          "orders": 0,
+          "current_units": 0,
+          "current_subtotal_usd": "0.00",
+          "current_total_usd": "0.00",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        }
+      },
+      "ga4_post_cutover_candidates": {
+        "start_inclusive": "2026-09-09T18:09:00Z",
+        "end_exclusive": "2026-09-10T19:51:08Z",
+        "new_order_creations": 0,
+        "qualifying_order_creations": {
+          "orders": 0,
+          "current_units": 0,
+          "current_subtotal_usd": "0.00",
+          "current_total_usd": "0.00",
+          "current_tax_usd": "0.00",
+          "recorded_refunds_usd": "0.00"
+        },
+        "cutover_is_approximate": true,
+        "receiver_ingestion_inferred": false
+      },
+      "basket_aggregates": [
+        {
+          "basket": "Mermaid",
+          "financial_status": "PAID",
+          "order_fulfillment_status": "UNFULFILLED",
+          "current_units": 2,
+          "current_subtotal_usd": "31.98",
+          "recorded_refunds_usd": "0.0",
+          "fulfillments_returned": 0,
+          "fulfillment_statuses": [],
+          "matched_variant_selections": 0,
+          "exact_current_basket_variant_quantity_match": false,
+          "fulfillment_lines_within_ordered_quantities": true,
+          "recorded_tracking_companies": [],
+          "delivered_at_present": false,
+          "in_transit_at_present": false,
+          "estimated_delivery_at_present": false,
+          "events_returned": 0,
+          "event_status_counts": {},
+          "events_since_previous_source_read": 0,
+          "event_pagination_complete": true,
+          "fulfillment_line_item_pagination_complete": true,
+          "carrier_acceptance_verified": false,
+          "delivery_verified": false
+        },
+        {
+          "basket": "Rainbow",
+          "financial_status": "PAID",
+          "order_fulfillment_status": "FULFILLED",
+          "current_units": 2,
+          "current_subtotal_usd": "54.47",
+          "recorded_refunds_usd": "0.0",
+          "fulfillments_returned": 1,
+          "fulfillment_statuses": [
+            {
+              "status": "SUCCESS",
+              "display_status": "FULFILLED",
+              "total_quantity": 2
+            }
+          ],
+          "matched_variant_selections": 2,
+          "exact_current_basket_variant_quantity_match": true,
+          "fulfillment_lines_within_ordered_quantities": true,
+          "recorded_tracking_companies": [
+            "YunExpress"
+          ],
+          "delivered_at_present": false,
+          "in_transit_at_present": false,
+          "estimated_delivery_at_present": false,
+          "events_returned": 0,
+          "event_status_counts": {},
+          "events_since_previous_source_read": 0,
+          "event_pagination_complete": true,
+          "fulfillment_line_item_pagination_complete": true,
+          "carrier_acceptance_verified": false,
+          "delivery_verified": false
+        }
+      ],
+      "changes_from_baseline": {
+        "totals_changed": false,
+        "basket_status_or_fulfillment_summary_changed": false,
+        "new_order_creations_since_baseline": 0,
+        "currently_cancelled_count": 0,
+        "recorded_refunds_usd": "0.00",
+        "refund_amount_changed": false,
+        "new_carrier_events": 0,
+        "carrier_event_total": 0
+      },
+      "coverage": {
+        "order_pages": 1,
+        "order_first_limit": 50,
+        "order_pagination_complete": true,
+        "order_line_item_pagination_complete": true,
+        "fulfillment_baskets_read": 2,
+        "fulfillment_first_limit": 50,
+        "fulfillment_limit_reached": false,
+        "fulfillment_line_item_pagination_complete": true,
+        "fulfillment_event_pagination_complete": true
+      },
+      "query_validation": {
+        "fresh_schema_discovery_types": [
+          "QueryRoot",
+          "Order",
+          "Fulfillment"
+        ],
+        "connector_validation": "PASS_TWO_OPERATIONS",
+        "order_artifact_id": "dlm-order-delta-20260910-1942",
+        "fulfillment_artifact_id": "dlm-fulfillment-delta-20260910-1942",
+        "revision": 1,
+        "reused_operation_source": "Prior heartbeat order and ChangedBasketFulfillment operations; no theme selection or mutations; variables not saved."
+      },
+      "checks": {
+        "shop_name_exact": true,
+        "shop_domain_exact": true,
+        "shop_timezone_exact": true,
+        "shop_currency_usd": true,
+        "fresh_schema_discovery_complete": true,
+        "two_operations_revalidated": true,
+        "order_query_excludes_theme_and_mutations": true,
+        "order_pagination_complete": true,
+        "order_line_item_pagination_complete": true,
+        "returned_orders_inside_frozen_window": true,
+        "transient_order_ids_unique": true,
+        "all_money_fields_usd": true,
+        "local_paid_non_test_non_cancelled_web_filter_applied": true,
+        "product_revenue_allocation_unambiguous": true,
+        "all_cohort_baskets_fulfillment_read": true,
+        "fulfillment_shop_identity_matches": true,
+        "fulfillment_financial_status_matches": true,
+        "fulfillment_display_status_matches": true,
+        "fulfillment_subtotal_and_refunds_match": true,
+        "fulfillment_lists_below_limit": true,
+        "fulfillment_line_pages_complete": true,
+        "fulfillment_event_pages_complete": true,
+        "fulfilled_basket_variant_quantities_exact": true,
+        "fulfillment_lines_within_ordered_quantity": true,
+        "fulfillment_total_quantities_match_lines": true,
+        "comparison_window_covered": true,
+        "trailing24_window_covered": true,
+        "ga4_postcutover_window_covered": true,
+        "baseline_hash_matches_immutable_0738": true
+      },
+      "check_count": 29,
+      "failed_checks": [],
+      "execution": {
+        "external_mutations": 0,
+        "browser_calls": 0,
+        "account_probes": 0,
+        "supplier_searches": 0,
+        "customer_messages": 0,
+        "repo_writes": 0,
+        "canonical_writes": 0,
+        "shopify_order_queries": 1,
+        "shopify_fulfillment_queries": 2
+      },
+      "privacy": {
+        "raw_response_saved": false,
+        "private_identifiers_saved": false,
+        "variant_identifiers_saved": false,
+        "tracking_numbers_or_urls_requested_or_saved": false,
+        "per_order_or_fulfillment_event_timestamps_saved": false,
+        "handling": "Identifiers and individual timestamps held transiently only for exact joins and aggregate windows; raw source cleared after sanitized artifact validation."
+      },
+      "limits": [
+        "Only the frozen September5 04:00UTC creation cohort through the exact current cutoff was queried; older orders are outside scope.",
+        "PAID is Shopify financial status. Transaction capture, settlement and fees were not reread; no paid-media attribution is inferred.",
+        "No events or delivery timestamps is not proof of carrier acceptance or delivery.",
+        "USD shop-money amounts are kept separate from unrefreshed historical fees in other currencies. Full costs, CPA, ROAS and retained profit remain UNKNOWN.",
+        "No genuine post-cutover order is available for GA4 purchase-receiver reconciliation.",
+        "Fulfillment was observed after the order cutoff, at the separately recorded read completion.",
+        "Parent independently reviews the sanitized checkpoint; this task made no canonical changes."
+      ],
+      "measurement_decision": "No material order, refund, cancellation or shipment delta. Continue the parent's existing executable priority; retain actual delivery/cost and purchase-receiver gaps."
+    },
+    "source_sha256": "0dda803cc142a527f5efc6bdc897ba54edfa9b05f480b5793ae0833da382b680",
+    "parent_receipt_review": {
+      "checks": {
+        "source_hash_matches_agent": true,
+        "all_29_source_checks_pass": true,
+        "identity_exact": true,
+        "two_orders_four_units": true,
+        "basket_values_reconcile": true,
+        "zero_refunds_cancel_delta": true,
+        "zero_new_orders_or_events": true,
+        "cohort_and_basket_state_unchanged": true,
+        "complete_pagination": true,
+        "both_baskets_read": true,
+        "no_delivery_proof_inferred": true,
+        "no_writes_or_native_calls": true,
+        "privacy_limits_preserved": true,
+        "source_windows_ordered": true
+      },
+      "checks_passed": 14,
+      "scope": "Independent saved-receipt consistency review, not a duplicate live query."
+    },
+    "persistence_scope": "Subsequent19:51UTC read is preserved here; the19:44 trigger/patch and earlier nine canonical sales entries retain their original as-of dates."
+  },
+  "independent_after_review": {
+    "path": "/private/tmp/dlm-heartbeat-1942-independent-review.json",
+    "sha256": "6af9d10b1b6ba54c1013738c6b42b153d380d07aebcd15cd24f4cbc94cd82dd9",
+    "checks_passed": 8,
+    "status": "PASS",
+    "independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "evidence_sha256_at_review": "acc8f152788dca0d7bc6e45997e8cc678b6a14d788fd6d8af23a8e43ae82c4e8",
+    "limit": "Exact applied canonical patch and original trigger receipt; excludes later full-cohort followup and final closeout metadata."
+  },
+  "postreview_evidence_additions": [
+    "Subsequent unchanged19:51UTC full-cohort receipt with29source and14parent consistency checks",
+    "Explicit distinction between trigger and later cohort as-of dates",
+    "Final command-check metadata and interval release"
+  ],
+  "closeout": {
+    "cockpit_render": {
+      "exit_code": 0
+    },
+    "integration_audit": {
+      "exit_code": 0,
+      "tracked_files": 25,
+      "integrated_files": 25,
+      "side_document_risks": 0
+    },
+    "strict_continuity": {
+      "exit_code": 0,
+      "checks_passed": 10,
+      "result": "CONTINUITY_OK",
+      "pinterest_limit": "Historical snapshot fix-in-progress mode is not fresh receiving/grouping proof."
+    },
+    "scoped_git_diff_check": {
+      "exit_code": 0,
+      "diagnostics": 0
+    },
+    "independent_after_inverse": "PASS_8_OF_8",
+    "latest_ten_file_hash_recheck": "PASS",
+    "shared_interval": "RELEASED_AFTER_FINAL_CHECKS",
+    "released_at_utc": "2026-09-10T19:56:51Z",
+    "organic_handoff": "Existing organic owner notified to reconcile its own stale pending-distribution text; no publication or schedule requested."
+  },
+  "notification_decision": "DONT_NOTIFY: current business outcomes and existing required user actions are unchanged; internal handoffs reconciled."
+}

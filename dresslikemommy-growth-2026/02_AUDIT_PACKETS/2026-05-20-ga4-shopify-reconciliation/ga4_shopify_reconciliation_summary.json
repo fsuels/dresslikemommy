@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-05-20T13:00:00Z",
+  "date_range": {
+    "start": "2026-04-22",
+    "end": "2026-05-19"
+  },
+  "source_truth": {
+    "shopify_paid_non_cancelled_orders": 23,
+    "shopify_revenue_usd": "1596.06"
+  },
+  "ga4_export": {
+    "ga4_transaction_ids": 18,
+    "ga4_transactions_sum": 18,
+    "ga4_revenue_usd_from_revenue_metric_micros": "1113.53"
+  },
+  "join": {
+    "matched_order_ids": 17,
+    "missing_in_ga4": 6,
+    "extra_in_ga4": 1,
+    "missing_transaction_ids": [
+      "6563164946529",
+      "6572583190625",
+      "6576532684897",
+      "6577431478369",
+      "6595884515425",
+      "6599182155873"
+    ],
+    "extra_transaction_ids": [
+      "6589552197729"
+    ]
+  },
+  "parity": {
+    "order_count_delta": -5,
+    "order_count_delta_pct": "-21.74",
+    "revenue_delta_usd": "-482.53",
+    "revenue_delta_pct": "-30.23",
+    "within_plus_minus_5pct_orders": false,
+    "within_plus_minus_5pct_revenue": false
+  },
+  "interpretation": "GA4 is not within +/-5% of Shopify paid-order truth for Apr 22-May 19. Use Shopify paid orders plus Google Ads cost/click readbacks for paid optimization until GA4 order/revenue parity is repaired."
+}

@@ -1,0 +1,806 @@
+{
+  "schema": "dlm.independent_local_video_review.v1",
+  "reviewer": "/root/tag_repair_review",
+  "reviewed_at_utc": "2026-09-11T21:14:11.010035+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "readiness_scope": "LOCAL_SILENT_ENGLISH_PHOTO_MONTAGE_ONLY",
+  "confidence": "HIGH_FOR_REVIEWED_LOCAL_FILE",
+  "video": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mommy_and_me_15s_silent_draft_v2.mp4",
+    "sha256": "1a9717169867b483f22e65fb2010e22d390f436b8e079a6f8f32c501e2f506ee",
+    "duration_seconds": 15,
+    "frames": 450,
+    "width": 1920,
+    "height": 1080,
+    "frame_rate": "30/1",
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "audio_streams": 0,
+    "bytes": 1576664
+  },
+  "manifest": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/manifest.json",
+    "sha256": "4a5c0e5ba5d9520d4f887e8a40499dacd2c0a910913248a62a3e3d7ac60d597b"
+  },
+  "creative_acceptance": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/CREATIVE_ACCEPTANCE.json",
+    "sha256": "f9d98b8ac845cecb0595c6ba31e0b15c57caf50f60b912a06490bdc3f372cf8b"
+  },
+  "scope": {
+    "campaign_id": "24247604341",
+    "asset_group_id": "6746545742",
+    "creative_language": "en",
+    "current_English_campaign_only": true,
+    "owned_artifacts_only": [
+      "review/VIDEO_REVIEW.json",
+      "review/VIDEO_REVIEW.md"
+    ],
+    "producer_artifacts_modified": 0,
+    "canonical_edits": 0,
+    "public_requests": 0,
+    "account_actions": 0,
+    "uploads": 0,
+    "publication": 0,
+    "new_image_generation": 0
+  },
+  "independence": {
+    "built_or_encoded_video": false,
+    "independent_tools_run": [
+      "ffprobe metadata and frame count",
+      "ffmpeg full decode with -xerror",
+      "in-memory decoding of nine sampled frames matched against retained PNGs",
+      "all 450 decoded frames checked at 192x108 for scene consistency and gaps",
+      "file SHA-256 checks",
+      "visual inspection through view_image"
+    ],
+    "native_account_or_platform_review": "NOT_RUN",
+    "producer_validation_is_independent_proof": false
+  },
+  "technical_check_summary": {
+    "passed": 62,
+    "failed": 0,
+    "full_decode": "PASS",
+    "actual_decoded_samples": 9,
+    "mobile_QA_samples_bound_to_decoded_frames": 9,
+    "accepted_sources_matched": 3,
+    "v1_artifacts_matched": 19,
+    "all_450_scene_frames_checked": true,
+    "scene_frame_ranges": [
+      [
+        0,
+        149
+      ],
+      [
+        150,
+        299
+      ],
+      [
+        300,
+        449
+      ]
+    ],
+    "scene_minimum_psnr_db": [
+      59.512,
+      62.671,
+      63.307
+    ],
+    "similarity_limit": "Encoding/framing comparisons are technical corroboration only, not garment-authenticity or Google acceptance proof."
+  },
+  "technical_checks": [
+    {
+      "check": "exact_video_hash",
+      "result": "PASS"
+    },
+    {
+      "check": "acceptance_hash_current",
+      "result": "PASS"
+    },
+    {
+      "check": "campaign_asset_group_bindings",
+      "result": "PASS"
+    },
+    {
+      "check": "accepted_sources_exactly_three",
+      "result": "PASS"
+    },
+    {
+      "check": "source_RGHM_landscape_v1.png_hash",
+      "result": "PASS"
+    },
+    {
+      "check": "source_RGHM_landscape_v1.png_dimensions",
+      "result": "PASS"
+    },
+    {
+      "check": "source_RGHM_landscape_v1.png_full_contain",
+      "result": "PASS"
+    },
+    {
+      "check": "source_RGHM_landscape_v1.png_text_outside",
+      "result": "PASS"
+    },
+    {
+      "check": "source_TGHW_landscape_v1.png_hash",
+      "result": "PASS"
+    },
+    {
+      "check": "source_TGHW_landscape_v1.png_dimensions",
+      "result": "PASS"
+    },
+    {
+      "check": "source_TGHW_landscape_v1.png_full_contain",
+      "result": "PASS"
+    },
+    {
+      "check": "source_TGHW_landscape_v1.png_text_outside",
+      "result": "PASS"
+    },
+    {
+      "check": "source_NSPR_landscape_v1.png_hash",
+      "result": "PASS"
+    },
+    {
+      "check": "source_NSPR_landscape_v1.png_dimensions",
+      "result": "PASS"
+    },
+    {
+      "check": "source_NSPR_landscape_v1.png_full_contain",
+      "result": "PASS"
+    },
+    {
+      "check": "source_NSPR_landscape_v1.png_text_outside",
+      "result": "PASS"
+    },
+    {
+      "check": "on_screen_copy_whitelist",
+      "result": "PASS"
+    },
+    {
+      "check": "three_five_second_scenes",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_01.000s.png_hashes",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_01.000s.png_360_size_and_resize_binding",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_01.000s.png_actual_video_pixels",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_01.000s.png_fitted_source_comparison",
+      "result": "PASS",
+      "detail": {
+        "psnr_db": 37.267
+      }
+    },
+    {
+      "check": "sample_frame_04.967s.png_hashes",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_04.967s.png_360_size_and_resize_binding",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_04.967s.png_actual_video_pixels",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_04.967s.png_fitted_source_comparison",
+      "result": "PASS",
+      "detail": {
+        "psnr_db": 37.278
+      }
+    },
+    {
+      "check": "sample_frame_05.000s.png_hashes",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_05.000s.png_360_size_and_resize_binding",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_05.000s.png_actual_video_pixels",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_05.000s.png_fitted_source_comparison",
+      "result": "PASS",
+      "detail": {
+        "psnr_db": 36.417
+      }
+    },
+    {
+      "check": "sample_frame_07.500s.png_hashes",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_07.500s.png_360_size_and_resize_binding",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_07.500s.png_actual_video_pixels",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_07.500s.png_fitted_source_comparison",
+      "result": "PASS",
+      "detail": {
+        "psnr_db": 36.531
+      }
+    },
+    {
+      "check": "sample_frame_09.967s.png_hashes",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_09.967s.png_360_size_and_resize_binding",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_09.967s.png_actual_video_pixels",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_09.967s.png_fitted_source_comparison",
+      "result": "PASS",
+      "detail": {
+        "psnr_db": 36.529
+      }
+    },
+    {
+      "check": "sample_frame_10.000s.png_hashes",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_10.000s.png_360_size_and_resize_binding",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_10.000s.png_actual_video_pixels",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_10.000s.png_fitted_source_comparison",
+      "result": "PASS",
+      "detail": {
+        "psnr_db": 41.703
+      }
+    },
+    {
+      "check": "sample_frame_12.500s.png_hashes",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_12.500s.png_360_size_and_resize_binding",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_12.500s.png_actual_video_pixels",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_12.500s.png_fitted_source_comparison",
+      "result": "PASS",
+      "detail": {
+        "psnr_db": 41.873
+      }
+    },
+    {
+      "check": "sample_frame_14.000s.png_hashes",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_14.000s.png_360_size_and_resize_binding",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_14.000s.png_actual_video_pixels",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_14.000s.png_fitted_source_comparison",
+      "result": "PASS",
+      "detail": {
+        "psnr_db": 41.865
+      }
+    },
+    {
+      "check": "sample_frame_14.967s.png_hashes",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_14.967s.png_360_size_and_resize_binding",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_14.967s.png_actual_video_pixels",
+      "result": "PASS"
+    },
+    {
+      "check": "sample_frame_14.967s.png_fitted_source_comparison",
+      "result": "PASS",
+      "detail": {
+        "psnr_db": 41.866
+      }
+    },
+    {
+      "check": "all_nine_sample_pairs_validated",
+      "result": "PASS"
+    },
+    {
+      "check": "all_19_v1_artifacts_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "contact_sheet_hash",
+      "result": "PASS"
+    },
+    {
+      "check": "independent_ffprobe",
+      "result": "PASS",
+      "detail": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "pix_fmt": "yuv420p",
+            "avg_frame_rate": "30/1",
+            "duration": "15.000000",
+            "nb_read_frames": "450"
+          }
+        ],
+        "format": {
+          "duration": "15.000000",
+          "size": "1576664"
+        }
+      }
+    },
+    {
+      "check": "independent_full_decode_with_xerror",
+      "result": "PASS"
+    },
+    {
+      "check": "all_frames_decode_to_validation_grid",
+      "result": "PASS"
+    },
+    {
+      "check": "all_450_frames_match_expected_scene_without_blank",
+      "result": "PASS",
+      "detail": {
+        "minimum_scene_psnr_db": [
+          59.512,
+          62.671,
+          63.307
+        ],
+        "worst_frame_indices": [
+          0,
+          150,
+          300
+        ],
+        "blank_frame_indices": [],
+        "scene_frames": [
+          [
+            0,
+            149
+          ],
+          [
+            150,
+            299
+          ],
+          [
+            300,
+            449
+          ]
+        ],
+        "method": "All 450 decoded frames compared at 192x108 to decoded scene references; corroborates transition and scene identity, not product authenticity."
+      }
+    },
+    {
+      "check": "sources_and_acceptance_unchanged_after_checks",
+      "result": "PASS"
+    }
+  ],
+  "commands": {
+    "probe": [
+      "/opt/homebrew/bin/ffprobe",
+      "-v",
+      "error",
+      "-count_frames",
+      "-show_entries",
+      "stream=codec_type,codec_name,width,height,pix_fmt,avg_frame_rate,nb_read_frames,duration:format=duration,size",
+      "-of",
+      "json",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mommy_and_me_15s_silent_draft_v2.mp4"
+    ],
+    "full_decode": [
+      "/opt/homebrew/bin/ffmpeg",
+      "-hide_banner",
+      "-v",
+      "error",
+      "-xerror",
+      "-i",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mommy_and_me_15s_silent_draft_v2.mp4",
+      "-f",
+      "null",
+      "-"
+    ],
+    "all_frame_scene_check": [
+      "/opt/homebrew/bin/ffmpeg",
+      "-hide_banner",
+      "-v",
+      "error",
+      "-i",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mommy_and_me_15s_silent_draft_v2.mp4",
+      "-vf",
+      "scale=192:108",
+      "-pix_fmt",
+      "rgb24",
+      "-f",
+      "rawvideo",
+      "-"
+    ]
+  },
+  "visual_review": {
+    "method": "Viewed actual 360x203 QA opening/middle/final frames, full 1920x1080 frames at 1.0/7.5/12.5 seconds, and the nine-frame contact sheet. Keyframe files were independently rebound to the MP4's decoded pixels.",
+    "frames_viewed": [
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_01.000s.png",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_07.500s.png",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_12.500s.png",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_01.000s.png",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_07.500s.png",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_12.500s.png",
+      "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/review_contact_sheet.jpg"
+    ],
+    "phone_legibility": "PASS at actual 360px width. Brand, scene headline and CTA are readable with strong dark-on-light contrast; no zoomed proof substituted for mobile inspection.",
+    "composition": "PASS. Top headline/brand and bottom CTA occupy separate bands outside each full photograph. No text overlays a face or garment. All displayed heads, hats, bodies and footwear remain within the source/photo rectangle.",
+    "scene_observations": [
+      {
+        "range_seconds": [
+          0,
+          5
+        ],
+        "source": "RGHM_landscape_v1.png",
+        "people": 2,
+        "observed": "Mother and child retain white sleeveless gathered tops, red gingham trousers, hats and full displayed poses. Garden image is contained without crop."
+      },
+      {
+        "range_seconds": [
+          5,
+          10
+        ],
+        "source": "TGHW_landscape_v1.png",
+        "people": 4,
+        "observed": "Four people retain blue/yellow/red/black Together-heart tops and full group pose. Outer adults, children's clothing and shoes remain visible."
+      },
+      {
+        "range_seconds": [
+          10,
+          15
+        ],
+        "source": "NSPR_landscape_v1.png",
+        "people": 2,
+        "observed": "Mother and child retain navy sprig dresses, gray cardigans and full displayed lengths. Upper hat margin remains tight in the accepted source, but no new crop is introduced."
+      }
+    ],
+    "transitions": "PASS. Direct cuts at frames 149→150 and 299→300 (5.000/10.000s) contain the correct complete photographs. All 450 reduced-resolution decoded frames match their scene references; no blank frame detected.",
+    "final_hold": "The final scene and Shop DressLikeMommy.com CTA remain visible through decoded frame 449 (14.9667s).",
+    "material_defects": [],
+    "revision_requested": false
+  },
+  "claim_review": {
+    "verdict": "PASS_WITH_LIMITS",
+    "observed_copy": [
+      "Dress Like Mommy",
+      "Matching Mommy & Me Styles",
+      "Explore Matching Family Styles",
+      "Choose Each Person's Size",
+      "Shop DressLikeMommy.com"
+    ],
+    "grounding": "Brand/domain and matching apparel imagery fit the current business. Individual size selection is consistent with the reviewed per-person product context. The video makes no whole-family bundle, included-accessory, material, price, stock, delivery, shipping, discount or performance claim.",
+    "price_claim": false,
+    "bundle_inclusion_claim": false,
+    "garment_motion_demonstration_claim": false,
+    "voice_or_music_claim": false
+  },
+  "sources": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_sources/generated/RGHM_landscape_v1.png",
+      "sha256": "93ffdfd063966ea230501ddf33be50cccc4d3739e0005a8043f87b152b2524b3",
+      "photo_rectangle": [
+        287,
+        232,
+        1633,
+        936
+      ],
+      "text_rectangles": [
+        [
+          550,
+          24,
+          1370,
+          108
+        ],
+        [
+          352,
+          125,
+          1567,
+          210
+        ],
+        [
+          385,
+          968,
+          1534,
+          1047
+        ]
+      ]
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_sources/generated/TGHW_landscape_v1.png",
+      "sha256": "75d607b1f19f98236c7ad34f818e28073505b6262c2fb1d8e48d9853320cec9b",
+      "photo_rectangle": [
+        289,
+        232,
+        1631,
+        936
+      ],
+      "text_rectangles": [
+        [
+          550,
+          24,
+          1370,
+          108
+        ],
+        [
+          332,
+          125,
+          1587,
+          210
+        ],
+        [
+          411,
+          968,
+          1509,
+          1030
+        ]
+      ]
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_sources/generated/NSPR_landscape_v1.png",
+      "sha256": "7200c549ea8dcdb0145434f615a8f08273eb1ae08267c36a14dbb98cb228a4b8",
+      "photo_rectangle": [
+        286,
+        232,
+        1634,
+        936
+      ],
+      "text_rectangles": [
+        [
+          550,
+          24,
+          1370,
+          108
+        ],
+        [
+          404,
+          125,
+          1516,
+          192
+        ],
+        [
+          385,
+          968,
+          1534,
+          1047
+        ]
+      ]
+    }
+  ],
+  "decoded_sample_bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_01.000s.png",
+      "sha256": "77282b6118b1a4fc0ec7ad210335c8d3900ed8ffac0bccb98beaaf0eade29d29",
+      "mobile_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_01.000s.png",
+      "mobile_sha256": "13fcfcea962360319b8c6a9d0e8d86d7156c48626b684b5ef8d854b4f6a90de3",
+      "requested_time_seconds": 1,
+      "fitted_source_psnr_db": 37.267
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_04.967s.png",
+      "sha256": "b6a9af24bc378e33cac86c915546094bbb8437c59529e77438db606ffe7f98fc",
+      "mobile_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_04.967s.png",
+      "mobile_sha256": "0420a8428dd71fba210f57de89dbf2ec90c6503ca6f17abd54ced088a969ba79",
+      "requested_time_seconds": 4.966667,
+      "fitted_source_psnr_db": 37.278
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_05.000s.png",
+      "sha256": "666f118ebec033b49bbd0705da77d84331e097e40106ff219fd36a51bda4bf70",
+      "mobile_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_05.000s.png",
+      "mobile_sha256": "2a327d443a7502f9376c3fbfffe758b04389c389b059164dddd7e6b1c218c025",
+      "requested_time_seconds": 5,
+      "fitted_source_psnr_db": 36.417
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_07.500s.png",
+      "sha256": "37a48840f569e4948a44cb91cc7e0143edb8d61f3f8cb9b0ceb97b6883b99939",
+      "mobile_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_07.500s.png",
+      "mobile_sha256": "414fd64a771c8012fa23f7fac61f23aeda599c8855ed2f0e1e29f6e6b729ba42",
+      "requested_time_seconds": 7.5,
+      "fitted_source_psnr_db": 36.531
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_09.967s.png",
+      "sha256": "12bc7d0b9b38ba38511499a5985db4e5f6cf9ef8b5491027f24c7fd20cef5cfc",
+      "mobile_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_09.967s.png",
+      "mobile_sha256": "20471e7576190e80bf8cf04faf95f01a0d7c3ec143b18b84d609c90d65d45134",
+      "requested_time_seconds": 9.966667,
+      "fitted_source_psnr_db": 36.529
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_10.000s.png",
+      "sha256": "096a0bdb384b67e95653f3287f31c53c73fe53cfd86aa01c3faa6b254ea34f55",
+      "mobile_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_10.000s.png",
+      "mobile_sha256": "c7f3c3d43e8733dea662ce9197d334bf98aa626207222d980e85a47d2d1df0e8",
+      "requested_time_seconds": 10,
+      "fitted_source_psnr_db": 41.703
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_12.500s.png",
+      "sha256": "a54416d1d7d1e80df730d31701297e270bec62bab5d14af39f3736ca31a679b3",
+      "mobile_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_12.500s.png",
+      "mobile_sha256": "93ada395b3cbccd2a70775484de307e3d644fd24876c9f6010b4d2feaa62e5af",
+      "requested_time_seconds": 12.5,
+      "fitted_source_psnr_db": 41.873
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_14.000s.png",
+      "sha256": "e5fd6033cbd94b41fbb5e76079bb2524bfbff3d8fb9d5098180cdf9abae3dc6a",
+      "mobile_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_14.000s.png",
+      "mobile_sha256": "bf346e812d8408838179ced078a0fb9f1215dd696b9c6b9904a38521f22172d6",
+      "requested_time_seconds": 14,
+      "fitted_source_psnr_db": 41.865
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/keyframes/frame_14.967s.png",
+      "sha256": "9c1c7c5b32905a263d8de262abb15835a95485ec1430d80a89d123bb7eeef3d0",
+      "mobile_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/mobile_qa/frame_14.967s.png",
+      "mobile_sha256": "b4d41e00f7fde17cc14e2912f7d1df49d1ad35fd6b583002ca81af03fadbda07",
+      "requested_time_seconds": 14.966667,
+      "fitted_source_psnr_db": 41.866
+    }
+  ],
+  "producer_receipt_hashes": {
+    "manifest.json": "4a5c0e5ba5d9520d4f887e8a40499dacd2c0a910913248a62a3e3d7ac60d597b",
+    "VALIDATION.json": "c0cb3e23db59a2adb12c8f3ecd22d8d55ba2b08406919c367bc7bc010ac0becb",
+    "PRODUCER_REVIEW.json": "e32092269a1996be8ec77dba61a0ffe4a46241dde41deb7e02b15be7bba3e527",
+    "V1_PRESERVATION.json": "553111f9aabc9f18713b93d96cb5742d8430a4a3bd856b7541c1e69c88d60500",
+    "ffprobe.json": "82fc2a1f2859ef8455c9127b6cc57f462bbea4973b1774affe2cfc5f8a50ac1a",
+    "decode_validation.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "render_video_v2.py": "16a33f68aa9b08b65e23ad9d760ab52697317f33869956d7ce022c68ee94c7a1",
+    "review_contact_sheet.jpg": "1ba42db0c2c7401b8ef34efbe61e6bc34b3a8cccc23b580731103e8cb944b48f"
+  },
+  "v1_preservation": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/v2/V1_PRESERVATION.json",
+    "sha256": "553111f9aabc9f18713b93d96cb5742d8430a4a3bd856b7541c1e69c88d60500",
+    "matched_count": 19,
+    "artifacts": [
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/ffprobe.json",
+        "sha256": "776801dc13dd2403f6db519470a3888a273ae1ffa8a96b3762809bb10760ba90",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/REPORT.md",
+        "sha256": "8173821d93e31e50de9a11a35b9dc6cfe8b6e4b580946cbf5021382234cc18a5",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/decode_validation.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/mommy_and_me_15s_silent_draft.mp4",
+        "sha256": "afeb858bfae07607085019d59477ad2ecef20fa584cfb93756193921b1d39614",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/VALIDATION.json",
+        "sha256": "3643d94bba7a1e48781031404a965de843a2d65b5b8d6c2ec35a1762f8b827de",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/review_contact_sheet.jpg",
+        "sha256": "9f779d894937c52d95b6f667e8e9ec11b09501ea14fec410a8cb710131e976de",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/manifest.json",
+        "sha256": "2b9b6ef65fd6e50d16212890ca357139d506f6a7908958b4e2e98fa1f8f8d6b9",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/render_video.py",
+        "sha256": "d1e0f6c65df1219ccf8ca8fdd31c920e1246744fa8abb2a458ffba52e7b24b60",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/encode.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/ffmpeg_version.txt",
+        "sha256": "a3cc2cb9d7a2400acfc1aae85fea17ccbdc9f3a4741262be16b3b1cccf902ca5",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/keyframes/frame_10.300s.png",
+        "sha256": "a14acfe774fc3228aed05c45961818e4b0af0099cc72b414953b24b3faa1132c",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/keyframes/frame_07.500s.png",
+        "sha256": "e2baa839ff0435edd98246be98bb0855109cc9fc086e94204ab78814a0233b69",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/keyframes/frame_14.900s.png",
+        "sha256": "8e503248c8d914d94f4d115fc64b10d93790cacad94cb40b05d5605ee33d4c71",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/keyframes/frame_04.967s.png",
+        "sha256": "d7ae12f9b9598dca5b8ca1541deab6fcf16c9f52ae95e42940f2ace0bd95d2cc",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/keyframes/frame_05.300s.png",
+        "sha256": "e633f495c8206bbb20fda4130a492bac87edff0f2083c0207918bb8fbd020702",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/keyframes/frame_12.500s.png",
+        "sha256": "8b76f396cb978d01e4b984b23b8e29b0e407d39799f7f64e82698ccc2eb0e213",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/keyframes/frame_01.000s.png",
+        "sha256": "b1943f8b1c611598c621e574658c9ea90f4046a7be304a0628e094a84ae1f49f",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/keyframes/frame_04.700s.png",
+        "sha256": "486dafdf0fb8df72f71947c00c6808e85fda04fafb209d87d0b2ed156ad5f7bd",
+        "matches_recorded_before": true
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/creative_video/keyframes/frame_09.967s.png",
+        "sha256": "5117c8f77dae29fb80b4f392c727f307a08c791fd4997cf22922a20cbcdf09aa",
+        "matches_recorded_before": true
+      }
+    ],
+    "limitation": "Current files independently match the producer's recorded pre-v2 hashes; the reviewer did not independently capture that earlier before-state."
+  },
+  "limits": [
+    "Silent 15-second photo montage. No garment motion, drape demonstration, voice, music or filmed-model performance is claimed.",
+    "English creative for the current campaign scope only. This does not approve multilingual or other-market reuse.",
+    "Underlying accepted generated images retain resynthesized fine-detail limits, especially the low-resolution NSPR original. H264 resampling/encoding is not exact source-pixel preservation or new proof of fabric, fit, construction, accessories or availability.",
+    "Phone legibility was checked at 360x203 using decoded QA frames, not a live Google player. Smaller players, actual placement overlays and automatic platform crops remain untested.",
+    "No Google upload, publication, ad acceptance, Excellent Ad Strength, conversion uplift, ROAS or profit has been verified.",
+    "Root's normal Google identity gate and separate exact account-write authority remain binding. The current campaign remains outside this reviewer's control."
+  ],
+  "material_corrections_remaining": [],
+  "next_action": "Root retains this exact v2 file in the prepared campaign repair packet; any later upload requires the normal resolved account identity and exact execution/readback scope. No additional creative revision is requested.",
+  "continuation_prompt": "Use only the reviewed video hash; preserve campaign authority and validate actual platform playback/crop/association if a later upload is authorized."
+}

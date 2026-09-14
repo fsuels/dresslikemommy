@@ -329,11 +329,33 @@ class TranslationBackend:
         translated = "".join(translator.translate(segment) for segment in segments)
         return f"{lead}{self._restore(translated, replacements)}{trail}"
 
+    def _http_translate_oversized(self, locale, protected):
+        """Translate protected long-form copy with a timeout per segment.
+
+        A single timeout around the complete document is too short for bodies
+        containing large size-chart tables. Keeping each protected segment in
+        the existing POST path preserves retry behavior while giving every
+        network request its own bounded timeout.
+        """
+        translated_segments = []
+        for segment in self._split_long_text(protected):
+            translated_segment = None
+            for attempt in range(1, self.retries + 1):
+                try:
+                    translated_segment = self._http_translate_batch(locale, [segment])[0]
+                    break
+                except Exception:
+                    if attempt >= self.retries:
+                        raise
+                    time.sleep(min(3.0, 0.6 * attempt))
+            translated_segments.append(translated_segment)
+        return "".join(translated_segments)
+
     def _translate_single_uncached(self, locale, text, save=True, skip_http_batch=False):
         locale_cache = self.cache.setdefault(locale, {})
         if text in locale_cache:
             cached = locale_cache[text]
-            if not self._contains_placeholder_tokens(cached):
+            if cached is not None and not self._contains_placeholder_tokens(cached):
                 cleaned_cached = self._postprocess(locale, cached)
                 if cleaned_cached != cached:
                     locale_cache[text] = cleaned_cached
@@ -353,6 +375,8 @@ class TranslationBackend:
             try:
                 if not skip_http_batch and len(protected) <= self.batch_char_limit:
                     translated_core = self._http_translate_batch(locale, [protected])[0]
+                elif not skip_http_batch:
+                    translated_core = self._http_translate_oversized(locale, protected)
                 else:
                     translator = GoogleTranslator(source="en", target=self._target_code(locale))
                     translated_core = "".join(translator.translate(segment) for segment in self._split_long_text(protected))
@@ -401,14 +425,18 @@ class TranslationBackend:
         for text in texts:
             order.append(text)
             cached = locale_cache.get(text)
-            if text in locale_cache and not self._contains_placeholder_tokens(cached):
+            cache_hit = (
+                text in locale_cache
+                and cached is not None
+                and not self._contains_placeholder_tokens(cached)
+            )
+            if cache_hit:
                 cleaned_cached = self._postprocess(locale, cached)
                 if cleaned_cached != cached:
                     locale_cache[text] = cleaned_cached
                     cache_dirty = True
-            if text not in locale_cache or self._contains_placeholder_tokens(locale_cache.get(text)):
-                if self._contains_placeholder_tokens(cached):
-                    locale_cache.pop(text, None)
+            else:
+                locale_cache.pop(text, None)
                 missing.append(text)
 
         if cache_dirty:

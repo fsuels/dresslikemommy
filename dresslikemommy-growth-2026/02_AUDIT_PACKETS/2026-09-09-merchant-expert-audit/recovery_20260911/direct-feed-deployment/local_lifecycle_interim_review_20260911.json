@@ -1,0 +1,325 @@
+{
+  "review_id": "DLM-US-LOCAL-LIFECYCLE-INTERIM-20260911",
+  "reviewed_at_utc": "2026-09-11T20:39:51Z",
+  "verdict": "FEASIBLE_MATERIALLY_SAFER__EXACT_EXECUTION_PACKET_REQUIRED",
+  "execution_approval": "NOT_GRANTED_BY_THIS_FEASIBILITY_REVIEW; no concrete local uploader command or its concurrency guard was supplied in the reviewed packet.",
+  "independence": {
+    "reviewer": "/root/order_delta_1934",
+    "production_writer": "Merchant 01a08706-c63a-7e01-ba48-7777bcb1788a",
+    "root_integrator": "/root",
+    "account_native_queries": 0,
+    "source_network_queries": 0,
+    "uploader_or_deploy_runs": 0,
+    "credentials_inspected": false,
+    "code_or_automation_edits": 0,
+    "only_write": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim_review_20260911.json"
+  },
+  "authority_assessment": {
+    "current_scope": "Current nonspend active-product/lifecycle authority may support maintaining the existing US free-listing source through the same authorized local publisher, after exact action-time review. Parent/scheduler owners retain existing cadence and dispatch rules.",
+    "prior_rejection": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_activation_gate.json",
+      "at_utc": "2026-09-11T16:13:18.071743+00:00",
+      "effect": "Store Shopify credential in a Cloudflare Worker plus create Queue and deploy hourly reader. Rejected action did not execute; saved fallback explicitly offered keeping credential on Mac."
+    },
+    "material_difference": "Local Shopify reads continue to send the token only to the expected myshopify.com Admin API. Cloudflare receives only the reviewed public feed and manifest through existing local Cloudflare authorization. No new secret destination, queue, Worker deployment, credential binding or scheduler is needed by this approach. This does not authorize retrying the rejected cloud action."
+  },
+  "exact_scope": {
+    "shop_id": "gid://shopify/Shop/15571635",
+    "shop_domain": "dresslikemommy-com.myshopify.com",
+    "api_version": "2026-07",
+    "merchant_account": "513542500",
+    "merchant_source": "10727274744",
+    "source_name": "PRODUCTS SOURCE 3",
+    "market": "us-en",
+    "country": "US",
+    "locale": "en",
+    "currency": "USD",
+    "feed_label": "US",
+    "marketing_methods": [
+      "Free listings"
+    ],
+    "row_excluded_destination": "Shopping_ads",
+    "cloudflare_account": "6b1df53f8a1ce4b5b5312f833a2cd966",
+    "bucket": "dlm-merchant-feeds",
+    "pointer_key": "merchant/us-en/current.json",
+    "public_feed_url": "https://dlm-merchant-feed-worker.dresslikemommy.workers.dev/feeds/us-en.tsv",
+    "config_sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b",
+    "au_ca_gb_enabled": false,
+    "return_labels_emitted": false,
+    "other_source_scope": "Content API, Google-discovered products and other-country sources are not owned or changed by this US pointer refresh."
+  },
+  "verified_existing_evidence": {
+    "frozen_files": 28,
+    "freeze_manifest_sha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed",
+    "last_proved_hosted_sha256": "6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5",
+    "last_proved_hosted_rows": 4923,
+    "hosted_publish_completed_at": "2026-09-11T17:20:27.572249+00:00",
+    "hosted_fresh_readback_completed_at": "2026-09-11T17:21:36.564910+00:00",
+    "last_saved_source_completed_at": "2026-09-11T17:15:54.083Z",
+    "google_received_file_timestamp": "2026-09-11T19:45:38Z",
+    "google_receipt_scope": "Exact 4923-row file and five effective prices at that dated read; not evidence of a currently running lifecycle or product approval.",
+    "code_controls": [
+      "collector.js validates identity, exact active counts, complete parent/variant pagination, duplicate/cursor detection, final parent/publication manifest, locales and contextual market/catalog consistency.",
+      "createAdminReader targets the configured Shopify domain, forbids redirects, sends only read-only GraphQL operations and stops on authentication/scope/schema/throttle errors; one server-error retry is bounded.",
+      "generator.js removes unavailable or unpublished/context-excluded offers, uses exact USD contextual prices, rejects malformed variants as a whole-feed failure, calculates lifecycle ID differences and forces Shopping_ads exclusion.",
+      "bin/build.mjs writes only local candidate files after validation. It defaults to config.example.json unless --config is explicit and previous IDs are absent unless --previous-manifest is explicit.",
+      "src/host.js is the unchanged read-only host: exact immutable key, ETag, length and context verification, no Shopify token/cron; rejects source age over48hours with503.",
+      "worker/checkpoint helpers have conditional pointer writes, job/config checks and120minute job expiry, but their existence does not prove the separate local uploader applies those controls. verify-queue.mjs is a local rehearsal, not a deployed or persistent scheduler."
+    ]
+  },
+  "required_order_of_operations": [
+    "Parent evaluates whether the existing Merchant continuation is due and useful; retain the existing30minute heartbeat, maximum2grounded owner continuations per wake, active/idle checks and all peer ownership. Do not add a scheduler or second harness. Merchant is the only US feed writer.",
+    "Freeze the existing local uploader path/hash and exact prepare/promote/readback invocations for independent review. Bind the reviewed frozen US config, actual us-en market, separate fresh output directory and current remote manifest. Read current pointer identity/hash/ETag and host/source scope through the approved existing path before any replacement; fail on drift or an active competing writer.",
+    "Use the existing authenticated local reader with fresh schema validation as required and an explicit frozen --config and --previous-manifest. Complete one coherent source scan. Stop on auth/scope/schema/throttle/timeout, wrong shop/catalog, incomplete or changing manifests, stale source or invalid feed. Do not reuse older candidate files after failure.",
+    "Independently validate candidate syntax, USD/US/en context, exact unique IDs and source counts, live eligibility for every add/remove, source-grounded prices, row-level changed fields and unchanged retained rows; compare with last complete pointer/TSV.4923 is the dated baseline, not a required future count. Hold unexplained zero/mass removal, price outliers, lost return-label policy contract, new supplier content or unsupported buyer routes. Preserve the existing separate UX landing-release gate.",
+    "If bytes changed, upload the exact reviewed immutable SHA-keyed object only, read back full bytes/hash/size and actual ETag, then promote current.json only after independent checks pass and before-state still matches. If bytes are identical, reuse the verified immutable object; a fresh complete scan may renew sourceCompletedAt through the same reviewed guarded pointer path. Never restamp an old snapshot without fresh source verification.",
+    "The actual local uploader must establish a supported conditional pointer update or documented single-writer exclusion spanning before-read through commit plus an immediate conflict check; do not assume Worker CAS applies to a REST uploader. A conflict stops promotion. Do not allow blind last-writer-wins or repeated commits after ambiguous outcomes.",
+    "Record after-state pointer, immutable object, hash, row deltas, source timestamps, unchanged Worker/deployment/config and prior rollback object. An uncertain upload is resolved by readback, not a blind retry; a staged immutable orphan is not live. Retain only bounded existing evidence and versions under the owning retention policy.",
+    "Google receiving remains a separate dated checkpoint on source10727274744. Existing daily fetch schedule is unchanged. Record successful destination fetch/file/hash/rows and effective changed offers before calling changes received; account approval, serving and sales remain separate. No source deletion/recreation, new foreign URL, manual refresh loop or paid write."
+  ],
+  "unchanged_content_freshness_rule": {
+    "why": "The host uses sourceCompletedAt, not TSV hash or object age. Skipping every write forever for unchanged bytes would cause503 after48hours.",
+    "allowed_design": "Reuse same immutable content only after a fresh successful complete source scan; independently bind current manifest and update its real verified source timestamp through the reviewed guarded path.",
+    "prohibited": "Refreshing timestamps from the previous snapshot, polling timestamps only, weakening maxFeedAgeHours or claiming freshness from an unchanged hash alone."
+  },
+  "single_writer_and_idempotency": {
+    "preserve": "Merchant owns bucket merchant/us-en/current.json; parent dispatches work but does not publish. No overlap with rejected Worker job, another local run, manual Merchant refresh packet or other market publishers.",
+    "same_job_retry": "First compare current pointer/object with the exact intended hash and source verification time; if already committed, verify and record completion without duplicate mutation.",
+    "important_gap": "Local CLI does not itself implement scheduler ownership, a process lock, remote conditional update or publish transaction; uploader details must be reviewed before action."
+  },
+  "failure_and_rollback": {
+    "before_promotion": "Any incomplete/failed read, failed validation, mismatch or failed immutable verification leaves the last known complete pointer unchanged. Never publish an empty/partial fallback.",
+    "after_promotion": "Verify actual before/after first. Restore only a retained independently valid complete US manifest/object when supported by current source truth and the same guarded writer path. Do not automatically revert to the old known-broken229918.99prices or a source-stale version. A fresh corrected build may be required instead of rollback.",
+    "google_limit": "Restoring the hosted pointer is not an immediate Google rollback. Subsequent successful fetch/processing/effective-offer readback is necessary. Host503 also is not proof that Google stopped displaying its previously received data.",
+    "privacy": "No credentials, customer/order data or source/vendor URLs in public feed, diagnostics or report; credential file contents are never emitted or sent to Cloudflare."
+  },
+  "availability_and_lag": {
+    "local_dependency": "The Mac must be powered/awake, Codex app/local automation must be able to run, network access and the existing Shopify/Cloudflare authorizations must remain valid. This is an interim local operation, not always-on server automation.",
+    "while_mac_offline": "The existing Cloudflare read-only host can serve its last verified object independently until the configured48hour source-age limit. Local reads and refreshes cannot run while the host is asleep/offline; do not claim a guaranteed cadence.",
+    "google_cadence": "Saved scheduleEvery24hours12AM; hosted changes may await the next successful Google fetch and further processing. No instantaneous addition/removal or service-level timing promised.",
+    "cadence_gap": "Existing parent30minute heartbeat is not evidence of a wired or completed local feed run. Actual command, owner dispatch and completed run/readback must be recorded. No scheduler activation is included."
+  },
+  "remaining_unknowns": [
+    "Exact existing local uploader implementation/path/hash and reviewed command arguments, including scope restriction, process exclusion, compare-before-promotion behavior, conditional-write support and uncertain-write recovery.",
+    "Fresh remote pointer/hash/ETag, deployed host/config/no-Shopify-secret state and current Merchant source ownership at the actual action time; this review used dated saved receipts only.",
+    "New source catalog contents, row-by-row lifecycle changes and buyer-route acceptance for any additions at the next scan. Existing known MAIN numeric-variant issue remains the separate UX gate; a valid link string is not acceptance.",
+    "Operational local runtime availability and bounded due/timeout/recovery policy integrated by current parent/scheduler owner; no new lifecycle run has been executed in this review.",
+    "Independent next-run validation and destination receiving proof; the last proven Google receipt is datedSeptember11, not evidence of automatic ongoing refresh.",
+    "AU/CA/GB require their own qualified hosted route/config/native-source and buyer-market release evidence. No URL or native source is invented by this review."
+  ],
+  "checks": {
+    "exact_us_only_enabled_config": true,
+    "exact_shop_and_domain": true,
+    "return_labels_remain_disabled": true,
+    "saved_rejection_is_cloud_credential_activation": true,
+    "known_readonly_host_has_no_schedule_or_shopify_token": true,
+    "prior_local_publish_no_shopify_transfer_no_deploy": true,
+    "prior_immutable_before_pointer_verified": true,
+    "exact_existing_bucket_pointer": true,
+    "actual_google_source_account_match": true,
+    "google_free_listings_scope_only": true,
+    "google_received_same_published_bytes": true,
+    "google_daily_fetch_retained": true,
+    "source_and_feed_age_controls": true,
+    "reader_sends_token_only_exact_shopify_endpoint": true,
+    "local_cli_contains_no_remote_publisher": true,
+    "review_report_is_new": true
+  },
+  "check_summary": {
+    "frozen_file_checks_passed": 28,
+    "frozen_file_checks_total": 28,
+    "scoped_review_checks_passed": 16,
+    "scoped_review_checks_total": 16,
+    "execution_checks": "NOT RUN"
+  },
+  "source_files": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/freeze_manifest.json": {
+      "sha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed",
+      "bytes": 5738
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/config.json": {
+      "sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b",
+      "bytes": 2224
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/README.md": {
+      "sha256": "8bfb003c0de382ed0bb0b9eac7e3645ac91e7412056442d0b76a656c2bc493be",
+      "bytes": 4721
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/bin/build.mjs": {
+      "sha256": "08cfbfcbb4574507a5bb1ec52502eb9dcfa6b4a6e20ff81475cb4d7f3ce6ef83",
+      "bytes": 4458
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/bin/verify-queue.mjs": {
+      "sha256": "b07372ca7449bdb47eb1ac0725187a03fa470a9f555140f2117d55c7c56c275e",
+      "bytes": 7142
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js": {
+      "sha256": "81748e4882ecb5b3b414db997f1902eb730c2ff612937f1c9cacb74ab6e3cb6d",
+      "bytes": 9583
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js": {
+      "sha256": "7eed96af11540a1b455b006fc04ccf51c268d8b674e35696a1f32a8a24957d84",
+      "bytes": 19653
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/queries.js": {
+      "sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+      "bytes": 4226
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/host.js": {
+      "sha256": "666883d2d62989ef57f11e2a4b2ac5f067c2fc68478b14db908d219c5e7c6518",
+      "bytes": 2942
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/worker.js": {
+      "sha256": "5fef8fa3755c3926b401bc1ed63df9ed8a5dec6c211d0ff85093f50bef0ecef8",
+      "bytes": 8094
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/checkpoint.js": {
+      "sha256": "9f1c52ec14d1dd899bf79855a9210d1a2269cf946320864901959b21cc7b5d89",
+      "bytes": 10815
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/stream-publish.js": {
+      "sha256": "bf49e3dedc35120edba1c6483260e1739f3953e92cca320f362a8c863afa508e",
+      "bytes": 2830
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/automation.js": {
+      "sha256": "d85d465ff5fe7ae0b9f2f564c6c30a11416b782e7a161509365770e7f3cb4be5",
+      "bytes": 882
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/readiness.json": {
+      "sha256": "8bb7ca29134c5c0968426e7bb57d8074ba72a479fe402d44f7183191b0655526",
+      "bytes": 3406
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_activation_gate.json": {
+      "sha256": "a1b8b7ad4b3541070b6c0c0c3f0b9625a598fb83ca155916f6e746bc21d41eb9",
+      "bytes": 828
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/host_deploy_receipt.json": {
+      "sha256": "107cbe6b34e98679e04436eb6358c52141393fdfd6d27708b2071854dbef3661",
+      "bytes": 1600
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/scheduled_source_plan.json": {
+      "sha256": "05ce573e6ee526d980c33fa4d9ed8b74f70011c7440c0bebd28245b1277396ff",
+      "bytes": 1328
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/feed_prepare_receipt.json": {
+      "sha256": "267610d78a10c0770c2f07bbc14e21cd56e1e86f5ce867cfca591829bd5a8aa4",
+      "bytes": 1286
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/feed_publish_intent.json": {
+      "sha256": "51d7da73544a9b581748e41b594c84b12fc4bbe04333a17a7a55b223507fa1f0",
+      "bytes": 397
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/feed_publish_receipt.json": {
+      "sha256": "cb73a3c8a4947ec712cdff9943c418d82c112c16b0253bf5d35ca99119d2420d",
+      "bytes": 1890
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/feed_readback_receipt.json": {
+      "sha256": "83a388396eed4ba965ebcf73043e50246febf6d15072035ab1639187cc110ba0",
+      "bytes": 717
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/price_correction_approved_20260911/google_price_receipt_20260911.json": {
+      "sha256": "7cbb9ef49c9c809735d3b1780a5766bf4de20ef55190af2ed7efee410b527702",
+      "bytes": 6372
+    }
+  },
+  "next_action": "Merchant supplies the exact existing local uploader and execution packet so root/independent reviewer can clear its concrete promotion and recovery controls; then integrate only into the existing due-work path. No generic cloud-credential approval request is required for this narrower design, and no unreviewed command is approved.",
+  "review_updates": [
+    {
+      "at_utc": "2026-09-11T20:46:43Z",
+      "prior_review_file_sha256": "49362490b8cbf50777728d2d3ebcd7271a052aa848da3a27965504dd2c8422ab",
+      "verdict": "OLD_PUBLISHER_INSPECTED__SUCCESSOR_EXECUTABLE_REVIEW_PENDING",
+      "provided_source": {
+        "path": "/private/tmp/dlm-merchant-approved-feed-refresh.py",
+        "bytes": 6547,
+        "sha256": "af51ff10c16ffc0a910fc5cd66d1cb19235be05d6c7642067a79d66805920624",
+        "scope": "Source inspection only; credential contents were not read and script was not executed."
+      },
+      "material_findings": [
+        {
+          "status": "VERIFIED",
+          "finding": "The existing script is deliberately five-price-only. It fixes the4923 count,17166442bytes,6ce4404 SHA, old review status and first-release before-state; unchanged reuse is invalid for general lifecycle.",
+          "lines": [
+            9,
+            16,
+            36,
+            47
+          ]
+        },
+        {
+          "status": "VERIFIED",
+          "finding": "Immutable file PUT is followed by full byte count/SHA/MD5 readback, then current pointer re-read before promotion; after-save pointer and Worker metadata are read back. These useful controls should be retained.",
+          "lines": [
+            49,
+            60
+          ]
+        },
+        {
+          "status": "VERIFIED",
+          "finding": "Old script has no fcntl lock and no remote conditional PUT. A last pointer GET reduces but does not remove the GET/PUT race; Worker drift is currently checked before object upload and after pointer promotion, not immediately before promotion.",
+          "lines": [
+            49,
+            60
+          ]
+        },
+        {
+          "status": "VERIFIED",
+          "finding": "Old prepare rejects any existing immutable candidate object and old publish rejects any prior intent. That prevents blind repeats but lacks safe no-change renewal or crash-recovery classification.",
+          "lines": [
+            36,
+            47
+          ]
+        },
+        {
+          "status": "VERIFIED",
+          "finding": "Default urllib.request.urlopen accepts redirects; successor should explicitly reject redirects so Cloudflare authorization cannot move to an unreviewed origin. No credential content was inspected.",
+          "lines": [
+            25,
+            29
+          ]
+        },
+        {
+          "status": "VERIFIED",
+          "finding": "Old code does not validate source age again at publish and does not bind a fresh lifecycle review. The successor must check current snapshot/manifest/source completion and independent approval for exactly the target bytes.",
+          "lines": [
+            9,
+            16,
+            46,
+            57
+          ]
+        }
+      ],
+      "successor_minimum_conditions": [
+        "Provide exact successor path/hash, manifest/config/query/build hashes, explicit US prepare/promote/readback commands and narrowly relevant offline tests before executable review. No command is approved by this update.",
+        "Keep Shopify credential local and the fixed Cloudflare API account/bucket allowlist. Disallow redirects. Never log raw auth, credentials or unsafe request/error content.",
+        "Use one stable fcntl lock shared by every allowed local US publisher. Hold it from final before-read through immutable handling, immediate pointer AND Worker recheck, promotion and persisted after-readback. Document that the old script and any non-cooperating publisher cannot run concurrently under the sole-writer claim.",
+        "Do not claim REST CAS or global atomic exclusion: fcntl covers cooperating local processes only. Any remote/config/deployment drift, unexpected writer or inability to establish exclusion stops promotion. Immediate exact pointer/Worker checks and post-readback remain mandatory.",
+        "Verify candidate immutable bytes before pointer promotion. A failed or partial upload preserves current.json. If the object already exists and exactly matches, reuse it; mismatching bytes under a SHA key are an integrity stop, never overwritten.",
+        "After a lost write response or restart, read actual pointer/object state: intended commit already present means verify and complete without another PUT; original pointer plus verified staged object may resume only under fresh exclusion, review and age checks; other state is a conflict. Never delete the intent or regenerate it merely to retry.",
+        "Compare changes against the actual current remote manifest. Bind independent review to exact candidate and before hashes, freshness, valid complete source scan and USD/US/en scope. Hardcoded4923 is replaced by grounded new counts and exact add/remove/retained-field validation, not by an unrestricted count bypass.",
+        "For unchanged TSV bytes, reuse the object but renew sourceCompletedAt only from a fresh complete validated scan. Enforce source age again just before promotion. Avoid re-uploading unchanged bytes and do not restamp old evidence.",
+        "Keep Worker deployment, schedule, configuration, Shopify tokens, foreign markets and native Merchant source settings untouched. Current host caches successful reads for300seconds; remote object/pointer proof and later Google receipt remain separate from immediate cached public output.",
+        "Offline tests should falsify stale source, changed config/candidate/review, incomplete/zero/unexplained-removal data, concurrent lock acquisition, pointer or Worker drift, wrong account/market, failed/ambiguous upload, wrong immutable hash, same-hash freshness renewal and interrupted post-commit recovery. Tests must use simulated I/O and cannot call credentials, live APIs or upload."
+      ],
+      "next_action": "Merchant supplies its narrow successor and exact offline evidence. Independently review that concrete artifact; preserve this provisional history and prior report.",
+      "checks": {
+        "actual_old_uploader_exact_bytes_hash": true,
+        "hardcoded_five_price_contract_present": true,
+        "before_bound_to_original_manifest": true,
+        "immutable_full_bytes_verified_before_pointer_put": true,
+        "pointer_drift_rechecked_after_upload": true,
+        "worker_checked_before_upload_and_after_commit": true,
+        "no_local_lock_or_rest_cas_claim_in_old_code": true,
+        "old_existing_object_blocks_same_hash_reuse": true,
+        "old_intent_guard_blocks_blind_repeat": true,
+        "old_default_urlopen_no_redirect_restriction": true,
+        "no_shopify_credential_file_read_by_old_uploader": true,
+        "successor_not_yet_present_at_review": true
+      },
+      "check_summary": {
+        "passed": 12,
+        "total": 12
+      },
+      "execution_or_credentials_read": "NOT RUN"
+    }
+  ]
+}

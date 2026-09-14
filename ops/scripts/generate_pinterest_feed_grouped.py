@@ -11,6 +11,8 @@ Output schema follows Pinterest's catalog spec, which accepts the same
 columns as Google Merchant: id, item_group_id, title, description, link,
 image_link, additional_image_link, availability, price, sale_price, brand,
 condition, google_product_category, product_type, gtin, mpn, custom_label_*.
+Rows without a checksum-valid GTIN are emitted with blank `gtin` and
+`identifier_exists=no` for Pinterest-only feed quality.
 
 This script is READ-ONLY against Shopify Admin GraphQL. It does NOT mutate
 any product, variant, channel, source, catalog, campaign, billing, theme,
@@ -42,6 +44,7 @@ import textwrap
 import time
 from pathlib import Path
 from typing import Iterable
+from urllib.parse import urlencode
 
 try:
     import urllib.request
@@ -67,6 +70,19 @@ SUPPLIER_BLOCK_HOSTS = (
     "taobao.com",
     "tmall.com",
 )
+
+STOREFRONT_BASE_URL = "https://www.dresslikemommy.com"
+PUBLIC_COLLECTION_PAGE_SIZE = 250
+
+# Paid-lane labels are intentionally based on the storefront collection intent,
+# not on broad product_type/category labels. Priority resolves overlap once.
+PAID_LANE_COLLECTION_HANDLES = {
+    "mommy_and_me": ("mommy-and-me",),
+    "family_matching": ("new-women-outfits",),
+    "daddy_and_me": ("daddy-me-shirts", "daddy-me-t-shirts"),
+}
+PRIMARY_PAID_LANE_PRIORITY = ("daddy_and_me", "family_matching", "mommy_and_me")
+PAID_LANE_LABEL_VERSION = "collection_intent_v20260520"
 
 
 def fatal(msg: str) -> "Exception":
@@ -191,8 +207,91 @@ def parent_link(handle: str, market_handle: str) -> str:
     # For per-market Shopify Markets the public storefront uses /<locale-or-market-prefix>/products/<handle>.
     # The owner-approved expert-level behavior is to emit the canonical PDP URL.
     # Pinterest will respect Shopify Markets country/currency redirects automatically.
-    base = "https://www.dresslikemommy.com"
-    return f"{base}/products/{handle}"
+    return f"{STOREFRONT_BASE_URL}/products/{handle}"
+
+
+def fetch_collection_product_handles(collection_handle: str) -> set[str]:
+    """Read public storefront collection membership by product handle.
+
+    The Pinterest lane labels should match what shoppers can browse. This uses
+    Shopify's public products.json endpoint and never mutates Shopify state.
+    """
+    handles: set[str] = set()
+    page = 1
+    while True:
+        query = urlencode({"limit": PUBLIC_COLLECTION_PAGE_SIZE, "page": page})
+        url = f"{STOREFRONT_BASE_URL}/collections/{collection_handle}/products.json?{query}"
+        req = urllib.request.Request(url, headers={"Accept": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                payload = json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:  # pragma: no cover
+            raise fatal(f"Storefront collection HTTP {e.code} for {collection_handle}")
+        products = payload.get("products") or []
+        for product in products:
+            handle = safe(product.get("handle"))
+            if handle:
+                handles.add(handle)
+        if len(products) < PUBLIC_COLLECTION_PAGE_SIZE:
+            break
+        page += 1
+        time.sleep(0.1)
+        if page >= 40:
+            raise fatal(f"too many pages while reading collection {collection_handle}")
+    return handles
+
+
+def build_paid_lane_map() -> tuple[dict[str, dict[str, str | list[str]]], dict]:
+    """Build handle -> primary lane/memberships from storefront collection intent."""
+    lane_handles: dict[str, set[str]] = {}
+    collection_counts: dict[str, dict[str, int | list[str]]] = {}
+    for lane, collection_handles in PAID_LANE_COLLECTION_HANDLES.items():
+        merged: set[str] = set()
+        per_collection_counts: dict[str, int] = {}
+        for collection_handle in collection_handles:
+            handles = fetch_collection_product_handles(collection_handle)
+            merged.update(handles)
+            per_collection_counts[collection_handle] = len(handles)
+        lane_handles[lane] = merged
+        collection_counts[lane] = {
+            "collection_handles": list(collection_handles),
+            "collection_counts": per_collection_counts,
+            "unique_handles": len(merged),
+        }
+
+    all_handles = set().union(*lane_handles.values()) if lane_handles else set()
+    handle_map: dict[str, dict[str, str | list[str]]] = {}
+    for handle in sorted(all_handles):
+        memberships = [
+            lane
+            for lane in PAID_LANE_COLLECTION_HANDLES
+            if handle in lane_handles.get(lane, set())
+        ]
+        primary = "unassigned"
+        for lane in PRIMARY_PAID_LANE_PRIORITY:
+            if lane in memberships:
+                primary = lane
+                break
+        handle_map[handle] = {"primary": primary, "memberships": memberships}
+
+    overlaps = {
+        "mommy_and_me__family_matching": len(
+            lane_handles["mommy_and_me"] & lane_handles["family_matching"]
+        ),
+        "family_matching__daddy_and_me": len(
+            lane_handles["family_matching"] & lane_handles["daddy_and_me"]
+        ),
+        "mommy_and_me__daddy_and_me": len(
+            lane_handles["mommy_and_me"] & lane_handles["daddy_and_me"]
+        ),
+    }
+    source_counts = {
+        "collection_counts": collection_counts,
+        "overlaps": overlaps,
+        "primary_priority": list(PRIMARY_PAID_LANE_PRIORITY),
+        "label_version": PAID_LANE_LABEL_VERSION,
+    }
+    return handle_map, source_counts
 
 
 def map_availability(qty: int | None, available_for_sale: bool) -> str:
@@ -201,7 +300,57 @@ def map_availability(qty: int | None, available_for_sale: bool) -> str:
     return "out of stock"
 
 
-def emit_grouped_rows(market: str, products: Iterable[dict]) -> list[dict]:
+PRODUCT_TYPE_CATEGORY_MAP = {
+    "couples": "Apparel & Accessories > Clothing > Outfit Sets",
+    "dresses": "Apparel & Accessories > Clothing > Dresses",
+    "family matching": "Apparel & Accessories > Clothing > Outfit Sets",
+    "jumpsuits": "Apparel & Accessories > Clothing > One-Pieces",
+    "matching family dresses": "Apparel & Accessories > Clothing > Dresses",
+    "matching family outerwear": "Apparel & Accessories > Clothing > Outerwear",
+    "matching family pajamas": "Apparel & Accessories > Clothing > Sleepwear & Loungewear > Pajamas",
+    "matching family sets": "Apparel & Accessories > Clothing > Outfit Sets",
+    "matching family sweaters": "Apparel & Accessories > Clothing > Shirts & Tops",
+    "matching family swimwear": "Apparel & Accessories > Clothing > Swimwear",
+    "matching family tops": "Apparel & Accessories > Clothing > Shirts & Tops",
+    "pajamas": "Apparel & Accessories > Clothing > Sleepwear & Loungewear > Pajamas",
+    "sets": "Apparel & Accessories > Clothing > Outfit Sets",
+    "sweaters": "Apparel & Accessories > Clothing > Shirts & Tops",
+    "swimwear": "Apparel & Accessories > Clothing > Swimwear",
+    "tops": "Apparel & Accessories > Clothing > Shirts & Tops",
+}
+
+
+def google_product_category(product_type: str) -> str:
+    normalized = safe(product_type).strip().lower()
+    return PRODUCT_TYPE_CATEGORY_MAP.get(
+        normalized,
+        "Apparel & Accessories > Clothing > Outfit Sets",
+    )
+
+
+def is_valid_gtin(value: str) -> bool:
+    """Validate GTIN-8/12/13/14 format and checksum."""
+    if not value or not value.isdigit() or len(value) not in {8, 12, 13, 14}:
+        return False
+    digits = [int(ch) for ch in value]
+    body = digits[:-1]
+    check_digit = digits[-1]
+    total = 0
+    for index, digit in enumerate(reversed(body)):
+        total += digit * (3 if index % 2 == 0 else 1)
+    return (10 - total % 10) % 10 == check_digit
+
+
+def clean_gtin(value: str | None) -> str:
+    candidate = safe(value).replace("-", "").replace(" ", "")
+    return candidate if is_valid_gtin(candidate) else ""
+
+
+def emit_grouped_rows(
+    market: str,
+    products: Iterable[dict],
+    paid_lane_map: dict[str, dict[str, str | list[str]]] | None = None,
+) -> list[dict]:
     """Emit one row per VARIANT, but every variant carries item_group_id.
 
     This is "Mode B" from the diagnosis doc and is the safest fallback if
@@ -227,7 +376,17 @@ def emit_grouped_rows(market: str, products: Iterable[dict]) -> list[dict]:
         desc_text = re.sub(r"<[^>]+>", " ", desc_html)
         desc_text = safe(re.sub(r"\s+", " ", desc_text))[:5000]
         product_type = safe(p.get("productType"))
+        product_category = google_product_category(product_type)
         link = parent_link(handle, market)
+        lane_info = (paid_lane_map or {}).get(handle, {})
+        primary_paid_lane = safe(str(lane_info.get("primary") or "unassigned"))
+        memberships_value = lane_info.get("memberships") or []
+        memberships = [
+            safe(str(value))
+            for value in memberships_value
+            if safe(str(value))
+        ]
+        collection_memberships = "|".join(memberships) if memberships else "unassigned"
         for ve in (p.get("variants") or {}).get("edges", []):
             v = ve.get("node") or {}
             vid = gid_to_numeric(v.get("id", ""))
@@ -245,6 +404,7 @@ def emit_grouped_rows(market: str, products: Iterable[dict]) -> list[dict]:
                 f"{o.get('name')}: {o.get('value')}" for o in (v.get("selectedOptions") or [])
             )
             variant_title = f"{title} ({options})" if options else title
+            gtin = clean_gtin(v.get("barcode"))
             row = {
                 "id": f"shopify_{market.upper()}_{parent_id}_{vid}",
                 "item_group_id": parent_id,
@@ -258,15 +418,16 @@ def emit_grouped_rows(market: str, products: Iterable[dict]) -> list[dict]:
                 "sale_price": sale_price,
                 "brand": "Dress Like Mommy",
                 "condition": "new",
-                "google_product_category": "Apparel & Accessories > Clothing",
+                "google_product_category": product_category,
                 "product_type": product_type,
-                "gtin": safe(v.get("barcode")),
+                "gtin": gtin,
+                "identifier_exists": "yes" if gtin else "no",
                 "mpn": safe(v.get("sku")),
                 "custom_label_0": market,
                 "custom_label_1": product_type or "uncategorized",
-                "custom_label_2": "path_b_grouped",
-                "custom_label_3": "parent_image",
-                "custom_label_4": "no_live_upload_without_approval",
+                "custom_label_2": primary_paid_lane,
+                "custom_label_3": collection_memberships,
+                "custom_label_4": PAID_LANE_LABEL_VERSION,
             }
             rows.append(row)
     return rows
@@ -308,6 +469,7 @@ COLUMNS = [
     "google_product_category",
     "product_type",
     "gtin",
+    "identifier_exists",
     "mpn",
     "custom_label_0",
     "custom_label_1",
@@ -341,9 +503,11 @@ def main() -> int:
 
     if args.dry_run:
         rows: list[dict] = []
+        paid_lane_source_counts = {}
     else:
+        paid_lane_map, paid_lane_source_counts = build_paid_lane_map()
         products = fetch_all_products()
-        rows = emit_grouped_rows(args.market, products)
+        rows = emit_grouped_rows(args.market, products, paid_lane_map)
 
     # Sanity check: every row MUST have item_group_id non-empty.
     bad = [r for r in rows if not r.get("item_group_id")]
@@ -366,12 +530,22 @@ def main() -> int:
         for r in rows:
             w.writerow(r)
 
+    unique_parents_by_paid_lane: dict[str, int] = {}
+    rows_by_paid_lane: dict[str, int] = {}
+    for lane in sorted({r.get("custom_label_2", "unassigned") for r in rows}):
+        lane_rows = [r for r in rows if r.get("custom_label_2") == lane]
+        rows_by_paid_lane[lane] = len(lane_rows)
+        unique_parents_by_paid_lane[lane] = len({r["item_group_id"] for r in lane_rows})
+
     summary = {
         "market": args.market,
         "output": str(out_path),
         "row_count": len(rows),
         "unique_parents": len({r["item_group_id"] for r in rows}),
         "guardrail_item_group_id_present_on_every_row": all(r.get("item_group_id") for r in rows),
+        "paid_lane_source_counts": paid_lane_source_counts,
+        "unique_parents_by_paid_lane": unique_parents_by_paid_lane,
+        "rows_by_paid_lane": rows_by_paid_lane,
     }
     summary_path = out_path.with_suffix(".summary.json")
     summary_path.write_text(json.dumps(summary, indent=2))

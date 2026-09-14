@@ -1,0 +1,112 @@
+{
+  "schema": "dlm.microsoft_repair_parent_source_review.v1",
+  "verdict": "PASS_WITH_LIMITS__LOCAL_DECISION_PACKET_ACCEPTED__DEPLOYMENT_REJECTED",
+  "confidence": "H_FOR_FROZEN_BINDINGS_AND_DECISION_SCOPE__NO_LIVE_OR_TEST_REPLAY",
+  "reviewed_at_utc": "2026-09-14T19:40:59.459214+00:00",
+  "reviewer": "/root/claim_lookup_cause",
+  "file_bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/tracking-repair-20260914/handoff.json",
+      "sha256": "060529e49305bb00c527e0a20857732a167cc81ac2d0e7c7dbaffc97c898b6fc",
+      "bytes": 5138,
+      "verified_unchanged_at_close": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/tracking-repair-20260914/review_final.json",
+      "sha256": "2467cd9695069ba1e4c63677d1061bc7188afee422938a09fb88cb611731a033",
+      "bytes": 1827,
+      "verified_unchanged_at_close": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/tracking-repair-20260914/REPAIR_CANDIDATE.md",
+      "sha256": "dea88222becebf4c554baa7e2b476e4cf6329857e0f18b9925b7c82647a51563",
+      "bytes": 14891,
+      "verified_unchanged_at_close": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/tracking-repair-20260914/purchase-contract.mjs",
+      "sha256": "e1af89e03de25cc356a28214c51753ed62b86803554e80a95dece236ad6e440a",
+      "bytes": 10960,
+      "verified_unchanged_at_close": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/tracking-repair-20260914/purchase-contract.test.mjs",
+      "sha256": "962c506aa37187e20077030b441fc4276ee98124af98ab715d147dd152ee36f6",
+      "bytes": 19260,
+      "verified_unchanged_at_close": true
+    }
+  ],
+  "accepted_current_fact": "The local purchase-contract specification and offline decision work are complete. The custom browser candidate is explicitly rejected for deployment; the supported publisher route remains the intended response to the demonstrated standard storefront pageLoad consent-signal defect.",
+  "decision_checks": {
+    "handoff_and_final_review_agree": true,
+    "three_reviewed_code_test_readme_hashes_match_both_receipts": true,
+    "local_corrections_remaining_in_final_review": 0,
+    "deployment": "NO_GO",
+    "custom_pixel_install_or_sender_cutover_authorized": false,
+    "supported_publisher_correction_implemented": false,
+    "no_second_sender_allowed_by_local_test_result": true
+  },
+  "offline_test_evidence": {
+    "source": "Frozen final independent-review receipt; this reviewer did not run tests",
+    "independent_verifier": "/root/microsoft_plan_independent_review",
+    "verifier_scope": "Independent offline code review, adversarial probes and revised test run; did not build candidate or execute live implementation. Final receipt was persisted by the source owner from returned verifier messages.",
+    "reported_tests_passed": 28,
+    "reported_tests_failed": 0,
+    "static_test_declarations_matched": 28,
+    "contract_exercises": 26,
+    "counterexample_tests": 2,
+    "counterexample_code_pointers": [
+      "purchase-contract.test.mjs:312",
+      "purchase-contract.test.mjs:325"
+    ],
+    "counterexamples": [
+      "Two tabs can both enqueue the same order after reading an empty ledger.",
+      "Concurrent distinct-tab writes can lose one reservation."
+    ],
+    "meaning": "Passing tests reproduce the two failures of production guarantees. They are evidence against deployment, not proof of cross-tab atomicity or deduplication.",
+    "final_local_corrections": [
+      "Stored digest types checked before regex validation",
+      "Pending work and operation deadlines bounded",
+      "Expired ledger holds all orders",
+      "Late storage completions cannot dispatch and uncertain reservations remain preserved",
+      "Waiting calls after storage timeout report storage uncertainty rather than a false consent change"
+    ],
+    "tests_repeated_by_this_reviewer": 0
+  },
+  "prior_live_evidence_qualified": {
+    "source_live_evidence_as_of": "2026-09-14 14:52:08 UTC campaign packet; 2026-09-14 10:56:08 UTC UET receiver packet; 2026-09-12 standard sender consent trace",
+    "standard_pageLoad": "Prior September12 trace remains the demonstrated standard storefront consent-signal defect; this packet does not repair the installed publisher or newly reverify that trace.",
+    "purchase_sandbox": "Defect remains UNPROVED; do not generalize the standard-path observation to the isolated purchase sender.",
+    "uet_receiver": "The separately dated receiver shows a purchase/parameter names without exact actual order, value, currency and consent reconciliation. No new receiver acceptance follows from the local contract.",
+    "current_runtime_sdk_consent_and_delivery": "NOT_RUN for this draft"
+  },
+  "authority_and_ownership": {
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "standing_parent_paid_authority": "NONE; unchanged",
+    "goal": "Microsoft owner goal ACTIVE; objective not achieved. This is not a parent-goal change.",
+    "heartbeat": "Existing Microsoft owner heartbeat ACTIVE at four-hour interval; source reports no change this turn. Saved configuration/future execution distinction retained.",
+    "shared_canonical_owner": "Parent; source packet requested integration but did not claim a shared writer lease.",
+    "support_contact_authorized": false,
+    "support_messages_sent": 0
+  },
+  "next_action": "Use the already-prepared supported publisher contact route only when the existing pending contact authorization arrives; do not send another request, contact support, install the candidate or dispatch an owner from this source review.",
+  "limitations": [
+    "Authoritative deduplication and an independently verified single-sender cutover remain unresolved.",
+    "Real standard and isolated purchase runtime consent behavior, exact native purchase identity/value/currency and order reconciliation remain release gates.",
+    "Actual product-country contribution, costs and an authorized test cash/loss envelope remain required before any paid launch.",
+    "No new campaign, UET, Shopify pixel, SDK, customer-data, support, money, goal or scheduler operation was performed by this reviewer. Local specification completion is not a live repair or profitable-growth completion.",
+    "Prior campaign/UET/standard trace statements and goal/heartbeat state are accepted as dated source handback context; no broad historical re-audit or live read was performed."
+  ],
+  "findings": [],
+  "boundaries": {
+    "code_or_repository_source_writes": 0,
+    "canonical_or_business_changes": 0,
+    "external_calls": 0,
+    "tests_run": 0,
+    "new_agents_or_owner_dispatches": 0,
+    "only_written_file": "/private/tmp/dlm-ms-repair-parent-source-review.json"
+  }
+}

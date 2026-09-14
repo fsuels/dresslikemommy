@@ -1,0 +1,187 @@
+{
+  "status": "PASS",
+  "qualification": "IMPLEMENTED_CONFIGURATION_VERIFIED_FROM_ROOT_NATIVE_READBACK; functional receiver acceptance remains open.",
+  "reviewer": "/root/international_campaign_build",
+  "independence": "Reviewer did not build the contract, execute the native Saves, or collect the before/after browser evidence. Independently compared supplied raw receipts and reconstructed the exact contract delta. No browser, account, source or canonical writes.",
+  "reviewed_at_utc": "2026-09-11T19:52:55.446606+00:00",
+  "checks": [
+    {
+      "check": "contract before and amendment match frozen preflight hashes",
+      "passed": true
+    },
+    {
+      "check": "preflight PASS and decision identity retained",
+      "passed": true
+    },
+    {
+      "check": "same exact account and customer throughout",
+      "passed": true
+    },
+    {
+      "check": "same three unique target goal names",
+      "passed": true
+    },
+    {
+      "check": "frozen before value ShopifyCheckoutCompleteEventTracking/count",
+      "passed": true
+    },
+    {
+      "check": "frozen before value ShopifyCheckoutCompleteEventTracking/fallback_value",
+      "passed": true
+    },
+    {
+      "check": "frozen before value ShopifyCheckoutCompleteTracking/auto_bidding",
+      "passed": true
+    },
+    {
+      "check": "frozen before value Purchases/auto_bidding",
+      "passed": true
+    },
+    {
+      "check": "all after goal fields exactly equal contract applied to before",
+      "passed": true
+    },
+    {
+      "check": "goal keysets unchanged ShopifyCheckoutCompleteEventTracking",
+      "passed": true
+    },
+    {
+      "check": "goal keysets unchanged Purchases",
+      "passed": true
+    },
+    {
+      "check": "goal keysets unchanged ShopifyCheckoutCompleteTracking",
+      "passed": true
+    },
+    {
+      "check": "only four intended field changes occurred in goal readback",
+      "passed": true
+    },
+    {
+      "check": "three recorded Saves correspond exactly to contract targets",
+      "passed": true
+    },
+    {
+      "check": "receipt change count equals actual difference count",
+      "passed": true
+    },
+    {
+      "check": "one eligible purchase Event goal All variable zero USD fallback",
+      "passed": true
+    },
+    {
+      "check": "all five Active names remain and secondary exclusions preserved",
+      "passed": true
+    },
+    {
+      "check": "full captured account options and MSCLKID remain unchanged",
+      "passed": true
+    },
+    {
+      "check": "exact eleven paused campaign records and budgets unchanged",
+      "passed": true
+    },
+    {
+      "check": "configured budget arithmetic unchanged and no spend promotion",
+      "passed": true
+    },
+    {
+      "check": "inverse restores observed goal before-state exactly",
+      "passed": true
+    },
+    {
+      "check": "receipt postflight assertions reconcile with observed after",
+      "passed": true
+    },
+    {
+      "check": "receiver and profit limitations stay explicit",
+      "passed": true
+    },
+    {
+      "check": "after chronology follows frozen before and preflight",
+      "passed": true
+    }
+  ],
+  "checks_passed": 24,
+  "actual_field_changes": [
+    {
+      "goal": "ShopifyCheckoutCompleteEventTracking",
+      "field": "fallback_value",
+      "from": "1.00",
+      "to": "0.00"
+    },
+    {
+      "goal": "ShopifyCheckoutCompleteEventTracking",
+      "field": "count",
+      "from": "Unique",
+      "to": "All"
+    },
+    {
+      "goal": "Purchases",
+      "field": "auto_bidding",
+      "from": true,
+      "to": false
+    },
+    {
+      "goal": "ShopifyCheckoutCompleteTracking",
+      "field": "auto_bidding",
+      "from": true,
+      "to": false
+    }
+  ],
+  "goal_count": 5,
+  "primary_purchase_goals": 1,
+  "native_saves_reported": 3,
+  "campaigns_paused": 11,
+  "configured_daily_budget_sum_usd": "120.00",
+  "configured_budget_is_spend_authority": false,
+  "frozen_hashes": {
+    "live_before.json": "0c33c837f9d5802148ea81c181ab31fe23e3b5020825d622883e4a817b6f48e6",
+    "purchase_goal_repair_contract.json": "a5b8b398e04fb3755e85304c711f81c32bed21e8495df00f82c508c1997cb1b7",
+    "decision_challenge_amendment.json": "03dbb0269f79dc3a99a3db09025cb3c48d3e9aad829e9a21c80daaeaa49848e8",
+    "exact_goal_preflight_review.json": "e049fce0630fd5b080ffea329bb8679a0d0f8fd3407b8fbca7cd7fe5a9bddb45",
+    "live_after.json": "916c73c0b5a9de4a8d369d848897c8362b4f9c665ccd29c8d008094a400e520a",
+    "execution_receipt.json": "e4a49657586327a0eca9a2b642c3873a092c20ad166ca9d0930d464fe09758ff"
+  },
+  "all_recorded_goal_fields_equal_expected_after": true,
+  "rollback_reconciles": true,
+  "scope": "Only the recorded goal, account-option and campaign status/budget fields for the four-field purchase-goal correction. No other automation change is reviewed here.",
+  "evidence_as_of_utc": "2026-09-11 19:51:00 UTC",
+  "actual_outcome": {
+    "primary_goal": "ShopifyCheckoutCompleteEventTracking",
+    "count": "All",
+    "revenue_type": "Variable",
+    "fallback_currency": "USD",
+    "fallback_value": "0.00",
+    "trigger": "Equals to purchase",
+    "uet_id": 36005151,
+    "url_goals_secondary": [
+      "Purchases",
+      "ShopifyCheckoutCompleteTracking"
+    ],
+    "all_five_goals_active": true,
+    "smart_and_addtocart_excluded": true,
+    "msclkid_already_on_and_preserved": true,
+    "all_captured_account_options_preserved": true,
+    "all_recorded_campaign_statuses_and_budgets_preserved": true
+  },
+  "issues": [],
+  "limitations": [
+    "Three native Saves and reopened/reloaded UI evidence are reported by root. This reviewer verified the persisted evidence and its internal consistency; it did not independently replay the browser or inspect raw tool-call logs.",
+    "Every recorded target-goal field and captured account-option field was compared. Campaign bids, ads, keywords and targeting are not individual fields in these snapshots, so they were not independently value-compared; the receipt reports no additional writes.",
+    "No source tests, source hash reruns or new consent/event tests were performed in this postflight. The receipt reports no source or consent change.",
+    "All counts conversions per click and is not order-ID deduplication. Zero fallback avoids positive default value but does not prove valid dynamic purchase values.",
+    "No new purchase, value/currency reconciliation, correct regional consent, paid attribution or contribution profit is established.",
+    "Active goals and All reporting remain available; standard Conversions/Revenue/ROAS may change with the intentional goal-exclusion settings.",
+    "Evidence is frozen as of19:51UTC. It does not certify subsequent account changes or grant new spending authority."
+  ],
+  "checks_not_run": [
+    "Native UI replay",
+    "New purchase or order reconciliation",
+    "Consent/receiver runtime test",
+    "Unrecorded campaign-property comparison",
+    "Source tests",
+    "Forthcoming account-automation correction"
+  ],
+  "next_action": "Root can record this correction as configuration verified while keeping functional receiver acceptance open. Review the forthcoming account-automation correction only after its separate exact before-state and delta are supplied."
+}

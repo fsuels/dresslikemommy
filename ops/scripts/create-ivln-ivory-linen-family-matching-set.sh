@@ -22,7 +22,7 @@ HANDLE = "ivory-linen-family-matching-set"
 TITLE = "Ivory Linen Family Matching Set - Vest, Shirt & Shorts"
 SEO_TITLE = "Ivory Linen Family Matching Set | Dress Like Mommy"
 SEO_DESCRIPTION = "Ivory linen-look family matching separates for mom, dad, girls & boys. Vest, shirt, and shorts sizes 2Y-10Y, Mother S-3XL, Father S-4XL."
-VENDOR_URL = "https://detail.1688.com/offer/1034249556745.html?"
+VENDOR_URL = ""
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
 EXPECTED_TAXONOMY = "Apparel & Accessories > Clothing > Outfit Sets"
@@ -249,7 +249,7 @@ tags = sorted(set([
     "Matching Family Vest", "Matching Family Shirt", "Matching Family Shorts", "Vest & Shirt & Shorts",
     "Sets", "Summer", "Beach", "Vacation", "Resort", "Cruise", "Ivory", "Cream", "White", "Solid",
     "Linen Look", "Button Vest", "Camp Collar Shirt", "Short Sleeve Shirt", "Shorts", "Four-Role Matching",
-    "Girl Vest", "Mother Vest", "Boy Shirt", "Boy Shorts", "Father Shirt", "Father Shorts", VENDOR_URL,
+    "Girl Vest", "Mother Vest", "Boy Shirt", "Boy Shorts", "Father Shirt", "Father Shorts",
 ] + size_values + ["Mother S","Mother M","Mother L","Mother XL","Mother 2XL","Mother 3XL","Father S","Father M","Father L","Father XL","Father 2XL","Father 3XL","Father 4XL"]))
 
 def gql(query, variables=None):
@@ -275,7 +275,7 @@ if node["fullName"] != EXPECTED_TAXONOMY:
 
 product_input = {
     "handle": HANDLE, "title": TITLE, "descriptionHtml": body, "vendor": "dresslikemommy.com",
-    "productType": PRODUCT_TYPE, "tags": tags, "status": "ACTIVE", "category": TAXONOMY_GID,
+    "productType": PRODUCT_TYPE, "tags": tags, "status": "DRAFT", "category": TAXONOMY_GID,
     "seo": {"title": SEO_TITLE, "description": SEO_DESCRIPTION},
 }
 existing = gql("query($handle:String!){productByHandle(handle:$handle){id variants(first:100){nodes{id sku}}}}", {"handle": HANDLE})["data"]["productByHandle"]
@@ -335,10 +335,11 @@ publications = [{"publicationId": publication_id} for publication_id in [
     "gid://shopify/Publication/29172400225", "gid://shopify/Publication/76582879329",
     "gid://shopify/Publication/76604768353",
 ]]
-output = gql("mutation($product:ProductUpdateInput!){productUpdate(product:$product){product{id status} userErrors{field message}}}", {"product": {"id": product_id, "status": "ACTIVE"}})
+output = gql("mutation($product:ProductUpdateInput!){productUpdate(product:$product){product{id status} userErrors{field message}}}", {"product": {"id": product_id, "status": "DRAFT"}})
 user_errors(output, "data.productUpdate.userErrors")
-output = gql("mutation($id:ID!,$input:[PublicationInput!]!){publishablePublish(id:$id,input:$input){userErrors{field message}}}", {"id": product_id, "input": publications})
-user_errors(output, "data.publishablePublish.userErrors")
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+print("Sales-channel publication skipped; product remains a draft pending approval.")
 
 media = gql("query($id:ID!){product(id:$id){media(first:50){nodes{... on MediaImage{id alt image{url}}}}}}", {"id": product_id})["data"]["product"]["media"]["nodes"]
 existing_alts = {item.get("alt") for item in media}
@@ -358,10 +359,11 @@ for image_path in sorted(list(UPLOAD_DIR.glob("*.png")) + list(UPLOAD_DIR.glob("
     output = gql("mutation($productId:ID!,$media:[CreateMediaInput!]!){productCreateMedia(productId:$productId,media:$media){userErrors{field message}}}", {"productId": product_id, "media": [{"originalSource": target["resourceUrl"], "mediaContentType": "IMAGE", "alt": alt}]})
     user_errors(output, "data.productCreateMedia.userErrors")
 
-output = gql("mutation($product:ProductUpdateInput!){productUpdate(product:$product){product{id status} userErrors{field message}}}", {"product": {"id": product_id, "status": "ACTIVE"}})
+output = gql("mutation($product:ProductUpdateInput!){productUpdate(product:$product){product{id status} userErrors{field message}}}", {"product": {"id": product_id, "status": "DRAFT"}})
 user_errors(output, "data.productUpdate.userErrors")
-output = gql("mutation($id:ID!,$input:[PublicationInput!]!){publishablePublish(id:$id,input:$input){userErrors{field message}}}", {"id": product_id, "input": publications})
-user_errors(output, "data.publishablePublish.userErrors")
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+print("Sales-channel publication skipped; product remains a draft pending approval.")
 
 time.sleep(3)
 verify = gql("query($id:ID!){product(id:$id){id title handle status publishedAt onlineStoreUrl descriptionHtml tags seo{title description} category{id fullName} options{name values} variants(first:100){nodes{id sku title price compareAtPrice inventoryPolicy selectedOptions{name value} inventoryItem{tracked requiresShipping}}} collections(first:50){nodes{title handle}} metafields(first:100){nodes{namespace key type value}} resourcePublicationsV2(first:20){nodes{isPublished publication{id name}}} media(first:20){nodes{... on MediaImage{id alt image{url}}}}}}", {"id": product_id})
@@ -377,9 +379,9 @@ checks = [
     ("variant count", len(live_variants) == len(variants), f"{len(live_variants)} vs {len(variants)}"),
     ("sku parity", live_skus == spec_skus, ", ".join(live_skus)),
     ("taxonomy", product["category"]["fullName"] == EXPECTED_TAXONOMY, product["category"]["fullName"]),
-    ("status active", product["status"] == "ACTIVE", product["status"]),
-    ("published", bool(product["publishedAt"]), str(product["publishedAt"])),
-    ("online url", bool(product["onlineStoreUrl"]), str(product["onlineStoreUrl"])),
+    ("status draft", product["status"] == "DRAFT", product["status"]),
+    ("not published", not bool(product["publishedAt"]), str(product["publishedAt"])),
+    ("online url absent", not bool(product["onlineStoreUrl"]), str(product["onlineStoreUrl"])),
 ]
 price_ok = all(
     variant["price"] == next(spec["price"] for spec in variants if spec["inventoryItem"]["sku"] == variant["sku"])

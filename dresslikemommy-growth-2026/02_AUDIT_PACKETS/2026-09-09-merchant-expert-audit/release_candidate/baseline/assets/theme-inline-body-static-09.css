@@ -1,0 +1,22 @@
+/* Mobile view adjustments */
+@media (max-width: 767px) {
+    .slider-component#GalleryViewer-template--18068973781217_main.slider-mobile-gutter,
+    .product__media-wrapper { /* Replace with your actual classes */
+        width: 100%;            /* Ensure the container covers the full width */
+        height: auto;           /* Automatically adjust the height */
+        max-width: 100%;        /* Ensure the container does not exceed the full width */
+        overflow: hidden;       /* Prevent the image from being moved around */
+        position: relative;     /* Ensure container positions correctly */
+    }
+
+    .slider-component#GalleryViewer-template--18068973781217_main.slider-mobile-gutter img,
+    .product__media-wrapper img { /* Replace with your actual image classes */
+        width: 100%;            /* Ensure the image covers the full width */
+        height: 100%;           /* Ensure the image covers the full height */
+        object-fit: cover;      /* Cover the entire container */
+        display: block;         /* Ensure proper layout */
+    }
+}
+
+
+

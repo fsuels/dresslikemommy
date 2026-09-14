@@ -1,0 +1,234 @@
+{
+  "checkedAt": "2026-09-11T17:56:29.752260+00:00",
+  "revision": 7,
+  "status": "VERIFIED_PREVIEW__OWNER_PUBLICATION_PENDING",
+  "commands": [
+    {
+      "command": "Bundled Node --test pdp-clarity-v7/context-labels.test.mjs",
+      "exitCode": 0,
+      "result": "51/51 PASS",
+      "evidence": "pdp-clarity-v7/context-labels-results.txt"
+    },
+    {
+      "checkedAt": "2026-09-11T17:37:13.732913+00:00",
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "/opt/homebrew/lib/node_modules/@shopify/cli/bin/run.js",
+        "theme",
+        "check",
+        "--path",
+        "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-ux-v7-lq7k4y0n/theme",
+        "--output",
+        "json"
+      ],
+      "exitCode": 0,
+      "fileCount": 527,
+      "diagnostics": [],
+      "evidence": "pdp-clarity-v7/theme-check-receipt.json"
+    },
+    {
+      "command": "Bundled Node --check candidate/assets/global.js",
+      "exitCode": 0
+    },
+    {
+      "command": "Bundled Python pdp-clarity-v7/generator-regression.py",
+      "exitCode": 0,
+      "result": "105 real templates plus fallback and unrelated-placeholder holdouts PASS with isolated source JSON helpers",
+      "evidence": "pdp-clarity-v7/generator-regression-results.json"
+    },
+    {
+      "command": "git diff --check -- ops/scripts/build_product_page_copy_map.py and owned packet",
+      "exitCode": 0
+    },
+    {
+      "command": "Bundled Python ops/scripts/check_continuity_integrity.py --strict",
+      "exitCode": 0,
+      "result": "CONTINUITY_OK",
+      "latestAnchor": "2026-09-11-storefront-pdp-clarity-v7-preview-verified"
+    },
+    {
+      "command": "Bundled Python ops/scripts/audit_marketing_command_integration.py --fail-on-risk",
+      "exitCode": 0,
+      "sideDocumentRisks": 0,
+      "writeReport": false
+    },
+    {
+      "command": "git diff --check -- owning canonical files, generator and UX packet",
+      "exitCode": 0
+    }
+  ],
+  "source": {
+    "checkedAt": "2026-09-11 17:41:01 UTC",
+    "revision": 7,
+    "preview": {
+      "id": "gid://shopify/OnlineStoreTheme/137888792673",
+      "name": "DLM UX Performance QA 2026-09-10",
+      "role": "UNPUBLISHED",
+      "processing": false,
+      "fileCount": 527,
+      "hasNextPage": false
+    },
+    "expectedSourceDifferences": [],
+    "mainChanges": [],
+    "combinedChanges": [],
+    "changedAgainstCombined": [
+      "assets/cart.js",
+      "assets/component-cart.css",
+      "assets/component-facets.css",
+      "assets/global.js",
+      "assets/homepage-collection-card-images.js",
+      "assets/predictive-search.js",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "assets/section-home-curation.css",
+      "assets/theme-inline-body-static-05.css",
+      "locales/da.json",
+      "sections/category-icons.liquid",
+      "sections/curated-product-grid.liquid",
+      "sections/footer.liquid",
+      "sections/hero-banner.liquid",
+      "sections/main-cart-items.liquid",
+      "sections/main-product.liquid",
+      "snippets/home-spotlight-card.liquid",
+      "snippets/pdp-description-copy-cleanup.liquid",
+      "snippets/product-page-copy-map.liquid"
+    ],
+    "changedAgainstMain": [
+      "assets/cart.js",
+      "assets/component-cart.css",
+      "assets/component-facets.css",
+      "assets/cookie-preferences.css",
+      "assets/cookie-preferences.js",
+      "assets/global.js",
+      "assets/homepage-collection-card-images.js",
+      "assets/predictive-search.js",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "assets/section-home-curation.css",
+      "assets/theme-inline-body-static-04.css",
+      "assets/theme-inline-body-static-05.css",
+      "layout/theme.liquid",
+      "locales/ar.json",
+      "locales/cs.json",
+      "locales/da.json",
+      "locales/de.json",
+      "locales/el.json",
+      "locales/en.default.json",
+      "locales/es.json",
+      "locales/fi.json",
+      "locales/fr.json",
+      "locales/he.json",
+      "locales/hi.json",
+      "locales/hr-HR.json",
+      "locales/hu.json",
+      "locales/id.json",
+      "locales/it.json",
+      "locales/ja.json",
+      "locales/ko.json",
+      "locales/lt-LT.json",
+      "locales/nb.json",
+      "locales/nl.json",
+      "locales/no.json",
+      "locales/pl.json",
+      "locales/pt-BR.json",
+      "locales/pt-PT.json",
+      "locales/ro-RO.json",
+      "locales/ro.json",
+      "locales/ru.json",
+      "locales/sk-SK.json",
+      "locales/sl-SI.json",
+      "locales/sv.json",
+      "locales/th.json",
+      "locales/tr.json",
+      "locales/vi.json",
+      "locales/zh-CN.json",
+      "locales/zh-TW.json",
+      "sections/category-icons.liquid",
+      "sections/curated-product-grid.liquid",
+      "sections/footer.liquid",
+      "sections/hero-banner.liquid",
+      "sections/main-cart-items.liquid",
+      "sections/main-product.liquid",
+      "snippets/home-spotlight-card.liquid",
+      "snippets/jsonld-seo.liquid",
+      "snippets/pdp-description-copy-cleanup.liquid",
+      "snippets/pdp-policy-modals.liquid",
+      "snippets/pdp-purchase-confidence.liquid",
+      "snippets/product-desktop-ux.liquid",
+      "snippets/product-page-copy-map.liquid"
+    ],
+    "mainRole": "MAIN",
+    "combinedRole": "UNPUBLISHED",
+    "incrementalAfterChecks": {
+      "complete": true,
+      "exactThreeApplied": true,
+      "unchangedOther524": true,
+      "mainUnchanged": true,
+      "combinedUnchanged": true,
+      "changes": [
+        {
+          "filename": "assets/global.js",
+          "beforeMd5": "d8c9a52489db8532de327592e6a60f9d",
+          "afterMd5": "e0db5612c42f38798e6a9b27189fcb06",
+          "sha256": "8627c842b2bfb09c44b1bc712e70000ec7d7a79d7844c04ee6886bd283ed682d",
+          "size": 71580
+        },
+        {
+          "filename": "sections/main-product.liquid",
+          "beforeMd5": "b86926e39d85591ef15fa836dc05a9ee",
+          "afterMd5": "71ef37c28e45492bcc81639a629e4a40",
+          "sha256": "fadfb327ebbac92ee57c04cf146914d90518ef801626f62cb09c81a7ff52b7c8",
+          "size": 189652
+        },
+        {
+          "filename": "snippets/product-page-copy-map.liquid",
+          "beforeMd5": "01407ab58b8277d99e9a99e2c701bb69",
+          "afterMd5": "61d01d04cca85ec0d90bcb790054f2cf",
+          "sha256": "c9adb5f7153921e72dea40418884e6850e629a2525dbbd912eef871f108fbbe9",
+          "size": 209350
+        }
+      ]
+    }
+  },
+  "renderedEvidence": "pdp-clarity-v7/browser-after.json",
+  "independentPrewriteReview": {
+    "status": "PASS",
+    "evidence": "pdp-clarity-v7/independent-prewrite-review.json"
+  },
+  "independentAfterReview": {
+    "status": "PASS",
+    "evidence": "pdp-clarity-v7/independent-after-review.json"
+  },
+  "livePublication": "NOT_RUN_CONNECTOR_RESTRICTION",
+  "postFixPageSpeed": "REQUIRES_RELEASE__EARLIER_PREVIEW_ATTEMPT_MEASURED_MAIN",
+  "residualFindings": "remaining-findings.md and pdp-clarity-v7/READBACK.md",
+  "historicalChecks": "pdp-clarity-v7/v6-final-checks.json retains V6 and earlier tests. Unchanged Arabic-child/JA-description/homepage/cart/footer code not retested beyond current browser holdouts.",
+  "generatorNormalCli": "BLOCKED: bundled Python lacks pre-existing deep_translator; isolated actual build_map regression passed without network clients.",
+  "artifactValidation": {
+    "incrementalPayloadFiles": 3,
+    "incrementalInverseFiles": 3,
+    "cumulativeInverseFiles": 19,
+    "cumulativeInverseMatchesCombined": true
+  },
+  "sourceCopyValidation": "candidate-source-validation.json",
+  "restoration": {
+    "checkedAt": "2026-09-11T17:50:25.139Z",
+    "exitMethod": "Shopify preview-bar Exit preview",
+    "mainAssetPath": "/cdn/shop/t/100/",
+    "previewFramePresent": false,
+    "language": "en",
+    "cart": 0,
+    "viewportReset": true,
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "ownedTabId": "6",
+    "ownedTabClosed": true,
+    "merchantBrowserIntervalReleased": true,
+    "nativeChromeUsed": false
+  },
+  "canonicalValidation": {
+    "status": "PASS",
+    "evidence": "pdp-clarity-v7/canonical-closeout.json"
+  },
+  "finalSourceRefresh": "pdp-clarity-v7/final-source-refresh.json"
+}

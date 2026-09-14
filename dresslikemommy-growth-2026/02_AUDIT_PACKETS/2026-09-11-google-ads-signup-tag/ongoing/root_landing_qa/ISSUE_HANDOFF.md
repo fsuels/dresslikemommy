@@ -1,0 +1,12 @@
+# Localized buying-page defects for the existing UX owner
+
+Root observed three normal public pages in its own background tab on September11; [ROOT_RENDERED.json](ROOT_RENDERED.json) preserves the exact scope. The Romanian collection binds to published MAIN133290917985. All pages had matching localized canonicals, no preview toolbar, US/USD context and cart0. Romanian and Dutch collections each rendered36 product cards. Country checkout acceptance is not established.
+
+1. **P2, confirmed customer-visible localization defect:** Romanian footer headings expose translated internal keys, including `TRANSLATION MISSING: RO.SECȚIUNI.TITLURI_SUBSOL.AJUTOR_SUPORT`. Dutch headings similarly expose `SECTIES.VOETTEKST_KOPPEN.BEDRIJFSINFORMATIE` and `...HULP_ONDERSTEUNING`. The Romanian PDP repeats the footer defect. Root local read finds footer calls in `sections/footer.liquid:98/106/114`; Romanian local keys already contain proper display text, so editing product translations would be the wrong repair. Compare the current published theme and the existing combined candidate before choosing the exact fix.
+2. **P2, confirmed mixed-language purchase guidance:** the Romanian Together Heart PDP shows English role/size instructions and return/security copy. Root local read finds `chooseRoleStep` in `assets/product-desktop-ux.js` and English return-heading text in `locales/ro.json:282`. Verify exact key paths and current runtime ownership before editing. Preserve supported policy wording and the already repaired product body/size data; do not invent translated fulfillment promises.
+
+The checkout funnel makes RO/NL useful diagnostic priorities, but does not prove these defects caused the abandoned checkout sessions. Do not translate or launch every market from this small sample.
+
+The existing **Audit website conversion issues** task01a088c3-c890-71a1-98ee-f19b6905af55 owns shared theme repairs. Integrate these observations there, preserve the latest source-bound combined draft and all peer overlays, and obtain the usual independent review and rendered verification. This packet grants no new publication or account authority.
+
+The parallel HTTP sweep hit429. Root stopped new public navigation upon that notice and closed its own tab; no browser fallback was used to evade the limit. The HTTP lane records the exact partial coverage and its queued-request stop defect separately. Current full21-locale reachability and country-specific payment acceptance remain incomplete. Continue local diagnosis while access is throttled.

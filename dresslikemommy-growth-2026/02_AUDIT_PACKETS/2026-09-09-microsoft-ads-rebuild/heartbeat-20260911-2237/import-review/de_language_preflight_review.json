@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-12T08:51:57.244992+00:00",
+  "source_live_evidence_as_of": "2026-09-12T08:50:13.513509+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "verdict": "GO_EXACT_DE_GROUP_ENGLISH_TO_GERMAN_SINGLE_SAVE",
+  "confidence": "H for the exact contained correction; saved German acceptance requires readback",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "campaign_id": "506254908",
+  "group_id": "1262241151661314",
+  "input_sha256": {
+    "de_group_language_repair_contract.json": "9ae9edc67846eb3cf5767b4424d8d354f06c61dcc976352b5f11fd504b698d04",
+    "de_group_language_before_and_proposal.json": "809567c27dd2eae2c11d744b71e535d2ead44fc2a24db9569d8794e5121fde4b",
+    "group_keyword_import_receiver.json": "fa5e838349017009833b41ac321c8cac9f1d5b900d4f7ba67e696a8f119e3f49"
+  },
+  "checks": {
+    "exact_contract_hash": true,
+    "exact_before_proposal_hash": true,
+    "receiver_hash_bound": true,
+    "exact_target_identity": true,
+    "both_parent_and_group_paused": true,
+    "all_three_keywords_paused_exact_localized": true,
+    "correct_keyword_texts": true,
+    "saved_english_mismatch_is_observed": true,
+    "german_native_option_and_staged_value": true,
+    "only_language_staged_save_unclicked": true,
+    "current_auto_strategy_network_type_preserved": true,
+    "single_previous_import_exact_counts_zero_ads_errors_updates": true,
+    "no_reimport_or_paid_activation": true,
+    "exact_independent_review_binding": true,
+    "reopen_saved_language_and_preservation_required": true
+  },
+  "checks_passed": 15,
+  "exact_action": "One native group-settings Save changing only English to explicit German on new Paused group 1262241151661314 under Paused German campaign 506254908. Recheck exact scoped URL/IDs and the sole changed field immediately before Save.",
+  "critical_challenge": "The saved English option disproves automatic group-language inheritance from the German campaign. Explicit German directly resolves the intended DE language; Use my campaign settings would introduce another inheritance assumption. Re-importing the eight creation rows would be the wrong repair and could duplicate entities.",
+  "containment": "The parent, group and three Exact keywords are Paused; the import created no ads and the current task reports none added. No campaign status, cap, budget, network, default bid or source file change is authorized.",
+  "postflight_required": [
+    "Reopen the exact group settings and verify German persisted; Save success alone is insufficient.",
+    "Confirm group name/type, Auto default bid, inherited MaxClicks and Microsoft sites and select traffic distribution unchanged.",
+    "Confirm campaign/group/three keyword pause states and exact keyword IDs/texts/match types/URLs preserved, with no ads or parent budget/cap/settings changes."
+  ],
+  "stop_and_rollback": "If final scoped identity or staged fields differ, do not Save. On ambiguous or failed readback keep the group and parent Paused and add no ads; inspect the saved value before any further action. Do not automatically restore English or repeat the creation import.",
+  "downstream_gate": "The full group/keyword postflight and combined ad/negative preview remain conditional on this correction and the remaining parent-setting checks passing.",
+  "paid_activation_authorized": false,
+  "external_writes_by_reviewer": 0,
+  "browser_or_account_calls_by_reviewer": 0,
+  "shared_canonical_files_changed": false
+}

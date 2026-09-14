@@ -1,0 +1,78 @@
+{
+  "recordedAtUtc": "2026-09-06T04:08:16.703Z",
+  "status": "IMPLEMENTED_UNPUBLISHED__API_VERIFIED__RENDER_GATED",
+  "decisionId": "DLM-DEC-2026-09-06-CART-DRAFT",
+  "rootTask": "01a073b6-e432-73a1-b72d-469595d21728",
+  "prewritePassedAtUtc": "2026-09-06T04:06:08.102Z",
+  "reviewer": "/root/historical_google_access_paths",
+  "reviewerIndependence": "DID_NOT_BUILD_OR_EXECUTE",
+  "mutation": {
+    "operation": "themeFilesUpsert",
+    "targetThemeId": "gid://shopify/OnlineStoreTheme/137782591585",
+    "targetRole": "UNPUBLISHED",
+    "files": [
+      "assets/cart.js"
+    ],
+    "result": {
+      "upsertedThemeFiles": [
+        {
+          "filename": "assets/cart.js"
+        }
+      ],
+      "job": null,
+      "userErrors": []
+    },
+    "successfulMutationsThisGoalTurn": 1
+  },
+  "candidate": {
+    "sha256": "e2fed4a6ae3abbba3b39d481dfee9eb755f623e7856b2d1c2a8747fe6c059cf7",
+    "md5": "61c560a479ad1e32ec4e84d4bf685f09",
+    "exactAfterBodyVerified": true
+  },
+  "afterReadback": "cart_draft_after_readback.json",
+  "fullManifest": {
+    "before": "cart_draft_manifest_before.json",
+    "after": "cart_draft_manifest_after.json",
+    "mainFiles": 525,
+    "draftFiles": 525,
+    "mainChanged": [],
+    "draftChanged": [
+      "assets/cart.js"
+    ],
+    "totalDraftDifferences": [
+      "assets/cart.js",
+      "locales/da.json",
+      "locales/nl.json"
+    ],
+    "matchingMainDraftFiles": 522,
+    "paginationComplete": true
+  },
+  "tests": {
+    "baselinePass": 2,
+    "baselineFail": 14,
+    "candidatePass": 15,
+    "candidateFail": 1,
+    "remainingFailure": "Existing quantity/subtotal test16 has the same baseline TypeError fingerprint",
+    "newCandidateFailures": 0,
+    "fullSuitePass": false,
+    "rootDirtyCartPreserved": true
+  },
+  "limits": {
+    "shopifyRenderedPreview": "NOT_RUN_MAC_LOCKED",
+    "publishedThemeChange": false,
+    "liveCustomerFixVerified": false,
+    "businessLiftVerified": false,
+    "spendFromThisOperationUSD": 0,
+    "paidAuthorityChanged": false,
+    "rollbackExecuted": false,
+    "publicationThroughConnector": "PROHIBITED",
+    "futurePublication": "Owner Shopify Admin after authenticated preview and current full-MAIN conflict check"
+  },
+  "existingGatesPreserved": [
+    "Exact Greek paragraph approval pending after earlier automatic-review rejection",
+    "Actual cohort cost source needed",
+    "Google app access/support form gate",
+    "Pin visual/board/tagged-destination review"
+  ],
+  "goal": "ACTIVE_UNACHIEVED"
+}

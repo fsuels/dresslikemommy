@@ -1,0 +1,126 @@
+{
+  "action": "TA07-CLOUD-HOLD-INDEPENDENT-REVIEW-20260914-2042",
+  "verdict": "PASS_WITH_LIMITS",
+  "scope": "Six canonical parent holds, preserved runtime behavior and corrected local Wrangler config binding only",
+  "checkedAt": "2026-09-14T20:47:40.613330+00:00",
+  "implementationStatus": "VERIFIED_LOCAL",
+  "deploymentStatus": "NOT_RUN",
+  "authAdapterStatus": "OUT_OF_SCOPE_NOT_REVIEWED",
+  "unresolvedHoldImplementationDefects": [],
+  "resolvedFinding": {
+    "severity": "P1",
+    "problem": "Stale inline MERCHANT_CONFIG_JSON omitted all six holds",
+    "rootFix": "Only inline variable replaced with reviewed config; independent semantic and other-section equality checks pass",
+    "wranglerSha256": "a6a1d6d66888c75c7be5f4c9c7ecc7836824edeab327fa3a3f91a7af5645f03d"
+  },
+  "verification": {
+    "runtimeTests": 56,
+    "passed": 56,
+    "failed": 0,
+    "runtimeSuiteRuns": 1,
+    "savedSourceCases": 5,
+    "independentAdversarialQueueCases": 2,
+    "sourceRuntimeImportModules": 9,
+    "canonicalHolds": 6,
+    "sourceUnrelatedConfigEquality": true,
+    "strictContinuity": "PASS",
+    "scopedGitDiffCheck": "PASS; untracked evidence separately checked"
+  },
+  "reviewedConfigSha256": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+  "reviewedImplementationAndProtectedFileHashes": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/config.json": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/eligibility.js": "5441bb6aade0f2900f3770602109e14f0e4e964d3e819fff77bf935350038ac8",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/eligibility.test.mjs": "a17f679b3713d1fb264e43b9ba4919ad6adacb4496e16b1969646c087c7eb945",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/checkpoint.js": "a4c5101f8627e2cde1362d92ee507b9c0b7ebd2a6f02d4f33f14471b23a82839",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/feed.test.mjs": "e1a1a58895beef4acf76abb37793f3ae7e38d0447053d2f9f137b38ce8b270c5",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/test/checkpoint.test.mjs": "d442fa322fc97faa8312b8594c48b1798a07a586e92dd1f80fad543cba6e633f"
+  },
+  "reviewedRuntimeImportGraph": [
+    {
+      "file": "src/automation.js",
+      "sha256": "d85d465ff5fe7ae0b9f2f564c6c30a11416b782e7a161509365770e7f3cb4be5",
+      "imports": [
+        "./host.js",
+        "./worker.js",
+        "./checkpoint.js"
+      ]
+    },
+    {
+      "file": "src/host.js",
+      "sha256": "666883d2d62989ef57f11e2a4b2ac5f067c2fc68478b14db908d219c5e7c6518",
+      "imports": []
+    },
+    {
+      "file": "src/worker.js",
+      "sha256": "5fef8fa3755c3926b401bc1ed63df9ed8a5dec6c211d0ff85093f50bef0ecef8",
+      "imports": [
+        "./collector.js",
+        "./generator.js"
+      ]
+    },
+    {
+      "file": "src/collector.js",
+      "sha256": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8",
+      "imports": [
+        "./queries.js"
+      ]
+    },
+    {
+      "file": "src/queries.js",
+      "sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+      "imports": []
+    },
+    {
+      "file": "src/generator.js",
+      "sha256": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f",
+      "imports": [
+        "./collector.js",
+        "./eligibility.js"
+      ]
+    },
+    {
+      "file": "src/eligibility.js",
+      "sha256": "5441bb6aade0f2900f3770602109e14f0e4e964d3e819fff77bf935350038ac8",
+      "imports": [
+        "./collector.js"
+      ]
+    },
+    {
+      "file": "src/checkpoint.js",
+      "sha256": "a4c5101f8627e2cde1362d92ee507b9c0b7ebd2a6f02d4f33f14471b23a82839",
+      "imports": [
+        "./collector.js",
+        "./generator.js",
+        "./worker.js",
+        "./stream-publish.js"
+      ]
+    },
+    {
+      "file": "src/stream-publish.js",
+      "sha256": "bf49e3dedc35120edba1c6483260e1739f3953e92cca320f362a8c863afa508e",
+      "imports": [
+        "./collector.js",
+        "./generator.js",
+        "./worker.js"
+      ]
+    }
+  ],
+  "scopeAssessment": "MINIMUM_COMPLETE_SCOPE_SET_NOT_PROVEN; scope-assessment.json records a candidate read-only set for validation, not permission to grant it",
+  "activationConditions": [
+    "Do not certify or deploy later auth/runtime changes using this hold-only review.",
+    "Build a fresh complete package; old freeze_manifest/readiness/dry-run files are historical.",
+    "Bind exactly the reviewed configuration; any CLI rehearsal must pass --config config.json explicitly.",
+    "Independently validate separately approved least-privilege credential, renewal/access lifecycle and exact hosting destination; do not transfer broad existing credential on generic authority.",
+    "Capture fresh live Worker/queue/bucket/pointer before-state and reviewed rollback, then deploy only under exact current authority.",
+    "Verify real completed cloud job, exact current source partition, hosted country/language/currency/bytes/SHA and Merchant fetch/processing after deployment.",
+    "Additional markets/languages require current buyer/landing/shipping/translation and Google eligibility checks; no market enablement here."
+  ],
+  "externalWrites": 0,
+  "credentialsRead": 0,
+  "newSourceCollections": 0,
+  "feedFilesWritten": 0,
+  "canonicalIntegrationOwner": "Root; no canonical shared state edited",
+  "continuation": "Root requests independent review of the actual complete authentication and packaging candidate."
+}

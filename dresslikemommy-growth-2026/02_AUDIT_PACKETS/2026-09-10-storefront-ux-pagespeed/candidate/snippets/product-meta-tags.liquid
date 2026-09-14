@@ -1,0 +1,20 @@
+{% if template contains 'product' %}
+  {% assign product_tags = product.tags %}
+  {% assign category = '' %}
+  {% assign subcategory = '' %}
+
+  {% for tag in product_tags %}
+    {% if tag contains 'Category:' %}
+      {% assign category = tag | remove: 'Category:' | strip %}
+    {% elsif tag contains 'Subcategory:' %}
+      {% assign subcategory = tag | remove: 'Subcategory:' | strip %}
+    {% endif %}
+  {% endfor %}
+
+  {% if category != '' %}
+    <meta name="custom-category1" content="{{ category | escape }}">
+  {% endif %}
+  {% if subcategory != '' %}
+    <meta name="custom-subcategory" content="{{ subcategory | escape }}">
+  {% endif %}
+{% endif %}

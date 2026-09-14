@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-11T22:50:48.228921+00:00",
+  "status": "PASS_REVIEW_ONLY_MAPPER_PROBE__FINAL_IMPORT_HELD",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "account_currency": "USD",
+  "scope": "Documented file-format facts plus bounded exact root shell-probe review; no new campaigns/ads or source mutations by reviewer",
+  "strongest_current_path": "Use the existing native Microsoft Advertising format workflow only through upload and Review column matching for the exact two-row probe. Stop before final Import. The clearer Bulk API schema is documentary evidence, not proof of UI support or an instruction to obtain credentials/use another write path.",
+  "sources": [
+    {
+      "id": "UI_TEMPLATE",
+      "url": "https://adsuxprodfd-awb5gsddabddbqgv.z01.azurefd.net/cmuiresources-2/files/templates/Import/ImportTemplateWithAdExtensionsAndBSCAndAdGroupType.csv",
+      "access": "Direct public HTTPS GET, curl exit0; web open first returned internal error and restricted-shell DNS failed. Approved network read succeeded. No account credentials used.",
+      "sha256": "05f8f0a590e2054a77c64ca1b7939612e5df938beed34374f05f74a92d7ade04",
+      "bytes": 25841,
+      "header_count": 179,
+      "data_record_count": 69,
+      "facts": "Status and Bid Strategy Type headers exist; MaxCpc header absent; no Paused/MaxClicks/RSA sample. Duplicate Source header; illustrative legacy Active rows are not a production payload."
+    },
+    {
+      "id": "UI_WORKFLOW",
+      "url": "https://help.ads.microsoft.com/apex/index/3/en/51039",
+      "access": "Official indexed full-text result read; direct opening returned Oops.",
+      "facts": "Microsoft-format file, column review, options and then separate Import. Unmatched columns are not imported; decimal preview matters."
+    },
+    {
+      "id": "BULK_CAMPAIGN",
+      "url": "https://learn.microsoft.com/en-us/advertising/bulk-service/campaign?view=bingads-13",
+      "access": "Full current official reference opened.",
+      "facts": "API campaign Status Paused, Search type, MaxClicks and optional Bid Strategy MaxCpc supported; omitted status defaults Active. API budget type DailyBudgetStandard; new Id blank or negative; Parent Id account."
+    },
+    {
+      "id": "BULK_FORMAT",
+      "url": "https://learn.microsoft.com/en-us/advertising/bulk-service/format-version?view=bingads-13",
+      "access": "Full official reference opened.",
+      "facts": "Bulk format record Type Format Version, Name6.0; not an instruction to insert this into native UI template."
+    },
+    {
+      "id": "MAXCLICKS",
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/maxclicksbiddingscheme?view=bingads-13",
+      "access": "Full official reference opened.",
+      "facts": "Optional MaxCpc is the documented individual-click ceiling; this is a supported-config contract, not proof of current account acceptance."
+    },
+    {
+      "id": "BULK_EXECUTION",
+      "url": "https://learn.microsoft.com/en-us/advertising/guides/bulk-download-upload?view=bingads-13",
+      "access": "Full official reference opened.",
+      "facts": "Authenticated bulk upload executes asynchronously; records can succeed despite other errors. It is not a harmless preview or all-or-nothing validation."
+    },
+    {
+      "id": "OCTOBER_CHANGE",
+      "url": "https://www.about.ads.microsoft.com/en/blog/post/august-2026/ai-max-for-search-and-other-product-news-for-august-2026",
+      "access": "Full official August31,2026 announcement opened.",
+      "facts": "October1 removes MaxCPC for new nonportfolio MaxClicks and named conversion strategies; already-capped pre-October campaigns and portfolios retain it. Do not infer indefinite availability from older schema."
+    }
+  ],
+  "input_sha256": {
+    "native_import_discovery.json": "468a4bd9f7a295f0232d37d5edaede4cef572611ce312705b981410443a971b5",
+    "campaign_before.json": "cbea9554ab3e23202318522970629c2c524422fd2e7c6f7d3b48d4865445adda",
+    "mapper_probe_contract.json": "f033c1ef1ff60d30a3a647b4d60725017ec797ba77346876f74058b78508eb80",
+    "paused_shell_mapper_probe.csv": "27262e4bdc410afdf875257dcc0f36d7a897cf987ec23f1685af4cfbfff8964e"
+  },
+  "preserved_candidate_sha256": {
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "ad_groups.csv": "dbf27dfc5ccd5cfb27c5aed898f202c76060b5b484ec353b3140ad701d950f92",
+    "keywords.csv": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012",
+    "responsive_search_ads.csv": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839"
+  },
+  "preview_candidate": {
+    "columns": [
+      "Type",
+      "Status",
+      "Campaign",
+      "Campaign Type",
+      "Budget Type",
+      "Budget",
+      "Language",
+      "Bid Strategy Type",
+      "Bid Strategy MaxCpc"
+    ],
+    "rows": [
+      [
+        "Campaign",
+        "Paused",
+        "DLM | MS | US | EN | Search | 202609",
+        "Search",
+        "Daily",
+        "5.00",
+        "English",
+        "MaxClicks",
+        "0.15"
+      ],
+      [
+        "Campaign",
+        "Paused",
+        "DLM | MS | DE | DE | Search | 202609",
+        "Search",
+        "Daily",
+        "3.00",
+        "German",
+        "MaxClicks",
+        "0.15"
+      ]
+    ],
+    "classification": "UI_TEMPLATE_PLUS_ONE_EXPLICIT_API_HEADER_PROBE",
+    "native_template_columns": [
+      "Type",
+      "Status",
+      "Campaign",
+      "Campaign Type",
+      "Budget Type",
+      "Budget",
+      "Language",
+      "Bid Strategy Type"
+    ],
+    "api_only_extra_header": "Bid Strategy MaxCpc",
+    "value_notes": {
+      "Status": "Paused is documented API enum; current UI acceptance must be observed. Never omit or accept Active.",
+      "Campaign Type": "Search is current API enum; UI enum/normalization not yet verified.",
+      "Budget Type": "Daily exactly follows the native template Campaign example; do not equate with API DailyBudgetStandard without mapping/readback.",
+      "Bid Strategy Type": "MaxClicks is documented API enum; no MaxClicks sample in current native template.",
+      "Bid Strategy MaxCpc": "0.15 is documented numeric API cap input and currently an explicit UI mapping hypothesis. Unmatched must not be ignored.",
+      "Budget": "5.00/3.00 are proposed paused-shell configuration only; no spend allocation.",
+      "Language": "English/German header+API values; no geography criteria or launch certification.",
+      "absent_fields": "No FormatVersion/Id/ParentId/Website/DomainLanguage/Source/ad groups/ads/keywords. Do not import sample rows."
+    }
+  },
+  "bulk_api_comparison": {
+    "format_record": {
+      "Type": "Format Version",
+      "Name": "6.0"
+    },
+    "campaign_fields": {
+      "Type": "Campaign",
+      "Status": "Paused",
+      "Campaign Type": "Search",
+      "Bid Strategy Type": "MaxClicks",
+      "Bid Strategy MaxCpc": "0.15",
+      "Budget Type": "DailyBudgetStandard",
+      "Budget": "proposed amount, separate from authority",
+      "Language": "English or German",
+      "Id": "blank or negative NEW reference key",
+      "Parent Id": "477439"
+    },
+    "warning": "Not a UI-import-ready file and not an API execution plan. Bulk upload may partially commit; no dry-run claim."
+  },
+  "checks": [
+    {
+      "id": "S1",
+      "result": "PASS",
+      "finding": "Exact public template parsed:179headers/69datarecords,25841bytes; includesStatus/BidStrategyType but noMaxCpc header or MaxClicks sample."
+    },
+    {
+      "id": "S2",
+      "result": "PASS",
+      "finding": "UI workflow documents a distinct column/options review before finalImport; root current account receipt shows the same stage sequence and USD."
+    },
+    {
+      "id": "S3",
+      "result": "PASS",
+      "finding": "BulkAPI documents Paused/Search/MaxClicks plus numeric Bid Strategy MaxCpc; APIformat/identity/budget semantics are distinguished from UItemplate."
+    },
+    {
+      "id": "S4",
+      "result": "PASS",
+      "finding": "Exact root CSV hash/header/two9-fieldrows equal contract; both Paused, 5/3USDproposedconfiguration and0.15cap, nochild/content/identifier/site/source rows."
+    },
+    {
+      "id": "S5",
+      "result": "PASS",
+      "finding": "Candidate names absent from frozen11Paused campaign readback; configured120USD/day recomputed. This is root evidence, not independent native replay."
+    },
+    {
+      "id": "S6",
+      "result": "PASS",
+      "finding": "Contract permits only upload/columnmapping and holds finalImport, existing updates, activation, scheduling and dropped/coerced critical fields."
+    },
+    {
+      "id": "S7",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "Mapping cannot prove enum acceptance, persisted Paused/newcampaigncap, inherited strategy, actual chargedCPC or launch readiness; no country criteria supplied, so US/DE names are labels only."
+    }
+  ],
+  "checks_passed": 7,
+  "critical_unknowns": [
+    "UI recognizes all nineheaders, especially addedcap, without skip/rename/coercion; displayed values preserve decimal0.15.",
+    "New-campaign server accepts and persists Paused+MaxClicks+0.15; preview/header mapping alone cannot establish this.",
+    "Import options propose only the two new shells, no existing updates/default activation or automatic bid/budget uplift.",
+    "Geography/presence/AIcontrols/ad-groupinheritance/actualCPC and existing purchase/consent/economic/cash gates remain outside the shell probe."
+  ],
+  "escalation": "Final Import is an account mutation, not Save & exit or a draft guarantee. Missing/Active status, ignoredcap, unexpected existing updates or direct-apply Continue must stop the probe; absent ads is containment, not permission to accept Active.",
+  "recommendation": "Proceed with the exact mapper-only probe. If status/cap cannot be matched, cancel and report unsupported UI fields. Even a successful mapper requires separate exact reviewed final-import contract and persisted after-state; no current import-ready or paid-launch conclusion.",
+  "external_writes_by_reviewer": 0,
+  "browser_or_account_calls_by_reviewer": 0,
+  "api_credentials_accessed": false
+}

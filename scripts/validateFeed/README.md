@@ -16,14 +16,16 @@ Default failure mode is **alert + exclude**: failing items are written to `error
 
 ```bash
 cd scripts/validateFeed
-npm install
 
-# Smoke-test against the repo fixture
-npm run smoke
+# Smoke-test against the repo fixture. This is the canonical local check for
+# Codex sessions where the bundled runtime has node but not npm.
+node validateFeed.js --input ../../tmp_products.json --out ./reports
 
 # Or against any Shopify export
 node validateFeed.js --input /path/to/products.json --out ./reports
 ```
+
+If dependencies need to be installed in a fresh shell, use the package manager available for this subproject and record the binary used. Do not treat a missing `npm` binary in the bundled Codex runtime as a validator failure.
 
 Reports land in `./reports/<BUCKET>/{valid.jsonl,errors.csv}` and `./reports/summary.json`.
 

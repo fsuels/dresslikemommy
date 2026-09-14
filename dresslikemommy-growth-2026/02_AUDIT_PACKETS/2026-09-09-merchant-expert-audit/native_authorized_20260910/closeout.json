@@ -1,0 +1,25 @@
+{
+  "schema": "dlm.merchant.native_closeout.v1",
+  "recorded_at_utc": "2026-09-10 18:18:17 UTC",
+  "anchor": "2026-09-10-merchant-native-access-authorized-lifecycle-checkpoint",
+  "phase_status": "ACCOUNT_ACCESS_VERIFIED__STABLE_CHROME_REQUIRED",
+  "merchant_permission": "RESOLVED",
+  "google_settings_changed": false,
+  "source_submitted": false,
+  "canonical_files": 6,
+  "exact_patch_operations": 17,
+  "checks": {
+    "renderer": "PASS",
+    "integration": "25/25 PASS;0risks",
+    "strict_continuity": "10/10 PASS;CONTINUITY_OK",
+    "scoped_diff": "PASS",
+    "after_hashes": "6/6 matched at18:15:23UTC",
+    "independent_preservation": "PASS at18:14:37.342UTC;17inverse operations reconstruct6before hashes;289peer rows preserved",
+    "paid_control": "506bytes unchanged;SHA1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57"
+  },
+  "independent_written_semantic_review": "Pending reviewer final artifact; no complete-Google-setup claim",
+  "shared_canonical_interval": "RELEASED",
+  "native_interval": "PAUSED_WITH_ROOT; no in-flight native request or approval; awaiting stable Chrome; peer may request handback",
+  "required_user_action": "Finish/dismiss current non-Merchant Chrome flow and leave Chrome stable. Existing recovery question pending; no further Merchant scope approval.",
+  "next_action": "Inspect Merchant513 existing sources and connected Google app before any new-source form; complete native automatic lifecycle settings and actual receiving readback."
+}

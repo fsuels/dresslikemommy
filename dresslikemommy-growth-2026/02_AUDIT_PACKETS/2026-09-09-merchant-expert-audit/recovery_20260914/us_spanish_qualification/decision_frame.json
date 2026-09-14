@@ -1,0 +1,48 @@
+{
+  "schema": "dlm.us_spanish_qualification_frame.v1",
+  "action_id": "TA07-US-SPANISH-QUALIFY-20260914-1658",
+  "created_at_utc": "2026-09-14T18:01:43.710753+00:00",
+  "stage": "DIAGNOSE_BUILD",
+  "owner_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "account": "513542500",
+  "shop": "15571635",
+  "source_gap": "Current17:57:07UTC source inventory has no Spanish primary source. Three provided sources are all English; automatically-found source has0 products. Historical10627981690 not present.",
+  "intended_identity": {
+    "contentLanguage": "es",
+    "feedLabel": "US",
+    "country": "US",
+    "currency": "USD",
+    "offer_id_scheme": "Unchanged country-prefixed Shopify product/variant IDs; Google identity additionally requires es contentLanguage and US feedLabel."
+  },
+  "hypothesis": "The complete fresh US/es source can produce qualified translated offers through the existing unchanged collector/generator.",
+  "falsifier": "Existing current US/es source, unavailable locale/catalog/currency, incomplete/stale source/translation, unsupported localized buyer route, or account capacity/ingestion blocker.",
+  "alternative": "Repair a verified existing US/es source instead of creating a duplicate; current inventory found none.",
+  "success_criteria": "Complete source/translation/hold reconciliation, exact candidate if valid, representative US/es/USD buyer evidence, supported language identity and minimum release/readback/rollback plan.",
+  "authority": "Read-only qualification and local preparation only; no external write, schedule or English refresh.",
+  "rollback": "No live change; local candidate can be withheld. Existing sources/configs/holds remain intact.",
+  "canonical_anchor": "2026-09-14-ceo-return-coverage-prerequisite-and-x-report",
+  "config_base": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/config.json",
+    "sha256": "83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b"
+  },
+  "six_parent_hold_spec": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/eligibility_holds_20260911.json",
+    "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733"
+  },
+  "browser_surfaces": {
+    "merchant": {
+      "browser": "1",
+      "tab": "1",
+      "task_owned": true
+    },
+    "spanish_storefront": {
+      "browser": "1",
+      "tab": "2",
+      "task_owned": true,
+      "initial_url": "https://www.dresslikemommy.com/es",
+      "country_language_visible": "Estados Unidos | USD $ / Español"
+    }
+  },
+  "note": "landingContextVerified remains false until product-page acceptance; config isolated and not scheduled/deployed."
+}

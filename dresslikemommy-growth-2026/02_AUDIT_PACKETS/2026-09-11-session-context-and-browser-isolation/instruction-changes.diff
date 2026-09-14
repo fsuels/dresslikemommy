@@ -1,0 +1,156 @@
+--- AGENTS.md (task before)
++++ AGENTS.md (task after)
+@@ -19,7 +19,7 @@
+ 
+ 1. Read this file and `ops/MEMORY_CONTINUITY_PROTOCOL.md`; read `VISION.md` for product, UX, listing, growth, automation, or trust work.
+ 2. For known issues/failed readbacks, use `ops/PROBLEM_SOLVING_PROTOCOL.md` and the matching `ops/PROBLEM_TRACKER.md` entry.
+-3. Search `ops/AGENT_WORKLOG.md` for the latest relevant anchor and exact IDs. Before shared/external work read `ops/AGENT_COORDINATION.md`; for account/browser work also read the account/browser coordination protocols.
++3. For "continue <channel>", run `python3 ops/scripts/compile_task_context.py --query "continue <channel>" --format brief` and read its sourced brief before acting. Otherwise search the latest relevant worklog anchor and exact IDs. Before shared/external work read `ops/AGENT_COORDINATION.md`; account/browser work also requires the access/browser protocols and a task-owned background surface.
+ 4. Paid growth: follow `ops/marketing/AGENTS.md` `Required First Loop`, the sole detailed retrieval map. For the canonical paid-growth goal, first run `python3.13 ops/scripts/open_marketing_cockpit.py` (local only).
+ 5. Listings/sourcing: follow `ops/prompts/START-HERE.md` and relevant `ops/sourcing/` files.
+ 
+--- CLAUDE.md (task before)
++++ CLAUDE.md (task after)
+@@ -19,7 +19,7 @@
+ 
+ 1. Read this file and `ops/MEMORY_CONTINUITY_PROTOCOL.md`; read `VISION.md` for product, UX, listing, growth, automation, or trust work.
+ 2. For known issues/failed readbacks, use `ops/PROBLEM_SOLVING_PROTOCOL.md` and the matching `ops/PROBLEM_TRACKER.md` entry.
+-3. Search `ops/AGENT_WORKLOG.md` for the latest relevant anchor and exact IDs. Before shared/external work read `ops/AGENT_COORDINATION.md`; for account/browser work also read the account/browser coordination protocols.
++3. For "continue <channel>", run `python3 ops/scripts/compile_task_context.py --query "continue <channel>" --format brief` and read its sourced brief before acting. Otherwise search the latest relevant worklog anchor and exact IDs. Before shared/external work read `ops/AGENT_COORDINATION.md`; account/browser work also requires the access/browser protocols and a task-owned background surface.
+ 4. Paid growth: follow `ops/marketing/AGENTS.md` `Required First Loop`, the sole detailed retrieval map. For the canonical paid-growth goal, first run `python3.13 ops/scripts/open_marketing_cockpit.py` (local only).
+ 5. Listings/sourcing: follow `ops/prompts/START-HERE.md` and relevant `ops/sourcing/` files.
+ 
+--- ops/MEMORY_CONTINUITY_PROTOCOL.md (task before)
++++ ops/MEMORY_CONTINUITY_PROTOCOL.md (task after)
+@@ -6,7 +6,7 @@
+ 
+ ## Files And Roles
+ 
+-- `AGENTS.md`: automatic bootstrap memory. Store durable, high-level rules, current critical state, persistent guardrails, North Star, and pointers to deeper files.
++- `AGENTS.md`: automatic bootstrap instructions. Store durable rules, guardrails, North Star and pointers; changing business state belongs in its canonical record.
+ - `ops/AGENT_WORKLOG.md`: chronological session log. Store every completed/deferred workstream, evidence packet, commands, readbacks, blockers, and `AGENT_CONTINUITY_ANCHOR`.
+ - `ops/AGENT_COORDINATION.md`: active and completed coordination registry. Store write claims, locks, blocked actions, and handoff status for shared/external surfaces.
+ - `ops/PROBLEM_SOLVING_PROTOCOL.md`: required workflow for turning a discovered problem into attempts, learning, solution, readback, and closure.
+@@ -29,6 +29,24 @@
+ 3. Retrieve the matching decision and observed outcome before acting. A copied mention or historical prediction is not a new outcome.
+ 4. Read only the owning workflow and narrowly relevant evidence unless targeted retrieval cannot resolve the task.
+ 5. Before shared or external work, confirm the current coordination claim, authority, and approval boundary.
++
++### Plain-language continuation in a new task
++
++Open the new Codex task in this saved project using the same local checkout to read the current shared files. A separate worktree has its own snapshot; it does not automatically contain the latest uncommitted work or checkpoints. Separate conversations do not automatically share their complete chat history.
++
++For a bare channel request such as "continue Google Ads", "continue Google Merchant", "continue Shopify" or "continue Google Analytics", run:
++
++```bash
++python3 ops/scripts/compile_task_context.py --query "continue Google Ads" --format brief
++```
++
++If a suitable Python interpreter is unavailable, use the configured bundled Python runtime located through the workspace-dependencies tool; missing PATH entries are not a continuity failure. This command is read-only unless an output file is explicitly requested.
++
++Read the derived session brief and its cited canonical source lines. Explain the goal, already-completed work, current owner, remaining dependency and next action before proceeding. Broad Shopify requests may cover products, themes, feeds and tracking: show that inventory and resolve the workstream before choosing a write. A successful retrieval is not approval, a live account readback, or proof that a previous conversation completed all of its work.
++
++The brief is built on demand from the existing command layer, worklog and coordination records; it is not a second state store. Omit `--format brief` to obtain the complete machine-readable JSON, optionally with `--output` to a local temporary file. Read conflicting source records and preserve the restrictive gate until the conflict is resolved. Use the detailed exact-entity path for a particular campaign/product/error. Do not substitute a global-latest anchor for missing relevant evidence.
++
++If another task owns the requested workstream, retain its claim and offer independent read-only/local work or continuation in that existing task. Parallel tasks need disjoint ownership even when each has a separate browser. Checkpoint completed milestones, evidence and next steps in the owning canonical task record and worklog before handoff; unsaved reasoning in a chat is not recoverable project memory. Do not record tokens, cookies, passwords or personal browser content.
+ 
+ ## Before Fixing Anything
+ 
+@@ -88,7 +106,7 @@
+ 
+ - A major workflow or protocol is created.
+ - A persistent guardrail changes.
+-- A critical external-system state changes.
++- A durable routing rule changes; changing external state stays in the owning command record and worklog.
+ - A repeated blocker or "do not redo this" instruction must be visible to every future agent.
+ - The North Star, continuation rule, or subagent orchestration model changes.
+ 
+--- ops/BROWSER_SUBAGENT_COORDINATION.md (task before)
++++ ops/BROWSER_SUBAGENT_COORDINATION.md (task after)
+@@ -2,7 +2,19 @@
+ 
+ Purpose: let multiple agents work quickly in the logged-in ChatGPT Atlas / in-app browser without colliding in Shopify Admin, Google Ads, Merchant Center, GA4, Search Console, Pinterest, or other paid-growth surfaces.
+ 
+-This file supplements `ops/AGENT_COORDINATION.md`. It does not replace the one-writer rule.
++This file supplements `ops/AGENT_COORDINATION.md`. It applies to separate Codex tasks as well as child agents and does not replace the one-writer rule.
++
++## Background Routing And Personal Computer Use
++
++Use a structured connector/API for supported data and actions. When rendered UI is needed, create or reuse a task-owned background browser surface and address that exact tab handle. With the currently exposed CUA API, a new in-app page can be requested with `cua.createBrowserTab("iab", exactUrl, {visible:false})`; check the tool's current documentation and actual availability before relying on it. Other tasks need their own supported surface, not the same selected tab.
++
++The owner's personal browser/desktop is not a shared automation pool. Do not inventory unrelated personal tabs, select the foreground browser, or fall back to native keyboard/mouse, clipboard paste, account switching or browser-wide settings to recover an unavailable background surface. If the exact necessary action requires an interactive surface, record the blocked action and request that specific handoff only when current authorization does not cover it. Keep other connector, research and local work moving. This routing never bypasses authentication, tool restrictions or automatic approval review.
++
++Tab IDs are handles scoped to their tool/browser session, not globally unique identities. Record the owning Codex task, browser/session identity when exposed, exact URL and business entity together. Read back that identity at startup and after reconnecting; never copy another task's bare tab ID into a new session. Tabs can share login/cookie state: a separate tab is not proof of an isolated browser profile or virtual computer.
++
++Check lifetime and concurrency empirically. A handoff marker does not guarantee that a browser survives another agent turn. If a surface disappears, one supported targeted recovery is reasonable; persistent unavailability is a lane blocker, not permission to control the owner's desktop. Close only the task's disposable test tabs after verification; retain a business handoff tab only when the runtime supports it and the handoff is intentional.
++
++This is a cooperative routing contract, not an OS lock or a cloud runtime. It cannot force already-running tasks to reread instructions, guarantee simultaneous authenticated browser capacity, or keep local agents running while the Mac sleeps. Record actual test results separately from expected capability. Full desktop isolation or an always-on remote worker requires separately configured infrastructure.
+ 
+ ## Standing Owner Preference
+ 
+@@ -38,8 +50,8 @@
+ 
+ A login screen in a fresh tab is not enough evidence for a blocker. The parent or surface owner must first:
+ 
+-1. Inventory existing authenticated tabs/sessions and claim the matching one.
+-2. Check configured connectors or local secure credential sources without exposing secret values.
++1. Check configured connectors and the task's assigned background session without exposing secrets or inspecting unrelated personal tabs.
++2. Claim an available task-owned surface; reuse authenticated access only within the assigned boundary. A new dedicated tab is allowed when required for isolation.
+ 3. Navigate from an authenticated surface to the exact account, advertiser, property, store, repository, or mailbox.
+ 4. Use owner-provided current-session credentials only transiently when the target site and account are clear.
+ 5. Stop only for CAPTCHA, MFA/2FA, account chooser ambiguity, permission denial, billing/payment prompts, policy prompts, destructive-change prompts, or no available credential/session after the ladder is complete.
+@@ -48,7 +60,7 @@
+ 
+ ## Atlas Browser Tab Pattern
+ 
+-When logged-in ChatGPT Atlas / in-app browser access exists, use it instead of asking the owner to log in again.
++When authenticated access exists in the assigned background browser, reuse it within that boundary. A logged-in personal Chrome tab is not automatically assigned to an agent.
+ 
+ Preferred tab naming/session naming pattern:
+ 
+@@ -70,8 +82,8 @@
+ 2. Confirm the account/store/advertiser before reading or editing.
+ 3. Save screenshots/downloads to its own evidence packet.
+ 4. Avoid navigating away from another agent's page.
+-5. Leave the tab open at a useful readback page when handing off.
+-6. Report current URL, account ID, readback state, and any unsaved-change risk.
++5. Leave a business tab at a useful readback page only if the runtime supports the intended handoff; close disposable tests.
++6. Report owning task and browser identity, current URL, account ID, readback state and any unsaved-change risk. The receiving task must verify availability rather than trust an old handle.
+ 
+ ## Suggested Parallel Paid-Growth Lanes
+ 
+--- ops/ACCOUNT_ACCESS_PROTOCOL.md (task before)
++++ ops/ACCOUNT_ACCESS_PROTOCOL.md (task after)
+@@ -12,17 +12,17 @@
+ 
+ ## Recovery Ladder
+ 
+-1. Check existing authenticated tabs or browser sessions first.
+-   - Use the current Chrome / browser tab inventory when available.
+-   - Prefer the already-authenticated tab for the exact account, advertiser, Merchant account, property, store, repository, or mailbox.
+-   - Do not open duplicate tabs until the tab map has been checked.
+-2. Check repo-known and local credential paths without exposing secrets.
++1. Check the assigned task-owned background session and configured structured integrations first.
++   - Follow `ops/BROWSER_SUBAGENT_COORDINATION.md`; inspect only assigned surfaces, never an unrelated personal tab inventory or another task's active tab.
++   - Reuse an authenticated assigned session for the exact account, advertiser, Merchant account, property, store, repository or mailbox.
++   - A new dedicated background tab is allowed when isolation requires it. Confirm its identity and availability; do not interpret a copied tab ID as a transferable session.
++2. Check repo-known configured access and documented local credential paths within the authorized scope, without exposing secrets.
+    - Shopify Admin API: use the documented non-repo credential files under `~/.config/dresslikemommy/`.
+    - GitHub: use the configured GitHub connector or `gh` auth state when available.
+    - Paid-media and analytics surfaces: use authenticated browser sessions or configured connectors if present.
+ 3. Navigate from the authenticated session to the exact surface.
+    - Confirm account identifiers before reading or writing. Examples include advertiser ID, Merchant account ID, Google Ads customer/campaign ID, GA4 property, Shopify store, GitHub repo, or mailbox.
+-   - If a direct URL redirects to login, return to the tab inventory before calling it blocked.
++   - If a direct URL redirects to login, check only the assigned session or configured connector before calling it blocked. Do not recover by taking over personal Chrome or bypassing an interactive gate.
+ 4. Use current-session credentials only transiently when the owner has supplied them in the current session and the target site is the expected account.
+    - Do not save the password in the browser unless the owner explicitly asks.
+    - Do not persist the credential in any file.
+@@ -35,7 +35,7 @@
+ 
+ - The parent/orchestrator owns account-surface routing.
+ - Keep one tab/session claim per surface in `ops/AGENT_COORDINATION.md` or the active evidence packet tab map.
+-- Subagents must not open independent duplicate browser trees for the same surface.
++- Independent tasks need separate supported browser surfaces. They must not duplicate an active write claim; parallel reads still require separate tab ownership.
+ - A stopped account lane must be labeled `ACCESS_RECOVERY_REQUIRED`, `MFA_OR_CAPTCHA_REQUIRED`, `PERMISSION_REQUIRED`, or `ACCOUNT_SWITCH_REQUIRED`, not a generic P0 blocker.
+ - A true P0 blocker requires both:
+   - the access is necessary for the next approved sales-moving action, and

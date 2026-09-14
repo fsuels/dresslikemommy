@@ -42,7 +42,7 @@ SEO_DESCRIPTION = "Pastel floral family set with mom + girl dresses and a matchi
 PRINT_NAME = "Pastel Tulip"
 SHORTCODE = "PTUL"
 COLOR_TOKEN = "TULIP"
-VENDOR_URL = "https://detail.1688.com/offer/800385971840.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 LISTING_MODE = "Family Matching"
 PRODUCT_TYPE = "Matching Family Sets"
@@ -228,7 +228,7 @@ def tags() -> list[str]:
         "Vacation",
         "Photo Outfit",
         "Resort",
-        VENDOR_URL,
+
     ]
     values.extend(row["picker_label"] for row in SIZE_CHART)
     values.extend(row["role"] for row in SIZE_CHART)

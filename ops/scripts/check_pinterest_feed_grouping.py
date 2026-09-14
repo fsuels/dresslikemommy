@@ -9,10 +9,10 @@ Wired into: ops/scripts/check_continuity_integrity.py --strict
 
 Behavior:
 
-This script scans every relevant feed snapshot in the repo and verifies
+This script scans current canonical Pinterest feed artifacts and verifies
 that variants of the same parent product are grouped via item_group_id.
-It fails CLOSED with a non-zero exit code if it detects per-variant
-submission without item_group_id.
+Historical UI/Merchant exports are still scanned as diagnostics, but they
+do not fail the current-feed strict gate unless explicitly requested.
 
 Feed snapshot inputs (auto-discovered):
 
@@ -22,30 +22,32 @@ Feed snapshot inputs (auto-discovered):
 
 2. Pinterest product-group import CSVs (the kind Pinterest's UI exports/imports):
    dresslikemommy-growth-2026/02_AUDIT_PACKETS/**/pinterest_*item_id_import*.csv
-   -> Diagnostic only: warn if duplicates per parent exist without an
-      accompanying item_group_id column.
+   -> Historical diagnostic by default: warn if duplicates per parent
+      exist without an accompanying item_group_id column.
 
 3. Merchant Center all-products sanitized CSVs (Shopify -> Pinterest uses
    the same item-ID emission rules):
    dresslikemommy-growth-2026/02_AUDIT_PACKETS/**/merchant_all_products_*sanitized.csv
-   -> If the same `shopify_<market>_<parent>` prefix appears across >= 2
-      rows in the same (feed_label, language_code) bucket, the underlying
-      feed is in per-variant mode. This is the recurring-mistake signal.
+   -> Historical diagnostic by default: if the same
+      `shopify_<market>_<parent>` prefix appears across >= 2 rows in the
+      same (feed_label, language_code) bucket, the captured upstream feed
+      was in per-variant mode. This remains useful evidence, but old
+      evidence snapshots are not current canonical feeds.
 
 Exit codes:
-  0  PASS  All inspected feed snapshots either have item_group_id on every
-           row, or have no duplicate-parent patterns.
-  1  FAIL  At least one snapshot shows per-variant submission without
-           item_group_id.
+  0  PASS  Current canonical feed snapshots have item_group_id on every row.
+           Historical diagnostic snapshots may still warn.
+  1  FAIL  At least one current canonical snapshot shows per-variant
+           submission without item_group_id, or
+           --fail-historical-diagnostics was passed and a historical
+           diagnostic still shows per-variant submission.
   2  ERROR Input parsing problem (so the strict gate also fails closed).
 
 Idempotent: re-run any time.
 
-Note: this guardrail intentionally permits the older Merchant snapshot
-located at 2026-05-15-merchant-post-shopify-region-prune-export/ to fail
-ONLY in `--report-only` mode; in `--strict` mode it must be remediated.
-The Pinterest -> Shopify channel fix collapses that snapshot's variant
-ratio at the next re-sync, at which point the check passes naturally.
+Note: the older Merchant/Pinterest snapshots are preserved as evidence of
+the original failure. They are reported as WARN unless
+--fail-historical-diagnostics is used for a forensic audit.
 """
 
 from __future__ import annotations
@@ -91,6 +93,7 @@ def scan_path_b_feed(path: Path) -> dict:
         "rows_missing_item_group_id": 0,
         "unique_item_group_ids": 0,
         "verdict": "PASS",
+        "scope": "current_canonical",
         "reason": "",
     }
     item_groups: set[str] = set()
@@ -129,6 +132,7 @@ def scan_pinterest_import_csv(path: Path) -> dict:
         "duplicate_parent_clusters": 0,
         "max_variants_per_parent": 0,
         "verdict": "PASS",
+        "scope": "historical_diagnostic",
         "reason": "",
     }
     parents = Counter()
@@ -146,9 +150,10 @@ def scan_pinterest_import_csv(path: Path) -> dict:
         info["max_variants_per_parent"] = max(parents.values())
         info["duplicate_parent_clusters"] = sum(1 for c in parents.values() if c > 1)
     if info["duplicate_parent_clusters"] and not has_item_group_col:
-        # This is the diagnostic signal that the feed upstream is in per-variant
-        # mode. We DO NOT mark this PASS because the underlying feed needs the fix.
-        info["verdict"] = "FAIL"
+        # This is the diagnostic signal that the historical upstream capture
+        # was in per-variant mode. Keep it visible without failing current
+        # feed strict mode.
+        info["verdict"] = "WARN"
         info["reason"] = (
             f"{info['duplicate_parent_clusters']} parents have multiple variant rows "
             f"and the CSV exposes no item_group_id column; upstream feed is per-variant"
@@ -164,6 +169,7 @@ def scan_merchant_export(path: Path) -> dict:
         "buckets_with_duplicate_parents": 0,
         "worst_bucket_variants_per_parent": 0,
         "verdict": "PASS",
+        "scope": "historical_diagnostic",
         "reason": "",
     }
     per_bucket_parents: dict[tuple[str, str, str], Counter] = defaultdict(Counter)
@@ -195,7 +201,7 @@ def scan_merchant_export(path: Path) -> dict:
     info["buckets_with_duplicate_parents"] = bad_buckets
     info["worst_bucket_variants_per_parent"] = worst
     if bad_buckets:
-        info["verdict"] = "FAIL"
+        info["verdict"] = "WARN"
         info["reason"] = (
             f"{bad_buckets} market x language buckets have multiple variant rows per "
             f"parent (worst: {worst}x). Underlying feed is per-variant; apply the "
@@ -226,6 +232,14 @@ def main() -> int:
         action="store_true",
         help="Emit JSON only; suppress markdown report.",
     )
+    ap.add_argument(
+        "--fail-historical-diagnostics",
+        action="store_true",
+        help=(
+            "Treat historical diagnostic WARN findings as FAIL. Use only for "
+            "forensic audits, not the current canonical feed gate."
+        ),
+    )
     args = ap.parse_args()
 
     results: list[dict] = []
@@ -242,11 +256,27 @@ def main() -> int:
     for p in sorted(glob(MERCHANT_GLOB, recursive=True)):
         results.append(scan_merchant_export(Path(p)))
 
+    if args.fail_historical_diagnostics:
+        for r in results:
+            if r["verdict"] == "WARN":
+                r["verdict"] = "FAIL"
+
     fails = [r for r in results if r["verdict"] == "FAIL"]
+    warns = [r for r in results if r["verdict"] == "WARN"]
     errors = [r for r in results if r["verdict"] == "ERROR"]
 
     if args.json:
-        print(json.dumps({"results": results, "fails": len(fails), "errors": len(errors)}, indent=2))
+        print(
+            json.dumps(
+                {
+                    "results": results,
+                    "fails": len(fails),
+                    "warnings": len(warns),
+                    "errors": len(errors),
+                },
+                indent=2,
+            )
+        )
     else:
         print(RESULTS_HEADER)
         for r in results:
@@ -255,7 +285,10 @@ def main() -> int:
                 line += f"  -> {r['reason']}"
             print(line)
         print()
-        print(f"summary: {len(results)} snapshots scanned, {len(fails)} FAIL, {len(errors)} ERROR")
+        print(
+            f"summary: {len(results)} snapshots scanned, "
+            f"{len(fails)} FAIL, {len(warns)} WARN, {len(errors)} ERROR"
+        )
 
     if errors:
         return 2

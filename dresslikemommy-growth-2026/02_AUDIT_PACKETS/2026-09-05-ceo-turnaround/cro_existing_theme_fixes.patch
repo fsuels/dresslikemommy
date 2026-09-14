@@ -1,0 +1,102 @@
+diff --git a/assets/cart.js b/assets/cart.js
+index 5ee9d1f..15fb91b 100644
+--- a/assets/cart.js
++++ b/assets/cart.js
+@@ -113,6 +113,11 @@ class CartItems extends HTMLElement {
+         section: document.getElementById('main-cart-items').dataset.id,
+         selector: '.js-contents',
+       },
++      {
++        id: 'main-cart-title',
++        section: document.getElementById('main-cart-items').dataset.id,
++        selector: '#main-cart-title',
++      },
+       {
+         id: 'cart-icon-bubble',
+         section: 'cart-icon-bubble',
+@@ -126,7 +131,7 @@ class CartItems extends HTMLElement {
+       {
+         id: 'main-cart-footer',
+         section: document.getElementById('main-cart-footer').dataset.id,
+-        selector: '.js-contents',
++        selector: '#main-cart-footer-subtotal',
+       },
+     ];
+   }
+diff --git a/sections/hero-banner.liquid b/sections/hero-banner.liquid
+index 9600698..a4f3ee0 100644
+--- a/sections/hero-banner.liquid
++++ b/sections/hero-banner.liquid
+@@ -361,9 +361,17 @@
+     }
+ 
+     .hero-banner__heading {
+-      display: none;
++      position: absolute !important;
++      width: 1px;
++      height: 1px;
++      margin: -1px;
++      padding: 0;
++      overflow: hidden;
++      clip: rect(0 0 0 0);
++      border: 0;
+       font-size: 20px;
+       line-height: 1.2;
++      white-space: nowrap;
+     }
+ 
+     .hero-banner__subheading {
+diff --git a/sections/main-cart-footer.liquid b/sections/main-cart-footer.liquid
+index e0237b2..1a255ae 100644
+--- a/sections/main-cart-footer.liquid
++++ b/sections/main-cart-footer.liquid
+@@ -90,7 +90,7 @@
+             {%- when '@app' -%}
+               {% render block %}
+             {%- when 'subtotal' -%}
+-              <div class="js-contents" {{ block.shopify_attributes }}>
++              <div id="main-cart-footer-subtotal" class="js-contents" {{ block.shopify_attributes }}>
+                 <div>
+                   {%- if cart.cart_level_discount_applications.size > 0 -%}
+                     <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+diff --git a/sections/main-cart-items.liquid b/sections/main-cart-items.liquid
+index d237182..72db2bc 100644
+--- a/sections/main-cart-items.liquid
++++ b/sections/main-cart-items.liquid
+@@ -27,7 +27,7 @@
+ 
+ <cart-items class="gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}">
+   <div class="page-width">
+-    <div class="title-wrapper-with-link">
++    <div id="main-cart-title" class="title-wrapper-with-link">
+       <h1 class="title title--primary">{{ 'sections.cart.title' | t }} ({{ cart.item_count }})</h1>
+       <a href="{{ routes.all_products_collection_url }}" class="underlined-link">
+         {{- 'general.continue_shopping' | t -}}
+diff --git a/snippets/home-spotlight-card.liquid b/snippets/home-spotlight-card.liquid
+index 32bc235..57af37c 100644
+--- a/snippets/home-spotlight-card.liquid
++++ b/snippets/home-spotlight-card.liquid
+@@ -76,6 +76,23 @@
+           if candidate_public_brand == blank or candidate_public_brand_downcase contains 'http://' or candidate_public_brand_downcase contains 'https://' or candidate_public_brand_downcase contains '1688.com' or candidate_public_brand_downcase contains 'alibaba.com' or candidate_public_brand_downcase contains 'aliexpress.com'
+             assign candidate_public_brand = 'dresslikemommy.com'
+           endif
++          assign candidate_caption_downcase = candidate_caption | downcase
++          if candidate_caption_downcase contains 'vendor' or candidate_caption_downcase contains 'supplier' or candidate_caption_downcase contains '1688' or candidate_caption_downcase contains 'alibaba' or candidate_caption_downcase contains 'taobao' or candidate_caption_downcase contains 'source url'
++            assign candidate_caption = ''
++            if candidate_type != blank
++              assign candidate_caption = candidate_type
++            endif
++            if candidate_pattern != blank
++              if candidate_caption != blank
++                assign candidate_caption = candidate_caption | append: ' in ' | append: candidate_pattern
++              else
++                assign candidate_caption = candidate_pattern
++              endif
++            endif
++            if candidate_caption != blank
++              assign candidate_caption = candidate_caption | append: ' for coordinated family moments.'
++            endif
++          endif
+ 
+           if candidate_variant == blank or candidate_image == blank
+             continue

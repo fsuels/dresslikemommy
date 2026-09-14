@@ -1,0 +1,75 @@
+{
+  "verdict": "PASS_WITH_GATES",
+  "reviewer": "historical_google_access_paths",
+  "provenance": "Root collected the email and native GSC evidence. This reviewer independently checked only the three saved local receipts; authentication flags are root-recorded, not newly verified.",
+  "source_sha256": {
+    "gsc_new_indexing_notices_20260907.json": "a680fe8f62b7b54242c937b31c85d31690506432f932c7937f6eb1d270097be6",
+    "gsc_server_error_examples_current.json": "1e0fb86bdca2af29c1ea037769f6beed98ba8f009e03be484e9f14f3b906e1cf",
+    "gsc_crawl_health_current.json": "63b0e0f0912b156052cea45444ad0e43e2e442980633d5bdb4f15e0335811d65"
+  },
+  "checks": {
+    "two_saved_indexing_notices": true,
+    "gmail_three_results_excludes_one_achievement": true,
+    "recorded_authentication_flags_pass": true,
+    "both_notices_postdate_prior_native_capture": true,
+    "both_notices_predate_receipt_compilation": true,
+    "both_report_5xx_and404": true,
+    "neither_provides_url_count_or_crawl_evidence": true,
+    "www_notice_matches_frozen_property": true,
+    "other_notice_has_only_bare_domain_label": true,
+    "both_previous_reports_use_same_www_property": true,
+    "previous_reference_dates_match_sources": true,
+    "twelve_complete_old_examples": true,
+    "old_crawl_dates_match_reference": true,
+    "old_report_scope_is_all_known_pages": true,
+    "old_health_is_dated_not_current_uptime": true,
+    "outlook_partial_dates_prevent_absence_claim": true,
+    "creation_approval_preserved": true,
+    "proposed_read_remains_bounded_native_and_readonly": true
+  },
+  "check_count": 18,
+  "passed_count": 18,
+  "actually_new": {
+    "notification_receipt_times_utc": [
+      "2026-09-06T21:10:17.000Z",
+      "2026-09-06T21:37:32.000Z"
+    ],
+    "reported_reasons": [
+      "Server error (5xx)",
+      "Not found (404)"
+    ],
+    "classification": "Two newly received notices after the prior native read; neither establishes when an underlying failure began or a new distinct affected URL."
+  },
+  "property_and_baseline_limits": [
+    "The www URL-prefix notice matches the saved www property. The other notice supplies a bare-domain label; its precise property type/scope and overlap must not be assumed.",
+    "Old12 examples are All known pages, report updated August27, crawled June3/June24. New notices concern pages in an unidentified sitemap; align property/filter/sitemap before comparing counts.",
+    "The September3 crawl-health report is dated prior context, not proof of current health or outage.",
+    "The separate non-www achievement notice reports five clicks over28days; it is not a replacement for existing traffic baselines.",
+    "Outlook returned mostly out-of-window results with more pages; no absence claim is justified."
+  ],
+  "no_supported_inference": [
+    "No current outage, completed-work regression, repair target/cause, or Merchant/Ads causal link",
+    "No new sales/profit/traffic effect",
+    "No two independent observed-outcome events; URL overlap remains unknown"
+  ],
+  "next_exact_native_read": "Open Page indexing for https://www.dresslikemommy.com/; capture update date and exact submitted-sitemap identity/filter, then5xx/404 affected counts, example URLs and last crawl dates. Compare with the saved12 only after scope alignment and check matching active Shopify resources before proposing any repair.",
+  "gates": [
+    "Normal native access; no email-link or recovery loop required",
+    "No blind redirects/restoration/locale/sitemap mutation, live URL test or retry of the gated Turkish public request",
+    "Existing Ads-creation approval remains preserved; no repeat permission or account recovery step added"
+  ],
+  "external_calls": 0,
+  "external_writes": 0,
+  "goal_calls": 0,
+  "canonical_edits": 0,
+  "provenance_amendment": {
+    "status": "VERIFIED_TRIGGER_ONLY",
+    "effect": "Parent added heartbeat trigger metadata only. Removing trigger reproduces the previously reviewed receipt hash exactly; all18 content checks remain applicable.",
+    "parent_recorded_heartbeat_wakeup_utc": "2026-09-07T02:38:25.445Z",
+    "source_trigger_fields": [
+      "automation_id",
+      "observed_wakeup_utc",
+      "meaning"
+    ]
+  }
+}

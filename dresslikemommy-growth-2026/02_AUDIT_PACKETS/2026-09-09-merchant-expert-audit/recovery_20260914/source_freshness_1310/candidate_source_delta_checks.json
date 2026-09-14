@@ -1,0 +1,241 @@
+{
+  "schema": 1,
+  "at_utc": "2026-09-14T13:24:52.577703+00:00",
+  "executor_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "independent": false,
+  "status": "LOCAL_CHECKS_PASS_REQUIRES_PARENT_INDEPENDENT_REVIEW",
+  "action": "TA07-US-SOURCE-FRESHNESS-20260914-1236",
+  "run": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness",
+  "current_source_time": "2026-09-14T13:16:10.466Z",
+  "prior_source_time": "2026-09-11T21:18:15.731Z",
+  "source_counts": {
+    "parents": 238,
+    "variants": 4925
+  },
+  "available_source_variants": 4903,
+  "contained_rows": 162,
+  "retained_rows": 4741,
+  "eligible_parents": 232,
+  "unavailable_source_variants_omitted": 22,
+  "removed_parent_evidence": [
+    {
+      "id": "gid://shopify/Product/7108998987873",
+      "previous_title": "Tropical One-Shoulder Ruffle Swimsuit for Women and... | DLM",
+      "removed_offer_count": 10,
+      "current_fact": "Absent from both complete ACTIVE scan and exact final ACTIVE manifest; no inference whether archived, deleted or otherwise no longer active."
+    },
+    {
+      "id": "gid://shopify/Product/7109117280353",
+      "previous_title": "Chic Pink Mermaid Scales Tankini Set for Mother and Daughter",
+      "removed_offer_count": 10,
+      "current_fact": "Absent from both complete ACTIVE scan and exact final ACTIVE manifest; no inference whether archived, deleted or otherwise no longer active."
+    }
+  ],
+  "retained_parent_metadata_changes": [
+    {
+      "id": "gid://shopify/Product/7505374838881",
+      "title": "Tropical Palm Floral Family Matching Shirt and Dress Set",
+      "changed_fields": [
+        "updatedAt"
+      ]
+    }
+  ],
+  "protected_prices": [
+    {
+      "id": "shopify_US_6718945034337_39756755861601",
+      "price": "17.99 USD"
+    },
+    {
+      "id": "shopify_US_7230336729185_41883237220449",
+      "price": "22.99 USD"
+    },
+    {
+      "id": "shopify_US_7230336729185_41883237285985",
+      "price": "22.99 USD"
+    },
+    {
+      "id": "shopify_US_7230336729185_41883237318753",
+      "price": "22.99 USD"
+    },
+    {
+      "id": "shopify_US_7230336729185_41883238465633",
+      "price": "22.99 USD"
+    },
+    {
+      "id": "shopify_US_7230336729185_41883238498401",
+      "price": "22.99 USD"
+    }
+  ],
+  "delta": {
+    "added_ids": [],
+    "removed_ids": [
+      "shopify_US_7108998987873_41496666669153",
+      "shopify_US_7108998987873_41496666701921",
+      "shopify_US_7108998987873_41496666734689",
+      "shopify_US_7108998987873_41496666767457",
+      "shopify_US_7108998987873_41496666800225",
+      "shopify_US_7108998987873_41496666832993",
+      "shopify_US_7108998987873_41496666865761",
+      "shopify_US_7108998987873_41496666898529",
+      "shopify_US_7108998987873_41496666931297",
+      "shopify_US_7108998987873_41496666964065",
+      "shopify_US_7109117280353_41497061785697",
+      "shopify_US_7109117280353_41497061818465",
+      "shopify_US_7109117280353_41497061851233",
+      "shopify_US_7109117280353_41497061884001",
+      "shopify_US_7109117280353_41497061916769",
+      "shopify_US_7109117280353_41497061949537",
+      "shopify_US_7109117280353_41497061982305",
+      "shopify_US_7109117280353_41497062015073",
+      "shopify_US_7109117280353_41497062080609",
+      "shopify_US_7109117280353_41497062113377"
+    ],
+    "changed_fields": {},
+    "retained_count": 4741,
+    "unchanged_retained_count": 4741
+  },
+  "warnings_over_complete_source_not_just_retained": {
+    "identifier_status_unknown": 4779,
+    "missing_age_group": 179,
+    "missing_color": 1027,
+    "missing_gender": 192
+  },
+  "checks": [
+    {
+      "check": "fresh_complete_exact_active_counts",
+      "result": "PASS"
+    },
+    {
+      "check": "source_time_strictly_newer",
+      "result": "PASS"
+    },
+    {
+      "check": "unchanged_market_publication_context",
+      "result": "PASS"
+    },
+    {
+      "check": "source_and_manifest_counts",
+      "result": "PASS"
+    },
+    {
+      "check": "no_new_parents",
+      "result": "PASS"
+    },
+    {
+      "check": "retained_source_changes_only_updatedAt",
+      "result": "PASS"
+    },
+    {
+      "check": "candidate_ids_exactly_source_eligible_minus_holds",
+      "result": "PASS"
+    },
+    {
+      "check": "all_retained_rows_identical_to_before",
+      "result": "PASS"
+    },
+    {
+      "check": "no_added_or_changed_offer_data",
+      "result": "PASS"
+    },
+    {
+      "check": "20_removals_match_absent_active_parents",
+      "result": "PASS"
+    },
+    {
+      "check": "same_six_holds_same_162_rows",
+      "result": "PASS"
+    },
+    {
+      "check": "22_unavailable_excluded",
+      "result": "PASS"
+    },
+    {
+      "check": "no_out_of_stock_feed_rows",
+      "result": "PASS"
+    },
+    {
+      "check": "every_feed_price_matches_current_source",
+      "result": "PASS"
+    },
+    {
+      "check": "all_prices_positive_and_at_most_1000",
+      "result": "PASS"
+    },
+    {
+      "check": "five_corrected_prices_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "pilot_price_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "protected_available_source_and_ids",
+      "result": "PASS"
+    },
+    {
+      "check": "exact_parent_group_ids",
+      "result": "PASS"
+    },
+    {
+      "check": "exact_variant_links_same_store",
+      "result": "PASS"
+    },
+    {
+      "check": "shopping_ads_excluded",
+      "result": "PASS"
+    },
+    {
+      "check": "return_labels_not_emitted",
+      "result": "PASS"
+    },
+    {
+      "check": "no_diagnostic_errors",
+      "result": "PASS"
+    },
+    {
+      "check": "before_pointer_feed_bindings",
+      "result": "PASS"
+    },
+    {
+      "check": "candidate_artifact_bindings",
+      "result": "PASS"
+    },
+    {
+      "check": "unchanged_active_holds",
+      "result": "PASS"
+    },
+    {
+      "check": "unchanged_source_qualification",
+      "result": "PASS"
+    },
+    {
+      "check": "fresh_build_success",
+      "result": "PASS"
+    }
+  ],
+  "checks_passed": 28,
+  "checks_total": 28,
+  "input_bindings": {
+    "candidate_packet": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/candidate_review_packet.json",
+      "sha256": "6d4784b8526d08a35726988fb2eb6cb40f8c80c90622679c0643b16f8b57a27e"
+    },
+    "prior_snapshot": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260911T211600Z-us-six-parent-f345/candidate/us-en.snapshot.json",
+      "sha256": "fca7d568d26d4d01383c9bc2149e3447663e0bb70d9c9ddfdf560c3e48aa8a05"
+    },
+    "current_snapshot": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260914T131200Z-us-freshness/candidate/us-en.snapshot.json",
+      "sha256": "816bcef890d04a232b20c268f236d568e18be21d817d10d80fdd1a22425bd77a"
+    }
+  },
+  "external_writes": 0,
+  "google_update_clicks": 0,
+  "limitations": [
+    "This executor receipt is not independent approval.",
+    "A fresh ACTIVE scan proves absence from the active feed source, not archive or deletion cause.",
+    "Source freshness and host connection recovery require reviewed pointer promotion plus native Google receipt; neither is claimed here.",
+    "AU, other countries, return policies and Store Quality are unchanged."
+  ]
+}

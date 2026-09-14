@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-09-11T19:14:59.361065+00:00",
+  "testSha256": "0c33dfbe511d8e74a7b73a62594d008e71d3020ba3743d73afe52ef4f0b93c4b",
+  "command": [
+    "node",
+    "--test",
+    "--test-name-pattern=canonical alias:|frozen V7|holdout:|only the bounded",
+    "footer-localization.test.mjs"
+  ],
+  "sourceOverride": "DLM_FOOTER_SOURCE points to candidate for before and proposed for after",
+  "results": [
+    {
+      "phase": "before",
+      "exitCode": 1,
+      "tests": 14,
+      "pass": 4,
+      "fail": 10,
+      "skipped": 0,
+      "sourceSha256": "bf94102671a334dde28a87bb97e22c942c805ddd1633673cabec847594b32bc8"
+    },
+    {
+      "phase": "after",
+      "exitCode": 0,
+      "tests": 14,
+      "pass": 14,
+      "fail": 0,
+      "skipped": 0,
+      "sourceSha256": "8e971b8940c4dacf273b57b3c4bbdb25c7799d7521aa7e81680006956d8ae8d6"
+    }
+  ],
+  "beforeFailureIsExpected": true,
+  "collectionCorrection": "Initial receipt collector checked only the log tail and missed Node summary followed by failure stacks. Exit-code assertions had passed. Reparsed full saved logs; no source change or test rerun."
+}

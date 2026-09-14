@@ -1,0 +1,983 @@
+{
+  "schema": "dlm.au-buyer-matrix-readback.v1",
+  "created_at_utc": "2026-09-11T21:36:37.971959+00:00",
+  "task_owner": "01a088c3-c890-71a1-98ee-f19b6905af55",
+  "integration_owner": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "task_stage": "HANDOFF",
+  "status": "FAILED_FULL_MATRIX_HOLD",
+  "summary": "Six primary cases verified with limits; E1 ordinary selector/Add failure; E2/E3 not run after stop. No full-cohort release qualification.",
+  "inputs": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.full_cohort_qualification_20260911.json",
+      "sha256": "df5fae7cde0fa3c2c9725db219e7b39f77061eb74a02173cc364573b2832e417"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.sku-template-binding_20260911.json",
+      "sha256": "0b984b5a72b7374b88cdb43f81231c257c42575d52939b4a5e1631cf31c6c59d"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.tsv",
+      "sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843"
+    }
+  ],
+  "initial_matrix_sha256": "1e2ec9721ac304bb7f446e24d22655e411bc74e3b30c08edb9c41899ef859061",
+  "matrix_revision_note": "Original hash verified before/during browser run. Parent source replay updated matrix at21:30:24Z to hashdf5fae...2e417; current source IDs/options/price targets reconciled for22 visible selections. Failed initial receipt hash guard wrote nothing; source and feed hashes unchanged.",
+  "actual_MAIN_all_captures": {
+    "id": "133290917985",
+    "name": "dresslikemommy/main",
+    "role": "main"
+  },
+  "market_locale_currency_all_test_captures": [
+    "AU",
+    "en",
+    "AUD"
+  ],
+  "provenance": {
+    "browser": "Codex In-app Browser id1; task-owned tab11",
+    "session_captures": 49,
+    "method": "Normal visible CUA/Playwright clicks and fresh DOM/AX readback; DOM evaluation read-only",
+    "raw_source": "Original CUA transcript and persistent mxRecords in owning task; precise selected excerpts transcribed here",
+    "images": "Native inline screenshots; local export unsupported",
+    "identity_limit": "Page URL retained initial variant after ordinary selections. Only cart links identify actual added variants; other IDs use visible pressed options joined to source."
+  },
+  "cases": [
+    {
+      "case_id": "AU-M1",
+      "status": "VERIFIED_SCOPED",
+      "product_id": "7672336646241",
+      "handle": "together-heart-family-matching-sweaters",
+      "start_url": "https://www.dresslikemommy.com/products/together-heart-family-matching-sweaters?country=AU&currency=AUD&variant=46512187113569",
+      "viewport_css_px": [
+        390,
+        844
+      ],
+      "initial": {
+        "at_utc": "2026-09-11T21:19:23.281Z",
+        "role_pressed": "Adult",
+        "size_unselected": true,
+        "price_range_shown": true,
+        "primary_add_disabled": true,
+        "cart_items": 0
+      },
+      "selected_observations": [
+        {
+          "source_bound_variant_id": "46512187113569",
+          "source_options": [
+            {
+              "name": "Size",
+              "value": "Child 2 Years"
+            },
+            {
+              "name": "Color",
+              "value": "White"
+            }
+          ],
+          "source_sku": "DLM-THRT-KID-KID2Y-WHT",
+          "visible_role": "Child",
+          "visible_size": "2 Years",
+          "visible_choice": "White",
+          "visible_selected_price": "36.00 AUD",
+          "at_utc": "2026-09-11T21:20:07.246Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "46512188719201",
+          "source_options": [
+            {
+              "name": "Size",
+              "value": "Adult S"
+            },
+            {
+              "name": "Color",
+              "value": "White"
+            }
+          ],
+          "source_sku": "DLM-THRT-ADT-S-WHT",
+          "visible_role": "Adult",
+          "visible_size": "S",
+          "visible_choice": "White",
+          "visible_selected_price": "39.00 AUD",
+          "at_utc": "2026-09-11T21:20:39.446Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        }
+      ],
+      "cart": {
+        "method": "One normal visible Add click, no retry",
+        "at_utc": "2026-09-11T21:20:51.894Z",
+        "actual_variant_id": "46512188719201",
+        "actual_link": "/products/together-heart-family-matching-sweaters?variant=46512188719201",
+        "quantity": 1,
+        "visible_heading": "Your cart (1)",
+        "visible_total": "39.00 AUD",
+        "matches_source": true,
+        "cleanup": {
+          "at_utc": "2026-09-11T21:21:25.232Z",
+          "method": "Remove only own sole test line using visible control",
+          "visible_heading": "Your cart is empty",
+          "visible_header": "Cart 0 items"
+        }
+      },
+      "extra": {
+        "unavailable": {
+          "at_utc": "2026-09-11T21:20:38.840Z",
+          "role": "Adult",
+          "size": "S",
+          "Red_enabled": false,
+          "Green_enabled": false,
+          "source_omitted_ids": [
+            "46512188883041",
+            "46512188915809"
+          ],
+          "tooltip": "Not available in your selected size",
+          "no_force_click_or_add": true
+        },
+        "mobile_size_switch": {
+          "at_utc": "2026-09-11T21:20:06.427Z",
+          "from": "2 Years",
+          "to": "3 Years",
+          "one_click_with_panel_open": true,
+          "returned_to_2_Years": true
+        },
+        "mobile_screenshots": "Size panel and exact cart inspected inline; no horizontal overflow at384/390CSSpx"
+      }
+    },
+    {
+      "case_id": "AU-M2",
+      "status": "VERIFIED_SCOPED",
+      "product_id": "7230336729185",
+      "handle": "matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors",
+      "start_url": "https://www.dresslikemommy.com/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?country=AU&currency=AUD&variant=41883237220449",
+      "viewport_css_px": [
+        1280,
+        720
+      ],
+      "initial": {
+        "at_utc": "2026-09-11T21:21:34.646Z",
+        "role_pressed": "Adult",
+        "size_unselected": true,
+        "price_range_shown": true,
+        "primary_add_disabled": true,
+        "cart_items": 0
+      },
+      "selected_observations": [
+        {
+          "source_bound_variant_id": "41883237220449",
+          "source_options": [
+            {
+              "name": "Size",
+              "value": "Adult 2XL"
+            },
+            {
+              "name": "Color",
+              "value": "White"
+            }
+          ],
+          "source_sku": null,
+          "visible_role": "Adult",
+          "visible_size": "2XL",
+          "visible_choice": "White",
+          "visible_selected_price": "33.00 AUD",
+          "at_utc": "2026-09-11T21:22:07.774Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "41883237285985",
+          "source_options": [
+            {
+              "name": "Size",
+              "value": "Adult 2XL"
+            },
+            {
+              "name": "Color",
+              "value": "Blue"
+            }
+          ],
+          "source_sku": null,
+          "visible_role": "Adult",
+          "visible_size": "2XL",
+          "visible_choice": "Blue",
+          "visible_selected_price": "33.00 AUD",
+          "at_utc": "2026-09-11T21:22:14.873Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "41883237318753",
+          "source_options": [
+            {
+              "name": "Size",
+              "value": "Adult 2XL"
+            },
+            {
+              "name": "Color",
+              "value": "Pink"
+            }
+          ],
+          "source_sku": null,
+          "visible_role": "Adult",
+          "visible_size": "2XL",
+          "visible_choice": "Pink",
+          "visible_selected_price": "33.00 AUD",
+          "at_utc": "2026-09-11T21:22:15.478Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "41883238465633",
+          "source_options": [
+            {
+              "name": "Size",
+              "value": "Adult 2XL"
+            },
+            {
+              "name": "Color",
+              "value": "Black"
+            }
+          ],
+          "source_sku": null,
+          "visible_role": "Adult",
+          "visible_size": "2XL",
+          "visible_choice": "Black",
+          "visible_selected_price": "33.00 AUD",
+          "at_utc": "2026-09-11T21:22:16.087Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "41883238498401",
+          "source_options": [
+            {
+              "name": "Size",
+              "value": "Adult 2XL"
+            },
+            {
+              "name": "Color",
+              "value": "Red"
+            }
+          ],
+          "source_sku": null,
+          "visible_role": "Adult",
+          "visible_size": "2XL",
+          "visible_choice": "Red",
+          "visible_selected_price": "33.00 AUD",
+          "at_utc": "2026-09-11T21:22:16.696Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        }
+      ],
+      "cart": {
+        "method": "One normal visible Add click, no retry",
+        "at_utc": "2026-09-11T21:23:04.446Z",
+        "actual_variant_id": "41883238498401",
+        "actual_link": "/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?variant=41883238498401",
+        "quantity": 1,
+        "visible_heading": "Your cart (1)",
+        "visible_total": "33.00 AUD",
+        "matches_source": true,
+        "cleanup": {
+          "at_utc": "2026-09-11T21:23:27.899Z",
+          "method": "Remove only own sole test line using visible control",
+          "visible_heading": "Your cart is empty",
+          "visible_header": "Cart 0 items"
+        }
+      },
+      "extra": {
+        "five_corrected_colors_selected_at_33_AUD": true,
+        "only_Red_cart_tested": true
+      }
+    },
+    {
+      "case_id": "AU-M3",
+      "status": "VERIFIED_SCOPED",
+      "product_id": "7229828202593",
+      "handle": "father-baby-mr-fix-it-mr-broke-it-matching-t-shirt-onesie-set-perfect-gift-for-handy-dads",
+      "start_url": "https://www.dresslikemommy.com/products/father-baby-mr-fix-it-mr-broke-it-matching-t-shirt-onesie-set-perfect-gift-for-handy-dads?country=AU&currency=AUD&variant=41881176703073",
+      "viewport_css_px": [
+        1280,
+        720
+      ],
+      "initial": {
+        "at_utc": "2026-09-11T21:23:29.626Z",
+        "role_pressed": "Father",
+        "size_unselected": true,
+        "price_range_shown": true,
+        "primary_add_disabled": true,
+        "cart_items": 0
+      },
+      "selected_observations": [
+        {
+          "source_bound_variant_id": "41881177030753",
+          "source_options": [
+            {
+              "name": "Size",
+              "value": "Father M"
+            }
+          ],
+          "source_sku": "14147584-white-father-m",
+          "visible_role": "Father",
+          "visible_size": "M",
+          "visible_choice": null,
+          "visible_selected_price": "33.00 AUD",
+          "at_utc": "2026-09-11T21:23:40.622Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "41881176703073",
+          "source_options": [
+            {
+              "name": "Size",
+              "value": "Baby 6-9 months"
+            }
+          ],
+          "source_sku": null,
+          "visible_role": "Baby",
+          "visible_size": "6-9 Months",
+          "visible_choice": null,
+          "visible_selected_price": "29.00 AUD",
+          "at_utc": "2026-09-11T21:23:47.399Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        }
+      ],
+      "cart": {
+        "method": "One normal visible Add click, no retry",
+        "at_utc": "2026-09-11T21:27:27.129Z",
+        "actual_variant_id": "41881176703073",
+        "actual_link": "/products/father-baby-mr-fix-it-mr-broke-it-matching-t-shirt-onesie-set-perfect-gift-for-handy-dads?variant=41881176703073",
+        "quantity": 1,
+        "visible_heading": "Your cart (1)",
+        "visible_total": "29.00 AUD",
+        "matches_source": true,
+        "cleanup": {
+          "at_utc": "2026-09-11T21:27:40.786Z",
+          "method": "Remove only own sole test line using visible control",
+          "visible_heading": "Your cart is empty",
+          "visible_header": "Cart 0 items"
+        }
+      },
+      "extra": {
+        "Father_and_Baby_size_only_ready": true,
+        "impossible_color_prompt_seen": false
+      }
+    },
+    {
+      "case_id": "AU-M4",
+      "status": "VERIFIED_SCOPED",
+      "product_id": "7505372282977",
+      "handle": "tropical-floral-family-matching-shirt-and-dress-outfit-set",
+      "start_url": "https://www.dresslikemommy.com/products/tropical-floral-family-matching-shirt-and-dress-outfit-set?country=AU&currency=AUD&variant=43740358377569",
+      "viewport_css_px": [
+        1280,
+        720
+      ],
+      "initial": {
+        "at_utc": "2026-09-11T21:27:42.747Z",
+        "role_pressed": "Mother",
+        "size_unselected": true,
+        "price_range_shown": true,
+        "primary_add_disabled": true,
+        "cart_items": 0
+      },
+      "selected_observations": [
+        {
+          "source_bound_variant_id": "43740358377569",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "T-Shirt"
+            },
+            {
+              "name": "Size",
+              "value": "Father L"
+            }
+          ],
+          "source_sku": "558794-father-shirt-l",
+          "visible_role": "Father",
+          "visible_size": "L",
+          "visible_choice": "implicit T-Shirt",
+          "visible_selected_price": "39.00 AUD",
+          "at_utc": "2026-09-11T21:28:02.031Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "43740358508641",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "T-Shirt"
+            },
+            {
+              "name": "Size",
+              "value": "Boy 2T"
+            }
+          ],
+          "source_sku": "558794-boy-shirt-2T",
+          "visible_role": "Boy",
+          "visible_size": "2T",
+          "visible_choice": "implicit T-Shirt",
+          "visible_selected_price": "36.00 AUD",
+          "at_utc": "2026-09-11T21:28:08.812Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "43740358705249",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "Dress"
+            },
+            {
+              "name": "Size",
+              "value": "Mother S"
+            }
+          ],
+          "source_sku": "558794-mother-dress-s",
+          "visible_role": "Mother",
+          "visible_size": "S",
+          "visible_choice": "implicit Dress",
+          "visible_selected_price": "50.00 AUD",
+          "at_utc": "2026-09-11T21:28:16.102Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "43740358869089",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "Dress"
+            },
+            {
+              "name": "Size",
+              "value": "Girl 1-2T"
+            }
+          ],
+          "source_sku": "558794-girl-dress-2t",
+          "visible_role": "Girl",
+          "visible_size": "1-2T",
+          "visible_choice": "implicit Dress",
+          "visible_selected_price": "46.00 AUD",
+          "at_utc": "2026-09-11T21:28:22.268Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        }
+      ],
+      "cart": {
+        "method": "One normal visible Add click, no retry",
+        "at_utc": "2026-09-11T21:28:34.720Z",
+        "actual_variant_id": "43740358869089",
+        "actual_link": "/products/tropical-floral-family-matching-shirt-and-dress-outfit-set?variant=43740358869089",
+        "quantity": 1,
+        "visible_heading": "Your cart (1)",
+        "visible_total": "46.00 AUD",
+        "matches_source": true,
+        "cleanup": {
+          "at_utc": "2026-09-11T21:28:35.627Z",
+          "method": "Remove only own sole test line using visible control",
+          "visible_heading": "Your cart is empty",
+          "visible_header": "Cart 0 items"
+        }
+      },
+      "extra": {
+        "all_four_roles_distinct": true,
+        "implicit_Type_resolves_without_extra_required_choice": true,
+        "cart_proves_Girl_Dress_only": true
+      }
+    },
+    {
+      "case_id": "AU-M5",
+      "status": "VERIFIED_SCOPED",
+      "product_id": "7536992976993",
+      "handle": "skyfade-family-matching-set",
+      "start_url": "https://www.dresslikemommy.com/products/skyfade-family-matching-set?country=AU&currency=AUD&variant=44083478069345",
+      "viewport_css_px": [
+        390,
+        844
+      ],
+      "initial": {
+        "at_utc": "2026-09-11T21:28:38.067Z",
+        "role_pressed": "Mother",
+        "size_unselected": true,
+        "price_range_shown": true,
+        "primary_add_disabled": true,
+        "cart_items": 0
+      },
+      "selected_observations": [
+        {
+          "source_bound_variant_id": "44083478069345",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "Dress"
+            },
+            {
+              "name": "Color",
+              "value": "Blue"
+            },
+            {
+              "name": "Size",
+              "value": "Child 2 Years"
+            }
+          ],
+          "source_sku": "DLM-SKYF-GRL-KID2Y-BLUE",
+          "visible_role": "Girl",
+          "visible_size": "2 Years",
+          "visible_choice": "Blue; Dress",
+          "visible_selected_price": "39.00 AUD",
+          "at_utc": "2026-09-11T21:29:00.116Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "44083478528097",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "Dress"
+            },
+            {
+              "name": "Color",
+              "value": "Blue"
+            },
+            {
+              "name": "Size",
+              "value": "Mother S"
+            }
+          ],
+          "source_sku": "DLM-SKYF-MOM-S-BLUE",
+          "visible_role": "Mother",
+          "visible_size": "S",
+          "visible_choice": "Blue; Dress",
+          "visible_selected_price": "43.00 AUD",
+          "at_utc": "2026-09-11T21:29:07.809Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "44083478921313",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "Shirt"
+            },
+            {
+              "name": "Color",
+              "value": "Blue"
+            },
+            {
+              "name": "Size",
+              "value": "Child 2 Years"
+            }
+          ],
+          "source_sku": "DLM-SKYF-BOY-KID2Y-BLUE",
+          "visible_role": "Boy",
+          "visible_size": "2 Years",
+          "visible_choice": "Blue; Shirt",
+          "visible_selected_price": "29.00 AUD",
+          "at_utc": "2026-09-11T21:29:16.208Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "44083479380065",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "Shirt"
+            },
+            {
+              "name": "Color",
+              "value": "Blue"
+            },
+            {
+              "name": "Size",
+              "value": "Father S"
+            }
+          ],
+          "source_sku": "DLM-SKYF-DAD-S-BLUE",
+          "visible_role": "Father",
+          "visible_size": "S",
+          "visible_choice": "Blue; Shirt",
+          "visible_selected_price": "32.00 AUD",
+          "at_utc": "2026-09-11T21:29:24.499Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "44083479412833",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "Shirt"
+            },
+            {
+              "name": "Color",
+              "value": "Purple"
+            },
+            {
+              "name": "Size",
+              "value": "Father S"
+            }
+          ],
+          "source_sku": "DLM-SKYF-DAD-S-LAV",
+          "visible_role": "Father",
+          "visible_size": "S",
+          "visible_choice": "Purple; Shirt",
+          "visible_selected_price": "32.00 AUD",
+          "at_utc": "2026-09-11T21:29:24.900Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        }
+      ],
+      "cart": {
+        "method": "One normal visible Add click, no retry",
+        "at_utc": "2026-09-11T21:29:47.870Z",
+        "actual_variant_id": "44083479412833",
+        "actual_link": "/products/skyfade-family-matching-set?variant=44083479412833",
+        "quantity": 1,
+        "visible_heading": "Your cart (1)",
+        "visible_total": "32.00 AUD",
+        "matches_source": true,
+        "cleanup": {
+          "at_utc": "2026-09-11T21:29:57.775Z",
+          "method": "Remove only own sole test line using visible control",
+          "visible_heading": "Your cart is empty",
+          "visible_header": "Cart 0 items"
+        }
+      },
+      "extra": {
+        "color_required": {
+          "at_utc": "2026-09-11T21:28:50.619Z",
+          "selection": "Girl 2 Years",
+          "visible_button": "Pick a color",
+          "disabled": true
+        },
+        "mobile_size_switch": {
+          "at_utc": "2026-09-11T21:28:59.293Z",
+          "from": "2 Years",
+          "to": "3 Years",
+          "one_click_with_panel_open": true,
+          "returned_to_2_Years": true
+        },
+        "color_change": "Father S Blue to Purple, one ordinary click; exact Purple variant44083479412833 cart32AUD",
+        "mobile_screenshots": "Size panel, Purple selected ready state and exact cart inspected inline; no horizontal overflow384/390CSSpx",
+        "source_and_size_truth_holds": "PRESERVED"
+      }
+    },
+    {
+      "case_id": "AU-M6",
+      "status": "VERIFIED_SCOPED",
+      "product_id": "7535944368225",
+      "handle": "powder-blue-mommy-and-me-set",
+      "start_url": "https://www.dresslikemommy.com/products/powder-blue-mommy-and-me-set?country=AU&currency=AUD&variant=44076870664289",
+      "viewport_css_px": [
+        390,
+        844
+      ],
+      "initial": {
+        "at_utc": "2026-09-11T21:29:59.820Z",
+        "role_pressed": "Mother",
+        "size_unselected": true,
+        "price_range_shown": true,
+        "primary_add_disabled": true,
+        "cart_items": 0
+      },
+      "selected_observations": [
+        {
+          "source_bound_variant_id": "44076870664289",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "Top"
+            },
+            {
+              "name": "Size",
+              "value": "Child 3 Years"
+            },
+            {
+              "name": "Color",
+              "value": "Blue"
+            }
+          ],
+          "source_sku": "DLM-PBLU-GRL-KID3Y-BLUE",
+          "visible_role": "Girl",
+          "visible_size": "3 Years",
+          "visible_choice": "Top",
+          "visible_selected_price": "46.00 AUD",
+          "at_utc": "2026-09-11T21:30:16.336Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "44861276651617",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "Pants"
+            },
+            {
+              "name": "Size",
+              "value": "Child 3 Years"
+            },
+            {
+              "name": "Color",
+              "value": "Blue"
+            }
+          ],
+          "source_sku": "DLM-PBLU-GRL-KID3Y-PANTS-BLUE",
+          "visible_role": "Girl",
+          "visible_size": "3 Years",
+          "visible_choice": "Pants",
+          "visible_selected_price": "50.00 AUD",
+          "at_utc": "2026-09-11T21:30:16.756Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "44076870860897",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "Top"
+            },
+            {
+              "name": "Size",
+              "value": "Mother S"
+            },
+            {
+              "name": "Color",
+              "value": "Blue"
+            }
+          ],
+          "source_sku": "DLM-PBLU-MOM-S-BLUE",
+          "visible_role": "Mother",
+          "visible_size": "S",
+          "visible_choice": "Top",
+          "visible_selected_price": "49.00 AUD",
+          "at_utc": "2026-09-11T21:30:25.432Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        },
+        {
+          "source_bound_variant_id": "44861276848225",
+          "source_options": [
+            {
+              "name": "Type",
+              "value": "Pants"
+            },
+            {
+              "name": "Size",
+              "value": "Mother S"
+            },
+            {
+              "name": "Color",
+              "value": "Blue"
+            }
+          ],
+          "source_sku": "DLM-PBLU-MOM-S-PANTS-BLUE",
+          "visible_role": "Mother",
+          "visible_size": "S",
+          "visible_choice": "Pants",
+          "visible_selected_price": "57.00 AUD",
+          "at_utc": "2026-09-11T21:30:25.820Z",
+          "ready_to_add": true,
+          "identity_limit": "Pressed visible options plus source binding; only cart target independently proves actual added variant ID."
+        }
+      ],
+      "cart": {
+        "method": "One normal visible Add click, no retry",
+        "at_utc": "2026-09-11T21:30:32.534Z",
+        "actual_variant_id": "44861276848225",
+        "actual_link": "/products/powder-blue-mommy-and-me-set?variant=44861276848225",
+        "quantity": 1,
+        "visible_heading": "Your cart (1)",
+        "visible_total": "57.00 AUD",
+        "matches_source": true,
+        "cleanup": {
+          "at_utc": "2026-09-11T21:30:40.600Z",
+          "method": "Remove only own sole test line using visible control",
+          "visible_heading": "Your cart is empty",
+          "visible_header": "Cart 0 items"
+        }
+      },
+      "extra": {
+        "SKU_source_correction": "Source Child3Years renders as Girl; actual visible Girl used",
+        "Type_required": {
+          "at_utc": "2026-09-11T21:30:09.094Z",
+          "selection": "Girl 3 Years",
+          "Top_and_Pants_visible": true,
+          "visible_button": "Pick a type",
+          "disabled": true
+        },
+        "single_Blue_color_has_no_extra_prompt": true,
+        "mobile_screenshots": "Both garments and disabled Pick a type plus exact Mother Pants cart inspected inline; no horizontal overflow384/390CSSpx"
+      }
+    },
+    {
+      "case_id": "AU-E1",
+      "status": "FAILED",
+      "product_id": "7516369715297",
+      "handle": "mommy-and-me-french-halter-neck-tiered-dress-white-cotton-silk-sleeveless-a-line-beach-dress",
+      "visited_target": {
+        "variant_id": "43821479493729",
+        "offer_id": "shopify_AU_7516369715297_43821479493729",
+        "options": [
+          {
+            "name": "Size",
+            "value": "90cm"
+          },
+          {
+            "name": "Color",
+            "value": "white"
+          }
+        ],
+        "price_AUD": "34.00",
+        "available": true,
+        "in_frozen_feed": true,
+        "link": "https://www.dresslikemommy.com/products/mommy-and-me-french-halter-neck-tiered-dress-white-cotton-silk-sleeveless-a-line-beach-dress?country=AU&currency=AUD&variant=43821479493729",
+        "actual_MAIN_classifier_role": null,
+        "actual_MAIN_classifier_sizeLabel": null
+      },
+      "other_targets_not_selectable": [
+        {
+          "variant_id": "43821479854177",
+          "offer_id": "shopify_AU_7516369715297_43821479854177",
+          "options": [
+            {
+              "name": "Size",
+              "value": "S (Adult Normal Version)"
+            },
+            {
+              "name": "Color",
+              "value": "white"
+            }
+          ],
+          "price_AUD": "40.00",
+          "available": true,
+          "in_frozen_feed": true,
+          "link": "https://www.dresslikemommy.com/products/mommy-and-me-french-halter-neck-tiered-dress-white-cotton-silk-sleeveless-a-line-beach-dress?country=AU&currency=AUD&variant=43821479854177",
+          "actual_MAIN_classifier_role": null,
+          "actual_MAIN_classifier_sizeLabel": null
+        },
+        {
+          "variant_id": "43821479952481",
+          "offer_id": "shopify_AU_7516369715297_43821479952481",
+          "options": [
+            {
+              "name": "Size",
+              "value": "S (Adult Extended Version)"
+            },
+            {
+              "name": "Color",
+              "value": "white"
+            }
+          ],
+          "price_AUD": "40.00",
+          "available": true,
+          "in_frozen_feed": true,
+          "link": "https://www.dresslikemommy.com/products/mommy-and-me-french-halter-neck-tiered-dress-white-cotton-silk-sleeveless-a-line-beach-dress?country=AU&currency=AUD&variant=43821479952481",
+          "actual_MAIN_classifier_role": null,
+          "actual_MAIN_classifier_sizeLabel": null
+        }
+      ],
+      "viewport_css_px": [
+        1280,
+        720
+      ],
+      "initial_at_utc": "2026-09-11T21:30:42.651Z",
+      "visible_price_range": "34.00 AUD - 40.00 AUD",
+      "action": {
+        "button": "Choose options",
+        "clicks": 1,
+        "after_at_utc": "2026-09-11T21:30:50.922Z",
+        "result": "Same product page; no size/color/role selector or Add control revealed"
+      },
+      "final_observation_at_utc": "2026-09-11T21:31:25.444Z",
+      "visible_main_controls": [
+        "Share this product",
+        "Slide left",
+        "Slide right",
+        "Load image 1 in gallery view",
+        "Load image 2 in gallery view",
+        "Load image 3 in gallery view",
+        "Load image 4 in gallery view",
+        "Load image 5 in gallery view",
+        "Load image 6 in gallery view",
+        "Load image 7 in gallery view",
+        "Load image 8 in gallery view",
+        "CHOOSE OPTIONS",
+        "Change"
+      ],
+      "visible_main_selection_inputs": 0,
+      "visible_main_Add_buttons": 0,
+      "cart_items_before_and_after": 0,
+      "screenshot": "Native inline CUA screenshot at21:30:50Z; no local image export claimed",
+      "finding": "Ordinary buyer selector/Add path failed on visited90cm link; Choose options did not reveal a usable fallback. This is rendered evidence beyond static classifier analysis.",
+      "limits": "Other direct variant links and mobile fallback were not separately visited. No synthetic selection or cart bypass was attempted."
+    },
+    {
+      "case_id": "AU-E2",
+      "status": "NOT RUN",
+      "product_id": "7516479848545",
+      "handle": "lavender-mommy-and-me-floral-applique-sleeveless-ruffle-dress",
+      "reason": "Stopped normal buyer probes following E1 failure. Static source result is separate from runtime buyer proof."
+    },
+    {
+      "case_id": "AU-E3",
+      "status": "NOT RUN",
+      "product_id": "7536337125473",
+      "handle": "trail-plaid-family-matching-set",
+      "reason": "Stopped normal buyer probes following E1 failure. Static source result is separate from runtime buyer proof."
+    }
+  ],
+  "counts": {
+    "primary_cases_verified": 6,
+    "selected_price_states": 22,
+    "normal_Add_clicks": 6,
+    "exact_cart_results": 6,
+    "test_lines_removed": 6,
+    "exceptions_failed": 1,
+    "exceptions_not_run": 2,
+    "new_products_visited": 7
+  },
+  "cleanup": {
+    "verified_at_utc": "2026-09-11T21:31:37.361Z",
+    "country_control": "United States | USD $",
+    "language_control": "English",
+    "html_lang": "en",
+    "cart": "Cart 0 items",
+    "AU_currency_params_removed": true,
+    "viewport_override_reset": true,
+    "own_tab11_closed_at_utc": "2026-09-11T21:31:43.474Z"
+  },
+  "stop": {
+    "reason": "Demonstrated E1 buyer blocker",
+    "reported_to_parent": true,
+    "further_public_probes": "None; same-document read-only evidence plus authorized country cleanup only",
+    "429_auth_challenge_seen": false
+  },
+  "operations": {
+    "theme_product_source_feed_writes": 0,
+    "WebMCP_cart_mutations": 0,
+    "direct_cart_API_calls": 0,
+    "scripted_option_mutations": 0,
+    "checkout_or_payment": 0,
+    "consent_changes": 0,
+    "shared_canonical_edits": 0
+  },
+  "preserved_limits": [
+    "V7 candidate137888792673 was not the theme rendered in this matrix",
+    "Initial deep-link preselection and price-range issue remains separate; not asserted as universal Google policy gate",
+    "Skyfade source/size truth holds and Danish/all-language gaps remain open",
+    "No proof of full4923offer eligibility, Google approval/serving, purchases or profit",
+    "Existing AU source10727245667 was not recreated or uploaded",
+    "Publication connector restriction remains"
+  ],
+  "next_action": "Parent integrates E1 failure and independent review; UX diagnoses E1/E2/Trail Plaid in isolated local artifacts, preserving frozen V7."
+}

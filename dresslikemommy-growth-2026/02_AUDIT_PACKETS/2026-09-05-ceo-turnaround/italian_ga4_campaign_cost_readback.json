@@ -1,0 +1,93 @@
+{
+  "schema": "dlm.italian_ga4_campaign_cost_readback.v1",
+  "recorded_at_utc": "2026-09-06T08:53:27Z",
+  "status": "LIVE_VERIFIED_ANALYTICS_REPORTED_ADS_COST__DIRECT_ADS_CONTROL_UNRECOVERED",
+  "source": {
+    "surface": "Existing Chrome Test tab475224120; GA4 property330266838/account88409806",
+    "path": "Advertising > Key event performance > Google Ads",
+    "report_url": "https://analytics.google.com/analytics/web/#/a88409806p330266838/advertising/integrations-google-ads",
+    "account_filter": "Google Ads customer ID exactly matches 3990976848",
+    "built_in_filter": "Google Ads customer ID does not exactly match '(not set)' OR <empty string>",
+    "selected_key_events": ["purchase"],
+    "selection_check": "Purchase checked, all four other key events unchecked; 1/5 in report and purchase in visible report URL",
+    "cost_basis": "Analytics Ads cost, imported from the linked Google Ads platform; not a billing-ledger or direct Google Ads readback",
+    "currency": "USD property reporting currency previously verified",
+    "official_definition": "https://support.google.com/analytics/answer/14617038?hl=en",
+    "privacy": "No transaction/order/customer-person identifiers in this receipt; the operational Ads customer ID identifies the business ad account"
+  },
+  "matched_fixed_window": {
+    "date_start": "2026-06-07",
+    "date_end": "2026-09-04",
+    "date_mode": "Custom; exact UI label and URL date00/date01 verified",
+    "italian_campaign": {
+      "google_ads_campaign_id": "23866684201",
+      "google_ads_campaign_name": "DLM_IT_SEARCH_NATIVE_IT_EXACT_015_TEST_20260519",
+      "identity_verification": "Both campaign-name and native Google Ads campaign-ID row views were read under the same exact account/date/purchase filters, with identical metrics",
+      "purchase_key_events": "1.00",
+      "ads_cost_usd": "127.34",
+      "ads_clicks": 855,
+      "ads_cpc_display_usd": "0.15",
+      "cost_per_purchase_key_event_display_usd": "127.34",
+      "total_revenue_usd": "151.46",
+      "reported_roas": "1.19"
+    },
+    "other_returned_campaign": {
+      "google_ads_campaign_id": "23805046526",
+      "google_ads_campaign_name": "DLM_US_SEARCH_BRAND_PROTECT_PAUSED_20260429",
+      "purchase_key_events": "0.00",
+      "ads_cost_usd": "3.02",
+      "ads_clicks": 40,
+      "total_revenue_usd": "0.00",
+      "warning": "PAUSED is part of the stored campaign name, not a verified present serving status"
+    },
+    "report_total": {
+      "returned_campaign_rows": 2,
+      "purchase_key_events": "1.00",
+      "ads_cost_usd": "130.36",
+      "ads_clicks": 895,
+      "total_revenue_usd": "151.46",
+      "reported_roas": "1.16"
+    },
+    "quality": "Opened quality card: Unsampled report, based on100% of available data, reporting daily data",
+    "scope_warning": "Report scope and available data only; not a complete current inventory of enabled/eligible/spending Ads objects. Five-key-event totals before purchase selection were not treated as purchases."
+  },
+  "latest_complete_day": {
+    "date_start": "2026-09-05",
+    "date_end": "2026-09-05",
+    "date_mode": "Custom; both inputs blurred, Apply, exact UI label and URL verified",
+    "account_filter_and_purchase_selection": "Preserved and verified in UI/URL",
+    "returned_campaign_rows": 1,
+    "google_ads_campaign_id": "23866684201",
+    "purchase_key_events": "0.00",
+    "ads_cost_usd": "1.65",
+    "ads_clicks": 11,
+    "total_revenue_usd": "0.00",
+    "reported_roas": "0.00",
+    "quality": "Opened quality card: Unsampled report, based on100% of available data, reporting intraday data",
+    "meaning": "Analytics provisionally reports recent paid activity on September5, the latest complete calendar day. This contradicts an assumption of no recent paid activity; intraday reporting is not finalized and does not establish the campaign's current September6 status, full spend completeness or final matured conversion results."
+  },
+  "derived_planning_math": {
+    "ads_cost_divided_by_clicks_usd": "0.1489356725",
+    "reported_revenue_divided_by_cost": "1.1894141668",
+    "purchase_key_events_per_click_percent": "0.1169590643",
+    "merchandise_revenue_if_credit_assigned_usd": "151.25",
+    "merchandise_roas_if_credit_assigned": "1.1877650385",
+    "modeled_contribution_before_returns_usd_at_owner_50_percent_nonad_cost": "-51.715",
+    "ads_ceiling_usd_at_6_5x_for_151_25_merchandise": "23.2692307692",
+    "limitations": "Conditional arithmetic from displayed/imported data and owner's cost estimate; not verified net profit, actual invoice cost, independent click attribution, Ads conversion credit or maximum charged CPC. Missing GA4 orders and Shopify organic attribution remain unresolved."
+  },
+  "decision": {
+    "campaign_scaling": "HOLD; the observed1.19x is far below the6.5x planning floor. Do not infer the low average CPC made this test successful.",
+    "next_operator_action": "Bounded Analytics keyword/query diagnosis for this exact campaign and fixed window can now proceed while original Ads control is recovered. Do not repeat the purchase join or native attribution audit.",
+    "owner_priority_candidate": "Original Ads access/control recovery becomes more urgent because Analytics now reports September5 spending; preserve already-approved support request and its unresolved manual contact-field validation gate. Independent review to confirm priority.",
+    "unchanged_gates": "Nine full-account control fields, actual order costs/returns, missing-purchase reconciliation, exact stage authority and all existing publication/support restrictions remain binding"
+  },
+  "actions": {
+    "report_navigation_and_filters_only": true,
+    "ad_spend_initiated_by_this_task": 0,
+    "campaign_budget_bid_status_changes": 0,
+    "property_conversion_tracking_changes": 0,
+    "account_identity_or_role_changes": 0,
+    "sales_or_profit_lift_claimed": false
+  }
+}

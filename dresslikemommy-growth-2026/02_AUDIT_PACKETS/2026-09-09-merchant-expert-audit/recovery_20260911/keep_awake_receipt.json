@@ -1,0 +1,64 @@
+{
+  "schema": "dlm.codex.keep_awake_receipt.v1",
+  "status": "IMPLEMENTED_AND_RUNTIME_VERIFIED",
+  "verified_at_utc": "2026-09-11T13:56:58.123048+00:00",
+  "authorization": "User requested durable prevention of Mac idle locking and uninterrupted work on September 11, 2026.",
+  "before": {
+    "ac_display_sleep_minutes": 5,
+    "ac_system_sleep_minutes": 0,
+    "target_file_absent_at_preflight": true
+  },
+  "installed_path": "/Users/fsuels/Library/LaunchAgents/com.fsuels.codex-keep-awake.plist",
+  "sha256": "572e7b451fa9c4f8ecbbd4fe124e890f545aced4e7aca95244d0da95ad6ced6b",
+  "bytes": 649,
+  "plist": {
+    "Label": "com.fsuels.codex-keep-awake",
+    "ProgramArguments": [
+      "/usr/bin/caffeinate",
+      "-d",
+      "-i",
+      "-u",
+      "-t",
+      "86400"
+    ],
+    "RunAtLoad": true,
+    "KeepAlive": true,
+    "LimitLoadToSessionType": "Aqua",
+    "ThrottleInterval": 10
+  },
+  "job": {
+    "service": "gui/501/com.fsuels.codex-keep-awake",
+    "state": "running",
+    "pid": 38788,
+    "owned_assertions": [
+      "pid 38788(caffeinate): [0x000bd7bd0001927e] 00:08:33 PreventUserIdleSystemSleep named: \"caffeinate command-line tool\"",
+      "pid 38788(caffeinate): [0x000bd7bd0005927f] 00:08:33 PreventUserIdleDisplaySleep named: \"caffeinate command-line tool\"",
+      "pid 38788(caffeinate): [0x000bd7bd00099280] 00:08:33 UserIsActive named: \"caffeinate command-line tool\""
+    ]
+  },
+  "temporary_helper": {
+    "pid": 37459,
+    "exec_session": 51729,
+    "stopped": true,
+    "assertions_absent_after_stop": true
+  },
+  "preflight": {
+    "review": "keep_awake_review.json",
+    "verdict": "PASS",
+    "checks": 9
+  },
+  "expected_not_tested": [
+    "Automatic start after a future GUI login",
+    "Renewal after the 86400-second assertion timeout"
+  ],
+  "limitations": [
+    "Applies continuously in this user GUI session, including when Codex is closed.",
+    "Keeps the display awake and may increase energy or battery use.",
+    "Manual locking, lid closure, logout, restart/login barriers, power loss and enforced security policies can still interrupt access.",
+    "Does not fix unrelated browser, authentication or tool failures."
+  ],
+  "rollback": {
+    "first": "/bin/launchctl bootout gui/501/com.fsuels.codex-keep-awake",
+    "then": "Remove only the installed path if its SHA-256 still matches this receipt; preserve any changed or unrelated file."
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "schema": "dlm.data_pilot.independent_review.v1",
+  "reviewed_at_utc": "2026-09-11T17:22:22.517521+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewer": "/root/data_pilot_verifier",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "independence_detail": "Reviewer did not build the packet or execute its original analysis. Review reran reproduce.py --check without writes and recomputed critical quantities independently from original source files.",
+  "scope": "Prepared existing-records pilot and its cited repository sources. No live accounts, network, credentials, source edits or external actions.",
+  "conclusion": "The packet is a reproducible historical sales/funnel reference and a useful missing-evidence assessment. It correctly refuses the requested product/market contribution ranking. It is not evidence that the new OpenAI Data plugin has been run or improves business outcomes.",
+  "commands_and_results": [
+    {
+      "command": "python3 dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-data-pilot/reproduce.py --check",
+      "exit_code": 0,
+      "checks_passed": 45,
+      "saved_outputs_matched": 3,
+      "writes": 0
+    },
+    {
+      "method": "Independent standard-library source SHA256 and byte-count comparison",
+      "inventory_sources_checked": 10,
+      "hashes_matched": 10,
+      "byte_counts_matched": 10
+    },
+    {
+      "method": "Independent Decimal recomputation and direct original-query/source-row comparison",
+      "checks_passed": 39,
+      "checks_failed": 0
+    },
+    {
+      "method": "Independent six-basket component, payout-fee, null-margin and native-currency review",
+      "checks_passed": 28,
+      "checks_failed": 0
+    },
+    {
+      "method": "Supplementary original historical variant CSV comparison using ROUND_HALF_UP",
+      "rows_checked": 7324,
+      "exact_half_current_price": 7324,
+      "missing_unit_cost": 0
+    },
+    {
+      "method": "Required-fields contract inspection",
+      "datasets": 7,
+      "unique_datasets": 7,
+      "all_fields_populated": true
+    },
+    {
+      "method": "Pattern scan plus manual review of new packet artifacts",
+      "files_reviewed": 7,
+      "patterns_per_file": 6,
+      "credential_customer_id_email_external_url_findings": 0
+    },
+    {
+      "command": "git diff --check -- dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-data-pilot",
+      "exit_code": 0,
+      "limit": "Untracked packet contents were additionally inspected directly; git diff alone does not cover them."
+    }
+  ],
+  "critical_results": {
+    "window": "2026-08-10 through 2026-09-08 inclusive; 30 dates; America/New_York",
+    "reported_orders": 10,
+    "net_merchandise_report_context_usd": "821.44",
+    "shipping_revenue_report_context_usd": "25.98",
+    "total_sales_report_context_usd": "847.42",
+    "sessions": 4896,
+    "cart_sessions": 115,
+    "checkout_sessions": 27,
+    "completed_checkout_sessions": 10,
+    "session_completion_percent": "0.204248",
+    "top15_referrer_residual": {
+      "sessions": 7,
+      "completed_checkout_sessions": 0
+    },
+    "top12_country_residual": {
+      "sessions": 750,
+      "completed_checkout_sessions": 2
+    },
+    "separate_six_basket_provider_cny": "1551.13",
+    "separate_six_basket_recorded_fees_usd": "23.86",
+    "separate_six_basket_gross_minus_fees_equals_net_usd": "595.54 - 23.86 = 571.68"
+  },
+  "acceptance_criteria_review": {
+    "baseline_fidelity": "PASS",
+    "correct_aggregation": "PASS; device and order-referrer groups reconcile; top-N residuals preserved; order and session aggregates not transaction-joined.",
+    "period_discipline": "PASS; 90-day products, 28-day summaries, rolling checkpoints and August 31-day sales are not combined with the selected baseline.",
+    "financial_discipline": "PASS; shipping revenue distinguished from freight cost; native currencies kept separate; historical selected costs not allocated to the full window; profit, ROAS and CPA withheld.",
+    "evidence_and_execution": "PASS; original queries, capture time, grain and bounded source search are disclosed; Data-plugin execution explicitly NOT_RUN."
+  },
+  "errors": [],
+  "limits": [
+    "Primary MONEY cells have no ISO code. USD is inherited shop/report context, disclosed in PILOT.md and analysis.json; metrics.csv should be interpreted with that companion context. Settlement currency and realized FX are not established.",
+    "Aggregate reported orders and completed sessions do not prove paid, noncancelled, non-test, delivered or retained orders. QA/bot exclusions and source causation remain unverified.",
+    "Complete period-bound order/line costs, settled fees, refund/dispute maturity, daily all-account spend and deduplicated attribution are absent from admitted inputs. No financial ranking is supported.",
+    "Source search is bounded. Matching saved hashes establishes artifact integrity, not current live account truth. Reproduction automatically binds only the primary source; this independent review checked all ten inventory sources.",
+    "The actual new Data plugin was not tested; no plugin accuracy, time-saving, sales-lift or profit-lift conclusion follows."
+  ],
+  "next_evidence_action": "Continue existing TA-16 actual Rainbow basket cost and settlement qualification under its existing owner and authority; preserve remaining attribution and maturity gates.",
+  "reviewed_artifacts_sha256": {
+    "PILOT.md": "f6dc1d818cc237742723cef247fafa60d52c7c970cb04cd4b144b72ca51e2bf1",
+    "analysis.json": "1a372855d47cb7d96242ae2b98b643a9c866508630ec007c6d0b7293eb17837e",
+    "metrics.csv": "ae5bcb9b9c932ffafa27105189eac752aa2aa6f969a4e8cb5b91269a94f4ad3a",
+    "reproduce.py": "4f4a9ddf57167cc020d6db351c5ef23293559ded00e2d1f86c74e8b1f6292406",
+    "required_fields.csv": "52e2884cdf5d559eec29cd2ca63d22c64a9e20c1ff5b94f38bc5f7e8fad8d353",
+    "source_inventory.json": "55c81c003b565388a40ca8dbecc8078c6b15f886fd4121eb74dbee2dae098eb6",
+    "validation.json": "ba48e9cdb33a4c85ad01ae98d089a9f02e4a5c5c0a3ef4a8ea656ec294b485b6"
+  }
+}

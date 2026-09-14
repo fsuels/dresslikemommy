@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-06T17:09:15.713704+00:00",
+  "verdict": "PASS",
+  "reviewer": "/root/historical_google_access_paths",
+  "executor": "/root",
+  "scope": "Independent local comparison of recorded native evidence; reviewer performed no browser/API/external/canonical actions.",
+  "source_hashes_sha256": {
+    "microsoft_smart_goal_execution.json": "349b77874910c0e508eae0090eb3cffcc7ce06b749b71894941f795c1144a661",
+    "microsoft_smart_goal_repair_plan.json": "f09448d8fc593ac59d1900a183b27349bf45c5de49fcb999b99a3bb122b86509",
+    "microsoft_smart_goal_before.json": "db0462fec1db8509a66b6cd38176d50c942fb896983710b99a4b9f0e38b63c3c",
+    "microsoft_smart_goal_repair_review.json": "7dec3b88d2a08992ea68ed9edf721c1de2cbf22bc519977ee0e9a7dcfc48eb71"
+  },
+  "checks": {
+    "execution_hash_bound": true,
+    "plan_matches_approved_frozen_hash": true,
+    "before_matches_reviewed_frozen_hash": true,
+    "independent_preflight_remains_pass": true,
+    "same_account_customer_goal": true,
+    "fresh_checked_paused_before_recorded": true,
+    "one_save_no_rollback_recorded": true,
+    "timestamp_sequence": true,
+    "save_at_specified_time": true,
+    "goal_rows_match_frozen_before": true,
+    "five_goals_retained": true,
+    "smart_only_row_changed": true,
+    "smart_change_exact_yes_to_no": true,
+    "smart_active_same_tag": true,
+    "other_four_goal_rows_exact": true,
+    "reopened_native_checkbox_zero": true,
+    "cancel_no_second_save_attested": true,
+    "eleven_campaign_settings_exact": true,
+    "eleven_unique_native_campaigns": true,
+    "all_native_campaign_statuses_paused": true,
+    "native_campaign_names_match_settings": true,
+    "native_campaign_budgets_strategies_match": true,
+    "historical_conversion_total_still483": true,
+    "no_historical_recalculation_claim": true,
+    "root_twelve_checks_all_true": true,
+    "frozen_plan_does_not_authorize_launch": true
+  },
+  "check_count": 26,
+  "passed_count": 26,
+  "verified_from_saved_evidence": {
+    "target_goal_id": "163000100",
+    "smart_goal_status": "Active",
+    "smart_auto_bidding": "No",
+    "reopened_checkbox": 0,
+    "unchanged_other_goal_rows": 4,
+    "unchanged_campaign_setting_records": 11,
+    "native_paused_campaign_rows": 11,
+    "historical_conversions_still_displayed": "483"
+  },
+  "root_reported_not_independently_replayed": [
+    "One Save and next at 17:04:31 UTC reached All done without unrelated configuration.",
+    "Separate return to goals, reopening exact goal and Cancel without another Save."
+  ],
+  "limits": [
+    "Full underlying goal configurations are not exposed by list rows; all displayed non-target fields are preserved.",
+    "Campaign before/after setting arrays match by name/type/budget/delivery/strategy; after native IDs are unique, but this receipt does not contain a separate before ID array.",
+    "Nine canonical paid-control fields were not reread by this subagent; frozen plan forbids broadening them and root owns preservation verification.",
+    "No immediate retrospective subtraction, deduplicated purchases, new traffic, sales, profit or launch readiness is established."
+  ],
+  "next_action": "Integrate the verified flag change; continue existing purchase/query diagnosis without repeating this mutation.",
+  "external_actions": 0,
+  "canonical_edits": 0
+}

@@ -1,0 +1,44 @@
+{
+  "decision_id": "DLM-DEC-2026-09-11-ADS-SHOPIFY-TAG-REPAIR",
+  "as_of": "2026-09-11",
+  "evidence_grade": "LIVE_VERIFIED",
+  "owner": "root01a09194",
+  "customer_id": "6509972886",
+  "ocid": "8520129103",
+  "store": "dresslikemommy-com",
+  "before": {
+    "google_tags": ["GT-T5R7JFVL", "G-N4EQNK0MMB"],
+    "app_ads_event_destinations": "All seven rows empty",
+    "legacy_pixel_id": "111214689",
+    "legacy_pixel_status": "Connected",
+    "legacy_destination": "AW-853411529/kZ_RCN-T3K0cEMmN-JYD",
+    "purchase_action_id": "7760272273",
+    "purchase_role": "Primary; account-default Purchase; used by 1 of 1 campaigns",
+    "purchase_value": "Different values; USD1 fallback",
+    "purchase_count": "Every",
+    "purchase_enhanced_conversions": "Not configured",
+    "installation_test": "Google tag not detected"
+  },
+  "options": [
+    "Install the exact Ads tag separately in the existing Google app and map its existing Purchase label to Checkout completed",
+    "Keep current missing Ads tag and empty purchase mapping",
+    "Merge with existing GA4 tag, replacing DLM settings and sharing tag users"
+  ],
+  "selected_option": 0,
+  "proposed_changes": [
+    {"surface": "Google & YouTube > Settings > Google tags", "add": "AW-18433316477"},
+    {"surface": "Google & YouTube > Conversion event settings", "event": "Checkout completed", "custom_destination": "AW-18433316477/DTaoCJG3sfQcEP2s2NVE"}
+  ],
+  "prediction": "Supported app installs the previously absent Ads tag and sends completed checkout conversions to the account's existing Purchase action without combining GA4 and Ads tag configuration",
+  "invalidating_assumption": "The current official app supports this mapping and correctly sends dynamic purchase values, IDs and consent to this exact destination",
+  "success": "Reloaded app retains exactly the old two tags plus the new AW, only Checkout completed has the exact new destination, Ads installation retest passes; purchase receipt is separately pending until genuine transaction validation",
+  "kill": "Wrong account/tag/label, unexpected permission or data-sharing change, duplicate new destination, failed app validation, unrelated changes, or action-time automatic review rejection",
+  "window": "Current repair session for configuration and installation; genuine purchase acceptance separately gated",
+  "maximum_advertising_exposure_authorized": 0,
+  "approval_source": "Current user request to fix the exact supplied Google Ads tag setup; no campaign launch or spend authority",
+  "independent_verifier": "tag_repair_review",
+  "preserve": ["GA4 tag and settings", "Merchant tag and links", "legacy Ads pixel", "six other event mappings", "enhanced-conversion settings", "campaigns", "budgets", "bids", "roles", "billing", "theme"],
+  "rollback": "Remove only newly added AW tag and clear only newly added Checkout completed custom destination in existing app, returning to snapshotted before-state; never auto-reenable a paused campaign",
+  "evidence_that_changes_decision": "Contradictory fresh app/pixel/action state or installation/consent failure",
+  "status": "PREPARED_NOT_EXECUTED"
+}

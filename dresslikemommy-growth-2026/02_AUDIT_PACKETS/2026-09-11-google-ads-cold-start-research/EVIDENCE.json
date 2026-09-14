@@ -1,0 +1,274 @@
+{
+  "artifact_type": "ARCHIVE_REFERENCE_RESEARCH_EVIDENCE_NOT_EXECUTION_AUTHORITY",
+  "research_date": "2026-09-11",
+  "checked_clock_utc": "2026-09-11 17:32:24 UTC",
+  "scope": "Read-only account and storefront inspection, reversible QA cart, public research, local report. No paid launch, account configuration, customer-data transfer, payment or publication.",
+  "store": {
+    "name": "Dress Like Mommy",
+    "domain": "www.dresslikemommy.com",
+    "plan": "Basic",
+    "currency": "USD",
+    "country": "United States",
+    "source": "Shopify get_shop_info live connector"
+  },
+  "shopify_analytics": [
+    {
+      "query": "FROM sales SHOW orders, gross_sales, discounts, sales_reversals, net_sales, shipping_charges, taxes, total_sales, average_order_value SINCE 2026-06-13 UNTIL 2026-09-10",
+      "columns": [
+        {
+          "name": "orders",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "gross_sales",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "discounts",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "sales_reversals",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "net_sales",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "shipping_charges",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "taxes",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "total_sales",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "average_order_value",
+          "dataType": "MONEY"
+        }
+      ],
+      "rows": [
+        [
+          "43",
+          "3327.12",
+          "0",
+          "-136.71",
+          "3190.41",
+          "66.14",
+          "0",
+          "3256.55",
+          "77.374"
+        ]
+      ],
+      "rowCount": 1,
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    {
+      "query": "FROM sales SHOW gross_sales, net_sales, orders GROUP BY product_title SINCE 2026-06-13 UNTIL 2026-09-10 ORDER BY gross_sales DESC LIMIT 10",
+      "columns": [
+        {
+          "name": "product_title",
+          "dataType": "STRING"
+        },
+        {
+          "name": "gross_sales",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "net_sales",
+          "dataType": "MONEY"
+        },
+        {
+          "name": "orders",
+          "dataType": "INTEGER"
+        }
+      ],
+      "rows": [
+        [
+          "",
+          "494.2",
+          "357.49",
+          "6"
+        ],
+        [
+          "Skyfade Family Matching Set - Dress & Shirt",
+          "239.31",
+          "239.31",
+          "3"
+        ],
+        [
+          "Matching Mother and Daughter Beach Dresses Elegant ... | DLM",
+          "123.96",
+          "123.96",
+          "2"
+        ],
+        [
+          "Matching Dad and Son Green Stripe Swim Trunks Beach Shorts",
+          "119.62",
+          "119.62",
+          "2"
+        ],
+        [
+          "Sunshine Stripe Family Matching Tops - Cotton Tee",
+          "118.95",
+          "118.95",
+          "1"
+        ],
+        [
+          "Vibrant Rainbow Mommy and Me Maxi Dresses",
+          "107.39",
+          "107.39",
+          "2"
+        ],
+        [
+          "Vintage Cottage Floral Mommy and Me Pajamas \u2014 Short-Sleeve Set",
+          "101.97",
+          "101.97",
+          "1"
+        ],
+        [
+          "Pastel Bloom Mommy and Me Dresses - Sleeveless Sundress",
+          "100.02",
+          "100.02",
+          "2"
+        ],
+        [
+          "Matching Mommy & Me Sunflower Maxi Dresses Sleevele... | DLM",
+          "99.2",
+          "99.2",
+          "2"
+        ],
+        [
+          "Pink Horizon Family Matching Set \u2014 Dress & Shirt",
+          "92.5",
+          "92.5",
+          "1"
+        ]
+      ],
+      "rowCount": 10,
+      "chartHint": {
+        "type": "bar",
+        "xAxisColumnIndex": 0,
+        "yAxisColumnIndices": [
+          1,
+          2
+        ],
+        "yAxisFormat": "money",
+        "currencyCode": "USD"
+      },
+      "summaryMetric": {
+        "label": "gross_sales",
+        "value": "1,597.12"
+      },
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    {
+      "query": "FROM sales SHOW new_customers, returning_customers, returning_customer_rate SINCE 2026-06-13 UNTIL 2026-09-10",
+      "columns": [
+        {
+          "name": "new_customers",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "returning_customers",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "returning_customer_rate",
+          "dataType": "PERCENT"
+        }
+      ],
+      "rows": [
+        [
+          "42",
+          "1",
+          "0.023255813953488372"
+        ]
+      ],
+      "rowCount": 1,
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    }
+  ],
+  "analytics_limitations": [
+    "Aggregate ShopifyQL sales reports, not a reconciled paid/non-test order export.",
+    "No supplier, fulfillment, payment-fee or return-cost evidence.",
+    "Blank product-title bucket must be joined to stable IDs before product decisions.",
+    "Observed repeat purchases are sparse; no evidence-supported lifetime-value uplift."
+  ],
+  "google_ads_access": {
+    "browser": "Task-owned Codex In-app Browser tab; supplied selectaccount route reached signed-out chooser; no login or account switch attempted.",
+    "configured_api": "Documented local config exists and required OAuth fields are present, values never saved to packet.",
+    "result": "OAuth refresh HTTP400 invalid_grant. Request for repository candidate customer6509972886 did not reach Ads API.",
+    "live_account_content_returned": false,
+    "classification": "ACCESS_RECOVERY_REQUIRED",
+    "account_identity": "6509972886 is a repository-known operating candidate; manager7001079966 and historical3990976848 are not fresh verified identities.",
+    "limits": "No current campaigns, goals, links, budget, spend, serving, conversions, ROAS or billing readback."
+  },
+  "canonical_control": {
+    "source": "ops/marketing/current_marketing_state.md Authoritative Execution Control",
+    "source_live_evidence_as_of": "2026-06-01",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false
+  },
+  "storefront_qa": {
+    "product": "Skyfade Family Matching Set - Dress & Shirt",
+    "product_id": "7536992976993",
+    "url": "https://www.dresslikemommy.com/products/skyfade-family-matching-set",
+    "initial_context": "DLM UX Performance QA 2026-09-10 Draft137888792673 visibly identified; Exit preview used before published sample.",
+    "published_template_observed": "template--17118393630817__main",
+    "desktop_visual": "1274x717 screenshot observed product image, title,19.99-29.99USD range and per-piece copy.",
+    "mobile_viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "selection": {
+      "type": "Dress",
+      "size": "Mother S",
+      "color": "Blue",
+      "variant_id": "44083478528097",
+      "quantity": 1,
+      "price_usd": 29.99
+    },
+    "cart_result": "One exact matching variant at29.99USD; checkout entry opened.",
+    "checkout_limit": "Checkout retained preview_theme_id137888792673. Contact/address empty; shipping methods require address. No payment, genuine purchase, receiver evidence or preview-free checkout acceptance.",
+    "checkout_observation": "Amazon Pay control said currently unavailable in sampled checkout; card/Shop Pay/PayPal/Google Pay controls visible, untested.",
+    "cleanup": "Exact QA line removed; get_cart independently returned0items/0.00USD. Viewport reset; original draft context restored and own tab closed.",
+    "purchase_measurement": "NOT_TESTED",
+    "shipping_truth": "Visible estimates/claims only, fulfillment reliability not verified.",
+    "observability": "One Playwright checkbox locator found no match; native AX selection succeeded. Transient unlabelled AX state was not treated as a product defect.",
+    "scope_limits": "One US/en adult variant only; not all products, markets, child sizes, devices or transactions."
+  },
+  "assumptions_pending": [
+    "US/English first market",
+    "Current monthly media ceiling and maximum testing loss",
+    "Whether historical0.15USD CPC ceiling persists",
+    "Actual candidate costs and returns"
+  ],
+  "owners_preserved": [
+    "Existing Merchant writer513542500/source10727274744",
+    "Existing GA4 purchase acceptance owner",
+    "Existing UX draft137888792673",
+    "Paid authority NONE"
+  ],
+  "output": "Research recommendation only; implementation and activation remain gated.",
+  "newer_peer_checkpoint": {
+    "source": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/READBACK.md",
+    "source_sha256": "8cfa39f7aee9530eba9dd9d565c39b60895c29a6a9c4028825c538e39aae2fa7",
+    "evidence_class": "REPO_KNOWN_PEER_LIVE_RECEIPT_NOT_ROOT_ACCOUNT_INSPECTION",
+    "observed_time_in_receipt": "2026-09-11 approximately17:45\u201317:52UTC",
+    "operating_customer": "650-997-2886",
+    "owner": "root01a09194 signup-tag operator",
+    "tag_detector": "FAILED: current Ads tag not detected; not proof GA4 absent",
+    "guided_merge": "NOT CONFIRMED",
+    "current_spend": "NOT established by this receipt",
+    "genuine_purchase_ingestion": "NOT established by this receipt",
+    "next_action": "Reuse existing signup-tag owner for exact current-spend and purchase-destination readback; no repeated sign-in or independent tag repair."
+  }
+}

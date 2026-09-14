@@ -1,0 +1,743 @@
+{
+  "schema": "dlm.independent_order_fulfillment_review.v2",
+  "reviewer": "/root/order_delta_1934",
+  "phase": "Independent local source recomputation and receipt correction verification",
+  "verdict": "PASS_WITH_LIMITS",
+  "source_receipt": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260913_0841.json",
+    "sha256": "7cd9215d379ddd209ef6c1de467400d4f03461310883be1bf0ecc341c6b23150"
+  },
+  "initial_receipt": {
+    "sha256": "39ea251b2e774893f1190c4826bc1227e7738737e073c2687cd7e9332624eb08",
+    "preserved_privately": true
+  },
+  "baseline_receipt": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260912_2041.json",
+    "sha256": "0f0bde5c470b3077f05029ce58d6bb247048deeaad2840b09fe724df3786edab"
+  },
+  "baseline_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260912_evening_review.json",
+    "sha256": "89caa3a5b6c1b08d75bd0f94a9ee7b33785e560bc36eb713e71a82394f5ff2f8"
+  },
+  "transient_evidence": {
+    "sha256": "556c32fa8ad96ce5fe723f4499098f963f6ad028a06b621291164ae38e2dc062",
+    "permissions": "0600 after root correction; bytes unchanged",
+    "private_values_copied_to_review": false,
+    "retention": "Root removes the private source after recording this review."
+  },
+  "validation_plan": {
+    "sha256": "9476d6d3c044b2a683df80ec55698b39be0e48a8d1f18940abfc7d5dfb34156f",
+    "path": "/private/tmp/dlm-sales-20260913-0831-plan.json"
+  },
+  "legacy_identity_evidence": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/recent_order_basket_variants_20260907.json",
+    "sha256": "9782ec236e6608e690dbae0dbdfc5640b4bdbcfa57b775c008268b45ea9a930a",
+    "use": "Only creation-time, product/variant identity and quantity comparisons, performed transiently. Historical recorded cost fields were not used."
+  },
+  "independence": {
+    "built_source_or_executed_reads": false,
+    "independent_live_replay": false,
+    "builder_executed_or_used_for_math": false,
+    "method": "Independent integer-cent arithmetic, local filters, zoneinfo boundaries, unique transient joins, exact redaction and prior lifecycle comparisons; correction verified by exact inverse to the initially reviewed bytes."
+  },
+  "initial_attempt": {
+    "reviewed_at_utc": "2026-09-13T08:49:34Z",
+    "check_count": 80,
+    "passed_checks": 79,
+    "failed_checks": [
+      {
+        "check": "lifecycle_changes_explicit_in_receipt",
+        "pass": false,
+        "basis": "Current receipt contains an empty object; expected explicit six recomputed fields."
+      }
+    ],
+    "checks": [
+      {
+        "check": "new_source_hash",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "prior_source_hash",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "prior_review_hash",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "prior_review_pass_binding",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "legacy_identity_source_hash",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "raw_hash_and_permissions",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "plan_hash",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "schema_types_metadata",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "validation_raw_plan_equivalence",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "connector_two_successful_operations",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "current_artifact_ids_and_revision",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "exact_reused_operations",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "read_only_operation_boundary",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "queries_do_not_request_customer_or_tracking_identifiers",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "source_validation_summary_bound",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "source_shop_identity",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "fulfillment_shop_identities",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "not_before_due",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "capture_ordering_precision",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "order_capture_equivalence",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "fulfillment_capture_equivalence",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "query_counts_and_non_atomic_limit",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "exact_query_filter",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "original_window_preserved",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "previous_full_window",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "trailing24_exact",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "new_york_completed_day_boundaries",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "approximate_cutover_retained",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "next_full_exactly12_hours_after_cutoff",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "distinct_order_identity",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "complete_order_pages",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "all_source_orders_inside_query",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "complete_order_line_pages",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "all_returned_vs_filtered_counts",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "all_returned_status_and_exclusions",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "all_shop_money_usd_finite_exact_cents",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "quantities_are_nonnegative_integers",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "qualifying_money_and_units",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "all_status_money_and_units",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "qualifying_status_totals",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "original_current_and_retained_counts",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "all_fulfillment_order_joins_unique_complete",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "fulfillment_array_bounded_not_truncated",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "fulfillment_lines_and_events_complete",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "legacy_unique_alias_1",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "legacy_creation_product_variant_identity_Rainbow",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "legacy_unique_alias_2",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "legacy_creation_product_variant_identity_Mermaid",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "legacy_identity_mapping_covers_original",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "unique_line_ordinal_identity_Rainbow",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "current_quantity_matches_legacy_Rainbow",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "financial_and_refund_recheck_Rainbow",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "fulfillment_line_maps_to_order_Rainbow_1",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "fulfillment_line_maps_to_order_Rainbow_2",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "fulfillment_total_quantity_reconciles_Rainbow",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "exact_redaction_row_equivalence_Rainbow",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "no_carrier_or_delivery_evidence_Rainbow",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "unique_line_ordinal_identity_Mermaid",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "current_quantity_matches_legacy_Mermaid",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "financial_and_refund_recheck_Mermaid",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "exact_redaction_row_equivalence_Mermaid",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "no_carrier_or_delivery_evidence_Mermaid",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "all_redacted_rows_covered",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "all_basket_aggregates_exact",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "window_recomputed_comparison_since_last_full_read",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "window_recomputed_trailing_24_hours",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "window_recomputed_previous_completed_shop_calendar_day",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "window_recomputed_ga4_post_cutover_candidates",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "post_cutover_candidate_aliases",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "exact_current_total_deltas",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "retained_lifecycle_rows_unchanged",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "lifecycle_changes_explicit_in_receipt",
+        "pass": false,
+        "basis": "Current receipt contains an empty object; expected explicit six recomputed fields."
+      },
+      {
+        "check": "frozen28day_baseline_unchanged_and_separate",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "unknown_cost_profit_attribution_receiver_gates",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "no_synthetic_purchase_and_business_outcome_limit",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "no_private_identifier_time_cursor_value_in_repo_receipt",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "no_private_gid_or_email_or_tracking_url",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "saved_rows_only_allowlisted_fields",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "exact_six_window_flags_and_line_ordinals",
+        "pass": true,
+        "basis": ""
+      },
+      {
+        "check": "source_hash_and_private_mode_preserved_at_end",
+        "pass": true,
+        "basis": ""
+      }
+    ]
+  },
+  "resolved_findings": [
+    {
+      "id": "F1",
+      "finding": "Private raw file initially had mode 0644.",
+      "status": "RESOLVED",
+      "resolution": "Root changed mode to 0600; reviewer verified owner-only mode and unchanged raw SHA256. No private values were emitted or saved in this review."
+    },
+    {
+      "id": "F2",
+      "finding": "changes_from_previous_full_read was an empty object, omitting six explicit comparison fields.",
+      "status": "RESOLVED",
+      "resolution": "Root recorded the exact independently recomputed fields and bound the original source hash in revision_history; final correction checks prove the rest of the receipt is unchanged."
+    }
+  ],
+  "unresolved_findings": [],
+  "source_clocks": {
+    "orders_started": "2026-09-13T08:42:09Z",
+    "orders_completed": "2026-09-13T08:42:11Z",
+    "fulfillment_started": "2026-09-13T08:42:52Z",
+    "fulfillment_completed": "2026-09-13T08:42:54Z",
+    "next_full_due": "2026-09-13T20:42:09Z"
+  },
+  "recomputed_totals": {
+    "orders": 2,
+    "current_units": 4,
+    "current_subtotal_usd": "86.45",
+    "current_total_usd": "86.45",
+    "current_tax_usd": "0.00",
+    "recorded_refunds_usd": "0.00"
+  },
+  "all_returned_totals": {
+    "orders": 2,
+    "current_units": 4,
+    "current_subtotal_usd": "86.45",
+    "current_total_usd": "86.45",
+    "current_tax_usd": "0.00",
+    "recorded_refunds_usd": "0.00"
+  },
+  "recomputed_windows": {
+    "comparison_since_last_full_read": {
+      "start_inclusive": "2026-09-12T20:41:48Z",
+      "end_exclusive": "2026-09-13T08:42:09Z",
+      "all_order_creations": 0,
+      "qualifying_orders": 0,
+      "qualifying_totals": {
+        "orders": 0,
+        "current_units": 0,
+        "current_subtotal_usd": "0.00",
+        "current_total_usd": "0.00",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00"
+      },
+      "excluded_orders": 0
+    },
+    "trailing_24_hours": {
+      "start_inclusive": "2026-09-12T08:42:09Z",
+      "end_exclusive": "2026-09-13T08:42:09Z",
+      "all_order_creations": 0,
+      "qualifying_orders": 0,
+      "qualifying_totals": {
+        "orders": 0,
+        "current_units": 0,
+        "current_subtotal_usd": "0.00",
+        "current_total_usd": "0.00",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00"
+      },
+      "excluded_orders": 0
+    },
+    "previous_completed_shop_calendar_day": {
+      "start_inclusive": "2026-09-12T04:00:00Z",
+      "end_exclusive": "2026-09-13T04:00:00Z",
+      "all_order_creations": 0,
+      "qualifying_orders": 0,
+      "qualifying_totals": {
+        "orders": 0,
+        "current_units": 0,
+        "current_subtotal_usd": "0.00",
+        "current_total_usd": "0.00",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00"
+      },
+      "excluded_orders": 0
+    },
+    "ga4_post_cutover_candidates": {
+      "start_inclusive": "2026-09-09T18:09:00Z",
+      "end_exclusive": "2026-09-13T08:42:09Z",
+      "all_order_creations": 0,
+      "qualifying_orders": 0,
+      "qualifying_totals": {
+        "orders": 0,
+        "current_units": 0,
+        "current_subtotal_usd": "0.00",
+        "current_total_usd": "0.00",
+        "current_tax_usd": "0.00",
+        "recorded_refunds_usd": "0.00"
+      },
+      "excluded_orders": 0
+    }
+  },
+  "recomputed_changes": {
+    "new_order_creations": 0,
+    "new_qualifying_orders": 0,
+    "qualifying_totals_changed": false,
+    "all_returned_totals_changed": false,
+    "basket_payment_refund_cancellation_or_fulfillment_changed": false,
+    "new_carrier_events": 0
+  },
+  "recomputed_basket_aggregates": [
+    {
+      "basket": "Rainbow",
+      "financial_status": "PAID",
+      "order_fulfillment_status": "FULFILLED",
+      "current_units": 2,
+      "current_subtotal_usd": "54.47",
+      "recorded_refunds_usd": "0.00",
+      "cancelled": false,
+      "fulfillments_returned": 1,
+      "fulfillment_statuses": [
+        {
+          "status": "SUCCESS",
+          "display_status": "FULFILLED",
+          "total_quantity": 2
+        }
+      ],
+      "matched_variant_selections": 2,
+      "exact_current_basket_variant_quantity_match": true,
+      "fulfillment_lines_within_ordered_quantities": true,
+      "recorded_tracking_companies": [
+        "YunExpress"
+      ],
+      "delivered_at_present": false,
+      "in_transit_at_present": false,
+      "estimated_delivery_at_present": false,
+      "events_returned": 0,
+      "event_status_counts": {},
+      "events_since_previous_source_read": 0,
+      "event_pagination_complete": true,
+      "fulfillment_line_item_pagination_complete": true,
+      "carrier_acceptance_verified": false,
+      "delivery_verified": false
+    },
+    {
+      "basket": "Mermaid",
+      "financial_status": "PAID",
+      "order_fulfillment_status": "UNFULFILLED",
+      "current_units": 2,
+      "current_subtotal_usd": "31.98",
+      "recorded_refunds_usd": "0.00",
+      "cancelled": false,
+      "fulfillments_returned": 0,
+      "fulfillment_statuses": [],
+      "matched_variant_selections": 0,
+      "exact_current_basket_variant_quantity_match": false,
+      "fulfillment_lines_within_ordered_quantities": true,
+      "recorded_tracking_companies": [],
+      "delivered_at_present": false,
+      "in_transit_at_present": false,
+      "estimated_delivery_at_present": false,
+      "events_returned": 0,
+      "event_status_counts": {},
+      "events_since_previous_source_read": 0,
+      "event_pagination_complete": true,
+      "fulfillment_line_item_pagination_complete": true,
+      "carrier_acceptance_verified": false,
+      "delivery_verified": false
+    }
+  ],
+  "measurement_limits": [
+    "This is verification of the parent's saved live readback, not an independent replay against Shopify; the returned query-validation receipt and schema-type metadata are bound, while schema discovery was not rerun.",
+    "All counts are exact for the fully enumerated bounded creation window. They are not store-lifetime totals.",
+    "Order financial/cancellation state is captured at 08:42:09-11 UTC; fulfillment rechecks at 08:42:52-54 UTC are sequential and non-atomic with the order query.",
+    "The original two baskets match the legacy creation timestamps and product/variant quantities transiently. No new basket appeared in any tested recent window; no new GA4 reconciliation candidate is established.",
+    "PAID is a financial status, not paid-media attribution. Costs, settlement, retained profit, CPA, ROAS and GA4 purchase ingestion remain UNKNOWN.",
+    "One SUCCESS fulfillment with matching quantities and a carrier company is not proof of carrier acceptance or delivery; there are no returned carrier events, transit/delivery timestamps or ETA.",
+    "The prior 28-day baseline was neither refreshed nor merged with this cohort. No new platform, paid, billing, checkout, event or customer action occurred in this review."
+  ],
+  "decision_recommendation": "Record this unchanged full-cohort checkpoint and its next full read at 2026-09-13T20:42:09Z. Existing attribution, fulfillment evidence and actual-cost gates remain separate; no scale or profit conclusion follows.",
+  "actions": {
+    "review_file_writes": 1,
+    "other_file_writes": 0,
+    "canonical_writes": 0,
+    "source_mutations": 0,
+    "external_calls": 0,
+    "browser_calls": 0,
+    "customer_messages": 0
+  },
+  "reviewed_at_utc": "2026-09-13T08:53:42.394026+00:00",
+  "correction_review": {
+    "check_count": 19,
+    "passed_checks": 19,
+    "failed_checks": [],
+    "checks": [
+      {
+        "check": "corrected_source_hash",
+        "pass": true
+      },
+      {
+        "check": "initial_frozen_hash",
+        "pass": true
+      },
+      {
+        "check": "initial_frozen_permission",
+        "pass": true
+      },
+      {
+        "check": "private_raw_bytes_preserved",
+        "pass": true
+      },
+      {
+        "check": "private_raw_permission_resolved",
+        "pass": true
+      },
+      {
+        "check": "only_delta_and_revision_fields_differ",
+        "pass": true
+      },
+      {
+        "check": "six_delta_fields_match_independent_math",
+        "pass": true
+      },
+      {
+        "check": "correction_inverse_object_equality",
+        "pass": true
+      },
+      {
+        "check": "correction_inverse_exact_original_bytes",
+        "pass": true
+      },
+      {
+        "check": "revision_binds_initial_hash",
+        "pass": true
+      },
+      {
+        "check": "revision_records_actual_missing_comparison_finding",
+        "pass": true
+      },
+      {
+        "check": "no_new_live_read_in_revision",
+        "pass": true
+      },
+      {
+        "check": "source_rows_clocks_validation_and_gates_unchanged",
+        "pass": true
+      },
+      {
+        "check": "prior_baseline_hash_preserved",
+        "pass": true
+      },
+      {
+        "check": "prior_review_hash_preserved",
+        "pass": true
+      },
+      {
+        "check": "plan_and_legacy_hashes_preserved",
+        "pass": true
+      },
+      {
+        "check": "next_full_due_clock_unchanged",
+        "pass": true
+      },
+      {
+        "check": "revision_contains_no_private_identifier_time_or_url",
+        "pass": true
+      },
+      {
+        "check": "final_source_hash_and_raw_mode_rechecked",
+        "pass": true
+      }
+    ],
+    "exact_inverse_preserves_initial_bytes": true
+  },
+  "check_counts": {
+    "initial_executed": 80,
+    "initial_passed": 79,
+    "initial_failed_and_now_resolved": 1,
+    "correction_executed": 19,
+    "correction_passed": 19,
+    "total_checks_executed": 99,
+    "unresolved": 0
+  },
+  "check_count": 99,
+  "ownership": {
+    "only_file_written": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260913_morning_review.json",
+    "root_retains_canonical_and_source_ownership": true
+  }
+}

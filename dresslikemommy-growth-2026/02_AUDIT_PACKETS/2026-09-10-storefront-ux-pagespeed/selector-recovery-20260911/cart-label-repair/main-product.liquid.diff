@@ -1,0 +1,25 @@
+--- uploaded-three-file/sections/main-product.liquid
++++ proposed/sections/main-product.liquid
+@@ -1873,6 +1873,7 @@
+       var sizeRequiredMessageText = {{ 'products.product.size_required_message' | t | json }};
+       var compareAtPriceTemplate = getProductPageCopyValue('compare_at_price') || 'Compare at __PRICE__';
+       var selectedSizeTemplate = getProductPageCopyValue('selected_size_label') || 'Size: __SIZE__';
++      if (selectedSizeTemplate.indexOf('__SIZE__') === -1) selectedSizeTemplate += ' __SIZE__';
+ 
+       if (!atcBtn && productForm) atcBtn = productForm.querySelector('[name="add"]');
+ 
+@@ -2357,13 +2358,8 @@
+         }
+ 
+         if (currentSizeState.hasSizeOption && currentSizeState.selectedSizeValues.length) {
+-          var formatter =
+-            window.DLMSizeLabelFormatter &&
+-            typeof window.DLMSizeLabelFormatter.formatSizeLabel === 'function'
+-              ? window.DLMSizeLabelFormatter.formatSizeLabel
+-              : null;
+           var visibleSizeValues = currentSizeState.selectedSizeValues.map(function (value) {
+-            return formatter ? formatter(value) : value;
++            return String(value || '').trim();
+           });
+           stickySize.textContent = selectedSizeTemplate.replace('__SIZE__', visibleSizeValues.join(' / '));
+           stickySize.removeAttribute('hidden');

@@ -1,0 +1,841 @@
+{{ 'section-category-icons.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .category-icons__group-title-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .category-icons__group-title-link:hover,
+  .category-icons__group-title-link:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign rotation_seed = 'now' | date: '%M' | plus: 0
+  assign used_collection_image_keys = '|'
+  assign trust_item_count = 0
+  assign category_block_count = 0
+  assign occasion_block_count = 0
+  assign featured_collection_min_products = 10
+  assign homepage_collection_candidate_limit = 8
+  assign category_heading_url = section.settings.category_heading_link
+  assign occasion_heading_url = section.settings.occasion_heading_link
+  assign category_heading_path_prefix = category_heading_url | slice: 0, 13
+  assign occasion_heading_path_prefix = occasion_heading_url | slice: 0, 13
+  if category_heading_path_prefix == '/collections/'
+    assign category_heading_url = category_heading_url | replace_first: '/collections', routes.collections_url
+  endif
+  if occasion_heading_path_prefix == '/collections/'
+    assign occasion_heading_url = occasion_heading_url | replace_first: '/collections', routes.collections_url
+  endif
+  assign category_group_heading_tag = 'h2'
+  if section.settings.title != blank
+    assign category_group_heading_tag = 'h3'
+  endif
+
+  if section.settings.show_trust_strip
+    if section.settings.trust_item_1 != blank
+      assign trust_item_count = trust_item_count | plus: 1
+    endif
+    if section.settings.trust_item_2 != blank
+      assign trust_item_count = trust_item_count | plus: 1
+    endif
+    if section.settings.trust_item_3 != blank
+      assign trust_item_count = trust_item_count | plus: 1
+    endif
+    if section.settings.trust_item_4 != blank
+      assign trust_item_count = trust_item_count | plus: 1
+    endif
+  endif
+
+  if section.settings.display_mode == 'grouped'
+    for block in section.blocks
+      if block.settings.collection != blank
+        assign collection_product_count = block.settings.collection.products_count | default: block.settings.collection.products.size
+        if collection_product_count >= featured_collection_min_products
+          if block.settings.browse_path == 'occasion'
+            assign occasion_block_count = occasion_block_count | plus: 1
+          else
+            assign category_block_count = category_block_count | plus: 1
+          endif
+        endif
+      endif
+    endfor
+  endif
+-%}
+{%- assign category_heading_key = section.settings.category_heading | handleize -%}
+{%- assign occasion_heading_key = section.settings.occasion_heading | handleize -%}
+{%- assign trust_item_1_key = section.settings.trust_item_1 | handleize -%}
+{%- assign trust_item_2_key = section.settings.trust_item_2 | handleize -%}
+{%- assign trust_item_3_key = section.settings.trust_item_3 | handleize -%}
+{%- assign trust_item_4_key = section.settings.trust_item_4 | handleize -%}
+{%- capture category_heading_text -%}
+  {%- render 'home-category-localized-copy', copy_key: category_heading_key, fallback: section.settings.category_heading -%}
+{%- endcapture -%}
+{%- capture occasion_heading_text -%}
+  {%- render 'home-category-localized-copy', copy_key: occasion_heading_key, fallback: section.settings.occasion_heading -%}
+{%- endcapture -%}
+{%- capture trust_item_1_text -%}
+  {%- render 'home-category-localized-copy', copy_key: trust_item_1_key, fallback: section.settings.trust_item_1 -%}
+{%- endcapture -%}
+{%- capture trust_item_2_text -%}
+  {%- render 'home-category-localized-copy', copy_key: trust_item_2_key, fallback: section.settings.trust_item_2 -%}
+{%- endcapture -%}
+{%- capture trust_item_3_text -%}
+  {%- render 'home-category-localized-copy', copy_key: trust_item_3_key, fallback: section.settings.trust_item_3 -%}
+{%- endcapture -%}
+{%- capture trust_item_4_text -%}
+  {%- render 'home-category-localized-copy', copy_key: trust_item_4_key, fallback: section.settings.trust_item_4 -%}
+{%- endcapture -%}
+{%- assign category_heading_text = category_heading_text | strip -%}
+{%- assign occasion_heading_text = occasion_heading_text | strip -%}
+{%- assign trust_item_1_text = trust_item_1_text | strip -%}
+{%- assign trust_item_2_text = trust_item_2_text | strip -%}
+{%- assign trust_item_3_text = trust_item_3_text | strip -%}
+{%- assign trust_item_4_text = trust_item_4_text | strip -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding">
+    {%- if section.settings.title != blank -%}
+      <h2 class="collection-list-title {{ section.settings.heading_size }}">
+        {{ section.settings.title }}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.show_trust_strip and trust_item_count > 0 -%}
+      <div class="category-icons__trust" aria-label="Store trust highlights">
+        {%- if section.settings.trust_item_1 != blank -%}
+          <span class="category-icons__trust-item">
+            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+            <span>{{ trust_item_1_text | escape }}</span>
+          </span>
+        {%- endif -%}
+        {%- if section.settings.trust_item_2 != blank -%}
+          <span class="category-icons__trust-item">
+            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+            <span>{{ trust_item_2_text | escape }}</span>
+          </span>
+        {%- endif -%}
+        {%- if section.settings.trust_item_3 != blank -%}
+          <span class="category-icons__trust-item">
+            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+            <span>{{ trust_item_3_text | escape }}</span>
+          </span>
+        {%- endif -%}
+        {%- if section.settings.trust_item_4 != blank -%}
+          <span class="category-icons__trust-item">
+            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+            <span>{{ trust_item_4_text | escape }}</span>
+          </span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%}
+      Rotating category images:
+      - Each page load picks a different active storefront product main image from the collection
+      - Uses current minute as rotation seed so images change over time
+      - Tracks used image IDs across all categories to guarantee no duplicates
+      - Custom/static image overrides are intentionally ignored for homepage cards
+    {%- endcomment -%}
+
+    {%- if section.settings.display_mode == 'grouped' -%}
+      {%- if category_block_count > 0 -%}
+        <div class="category-icons__group category-icons__group--category">
+          {%- if section.settings.category_heading != blank -%}
+            <{{ category_group_heading_tag }} class="category-icons__group-title">
+              {%- if section.settings.category_heading_link != blank -%}
+                <a href="{{ category_heading_url | escape }}" class="category-icons__group-title-link">
+                  {{ category_heading_text }}
+                </a>
+              {%- else -%}
+                {{ category_heading_text }}
+              {%- endif -%}
+            </{{ category_group_heading_tag }}>
+          {%- endif -%}
+          <ul class="category-icons__scroll" role="list" aria-label="{{ category_heading_text | default: 'Shop by category' | escape }}">
+            {%- assign rendered_category_count = 0 -%}
+            {%- for block in section.blocks -%}
+              {%- if block.settings.collection != blank and block.settings.browse_path != 'occasion' -%}
+                {%- liquid
+                  assign icon_label = block.settings.custom_label | default: block.settings.collection.title
+                  assign icon_image = blank
+                  assign icon_image_alt = icon_label
+                  assign icon_image_key = blank
+                  assign products = block.settings.collection.products
+                  assign product_count = products.size
+                  assign featured_collection_count = block.settings.collection.products_count | default: product_count
+                  assign homepage_collection_image_candidate_count = 0
+                  assign homepage_collection_image_candidates_json = blank
+
+                  if featured_collection_count < featured_collection_min_products
+                    continue
+                  endif
+
+                  assign rendered_category_count = rendered_category_count | plus: 1
+                  assign category_image_sizes = 'auto, (min-width: 990px) calc((min(100vw, 146rem) - 17.2rem) / 4), (min-width: 750px) calc((100vw - 11.8rem) / 2), min(76vw, 32rem)'
+                  if rendered_category_count == 1
+                    assign category_image_sizes = 'auto, (min-width: 990px) calc((min(100vw, 146rem) - 12.4rem) / 2), (min-width: 750px) calc((100vw - 11.8rem) / 2), min(86vw, 36rem)'
+                  elsif rendered_category_count == 6
+                    assign category_image_sizes = 'auto, (min-width: 990px) calc((min(100vw, 146rem) - 12.4rem) / 2), (min-width: 750px) calc((100vw - 11.8rem) / 2), min(76vw, 32rem)'
+                  endif
+
+                  capture homepage_collection_image_candidates_json
+                    echo '['
+                    assign emitted_candidate_keys = '|'
+
+                    assign fresh_collection_products = products | sort: 'published_at' | reverse
+                    for candidate_product in fresh_collection_products
+                      if homepage_collection_image_candidate_count >= homepage_collection_candidate_limit
+                        break
+                      endif
+
+                      assign candidate_media = candidate_product.featured_image
+                      if candidate_media == blank
+                        continue
+                      endif
+
+                      assign candidate_media_id = candidate_media.id | default: candidate_product.id
+                      assign candidate_key = 'image-' | append: candidate_media_id
+                      assign candidate_key_token = '|' | append: candidate_key | append: '|'
+
+                      if emitted_candidate_keys contains candidate_key_token
+                        continue
+                      endif
+
+                      capture candidate_alt
+                        render 'product-image-alt', product: candidate_product, media: candidate_media, collection: block.settings.collection, fallback_title: icon_label
+                      endcapture
+                      assign candidate_alt = candidate_alt | strip
+
+                      if homepage_collection_image_candidate_count > 0
+                        echo ','
+                      endif
+
+                      echo '{'
+                      echo '"key":'
+                      echo candidate_key | json
+                      echo ',"src":'
+                      echo candidate_media | image_url: width: 900 | json
+                      echo ',"srcset":'
+                      capture candidate_srcset
+                        echo candidate_media | image_url: width: 320
+                        echo ' 320w, '
+                        echo candidate_media | image_url: width: 480
+                        echo ' 480w, '
+                        echo candidate_media | image_url: width: 640
+                        echo ' 640w, '
+                        echo candidate_media | image_url: width: 900
+                        echo ' 900w'
+                      endcapture
+                      echo candidate_srcset | strip | json
+                      echo ',"alt":'
+                      echo candidate_alt | json
+                      echo ',"width":360,"height":450'
+                      echo '}'
+
+                      assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
+                      assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
+
+                      if icon_image == blank
+                        unless used_collection_image_keys contains candidate_key_token
+                          assign icon_image = candidate_media
+                          assign icon_image_key = candidate_key
+                          assign icon_image_alt = candidate_alt
+                          assign used_collection_image_keys = used_collection_image_keys | append: candidate_key | append: '|'
+                        endunless
+                      endif
+                    endfor
+
+                    echo ']'
+                  endcapture
+                  assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
+
+                  if icon_image == blank and product_count > 0
+                    assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                    assign fallback_icon_found = false
+
+                    for i in (0..product_count)
+                      unless fallback_icon_found
+                        assign try_index = start_index | plus: i | modulo: product_count
+                        assign try_product = products[try_index]
+
+                        if try_product != blank and try_product.featured_image != blank
+                          assign icon_image = try_product.featured_image
+                          assign icon_image_key = 'image-' | append: icon_image.id
+                          capture icon_image_alt
+                            render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
+                          endcapture
+                          assign icon_image_alt = icon_image_alt | strip
+                          assign fallback_icon_found = true
+                        endif
+                      endunless
+                    endfor
+                  endif
+                -%}
+                {%- assign icon_label_source = icon_label -%}
+                {%- assign icon_label_key = icon_label_source | handleize -%}
+                {%- capture icon_label_localized -%}
+                  {%- render 'home-category-localized-copy', copy_key: icon_label_key, fallback: icon_label_source -%}
+                {%- endcapture -%}
+                {%- assign icon_label = icon_label_localized | strip -%}
+                {%- capture icon_caption -%}
+                  {%- render 'home-category-card-caption', icon_label: icon_label_source -%}
+                {%- endcapture -%}
+                {%- assign icon_caption = icon_caption | strip -%}
+                <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
+                  <a href="{{ block.settings.collection.url }}" class="category-icons__link">
+                    <div class="category-icons__image-wrap">
+                      {%- if icon_image != blank -%}
+                        <img
+                          src="{{ icon_image | image_url: width: 900 }}"
+                          srcset="{{ icon_image | image_url: width: 320 }} 320w, {{ icon_image | image_url: width: 480 }} 480w, {{ icon_image | image_url: width: 640 }} 640w, {{ icon_image | image_url: width: 900 }} 900w"
+                          sizes="{{ category_image_sizes }}"
+                          alt="{{ icon_image_alt | escape }}"
+                          loading="lazy"
+                          fetchpriority="low"
+                          decoding="async"
+                          width="{{ icon_image.width }}"
+                          height="{{ icon_image.height }}"
+                          data-homepage-collection-image
+                          data-homepage-collection-image-key="{{ icon_image_key | escape }}"
+                        >
+                      {%- else -%}
+                        {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
+                    </div>
+                    <span class="category-icons__text">
+                      <span class="category-icons__label">{{ icon_label }}</span>
+                      {%- if icon_caption != blank -%}
+                        <span class="category-icons__caption">{{ icon_caption }}</span>
+                      {%- endif -%}
+                    </span>
+                  </a>
+                  {%- if homepage_collection_image_candidate_count > 1 -%}
+                    <script type="application/json" class="homepage-collection-card__image-candidates">
+                      {{- homepage_collection_image_candidates_json -}}
+                    </script>
+                  {%- endif -%}
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- if occasion_block_count > 0 -%}
+        <div class="category-icons__group category-icons__group--occasion">
+          {%- if section.settings.occasion_heading != blank -%}
+            <{{ category_group_heading_tag }} class="category-icons__group-title">
+              {%- if section.settings.occasion_heading_link != blank -%}
+                <a href="{{ occasion_heading_url | escape }}" class="category-icons__group-title-link">
+                  {{ occasion_heading_text }}
+                </a>
+              {%- else -%}
+                {{ occasion_heading_text }}
+              {%- endif -%}
+            </{{ category_group_heading_tag }}>
+          {%- endif -%}
+          <ul class="category-icons__scroll" role="list" aria-label="{{ occasion_heading_text | default: 'Shop by occasion' | escape }}">
+            {%- for block in section.blocks -%}
+              {%- if block.settings.collection != blank and block.settings.browse_path == 'occasion' -%}
+                {%- liquid
+                  assign icon_label = block.settings.custom_label | default: block.settings.collection.title
+                  assign icon_image = blank
+                  assign icon_image_alt = icon_label
+                  assign icon_image_key = blank
+                  assign products = block.settings.collection.products
+                  assign product_count = products.size
+                  assign featured_collection_count = block.settings.collection.products_count | default: product_count
+                  assign homepage_collection_image_candidate_count = 0
+                  assign homepage_collection_image_candidates_json = blank
+
+                  if featured_collection_count < featured_collection_min_products
+                    continue
+                  endif
+
+                  capture homepage_collection_image_candidates_json
+                    echo '['
+                    assign emitted_candidate_keys = '|'
+
+                    assign fresh_collection_products = products | sort: 'published_at' | reverse
+                    for candidate_product in fresh_collection_products
+                      if homepage_collection_image_candidate_count >= homepage_collection_candidate_limit
+                        break
+                      endif
+
+                      assign candidate_media = candidate_product.featured_image
+                      if candidate_media == blank
+                        continue
+                      endif
+
+                      assign candidate_media_id = candidate_media.id | default: candidate_product.id
+                      assign candidate_key = 'image-' | append: candidate_media_id
+                      assign candidate_key_token = '|' | append: candidate_key | append: '|'
+
+                      if emitted_candidate_keys contains candidate_key_token
+                        continue
+                      endif
+
+                      capture candidate_alt
+                        render 'product-image-alt', product: candidate_product, media: candidate_media, collection: block.settings.collection, fallback_title: icon_label
+                      endcapture
+                      assign candidate_alt = candidate_alt | strip
+
+                      if homepage_collection_image_candidate_count > 0
+                        echo ','
+                      endif
+
+                      echo '{'
+                      echo '"key":'
+                      echo candidate_key | json
+                      echo ',"src":'
+                      echo candidate_media | image_url: width: 900 | json
+                      echo ',"srcset":'
+                      capture candidate_srcset
+                        echo candidate_media | image_url: width: 320
+                        echo ' 320w, '
+                        echo candidate_media | image_url: width: 480
+                        echo ' 480w, '
+                        echo candidate_media | image_url: width: 640
+                        echo ' 640w, '
+                        echo candidate_media | image_url: width: 900
+                        echo ' 900w'
+                      endcapture
+                      echo candidate_srcset | strip | json
+                      echo ',"alt":'
+                      echo candidate_alt | json
+                      echo ',"width":360,"height":450'
+                      echo '}'
+
+                      assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
+                      assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
+
+                      if icon_image == blank
+                        unless used_collection_image_keys contains candidate_key_token
+                          assign icon_image = candidate_media
+                          assign icon_image_key = candidate_key
+                          assign icon_image_alt = candidate_alt
+                          assign used_collection_image_keys = used_collection_image_keys | append: candidate_key | append: '|'
+                        endunless
+                      endif
+                    endfor
+
+                    echo ']'
+                  endcapture
+                  assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
+
+                  if icon_image == blank and product_count > 0
+                    assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                    assign fallback_icon_found = false
+
+                    for i in (0..product_count)
+                      unless fallback_icon_found
+                        assign try_index = start_index | plus: i | modulo: product_count
+                        assign try_product = products[try_index]
+
+                        if try_product != blank and try_product.featured_image != blank
+                          assign icon_image = try_product.featured_image
+                          assign icon_image_key = 'image-' | append: icon_image.id
+                          capture icon_image_alt
+                            render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
+                          endcapture
+                          assign icon_image_alt = icon_image_alt | strip
+                          assign fallback_icon_found = true
+                        endif
+                      endunless
+                    endfor
+                  endif
+                -%}
+                {%- assign icon_label_source = icon_label -%}
+                {%- assign icon_label_key = icon_label_source | handleize -%}
+                {%- capture icon_label_localized -%}
+                  {%- render 'home-category-localized-copy', copy_key: icon_label_key, fallback: icon_label_source -%}
+                {%- endcapture -%}
+                {%- assign icon_label = icon_label_localized | strip -%}
+                {%- capture icon_caption -%}
+                  {%- render 'home-category-card-caption', icon_label: icon_label_source -%}
+                {%- endcapture -%}
+                {%- assign icon_caption = icon_caption | strip -%}
+                <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
+                  <a href="{{ block.settings.collection.url }}" class="category-icons__link">
+                    <div class="category-icons__image-wrap">
+                      {%- if icon_image != blank -%}
+                        <img
+                          src="{{ icon_image | image_url: width: 900 }}"
+                          srcset="{{ icon_image | image_url: width: 320 }} 320w, {{ icon_image | image_url: width: 480 }} 480w, {{ icon_image | image_url: width: 640 }} 640w, {{ icon_image | image_url: width: 900 }} 900w"
+                          sizes="auto, (min-width: 1200px) calc((min(100vw, 146rem) - 17.2rem) / 4), (min-width: 990px) calc((100vw - 14.8rem) / 3), (min-width: 750px) calc((100vw - 11.8rem) / 2), min(76vw, 32rem)"
+                          alt="{{ icon_image_alt | escape }}"
+                          loading="lazy"
+                          fetchpriority="low"
+                          decoding="async"
+                          width="{{ icon_image.width }}"
+                          height="{{ icon_image.height }}"
+                          data-homepage-collection-image
+                          data-homepage-collection-image-key="{{ icon_image_key | escape }}"
+                        >
+                      {%- else -%}
+                        {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
+                    </div>
+                    <span class="category-icons__text">
+                      <span class="category-icons__label">{{ icon_label }}</span>
+                      {%- if icon_caption != blank -%}
+                        <span class="category-icons__caption">{{ icon_caption }}</span>
+                      {%- endif -%}
+                    </span>
+                  </a>
+                  {%- if homepage_collection_image_candidate_count > 1 -%}
+                    <script type="application/json" class="homepage-collection-card__image-candidates">
+                      {{- homepage_collection_image_candidates_json -}}
+                    </script>
+                  {%- endif -%}
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <ul class="category-icons__scroll" role="list" aria-label="{{ section.settings.title | default: 'Shop by category' | escape }}">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.collection != blank -%}
+            {%- liquid
+              assign icon_label = block.settings.custom_label | default: block.settings.collection.title
+              assign icon_image = blank
+              assign icon_image_alt = icon_label
+              assign icon_image_key = blank
+              assign products = block.settings.collection.products
+              assign product_count = products.size
+              assign featured_collection_count = block.settings.collection.products_count | default: product_count
+              assign homepage_collection_image_candidate_count = 0
+              assign homepage_collection_image_candidates_json = blank
+
+              if featured_collection_count < featured_collection_min_products
+                continue
+              endif
+
+              capture homepage_collection_image_candidates_json
+                echo '['
+                assign emitted_candidate_keys = '|'
+
+                assign fresh_collection_products = products | sort: 'published_at' | reverse
+                for candidate_product in fresh_collection_products
+                  if homepage_collection_image_candidate_count >= homepage_collection_candidate_limit
+                    break
+                  endif
+
+                  assign candidate_media = candidate_product.featured_image
+                  if candidate_media == blank
+                    continue
+                  endif
+
+                  assign candidate_media_id = candidate_media.id | default: candidate_product.id
+                  assign candidate_key = 'image-' | append: candidate_media_id
+                  assign candidate_key_token = '|' | append: candidate_key | append: '|'
+
+                  if emitted_candidate_keys contains candidate_key_token
+                    continue
+                  endif
+
+                  capture candidate_alt
+                    render 'product-image-alt', product: candidate_product, media: candidate_media, collection: block.settings.collection, fallback_title: icon_label
+                  endcapture
+                  assign candidate_alt = candidate_alt | strip
+
+                  if homepage_collection_image_candidate_count > 0
+                    echo ','
+                  endif
+
+                  echo '{'
+                  echo '"key":'
+                  echo candidate_key | json
+                  echo ',"src":'
+                  echo candidate_media | image_url: width: 900 | json
+                  echo ',"srcset":'
+                  capture candidate_srcset
+                    echo candidate_media | image_url: width: 320
+                    echo ' 320w, '
+                    echo candidate_media | image_url: width: 480
+                    echo ' 480w, '
+                    echo candidate_media | image_url: width: 640
+                    echo ' 640w, '
+                    echo candidate_media | image_url: width: 900
+                    echo ' 900w'
+                  endcapture
+                  echo candidate_srcset | strip | json
+                  echo ',"alt":'
+                  echo candidate_alt | json
+                  echo ',"width":360,"height":450'
+                  echo '}'
+
+                  assign emitted_candidate_keys = emitted_candidate_keys | append: candidate_key | append: '|'
+                  assign homepage_collection_image_candidate_count = homepage_collection_image_candidate_count | plus: 1
+
+                  if icon_image == blank
+                    unless used_collection_image_keys contains candidate_key_token
+                      assign icon_image = candidate_media
+                      assign icon_image_key = candidate_key
+                      assign icon_image_alt = candidate_alt
+                      assign used_collection_image_keys = used_collection_image_keys | append: candidate_key | append: '|'
+                    endunless
+                  endif
+                endfor
+
+                echo ']'
+              endcapture
+              assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
+
+              if icon_image == blank and product_count > 0
+                assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
+                assign fallback_icon_found = false
+
+                for i in (0..product_count)
+                  unless fallback_icon_found
+                    assign try_index = start_index | plus: i | modulo: product_count
+                    assign try_product = products[try_index]
+
+                    if try_product != blank and try_product.featured_image != blank
+                      assign icon_image = try_product.featured_image
+                      assign icon_image_key = 'image-' | append: icon_image.id
+                      capture icon_image_alt
+                        render 'product-image-alt', product: try_product, media: icon_image, collection: block.settings.collection, fallback_title: icon_label
+                      endcapture
+                      assign icon_image_alt = icon_image_alt | strip
+                      assign fallback_icon_found = true
+                    endif
+                  endunless
+                endfor
+            endif
+          -%}
+            {%- assign icon_label_source = icon_label -%}
+            {%- assign icon_label_key = icon_label_source | handleize -%}
+            {%- capture icon_label_localized -%}
+              {%- render 'home-category-localized-copy', copy_key: icon_label_key, fallback: icon_label_source -%}
+            {%- endcapture -%}
+            {%- assign icon_label = icon_label_localized | strip -%}
+            {%- capture icon_caption -%}
+              {%- render 'home-category-card-caption', icon_label: icon_label_source -%}
+            {%- endcapture -%}
+            {%- assign icon_caption = icon_caption | strip -%}
+            <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.collection.url }}" class="category-icons__link">
+                <div class="category-icons__image-wrap">
+                  {%- if icon_image != blank -%}
+                    <img
+                      src="{{ icon_image | image_url: width: 900 }}"
+                      srcset="{{ icon_image | image_url: width: 320 }} 320w, {{ icon_image | image_url: width: 480 }} 480w, {{ icon_image | image_url: width: 640 }} 640w, {{ icon_image | image_url: width: 900 }} 900w"
+                      sizes="auto, (min-width: 990px) calc((min(100vw, 146rem) - 14.8rem) / 3), (min-width: 750px) calc((100vw - 11.8rem) / 2), min(76vw, 32rem)"
+                      alt="{{ icon_image_alt | escape }}"
+                      loading="lazy"
+                      fetchpriority="low"
+                      decoding="async"
+                      width="{{ icon_image.width }}"
+                      height="{{ icon_image.height }}"
+                      data-homepage-collection-image
+                      data-homepage-collection-image-key="{{ icon_image_key | escape }}"
+                    >
+                  {%- else -%}
+                    {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+                <span class="category-icons__text">
+                  <span class="category-icons__label">{{ icon_label }}</span>
+                  {%- if icon_caption != blank -%}
+                    <span class="category-icons__caption">{{ icon_caption }}</span>
+                  {%- endif -%}
+                </span>
+              </a>
+              {%- if homepage_collection_image_candidate_count > 1 -%}
+                <script type="application/json" class="homepage-collection-card__image-candidates">
+                  {{- homepage_collection_image_candidates_json -}}
+                </script>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Category Icons",
+  "tag": "section",
+  "class": "section section-category-icons",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h2",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "display_mode",
+      "options": [
+        { "value": "single", "label": "Single path" },
+        { "value": "grouped", "label": "Group by category and occasion" }
+      ],
+      "default": "single",
+      "label": "Layout"
+    },
+    {
+      "type": "text",
+      "id": "category_heading",
+      "default": "Shop by category",
+      "label": "Category heading"
+    },
+    {
+      "type": "url",
+      "id": "category_heading_link",
+      "label": "Category heading link"
+    },
+    {
+      "type": "text",
+      "id": "occasion_heading",
+      "default": "Shop by occasion",
+      "label": "Occasion heading"
+    },
+    {
+      "type": "url",
+      "id": "occasion_heading_link",
+      "label": "Occasion heading link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_strip",
+      "default": true,
+      "label": "Show trust strip"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_1",
+      "default": "Standard shipping included",
+      "label": "Trust item 1"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_2",
+      "default": "Family matching made easy",
+      "label": "Trust item 2"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_3",
+      "default": "Helpful sizing support",
+      "label": "Trust item 3"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_4",
+      "default": "Responds within 1 business day",
+      "label": "Trust item 4"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_icon",
+      "name": "Collection icon",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "custom_label",
+          "label": "Custom label",
+          "info": "Overrides collection title"
+        },
+        {
+          "type": "select",
+          "id": "browse_path",
+          "label": "Browse path",
+          "default": "category",
+          "options": [
+            { "value": "category", "label": "Category" },
+            { "value": "occasion", "label": "Occasion" }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Icons",
+      "blocks": [
+        { "type": "collection_icon" },
+        { "type": "collection_icon" },
+        { "type": "collection_icon" },
+        { "type": "collection_icon" },
+        { "type": "collection_icon" },
+        { "type": "collection_icon" },
+        { "type": "collection_icon" },
+        { "type": "collection_icon" }
+      ]
+    }
+  ]
+}
+{% endschema %}

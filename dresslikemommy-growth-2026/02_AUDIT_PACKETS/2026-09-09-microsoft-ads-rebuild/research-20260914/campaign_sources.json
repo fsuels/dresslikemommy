@@ -1,0 +1,607 @@
+{
+  "schema": "dlm.microsoft.campaign_platform_sources.v1",
+  "research_as_of": "2026-09-14",
+  "classification": "RESEARCH_ONLY",
+  "author": "/root/microsoft_campaign_research",
+  "scope": "Public Microsoft platform research; parent owns account actions, source integration and final verification.",
+  "files_owned": [
+    "campaign_platform_findings.md",
+    "campaign_sources.json"
+  ],
+  "account_context_basis": "Parent-provided dated account evidence; no live account or storefront readback performed by researcher.",
+  "authority": {
+    "external_writes": false,
+    "paid_activation": false,
+    "paid_scope": "NONE",
+    "cpc_constraint_usd": 0.15,
+    "cpc_constraint_source": "Parent-provided persistent user constraint pending resolution",
+    "canonical_records_edited": false
+  },
+  "retrieval_note": "Legacy help.ads.microsoft.com pages often returned Oops or empty shells. Switched to public Microsoft Learn msa-help documentation; exact paths identified from official MicrosoftDocs/Advertising public repository tree. No private API/account access.",
+  "source_count": 24,
+  "sources": [
+    {
+      "id": "S01",
+      "title": "AI Max for Search and other product news for August 2026",
+      "url": "https://about.ads.microsoft.com/en/blog/post/august-2026/ai-max-for-search-and-other-product-news-for-august-2026",
+      "publisher": "Microsoft",
+      "source_type": "official_product_announcement",
+      "published_date": "2026-08-31",
+      "last_updated_date": null,
+      "date_unknown_fields": [
+        "last_updated_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "October1 creation restriction for non-portfolio MaxClicks/MaxConversions(tCPA)/MaxConversionValue(tROAS); existing capped campaigns and portfolios retained.",
+        "Read-only MCP open flight; account access unverified."
+      ],
+      "release_status_as_documented": "ANNOUNCED_FUTURE_CHANGE / GA_AS_DESCRIBED",
+      "limitations": "Does not guarantee cap retention after any arbitrary migration or this account's access.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S02",
+      "title": "MaxClicksBiddingScheme",
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/maxclicksbiddingscheme?view=bingads-13",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2024-11-13",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Optional maximum CPC documented per individual click."
+      ],
+      "release_status_as_documented": "DOCUMENTED",
+      "limitations": "Older API schema does not capture the October2026 creation restriction.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S03",
+      "title": "Let Microsoft Advertising manage your bids with bid strategies",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_bidstrategy",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-19",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "MaxClicks and eCPC differ; conversion-based strategies need measurement.",
+        "30 conversions framed as an evaluation recommendation."
+      ],
+      "release_status_as_documented": "DOCUMENTED",
+      "limitations": "Specific account eligibility and new October rules require recheck; internal summary tables omit some narrative support.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S04",
+      "title": "Ad distribution settings",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_aboutaddistributionhidden",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-19",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Both Search distribution options include Audience; select partners aggregated.",
+        "Audience placement settings retain availability caveat."
+      ],
+      "release_status_as_documented": "DOCUMENTED / ACCOUNT_DEPENDENT",
+      "limitations": "Distribution label cannot prove pure Search delivery.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S05",
+      "title": "What are keyword match types, and how do I use them?",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_matchoptions",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-26",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Exact uses meaning/close variants; phrase is broader; negatives exact/phrase."
+      ],
+      "release_status_as_documented": "DOCUMENTED",
+      "limitations": "Predictive matching section predates August AI Max announcement.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S06",
+      "title": "Product Ads",
+      "url": "https://learn.microsoft.com/en-us/advertising/guides/product-ads?view=bingads-13",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2025-06-26",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Merchant catalog, country and product scope underpin Shopping.",
+        "US/DE and other listed markets available; separate pilot countries listed."
+      ],
+      "release_status_as_documented": "DOCUMENTED / SOME_MARKETS_PILOT",
+      "limitations": "Market existence is not account store/feed/product approval.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S07",
+      "title": "Get started with Microsoft Shopping campaigns",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_bsc_getstarted",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-26",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Default scope all products; store immutable after save.",
+        "Standard Shopping priority; PMax highest-priority statement."
+      ],
+      "release_status_as_documented": "DOCUMENTED",
+      "limitations": "PMax priority wording conflicts with S08 ad-rank wording.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S08",
+      "title": "About Performance Max campaigns",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_proc_aboutpmax",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-11",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Exact Search priority; other campaign auction wording uses ad rank.",
+        "Account-level website exclusions cannot block named first-party domains.",
+        "Brand exclusion availability caveat."
+      ],
+      "release_status_as_documented": "DOCUMENTED / ACCOUNT_DEPENDENT",
+      "limitations": "Conflicts with S07; no claim all-brand-control eligibility in account477439.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S09",
+      "title": "Negative keywords for PMax and other product news for March 2026",
+      "url": "https://about.ads.microsoft.com/en/blog/post/march-2026/negative-keywords-for-pmax-and-other-product-news-for-march-2026",
+      "publisher": "Microsoft",
+      "source_type": "official_product_announcement",
+      "published_date": "2026-03-17",
+      "last_updated_date": null,
+      "date_unknown_fields": [
+        "last_updated_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "PMax negative release including API/Editor/import, Search/Shopping only.",
+        "tCPA/tROAS consolidation described globally available."
+      ],
+      "release_status_as_documented": "RELEASED_AS_DESCRIBED",
+      "limitations": "Negative controls do not exclude Audience inventory.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S10",
+      "title": "Providing more transparency for your Performance Max campaigns",
+      "url": "https://about.ads.microsoft.com/en/blog/post/may-2026/providing-more-transparency-for-your-performance-max-campaigns",
+      "publisher": "Microsoft",
+      "source_type": "official_product_announcement",
+      "published_date": "2026-05-07",
+      "last_updated_date": null,
+      "date_unknown_fields": [
+        "last_updated_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Publisher spend/click/conversion and landing reports available; search reporting rolling out."
+      ],
+      "release_status_as_documented": "AVAILABLE / ROLLOUT_AT_PUBLICATION",
+      "limitations": "Aggregate Microsoft uplift is not DLM causal profit evidence; first-party exclusion limit supplied by S08.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S11",
+      "title": "Best practices for Performance Max campaigns",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_proc_pmaxbestpractices",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-17",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Recommends30 recent conversions before tROAS; themes do not restrict reach.",
+        "Learning described as2-4weeks or2-3conversion cycles."
+      ],
+      "release_status_as_documented": "PLATFORM_RECOMMENDATION",
+      "limitations": "No universal profitability guarantee or permission to increase budget.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S12",
+      "title": "Remarketing: Target people who have visited your site before",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_audiences_remarketing",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-19",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "300 minimum eligible audience; consent transmission emphasized for EEA/UK/CH."
+      ],
+      "release_status_as_documented": "DOCUMENTED",
+      "limitations": "Different from S23's1000 text; account/network eligibility not inferred.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S13",
+      "title": "ProductAudience",
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/productaudience?view=bingads-13",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2024-11-13",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Dynamic list product ID must match feed id or item_group_id; page type required.",
+        "300 network-specific eligible members; duration1-180days."
+      ],
+      "release_status_as_documented": "DOCUMENTED",
+      "limitations": "Product API naming retained for compatibility; match values unverified for DLM.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S14",
+      "title": "About language options in Microsoft Advertising",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_aboutlanguageoptions",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-19",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Ad, display and billing language distinct; documented ad-language list.",
+        "PMax language campaign-level."
+      ],
+      "release_status_as_documented": "DOCUMENTED",
+      "limitations": "No DLM storefront language or checkout verification performed.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S15",
+      "title": "How does ad language and location targeting affect who can see my ads?",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_loctargetandlang",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-26",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Location plus language eligibility; presence-only available; no automatic translation."
+      ],
+      "release_status_as_documented": "DOCUMENTED",
+      "limitations": "Geolocation imperfect; settings do not prove final shopper location.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S16",
+      "title": "Reimagining Search campaigns for the AI era with AI Max",
+      "url": "https://about.ads.microsoft.com/en/blog/post/august-2026/reimagining-search-campaigns-for-the-ai-era-with-ai-max",
+      "publisher": "Microsoft",
+      "source_type": "official_product_announcement",
+      "published_date": "2026-08-27",
+      "last_updated_date": null,
+      "date_unknown_fields": [
+        "last_updated_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "AI Max available to all; new Search default enabled; selective controls.",
+        "Scheduled imports inherit AI settings; prompt guidelines coming soon."
+      ],
+      "release_status_as_documented": "GA_AS_DESCRIBED / SOME_FUTURE_FEATURES",
+      "limitations": "44-experiment aggregate evidence does not establish DLM uplift; feature visibility not native-checked here.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S17",
+      "title": "Performance Max updates and other product news for April 2026",
+      "url": "https://about.ads.microsoft.com/en/blog/post/april-2026/performance-max-updates-and-other-product-news-for-april-2026",
+      "publisher": "Microsoft",
+      "source_type": "official_product_announcement",
+      "published_date": "2026-04-16",
+      "last_updated_date": null,
+      "date_unknown_fields": [
+        "last_updated_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Autogenerated text extended to existing underfilled RSAs; opt-out possible."
+      ],
+      "release_status_as_documented": "ROLLOUT_ANNOUNCEMENT",
+      "limitations": "Supersedes January's earlier non-retroactivity statement.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S18",
+      "title": "Performance Max updates and other product news for January 2026",
+      "url": "https://about.ads.microsoft.com/en/blog/post/january-2026/performance-max-updates-and-other-product-news-for-january-2026",
+      "publisher": "Microsoft",
+      "source_type": "official_product_announcement",
+      "published_date": "2026-01-15",
+      "last_updated_date": null,
+      "date_unknown_fields": [
+        "last_updated_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Audience content targeting GA announcement.",
+        "New RSA autogenerated assets default rollout; initially no retroactive change."
+      ],
+      "release_status_as_documented": "GA_AS_DESCRIBED / HISTORICAL_ROLLOUT",
+      "limitations": "S17 supersedes existing-ad claim; S04 still contains placement caveat.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S19",
+      "title": "Auto-apply recommendation settings",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_autoapplyrec",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-19",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Opt-in can alter goals, keyword/targeting and ads after7day review."
+      ],
+      "release_status_as_documented": "DOCUMENTED",
+      "limitations": "All types may not be available; distinct from campaign AI controls/imports.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S20",
+      "title": "Network Value Set",
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/network?view=bingads-13",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-03",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "SyndicatedSearchOnly deprecated July2024 despite schema enumeration."
+      ],
+      "release_status_as_documented": "DEPRECATED_SETTING",
+      "limitations": "Legacy enum is not a usable traffic-isolation feature.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S21",
+      "title": "What gets imported from Google Ads",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_importwhatinfo",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-26",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Imports may overwrite settings; bid-strategy updates default on; minimums can raise amounts."
+      ],
+      "release_status_as_documented": "DOCUMENTED / SOME_IMPORT_FEATURES_PILOT",
+      "limitations": "Generic import claims contain older terminology; live result and error log control.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S22",
+      "title": "Budget and Bid Strategies",
+      "url": "https://learn.microsoft.com/en-us/advertising/guides/budget-bid-strategies?view=bingads-13",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2025-06-26",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Older stop-optimizing-below30 statement and manual-CPC fallback limitations."
+      ],
+      "release_status_as_documented": "OLDER_DOCUMENTATION / CONFLICTED",
+      "limitations": "Do not use its30-conversion wording or old literal match definitions as current universal rules.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S23",
+      "title": "Universal Event Tracking",
+      "url": "https://learn.microsoft.com/en-us/advertising/guides/universal-event-tracking?view=bingads-13",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-03-11",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Remarketing section states1000 minimum; separate similar-audience pilot thresholds."
+      ],
+      "release_status_as_documented": "DOCUMENTED / CONFLICTED",
+      "limitations": "1000 ordinary-remarketing threshold conflicts with S12/S13; do not silently merge list types.",
+      "account477439_eligibility_verified": false
+    },
+    {
+      "id": "S24",
+      "title": "Portfolio bid strategies: Auto-bidding for performance goals",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_bidstrategy_portfolio",
+      "publisher": "Microsoft",
+      "source_type": "official_documentation",
+      "published_date": null,
+      "last_updated_date": "2026-06-19",
+      "date_unknown_fields": [
+        "published_date"
+      ],
+      "accessed_on": "2026-09-14",
+      "read_status": "BODY_OPENED_AND_RELEVANT_SECTIONS_READ",
+      "supported_claims": [
+        "Portfolios support Search/Shopping where strategy supports both; cross-account caveat."
+      ],
+      "release_status_as_documented": "DOCUMENTED / CROSS_ACCOUNT_DEPENDENT",
+      "limitations": "No portfolio created; combining countries could conceal contribution differences.",
+      "account477439_eligibility_verified": false
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "C01",
+      "sources": [
+        "S01",
+        "S02",
+        "S03"
+      ],
+      "issue": "Older cap schemas/help lack announced October2026 new-campaign limit.",
+      "resolution": "Use dated announcement for impending change, then native verify actual strategy/cap; do not infer grandfathering for arbitrary migration."
+    },
+    {
+      "id": "C02",
+      "sources": [
+        "S03",
+        "S11",
+        "S22"
+      ],
+      "issue": "30 conversions framed as recommendation in current help versus automatic optimization stop in older API guide.",
+      "resolution": "Do not claim universal launch threshold. Validate supported strategy and adequate genuine data; no cold-start performance guarantee."
+    },
+    {
+      "id": "C03",
+      "sources": [
+        "S12",
+        "S13",
+        "S23"
+      ],
+      "issue": "300 versus1000 ordinary remarketing eligibility threshold.",
+      "resolution": "Plan around current300 guidance but keep explicit conflict; verify eligible Search/Audience sizes and account delivery status before use."
+    },
+    {
+      "id": "C04",
+      "sources": [
+        "S07",
+        "S08"
+      ],
+      "issue": "PMax highest Shopping priority versus other non-exact-Search auctions using ad rank.",
+      "resolution": "Design product cohorts without overlap; validate actual auction behavior only if needed."
+    },
+    {
+      "id": "C05",
+      "sources": [
+        "S17",
+        "S18"
+      ],
+      "issue": "January no retroactive RSA auto-asset change versus April extension to existing underfilled RSAs.",
+      "resolution": "April supersedes older timing statement; August AI controls and native setting readback still required."
+    },
+    {
+      "id": "C06",
+      "sources": [
+        "S04",
+        "S18"
+      ],
+      "issue": "January content-targeting GA versus June Audience placement availability caveats.",
+      "resolution": "Feature announcement is not proof each account control is present; native eligibility remains unknown."
+    },
+    {
+      "id": "C07",
+      "sources": [
+        "S05",
+        "S22"
+      ],
+      "issue": "Current exact/phrase meaning-based matching versus older API literal-word-order examples.",
+      "resolution": "Use current matching help and actual search-term reports; exact is not literal-only."
+    }
+  ],
+  "account_unknowns": [
+    "Raw genuine purchase/value/currency match and sender deduplication",
+    "International consent transmission",
+    "Actual retained contribution and allowed test loss/cash",
+    "Useful qualified volume underUSD0.15",
+    "PMax brand/exclusion/portfolio eligibility in this account",
+    "Per-country feed/checkout/customer-truth readiness"
+  ],
+  "independent_review": {
+    "status": "PARENT_REVIEW_REQUIRED",
+    "researcher_did_not_execute_live_changes": true
+  },
+  "next_parent_action": "Integrate impending CPC-cap change and control distinctions into existing launch gate; preserve paused campaigns and unresolved prerequisites.",
+  "continuation_path": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "memory_used": [
+    {
+      "path": "MEMORY.md",
+      "line_start": 1709,
+      "line_end": 1709,
+      "use": "Retrieval hint only; no current platform fact established from memory."
+    }
+  ]
+}

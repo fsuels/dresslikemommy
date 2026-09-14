@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-11T22:55:38.931813+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "verdict": "GO_FOR_EXACT_PAUSED_SHELL_IMPORT",
+  "confidence": "H for scope containment; persisted configuration remains unverified until postflight",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "scope": "One native Import action for the frozen two-row CSV and exact six selected options. Two new empty Paused Search shells only. No ads, ad groups, keywords, targeting, old-record updates, launch, or paid authority.",
+  "input_sha256": {
+    "paused_shell_mapper_probe.csv": "27262e4bdc410afdf875257dcc0f36d7a897cf987ec23f1685af4cfbfff8964e",
+    "campaign_before.json": "cbea9554ab3e23202318522970629c2c524422fd2e7c6f7d3b48d4865445adda",
+    "mapper_probe_contract.json": "f033c1ef1ff60d30a3a647b4d60725017ec797ba77346876f74058b78508eb80",
+    "native_mapping_and_options.json": "79f1d0ccf993f975385a0e0cb6c2d32d2fc72794c8d67c5f20d39620b6bc1208",
+    "paused_shell_import_contract.json": "bfb5a7510b46bcdfcfe1848e6cae47aefd8b6af150660639c5bd99e182483a79",
+    "schema-review/import_schema_review.json": "407e12a962826e0d1e80cea5ce85460174c49ee019fc0bc73a97cba61cbd1ba8"
+  },
+  "checks": {
+    "frozen_payload_hash": true,
+    "frozen_options_hash": true,
+    "frozen_final_contract_hash": true,
+    "prior_twelve_input_checks_pass": true,
+    "same_account_customer_usd": true,
+    "nine_critical_headers_mapped": true,
+    "two_preview_rows_exact_payload": true,
+    "exact_six_selected_options": true,
+    "forty_six_unselected_options_disjoint": true,
+    "both_native_pause_options_on": true,
+    "only_new_campaign_entities": true,
+    "existing_updates_off": true,
+    "bid_and_budget_escalation_updates_off": true,
+    "name_transform_and_collision_suffix_off": true,
+    "final_action_not_yet_executed": true,
+    "server_cap_and_geography_uncertainty_explicit": true,
+    "two_expected_paused_empty_capped_search_shells": true,
+    "expected_names_and_budgets_equal_payload": true,
+    "paid_authority_unchanged": true,
+    "independent_reviewer_bound": true,
+    "no_blind_retry_and_partial_result_check": true,
+    "after_state_requires_old_inventory_and_each_cap": true
+  },
+  "checks_passed": 22,
+  "critical_premise_challenge": {
+    "premise": "Successful native column matching guarantees Paused status and the requested MaxClicks CPC cap will persist.",
+    "finding": "Rejected. Header recognition and decimal preview do not establish server enum acceptance or the saved cap.",
+    "resolution": "The exact import is still sufficiently contained: both payload rows are Paused, native Pause newly imported campaigns is on, the file has no serving children, the names are absent from the fresh inventory, and existing updates and automatic increases are off. Use the import as a bounded configuration action and require saved-state verification before any children or activation.",
+    "falsifier": "Any result other than exactly two new empty Paused Search shells with correct language, 5/3 USD daily configuration and MaxClicks 0.15 USD cap, or any change to an old record.",
+    "on_falsifier": "Hold dependent work; inspect partial result and IDs without repeating Import. Keep only exact new shells Paused and empty. Contain an unexpected Active new shell by pausing that exact new ID with a fresh readback. Do not silently drop the cap, alter old campaigns or destructively remove records."
+  },
+  "action_time_conditions": [
+    "Root rechecks the same account, uploaded file/rows, all nine mapped columns, both native pause options, only Campaigns new-item selection, no existing updates, and no automatic bid/budget raises immediately before the single Import.",
+    "No changed file, options, warning of extra entities or existing updates, authentication, terms, billing, security or permission challenge.",
+    "These conditions implement the current authorized paused-preparation scope; this review does not create new authority."
+  ],
+  "postflight_required": [
+    "Capture native created, updated, failed and child record counts and all resulting IDs. Partial import is not a safe retry condition.",
+    "Reload all campaigns. Expect 13 unique records, exactly the two intended new names, and the prior 11 IDs/status/budget/bid/type unchanged.",
+    "For each new ID, read native saved Paused/Search, daily budget 5 or 3 USD, English or German, Maximize Clicks and maximum CPC 0.15 USD.",
+    "Check each shell contains zero ad groups, ads and keywords. Verify no serving configuration was added.",
+    "Preserve geography, presence targeting, expansion, network, inherited ad-group bids, actual click costs, purchase/consent, contribution costs and numeric paid limits as distinct unresolved gates."
+  ],
+  "rollback": "Before execution cancel. After execution retain only the intended new shells Paused and empty; no destructive rollback, blind re-import, or changes to the original 11 campaigns.",
+  "limitations": [
+    "Independent file and root-receipt review, not a separate native UI replay; root owns browser execution.",
+    "US and DE campaign names do not establish country targeting. No geography was imported.",
+    "Configured daily budgets 5 and 3 USD do not authorize spending. No actual CPC, traffic, acquisition cost, purchase acceptance or profit claim is made."
+  ],
+  "external_writes_by_reviewer": 0,
+  "browser_or_account_calls_by_reviewer": 0,
+  "shared_canonical_files_changed": false
+}

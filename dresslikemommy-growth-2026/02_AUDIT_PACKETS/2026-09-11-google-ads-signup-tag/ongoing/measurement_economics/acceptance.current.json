@@ -1,0 +1,870 @@
+{
+  "schema_version": "dlm.measurement_economics.acceptance.v1",
+  "generated_at_utc": "2026-09-11T18:46:49.764463+00:00",
+  "scope": "DERIVED_REVIEW_NOT_AUTHORITY; no PII; no external writes",
+  "identities": {
+    "store": "dresslikemommy-com",
+    "ads_customer": "6509972886",
+    "purchase_action": "7760272273",
+    "new_destination": "AW-18433316477/DTaoCJG3sfQcEP2s2NVE",
+    "ga4": "G-N4EQNK0MMB",
+    "merchant_tag": "GT-T5R7JFVL",
+    "legacy_pixel": "111214689",
+    "legacy_destination": "AW-853411529/kZ_RCN-T3K0cEMmN-JYD"
+  },
+  "authority": {
+    "standing_paid_scope": "NONE",
+    "pause_campaign": "24247604341",
+    "pause_decision": "PENDING_OWNER_ANSWER",
+    "new_spend_authorized": false,
+    "authorization_refs": []
+  },
+  "source_evidence": [
+    {
+      "id": "S01",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/shopify_baseline.json",
+      "sha256": "ae3f01ea0689060292cf576fde8dbd48859407d8712c8790a42728064f25b4b1",
+      "scope": "2026-08-10..2026-09-08, 30 dates; product tab is separately 90 dates; USE_SELECTED_30D_AGGREGATES"
+    },
+    {
+      "id": "S02",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sales_candidate_reconciliation_summary.json",
+      "sha256": "2970dddacc2323baad07fcb9796ce64414d73bd2db32da98c8b12d064513876d",
+      "scope": "2026-08-08..2026-09-04 (28d); 2026-06-07..2026-09-04 (90d); REFERENCE_ONLY_DIFFERENT_WINDOWS"
+    },
+    {
+      "id": "S03",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+      "sha256": "7d7b9139db02d55be369e556522661584e2749c13fe47b02ec03dfd1b394f2c6",
+      "scope": "Rolling period from 2026-09-05; nested later heartbeat snapshots; REFERENCE_ONLY_ROLLING_COHORT; reference-only file changed during review; current hash recaptured, no calculation uses this file or its new heartbeat"
+    },
+    {
+      "id": "S04",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/actual_fulfillment_cost_readback.json",
+      "sha256": "85ad31625c078488b64e114febeece4a2fde8b506ee171d09cb041ef49c301a3",
+      "scope": "Six selected baskets from 2026-06-07..2026-09-04 population; PARTIAL_COST_EVIDENCE_NO_30D_ALLOCATION"
+    },
+    {
+      "id": "S05",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/actual_cost_after_payment_fees.json",
+      "sha256": "b21386c5e256e02dfb85102dbd506d8d65bee3a7c46a6e4e8a930cb1baab970d",
+      "scope": "Same selected six baskets; captured 2026-09-06; REFERENCE_ONLY_CONDITIONAL_FX"
+    },
+    {
+      "id": "S06",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/shopify_payout_fee_readback.json",
+      "sha256": "1b1d642854e936ceb93fc14c01792b39156c6924aa39fd510147b8210e2e1b9d",
+      "scope": "Same selected six baskets; captured 2026-09-06; PARTIAL_FEES_NO_30D_ALLOCATION"
+    },
+    {
+      "id": "S07",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/recent_order_payment_fees_20260907.json",
+      "sha256": "dc3e58c2e6be722ad26c9db180afd3540d77727b311b50a88d3762ba58728a79",
+      "scope": "Bounded recent two-order period; source has UTC read bounds; REFERENCE_ONLY_NATIVE_CURRENCIES"
+    },
+    {
+      "id": "S08",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/italian_ga4_campaign_cost_readback.json",
+      "sha256": "c3a12cec7d333669bd11f8bcefb373b2ff44094daaa5cbba47aa34d6b6bd645a",
+      "scope": "2026-06-07..2026-09-04 plus separate 2026-09-05; REFERENCE_ONLY_INCOMPLETE_ACCOUNT_PERIOD"
+    },
+    {
+      "id": "S09",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-04-29-shopify-margin-cac-export-pack/summary.json",
+      "sha256": "999c58ac003ac3144bcdd556b0dd971fef55e6bd087aff282e5b0f87bd605d44",
+      "scope": "2025-04-28T22:49..2026-04-28T22:49 America/New_York; EXCLUDE_FROM_CURRENT_ACTUAL_PROFIT"
+    },
+    {
+      "id": "S10",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/launch-plan-20260911/analytics_readback.json",
+      "sha256": "43fecf783e2a3807fe226e75499450d38c288c0f4e53ce0169cbadede2984d30",
+      "scope": "August 1..31 sales (31d); June12..Sep9 sessions (90d); REFERENCE_ONLY_DIFFERENT_WINDOWS"
+    },
+    {
+      "id": "R90",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-cold-start-research/EVIDENCE.json",
+      "sha256": "8cc342845e03767c454fa826df58743d7bc2e4a74fd3ea94d526f9e0c9c31309",
+      "scope": "June13-Sep10 Shopify aggregates; no complete eligibility/cost/attribution join"
+    },
+    {
+      "id": "REPAIR",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/execution_receipt.json",
+      "sha256": "473528af33306d272124af45d8a2194819b70cd6f10446dd2ae608ac92045d22",
+      "scope": "Root native transcription; exact configuration and detector only"
+    },
+    {
+      "id": "GA4_OLD",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/GA4_EXPERT_ACCEPTANCE_20260910.md",
+      "sha256": "77424eb90260cc0ed094d3e67a66fb63a7c15b6cd259f9b05201053e53280d0a",
+      "scope": "Dated partial transport; preview/MAIN differences retained"
+    },
+    {
+      "id": "PASSIVE",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/LIVE_READBACK.json",
+      "sha256": "f3dd58eb9d00a856ecf859a41517102668d7c3fbbbfa4eb6826a31ff01b22b5b",
+      "scope": "Root passive MAIN bootstrap binding; worker network capability limit"
+    }
+  ],
+  "baseline_reports": [
+    {
+      "id": "REPORT_30D",
+      "period": "2026-08-10 through 2026-09-08; America/New_York; complete dates",
+      "grain": "Shopify sales aggregate; not eligible order ledger",
+      "orders": 10,
+      "net_merchandise": {
+        "amount": "821.44",
+        "currency": "USD",
+        "status": "REPO_REPORTED"
+      },
+      "total_sales": {
+        "amount": "847.42",
+        "currency": "USD",
+        "status": "REPO_REPORTED"
+      },
+      "currency_basis": "USD shop-report context; MONEY cells lack ISO; not settlement",
+      "source_refs": [
+        "S01"
+      ],
+      "limitations": [
+        "Complete source flags/cost/attribution not audited",
+        "Do not join top-N session country to shipping market"
+      ]
+    },
+    {
+      "id": "REPORT_90D",
+      "period": "2026-06-13 through 2026-09-10; Shopify report dates",
+      "grain": "Shopify sales aggregate; not eligible order ledger",
+      "orders": 43,
+      "net_merchandise": {
+        "amount": "3190.41",
+        "currency": "USD",
+        "status": "REPO_REPORTED"
+      },
+      "total_sales": {
+        "amount": "3256.55",
+        "currency": "USD",
+        "status": "REPO_REPORTED"
+      },
+      "currency_basis": "USD store/report context; not settled retained-profit basis",
+      "source_refs": [
+        "R90"
+      ],
+      "limitations": [
+        "42 new/1 returning customers are report metrics, not attributed acquisition",
+        "Product-title counts overlap order membership; blank-title bucket exists"
+      ]
+    },
+    {
+      "id": "REPORT_POST_CUTOVER",
+      "period": "2026-09-09 through 2026-09-11; September11 partial",
+      "grain": "ShopifyQL daily aggregates; no full ledger or receiver proof",
+      "orders": 0,
+      "net_merchandise": {
+        "amount": "0",
+        "currency": "USD",
+        "status": "REPO_REPORTED"
+      },
+      "total_sales": {
+        "amount": "0",
+        "currency": "USD",
+        "status": "REPO_REPORTED"
+      },
+      "currency_basis": "USD store/report context",
+      "source_refs": [
+        "PASSIVE"
+      ],
+      "limitations": [
+        "Zero report rows do not prove complete order-ledger coverage or working tracking"
+      ]
+    }
+  ],
+  "worked_existing_data": [
+    {
+      "alias": "COST_01",
+      "shipping_market": "IT",
+      "sample_scope": "SIX_SELECTED_HISTORICAL_BASKETS",
+      "provider_charge": {
+        "amount": "277.97",
+        "currency": "CNY",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_fee": {
+        "amount": "9.16",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_payout_net": {
+        "amount": "155.70",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "actual_provider_settlement_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_net_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_max_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "source_refs": [
+        "S04",
+        "S06"
+      ],
+      "limitations": [
+        "Selected from June7-Sep4 population; not complete market or 30-day cohort",
+        "Actual settled provider USD, duty, return maturity, attribution and overhead unknown",
+        "Payout allocation is not bank settlement or profit",
+        "CONFLICTED: canceled retail lines are not established customer refunds; preserve USD0.01 API/payout-gross discrepancy"
+      ]
+    },
+    {
+      "alias": "COST_02",
+      "shipping_market": "US",
+      "sample_scope": "SIX_SELECTED_HISTORICAL_BASKETS",
+      "provider_charge": {
+        "amount": "288.84",
+        "currency": "CNY",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_fee": {
+        "amount": "3.20",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_payout_net": {
+        "amount": "96.76",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "actual_provider_settlement_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_net_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_max_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "source_refs": [
+        "S04",
+        "S06"
+      ],
+      "limitations": [
+        "Selected from June7-Sep4 population; not complete market or 30-day cohort",
+        "Actual settled provider USD, duty, return maturity, attribution and overhead unknown",
+        "Payout allocation is not bank settlement or profit"
+      ]
+    },
+    {
+      "alias": "COST_03",
+      "shipping_market": "DK",
+      "sample_scope": "SIX_SELECTED_HISTORICAL_BASKETS",
+      "provider_charge": {
+        "amount": "197.77",
+        "currency": "CNY",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_fee": {
+        "amount": "2.39",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_payout_net": {
+        "amount": "45.44",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "actual_provider_settlement_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_net_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_max_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "source_refs": [
+        "S04",
+        "S06"
+      ],
+      "limitations": [
+        "Selected from June7-Sep4 population; not complete market or 30-day cohort",
+        "Actual settled provider USD, duty, return maturity, attribution and overhead unknown",
+        "Payout allocation is not bank settlement or profit"
+      ]
+    },
+    {
+      "alias": "COST_04",
+      "shipping_market": "US",
+      "sample_scope": "SIX_SELECTED_HISTORICAL_BASKETS",
+      "provider_charge": {
+        "amount": "244.44",
+        "currency": "CNY",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_fee": {
+        "amount": "4.13",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_payout_net": {
+        "amount": "127.81",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "actual_provider_settlement_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_net_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_max_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "source_refs": [
+        "S04",
+        "S06"
+      ],
+      "limitations": [
+        "Selected from June7-Sep4 population; not complete market or 30-day cohort",
+        "Actual settled provider USD, duty, return maturity, attribution and overhead unknown",
+        "Payout allocation is not bank settlement or profit"
+      ]
+    },
+    {
+      "alias": "COST_05",
+      "shipping_market": "US",
+      "sample_scope": "SIX_SELECTED_HISTORICAL_BASKETS",
+      "provider_charge": {
+        "amount": "375.74",
+        "currency": "CNY",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_fee": {
+        "amount": "3.26",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_payout_net": {
+        "amount": "98.71",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "actual_provider_settlement_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_net_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_max_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "source_refs": [
+        "S04",
+        "S06"
+      ],
+      "limitations": [
+        "Selected from June7-Sep4 population; not complete market or 30-day cohort",
+        "Actual settled provider USD, duty, return maturity, attribution and overhead unknown",
+        "Payout allocation is not bank settlement or profit"
+      ]
+    },
+    {
+      "alias": "COST_06",
+      "shipping_market": "US",
+      "sample_scope": "SIX_SELECTED_HISTORICAL_BASKETS",
+      "provider_charge": {
+        "amount": "166.37",
+        "currency": "CNY",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_fee": {
+        "amount": "1.72",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_payout_net": {
+        "amount": "47.26",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "actual_provider_settlement_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_net_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_max_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "source_refs": [
+        "S04",
+        "S06"
+      ],
+      "limitations": [
+        "Selected from June7-Sep4 population; not complete market or 30-day cohort",
+        "Actual settled provider USD, duty, return maturity, attribution and overhead unknown",
+        "Payout allocation is not bank settlement or profit"
+      ]
+    },
+    {
+      "alias": "RECENT_01",
+      "shipping_market": "BE",
+      "sample_scope": "SEPARATE_RECENT_TWO_ORDER_COHORT",
+      "provider_charge": {
+        "amount": null,
+        "currency": null,
+        "status": "UNKNOWN"
+      },
+      "recorded_fee": {
+        "amount": "2.78",
+        "currency": "EUR",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_payout_net": {
+        "amount": null,
+        "currency": "EUR",
+        "status": "UNKNOWN"
+      },
+      "actual_provider_settlement_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_net_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_max_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "source_refs": [
+        "S07"
+      ],
+      "limitations": [
+        "Native-currency fee only; do not sum EUR and USD",
+        "Provider cost, USD settlement, attribution, returns and overhead unknown",
+        "Old fulfillment status does not supersede later Rainbow fulfillment evidence"
+      ]
+    },
+    {
+      "alias": "RECENT_02",
+      "shipping_market": "US",
+      "sample_scope": "SEPARATE_RECENT_TWO_ORDER_COHORT",
+      "provider_charge": {
+        "amount": null,
+        "currency": null,
+        "status": "UNKNOWN"
+      },
+      "recorded_fee": {
+        "amount": "1.42",
+        "currency": "USD",
+        "status": "VERIFIED_SOURCE_COMPONENT"
+      },
+      "recorded_payout_net": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_provider_settlement_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_net_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "actual_max_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "source_refs": [
+        "S07"
+      ],
+      "limitations": [
+        "Native-currency fee only; do not sum EUR and USD",
+        "Provider cost, USD settlement, attribution, returns and overhead unknown",
+        "Old fulfillment status does not supersede later Rainbow fulfillment evidence"
+      ]
+    }
+  ],
+  "market_economics": [
+    {
+      "market": "US",
+      "eligible_complete_order_cohort": false,
+      "actual_cost_basis_complete": false,
+      "retained_revenue_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "variable_cost_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "overhead_other_cost_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "matched_ad_spend_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "attributed_new_customers": null,
+      "actual_all_in_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "max_first_order_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "qualified_for_spend": false,
+      "missing_inputs": [
+        "Complete period-bound eligible order and line population by shipping market",
+        "Actual provider item/service/freight/duty charges and credits",
+        "Supported settlement allocations and FX into common reporting currency",
+        "Complete payment/refund/dispute/return costs and maturity cutoff",
+        "Allocated overhead/other costs for 30% all-in target",
+        "Matched advertising spend and deduplicated attribution; retain unattributed bucket",
+        "Genuine first-order/new-customer denominator and exact approved exposure"
+      ]
+    },
+    {
+      "market": "IT",
+      "eligible_complete_order_cohort": false,
+      "actual_cost_basis_complete": false,
+      "retained_revenue_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "variable_cost_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "overhead_other_cost_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "matched_ad_spend_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "attributed_new_customers": null,
+      "actual_all_in_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "max_first_order_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "qualified_for_spend": false,
+      "missing_inputs": [
+        "Complete period-bound eligible order and line population by shipping market",
+        "Actual provider item/service/freight/duty charges and credits",
+        "Supported settlement allocations and FX into common reporting currency",
+        "Complete payment/refund/dispute/return costs and maturity cutoff",
+        "Allocated overhead/other costs for 30% all-in target",
+        "Matched advertising spend and deduplicated attribution; retain unattributed bucket",
+        "Genuine first-order/new-customer denominator and exact approved exposure",
+        "Reconcile provider canceled-line versus Shopify retained-revenue conflict"
+      ]
+    },
+    {
+      "market": "DK",
+      "eligible_complete_order_cohort": false,
+      "actual_cost_basis_complete": false,
+      "retained_revenue_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "variable_cost_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "overhead_other_cost_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "matched_ad_spend_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "attributed_new_customers": null,
+      "actual_all_in_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "max_first_order_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "qualified_for_spend": false,
+      "missing_inputs": [
+        "Complete period-bound eligible order and line population by shipping market",
+        "Actual provider item/service/freight/duty charges and credits",
+        "Supported settlement allocations and FX into common reporting currency",
+        "Complete payment/refund/dispute/return costs and maturity cutoff",
+        "Allocated overhead/other costs for 30% all-in target",
+        "Matched advertising spend and deduplicated attribution; retain unattributed bucket",
+        "Genuine first-order/new-customer denominator and exact approved exposure"
+      ]
+    },
+    {
+      "market": "BE",
+      "eligible_complete_order_cohort": false,
+      "actual_cost_basis_complete": false,
+      "retained_revenue_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "variable_cost_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "overhead_other_cost_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "matched_ad_spend_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "attributed_new_customers": null,
+      "actual_all_in_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "max_first_order_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "qualified_for_spend": false,
+      "missing_inputs": [
+        "Complete period-bound eligible order and line population by shipping market",
+        "Actual provider item/service/freight/duty charges and credits",
+        "Supported settlement allocations and FX into common reporting currency",
+        "Complete payment/refund/dispute/return costs and maturity cutoff",
+        "Allocated overhead/other costs for 30% all-in target",
+        "Matched advertising spend and deduplicated attribution; retain unattributed bucket",
+        "Genuine first-order/new-customer denominator and exact approved exposure"
+      ]
+    },
+    {
+      "market": "ALL_OTHER_MARKETS",
+      "eligible_complete_order_cohort": false,
+      "actual_cost_basis_complete": false,
+      "retained_revenue_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "variable_cost_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "overhead_other_cost_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "matched_ad_spend_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "attributed_new_customers": null,
+      "actual_all_in_profit_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "max_first_order_cac_usd": {
+        "amount": null,
+        "currency": "USD",
+        "status": "UNKNOWN"
+      },
+      "qualified_for_spend": false,
+      "missing_inputs": [
+        "Complete period-bound eligible order and line population by shipping market",
+        "Actual provider item/service/freight/duty charges and credits",
+        "Supported settlement allocations and FX into common reporting currency",
+        "Complete payment/refund/dispute/return costs and maturity cutoff",
+        "Allocated overhead/other costs for 30% all-in target",
+        "Matched advertising spend and deduplicated attribution; retain unattributed bucket",
+        "Genuine first-order/new-customer denominator and exact approved exposure"
+      ]
+    }
+  ],
+  "measurement": {
+    "configuration": {
+      "status": "PASS_ROOT_REPORTED",
+      "evidence_refs": [
+        "REPAIR"
+      ],
+      "reason": "Exact two saved changes and fresh Purchase settings reload; EC Not configured"
+    },
+    "base_tag_detector": {
+      "status": "PASS_ROOT_REPORTED",
+      "evidence_refs": [
+        "REPAIR"
+      ],
+      "reason": "Google detector passed; distinct from purchase payload"
+    },
+    "passive_page": {
+      "status": "PASS_ROOT_REPORTED",
+      "evidence_refs": [
+        "PASSIVE"
+      ],
+      "reason": "MAIN133290917985 bootstrap binds new AW/label plus GA4/Merchant; cart0; own tab closed"
+    },
+    "app_callback": {
+      "status": "NOT_RUN",
+      "evidence_refs": [],
+      "reason": "Use existing Shopify app-pixel Test at owned handback; green callback is not receiver proof"
+    },
+    "new_ads_dispatch": {
+      "status": "CAPABILITY_LIMIT",
+      "evidence_refs": [
+        "PASSIVE"
+      ],
+      "reason": "Root target capture cannot see unverified child/worker transport; unsupported Target.setAutoAttach not retried"
+    },
+    "ga4_receiver": {
+      "status": "UNKNOWN",
+      "evidence_refs": [
+        "GA4_OLD"
+      ],
+      "reason": "Dated HTTP204 transport is not a fresh receiver ingestion join"
+    },
+    "consent_transitions": {
+      "status": "NOT_RUN",
+      "evidence_refs": [],
+      "reason": "No choice inferred from missing banner or cookie name; no grant or production consent change"
+    },
+    "genuine_purchase": {
+      "status": "NOT_RUN",
+      "evidence_refs": [],
+      "reason": "No genuine purchase available in this new-tag acceptance window"
+    },
+    "ads_receiver": {
+      "status": "UNKNOWN",
+      "evidence_refs": [
+        "REPAIR"
+      ],
+      "reason": "Account Overview purchase remains unverified; no paid attribution fabricated"
+    },
+    "same_action_dedup": {
+      "status": "NOT_RUN",
+      "evidence_refs": [],
+      "reason": "Stable genuine transaction identity and same-action counting not yet demonstrated"
+    },
+    "paid_attribution": {
+      "status": "NOT_RUN",
+      "evidence_refs": [],
+      "reason": "Requires genuine qualifying interaction; organic collection cannot prove paid incrementality"
+    },
+    "last_passive_observation": {
+      "document_tags": [
+        "GT-T5R7JFVL",
+        "AW-18433316477",
+        "G-N4EQNK0MMB"
+      ],
+      "selected_events": 576,
+      "truncated": false,
+      "google_events_observed": 0,
+      "worker_capture": "CAPABILITY_LIMIT",
+      "consent_choice": "UNKNOWN",
+      "limits": [
+        "First truncated attempt discarded",
+        "Root-only capture excludes unverified sandbox child visibility",
+        "Cookie-name absence does not identify consent",
+        "Native user activity interrupted; no further native action"
+      ]
+    },
+    "transaction_match": {
+      "protected_alias": null,
+      "genuine_order": null,
+      "id_matches": null,
+      "value_matches": null,
+      "currency_matches": null,
+      "items_match": null,
+      "raw_customer_data_retained": false
+    }
+  },
+  "readiness": {
+    "measurement_ready": false,
+    "financially_qualified": false,
+    "launch_authorized": false,
+    "next_safe_check": "At owned native handback, Settings > Customer events > Google & YouTube app pixel > More options > Test, then standard Tag Assistant plus exact Ads/GA4 receiver readback. Preserve consent state; do not repeat unsupported worker attach or grant while consent authority is pending.",
+    "owner_handoff_required": true
+  }
+}

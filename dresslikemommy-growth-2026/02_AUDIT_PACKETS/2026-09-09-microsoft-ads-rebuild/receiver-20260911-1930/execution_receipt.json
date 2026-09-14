@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "decision_id": "DLM-DEC-2026-09-11-MICROSOFT-SINGLE-PURCHASE-GOAL",
+  "outcome_id": "DLM-OUT-2026-09-11-MICROSOFT-SINGLE-PURCHASE-GOAL",
+  "status": "IMPLEMENTED_CONFIGURATION_VERIFIED__FUNCTIONAL_RECEIVER_ACCEPTANCE_OPEN",
+  "completed_at_utc": "2026-09-11 19:51:00 UTC",
+  "account_id": 477439,
+  "customer_id": 770182,
+  "independent_preflight": "exact_goal_preflight_review.json; PASS21checks",
+  "contract_sha256": "a5b8b398e04fb3755e85304c711f81c32bed21e8495df00f82c508c1997cb1b7",
+  "before_sha256": "0c33c837f9d5802148ea81c181ab31fe23e3b5020825d622883e4a817b6f48e6",
+  "native_saves": 3,
+  "changed_fields": 4,
+  "operations": [
+    {
+      "sequence": 1,
+      "goal": "ShopifyCheckoutCompleteEventTracking",
+      "changes": [
+        {
+          "field": "count",
+          "from": "Unique",
+          "to": "All"
+        },
+        {
+          "field": "fallback_value",
+          "from": "1.00",
+          "to": "0.00"
+        }
+      ],
+      "save_calls": 1,
+      "result": "Saved; reopened full editor matches intended and preserved fields"
+    },
+    {
+      "sequence": 2,
+      "goal": "ShopifyCheckoutCompleteTracking",
+      "changes": [
+        {
+          "field": "auto_bidding",
+          "from": true,
+          "to": false
+        }
+      ],
+      "save_calls": 1,
+      "result": "Saved; reopened full editor matches intended and preserved fields"
+    },
+    {
+      "sequence": 3,
+      "goal": "Purchases",
+      "changes": [
+        {
+          "field": "auto_bidding",
+          "from": true,
+          "to": false
+        }
+      ],
+      "save_calls": 1,
+      "result": "Saved; reopened full editor matches intended and preserved fields"
+    }
+  ],
+  "verification": {
+    "primary_purchase_goal": "ShopifyCheckoutCompleteEventTracking",
+    "primary_purchase_count": "All",
+    "variable_fallback": "0.00USD",
+    "primary_purchase_goals": 1,
+    "goal_count": 5,
+    "all_goal_statuses_active": true,
+    "smart_and_addtocart_excluded": true,
+    "account_msclkid_unchanged_on": true,
+    "account_options_unchanged_after_reload": true,
+    "campaign_count": 11,
+    "all_campaigns_paused": true,
+    "budgets_preserved": true,
+    "rollback_used": false
+  },
+  "limitations": [
+    "Configuration overlap is not historical order duplication proof",
+    "All is not order dedup",
+    "Parameter names/Healthy do not certify individual values or full consent",
+    "Paid attribution/profit unknown",
+    "No source,consent or campaign-spend change"
+  ],
+  "consent_reminder": "Adopt Consent Mode reminder closed; no pledge, grant, source or consent setting change",
+  "external_other_changes": [],
+  "result_qualification": "Configuration verified; actual order values/dedup/region-session consent/paid attribution remain separate. Active and All reporting history retained; standard Conversions/Revenue/ROAS may change."
+}

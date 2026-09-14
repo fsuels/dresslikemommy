@@ -1,0 +1,219 @@
+{
+  "schema": "dlm.ga4_expert_acceptance.v1",
+  "recorded_at_utc": "2026-09-10 00:44:01 UTC",
+  "owner_task": "01a086fc-0bf7-71a2-ba21-aa3564fafe30",
+  "scope": "Post-migration storefront and receiver acceptance; prior configuration and exact duplicate cleanup preserved",
+  "classification": "VERIFY",
+  "status": "STOREFRONT_TRANSPORT_PARTIAL_PASS__RECEIVER_AND_RELEASE_GATED",
+  "destination": {
+    "measurement_id": "G-N4EQNK0MMB",
+    "property_id": "330266838",
+    "endpoint": "https://analytics.google.com/g/collect"
+  },
+  "configuration": {
+    "prior_receipt": "CLEANUP_VERIFICATION.json",
+    "legacy_pixel_id": "111181921",
+    "legacy_pixel_disconnected_previously_verified": true,
+    "reconnected": false,
+    "new_tracking_installation": false,
+    "production_settings_changed_this_checkpoint": false
+  },
+  "theme_binding": {
+    "initial_plain_url": {
+      "theme_id": "137881223265",
+      "role": "unpublished",
+      "source": "DOM-embedded Shopify.theme JSON",
+      "preview_cookie_retained": true
+    },
+    "main_journey": {
+      "theme_id": "133290917985",
+      "role": "main",
+      "preview_exited_via_normal_control": true,
+      "product_handle": "bamboo-garden-panda-cotton-mommy-and-me-pajamas"
+    },
+    "final": {
+      "theme_id": "133290917985",
+      "role": "main",
+      "preview_frames": 0,
+      "cart_items": 0,
+      "cookie_preferences_buttons": 0
+    }
+  },
+  "preview_consent": {
+    "before": {
+      "personalization": false,
+      "marketing": false,
+      "analytics": false,
+      "dialog_persisted": true,
+      "network_events": 492,
+      "network_truncated": false,
+      "google_requests": 0
+    },
+    "action": "Normal Accept all for isolated QA session",
+    "after": {
+      "personalization": true,
+      "marketing": true,
+      "analytics": true,
+      "ga4_page_view_count_in_complete_window": 1,
+      "ga4_page_view_http_status": 204,
+      "scroll_http_status": 204,
+      "gcs": "G111",
+      "gcd": "13v3v3v3v5l1"
+    },
+    "restore": {
+      "action": "Normal Decline all",
+      "personalization": false,
+      "marketing": false,
+      "analytics": false,
+      "readback_reopened": true,
+      "google_requests_in_complete_revocation_window": 0
+    }
+  },
+  "main_events": [
+    {
+      "event": "page_view",
+      "at_utc": "2026-09-10T00:36:48.047Z",
+      "http_status": 204,
+      "capture_truncated": true,
+      "deduplication_claim": false
+    },
+    {
+      "event": "view_item",
+      "at_utc": "2026-09-10T00:36:48.055Z",
+      "http_status": 204,
+      "currency": "USD",
+      "value": "35.99",
+      "product_id": "7533454393441",
+      "variant_id": "44047096119393",
+      "item_id": "shopify_US_7533454393441_44047096119393",
+      "variant": "Child 2 Years / Bamboo Garden Panda Cream",
+      "quantity": 1,
+      "sku": "DLM-VCF-KID2Y-CREAM",
+      "capture_truncated": true,
+      "deduplication_claim": false,
+      "note": "Initial first-available product variant; UI showed a price range and no chosen size"
+    },
+    {
+      "event": "add_to_cart",
+      "at_utc": "2026-09-10T00:37:11.777Z",
+      "http_status": 204,
+      "currency": "USD",
+      "value": "39.99",
+      "product_id": "7533454393441",
+      "variant_id": "44047096348769",
+      "item_id": "shopify_US_7533454393441_44047096348769",
+      "variant": "Mother S / Bamboo Garden Panda Cream",
+      "quantity": 1,
+      "sku": "DLM-VCF-MOMS-CREAM",
+      "capture_truncated": false,
+      "observed_count": 1,
+      "ui_value_variant_quantity_match": true
+    },
+    {
+      "event": "begin_checkout",
+      "at_utc": "2026-09-10T00:37:43.689Z",
+      "http_status": 204,
+      "currency": "USD",
+      "value": "39.99",
+      "product_id": "7533454393441",
+      "variant_id": "44047096348769",
+      "item_id": "shopify_US_7533454393441_44047096348769",
+      "variant": "Mother S / Bamboo Garden Panda Cream",
+      "quantity": 1,
+      "sku": "DLM-VCF-MOMS-CREAM",
+      "capture_truncated": true,
+      "deduplication_claim": false,
+      "ui_value_variant_quantity_match": true
+    }
+  ],
+  "event_consent": {
+    "gcs": "G111",
+    "gcd": "13t3t3t3t5l1",
+    "basis": "Explicit QA-session consent before MAIN journey"
+  },
+  "custom_field_acceptance": {
+    "observed_item_parameter_keys": [
+      "sku",
+      "variant_id"
+    ],
+    "legacy_item_sku_key_equivalence_verified": false,
+    "session_number_equivalence_verified": false,
+    "purchase_value_semantics_verified": false
+  },
+  "checkout": {
+    "page_rendered": true,
+    "contact_address_payment_fields_not_filled": true,
+    "pay_now_not_clicked": true,
+    "purchase_generated": false,
+    "form_start_and_form_submit_observed_on_cart_checkout_button": true,
+    "form_events_are_not_purchases": true,
+    "payment_method_operability_tested": false
+  },
+  "cleanup": {
+    "test_variant_removed": "44047096348769",
+    "normal_remove_clicked_once": true,
+    "removed_on_theme_id": "137881223265",
+    "empty_cart_after_remove": true,
+    "empty_cart_after_fresh_MAIN_reload": true,
+    "no_remove_from_cart_google_event_observed": true,
+    "remove_event_support_not_assumed": true,
+    "optional_cookie_choices_restored": true
+  },
+  "denied_main_reload": {
+    "theme_id": "133290917985",
+    "network_events": 488,
+    "truncated": false,
+    "read_polls": 27,
+    "quiet_polls": 2,
+    "google_requests": 0,
+    "method": "Concurrent supported CDP event drain during normal reload; bounded window only",
+    "universal_consent_compliance_claim": false
+  },
+  "cart_observation": {
+    "status": "OBSERVED_INCONSISTENCY__CAUSE_UNVERIFIED",
+    "sequence": [
+      "MAIN checkout opened with one correct item",
+      "Browser Back showed Cart0 and empty drawer",
+      "Fresh ordinary navigation showed the same item1",
+      "Exact own item removed normally; final refreshed MAIN cart0"
+    ],
+    "peer_mutation_excluded": "Microsoft confirms no cart/consent writes during 00:36-00:38 UTC; Pinterest reserved the QA session",
+    "hypothesis": "Stale cart UI after browser history navigation",
+    "hypothesis_verified": false,
+    "existing_problem": "PROB-2026-09-06-CART-RETURN-DISPLAY",
+    "theme_owner": "01a08706-c63a-7e01-ba48-7777bcb1788a"
+  },
+  "orders": {
+    "query": "created_at:>=2026-09-09T18:05:00Z",
+    "first": 50,
+    "total_count": 0,
+    "observed_window_utc": "2026-09-10T00:44:40Z final cutoff recheck; initial query also returned zero",
+    "customer_data_retained": false,
+    "genuine_post_cutover_purchase_available": false
+  },
+  "receiver": {
+    "GA4_reporting_ingestion_verified": false,
+    "reason": "No current GA4 connector or newly usable API grant; native exact account access remains unavailable after peer user-interrupted selection",
+    "historical_authentication_failure_not_retried": true,
+    "current_browser_gate": "STABLE_SELECTED_PINTEREST_TAB_REQUIRED in peer task; no root native probe",
+    "scope_note": "Earlier peer automatic-review rejection due unresolved Mac lock/private-content gate was superseded by a readable but user-interrupted Pinterest attempt; neither proves GA4 receiver access"
+  },
+  "limits": [
+    "HTTP204 proves collection endpoint response, not GA4 reporting ingestion",
+    "Product/checkout captures truncated; positive requests verified, complete event counts unverified",
+    "Consent preferences repair is still unpublished; MAIN lacks that footer control",
+    "One US-English session is not universal country/device/consent certification",
+    "No genuine post-cutover order exists for transaction/value/currency/purchase-deduplication acceptance",
+    "Wizard counter conflict remains as documented in prior receipt"
+  ],
+  "browser_cleanup": {
+    "network_inspection_disabled": true,
+    "temporary_tab_closed": true,
+    "native_app_used": false
+  },
+  "next_action": "Complete GA4 receiver evidence after stable exact-account browser access, then join the first genuine post-cutover Shopify purchase; Merchant retains reviewed theme promotion ownership",
+  "independent_review": "PASS_SCOPED_TRANSPORT_WITH_LIMITS; EXPERT_ACCEPTANCE_REVIEW.md; reviewer did not execute the UI journey",
+  "canonical_anchor": "2026-09-09-ga4-storefront-acceptance-verified",
+  "checks_receipt": "GA4_ACCEPTANCE_CANONICAL_CLOSEOUT_20260910.json",
+  "last_updated_at_utc": "2026-09-10T00:55:09.556828+00:00"
+}

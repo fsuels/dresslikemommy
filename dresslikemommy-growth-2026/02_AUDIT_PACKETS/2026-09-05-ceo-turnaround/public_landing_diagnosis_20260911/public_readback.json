@@ -1,0 +1,140 @@
+{
+  "schema": "dlm.public_feed_landing_diagnosis.v1",
+  "task_stage": "VERIFY",
+  "observed_window_utc": {
+    "start": "2026-09-11T16:01:00Z",
+    "end": "2026-09-11T16:07:34Z",
+    "precision": "Bounded task window, not per-call timestamps"
+  },
+  "surface": "Own temporary Codex In-app Browser public tab5; native Chrome not touched",
+  "source_feed": {
+    "path": "../../2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-build/first_release_v2/us-en.tsv",
+    "sha256": "e96faeeb86a64898e3564581997ffde427bd593f061cf02a4dc19244520621c5",
+    "rows": 4923
+  },
+  "together_heart": {
+    "product_id": "7672336646241",
+    "variant_id": "46512190292065",
+    "url": "https://www.dresslikemommy.com/products/together-heart-family-matching-sweaters?variant=46512190292065",
+    "feed_price": "26.99 USD",
+    "feed_availability": "in_stock",
+    "preview": {
+      "identity": "DLM UX Performance QA 2026-09-10 Draft",
+      "bound_owner_theme_id": "137888792673",
+      "asset_path": "/cdn/shop/t/105/assets/product-desktop-ux-20260513-ruler-sync.js?v=120317254238803151401789014895",
+      "custom_picker": {
+        "role": "Adult",
+        "size": "4XL",
+        "color": "Green",
+        "preselected": true
+      },
+      "price": "26.99 USD",
+      "add_button_enabled": true,
+      "jsonld_offers": [
+        {
+          "url": "https://www.dresslikemommy.com/products/together-heart-family-matching-sweaters?variant=46512190292065",
+          "availability": "https://schema.org/InStock",
+          "price": 26.99,
+          "priceCurrency": "USD",
+          "sku": "DLM-THRT-ADT-4XL-GRN"
+        }
+      ]
+    },
+    "published_main": {
+      "entry": "Normal Exit preview button in Shopify preview bar",
+      "preview_bar_absent": true,
+      "product_section_id": "MainProduct-template--17118393630817__main",
+      "asset_path": "/cdn/shop/t/100/assets/product-desktop-ux-20260513-ruler-sync.js?v=25566827212233356321783010841",
+      "custom_picker": {
+        "role": "Adult",
+        "selected_size": null,
+        "selected_color": null
+      },
+      "underlying_checked_inputs": [
+        {
+          "name": "Size",
+          "value": "Adult 4XL"
+        },
+        {
+          "name": "Color",
+          "value": "Green"
+        }
+      ],
+      "visible_price_range": "24.99 USD - 26.99 USD",
+      "add_button": "PICK A SIZE",
+      "add_button_disabled": true,
+      "jsonld_offers": [
+        {
+          "url": "https://www.dresslikemommy.com/products/together-heart-family-matching-sweaters?variant=46512190292065",
+          "availability": "https://schema.org/InStock",
+          "price": 26.99,
+          "priceCurrency": "USD",
+          "sku": "DLM-THRT-ADT-4XL-GRN"
+        }
+      ]
+    },
+    "conclusion": "Published custom picker fails to initialize the URL variant although underlying inputs and JSON-LD retain it. Existing preview handles this sampled deep link correctly; no new theme change made.",
+    "restriction_cause": "UNKNOWN; correct sample feed/JSON-LD availability does not substantiate an availability mismatch."
+  },
+  "minimalist_heart": {
+    "product_id": "7230336729185",
+    "sample_variant_id": "41883237220449",
+    "url": "https://www.dresslikemommy.com/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?variant=41883237220449",
+    "preview": {
+      "identity": "DLM UX Performance QA 2026-09-10 Draft",
+      "price": "229918.99 USD",
+      "custom_picker": "Adult 2XL / White",
+      "add_button_enabled": true
+    },
+    "published_main": {
+      "entry": "Normal Exit preview after another navigation inherited the shared preview session",
+      "product_section_id": "MainProduct-template--17118393630817__main",
+      "asset_path": "/cdn/shop/t/100/assets/product-desktop-ux-20260513-ruler-sync.js?v=25566827212233356321783010841",
+      "visible_price_range": "19.99 USD - 229918.99 USD",
+      "jsonld_offer": {
+        "url": "https://www.dresslikemommy.com/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?variant=41883237220449",
+        "price": 229918.99,
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    "source_receipt": "price_live_source_before.json",
+    "conclusion": "Extreme source price reproduced in frozen feed, fresh Shopify source and published customer-visible range/JSON-LD. Intended retail price remains unknown pending exact prior evidence."
+  },
+  "cleanup": {
+    "own_tab_closed": true,
+    "cart_before": 0,
+    "cart_after": 0,
+    "cart_mutations": 0,
+    "locale": "English",
+    "country": "US",
+    "currency": "USD",
+    "viewport_override": false,
+    "theme_or_product_write": false,
+    "native_chrome_calls": 0,
+    "shared_preview_scope_released_to_ux": true
+  },
+  "owners": {
+    "merchant": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+    "theme": "01a088c3-c890-71a1-98ee-f19b6905af55",
+    "parent": "01a08223-036e-7fa3-8961-ecd297163fb5"
+  },
+  "authority": {
+    "source_live_evidence_as_of": "2026-09-11T16:07:34Z",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "authority_context": "PARENT_PUBLIC_READ_ONLY_DIAGNOSIS",
+    "decision_depends_on_uncertain_state": true,
+    "decision_changing_evidence": "Exact historical price/source authority and current combined-release source comparison",
+    "if_evidence_supports_recommendation": "Use existing source-backed correction/release path under exact authority",
+    "if_evidence_opposes_recommendation": "Preserve current data and prepare the exact missing-price decision",
+    "material_decision": "NOT_MATERIAL"
+  },
+  "limits": [
+    "Buyer QA is not acquisition or a genuine customer/order.",
+    "Preview behavior is not published acceptance.",
+    "Google restriction review is owned and evidenced separately by Merchant; cause and approval remain unknown.",
+    "No synthetic order, payment, contact detail or checkout attempt by parent in this diagnosis."
+  ]
+}

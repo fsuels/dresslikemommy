@@ -1,0 +1,41 @@
+{
+  "schema": "dlm.us_es_qualification_reconciliation.v1",
+  "action_id": "TA07-US-SPANISH-QUALIFY-20260914-1658",
+  "recorded_at_utc": "2026-09-14T18:19:31.443638+00:00",
+  "status": "PARTIAL_SOURCE_QUALIFIED__GOOGLE_TSV_BLOCKED",
+  "parents": 238,
+  "variants": 4925,
+  "sourceAvailable": 4903,
+  "freshGlobalTranslationParents": 227,
+  "rejectedTranslationParents": 11,
+  "potentialCandidateParents": 221,
+  "partition": {
+    "SOURCE_TRANSLATION_QUALIFIED_LANDING_UNVERIFIED": 4552,
+    "TRANSLATION_REJECTED": 189,
+    "SOURCE_NOT_AVAILABLE": 22,
+    "EXISTING_ELIGIBILITY_HOLD": 162
+  },
+  "stale_field_counts": {
+    "stale_body_html": 8,
+    "stale_title": 5
+  },
+  "sourceCompletedAt": "2026-09-14T18:04:07.475Z",
+  "globalSupplementCompletedAt": "2026-09-14T18:07:06.528Z",
+  "marketScopedTranslationRows": 0,
+  "globalTranslationParents": 238,
+  "current_pipeline_result": {
+    "command": "Unchanged automation_release_v1/bin/build.mjs --config isolated_config.json --market us-es --snapshot us-es.snapshot.json --out current_pipeline_readiness",
+    "exit_code": 2,
+    "errors": 238,
+    "code": "missing_or_stale_translation",
+    "feedWritten": false
+  },
+  "potential_candidate_is_uploadable": false,
+  "derived_global_input_is_released": false,
+  "landingContextVerified": false,
+  "new_Google_source_id": null,
+  "independent_parent_review": "PENDING",
+  "source_membership_checks": 491,
+  "all_inputs_frozen_no_English_refresh": true,
+  "excluded_status_precedence": "Unavailable first, then existing hold, then country/publication, then rejected translation; this makes the complete4925-row partition disjoint. One unavailable variant also belongs to a stale-translation parent."
+}

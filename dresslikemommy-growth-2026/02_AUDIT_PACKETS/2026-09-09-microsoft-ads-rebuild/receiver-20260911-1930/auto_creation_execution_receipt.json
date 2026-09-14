@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "decision_id": "DLM-DEC-2026-09-11-MICROSOFT-MANUAL-AD-CONTROL",
+  "outcome_id": "DLM-OUT-2026-09-11-MICROSOFT-MANUAL-AD-CONTROL",
+  "status": "IMPLEMENTED_CONFIGURATION_VERIFIED",
+  "authority": "Current owner exact Microsoft repair scope; nonspend reversible professional controls",
+  "claim": "root01a08703 sole Microsoft writer",
+  "contract": "auto_creation_contract.json",
+  "contract_sha256": "b4a00ad74ade466f34af5f62abff159b6658049b460ac37a0387ad54c09cf90d",
+  "independent_preflight": "auto_creation_preflight_review.json",
+  "preflight_checks": 8,
+  "actions": [
+    {
+      "surface": "Auto-apply recommendation settings",
+      "field": "Add responsive search ads",
+      "before": true,
+      "after": false,
+      "normal_saves": 1,
+      "result": "Auto-apply preference updated. Reopened checkbox Off."
+    },
+    {
+      "surface": "Account level options",
+      "field": "Automatically create multimedia ads in my dynamic ad groups",
+      "before": true,
+      "after": false,
+      "normal_saves": 1,
+      "result": "Save returned to campaign settings; exact options URL reopened and checkbox Off."
+    }
+  ],
+  "native_saves": 2,
+  "fields_changed": 2,
+  "rollback_used": false,
+  "rollback": "Exact inverse of only the two settings, if authorized; before states preserved in contract",
+  "after": "auto_creation_after.json",
+  "advertising_exposure_usd": 0,
+  "after_postflight": "PENDING_INDEPENDENT_REVIEW"
+}

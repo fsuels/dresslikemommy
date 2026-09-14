@@ -1,0 +1,265 @@
+{
+  "status": "ASSESSMENT_COMPLETE__EXACT_FOUR_FIELD_CONTRACT_PASS",
+  "as_of_date": "2026-09-11",
+  "reviewer": "/root/international_campaign_build",
+  "scope": "Independent local source/document review. Did not build/execute Microsoft tracking code, operate browser, or change accounts, source, campaigns or canonical records.",
+  "root_observation_provenance": "Root native readback saved in live_before.json; independently reviewed locally. Exact account fields and auto-tagging before-state are bound by the preflight receipt.",
+  "root_reported_receiver": {
+    "account_id": "477439",
+    "customer_id": "770182",
+    "uet_id": "36005151",
+    "tag_name": "ShopifyImport",
+    "tag_status": "Active",
+    "displayed_date_range": "Entire time Sep11 2023–Sep11 2026",
+    "underlying_data_retention_notice": "six months",
+    "purchase_event_count": 94,
+    "last_purchase": "four days ago",
+    "purchase_parameter_labels": [
+      "GoalValue",
+      "Currency",
+      "PageType",
+      "ProductId"
+    ],
+    "consent_by_type": {
+      "purchase": "Healthy",
+      "pageview": "Moderate",
+      "view_item": "Missing",
+      "add_to_cart": "Missing",
+      "home": "Missing"
+    }
+  },
+  "frozen_local_source": {
+    "microsoft_deployed_app_pixel.js": {
+      "sha256": "bdf85b114cb9d9ef5c790dee198f38dd8032c46bc13bdf7ca9f4ee034abc7f29",
+      "purchase_action": "purchase",
+      "subscription": "checkout_completed",
+      "revenue": "checkout.subtotalPrice.amount",
+      "currency": "checkout.subtotalPrice.currencyCode",
+      "transport": "proprietary shop-wpa; gv/gc",
+      "explicit_order_or_event_dedup_id_observed": false,
+      "limit": "Missing explicit IDs or consent strings do not establish missing server-side handling or consent failure."
+    },
+    "microsoft_deployed_storefront_script.js": {
+      "sha256": "171802eab48befd7660099e6ad8c6d0423c14bfeb2b866b14b30694d7f7bce3a",
+      "tag_id": "36005151",
+      "conditional_checkout_revenue_action": "blank action",
+      "limit": "Conditional Shopify.checkout subtotal/currency presence in source is not current checkout execution proof."
+    }
+  },
+  "primary_sources": [
+    {
+      "id": "consent",
+      "url": "https://github.com/MicrosoftDocs/Advertising/blob/main/advertising/msa-help/hlp_BA_CONC_UET_Consent.md",
+      "verified": "Fully opened official MicrosoftDocs article, ms.date 2026-06-18. Per-event seven-day coverage; Healthy>75%, Moderate>0% and <=75%, Missing0%; session Present/Not present; Basic and automatic consent behavior."
+    },
+    {
+      "id": "event_goal",
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/eventgoal?view=bingads-13",
+      "verified": "Exact criteria and update caveats; ExcludeFromBidding maps to Include in Conversions off, retains All reporting; add/update automatically enables Microsoft click-ID auto-tagging for goal scope."
+    },
+    {
+      "id": "count_type",
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/conversiongoalcounttype?view=bingads-13",
+      "verified": "All counts sales after a click; Unique permits only one after a click, not unique order-ID deduplication."
+    },
+    {
+      "id": "variable_revenue",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_BA_CONC_UETv2RevenueVariables",
+      "verified": "Variable event revenue/currency, uppercase currency codes, separate fallback amount/currency when data missing; destination URL uses blank action revenue event."
+    },
+    {
+      "id": "revenue_object",
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/conversiongoalrevenue?view=bingads-13",
+      "verified": "VariableValue accepts a default value; zero is supported. A default is not a verified transaction amount."
+    },
+    {
+      "id": "capi",
+      "url": "https://learn.microsoft.com/en-us/advertising/guides/uet-conversion-api-integration?view=bingads-13",
+      "verified": "Same tag, stable eventId and compatible eventName for browser/server dedup; UET event_id example; transactionId separate; stable ID on retry."
+    },
+    {
+      "id": "shopify_checkout",
+      "url": "https://shopify.dev/docs/api/web-pixels-api/standard-events/checkout_completed",
+      "verified": "Once per checkout, potentially first upsell rather than Thank-you page; can be absent if page fails. subtotalPrice precedes duties/shipping/taxes; paid order identity exists separately."
+    },
+    {
+      "id": "shopify_privacy",
+      "url": "https://shopify.dev/docs/api/web-pixels-api/pixel-privacy",
+      "verified": "App pixel loads only with all declared required permissions; initial effective privacy and updates available."
+    },
+    {
+      "id": "uet_goals",
+      "url": "https://learn.microsoft.com/en-us/advertising/guides/universal-event-tracking?view=bingads-13",
+      "verified": "UET records page/custom events; conversion goals choose the recorded actions counted as conversions."
+    }
+  ],
+  "assessment": {
+    "receiver": "At least some events reached the specified UET receiver.94 is an event count in a retention-limited view, not94 distinct or Microsoft-attributed orders. Parameter labels do not verify values, currency conversion, order joins or deduplication.",
+    "one_primary_goal": "Prefer the existing same-tag custom purchase action goal, if fresh fields confirm it. Exclude overlapping URL/event proxies from Include in Conversions while preserving Active/All reporting. This removes overlapping bidding/reporting goals, not duplicated transport or orders.",
+    "counting": "Keep sales All unless an independent business reason requires otherwise. Unique is per click and is not an order-dedup repair.",
+    "revenue": "Preserve dynamic amount/currency and a documented merchandise-subtotal definition; do not replace with a fixed price. Review any existing fallback independently. A supported zero fallback can avoid fictitious positive revenue when data is absent, but does not repair missing values and is not included in an unreviewed change.",
+    "consent": "Healthy is valid-signal coverage, not grant rate, universal compliance or all-event correctness. Missing indicates0% valid signal coverage in the last7days for that event type; classify current request/initiator and actual consent state before changing a stream. Preserve Shopify requirements and Basic gating. No blanket consent-granted patch, extra UET or guessed proprietary query parameter.",
+    "dedup": "Goal overlap, duplicate browser transport and browser/server event dedup are separate. CAPI requires stable shared event identity; adding it is not the smallest supported correction here."
+  },
+  "exact_change_review": {
+    "status": "PASS_EXACT_FROZEN_CONTRACT",
+    "change_count": 4,
+    "target_goal_count": 3,
+    "reviewed_live_changes": [
+      {
+        "goal_name": "ShopifyCheckoutCompleteEventTracking",
+        "field": "Count",
+        "before": "Unique",
+        "after": "All",
+        "reason": "Count distinct legitimate purchases after a click; not an order-ID dedup mechanism."
+      },
+      {
+        "goal_name": "ShopifyCheckoutCompleteEventTracking",
+        "field": "Variable revenue default amount",
+        "before": "1.00",
+        "after": "0.00",
+        "currency": "USD",
+        "reason": "Missing dynamic value must not manufacture positive revenue; zero remains a missing-value signal, not repair of dynamic transport."
+      },
+      {
+        "goal_name": "Purchases",
+        "field": "Include in Conversions / automated bidding",
+        "before": true,
+        "after": false,
+        "reason": "Remove overlapping checkout URL proxy from primary bidding/reporting; retain Active and All reporting."
+      },
+      {
+        "goal_name": "ShopifyCheckoutCompleteTracking",
+        "field": "Include in Conversions / automated bidding",
+        "before": true,
+        "after": false,
+        "reason": "Remove overlapping checkout URL proxy from primary bidding/reporting; retain Active and All reporting."
+      }
+    ],
+    "execution_recommendation": "Root may execute only the four frozen mutations after its final exact-target/staged-state guard, using one native Save per goal and the contract's stop/readback/rollback conditions. This technical PASS does not create owner authority or extend the saved scope.",
+    "preservation_conditions": [
+      "All five current goal Active states; Smart and AddToCart exclusions unchanged",
+      "Primary goal action Equals purchase, tag36005151, account scope, Variable revenue and USD fallback currency,30d/1d windows,Last click,EC off and Clarity/manual setting unchanged",
+      "URL goal criteria, tags, scopes, revenue settings,count methods, windows and attribution unchanged",
+      "No new tag, sender, goal, CAPI or source/consent change; no campaign status/budget/bid or spending change",
+      "Bind exact native unique goal name plus verified account, type,criteria and tag; do not label historical IDs freshly verified",
+      "Record standard versus All reporting effects separately; goal exclusion does not prove historic order dedup or receiver correction"
+    ],
+    "remaining_inputs": [],
+    "receipt": "exact_goal_preflight_review.json",
+    "receipt_sha256": "e049fce0630fd5b080ffea329bb8679a0d0f8fd3407b8fbca7cd7fe5a9bddb45",
+    "contract_sha256": "a5b8b398e04fb3755e85304c711f81c32bed21e8495df00f82c508c1997cb1b7",
+    "reviewer_after_state_status": "NOT_REVIEWED; this is preflight, not an execution receipt",
+    "preservation_interpretation": "Preserve reporting/history means keep goals Active and All reporting/history available, not promise unchanged Conversions/Revenue/ROAS numbers. Excluding a goal changes those standard columns and automated bidding eligibility; it does not prove historical order deduplication."
+  },
+  "validation_plan": [
+    "Reopen exact changed goals and compare all fields; confirm only intended Include in Conversions/revenue fields changed.",
+    "Preserve goal Active state, existing campaign statuses/budgets/bids and unrelated goals; do not claim retrospective report correction.",
+    "Use a functional consented checkout/order reconciliation for action, value, currency and repeated-load behavior; prelaunch functional receipt is separate from postlaunch paid-click attribution.",
+    "Use Test your tag per-event Consent Status and actual consent state across grant/decline/revocation and relevant region; source wrappers and seven-day labels alone cannot finish this check."
+  ],
+  "root_goal_fields_provenance": "Fresh native Edit/Cancel readback and Account level options captured by root through19:43:15UTC; reviewer compared the persisted receipt and exact four-field contract without native/browser access.",
+  "goals_before": [
+    {
+      "name": "ShopifyCheckoutCompleteEventTracking",
+      "id": "163001526",
+      "id_provenance": "historical ID; not freshly exposed by native readback",
+      "status": "Active",
+      "category": "Purchase",
+      "type": "CustomEvent",
+      "action_operator": "Equals",
+      "action": "purchase",
+      "tag_id": "36005151",
+      "tag_name": "ShopifyImport",
+      "revenue_type": "Variable",
+      "default_revenue": "1.00",
+      "default_currency": "USD",
+      "include_in_conversions": true,
+      "scope": "this account477439/X0875435",
+      "count": "Unique",
+      "click_window_days": 30,
+      "view_window_days": 1,
+      "attribution": "Last click",
+      "enhanced_conversions": false,
+      "clarity": "Off/manual"
+    },
+    {
+      "name": "Purchases",
+      "id": "56000751",
+      "id_provenance": "historical ID; not freshly exposed by native readback",
+      "status": "Active",
+      "category": "Purchase",
+      "type": "Webpage",
+      "url_operator": "Contains",
+      "url_expression": "thank_you",
+      "tag_id": "36005151",
+      "revenue_type": "Variable",
+      "default_revenue": "30.00",
+      "default_currency": "USD",
+      "include_in_conversions": true,
+      "scope": "this account477439",
+      "count": "All",
+      "click_window_days": 35,
+      "view_window_days": 1,
+      "attribution": "Last click",
+      "enhanced_conversions": false
+    },
+    {
+      "name": "ShopifyCheckoutCompleteTracking",
+      "id": null,
+      "id_provenance": "not supplied",
+      "status": "Active",
+      "category": "Purchase",
+      "type": "Webpage",
+      "url_operator": "Contains",
+      "url_expression": "thank-you",
+      "tag_id": "36005151",
+      "revenue_type": "Variable",
+      "default_revenue": "1.00",
+      "default_currency": "USD",
+      "include_in_conversions": true,
+      "scope": "this account477439",
+      "count": "Unique",
+      "click_window_days": 30,
+      "view_window_days": 1,
+      "attribution": "Last click",
+      "enhanced_conversions": false
+    }
+  ],
+  "proposed_delta": [
+    {
+      "goal_name": "ShopifyCheckoutCompleteEventTracking",
+      "field": "Count",
+      "before": "Unique",
+      "after": "All",
+      "reason": "Count distinct legitimate purchases after a click; not an order-ID dedup mechanism."
+    },
+    {
+      "goal_name": "ShopifyCheckoutCompleteEventTracking",
+      "field": "Variable revenue default amount",
+      "before": "1.00",
+      "after": "0.00",
+      "currency": "USD",
+      "reason": "Missing dynamic value must not manufacture positive revenue; zero remains a missing-value signal, not repair of dynamic transport."
+    },
+    {
+      "goal_name": "Purchases",
+      "field": "Include in Conversions / automated bidding",
+      "before": true,
+      "after": false,
+      "reason": "Remove overlapping checkout URL proxy from primary bidding/reporting; retain Active and All reporting."
+    },
+    {
+      "goal_name": "ShopifyCheckoutCompleteTracking",
+      "field": "Include in Conversions / automated bidding",
+      "before": true,
+      "after": false,
+      "reason": "Remove overlapping checkout URL proxy from primary bidding/reporting; retain Active and All reporting."
+    }
+  ],
+  "native_before_receipt": {
+    "path": "live_before.json",
+    "sha256": "0c33c837f9d5802148ea81c181ab31fe23e3b5020825d622883e4a817b6f48e6",
+    "last_before_observed_utc": "2026-09-11 19:43:15 UTC"
+  }
+}

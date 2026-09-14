@@ -1,0 +1,250 @@
+{
+  "task": "TA-15",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "operator_thread": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "observation_date_utc": "2026-09-13",
+  "provenance": "Root native CUA AX observations and ten unmodified native CSV downloads; independent review is separate and is not an independent live replay.",
+  "captured_at_utc": "2026-09-13T03:00:37.837696+00:00",
+  "common_forecast_parameters": {
+    "bid_usd": "0.15",
+    "language_display": "All languages",
+    "network_display": "Microsoft sites and select traffic",
+    "period_display": "Weekly estimates",
+    "negative_entry_syntax": "Each saved campaign negative was supplied on its own line wrapped in double quotes; the planner read back all seven quoted strings. Separate negative match-type metadata was not exposed.",
+    "location_presence_rule": "Not exposed by planner; do not call this presence-only forecast.",
+    "strategy": "Native estimator, not proof of existing Maximize Clicks performance."
+  },
+  "scenarios": [
+    {
+      "id": "US_SAVED",
+      "location": "United States",
+      "daily_budget_input_usd": "5",
+      "keywords": [
+        "mother daughter matching dresses",
+        "mother daughter dresses that match",
+        "mommy and me matching dresses"
+      ],
+      "negative_keywords": [
+        "sewing pattern",
+        "sewing patterns",
+        "diy",
+        "costume rental",
+        "wholesale",
+        "svg",
+        "printable"
+      ],
+      "native_csv": "us_exact_forecast.csv",
+      "displayed_total": {
+        "clicks": "0",
+        "impressions": "1",
+        "spend_usd": "0.00",
+        "ctr": "0.00%",
+        "avg_cpc": "-"
+      },
+      "match_type_verified_in_export": "Exact"
+    },
+    {
+      "id": "DE_SAVED",
+      "location": "Germany",
+      "daily_budget_input_usd": "3",
+      "keywords": [
+        "mama tochter kleider",
+        "gleiche kleider mutter tochter",
+        "partnerlook kleider mutter tochter"
+      ],
+      "negative_keywords": [
+        "schnittmuster",
+        "nähanleitung",
+        "selber nähen",
+        "verleih",
+        "großhandel",
+        "svg",
+        "druckvorlage"
+      ],
+      "native_csv": "de_exact_forecast.csv",
+      "displayed_total": {
+        "clicks": "0",
+        "impressions": "0",
+        "spend_usd": "0.00",
+        "ctr": "-",
+        "avg_cpc": "-"
+      },
+      "match_type_verified_in_export": "Exact"
+    },
+    {
+      "id": "US_RESERVE",
+      "location": "United States",
+      "daily_budget_input_usd": "5",
+      "keywords": [
+        "mother daughter matching dresses for photos",
+        "mommy and me dresses for pictures",
+        "mom and daughter matching dresses",
+        "mommy and me dresses"
+      ],
+      "negative_keywords": [
+        "sewing pattern",
+        "sewing patterns",
+        "diy",
+        "costume rental",
+        "wholesale",
+        "svg",
+        "printable"
+      ],
+      "native_csv": "us_reserve_exact_forecast.csv",
+      "displayed_total": {
+        "clicks": "0",
+        "impressions": "1",
+        "spend_usd": "0.01",
+        "ctr": "0.00%",
+        "avg_cpc": "-"
+      },
+      "summary_range_display": {
+        "clicks": "0",
+        "impressions": "1 - 2",
+        "spend_usd": "0.01 - 0.02"
+      },
+      "accessible_chart_observation": {
+        "series": "Clicks",
+        "x_bid_usd": "0.15",
+        "y_weekly_clicks": "0.10",
+        "note": "Chart text x, 0.15, 0.10 while total row/export round clicks to 0. Do not claim exactly zero traffic or turn fractional forecast into measured clicks."
+      },
+      "match_type_verified_in_export": "Exact",
+      "library_source_lines": [
+        7,
+        5,
+        6,
+        8
+      ],
+      "original_library_match_types": [
+        "Phrase",
+        "Exact",
+        "Exact",
+        "Phrase"
+      ]
+    },
+    {
+      "id": "DE_RESERVE",
+      "location": "Germany",
+      "daily_budget_input_usd": "3",
+      "keywords": [
+        "mutter tochter kleider fotoshooting",
+        "mama und tochter partnerlook kleider",
+        "kleider für mutter und tochter",
+        "passende kleider mutter tochter"
+      ],
+      "negative_keywords": [
+        "schnittmuster",
+        "nähanleitung",
+        "selber nähen",
+        "verleih",
+        "großhandel",
+        "svg",
+        "druckvorlage"
+      ],
+      "native_csv": "de_reserve_exact_forecast.csv",
+      "displayed_total": {
+        "clicks": "0",
+        "impressions": "0",
+        "spend_usd": "0.00",
+        "ctr": "-",
+        "avg_cpc": "-"
+      },
+      "match_type_verified_in_export": "Exact",
+      "library_source_lines": [
+        61,
+        64,
+        63,
+        62
+      ],
+      "original_library_match_types": [
+        "Exact",
+        "Phrase",
+        "Phrase",
+        "Exact"
+      ]
+    }
+  ],
+  "history": {
+    "months": [
+      "Sep 2025",
+      "Oct 2025",
+      "Nov 2025",
+      "Dec 2025",
+      "Jan 2026",
+      "Feb 2026",
+      "Mar 2026",
+      "Apr 2026",
+      "May 2026",
+      "Jun 2026",
+      "Jul 2026",
+      "Aug 2026"
+    ],
+    "date_range_ui": "Last 12 months",
+    "language_display": "All languages",
+    "keyword_options": "Show keywords in my account",
+    "no_keyword_filters_or_included_terms_entered": true,
+    "exports": [
+      "de_saved_keyword_history.csv",
+      "us_saved_keyword_history.csv",
+      "us_reserve_keyword_history.csv",
+      "de_reserve_keyword_history.csv"
+    ],
+    "interpretation": "Rounded historical monthly ranges, not Exact volume. Dashes unavailable, not zero. Competition indices are not CPC. Suggested bid is not actual CPC or a guaranteed auction floor."
+  },
+  "scope_receipt": {
+    "planner_only_save_clicks": 11,
+    "planner_only_delete_clicks": 4,
+    "native_csv_exports": 10,
+    "save_to_my_account_clicks": 0,
+    "campaign_account_conversion_saves": 0,
+    "imports": 0,
+    "paid_enablement": 0,
+    "support_messages_sent": 0,
+    "generated_tracking_events": 0,
+    "purchase_staging": 0,
+    "order_queries": 0,
+    "shared_canonical_writes": 0,
+    "note": "Planner Delete removed only temporary scenario rows: first3Broad, then3US Exact, then3DE Exact, then4US reserve. Planner Save applied network/locations/negative filters or temporary keyword groups. Configured campaign bids/budgets/statuses were not edited."
+  },
+  "known_export_limits": [
+    "Native forecast CSV has dash and NaN/NaN% where the grid renders some zeros. Preserve both views without coercion.",
+    "Default export campaign label Draft Campaign and planner group names are not new saved campaign objects; never import these research CSVs.",
+    "Plain keywords defaulted to Broad. Modify search appended the Exact probe instead of replacing Broad; the mixed six-row export is diagnostic only and was excluded from conclusions.",
+    "In-flight and cross-view retained results were not treated as final; final keyword identity and parameters were read after loading completed.",
+    "Named-table DOM extraction returned an empty list once; native AX and downloaded CSV were used."
+  ],
+  "browser_handoff": {
+    "browser_id": "1",
+    "tab_id": "7",
+    "page": "Keyword planner Estimates",
+    "retained_scenario": "Germany reserve Exact forecast, four rows, 0.15 bid/3 daily modelling input, Germany/select traffic/All languages/DE exclusions",
+    "open_dialogs": 0,
+    "marked_handoff": true
+  },
+  "decision": {
+    "disposition": "HOLD_WITH_EVIDENCE_NO_CAMPAIGN_CHANGE",
+    "finding": "The existing six terms and eight localized reserve variants do not establish useful traffic volume at the retained 0.15 cap. The reserve US chart shows only0.10 weekly clicks; other final exports contain no positive finite click count. This is insufficient qualification, not proof of zero demand or profitability failure.",
+    "candidate_priority": "For later qualified demand work, retain US mommy and me dresses and mom and daughter matching dresses plus DE kleider für mutter und tochter as hypotheses supported by monthly ranges. No import or bid increase recommended from this evidence.",
+    "next_internal_action": "Resume supported consent repair when the already-pending contact authorization or a supported publisher change arrives, then genuine purchase acceptance; a viable paid experiment also needs actual economics and exact numeric paid authority.",
+    "owner_action": "Parent existing owner-Admin publication of theme137888792673 remains untouched. No new owner question raised."
+  },
+  "machine_fields": {
+    "source_live_evidence_as_of": "2026-09-13",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "current_exact_nonspend_scope": "Existing Microsoft tracking repair and qualified paused USEN/DEDE preparation; planner-only research this wake.",
+    "decision_depends_on_uncertain_state": true,
+    "decision_changing_evidence": "Supported consent repair/contact answer, genuine purchase acceptance, actual contribution and exact paid authority; materially different qualified forecast or measured serving evidence.",
+    "if_evidence_supports_recommendation": "Retain the existing hold and prepare only the next qualified bounded action.",
+    "if_evidence_opposes_recommendation": "Re-evaluate the specific premise from fresh evidence; no automatic bid raise or import.",
+    "material_decision": "No new paid or production action proposed; significant qualification finding independently reviewed."
+  },
+  "sources": [
+    "https://github.com/MicrosoftDocs/Advertising/blob/main/advertising/msa-help/hlp_BA_CONC_KeywordPlanner_StatisticsTrafficEstimates.md",
+    "https://help.ads.microsoft.com/apex/index/3/en-us/50822",
+    "https://learn.microsoft.com/en-us/advertising/ad-insight-service/campaignestimator?view=bingads-13"
+  ]
+}

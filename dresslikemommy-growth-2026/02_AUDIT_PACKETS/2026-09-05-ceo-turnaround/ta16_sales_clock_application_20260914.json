@@ -1,0 +1,39 @@
+{
+  "schema": "dlm.ta16-clock-application.v1",
+  "status": "VERIFIED_WITH_LIMITS",
+  "applied_at_utc": "2026-09-14T08:58:26.625873+00:00",
+  "action_id": "TA16-CLOCK-ALIGN-20260914-0846",
+  "anchor": "2026-09-14-ceo-ta16-sales-clock-aligned",
+  "plan": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ta16_sales_clock_plan_20260914.json",
+    "sha256": "2e4217843df61e44b62a97d55c7a92e4fc833ab7dc0cb80e3bf85c2acf2ac7a9"
+  },
+  "independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ta16_sales_clock_review_20260914.json",
+    "sha256": "f0a80c1334634b9ea24df656624bb5f8ec2e7986a41e6558584ea21ad5b9614f",
+    "verdict": "PASS_WITH_LIMITS",
+    "checks": 27
+  },
+  "queue_before_sha256": "dcee2243e79527e65e017858a4974ac6df48b4cae79ce093323e0cdf581e5e81",
+  "queue_after_sha256": "c0bf38ef2528ed5a38c9d66b1bf40a354cbb6223e949551b6a13f093fd9a1136",
+  "exact_inverse_verified": true,
+  "changed_cells": [
+    5,
+    9,
+    10,
+    11
+  ],
+  "worklog_before_sha256": "65616ec19e0f78f80b1c0eac1f6c8a45f7f2e0b103b274bf730b6146634325da",
+  "worklog_after_sha256": "0aaa6fad4078918f526186102a2b232d977270982116f07b00fc29146aee6376",
+  "worklog_append": "\n\nAGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-ta16-sales-clock-aligned\ntask_stage: VERIFY\ntask_entities: TA-16,TA16-CLOCK-ALIGN-20260914-0846,PROB-2026-09-06-RECENT-ORDER-PROFIT-QUALIFICATION\nnext_action_id: READ_ONLY_MARKETING_RECONCILIATION\nsource_live_evidence_as_of: 2026-06-01\nlive_state_mode: STALE_READBACK_REQUIRED\neffective_approval_policy: FRESH_ACTION_TIME_APPROVAL_REQUIRED\napproved_external_scope: NONE\ndecision_depends_on_uncertain_state: false\nmaterial_decision: NOT_MATERIAL\nindependent_verifier: /root/order_delta_1934\nverifier_independence: DID_NOT_BUILD_OR_EXECUTE\n\nSeptember14 08:46UTC wake found one stale executable TA-16 queue instruction: it still directed the full order read at08:49:22UTC despite the independently accepted07:04:53 new-order source and parent/current-state19:04:53UTC clock. No duplicate order read occurred. Root corrected only TA-16's source references, current sales milestone, next-read time and date; nine other cells and all peer rows remain byte-preserved. The accepted cohort remains3orders/8units/USD198.41; the original two-order actual-cost cohort, payment-fee evidence, access/attribution/profit limits and all authority gates are unchanged. This is local reconciliation of existing evidence, not a new sales result or profit claim.\n\nThe exact source/review hashes and four-cell inverse passed27 independent checks. Plan ta16_sales_clock_plan_20260914.json, review ta16_sales_clock_review_20260914.json and application ta16_sales_clock_application_20260914.json are in the existing2026-09-05-ceo-turnaround packet. Source order_fulfillment_checkpoint_20260914_0704.json and its96-check review are unchanged. No source query, business write, new task/harness, schedule/goal change or repeated release occurred.\n\nSeparately, one idle existing Ads/GA4 owner received TA02-SESSION-CONSENT-20260914-0846 after exact claim, latest actual user scope and immediate idle checks. Its current turn01a09f1c-0a57-7bf0-9ab5-4d41936badb1 is running; dispatch is not completion. The owner is qualifying the native session/consent warning using existing sender evidence. Full purchase matching, original migration, private-order replay and shared canonical writes were excluded. Root records dispatch and observed completion separately in current_sales_checkpoint_20260908_evening.json.\n\nThe existing One Owner Action remains publishing verified theme137888792673 through Shopify Admin with MAIN133290917985 retained for rollback; publication is already authorized and the connector requires owner execution. All separate organic/Pinterest/X clocks remain intact. Continue via ops/prompts/paid-growth-ai-army-continuation-prompt.md from this anchor and the prior real-purchase anchor; complete the exact TA02 diagnostic when the owning task returns, and perform the next full order read only at19:04:53UTC or on a meaningful earlier signal.\n",
+  "external_business_reads": 0,
+  "external_business_writes": 0,
+  "prior_source_and_owner_fields_preserved": true,
+  "status_at_application": "APPLIED__FINAL_CONTINUITY_PENDING",
+  "verified_at_utc": "2026-09-14T09:00:12.712156+00:00",
+  "checks": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ta16_sales_clock_checks_20260914.json",
+    "sha256": "2847fe1ab21bd562747f20b4c88f4e5d12290647969deda0f71b469a42a409fe"
+  },
+  "rendered_next_read_verified": true
+}

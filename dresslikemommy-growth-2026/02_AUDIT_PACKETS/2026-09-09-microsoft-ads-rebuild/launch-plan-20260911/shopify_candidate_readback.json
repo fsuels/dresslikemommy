@@ -1,0 +1,375 @@
+{
+  "as_of_utc": "2026-09-11 16:49:50 UTC",
+  "query": "query MicrosoftLaunchReadiness20260911 {\n  shop { id myshopifyDomain currencyCode ianaTimezone }\n  shopLocales(published: true) { locale name primary published }\n  markets(first: 50, query: \"status:ACTIVE\") { nodes { id name status } pageInfo { hasNextPage endCursor } }\n  coral: product(id: \"gid://shopify/Product/7607764287585\") { id title handle status onlineStoreUrl variants(first: 100) { nodes { id title price availableForSale inventoryPolicy } pageInfo { hasNextPage endCursor } } }\n  sunshine: product(id: \"gid://shopify/Product/7545279512673\") { id title handle status onlineStoreUrl variants(first: 100) { nodes { id title price availableForSale inventoryPolicy } pageInfo { hasNextPage endCursor } } }\n}",
+  "schema_validated": true,
+  "data": {
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com",
+      "currencyCode": "USD",
+      "ianaTimezone": "America/New_York"
+    },
+    "shopLocales": [
+      {
+        "locale": "ar",
+        "name": "Arabic",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "cs",
+        "name": "Czech",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "da",
+        "name": "Danish",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "de",
+        "name": "German",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "el",
+        "name": "Greek",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "en",
+        "name": "English",
+        "primary": true,
+        "published": true
+      },
+      {
+        "locale": "es",
+        "name": "Spanish",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "fi",
+        "name": "Finnish",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "fr",
+        "name": "French",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "he",
+        "name": "Hebrew",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "hi",
+        "name": "Hindi",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "it",
+        "name": "Italian",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ja",
+        "name": "Japanese",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ko",
+        "name": "Korean",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "nl",
+        "name": "Dutch",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "no",
+        "name": "Norwegian",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "pl",
+        "name": "Polish",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "pt-BR",
+        "name": "Portuguese (Brazil)",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ro",
+        "name": "Romanian",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ru",
+        "name": "Russian",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "sv",
+        "name": "Swedish",
+        "primary": false,
+        "published": true
+      }
+    ],
+    "markets": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Market/22986424417",
+          "name": "Australia",
+          "status": "ACTIVE"
+        },
+        {
+          "id": "gid://shopify/Market/22986326113",
+          "name": "Canada",
+          "status": "ACTIVE"
+        },
+        {
+          "id": "gid://shopify/Market/544800865",
+          "name": "Eurozone",
+          "status": "ACTIVE"
+        },
+        {
+          "id": "gid://shopify/Market/544866401",
+          "name": "International",
+          "status": "ACTIVE"
+        },
+        {
+          "id": "gid://shopify/Market/22986260577",
+          "name": "United Kingdom",
+          "status": "ACTIVE"
+        },
+        {
+          "id": "gid://shopify/Market/544735329",
+          "name": "United States",
+          "status": "ACTIVE"
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjo1NDQ3MzUzMjksImxhc3RfdmFsdWUiOiJVbml0ZWQgU3RhdGVzIn0="
+      }
+    },
+    "coral": {
+      "id": "gid://shopify/Product/7607764287585",
+      "title": "Coral Blossom Mommy and Me Dresses",
+      "handle": "coral-blossom-mommy-and-me-dresses",
+      "status": "ACTIVE",
+      "onlineStoreUrl": "https://www.dresslikemommy.com/products/coral-blossom-mommy-and-me-dresses",
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/45708175147105",
+            "title": "Child 4 Years / Coral Blossom",
+            "price": "31.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/45708175179873",
+            "title": "Child 5 Years / Coral Blossom",
+            "price": "31.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/45708175212641",
+            "title": "Child 6-7 Years / Coral Blossom",
+            "price": "31.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/45708175245409",
+            "title": "Child 8 Years / Coral Blossom",
+            "price": "31.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/45708175278177",
+            "title": "Child 9-10 Years / Coral Blossom",
+            "price": "31.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/45708175310945",
+            "title": "Mother S / Coral Blossom",
+            "price": "34.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/45708175343713",
+            "title": "Mother M / Coral Blossom",
+            "price": "34.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/45708175376481",
+            "title": "Mother L / Coral Blossom",
+            "price": "34.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/45715029524577",
+            "title": "Mother XL / Coral Blossom",
+            "price": "34.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NTcxNTAyOTUyNDU3NywibGFzdF92YWx1ZSI6OX0="
+        }
+      }
+    },
+    "sunshine": {
+      "id": "gid://shopify/Product/7545279512673",
+      "title": "Sunshine Stripe Family Matching Tops - Cotton Tee",
+      "handle": "sunshine-stripe-family-matching-tops",
+      "status": "ACTIVE",
+      "onlineStoreUrl": "https://www.dresslikemommy.com/products/sunshine-stripe-family-matching-tops",
+      "variants": {
+        "nodes": [
+          {
+            "id": "gid://shopify/ProductVariant/44116031373409",
+            "title": "Child 2 Years / Sunshine Stripe",
+            "price": "21.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031406177",
+            "title": "Child 3 Years / Sunshine Stripe",
+            "price": "21.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031438945",
+            "title": "Child 4 Years / Sunshine Stripe",
+            "price": "21.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031471713",
+            "title": "Child 5 Years / Sunshine Stripe",
+            "price": "21.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031504481",
+            "title": "Child 6-7 Years / Sunshine Stripe",
+            "price": "21.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031537249",
+            "title": "Child 8 Years / Sunshine Stripe",
+            "price": "21.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031570017",
+            "title": "Child 9-10 Years / Sunshine Stripe",
+            "price": "21.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031602785",
+            "title": "Adult S / Sunshine Stripe",
+            "price": "24.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031635553",
+            "title": "Adult M / Sunshine Stripe",
+            "price": "24.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031668321",
+            "title": "Adult L / Sunshine Stripe",
+            "price": "24.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031701089",
+            "title": "Adult XL / Sunshine Stripe",
+            "price": "24.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031733857",
+            "title": "Adult 2XL / Sunshine Stripe",
+            "price": "24.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031766625",
+            "title": "Adult 3XL / Sunshine Stripe",
+            "price": "24.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          },
+          {
+            "id": "gid://shopify/ProductVariant/44116031799393",
+            "title": "Adult 4XL / Sunshine Stripe",
+            "price": "24.99",
+            "availableForSale": true,
+            "inventoryPolicy": "DENY"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo0NDExNjAzMTc5OTM5MywibGFzdF92YWx1ZSI6MTR9"
+        }
+      }
+    }
+  },
+  "limits": [
+    "availableForSale is Shopify configuration, not supplier stock proof",
+    "Market membership country map was not refreshed by this query",
+    "No Microsoft Merchant offer ID, approval, receiver, fulfillment or actual cost is established"
+  ]
+}

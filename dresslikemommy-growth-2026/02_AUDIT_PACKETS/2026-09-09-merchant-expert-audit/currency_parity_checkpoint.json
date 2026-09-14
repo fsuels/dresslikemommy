@@ -1,0 +1,44 @@
+{
+  "schema": "dlm.merchant.currency_parity_checkpoint.v1",
+  "observedAtUtc": "2026-09-09T19:26Z",
+  "variantId": "41498026442849",
+  "adminQuery": "query MerchantPreviewCurrencyTruth($id:ID!){productVariant(id:$id){id title us:contextualPricing(context:{country:US}){price{amount currencyCode}}es:contextualPricing(context:{country:ES}){price{amount currencyCode}}no:contextualPricing(context:{country:NO}){price{amount currencyCode}}}}",
+  "adminPricing": {
+    "id": "gid://shopify/ProductVariant/41498026442849",
+    "title": "Mother S / Pink",
+    "us": {
+      "price": {
+        "amount": "19.99",
+        "currencyCode": "USD"
+      }
+    },
+    "es": {
+      "price": {
+        "amount": "17.95",
+        "currencyCode": "EUR"
+      }
+    },
+    "no": {
+      "price": {
+        "amount": "17.95",
+        "currencyCode": "EUR"
+      }
+    }
+  },
+  "publicNorway": {
+    "countryLabel": "Norway | USD $",
+    "productOfferPrice": 19.99,
+    "productOfferCurrency": "USD",
+    "structuredShippingCountry": "NO",
+    "language": "en"
+  },
+  "status": "CONFLICTED_SOURCE_CONTEXT_REQUIRES_MERCHANT_MARKETS_READBACK",
+  "scope": "One existing MAIN product. No cart, checkout, price, country configuration or currency setting changed.",
+  "cleanup": {
+    "publicCountry": "US",
+    "language": "en",
+    "cartItems": 0,
+    "verified": true
+  },
+  "next": "Read exact receiving Norway offer and current Shopify Markets/Google app rules before changing data; do not force a currency in theme code."
+}

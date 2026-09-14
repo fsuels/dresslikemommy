@@ -41,7 +41,7 @@ PRINT_NAME = "Blue Check"
 SHORTCODE = "BCHK"
 COLOR_TOKEN = "BLUE"
 COLOR_NAME = "Blue Check"
-VENDOR_URL = "https://detail.1688.com/offer/1040623960414.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 PRODUCT_TYPE = "Matching Family Sets"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-11"
@@ -280,7 +280,7 @@ def tags() -> list[str]:
         "Family Matching", "Mommy and Me", "Daddy and Me", "Sets", "Summer Family Matching Set",
         "Matching Family Outfits", "Matching Family Set", "Matching Family Top", "Matching Family Bottoms",
         "Shirt", "Shorts", "Skirt", "Summer", "Vacation", "Blue", "White", "Plaid", "Check", PRINT_NAME,
-        "Child Shirt", "Adult Shirt", "Child Shorts", "Adult Shorts", "Child Skirt", "Adult Skirt", VENDOR_URL,
+        "Child Shirt", "Adult Shirt", "Child Shorts", "Adult Shorts", "Child Skirt", "Adult Skirt",
     ]
     values.extend(sorted({row["picker_label"] for row in SIZE_CHART}))
     values.extend(sorted({row["role"] for row in SIZE_CHART}))

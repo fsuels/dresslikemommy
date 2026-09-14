@@ -1,0 +1,117 @@
+{
+  "status": "PASS_INTERPRETATION_CORRECTION__REGIONAL_CONSENT_UNRESOLVED",
+  "reviewer": "/root/international_campaign_build",
+  "independence": "Read-only independent interpretation of root's saved native tooltip receipt; no browser, account, source, prior-history or canonical edits.",
+  "checked_at_utc": "2026-09-11T19:57:21.775400+00:00",
+  "checks_passed": 12,
+  "checks": [
+    {
+      "check": "exact account customer and UET",
+      "passed": true
+    },
+    {
+      "check": "regional seven-day denominator explicit",
+      "passed": true
+    },
+    {
+      "check": "exact three tooltip observations uniquely identified",
+      "passed": true
+    },
+    {
+      "check": "purchase Healthy has no eligible regional sample not a percent",
+      "passed": true
+    },
+    {
+      "check": "product Missing reports zero regional coverage",
+      "passed": true
+    },
+    {
+      "check": "pageview Moderate reports27 percent regional coverage",
+      "passed": true
+    },
+    {
+      "check": "other regions excluded in both numeric tooltips",
+      "passed": true
+    },
+    {
+      "check": "other event rows remain badge-only",
+      "passed": true
+    },
+    {
+      "check": "purchase value export remains unverified",
+      "passed": true
+    },
+    {
+      "check": "Shopify technical issue not promoted to login or source mutation",
+      "passed": true
+    },
+    {
+      "check": "receipt distinguishes sender diagnosis from signal gap",
+      "passed": true
+    },
+    {
+      "check": "goal repair remains separate from consent repair",
+      "passed": true
+    }
+  ],
+  "receipt_sha256": "7421ef12338cd4636ef5352226296623a061077529cb7c55fecaeddc5990f698",
+  "observed_utc": "2026-09-11 19:56:06 UTC",
+  "historical_files_sha256": {
+    "independent_receiver_review.md": "c012bc490301c2ae23a5fc748c7a66c4da3185ea693bdad5e9ae200fa2e9e5e7",
+    "independent_receiver_review.json": "b0765738de18cccec1466a788e2e5956b55b431e5dccbf15558b471bd937f2a8",
+    "exact_goal_preflight_review.json": "e049fce0630fd5b080ffea329bb8679a0d0f8fd3407b8fbca7cd7fe5a9bddb45",
+    "exact_goal_postflight_review.json": "22fda12cbe0b92b9b7d3dae0eb8e1ee07e9e1d3d68a79a9076c50e3e81260fd8"
+  },
+  "observations": [
+    {
+      "event": "purchase",
+      "badge": "Healthy",
+      "tooltip": "No events from EEA, UK, or Switzerland detected so no action is needed. UET Consent Mode helps comply with regulations in these areas.",
+      "valid_regional_signal_percent": null,
+      "conclusion": "No qualifying regional purchase sample; badge does not establish consent coverage"
+    },
+    {
+      "event": "view_item",
+      "badge": "Missing",
+      "tooltip": "0% of events from EEA, UK, and Switzerland had a consent signal in the last 7 days. Other regions are not included. UET Consent Mode helps meet local regulations.",
+      "valid_regional_signal_percent": 0
+    },
+    {
+      "event": "page view",
+      "badge": "Moderate",
+      "tooltip": "27% of events from EEA, UK, and Switzerland had a consent signal in the last 7 days. Other regions are not included. UET Consent Mode helps meet local regulations.",
+      "valid_regional_signal_percent": 27
+    }
+  ],
+  "source_receipt": "consent_diagnostic_receipt.json",
+  "target": {
+    "account_id": 477439,
+    "customer_id": 770182,
+    "uet_id": 36005151
+  },
+  "supersedes_account_inference": {
+    "path": "independent_receiver_review.md",
+    "line": 11,
+    "prior_rule": "Generic documentation summarized Healthy as >75% valid-signal coverage.",
+    "correction": "That rule cannot be applied to this purchase row. The native tooltip reports no qualifying EEA/UK/Swiss events; Healthy here is a no-regional-sample outcome. The purchase percentage remains null, not >75%,100% or0%.",
+    "history_action": "Prior files and primary-source citations preserved. This dated account-specific tooltip assessment controls the current interpretation."
+  },
+  "conclusions": {
+    "purchase": "Regional purchase consent remains untested/unknown in the diagnostic window; no eligible-region sample was detected. This does not imply no global purchases or complete consent behavior.",
+    "view_item": "Displayed0% of eligible-region events carried a consent signal during the seven-day window.",
+    "page_view": "Displayed27% of eligible-region events carried a consent signal during the seven-day window.",
+    "denominator": "Only EEA,UK,Switzerland; not other regions and not the retention-limited all-event dashboard totals. Actual eligible event counts were not supplied.",
+    "consent_meaning": "Coverage is not the percentage of users granting consent. The receipt cannot identify the failing stream or whether the underlying visitor state was granted, denied or absent.",
+    "other_events": "add_to_cart,home,begin_checkout,search remain badge-only; no unobserved tooltip percentage or no-sample conclusion is assigned.",
+    "export": "No download/file was observed after the attempt; current transaction values remain unverified. This is not proof that Microsoft export is unavailable or purchase values are absent.",
+    "shopify": "Native app/home technical loading failures leave supported app controls unread. They are not a login/permission or broken-app diagnosis; no app write occurred.",
+    "goal_repair": "The exact four-field configuration postflight remains valid. It did not certify sender consent and is not reopened by this diagnostic correction."
+  },
+  "issues": [],
+  "limitations": [
+    "This verifies the interpretation and consistency of root's persisted native receipt, not a new independent session trace.",
+    "No regional purchase sample, denominator counts, actual values/export, individual grant/deny state, stream attribution or supported app-control repair has been verified.",
+    "No source patch, unconditional grant, new sender or account-automation change is authorized by this review."
+  ],
+  "next_action": "Use the supported Microsoft Shopify app or source-specific path when it is inspectable; identify the emitting stream and verify current consent-state receipt. Keep EEA/UK/CH activation held on the saved receiver evidence requirement. Other exact proposals remain separate."
+}

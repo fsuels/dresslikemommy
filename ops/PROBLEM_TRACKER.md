@@ -1,5 +1,398 @@
 # Problem Tracker
 
+## PROB-2026-09-14-MERCHANT-AU-SOURCE-DRIFT
+
+Priority:P1. Status:FIXED_FOR_CURRENT_AU_RECEIVING_SAMPLES_COUNT_AND_SOURCE_LIST__ONGOING_FRESHNESS_REQUIRED. Owner:Merchant01a08706; parent shared integration. Scope:existing AU10727245667 manual Free-listings source.
+
+A complete fresh Shopify ACTIVE/AU contextual scan finished September14 15:03:55.842UTC:238 active published parents,4,925 variants,4,903 available. Preserving six parent/162-offer holds produced4,741 offers/232 parents. The reviewed candidate omitted20 offers from parents7108998987873 and7109117280353 absent from the complete ACTIVE scan; it added none. It changed530 retained prices across58 parents by exactly+A$1, with4,211 other retained rows unchanged. Every candidate price matches fresh AU source data. The other10 source price changes are8 held available and2 unavailable variants, all excluded. Three original unchanged-payload/price assumptions remain recorded as failed and explicitly superseded; no FX or repricing cause is inferred.
+
+Merchant513542500 existing AU10727245667 manual Free-listings source received one exact reviewed upload at15:28:32.317UTC. The source reports4,741 updated,0 new,All recognized andNo issues found. Native history is September14 2026 11:28:35AM;15:28:35UTC is only an America/New_York-context conversion because account timezone was not independently verified. The early0/0 transition was preserved and not accepted as success. The selected local file is bound to SHA256 f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236; a complete Google received-byte checksum was not obtained.
+
+All12 exact AU-source-qualified samples match the reviewed values and show Approved/In stock/Free listings/Australia: six changed-price samples35/38/48/52/55/58AUD, five protected Adult2XL offers33AUD and the protected pilot26AUD. Stale mismatched filter results were rejected before exact matching rows were accepted. Pink/red protected offers retain2-days-ago update labels, so individual rewrite time is not proved. Earlier header/table4,761 and all20 omitted IDs present through15:47:52UTC are preserved as dated evidence. One later read-only pass verifies the exact AU source header4,741 at16:06:31.930UTC and full source-filtered table4,741 at16:06:49.195UTC. Two completed matching source-qualified parent-prefix queries return No results at16:07:19.998UTC and16:08:57.154UTC, covering all20 omitted IDs exactly once:20source-list absences verified,0present/0unverified. The prior count/list gap is resolved for this current source read. No second upload, receiving/sample replay or other business write occurred; all33 prior receipts remain byte-identical.
+
+Processing and12 samples do not prove all530 native effective prices, all-offer approval, actual serving, buyer behavior, orders or profit. No removal cause, archive/deletion state, accountwide absence or convergence deadline is inferred. AU remains a manual source; automatic all-market synchronization, CA/GB/other languages, truthful returns/delivery coverage and Store Quality remain incomplete. US source, six holds, policies, shipping, theme, paidNONE, billing, accounts, hosting/security and schedulers were unchanged. No automatic restoration of the stale file, pilot or held offers.
+
+Preserve the completed AUreceiving/12samples/current count/20-ID source-list absence. Do not repeat upload or the same omission check without new evidence, and do not restore stale file/pilot/held offers. No automatic restoration of the stale4,761-row file, old pilot or held offers. Fresh source evidence, exact delta and independent review are required for any future correction.
+
+Evidence: growth_source_acceptance_20260914_1453_v2.json in the existing CEO packet; Merchant recovery_20260914/au_source_freshness_1453 and its exact independent release/after reviews; Microsoft heartbeat-20260914-1444/readback.json; Google FOLLOWUP_20260914_1510.json and their bound independent reviews. Source-owner packets remain unchanged; parent owns shared integration.
+
+## PROB-2026-09-14-MERCHANT-US-SCHEDULED-FETCH
+
+Priority:P1. Status:FIXED_FOR_CURRENT_US_FETCH_AND_SOURCE_LIST__RECURRING_FRESHNESS_DUE. Owner:Merchant01a08706; parent owns shared integration. Scope:existing US10727274744 free-listing source only.
+
+US10727274744 scheduled September14 midnight fetch failed Connection failed. A supported13:11:33UTC pointer read confirmed the prior source was63.8882hours old, beyond the saved48hour host guard. A genuinely fresh complete ACTIVE-only Shopify scan finished13:16:10.466UTC. The independently reviewed replacement contains4,741 offers/232 parents:20 offers from two parents absent from the complete ACTIVE scan were removed, no offers added, all retained fields/prices unchanged, six parent/162-offer holds preserved. The guarded existing pointer promotion committed13:33:17UTC, with exact immutable-file/pointer verification and unchanged Worker metadata. One Google Update processed4,741updated/0new at native September14 9:34:09AM (13:34:09UTC converted using retained New York context; account timezone not independently verified), all attributes recognized/no file issues; the connection error is absent. All six protected US offers were then read Approved/Free listings at five22.99USD prices and pilot17.99USD; their33hrs-ago labels do not prove individual rewrites during this fetch. The native source-filtered list initially showed4,761 at13:36:04UTC and the source header at13:42:26UTC. A later bounded read verified the header and source-filtered table at4,741 beginning14:05:57UTC. Two loaded native source-filtered exact parent-ID prefix searches at14:07:14UTC and14:07:55UTC returned No results, covering all20 frozen omitted IDs exactly once. Their absence from this current source product list is verified; individual archive/deletion status, current per-ID owner/approval fields and account-wide or serving removal are unknown. No cache cause or guaranteed convergence deadline is assumed. No duplicateUpdate, blocked public/GCS retry, TTL, credential, hosting or scheduler change. The next fresh US source is due bySeptember15 13:16:10UTC through the existing owner/heartbeat, before unchanged48hour expiry atSeptember16 13:16:10.466UTC. AU10727245667 retains its separate September11 manual4,761-offer receipt; current AU synchronization is not inferred.
+
+Definition of fixed: genuinely fresh complete Shopify source reconciled against the unchanged holds and before-state; exact independent review; one permitted pointer promotion with hash/Worker preservation readback; successful current Google fetch and retained-offer receipt. Restore periodic freshness through the existing owner/heartbeat before24hours; no new scheduler or bypass. A fresh timestamp without fresh source evidence is not a fix. Current host/runtime causation is not inferred solely from the Merchant error.
+
+Evidence: growth_source_acceptance_20260914_1236.json; sunshine_organic_demand_20260914_1236.json; Merchant recovery_20260914/eligibility_returns_1244 and source_freshness_1310/pointer_first_read.json and native_removal_reconciliation_20260914T1405Z.json; Ads research/ta10_remaining_native_demand_20260914_1236. Source-owner packets stay immutable; the parent alone integrates shared records.
+
+## PROB-2026-09-11-COUPLES-EMPTY-ACTIVE-COLLECTION
+
+- Priority: P1; owner root01a08223 for collection, UX01a088c3 for existing theme; status PROVIDER_AND_PREVIEW_VERIFIED__MAIN_PUBLICATION_BLOCKED.
+- Existing Couples collection290635284577 has 3 ACTIVE styles plus 17 preserved ARCHIVED members. Four exact OR rules, English body/SEO description and 40 translated body/meta values are saved across 21 languages; 77 translation records preserve all 37 original title/meta-title rows. Provider96/96 and independent163/163 checks passed, including recovery of the initial omitted-SEO-title side effect. Source/metadata exposure dates from September11. The buyer repair is now verified in the existing unpublished theme; its public buyer-exposure clock starts only after owner publication and MAIN acceptance. Preserve the original September18 earliest review expectation, extending to seven complete public days if publication is later; Article/Pin clocks remain separate. Exact product-title changes can alter membership and require revalidation.
+- Final preview acceptance PASSED September12: the exact existing theme137888792673 renders all3 Couples cards, both saved source paragraphs and correct metadata in EN desktop/mobile and FR/ES/AR, with3 adult cart paths passing. The published MAIN133290917985 still contains the observed grid/body defect until owner publication. Preserve the September11 MAIN failure receipt and separate prior9 PDP passes; do not call the live buyer repair complete or clear all six Merchant source holds from a draft result.
+- Existing theme DLM UX Performance QA 2026-09-10 (137888792673) is UNPUBLISHED and ready for owner Admin publication with limits. The final three Couples files were saved once September11 23:12:13 UTC; September12 08:29:57 UTC full source confirms all527 files, 7 changed/520 preserved versus frozen V7, no deletion, and all525 MAIN files unchanged. Across the combined release versus MAIN there are64 modified+2 added/461 preserved; all22 config/template files remain unchanged. Final preview shows3 exact cards and full saved descriptions in EN desktop/mobile and FR/ES/AR, correct metadata and no old lower copy. A non-target36-card collection remains intact. Three adult product-to-cart cases pass at exact USD26.99/34.99/22.99, quantity1; all items removed, preview exited, MAIN/US/USD/en/cart0 restored. Prior9 PDP cart passes remain separately dated on unchanged PDP source. Independent10 Liquid tests,432 non-target fixtures,21 body renders and full527 ThemeCheck0 passed. No payment, measured PageSpeed, full-site perfection or sales lift is claimed. V8 remains unapplied.
+- Definition of fixed: after owner publishes137888792673, fresh MAIN identity/source and actual3cards/fullcopy/adultcart paths pass. Do not call preview a live repair.
+- Rollback: preserve oldMAIN133290917985 for owner republish; exact collection/body/SEO/translation inverse remains in original execution packet. No source rollback or product retagging is indicated.
+- Evidence: couples-collection-recovery-execution-20260911.json; couples-grid-repair/verified-release-20260912.json and BUYER_READBACK-20260912.json; anchor 2026-09-12-growth-recovery-and-qualified-release-handoff.
+
+
+## PROB-2026-09-11-ADS-SIGNUP-TAG
+
+- Priority: P0; status CONFIGURATION_FIXED__PURCHASE_ACCEPTANCE_PENDING; owner root01a09194; independent tag_repair_review.
+- Surface: Ads6509972886 / AW18433316477 / Purchase7760272273 / campaign24247604341; Shopify Google & YouTube.
+- Original symptom: signup offers a GA4/DLM tag merge with settings replacement and shared users; Ads detector fails, app lacks new AW and all seven Ads event mappings are empty. One PMax campaign is already Enabled at5USD/day; September6–11 report shows0 impressions/clicks/purchases/cost. Exact pause question is pending.
+- Fixed criteria: separate AW saved and detected; only Checkout completed mapped to existing Purchase label; GA4/Merchant/legacy Ads preserved. Genuine purchase payload and receiver acceptance remain a distinct open measurement gate.
+- Historical attempt/outcome through18:11UTC: September11 native exact-tab and app/pixel/action readbacks; old pixel111214689 uses different AW853411529. Both independently reviewed app writes saved and full-reload verified. Google installation retest PASS at approximately18:06UTC; signup completed. Fresh Purchase reload preserves Primary/Every/dynamicUSD1fallback/EC Not configured. Final campaign Enabled5USD/day now Pending-All asset groups under review; same Sep6–11 zero report metrics.
+- Ruled out: repeat GA4 migration, irreversible tag merge, guessed label or new conversion action. Initial blank screenshot recovered through normal Chrome Exit Full Screen.
+- Current next action: campaign24247604341 is now Paused, actor unknown/not root; the old pause question is superseded. Preserve completed AW/Checkout-completed configuration and continue genuine purchase payload/receiver/consent/dedup acceptance under TA-02 without generating an order. Current creative Save has a separate Google identity gate under PROB-2026-09-11-ADS-CAMPAIGN-QUALITY-AND-CPC below. No launch, spend, account link, user-access grant or EC change is authorized by this measurement receipt.
+- Independent work: local2026 strategy prepared. Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/READBACK.md, repair_contract.json and INDEPENDENT_REVIEW.md.
+
+## PROB-2026-09-11-ADS-CAMPAIGN-QUALITY-AND-CPC
+
+September14 recovery update: the prior editor-read blocker is superseded by verified replacement23 after inventory confirmed former13 absent; cause remains UNKNOWN. All27 recorded text values match the frozen plan, with82 independent saved-source criteria passing. The copy remains unsaved and normal Google identity/Save acceptance remains open; no unchanged auth/Save retry occurred. Existing purchase, actual-cost and paid-launch gates remain. Evidence: FOLLOWUP_20260914_0255.json and parent ADS650-DRAFT-RECOVERY-20260914-0255. Preserve the dated timeout history below.
+
+September13 latest owner evidence: current draft read is BLOCKED after two tab13 selection timeouts, while normal saved-report access works. Cause UNKNOWN; no data-loss or account-wide-failure conclusion. Preserve the unsaved editor and reviewed local payload; require a changed permitted read or normal owner result before any retry. The separate normal Save/identity and authority gates remain unresolved. The Ads owner completed the September13 22:54UTC follow-up. Existing IAB1/tab13 is listed, but two permitted read attempts timed out; current27-field draft contents are BLOCKED, not proven lost. The last verified fields remain the dated19:03:42UTC receipt and the reviewed local payload is intact. Preserve the editor without reload, refill or unchanged read/authentication retry. This is separate from unresolved normal Google Save/identity acceptance. The distinct saved-report tab worked: campaign24247604341 remains Paused at configuredUSD5/day, with September13 partial-day0 impressions, clicks, cost, conversions and value. Original saved copy remains unchanged. The exact Shopify creation interval[20:49:22,22:56:45)UTC returns0EXACT all-new, non-test-web and paid-non-test-web orders; older lifecycle and GA4 were not reread. PAID is financial status, not channel attribution; costs and profit remain UNKNOWN. Microsoft’s22:43UTC follow-up separately covers all13 paused campaign rows; its recurring Product offers not found warning is not a newly proved failure or repair. Partial-day UI zeros do not replace earlier unavailable CSV cells, purchase or consent proof. Both owners preserved existing gates, inputs and schedules; no business write occurred. Next root full-sales read remains September14 08:49:22UTC. Evidence: FOLLOWUP_20260913_2254.json (539670a16e3a501184b8ab0cc5bfceaa9116d729513b7e4e37237cbde239ca3f), heartbeat-20260913-2243.json (b86d7dc9fd60ce3cff054e8552ca5b7802760d92d766d7632a68cd7f333d9e62), and parent owner integrations ADS650-EDITOR-TIMEOUT-20260913-2254 / TA15-CAMPAIGNS-20260913-2243.
+
+The existing Ads owner completed the14:49 heartbeat for customer6509972886/campaign24247604341/assetgroup6746545742. The former editor tab8 was absent, cause UNKNOWN. One task-owned replacement restored the same frozen18 fields; the owner reports all27 text values matching in DOM and native accessibility. Full current snapshots are not embedded, so root's81-check review validates saved receipts/hashes and interpretation, not an independent field-by-field live replay. Save/identity acceptance remains unverified. The handoff is scoped to Ads owner01a09194, IAB1/tab13/provider browser-use:c89eed6d-ae6a-470d-846b-36e8b2ae3008; root's same-numbered QA tab was a separate surface.
+
+The campaign remains Paused/configuredUSD5/day. PartialSeptember12 reports0 activity; September11 remains356impressions/5clicks/USD0.80cost/displayedUSD0.16CPC/0conversions and value. This is the same daily cost total, not additional spend, and exceeds the retainedUSD0.15CPC ceiling. The exact Shopify creation interval[2026-09-12T10:49:23Z,2026-09-12T14:49:48Z) has0EXACT all-new/non-test-web/paid-non-test-web orders, contiguous with the prior delta. No older order lifecycle or GA4 report was reread. Preserve the08:24full cohort,20:24:58UTC next full read, frozen copy/GB source and all unrefreshed market, buyer, purchase, identity and paidNONE gates. No new sale, attribution or profit follows. Evidence: FOLLOWUP_20260912_1449.json and google_ads_1449_root_review_20260912.json.
+
+Historical September12 10:48 source checkpoint (preserved):
+
+September12 current receipt preservesPaused/27editorlines and the normalSave/identity gate; runtimegoalBLOCKED. Sep11report now reconciles356impressions/5clicks/USD0.80/0conversions; Sep12partial0activity. No channel reread or reporting-adjustment cause. The previously unexplained GB comparison is resolved locally:24exact variant/source/feed joins,12dated source-price changes and23independent checks pass; underlying price-change cause and live/buyer/Google approval remain unknown. Original draft and every other country/copy/keyword/authority field preserved. No new source/campaign Save, launch, purchase or repeated identity attempt. Evidence: current_campaign_repair/SOURCE_REFRESH_20260912.md and FOLLOWUP_20260912_1048.json; root integrates owning records only.
+
+- Priority:P1; status PREPARED__SAVE_IDENTITY_GATED__LAUNCH_UNQUALIFIED; owner root01a09194; campaign24247604341/assetgroup6746545742/customer6509972886.
+- Historical September11 readback: campaignPaused,5USD/day,tROAS650%,USpresence-or-interest,English,no campaignnegatives; two relevant themes and no audiences; automatic text/URLexpansionON; campaignMerchantproductsetupabsent. Today249impressions/4clicks/USD0.64cost/USD0.16avgCPC/0conversions; allYouTube. Fourclicks are not a profit verdict. PMax cannot enforce the retainedUSD0.15ceiling.
+- Prepared:18truthful copy/name edits staged with exactbefore/after checks and independentreview;6sitelinks,3landscapes acceptedwithlimits; presence-only andtext/URLcontrols plus2narrow preventive phrase negatives reviewed separately. Existing savedcopy remains old and currentadstrengthPoor. No campaign Save success is claimed.
+- Observed gate: firstSavegenericerror, secondSaveGoogleConfirm it's you; normalConfirm reachedTryagain without verification. Ownerverificationpending, editorpreserved. No alternate-surface authentication bypass or further Save retry.
+- Completion criteria: normal identitycompletion; exact saved-copy and scopedasset/settingreadback; actualrating; CPC-compatible strategy, genuinepurchaseacceptance, actualcost/profit andexactspendallocation beforelaunch. MaintainPaused andallprotectedsettings duringrepair.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/COPY_CHANGE_PLAN.json, COPY_SAVE_ATTEMPTS.json, LIVE_TARGETING_AND_DELIVERY_READBACK.json, TARGETING_REPAIR_PLAN.json, review/ and research/STRATEGY_FIT_REVIEW.md; anchor 2026-09-11-google-ads-campaign-quality-identity-gated.
+
+## PROB-2026-09-11-PDP-CONTEXT-LABELS
+
+- Priority P2; status IMPLEMENTED_PREVIEW_VERIFIED__PUBLISHED_ACCEPTANCE_PENDING; owner root01a088c3; existing unpublished theme137888792673 and TA-22/TA-06.
+- Symptom: desktop/mobile Together Heart related heading ended at Browse more from; similar-styles aria/title ended at View similar styles in. The collection destination remained present. Liquid consumed raw context placeholders in the generated copy map before browser interpolation.
+- Repair: convert only three context keys across 35 locales (105 templates) to the existing runtime token and preserve literal replacement characters in both main-product and global back-navigation helpers. Local generator retains this normalization. All 2,206 unrelated copy values and product/price data are unchanged.
+- VERIFIED: 51 actual-production-function regressions, including frozen failures and literal-dollar counterexamples; full 527-file Theme Check zero diagnostics. English desktop/mobile, ES/JA/AR mobile and AR desktop render complete labels; real collection click reaches /collections/family-tops and product return retains its correct back destination. Exactly 3 theme files changed/524 preserved; all candidate/checked-copy hashes match API. MAIN/predecessor unchanged.
+- Closure criterion: scoped source and preview behavior pass. Published buyer acceptance remains gated on owner Admin publication of the complete combined release. Existing Japanese/Arabic English size hints, Arabic collection punctuation and broad localized classification remain separate open quality limits, not fixed by this template repair.
+- Evidence: 2026-09-10-storefront-ux-pagespeed/pdp-clarity-v7/READBACK.md; source-readback.json; browser-after.json; independent-prewrite-review.json; anchor2026-09-11-storefront-pdp-clarity-v7-preview-verified.
+
+## PROB-2026-09-11-PDP-UNSUPPORTED-REVIEW-FALLBACK
+
+- Priority P1; status IMPLEMENTED_PREVIEW_VERIFIED__PUBLISHED_ACCEPTANCE_PENDING; owner root01a088c3; existing unpublished theme137888792673 and TA-22/TA-06.
+- Symptom: zero-review Together Heart displayed an automatic New arrival badge and unsupported loved-by-moms endorsement. Zero review count establishes neither arrival date nor endorsement; the component also broadly hid asynchronous preview-review output.
+- Repair: remove the sole main-product render call for this fallback. Preserve actual Judge.me app blocks, native positive-rating markup, product/review data, prices and variant initialization. No substitute claim added. Historical May12 social-proof work remains recorded; its unsupported fallback behavior is superseded only in this current preview.
+- VERIFIED: removed wrapper/claim absent in EN/ES/JA/AR samples; a genuine 5.00/1-review product retains visible badge, summary and working review navigation. EN mobile Adult4XL/Green added once at 26.99USD and original46512190292065, quantity1; only test item removed/cart0. One positive-review sample is not review authenticity or whole-catalog certification.
+- Closure criterion: preview truthfulness/review preservation pass; published acceptance remains pending. Shopify connector blocks publishing and MAIN writes, so owner Admin release is required. No review-data, account/payment configuration or product-price mutation occurred.
+- Evidence: same V7 packet browser-before.json, browser-after.json, review-holdout.json, exact source/apply/inverse receipts and anchor2026-09-11-storefront-pdp-clarity-v7-preview-verified.
+
+## PROB-2026-09-11-X-AUTOMATION-CHANNEL
+
+- September14 reviewed connection proposal: The X owner completed an independently reviewed X-only Buffer Free connection proposal (10/10 PASS_WITH_LIMITS), replacing an unspecified publisher search with a concrete conditional option. This is not an approved or connected service: actual Free-plan eligibility, identity, permission scope and supported API retrieval remain untested. The exact new third-party setup decision is already with the owner in the existing X task; do not repeat its question or start setup from this handoff. X goal remains BLOCKED and the existing 09:00/16:00 heartbeat ACTIVE. Preserve seven historical native submissions/current pending count UNKNOWN, R002 publication UNVERIFIED, 3–4 originals/week and at most one R010/R011 at a justified checkpoint. Known rolling effort is 80.33 minutes and known calendar-week effort51.54; earlier gaps prevent full cap certification. September19/26/October12, the expected September15 09:00 check and all other cohort clocks remain unchanged. Evidence: x_publishing_proposal_freeze_20260914/PLAN.md and INDEPENDENT_REVIEW.json; x_n2_parent_acceptance_20260914.json. Anchor 2026-09-14-ceo-x-publisher-proposal-and-n2-receipt. The setup blocker remains open.
+
+- Priority P2; status AUTOMATION_RULE_CORRECTED__APPROVED_PUBLICATION_CONNECTION_PENDING; owner root01a0915d-9105-7833-9d4b-eb467ab0ebbd, sole X operator; TA-24.
+- Symptom: owner renewed ongoing proactive organic responsibility. Current official X automation rules, updated April2026, prohibit website scripting; automated AI reply bots require prior written X approval and recipient conditions. Signed-in website access does not establish an approved API publishing channel.
+- IMPLEMENTED_AND_VERIFIED: updated the existing heartbeat once to9AM/4PM NY daily without expiry. Exact prompt requires an official API-backed integration, exact account/current writer/scope check before action, and all reply conditions. Seven persisted configuration checks pass; independent final prompt/draft review21/21 passes. First updated heartbeat was received September 11 at20:02:13.575UTC; September 12 morning delivery is now observed at13:02:18.221UTC (09:02:18.221 EDT). Future delivery remains unverified. The linked operations/2026-09-12-morning.json records four accepted dated reports and two excluded query-format errors; no X-specific row is not proof of zero visits/orders, and contribution remains UNKNOWN.
+- Access distinction: @dresslikemommy website ownership was verified; X-TARGET-SESSION stays fixed. Tool-name/description search found no callable X publisher; filename-only search in the documented business credential directory found no named X/publisher entries; xurl absent from current PATH. Credential contents were not read. An owner integration elsewhere remains possible; one concise existing-connection question is pending.
+- Continue: read-only Shopify analytics, public research and reviewed local content preparation. Preserve existing live R001 and all seven native schedules. R009/R010 are local reviewed candidates only. No new X account/post/reply/schedule write occurred in this checkpoint; no spend, purchases or other-channel writes.
+- Closure criteria: a supported official API-backed connection resolves exact @dresslikemommy identity and current scope without credential transfer or a workaround; any permitted new publication receives an actual durable receipt. AI replies remain held unless all separate X approval/recipient conditions are verified. Do not infer this policy finding caused the earlier discoverability notice.
+- Evidence: relaunch/proactive-20260911/READBACK.md, AUTOMATION_APPLIED.json, EVIDENCE.json and INDEPENDENT_REVIEW.md in2026-09-11-x-profile-review; https://help.x.com/en/rules-and-policies/x-automation. No X row in four requested early Shopify reports is not proof of zero buyers; acquired traffic, paid orders and contribution remain UNKNOWN.
+- Next: identify the existing approved publishing connection while the same heartbeat continues permitted work. Do not repeat the unchanged question or sign-in request.
+
+## PROB-2026-09-11-X-TARGET-SESSION
+
+- Priority P2; status `FIXED_AND_VERIFIED`; owner root01a0915d-9105-7833-9d4b-eb467ab0ebbd, sole X operator.
+- Original symptom: the public target was readable but absent from the initially available account selector. That historical session mismatch did not prove the owner lacked access elsewhere. Prior access/recovery receipts remain historical.
+- Resolution September11 at18:36UTC: owner completed target sign-in; root freshly verified /dresslikemommy and Edit profile. The repeated current instruction authorized professional profile fixes and ongoing organic operation; no renewed blanket permission was needed.
+- Applied and VERIFIED: one name/bio/HTTPS website/header/avatar Save; one R001 publication at18:41UTC, exact post2098481955721380021 and one Pin; seven distinct native scheduled posts forSep13/15/16/18/20/22/23 at12:15PM Eastern. Profile and pin survived reload; all seven saved dates/bodies and R004 media/ALT survived a separate native schedule reload. Original location and old posts preserved.
+- Ongoing operation: the initial daily9AM/31-occurrence configuration is historical. The same heartbeat was updated and read back September11 at19:42UTC to9AM/4PM NY daily without expiry, with future unattended X actions held for an approved official API-backed connection. See the separate X-AUTOMATION-CHANNEL problem and proactive receipt; target account sign-in remains FIXED_AND_VERIFIED.
+- Remaining limits are separate from authentication: X displayed an informational discoverability notice; no human verification challenge appeared. Native narrow-width and independent rendered/nonowner X checks are not established. Available resource/link checks pass; acquired visits, orders and supported contribution remain UNKNOWN.
+- Evidence: relaunch/LIVE_EXECUTION_20260911.json, EXECUTION_STATUS.json and LIVE_AFTER_INDEPENDENT_REVIEW.md in the existing 2026-09-11-x-profile-review packet. Thirteen frozen inputs remain unchanged; independent after-state artifact/resource verdict PASS_WITH_LIMITS.
+- Next: continue permitted twice-daily analytics/research and resolve the existing publishing connection question; first full-week result review remains Sep19. Do not repeat login requests or the completed Save/Post/Pin, and preserve all seven native schedules.
+
+## PROB-2026-09-11-SESSION-CONTEXT-AND-BROWSER-CONTENTION
+
+- September14 / CTX-COMPACT-MS-UET-20260914-1032: SOLVED_LOCAL_VERIFIED. The existing compiler now recognizes compact Microsoft6+ and UET7+ IDs, correcting numeric queries that missed current claim35 and selected spaced historical claim54. All15 legacy prefix thresholds, numeric capture, whole-ID boundaries, ranking, schema and authority handling are preserved. Four frozen failing groups now pass; three holdouts remain passing. Original10 groups/two fixtures are source-identical; all17 compiler groups and24 unchanged session tests pass. Independent review reproduced11 frozen-source outputs and checked116 source-text records/four anchor ranges plus150legacy/9new boundary cases. Six other channel payloads remain byte-identical. Current numeric/pair/compact queries return claim35/root01a08703 first, with40/54 retained as dated history; UET-only returns35. Parent separately ran both test scripts and the original failing current query against the exact final code. Separate user-task/browser acceptance remains pending. Source: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-session-context-and-browser-isolation/compact-ms-uet-context-repair-20260914.json; compact_id_parent_acceptance_20260914_1032.json. No business write, new harness or ownership transfer.
+
+- September14 / CTX-ACTION-DATE-20260914-0643: SOLVED_LOCAL_VERIFIED action-date subdefect; broader browser acceptance remains pending. Changed parent action identifiers reproduced the exact new date-only Microsoft-to-Google claim with current-source JSON SHAddf8b163f1a5b5890fb22594b1f2801878c54fcae4253ddb7ddd28344cc9e324. The relationship helper now discounts calendar-valid untyped date components of named compound identifiers; raw extraction, explicit selection, complete identifiers and receipt recency are unchanged. Six frozen failures corrected; all24focused tests and unchanged10compatibility groups pass; original21test methods preserved. Seven frozen-source channel probes preserve all task fields, owners, goals, authority and retained claim dates. Five removed relationships were solely date-based; Analytics, Shopify, X and Pinterest full outputs are byte-identical. Current-source/independent/strict results and explicit interval release are bound in action-date-context-repair-20260914.json. Earlier completed repairs, peer ownership, parent integration, protected business state and browser-acceptance question remain intact.
+
+- September14 / CTX-MS-CLAIM-20260914-0243: SOLVED_LOCAL_VERIFIED Microsoft-context subdefect. Before brief SHA9a94bfb15f97c6a60c9b9d34ee6c00af26b0fffabb3fd97ae1be47ac99c6b06c reproduced mixed-parent Google identity leakage, Microsoft-mailbox scope and compact-receipt recency errors. Microsoft now retains only its justified operating owner while the mixed receipt remains evidence. Initial independent review caught a real Analytics receiver relationship removed by the first guard; the existing bounded matcher now recognizes exact Purchase receiver identities, preserving that dependency without reintroducing mixed metadata. All21focused tests, unchanged10compatibility groups and seven frozen-source channel preservation probes pass; original15test methods unchanged. Independent PASS_WITH_LIMITS includes111source-line checks. Exact scope, conflicts, selector ambiguity, entity intersection, prior X/date repairs and paid NONE/false preserved. Current-source/strict results and explicit shared-interval release are bound in microsoft-claim-context-repair-20260914.json. Broader separate-task/browser acceptance remains pending; the overall problem status below is unchanged.
+
+- Priority P2; status IMPLEMENTED_LOCAL_VERIFIED__SEPARATE_TASK_ACCEPTANCE_PENDING; owner root01a090d4. Scope: project-local context retrieval and background routing; no live platform, auth or global configuration changes.
+- Original symptoms: bare channel continuation probes were ambiguous or empty; numeric identifiers could miss compact current metadata and select older records. Independent tasks also competed for personal/native browser access.
+- Fixed local criteria: six channel inventories recover sourced goals, current owners/tasks, completed work, remaining gates/steps and relevant evidence. Startup uses the compact brief; old claims remain separately referenced, newer same-entity evidence is flagged, and account sharing is not mistaken for same-task ownership. Retrieval grants no external authority or transferred claim.
+- VERIFIED: original10assertion-group holdout unchanged;9new tests pass on bundled and systemPython3.9.6; four requested actual CLI briefs pass;80source text/line checks. Independent PASS_WITH_DOCUMENTED_BOUNDARIES; all final implementation hashes stable.
+- Initial browser attempt: root20iterations/reload passed; peer surface unavailable after its turn, including targeted reacquisition and fresh creation after reset. No native/personal fallback. Cause remains UNKNOWN.
+- Later VERIFIED: fresh continuous rootShopify60 and peerMerchant40 synthetic iterations, every own lane/value/count checked;38.219seconds overlap; both reloads retain their separate state; both owned tabs closed. Independent10receipt-consistency checks pass. This demonstrates two-agent background concurrency, not account authentication or a guarantee across turns.
+- Remaining criteria: separately created user-owned Codex tasks and authenticated business surfaces require their own acceptance; cookie/profile isolation, personal desktop observation and sleep/remote operation were not tested. One explicit temporary-task creation question is pending; no repeated question or paid runtime setup.
+- Source limitation: exactShopify15571635 query exposes existing invalid task_stage prose in September10 Merchant anchor; fails closed, while bareShopify inventory succeeds. Preserve peer historical records and reconcile from current sources; do not silently accept invalid metadata or replay old work.
+- September 12 local follow-up: the plain X operation task label is now recognized, and dates embedded in untyped resource names no longer establish inferred task/claim relationships by themselves. Four X continuation failures and five date-relationship failures were frozen before their respective repairs. Genuine account IDs, exact resource paths, explicit numeric selectors, existing owners and paid NONE/false remain supported. Current continue X returns TA-24 and the justified X claim; the unrelated Couples relation is absent. The original claim of a duplicate canonical TA-24 was incorrect: Couples source contains TA05, while the false relation came solely from filename date20260911. Preserve the first receipt and its explicit correction in the second receipt. Evidence: x-operation-context-repair-20260912.json and x-date-relationship-repair-20260912.json in the same packet. Broader separate-task/browser acceptance remains pending.
+- Evidence: 2026-09-11-session-context-and-browser-isolation/READBACK.md; validation.json; independent-review.json; browser-test.json; browser-continuous-test.json; browser-continuous-review.json. Baseline failures and rollback limits retained. Anchor2026-09-11-session-context-and-background-browser-verification.
+- Next: after the owner's explicit request, run the same localhost acceptance in two separate temporary Codex tasks, then archive them. Continue safe local/API work if a background lane is unavailable; preserve existing business owners and exact authority.
+
+## PROB-2026-09-11-MINIMALIST-HEART-PRICE-OUTLIERS
+- September11 receiving closeout: LIVE_VERIFIED September11 19:45:38UTC: one Update fetch on the existing Merchant513542500 source10727274744 received the corrected US file. Google update-history download is byte-identical to the authorized hosted file: SHA6ce4404257af85366ba6e280fe5efc9da65b16d0125d8ebf16f86e68ff5be4a5,17,166,442bytes,4,923rows and exact IDs. All five Adult2XL White/Blue/Pink/Black/Red effective Google records were individually read at22.99USD, In stock, PRODUCTS SOURCE3 and the19:45:38UTC product-update timestamp. Native latest-update counter0/new0 is preserved as reported; downloaded-file and effective-record proof establish the result. Source URL, US/en/US label, Free listings and daily12AM schedule are unchanged. Evidence: price_correction_approved_20260911/google_price_receipt_20260911.json and google_received_us-en_20260911_194538.tsv. No repeated Shopify repricing, source creation or manual Google price override. Independent Google received-file review14/14PASS, google_received_independent_review_20260911.json SHA8aab91eaa89cc2596dcf086409313d4544b12b628a06cbc99da5d454cdd52b5b; reviewer did not execute repair/deployment/Google update/download. Operator individual-price readbacks remain separately evidenced. Anchor2026-09-11-merchant-google-price-receipt-ca-gb-prepared-au-buyer-gated.
+- AU local follow-through, September 11: September 11 AU source completed 18:53:09 UTC: the existing local au-en candidate is rebuilt and verified from fresh Shopify AU contextual pricing. The 240 ACTIVE parents / 4,945 variants produce 4,923 available offers; 22 unavailable variants are omitted. Exactly five Adult 2XL prices for product 7230336729185 changed from 325308.00 AUD to 33.00 AUD. The other 4,918 feed rows, all 18 columns, IDs, order and nonprice fields are unchanged; 4,940 other source variant records are unchanged. Complete pagination, active AU market/catalog/publication, English, AUD, variant links and paid Shopping exclusions pass. Local reconciliation 33/33, focused feed tests 25/25 and unchanged-query schema validation 5/5 pass; independent review PASS 21/21; five AU contextual prices independently read at 18:59:28 UTC. Current local TSV SHA d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843, 17,284,594 bytes. The old five-file candidate remains frozen under international_candidate/before_price_correction_20260911/. No Google AU source, upload, R2 pointer, runtime, credential, Shopify product or account change occurred. Google receiving/approval and full live AU buyer-route verification remain separate gates. Existing warnings remain: 4,798 unknown identifier declarations, 180 missing age groups, 1,027 missing colors and 192 missing genders. Evidence: direct-feed-deployment/international_candidate/au-en.price_rebuild_validation.json and au-en.corrected_price_independent_review.json. AU anchor: 2026-09-11-merchant-au-local-feed-corrected-prices-verified. The existing problem remains ACTIVE_VERIFYING for Google revised-price receipt; source repair is not repeated.
+- September11 17:12–17:21 outcome: exact owner confirmation received; Merchant01a08706 executed once and independently verified5pricefields229918.99→22.99. Source40of40PASS preserves other70variantrecords/9publications/6source-contentdigests except expectedtimestamps. Public5of5offers22.99USD/InStock and MAINrange/selection verified. Full4923-rowfeed rebuilt;12of12independent byte/row checks prove onlyfivepriceschanged. ExistingR2object/pointer updated/fullreadbackverified; source10727274744 revised-price receipt NOTVERIFIED. No source reapply, newprice question, automatic broken-price rollback or claimGooglepolicycleared. Evidence: direct-feed-deployment/price_correction_approved_20260911. Anchor2026-09-11-merchant-five-prices-fixed-and-hosted-feed-refreshed.
+- Priority/status: P0 / SOLVED_VERIFIED. Exact five Shopify prices, published prices, hosted feed and Google receiving/effective product records are verified. Account policy review and international release remain separate.
+- Owner: root01a08706 completed exact source repair and owns downstream publisher; root01a08223/order_delta_1934 and together_heart_source independent reviewers.
+- Surface/symptom: product7230336729185 has five Adult2XL prices229918.99USD in fresh Shopify and the frozen USfeed. Published MAIN White sample41883237220449 and visible product range reproduce the extreme price; the other four public pages were not separately checked.
+- Business impact: misleading public pricing and five unusable advertised offers; no lost order or Google-restriction cause is inferred.
+- Definition of fixed: exactly five source prices22.99USD, all70otherprices and queried nonprice/source/publication fields preserved; independent source read and published price/JSON-LD check pass; Merchant's existing scheduled feed consumes the corrected source and receiving receipt is verified.
+- Attempt: September11 16:05UTC current75variant read12checksPASS; public MAIN sample/range verified; independent frozen4923row review13checksPASS identified exactly five outliers. April29/May6 exact IDs were18.99, as were all40adults; current35otheradult variants22.99. Actor/cause/current prior intent UNKNOWN.
+- Prepared decision before the rejected attempt: propose22.99 to match the entire current adult price group, including larger sizes. Independent37/37prepared reviewPASS initially interpreted the September6 later-repair authority as sufficient. The subsequent action-time rejection controls current execution; exact price approval is now required and the one question remains pending.
+- Preflight: September11 16:18:27UTC full75variants/9publicationrelationships/6source-contentdigests captured; fresh identical-source check required immediately before mutation. Individual translation values are not queried; no full translation replay claim.
+- Ruled out: no feed-only price override, guessed historical restoration, full-product repricing or automatic restoration of the broken price. No attribution of cause to a person or parser.
+- Action-time outcome:16:22:16UTC10driftchecksPASS;16:22:33automatic approval review rejected the exact five22.99mutation before execution, requiring fresh exact owner price approval. This observed gate supersedes the earlier general-authority interpretation. No retry/workaround;16:23:18full75variant/9publication/6digest manifest unchanged.
+- Current next action: none for the five-price repair; preserve corrected prices and do not reapply. Continue separate AU live buyer/submission and account-review gates. Prior receipt-pending/rejection/manual-handling statements in dated entries below are superseded history.
+- Gates/parallel work: current exact source and platform gates remain; full-paidNONE. Pinterest native tracking and Merchant public-market/credential-approved lifecycle work continue. No execution of UX's rejected shared-record plan.
+- Evidence: public_landing_diagnosis_20260911/price_correction_proposal.json, price_execution_before.json, public_readback.json, feed_contract_review.json, price_provenance.json, price_proposal_independent_review.json; decisionDLM-DEC-2026-09-11-MINIMALIST-HEART-PRICE-CORRECTION; TA-23.
+
+## PROB-2026-09-10-TOGETHER-HEART-ARABIC-CHILD-SELECTOR
+
+- Priority P1; status IMPLEMENTED_PREVIEW_VERIFIED__PUBLISHED_ACCEPTANCE_PENDING; TA-22; current UX owner01a088c3, candidate137888792673.
+- Public Arabic TogetherHeart shows only adult role/seven sizes although98variants and14source rows exist. Role parsing in assets/product-desktop-ux-20260513-ruler-sync.js misses للأولاد; SKU fallback omits KID, causing all49child offers to be dropped.
+- Historical independent12-check diagnosis binds MAIN and candidate source; failure occurs before/after the measurement correction. Isolated observed-alias counterfactual restores two49offer groups/two7row guides. This is source diagnosis, not a deployed repair.
+- Fix criterion: grounded exact classifier repair, all98offers reachable with Child/Adult, matching7size groups, unchanged prices/table cells/other locale holdouts; independent candidate and published buyer readback. No product/variant translation rewrite.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/runtime_diagnosis.json and public_discrepancies.json. Existing UX owner accepted repair. Parent integration and independent review are complete; no ongoing parent canonical lease is retained. Explicit handback follows final checks.
+- V6: grounded alias and bounded KID repair staged in the same preview.28production-script regressions verify all98offers/140sourcecells and all20other locale outputs; two7-row guides restored. Actual child age2/white reached cart atUSD24.99 with original46512187113569; audit item removed and cart0 verified. Mobile child age9–10/green and adultS/white pass. Source/after readback preserves525other preview files and MAIN/predecessor. Published buyer acceptance remains pending through TA-06. Evidence: 2026-09-10-storefront-ux-pagespeed/localized-pdp-v6/READBACK.md; browser-after.json; selected-guide-recheck.json; anchor2026-09-10-storefront-localized-pdp-v6-preview-verified.
+
+## PROB-2026-09-10-PDP-JAPANESE-COPY-STRIPPED
+
+- Priority P1; status IMPLEMENTED_PREVIEW_VERIFIED__PUBLISHED_ACCEPTANCE_PENDING; TA-22; current UX owner01a088c3, candidate137888792673.
+- Correct saved Japanese TogetherHeart paragraphs become Together。。 /11。。。 /、、、。。 publicly; repeated04:15:36UTC in a second normal MAIN tab and screenshot. All140table cells remain intact.
+- snippets/pdp-description-copy-cleanup.liquid defines Japanese/CJK ranges and stripVendorLanguage removes them in paragraph rewriting without a locale guard. Independent pure-function reproduction matches the exact public output; source bound to MAIN and currentUX candidate.
+- Fix criterion: preserve all three approved Japanese paragraphs and table cells; retain known vendor/source-token protections in applicable non-Japanese holdouts; independently verify exact current candidate, then published Japanese page. Source/body rewrites are not appropriate.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/runtime_diagnosis.json, public_checks.json, public_discrepancies.json. Full multilingual buyer acceptance remains open.
+- V6: four-line native ja/zh/ko guard preserves explicit vendor/admin cleanup. Frozen fixtures improve6fail/8pass to14pass. All3Japanese paragraphs and140source cells render unchanged before/after size/fit interaction;390px visual copy/overflow and EN/FR/KO holdouts pass. Root performed browser actions; independent receipt review is not a second browser replay. Published acceptance remains pending through TA-06. Evidence: 2026-09-10-storefront-ux-pagespeed/localized-pdp-v6/READBACK.md; browser-after.json; independent-after-review.json; anchor2026-09-10-storefront-localized-pdp-v6-preview-verified.
+
+## PROB-2026-09-10-STOREFRONT-UX-PAGESPEED
+
+- Priority P1; status IMPLEMENTED_PREVIEW_VERIFIED__OWNER_PUBLICATION_PENDING; owner root01a088c3. Exact own theme137888792673 DLM UX Performance QA 2026-09-10 remains UNPUBLISHED; MAIN133290917985 remains MAIN and combined137881223265 remains UNPUBLISHED, both unchanged.
+- Supplied September9 20:43EDT PageSpeed: desktop96/95/92/100 and mobile82/92/92/100, laboratory LCP1.3s/4.4s. Mobile origin field assessment passed (LCP1.7s, CLS0, INP unavailable); desktop field data unavailable. No perfect-site or conversion-lift certification.
+- Implemented16 existing theme-file repairs over combined: mobile full-cart-footer overlap, desktop facet click-through, stale cart-heading count, predictive-search async handling, image sizing/duplicate requests/deferred hidden slides, contrast/heading/control accessibility, source-caption filtering, locale-preserving links/default labels and malformed Danish footer headings. Only3DA locale values changed. V6 adds exact Arabic child-role/SKU and native Japanese-copy repairs. Consent, other source files and other owners' drafts preserved.
+- VERIFIED:527file final source readback at2026-09-10T04:38:52Z; expected mismatches0, MAINchanges0, combinedchanges0;16changed/511preserved relative to combined. The complete release differs fromMAIN in59files including2inherited consent assets. Exact cumulative inverse and per-stage rollback payloads saved.
+- VERIFIED rendered: desktop1280 andmobile390; Apricotfilter1of118/removal118, cart1→2heading2/53.98USD and2→1heading1/26.99USD, footerbelowitems withnooverlap, normalcheckoutentry, search/menuEscape, hero44pxcontrols/gradient, fitguideunitinteraction, ES/DAactualhero/categorylinks and DA/ES/ENfooterlabels. Testcart0 and cm/viewport restoration confirmed. No payment/contact entry or order.
+- VERIFIED checks:42new Arabic/Japanese production-script regressions, earlier20homepage/search/cart regression tests,8footer source/locale contract fixtures, full527-file Shopify ThemeCheck0diagnostics, candidate/check-copy/hash/whitespace0mismatches. Independent exact-payload/inverse reviewPASS for each staged revision. Contract fixtures are not Liquid rendering; root performed the actual browser checks.
+- New PageSpeed attempt FAILED_TARGET_BINDING: Google ignored preview context and loadedMAINt100/oldtemplate while controlledpreviewusedt105. Its71score/LCP9.2s is neither candidate regression nor improvement evidence. Fresh published-source-bound desktop/mobile run remains required.
+- Separate findings: Together Heart source/recurrence complete; its runtime fixes pass V6 preview and await published acceptance; AmazonPayannouncedunavailable onMAINandpreview, cause/provideracceptanceunverified while normalcheckoutworked. Some localized editorial/trust/footer English fallbacks remain; exhaustive catalog/locale/device certification not performed.
+- Fixed criterion: exact published-theme source/conflict check, affected buyer-flow replay and valid post-release PageSpeed. Shopify connector blocks theme publishing andMAINwrites; ownerAdminpublication is the exact remaining release gate. No publication attempt was made. A detailed cross-task status was auto-review rejected; minimized general status succeeded without repeating the rejected identifiers.
+- Single next owner action: review and publish the complete own UX preview137888792673 after freshMAINconflict checks, because shoppers receive the theme repairs only after release. Preserve earlier Merchant/consent content and do not successively publish older clones.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/AUDIT.md, final-release-manifest.json, final-release-readback.json, final-release-rollback.json, browser-verification.json and final-checks.json. Anchor2026-09-10-storefront-localized-pdp-v6-preview-verified.
+- V6 exact source/buyer/test evidence: 2026-09-10-storefront-ux-pagespeed/localized-pdp-v6/READBACK.md; after.json; browser-after.json; selected-guide-recheck.json. All527 candidate files match uploaded source and the complete checked copy.
+
+## PROB-2026-09-10-TOGETHER-HEART-DERIVED-SIZING
+
+- Priority P1; status IMPLEMENTED_SOURCE_AND_RECURRENCE__THEME_PREVIEW_VERIFIED__PUBLISHED_ACCEPTANCE_PENDING. Product7672336646241/together-heart-family-matching-sweaters; root01a08223 exact product writer complete.
+- September10 03:55:41–03:56:57UTC primary+20bodytranslations saved.588unsupported hip/waist cells become unavailable;2352other cells and56original local measurements preserved.98variants,11publication relationships,80othertranslations and returned non-body business fields unchanged.200independent/136root checks pass; canonical0missing/0planned/0errors and1960mapping checks pass.
+- Product-specific JSON/runner and active body/CSV synchronized.72runner/64independent and21backup/12root checks pass; historical sweatshirts aliases preserved as superseded, never rerun/imported. Shared listing prompt unchanged; no invented measurements.
+- Public21tables pass.19copy versions exact, French-only spacing accepted, Japanese native prose stripped by existing theme. Arabic independently hides49child offers. Both defects reproduce with checksum-matched MAIN/UX code; Arabic fails before and after this repair. They are assigned to current UX owner, not grounds for rewriting source translations.
+- Fixed criterion remaining: current UX owner releases and verifies Japanese description runtime; keep separate Arabic selector problem through its own criterion. No repeat source mutation. Source repair is complete; full buyer/render acceptance is not.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/READBACK.md, postwrite_review.json, runner_independent_review.json, public_discrepancies.json, runtime_diagnosis.json. Anchor 2026-09-10-ceo-turnaround-together-heart-source-repair.
+- V6 update: Japanese description and Arabic child-selector theme repairs now pass in the existing unpublished UX preview. Original source repair and recurrence evidence remain unchanged; do not repeat product writes. The remaining criterion is published buyer acceptance through TA-06. Evidence: 2026-09-10-storefront-ux-pagespeed/localized-pdp-v6/READBACK.md.
+
+## PROB-2026-09-11-PINTEREST-PROFILE-COPY
+
+- Priority P2; status BIO_FIXED_VERIFIED__NATIVE_LINK_SCHEME_LIMIT; owner root01a08704; TA-25.
+- Correct account live-verified. Exact249-character factual bio saved once and read back on a fresh public profile; unsupported claims removed. Preserved name/username/avatar/badge/Instagram/boards. No duplicate Save.
+- Native Website URL is a select of verified hostnames, selected www.dresslikemommy.com; no scheme input exists. The public profile href remains HTTP while Shopify primary claimed-website href is HTTPS. No website claim/account switch or unsupported protocol fix attempted. Do not keep asking for account connection or reapply the bio.
+- Evidence:2026-09-09-pinterest-expert-audit/NATIVE_SUBMISSION_EXECUTION_20260911.json; NATIVE_SUBMISSION_REVIEW_20260911.md; anchor2026-09-11-pinterest-native-schedules-and-profile-saved.
+
+## PROB-2026-09-11-PASTEL-IMAGE-PROPORTION
+
+- Priority P2; status PIN_SOURCE_EXCLUSION_VERIFIED__PRODUCT_MEDIA_RECONCILIATION_OPEN. Pinterest root01a08704 owns creative exclusion; any product-source change remains with its qualified product owner.
+- Exact current product7536086089825 lifestyle and child flat-lay depict materially different skirt-to-bodice proportions. Pictured sizes are unknown, so size variation versus generated-image inconsistency is unresolved. No physical fit defect or buyer injury is inferred.
+- P3/P6 use only the reviewed lifestyle source; the child flat-lay is excluded. Do not recreate hidden garments or silently remove/change Shopify media. Resolve using exact source-backed garment/pictured-size evidence before promoting physical consistency to verified.
+- Evidence: 2026-09-09-pinterest-expert-audit/PASTEL_SOURCE_RECOVERY_20260911.json; PASTEL_VISUAL_SOURCE_REVIEW_20260911.md; P3_P6_INDEPENDENT_REVIEW_20260911.md; anchor2026-09-11-pinterest-content-batch-and-background-access.
+
+## PROB-2026-09-09-PINTEREST-MEASUREMENT-ACCEPTANCE
+
+- September14 fresh native diagnosis supersedes only the earlier detailed health interpretation: same correct advertiser, Last14days updatedSep12, Tag and CAPI Fair. Tag AddPaymentInfo Product ID has100% coverage but explicitly Low Product ID match rate; SearchQuery70%. CAPI AddPaymentInfo ProductID0% and SearchQuery0%. Coverage does not prove matching catalog IDs. Exact sample IDs, numeric match rate and managed-integration cause remain UNKNOWN. One low-catalog-match download timed out after10seconds with no file receipt or new tab; no retry, sample/PII read, consent change, fake event, reinstall or account write. Next obtain the supported affected-ID sample and join against the correct current catalog before a repair; independent organic work proceeds. Existing consent/restoration/genuine purchase and full-paid gates persist. Evidence:2026-09-09-pinterest-expert-audit/DAILY_TRACKING_READBACK_20260914.json; anchor2026-09-14-pinterest-daily-operator-active.
+
+- Current September11 native checkpoint supersedes earlier account gates: correct Pinterest and Shopify authenticated IAB verified. Current authenticated Shopify Pinterest app3009811 confirms tag2620007050621 and automatic Tag+CAPI setup. AEM is already enabled, all options selected, inspected then Cancel. Customer events has Server/Web and Always on data access, with required marketing+analytics and sale-opt-out exclusion; no privacy selection changed. Last30days receiver totals include15099PageVisit/339AddToCart/10Checkout, latestCheckoutSep6; these are aggregate platform events, not genuine attributed purchase proof. Same Last14days/updatedSep10 detailed Tag and CAPI are Fair despite hub Good setup. AddPaymentInfo ProductID is100%Tag versus0%CAPI; SearchQuery62%Tag versus0%CAPI. CAPI ClickID0% across seven events does not establish missing-click transport without a genuine eligible referral sample. Old callback/consent conflict and cleanup uncertainty remain; no new consent/configuration change. Evidence:2026-09-09-pinterest-expert-audit/TRACKING_LIVE_READBACK_20260911.json; anchor2026-09-11-pinterest-native-schedules-and-profile-saved.
+
+- September11 update supersedes the prior access/next-Test checkpoint: native Shopify Pinterest app connection, Server/Web, Always on and required marketing+analytics/sale-opt-out declarations verified. Official helper green page/product callbacks and21.99USD product input are local proof only. Consent is CONFLICTED: After Decline, fresh navigation initially showed awaiting consent, then Loaded appeared without a verified transition after automatic review rejected Give consent. No retry/bypass; one exact temporary test-consent question pending.
+- Two user-changed-app interruptions stopped native actions. Test tab open/cart0 last verified/stored consent unknown/cleanup incomplete. Native returned to Merchant once user activity permits. Verify a visible restoration path before any future approved grant. Tag14d AddPaymentInfo Product ID remains unread; current receiving/purchase/catalog proof unchanged. No new production setting or theme write. Evidence: 2026-09-09-pinterest-expert-audit/SHOPIFY_PIXEL_NATIVE_20260911.json; anchor2026-09-11-pinterest-pixel-callback-and-consent-conflict.
+
+- Priority P1; status MANAGED_INTEGRATION_DIAGNOSIS_REQUIRED. Owner root01a08704; TA-12; advertiser549756244483/tag2620007050621/pixel22577249/catalog3041764155561548387.
+- September10 native VERIFIED: detailed Tag/CAPI Fair in1d/14d windows, updatedSep9. CAPI14d AddPaymentInfo Product ID0%; Checkout/ATC/InitiateCheckout100%; PageVisit28% with good health. Click ID0% across seven events. Enhanced match already enabled with all displayed options selected. Coverage is not actual catalog match or a genuine-order deduplication result.
+- Source mapping exists;11 extracted-handler checksPASS. Null variants and absent genuine epik are possible inputs, not proven causes. Tag AddPaymentInfo exact Product ID percentage remains unread. No duplicate tag, reinstall, synthetic IDs or consent weakening is justified.
+- Catalog all24sources listed;4old invalid-GTIN examples now barcode=null and10stock exclusions correctly unavailable. Japanese277-warning summary versus empty detail table CONFLICTED. Old source3041760916127467912 paused once and reloaded; source/history preserved, replacement coverage unknown.
+- TA-11 Pin343118065387544334 publication and board correction completed with persisted saved/public/clickthrough checks; no new sales or acquisition is inferred. The previous Ready/10minute gate is superseded. Later native clicks failed twice noWindowsAvailable; System Settings read later succeeded. Chrome released to Merchant with no unsaved form. No missing permission or Mac-lock cause inferred.
+- API read_pixels/read_privacy_settings remain unavailable; no scope expansion or secret inspection. Consent stays in UNPUBLISHED UX137888792673; actual managed Arabic dialog and receiver consent remain open.
+- Fixed criterion: supported cause/correction identified and read back; actual catalog-ID match, genuine order counted once with matching identity/quantities/discounts/purchased-item value/currency, receiver consent and real click continuity verified.
+- Next: resolve exact temporary consent QA authorization and verify an ordinary restoration control, then execute NEXT_TRACKING_TEST_20260911.md against a fixed session/theme. Additional Google destinationAW18433316477 is an observation/preservation input, not a new approval gate. Current ordinary homepage/privacy-policy sample exposed no visible restoration control; coordinate that exact control with UX before consent QA. Never retry the rejected Give consent by another method. Managed server payload, genuine order and catalog acceptance stay open; native Tag14d AddPaymentInfo ProductID is now read at100%. Partner packet remains NOT_SENT; no payment/fake event/spend.
+- Evidence: NATIVE_HEALTH_20260910.json, TRACKING_MAPPING_REVIEW_20260910.md, CATALOG_RECONCILIATION_20260910.json, RESUMED_VERIFICATION_20260910.json; anchor2026-09-10-pinterest-organic-release-and-source-repair.
+
+## PROB-2026-09-09-CONSENT-PREFERENCES-CONTROL
+
+- September11: MAIN133290917985 and UX137888792673 roles refreshed; no theme write/publication. New native Pinterest test final consent state is UNKNOWN after an unexplained awaiting-to-Loaded transition and two user-changed-app stops. Test tab remains open; cleanup incomplete. Prior preview grant/revoke proof below remains dated, not a pass for this session. See 2026-09-09-pinterest-expert-audit/SHOPIFY_PIXEL_NATIVE_20260911.json and anchor2026-09-11-pinterest-pixel-callback-and-consent-conflict.
+
+- Priority P1; status IMPLEMENTED_COMBINED_PREVIEW__OWNER_PUBLICATION_PENDING. Root01a08704 original consent source owner; consent_fix builder; consent_diagnosis independent; UX01a088c3 owns current combined release137888792673; Merchant137881223265 is its preserved predecessor.
+- Proven original defect: MAIN suppressed Shopify preferences; no visible footer reopening control. The preserved consent-only draft137880666209 contains39 reviewed files: two selector-list edits, footer control, CSS/JS and two keys across35 existing locale files. Prior28 tests and Theme Check zero offenses passed, alongside actual open/close, keyboard focus, deny/reload/reopen, grant/revoke/reload and desktop/mobile label checks. CSS correction passed at10.84 contrast,14px text and44px target.
+- Integration is preserved in current UX UNPUBLISHED137888792673; the predecessor Merchant137881223265 source and20 bounded cases remain dated evidence. Current V6 source and42regressions are recorded by the UX integrator, who owns fresh conflict checks and owner Admin publication. Do not publish older clones; connector MAIN/themePublish restriction remains binding.
+- Managed Arabic privacy dialog remained English. Arabic is absent from Shopify's professional default translation list, but actual banner translations/settings could not be read because the connector lacks read_privacy_settings. Inspect Cookie banner Localize after proper access; do not assume theme key coverage or forced SDK locale fixes managed content.
+- Source repair and preview proof do not certify complete receiver consent suppression, CAPI identity/value or all locale/market journeys. September10 root made no consent/cart mutation; Google task owns its separately recorded test and restoration. Original root session ended optional-consent declined, not blank-restored.
+- Evidence: CONSENT_RELEASE_HANDOFF.json, CONSENT_RUNTIME_QA.json, CONSENT_CSS_V2_AFTER.json, CONSENT_INDEPENDENT_REVIEW.md, evening acceptance review and Merchant release receipts. No new theme write or publication in this continuation.
+
+### PROB-2026-09-09-GOOGLE-TAG-MIGRATION
+
+Priority: P1. Status: SOLVED_READBACK_PASSED for saved tag configuration and identified duplicate cleanup; wizard progress remains CONFLICTED/non-actionable. Owner: root01a086fc; independent tag_cleanup_verifier. Surface: Google & YouTube, GA4 G-N4EQNK0MMB, custom111181921.
+Original symptom: migration warning; first saved migration stopped at wizard2/3 while Chrome controls failed and legacy GA4 stayed connected. Earlier evidence/attempts remain in the linked receipt; the former browser-access and duplicate-cleanup blockers are superseded by this resumed execution.
+Definition of fixed for this scope: supported app tag remains saved, only the freshly matched duplicate is reversibly disconnected, status persists, and replacement dispatch survives a new page load. All passed. Genuine purchase/receiver/custom-field accuracy remains distinct TA-02 acceptance.
+Resumed September9: fresh Chrome binding and normal Exit Full Screen restored control. App tag saved with Save disabled; prior custom111181921 connected to same GA4 and Analytics-required. Tag Assistant explicit default and hit consent were read; reviewer PASS_WITH_GATES. Root confirmed the normal Disconnect dialog once; toast Pixel disconnected, Connect control and retained source verified. Customer events full reload showed legacy grayWeb, Ads111214689 greenWeb and Google app greenServer/Web; all eight entries retained. No pixel code saved or deleted.
+Replacement check: one homepage reload produced a separate new Tag Assistant page group and exactly one page_view hit to G-N4EQNK0MMB at analytics.google.com/g/collect, Shopify page_viewed marker, G111, event29HistoryChange. Browser dispatch is verified, receiver ingestion is not. No purchase or payment generated.
+Final interface: loaded Overview has no migration notice. Reopened wizard displays1/3 plus No tags to migrate at this time, with Migrate disabled; no final acknowledgement exists in that readback. Counter discrepancy retained without inventing a cause or forcing another migration. Independent final PASS is limited to configuration and exact duplicate cleanup. Tag Assistant stopped, no active domains; native lease released.
+Current next action: TA-02 retained GA4 report receipt after stable account access, then transaction/value/currency/items reconciliation for the first genuine post-cutover purchase. Current bounded consent findings are below; legacy custom-field/value acceptance remains open. The granted test state does not prove affirmative visitor choice; Consent tab discrepancy is retained. No new owner permission or Chrome-reopen request for this completed cleanup; source/Connect rollback remains available if a causal replacement failure is proven. Preserve Ads/Merchant/other claims and full-paid NONE.
+Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-google-tag-migration/MIGRATION_READBACK.md; CLEANUP_VERIFICATION.json. Anchor: 2026-09-09-google-tag-duplicate-cleanup-verified.
+
+September 9 evening acceptance — September 9 evening / September 10 UTC tracking acceptance: published MAIN133290917985 sent view_item and begin_checkout to G-N4EQNK0MMB with HTTP204. A complete add_to_cart capture contained exactly one event for Mother S variant44047096348769, quantity1/USD39.99; checkout matched that item/value. Product and checkout captures were truncated, so complete counts are not claimed. Initial consent QA was correctly bound to UNPUBLISHED137881223265. Normal Accept all and Decline all persisted; after restoring optional denial and using Exit preview, the complete MAIN reload contained488 network events and zero Google requests. The exact test item was removed and fresh MAIN cart0 confirmed; temporary tab closed. No contact/payment entry or purchase occurred. GA4 report ingestion remains unverified; the final00:44:40UTC Shopify cutoff query found0 orders since cleanup. Item keys sku/variant_id were observed; legacy custom-field and purchase-value equivalence remain unverified. The existing cart-return display symptom recurred on MAIN; Merchant owns the combined draft correction and publication. MAIN lacks the preview Cookie preferences control. Independent review PASS with these limits. Evidence: 2026-09-09-google-tag-migration/GA4_EXPERT_ACCEPTANCE_20260910.md; anchor2026-09-09-ga4-storefront-acceptance-verified. No change to the solved migration scope or historical purchase-parity problem.
+
+### `PROB-2026-09-09-GROWTH-DASHBOARD-RUNTIME`
+
+Priority: `P2`
+Status: `SOLVED_RUNTIME_NATIVE_VERIFIED`
+Owner/session: root renderer/canonical/native UI; live_dashboard_service owns disjoint new service/installer/tests.
+Surface: current local growth dashboard, Chrome test profile, user login service and Dock shortcut.
+Symptom: owner cannot find the saved HTML dashboard and it does not automatically reflect changes between sessions. The previous local UI pass did not install an always-on runtime.
+Business impact: progress/unfinished work is hard to monitor; dashboard freshness and task evidence freshness must be distinct.
+Definition of fixed: stable loopbackURL, source-change refresh and visible connection/error status, recent source-backed handoffs, service running under login/restart supervision, pinned nativeChrome test tab and convenient Dock entry, independent/local/native readbacks.
+Attempt: nativeChrome test inventory and local dashboard navigation now succeed; previous generic desktop-lock finding is superseded for this current UI scope. Existing account/private pages left unchanged. Port8767 has no listener. Source before-state is /tmp/dlm-live-dashboard-20260909.
+Ruled out: public hosting, broad repo/home serving, a second task queue, inventing running-agent telemetry, or another agent-chat system as a substitute for canonical handoffs.
+Next action: use the persistent live view and update the existing task records at handoff. The Chrome lease is released to the original growth task, preserving the pinned tab and app. Business priority remains TA-06 manual publication, not another dashboard setup.
+Authority/gates: current user explicitly authorizes persistent local app/dashboard. Business-account writes and spend are outside this task; no auth bypass or machine sleep/security setting change.
+Parallel work: bounded service implementation while root handles UI/live-refresh and browser; independent final verification before closeout.
+
+Verified implementation: explicit source/error/connection status;19tasks and2immediate owner inputs; Chrome test pinned liveURL and Dock app; startup/restart LaunchAgent; Chrome previous-session restoration and always-active local exception. Service is loopback/read-only with safe routes. Independent27tests and client7/opener8tests pass; final42focused tests, integration25/25/0risks and strictCONTINUITY_OK pass. A stale Chrome capture/menu was recovered by refreshing the observed control helper; no new owner unlock request. Evidence: live_dashboard_verification_20260909.json; anchor2026-09-09-live-growth-dashboard.
+
+Final readback: new worklog handoff appeared automatically in the existing app at11:38:17 with its owner filter retained; All19 restored afterward. Existing renderer output normalization was moved into the shared builder to keep generated service/CLI HTML consistent and remove trailing whitespace. Final independent review PASS. App-specific login opening is not configured; service login startup and Chrome prior-session restoration are verified.
+
+### `PROB-2026-09-09-GROWTH-DASHBOARD-VISIBILITY`
+
+Priority: `P2`
+Status: `SOLVED_READBACK_PASSED` (local dashboard and task visibility only)
+Owner/session: root, 2026-09-09; task_state_review independent read-only reviewer.
+Surface: existing local marketing cockpit, renderer and canonical TA task table.
+Symptom: owner cannot distinguish completed work, remaining tasks, approval, revision and access dependencies. Renderer selects only the first contiguous task table (17 of 19 current tasks), labels a historical score table Live Scorecard, and collapses completion into RED/YELLOW readiness. Older cockpit text conflicts with saved combined-theme release authority and selected Merchant proof.
+Business impact: unfinished work is hard to resume; operational activity can appear to be current business progress. Profit lift is not established.
+Definition of fixed: all 19 existing TA tasks visible with source-linked milestones, remaining/next steps, owner input type and evidence dates; current results distinguish unknown profit from zero; dated history cannot look live; desktop/mobile search, filters, task handoff and reload pass; independent source review and continuity guards pass.
+Attempt: source/table audit and targeted before-state saved under /tmp/dlm-owner-dashboard-20260909. Existing python3.13 launcher is unavailable in this shell; bundled Python3.12.14 is available. Use the existing renderer and runtime, not a second task-state system.
+Ruled out: installing a separate agent platform, duplicating queues, inferring runtime activity from role assignments, new account/spend/publication actions, or treating software benchmarks as ecommerce profit evidence.
+Verification:10focused tests, independent data/authority review and1440x1000/390x844browser interactions PASS. All19tasks appear, exact manual-vs-paid gates remain, unknown results stay unknown, links/reload/continuation work. Duplicate heading and stale-label review findings fixed. Evidence: owner_dashboard_verification_20260909.json in the existing CEO packet.
+Next action: use the existing Needs your input view to resolve shared access, then resume an existing task and regenerate at handoff. Live sales/profit gates are not closed by this local repair.
+Authority/gates: current local UI/organization request; existing paid authority and exact nonspend permissions remain unchanged. No external action.
+Parallel work: independent task-state review while root implements local dashboard; business execution retains its existing queue and gates.
+
+### `PROB-2026-09-06-MEOW-SEARCH-IDENTITY`
+
+Priority: `P1`
+Status: `SOLVED_READBACK_PASSED` (Shopify source identity and21 published document titles verified; Google-selected SERP/crawl/performance remains in TA-19)
+Owner/session: root sole product/canonical writer; September 6 continued growth.
+Surface: Product7533458194529, primary SEO title and20 existing meta_title translations.
+Verified before-state symptom: ACTIVE Meow Star Garden product/handle/variant pattern but SEO title retained Cat Meadow, matching the older public audit and original creation-script mismatch. All20 meta_title translations retained Cat Meadow or a translated equivalent; store brand was also translated. Previous90-day evidence contains one July23 order/two units/USD75.98; no current organic-query or profit attribution is inferred.
+Business impact: inconsistent product/store identity in search metadata on a product with a prior sale. Traffic or sales impact is not measured.
+Definition of fixed: one reviewed primary SEO title and exact existing translated SEO titles identify the same product/brand; API readback verifies targets and preservation of description/body, other translated values and product fields. September9 normal public in-app head checks now verify all21 exact document titles; Google-selected SERP and business impact remain separate.
+Attempt log: exact handle search, dedicated product read and validated Shopify source/locales/100translation-row queries completed; current problem confirmed rather than copied from the old brief. Source receipt meow_identity_before_20260907.json.
+Failed or ruled-out paths: do not assume short-sleeve top and long pants conflict; no garment, material or measurement repair is qualified here. English supplier-facing description wording is outside this SEO-title scope and its existing source/home-caption problem remains open. One exact public Meow URL open returned a non-retryable safety error and was not retried by another route. One fresh normal computer inventory after renewed owner authority again reports Mac locked; no subsequent retry or bypass.
+Resolved preservation incident: first title-only productUpdate unexpectedly cleared the original SEO description; separate readback stopped dependent writes. One reviewed title-plus-original-description update restored the value/digest, but20 description translation flags remained stale. A reviewed40-row registration saved20 approved titles and reaffirmed20 unchanged descriptions with their fresh source digests. Final23 root and32 independent checks prove all21 titles, all80 non-target values/flags, original description/source digest and every other returned product field. All three mutations returned zero userErrors. September8 02:46UTC source/100-row read still matches. Retain both failed intermediate gates as evidence; cause of omitted-description behavior is not generalized beyond this observed path.
+Current next action: submit one exact English Request indexing only after the pending specific approval, then verify receipt and later Google title adoption without repeating the request. September12 native read proves this URL is indexed/self-canonical but its July28 stored crawl and one current Google result still show Cat Meadow; the fresh public English title remains correctly Meow Star Garden. The source problem remains solved; Google adoption is the open TA-19 dependency. Other20 locale results, rankings, traffic and profit are unverified. Evidence: meow_google_crawl_readback_20260912.json; independent saved-evidence/scope review passed and requires exact indexing approval under the current read-only control. September9 all21 public-title proof and its review remain intact. Safe source rollback remains meow_identity_rollback_v3_20260907.json; no source reapplication or rollback occurred.
+Authority/gates: user explicitly authorized reviewed reversible marketing repairs; no ad spending, theme publication or account change. Stop on tool/permission/drift failure; no new generic approval question.
+Parallel work: other existing Google, Pinterest, Microsoft, Facebook and cost tasks keep their saved dependencies.
+
+### Microsoft September12 purchase acceptance and saved paused build checkpoint
+
+TA-15: Native paused preparation is VERIFIED: US506254907/DE506254908, two groups, six Exact keywords, two RSAs and fourteen campaign Phrase negatives, with zero import syncs/deletions and zero errors in both child imports. Correct language, country/presence, MaxClicks0.15cap and configured5/3USD settings saved; DE group English default was corrected to German once. All13campaignsPaused/original11 settings preserved. This clears explicit paused persistence and native cap/inheritance qualification, not actual CPC, editorial approval, regional consent, true purchase/value/currency/dedup or profit. Supported publisher-cookie/app correction, actual costs and exact launch cash/loss remain open. Earlier goal repairs and failed app paths stay dated evidence. Existing4h heartbeat delivered; no repeat imports. Parent theme owner-publication action, fullpaidNONE and peers unchanged. Evidence:2026-09-09-microsoft-ads-rebuild/heartbeat-20260911-2237/READBACK.md; anchor2026-09-12-microsoft-paused-search-build-and-language-repair.
+
+Attempt and falsifier: native group creation defaulted the German group to English. Stop-before-ad review bound one explicit German correction to group1262241151661314; Save/reopen passed and subsequent ads were added only after corrected postflight. An own unchanged US parent inspection form displayed an exit warning; root selected No, obtained independent scope review, then discarded that form without Save and verified the normal saved group page. DE intermediate exit dialog was not observed; no dialog-free claim. Six-row combined-preview limit and stronger pin-metadata limitation are preserved in receipts. No source reinstall or duplicate sender.
+
+### `PROB-2026-09-06-MICROSOFT-PURCHASE-TRUTH`
+
+- September14 receipt subproblem VERIFIED_WITH_LIMITS; full purchase/consent problem remains ACTIVE_SOLVING. Microsoft477439/customer770182/UET36005151 now shows one Custom purchase under selectedSeptember13. The parameter popup exposes GoalValue, Currency, PageType and ProductId names only, with no values or transaction identity. Last Received says7hours ago, but its window and exact UET timezone/timestamp are unproved. Healthy explicitly means no EEA/UK/Swiss events detected in that tooltip, not regional consent acceptance. Accept event receipt only: the exact Shopify USD111.96/four-item order match, payload, sender deduplication, paid-goal acceptance, attribution and profit remain open. Two native export attempts produced no file; the read-only test form produced no event. Do not repeat those unchanged paths. The existing support-contact question remains pending and the addendum remains unsent; no business write occurred. Source: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260914-1044/receiver_readback.json; independent saved-source receiver_review.json27/27 PASS_WITH_LIMITS, without live replay. Current parent full-sales read remains19:04:53UTC; theme137888792673 owner publication and all paidNONE gates preserved.
+
+- September13: completed14Exact/8Phrase native planner studies do not establish useful traffic at USD0.15. US reserve chart0.10weekly in both dated runs; DE Phrase0.08nearcap has no exact0.15 point. Preserve unavailable values, noncausal older baseline, All-languages/presence/strategy and destination limits. Generic consent notice closed without Continue/Save; MSCLKID/UTM settings are not purchase acceptance. Support report remains UNSENT/question pending; no account write/import/enablement/order query. Independent local reviews35/35 and31/31PASS_WITH_LIMITS. Existing consent/purchase/economics blockers stay open. Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0239/READBACK.md and dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/heartbeat-20260913-0639/READBACK.md; anchor2026-09-13-microsoft-keyword-ceiling-qualified.
+
+- September12 14:38:22asset associations/21IDs are PolicyApproved/PinNone; exact8+3copy each and bothPaused ads verified. Two native URLTests find their localized landing pages with one each automatic UTM key; campaignname/adgroup mapping recorded, no duplicate defect reproduced. Independent NO_CHANGE;0Saves. Whole-ad editorial, real paid attribution, consent, genuine purchase/value/currency/dedup, economics and launch remain gated. Support report UNSENT/question pending; parent theme action and fullpaidNONE unchanged. Evidence:2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1438/READBACK.md; anchor2026-09-12-microsoft-rsa-assets-and-url-tests-verified.
+
+- September12 10:38 continuation — standard consent repair remains ACTIVE_SOLVING; outbound support step OWNER_APPROVAL_REQUIRED. TA-15 / Microsoft477439 / UET36005151: the September12 10:38 scheduled continuation verified a fresh standard UET consent-signal gap. A controlled USFL session had effective Shopify analytics=false and marketing=false before and after reload. At10:43:06.879UTC its standard pageLoad request for the exact test URL omitted asc; the native receiver showed three matching test-URL page views with Consent Signal Not present. The public Microsoft wrapper loads bat.js and queues pageLoad; final-action stack was unavailable, so sender attribution uses the observed loading chain and request shape. The truncated network buffer and minute-level receiver matching do not establish an exhaustive capture, one-to-one hit join, isolated app-stream defect or regional purchase failure. Current STRICT pixel931561569 retains its prior version and purpose declarations. No production repair was applied. The independently reviewed redacted support report is prepared but UNSENT. One exact support-contact permission question is pending; existing tracking-repair authority does not authorize sending it. Use the supported publisher path after authorization, then verify denied/granted/revoked behavior and a genuine purchase separately. Do not repeat this unchanged test, app-loading failures, completed imports or purchase staging. All saved campaign/goal repairs remain preserved, full paid scope stays NONE, and the parent One Owner Action remains owner Admin publication of theme137888792673. Evidence:2026-09-09-microsoft-ads-rebuild/heartbeat-20260912-1038/READBACK.md; anchor2026-09-12-microsoft-standard-uet-consent-gap-verified.
+- September14 19:35 completed local decision MS-20260914-TRACKING-REPAIR-CONTRACT: the reviewed purchase contract passes 28 offline tests, including two tests reproducing cross-tab duplicate dispatch and reservation loss. The candidate is rejected for deployment; installed standard pageLoad correction remains unimplemented and a purchase-sandbox defect remains unproved. Continue the supported publisher route only if the one pending contact authorization arrives. No live write or sender was added. Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/tracking-repair-20260914/handoff.json and review_final.json; microsoft_repair_parent_source_review_20260914_1900.json. Existing paid NONE and parent theme action remain unchanged.
+
+- September12: TA-15: Native paused preparation is VERIFIED: US506254907/DE506254908, two groups, six Exact keywords, two RSAs and fourteen campaign Phrase negatives, with zero import syncs/deletions and zero errors in both child imports. Correct language, country/presence, MaxClicks0.15cap and configured5/3USD settings saved; DE group English default was corrected to German once. All13campaignsPaused/original11 settings preserved. This clears explicit paused persistence and native cap/inheritance qualification, not actual CPC, editorial approval, regional consent, true purchase/value/currency/dedup or profit. Supported publisher-cookie/app correction, actual costs and exact launch cash/loss remain open. Earlier goal repairs and failed app paths stay dated evidence. Existing4h heartbeat delivered; no repeat imports. Parent theme owner-publication action, fullpaidNONE and peers unchanged. Evidence:2026-09-09-microsoft-ads-rebuild/heartbeat-20260911-2237/READBACK.md; anchor2026-09-12-microsoft-paused-search-build-and-language-repair.
+
+- September10 02:13UTC / September9 evening: owner said Continue after the saved handoff. One scoped attempt to select existing Google Chrome was BLOCKED_AUTO_REVIEW because private tabs could be exposed and the explicit stable-selected-Microsoft prerequisite remained unresolved. No app content returned, no retry/fallback, and0external changes. The exact selected-tab/inspect-now confirmation is pending; general continuation did not clear the reviewer gate. Preserve the completed source/Coral/campaign work without repeating audits. Evidence:native_access_attempt_20260910_0213.json; anchor2026-09-09-microsoft-native-resume-approval-gate.
+
+- September10 00:37UTC / September9 evening continuation: LIVE_SOURCE_VERIFIED; receiver and native paused stage remain BLOCKED_STABLE_SELECTED_MICROSOFT_TAB_REQUIRED. Public MAIN133290917985 retains APP931561569/UET36005151 and exact audited source hash;47independent saved-evidence checksPASS. Root made0native probes after initial shared automatic-review rejection. A later authorized Pinterest-only attempt found Chrome readable but stopped after2user-driven target changes; it is not Microsoft access proof. Identified unpublished in-app preview,38page/0Network recorder events and unchanged optional choices do not certify or disprove consent delivery. No new Microsoft/Shopify/spend changes. Evidence:consent_and_access_checkpoint_20260910.json and microsoft_consent_assessment.md; anchor2026-09-09-microsoft-live-source-consent-access-checkpoint. Preserve previous measured repairs and pending exact stable-window/checkout questions.
+
+- September9 18:00UTC-resumed outcome: ACTIVE_SOLVING / BLOCKED_USER_FOCUS_CHANGES for current Microsoft receiver/staging. Native477439/770182 is signed in, superseding the earlier isolated sign-in gate below. No Microsoft setting/campaign write; stable10minute Microsoft-tab question pending. Preserve Smart163000100 repair and11pausedcampaigns. Anchor2026-09-09-microsoft-coral-copy-repair-verified.
+- Coral buyer-copy subproblem IMPLEMENTED / VERIFIED:21body fields repaired with unchanged21tables/9variants/80nonbody translations/SEO/status;20body translations current,295independent checksPASS. Internal/source instructions and unsupported fabric/care removed, sold-unit and estimate disclosure clear. EN/ES/DE plus Spanish390mobile rendered. SpanishUS pairMotherS34.99+Child4Y31.99=USD66.98cart verified and cleaned to0. This is paired-cart proof, not order, shipping or profit proof. Root CTA98missing-label candidate is reviewed and handed to Merchant's theme integrator, not live.
+- Renewed checkout-page test BLOCKED_AUTO_REVIEW as purchase staging; exact test lines removed, no workaround. Owner checkout-page-only permission question pending; no personal/payment/order data. Fresh German UETpageLoadHTTP204 untruncated trace confirms transport for36005151; strictworker/purchase/consent remain unverified. Publisher-cookie defect and current receiving-goal reconciliation stay open. Evidence:coral_copy_after.json, coral_rendered_after.json, buy_button_locale_review.md and READBACK.md.
+
+Earlier September9 audit checkpoint (current outcome and access supersession above):
+
+- September9 current checkpoint: ACTIVE_SOLVING; account execution BLOCKED_SIGN_IN_REQUIRED, task01a08703; anchor2026-09-09-microsoft-tracking-source-and-campaign-rebuild. Current APP931561569/source version5ee93563fe31b11d2d65e2f09a5229dc and legacy storefront source both useUET36005151. App purchase subtotal/currency mapping verified offline in10currencies plus2edge cases; live pageLoad collectorHTTP204 observed. Purchase receiver, consent, URL/event overlap and retained-profit proof remain open. The prior source-unknown/hardcoded1 hypotheses are superseded for this exact deployed bundle; historical unit-valued goals remain unexplained.
+- Source defect: independently reproduced malformed msclkid cookie assignment in publisher-managed app.90day localStorage fallback exists, so actual click-ID loss is unknown. Keep both sources pending causal receiver evidence; no extra purchase sender or blind deletion. Supported app correction and subsequent attribution verification required; no publisher message or installed-code change made.
+- Campaign/buyer checkpoint:11localpaused designs/9languages,21groups/147keywords/180negative proposals/21RSAs, current21locale/6market/65country configuration; native stage and paid launch unrun. SpanishSpain/EUR MotherS cart and checkout entry passed, shipping/payment/pair purchase not verified, cart0aftercleanup. English selected-size CTA and internal draft/source text on CoralBlossom7607764287585 make it unqualified for paid launch. Preserve ad construction and semantic-negative review separately from actual platform acceptance.
+- Access/current next: nativeaccount initially11Paused, laterChrome titleonly; normal isolated fallback gives session-expired signin. Owner sign-in request pending for supplied477439/770182, retainedpanel. Once access returns, verify UET/goal receiver and supported app controls, then execute only the smallest independently reviewed correction and stage the qualified campaigns paused. Existing current repair authority persists; no numerical paid scope. Evidence in2026-09-09-microsoft-ads-rebuild/READBACK.md, microsoft_tracking_independent_review.md and campaign_independent_review.md.
+
+Historical September6 checkpoint (preserved; current source/access status is above):
+
+- Status then: ACTIVE_SOLVING. Smart repair and reportcurrency subproblems SOLVED_READBACK_PASSED. Owner: root; anchor 2026-09-06-ceo-turnaround-guide-seo-and-australia-economics.
+- Current source: native Keywordreport CurrencyCodeUSD,87AUrows/71parents/16goalrows/37keywordIDs. Purchases5/value663 onUSD88.72/374clicks; Search75.03/304; Audience13.69/70 with0purchasevalue. These are historicalgoals, not retainedprofit.
+- ExactdresskeywordCPC0.263/0.278 and existingbids0.25 exceed0.15ceiling. Cheaponequery snapshotsnotrepresentative. No newpaidwrite; priorSmartrepair preserved.
+- Current PolkaDot7536988520545 chartderived/unqualified; modeledpaircostUSD33.50 notAUdeliveredquote, contextualpairAUD96. Need originalmeasurements and quantity-specific deliveredcost; addingdisclaimerdoesnotestablishsourcefacts.
+- Purchase retention/payload and currentlaunchqualification remainopen. See microsoft_australia_keyword_purchase_review.json and polka_dot_pair_rendered_review.json. Older currencyUNKNOWN/read-onlyscope findings below are historical and superseded only for this specificUSDreport evidence.
+
+Historical attempts before this currency/keyword readback:
+
+
+- Status: ACTIVE_SOLVING; Smartgoal subproblem SOLVED_READBACK_PASSED
+- Surface: Microsoft Advertising account477439/customer770182, goal163000100, AUcampaign402056810; ChromeTest475224305; TA-15.
+- VERIFIED: Samehistorical Sep6 2023–Sep6 2026 window, Eastern, 284Smart+98event+101URL=483; value0+98+7230.37=7328.37; parent3618.22spend/16027clicks. Per-goal blankcost/click cells use parentdenominatorsonce. AUURL5/value663/88.72spend=7.4729xreported; not currentprofit.
+- IMPLEMENTED/VERIFIED: one direct-owner-authorized SmartInclude flag save17:04:31UTC afterexactindependentreview/freshguard. Active/No in separatelist; exactgoalreopenedcheckbox0, Cancel. Otherfourgoals and11pausedcampaignsettingspreserved,12root/26independentchecks. Immediatehistorical483unchanged; no restatementclaim. Exactrollbackunused. No othertracking/privacy/campaign/spendwrite.
+- Query evidence: first20nativeAUsearchrows, ninepositive mixedgoal counts/fivepositivevalues sum667. Twofirstexactdressintents: matching mummy and daughter dresses (1click/0.13spend/82value); mommy and me matching dresses (1/0.15/71). CurrencyUNKNOWN; oneclickdoesnotprovefutureCPC/ROI. Otherpositivequeries/thresholdedcoverage preserved in receipt.
+- UNKNOWN: distinct retainedorder/URL-event overlap, accountreportcurrency, installedUETpurchase revenue/currencypayload, currentdeliveredcost/otherexpenses and exactlaunchqualification. 98unitvaluedevents do not prove fallback or hardcoded1. Do not delete/change purchasegoals without causal sourceevidence.
+- Attempt limits: native Accountsettings, Billingsettings and readonlyEdit/Cancel didnotexposecurrency. GenericConsentMode notice dismissed withoutContinue or configuration. CSV reportpreparation observed, filecompletionnotverified. BrowserURLpolicy blockedchrome://downloads; no workaround. Supportedvisiblequerytables yielded evidence.
+- Next: Qualify a capped Australian matching-dress test from the two revenue-bearing queries: verify reporting currency and purchase-goal evidence, then bind the exact available dress and actual margin before any launch. Keep independentorganic workmoving. Do not reapplySmartrepair or repeat completedaggregate/goaldefinition reads.
+- Evidence: MICROSOFT_PURCHASE_REPAIR_AND_TEST_CANDIDATE.md; microsoft_purchase_checks.json; exactSmartplan/before/execution/pre/postreviews; breakdown/queryrevenuereceipts; anchor 2026-09-06-ceo-turnaround-microsoft-purchase-truth.
+
+
+### `PROB-2026-09-06-PAJAMAS-GUIDE-SHOPPING-ROUTE`
+
+- Status: SOLVED_READBACK_PASSED
+- Surface: Existing English article559471886433, body only; TA-11/06.
+- VERIFIED: Frozen source hash a45f781b4239d58505bd6ea934c42902a44dd7fcb4e2a8a15b02f2452300652c has two Christmas collection links; normal MAIN destination has0 products. Nightgown anchor links ordinary dresses. The family-pajamas destination redirects to current pajamas22 products; do not infer Dad/full-family assortment. Kids/Babies clauses recommend blanket upsizing, contradicting size-appropriate primary safety guidance. Guide GSC Aug7–Sep3 has223 impressions/0 clicks/13.3 position, not collection traffic or measured lift.
+- Exact repair: Eight uniquely matched replacements in pajamas_guide_copy_plan.json; preserve all other body content, title/URL/publication and all non-body fields. Root sole external writer under current direct owner automatic marketing authority; independent review and fresh before-state required.
+- Implemented and verified: One articleUpdate body-only at16:28:03UTC; fresh guard,19checks including separate exact API and MAINdesktop/mobile all8clauses plus real shopping anchor to22products. Independent pre/postreview PASS; all5,083 untouched bytes/title/URL/publication preserved. Cart0/defaultviewport; rollback unused. Empty collection itself and theme CTAs were not changed.
+- Next: Do not reapply. Measure qualified visits and retained-order contribution; continue accessible Microsoft purchase qualification. Evidence PAJAMAS_GUIDE_TRAFFIC_RELEASE.md; anchor 2026-09-06-ceo-turnaround-pajamas-guide-repair.
+
+### `PROB-2026-09-06-RED-RESORT-LIVE-DRAFT-COPY`
+
+- Status: SOLVED_READBACK_PASSED
+- Priority/owner: P1; root; TA-11/08; exact product7545373130849 descriptionHtml.
+- VERIFIED symptom: current MAIN Red Resort product page visibly says it resolves to a draft and was created unpublished for review, although its current product is ACTIVE and sells a complete tee/skirt set per wearer. This is a confidence problem on the actual organic traffic destination.
+- Exact repair: two source-supported description replacements from red_resort_landing_copy_plan.json; preserve all chart/table bytes and every other product field. Independent exact review passed, current owner auto implementation applies; fresh before-state equality passed immediately before the completed update.
+- Implemented and verified: One descriptionHtml-only update after fresh exact source guard; separate get matches candidate and only descriptionHtml changed. Both corrected clauses visible and old clauses absent on MAIN US/en desktop and390x844 mobile. All table bytes/10 rows/10 headers and other product fields preserved;11 checks and independent postreview PASS. Viewport restored/cart0; no measurement, other locale or sales claim.
+- Next: Do not reapply; follow actual qualified traffic and retained-order results. Evidence PIN_COHORT_AND_LANDING_RELEASE.md; anchor 2026-09-06-ceo-turnaround-pin-cohort-and-landing.
+
+### `PROB-2026-09-06-PINTEREST-CATEGORY-COPY-COHORT`
+
+- Status: SOLVED_READBACK_PASSED
+- Priority/owner: P1; root; TA-11.
+- Scope: existing organic Pins343118065386636481 (Scarlet Ruffle),343118065386636478 (Red Resort),343118065386636463 (Golden Daisy). Previous Created snapshot prefixed these as dresses despite top/separate product names; exact current source/native before-state is required per Pin.
+- Plan: source-check each sold unit; correct only substantiated title/description/alt/board errors under current automatic marketing authority; preserve media, link/UTMs, flags, section and publication. Independent source/copy review, one Save per eligible Pin, separate native/public readback. Hold ambiguous product individually.
+- Implemented and verified: Three Pins each received exactly title, authored description, alt and existing Mommy & Me Matching Outfits board correction. Fresh39-variant source and independent38-check preflight; three Saves total, separate reload/Edit/public24 checks and independent visual postreview PASS. Images, links/UTMs, flags, section and publication preserved. Red/Golden product-derived descriptions remain separate; no catalog or sales improvement claim.
+- Next: Do not reapply. Measure qualified outbound and retained sales; proceed to the source-qualified pajamas buying-guide route. Evidence PIN_COHORT_AND_LANDING_RELEASE.md; anchor 2026-09-06-ceo-turnaround-pin-cohort-and-landing.
+
+### `PROB-2026-09-06-SUNSHINE-PIN-DRESS-TITLE`
+
+- Status: SOLVED_READBACK_PASSED
+- Priority/owner: P1; root; TA-11
+- Surface: existing organic Pinterest Pin343118065386636484, product7545279512673.
+- Verified symptom: normal native Created and Pin views display “Matching Mommy and Me Dresses | Sunshine Stripe Family Matching Tops - Cotton Tee”; its tagged destination is the Sunshine matching-tops product. The dress phrase misstates the product and targets the wrong search intent.
+- Implemented exact repair: title “Sunshine Stripe Family Matching Tops,” separate-shirt description, accurate four-person striped-top alt, and existing Mommy & Me Matching Outfits board. Native description/full-set and wrong-board evidence expanded the inadequate title-only proposal; independent four-field review passed before Save.
+- Fixed criteria passed: one normal Save; separate navigation reload and read-only Edit confirm exact four fields. Public title/board/URL correct; same image, URL/UTMs, flags, section and publication preserved. Cancel verification without Save. Product-derived public description remains separate/older; no catalog-refresh or traffic/sales result asserted.
+- Next: do not reapply; measure qualified outbound traffic and retained orders. Source-qualify the apparent same mismatch on existing Scarlet Ruffle Pin343118065386636481. Evidence sunshine_pin_copy_execution.json and postreview; anchor 2026-09-06-ceo-turnaround-organic-posts-and-copy.
+
 Purpose: track live problems from discovery through attempts, learning, solution, verification, and closure.
 
 Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
@@ -8,6 +401,13 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 
 | Problem ID | Priority | Status | Owner | Surface | Current Next Action | Fixed Criteria | Evidence |
 |---|---|---|---|---|---|---|---|
+| `PROB-2026-09-05-TURNAROUND-CONTINUITY-METADATA` | `P1` | `SOLVED_READBACK_PASSED` | Codex `/root`, September5 EDT | Current turnaround handoff, worklog metadata and durable restart references | Resume from current digest/canonical prompt; maintain the same verification on future material handoffs | Five relevant retrieval cases select the correct anchor; handoff17/17; independent no-chat reader recovers goal, conditional budget, saved support approval/status, local-versus-live boundary and next queue; strict CONTINUITY_OK and integration25/25 pass without evaluator or authority edits | Turnaround `continuity_verification/CONTINUITY_VERIFICATION.md`, before/after compiler and score reports, independent reader report, frozen hashes; final record refresh is rechecked at closeout |
+| `PROB-2026-09-02-AUTOFILL-BRAND-DRESS-FALSE-POSITIVE` | `P2` | `OWNER_APPROVAL_REQUIRED` | Codex `/root`, 2026-09-02 / next Shopify automation maintainer | Shared Shopify import autofill taxonomy classifier; observed on draft `7672336646241` | Owner authorizes a scoped classifier/test change with the exact wording documented below; do not reprocess existing products | Brand/vendor identity cannot trigger garment taxonomy; sweater fixture remains sweater with no dress tag/metafields; genuine dress fixtures remain dress; focused regressions pass; no existing product is reprocessed | Same-session autofill event log, code inspection of `build_taxonomy_blob()` and `infer_custom_taxonomy()`, corrected product API readback, and `AGENT_CONTINUITY_ANCHOR: 2026-09-02-together-heart-family-sweater-draft-localized` |
+| `PROB-2026-09-02-TOGETHER-HEART-TRANSLATION-RETRY` | `P1` | `SOLVED_READBACK_PASSED` | Codex `/root`, 2026-09-02 | Shopify draft `7672336646241` product-owned translations and localized sweater size chart | Owner reviews the completed unpublished draft; no further translation repair is needed unless a fresh audit regresses | Full-product audit has `0` issues across all published locales; localized size charts have `0` missing / `0` planned / `0` errors; all variant-locale rows match; closeout reports `status=passed` | `ops/listings/together-heart-family-matching-sweaters-localization-closeout.json`; before/after retry translation audits; `AGENT_CONTINUITY_ANCHOR: 2026-09-02-together-heart-family-sweater-draft-localized` |
+| `PROB-2026-09-04-SHINE-STAR-TRANSLATION-RETRY` | `P1` | `SOLVED_READBACK_PASSED` | Codex `/root`, 2026-09-04 | Shopify draft `7675091517537`, handle `shine-star-family-matching-sweatshirts`; product-owned translations and localized size chart | Owner reviews the completed unpublished draft; no further translation repair is needed unless a fresh audit regresses | Full-product audit has `0` issues across all `20` published non-primary locales; localized size charts have `0` missing / `0` planned / `0` errors; all `1,120` variant-locale rows match; closeout reports `status=passed` | `ops/listings/shine-star-family-matching-sweatshirts-localization-closeout.json`; targeted-retry audits; final API readback; `AGENT_CONTINUITY_ANCHOR: 2026-09-04-shine-star-family-matching-sweatshirt-draft-localized` |
+| `PROB-2026-09-02-SOURCING-STUDIO-STAGNATION` | `P1` | `ACTIVE_SOLVING` | Codex `/root`, 2026-09-04 | Repo-local persistent Opportunity Scout, date-aware fixed-query planning, 1688 search/detail/scoring, supplier trust evidence, and local listing-prep handoff | Redesign only the `12` weak non-maternity pairs from the first-batch evidence; retain the `3` useful terms as controls and defer the `3` zero-proof maternity terms; do not start another batch without a separate owner request | A future owner-approved validation must materially improve relationship + garment + season title relevance and useful detail nominations while preserving the five-year supplier-context gate plus independent freshness, availability, dropship, rating, dispatch, size-chart, image, category, and IP checks | `AGENT_CONTINUITY_ANCHOR: 2026-09-04-opportunity-scout-first-short-batch-readback`; job `6ee644d83878` completed `18/18` once with `653` cards, `69` combined-intent titles, `0` Verified, `0` Promising, and `1` detail-filtered; only `3/18` terms earned a keep decision; no second batch |
+| `PROB-2026-09-02-FAMILY-SHIRT-CHILD-170-LABEL` | `P1` | `SOLVED_READBACK_PASSED` | Codex `/root`, 2026-09-02 | Nine Shopify family-matching shirt products and their local runner/listing/localization artifacts | No further action for the size-label defect; separately review whether concurrent variant removals on four products were intentional before authorizing any restoration | Zero shopper-facing `Child 170` across all nine public products and local artifacts; every remaining live vendor-`170` / `KID170` variant maps to `Child 14 Years`; all 189 English/localized target chart rows show age `14`, weight `35-42.5 kg`, and height `150-155 cm`; translation, localized-chart, and variant-mapping gates pass | `ops/listings/nine-family-shirt-child-170-correction.json`; all nine localization closeouts; final cohort reports; rendered Sunlit and nine-product public `.js` readbacks; independent verifier |
+| `PROB-2026-07-02-LOCALIZED-PDP-ENGLISH-LEAKAGE` | `P1` | `SUNSHINE_DAISY_ES_VISIBLE_BROWSER_PASS__RAW_REVIEW_WIDGET_SERVER_GATE` | Codex current session / next localized PDP quality operator | Localized Shopify PDPs, product translations, theme locale/runtime copy, review/widget/footer surfaces | Decide whether to treat raw server-rendered Judge.me/review-widget English as an app-setting repair gate or update the public audit to separate raw widget markup from rendered shopper-visible text; then expand the same loop to new/recent listing handles and published locales before publish/paid traffic | Every target localized PDP public route returns `200`, has no unclassified obvious English leakage, no raw translation keys, no `translation missing`, size-chart gates pass, variant-row mapping passes, and browser desktop/mobile readback confirms option picker, matching-set builder, trust blocks, reviews, footer, and product body are localized or explicitly app-gated | Sunshine Daisy ES repaired live: product `body_html` Spanish Admin readback clean, strict size-chart and variant mapping gates pass, server audit reduced `51 -> 6` with only review-widget raw strings, and desktop/mobile browser readback returned `lang=es` with no visible hits for the English phrase list |
 | `PROB-2026-05-13-MOBILE-PDP-SCROLL-TRAP` | `P1` | `SOLVED_LIVE_READBACK_PASSED` | Codex current session | Mobile PDP gallery/info scroll flow on `sections/main-product.liquid`; reported Golden Daisy URL | No further action unless a specific phone/browser still reproduces the content hiding under the gallery after hard refresh | Mobile PDP info wrapper no longer computes as a vertical `overflow: auto` scroll container; it stays in normal document scroll with `overflow-y: visible`, and touch swipes from the gallery advance the page scroll into product info on local and live Golden Daisy readbacks | Local and live isolated mobile browser readbacks on `golden-daisy-mommy-and-me-set`; `shopify theme check --path . --fail-level error --output json` returned `[]`; scoped live push to theme `#133290917985` of `sections/main-product.liquid` |
 | `PROB-2026-05-13-PDP-SIZE-TOOLTIP-RULER-MISMATCH` | `P1` | `SOLVED_LIVE_READBACK_PASSED` | Codex current session | Matching-set PDP size pill tooltip/selected-size panel and inline ruler chart | No further action for this narrow issue unless a specific live listing still shows mismatched tooltip/selected-panel vs ruler data after hard refresh/browser readback | Tooltip/selected-size metrics and the opened ruler selected row now match for the selected role, size, and garment/type; Father/Mother ruler charts no longer include child rows, and Girl/Boy charts no longer include adult rows. Local matrix passed `18/18`; live storefront matrix passed `16/16`; reported swimsuit local/live mobile+desktop browser parity passed; scoped live sync now includes fresh PDP ruler JS/CSS filenames for CDN bypass | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/local_desktop_mobile_role_row_filter_matrix_v3.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/live_desktop_mobile_role_row_filter_matrix.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-ruler-role-row-filter/SWIMSUIT_RULER_LOCAL_LIVE_PARITY_REPORT.md` |
 | `PROB-2026-05-13-PDP-COLLECTION-IMAGE-PARITY` | `P1` | `SOLVED_LIVE_READBACK_PASSED` | Codex current session | Collection product cards and PDP gallery initial media | No further action for this narrow issue unless a specific product/collection still shows a mismatch after cache refresh | A product clicked from a collection card opens its PDP with the same first image shown in the collection card; explicit variant deep links still may honor the selected variant media | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-13-pdp-collection-image-parity/PDP_COLLECTION_IMAGE_PARITY_REPORT.md` |
@@ -19,15 +419,63 @@ Protocol: `ops/PROBLEM_SOLVING_PROTOCOL.md`
 | `PROB-2026-05-14-MERCHANT-SHOPPING-ADS-CAPACITY` | `P1` | `SHOPIFY_REGION_PRUNE_DONE__MERCHANT_FEED_GUARD_STILL_BLOCKED__PAID_COHORT_INTERSECTION_DONE` | Codex current session / next Merchant growth agent | Merchant Center `124884876`; Shopping ads capacity / paid-cohort serving impact | Keep the blocker active for `US/es`: current issue export has `708` over-capacity rows, `359` Shopping ads disapproved rows, and all `53` paid-cohort issue items in the no-write classification packet remain affected by over-capacity. Browser RPC addendum confirms source `10627981690` row presence/status but does not clear the issue/capacity blocker. Owner priority is USA English/Spanish, Canada English/French, GB English, then Europe. Current-session approved Shopify `International` region cleanup removed `52` non-priority regions and reduced the market from `73` to `21`, but the post-prune Merchant RPC export still has `351,007` rows, target CA/GB rows at `0`, and all `199,684` first-pass removal rows present. Saved-export intersection proves current Standard Shopping IDs reconcile to US/en (`767/767`), but all `780` paid-cohort IDs still appear somewhere and non-target groups still contain `51,033` duplicate paid-cohort rows. Do not delete products, build Shopping, repeat a Shopify region-only cleanup, or mutate campaign/product groups by inference | Impact is proven irrelevant to active paid cohort/Standard Shopping, target market feed rows are proven available/approved, or a precise owner-directed Merchant/Google publishing-scope action clears the serving blocker with before/after readbacks and after-export guard pass | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-merchant-post-prune-paid-cohort-intersection/MERCHANT_POST_PRUNE_PAID_COHORT_INTERSECTION.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_POST_SHOPIFY_REGION_PRUNE_READBACK.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/SHOPIFY_INTERNATIONAL_REGION_PRUNE_EXECUTION_REPORT.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-post-shopify-region-prune-export/MERCHANT_SOURCE_ELIGIBILITY_BROWSER_RPC_EXPORT.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_PRIORITY_MARKET_CAPACITY_EXECUTION_GUARD.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-priority-market-capacity-fix/MERCHANT_PRIORITY_MARKET_CAPACITY_FIX_PACKET.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-all-products-export-attempt/MERCHANT_ALL_PRODUCTS_SOURCE_ELIGIBILITY_READBACK.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-source-eligibility-browser-rpc-export/MERCHANT_SOURCE_ELIGIBILITY_BROWSER_RPC_EXPORT.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-us-es-repair-classification/MERCHANT_US_ES_NO_WRITE_REPAIR_CLASSIFICATION_PACKET.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-merchant-shopping-readonly-queue-readback/MERCHANT_SHOPPING_READONLY_QUEUE_READBACK.md` |
 | `PROB-2026-05-14-PAID-LANDING-VENDOR-SOURCE-URL-LEAK` | `P1` | `SOLVED_FOR_CURRENT_PDP_PUBLIC_SOURCE_READBACK__COLLECTION_ROUTES_SEPARATE` | Codex current session / next Shopify theme operator | Active GB/CA/AU exact Search landing PDP and theme vendor/brand analytics attributes | No further action for the current active PDP final URL unless a future readback regresses. Proceed only to authenticated `$0.15` CPC validation for clean-route rows; keep collection-route blockers tracked separately | Live paid landing source shows `0` supplier/source-domain hits for `[source-host-redacted]`, `[source-host-redacted]`, `alibaba.com`, and `aliexpress.com`, and no `data-analytics-vendor="https://` or `data-item-brand="https://` across GB/CA/AU and two header/cache variants | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-paid-landing-post-sanitizer-readback/PAID_LANDING_POST_SANITIZER_AND_COLLECTION_PREFLIGHT.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-marketing-command-layer-live-reconciliation/paid-landing-source-url-sanitizer/LOCAL_PAID_LANDING_VENDOR_SOURCE_URL_FIX_REPORT.md` |
 | `PROB-2026-05-14-CANDIDATE-COLLECTION-LANDING-CLEANLINESS` | `P1` | `BASIC_ACCESS_PENDING__US_SEARCH_VALIDATION_PACKET_READY__AUTH_CPC_NO_PASS_YET` | Codex automation current session / next Google Ads operator with landing-CRO support | GB/CA/AU and US keyword-universe collection routes for future long-tail Search/Shopping rows | Re-run `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/gb_ca_au_36_clean_route_cpc_validation_rows_canonical_urls.csv` with explicit GB/CA/AU, exact/phrase, max `$0.15` keyword-level proof after Basic Access approval. Outlook search of `info@dresslikemommy.com` found no approval as of 11:53 EDT. Current Ads UI aggregate serving (`6` impressions / `1` click / `$0.04`) does not satisfy this gate because visible GB exact stayed `0` and unfiltered broader search terms showed historical brand Search clicks/cost. Future US Search now has a no-upload validation packet (`12` base rows / `24` exact+phrase rows) from public-active clean routes, but still needs authenticated `$0.15` CPC/search feasibility before any live row; keep original dirty routes excluded until owner-approved product/vendor source cleanup passes public readback. | Every candidate route used for paid traffic returns `200`, has no supplier/source-domain hits, no URL-like analytics brand values, no stale seasonal mismatch, has country/shipping/readback proof, uses canonical final URLs where redirects were found, and passes authenticated `$0.15` CPC/auction validation before upload | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-us-search-active-product-validation-packet/US_SEARCH_ACTIVE_PRODUCT_VALIDATION_PACKET.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-active-product-proof/US_ACTIVE_PRODUCT_PROOF_PACKET.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/google_ads_api_explorer_access_block_summary.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/GOOGLE_ADS_API_CPC_FORECAST_RETRY_HARNESS.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-authenticated-gb-ca-au-cpc-validation/AUTHENTICATED_GB_CA_AU_CPC_VALIDATION_ATTEMPT.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-keyword-route-unblock/US_KEYWORD_ROUTE_UNBLOCK_PACKET.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/GB_CA_AU_CPC_VALIDATION_DECISION_KIT.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/GB_CA_AU_36_ROW_CPC_CANONICAL_URL_PACKET.md`; `ops/marketing/keyword_universe.csv` |
-| `PROB-2026-05-14-US-SHOPPING-QUERY-TITLE-FIT` | `P1` | `PURCHASE_ATTRIBUTION_READBACK_DONE__CLICKED_TITLE_CLEANUP_OWNER_APPROVAL_REQUIRED` | Codex automation current session / next Google Ads + Merchant + Shopify title operator | US Standard Shopping campaign `23802638621`; clicked PDP title/message match; purchase attribution sanity check; multilingual Shopping read-only expansion proof | The US/en item export/join is done: `767` paid-cohort rows, `65` clicks, `$14.17` cost, `$0.00` conversion value, `0` feed-title repair candidates; clicked-PDP public readback passed `26/26` fetches with `0` source-blocked clicked handles. Conversion-title follow-up found `12/13` clicked PDPs show literal ellipses in visible H1s, covering `64/65` clicks and `$13.96/$14.17` cost. Purchase-attribution readback found `Google Shopping App Purchase` primary/included with last request `2026-05-11T21:47:18Z`, while sanitized Shopify orders since `2026-04-29` found `0` Google paid/CPC signals. Next action is exact owner approval for no-feed/no-campaign Shopify title/display-title cleanup on only the listed clicked PDPs, or keep observing while Merchant/feed eligibility work continues. | Approved clicked-PDP title/display-title cleanup passes before/after public H1, title, add-to-cart, price, source-clean, and zero-review-badge readbacks; or owner rejects the cleanup and the lane remains hold-with-evidence. No negative/product-group/bid/status/campaign/feed/title/product data/conversion-goal action from zero-conversion product clicks, brand Search rows, stale exports, outside diagnoses, or public PDP hypotheses alone | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-google-ads-purchase-attribution-readback/GOOGLE_ADS_PURCHASE_ATTRIBUTION_READBACK.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-title-conversion-approval/STANDARD_SHOPPING_CLICKED_TITLE_CONVERSION_APPROVAL_PACKET.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-pdp-readback/STANDARD_SHOPPING_CLICKED_PDP_PUBLIC_READBACK.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-shopping-readonly-export-queue/standard_shopping_products_export_summary.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-auth-export-join-prep/US_SHOPPING_AUTH_EXPORT_JOIN_PREP.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-automation-google-shopping-multilingual-expansion-queue/GOOGLE_SHOPPING_MULTILINGUAL_EXPANSION_QUEUE.md` |
+| `PROB-2026-05-14-US-SHOPPING-QUERY-TITLE-FIT` | `P1` | `SOURCE_10664235992_NOT_WINNING_DIAGNOSED` | Codex current session / next Merchant feed operator | US Standard Shopping campaign `23802638621`; parent-outfit Shopping V2; Merchant supplemental labels/images; old source precedence; remaining primary-source/live-offer presence and Shopping eligibility | Gate `20260521T145604Z` still failed closed at `4,392 / 4,531`, with `68` Ads-present non-ready rows, `71` Ads-missing rows, `20` out-of-stock rows, `0` bad catchalls, all V2 campaigns paused, and old test campaign paused. Exact Ads probe `20260521T145829Z` checked the `68` rows uploaded to source `10664235992`: all `68` are present as `US/es` rows, but actual label tuple is blank `||||` for all `68` and overlay image match is `false` for all `68`. Source `10664235992` matched and processed at Merchant source level, but none of its labels/images have materialized or won in the Ads Shopping-product surface. | Do not activate, unpause, scope-down launch, repeat English uploads, trigger broad Google & YouTube sync, reset Merchant sources, recreate products, change Shopify product/publication/inventory/title/price/handle/body/SEO, or change Shopping campaigns/product groups/budgets/bids/statuses/conversions/billing. Next valid action is one more propagation-gated read-only gate; if unchanged, inspect source `10664235992` and affected `US/es` product rows in authenticated Merchant UI read-only mode to find the source-application/precedence setting. The `71` Ads-absent lane remains separate. | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_SOURCE_10664235992_NOT_WINNING_DIAGNOSIS_20260521.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/google_shopping_parent_outfit_merchant_feed_gate_20260521T145604Z.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/google_shopping_parent_outfit_spanish_blank_label_source_10664235992_ads_surface_probe_20260521T145829Z.json`; `AGENT_CONTINUITY_ANCHOR: 2026-05-21-google-shopping-source-10664235992-not-winning-diagnosed` |
+| `PROB-2026-05-28-PINTEREST-PARENT-ZERO-ROAS` | `P0` | `SOURCE_PREFLIGHT_PASSED__PHASE_1_APPROVAL_REQUIRED` | Codex current session / next Pinterest operator + marketing safety reviewer | Pinterest advertiser `549756244483`; campaign `626758581530`; ad group `2680090331049`; Shopify aggregate order attribution | Spend leak is controlled, diagnostics are complete, the attribution-safe approval packet is ready, 2026-06-01 read-only preapproval readback reconfirmed the campaign paused with `0` currently being served, and isolated source/product groups were rechecked clean. Keep the campaign paused. Next valid work is owner approval of Phase 1 paused replacement setup only; Phase 2 Event Quality click-ID readback/repair and Phase 3 relaunch remain separate approvals. | Campaign is paused/held with readback, diagnostics identify the concrete relaunch blocker, isolated source/product groups are available, and a phase-gated approval packet exists so any later relaunch requires attribution-safe setup/readback plus a new owner-approved test plan | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-29-pinterest-spend-safety-pause-execution/PINTEREST_SPEND_SAFETY_PAUSE_EXECUTION_20260529.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-29-pinterest-post-pause-tracking-landing-diagnostics/PINTEREST_POST_PAUSE_TRACKING_LANDING_DIAGNOSTICS_20260529.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-29-pinterest-attribution-safe-relaunch-approval/PINTEREST_ATTRIBUTION_SAFE_RELAUNCH_APPROVAL_PACKET_20260529.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-06-01-pinterest-phase1-preapproval-readback/PINTEREST_PHASE1_PREAPPROVAL_READBACK_20260601.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-06-01-pinterest-phase1-isolated-source-preflight/PINTEREST_PHASE1_ISOLATED_SOURCE_PREFLIGHT_20260601.md`; `AGENT_CONTINUITY_ANCHOR: 2026-06-01-pinterest-phase1-isolated-source-preflight-no-approval` |
 | `PROB-2026-05-08-PINTEREST-EVENT-QUALITY` | `P1` | `IMPORTED_FILTERS_READBACK_201_103_29_PRODUCTS_ZERO_NO_LAUNCH` | Codex current session / next Pinterest growth agent | Pinterest advertiser `549756244483`; event quality, campaign readiness, and exact active-clean catalog product groups | Owner approved the exact product-group packet phrase and upload-capable exact CSV import path. The exact CSV imported and created `DLM_PIN_US_SHOPPING_MOMMY_ME_333`, `DLM_PIN_US_SHOPPING_FAMILY_MATCHING_333`, and `DLM_PIN_US_SHOPPING_PAJAMAS_333`; edit readback confirms item-ID filter payload counts `201/103/29`. Pinterest detail pages still show `0` selected/products, empty previews, disabled `Promote`, and a 24-hour update notice. No campaign launched, no broad group was selected, and no product-group/catalog/source/feed/tag/CAPI/billing/Shopify mutation beyond exact group import occurred. | Freshly read back exact group product counts after Pinterest resolves the import; final review can launch only if usable counts match the exact active-clean scope and max `$5/day`, max `$0.15` CPC, no source/feed/tag/CAPI/billing/Shopify changes are confirmed | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/PINTEREST_EXACT_PRODUCT_GROUP_IMPORT_READBACK.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/pinterest_exact_product_group_item_id_import.csv`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/PINTEREST_EXACT_PRODUCT_GROUP_UNBLOCK_PACKET.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-live-launch-cpc-scope-blocker/PINTEREST_LIVE_LAUNCH_CPC_SCOPE_BLOCKER.md` |
 | `PROB-2026-05-08-BEACH-OUTFIT-SEO-TITLE-MISMATCH` | `P2` | `PARTIALLY_MITIGATED_LOCAL_ADS_HOLD__OWNER_APPROVAL_REQUIRED_FOR_SHOPIFY_FIX` | Next Shopify/CRO or Google Ads growth agent | Public Shopify product `7227378892897` / handle `matching-family-beach-outfits-holiday-palm-tree-print-summer-dresses-shorts-set`; paid-candidate final URL | Use the held 1496-row local Google Ads CSV or its per-country split files for any future approved paused non-US Search preview/import, or get exact owner approval for a narrow Shopify product SEO/social metadata repair in English plus localized routes. Do not edit live Shopify product data under paid-growth guardrails without approval | Public readback shows beach/vacation-specific title/OG/Twitter title and no stale Christmas wording on the paid-candidate URL, or active Ads import packets exclude/swap all Vacation Family rows tied to the bad handle until fixed | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-09-paid-growth-localized-copy-pinterest-manifest-safe-advance/lanes/google-ads-split-manifest/GOOGLE_ADS_SPLIT_IMPORT_CONTROL_REPORT.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-08-paid-growth-url-hold-checkout-safe-advance/` |
 | `PROB-2026-05-10-PAID-GROWTH-GUARDRAIL-SCOPE-CONFLICT` | `P1` | `PARTIALLY_SUPERSEDED_FOR_PREP_NOT_LIVE_ENABLE` | Parent/orchestrator / next paid-growth operator | Current owner goal guardrails vs canonical paused-build language | The current goal says no budget/bid/status changes, while older canonical/approved paused-build lanes can require setting initial budgets/bids/statuses to create paused account objects. Stricter rule controls: do not create new Google Ads/Pinterest account objects in this scope without fresh explicit action-time approval that names the allowed budget/bid/status fields | Owner gives a new exact approval that reconciles the conflict for a named paused build, or all remaining setup stays local/read-only/draft-template only | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/PAID_GROWTH_MULTILINGUAL_PLATFORM_MATRIX_REPORT.md` |
 | `PROB-2026-05-10-PINTEREST-MULTILINGUAL-SETUP-GATE` | `P2` | `LOCAL_NON_US_PREP_READY__US_DRAFT_AUTH_SESSION_BLOCKED__TAGS_ASSUMED_GOOD` | Parent/orchestrator / next Pinterest growth agent | Pinterest setup beyond US `en-US` | Current repo evidence has US-only Pinterest clean scope/templates; non-US Pinterest now has local-only operator templates and a catalog/copy term quality plan for all 17 markets, but no non-US country-specific Pinterest catalog/source/product-group/readback scope exists. Do not infer Pinterest readiness from Google Search artifacts | Each target market has a local Pinterest scope/source/copy/readback packet and exact approval gate, or the owner explicitly decides Pinterest stays US-only until Event Quality/US draft gates clear | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/pinterest_multilingual_keyword_interest_quality_plan.csv`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-keyword-quality-upgrade/PINTEREST_KEYWORD_QUALITY_GATES.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-authority-safe-launch-prep/lanes/pinterest-non-us-local-drafts/PINTEREST_NON_US_LOCAL_DRAFTS_REPORT.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-10-paid-growth-multilingual-platform-matrix/lanes/pinterest-matrix/PINTEREST_MULTILINGUAL_LOCAL_PREP.md` |
 | `PROB-2026-05-12-ACTIVE-CAMPAIGN-COVERAGE-GOAL` | `P0` | `VALID_TOKEN__EXPLORER_ACCESS_BLOCKS_AUTH_CPC_NO_PASS_NO_GREEN` | Parent/orchestrator / next activation operator | Owner goal: working active Google Ads and Pinterest campaigns for every viable language/market | GB/CA/AU exact Search remain enabled/eligible at exact scope with filters cleared and keyword/RSA/final URL checks passed, but current head terms show below-first-page estimates around `$0.65-$0.74`, which fail the owner hard `$0.15` CPC cap. A 105-row local keyword universe exists with US first and GB/CA/AU localized rows; active PDP and clean collection route gates pass for the canonical exact 36-row packet. The 16:24 authenticated Keyword Planner attempt did not produce canonical pass rows because the plan exported US/Broad/Maximize-conversions aggregate/stats rows; parser summaries returned `0` `PASS_015_CPC_GATE`, so no `GREEN` action row exists. This run completed secure local API config and patched the harness for Google Ads API v24; manager `700-107-9966` is now linked under client `399-097-6848`, but the developer token has Explorer access only, so Google blocks the Keyword Planner forecast with `DEVELOPER_TOKEN_NOT_APPROVED`. | Google Ads and Pinterest have active, measured, read-back-clean campaigns for every owner-approved viable language/market, or each excluded market has an explicit owner decision and evidence-backed reason | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/google_ads_api_explorer_access_block_summary.json`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/GOOGLE_ADS_API_CONFIG_SETUP.md`, `ops/scripts/check_google_ads_api_config.py`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-cpc-validation-decision-kit/GOOGLE_ADS_API_CPC_FORECAST_RETRY_HARNESS.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-authenticated-gb-ca-au-cpc-validation/AUTHENTICATED_GB_CA_AU_CPC_VALIDATION_ATTEMPT.md`, `ops/marketing/keyword_strategy.md`, `ops/marketing/keyword_scoring_rubric.md`, `ops/marketing/keyword_universe.csv`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-36-row-cpc-canonical-url-packet/GB_CA_AU_36_ROW_CPC_CANONICAL_URL_PACKET.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-fresh-gb-ca-au-ads-monitor/CPC_015_LONG_TAIL_CORRECTION.md` |
 | `PROB-2026-05-12-RO-PDP-SHIPPING-COPY-FREE-WORDING` | `P2` | `SOLVED_LOCAL_READBACK_PASSED` | Codex parent/orchestrator 2026-05-12 | Local Romanian PDP purchase-confidence copy and English fallback in theme files | No further local action for this narrow copy issue. Do not deploy/publish separately without normal theme sync/deployment path | RO local PDP and relevant locale/snippet files have `0` hits for `Free standard shipping`, `Standard shipping is free`, or `Livrare standard gratuit`, and Theme Check has no offenses | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-12-paid-growth-measurement-safe-lanes/PAID_GROWTH_MEASUREMENT_SAFE_LANES_REPORT.md` |
-| `PROB-2026-05-15-PINTEREST-FEED-VARIANT-DUPLICATION` | `P1` | `GATE_B2_CLOUDFLARE_DIRECT_URL_VERIFIED__SHOPIFY_APP_PROXY_CONFIG_REQUIRED__LIVE_UPSTREAM_GUARD_FAIL_EXPECTED` | Codex automation current session / next paid-growth + Shopify channel operator | Shopify -> Pinterest sales-channel product feed for **every** active Shopify Market (`us`, `canada`, `united-kingdom`, `eu`, `australia`, `international`) and **every** product category (Family Matching, Dresses, Couples, Sweaters, plus any future types); Pinterest advertiser `549756244483`; Merchant Center mirror feed | Gate B-2 Cloudflare path is deployed and verified at `https://dlm-pinterest-feed-worker.dresslikemommy.workers.dev/pinterest-feed.tsv`. The public Worker URL returns `200`, TSV content type, `41,814` data rows, matching SHA-256, `0` duplicate IDs, `0` missing `item_group_id`, `0` missing `image_link`, and `0` supplier/source host hits. Shopify app-proxy configuration is still blocked by no app TOML / identified installed app config in repo; `https://www.dresslikemommy.com/apps/...` is not configured. Gate B-3 remains separate unless owner explicitly approves using the verified direct Cloudflare Worker URL as the Pinterest catalog source. Do not touch Pinterest tag/CAPI/budget/bid/status/campaign/audience/billing, Shopify product data, Merchant feeds, or other sales channels without explicit approval | Every active Shopify Market emits Pinterest catalog rows where same-parent variants share `item_group_id` and `image_link` is the parent product featured image; per-market collapse from `~20x` variant inflation to one row per parent (or grouped rows); the automated guard `ops/scripts/check_pinterest_feed_grouping.py` runs in strict mode under `ops/scripts/check_continuity_integrity.py --strict` and returns PASS for every live/current feed snapshot; freshness marker file exists with per-market after-state readback summary; AGENTS.md and CLAUDE.md non-negotiable rule preserved byte-identical | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_CLOUDFLARE_DEPLOY_READBACK.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_DEPLOY_ATTEMPT_BLOCKED_AUTH_READBACK.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_CLOUDFLARE_WORKER_READINESS.md`; `ops/cloudflare/pinterest-feed-worker/`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B2_LOCAL_ENDPOINT_READBACK.md`; `agent-backend/src/index.js`; `agent-backend/README.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/GATE_B1_UNIFIED_FEED_READBACK.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/feeds/pinterest_unified_all_markets.summary.json`; `ops/scripts/check_pinterest_feed_grouping.py`; `ops/scripts/check_continuity_integrity.py` |
+| `PROB-2026-05-15-PINTEREST-FEED-VARIANT-DUPLICATION` | `P1` | `SUPERSEDED_FOR_ACTIVE_ADGROUP_BY_ZERO_RETURN_SPEND_SAFETY` | Codex current session / next paid-growth + Pinterest channel operator | Shopify -> Pinterest feed and parent-only Pinterest paid source for collection lanes; Pinterest advertiser `549756244483`; Pinterest catalog `3041764155561548387`; source `3041760889836768751`; campaign `626758581530`; ad group `2680090331049` | The replacement path has since advanced beyond the older source-switch blocker: current 2026-05-28 readback shows one active ad group `2680090331049` using parent source groups Mommy `99`, Family `77`, Daddy `34`, with nonzero in-stock counts and current max CPC `0.10`. The live blocker is now zero-return spend safety: `$87.69` campaign spend through `2026-05-27`, `805` outbound clicks, `0` Checkout conversions/value/ROAS, and `0` Shopify Pinterest-attributed orders through `<2026-05-29`. | Preserve the parent-group/feed guardrails, but do not spend further from this issue. The immediate fixed criterion is tracked in `PROB-2026-05-28-PINTEREST-PARENT-ZERO-ROAS`: pause/hold or owner-approved diagnostic while live spend is controlled. | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-28-pinterest-parent-campaign-audit-verification/PINTEREST_PARENT_CAMPAIGN_AUDIT_VERIFICATION_20260528.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`; `ops/scripts/check_continuity_integrity.py` |
 | `PROB-2026-05-15-SHOPIFY-VENDOR-BRAND-DRIFT` | `P1` | `SHOPIFY_VENDOR_VERIFIED__FLOW_MC_RULES_OWNER_APPLY_PENDING` | Claude current session + Codex automation verification / next Shopify Merchant operator | Shopify active product `vendor`; Shopify Flow drift-prevention workflow; Merchant Center account `124884876` Shopify Google & YouTube source feed brand/gender/age/identifier rules | Owner imports and turns on `auto-vendor-dress-like-mommy.flow`, then applies Merchant Center feed rules A/B/C from `MERCHANT_CENTER_FEED_RULES.md`. After feed refetch, next operator runs read-only Merchant offer samples to confirm `brand`, `gender`, `age_group`, and `identifier_exists` while preserving `item_group_id` and `image_link` | Shopify active catalog has `0` products where `vendor != "Dress Like Mommy"`; future Shopify product create/update/duplicate events auto-correct vendor; Merchant offers read back brand/rules clean after refetch with no source/vendor URL exposure and no unintended feed-grouping/image changes | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/EXECUTION_REPORT.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/vendor_compliance_report.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/APPLY_ME.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-vendor-brand-auto-fix-execution/MERCHANT_CENTER_FEED_RULES.md`; `ops/scripts/verify_vendor_compliance.py` |
+
+### `PROB-2026-05-28-PINTEREST-PARENT-ZERO-ROAS`
+
+- Priority: `P0`
+- Status: `SOURCE_PREFLIGHT_PASSED__PHASE_1_APPROVAL_REQUIRED`
+- Owner/session: Codex current session, 2026-05-28 read-only verification / next Pinterest operator plus marketing safety reviewer.
+- Surface: Pinterest advertiser `549756244483`; campaign `DLM_PIN_US_PARENT_COLLECTIONS_99_77_34_20260520` / `626758581530`; ad group `DLM_PIN_US_PARENT_COLLECTIONS_ADGROUP_20260520` / `2680090331049`; Shopify aggregate order attribution.
+- Exact symptom: active Pinterest parent campaign has cheap outbound traffic but `0` Pinterest Checkout conversions, `$0.00` Checkout value, Checkout ROAS `0`, and `0` Shopify orders attributed to Pinterest/campaign/ad-group signals in the checked windows.
+- Business impact: campaign is spending against the `650% ROAS` goal with no measured return. Continuing to scale or optimize before the spend-safety decision risks paying for more non-converting traffic and muddies the attribution diagnosis.
+- Fixed criteria: campaign is paused/held with before/after readback, the requested bounded read-only diagnostic identifies the next blocker, and any later relaunch or scale requires nonzero attribution/tracking proof or a fresh owner-approved test plan.
+
+Attempt log:
+
+| Time | Attempt | Result |
+|---|---|---|
+| 2026-05-28 10:27 EDT | Read-only Pinterest reporting verification for `2026-05-12` through `2026-05-25` | Active ad group `2680090331049` read back `$59.32` spend, `46,191` impressions, `564` Pin clicks, `549` outbound clicks, `0` Checkout conversions, `$0.00` Checkout value, ROAS `0`. Campaign row for the same visible date range showed higher `$67.40` spend and `605` outbound clicks, still `0` Checkout conversions/value/ROAS. |
+| 2026-05-28 10:27 EDT | Read-only current campaign/ad-group edit readback | Campaign active, daily budget `10.00`, run continuously. Ad group active with parent groups Mommy `99`, Family `77`, Daddy `34` under source `DLM US Paid Parent Collection Intent 2026-05-20`, optimization `Pin clicks`, `Custom` bidding, max CPC `0.10`, URL tracking `None`. No save occurred. |
+| 2026-05-28 10:27 EDT | Read-only rolling campaign readback through `2026-05-27` | Campaign showed `$87.69` spend, `65,934` impressions, `827` Pin clicks, `805` outbound clicks, `0` Checkout conversions/value/ROAS. |
+| 2026-05-28 10:27 EDT | Shopify Admin aggregate order attribution check without PII | `2026-05-12` through `<2026-05-29` had `16` non-cancelled/non-test orders and `$885.13` aggregate revenue, but `0` orders with Pinterest, campaign `626758581530`, ad group `2680090331049`, or `DLM_PIN_US_PARENT_COLLECTIONS` source/journey/UTM signals. |
+| 2026-05-29 11:45 EDT | Owner-approved Pinterest spend-safety pause only | Before-state readback: campaign `626758581530` / `DLM_PIN_US_PARENT_COLLECTIONS_99_77_34_20260520`, Catalog Sales, status `Active`, spend `$105.00` for `2026-05-18` through `2026-05-29` UTC. Executed only the campaign-level pause and accepted Pinterest's early-pause warning. After-state UI readback: `Paused`, switch off, spend `$105.00`; authenticated API readback: `status=PAUSED`, `summary_status=PAUSED`, daily cap `10000000` micro-USD unchanged, spend `105.002796`. |
+| 2026-05-29 13:00 EDT | Read-only Pinterest Events Manager, catalog ad/PDP deep-link, and Shopify/Pinterest UTM diagnostics | Campaign still read `Paused`; refreshed reporting row showed `$105.30`, `75,021` impressions, and `1,005` Pin clicks. Events Manager showed `Checkout` from `Api + Tag` (`34` events, last `2026-05-27 23:38 UTC`) and Tag Manager latest event `2026-05-29 16:36 UTC`, but Event Quality was `Fair` with click-ID gaps on Checkout/AddToCart. Ten catalog ad/PDP source links loaded with add-to-cart surfaces; current parent source had `0/210` UTM or `dlm_pg` links; manual UTM probes preserved `10/10`. No live write occurred. |
+| 2026-05-29 18:26 EDT | Local attribution-safe relaunch approval packet | Prepared exact phase-gated approval packet. Phase 1 is paused replacement setup only using isolated UTM-bearing source `3041760890485574219` and product groups `4673019914864` / `4673019915037` / `4673019915140`; Phase 2 is Event Quality click-ID root-cause/repair readback; Phase 3 relaunch is separate and blocked until Phase 1 and Phase 2 readbacks pass. No live write occurred. |
+| 2026-06-01 09:24 EDT | Read-only Phase 1 preapproval readback in authenticated Pinterest reporting | Owner did not paste the exact Phase 1 phrase, so no setup/write occurred. Campaign `626758581530` still read `Paused`, `0 currently being served`, spend `$105.30`, impressions `75,037`, Pin clicks `1,005`, outbound clicks `973`, Checkout conversions `0`, and Checkout ROAS `0` for `2026-05-18` through `2026-06-01` UTC. Ad group `2680090331049` remained `Active` inside the paused campaign with `0 currently being served`, spend `$97.23`, and `0` Checkout conversions/value. Current no-UTM product groups still read active at Mommy `99`, Family `77`, Daddy `34`. |
+| 2026-06-01 11:57 EDT | Read-only Phase 1 isolated source/product-group preflight | Owner did not paste the exact Phase 1 phrase, so no setup/write occurred. Isolated source `3041760890485574219` read `Completed`, `210 of 210`, images completed, with visible recent ingestion rows showing `210` successful uploads, `0` failed uploads, and `0` warnings. Isolated groups still read under that source: Mommy `4673019914864` / `99`, Family `4673019915037` / `77`, Daddy `4673019915140` / `34`, each with in-stock preview rows. Public feed readback returned `200`, `210` rows, `99/77/34` lane counts, `210/210` UTM rows, `210/210` `dlm_pg` rows, and `0` missing required fields. |
+
+Failed or ruled-out paths:
+
+- Do not treat high CTR/cheap clicks as proof of profitable traffic.
+- Do not treat the zero Pinterest Checkout count alone as proof that the Pinterest tag is broken; Shopify truth also shows `0` Pinterest-attributed orders.
+- Do not accept Pinterest's budget-increase recommendation while ROAS is `0`.
+- Do not change tag/CAPI, attribution windows, product groups, bids, budgets, status, feed/source, Shopify, Merchant, Google Ads, GA4, or GTM without fresh exact approval.
+- Do not relaunch from the current no-UTM parent source as-is.
+
+Current next action:
+
+- Keep the campaign paused unless a fresh owner-approved relaunch/test plan exists.
+- If Pinterest is the next chosen lane, ask the owner to approve Phase 1 paused replacement setup only from `PINTEREST_ATTRIBUTION_SAFE_RELAUNCH_APPROVAL_PACKET_20260529.md`. The 2026-06-01 reporting and isolated source/product-group readbacks are current enough for packet context, but the operator must still capture action-time before/after readbacks if the phrase is supplied. Keep Phase 2 Event Quality click-ID readback/repair and Phase 3 relaunch as separate approvals. Creative/product-fit review is secondary after tracking/source attribution is fixed.
+
+Approval/credential/platform gates:
+
+- Any Pinterest campaign status, budget, bid, product group, source/feed, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM mutation requires fresh exact action-time approval and after-state readback.
+
+Parallel work to continue:
+
+- Google Shopping exact-scope enforcement validate-only after API quota clears.
+- Merchant capacity publishing-control readback.
+- Shopify-sold Shopping paused retest enable decision, only if owner separately approves.
 
 ### `PROB-2026-05-15-SHOPIFY-VENDOR-BRAND-DRIFT`
 
@@ -110,8 +558,8 @@ Parallel work to continue:
 ### `PROB-2026-05-15-PINTEREST-FEED-VARIANT-DUPLICATION`
 
 - Priority: `P1`
-- Status: `GATE_B2_CLOUDFLARE_DIRECT_URL_VERIFIED__SHOPIFY_APP_PROXY_CONFIG_REQUIRED__LIVE_UPSTREAM_GUARD_FAIL_EXPECTED`
-- Owner/session: Codex automation current session, 2026-05-18 Gate B-2 deploy attempt / next paid-growth + Shopify channel operator.
+- Status: `PARENT_GROUPS_CREATED_NO_RESTART`
+- Owner/session: Codex current session, 2026-05-20 parent-only Pinterest source and group gate / next paid-growth + Pinterest channel operator.
 - Surface: Shopify -> Pinterest sales-channel feed for every active Shopify Market (`us`, `canada`, `united-kingdom`, `eu`, `australia`, `international`) and every product category; Pinterest advertiser `549756244483`; Merchant Center mirror feed snapshots.
 - Exact symptom: current catalog/feed snapshots emit item IDs as `shopify_<market>_<parent>_<variant>` without `item_group_id`, so Pinterest sees variants as standalone products and exact product groups cannot reliably map to real parent products.
 - Business impact: Pinterest launch/saved-draft work can select inflated or mismatched catalog scopes, waste spend, show duplicated product variants, and keep exact product groups at zero usable products even when filter payloads look correct.
@@ -130,6 +578,19 @@ Attempt log:
 | 2026-05-18 current session | Attempted owner-approved Gate B-2 deploy and stopped on auth/app-config gates | Preflight verified the TSV SHA and row count. `npx wrangler@4.86.0 whoami` showed no Cloudflare auth. Default `wrangler login` requested broad unrelated OAuth scopes and was stopped. No Cloudflare token/account ID was available in shell or local config. `shopify app info` failed because no app TOML exists in the repo. Wrangler dry-run with the config passed, proving the Worker package itself compiles and binds the expected R2/env variables. Evidence: `GATE_B2_DEPLOY_ATTEMPT_BLOCKED_AUTH_READBACK.md`. |
 | 2026-05-18 current session | Retried Gate B-2 after owner added Cloudflare env file | Loaded `~/.config/dresslikemommy/cloudflare.env`; token/account shape was non-placeholder and `npx wrangler@4.86.0 whoami` authenticated as `[owner email redacted]` for account `[cloudflare account id redacted]`. `npx wrangler@4.86.0 r2 bucket list` failed before writes with Cloudflare API `code: 10042`: `Please enable R2 through the Cloudflare Dashboard.` No R2 bucket/object/deploy occurred. Evidence updated in `GATE_B2_DEPLOY_ATTEMPT_BLOCKED_AUTH_READBACK.md`. |
 | 2026-05-18 current session | Deployed and verified Cloudflare Worker direct URL | After owner enabled R2, created remote R2 bucket `dlm-pinterest-feeds`, uploaded `pinterest/pinterest_unified_all_markets.tsv` with `--remote`, registered workers.dev account subdomain `dresslikemommy`, and deployed Worker `dlm-pinterest-feed-worker` version `2ea90397-a21e-4d11-89fd-999fac93ab29`. Public URL readback passed: `200`, TSV content type, `Content-Length: 151559047`, `X-DLM-Feed-Rows: 41814`, matching SHA-256, `41,814` parsed rows, `0` duplicate IDs, `0` missing `item_group_id`, `0` missing `image_link`, `0` supplier/source host hits, and POST `405`. Evidence: `GATE_B2_CLOUDFLARE_DEPLOY_READBACK.md`. |
+| 2026-05-18 current session | Executed owner-approved Gate B-3 Pinterest catalog-source setup | Using the verified Worker URL, configured Pinterest data source `DLM Cloudflare Grouped Feed 2026-05-18` for advertiser `549756244483` / catalog `3041764155561548387`. Pinterest validation completed, source ID `3041760873378113572` was submitted, and detail readback shows the exact URL, TSV, United States, English (US), USD, daily `03:00 America/New_York`, current ingestion `Processing`, images `Processing`, and next scheduled update `May 18 at 3:00 AM EDT`. No campaign, budget, bid, status, tag/CAPI, billing, legacy-source pause/remove, Shopify, Merchant, Google Ads, GA4/GTM, or product write occurred. Evidence: `GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`. |
+| 2026-05-18 03:12 EDT | Owner observed new feed-profile product group count | Product groups URL with `feedProfileId=3041760873378113572` shows selected feed `DLM Cloudflare Grouped Feed 2026-05-18`, auto-created `All Products` group `4673019439386`, `41,126` products, and last updated `5/18/2026`. Follow-up source detail screenshot still shows ingestion `Processing` and product count `-`; diagnostics/final readback must explain the `688` product delta from the submitted `41,814` feed rows. Evidence added to `GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`. |
+| 2026-05-18 04:24 EDT | Read back completed Pinterest ingestion and diagnostics | Source detail shows ingestion `Completed`, product count `41,056`, images `Completed`, past ingestion `41,056` successful uploads, `758` failed uploads, `40,998` warnings, `0` videos, next scheduled update `May 19 at 3:00 AM EDT`. Diagnostics shows warning `126` for shallow `google_product_category` on `41,814` rows, warning `179` for malformed `gtin` on `7,710` rows, warning `1011` for additional image ingestion on `6 + 1` occurrences, and error `1009` for image ingestion on `1` occurrence. Local TSV inspection confirms all `41,814` rows use shallow `Apparel & Accessories > Clothing` and at least `264` rows have non-digit GTIN-like values. Evidence added to `GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`. |
+| 2026-05-18 04:58 EDT | Repaired the Pinterest-only TSV locally and rebuilt the unified grouped feed | Local repair only. Added deeper product-type `google_product_category` mapping, checksum-valid GTIN emission only, and `identifier_exists` values in the Pinterest feed generator. Rebuilt all six market TSVs plus the unified TSV. Repaired unified feed SHA-256 is `809d48e96832ffc4db8a30de685250273412c2988678b5364d48c627699e8863`; readback shows `41,814` rows, `0` shallow category rows, `0` bad GTIN format/checksum rows, `852` valid GTIN rows, `40,962` suppressed GTIN rows, `0` missing `item_group_id`, `0` missing `image_link`, and `0` parent-image drift groups. `check_pinterest_feed_grouping.py --report-only --strict` still passes all `7` generated Path B feeds. No Cloudflare R2 upload, Pinterest reingestion, campaign, legacy-source, Shopify, Merchant, Google Ads, GA4/GTM, or product write occurred. Evidence: `GATE_B3_LOCAL_FEED_REPAIR_READBACK.md`. |
+| 2026-05-18 05:24 EDT | Executed owner-approved repaired R2 upload and triggered Pinterest manual reingestion | Replaced only Cloudflare R2 object `dlm-pinterest-feeds/pinterest/pinterest_unified_all_markets.tsv`; kept Worker URL `https://dlm-pinterest-feed-worker.dresslikemommy.workers.dev/pinterest-feed.tsv`. Worker body readback returned SHA-256 `809d48e96832ffc4db8a30de685250273412c2988678b5364d48c627699e8863`, `41,814` rows, `0` shallow category rows, `0` bad GTIN rows, `0` duplicate IDs, `0` missing `item_group_id`, and `0` missing `image_link`; POST still returned `405`. Pinterest manual trigger queued source `3041760873378113572`; after-state polls show `May 18 at 5:24 AM EDT` row `Processing`, `41,087` successful uploads visible, `0` failed, `0` warnings, `0` videos, images `Processing`. No launch, Promote, legacy-source pause/remove, campaign, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4/GTM, product, or Worker metadata redeploy occurred. Evidence: `GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`. |
+| 2026-05-18 post-completion readback | Read back completed repaired Pinterest ingestion, diagnostics, and product group usability | Source `3041760873378113572` completed the repaired ingestion: `41,814` product count, `41,814 of 41,814`, `41,814` successful uploads, `0` failed, `0` warnings, images completed. Diagnostics show successful uploads `41.81k` / `100%`, failed `0`, warnings `0`, and `There are no ingestion issues for this data source`. Product groups for feed profile `3041760873378113572` show auto-created `All Products` group `4673019439386`, `41,694` products, real product previews, and visible `Promote`; product-group count is `120` below successful upload count but diagnostics show no ingestion failures/warnings. No launch, Promote, legacy-source pause/remove, campaign, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4/GTM, product, or Worker metadata redeploy occurred. Evidence: `GATE_B3_PINTEREST_CLOUDFLARE_SOURCE_READBACK.md`. |
+| 2026-05-18 06:32 EDT | Prepared separate final Pinterest launch/scope approval packet | Local packet only. Created `PINTEREST_FINAL_LAUNCH_SCOPE_APPROVAL_PACKET.md` and `pinterest_final_launch_scope_summary.csv`. Packet requires exact item-ID groups under source `3041760873378113572` only: Mommy & Me `201`, Family Matching `103`, Pajamas `29`, total `333`; it blocks broad `All Products`, old feed profile `3041760867124595727`, legacy source pause/remove, and any campaign/feed/tag/CAPI/billing/Shopify/Merchant/Google Ads/GA4/GTM change outside the exact phrase. No Pinterest click/write/launch occurred. |
+| 2026-05-18 06:55 EDT | Created exact Pinterest product groups under the clean source and stopped before launch | Owner approved proceeding under the packet. Created exact product groups under source `3041760873378113572`: `DLM_PIN_US_SHOPPING_MOMMY_ME_333` ID `4673019468477` / `201`, `DLM_PIN_US_SHOPPING_FAMILY_MATCHING_333` ID `4673019468479` / `103`, and `DLM_PIN_US_SHOPPING_PAJAMAS_333` ID `4673019468480` / `29`. Mommy & Me and Family Matching detail pages showed the clean data source and live preview rows. Pajamas list readback showed `29`; detail capture remains pending because Chrome automation dropped with `native pipe is closed` / `Browser is not available: extension`. Recovery checks found Chrome running, extension installed/enabled, and native host manifest correct. No launch/save/publish, broad `All Products`, old feed profile, campaign/budget/bid/status/tag/CAPI/billing, legacy cleanup, Shopify/Merchant/Google Ads/GA4/GTM, Worker metadata, or product write occurred. Evidence: `PINTEREST_EXACT_GROUPS_EXECUTION_READBACK.md`. |
+| 2026-05-19 07:25 EDT | Read back post-archive feed freshness and Pinterest serving | Owner archived multiple active Shopify listings and reported seeing `0` impressions. Read-only checks proved the Cloudflare/Pinterest feed does not auto-rebuild from Shopify archives: Worker body still serves repaired SHA `809d48e96832ffc4db8a30de685250273412c2988678b5364d48c627699e8863` with `41,814` rows, and Pinterest source `3041760873378113572` reingested that stale object on May 19 at 3:03 AM EDT with `41,814 of 41,814`, `0` failed, `0` warnings. Current-active local candidate built only in `/tmp` has SHA `789b85804c01126885fae1ac791d28101b8e04eee39a94f77ce93cd6b1ae5efd`, `28,122` rows, `0` duplicate IDs, `0` missing `item_group_id`, `0` missing `image_link`, `0` parent-image drift, and `0` supplier/source host hits. Exact group current-active impact: Mommy & Me `201 -> 166`, Family Matching `103`, Pajamas `29`. Pinterest campaign today is not zero-impression: campaign/ad group are Active/serving with `$2.67`, `1,272` impressions, `19` Pin clicks, `$0.14` CPC, `0` actions; however ad-group bid column reads `$0.15`, ads tab shows `0 ads`, and product-group reporting is inconsistent. No R2 upload/replacement, ingestion trigger, campaign/ad/product group/keyword/negative/budget/bid/status, legacy-source, Shopify, Merchant, Google Ads, GA4, or GTM write occurred. Evidence: `PINTEREST_2026_05_19_ARCHIVE_FEED_AND_SERVING_READBACK.md`. |
+| 2026-05-19 09:48-10:15 EDT | Executed owner-approved current-active R2 replacement and triggered one Pinterest ingestion | Replaced only R2 object `dlm-pinterest-feeds/pinterest/pinterest_unified_all_markets.tsv` with `/tmp/dlm_pinterest_unified_current_20260519.tsv`, SHA `789b85804c01126885fae1ac791d28101b8e04eee39a94f77ce93cd6b1ae5efd`; kept Worker URL unchanged. Worker body readback passed with `28,122` data rows and matching SHA; POST remains `405`. Pinterest accepted one manual trigger for source `3041760873378113572`; polls through 10:15 EDT show current ingestion `Processing`, product count `-`, images `Processing`, visible failed `0`, warnings `0`. Campaign/ad group readback during processing shows Active/serving Today UTC with `$4.44`, `2,505` impressions, `31` Pin clicks, `$0.14` CPC, `0` actions; ad group bid column reads `$0.15`. No campaign/ad/product group/keyword/negative/budget/bid/status/tag/CAPI/billing, legacy source, Shopify, Merchant, Google Ads, GA4/GTM, product, or Worker metadata change occurred. Evidence: `PINTEREST_2026_05_19_ARCHIVE_FEED_AND_SERVING_READBACK.md`. |
+| 2026-05-20 00:53 EDT | Read back clean collection-intent source and stopped on variant-row selector mismatch | Source `3041760873378113572` completed `28,122/28,122`, failed `0`, warnings `0`, images completed. Product-group filter `custom_label_0=us` + `custom_label_2=mommy_and_me` + `custom_label_4=collection_intent_v20260520` previewed `1,419` products selected, not parent count `99`, proving Pinterest selector counts variant rows. No group was saved and campaign remained paused. Evidence: `PINTEREST_COLLECTION_INTENT_UPLOAD_REINGESTION_READBACK.md`. |
+| 2026-05-20 01:58-02:04 EDT | Built and submitted a separate parent-only paid source | Local parent feed collapsed paid lanes to one row per parent: `210` rows total, Mommy `99`, Family `77`, Daddy `34`, SHA `e990b912ecc80d1c73e72b19f421f10d8a0d21aea13628506ea9230df1c114b6`, `0` duplicate IDs, `0` missing fields, `0` supplier/source hits. Uploaded R2 object `pinterest/pinterest_us_paid_parent_collection_intent.tsv`, deployed Worker route `/pinterest-paid-parent-feed.tsv`, and verified public readback `200` / `210` rows. Created Pinterest source `DLM US Paid Parent Collection Intent 2026-05-20`, ID `3041760889836768751`, URL TSV, United States, English (US), USD, daily `03:30 America/New_York`; validation completed and submission succeeded. Source remains `Processing` at `May 20 at 1:58 AM EDT`, product count `-`, images `Processing`, failed `0`, warnings `0`. No product group or campaign restart occurred. Evidence: `PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`. |
+| 2026-05-20 02:53 EDT | Created parent-only Pinterest product groups after source completion | Source `3041760889836768751` completed cleanly: `210` products, `210` successful uploads, `0` failed uploads, `0` warnings, images `Completed`. Created `DLM_PIN_US_PARENT_MOMMY_AND_ME_99_20260520` (`4673019642885`) count `99`, `DLM_PIN_US_PARENT_FAMILY_MATCHING_77_20260520` (`4673019642929`) count `77`, and `DLM_PIN_US_PARENT_DADDY_AND_ME_34_20260520` (`4673019642938`) count `34`. No campaign/ad group/ad attachment, restart, publish, enable, budget, bid, status, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM write occurred. Evidence: `PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md`. |
 
 Failed or ruled-out paths:
 
@@ -140,15 +601,15 @@ Failed or ruled-out paths:
 
 Current next action:
 
-- Owner approves the master all-markets phrase or one per-market phrase from `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix/`.
-- Identify/provide the Shopify app config that owns the app proxy if the final Pinterest source must be `www.dresslikemommy.com/apps/...`. Alternatively, owner can explicitly approve Gate B-3 using the verified direct Cloudflare Worker URL as the hosted TSV source. The local Mac is not a production hosting target.
-- Gate B-3: only after public hosted TSV URL passes readback, get separate exact approval to configure Pinterest catalog source and pause legacy feeds after clean readback.
-- After 24h Pinterest re-sync, capture catalog counts, group counts, item_group_id proof, and new-disapproval readback; only then replace the freshness marker body with the required attest line and run strict continuity.
+- With fresh approval only, open the paused campaign selector, replace the broken old groups with the three verified parent groups, review budget/CPC/status/optimization, and stop before restart pending final owner approval.
+- Do not add keywords/negatives/ads, change bids/budgets/statuses, attach product groups to campaign, restart, redeploy Worker metadata, click broad `All Products`, use old feed profile `3041760867124595727`, or pause/remove legacy feeds without fresh approval.
+- 2026-05-18 15:05 EDT: owner override was received to publish the already-prepared Review screen, but the selected Pinterest tab no longer showed that Review state. It showed default/create state (`Consideration`, `Consideration Campaign | 2026-05-18 19:03 UTC`, budget `10.00`). No Publish occurred. Fresh approval is required before any rebuild/new create-flow attempt.
+- 2026-05-18 18:20 EDT: owner reported manually publishing and changing max CPC to `0.10` and daily budget to `$10`. Read-only current-day Pinterest readback found campaign Active, ad group `Not started`, bid `$0.10`, exact product groups active at `201/103/29`, ads `0`, keywords `0`, negative keywords `No data`, and no spend/impressions/clicks. Next step is post-review/propagation serving readback, then read-only edit-screen blocker inspection if still not serving.
 
 Approval/credential/platform gates:
 
 - Live Shopify/Pinterest channel settings or catalog source changes require fresh exact owner approval.
-- Path B upload/import requires a separate exact approval and after-state readback plan.
+- Additional Path B upload/import, second ingestion trigger, Worker metadata redeploy, or any Pinterest campaign/ad/product group/keyword/negative/bid/budget/status change requires a separate exact approval and after-state readback plan.
 
 Parallel work to continue:
 
@@ -254,12 +715,12 @@ Parallel work to continue:
 ### `PROB-2026-05-14-US-SHOPPING-QUERY-TITLE-FIT`
 
 - Priority: `P1`
-- Status: `PURCHASE_ATTRIBUTION_READBACK_DONE__CLICKED_TITLE_CLEANUP_OWNER_APPROVAL_REQUIRED`
-- Owner/session: Codex automation current session, 2026-05-14 12:43-2026-05-15 10:24 EDT / next Google Ads + Merchant + Shopify title operator
-- Surface: US Standard Shopping campaign `23802638621`, Shopping search terms, paid-cohort product titles, product groups, and item-level fit.
+- Status: `EXACT_SCOPE_ENFORCEMENT_BUILT__VALIDATE_BLOCKED_BY_GOOGLE_ADS_API_QUOTA`
+- Owner/session: Codex automation current session, 2026-05-14 12:43-2026-05-20 02:04 EDT / next Google Ads + Merchant + Shopify title operator
+- Surface: US Standard Shopping campaign `23802638621`, Shopping search terms, paid-cohort product titles, parent-outfit hierarchy, product groups, and item-level fit.
 - Exact symptom: current Standard Shopping readback for `2026-05-13` showed `17` impressions, `0` clicks, `$0.00` cost, and `0.00` conversions/value. Visible terms were relevant but not actionable yet: `family pictures outfits` (`2` impressions), `family same outfit` (`1`), and `mommy and me wedding guest dresses` (`1`). Older all-time evidence shows Shopping has historically spent on related terms like `mommy and me dresses` and `mommy and me outfits` with `0.00` conversions.
 - Business impact: US is the primary market; if Shopping item titles/product grouping do not clearly match high-intent family-photo, mommy-and-me, wedding-guest, pajama, and swimwear demand, the live US lane can keep receiving impressions without qualified clicks or purchases.
-- Fixed criteria: an authenticated read-only item-level Shopping export proves the titles/products receiving impressions either match the queries cleanly, or identifies exact item/title/feed mismatches that can be turned into a narrow owner-approved title/feed repair packet. No negative, product-group, bid, budget, status, product, feed, or title action should happen from zero-click zero-cost query evidence alone.
+- Fixed criteria: paused V2 Ads structures stay paused on readback, mirror the storefront parent lanes and subgroups, use excluded catchalls, exclude 404/archived products, and use only a clean count/image/no-catchall-proven scope before any activation. The reduced clean paused rebuild is considered ready when it excludes the exact unresolved-offer and out-of-stock holds, proves labels/images/live images/catchalls clean, and keeps all Shopping structures paused. Full Mommy & Me restoration stays a separate repair lane; separate title/display-title cleanup still requires owner approval and before/after storefront readbacks.
 
 Attempt log:
 
@@ -277,6 +738,28 @@ Attempt log:
 | 2026-05-15 05:08 EDT | Joined the Standard Shopping product export and public-read back clicked PDPs | Export join completed for `767` paid-cohort rows over `Apr 18-May 14, 2026`: `112` rows with impressions, `65` clicks, `$14.17` cost, `$0.00` conversion value, `85` public-clean matches, `30` held matches, `652` unmatched rows, and `0` title/feed repair candidates. Public readback checked `27` clicked rows across `13` handles / `26` fetches: `26/26` passed and `0` clicked handles were source-blocked. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-pdp-readback/STANDARD_SHOPPING_CLICKED_PDP_PUBLIC_READBACK.md`. |
 | 2026-05-15 06:08 EDT | Built a public/read-only clicked-title conversion approval packet from the clicked Shopping PDPs | Checked `13` unique clicked PDP handles covering `65` clicks / `$14.17` cost / `$0.00` conversion value. Public source showed all checked pages still had add-to-cart, customer-photo section markup, and hidden zero-review badge behavior; `12/13` visible product H1s had literal ellipses, covering `64` clicks / `$13.96` cost, and all `13` visible H1s materially differed from Merchant/SEO titles. Wrote exact owner approval phrase for no-feed/no-campaign Shopify title/display-title cleanup only on the listed clicked PDPs. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-standard-shopping-clicked-title-conversion-approval/STANDARD_SHOPPING_CLICKED_TITLE_CONVERSION_APPROVAL_PACKET.md`. |
 | 2026-05-15 10:24 EDT | Read-only Google Ads purchase-action and Shopify order-attribution sanity check after outside broken-tracking diagnosis | `PURCHASE_TRACKING_HEALTHY__NO_PAID_GOOGLE_CPC_ORDERS_FOUND__DO_NOT_CHANGE_CONVERSION_GOALS`: current Google Ads data shows `Google Shopping App Purchase` is primary/included and last received request `2026-05-11T21:47:18Z`; sanitized Shopify orders since `2026-04-29` show `13` non-cancelled non-test orders, `0` Google paid/CPC signals, and `4` Google organic/product-sync signals. This supports no paid-attributed purchases, not missing purchase tracking. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-google-ads-purchase-attribution-readback/GOOGLE_ADS_PURCHASE_ATTRIBUTION_READBACK.md`. |
+| 2026-05-20 01:39 EDT | Built local no-write parent-outfit Shopping rebuild packet after owner instructed old campaign stays paused | Packet keeps `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` paused and proposes only paused V2 Shopping lanes: Mommy & Me `99`, Family Matching `77`, Daddy & Me `34` active/feed-mapped parent outfits, with subgroups underneath, shared `item_group_id`, parent hero `image_link`, no catchall include rows, `0` included hard 404s, `0` missing item groups, and `0` missing hero images. Held out `5` historically served 404 parents and `2` archived/unpublished Daddy products. No Google Ads, Merchant, Shopify, feed, product-group, budget, bid, status, conversion, or billing write occurred. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_REBUILD_PACKET.md`. |
+| 2026-05-20 02:01 EDT | Created only paused Google Ads parent-outfit V2 Shopping structures after current-session paused-only approval | Validate-only passed, then Google Ads API live mutate executed `96` operations. Corrected after-state readback passed with `3` paused V2 campaigns, `12` paused subgroup ad groups, `12` paused Shopping product ads, `60` listing-group criteria, `12` included subgroup units, `24` excluded catchall units, `0` bad catchall units, and `3` campaign listing scopes. Old campaign `23802638621` / `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` remained `PAUSED` / `PAUSED`. No activation, Merchant/Shopify feed-label write, product/image write, conversion-goal write, billing write, or existing test-campaign edit occurred. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_PAUSED_REBUILD_LIVE_READBACK.md`. |
+| 2026-05-20 02:20 EDT | Ran the separate Merchant/feed count and image readback gate only, keeping V2 and old test campaigns paused | `FAIL_CLOSED__MERCHANT_FEED_LABEL_IMAGE_READBACK_NOT_LIVE`: Ads safety passed (`campaign_status_ok=True`, old test paused, `60` listing groups, `12` included units, `24` excluded catchalls, `0` bad catchalls), but live Shopping-product readback found `0` rows with `custom_label_4=us_parent_outfit_ready_v20260520` against expected `4531` included variant rows and parent counts Mommy & Me `99`, Family Matching `77`, Daddy & Me `34`. Existing old-label context still has `754` `paid_eligible` + `us_test_ready` rows, including `640` matching the new expected item IDs. Google Ads exposes `product_image_uri` and custom labels but not live `item_group_id`; Merchant Content API scope probe failed with `invalid_scope`. No Google Ads mutate, Merchant, Shopify, feed upload, product, budget, bid, status, conversion, billing, or activation write occurred. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_MERCHANT_FEED_GATE_READBACK_20260520T062057Z.md`. |
+| 2026-05-20 02:26 EDT | Prepared smallest no-write Merchant supplemental feed update approval packet | Packet proposes Merchant supplemental feed first, not Shopify Admin product edits. Generated upload-ready `google_shopping_parent_outfit_merchant_supplemental_update_20260520.csv` from included rows only: `4531` offer IDs, `4531` unique IDs, `210` parent outfits, parent counts Mommy & Me `99`, Family Matching `77`, Daddy & Me `34`, `0` missing `item_group_id`, `0` missing `image_link`, `0` duplicate IDs, `0` parent image splits, and `156` excluded rows not uploaded. Packet blocks Ads activation/status/budget/bid/product-group/conversion/billing changes, Shopify product edits, excluded/404/archived products, and any fallback to Shopify Admin without fresh approval. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_MERCHANT_FEED_UPDATE_APPROVAL_PACKET.md`. |
+| 2026-05-20 03:10 EDT | Executed the approved Merchant supplemental upload/update gate and reran readbacks | Created Merchant supplemental source `10663204023` from `google_shopping_parent_outfit_merchant_supplemental_update_20260520.tsv`. Merchant processed `4,531` rows, matched `4,390`, recognized all attributes, and reported `141` rows with `Offer does not exist`. After-state gate `20260520T070653Z` still failed closed: live ready-label rows in Google Ads Shopping-product readback `0`, V2 campaigns paused, old test campaign paused, bad catchalls `0`. Missing-offer diagnosis found `139` spec IDs absent from Google Ads Shopping-product readback, all Mommy & Me, across `8` active Shopify parent products. No activation, budget, bid, status, product-group, conversion, billing, or Shopify product write occurred. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_MERCHANT_FEED_UPDATE_EXECUTION_READBACK_20260520.md`. |
+| 2026-05-20 03:38 EDT | Executed the approved missing-offer primary-source publication repair | Ran Shopify Admin GraphQL `publishablePublish` only to Google & YouTube publication `gid://shopify/Publication/21969633377` and only for the 8 diagnosed Mommy & Me parent products. All 8 mutations returned `0` userErrors and all 8 products remained `ACTIVE`; five previously unpublished products received fresh Google & YouTube publish timestamps. Bounded Google Ads Shopping-product poll showed ready-label rows moving `54 -> 73`, but the formal gate `20260520T073815Z` still failed closed with ready rows `72`, V2 campaigns paused, old test campaign paused, and bad catchalls `0`. No activation, budget, bid, status, product-group, conversion, billing, title, price, handle, body, SEO, inventory, or unrelated product edit occurred. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_MISSING_OFFERS_REPAIR_EXECUTION_20260520.md`. |
+| 2026-05-20 07:17 EDT | Refreshed the parent-outfit supplemental source and isolated the remaining label-precedence blocker | Re-uploaded the same approved TSV to Merchant source `10663204023` and repaired an intermediate bad source state back to full processing: `4,531` total updated, `4,390` matched, all attributes recognized, `141` missing offers. After-state gate `20260520T111119Z` still failed closed at ready rows `145`, V2 campaigns paused, old test campaign paused, bad catchalls `0`, image mismatches `0`. Label-precedence probe shows `custom_label_3=parent_outfit` live on `4,390` rows, but `custom_label_4=us_parent_outfit_ready_v20260520` only on `145`; many intended rows still carry old `custom_label_0`/`custom_label_4` values from the older label stack. Shopify product-level label dry run found only `35` target metafields on `7` products and was not applied. Prepared exact next approval packet for older Merchant label-source precedence repair. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_SUPPLEMENTAL_REFRESH_AFTER_PUBLICATION_EXECUTION_20260520.md`. |
+| 2026-05-20 10:09 EDT | Executed approved label-precedence source repair | Read back US/en supplementals, identified Merchant source `10626787326` / `supplemental_feed_pilot.txt` as the older label source, then built/uploaded a `6,121`-row replacement preserving `1,590` non-parent rows and known `age_group` values. Source after upload read back `6,121` total / `5,284` matched / `837` missing, all attributes recognized. Gate improved from `145` ready rows to `4,390`; latest gate `20260520T141425Z` still failed closed with missing expected `141`, label/image mismatches `0`, bad catchalls `0`, V2 campaigns paused, and old test campaign paused. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-google-shopping-parent-outfit-rebuild/GOOGLE_SHOPPING_PARENT_OUTFIT_LABEL_PRECEDENCE_REPAIR_EXECUTION_20260520.md`. No activation/Ads budget/bid/status/product-group/conversion/billing/Shopify write occurred. |
+| 2026-05-21 03:02 EDT | Reran the read-only parent-outfit Merchant/feed gate after propagation and prepared the remaining-missing-offer approval packet | Gate `20260521T070231Z` still failed closed at expected `4,531`, ready rows `4,390`, missing expected rows `141`, unexpected ready rows `0`, label mismatches `0`, image mismatches `0`, missing live images `0`, bad catchalls `0`, V2 campaigns paused, and old test campaign paused. Generated current missing-row and parent-summary CSVs; the missing scope is `141` Mommy & Me rows across `8` parent products. Prepared `GOOGLE_SHOPPING_PARENT_OUTFIT_REMAINING_MISSING_OFFERS_APPROVAL_PACKET_20260521.md` for the next exact approval gate. No Merchant, Shopify, Google & YouTube, Google Ads, campaign, budget, bid, product-group, conversion, billing, title, price, handle, body, SEO, inventory, publication, or activation write occurred. |
+| 2026-05-21 04:50 EDT | Reran the read-only parent-outfit Merchant/feed gate after additional propagation | Latest gate `20260521T085030Z` held at expected `4,531`, ready rows `4,390`, missing expected rows `141`, unexpected ready rows `0`, label mismatches `0`, image mismatches `0`, missing live images `0`, bad catchalls `0`, V2 campaigns paused, old test campaign paused, and old-label rows matching new expected item IDs `0`. Refreshed the remaining-missing-offer approval packet to point at the latest gate. No Merchant, Shopify, Google & YouTube, Google Ads, campaign, budget, bid, product-group, conversion, billing, title, price, handle, body, SEO, inventory, publication, or activation write occurred. |
+| 2026-05-21 05:00 EDT | Split-diagnosed the remaining 141 missing expected rows | Shopify Admin readback found all 8 diagnosed products are `ACTIVE`, Online Store published, Google & YouTube published, and all 141 missing variant IDs still exist in Shopify. Google Ads item-ID presence probe found `72` rows / `70` unique item IDs now exist in the Shopping-product surface with blank `custom_label_0..4`, while `71` item IDs are absent. Updated the remaining-missing-offer packet to make the next repair concrete: refresh only approved supplemental sources for the visible blank-label rows, and repair only Google & YouTube / Merchant primary-source presence for the absent item IDs. Evidence: `GOOGLE_SHOPPING_PARENT_OUTFIT_REMAINING_MISSING_OFFERS_DIAGNOSIS_20260521.md`. No external write occurred. |
+| 2026-05-21 05:12 EDT | Executed exact-approved narrow Google & YouTube publication resync for remaining missing offers | Read back only the approved 8 Mommy & Me products and `141` missing expected offer IDs: all `8` products were active and already Google & YouTube published; `141/141` missing expected variants existed in Shopify. Ran only Shopify Admin GraphQL `publishablePublish` to Google & YouTube publication `gid://shopify/Publication/21969633377` for those 8 products; `0` userErrors. Because the products were already published, publication dates did not advance. Gate polls from `20260521T085925Z` through `20260521T091217Z` stayed failed closed at `4,390/4,531`, missing expected `141`, label/image mismatches `0`, bad catchalls `0`, V2 paused, old test paused. No campaign activation/status/budget/bid/product-group/conversion/billing/title/price/handle/body/SEO/inventory/variant/Merchant source/broad account sync/source reset/product recreation occurred. |
+| 2026-05-21 05:20 EDT | Completed exact-approved Shopify attribute repair; Merchant supplemental refresh blocked by local Chrome file-upload permission | The approved attribute repair wrote only `mm-google-shopping.age_group` and `mm-google-shopping.size` for the same `141` scoped variants: `278` metafield updates, `12` applied batches, `0` mutation user errors; after-plan rows now read `already_correct`. Latest gate `20260521T092023Z` still failed closed at `4,390/4,531`, missing expected `141`, label/image mismatches `0`, bad catchalls `0`, V2 paused, old test paused. Authenticated Merchant source `10663204023` and upload dialog loaded for the approved TSV, but Chrome extension file upload failed before transmission with `fileChooser.setFiles failed` / `Not allowed`; no Merchant source upload occurred in this follow-up attempt. Evidence: `GOOGLE_SHOPPING_PARENT_OUTFIT_REMAINING_MISSING_OFFERS_REPAIR_EXECUTION_20260521.md`; `google_shopping_remaining_missing_offer_attribute_repair_summary_20260521T091231Z.json`; `google_shopping_parent_outfit_merchant_feed_gate_20260521T092023Z.json`. |
+| 2026-05-21 05:42 EDT | Completed approved Merchant TSV refresh and bounded propagation gate rerun | Chrome/Codex upload capability was restored and only the approved TSV was uploaded to existing Merchant source `10663204023`. Merchant source readback improved to `4,531` total / `4,392` matched / `139` `Offer does not exist`, all attributes recognized, last updated `May 21, 2026 5:35 AM`. Ads-side gates `20260521T093641Z`, `20260521T093856Z`, and bounded propagation rerun `20260521T094158Z` still failed closed at `4,390/4,531`, missing expected `141`, label/image/live-image/catchall issues `0`, V2 paused, old test paused. Stop repeating uploads/resyncs; next valid step is the read-only eligibility diagnostic packet. Evidence: `GOOGLE_SHOPPING_PARENT_OUTFIT_MERCHANT_TSV_REFRESH_EXECUTION_20260521.md`; `merchant_source_10663204023_after_approved_tsv_refresh_20260521T093710Z.json`; `google_shopping_parent_outfit_merchant_feed_gate_20260521T094158Z.json`. |
+| 2026-05-21 06:00 EDT | Ran corrected read-only eligibility diagnostic and prepared exclusion-first packet | Fresh gate `20260521T095116Z` still failed closed at `4,390/4,531`. Corrected diagnostic `20260521T095911Z` handled duplicate Ads rows by unique item ID and split the `141` unresolved rows into `71` expected offer IDs absent from Google Ads Shopping-product plus `70` present without the approved ready label; all unresolved rows are Mommy & Me. Shopify Admin readback for the `8` diagnostic parent products found all active, Google & YouTube published, and no product feedback messages. The diagnostic also found `20` ready-label rows with `not_eligible_out_of_stock`. Prepared `GOOGLE_SHOPPING_PARENT_OUTFIT_UNRESOLVED_OFFER_EXCLUSION_APPROVAL_PACKET_20260521.md` and exact CSVs for the `141` unresolved rows and `20` out-of-stock hold. No activation, unpause, Merchant, Shopify, Google & YouTube, Google Ads, product, feed, campaign, budget, bid, status, product-group, conversion, billing, broad sync, source reset, or inventory write occurred. |
+| 2026-05-21 06:39 EDT | Built reduced read-only activation-review gate and activation approval packet | Used the exact `141` unresolved-offer exclusion CSV and exact `20` out-of-stock hold CSV to build the reduced local gate. Latest local ready-label snapshot `20260521T103730Z` had `4,392/4,531` ready rows, but all `141` unresolved rows stayed held out even though `2` now appear ready. Reduced gate passed for `4,370` candidate in-stock rows across `203` parent products, with labels/images matching spec, `0` bad catchalls, V2 campaigns paused, and old test campaign paused. Prepared `GOOGLE_SHOPPING_PARENT_OUTFIT_REDUCED_SCOPE_ACTIVATION_APPROVAL_PACKET_20260521.md` only as a separate approval packet. No activation, unpause, Merchant, Shopify, Google & YouTube, Google Ads, product, feed, campaign, budget, bid, status, product-group, conversion, billing, broad sync, source reset, or inventory write occurred. Evidence: `GOOGLE_SHOPPING_PARENT_OUTFIT_REDUCED_ACTIVATION_REVIEW_GATE_20260521T103852Z.md`; `google_shopping_parent_outfit_reduced_activation_review_gate_20260521T103852Z.json`. |
+| 2026-05-21 06:47 EDT | Attempted exact-approved remaining repair; Merchant file upload blocked before transmission | Built current exact-row artifacts for `20` out-of-stock holdout rows, `68` current Ads-visible Spanish blank-label rows, and `71` Ads-absent presence rows. Merchant source list readback showed only US/en supplementals; entered the authenticated create-supplemental-source flow for the visible narrow Spanish-targeted file path, but Chrome extension file upload failed before transmission with `Not allowed` / `fileChooser.setFiles failed`. No Merchant source was created, no file was uploaded, and no Continue/Create/Upload action was submitted. Fresh gate `20260521T104627Z` still failed closed at `4,392/4,531`, missing `139`, with `0` label/image/live-image/catchall issues, V2 paused, and old test paused. Evidence: `GOOGLE_SHOPPING_PARENT_OUTFIT_REMAINING_REPAIR_ATTEMPT_BLOCKED_20260521.md`; `GOOGLE_SHOPPING_PARENT_OUTFIT_REMAINING_ELIGIBILITY_REPAIR_ARTIFACTS_20260521T104255Z.md`; `google_shopping_parent_outfit_merchant_feed_gate_20260521T104627Z.json`. |
+| 2026-05-21 09:24 EDT | Finished the paused parent-outfit rebuild around the reduced clean scope and separated the missing Mommy & Me repair lane | Owner approved using the reduced clean scope to stop the loop. Fresh reduced gate `20260521T132011Z` passed for `4,370` candidate in-stock ready-label rows / `203` parent products after excluding all exact `141` unresolved-offer rows and all exact `20` out-of-stock rows; label mismatches `0`, image mismatches `0`, missing live images `0`, and bad catchalls `0`. Fresh V2 Ads readback `20260521T132345Z` passed with all `3` V2 campaigns, `12` ad groups, and `12` product ads paused; old `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` paused; `60` listing groups, `12` included subgroup units, `24` excluded catchalls, and `0` bad catchalls. No activation, spend, Merchant, Shopify, Google & YouTube sync, budget, bid, status, product-group, conversion, billing, broad sync, source reset, or product recreation occurred. Evidence: `GOOGLE_SHOPPING_PARENT_OUTFIT_REDUCED_ACTIVATION_REVIEW_GATE_20260521T132011Z.md`; `GOOGLE_SHOPPING_PARENT_OUTFIT_PAUSED_REBUILD_EXECUTION_20260521T132345Z.md`. |
+| 2026-05-21 10:41 EDT | Created the Spanish blank-label supplemental source for the remaining parent-outfit repair lane | Under the owner's narrow repair/exclusion approval, source `10664235992` was created from only `google_shopping_parent_outfit_blank_label_overlay_20260521T104255Z.tsv`, feed label `US`, language `Spanish`. Merchant processed `68` total / `68` matched, all attributes recognized, no product-file issues. Immediate gate `20260521T144159Z` and bounded rerun `20260521T144738Z` still failed closed at `4,392 / 4,531`, with `68` Ads-present non-ready rows, `71` Ads-missing rows, `20` out-of-stock rows, `0` bad catchalls, all V2 campaigns paused, and old test campaign paused. No activation, spend, Ads campaign/budget/bid/status/product-group/conversion/billing change, Shopify product/publication/inventory/title/price/handle/body/SEO write, broad sync, source reset, or product recreation occurred. Evidence: `GOOGLE_SHOPPING_PARENT_OUTFIT_SPANISH_BLANK_LABEL_SUPPLEMENTAL_SOURCE_EXECUTION_20260521.md`. |
+| 2026-05-21 10:58 EDT | Diagnosed why Spanish blank-label source `10664235992` is not winning yet | Reran the read-only gate: `20260521T145604Z` still failed closed at `4,392 / 4,531`, with `0` bad catchalls, all V2 campaigns paused, and old test campaign paused. Targeted Ads probe for the exact `68` TSV IDs returned all `68` as `US/es` Shopping-product rows, so the blocker is not missing IDs, country, or language. Actual labels are blank `||||` for all `68`, expected ready labels exist in the overlay for all `68`, and overlay image match is `false` for all `68`, so source `10664235992` has not materialized/won any uploaded label or image attributes in the Ads product surface. No external write occurred in this diagnostic step. Evidence: `GOOGLE_SHOPPING_PARENT_OUTFIT_SOURCE_10664235992_NOT_WINNING_DIAGNOSIS_20260521.md`; `google_shopping_parent_outfit_spanish_blank_label_source_10664235992_ads_surface_probe_20260521T145829Z.json`. |
+| 2026-05-21 10:53 EDT | Stopped approved reduced-scope activation because current V2 tree would include held rows | Owner pasted the exact reduced-scope activation approval phrase, but the required preflight found the live V2 product-group tree is label/subgroup based rather than exact item-ID fenced. Fresh before-state readback `20260521T145352Z` passed with all V2 campaigns/ad groups/product ads paused, old test campaign paused, `60` listing groups, `24` excluded catchalls, and `0` bad catchalls. Leak preflight found `22` held rows that the current tree would include if active: `2` in-stock held Mommy & Me rows plus `20` out-of-stock held rows that could leak later when inventory changes. Activation stopped before any status, budget, bid, product-group, conversion, billing, Merchant, Shopify, Google & YouTube, broad sync, source reset, or product recreation write. Evidence: `GOOGLE_SHOPPING_PARENT_OUTFIT_REDUCED_SCOPE_ACTIVATION_STOPPED_20260521T145352Z.md`. |
+| 2026-05-21 10:59 EDT | Built exact-scope product-group enforcement script; validate-only blocked by Google Ads API quota | Added `execute_google_shopping_parent_outfit_exact_scope_enforcement.py` to replace `12` included subgroup units with `12` subgroup subdivisions, `4,370` exact `product_item_id` units, and `12` item-level excluded catchalls while keeping all campaigns/ad groups/product ads paused. Validate-only exposed and fixed the item-level `others` case requirement, then exposed and fixed the multi-shopping-ad-group batching requirement. Batched validate-only then hit Google Ads API Basic Access quota: `429 RESOURCE_EXHAUSTED`, `Too many requests. Retry in 62513 seconds.`, request ID `dQSB-3UevUPdukZ_RQEPIw`, quota note `Number of operations for basic access`. No execute mutation, activation, status, budget, bid, product-group, conversion, billing, Merchant, Shopify, Google & YouTube, broad sync, source reset, or product recreation write occurred. Evidence: `GOOGLE_SHOPPING_PARENT_OUTFIT_EXACT_SCOPE_ENFORCEMENT_VALIDATE_BLOCKED_20260521.md`. |
 
 Failed paths / ruled out:
 
@@ -284,6 +767,7 @@ Failed paths / ruled out:
 - Negative keyword action from the 2026-05-15 broader visible Shopping terms is also ruled out because they still had `0` clicks and `$0.00` cost; brand Search clicks/cost do not justify Shopping title/feed changes.
 - Product-group, bid, budget, status, product, feed, or Merchant-title edits are ruled out because the item-level export and join found `0` feed repair candidates and no source-blocked clicked PDPs, while conversion value remains `$0.00`.
 - Conversion-goal repair, purchase-action recreation, or bid raises based on the outside broken-tracking diagnosis are ruled out by current readback: the primary purchase action is included and receiving requests, while sanitized Shopify attribution found no Google paid/CPC orders.
+- Reusing the old `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` product-group tree is ruled out: it mixed parent lanes with subgroups, served variants as separate rows, and included historically served parent handles that now 404.
 - Shopify title/display-title cleanup is not ruled out, but it remains owner-approval-gated because `12/13` clicked PDPs have literal ellipses in the visible H1 and cleanup would touch customer-visible product/title presentation.
 - Public PDP source/title-fit preflight and held-PDP repair packet cannot replace item-level Shopping export; they only narrow the clean public scope and identify repair/exclusion gates.
 - Did not use Computer Use or authenticated GUI recovery because this automation run must not repair permissions and account-surface mismatch is already recorded.
@@ -292,7 +776,8 @@ Failed paths / ruled out:
 
 Current next action:
 
-- Keep Google Ads purchase goals unchanged. The clicked-title approval packet is ready. If the owner approves the exact phrase, clean only the listed clicked PDP visible titles/display titles and verify before/after public H1, title, add-to-cart, price, source-clean, and zero-review-badge state; do not touch feed attributes, campaigns, product groups, bids, budgets, statuses, conversion settings, billing, or Merchant/Pinterest/Google Ads objects.
+- Keep `DLM_US_STANDARD_SHOPPING_TEST_PAID_READY` paused and keep all new V2 Shopping campaigns paused. Do not activate the current label/subgroup V2 tree: preflight proved it would include `22` held rows. The exact-scope enforcement script is ready, but Google Ads API Basic Access operation quota blocked validate-only. Retry validate-only only after the quota window clears; execute only if every ad-group batch validates, then read back `4,370` exact item units and `0` held IDs before any activation is reconsidered.
+- Keep Google Ads purchase goals unchanged. The clicked-title approval packet is still separate and ready. If the owner approves that exact phrase, clean only the listed clicked PDP visible titles/display titles and verify before/after public H1, title, add-to-cart, price, source-clean, and zero-review-badge state; do not touch feed attributes, campaigns, product groups, bids, budgets, statuses, conversion settings, billing, or Merchant/Pinterest/Google Ads objects.
 - If the owner wants end-to-end paid attribution proof, prepare a separate controlled paid-test-purchase approval packet; do not create or pay for an order from automation.
 - Continue Merchant/feed eligibility in parallel: `US/es` source `10627981690` remains issue/capacity blocked, and CA/GB/AU English have `0` current all-product rows. Do not create campaigns or mutate feed/title/product groups until those readbacks produce a narrow owner-approved action packet.
 - Keep held rows out of title/feed repair decisions until their public source/title-fit issues are resolved. Use `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-held-pdp-repair-packet/US_SHOPPING_HELD_PDP_REPAIR_PACKET.md`, `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-seasonal-related-filter/US_SHOPPING_SEASONAL_RELATED_FILTER_LOCAL_FIX.md`, and `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-14-automation-us-shopping-seasonal-live-sync-approval/US_SHOPPING_SEASONAL_RELATED_FILTER_LIVE_SYNC_APPROVAL_PACKET.md` for exact repair/exclusion gates and approval wording.
@@ -1666,6 +2151,14 @@ Attempt log:
 | 2026-05-15 05:50 EDT | Continued paused-draft path after `$1.00` validation-only approval | `VALIDATION_ONLY_STOPPED_EXACT_PRODUCT_GROUPS_REQUIRED_NO_SAVE_NO_PUBLISH`: owner approved `$1.00` only for paused-draft validation, with no launch/enablement/spend/bid activation and no catalog/source/tag/CAPI/feed/audience changes. The existing product-group selector had selected groups `0`; searches for `DLM_PIN_US_SHOPPING`, `mommy_me`, and `family_matching` found no exact groups. Searches for `pajamas`, `Mommy`, and `Family Matching` exposed only broad groups (`Pajamas` `252`, Mommy & Me `445/1,011`, Family Matching `1,011+`, `All Products` `5,664`). Stopped before `Add product groups`, Save, Continue, Review, Publish, Launch, or Enable. No draft/campaign/ad group/ad/product group/catalog/source/tag/CAPI/feed/audience/budget/bid/status/spend write was saved from this follow-up | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-paused-draft-product-group-scope-stop/PINTEREST_PAUSED_DRAFT_PRODUCT_GROUP_SCOPE_STOP.md` |
 | 2026-05-15 06:07 EDT | Attempted owner-approved exact product-group creation/exposure and stopped before launch | `APPROVED_BUT_BLOCKED_LABEL_PREVIEW_ZERO_FILE_UPLOAD_NO_LAUNCH`: the exact packet phrase was approved. Pinterest Product Groups opened for catalog `3041764155561548387` / feed profile `3041760867124595727`. The UI filter-builder path for `DLM_PIN_US_SHOPPING_MOMMY_ME_333` with `paid_eligible` + `us_test_ready` + `mommy_me` previewed `0 products selected`, so no group was saved. Generated fallback import CSV from exact clean item IDs (`201` Mommy & Me, `103` Family Matching, `29` Pajamas), but Chrome file chooser upload failed with `Not allowed`; no import occurred. No campaign, draft, product group, catalog/source/feed/tag/CAPI/billing/Shopify mutation, launch, publish, enablement, or spend occurred | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/PINTEREST_EXACT_PRODUCT_GROUP_ATTEMPT_STOP.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/pinterest_exact_product_group_item_id_import.csv` |
 | 2026-05-15 07:14 EDT | Retried through an upload-capable authenticated path and stopped before launch | `IMPORTED_FILTERS_READBACK_201_103_29_PRODUCTS_ZERO_NO_LAUNCH`: Chrome DevTools authenticated path imported the exact CSV and the exact groups now exist: `DLM_PIN_US_SHOPPING_MOMMY_ME_333`, `DLM_PIN_US_SHOPPING_FAMILY_MATCHING_333`, and `DLM_PIN_US_SHOPPING_PAJAMAS_333`. Edit readback confirms item-ID filter payload counts `201`, `103`, and `29`, respectively. However Pinterest product detail pages still show `0` selected/products, empty previews, `Promote` disabled, and `This product group updates every 24 hours`; Mommy & Me also shows the `200 items or fewer` board-publishing warning. Final-review launch gate did not pass. No campaign, draft, broad group selection, catalog/source/feed/tag/CAPI/billing/Shopify mutation, launch, publish, enablement, or spend occurred | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/PINTEREST_EXACT_PRODUCT_GROUP_IMPORT_READBACK.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-exact-product-group-unblock/pinterest_exact_product_group_item_id_import.csv` |
+| 2026-05-18 07:11 EDT | Recovered Chrome, confirmed exact groups in campaign flow, and stopped at Review before Publish | `REVIEW_REACHED_EXACT_GROUPS_SELECTED_NO_PUBLISH`: Pajamas detail readback passed under source `3041760873378113572`. Campaign flow initially defaulted to unapproved broad/legacy `All Products`, then the selector was switched to `DLM Cloudflare Grouped Feed 2026-05-18`; `All Products` was deselected and only Pajamas `29`, Family Matching `103`, and Mommy & Me `201` were selected. Create-flow settings read back `Pin clicks`, `Custom`, and max CPC `0.15`; Review screen read back Catalog sales, exact group IDs/counts, daily budget `USD 5.00`, and max CPC `0.15`. Publish was stopped because final Review did not explicitly display `Pin clicks`, did not display `Custom`, did not directly show the source name, and displayed Performance+ targeting / expanded targeting. No Publish, Promote, launch, legacy-source cleanup, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4/GTM, Worker metadata, or product-data write occurred | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-18-pinterest-final-launch-scope-approval/PINTEREST_CAMPAIGN_REVIEW_STOP_READBACK.md` |
+| 2026-05-20 current session | Created corrected category/feed-label product groups after owner paused the wrong campaign | `LABEL_GROUPS_CREATED_NO_RESTART`: owner approved corrected product groups from category/feed labels and restart only after fresh approval. Created `DLM_PIN_US_LABEL_MOMMY_ME_20260520` (`4673019642205`) with `22` products, `DLM_PIN_US_LABEL_FAMILY_MATCHING_20260520` (`4673019642201`) with `73` products, and `DLM_PIN_US_LABEL_PAJAMAS_20260520` (`4673019642195`) with `6` products. All use `Custom label 0 is us` plus `Custom label 1` category values. Old item-ID groups still read back broken at `1/0/0`. Campaign `DLM_PIN_US_CATALOG_333_EXACT_20260518` / `626758581530` read back `Paused`; reporting showed `0 currently being served`. No campaign/ad group/ad restart, publish, enable, budget, bid, status, source, feed, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM write occurred | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-corrected-label-product-groups/PINTEREST_CORRECTED_LABEL_PRODUCT_GROUPS_READBACK.md` |
+| 2026-05-20 current session | Rebuilt Pinterest scope from Shopify storefront collections and current grouped feed | `COLLECTION_MAPPING_READY_NO_LIVE_WRITE`: owner clarified that Pinterest groups must follow storefront collection categories, not the earlier feed-label counts. Fresh mapping shows Mommy & Me `99/99` mapped, Family Matching `78/78` mapped even though target was `77`, Daddy & Me main collection `45/45` mapped, and Daddy shirt/t-shirt public subcategory `34/34` mapped even though Admin subcategory count appears to be `36`. Overlaps are Mommy & Me / Family Matching `18`, Family Matching / Daddy public subcategory `33`, Mommy & Me / Daddy `0`. Recommended non-overlap paid lanes are Mommy & Me `81`, Family Matching `45`, Daddy & Me `34`; mirror groups are `99/78/45`. No Pinterest group creation, campaign/ad group/ad restart, publish, enable, budget, bid, status, source, feed, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM write occurred in this mapping pass | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_SHOPIFY_COLLECTION_MAPPING_AND_GROUP_PLAN.md`; `pinterest_shopify_collection_mapping.csv`; `pinterest_product_group_item_group_id_lists.json` |
+| 2026-05-20 current session | Patched local Pinterest feed generator to emit Shopify collection-intent paid lane labels | `COLLECTION_INTENT_FEED_LABELS_LOCAL_READY_NO_UPLOAD`: `ops/scripts/generate_pinterest_feed_grouped.py` now emits `custom_label_2` as primary paid lane (`mommy_and_me`, `family_matching`, `daddy_and_me`, or `unassigned`), `custom_label_3` as all memberships, and `custom_label_4=collection_intent_v20260520`. Local US feed readback has `4,687` rows, `223` parent products, `0` missing `item_group_id`, `0` supplier/source host hits, and parent counts Mommy & Me `99`, Family Matching `77`, Daddy & Me `34`, unassigned `13`. Family Matching uses `/collections/new-women-outfits` (`77`) rather than broader `/collections/matching-outfits` (`78`). Daddy cannot currently be `36` in active/feed-mapped scope because `daddy-me-my-best-lady-my-best-man` and `father-and-child-pilot-co-pilot-matching-t-shirt-set-perfect-for-daddy-me-outfits` are `ARCHIVED` and have no `onlineStoreUrl`. No live feed upload, Pinterest source mutation, product group creation, campaign/ad group/ad restart, publish, enable, budget, bid, status, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM write occurred | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_COLLECTION_INTENT_FEED_LABELS_READBACK.md`; `feeds/pinterest_us_collection_intent.tsv`; `feeds/pinterest_us_collection_intent.summary.json`; `pinterest_collection_intent_feed_parent_readback.csv` |
+| 2026-05-20 current session | Uploaded collection-intent feed to remote R2 and triggered Pinterest source ingestion | `COLLECTION_INTENT_FEED_UPLOADED_SOURCE_PROCESSING`: owner approved upload/reingest plus group creation only after verified counts. Rebuilt unified feed to SHA `b76539eb641fede467bd6a572f90689c5b1bbff12edd8707fc202c87b4f1b1c0`, `28,122` rows, `0` missing `item_group_id`, `0` supplier/source host hits. First Wrangler put defaulted to local resource mode and did not affect the live Worker; remote/Worker SHA readback caught it before Pinterest action. Corrected with `wrangler r2 object put ... --remote`; remote R2 and Worker body readback match the new SHA and US label counts Mommy & Me `99`, Family Matching `77`, Daddy & Me `34`. Triggered `Manage ingestion > Trigger ingestion` for source `3041760873378113572`; Pinterest queued/started `May 20 at 12:53 AM EDT`, then remained `Processing` with product count `-`, images `Processing`, and `0/0/0` uploads/fails/warnings during active polls. No product group creation, campaign/ad group/ad restart, publish, enable, budget, bid, status, tag/CAPI, billing, Shopify product/theme/app-proxy, Merchant, Google Ads, GA4, or GTM write occurred | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_COLLECTION_INTENT_UPLOAD_REINGESTION_READBACK.md` |
+| 2026-05-20 heartbeat | Polled completed Pinterest source and attempted approved collection-intent selector gate | `SOURCE_COMPLETE_SELECTOR_COUNT_GATE_FAILED_NO_SAVE_NO_RESTART`: source `3041760873378113572` completed the May 20 12:53 AM EDT ingestion cleanly (`28,122/28,122`, `0` failed, `0` warnings, images completed). The approved selector filter `custom_label_0=us` + `custom_label_2=mommy_and_me` + `custom_label_4=collection_intent_v20260520` previewed `1,419` products selected, not the expected `99`; local feed readback proves this is the variant row count, while parent counts remain Mommy `99`, Family `77`, Daddy `34`. The unsaved product-group draft was dismissed. Read-only campaign/ad-group review found campaign `626758581530` `Paused`, `0 currently being served`, ad group bid `$0.15`, and old item-ID groups `29/103/166` still selected. No product group creation, campaign/ad group/ad restart, publish, enable, budget, bid, status, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM write occurred | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_COLLECTION_INTENT_UPLOAD_REINGESTION_READBACK.md` |
+| 2026-05-20 heartbeat | Polled parent-only Pinterest source and created approved parent groups after counts matched | `PARENT_GROUPS_CREATED_NO_RESTART`: source `3041760889836768751` completed the May 20 1:58 AM EDT ingestion cleanly with `210` products, `210` successful uploads, `0` failed uploads, `0` warnings, and images `Completed`. Created only the three approved parent groups from `custom_label_0=us`, lane `custom_label_2`, and `custom_label_4=collection_intent_parent_v20260520`: `DLM_PIN_US_PARENT_MOMMY_AND_ME_99_20260520` (`4673019642885`) count `99`, `DLM_PIN_US_PARENT_FAMILY_MATCHING_77_20260520` (`4673019642929`) count `77`, and `DLM_PIN_US_PARENT_DADDY_AND_ME_34_20260520` (`4673019642938`) count `34`. Campaign `626758581530` was not attached to the groups or restarted. No campaign/ad group/ad restart, publish, enable, budget, bid, status, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM write occurred | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md` |
+| 2026-05-20 current session | Attempted fresh-approved parent-group replacement in paused campaign and stopped on platform rule | `SOURCE_SWITCH_BLOCKED_NO_SAVE_NO_RESTART`: owner approved replacing old product groups in paused campaign `626758581530` with verified parent groups. Readback found campaign `Paused`, `0 currently being served`, existing ad group `2680090307739` `Active`, bid `$0.15`, optimization `Pin clicks`, bidding `Custom`, and selected old groups Mommy `166`, Pajamas `29`, Family `103`. Product-group selector showed the old source `DLM Cloudflare Grouped Feed 2026-05-18`; switching to parent source `3041760889836768751` returned `Action not allowed` because switching data sources is not allowed in edit mode and requires duplicate/new ad group. Closed without saving; product-group reporting still shows the old groups. No duplicate/new ad group, old ad group pause/remove, restart, publish, enable, budget, bid, status, tag/CAPI, billing, Shopify, Merchant, Google Ads, GA4, or GTM write occurred | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-pinterest-shopify-collection-mapping/PINTEREST_PARENT_PAID_SOURCE_EXECUTION_READBACK.md` |
 
 Failed or ruled-out paths:
 - Adding duplicate theme-level Pinterest tag or custom CAPI is ruled out without exact approval because it risks duplicate tracking and PII/credential handling.
@@ -1673,13 +2166,13 @@ Failed or ruled-out paths:
 - The older full `342`-row scope is ruled out as the next direct prefill while the `9` newly held variants expose public supplier/source domains; use the refreshed `333`-variant scope unless those variants are repaired and read back clean.
 - The no-budget Pinterest UI save path is ruled out because Pinterest requires a valid daily budget before saving a paused catalog draft.
 - The label-filter product-group UI path is blocked until it can preview nonzero exact rows; the attempted `paid_eligible` + `us_test_ready` + `mommy_me` group previewed `0` products.
-- The original Chrome extension file-upload path was blocked, but an authenticated Chrome DevTools upload path imported the exact CSV; the remaining blocker is Pinterest resolving imported filter payloads to usable nonzero product counts.
+- The original Chrome extension file-upload path was blocked, but an authenticated Chrome DevTools upload path imported the exact CSV; the later collection-intent label path proved a different blocker: Pinterest selector counts variant rows, so expected parent listing counts `99/77/34` will not appear from the current all-variant feed even though `item_group_id` is present.
 - The `$1.00` validation-only approval did not clear the product-group scope blocker and must not be interpreted as approval to save broad groups.
 - Broad Pinterest category groups are ruled out unless current readback proves every included item is active, sellable, source-clean, and inside the approved scope.
 
 Current next action:
 - Do not keep looping on Event Quality/tag proof; owner instructed to assume tags are correct.
-- Re-read the three imported exact Pinterest product groups after Pinterest resolves the 24-hour update. Required usable counts remain Mommy & Me `201`, Family Matching `103`, and Pajamas `29`; father-inclusive rows are proof-only until explicitly approved. Keep the held `9` variants excluded unless they are repaired and public-read back clean. Do not launch while Pinterest detail pages show `0` selected/products or disabled `Promote`.
+- Do not use the earlier `22/73/6` feed-label groups or the old item-ID groups for launch. Source `3041760873378113572` is complete and clean, so the next valid Pinterest path is not another ingestion poll. Resolve count semantics first: either accept Pinterest variant-row selector counts while validating parent lane inventory by unique `item_group_id`, or build a separate parent-only Pinterest ads source/feed so selectors can display `99/77/34`. To reach Daddy `36`, restore the two archived t-shirt products first, then regenerate/read back the feed. Do not restart or change budget/CPC/status without fresh owner approval on the current screen.
 
 Approval/credential/platform gates:
 - Live or paused Pinterest draft/campaign/product-group/budget/bid/tag/CAPI writes require exact current-session owner approval under this session's no-external-write rule. The next approval must explicitly mention exact product-group creation/exposure if that is required, and must preserve no launch/no enablement/no spend for paused-draft continuation; any later launch path must separately preserve max `$5/day` and max `$0.15` CPC.
@@ -2868,6 +3361,56 @@ Approval/credential/platform gates:
 Parallel work to continue:
 - Paid-growth, Merchant, Pinterest, GA4, checkout/payment, Admin product-data, and unrelated theme lanes remain separate.
 
+### `PROB-2026-05-19-POWDER-BLUE-TOP-PANTS-OPTIONS`
+
+Priority: `P1`
+
+Status: `SOLVED_LIVE_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-05-19.
+
+Surface: Shopify Admin product `7535944368225`, handle `powder-blue-mommy-and-me-set`, live URL `https://www.dresslikemommy.com/products/powder-blue-mommy-and-me-set`.
+
+Exact symptom:
+- Owner reported the top and pants are sold separately, but the live product picker only exposed `Size` plus single-value `Color`; shoppers could not choose `Top` vs `Pants`.
+
+Business impact:
+- Shoppers could buy the wrong piece because the listing did not expose the separate-piece choice at the variant level.
+
+Definition of fixed:
+- Product options expose `Type`, `Size`, and `Color`.
+- `Type` includes `Top` and `Pants`.
+- Existing variants remain sellable as `Top`; matching `Pants` variants exist for every size.
+- Product status, handle, publication, prices, inventory policy, and cost rule remain controlled.
+- Public storefront renders the piece selector and both a Top and Pants variant can be added to cart.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-19 05:47 EDT | Public and Admin readback | Confirmed live page had only `Size`; Admin product was `active`, published, with 8 variants and options `Size`, `Color` | public page readback; Shopify Admin REST readback |
+| 2026-05-19 05:50 EDT | Claimed narrow coordination lane | Added active write claim limited to product `7535944368225` option/variant repair | `ops/AGENT_COORDINATION.md` |
+| 2026-05-19 05:51 EDT | Shopify product update | Added `Type` option, preserved existing 8 variants as `Top`, created 8 `Pants` variants | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-19-powder-blue-top-pants-option-repair/raw/after_product_immediate.json` |
+| 2026-05-19 05:52 EDT | Cost cleanup | Set all inventory item costs to 50% half-up: `28.99 -> 14.50`, `31.99 -> 16.00` | Admin inventory item readback |
+| 2026-05-19 05:53 EDT | Admin and storefront verification | Passed: product still active/published, options `Type/Size/Color`, 16 variants, storefront renders `Choose piece`, `options[Type]`, `Top`, and `Pants` | `POWDER_BLUE_TOP_PANTS_OPTION_REPAIR.md`; raw readback files |
+| 2026-05-19 05:54 EDT | Cart add checks | Passed: one Top variant and one Pants variant both returned HTTP `200` from `/cart/add.js` | curl cart add readback |
+| 2026-05-19 05:55 EDT | Localized size-chart mapping audit | Passed: `320` variant-locale checks, `0` unmatched | `variant_row_mapping_audit.json` |
+| 2026-05-19 06:52 EDT | Narrow option-label translation polish | Replaced stale inherited `Size` translations on `Type` and registered `Top`/`Pants` translations for all published non-primary locales | `translation_polish/POWDER_BLUE_OPTION_TRANSLATION_POLISH.md` |
+| 2026-05-19 06:56 EDT | Translation readback and storefront samples | Passed: `60/60` translations present, `0` outdated; ES/FR/DE/PT storefront samples rendered localized piece labels | `translation_readback_all_locales.json`; sampled storefront HTML files |
+
+Failed or ruled-out paths:
+- Broad product copy, handle, collection, feed, campaign, theme, price, and publication edits were ruled out because the owner request was the separate top/pants option repair.
+- `python3.13` could not run the localized audit because `bs4` is not installed in that interpreter; reran the same repo script successfully with `python3`, where `bs4` is available.
+
+Current next action:
+- No follow-up is required for the listing fix. Optional: have a native reviewer spot-check the short commerce-label translations if this product becomes a paid landing page in a non-English market.
+
+Approval/credential/platform gates:
+- Owner explicitly requested the live listing fix and then approved the narrow option-label translation polish. No Ads, Merchant, Pinterest, GA4/GTM, billing, credential, theme, product handle, publish/unpublish, price increase, body/title/SEO, or unrelated product-data write occurred.
+
+Parallel work to continue:
+- Paid-growth, Merchant, Pinterest, GA4, checkout/payment, theme, and unrelated Admin product-data lanes remain separate.
+
 Copy this template for every new problem:
 
 ```markdown
@@ -2875,7 +3418,7 @@ Copy this template for every new problem:
 
 Priority: `P1`
 
-Status: `ACTIVE_SOLVING`
+Status: `SOLVED_READBACK_PASSED`
 
 Owner/session:
 
@@ -2901,3 +3444,1945 @@ Approval/credential/platform gates:
 
 Parallel work to continue:
 ```
+
+### `PROB-2026-05-20-GA4-SHOPIFY-PURCHASE-PARITY`
+
+Current September14 sender follow-up: September14 09:05:58UTC Shopify readback confirms legacy111181921 disconnected and Google & YouTube pixel1780363 Connected, Optimized and current Access on; conversion measurement is On. Exact tag-list expansion stopped after two locator failures, so prior destinations are historical. These settings do not establish a purchaser consent choice or the cause of the report-level warning. No switch to Always on, reconnect or new sender is justified. The original tag owner completed one passive US/en homepage reload at09:30:15-09:31:01UTC. Independent review found that its ephemeral matcher omitted the known analytics.google.com/g/collect endpoint. The raw records had already been cleared, so collector presence, page_view and session sequence are UNKNOWN. This is a FAILED collector-summary coverage check, separate from single-context and unobserved named-consent timing limits; it is not proof of absent Google traffic or a production tracking defect. The corrected evidence reporting is accepted with limits; runtime consent/session acceptance is NOT ACCEPTED. No second trace ran. The existing sanitize_request host allowlist in ops/scripts/run_google_ads_paid_checkout_capture.py already includes analytics.google.com. Five narrow synthetic endpoint cases pass using only extracted pure functions; the checkout CLI and network were not run, and no code change is justified. This does not qualify all collectors or child/worker execution contexts. Before any future permitted trace, qualify expected-collector matching and actual sender context coverage while preserving passive-trace privacy; do not blindly reuse transaction-retaining checkout output, repeat the trace automatically or create another harness. The accepted US purchase, historical May parity window, native suspension, all-market/attribution/profit limits and ACTIVE_SOLVING status are preserved. Sources: session_consent_20260914_0846/execution_checkpoint.json in the existing2026-09-11-google-ads-signup-tag/current repair packet; passive_sender_20260914_0846/execution_checkpoint.json and INDEPENDENT_REVIEW.json in the existing2026-09-09-google-tag-migration packet; ga4_session_consent_parent_acceptance_20260914.json and ga4_sender_parent_acceptance_20260914.json in the existing CEO packet.
+
+Current September14 receiver outcome: September 14 native GA4 account88409806/property330266838 reports 1 transaction, 1 ecommerce purchase and USD111.96 for the completed September 13 New York calendar day [04:00, next-day04:00) UTC. The receiver operator matched the transaction ID to the real Shopify legacy order ID transiently. The separate aggregate item report shows all four matching public variant IDs, quantity1 each, with USD34.99/26.99/24.99/24.99 revenue summing to USD111.96. The full 36-row item report was read: exactly four rows have purchased quantities or revenue, and all other32 rows are zero for those measures. All row totals reconcile to four items and USD111.96. Current property New York Time/US Dollar settings were verified without changes. Both reports are unsampled and use intraday data, so a completed calendar day is not processing finality. Session campaign ID is (not set), and the native report warns of missing session_start data and event/ad_user_data ordering. This is a report-level diagnostic, not a captured cause or proof of this customer's consent choice. The US purchase is received at report level; raw event currency/value/items, consent ordering, sender deduplication, Google paid attribution, international accuracy and actual profit remain unverified. A single reported transaction is not sender-level deduplication proof. Do not repeat migration, create another Purchase action or scale from this one sample. Evidence: GA4_REAL_PURCHASE_RECEIVER_20260914_0718_v2.json; the final matched independent review is retained with its source receipt. The historical May parity window is not reopened or declared repaired from this single new US sample. The original migration remains completed; this problem remains ACTIVE_SOLVING for full purchase/consent/attribution accuracy. Root full Shopify cohort is3orders/8units/USD198.41 and next full read19:04:53UTC.
+
+Current September11 receiver outcome: Retained GA4 account88409806/property330266838 now has current report access and Sep10–11 All Users item-report evidence:97 items viewed,8 items added to cart,0 items purchased and$0 item revenue; Transactions shows0 purchases/$0 purchase revenue. Counts may include identifiable QA. Property timezone/currency, processing completeness, genuine transaction/value/items/consent/dedup and Ads Purchase7760272273 acceptance remain open. This resolves report access, not purchase accuracy. No repeated migration, synthetic purchase or sender change. Historical May parity below remains a separate date window; no new purchase completeness result. The latest full Shopify cohort remains September11 19:47:15 UTC: 2 paid non-test web orders/4 units/USD86.45. Actual costs, attribution, CPA, ROAS and retained profit remain UNKNOWN. Two separate creation-only reads cover 19:47:15–21:21:23 and 21:21:23–22:48:55 UTC, each returning zero new orders and zero paid non-test web orders. Exact query boundaries are retained in the receipts; old payment/refund/fulfillment states were not reread. The next full cohort is due September12 07:47:15 UTC. The latest retained GA4 Sep10–11 Transactions read remains zero purchases/$0.00; item97/8 counts retain their earlier 21:40 clock. Received offers, setup, QA and scheduled content are not verified sales growth.
+
+Priority: `P1`
+
+Status: `ACTIVE_SOLVING`
+
+Owner/session: Codex current session, 2026-05-20.
+
+Surface: GA4 property `330266838`, Shopify paid orders, paid-growth measurement.
+
+Exact symptom:
+- For Apr 22-May 19, 2026, Shopify paid/non-cancelled truth is `23` orders and `$1,596.06`, but GA4 extracted only `18` transaction IDs and `$1,113.53`.
+- The prior GA4-derived “0 purchases after checkout” claim is contradicted by GA4 transaction rows and is not reliable for optimization.
+
+Business impact:
+- Paid traffic/channel decisions based on GA4 channel revenue or checkout-funnel purchase counts can pause or scale the wrong traffic because GA4 is under-counting orders by `21.74%` and revenue by `30.23%` for the checked window.
+
+Definition of fixed:
+- GA4 ecommerce purchase transaction count and revenue reconcile to Shopify paid/non-cancelled order truth within about `±5%` for the target window.
+- Paid optimization can then reintroduce GA4 channel reporting as a trusted input.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-05-20 current session | Shopify Admin read-only export | `23` paid/non-cancelled orders, `$1,596.06` | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-ga4-shopify-reconciliation/shopify_paid_orders_2026-04-22_2026-05-19.csv` |
+| 2026-05-20 current session | GA4 OAuth/Data API route | Blocked by Google “This app is blocked”; stopped without bypass | browser/OAuth readback in session |
+| 2026-05-20 current session | Existing authenticated Chrome GA4 read-only extraction | Extracted `18` GA4 transaction IDs, `$1,113.53`, and joined to Shopify | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-ga4-shopify-reconciliation/ga4_shopify_reconciliation_summary.json` |
+| 2026-05-20 current session | Paid optimization rerouted to Shopify order truth + Google Ads cost/click readbacks | Created read-only paid optimization packet. Google Ads window readback: `184` clicks / `$33.12`; May 20 readback: `0` clicks / `$0.00`. Standard Shopping had `158` clicks / `$30.62`, `0` Shopify Google-paid orders, and product join found `154` clicks / `$29.79` on clicked item/product rows with no Shopify sale in the window. | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-20-paid-optimization-shopify-ads-truth/PAID_OPTIMIZATION_FROM_SHOPIFY_ADS_TRUTH_2026-05-20.md` |
+| 2026-05-21 current session | Built approval-gated retest from Shopify-sold products and clean landing proof | Checked `24` top Shopify-sold products with no matching Shopping click; `13` passed live landing proof; narrowed packet to top `8` products / `19` exact sold variant item IDs with max CPC `$0.15`, daily cap `$5`, no GA4 optimization, and separate approval before enabling spend. | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-21-shopify-sold-product-paid-retest/GOOGLE_PAID_RETEST_SHOPIFY_SOLD_PRODUCTS_APPROVAL_PACKET_2026-05-21.md` |
+| 2026-05-21 current session | Owner approved paused-ready Shopify-sold Shopping setup and readback | Created campaign `DLM_US_SHOPPING_SHOPIFY_SOLD_RETEST_PAUSED_20260521` / `23867953136` paused only. Readback passed: one paused ad group, one paused product ad, `19` exact item-ID units, `1` excluded catchall, `$5/day`, `$0.15` CPC, Search Partners/Display off, May 21 cost `$0.00`. Spend enablement remains blocked by separate approval. | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-21-shopify-sold-product-paid-retest/GOOGLE_SHOPPING_SHOPIFY_SOLD_RETEST_PAUSED_SETUP_FINAL_READBACK_20260521.md` |
+
+Failed or ruled-out paths:
+- `gcloud` OAuth was ruled out for this session after Google blocked the app as sensitive/unverified.
+- GA4 channel revenue and the “0 purchases after checkout” funnel are ruled out as paid optimization truth until parity is repaired.
+
+Current next action:
+- If the owner wants spend enabled, require a separate fresh enable-spend approval after rereading the paused setup and confirming `0` cost; separately repair GA4 purchase/order parity before using GA4 channel revenue again.
+
+Approval/credential/platform gates:
+- No GA4/GTM, Shopify, Google Ads, Merchant, billing, checkout/payment, order, campaign, budget, bid, status, conversion-goal, or credential write occurred.
+- Any GA4/GTM setting or tracking repair requires fresh explicit approval and before/after readback.
+
+Parallel work to continue:
+- Paid traffic decisions can continue from Shopify paid-order exports and Google Ads cost/click readbacks while the GA4 parity repair is handled separately.
+
+September 5 current correction:
+- The prior solved label was unsupported: the retained fixed criterion requires purchase/value parity, while the old result completed a paid-optimization reroute. Historical evidence is preserved above.
+- Fresh aggregate comparison Aug8–Sep4: Shopify8 orders / USD734.99 merchandise net / USD760.97 total; GA4 5 purchase events / $432.20 displayed; currency unverified. This is a reconciliation flag, not a transaction-matched undercount claim. Ninety-day aggregate36 GA4 versus47 Shopify also differs. Actual GA4 timezone/currency settings, payment/cancellation scope and order IDs remain to be matched.
+- Attempt: authenticated Shopify aggregate connector + GA4 report filter set to purchase; evidence `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/analytics_seo_audit.md` and aggregate JSONs. No tracking settings changed.
+- Next: TA-02 private authorized order-ID/value/currency/time-window join; preserve Shopify paid-order plus verified platform-cost path while parity is incomplete. Do not add another pixel or reconfigure goals from aggregate discrepancy alone.
+
+September 5 / September 6 UTC exact-transaction update — supersedes the aggregate-only uncertainty above:
+- Fresh Shopify/GA4 reporting settings agree on USD/America_New_York. All36 GA4 IDs join uniquely to Shopify and their local purchase dates. Fixed28d:8 paid/noncancelled,5 matched,3 missing/USD302.44 retained merchandise. Fixed90d:47 original orders,45 paid/noncancelled,2 cancelled/refunded; GA4 includes both cancellations, so34 retained matches and11 missing/USD1,141.26.
+- Matched merchandise value differences are small in aggregate and all13 individual differences above one cent involve non-USD presentment; original event currency/FX remains unverified. Retained order coverage is demonstrably incomplete. GA4 flags missing session data; implementation causation is not established. One GA4 Google CPC cohort points to Italian Search23866684201 while Shopify records SEO visits; this conflict is preserved.
+- TA-02a exact fixed-window join is VERIFIED; this problem remains ACTIVE_SOLVING because purchase coverage and attribution are not repaired. Next: read-only event/session/consent trace using the private missing cohort, without duplicate pixels or unapproved setting changes. Exact source/SQL queries, aggregate summary, independent numerical/privacy PASS and limits are in current turnaround packet `CURRENT_SALES_CANDIDATE_RECONCILIATION.md`.
+
+September6 03:26–03:36UTC bounded Italian attribution update:
+- Sole private GA4google/cpc campaign23866684201 row remains a unique retained paid Shopify order/USD151.25 merchandise. Full captured Shopify journey is ready, exact1moment,1returned and no next page; first/last/sole visit all SEO from Google to /it/collections/mommy-and-me. Stored URLs have no query markers; UTMs/referralCode and marketingEvent are null. Separate referral description explicitly identifies organic Google search. No overlooked intermediate paid visit appears in the captured timeline; an unrecorded real-world touch remains possible.
+- Root's private input hash is unchanged. Connector/local validation and independent bounded diagnosis review pass. No proof of tracking defect, paid incrementality or profitable campaign emerged. Existing GA4 exports have generic sessionCampaignId only; the decisive Ads-specific/customer/manual dimensions remain NOT RUN while the Mac is locked. Continue that exact check after normal access returns, then join actual campaign cost; no unchanged login or locked-browser retry.
+- Evidence: current packet ITALIAN_ATTRIBUTION_DIAGNOSTIC.md, italian_journey_readback.json, italian_referral_detail_readback.json and italian_organic_independent_review.md. Status remains ACTIVE_SOLVING; no tracking/account/storefront mutation.
+
+September6 08:40–08:53UTC native attribution and campaign-cost follow-up:
+- Browser restriction is cleared. Saved private exploration verifies native Ads customer3990976848/name for the existing Italian purchase; manual ID(not set). Explicit Custom June7–September4 corrects rolling-date drift; final row/dates/filter retained after reopen, unshared. Session-specific numeric Ads campaign-ID unavailable in this picker, not inferred.
+- Separate normal Advertising > Key event performance > Google Ads report verifies native campaign ID23866684201 under exact account/purchase/date filters:855clicks/USD127.34/1purchase/USD151.46/1.19x ROAS. September5 USD1.65/11clicks is intraday/provisional. No direct Ads credit, live status or verified net profit; Shopify organic journey and missing-purchase cause remain unresolved.
+- Independent native/cost reviews PASS. HOLD scaling and proceed to bounded exact campaign keyword/query diagnosis through Analytics; do not repeat the order join or native-field audit. This problem stays ACTIVE_SOLVING. No production measurement/campaign mutation; only private exploration/report filters. Evidence: current packet ITALIAN_SEARCH_COST_DECISION.md and both native/cost receipts/reviews.
+
+September6 exact Italian query follow-up — anchor2026-09-06-ceo-turnaround-italian-query-diagnosis:
+- Complete7keyword/134query rows for the same exact90-day scope; query UI cost covers77.56%, USD28.58/192clicks remain unrepresented. Displayed row rounding differences are disclosed, not diagnosed.
+- Exact-query filter joins the sole recorded purchase to abiti mamma figlia/group196333557323. Joined keyword cost/click fields are empty; separate query/adgroup views supplyUSD3.59/24clicks. This narrows campaign action without repairing purchase coverage or reconciling Shopify's organic journey.
+- TA-02c complete; local single-intent retest proposed with actual-cost, current-state/exposure, source and authority gates. No campaign/negative/measurement write or profitable-growth claim. Italian collection-source query and one retry returned upstream500, so source truth remains UNKNOWN; existing Skyfade size conflict persists without inferring an Italian rendered defect. Reuse italian_search_current_readback.json, ITALIAN_SEARCH_NARROWING_PROPOSAL.md and source/final review. This parity problem remains ACTIVE_SOLVING; do not repeat the completed query diagnostic.
+
+September6 installed-binding follow-up — anchor2026-09-06-ceo-turnaround-installed-helper: complete current editor-copy before/candidate fingerprints and exact helper-only inverse are now verified; no installed Save/event. Candidate7/7 and independent review pass; full-script syntax and permitted live receipt validation remain open. Three-order cause/parity still UNKNOWN. Reuse INSTALLED_GA4_HELPER_RELEASE_PACKET.md; the earlier absent-fingerprint statement is superseded for this source-read scope only.
+
+September6 11:11:59–11:40:19UTC purchase-capture diagnosis — anchor2026-09-06-ceo-turnaround-purchase-capture:
+- Existing custom pixel111181921 is connected/Analytics-required, and G-N4EQNK0MMB maps to current property330266838/stream4030905738. Visible installed client-cookie parser truncates the identifier. Correct stream/activity does not establish purchase completeness or past configuration.
+- Reused fixed private cohort has8 retained paid web orders,3 missing/USD302.44; no individual consent/callback/sender/transport/ingestion fields were captured. No new order export, historical replay or customer-level cause assertion.
+- Local getClientId correction preserves the full cookie, leaves fallback/every other helper byte unchanged and independently passes7/7. Production code/settings unchanged; complete installed fingerprint and live effectiveness remain UNKNOWN. See new PROB-2026-09-06-GA4-CLIENT-ID-TRUNCATION. Native Ads visible consent branch differs from its BOTH-purpose platform gate, but no contrary-permission send is proven; hold that separate review without weakening settings.
+- Parity remains ACTIVE_SOLVING. Next exact installed-code binding and permitted event evidence before any separately authorized repair; do not repeat the completed join/query/pixel inventory/stream mapping or retry public429. The historical ±5% criterion cannot be claimed met by local tests, and no individual refusal is inferred. Use retained Shopify sales with verified platform cost separately from GA4 attribution. Evidence: current packet PURCHASE_CAPTURE_DIAGNOSIS_AND_REPAIR.md and purchase_capture_checks.json.
+
+September6 update: exact existing pixel111181921 helper correction is now saved and verified after reload/connected under current direct owner authority. This does not establish sender-specific receipt or recover historical missing orders. Keep parity ACTIVE_SOLVING; reuse existing cohort and obtain next permitted receipt evidence rather than repeated exports. Evidence pixel_repair_execution.json; anchor2026-09-06-ceo-turnaround-live-pixel-and-copy.
+
+### `PROB-2026-06-09-SUNSET-OMBRE-SHORTS-LENGTH`
+
+Priority: `P2`
+
+Status: `FIXED_VERIFIED`
+
+Owner/session: Codex current session, 2026-06-09.
+
+Surface: Shopify draft product `sunset-ombre-family-matching-set`; local runner/listing artifacts.
+
+Exact symptom:
+- The draft's shorts size table used hip/circumference values in the `Pant/Short` column instead of the attached chart's shorts length values.
+
+Business impact:
+- Shoppers and operators could misread shorts fit because short length appeared much larger than the source chart supports.
+
+Definition of fixed:
+- Boy and Father Shorts rows use the source shorts length column for `pant_cm` and garment length.
+- Hip values remain in the hip column.
+- Waist remains documented as derived because the source chart omits waist.
+- Product remains draft/unpublished and localized size-chart gates pass after the correction.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-09 current session | Local chart/body audit | Confirmed bad shorts `Pant/Short` values and patched runner | `ops/scripts/create-somb-sunset-ombre-family-matching-set.sh` |
+| 2026-06-09 current session | Reran idempotent draft runner | Passed; product stayed `DRAFT`, `30` variants, price/cost parity true | `ops/listings/verify-sunset-ombre-family-matching-set.json` |
+| 2026-06-09 current session | Shopify readback | Confirmed two `10`-header tables, `30` rows, corrected `31 cm / 12.2 in` boy shorts length, no live publications | Shopify Admin GraphQL readback |
+| 2026-06-09 current session | Localization gates | Passed strict missing-locale readback and variant mapping audit | worklog anchor `2026-06-09-sunset-ombre-shorts-length-media-corrected-localized-gates-passed` |
+
+Failed or ruled-out paths:
+- Adding T-shirt/top variants was ruled out by the operator request.
+- Publishing or sales-channel changes were ruled out because this was draft-only listing work.
+
+Current next action:
+- No repair action remains. Review the draft media and derived waist presentation before any separate publish-live request.
+
+Approval/credential/platform gates:
+- Owner requested the canonical listing workflow. No publish, sales-channel, inventory quantity, billing, credential, campaign/feed, or theme write occurred.
+
+Parallel work to continue:
+- Paid-growth and unrelated Shopify/Merchant/Pinterest lanes remain separate.
+
+### `PROB-2026-06-22-FEATURE-STORY-PYTHON-TEST-DEPS`
+
+Priority: `P2`
+
+Status: `SOLVED_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Local Python test/runtime environment for operator scripts and the canonical feature user-story tracker.
+
+Exact symptom:
+- `python3.13 -m pytest ops/tests` cannot start because `pytest` is not installed.
+- A per-file `python3.13 ops/tests/test_*.py` loop passed `18` tests but `7` tests failed at import time because local dependencies are missing: `bs4`, `websocket`, `requests`, and `deep_translator`.
+- The bundled Python runtime also lacks `pytest`, `bs4`, and `requests`.
+
+Business impact:
+- Several listing, translation, PDP-readiness, and conversion-value stories cannot be verified from the documented local test command, slowing the full user-story testing loop and increasing regression risk.
+
+Definition of fixed:
+- The repo has a documented, repeatable local Python test command for `ops/tests`.
+- The currently blocked tests import successfully.
+- Re-running the per-file loop or the documented aggregate command no longer fails on missing local Python packages.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 10:00 EDT | Ran `python3.13 -m pytest ops/tests` | Failed immediately: `No module named pytest` | command output in current session |
+| 2026-06-22 10:01 EDT | Ran each `ops/tests/test_*.py` directly with `python3.13` | `18` tests passed; `7` failed on missing imports `bs4`, `websocket`, `requests`, and `deep_translator` | command output in current session |
+| 2026-06-22 10:00 EDT | Checked bundled Python package availability | Bundled Python also lacks `pytest`, `bs4`, and `requests` | command output in current session |
+| 2026-06-22 10:07 EDT | Installed required packages into temp target `/tmp/dlm-py313-test-deps` and added pinned `ops/python-test-requirements.txt` | Dependency set became reproducible without mutating global Python or committing an environment folder | `ops/python-test-requirements.txt`; pip output in current session |
+| 2026-06-22 10:08 EDT | Ran `PYTHONPATH=/tmp/dlm-py313-test-deps python3.13 -m pytest` against the 7 previously blocked files | Pytest-style tests passed: `8 passed` | command output in current session |
+| 2026-06-22 10:09 EDT | Ran the full per-file `ops/tests/test_*.py` loop with `PYTHONPATH=/tmp/dlm-py313-test-deps` | Passed all `25` Python test files; `PY_TEST_FAILURES=0` | command output in current session |
+
+Failed or ruled-out paths:
+- Treating these as product behavior failures is ruled out for now because the observed failures happen before the tested code executes.
+- Installing packages blindly into the repo is ruled out until the intended dependency mechanism is confirmed.
+
+Current next action:
+- Closed. Future agents should bootstrap with `python3.13 -m pip install --target /tmp/dlm-py313-test-deps -r ops/python-test-requirements.txt` or an equivalent isolated target, then run the per-file loop with `PYTHONPATH=/tmp/dlm-py313-test-deps`.
+
+Approval/credential/platform gates:
+- No external account or live write is needed. Any dependency installation should be local/dev-only and avoid committing credentials or generated environment folders.
+
+Parallel work to continue:
+- Storefront browser testing and non-Python Node/feed/Worker checks can continue independently.
+
+### `PROB-2026-06-22-PINTEREST-GROUPING-SNAPSHOT-SCOPE`
+
+Priority: `P1`
+
+Status: `SOLVED_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Pinterest feed grouping guardrail and continuity check inputs.
+
+Exact symptom:
+- `python3.13 ops/scripts/check_pinterest_feed_grouping.py --strict` passed `7` generated Path-B feed snapshots but failed `3` older/imported Merchant/Pinterest snapshots because they still contain per-variant rows without `item_group_id` grouping.
+
+Business impact:
+- Strict continuity cannot pass, and future agents may confuse current grouped Path-B feed truth with stale exported evidence. The guardrail is important because ungrouped Pinterest feed rows can fragment variants and break paid catalog structure.
+
+Definition of fixed:
+- The strict Pinterest grouping guard passes, or it explicitly distinguishes current canonical feed artifacts from historical evidence exports without weakening the active grouped-feed requirement.
+- `python3.13 ops/scripts/check_continuity_integrity.py --strict` can pass after the guard decision is implemented.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 10:00 EDT | Ran `python3.13 ops/scripts/check_pinterest_feed_grouping.py --strict` | Failed `3` of `10` snapshots; all generated Path-B feeds passed | command output in current session |
+| 2026-06-22 current session | Split current canonical feed gating from historical diagnostic snapshots in `ops/scripts/check_pinterest_feed_grouping.py` | Current generated grouped feeds remain strict-gated; older Pinterest/Merchant exports are WARN by default and FAIL only with `--fail-historical-diagnostics` | local diff |
+| 2026-06-22 current session | Added `ops/tests/test_pinterest_feed_grouping_scope.py` | Regression test proves `--strict` passes current feeds while forensic mode still fails historical diagnostics | `python3.13 ops/tests/test_pinterest_feed_grouping_scope.py` passed |
+| 2026-06-22 current session | Retested guard modes | `--strict` returned `0` with `0 FAIL`, `3 WARN`; `--strict --fail-historical-diagnostics` returned `1` with `3 FAIL` as expected | command output in current session |
+
+Failed or ruled-out paths:
+- Disabling the Pinterest grouping guard is ruled out because the project non-negotiable requires it to remain wired into strict continuity.
+- Treating the generated Path-B feed as failed is ruled out by the command output; the failures are scoped to older/imported snapshots.
+- Rewriting or deleting historical evidence snapshots was ruled out because they are useful proof of the original failure and should remain auditable.
+
+Current next action:
+- Closed for local guard scope. Continue to treat live feed/source mutation as approval-gated; current local strict guard now passes while historical evidence remains visible as WARN.
+
+Approval/credential/platform gates:
+- No live Pinterest, Merchant, Shopify, or feed-source write is approved in this session. Fix locally first and require fresh approval before any external feed/source mutation.
+
+Parallel work to continue:
+- User-story browser testing and local non-feed tests can continue independently.
+
+### `PROB-2026-06-22-THEME-CHECK-RUNTIME-BROKEN`
+
+Priority: `P2`
+
+Status: `SOLVED_READBACK_PASSED`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Shopify theme/theme-check local verification runtime.
+
+Exact symptom:
+- `theme-check` is not available as a standalone command in this shell.
+- `shopify` resolves to `/opt/homebrew/bin/shopify` but fails because Homebrew Node cannot load `/opt/homebrew/opt/simdjson/lib/libsimdjson.29.dylib`.
+
+Business impact:
+- Storefront Liquid/theme stories cannot be fully verified with the documented theme check until the runtime path is repaired or a supported fallback is documented.
+
+Definition of fixed:
+- A working local `theme-check` or `shopify theme check` command runs against the repo and returns pass/fail output.
+- The exact working command is recorded in the feature-story tracker or project docs if it differs from `AGENTS.md`.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 10:00 EDT | Probed `theme-check` and `shopify version` | Standalone `theme-check` absent; Shopify CLI path fails on missing `libsimdjson.29.dylib` from Homebrew Node | command output in current session |
+| 2026-06-22 current session | Retried Shopify CLI with NVM Node first in PATH | `shopify version` succeeded: `3.90.0`; Node path `v20.20.2` | `PATH=/Users/fsuels/.nvm/versions/node/v20.20.2/bin:$PATH shopify version` |
+| 2026-06-22 current session | Ran theme check through the working NVM Node path | Passed at error level; JSON output `[]` | `PATH=/Users/fsuels/.nvm/versions/node/v20.20.2/bin:$PATH shopify theme check --path . --fail-level error --output json` |
+
+Failed or ruled-out paths:
+- Claiming theme checks passed is ruled out until a working runtime is available.
+- Using the broken Homebrew Node path repeatedly is ruled out; bundled Node works for syntax checks but does not make Shopify CLI usable by itself.
+
+Current next action:
+- Closed. Future local theme checks in this repo should prefix Shopify CLI commands with `PATH=/Users/fsuels/.nvm/versions/node/v20.20.2/bin:$PATH` unless Homebrew Node is repaired.
+
+Approval/credential/platform gates:
+- No live theme push or external Shopify write is approved in this session. Local runtime repair only.
+
+Parallel work to continue:
+- Static JS checks, feed checks, Worker tests, and workbook tracking can continue with the bundled runtime.
+
+### `PROB-2026-06-22-MOBILE-HOME-HERO-H1-HIDDEN`
+
+Priority: `P2`
+
+Status: `FIXED_LOCALLY_LIVE_RETEST_PENDING`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Mobile storefront homepage hero.
+
+Exact symptom:
+- In-app browser readback at `390x844` on `https://www.dresslikemommy.com/` found the configured hero heading `Matching looks for the moments families remember most` in `.hero-banner__heading`, but its computed CSS was `display: none`.
+- The only visible mobile homepage `h1` in the first viewport was the logo wrapper with no text content.
+
+Business impact:
+- The mobile homepage loses the configured conversion heading from the accessibility tree and may weaken SEO/assistive-technology interpretation, even though the visual CTA row still renders.
+
+Definition of fixed:
+- Mobile hero heading remains present to accessibility/SEO consumers without destabilizing the current mobile visual composition.
+- Local theme verification passes; live browser retest is completed after a preview/deploy is approved.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 current session | Ran mobile homepage DOM readback in the in-app browser | Confirmed `.hero-banner__heading` exists with `display:none` on the live mobile storefront | browser DOM readback at `390x844` |
+| 2026-06-22 current session | Patched `sections/hero-banner.liquid` mobile heading rule | Replaced `display:none` with a visually-hidden pattern so the heading remains in the accessibility tree while preserving the mobile visual layout | local diff |
+| 2026-06-22 current session | Ran local theme verification | Passed at error level with JSON output `[]`; diff whitespace check passed | `PATH=/Users/fsuels/.nvm/versions/node/v20.20.2/bin:$PATH shopify theme check --path . --fail-level error --output json`; `git diff --check sections/hero-banner.liquid` |
+
+Failed or ruled-out paths:
+- Treating the live readback as fixed is ruled out because no live theme preview/deploy write is approved in this session.
+- Showing the full hero headline visually on mobile was deferred because the current design places compact CTAs/trust content around the first viewport and the smallest safe correction is accessibility-tree restoration.
+
+Current next action:
+- Retest the mobile homepage against a Shopify theme preview or after an explicitly approved deploy; then close this problem and update `ERR-2026-06-22-005` in `ops/feature_user_story_status.xlsx`.
+
+Approval/credential/platform gates:
+- No live theme push, Shopify Admin write, or public storefront mutation is approved in this session.
+
+Parallel work to continue:
+- Continue browser/manual story testing for header, search, collection, PDP, cart, localization, and account/customer-form behavior.
+
+### `PROB-2026-06-22-CART-PAGE-QUANTITY-TOTAL-STALE`
+
+Priority: `P1`
+
+Status: `FIXED_LOCALLY_LIVE_RETEST_PENDING`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Cart page quantity update and checkout-adjacent totals.
+
+Exact symptom:
+- In-app browser readback on the live cart page after adding `Golden Daisy Mommy & Me Matching Separates` and increasing quantity from `1` to `2` showed header bubble `Cart 2 2 items` and visible line total `$53.98`, but the cart heading remained `YOUR CART (1)` and the footer estimated total remained `$26.99`.
+- The stale footer was still present after an additional wait, so this was not just an immediate animation delay.
+
+Business impact:
+- A shopper can see contradictory cart totals immediately before checkout, which creates trust friction and risks checkout confusion.
+
+Definition of fixed:
+- Cart quantity changes refresh the cart title/count, line item quantity, line item total, header bubble, and footer estimated total in one coherent state.
+- Local theme checks pass.
+- Live browser retest is completed after a theme preview/deploy is approved.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 current session | Added Mother / S / Top Golden Daisy piece to session cart from live PDP | Cart drawer opened with count `1`, expected product/options, $26.99 line/estimated total, and no visible errors | in-app browser readback |
+| 2026-06-22 current session | Opened live cart page and clicked quantity increase | Header bubble and line item updated to quantity `2`, but cart h1 and footer estimated total stayed stale | in-app browser readback |
+| 2026-06-22 current session | Patched local cart section rendering targets | Added `main-cart-title` and `main-cart-footer-subtotal`; updated `assets/cart.js` to refresh those exact targets instead of first generic footer `.js-contents` | local diff |
+| 2026-06-22 current session | Ran local static verification | Passed JS syntax, theme check, and diff whitespace checks | `node --check assets/cart.js`; NVM-prefixed `shopify theme check`; `git diff --check` |
+
+Failed or ruled-out paths:
+- Claiming the live cart page fixed is ruled out because no live theme preview/deploy write is approved in this session.
+- Treating the stale footer as expected is ruled out because the visible line total and header count already reflected the new quantity.
+
+Current next action:
+- Retest the cart quantity path against a Shopify theme preview or after an explicitly approved deploy; then close this problem and update `ERR-2026-06-22-006` in `ops/feature_user_story_status.xlsx`.
+
+Approval/credential/platform gates:
+- No live theme push, Shopify Admin write, checkout submission, payment, billing, credential, or external account write is approved in this session.
+
+Parallel work to continue:
+- Continue browser/manual testing for PDP add-another-piece, cart drawer remove/quantity, customer forms, localization selectors, and keyboard/focus behavior.
+
+September 5 readback update: September5 live-theme/main desktop US/USD quantity1→2 produced correct USD53.98 line, subtotal and hosted checkout total; heading remained Your cart(1) until reload. The stale-subtotal symptom was not reproduced; the remaining verified defect is heading count. Audit item removed, empty cart restored. Existing local section-target fix remains unpublished; do not recreate it. Evidence: cro_cart_after_quantity.txt and cro_audit_report.md in the current packet.
+
+### `PROB-2026-06-22-SPANISH-FOOTER-HEADING-KEYS`
+
+September 11 cross-locale V8 local follow-up: Saved MAIN RO/NL rendered evidence and successful DE/EL/FI source receipts prove ten additional malformed footer aliases. Proposed sections/footer.liquid adds exactly twenty lines mapping these aliases to canonical keys. Surrounding footer/consent/disclosure bytes and DA/ES/EN/FR/custom-heading behavior are preserved. Five locale overlays translate fifteen footer labels. Frozen cases changed from ten failures to ten passes, with four passing holdouts preserved; full footer suite 15/15 and existing V7 footer suite 8/8 pass. The complete seven-file proposal passes all 44 tests, full 527-file Theme Check and independent review. Local only: no upload, MAIN publication or public after-pass; HTTP 429 stop gates desktop/mobile acceptance. Historical Spanish record and status remain unchanged. Evidence: 2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/READBACK.md, FOOTER_DIAGNOSIS.md and proposed-manifest.json; anchor 2026-09-11-storefront-v7-publication-gate-and-v8-local-review.
+
+Priority: `P2`
+
+Status: `FIXED_LOCALLY_LIVE_RETEST_PENDING`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Spanish localized mobile footer accordion headings.
+
+Exact symptom:
+- After switching the live storefront to Spanish and inspecting the 390x844 homepage footer, footer accordion headings rendered raw/missing key text:
+  - `secciones.encabezados_pie_informacion_empresa`
+  - `secciones.encabezados_pie_ayuda_soporte`
+  - `Translation missing: es.secciones.encabezados_pie_de_página.atención_al_cliente`
+
+Business impact:
+- Spanish-speaking mobile shoppers see internal translation keys in a customer-care footer area, which damages trust and makes support/navigation labels look broken.
+
+Definition of fixed:
+- Spanish footer accordion headings render human labels for company information, help/support, and customer care.
+- Local theme checks pass.
+- Live browser retest is completed after a theme preview/deploy is approved.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 current session | Changed desktop country selector from United States/USD to Canada/CAD | Announcement, header selector, and visible prices updated to Canada/CAD; no source leak | in-app browser readback |
+| 2026-06-22 current session | Changed desktop language selector from English to Spanish | URL changed to `/es`, `html lang` became `es`, announcement/header labels localized, Canada/CAD persisted; no source leak | in-app browser readback |
+| 2026-06-22 current session | Opened mobile menu at 390x844 in Spanish/Canada state | Drawer exposed country and language selectors, but footer headings showed raw/missing translation keys | in-app browser readback |
+| 2026-06-22 current session | Patched local footer heading mapping | Added defensive Spanish mapping for admin-localized footer heading key slugs in `sections/footer.liquid` | local diff |
+| 2026-06-22 current session | Ran local static verification | Passed whitespace and Shopify theme checks | `git diff --check sections/footer.liquid ops/PROBLEM_TRACKER.md`; NVM-prefixed `shopify theme check` returned `[]` |
+
+Failed or ruled-out paths:
+- Treating this as a missing `locales/es.json` key is ruled out because `sections.footer_headings.customer_care` already exists locally; the live failure came from translated/admin heading key slugs being rendered literally.
+- Claiming the live footer fixed is ruled out because no live theme preview/deploy write is approved in this session.
+
+Current next action:
+- Run local theme verification, then retest the Spanish mobile footer against a Shopify theme preview or after an explicitly approved deploy; then close this problem and update `ERR-2026-06-22-007` in `ops/feature_user_story_status.xlsx`.
+
+Approval/credential/platform gates:
+- No live theme push, Shopify Admin write, translation admin write, customer data submission, payment, billing, credential, or external account write is approved in this session.
+
+Parallel work to continue:
+- Continue browser/manual testing for localization, keyboard/focus behavior, search empty state, collection pagination/empty states, and remaining generated component stories.
+
+### `PROB-2026-06-22-PREDICTIVE-SEARCH-ESCAPE-CLOSE`
+
+Priority: `P2`
+
+Status: `FIXED_LOCALLY_LIVE_RETEST_PENDING`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Predictive search keyboard close behavior.
+
+Exact symptom:
+- Live desktop search accepted `matching`, opened predictive results, and kept the input focused, but pressing `Escape` left the predictive result panel open instead of closing it.
+- Mobile 390x844 search showed the same keyboard-close mismatch: after typing `matching` and pressing `Escape`, the search summary reported a closed state while the typed query/results state remained visible.
+
+Business impact:
+- Keyboard shoppers can get stuck with an open search result surface or an aria/visual mismatch, adding friction on a primary navigation path.
+
+Definition of fixed:
+- Pressing `Escape` inside predictive search closes the predictive result panel without submitting the query.
+- Desktop and mobile search controls maintain coherent `aria-expanded`, visible panel, and focus states.
+- Local checks pass, then live browser retest is completed after a theme preview/deploy is approved.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 current session | Tested desktop predictive search keyboard behavior | Search opened results for `matching`; `Escape` left results open and the input focused | in-app browser readback |
+| 2026-06-22 current session | Tested mobile menu/search behavior at `390x844` | Mobile menu closed after its animation window; mobile search still left query/results state visible after `Escape` | in-app browser readback |
+| 2026-06-22 current session | Patched predictive search keyboard handling | Added `Escape` branch in `assets/predictive-search.js` `onKeyup` to call `close()` | local diff |
+| 2026-06-22 current session | Ran local verification | Passed JS syntax, whitespace, Theme Check error-level, and strict continuity gates | `node --check assets/predictive-search.js`; `git diff --check`; NVM-prefixed `shopify theme check --path . --fail-level error --output json`; `python3.13 ops/scripts/check_continuity_integrity.py --strict` |
+
+Failed or ruled-out paths:
+- Treating the mobile menu as failed is ruled out because waiting through the close animation removed the open state and restored focus.
+- Claiming predictive search fixed live is ruled out because no live theme preview/deploy write is approved in this session.
+
+Current next action:
+- Retest predictive search Escape behavior against a Shopify theme preview or after an explicitly approved deploy; then close this problem and update `ERR-2026-06-22-008` in `ops/feature_user_story_status.xlsx`.
+
+Approval/credential/platform gates:
+- No live theme push, Shopify Admin write, customer data submission, checkout, payment, billing, credential, or external account write is approved in this session.
+
+Parallel work to continue:
+- Continue browser/manual testing for search empty state, collection pagination/empty states, logged-in account pages if a test account is approved, and remaining generated component stories.
+
+### `PROB-2026-06-22-DESKTOP-FACET-DROPDOWN-UNDER-GRID`
+
+Priority: `P1`
+
+Status: `FIXED_LOCALLY_LIVE_RETEST_PENDING`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Desktop collection facet click targets.
+
+Exact symptom:
+- On the live Mommy and Me collection page, opening the `Color` facet made the `Apricot` label visually appear over the product grid, but clicking it navigated to the `Crochet Mommy and Me Set - Beach Coverup` PDP instead of applying the filter.
+- Hit-target readback at the center of the visible `Apricot` facet label returned the underlying product-card `.full-width-link` for `/products/white-crochet-mommy-and-me-set`.
+
+Business impact:
+- Desktop shoppers cannot reliably apply visible facet filters; clicking a filter option can send them to an unrelated product page, breaking collection browsing and paid/search landing exploration.
+
+Definition of fixed:
+- Open desktop facet dropdown controls sit above product-card links and receive pointer clicks.
+- Clicking a visible facet label applies the filter instead of activating a product-card link underneath.
+- Active chips, URL, product count, and browser history update coherently.
+- Local checks pass, then live browser retest is completed after a theme preview/deploy is approved.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 current session | Opened live Mommy and Me collection and inspected available facets | Color, Size, Type, price, sort, and product-count controls rendered | in-app browser readback |
+| 2026-06-22 current session | Tried applying the visible Apricot color facet | Click navigated to the Crochet Mommy and Me Set PDP instead of filtering | in-app browser readback |
+| 2026-06-22 current session | Checked hit target at the visible Apricot label center | `document.elementFromPoint` returned the product-card full-width link underneath the facet dropdown | in-app browser readback |
+| 2026-06-22 current session | Patched facet stacking locally | Added a scoped z-index layer for `.facets__disclosure[open]` and `.facets__disclosure-vertical[open]` in `assets/component-facets.css` | local diff |
+
+Failed or ruled-out paths:
+- Treating this as a selector/automation issue is ruled out because the browser hit-target readback proved the product-card link is on top of the visible facet label.
+- Claiming the live facet flow fixed is ruled out because no live theme preview/deploy write is approved in this session.
+
+Current next action:
+- Run local static/theme verification, then retest desktop facet apply/remove/back behavior against a Shopify theme preview or after an explicitly approved deploy; then close this problem and update `ERR-2026-06-22-009` in `ops/feature_user_story_status.xlsx`.
+
+Approval/credential/platform gates:
+- No live theme push, Shopify Admin write, customer data submission, checkout, payment, billing, credential, or external account write is approved in this session.
+
+Parallel work to continue:
+- Continue browser/manual testing for logged-in account pages if a test account is approved, blog/article pages, gift-card/password-mode surfaces, and remaining generated component stories while local theme fixes await preview/deploy retest.
+
+### `PROB-2026-06-22-GIFT-CARD-RECIPIENT-FORM-ERROR-HANDLING`
+
+Priority: `P3`
+
+Status: `FIXED_LOCALLY`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Gift-card recipient form.
+
+Exact symptom:
+- Static review found `assets/recipient-form.js` assigned the `cartError` subscription cleanup to `cartUpdateUnsubscriber`, overwriting the cart-update cleanup callback and leaving `cartErrorUnsubscriber` unused.
+- The same script mapped Shopify's `send_on` validation key to `#Recipient-send_on-...` and `this.send_onInput`, but the rendered field is `#Recipient-send-on-...` and the component property is `sendonInput`.
+- The Liquid server-rendered error list in `snippets/gift-card-recipient-form.liquid` used the same `#Recipient-send_on-...` anchor shape.
+
+Business impact:
+- If gift-card recipient validation returns a send-date error, the error summary can link to the wrong target and fail to mark the actual date input.
+- Component disconnect cleanup can miss the cart-update listener, which is a small but real lifecycle defect if the product form is re-rendered.
+
+Definition of fixed:
+- `cartUpdate`, `variantChange`, and `cartError` subscriptions each keep their own unsubscriber.
+- `send_on` errors link to and mark the actual `Recipient-send-on` input.
+- Local syntax/theme checks pass.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 current session | Probed likely public gift-card product routes | No exposed live gift-card recipient form was found; testing stayed static/code-review only | in-app browser readback |
+| 2026-06-22 current session | Reviewed recipient form JS and Liquid | Confirmed subscription overwrite and `send_on` anchor/input mismatch | `assets/recipient-form.js`; `snippets/gift-card-recipient-form.liquid` |
+| 2026-06-22 current session | Patched local recipient form handling | Stored `cartError` cleanup in `cartErrorUnsubscriber`; mapped `send_on` to `send-on`/`sendonInput`; mapped Liquid error anchor to `Recipient-send-on` | local diff |
+
+Failed or ruled-out paths:
+- A live browser recipient-form flow is not claimed because no public gift-card product route was exposed in this pass.
+
+Current next action:
+- Run local JS/theme verification, rebuild `ops/feature_user_story_status.xlsx`, and keep `DLM-STORY-027` marked as local/static verified unless a gift-card product preview or fixture becomes available.
+
+Approval/credential/platform gates:
+- No live Shopify Admin/product creation/theme deploy/customer-data submission is approved in this session.
+
+Parallel work to continue:
+- Continue safe static/browser story checks for password mode, account, content pages, and remaining generated component stories.
+
+### `PROB-2026-06-22-PASSWORD-MODAL-LABEL-FOR`
+
+Priority: `P3`
+
+Status: `FIXED_LOCALLY`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Password storefront modal.
+
+Exact symptom:
+- Static review found the password input label used `for="{{ 'general.password_page.login_form_password_label' | t }}"` instead of `for="Password"`.
+- The actual input id is `Password`.
+
+Business impact:
+- In password mode, clicking/tapping the label may not focus the password input and assistive technology can lose the intended label/input association.
+
+Definition of fixed:
+- Password modal label references the actual `Password` input id.
+- Local theme/static verification passes.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 current session | Reviewed password layout, template, header/footer, and password modal JS | Confirmed password mode is code-review/static only because live storefront is not password-protected | `templates/password.json`; `layout/password.liquid`; `sections/main-password-header.liquid`; `assets/password-modal.js` |
+| 2026-06-22 current session | Patched password label association | Changed label `for` to `Password` | local diff |
+
+Failed or ruled-out paths:
+- A live password-mode browser flow is not claimed because the storefront is public and password mode is not active.
+
+Current next action:
+- Run local theme verification and keep `DLM-STORY-028` marked as local/static verified unless a password-mode theme preview becomes available.
+
+Approval/credential/platform gates:
+- No live password-mode activation, Shopify Admin write, theme deploy, or storefront access setting change is approved in this session.
+
+Parallel work to continue:
+- Continue safe story testing/documentation and reserve live retests for the approved preview/deploy bundle.
+
+### `PROB-2026-06-22-HOMEPAGE-SPOTLIGHT-VENDOR-CAPTION`
+
+Priority: `P2`
+
+Status: `FIXED_LOCALLY`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Homepage curated product spotlight.
+
+Exact symptom:
+- Live mobile homepage rendered source/process wording in the `Meow Star Garden Mommy and Me Pajamas` spotlight card caption:
+  - `The vendor calls this a 四层纱布 (four-layer gauze) loungewear set...`
+- The text appeared in `.home-spotlight-card__caption` for `/products/meow-star-garden-mommy-and-me-pajamas`.
+
+Business impact:
+- Customer-visible source/vendor language weakens merchandising trust and violates the repo guardrail against exposing supplier/source details on storefront surfaces.
+
+Definition of fixed:
+- Homepage curated product captions use customer-safe merchandising copy.
+- Captions containing vendor, supplier, marketplace, or source-origin terms are suppressed or replaced before rendering.
+- Desktop and mobile homepage browser retests show no visible vendor/source leak in spotlight/product modules after an approved Shopify theme preview/deploy.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 current session | Browser-tested live homepage category and curated modules on desktop and 390x844 mobile | Category links and product modules rendered, but mobile spotlight caption exposed vendor/process wording | in-app browser readback |
+| 2026-06-22 current session | Traced the visible leak to homepage spotlight caption generation | Caption came from `candidate_product.description` in `snippets/home-spotlight-card.liquid` | DOM readback plus static code review |
+| 2026-06-22 current session | Patched local caption fallback | Suppressed captions with vendor/supplier/source/marketplace terms and rebuilt safe fallback copy from product type/pattern fields | local diff |
+
+Failed or ruled-out paths:
+- Treating the issue as only structured-data/vendor metadata is ruled out because the text was visibly rendered in the mobile homepage spotlight caption.
+- Claiming the live homepage fixed is ruled out because no live theme preview/deploy write is approved in this session.
+
+Current next action:
+- Run local theme verification, rebuild `ops/feature_user_story_status.xlsx`, then retest the homepage spotlight on desktop and mobile against an approved Shopify theme preview or post-deploy readback before closing `ERR-2026-06-22-012`.
+
+Approval/credential/platform gates:
+- No live Shopify theme push, Shopify Admin write, product/feed/ad/analytics/billing/campaign/spend write, credential change, customer-data submission, checkout, signup, or contact-message write is approved in this session.
+
+Parallel work to continue:
+- Continue safe generated-component/story code-review checks while the preview/deploy retest bundle for `ERR-2026-06-22-005` through `012` remains approval-gated.
+
+September 5 readback update: September5 live-theme/main and cookie-free source sample reconfirmed the supplier-process caption. Existing local guard preserved; release remains pending a fresh live baseline, isolated preview and exact live authorization. Evidence: cro_audit_report.md and cro_existing_theme_fixes.patch in the current packet.
+
+### `PROB-2026-06-22-LISTING-RUNNER-DRAFT-SAFETY`
+
+Priority: `P1`
+
+Status: `FIXED_LOCAL_STATIC_VERIFIED__LIVE_EXECUTION_GATED`
+
+Owner/session: Codex current session, 2026-06-22.
+
+Surface: Shopify draft listing runners under `ops/scripts/create-*.sh`.
+
+Exact symptom:
+- Static audit of `107` listing runner scripts found `3` shell syntax failures:
+  - `ops/scripts/create-bch-bird-chirping.sh`
+  - `ops/scripts/create-vcf-good-night-song-of-the-sea.sh`
+  - `ops/scripts/create-vintage-cottage-floral.sh`
+- The audit also found old runner safety drift:
+  - `63` scripts with generated `ACTIVE` product creation/update patterns before bulk migration.
+  - Executable `publishablePublish` calls across older Python, bash, and ad hoc runners before bulk migration.
+  - `2` scripts using stale `/sessions/.../.config--dresslikemommy` credential paths before this pass.
+  - Many local runner/listing artifacts include source/vendor URLs in local text or generated CSV/tag fields.
+Current local retest now finds `0` generated `ACTIVE` product assignments, `0` executable `publishablePublish` calls, `0` stale `/sessions` credential paths, `0` raw `detail.1688.com` source URL tokens, `0` source URL variables in generated tag lists, and `0` stale live-publication verification expectations.
+
+Business impact:
+- A listing operator could run an old script expecting the current draft-only workflow but accidentally create/publish an active product, or fail before creating anything because the runner does not parse.
+- Source/vendor URL leakage in generated fields can violate customer/feed-visible source hygiene if those artifacts are imported or used without sanitization.
+
+Definition of fixed:
+- Every `ops/scripts/create-*.sh` runner passes `bash -n`.
+- Every runner uses canonical credential loading from `~/.config/dresslikemommy/shopify-admin.env` or `SHOPIFY_ENV_FILE`.
+- No runner sets a product to `ACTIVE` by default.
+- No runner calls `publishablePublish` unless it is moved behind a separate explicit publish-only approval gate.
+- No generated customer/feed-visible tags, CSV import rows, SEO fields, or body copy contain `detail.1688.com`, `alibaba`, `aliexpress`, `taobao`, `supplier`, or source URL markers.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-22 current session | Ran `bash -n` across all `ops/scripts/create-*.sh` files | First failure was `create-bch-bird-chirping.sh` with unmatched single quote / unexpected EOF | terminal readback |
+| 2026-06-22 current session | Patched `create-bch-bird-chirping.sh` | Replaced stale `/sessions` credential source, removed source URL tag, changed product status to `DRAFT`, removed unconditional `publishablePublish`, and escaped the heredoc apostrophe | local diff |
+| 2026-06-22 current session | Reran syntax sweep | Found the same syntax class in `create-vcf-good-night-song-of-the-sea.sh` | terminal readback |
+| 2026-06-22 current session | Patched `create-vcf-good-night-song-of-the-sea.sh` | Removed stale session fallback, removed source URL tag, changed status to `DRAFT`, removed publish loop, and escaped the heredoc apostrophe | local diff |
+| 2026-06-22 current session | Reran syntax sweep | Found the same syntax class in `create-vintage-cottage-floral.sh` | terminal readback |
+| 2026-06-22 current session | Patched `create-vintage-cottage-floral.sh` | Added canonical credential loading, removed source URL tag, and escaped the heredoc apostrophe | local diff |
+| 2026-06-22 current session | Reran syntax sweep across all listing runners | `all_create_runner_bash_syntax_ok 107 scripts` | terminal readback |
+| 2026-06-22 current session | Reran static draft-safety scan | Remaining open drift: `63` scripts with `ACTIVE` patterns, `68` with `publishablePublish`, `96` with source URL tokens, `0` stale `/sessions` credential paths | terminal readback |
+| 2026-06-22 current session | Bulk-migrated legacy listing runners | Converted generated product create/update payloads to `DRAFT`, removed executable publish mutation blocks, and replaced publish steps with explicit approval-gated skip messages | local diff |
+| 2026-06-22 current session | Reran syntax and static draft/publish scan | `bash -n` passed for all `107` create runners; scan found `0` `ACTIVE` assignments, `0` executable `publishablePublish` calls, `0` stale `/sessions` credential paths, and `96` source URL token files | terminal readback |
+| 2026-06-22 current session | Ran field-aware source URL cleanup | Redacted raw source URL assignments/comments, removed bare URL list entries and source URL variables from generated tags, changed old vendor-URL positive assertions to absence checks, and updated live-publication verification rows to draft/no-publication expectations | local diff |
+| 2026-06-22 current session | Reran syntax and static source/draft scan | `bash -n` passed for all `107` create runners; scan found `0` `ACTIVE` assignments, `0` executable `publishablePublish` calls, `0` stale `/sessions` paths, `0` raw `detail.1688.com` URLs, `0` source URL variable tag lines, and `0` stale live-publication expectation rows | terminal readback |
+
+Failed or ruled-out paths:
+- Running any listing runner against Shopify Admin is ruled out for this pass because no live Shopify product write, publish, or Admin mutation is approved.
+- Live executing a listing runner against Shopify Admin is ruled out for this pass because product create/update writes require fresh action-time approval.
+
+Current next action:
+- Continue the canonical feature-story loop with the next queued story or request an approved Shopify preview/deploy retest bundle for existing storefront fixes. Only live-execute a listing runner if the owner explicitly approves the exact product/write scope.
+
+Approval/credential/platform gates:
+- No Shopify Admin write, product create/update, publish, product/feed/ad/analytics/billing/campaign/spend write, credential change, customer-data submission, checkout, signup, or contact-message write is approved in this session.
+
+Parallel work to continue:
+- Continue safe generated-component/story code-review checks while the listing-runner bulk migration and preview/deploy retest bundle remain open.
+
+### `PROB-2026-06-29-RED-TROPICAL-ACTIVE-SIZE-CORRECTION`
+
+Priority: `P1`
+
+Status: `FIXED_ACTIVE_UPDATE_VERIFIED_LOCALIZED_GATES_PASSED`
+
+Owner/session: Codex current session, 2026-06-29.
+
+Surface: Shopify product `7607762845793` / handle `red-tropical-leaf-mommy-and-me-dresses`; local runner and listing artifacts.
+
+Exact symptom:
+- Owner supplied a selector screenshot showing purchasable `160cm`, `XL1`, and `XXL1` options after the initial Red Tropical listing created only the measured chart rows: child `110/120/130/140/150` and mother `S/M/L`.
+- The attached size chart does not publish measurement rows for `160cm`, `XL1`, or `XXL1`.
+- Local runner update first prepared estimated rows while Shopify read back as `ACTIVE`; after owner approval, the active product was updated while preserving status and publication channels.
+
+Business impact:
+- The live product is missing purchasable selector-backed sizes that the supplier appears to offer, which can reduce conversion and size coverage.
+- Updating a live/published product can affect Online Store and channel feeds, so it needs explicit owner approval.
+
+Definition of fixed:
+- Owner approves the active-product correction scope.
+- Shopify product `7607762845793` is updated to include the selector-backed `Child 12 Years`, `Mother XL`, and `Mother 2XL` variants with estimated measurements clearly represented in the size chart.
+- Product publication/channel state is preserved unless the owner explicitly requests otherwise.
+- Localized size-chart repair returns `products_with_missing_locale_size_chart=0`, `planned_translation_count=0`, and `error_count=0`.
+- Variant mapping audit returns `unmatched_variant_locale_count=0`.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-29 current session | Patched Red Tropical runner and local artifacts to include estimated `160cm`, `XL1`, and `XXL1` rows | Local artifacts now have 11 chart/body/CSV rows and 10 table headers | terminal local artifact readback |
+| 2026-06-29 current session | Reran `ops/scripts/create-rtlf-red-tropical-leaf-mommy-and-me-dresses.sh` | Runner halted before mutation because product read back as `ACTIVE`, not `DRAFT` | terminal readback |
+| 2026-06-29 current session | Read-only Shopify Admin query by handle | Product `7607762845793` is `ACTIVE`, has live URL, and is published to Online Store, Google & YouTube, Facebook & Instagram, Pinterest, Microsoft Channel, TikTok, Buy Button, Point of Sale, and n8n Integration | terminal readback |
+| 2026-06-29 current session after owner approval | Reran approved active-product update | Product preserved `ACTIVE` status and publication IDs, now has 11 variants including `DLM-RTLF-GRL-KID12Y-RED`, `DLM-RTLF-MOM-XL-RED`, and `DLM-RTLF-MOM-2XL-RED` | runner and Admin readback |
+| 2026-06-29 current session after owner approval | Reran translation poll, localized size-chart repair, strict missing-locale readback, and variant mapping audit | `products_with_missing_locale_size_chart=0`, `planned_translation_count=0`, `error_count=0`, `unmatched_variant_locale_count=0` | terminal readback |
+
+Failed or ruled-out paths:
+- Mutating the active product before owner approval was ruled out and did not happen.
+- Changing product status or sales-channel publication state was ruled out and did not happen.
+
+Current next action:
+- Monitor normal channel propagation if needed; replace estimated measurements only if a true vendor chart for `160cm`, `XL1`, or `XXL1` becomes available.
+
+Approval/credential/platform gates:
+- No further channel/status/publication/feed/campaign/billing/credential changes are approved.
+
+Parallel work to continue:
+- Continue other draft-only listing work or owner review of the live Red Tropical size table.
+
+### `PROB-2026-07-02-LOCALIZED-PDP-ENGLISH-LEAKAGE`
+
+September 11 V8 local follow-up: Private Admin read at 19:01:42 UTC binds all 527 uploaded V7 files on UNPUBLISHED 137888792673; MAIN 133290917985 and predecessor 137881223265 are unchanged. Actual V7 runtime already supplies Romanian role/size/add/ready labels, and ro.json has qualified returns. No JS or product-body repair was added. Separate local V8 translates exactly seven remaining RO payment/privacy/policy-link values, preserving every other leaf and all policy conditions, URLs and placeholders. Its complete seven-file proposal also repairs ten proved footer aliases and fifteen footer values. All 44 tests, full 527-file Theme Check and independent source review pass; seven exact rollback copies are saved. V8 is NOT uploaded or rendered after change; public HTTP 429 stop remains. Regional ro-RO purchase-confidence English is a potential coverage gap, not a proved active-route failure: the current published Romanian locale is ro. Broader language/payment acceptance remains open. Historical Spanish completion is preserved. Evidence: 2026-09-10-storefront-ux-pagespeed/localized-guidance-v8/READBACK.md, VALIDATION.json and ROMANIAN_DIAGNOSIS.md; anchor 2026-09-11-storefront-v7-publication-gate-and-v8-local-review.
+
+September11 scoped update: MAIN133290917985 Romanian collection/PDP and Dutch collection show visible footer translation keys; Romanian Together Heart additionally shows English role/size/return/security instructions. Separate200source reads confirm malformed headings in DA/DE/EL/FI. Existing UX owner01a088c3 accepted local V8 preparation preserving uploaded V7/theme137888792673; publication and rendered acceptance remain gated. This does not reopen the completed Spanish product-body repair. Root public tab closed/cart0; country remainedUS/USD. HTTP429stop and the failed post-limit queue dispatch are preserved; corrected harness tested only synthetically. Evidence: 2026-09-11-google-ads-signup-tag/ongoing/root_landing_qa/ISSUE_HANDOFF.md and landing_qa/footer_diagnosis.json; anchor 2026-09-11-google-ads-ongoing-markets-keyword-correction.
+
+Priority: `P1`
+
+Status: `SUNSHINE_DAISY_ES_VISIBLE_BROWSER_PASS__RAW_REVIEW_WIDGET_SERVER_GATE`
+
+Owner/session: Codex current session, 2026-07-02; next localized PDP quality operator.
+
+Surface: Localized Shopify PDPs, Shopify product translations, theme locale keys, Liquid/JS runtime copy, review widget, footer/menu/policy surfaces.
+
+Exact symptom:
+- Owner reported that several new listings do not fully translate after changing language.
+- Public Spanish route `https://www.dresslikemommy.com/es/products/sunshine-daisy-family-matching-set` returns `200` but visible PDP text mixes Spanish and English.
+- Confirmed examples include English option prompts, matching-set text, trust-strip text, policy details, product-body bullets, review-widget text, and raw footer translation keys.
+- Existing historical listing gates for this product showed localized size-chart repair and variant mapping passed, but those gates did not catch full PDP shopper-facing English leakage.
+
+Business impact:
+- International shoppers see a mixed-language purchase path, which reduces trust and conversion readiness.
+- Paid traffic should not be sent to affected localized routes until public PDP language quality is repaired or the remaining issues are explicitly app-gated.
+- New listings need a repeatable gate so this is caught before publish or paid traffic, not after manual owner review.
+
+Definition of fixed:
+- For each target handle and locale, product translation poll completes without blocking errors.
+- `repair_localized_product_size_charts.py --fail-on-missing` returns `products_with_missing_locale_size_chart=0`, `planned_translation_count=0`, and `error_count=0`.
+- `audit_localized_size_chart_variant_mapping.py --fail-on-unmatched` returns `unmatched_variant_locale_count=0`.
+- `audit_localized_pdp_language_leakage.py --fail-on-issues` returns `issue_count=0` or every remaining issue is documented as an acceptable proper noun, payment/currency/country term, or third-party app setting gate.
+- Desktop and mobile localized PDP browser readbacks confirm option picker, matching-set builder, trust blocks, product details, size guide, reviews, footer, and related styles do not show unapproved English or raw translation keys.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-07-02 current session | Opened the public Spanish Sunshine Daisy PDP | Confirmed mixed Spanish/English visible text and raw footer translation-key leakage | Live URL readback in session |
+| 2026-07-02 current session | Added localized PDP quality loop documentation and a dedicated operator spec | New loop defines product/theme/runtime/widget classification, approval gates, repair order, public PDP smoke audit, and pass criteria | `docs/agent-loops/localized-pdp-quality-loop.md`; `.codex/agents/localized_pdp_quality_operator.toml` |
+| 2026-07-02 current session | Added read-only public PDP smoke audit script | Script compiles and fetches localized PDP routes without Shopify Admin writes | `ops/scripts/audit_localized_pdp_language_leakage.py`; `python3.13 -m py_compile` |
+| 2026-07-02 current session | Ran audit on Sunshine Daisy ES route | Expected fail: route `200`, `routes_checked=1`, `routes_with_issues=1`, `issue_count=51` | `/tmp/sunshine-daisy-es-localized-pdp-audit.json` |
+| 2026-07-02 current session | Owner-approved active/live Sunshine-only repair pass | Claimed the narrow Sunshine Daisy ES lane; Shopify product readback confirmed product `7585980055649` was already `ACTIVE`, published, and had `26` variants; no product status/channel/feed/campaign/billing/credential changes occurred | `ops/AGENT_COORDINATION.md`; Shopify Admin readback in session |
+| 2026-07-02 current session | Registered Spanish product-owned `body_html` repair for only `sunshine-daisy-family-matching-set` | Admin translation readback returned `outdated=false`, length `9671`, and no hits for the old English product-copy phrases. Product option names/values were already Spanish | Shopify Admin translation readback in session |
+| 2026-07-02 current session | Reran localized size-chart gates after product repair | Passed: missing-locale strict gate `0 missing / 0 planned / 0 errors`; variant mapping `26` checks, `unmatched_variant_locale_count=0` | `/tmp/sunshine-daisy-es-final-size-chart-strict.json`; `/tmp/sunshine-daisy-es-final-variant-mapping.json` |
+| 2026-07-02 current session | Scoped live theme/runtime localization repair | Updated only related live theme assets for footer Spanish raw keys, PDP purchase-confidence pills, policy modals, variant step headings, matching-set empty text, social-proof fallback, cart shipping-country trigger, footer journal copy, and active PDP JS Spanish step labels. Admin API after-readback hashes matched local for every written asset | `sections/footer.liquid`; `snippets/pdp-purchase-confidence.liquid`; `snippets/pdp-policy-modals.liquid`; `snippets/product-variant-picker.liquid`; `snippets/product-desktop-ux.liquid`; `snippets/pdp-review-social-proof.liquid`; `snippets/shipping-country-checker-trigger.liquid`; `assets/product-desktop-ux-20260513-ruler-sync.js` |
+| 2026-07-02 current session | Final public server audit and browser readback | Server audit reduced from `51` to `6`; all remaining hits are raw review-widget strings (`No reviews`, `Customer Reviews`, `Be the first to write a review`, `Write a review`). Desktop and mobile browser readbacks on `/es/products/sunshine-daisy-family-matching-set` returned `lang=es`, Spanish H1/title/step headings/trust/footer/review-visible text, and no visible hits for the English phrase list | `/tmp/sunshine-daisy-es-final-public-audit.json`; in-app browser readback in session |
+
+Failed or ruled-out paths:
+- Treating size-chart localization success as full PDP localization success is ruled out; it missed visible English leakage.
+- Treating raw review-widget HTML as equivalent to visible shopper text is ruled out; the server audit still sees raw app/widget English, while desktop/mobile rendered browser readback shows Spanish review text. The remaining choice is app-setting/server-markup repair vs audit classification update.
+- Shopify CLI deploy was not used because it hit a fresh login/device-code prompt; the successful live theme writes used the configured Shopify Admin API token and scoped asset PUT/readback only.
+
+Current next action:
+- For Sunshine Daisy ES, decide whether to repair Judge.me/review-widget server-side Spanish strings through app settings or classify raw hidden/replaced widget HTML separately from rendered visible text in the audit script.
+- After that decision, run the same loop across new/recent listing handles and all published locales before considering those listings publish-ready or paid-traffic-ready.
+
+Approval/credential/platform gates:
+- Active/live Shopify product translation writes require fresh approval.
+- Live theme deploy/publish, review-app setting changes, product publication/channel changes, feeds, campaigns, billing, credentials, and paid surfaces require separate explicit approval and before/after readback.
+
+Parallel work to continue:
+- Draft-only new listing work can use the new loop as a closeout gate.
+- Theme-local analysis can proceed locally to identify hardcoded English and missing locale keys before any live deploy request.
+
+### `PROB-2026-06-29-CORAL-BLOSSOM-UNEXPECTED-LIVE-STATE`
+
+Priority: `P1`
+
+Status: `FIXED_VERIFIED_DRAFT_UNPUBLISHED`
+
+Owner/session: Codex current session, 2026-06-29.
+
+Surface: Shopify product `7607764287585` / handle `coral-blossom-mommy-and-me-dresses`; local runner and listing artifacts.
+
+Exact symptom:
+- During the owner-requested `Mother XL` correction, the canonical draft runner halted because the existing Coral Blossom product read back as `ACTIVE`.
+- Readback showed product `7607764287585` had `publishedAt=2026-06-29T16:19:37Z`, a live Online Store URL, and was published to Online Store, Google & YouTube, Facebook & Instagram, Pinterest, Microsoft Channel, TikTok, Buy Button, Point of Sale, and n8n Integration.
+
+Business impact:
+- The product was live before owner review and before the corrected selector-backed `Mother XL` variant existed.
+- Active/channel-published state can expose incomplete product data to shoppers and sales channels.
+
+Definition of fixed:
+- Product `7607764287585` reads back as `DRAFT`.
+- `publishedAt=null`, `onlineStoreUrl=null`, and no sales-channel publications are live.
+- `Mother XL` exists with estimated measurements documented in the product body and local listing notes.
+- Localized size-chart strict readback returns `products_with_missing_locale_size_chart=0`, `planned_translation_count=0`, and `error_count=0`.
+- Variant mapping audit returns `unmatched_variant_locale_count=0`.
+
+Attempt log:
+
+| Time | Attempt | Result | Evidence |
+|---|---|---|---|
+| 2026-06-29 current session | Ran Coral Blossom runner after adding selector-backed `Mother XL` estimate | Runner halted before mutation because product read back as `ACTIVE`, not `DRAFT` | terminal readback |
+| 2026-06-29 current session | Queried Shopify Admin by handle | Confirmed `ACTIVE`, live URL, and 9 published channels | terminal readback |
+| 2026-06-29 current session | Reverted only product `7607764287585` to draft/unpublished using `publishableUnpublish` plus `productUpdate(status:DRAFT)` | After-state readback: `status=DRAFT`, `publishedAt=null`, `onlineStoreUrl=null`, `published_channels=[]` | terminal readback |
+| 2026-06-29 current session | Reran corrected Coral Blossom runner | Updated same draft product with 9 variants including `DLM-CBLM-MOM-XL-CORAL`; runner verification passed | terminal readback and `ops/listings/verify-coral-blossom-mommy-and-me-dresses.json` |
+| 2026-06-29 current session | Reran translation poll, localized size-chart repair execute, strict missing-locale readback, and variant mapping audit | Strict readback returned `0 missing / 0 planned / 0 errors`; variant audit returned `unmatched_variant_locale_count=0` | terminal readback |
+
+Failed or ruled-out paths:
+- Leaving the product active/published was ruled out because the workflow explicitly required draft-only listing work and no publish-live approval existed.
+- Updating the active product before reverting to draft was ruled out by the runner guard.
+
+Current next action:
+- Owner reviews the corrected Coral Blossom draft in Shopify Admin. Publish only through a separate explicit publish-live request.
+
+Approval/credential/platform gates:
+- No publish-live, sales-channel publication, feed, campaign, billing, credential, inventory quantity, unrelated product, or theme changes are approved.
+
+Parallel work to continue:
+- Continue draft-only listing review or other safe local listing work.
+
+---
+
+### `PROB-2026-07-23-RECENT-LISTING-TRANSLATION-FALLBACK`
+
+Priority: `P0`
+
+Status: `FIXED_VERIFIED_PRODUCT_CONTENT__SHARED_THEME_WIDGET_FOLLOWUP`
+
+Owner/session: Codex current session, 2026-07-23.
+
+Surface: Shopify product translations for products created during the last month; automatic product-translation LaunchAgent; listing localization closeout gates.
+
+Exact symptom:
+- The live Spanish route `/es/products/ivory-meadow-mommy-and-me-dresses` displays translated field labels such as `Tela`, `Historia familiar`, and `Características principales`, but the accompanying product-description prose remains English.
+- The original listing closeout recorded the translation poll as `processed_products=0`, then the narrow localized size-chart repair registered `20` `body_html` translations.
+- The later automatic translation worker treated those already-current `body_html` values as complete and skipped translating their English prose.
+
+Business impact:
+- International shoppers see mixed-language product pages, reducing trust and conversion readiness.
+- A passing size-chart localization gate can incorrectly mark a new listing complete even when its full body is not localized.
+
+Definition of fixed:
+- Inventory every non-archived product created on or after `2026-06-23T00:00:00Z` and every currently published non-primary Shopify locale.
+- Register current, non-outdated, meaningfully localized product translations for the in-scope cohort without changing product status, channels, price, variants, inventory, or unrelated data.
+- Public storefront language-smoke checks pass with no unclassified product-body English leakage for in-scope published routes; representative desktop and mobile browser readbacks pass.
+- Future listing closeout cannot treat source-language `body_html` fallback as a successful localized translation.
+- The automatic translation worker force-refreshes new-product translations after the minimum-age delay, and tests plus continuity checks pass.
+
+Attempt log:
+
+| Date | Action | Result | Evidence |
+|---|---|---|---|
+| 2026-07-23 | Read prior Ivory Meadow listing evidence, translation worker state, and worker JSONL | Confirmed original explicit poll processed `0` products; size-chart repair then registered `20` source-fallback bodies; worker later processed the product but skipped already-current bodies | `ops/listings/ivory-meadow-mommy-and-me-dresses-listing.md`; local worker state/log readback |
+| 2026-07-23 | Inspected `repair_localized_product_size_charts.py` and the polling worker | Confirmed missing localized bodies are currently built from the English source with deterministic label/table translation, while the polling worker only retranslates an existing current body when `--force-refresh` is used | `ops/scripts/repair_localized_product_size_charts.py`; `ops/scripts/poll_shopify_product_translations.py`; `ops/scripts/install_shopify_product_translation_launchagent.py` |
+| 2026-07-23 | Inventoried the last-month cohort and all published locales, then ran a before-state Admin translation audit | Found `6` products, `20` published non-primary locales, `3,880` eligible translation slots, `140` missing, `100` outdated, `120` body-language issues, and `360` total issues | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-07-23-recent-listing-all-locale-translation-repair/before_admin_translation_audit.json` |
+| 2026-07-23 | Hardened the full-body force-refresh path and dry-ran the exact six-product cohort | Independent review caught that the existing-body deterministic repair path still bypassed translation under force refresh; after correction the dry run proposed exactly `360` translation values with `0` failures | `ops/scripts/poll_shopify_product_translations.py`; `ops/tests/test_localized_product_translation_gate.py`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-07-23-recent-listing-all-locale-translation-repair/translation_dry_run_v2.jsonl` |
+| 2026-07-23 | Executed the owner-approved product translation repair | Registered `360` values across `18` product-owned resources, `60` per product, with `0` failures; no status, channel, price, variant, inventory, theme, app, feed, campaign, billing, or credential changes | `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-07-23-recent-listing-all-locale-translation-repair/translation_execute.jsonl` |
+| 2026-07-23 | Ran Admin, localized size-chart, and variant mapping after-readbacks | Admin audit passed `0` missing / `0` outdated / `0` body-language / `0` total issues; size-chart gate passed `0` missing / `0` planned / `0` errors; mapping audit performed `1,120` real checks with `0` unmatched | `after_admin_translation_audit.json`; `size_chart_readback.json`; `variant_mapping_readback_v2.json` in the 2026-07-23 evidence packet |
+| 2026-07-23 | Verified the live Spanish Ivory Meadow route at desktop and mobile, plus French and Portuguese product-body samples | Spanish returned `lang=es`, localized product content, no reported English product-body phrase hits, and localized Judge.me runtime settings at both viewports; French and Portuguese samples had no reported English product-body phrase hits | In-app browser readback; `READBACK.md` in the 2026-07-23 evidence packet |
+| 2026-07-23 | Reinstalled and kickstarted the automatic translation LaunchAgent | Program arguments include `--force-refresh` and `--execute`; LaunchAgent is loaded and latest exit code is `0` | `/Users/fsuels/Library/LaunchAgents/com.dresslikemommy.shopify-product-translations.plist`; LaunchAgent stdout/readback |
+| 2026-07-23 follow-up | Audited the executable listing workflow after the owner asked how future listings are guaranteed | Found the localization gates were canonical instructions but still separate post-create commands; the generated runner itself did not synchronously execute them, and the default five-minute minimum age could defer a brand-new product | `ops/prompts/shopify-listing-master-prompt.md`; recent `ops/scripts/create-*-*.sh` footer readback |
+| 2026-07-23 follow-up | Added and wired a synchronous listing-localization closeout | Every future generated runner must invoke one shared closeout that forces immediate translation with `--min-age-seconds 0`, audits full product translations before and after size repair, then runs strict size-chart and variant mapping gates; any failure keeps the runner nonzero and writes the failed step | `ops/scripts/finalize_shopify_listing_localization.py`; canonical listing prompts/loop; `2026-07-23-listing-localization-workflow-automation/WORKFLOW_AUTOMATION_READBACK.md` |
+| 2026-07-23 follow-up | Added regression and continuity protection | Unit regression passed; print-plan returned the required six steps; strict continuity now includes `PASS listing_localization_workflow` and fails if the closeout or canonical wiring disappears | `ops/tests/test_finalize_shopify_listing_localization.py`; `ops/scripts/check_continuity_integrity.py` |
+
+Failed or ruled-out paths:
+- Re-running only the localized size-chart repair is ruled out because it can preserve or recreate English prose while still satisfying table coverage.
+- Treating translated headings or `outdated=false` alone as proof of full localization is ruled out.
+- Broad theme, app/widget, publication, price, variant, inventory, feed, campaign, billing, or credential changes are outside this repair scope.
+
+Current next action:
+- Treat the recent-product defect and normal listing-workflow automation gap as solved. On the next real listing, require the generated runner's `ops/listings/<handle>-localization-closeout.json` to say `status=passed`; the separate storefront follow-up remains shared theme/runtime and third-party widget localization before paid traffic.
+
+Approval/credential/platform gates:
+- Owner explicitly authorized current-session live product translation corrections for all listings created in the last month and an automatic future-listing safeguard.
+- Stop on Shopify login, MFA/CAPTCHA, account chooser, permission, billing, policy, or unexpected destructive prompts.
+
+Parallel work to continue:
+- Use the hardened full-product Admin translation audit, size-chart gate, variant mapping audit, public locale audit, and desktop/mobile browser readback for every new listing closeout.
+- Shared theme/runtime and widget localization can proceed as a separate scoped problem without changing recent product data.
+
+---
+
+### `PROB-2026-07-23-MARKETING-SEMANTIC-FRESHNESS`
+
+Priority: `P0`
+
+Status: `FIXED_VERIFIED_FAIL_CLOSED`
+
+Owner/session: Codex current session, 2026-07-23.
+
+Surface: local paid-growth command layer; continuity integrity guard; safety reviewer and decision log.
+
+Exact symptom:
+- `ops/marketing/current_marketing_state.md` and `action_queue.md` were last reconciled on 2026-06-01, while `daily_scorecard.md` was last reconciled on 2026-05-29.
+- The strict continuity check still passed because its freshness check compared file modification times and spend-status strings, not the meaning or age of the live evidence.
+- Historical `LIVE_VERIFIED`, readiness, and approval labels therefore lacked one current field that explicitly said whether they could authorize action now.
+
+Business impact:
+- A future operator could misread historical readiness as current authority and take a paid-media or live-system action without a fresh readback or current action-time approval.
+- The command layer could look technically healthy while its underlying decision evidence was stale.
+
+Definition of fixed:
+- The current state has one machine-parseable authoritative control block that supersedes older execution-readiness labels.
+- Stale mode requires `autonomous_action_ready=false`, no approved external scope, fresh action-time approval, and read-only reconciliation as the only next action.
+- Strict continuity fails when the block is absent, malformed, falsely current, expired, or paired with a `GREEN` action-queue row.
+- Autonomous mode additionally requires the standing spend record to be `APPROVED_ACTIVE` and the exact approved scope to appear in a `GREEN` queue row; the generated cockpit must foreground effective authority instead of the older standing record.
+- A compact material-decision contract requires baseline, alternatives, prediction, invalidating assumption, success/kill criteria, maximum exposure, rollback, disconfirming evidence, resolved outcome, and a verifier separate from the builder.
+- Frozen regression fixtures, strict continuity, integration audit, diff checks, and independent read-only verification pass.
+
+Attempt log:
+
+| Date | Action | Result | Evidence |
+|---|---|---|---|
+| 2026-07-23 | Re-ran the existing strict continuity guard before implementation | Guard returned `CONTINUITY_OK` even though command-layer declared dates were 52-55 days old; no semantic freshness result existed | terminal readback; pre-change `ops/scripts/check_continuity_integrity.py` |
+| 2026-07-23 | Compared the proposed capability-transfer pattern with existing specialist agents, reviewer checklist, one-best-action rules, handoff scorecard, and approval gates | Rejected a full parallel council/command-layer installation; retained only semantic freshness, frozen decision criteria, outcome resolution, and builder/verifier separation | current-session adversarial review |
+| 2026-07-23 | Added the authoritative fail-closed control block and semantic evaluator | Current historical state now passes only as explicitly stale and read-only; it is not relabeled as fresh | `ops/marketing/current_marketing_state.md`; `ops/scripts/check_continuity_integrity.py` |
+| 2026-07-23 | Added six frozen binary fixtures and the compact material-decision contract | Fixtures cover missing control, valid stale hold, stale-plus-`GREEN`, expired live state, valid current no-authority state, and required contract/resolution markers; `6/6` passed | `ops/tests/test_marketing_decision_challenge.py`; `ops/marketing/reviewer_checklist.md`; `ops/marketing/decision_log.md` |
+| 2026-07-23 | Regenerated the local cockpit and ran repo checks | Strict continuity returned `CONTINUITY_OK`; marketing integration audit reported `25/25` integrated/generated/archive files and `0` risks; focused syntax and diff checks passed | terminal readback; `ops/marketing/operator_cockpit.html`; `ops/marketing/command_layer_integration_audit.md` |
+| 2026-07-23 | Ran an independent read-only adversarial review | Reviewer found that autonomous `LIVE_CURRENT` could pass without a `GREEN` row. The evaluator now requires a green row and requires the exact `approved_external_scope` inside that row; frozen negative and positive fixtures cover the gate. Self-review also found the cockpit foregrounded the historical standing approval, so the renderer now foregrounds stale/effective authority and read-only reconciliation. | independent reviewer message; `ops/scripts/check_continuity_integrity.py`; `ops/scripts/render_marketing_cockpit.py`; `ops/tests/test_marketing_decision_challenge.py`; `ops/marketing/AGENTS.md` |
+
+Failed or ruled-out paths:
+- Updating old `Last reconciled` dates without a fresh live readback was ruled out because it would fabricate freshness.
+- Installing a new council of overlapping personas or a second command layer was ruled out because the repo already has specialist agents, a safety reviewer, and a canonical command layer.
+- Treating modification time as evidence age was ruled out because editing a stale file can make it look technically fresh without changing the underlying live facts.
+- Automatically promoting retrospective lessons into live execution authority was ruled out; current approval and readback gates remain intact.
+- Showing the historical standing spend record as the cockpit's primary authority was ruled out; it remains visible only as a neutral standing record beneath the effective stale-state warning.
+
+Current next action:
+- Run a fresh read-only marketing reconciliation before any dated readiness or approval label is treated as current. Independent implementation verification is complete and passed after the exact-scope `GREEN`-row repair.
+
+Approval/credential/platform gates:
+- This fix is repo-local only. No Shopify, Google Ads, Pinterest, Merchant, GA4/GTM, campaign, feed, product, conversion, billing, budget, bid, status, publication, credential, infrastructure, or theme write is approved or performed.
+
+Parallel work to continue:
+- Historical evidence analysis, local packet preparation, and read-only public storefront checks can continue while live marketing state remains fail-closed.
+
+---
+
+### `PROB-2026-08-31-NAVY-SPRIG-EL-BODY-TRANSLATION`
+
+Priority: `P1`
+
+Status: `FIXED_VERIFIED`
+
+Owner/session: Codex `/root`, 2026-08-31.
+
+Surface: Shopify draft product handle `navy-sprig-mommy-and-me-dresses`; product-owned translations and listing localization closeout only.
+
+Exact symptom:
+- The draft product and its `24` chart-backed variants passed the runner's Shopify product verification.
+- The synchronous translation step processed all `20` published non-primary locales, but the immediately following completeness audit found one missing slot: Greek (`el`) product `body_html`.
+- A separate read-only audit confirmed the same one missing slot; the closeout report correctly remained `status=failed`.
+
+Business impact:
+- The listing cannot be marked complete or publish-ready while one published locale lacks the translated product body and localized size tables.
+- The product remains `DRAFT` and unpublished, so no shopper/channel exposure occurred.
+
+Definition of fixed:
+- Full-product translation completeness returns `0` missing, `0` outdated, `0` source-equal, `0` body-language, and `0` total issues across all `20` published non-primary locales.
+- The generated runner's localization closeout report returns `status=passed`.
+- The owner-required localized size-chart sequence finishes with `products_with_missing_locale_size_chart=0`, `planned_translation_count=0`, and `error_count=0`.
+- Localized variant-row mapping returns `unmatched_variant_locale_count=0`.
+
+Attempt log:
+
+| Date | Action | Result | Evidence |
+|---|---|---|---|
+| 2026-08-31 | Ran the generated draft runner and mandatory synchronous localization closeout | Product create/verify passed; all locale translation batches completed; completeness audit failed on one missing Greek `body_html` slot | `ops/listings/navy-sprig-mommy-and-me-dresses-localization-closeout.json` |
+| 2026-08-31 | Reran a read-only full-product translation audit | Confirmed exactly `1` missing / `0` outdated / `0` source-equal / `0` body-language issues, isolated to Greek product `body_html` | `/tmp/navy-sprig-translation-audit.json` |
+| 2026-08-31 | Diagnosed and repaired failed-translation cache handling | A cached `null` no longer suppresses a real retry; the focused regression test proves both single and batch paths retry transient failures | `ops/scripts/translation_utils.py`; `ops/tests/test_translation_utils_failed_cache_retry.py` |
+| 2026-08-31 | Added canonical size-chart table identifiers and made the variant-row audit draft-aware | Both localized tables became visible to the canonical coverage checker; draft variants are now checked even when Shopify reports `availableForSale=false` | `ops/scripts/create-nspr-navy-sprig-mommy-and-me-dresses.sh`; `ops/scripts/audit_localized_size_chart_variant_mapping.py` |
+| 2026-08-31 | Restored the chart-published custom Mother 3XL row for both Dress and Cardigan | Added two variants using only the published `73-80 kg` recommendation; unavailable garment measurements remain `-` instead of being invented | `ops/listings/size-chart-navy-sprig-mommy-and-me-dresses.json`; `ops/listings/navy-sprig-mommy-and-me-dresses-listing.md` |
+| 2026-08-31 | Reran the complete synchronous localization closeout | Passed: `720` eligible translation slots with `0` issues; localized size charts `0 missing / 0 planned / 0 errors`; `26` variants across `20` locales produced `520/520` matching row checks | `ops/listings/navy-sprig-mommy-and-me-dresses-localization-closeout.json` |
+
+Failed or ruled-out paths:
+- Treating completed translation batches as sufficient without the Admin completeness audit is ruled out.
+- Publishing, activating, or bypassing the failed locale is ruled out.
+- Repeated blind full-body retries were ruled out after recurring transient failures; the successful fallback preserved localized prose and updated only asserted chart rows, range tokens, and current digests.
+
+Current next action:
+- Owner reviews the unpublished draft, especially the supplied image, unverified fiber/care details, and whether the source-labeled custom Mother 3XL can be fulfilled, before any separate publication request.
+
+Approval/credential/platform gates:
+- Only this draft product's product-owned translations and localized size-chart records are in scope. No publication, channel, inventory quantity, unrelated product, theme, feed, campaign, billing, credential, checkout, or order change is approved.
+
+Parallel work to continue:
+- The completed draft may remain unchanged while unrelated disjoint work continues; no publication is authorized by this fix.
+
+---
+
+### `PROB-2026-09-02-FAMILY-SHIRT-CHILD-170-LABEL`
+
+Priority: `P1`
+
+Status: `SOLVED_READBACK_PASSED`
+
+Owner/session: Codex `/root`, 2026-09-02.
+
+Surface: Shopify products `7670674391137`, `7670683762785`, `7670695526497`, `7670724329569`, `7670738223201`, `7670742777953`, `7670743498849`, `7670744842337`, and `7670746775649`; their product-owned translations, localized size charts, runners, and generated listing artifacts.
+
+Exact symptom:
+- The owner observed that Sunlit Tropical Bloom presents the vendor size code `170` as though it were an age, producing a nonsensical child-size experience.
+- The local source-of-truth runners and size-chart artifacts show that all nine products use shopper-facing picker label `Child 170` for the same vendor row.
+- The row itself recommends height `150-155 cm` and weight `35-42.5 kg`; `170` is the vendor size code, not an age.
+
+Business impact:
+- A misleading child-size label can confuse shoppers, undermine trust, and cause incorrect size selection.
+- Because all nine drafts share the same size model, correcting only the reported product would leave the defect in eight sibling listings and in rerunnable local artifacts.
+
+Definition of fixed:
+- The vendor row `170` remains preserved in local source evidence and its shopper-facing picker label is `Child 14 Years`; every remaining live `KID170` variant uses that corrected label. If another authorized process removes a variant after the correction, this label-only task does not recreate it.
+- No public option value, English or localized size-chart body, generated import CSV, verification artifact, or local runner in this cohort contains shopper-facing `Child 170`.
+- Every English and localized `150-155 cm` chart row shows a localized `14`-year label, Age `14`, Weight `35-42.5 kg`, and Height `150-155 cm`.
+- Full product-translation audits pass with zero missing, outdated, source-equal, body-language, and total issues across every published non-primary locale.
+- Localized size-chart strict readback returns `0 missing / 0 planned / 0 errors`, and localized variant-row mapping returns zero unmatched products and locales for every handle.
+- A separate read-only verifier confirms the cohort after-state and makes no modifications.
+
+Attempt log:
+
+| Date | Action | Result | Evidence |
+|---|---|---|---|
+| 2026-09-02 | Received owner report and searched the exact nine-product local cohort | Confirmed the same `Child 170` picker label exists in all nine runners and size-chart artifacts; the defect is cohort-wide rather than isolated | owner report; scoped local search of the nine runner and listing-artifact paths |
+| 2026-09-02 | Compared the row with the canonical progression and existing store age labels | The canonical cohort already maps vendor `160` to `Child 12 Years`; the next established store label is `Child 14 Years`, which is coherent with this row's `150-155 cm` recommendation | `ops/prompts/shopify-listing-master-prompt.md`; current store/listing conventions |
+| 2026-09-02 | Captured a fresh Shopify before-state for all nine products | Confirmed all nine have one `Child 170` option value and two English-body occurrences; Sunlit Tropical Bloom and Playful Cat Parade are now active/published and have owner-changed prices/media, while the other seven remain draft/unpublished | current-session Shopify Admin GraphQL readback |
+| 2026-09-02 | Corrected all nine exact Shopify products and regenerated their local listing artifacts | Renamed the existing option value to `Child 14 Years`, corrected the English chart Age cell, SEO range, and tag, retained vendor code/SKU suffix `KID170`, and proved prices, costs, SKUs, media, inventory, taxonomy, status, and publications were unchanged at each root mutation boundary | `ops/scripts/fix_family_shirt_child_170_label.py`; `ops/listings/nine-family-shirt-child-170-correction.json`; per-handle verification artifacts |
+| 2026-09-02 | Ran the required per-handle localization workflow for all nine | Each force refresh, localized chart repair, strict missing-locale readback, and variant mapping closeout passed | nine `ops/listings/*-family-matching-tops-localization-closeout.json` reports |
+| 2026-09-02 | Audited the corrected chart row itself across English and all 20 published non-primary locales | Checked `189/189` target rows; all have a localized `14`-year label, Age `14`, Weight `35-42.5 kg` (including locale-equivalent decimal punctuation), Height `150-155 cm`, and current digests | `ops/listings/nine-family-shirt-child-170-target-row-final.json` |
+| 2026-09-02 | Repaired the canonical deterministic localized-body logic after finding three Age cells still showed an em dash | The repair now copies a numeric child Age cell from the English source while leaving adult blank-Age rows untouched; focused regressions passed; affected Coastal Dutch/Romanian and Sky Daisy Romanian bodies were repaired and survived force refresh | `ops/scripts/poll_shopify_product_translations.py`; `ops/tests/test_product_translation_size_labels.py`; Coastal and Sky Daisy localization closeouts |
+| 2026-09-02 | Exercised the public storefront | Sunlit's rendered Child selection showed `14 Years`, Age `14`, Weight `35-42.5`, and Height `150-155`; all nine public product JSON endpoints contained zero `Child 170` | current-session rendered browser and public `.js` readbacks |
+| 2026-09-02 | Ran fresh cohort gates and independent read-only verification | Translation audit passed with zero issues, strict localized charts returned `0 missing / 0 planned / 0 errors`, and all current variant-locale rows matched. The verifier made no changes | final cohort reports; `/root/verify_child170_mapping` read-only verdict |
+| 2026-09-02 | Reconciled concurrent non-root edits without reverting them | All nine are now active on nine publications. The 2026-09-02T16:07:24Z snapshot has `105` variants total and five `Child 14 Years` rows; the vendor-`170` row was concurrently removed from Sunlit Tropical Bloom, Midnight Palm Blossom, Monochrome Palm, and Midnight Paint Splash after root corrected it. Root did not activate/publish products or restore/delete variants | Shopify Admin and public-product readbacks at 2026-09-02T16:07:24Z |
+
+Failed or ruled-out paths:
+- Keeping `Child 170` is ruled out because it exposes a vendor code as a shopper age.
+- Renaming only Sunlit Tropical Bloom is ruled out because the same defect is present in the other eight cohort artifacts.
+- Dropping or recreating the row inside this correction is ruled out: removal/restoration is a separate merchandising decision, and three corrected rows were later removed by concurrent work outside root's label-only write scope.
+- Reverting the two newly active products to draft or restoring their original prices/media is ruled out because those are current owner changes outside this correction.
+- Changing prices, costs, SKUs, images, taxonomy, status, publications, inventory quantities, or unrelated product fields is outside this correction.
+
+Current next action:
+- No further action is required for the `Child 170` defect. The owner should separately review the concurrent variant omissions—especially the removed `Child 14 Years` rows on Sunlit Tropical Bloom, Midnight Palm Blossom, Monochrome Palm, and Midnight Paint Splash—and confirm whether they were intentional before any restoration. This goes first because variant restoration is materially broader than the authorized label correction.
+
+Approval/credential/platform gates:
+- The owner explicitly authorized correcting this size-label error across all nine listings. No activation, publication, price, cost, media, inventory quantity, unrelated product, theme, feed, campaign, billing, credential, checkout, or order change is authorized.
+- Stop on authentication, MFA/CAPTCHA, account switching, permission, billing, policy, or an unexpected destructive prompt.
+
+Parallel work to continue:
+- None for this solved label defect. Any variant restoration requires a new exact scope and fresh before-state because concurrent product work changed the cohort after root's correction.
+
+---
+
+### `PROB-2026-09-02-SOURCING-STUDIO-STAGNATION`
+
+Priority: `P1`
+
+Status: `ACTIVE_OWNER_REVIEW_REQUIRED`
+
+Owner/session: Codex `/root`, 2026-09-02.
+
+Surface: Repo-local persistent Opportunity Scout, 1688 query/category coverage, candidate aggregation, supplier-detail evidence, review queue, and local listing-preparation package workflow.
+
+Exact symptom:
+- The owner reports that the sourcing app feels stagnant, does not surface useful new styles, shows ratings that do not change, and requires too many manual steps before listing work can begin.
+- The current dashboard loads thousands of historical cards into one page, while the latest search result is buried below older higher-scored rows.
+- Saving a product records a decision but starts no verification or preparation workflow; every card exposes proof fields and many actions before the operator has chosen it.
+- The owner must repeatedly return to a helper browser, one category/query at a time; search terms rotate without clear owner control and there is no Siblings lane or durable all-lane run.
+- Search-only or whole-page text can be mistaken for supplier credibility. The owner requires a strict minimum of five established years and does not want one- or four-year suppliers recommended.
+- On 2026-09-04 the live app still foregrounds Summer 2026 products, hides the effective query behind `Smart rotation`, and gives the owner no simple product-type, occasion, or season brief. The query can therefore be stable at the implementation level yet still feel random and seasonally wrong to the operator.
+- The first all-category seasonal run exposed a second failure: its long Chinese strings mixed the relationship and garment with year, novelty, inventory, dropship, supplier, market, and export modifiers. The old 14-term Mommy & Me query produced `0/29` visibly matching-family titles, while a controlled three-term alternative produced `30/34`; the old run was stopped after `33/36` searches.
+- Broad substring matching compounded the drift: English `son` could match inside `Response`, and `men` could match inside `women`. Generic `套装` was also ambiguous enough to surface thermal underwear for Couples.
+- The owner-authorized first fixed short-query batch completed all `18` searches once but still produced only `69/653` visible titles containing the requested relationship, garment, and season together, `1` detail nomination, and `0` Verified or Promising opportunities. Only three exact pairs earned a keep decision; all Daddy, all Maternity, and several formal/Christmas variants had zero combined-intent titles.
+- The one detail nomination exposed parser errors: the company name replaced the product title, `60天老客价` became MOQ `60` despite `1件起批`, and generic platform legal copy containing `品牌` became a false IP-risk flag. After the parser repair and local saved-evidence reprocess, the item still correctly rejects because it claims `2025`, not `2026`, and lacks a valid supplier rating and current-availability proof.
+- Two later owner-path jobs from the pre-lock interface are preserved in state: a `2`-query Mommy & Me job and a `12`-query Mommy/Daddy job. Neither used the returned-vocabulary replacements, so the app must distinguish them as previous-plan history instead of implying that the new plan ran.
+
+Business impact:
+- New sourcing work is hard to distinguish from historical noise, so the operator cannot quickly find the few styles worth reviewing.
+- The handoff does not collect the same evidence the real listing workflow needs most: role/piece structure, source size chart, usable images, supplier/dropship/dispatch proof, category/occasion fit, and an explicit local draft-package state.
+- This slows product expansion and makes the operator repeat work outside the app.
+
+Definition of fixed:
+- The default view foregrounds a small, newest-first review queue and states the latest run's collected, reviewable, and filtered counts honestly.
+- Internal score and supplier rating are separated: the former is labeled `Opportunity` with confidence and last-check context; an absent supplier rating says `Unavailable` and becomes verifiable only from detail evidence.
+- One idempotent `Like & start listing prep` action persists the like, creates/updates a local preparation package, starts detail verification when the helper browser is healthy, resumes safely after refresh, and returns only unresolved proof blockers.
+- Proof inputs are labeled and collapsed until selected; status is persistent and announced; controls meet the local accessibility/responsive acceptance checks.
+- One saved parent scout covers Mommy & Me, Daddy & Me, Siblings, Family, Couples, and Maternity across US and Europe; it serializes browser work, persists every lane, pauses once for authentication, and resumes without another scan click.
+- The owner selects English search intents while the exact Chinese source term remains visible and pinned; opening the helper cannot rotate that term.
+- Verified requires detail evidence whose captured supplier-context phrase proves at least five years in business. Search-card values, ambiguous whole-page `N years` phrases, missing provenance, and one- or four-year suppliers fail closed.
+- No Shopify/live storefront, purchasing, advertising, feed, billing, or credential write occurs.
+- The primary flow recommends seasons from the current date and selected market, supports an easy manual season override, shows plain-English intent beside every exact Chinese query, and stores those exact strings on the job before execution.
+- One click executes the complete selected plan without changing terms mid-run. For 2026-09-04 in US/Europe, the default is Fall 2026 `sell now`, Winter 2026 `source ahead`, and Holiday 2026 `source ahead`; Summer is excluded unless the owner explicitly selects it.
+- Each exact 1688 execution string starts with a precise matching-relationship phrase, adds a concrete garment and season, uses at most one occasion term, and is capped at `4` terms / `18` Chinese characters. Literal English is visible beside every Chinese term.
+- Current year/newness, availability, dropship, supplier age/quality, and market fit are verified after discovery rather than stuffed into the query. US and Europe share one discovery search when the exact source query is identical.
+- Relationship scoring uses phrase boundaries, rejects obvious lingerie/intimates, shoes, doll clothing, hair accessories, and fabric, and requires both maternity and matching-family evidence for Maternity; sparse lanes may honestly return zero.
+- The next plan changes exactly the `12` weak non-maternity terms, preserves the `3` successful Chinese strings unchanged as controls, and shows the `3` Maternity rows as deferred and impossible to execute.
+- Any runnable plan must have a persisted owner-review acknowledgement for that exact plan hash. A caller-supplied hash cannot unlock it, review acknowledgement starts no job, and automatic scouting remains off unless separately enabled after review.
+
+Attempt log:
+
+| Date | Action | Result | Evidence |
+|---|---|---|---|
+| 2026-09-02 | Audited the public storefront, current catalog endpoints, representative PDPs, and the live local sourcing app as a user | Confirmed the catalog spans dresses, sets, tops, pajamas, swimwear, Daddy/Family matching, with current live Maternity and Couples collections empty; confirmed the sourcing first viewport hides products behind guidance and renders a very large historical queue | current-session rendered Chrome readbacks and public product/collection JSON |
+| 2026-09-02 | Audited the newest local sourcing run, decisions, detail evidence, dashboard aggregation, collector, scorer, and canonical listing workflow | New run found `210` unseen offers but yielded `1` Test and `209` Reject; only `3/2,995` cards have a rating; existing state has no kept/ready products; save is a dead end and older stage/score can win dedupe over newer evidence | `ops/sourcing/2026-09-02-134848-mommy-and-me-eu-1688-auto/`; `ops/sourcing/state/decisions.json`; scoped source inspection |
+| 2026-09-02 | Ran two independent read-only diagnostics and generated a high-fidelity workflow concept before implementation | Both diagnostics converged on a New Arrivals Inbox plus one-click Save-and-Start vertical slice; concept places a compact review queue beside a selected-product preparation inspector | `/root/sourcing_pipeline_audit`; `/root/sourcing_ux_audit`; generated concept `exec-1750a979-4462-4a03-a8f9-a5805c9351b9.png` |
+| 2026-09-02 | Implemented the externalized Sourcing Studio UI and backend workflow | Default fresh queue now shows `210 collected / 6 reviewable / 204 filtered`; rating is separated from opportunity and labeled with provenance; Like-and-start persists state, creates a local package, starts or resumes detail verification, and exposes only unresolved proof; full history is lazy and paginated | `ops/sourcing/sourcing-studio.html`; `ops/scripts/1688_sourcing_dashboard.py`; `ops/tests/test_1688_sourcing_dashboard_workflow.py` |
+| 2026-09-02 | Ran focused regressions, JS syntax validation, isolated mutation/browser checks, and real-data desktop/mobile readbacks | Python compile and all three sourcing suites passed; desktop `1440x900` and mobile `390x844` had six fresh rows, no overflow, 44px minimum controls, working keyboard selection, and no console/page errors; isolated Like/resume/package/proof persistence remained idempotent and DRAFT-gated | `sourcing-studio-desktop.png`; `sourcing-studio-mobile.png`; local test output |
+| 2026-09-02 | Ran an independent adversarial verification and fixed both findings | Verifier found and root fixed a rejected-detail draft-readiness bypass plus rejected-detail high-confidence presentation; final verdict `PASS_WITH_GATES` confirmed fail-closed Gold/Test detail verdicts, negative-proof guards, evidence ownership, honest partial outcomes, lazy history, responsive accessibility, and no Shopify mutation path | `/root/sourcing_studio_verifier`; focused workflow regressions |
+| 2026-09-02 | Replaced the old local process on the normal app port and read back the repaired build | `127.0.0.1:8766` serves the Sourcing Studio template and focused API; readback returned `2,995` total candidates and latest outcome `210 / 6 / 204`; helper status is connected but has no normal supplier tab, so a real logged-in search/detail smoke remains gated | normal-port HTTP/API/browser-status readback |
+| 2026-09-02 | Reframed the app as one persistent automatic Opportunity Scout and added missing portfolio/search control | One saved parent job now covers all six matching lanes and both markets; Siblings has 30 queries; automatic runs use bounded fair rotation or exact pinned terms; English intent and Chinese execution text stay paired; parent/lane progress and one-auth resume survive reload/restart | `ops/scripts/1688_sourcing_dashboard.py`; `ops/scripts/1688_sourcing_cdp_collect.py`; `ops/sourcing/sourcing-categories.json`; `ops/sourcing/sourcing-studio.html`; `ops/sourcing/state/opportunity-scout.json` |
+| 2026-09-02 | Replaced score-like trust claims with strict Verified/Promising/Filtered evidence tiers and a five-year supplier minimum | Search-only products stay `PROMISING — SUPPLIER CHECK PENDING`; one- and four-year detail fixtures reject; five years can qualify only when every other supplier, availability, dropship, dispatch, size-chart, image, lane, and freshness gate passes | `ops/scripts/1688_sourcing_dashboard.py`; `ops/scripts/1688_sourcing_score.py`; focused opportunity/score tests |
+| 2026-09-02 | Adversarially falsified and hardened supplier-tenure extraction | Synthetic page title contained unrelated `5年` product-age text while the supplier panel said `1年诚信通`; the old parser returned `5`, the repaired DETAIL_JS returns `1`, Python revalidates the exact supplier-context label, and scorer/dashboard require persisted provenance | `ops/scripts/1688_sourcing_detail_enrich.py`; actual DETAIL_JS browser execution; `ops/tests/test_1688_opportunity_scout.py`; `ops/tests/test_1688_sourcing_score_detail_gate.py` |
+| 2026-09-02 | Completed focused tests and fresh desktop/mobile/API readbacks, then started the normal-port automatic scout | Compilation, four sourcing suites, inline JavaScript syntax, scoped diff, 1365px/390px renders, 12-lane progress, no overflow, and 44px button checks passed; API reports `0` Verified, `39` Promising, and `3,130` Filtered rather than promoting unverified suppliers; active scout paused durably for one normal 1688 tab | `opportunity-scout-desktop.png`; `opportunity-scout-mobile.png`; `127.0.0.1:8766/api/scout-status` and `/api/data` readbacks |
+| 2026-09-04 | Reopened the app from the owner's current September operating view and generated desktop/mobile workflow concepts | Confirmed the live UI still foregrounded Summer 2026 history and hid effective terms behind `Smart rotation`; reframed the primary task as a current-date merchandising brief with explicit season, product, occasion, matching-group, and market control | Current-session in-app browser readback; concepts `exec-a904c34e-ad80-4bb0-9b86-5b06119d7200.png` and `exec-e7701599-4875-4352-93ad-b2e0eb4d5f61.png` |
+| 2026-09-04 | Implemented the deterministic seasonal planner, exact-query collector handoff, and guided responsive UI | September 4 recommends Fall sell-now plus Winter/Holiday source-ahead; Summer is excluded by default; the six matching groups, product types, occasions, seasons, and US/Europe markets are visible controls; `36` English/Chinese queries across `12` lanes are visible and frozen before execution; advanced checkboxes allow exact per-query exclusions; current-plan results are separated from History | `ops/sourcing/seasonal-sourcing.json`; `ops/scripts/1688_sourcing_dashboard.py`; `ops/scripts/1688_sourcing_cdp_collect.py`; `ops/sourcing/sourcing-studio.html` |
+| 2026-09-04 | Verified fixed-plan persistence, execution safety, regressions, and responsive rendering | Five sourcing suites, Python compilation, JSON validation, extracted JavaScript syntax, and scoped diff checks passed; isolated worker-disabled save/reload/run preserved hash `4696529b610fb68b`, Winter/Sweaters/Casual choices, `12` lanes, and `18` exact queries; final desktop/mobile render returned zero page/console errors, no `390px` overflow, and `44px` minimum visible buttons | `ops/tests/test_1688_seasonal_sourcing_plan.py`; focused test output; `opportunity-scout-seasonal-desktop.png`; `opportunity-scout-seasonal-mobile-top.png`; `opportunity-scout-seasonal-mobile-plan.png` |
+| 2026-09-04 | Replaced the old normal-port process and read back the upgraded app without starting a supplier scan | `127.0.0.1:8766` now serves the September 4 plan with Fall/Winter/Holiday, `36` exact searches, all six matching groups, both markets, Summer excluded, and minimum supplier years `5`; existing `3,783` local candidates remain preserved; no 1688, Shopify, advertising, feed, billing, or credential write occurred | normal-port HTTP/API and existing-tab in-app browser readbacks; process `51364` |
+| 2026-09-04 | Stopped the first old seasonal run, paused scheduling, researched 1688 discovery guidance, and ran controlled read-only long-versus-short query checks | Old 14-term Mommy & Me query produced `0/29` visibly matching-family titles; three-term `母女亲子装 连衣裙 秋冬` produced `30/34` matching titles and no visible lingerie; specific dress/formal/sweatshirt relationship queries consistently outperformed broad generic-set wording | logged-in title-level 1688 result snapshots; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-04-1688-short-query-relevance/1688_short_query_relevance_report.md` |
+| 2026-09-04 | Implemented and rendered the short-query plan without starting another batch | The replacement has `18` fixed relationship-first searches across `6` shared lanes, literal English translations, `4`-term / `18`-character caps, strict relationship boundaries and irrelevant-content rejection; plan `06b68838642fae61` is visible, automatic scouting is paused, and the old job records `cancelled` / `stopped_for_keyword_review` after `33/36` | `ops/sourcing/seasonal-sourcing.json`; dashboard/collector/scorer/UI; focused tests; normal-port API and in-app browser readback |
+| 2026-09-04 | Reviewed all `18` literal pairs and ran the owner-authorized fixed batch exactly once | Job `6ee644d83878` preserved plan `06b68838642fae61`, paused at a normal CAPTCHA without bypass, resumed the same saved query, and completed `18/18` searches / `6/6` lanes; `653` cards yielded `239` strict relationship titles, `69` combined relationship + garment + season titles, `1` detail nomination, `0` Verified, and `0` Promising; automatic scouting stayed off and no second batch ran | `ops/sourcing/state/opportunity-scout.json`; eighteen batch run directories; short-query relevance report |
+| 2026-09-04 | Audited the zero-yield result and repaired saved-detail parsing without another 1688 request | Preserved the product title, parsed `1件起批` as MOQ `1` instead of the adjacent 60-day price label, excluded generic platform `品牌` disclaimer text from product IP risk, and stopped generic `代发` from proving availability or dispatch; local reprocessing moved the detail scorer from false Reject `56` to Test `59`, while the final opportunity gate still correctly rejects the 2025 item for no 2026 claim, missing valid supplier rating, and missing current-availability proof | `ops/scripts/1688_sourcing_detail_enrich.py`; `ops/sourcing/sourcing-studio.html`; `ops/tests/test_1688_opportunity_scout.py`; saved detail evidence for the one nominated offer |
+| 2026-09-04 | Redesigned only the `12` weak searches from returned product vocabulary and installed a fail-closed review lock | Plan `cae6a3e3d293a76f` has `12` replacements, the `3` successful searches unchanged as controls, `3` visible/non-runnable Maternity rows, `15` active searches across `5` lanes, automatic scouting off, and no current-plan run; the UI explicitly labels the two later pre-lock jobs as previous-plan history | `ops/sourcing/seasonal-sourcing.json`; `ops/scripts/1688_sourcing_dashboard.py`; `ops/sourcing/sourcing-studio.html`; focused tests; desktop/mobile rendered checks; short-query relevance report |
+
+Failed or ruled-out paths:
+- Fabricating a changing supplier rating from the internal score is ruled out; missing supplier data must remain explicitly unavailable until detail-page proof exists.
+- Weakening category, IP, dropship, size-chart, or draft/publication gates merely to show more leads is ruled out.
+- Treating partial `1/20` collection as fully successful or hiding the 209 filtered cards is ruled out; telemetry must be honest.
+- Rewriting or cleaning unrelated dirty sourcing state is ruled out.
+
+Current next action:
+- Owner reviews all `15` active English/Chinese pairs and the `3` disabled Maternity rows in `Review and choose exact searches`, then uses `I reviewed these exact searches` only if the replacements are acceptable. This goes first because plan `cae6a3e3d293a76f` is deliberately locked and has not run; confirmation unlocks only that exact hash and starts nothing.
+
+Approval/credential/platform gates:
+- Repo-local changes and read-only public/storefront inspection are in scope. No Shopify product/theme/publication, 1688 purchase/order/message, paid-media/feed/account, billing, credential, or infrastructure write is authorized.
+- Stop for 1688 login/CAPTCHA, account switching, payment, or unexpected destructive prompts.
+- Do not start or schedule another 1688 batch until the owner has reviewed and confirmed the exact replacement plan.
+
+Parallel work to continue:
+- The disjoint Together Heart listing lane may continue; this sourcing repair must not touch that product, its translations, or its local listing artifacts.
+
+---
+
+### `PROB-2026-09-02-TOGETHER-HEART-TRANSLATION-RETRY`
+
+Priority: `P1`
+
+Status: `SOLVED_READBACK_PASSED`
+
+Owner/session: Codex `/root`, 2026-09-02.
+
+Surface: Shopify draft product `7672336646241`, handle `together-heart-family-matching-sweaters`; product-owned translations and localized size-chart records only.
+
+Exact symptom:
+- The draft and all `98` variants passed product verification, but the first forced full-product translation run registered `826/840` eligible slots.
+- The mandatory completeness audit found `14` missing slots: ten Greek resources plus Spanish, Brazilian Portuguese, and Romanian product-body or SEO resources. The closeout correctly returned nonzero and remained `status=failed`.
+
+Business impact:
+- The listing could not be marked complete while published non-primary locales had missing product translations.
+- The product remained `DRAFT`, with no storefront URL or live publication, so no shopper or channel exposure occurred.
+
+Definition of fixed:
+- Full-product completeness returns `0` missing, outdated, source-equal, body-language, and total issues across all `20` published non-primary locales.
+- Localized size-chart strict readback returns `0` missing / `0` planned / `0` errors.
+- All `98` variants match localized size-chart rows across all `20` locales, and the generated closeout report says `status=passed`.
+
+Attempt log:
+
+| Date | Action | Result | Evidence |
+|---|---|---|---|
+| 2026-09-02 | Ran the generated draft runner and mandatory full localization closeout | Product creation passed; translation worker reported `14` transient translation failures and the following completeness audit confirmed exactly `14` missing slots | `ops/listings/together-heart-family-matching-sweaters-localization-closeout.json`; translation worker JSONL event for product `7672336646241` |
+| 2026-09-02 | Reran a separate read-only completeness audit | Confirmed the failure was current rather than propagation delay: `14` missing, `0` outdated, `0` source-equal, `0` body-language issues | `ops/listings/together-heart-family-matching-sweaters-translation-audit-before-retry.json` |
+| 2026-09-02 | Retried only the failed `el`, `es`, `pt-BR`, and `ro` locales with forced refresh | Filled every missing slot without changing product status, variants, prices, inventory, media, or publications; fresh audit returned `840/840` eligible slots and `0` issues | `ops/listings/together-heart-family-matching-sweaters-translation-audit-after-targeted-retry.json` |
+| 2026-09-02 | Reran the complete canonical all-locale closeout from the forced refresh step | Passed all six steps: `840` clean translation slots; localized chart `0` missing / `0` planned / `0` errors; `98 x 20 = 1,960` variant-locale checks with `0` unmatched | `ops/listings/together-heart-family-matching-sweaters-localization-closeout.json` |
+| 2026-09-02 | Reran the complete closeout after correcting late autofill classification drift | Current after-state again passed all six steps with the same clean `840`, `0 / 0 / 0`, and `1,960 / 0 unmatched` results | `ops/listings/together-heart-family-matching-sweaters-localization-closeout.json`; final product API readback |
+
+Failed or ruled-out paths:
+- Marking the product complete after the first translation process exited `0` was ruled out because the mandatory readback proved `14` missing slots.
+- Running only localized size-chart repair was ruled out because it would not fix missing title, body, SEO, metafield, and option-value translations.
+- Publishing, activating, bypassing failed locales, or changing unrelated products was ruled out.
+
+Current next action:
+- Owner reviews the completed unpublished draft's image, copy, colors, and seller-backed size range. No further localization repair is currently required.
+
+Approval/credential/platform gates:
+- No publication, activation, sales-channel, inventory quantity, unrelated product/translation, theme, feed, campaign, billing, credential, checkout, or order change is approved.
+
+Parallel work to continue:
+- The completed draft may remain safely unpublished while disjoint repo or sourcing work continues.
+
+---
+
+### `PROB-2026-09-02-AUTOFILL-BRAND-DRESS-FALSE-POSITIVE`
+
+Priority: `P2`
+
+Status: `OWNER_APPROVAL_REQUIRED`
+
+Owner/session: Codex `/root`, 2026-09-02 / next Shopify automation maintainer.
+
+Surface: shared Shopify import autofill taxonomy classifier; first observed on draft product `7672336646241` after its listing runner had passed.
+
+Exact symptom:
+- A late independent readback found one unexpected `Dresses` tag and a `shopify.dress-occasion` metafield on a product whose title, product type, Shopify taxonomy, options, body, seller evidence, and image all identify it as a sweater.
+- The local autofill event log shows that the shared autofill processed the same product between the runner snapshot and the independent readback.
+- Code inspection found that the taxonomy inference blob includes the vendor/brand identity and then uses broad dress substrings. That makes a brand token containing `dress` sufficient to enter the dress branch even when the garment evidence says sweater.
+
+Business impact:
+- The current draft briefly carried incorrect dress classification metadata, which could mislead collection/feed classification if it were published or synced.
+- The current product is corrected and remains unpublished, but future non-dress imports can regress until the shared classifier is hardened.
+
+Definition of fixed:
+- Vendor/brand identity is excluded from garment-taxonomy keyword inference or otherwise cannot independently select a garment category.
+- Dress-only tags and metafields are emitted only when garment evidence resolves to Dresses.
+- A sweater fixture with the normal brand identity stays sweater and receives no dress-only tag/metafield, while representative genuine dress fixtures remain correctly classified.
+- Focused tests pass and no existing Shopify product is automatically reprocessed as part of the code fix.
+
+Attempt log:
+
+| Date | Action | Result | Evidence |
+|---|---|---|---|
+| 2026-09-02 | Compared the first post-write snapshot with a later independent live readback | Isolated exactly one unexpected tag and one unexpected dress-only metafield; all other product state remained on specification | Saved listing verification JSON and independent verifier readback |
+| 2026-09-02 | Correlated the product with the shared autofill log and inspected the classifier | Confirmed a same-product autofill event and a credible false-positive path from vendor/brand text into broad dress substring matching | Local autofill log; `ops/scripts/autofill_shopify_import_product.py` |
+| 2026-09-02 | Validated and executed a product-scoped Shopify mutation that restored the exact saved tag set and deleted only the unexpected dress-only metafield | Product readback returned exact `41` tags, no forbidden dress/fabric metafields, `DRAFT`, no storefront URL, and zero publications | Validated Shopify Admin GraphQL mutation; final API readback |
+| 2026-09-02 | Hardened the exact Together Heart runner's readback checks | This product-specific runner now requires exact tags and rejects fabric or dress-only Shopify metafields | `ops/scripts/create-thrt-together-heart-family-matching-sweatshirts.sh`; shell syntax and preflight checks |
+| 2026-09-04 | Observed the same late autofill family on mixed draft `7675089944673` | Autofill added duplicate role/subcategory tags plus dress-only occasion and sleeve fields after the first clean runner snapshot; the listing-authorized product-scoped repair restored the exact `43` tags and deleted only those two false-positive metafields, while the shared classifier remained unchanged | Morning Blooms before/after Admin API readbacks; `ops/scripts/create-mblm-morning-blooms-family-matching-set.sh` now rejects and cleans product-scoped recurrence |
+| 2026-09-04 | Observed a narrower recurrence on sweatshirt draft `7675091517537` | Autofill added exactly one unsupported `Dresses` tag after the clean runner snapshot; the listing-authorized product-scoped repair restored the exact `40` tags, found no dress-only metafields, and left the shared classifier unchanged | Shine Star before/after Admin API readbacks; `ops/listings/shine-star-family-matching-sweatshirts-final-readback.json` |
+
+Failed or ruled-out paths:
+- Leaving the extra tag/metafield because the product is unpublished was ruled out; unpublished incorrect catalog state still violates the listing specification and can propagate later.
+- A broad shared-classifier code change was not inferred from authorization for one product listing because it changes automatic handling for future products.
+- Reprocessing existing catalog products was ruled out.
+
+Current next action:
+- Exact approval wording: `Approve the scoped autofill classifier fix and focused tests; do not reprocess existing Shopify products.`
+- With that approval, remove vendor/brand identity from garment inference or add an equally narrow guard, freeze sweater and genuine-dress fixtures, run the focused suite, and perform no product mutation.
+
+Approval/credential/platform gates:
+- The current listing request authorized correction of product `7672336646241`, not a shared automation behavior change affecting future imports.
+- No publication, activation, existing-catalog reprocessing, feed, campaign, theme, billing, credential, checkout, or order action is part of the proposed fix.
+
+Parallel work to continue:
+- Owner review of the corrected unpublished Together Heart sweater draft can proceed; its final product and localization readbacks are clean.
+
+---
+
+### `PROB-2026-09-04-MORNING-BLOOMS-OVERSIZED-TRANSLATION-TIMEOUT`
+
+Priority: `P1`
+
+Status: `SOLVED_READBACK_PASSED`
+
+Owner/session: Codex `/root`, 2026-09-04.
+
+Surface: Shopify draft product `7675089944673`, handle `morning-blooms-family-matching-set`; shared oversized-text path in `ops/scripts/translation_utils.py`.
+
+Exact symptom:
+- The listing runner created and verified the draft, but the first mandatory full-product translation pass left `24` missing slots. A targeted force refresh reduced that to `15`: thirteen localized `body_html` values and two Korean SEO values.
+- Shopify's normalized English body is `9,303` characters. HTML protection expands it to about `18,000` characters and six translation segments, while the prior fallback bounded the whole multi-request document with one `15`-second timeout.
+
+Business impact:
+- The canonical localization finalizer correctly failed closed, so the listing could not be marked complete.
+- The product remained `DRAFT`, unpublished, and at zero inventory throughout recovery.
+
+Definition of fixed:
+- Failed cache values remain retryable.
+- Oversized protected copy receives a bounded timeout and retry budget per segment through the existing HTTP translation path.
+- Full translation completeness, localized size-chart strict readback, and variant-to-chart mapping all pass for the target product.
+
+Attempt log:
+
+| Date | Action | Result | Evidence |
+|---|---|---|---|
+| 2026-09-04 | Ran the generated runner and mandatory localization finalizer | Draft creation passed; first translation completeness stopped at `24` missing slots | Translation JSONL log; failed closeout report |
+| 2026-09-04 | Retried the product with forced refresh | Reduced the live gap to `15`, isolating the remaining long-body and Korean SEO failures | Translation JSONL log; completeness readback |
+| 2026-09-04 | Added per-segment oversized HTTP retry behavior and a regression fixture | Focused translation retry/protection tests and Python compilation passed | `ops/scripts/translation_utils.py`; `ops/tests/test_translation_utils_failed_cache_retry.py` |
+| 2026-09-04 | Retried only the missing locales, then reran the exact canonical all-locale sequence | Finalizer passed: `900/900` eligible slots clean; size chart `0 missing / 0 planned / 0 errors`; `600/600` variant-locale mappings matched | `ops/listings/morning-blooms-family-matching-set-localization-closeout.json` |
+
+Failed or ruled-out paths:
+- Marking the product complete because the translation process itself exited `0` was ruled out; the independent completeness audit still showed missing resources.
+- Skipping failed locales, using source-English fallbacks, weakening the strict audit, or publishing before recovery was ruled out.
+
+Current next action:
+- No further localization repair is required. Owner reviews the unpublished Morning Blooms draft and separately verifies supplier/product facts before any future publication decision.
+
+Approval/credential/platform gates:
+- No publication, activation, inventory quantity, unrelated product/translation, theme, feed, campaign, billing, credential, checkout, or order change was authorized or performed.
+
+Parallel work to continue:
+- Shared autofill hardening remains separately approval-gated in `PROB-2026-09-02-AUTOFILL-BRAND-DRESS-FALSE-POSITIVE`; the current product is clean.
+
+---
+
+### `PROB-2026-09-04-SHINE-STAR-TRANSLATION-RETRY`
+
+Priority: `P1`
+
+Status: `SOLVED_READBACK_PASSED`
+
+Owner/session: Codex `/root`, 2026-09-04.
+
+Surface: Shopify draft product `7675091517537`, handle `shine-star-family-matching-sweatshirts`; product-owned translations and localized size-chart records only.
+
+Exact symptom:
+- The runner created and verified the draft, but the first mandatory forced-refresh pass left `70` of `780` eligible translation slots missing.
+- A first locale-targeted retry reduced the gap to `18`; a second narrowed retry reduced it to `5`. The remaining resources were one Czech long-body value, two Danish metafield values, and two Arabic SEO values.
+- The canonical finalizer correctly stopped before size-chart closeout on every incomplete readback. The product stayed `DRAFT`, unpublished, and at zero inventory throughout recovery.
+
+Business impact:
+- The listing could not be marked complete while any published non-primary locale had missing product content.
+- No customer or sales-channel exposure occurred because the product had no storefront URL or live publication.
+
+Definition of fixed:
+- Full-product completeness returns `0` missing, outdated, source-equal, body-language, and total issues across all `20` published non-primary locales.
+- Localized size-chart strict readback returns `0` missing / `0` planned / `0` errors.
+- All `56` variants match localized size-chart rows across all `20` locales, and the generated closeout report says `status=passed`.
+
+Attempt log:
+
+| Date | Action | Result | Evidence |
+|---|---|---|---|
+| 2026-09-04 | Ran the generated draft runner and mandatory localization finalizer | Draft creation passed; the first completeness audit stopped at `70` missing slots | Failed closeout report; translation JSONL event for product `7675091517537` |
+| 2026-09-04 | Retried the `15` locales with observed failures using forced refresh | Reduced the live gap from `70` to `18` without changing product status, variants, prices, inventory, media, or publications | `ops/listings/shine-star-family-matching-sweatshirts-translation-audit-after-targeted-retry.json` |
+| 2026-09-04 | Retried the remaining eight failing locales | Reduced the gap from `18` to `5`, isolating Czech body, Danish metafield, and Arabic SEO failures | `ops/listings/shine-star-family-matching-sweatshirts-translation-audit-after-second-targeted-retry.json` |
+| 2026-09-04 | Switched to a product-scoped backend with smaller batches, serialized fallback, a `60`-second per-request timeout, and six retries for Arabic, Czech, and Danish | Registered the Czech body and both Danish metafield values; only two Arabic SEO strings remained | Targeted process summary and subsequent completeness audit |
+| 2026-09-04 | Registered human-reviewed Arabic equivalents for only `meta_title` and `meta_description`, using Shopify's current source digests | Fresh full-product audit returned `780/780` eligible slots and `0` issues | `ops/listings/shine-star-family-matching-sweatshirts-translation-audit-after-recovery.json` |
+| 2026-09-04 | Reran the complete canonical all-locale sequence after recovery and again after the narrow late-tag correction | Both end-to-end passes succeeded; final evidence has six exit-zero steps, `780/780` clean slots, chart `0 / 0 / 0`, and `1,120 / 0 unmatched` mappings | `ops/listings/shine-star-family-matching-sweatshirts-localization-closeout.json`; final API readback |
+
+Failed or ruled-out paths:
+- Marking the listing complete because the translation worker itself exited `0` was ruled out; the required completeness audit proved current missing resources.
+- Repeating the same blind retry after two diminishing-return attempts was ruled out; the next pass changed timeout, retry, batch, and concurrency behavior and stayed limited to the target product/locales.
+- Skipping failed locales, using English fallbacks, weakening the strict audit, or publishing before recovery was ruled out.
+
+Current next action:
+- Owner reviews the completed unpublished draft and separately verifies supplier/product facts before any future publication decision.
+
+Approval/credential/platform gates:
+- No publication, activation, inventory quantity, unrelated product/translation, shared translation configuration, theme, feed, campaign, billing, credential, checkout, or order change was authorized or performed.
+
+Parallel work to continue:
+- Shared autofill hardening remains separately approval-gated in `PROB-2026-09-02-AUTOFILL-BRAND-DRESS-FALSE-POSITIVE`; the current Shine Star product is clean.
+
+### `PROB-2026-09-05-CART-RECENTLY-VIEWED-MARKET`
+
+Priority: `P1`
+Status: `ACTIVE_SOLVING`
+Owner/session: root, September5 CEO turnaround; bounded cart worker completed, independent read-only review passed with release gates.
+Surface: `assets/cart.js` recently-viewed cards; Danish Skyfade product7536992976993 and empty cart drawer.
+Exact symptom: Denmark/Danish product prices are DKK131–196; recently-viewed card displays `$131.0` and unlocalized `/products/skyfade-family-matching-set`. Current local source hardcodes dollar prefix, reuses cached prices with no market identity and tracks only root `/products/` routes.
+Business impact: price/currency confusion and lost language continuity on a market with actual sales.
+Definition of fixed: cached-history cards cannot mislabel currencies or claim a stale price; product links retain current locale; localized product visits are tracked; malformed history cannot inject markup; existing cart quantity fixes preserved; focused tests and local rendered desktop/narrow checks pass. Live closure requires isolated preview/release/readback.
+Attempt log: September5 CRO observed the exact Danish route; root traced source lines385–450. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/cro_skyfade_denmark.md`.
+Alternative: fetching every historical product in the current market adds network/availability/error complexity. Proposed smaller fix omits cached prices and routes back to current product pricing, retaining names/images/links.
+Earlier local outcome: 16 behavior tests plus desktop/narrow fixture checks passed on the combined dirty-local source; current-locale links, no cached price, markup replacement and malformed-history recovery verified. That fixture did not establish Shopify publication or current live-source parity.
+September6 staging outcome: IMPLEMENTED on UNPUBLISHED 137782591585 and API_VERIFIED. Transplanted only the previously reviewed recently-viewed IIFE onto fresh MAIN 133290917985 source with four unique zero-fuzz hunks. Exact returned body equals reviewed candidate SHA256 e2fed4a6ae3abbba3b39d481dfee9eb755f623e7856b2d1c2a8747fe6c059cf7. Complete 525+525 before/after manifests independently prove MAIN unchanged; only cart.js changed in the draft, preserving both DA/NL SEO files. Fifteen relevant tests pass; the unchanged full 16-test suite retains one quantity/subtotal failure present on baseline. That separate issue remains under PROB-2026-06-22-CART-PAGE-QUANTITY-TOTAL-STALE; no new failure or broader cart repair is claimed.
+Current next action: authenticated desktop/mobile/locale draft preview after normal Mac unlock, then current complete MAIN conflict check and owner Shopify Admin publication. No live customer fix or sales lift is established; problem remains ACTIVE_SOLVING.
+Gates: MAIN writes/publication prohibited through this connector; do not bypass, repeat staging, upload dirty combined source or overwrite unrelated work. Evidence: current packet CART_DRAFT_STAGE.md, cart_draft_execution.json and cart_draft_independent_review.md; DLM-DEC-2026-09-06-CART-DRAFT. Parallel SEO and read-only account work continues.
+
+September6 authenticated draft verification: desktop/mobile DA/NL empty carts show localized recently-viewed links without cached prices. DA desktop add/quantity/page/remove cycle passes; exact test cleanup cart0 persists after navigation and all four cards rerender. Complete current manifest preserves allMAIN. No public publication, nonempty mobile or cross-country checkout proof; see draft_rendered_preview.json and DRAFT_RELEASE_REVIEW.md.
+
+### `PROB-2026-09-09-MERCHANT-MARKET-CATALOG-GAPS`
+
+At the September14 12:47–12:50UTC read, Merchant513542500 account issues says "No issues for you to fix"; the prior website-review wait is superseded for that exact account issue. Four protected US/AU offers are Approved for Free listings and say "This product is showing on Google," with the correct sampled prices. This is sampled eligibility, not an all-offer approval or traffic result. Both source headers retain4,761 offers. The all-source panel reports9,522 total and54 Not showing with a September13 midnight data timestamp;54 Image not processed is a separate displayed issue. Do not derive an exact approved count or assume those two54 sets are identical.
+
+US10727274744 scheduled September14 midnight fetch failed Connection failed. A supported13:11:33UTC pointer read confirmed the prior source was63.8882hours old, beyond the saved48hour host guard. A genuinely fresh complete ACTIVE-only Shopify scan finished13:16:10.466UTC. The independently reviewed replacement contains4,741 offers/232 parents:20 offers from two parents absent from the complete ACTIVE scan were removed, no offers added, all retained fields/prices unchanged, six parent/162-offer holds preserved. The guarded existing pointer promotion committed13:33:17UTC, with exact immutable-file/pointer verification and unchanged Worker metadata. One Google Update processed4,741updated/0new at native September14 9:34:09AM (13:34:09UTC converted using retained New York context; account timezone not independently verified), all attributes recognized/no file issues; the connection error is absent. All six protected US offers were then read Approved/Free listings at five22.99USD prices and pilot17.99USD; their33hrs-ago labels do not prove individual rewrites during this fetch. The native source-filtered list initially showed4,761 at13:36:04UTC and the source header at13:42:26UTC. A later bounded read verified the header and source-filtered table at4,741 beginning14:05:57UTC. Two loaded native source-filtered exact parent-ID prefix searches at14:07:14UTC and14:07:55UTC returned No results, covering all20 frozen omitted IDs exactly once. Their absence from this current source product list is verified; individual archive/deletion status, current per-ID owner/approval fields and account-wide or serving removal are unknown. No cache cause or guaranteed convergence deadline is assumed. No duplicateUpdate, blocked public/GCS retry, TTL, credential, hosting or scheduler change. The next fresh US source is due bySeptember15 13:16:10UTC through the existing owner/heartbeat, before unchanged48hour expiry atSeptember16 13:16:10.466UTC. AU10727245667 retains its separate September11 manual4,761-offer receipt; current AU synchronization is not inferred.
+
+
+Current September11 qualified-cohort follow-through: Independent revision 6 lifecycle review passed 44 supplied tests, 22 adversarial probes and 73 candidate checks; F1–F5 are resolved with failure history preserved. Six held parents remove 162 offers, leaving 4,761 offers/234 parents per released market. US pointer promotion committed at 22:35:13 UTC and source 10727274744 processed 4,761 updated/0 new at 22:37:57 UTC. AU existing source 10727245667 processed 4,761 updated/4,760 new at 22:43:01 UTC after one manual replacement. Both native source totals now read 4,761; Provided by you reconciles to 9,522. All 12 protected offers show the intended US/AU prices and In stock, but remain Not approved; the overall 11,524 products still show Not showing. Independent after-review passed 51/51. One exact held US ID returns No results; native absence of every removed offer and Google-received byte equality are not claimed. Separate public CLI403 and received-file client blocking remain recorded without bypass. Ingestion is complete; website/account approval, serving and sales are not. CA/GB 4,761 each remain local only; native free-service promises of 5–6 CA and 9–15 GB business days lack current delivery evidence. No CA/GB source, shipping Save or repeat upload/review was made. Held parents are7516369715297(14),7516479848545(9),7536337125473(56),7536988520545(20),7536992976993(54),7536086089825(9). Native selector/role gaps, English measurement conflicts and exact Pastel image uncertainty are distinct reasons. Pilot39756755861601 and five corrected price IDs remain in the qualified files. Source qualification7d044700... binds current SKU/source evidence and bounded MAIN buyer tests; it is not exhaustive manual verification of every offer. Preserve paid-only Sky Blue economics and Ivory Meadow fulfillment gates separately. Evidence: 2026-09-09-organic-growth/couples-collection-recovery-execution-20260911.json and couples-collection-recovery-after-20260911.json; 2026-09-05-ceo-turnaround/gsc_indexing_reconciliation_20260911.json and current_sales_checkpoint_20260908_evening.json; Merchant local_lifecycle_interim/revision6 approval receipts and international_candidate/all-markets.execution_checkpoint.json; Ads current_campaign_repair/GA4_RECEIVER_READBACK_20260911.json, EDITOR_RECOVERY_20260911.json and FOLLOWUP_20260911_2121.json. Anchor 2026-09-11-qualified-feeds-and-couples-collection-recovery.
+
+Current September11 outcome: exact six Shopify membership repairs remain SOLVED. Merchant513542500 received exactly one AU English Free-listing offer in source10727245667, DLM AU English Free Listings. Native source timestamp20:48:14UTC; one updated/new offer, recognized attributes and no file issues. Reload and effective-product readback verify AU/en/AU label,26.00AUD, In stock and exact variant39756755861601. Independent prewrite23/23 and after-review26/26 pass. The offer remains Not approved; zero product-attention items and the persistent account banner do not identify the cause or establish serving. No Google-downloaded file was obtained, so uploaded-file SHA is not a received-byte equality claim. FullAU4923 andCA/GB4923 each are separate unsubmitted cohorts. Saved local source/field validations are preserved; broader SKU-dependent selector/source binding and actual buyer checks remain required. Do not republish all240 parents or duplicate the existing AU source. Earlier no-foreign-upload statements below describe their dated local-build snapshot. Anchor 2026-09-11-merchant-au-pilot-received-wallets-and-french-title-verified.
+
+September11 follow-through: the original six-join repair stays SOLVED. Canada and Great Britain local candidates are complete and independently verified, not submitted. CA source19:17:27.347UTC and GB19:21:32.262UTC each reconcile240ACTIVE parents/4,945variants to4,923available offers, omitting22unavailable variants;18columns/17,284,594bytes. Every price matches native contextual source: five corrected targets33.00CAD or18.00GBP. CA SHA2bd7ea6c66e36e557f66a0de1e6335aea5b589d146f87daa9c71ce549547d861; GB SHA6c5e86a09cc91baf37ff9705a4511b6f3076a8d23ba8381b7dc02ed55f864e87. Local28/28 each and independent23/23 each PASS; final ca-gb.independent_review.json SHAd76f721736487f64aa8c8cde587198d884e2c8b9788b63e75f79d3db43f2d9a7. Exact country/catalog/publication, English/local currency, IDs/links/grouping/paid exclusions and complete source pages pass; no inferred FX or new identifiers. Protected US/AU/frozen-builder files remain unchanged. Existing attribute warnings remain. AU submission remains separately gated on published buyer acceptance; no foreign upload or new catalog mutation. Anchor2026-09-11-merchant-google-price-receipt-ca-gb-prepared-au-buyer-gated.
+
+Priority:P1. Status: SOLVED_READBACK_PASSED for exact Shopify parent memberships; downstream Merchant receipt remains under the existing account/source problem. Owner:root01a08706-c63a-7e01-ba48-7777bcb1788a.
+
+Before: products7109517770849/7227374534753 (27+21variants) were Google/OnlineStore-published but excluded from all three market publications77105660001/77105823841/77106053217; eachcatalog238ACTIVE. Independent prewrite review required identifier/image containment first. Root cleared43badbarcodes ontheseproducts, rehosted sixunchangedimages and replaced126sources across21bodies before release. Other125checksum-validcatalogvalues remain manufacturer-unverified; no inventedidentifiers.
+
+ExecutedSeptember9 18:11–18:12UTC under current owner all-served-market correction authority: two publishablePublish mutations, each threeexactpublications. Independent fresh18:14:25UTC five-node readback confirms allsixjoins true/240ACTIVEeachEXACT, bothACTIVE,48completeavailablevariants, allnineapppublications andqueriednonpublicationfields exact. Descriptions independentlyhashed toapprovedplan/privatebefore. ExactpublishableUnpublish inverse recorded; no rollback.
+
+Fixed criterion: exact sixparentjoins andcatalogcounts restoredwithpreservation. Variant-publication field unavailable; countrycheckout andMerchantapproval remain unverified. Root publicUS buyer check ononevariant reaches matchingcart/checkoutprice; no shippingcalculation/order. Do not recreateMarkets, republish240products orclaim zeroGoogleingestion cause proved. Evidence:2026-09-09-merchant-expert-audit/market_catalog_execution.json andmarket_post_verification.json. Anchor2026-09-09-merchant-source-and-market-repairs-verified.
+
+### `PROB-2026-09-09-MERCHANT-INVALID-GTIN`
+
+Priority:P1. Status: SOLVED_READBACK_PASSED for exact invalid-checksum cohort; manufacturer provenance remains UNKNOWN. Owner:root01a08706 Merchantexpert audit.
+
+Fresh4,945variant/240ACTIVEparent baseline classified1,108badchecksums/3,712empty/125checksum-passingmanufacturer-unverified. Independent GTINmethod/prewrite review rejected inventingGTIN/MPN or inferringidentifier_exists=no. Root executed exactbarcode-only clears across70products with fresh driftchecks, ordinaryrollbackvalues and perproductafterreceipts.
+
+Independent20-page afterscan18:17:59–18:18:54UTC:4,945samevariants/240sameparents, exact1,108clearednulls, zerootherbarcode/parent/status changes;4,820empty/0invalid/125unchangedchecksum-passing;24checks and15controlsPASS. Two repeatedpopulatedvalues/fourvariants preserved. Firstexpandedreceipt lostoriginalfullbodyequalityresult duringlocalpersist; recoveredqueriedfields/descriptionlength, lateridentifierproofPASS; no fabricatedbodyresult. No currentMerchantapproval orGTINmanufacturerassignment proof. Evidence identifier_post_verification.json/.md andidentifier_receipts/. Exactcohort fixed; do not rerun clearing. Nextverify currentMerchant ingestion. Anchor2026-09-09-merchant-source-and-market-repairs-verified.
+
+### `PROB-2026-09-09-MERCHANT-LANDING-VARIANT-RETURNS`
+
+September14 return prerequisite: The September 14 return-policy prerequisite is complete for the frozen submitted sources: 4,741 offers and 232 parents per country, or 9,482 US/AU country-offer rows. Each country has 700 source-category nondefective swimwear exclusions across 46 parents; the remaining 4,041 have UNKNOWN ordinary-return eligibility, with none positively certified. The six held parents/162 available offers and 22 unavailable variants per country stay outside this mapping. They are not additional return exclusions. Effective native assignment remains UNKNOWN for all9,482 rows after two supported representative checks. Actual files have no return_policy_label/returns; compatibility-confirmed is not assignment evidence. Terms14695813 still conflicts with Refund14695685/Page161929989 on sale/personalized exclusions and postage/defective remedies. Frozen pricing lacks compare-at values, and custom wording is not a personalization decision. Resolve that policy-truth definition and supported effective assignment before a blanket US/AU default or exception release. The 700 exclusions concern ordinary/nondefective returns and do not erase the defective-item remedy. Optional return setup is not a blanket gate on the completed feed receipts or all international work. No external write, source refresh or repeated receipt/sample/count/omission check. Evidence: growth_source_acceptance_20260914_1658.json and return_assignment_1658. Previous live fixes remain verified; broader return coverage remains gated.
+
+Returnpolicy9309759641 remains Verified for Austria only, without exceptions; US/AU configured policy coverage is absent, while effective offer-level overrides are unverified. Saved refund14695685 and linked Page161929989 agree; current Terms use broader sale/personalized exclusions and different postage exceptions. Preserve optional blank refund-processing days. No-restocking is an explicit saved owner decision, not a statement found in the website policy. Country/source/offer assignments, truthful defective-item remedies and policy wording must be reconciled before a scoped return write. No policy write occurred.
+
+
+Current September11 qualified-cohort follow-through: Independent revision 6 lifecycle review passed 44 supplied tests, 22 adversarial probes and 73 candidate checks; F1–F5 are resolved with failure history preserved. Six held parents remove 162 offers, leaving 4,761 offers/234 parents per released market. US pointer promotion committed at 22:35:13 UTC and source 10727274744 processed 4,761 updated/0 new at 22:37:57 UTC. AU existing source 10727245667 processed 4,761 updated/4,760 new at 22:43:01 UTC after one manual replacement. Both native source totals now read 4,761; Provided by you reconciles to 9,522. All 12 protected offers show the intended US/AU prices and In stock, but remain Not approved; the overall 11,524 products still show Not showing. Independent after-review passed 51/51. One exact held US ID returns No results; native absence of every removed offer and Google-received byte equality are not claimed. Separate public CLI403 and received-file client blocking remain recorded without bypass. Ingestion is complete; website/account approval, serving and sales are not. CA/GB 4,761 each remain local only; native free-service promises of 5–6 CA and 9–15 GB business days lack current delivery evidence. No CA/GB source, shipping Save or repeat upload/review was made. Held parents are7516369715297(14),7516479848545(9),7536337125473(56),7536988520545(20),7536992976993(54),7536086089825(9). Native selector/role gaps, English measurement conflicts and exact Pastel image uncertainty are distinct reasons. Pilot39756755861601 and five corrected price IDs remain in the qualified files. Source qualification7d044700... binds current SKU/source evidence and bounded MAIN buyer tests; it is not exhaustive manual verification of every offer. Preserve paid-only Sky Blue economics and Ivory Meadow fulfillment gates separately. Evidence: 2026-09-09-organic-growth/couples-collection-recovery-execution-20260911.json and couples-collection-recovery-after-20260911.json; 2026-09-05-ceo-turnaround/gsc_indexing_reconciliation_20260911.json and current_sales_checkpoint_20260908_evening.json; Merchant local_lifecycle_interim/revision6 approval receipts and international_candidate/all-markets.execution_checkpoint.json; Ads current_campaign_repair/GA4_RECEIVER_READBACK_20260911.json, EDITOR_RECOVERY_20260911.json and FOLLOWUP_20260911_2121.json. Anchor 2026-09-11-qualified-feeds-and-couples-collection-recovery.
+
+Current September11 correction: the old mandatory-V7-before-any-AU-upload interpretation is superseded. Actual ordinary MAIN manual Child/2–3Years/Black selection,26AUD Add/cart and cleanup passed; independent23/23 release review and26/26 received-row review support only this pilot. Source10727245667 is received at26AUD but Not approved; fullAU andCA/GB remain unsubmitted. V7/137888792673 is the current owner publication target for broader buyer/consent improvements. Return policy9309759641 is Verified for Austria only;48 exception parents/720 available offers and the separate Google-found source remain unmapped for blanket policy expansion. Optional return setup is not a blanket feed gate. One global French title for product7229130801249 is saved as “Robes d’été assorties mère-fille en mousseline beige”. Independent42-check prewrite and31-check after-review pass; public MAIN133290917985 has the exact single French H1, correct product/canonical route and normal content at20:51:23UTC. Four other French records, six English source records and product fields are preserved. Product.updatedAt did not change, so translated-feed freshness cannot rely on that timestamp alone. No body, size chart, SEO title, other locale or product-price change occurred. Anchor 2026-09-11-merchant-au-pilot-received-wallets-and-french-title-verified.
+
+Historical September11 pre-pilot release gate, superseded by the current outcome above: AU direct-file submission was explicitly authorized and then NOT_RUN. Fresh authenticated Merchant513542500 source inventory shows no separate AU provided source; US10727274744 remains4,923 and ContentAPI10014302986 remains0. Google-discovered10728396934 is a separate automatically found source with1,981active/1archived at the inventory read; do not treat changing overview totals as US-source ownership. Four current AU shipping services show Complete/Show on Google/allproducts; expanded free service confirms AUD/free shipping/9-15businessdays. This is configured service truth, not a delivery-performance guarantee. Account No products displayed remains Issue is under review, review requestedSep11; no duplicate appeal or causal claim. The only production AU release dependency is actual published MAIN numeric-variant/size/color/cart/AUD acceptance: UX19:49:49UTC confirms reviewed527-file V7/137888792673 still UNPUBLISHED, MAIN133290917985 unchanged. Supported connector forbids publishing/MAIN writes and directs owner Admin publication. Seven exact AU links and representative cart/desktop/narrow checks remain to run after supported release/public-access clearance. Do not bypass, create another theme or rewrite feed links ad hoc. Evidence: international_candidate/au-en.google_submission_checkpoint.json and au-en.release_review_20260911.json, preparation17/17PASS. Anchor2026-09-11-merchant-google-price-receipt-ca-gb-prepared-au-buyer-gated. The older theme137881223265 and dated proof remain history; current successor/owner137888792673 is unchanged.
+
+September10 release supersession: UX137888792673, owned by UX01a088c3, is the current combined successor and preserves the Merchant/consent/SEO work. The predecessor137881223265 and its September9 proof below are preserved history; its earlier publication-target instruction is superseded. Current complete release/conflict and owner Admin publication remain with the UX handoff. Merchant retains account513/free-listing scope and does not edit or publish either theme in this continuation. See current_marketing_state.md's September10 localized product-page preview section and anchor2026-09-10-storefront-localized-pdp-v6-preview-verified.
+
+Priority:P1. Status: PARTIAL_LIVE_BUYER_AND_AU_PILOT_VERIFIED__BROADER_BUYER_RETURNS_OPEN. Merchant owner:root01a08706; UX release owner:root01a088c3, current combined theme137888792673. Older theme137881223265 proof below is historical.
+
+Original explicit-variant builder cleared size/color and forced a range; shared swimwear returns and fixed delivery/structured claims conflicted with supported policy. Source-bound correction is now uploaded and independently read back on the unpublished combined theme.20 bounded root browser cases pass: adult/child/generic/invalid/manual change, actual one-piece child cart and cleanup, Spanish EUR/mobile images/copy, DA/NL metadata, offer/GTIN branches and cookie pointer/keyboard access. A newly reproduced mobile footer overlap was fixed by removing one obsolete selector qualifier; original failure and V2 proof preserved.
+
+One combined UNPUBLISHED theme137881223265, DLM Merchant Landing Fixes 2026-09-09, is source-verified and passes20 bounded rendered cases. Final527 files:45 modified existing files,2 new consent assets and480 unchanged MAIN files. Independent20:11:53UTC read confirms exact V2 overlay and all525 MAIN files unchanged. Older drafts137782591585/137850814561/137880666209 remain preserved alternatives/history, not sequential releases. Theme publication is already authorized but requires the owner Shopify Admin path because the connector prohibits MAIN writes/themePublish. Publish only the current combined target after a fresh conflict check; then verify the published storefront.
+
+Closure still requires supported owner publication and live after-state. Unavailable guard has local coverage, not a live unavailable fixture. All-market checkout, physical-device safe-area, Arabic managed dialog and the pre-existing cart-heading assertion remain limited. Source fixes are not Merchant approval or business-result proof. Evidence: 2026-09-09-merchant-expert-audit/release_rendered_verification.json; release_candidate_v2/post_verification.json. Anchor 2026-09-09-merchant-combined-preview-verified.
+
+### `PROB-2026-09-11-MERCHANT-NO-PRODUCTS-DISPLAYED`
+
+September14 current outcome: SOLVED_FOR_THE_EXACT_ACCOUNT_ISSUE_WITH_SAMPLED_ELIGIBILITY. At the September14 12:47–12:50UTC read, Merchant513542500 account issues says "No issues for you to fix"; the prior website-review wait is superseded for that exact account issue. Four protected US/AU offers are Approved for Free listings and say "This product is showing on Google," with the correct sampled prices. This is sampled eligibility, not an all-offer approval or traffic result. Both source headers retain4,761 offers. The all-source panel reports9,522 total and54 Not showing with a September13 midnight data timestamp;54 Image not processed is a separate displayed issue. Do not derive an exact approved count or assume those two54 sets are identical. Full catalog approval, fresh synchronization and business results remain separate. Old pending-review instructions below are dated history. Evidence: growth_source_acceptance_20260914_1236.json; sunshine_organic_demand_20260914_1236.json; Merchant recovery_20260914/eligibility_returns_1244 and source_freshness_1310/pointer_first_read.json and native_removal_reconciliation_20260914T1405Z.json; Ads research/ta10_remaining_native_demand_20260914_1236. Source-owner packets stay immutable; the parent alone integrates shared records.
+
+
+Current September11 qualified-cohort follow-through: Independent revision 6 lifecycle review passed 44 supplied tests, 22 adversarial probes and 73 candidate checks; F1–F5 are resolved with failure history preserved. Six held parents remove 162 offers, leaving 4,761 offers/234 parents per released market. US pointer promotion committed at 22:35:13 UTC and source 10727274744 processed 4,761 updated/0 new at 22:37:57 UTC. AU existing source 10727245667 processed 4,761 updated/4,760 new at 22:43:01 UTC after one manual replacement. Both native source totals now read 4,761; Provided by you reconciles to 9,522. All 12 protected offers show the intended US/AU prices and In stock, but remain Not approved; the overall 11,524 products still show Not showing. Independent after-review passed 51/51. One exact held US ID returns No results; native absence of every removed offer and Google-received byte equality are not claimed. Separate public CLI403 and received-file client blocking remain recorded without bypass. Ingestion is complete; website/account approval, serving and sales are not. CA/GB 4,761 each remain local only; native free-service promises of 5–6 CA and 9–15 GB business days lack current delivery evidence. No CA/GB source, shipping Save or repeat upload/review was made. Held parents are7516369715297(14),7516479848545(9),7536337125473(56),7536988520545(20),7536992976993(54),7536086089825(9). Native selector/role gaps, English measurement conflicts and exact Pastel image uncertainty are distinct reasons. Pilot39756755861601 and five corrected price IDs remain in the qualified files. Source qualification7d044700... binds current SKU/source evidence and bounded MAIN buyer tests; it is not exhaustive manual verification of every offer. Preserve paid-only Sky Blue economics and Ivory Meadow fulfillment gates separately. Evidence: 2026-09-09-organic-growth/couples-collection-recovery-execution-20260911.json and couples-collection-recovery-after-20260911.json; 2026-09-05-ceo-turnaround/gsc_indexing_reconciliation_20260911.json and current_sales_checkpoint_20260908_evening.json; Merchant local_lifecycle_interim/revision6 approval receipts and international_candidate/all-markets.execution_checkpoint.json; Ads current_campaign_repair/GA4_RECEIVER_READBACK_20260911.json, EDITOR_RECOVERY_20260911.json and FOLLOWUP_20260911_2121.json. Anchor 2026-09-11-qualified-feeds-and-couples-collection-recovery.
+
+Current September11 receiving update: US10727274744 remains4923 and all five corrected22.99USD effective records are verified. Merchant513542500 received exactly one AU English Free-listing offer in source10727245667, DLM AU English Free Listings. Native source timestamp20:48:14UTC; one updated/new offer, recognized attributes and no file issues. Reload and effective-product readback verify AU/en/AU label,26.00AUD, In stock and exact variant39756755861601. Independent prewrite23/23 and after-review26/26 pass. The offer remains Not approved; zero product-attention items and the persistent account banner do not identify the cause or establish serving. No Google-downloaded file was obtained, so uploaded-file SHA is not a received-byte equality claim. AU product Needs attention(0) says All looks good with your product while status is Not approved; do not invent the cause or call it approved. Post-inventory retains ContentAPI0 and Google-found1998active/4archived. The original account review is pending; no duplicate appeal/source or blocked-route retry. The separate local US refresh successor keeps Shopify credentials on the Mac and remains unexecuted pending exact packet review; the rejected cloud credential/Queue deployment is not retried. Old price/access/blanket-V7 gates below are superseded by the current dated facts. Anchor 2026-09-11-merchant-au-pilot-received-wallets-and-french-title-verified.
+
+September11 current native readback19:50UTC: authenticated account513542500 still reports Issue is under review / Review requestedSep11 and blocks US Free listings. Old sign-in request is superseded; no new appeal. US Google received-file and allfive effective22.99USD prices are now verified, which does not prove causality or resolve the account policy issue. AU/CA/GB corrected local preparation is complete; foreign release remains pending published buyer acceptance. Historical pending-price/access statements below are superseded. Evidence: price_correction_approved_20260911/google_price_receipt_20260911.json; anchor2026-09-11-merchant-google-price-receipt-ca-gb-prepared-au-buyer-gated.
+
+September11 17:21update: five source-price outliers are now corrected22.99USD with independent/source/public proof; existing USfeed file refreshed/readback,Google revised-price receipt pending. This does not establish causality or clear the already-requested account review. No duplicate appeal. Anchor2026-09-11-merchant-five-prices-fixed-and-hosted-feed-refreshed.
+
+September11 16:42–16:48UTC follow-up for the same owner-reported critical issue: the five Adult2XL prices remain229918.99USD, with no source timestamp change; owner-manual correction remains pending. Public www homepage, apex redirect towww, robots.txt and sitemap returnedHTTP200; homepage contains real product links and no noindex. Published robots directives allow all4,923submitted product URLs for Googlebot/Googlebot-Image/AdsBot-Google; this does not prove actual Google crawler access or image-host rules. Ordinary public bulk read verified62distinct parent pages with realH1/product/image/description/cartform, exact submitted variant InStock/USDprice match and no noindex. The63rd attempted request returned429;177remaining parents were SKIPPED and the bulk read stopped without retry, user-agent impersonation or security changes. This local audit limit is not proof of Google's root cause. Full240-parent HTTP acceptance remains incomplete.
+
+The owner-provided current Merchant message still says Review requested Sep11; prior live submission is verified, current approval is not. Native Chrome getApp was rejected before inspection by automatic approval review because it could expose unrelated private tabs before exact Merchant513542500 selection/confirmation. A single exact selected-tab confirmation question is pending; no workaround or repeated probe. This is a privacy gate, not a fresh Mac-lock finding. UX owner freshly confirmed137888792673 remainsUNPUBLISHED and MAIN133290917985 unchanged; its numeric-variant fix is prepared/verified but owner Admin publication after a full-file conflict check remains the separate release gate. No theme rewrite, publication, duplicate review or new account/feed reset. Evidence: domain_surface_recheck.json,current_price_readback.json,submitted_urls_robots_review.json,public_catalog_audit_20260911/summary.json,native_selected_tab_gate_20260911.json. Anchor: 2026-09-11-merchant-domain-live-check-and-selected-tab-gate.
+
+Priority:P0. Status:PLATFORM_REFRESH_PENDING for requested Google review; active feed automation continues independently. Owner:root01a08706. Scope:Merchant513542500,US free listings. Symptom:all4,923received offers not showing despite In stock product rows, claimed/verified live domain and working storefront checkout. Definition of fixed: exact account issue absent/approved and fresh US free-listing product eligibility readback; imported counts alone do not close it.
+
+September11 attempt: verified saved domain, received product availability and real product/cart/checkout; own cart restored0. Reproduced saved /cart/{id}:1 as404 because Google substitutes full shopify_US_* offer ID. Disabled only this broken optional account shortcut; after-state currently opted out. Root cause of account domain restriction remains UNKNOWN. Review button became available normally; submitted once and read back Issue is under review / Review requested on Sep11,2026. Google UI says a few days; documentation allows up to7business days. No account transfer, duplicate appeal, force re-verification, paid change or disabled-control bypass. API alternate read stopped403 insufficient scope. Evidence: direct-feed-deployment/account_domain_issue_readback.json. Next:dated review readback without a duplicate appeal. Independent lifecycle activation is blocked on the exact Cloudflare credential destination approval (automatic review rejected before execution;0queue/secret/deploy). The owner now personally corrects the five exact Adult2XL source prices and will notify us; verify and refresh the US source afterward. AU/CA/GB sample landing/cart/checkout currency checks pass; AU full local file has4923rows and is held for fresh corrected prices. Account approval/serving remains unverified.
+
+Source cleanup: report matched4,923unique IDs; ownership4,871/52 first requiredhold, then4,923scheduled/0manual qualified cutover. Deleted only zero-product manual10727262045 after named dialog and current account/ID/ownership verification. Initial generic-menu deletion and screenshot attempts were rejected by automatic review; no action then. Reselected verified account/exact source and opened its named confirmation in one guarded UI sequence, which passed. After-state source10727274744 retains4,923; 12:05PMrefresh completed4,923/0new and No issues found; duplicate warning cleared. Historical zero-receiver/lock instructions under account-access problem are superseded for this task.
+
+### `PROB-2026-09-05-GOOGLE-GROWTH-ACCOUNT-ACCESS`
+
+September 11 Google Ads research-only access checkpoint — anchor2026-09-11-google-ads-cold-start-research: the supplied Ads account route reached a signed-out chooser in a task-owned background browser. The existing configured API refresh returned HTTP400 invalid_grant before any Ads query; no further authentication retry or account change. Current candidate6509972886, manager7001079966 and historical3990976848 remain repo-known identities requiring exact Ads readback. This does not revoke the separate Merchant owner's recovered access or later4,923-offer receiving/price-correction evidence. Campaigns, current spend, conversion goals and Ads links were not inspected. A55-source conditional launch/QA/profit report is independently accepted PASS_WITH_LIMITS; actual costs and genuine purchase receiver acceptance remain open. Evidence: 2026-09-11-google-ads-cold-start-research/REPORT.md, EVIDENCE.json and INDEPENDENT_REVIEW.md. Closeout update: the new signup-tag owner01a09194 records native650-997-2886 access and a failed Ads tag detector at17:45–17:52UTC; its READBACK.md is linked in this report. Reuse that owner for current-spend and purchase-destination readback; do not repeat sign-in or tag repair. No spend, configuration, credential or customer-data transfer occurred.
+
+September11 direct-route addendum: Current owner-directed action: submit directly to Merchant Center, USA first, then Australia, Canada, UK and the remaining supported served markets/languages. The owner explicitly replaced dependence on the slow Shopify Google app with direct data submission; retain Shopify as catalog truth and automate active-product additions, updates and withdrawals. This authorizes an intentional nonspend direct-feed transition, superseding the old no-new-source assumption. The separate Product sync card gate is unchanged but that click is no longer required for this route. Root prepares one complete US feed and scheduled hosted refresh, verifies actual received offers, then expands. Preserve prior repairs, current UX137888792673 release ownership and paid NONE. Existing private Shopify Admin read credential was live-verified for shop15571635/USD at14:16:07UTC without exposing its value. API diagnostics was added once and read back under Your add-ons with its Remove control and diagnostic navigation. Advanced data source management remains PREPARED/NOT ADDED because the new direct feed can carry return labels itself. An isolated merchant-feed-worker candidate is being built; existing Pinterest hosting/code is untouched. No direct source or offer has been submitted yet. Chrome changed focus during the direct-feed form preparation; no stale-target action was forced. Evidence: recovery_20260911/direct_route_authority.json and addon_receipt.json.
+
+September11 current scoped checkpoint — 2026-09-11-merchant-idle-prevention-and-access-recovered: ACCESS_RECOVERED / IDLE_PREVENTION_RUNTIME_VERIFIED / RECEIVER_ZERO / PRODUCT_SYNC_EXACT_CLICK_PENDING. September11: owner confirmed the Mac is unlocked; normal exact Merchant513542500 and linked Shopify reads succeeded. The old Mac-unlock and general Merchant-permission questions are superseded. A new user-authorized keep-awake LaunchAgent is installed and runtime VERIFIED: its own PID38788 holds display-sleep, idle-system-sleep and user-active assertions after the temporary helper was stopped. Automatic next-login start and24-hour renewal are configured, not yet observed. Manual lock, logout, lid closure, restart/login barriers, power loss and security policies can still interrupt access. No password, TCC, FileVault or remote-access change. Normal Chrome View > Exit Full Screen separately restored blank native screenshots and working form rendering. Fresh September11 Shopify full pagination verifies240unique ACTIVE parents/4945EXACT variants, all240available to Google21969633377 and OnlineStore55169925; no publication repair was needed. The linked Google app again displays0total/approved/limited/not-approved/under-review. After loading, Merchant Data sources explicitly shows existing Content API10014302986 with0products, last-update-, US/English/USlabel. Earlier direct-detail count was loading/nonnumeric, not a zero observation. Google separately found2.29K additional website products; this is discovery, not the Shopify receiving/approval receipt. The ingestion cause and automatic add/update/withdrawal receipt remain UNKNOWN. No reset, duplicate publisher or dummy product update. Austria return setup is prepared through its review page: verified published policy URL,30days,new-only,mail,customer return-label responsibility,returns/exchanges accepted and no restocking fee explicitly confirmed by owner September11. Optional refund-processing days remain blank because the source uses business days plus bank time without a matching UI unit. Checkbox/Save NOT EXECUTED: the default would otherwise apply to unlabeled swimwear/intimates/Final Sale/gift-card exclusions. Independent review HOLD pending a supported existing-source return_policy_label mechanism and concrete excluded-offer mapping. The published30day source bodies remain unchanged; the separate Terms conflict is preserved. One owner action: answer the existing exact-click question to open Shopify Google & YouTube Settings > Product sync On, keep synchronization On and restore On if that click changes it. Automatic review previously rejected this exact card because it could disable synchronization. No click or bypass has occurred; broad Merchant authorization and Mac access are already resolved. Operator then traces the existing publisher and exception-label mechanism before saving returns or claiming received offers. Preserve prior barcode/image/market repairs, UX137888792673 release ownership and full-paid NONE. Evidence: 2026-09-09-merchant-expert-audit/recovery_20260911/merchant_readback.json and keep_awake_receipt.json. The older dated unlock instructions below are superseded, not renewed.
+
+September 10 receipt-resume checkpoint, 21:55:29–21:56:33 UTC: the owner explicitly resumed this existing task and requested a normal current-access check. One native read returned Mac locked / automatic unlock failed, with no account content. No fresh source timestamp, count or processed offer IDs were obtained; the earlier 18:29:50–18:43:46 UTC zero-source/app evidence remains dated. Ingestion cause is UNKNOWN. No retry, product update, sync click or external write. The existing unlock question remains the single owner action; general Merchant permission is resolved and the separate Product sync exact-click gate is unchanged. Evidence: 2026-09-09-merchant-expert-audit/receiver_20260910/RESUME_2156.md and resume_2156.json. Current anchor: 2026-09-10-merchant-receipt-resume-mac-lock.
+
+September10 earlier receiving checkpoint — anchor2026-09-10-merchant-source-receiver-audit-and-timezone-alignment: PARTIALLY_RESOLVED / RECEIVER_ZERO_VERIFIED / MAC_UNLOCK_REQUIRED. Merchant native selection/operation is explicitly authorized and exact513 account access succeeded. At18:29:50–18:43:46UTC source10014302986US/en/USlabel shows0products/no-update; connectedShopifyapp independently0. Productsync/shipping/countriesOn and countryautomaticOn; correctwebsiteclaim/link verified. Causeof0submissionsUNKNOWN. Appcountrygroups34derived vs31configuredMerchantcountriesallIncomplete; noapproval/coverageinference. Noreset/resubmit/duplicatefeed/speculativeAppCatalogmutation.
+
+OneNewYork timezoneSave after18:50:00.604412/before18:51:58UTC matched currentShopifyAmerica/New_York, persisted onreload and passed8independent saved-receipt checks. Not a submissionfix. Both30daypublishedreturnpolicy sources requireNO_CHANGE and pass20independentchecks; Merchant15daysuggestion isunaccepted. Setup4of5openedAustriareturntask; Continueblocked bynewMaclock/automaticunlockfailure. Existingunlockquestionpending; generalMerchantpermission/oldstableChromequestionssuperseded. SeparateProductsyncOncardreview rejectedtwice forpossibledisabling, exact-clickquestionpending/nobypass. Returnconfiguration, lifecycle/offerreceipt andlogoapprovalremainopen.
+
+Dated15:46UTCsourcebaseline240ACTIVEparents/4945EXACTvariants, all240parentsavailabletobothchannels,18checksPASS;162recent/sixJune4/72absentfeedback isnotGoogleapproval. Preserveallpriorbarcode/image/marketrepairs andUX137888792673 successorownership. Next:ownerunlock, source-backedreturnsetup/readback, then genuineproductreceivertrace. Full-paidNONE andotherownerspreserved. Evidence:2026-09-09-merchant-expert-audit/receiver_20260910/README.md, live_baseline.json, timezone_receipt.json andaccess_checkpoint.json.
+
+Historical attempt log follows; dated older unlock/target directions do not supersede this current scoped gate.
+
+September9 final Merchant expert checkpoint — anchor2026-09-09-merchant-combined-preview-verified: Latest native evidence is the coordinating Pinterest task's18:57–18:58UTC Mac-locked/automatic-unlock-failed observation; root did not repeat the unchanged attempt. This supersedes the earlier focus-only checkpoint. Earlier full-Chrome automatic-review privacy rejection was respected. Current513 Products showed Adding products to Google with no count; source10014302986 zero/no-time is September8 history.232 recent app feedback records lack a receiving Merchant ID. Receipt, country eligibility and consumed apparel fields remain unverified. Live Shopify repairs remain independently verified:1,108 invalid-checksum barcode clears across70 products;126 image-source substitutions across21 bodies; six parent market joins, restoring240 ACTIVE parents in US, Eurozone and International. Full4945-variant after-scan has0invalid and125 checksum-passing manufacturer-unverified identifiers. No invented identifier or blanket variant mapping. One owner action: Unlock the Mac normally and leave Data sources – Merchant Center for account513542500 selected, then reply ready. Current receiving-source evidence is the first unresolved dependency; native operators use serial leases. Existing correction authority remains valid. Existing source/app/country binding remains required; no claim transfer, new account, OAuth retry or legacy bulk rewrite. Full-paid NONE unchanged.
+
+
+September9 current attempt — `2026-09-09-ceo-turnaround-google-feedback-binding`: ACTIVE_SOLVING. Native513business/wwwclaim and Shopify0submitted verified. The complete validated240ACTIVE feedback read yields232Sep8/9records,6June4 and2absent;232recentUnclaimedWebsite messages conflict withthe selectedMCclaim butgeneric app1780363 resolution URLs provide noMerchantID. Threecanaries/32variants confirm legacyvalues vary; current consumed variantcontrol is unbound. No live rewrite/claimtransfer. Next afterpermittedaccess: Sunshine exactapp error editor andsource10014302986 receipt/timestamp, thenone supported canarycorrection ifjustified, withreceivedofferreadback. No oldpageerror/currentfailure inference. Evidence google_channel_feedback_20260909.json; missing source/accountbinding remains the technical gate.
+
+Priority: `P1`
+Status: `PARTIALLY_RESOLVED__LIVE_READBACK_REQUIRED` — Merchant513 Admin/domain/Shopify link verified. Chrome normal ExitFullScreen recovered controls; two scoped changes verified. Later Mac lock now prevents dependent UI, owner unlock requested. Original support NOT SUBMITTED; source receipt, operating Ads setup and GA4 purchase proof remain open.
+Owner/session: root, replacement task01a08223-036e-7fa3-8961-ecd297163fb5; existing September5 CEO turnaround.
+Surface: selected Merchant513542500; owner-selected manager7001079966; current operating candidate6509972886, earlier4683483813 absent from current customer list; retained GA4330266838. Historical IDs preserved as history.
+Historical September5 symptom: user-opened Ads manager7001079966 shows no linked operating accounts; documented operating URL redirects to manager; existing API OAuth refresh returned HTTP400 invalid_grant. Merchant initially opened another store; owner directed use of historical IDs, exact124884876 navigation returned noaccess for current identity.
+Definition of fixed: exact DLM account identities and current read-only reports visible; no manager/wrong-store zeros used as business truth.
+Attempt log: September5 existing tabs inventoried; documented secure API refresh attempted once and stopped on auth; one exact operating URL navigation per surface; IDs recovered but permissions did not resolve. Evidence: google_audit_report.md / google_api_access_readback.json / pinterest_merchant_readback.md in current packet.
+Failed paths: repeating OAuth without changed access, reading the other store, switching identity without owner action, treating noaccess as store suspension.
+Current next action (September8): after owner unlock, read Shopify product status/error and firstMerchantoffer; all240ACTIVEproducts are already published to both channels. Source10014302986US/en shows0/no timestamp. OldAds399link was retired with exactscope and after-state proof; do not repeat that historical serving audit. LocalretailOff persisted. Then verify650setup/directrole, manager relationship and retainedGA4sender/receiver. Existing current nonspend authority remains saved. Evidence merchant_513542500_execution_20260908.json; MERCHANT_ALL_ACTIVE_COVERAGE_20260908.json.
+
+September6 native Analytics reporting route now works for scoped Google Ads data:
+- Original Ads customer3990976848 and Italian campaign23866684201 are explicitly present in Analytics. June7–September4 costUSD127.34/855clicks/1purchase/1.19x; September5 reportsUSD1.65/11clicks with provisional intraday quality. This establishes scoped reported recent spend, not restored direct Ads management or current campaign status.
+- Original access/control recovery is now the first owner action, independently reviewed, ahead of the prepared Shopify draft release. Existing exact support-send approval persists, but Contact validation/readback remains unresolved; former form tab absent, no case/submission and no unchanged retry. Current account/role/billing/links/spend controls unchanged.
+- Next operator can analyze exact campaign keywords/queries in Analytics while this access problem remains open. Evidence: current packet italian_ga4_campaign_cost_readback.json and independent review. No repeated mailbox/credential/login audit needed.
+
+September8 current checkpoint: permitted Google connection/claim/receiver access remains unavailable. Fresh19:10:23UTC sales are unchanged, independent impasse review passed, and update_goal returned blocked with the full objective preserved. Existing4h heartbeat remains ACTIVE. See google_growth_access_checkpoint_20260908.json and google_growth_blocked_runtime_20260908.json; anchor 2026-09-08-ceo-turnaround-google-access-blocked. Do not repeat earlier account-creation, Mac-lock, OAuth or denied-field paths.
+
+### `PROB-2026-09-05-TRAFFIC-QUALITY-ATTRIBUTION`
+
+Priority: `P1`
+Status: `ACTIVE_SOLVING`
+Owner/session: root + analytics, September5.
+Surface: Shopify store traffic and GA4 acquisition.
+Exact symptom: last28complete days sessions10,393 versus3,545 while orders8 versus16; desktop8,545 sessions/0completed; direct8,679; unrecognized trafficheap508/0cart/0completed. Owner states this source is not recognized. GA4 Unassigned has very low engagement, but attribution sources/dates do not fully reconcile.
+Definition of fixed: identified source/cohort and verified human buyer/conversion baseline; any specific filtering/remediation is justified and after-state checked; qualified sales and retained contribution govern acquisition.
+Attempt log: Shopify source/device/country comparison and GSC/GA4 reports captured September5 in analytics evidence. Organic GSC clicks increased; no bot cause or purchased-traffic campaign established.
+Failed paths: purchase more cheap traffic, blanket geographic blocking, or removing a referrer from reports and claiming sales improvement without identifying cause.
+Current next action: TA-02 source/landing/time/consent investigation and paid-order reconciliation. No analytics exclusion or security rule changed. Parallel launch preparation continues; actual Ads spend remains unknown until access clears.
+
+September9 organic-task observation (TA-20): a new August10–September8,30-complete-date ShopifyQL extract shows4,896sessions,10completed checkouts, desktop2,899sessions/0completions and mobile1,980/10. The same508trafficheap visits have0carts. Source classification gives Google5 and DuckDuckGo1 completed-checkout sessions, not six certified organic customers. This is a different window from the September5 report and does not establish falling human traffic, bot causation, attribution repair or sales lift. Existing source/landing/time/consent and paid-order/cost reconciliation remains open; no exclusion/security/tracking change. Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/shopify_baseline.json, STRATEGY.md and independent review. Use qualified product visits and actual orders for the proposed organic pilot; where product-event attribution is missing, mark it unknown.
+
+### `PROB-2026-09-05-LOCALIZED-CUSTOMER-COPY`
+
+Priority: `P1`
+Status: `OWNER_APPROVAL_REQUIRED`
+Owner/session: root + CRO, September5.
+Surface: Spanish/French homepage strings; Danish Skyfade7536992976993 body and shared purchase/footer text.
+Exact symptom: internal blocked-supplier-page clause in Danish PDP; mixed English purchase steps and raw footer keys; Spanish/French obsolete numerical trust claims and ambiguous family-games CTA. Exact evidence and minimal Danish omission in cro_skyfade_denmark.md; four SEO briefs ready locally.
+Definition of fixed: exact active source digest/resource/locale identified; internal process clause omitted without invented material/delivery facts; correct language strings and evidence-backed customer claims; independent same-route readback; no unintended products/locales touched.
+Attempt log: September5 public/Chrome language checks captured; no translation changed. Existing source-URL scan success did not catch internal process wording.
+Failed paths: mass regeneration of all locales, guessing fiber/fulfillment claims, accepting language route existence as native-quality proof.
+September6 result: exact current Skyfade source/DA read and a local one92-character internal-clause omission preserve all other body/table bytes. Five shared Danish runtime labels are now staged only on UNPUBLISHED137782591585; exact checksum/full525-file proof preserves MAIN and prior three draft differences. Actual helper checks pass; rendered preview remains Mac-lock gated. Footer exact translated-setting ownership remains unproven. A separate size-source audit found8substantive conflicts; see PROB-2026-09-06-SKYFADE-SIZE-SOURCE-CONFLICT. Current next action: authenticated Danish desktop/mobile preview after normal unlock, original chart/correction evidence, and separately exact active-product publication review. No measurement repair or Danish paid readiness; current packet DANISH_BUYER_COPY.md and danish_runtime_execution.json own the scoped result.
+
+
+September6 authenticated preview followup: four new Danish runtime labels and selected Mor/S purchase button verified desktop/mobile on the draft. Fifth empty-role label not reached. Exact two footer raw-key symptoms are still visible and independently proven pre-stage MAIN; translated-setting ownership/final source-backed labels remain open. No need for another unlock request. See draft_footer_diagnosis.md and draft_rendered_preview.json.
+
+### September 5 access diagnosis amendment
+
+- Problem: `PROB-2026-09-05-GOOGLE-GROWTH-ACCOUNT-ACCESS`.
+- Status: `ACTIVE_SOLVING`; exact support request is owner-authorized but NOT SUBMITTED, blocked by inconsistent form validation and automatic approval review. This supersedes the earlier CREDENTIALS_REQUIRED / different-login recommendation.
+- New evidence: same current Google identity had May access to both exact accounts. Fresh Business Manager People page shows it as Super admin; Apps and services denies Merchant124884876 access and does not list Ads. Current Google guidance distinguishes Business Manager and app roles. June1 intended auto-link notice is not proof of execution or causation. API invalid_grant remains a separate authentication failure.
+- Next: owner manually corrects Contact email/optional CC; operator obtains a consistent current readback before the already-authorized send, then records confirmation/case ID or exact failure. No repeated permission request, bypass, password reset, account creation, role mutation or unlink/relink guess.
+- Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/google_access_recovery.md`.
+
+### September 5 / September 6 UTC — both-mailbox identity search
+
+- Problem: `PROB-2026-09-05-GOOGLE-GROWTH-ACCOUNT-ACCESS`; remains `ACTIVE_SOLVING` because correspondence does not restore app access.
+- Owner explicitly requested both connected business Microsoft and Chrome test Gmail mailboxes. Profiles verified. Root12 Gmail queries/7 full reads and independent Outlook23 queries/2 full reads found exact original account correspondence; no alternate login or usable invitation in the indexed results. Gmail recipients support the current historical identity; Microsoft correspondence names Ads3990976848 in2018 and manager7001079966 API approval in2026.
+- New public tag AW-18164235932 from a September4 sharing notice is not mapped to the original customer. Passkey and AI CMO profile notices do not establish a cause or a sign-in remedy. No tracking or account changes justified from these notices.
+- Same next gate: manual support-email field correction, then consistent current readback before the previously approved send. No new permission question, credential reset or re-link guess. Current support payload and NOT SUBMITTED status preserved.
+- Evidence and limits: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/google_mailbox_identity_readback.md`, `google_mailbox_search_summary.json`. Negative search findings are bounded to connector-indexed messages; no email or external account state changed.
+
+### September 5 / September 6 UTC — original access implementation and execution reviewed
+
+- Problem: `PROB-2026-09-05-GOOGLE-GROWTH-ACCOUNT-ACCESS`; remains `ACTIVE_SOLVING`. Owner asked to recover the earlier AI's account access and plans. Two disjoint local readers and root traced actual API/browser code, dated mutations/readbacks, campaign exports, Shopify repair summaries and the original Pinterest task.
+- Historical access is now directly corroborated: May19 official Ads API reports and May20 executed Ads mutations; Merchant browser upload/readback; GA4 browser transaction responses. Existing Ads YAML has the expected fields, but the presence-only checker is not an authentication test. No alternate surviving independent Google grant was established. The old temporary Python environments are missing; installing them would not by itself resolve the observed authentication/app-permission failures.
+- No repeat OAuth call, runtime install, account switch, role/link mutation or external write occurred. Access-loss cause remains UNKNOWN. The support request is already approved and still NOT SUBMITTED under the saved form-validation gate; no new approval is requested.
+- Existing campaign IDs, sold-item cohorts, attribution-safe Pinterest source and completed Shopify fixes are indexed for reuse. Next operator work continues purchase/source/value and country/product economics from accessible Shopify/GA4 while current Google inventory remains gated. Evidence: current turnaround packet `PRIOR_MARKETING_WORK_AND_ACCESS_RECONCILIATION.md`.
+
+
+### `PROB-2026-09-05-ACTUAL-COHORT-COST-BASIS`
+
+September11 existing-records Data pilot: selected actual CNY/provider and USD fee evidence was retained as partial evidence; no reclassification. Its six sanitized baskets cannot be assigned to the separate August10–September8 30-day baseline without protected dates/mapping and actual settlement allocations. The earlier cost-source discovery remains complete; modeled half-price fields are excluded from actual-profit calculations. Evidence: `2026-09-11-data-pilot/PILOT.md`, `source_inventory.json`; anchor `2026-09-11-read-only-data-pilot`. Existing TA-03 completion criteria remain.
+
+Priority: `P1`
+Status: `ACTIVE_SOLVING` — six provider CNY costs and six recorded USD payout-fee allocations verified; actual funding allocation, remaining expenses and repeat-order economics open.
+Owner/session: root, September6 actual-cost continuation; independent Analytics arithmetic reviewer.
+Surface: eight products/19 variants in historical campaign23867953136 and refreshed US/IT/DK candidate cost cohort.
+Initial symptom:135/135 current unit costs follow price*0.50. Independent historical review found the same modeled convention and an83-row blank shipping-cost worklist; no complete actual fulfillment cost/credit basis. Order fee data spans seven native currencies. A read-only settled-balance query returned explicit missing read_shopify_payments/read_shopify_payments_accounts scope, so no USD settlement expense total is certified.
+Definition of fixed: chosen product-country cohort links paid order/variant quantities to actual product, China services/domestic freight, international freight, duties/VAT borne, settled payment charges, allocated other costs and credits/recoveries with explicit currency/FX; each cost and refund counted once; realized margin and allowable CPA reproducible.
+Attempt log: fetched/validated current read-only Shopify headers, lines, refunds and135variant costs; performed36/36 GA4 ID/date join; proved half-price convention; inspected historical cost provenance; prepared five-product-market requirements and six-order private worklist; asked owner where actual charges are recorded. No defaulting missing costs to zero. No auth or financial mutation after scope denial.
+Next action: obtain supported Sunshine Stripe quantity-specific provider quotes/funding basis and disjoint duties/VAT, return losses and overhead. Current14variant prices and exact prior child/adult procurement quantities are now verified; five conditional ceilings are reviewed, not actual future quotes or expected AOV. The cost-source question is superseded for the selected six. No defaulting unknown costs to zero or modeled-field/hourly-job mutation. Italian paid-unfulfilled resolution is separately P0 and precedes its profit ranking.
+Evidence: current turnaround `CURRENT_SALES_CANDIDATE_RECONCILIATION.md`, `candidate_actual_cost_requirements.csv`, `sales_candidate_reconciliation_summary.json`; private input/worklist remain outside repo. Google account recovery remains separately tracked.
+
+
+September6 observed result: exact six-order private ID join from BuckyDrop Store Orders to Fulfillment Cost Statistics; CNY1,551.13 aggregate including signed adjustments. Eight observed historical funding records imply conditional USD/CNY0.16247–0.164265 including handling once; not assigned funding lots. Six existing Shopify order timeline payout disclosures expose USD23.86 recorded processing/currency fees; original API scope remains denied and no grant/bypass occurred. Independent numerical review PASS, not UI/bank verification. Sunshine first paid-validation candidate; Vintage6.5x stage held and DK/small Sky Blue fail the conditional6.5x/30% screen. Actual net margin remains unknown. Evidence: current packet ACTUAL_COST_RECONCILIATION.md, actual_cost_after_payment_fees.json and source/review receipts.
+
+### `PROB-2026-09-05-DA-NL-DRESS-SEO-OVERRIDE`
+
+- Priority: P1. Status: DRAFT_IMPLEMENTED__AUTHENTICATED_PREVIEW_AND_OWNER_PUBLICATION_REQUIRED. Owner: root; independent cart_market_fix review.
+- Surface: current MAIN theme133290917985, locales/da.json and locales/nl.json; dresses and mother-daughter-matching-dresses keys.
+- Symptom: Danish live description is English; localized titles are awkward. Admin SEO edits alone are ineffective because theme overrides them.
+- Evidence: current packet traffic_public_routes.json, traffic_live_theme_source.json, gsc_traffic_priority.*, exact current locale snapshots.
+- Attempt/result: identified owning theme paths; four values independently reviewed. Under the owner Continue instruction, created UNPUBLISHED draft137782591585 from fresh MAIN133290917985 and applied only the four values. Complete525-file manifests differ only in two locales; API exact after-values pass. The other523 files and MAIN sample checksums are unchanged. Prior local-only status is superseded for draft preparation, not live publication.
+- Fixed criteria: owner-authorized exact four-key release, no file conflict, readback of public search/social/schema values and current theme fields; observe traffic/order outcome separately.
+- Gate/next: connector explicitly blocks MAIN file writes and theme publication. Do not execute old MAIN-targeted variables or use a workaround. Public preview requests returned MAIN/old metadata; authenticated rendering is NOT VERIFIED; Chrome access is now available. Verify draft routes/alias and full then-current MAIN comparison before owner Shopify Admin publication. Do not repeat the old four-key permission question. Exact draft payload and proof: continuous_growth_draft_mutation_variables.json, continuous_growth_theme_manifest.json, continuous_growth_seo_public_preview.json.
+
+### `PROB-2026-09-05-GREEK-ARTICLE-EMPTY-PAJAMA-TARGET`
+
+- Priority: P1. Status: SOLVED_READBACK_PASSED. Owner: root/landing lane.
+- Surface: Greek article559471329377 and /el/collections/family-pajamas.
+- Symptom: existing rendered article CTA reaches HTTP200 collection with an empty product grid. Header/cart recommendation links are not collection products.
+- Evidence: current packet traffic_public_routes.json; GSC article66clicks/657impressions/position9.1 in the fixed28-day window.
+- Ruled out: all9 existing body CTAs already use localized rendered hrefs; do not add duplicates or apply locale-prefix repair.
+- Attempt/result: URL-only replacements failed the premise: /christmas-pajamas has0active/public products; new-pajama-drop has19active/products but did not match old Christmas-pattern claims. Prepared one honest Greek paragraph preserving the holiday occasion, clarifying separate mom/child selections and linking new-pajama-drop; other8collection+2sociallinks/everyotherbyte preserved. Independent PASS_EXACT_PARAGRAPH_WITH_READBACK; fresh body/source digest checks and GraphQL validation pass.
+- Gate/next: exact correction is IMPLEMENTED and VERIFIED. Current automatic-implementation and traffic instruction supplied renewed authority; normal connector succeeded with no userErrors. No reapplication or repeated approval. Separate read gives exact candidate39c6250a…/7928chars and unchanged other translations/article/source digests. MAIN article CTA is /el/collections/new-pajama-drop; clicking reaches19 rendered products with localized product links. Previous broad-Continue rejection remains in continuous_growth_greek_execution.json as historical evidence, without workaround. Other locale/customer-truth/checkout questions are separate; no traffic/sales lift proven. Evidence greek_traffic_release_execution.json and postreview; anchor 2026-09-06-ceo-turnaround-organic-traffic-live.
+
+### `PROB-2026-09-05-GROWTH-BROWSER-MAC-LOCKED`
+
+September9 laterbusinessattempt — `2026-09-09-ceo-turnaround-google-feedback-binding`: REGRESSED_REOPENED; actualownerdesktopstate required. After the dashboard's explicitUIrelease, root's nativeChromeGoogle reads succeeded, thena screenshot wasblank andgetAXStatereportedMaclocked/automaticunlockunsuccessful before15:47:22UTC. Thisdoesnotinvalidateearlierdashboardverification orprove missingpermissions. Currentunlock/already-unlockedquestionpending. No unchangedCUAretry/helper/TCC/securitymutation; ioregnonUIreadunavailable, notunlockproof. Closure requireschangednormalaccessfollowedbyexacttargetchecks. IndependentShopifyfeedback andcurrentorders advancedwhilewaiting.
+
+September9 current narrow readback, anchor `2026-09-09-live-growth-dashboard`: normal native Chrome control in profile `test` successfully opened and pinned the local dashboard. The generic owner-unlock question is superseded for this observed surface. Exact business-account/publisher/checkout checks remain NOT RUN in this dashboard session; no account authority or historical platform publication stop is cleared. Status for this native Chrome access dependency: RESOLVED_FOR_OBSERVED_SURFACE; later dated access failures must be evaluated separately. Earlier lock observations below remain historical evidence.
+
+September8 Microsoft/Pinterest continuation: one fresh normal inventory again reports Mac locked / automatic unlock unsuccessful. No dependent browser retry. Existing unlock request now gates Microsoft477439/770182 and the authorized Sunshine Pinterest publication as well as Google. Exact targets and specialist findings are saved; no new paid launch or goal-status update. Anchor 2026-09-08-ceo-turnaround-microsoft-pinterest-execution-priority.
+
+Current September8 by22:06:54UTC: normal Chrome test controls and screenshots worked after View → Exit Full Screen, and root completed two verified Merchant/Shopify corrections. A later normal call reported the Mac locked and automatic unlock unsuccessful. Owner manual unlock was requested; reply pending. This later lock is distinct from the resolved full-screen capture problem. No repeat probe or bypass. Current scope: product sync/error and first-offer verification, operating Ads650 setup under manager700, and retained GA4 sender/receiver checks. Runtime get_goal still reads blocked with the complete year-end objective preserved; no new status call or new recurrence-threshold claim. Evidence merchant_513542500_execution_20260908.json; anchor2026-09-08-ceo-turnaround-merchant-link-cleanup-product-coverage.
+
+Earlier dated observations follow and do not override this current checkpoint.
+
+Current September8 02:45UTC read: after the user explicitly renewed full computer control, one normal cua.getState again reports Mac locked/automatic unlock unsuccessful (6.87seconds). This is a tool report, not a missing-permission diagnosis; actual desktop unlock still needs the owner. No second probe, TCC/helper reset or alternate bypass. Account and organic actions remain prepared with saved authority. Goal runtime now `usageLimited`; no goal-status/schedule change. Independent Shopify Meow repair is complete; see2026-09-07-ceo-turnaround-meow-search-identity.
+
+- Priority: P1. Status: BLOCKED_OWNER_INPUT_REOPENED. Owner: root. Current scope: native marketing publication, shopper checks and provider-cost reads.
+- Surface: documented browser inventory before the isolated Vintage checkout-entry and authenticated draft-preview checks.
+- Evidence: first cua.getState returned Mac locked and automatic unlock unsuccessful. No new tab, cart inspection/addition, checkout, cleanup or settings action occurred. Public cookie-free theme preview returned MAIN; this is not a draft-render pass.
+- Fixed criteria/next: after normal owner unlock, documented inventory succeeds and exact isolated cart/preview checks pass with cleanup where applicable. Do not attempt unlock, hidden-browser access or alternate cart API to bypass the gate. Continue structured/local work under the existing goal and heartbeat.
+- Evidence: current packet vintage_checkout_entry_readback.json and continuous_growth_seo_public_preview.json. Avoid unchanged repeated checks; no broad access re-audit.
+
+Historical September6 temporary recovery (superseded by the later recurrence below): fresh Chrome test inventory, exact Pinterest catalog/profile and Shopify Google interactions succeeded. Root also saved/reloaded a narrowly authorized settings repair. The unlock request is obsolete; buyer/draft checks remain NOT RUN until performed, not inherently blocked by OS access. Current anchor: 2026-09-06-ceo-turnaround-google-settings-repair.
+
+Current September6 evening recurrence, anchor 2026-09-06-ceo-turnaround-sunshine-creative-access-block: getState at2026-09-07 00:29UTC again reports Mac locked and normal automatic unlock unsuccessful. The immediately prior guide-buying-guidance and Rainbow-title goal turns record the same later lock, giving3consecutive goal-turn occurrences. The current later unlock request is pending; do not confuse it with the obsolete request from the temporary recovery above. Two prior turns completed API repairs; this turn finished the Sunshine product-detail asset and independent review. Native account/board/duplicate/tagged destination, Rainbow/guide/French entry and actual provider-cost reads remain blocked. Independent bounded queue review identifies no qualified material alternative after asset integration. No locked-screen bypass, duplicate question, public write or goal-completion claim. Runtime goal checkpoint: sunshine_growth_access_checkpoint.json. Reopen normal execution only after changed access and fresh target checks; reuse all completed assets and authorizations.
+
+September6 new owner restart (2026-09-06-ceo-turnaround-four-platform-restart): supplied Microsoft route is the known477439/770182 target. Fresh CUA still reports Mac locked. A specific question asks whether the Mac is currently unlocked, distinguishing normal unlock from a tool error; answer pending. This is one occurrence in the resumed audit, not a new three-turn threshold. Independent Shopify reads and Meta/source/post preparation completed; no native retry or goal-status update. Earlier completed repairs and heartbeat remain preserved.
+
+### `PROB-2026-09-05-VINTAGE-GREEK-PLACEHOLDER-LEAK`
+
+- Priority: P1. Status: LOCAL_REPAIR_PREPARED__EXACT_RELEASE_GATE_PENDING. Owner: root; Analytics prepared evidence.
+- Surface: product7533081133153, Greek el/body_html, public VintageCottage PDP.
+- Symptom: rendered QZ012QZ0 and QZXTOKEN0001 leak into two bullets. Exact current English source and matching Greek cache reconstruct both as </li> closing tags; no missing prose or measurements are inferred.
+- Prepared correction: two exact token replacements only;5789to5779characters, all remaining bytes and11-row size table unchanged. Source digest and distinct translated-body before/after hashes recorded; no external write. Broader translations/English controls are excluded.
+- Fixed criteria/next: independent local review, exact resource-level publication authority, fresh current body/source conflict check, then exact Admin/rendered no-token/balanced-list/table-preservation after-state. Pending article approval covers a different resource and does not approve this product change.
+- Evidence: current packet vintage_greek_placeholder_repair.json/.md and continuous_growth_independent_review.md. The former Mac-lock gate is cleared by the September6 profile readback; exact rendered verification is still NOT RUN.
+
+
+### `PROB-2026-09-06-GSC-ERROR-URL-EVIDENCE`
+
+Current September11 exact submitted-error diagnosis: Current GSC submitted sitemap.xml has exactly one5xx example (/es/collections/maternity) and one404 (/he/products/blue-check-family-matching-set); September3 report and actual row/inspection dates remain distinct. Maternity has20 ARCHIVED members; the Hebrew locale is published, but the product handle returns0 and historical product7537920999521 is not found. Neither supports reactivation, redirect or index request. Old12-example diagnosis and429 stop remain historical. Separately, Couples exact-page Sep2–8 shows1click/displayed1.26K impressions versus0/248 priorweek, supporting the collection repair above. The rounded count is not exact1260. Own GSC tab6 closed; no validation, index request or public429 retry. Separate collection source repair is tracked under PROB-2026-09-11-COUPLES-EMPTY-ACTIVE-COLLECTION; no broad all404 closure. Evidence: 2026-09-09-organic-growth/couples-collection-recovery-execution-20260911.json and couples-collection-recovery-after-20260911.json; 2026-09-05-ceo-turnaround/gsc_indexing_reconciliation_20260911.json and current_sales_checkpoint_20260908_evening.json; Merchant local_lifecycle_interim/revision6 approval receipts and international_candidate/all-markets.execution_checkpoint.json; Ads current_campaign_repair/GA4_RECEIVER_READBACK_20260911.json, EDITOR_RECOVERY_20260911.json and FOLLOWUP_20260911_2121.json. Anchor 2026-09-11-qualified-feeds-and-couples-collection-recovery.
+
+September 6 evening heartbeat addendum (no status reclassification): authenticated Google messages at 21:10:17/21:37:32 UTC report sitemap 5xx/404 for www and bare-domain site labels; the latter exact property scope is unknown. Neither contains URLs, counts, sitemap identity or crawl dates; no new outage, active-page failure or regression is proved. Capture current Page indexing report date, submitted-sitemap scope, exact examples and crawl dates after the existing native-access dependency clears, then compare with the saved twelve URLs and current resource truth. Preserve all existing public429 and repair gates. No CUA/public retry or external mutation. Evidence: gsc_new_indexing_notices_20260907.json; anchor 2026-09-06-ceo-turnaround-new-indexing-notices.
+
+Priority: `P1`
+Status: `ACTIVE_SOLVING` — exact12 server-error URL gate resolved; current cohort held with evidence; original404 demand/replacement gate remains.
+Owner/session: root browser/canonical writer; Feed Ops current resource/locale join; Analytics independent local verifier, September6 continuous growth.
+Surface: TA-05, GSC property https://www.dresslikemommy.com/; exact12 original5xx examples plus earlier four normalized404 paths.
+Exact symptom: August27 indexing report retains12 server-error examples crawled June3/24. September6 public reads give ten404s, then429 verification; final .atom request NOT RUN. Seven products ARCHIVED; two active product URLs and one published article404 use vi/th/tr prefixes absent from enabled locales. Current publication does not prove market routing or historical failure cause.
+Business impact: aggregate counts could misdirect effort or trigger non-equivalent redirects. No lost visits/orders measured for this cohort. GSC September3 host status says acceptable recent connectivity with earlier issues; no current whole-site health claim.
+Definition of fixed: original dated URLs retained and source/HTTP/current configuration classified, then demand/equivalent-destination/intent evidence supports an appropriate bounded repair or documented hold. Exact12 diagnosis is complete; 404 recovery qualification and429/Atom uncertainty prevent broad closure.
+Attempt log: earlier four HTTP404/ARCHIVED and complete empty root/localized redirect searches preserved. Current all12 exact UI examples and crawl dates recovered with no export. Validated Shopify queries match all12 to11 unique resources; all21 enabled locales published, en primary, exactvi/th/tr/id/pt absent. Cookie-free public reader stopped immediately at11th429. Separate GSC crawl/host report read; no live test or validation.
+Failed/ruled-out paths: rich GSC DOM timed out twice; native accessibility succeeded. Initial click object schema was rejected before action; documented numeric click succeeded. Public429 is a rate/access gate: no retry, alternate route or Google live test; .atom response remains NOT RUN. No archival intent, locale withdrawal history, Googlebot429 or full-site outage inference.
+Current next action: hold this12URL cohort and continue prepared organic release. Reopen only from changed current Google evidence of active published-locale failure, valuable search/internal/referring-link demand and a verified equivalent destination, or documented mistaken withdrawal with approved restoration scope. Full404 Examples/demand remain uncollected. Do not repeat either sample, mass-redirect or enable languages from error counts.
+Authority/gates: no redirect/locale/product/theme/feed/tracking/spend/indexing mutation. Existing exact draft owner release, Google support approval/manual form gate, Greek publication approval and paid costs remain unchanged.
+Evidence: current packet ORGANIC_URL_RECOVERY.md, gsc_server_error_examples_current.json, gsc_server_error_public_readback.json, gsc_server_error_resource_join.json, gsc_crawl_health_current.json, gsc_server_error_classification.json, independent review and checks. Decision DLM-DEC-2026-09-06-ORGANIC-URL-RECOVERY.
+Parallel work: prepared storefront/organic release, original Google recovery, GA4 attribution and actual costs retain disjoint gates.
+
+September6 12:46–13:01UTC scope correction: independent review confirms the cookie-free Turkish429 does not establish a blanket Chrome/customer outage. Its exact URL/batch remain stopped. One normal homepage/collection/Sunshine journey worked; official Exit preview verified MAIN133290917985 and no challenge. This does not resolve the original Turkish URL, duration/cause, Googlebot behavior or sitewide health. Normal buyer reads on the working session may proceed under bounded scope; stop on an actual challenge. Evidence normal_buyer_path_readback.json and challenge_scope_review.md; anchor2026-09-06-ceo-turnaround-normal-buyer-path.
+
+### `PROB-2026-09-06-SKYFADE-SIZE-SOURCE-CONFLICT`
+
+Priority: `P1`
+Status: `ACTIVE_SOLVING` — original seller-chart or exact correction evidence required; no numeric repair is qualified.
+Owner/session: root; independent size-source comparison and bounded history trace, September6 continuous growth.
+Surface: ACTIVE Skyfade7536992976993 English source and Danish body_html; Denmark paid-candidate truth gate.
+Exact symptom: current EN has2 tables/27 rows, current DA3 tables/40 rows with13 duplicated dress sizes. Appended DA matches current EN, while legacy DA dress matches91/91 recorded-chart cells. Current EN versus saved chart has103/136 exact primary cells,25 rounding-consistent changes and8 substantive conflicts across6 adult sizes. Mother S changes from37.5–42.5kg/150–155cm to43–48kg/155–160cm. Both current translation flags and coverage receipts miss this contradiction.
+Business impact: conflicting fit guidance could produce wrong-size choices and returns. Actual affected customer choices or losses are not measured. Skyfade remains excluded from paid-test readiness until the buyer path, source truth and costs pass; no live product/campaign status was changed.
+Source limits: recorded listing/chart/verification matrices agree internally but do not prove direct seller truth. Original notes identify an attached seller chart and disclose54 agent-derived hip/waist values;26 such values remain in the legacy DA dress table. The named attachment is Screenshot 2026-04-24 at10.37.44AM; the documented upload directory lacks it, and exact indexed plus project/Downloads/Desktop filename searches returned no match. Exact creation/May10 receipts do not explain/date the later EN replacement or establish numeric truth.
+Definition of fixed: recover the original chart or a verified later correction; reconcile all conflicting size recommendations and distinguish measured versus derived values; prepare one coherent localized chart from verified evidence with exact per-size checks, scoped publication authority and current rendered buyer readback. Do not select EN solely because it is current or rebuild all translations from it.
+Attempt log: fresh Shopify product and source/digest/DA read September6, followed by independent primary-unit comparison and exact history trace. Product active and da/body_html outdated=false; neither certifies measurements. A separate one-clause prose omission is local only and preserves every current table byte.
+Failed/ruled-out paths: accepting outdated=false, table-count/row-coverage success or historical1,080 mapping checks as measurement validation; blindly applying source-table rebuild; guessing a numeric correction or fabric composition.
+Current next action: recover the exact named chart attachment or documented later measurement correction, compare the six adult-size conflicts and the derived fields, then review a narrowly scoped correction. Preserve existing numeric data pending evidence. Chrome access is now available for rendered visibility and authenticated preview; those source-conflict checks remain NOT RUN.
+Evidence: current turnaround packet skyfade_danish_before.json, skyfade_danish_size_source_audit.json/md, skyfade_size_history_trace.md, skyfade_danish_omission_candidate.html and danish_buyer_copy_checks.json. Source body digest660d6c0aa25bc69bb7a95e89100282735a508cab37ca60a50f3374d4d04ce001.
+Parallel work: the separate five-key Danish purchase-runtime correction is eligible for bounded unpublished-theme review; it does not alter fit data or clear this problem. All paid-control fields and pending Greek approval remain unchanged.
+
+### `PROB-2026-09-06-GOOGLE-CHANNEL-LOCAL-RETAIL-SYNC`
+
+September8 recurrence: setup of selectedMC513542500 had local-retail automatic sync On again. Root savedOff once under current exact setup authority; reload/reopen confirmsOff, uncheckedalllocations anddisabledSave,0of1locations. Product/country-language/title/description/shipping/conversion switches stayOn. No location/stock data changed or private supplier details persisted. Status remains SOLVED_SCOPED_SETTING_VERIFIED for this second observed setting event; no durable-rule change. Current Merchant/tracking gates are separate. Evidence merchant_513542500_execution_20260908.json, mutationSHOPIFY-GOOGLE-LOCAL-RETAIL-OFF-RECURRENCE.
+
+Priority:P1. Status:SOLVED_SCOPED_SETTING_VERIFIED. Parent access problem PROB-2026-09-05-GOOGLE-GROWTH-ACCOUNT-ACCESS remains ACTIVE_SOLVING.
+
+Fresh Google settings had local-retail automatic inventory sync On despite DLM having no physical retail store. Current exact user settings-repair request, independent prewrite review and root before-state supported one Off/Save. Normal reload/reopened modal verified Off, unchecked all-locations and disabled Save; all online sync and Merchant/GA4 IDs preserved, no location or stock mutation. Evidence: current CEO packet shopify_google_settings_repair_execution.json and shopify_google_settings_final_review.md. No online eligibility, account-access or sales-lift claim.
+
+Remaining Google blocker: same-identity Merchant noaccess, Shopify Inactive/Ads error, cause unknown. Setup navigation warning safely dismissed with no activation. Fresh same-endpoint support form still fails consistent email readback after normal fill and keyboard; no Next/send and no case ID. Existing exact submission approval remains usable only after consistent current form evidence. Owner manual contact/CC correction remains required; do not retry the same form inputs automatically.
+
+
+### September 6 profile-open followup — Google access and browser gate
+
+PROB-2026-09-05-GROWTH-BROWSER-MAC-LOCKED remains SOLVED_ACCESS_RECOVERED: existing Chrome test form and exact MAIN storefront readbacks pass. Remove unlock from current next actions; preserve older dated failure evidence. PROB-2026-09-05-GOOGLE-GROWTH-ACCOUNT-ACCESS remains ACTIVE_SOLVING: Contact visible email conflicts with DOM length0/warning, while CC is visually blank and964-character summary/name/company read normally. No new input or Next retry. Existing manual correction question and send approval persist; no case ID. Evidence: google_support_form_recheck_20260906.json followupReadbacks and organic_pin2_destination_readback.json.
+
+### `PROB-2026-09-06-PINTEREST-SOURCE-100`
+
+Priority:P2. Status:CONTAINED_PAUSED__SOURCE_VALIDITY_UNRESOLVED. Owner:root Pinterest01a08704. Catalog3041764155561548387/source3041760916127467912. September10 inspected Error100 and ten visible Sep1–10 failed runs; historic product dependencies remain unknown. Do not assign Error100 separately to every run without row-level evidence.
+
+Under the current owner's explicit repair request, independent review passed pausing only future ingestion. One Pause ingestions action; exact source/history retained and full reload menu still Unpause ingestions. No deletion/replacement or23other-source change. Rollback is the same source's Unpause ingestions. Source coverage is not repaired merely because fetches are contained.
+
+Remaining fixed criterion: establish intended cohort and actual product/group dependencies, then choose a supported source correction or safe retirement with current receiver/item proof. Do not repeat the pause or infer missing products from a filename or zero-upload runs. Evidence: FAILED_SOURCE_PAUSE_20260910.json and CATALOG_RECONCILIATION_20260910.json; anchor2026-09-10-pinterest-organic-release-and-source-repair. Original September6 diagnostics remain in their dated packet.
+
+### `PROB-2026-09-06-NL-SEO-DESCRIPTION-ENTITY`
+
+Priority: `P2`
+Status: `FIXED_UNPUBLISHED_PUBLIC_RELEASE_PENDING`
+Owner/session: root, September6 authenticated draft verification.
+Surface: NL dresses and mother-daughter-matching-dresses descriptions.
+Symptom: literal &#39; in parsed meta/OG/Twitter/CollectionPage text; independently confirmed in saved pre-stage MAIN HTML.
+Exact fix: one U+0027 to U+2019 change in the existing staged locales/nl.json description on UNPUBLISHED137782591585, preserving all other content among779leaves.
+Result: one successful mutation; returned source/candidate and current complete manifest pass. All four rendered descriptions on both exact NLroutes now match150-character candidate, no literal entity. MAIN unchanged.
+Definition of live-fixed: confirmed exact owner publication plus fresh public MAIN source/render readback. Until then do not claim a public SEO fix or traffic gain.
+Evidence: current CEO packet draft_nl_description_plan.json, draft_nl_description_execution.json, draft_nl_description_review.md, draft_rendered_preview.json and draft_render_complete_manifest.json.
+
+## PROB-2026-09-06-PINTEREST-DRAFT-PERSISTENCE
+
+- Priority: P2. Status: ACTIVE_SOLVING; native persistence is unverified after a failed readback, not a login or approval rejection.
+- Owner: root, September 6 CEO turnaround; scope VC_ORGANIC_02 in Chrome test, Pinterest dresslikemommy profile.
+- Symptom/impact: exact image and all reviewed fields rendered in one native draft, but normal same-tab/profile reopen returned an empty builder. An operator must not leave this as a saved deliverable or depend on it for continuity.
+- Fixed criteria: a supported native save path retains the exact image/title/description/link/alt/board/AI flags after normal same-device reopen with no publication. Local versioned content remains the recovery artifact.
+- Attempt log (2026-09-06 approximately 08:06–08:11 UTC): one documented chooser upload and exact fields passed native DOM/screenshot checks; after profile navigation and reopen all content was absent, new empty draft DOM ID706ab3d3-9843-4f61-a2b1-22e199b2e95b. Options offered only Delete/Duplicate. Alternate normal profile Create > Pin returned the same empty builder. No second upload, deletion, Publish or schedule.
+- Root cause UNKNOWN. Saved-draft ID not verified; do not promote DOM IDs into platform Pin IDs. Remote draft and image retention UNKNOWN. No browser storage/privacy change or unsupported API/alternate upload transport is justified.
+- Next: preserve local release packet and mark native rendering verified but persistence FAILED. Resume only when a supported draft-save workflow is available, or at an exact approved publication stage after remaining release gates. Do not repeat unchanged refill/reopen or use Publish/scheduling to save.
+- Gates: native persistence mechanism; separate public release authority/remaining duplicate and mobile/checkout checks. No new owner authentication action is required by this evidence.
+- Independent lane: prepared four-file Shopify owner release remains first, with original Google access recovery under its existing approval and unresolved Contact readback gate.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/pin2_native_draft_execution.json; frozen pin2_native_draft_plan.json; source and prewrite review in the same packet.
+
+
+### `PROB-2026-09-06-ITALIAN-PAID-UNFULFILLED`
+
+Priority: `P0`
+Status: `OWNER_RESOLUTION_PENDING` — existing paid customer obligation, not an agent-authorized refund or shipment.
+Owner/session: owner Francisco; root read-only reconciliation September6. Packet `2026-09-05-ceo-turnaround`; anchor `2026-09-06-ceo-turnaround-actual-costs`; task TA-14.
+Surface: exact selected July23 Italian order (sanitized alias COST_01; private link left open in Chrome Test). No customer/private order/payment identifiers in this record.
+Verified symptom: Shopify shows Paid/Partially fulfilled, two Ivory Meadow dresses EUR28.95+EUR31.95=EUR60.90 unfulfilled. BuckyDrop marks those two lines Canceled while its fulfillment order is Completed. Three Skyfade pieces marked fulfilledAugust10; tracking updatedAugust11. Provider retailUSD81.87 fulfilled+USD69.38 canceled equals prior Shopify retainedUSD151.25.
+Unknown: external replacement/refund/customer agreement, actual delivery, final return loss. Source status mismatch does not prove no outside resolution. Shopify payout allocation gross164.86/fees9.16/net155.70USD is recorded, not bank receipt or refund clearance; earlier API total164.87 retained separately.
+Attempt: matched exact private IDs, read only native order/status/timeline/payout disclosure; asked one owner question about external resolution. No customer message, order, shipment/fulfillment, cancellation, refund or payment action/staging.
+Definition of fixed: supported owner/source evidence resolves the two-item obligation and reconciles retained revenue, replacement costs/refunds and any unrecovered supplier expense without double-counting. Root can verify records; the owner performs money-moving actions.
+Next: owner confirms any outside resolution or selects/performs the customer remedy. Withhold Italian profit/CPA ranking and dependent scale claims. Keep Google support Contact correction next under its unchanged saved approval/validation gate.
+Evidence: ACTUAL_COST_RECONCILIATION.md, actual_fulfillment_cost_readback.json, shopify_payout_fee_readback.json, actual_cost_after_payment_fees.json and actual_cost_final_review.md in the current packet.
+
+
+
+September6 12:33UTC follow-up, anchor2026-09-06-ceo-turnaround-installed-helper: the verified existing business Outlook mailbox returned0/has_more=false for one exact-order query. No message reads, read-state changes or other mutation. This is a bounded negative search, not proof of no outside remedy; the existing owner question and definition of fixed remain unchanged. Evidence italian_resolution_mail_evidence.md (SHA2561dbe083335326ff5b448939f8375a50eb61f63980e2e607d764e9027c7479bd6). Do not repeat the unchanged query or infer settled funds from a promise.
+
+### `PROB-2026-09-06-SUNSHINE-DESCRIPTION-SOURCE`
+
+Priority: `P2`
+Status: `SOLVED_READBACK_PASSED` — exact English description cleanup saved and API/MAIN desktop/mobile verified.
+Owner/session: root, September6 Sunshine qualification; Feed Ops independent copy/static review.
+Surface: product7545279512673 English descriptionHtml; TA-03/08 candidate qualification. Separate from original chart truth and the historical shared-theme repair.
+Verified source issue: current Admin description contains internal draft/merchandising and vendor-evidence prose. Static review of seven files bound to the07:07UTC MAIN/draft manifest shows partial filtering; one heading rename prevents a later exact-heading cleanup from matching. Exact current shopper exposure remains UNKNOWN, so the prior shared-theme live fix is not declared regressed.
+Attempt/result: exact successful product reads; five source text replacements prepared locally; independent replay verifies every other byte and complete1,806-byte/14-row chart unchanged. Existing material/measurement claims are not recertified; original chart assets absent from the exact historical folder. No live mutation, new numeric claim or public retry after429.
+Definition of fixed: after exact authority and fresh source check, the approved field-only cleanup is read back exactly and the permitted affected buyer path passes; alternatively current rendered evidence demonstrates no customer issue and the source cleanup is explicitly deferred. Do not claim a local file fixed the live product.
+Next action: no reapplication. Continue cart-return and actual-cost qualification; translated copies and original product-truth questions are separate. Current automatic-implementation authority is saved, not a new sales or paid-launch claim.
+Evidence: SUNSHINE_STRIPE_OFFER_QUALIFICATION.md, sunshine_stripe_copy_proposal.json, sunshine_stripe_copy_review.md and sunshine_stripe_checks.json in packet2026-09-05-ceo-turnaround.
+
+September6 MAIN rendering follow-up for PROB-2026-09-06-SUNSHINE-DESCRIPTION-SOURCE, packet2026-09-05-ceo-turnaround: after discovering preview137782591585, root used official Exit preview and read rendered theme133290917985/role main,0preview frames. Internal draft/merchandising/vendor-chart prose is rendered on production with layout rectangles/visible style, confirmed by native AX. The previous exposure UNKNOWN is superseded for this exact English desktop PDP. MAIN Adult S/qty1 USD24.99 and Child2Years/qty1 USD21.99 pass, cart0; no bag action. Same five-replacement proposal passes independent replay with14rows/other bytes preserved. Status now MAIN_EXPOSURE_VERIFIED__REVIEWED_REPAIR_NOT_APPLIED. Source-freshness/exact release, mobile/checkout/material/measurement/cost gates remain. Evidence NORMAL_BUYER_PATH_AND_REPAIR_NEXT.md, normal_buyer_path_readback.json and sunshine_rendered_copy_review.md. No new broader cleanup or repeated source audit.
+
+September6 live resolution: fresh source exactly matched frozen7ef32c5a… before; five reviewed replacements generated exact9bd9fdf5… candidate. One dedicated update only ID/descriptionHtml; separate product readback found only descriptionHtml changed. All14table rows and all other returned product fields preserved. MAIN133290917985 desktop and390x844 mobile visually show new individual-shirt paragraph/cleanfeatures and no internal drafting paragraph. Finalcart0/defaultviewport; no price/status/translation or new source claims. Independent execution review and sunshine_copy_execution.json support closure of this English source-copy defect; not profit or translation certification. Anchor2026-09-06-ceo-turnaround-live-pixel-and-copy.
+
+### `PROB-2026-09-06-GA4-CLIENT-ID-TRUNCATION`
+
+Priority: `P1`
+Status: `ACTIVE_VERIFYING` — exact installed helper repair IMPLEMENTED and code/connected readback VERIFIED; sender-specific effectiveness remains unverified.
+Owner/session: root,2026-09-06; independent local verifier /root/current_ga4_sales_reconciliation.
+Surface: local pixels/ga4-custom-pixel.js getClientId and existing Shopify custom pixel111181921; GA4 property330266838.
+
+Exact symptom: selected current installed code and original local template use parts.slice(2,parts.length-1).join("."). The frozen synthetic GA1.1.123456789.1700000000 case returns123456789. Current Google MP reference accepts the full client-ID cookie. This is a demonstrated local identity defect, not a proven cause of the three missing paid orders.
+
+Attempt/result: freeze original template and isolated actual-helper regression before editing; four failing cookie cases/three passing fallback holdouts. Change only getClientId to store/return the complete nonempty cookie. Candidate7/7, syntax and independent byte-preservation review PASS. Live matching fragment, connected state/required purposes and correct stream read back; full installed-code fingerprint absent. No production Save, connection/consent change, event send or test purchase.
+
+Definition of fixed: local identity contract passes with existing fallback/other code preserved AND the exact installed repair, if separately authorized, has source after-state and permitted event/ingestion validation. Do not close this issue from unit tests or claim full purchase parity. Existing stored truncated IDs when the cookie is absent, malformed-cookie behavior and all other inventory risks are outside this patch.
+
+Next/gates: deployment and approval are complete; do not repeat them. Obtain permitted consent-respecting sender/receiver evidence, without synthetic purchases, replay or source/consent changes. Preserve stored-ID fallback limitation and separate purchase parity problem. Current owner automatic-repair authority is saved; financial/platform gates remain.
+
+Evidence: packet2026-09-05-ceo-turnaround PURCHASE_CAPTURE_DIAGNOSIS_AND_REPAIR.md; purchase_capture_current_readback.json; frozen original/exact diff; local test and before/after receipts; independent client-ID review; purchase_capture_checks.json. Decision DLM-DEC-2026-09-06-GA4-CLIENT-ID-CORRECTION; anchor2026-09-06-ceo-turnaround-purchase-capture.
+
+September6 installed-binding follow-up, anchor2026-09-06-ceo-turnaround-installed-helper: supported Code Select All/Copy supplies complete editor serialization privately; exact before/candidate hashes, one helper occurrence, unchanged prefix/suffix and inverse rollback verified. Before10,697/candidate10,496 JS units, UTF-8 hashing. Current Disconnect visible/Save absent; no installed edit or event. The unchanged actual-helper test gives4baseline failures/3holdouts and7candidate passes; independent review PASS for owner review. Both whole-buffer parsing attempts returned EvalError, so that check remains unavailable; no alternate evaluator. Clipboard restored to its original empty state after correcting an empty-array write error. Browser-control reset cleared old variables but preserved tabs/logins; any future reset requires fresh source copy/hash, not template reconstruction.
+
+Current next/gates supersede the prior absent-fingerprint statement: preserve INSTALLED_GA4_HELPER_RELEASE_PACKET.md, installed_ga4_binding_readback.json, test/review/validation plan and installed_ga4_binding_checks.json. Fresh exact authority, source match at save, private before-buffer through after-state/rollback and permitted live receipt validation remain. Source binding alone does not resolve missing purchases. TA-14 and all existing public429/account/support/organic/control gates remain unchanged.
+
+September6 preapproval source recheck: full reviewed before/candidate hashes and inverse still match; Disconnect visible/Save0, no code edit. One exact helper Save/verification/original-restoration question is now pending; this is the current owner action. No answer inferred. The universal browser429 rationale is withdrawn after a normal MAIN PDP load, but no deliberate pixel event, consent proof or attributable receiver receipt exists. After an explicit reply, recheck source immediately before the exact authorized action; previous review/rollback and unknown purchase cause remain. Evidence normal_buyer_path_readback.json; anchor2026-09-06-ceo-turnaround-normal-buyer-path.
+
+September6 live repair: current owner instruction explicitly authorizes implementation. Fresh full source5aa1a3e6… matched bound before; exact6f552b8a… candidate inserted/read before Save and verified after reload. One Save, connected/Save0, one helper, exact inverse rollback unused. No secrets/fullcode persisted, clipboard restored. Independent execution review supports code deployment only. Source defect repaired; event receipt, original missing-order cause and profit still unknown. Evidence pixel_repair_execution.json, pixel_repair_execution_review.md, LIVE_PIXEL_AND_SUNSHINE_REPAIRS.md; anchor2026-09-06-ceo-turnaround-live-pixel-and-copy. Historical no-Save/pending-release notes are superseded only for this scope.
+
+### `PROB-2026-09-06-CART-RETURN-DISPLAY` — Cart display after returning from checkout
+
+- Priority: `P1`
+- Status: `ACTIVE_SOLVING`
+- Owner: root; Feed Ops bounded local source reviewer; Analytics independent evidence reviewer.
+- Surface: MAIN133290917985, Sunshine7545279512673, existing Chrome Test475224132, US/USD/English; TA-08; packet2026-09-05-ceo-turnaround.
+- Exact symptom: two test lines/46.98 were present before one normal checkout entry. Immediate Back showed cart0/empty drawer. One normal reload restored the same two lines/46.98. This is one observed display mismatch, not proven server-cart loss or bfcache causation.
+- Business impact: a returning shopper could believe their selected pieces were lost; actual abandonment or revenue impact UNKNOWN.
+- Definition of fixed: cause bound to exact MAIN source and reproducible conditions, then smallest authorized change with matching before/after Back and reload behavior; no false cart-empty state or loss of user items.
+- Attempt log: September6 mobile390x844 pair add PASS. Check out opened existing saved-payment Shop Pay; transitional DOM problem heading, blocking effect UNKNOWN. Returned immediately, no input/payment/order. Reopened drawer empty; reload restored pair. Removed only child and adult test lines; final empty after reload. Default target sizing restored after browser reset failed to clear target emulation.
+- Failed/ruled-out paths: do not infer completed checkout or persistent outage from interactive DOM heading; do not repeat saved-payment flow unchanged; no storage/cookie/session/network modification. Initial keyboard positioning attempts had no reliable effect; semantic wearer controls worked, so no shopper scroll defect inferred.
+- Source review COMPLETE: saved MAIN cart.js SHA2566050b1dbcf8b64de7aa81714d25cb32ea5e87e2be33b6d65a51db1ace4781fd4 matches the existing source receipt/manifest; current root cart.js matches neither MAIN nor draft. Existing refresh searches .cart-drawer__footer, while mapped markup uses .drawer__footer. Header and outer empty state are not reconciled there; no return hook in the nine mapped files. These dated source facts do not prove production cause. See cart_return_source_review.md.
+- Current next action: one local stale-empty/two-line simulation using exact saved MAIN sources, checking header, outer empty class, lines, footer and total together; a mapped updater restoring all state falsifies the premise. Do not repeat source inventory or the same saved-payment checkout.
+- Gates: no live theme/config/checkout repair without exact source, reviewed change and authority; no payment/contact entry, order, account switch, test purchase or customer data artifact.
+- Parallel work: pending exact pixel helper repair and supported Sunshine quantity-cost qualification; other Google/organic/Italian gates unchanged.
+- Evidence: sunshine_mobile_cart_readback.json, SUNSHINE_MOBILE_CART_AND_PIXEL_CLARIFICATION.md, independent reviews and sunshine_mobile_cart_checks.json.
+- September 9 evening recurrence: GA4 root observed the same empty-on-Back/fresh-navigation-restores symptom on MAIN133290917985 after a one-item Bamboo Garden Panda checkout start (00:37:43UTC, no input/payment). Fresh navigation restored variant44047096348769/qty1/USD39.99; exact item then removed, final MAIN reload cart0. This does not establish cache causation or loss. Existing reviewed cart correction remains in Merchant-owned combined UNPUBLISHED137881223265; its return-from-checkout behavior was not tested here. Existing repair/publication ownership and priority remain unchanged. Evidence: 2026-09-09-google-tag-migration/GA4_EXPERT_ACCEPTANCE_20260910.md; anchor2026-09-09-ga4-storefront-acceptance-verified.
+- AGENT_CONTINUITY_ANCHOR: 2026-09-06-ceo-turnaround-sunshine-mobile-cart
+
+
+### `PROB-2026-09-06-GUIDE-SEARCH-DESCRIPTION`
+
+- Status: SOLVED_READBACK_PASSED for primary+17metadata descriptions; business impact pending. Owner: root.
+- FourexactShopify mutations: primarydescription+17localizedvalues, then1Englishpunctuation correction+same17 re-registration. SeparateAPI/21MAINheads verified; prior title/body/URL/publication and all existingtranslationrecords preserved. English-onlyplan NOTRUN due locale fallback; revisedplan and punctuationaddendum independently reviewed. Rollbackunused.
+- InitialEnglishhead failed literal&#39; due doubleescaping. Replacedonly U+0027 withU+2019,151characters; exactfinalall21head checks pass, no normalization workaround. Before/failed/final receipts retained.
+- At the metadata-only release,17 bodies were outdated. The subsequent50-block shopping repair is now complete; its registration flags arefalse without certifying full parity. Remaining fit/sizing guidance is tracked separately in PROB-2026-09-06-GUIDE-LOCALIZED-FIT-GUIDANCE.
+- Evidence: pajamas_guide_meta_localized_execution.json/postreview; guide_localized_seo_checks.json; anchor 2026-09-06-ceo-turnaround-guide-seo-and-australia-economics.
+
+### `PROB-2026-09-06-GUIDE-LOCALIZED-SHOPPING-LINKS`
+
+- Status: SOLVED_READBACK_PASSED for the50 shopping blocks, business impact pending. Owner: root.
+- One exact17body registration removed34 emptyChristmas links/16 wrongnightgown links and consolidated17 family-pajamas detours. Separate API preserves all other bytes/fields; all17 native finalCTA clicks reach22-product localized pajamas collections. English and18 metadata summaries preserved.
+- Three phone layouts fit390px and exact keyboard journeys pass; pointer emulation onlyscrolled, no physical-tap certification. Content-only rollbackunused; body outdatedfalse now reflects registration, not full English parity.
+- Evidence: guide_localized_routes_execution.json/postreview; guide_localized_routes_checks.json; anchor 2026-09-06-ceo-turnaround-localized-guide-shopping-released.
+
+### `PROB-2026-09-06-GUIDE-LOCALIZED-FIT-GUIDANCE`
+
+- Status: ACTIVE_VERIFYING. Priority:P0 buyer guidance. Owner:root; Analytics independent verifier.
+- IMPLEMENTED/API VERIFIED: two exact registrations on Article559471886433's17 existing bodies changed51 fit/sizing fragments and34 availability/closing fragments. All85 captured old target blocks have been replaced with source-supported language; full translation parity is not claimed.
+- Fresh independent source guards, normal schema-validated operations and separate API after-state pass. All50 shopping blocks, English article/digests,36 other translation records and pl/ru/sv containers are preserved. Content rollbacks unused; registration flags already false.
+- Native verification is BLOCKED_MAC_LOCKED: one current getState result and one pending unlock request. Earlier native receipts do not prove the new text. No repeated browser/CDP approach or bypass.
+- Fixed criteria still open: affected normal buyer-route render and shopping-link checks after normal unlock, including narrow/RTL samples. No duplicate content registration is needed.
+- Evidence: guide_localized_fit_live_before/live_after/mutation_receipt/postreview; guide_localized_choice_live_before/live_after/mutation_receipt/preflight/postreview; GUIDE_LOCALIZED_BUYER_GUIDANCE_RELEASE.md. Anchor 2026-09-06-ceo-turnaround-localized-guide-buying-guidance.
+
+### `PROB-2026-09-06-FRENCH-PIN-LANGUAGE-ENTRY`
+
+- Current continuation: cua.getState reported the Mac locked and automatic unlock unsuccessful; no browser/CDP retry or bypass. One owner unlock request is pending. Rerouted to the independently executable exact guide fit correction through the connected Shopify API.
+
+- Status: OPEN_LANGUAGE_CONTEXT_UNVERIFIED. Owner: root.
+- Pin343118065387515780 saved/public/editor/offsite target retains exact /fr PDP and4UTMs. Actual title andnativeVisit tests landEnglish; direct sameURL remainsFrench. English results verified; browserprimary/requestlanguage not captured.
+- Fresh Shopify Preferences: automaticlanguage/region andhreflang enabled, Save disabled; nochange. Browser-language matching is documented and plausible, not a proven defect or cause. Do not disable it merely to make an unconditional assertion pass.
+- Next falsifier: one actual nativeVisit in verifiedFrench-primary/requestlanguage context, samePin/market/settings, record finalURL/lang/canonical/UTMs. Fix only reproduced mismatch and reverify; preserve successful content/publication.
+- Local code screen found no matching entry strip. Observed wrapper navigation fortrace returnedERR_BLOCKED_BY_CLIENT; no retry/bypass. No guessed country/locale parameter or newPin.
+- Evidence: vintage_french_pin_postreview.json; vintage_french_pin_language_preferences.json; vintage_french_pin_language_assessment.md; vintage_french_pin_execution.json. Anchor 2026-09-06-ceo-turnaround-french-pin-and-product-released.
+
+
+### `PROB-2026-09-06-RECENT-ORDER-PROFIT-QUALIFICATION`
+
+September13 evening scheduled read: The September 13 full Shopify read at 20:49:22–23 UTC covers [September 5 04:00, September 13 20:49:22) UTC and found the same 2 qualifying PAID, non-test, non-cancelled web orders, 4 units and USD86.45, with zero recorded tax or refunds. No new order creations appeared since the morning 08:42:09 cutoff, in the trailing 24 hours, in the completed September 12 New York day, or after the approximate GA4 migration cutoff. The 20:49:49–50 fulfillment read found no lifecycle change: Rainbow remains marked fulfilled with no recorded transit/delivery timestamp or carrier event; Mermaid remains unfulfilled. Pagination is complete. Actual delivered costs, settlement, attribution, CPA, ROAS, GA4 purchase receipt and retained profit remain UNKNOWN. Next full read: September 14 08:49:22 UTC, earlier only on a meaningful order/payment/refund/fulfillment or actual-cost signal. This advances the completed September 13 20:42:09 due check while preserving prior evidence. Source: order_fulfillment_checkpoint_20260913_2045.json; independent local review: order_fulfillment_checkpoint_20260913_evening_review.json. No sales increase or measured profit is established. Existing actual-cost access and settlement dependencies remain unresolved; no reclassification as profitable or complete.
+
+September 13 scheduled full read: The September 13 full Shopify read at 08:42:09–11 UTC found the same 2 qualifying PAID, non-test, non-cancelled web orders, 4 units and USD86.45, with zero recorded tax or refunds. There were no new orders since the September 12 20:41:48 full cutoff, in the trailing 24 hours, in the completed September 12 New York day, or after the approximate GA4 migration cutoff. The 08:42:52–54 fulfillment read found no lifecycle change: Rainbow remains marked fulfilled with no recorded transit/delivery timestamp or carrier event; Mermaid remains unfulfilled. Pagination is complete. Actual delivered costs, settlement, attribution, CPA, ROAS, GA4 purchase receipt and retained profit remain UNKNOWN. Next full read: September 13 20:42:09 UTC, earlier only on a meaningful order/payment/refund/fulfillment or actual-cost signal. This supersedes older 08:41:48 due references while preserving prior receipts and separate organic review dates. Source: order_fulfillment_checkpoint_20260913_0841.json; independent local review: order_fulfillment_checkpoint_20260913_morning_review.json. No new sales increase or measured profit follows. Anchor: 2026-09-13-ceo-morning-sales-and-fulfillment-reconciled. No provider, settlement, payment or account mutation.
+
+September12 20:41–20:42UTC current full read: same2paid/non-test/non-cancelled web orders,4units/USD86.45, no new creations or payment-status/refund/fulfillment/carrier-event change. Rainbow remains marked fulfilled; recorded company and SUCCESS status do not prove transit/delivery. Mermaid remains unfulfilled.28source checks and the independent source review retain exact count/currency/pagination limits and profit UNKNOWN. The first local receipt was minimized after review; per-order timestamps and variant associations remain transient. No provider sign-in, settlement-scope or unchanged cost-access retry. Next full sales readSeptember13 08:41:48UTC, earlier only on a meaningful signal; actual costs and settlement remain the closing evidence. Evidence: order_fulfillment_checkpoint_20260912_2041.json and order_fulfillment_checkpoint_20260912_evening_review.json. Anchor2026-09-12-ceo-evening-orders-and-fulfillment-reconciled.
+
+September11 existing-records Data pilot preserves this gate and TA-16 ownership. Rolling two-order/heartbeat snapshots were excluded from full30dayprofit joins; native-currency fees do not establish delivered/settled/acquisition costs. The next pilot evidence remains the existing fulfilled Rainbow basket's actual item/service/freight/duty and settlement charges, followed by attribution/return-maturity checks. No new live read, private mapping access or financial conclusion. Evidence: `2026-09-11-data-pilot/PILOT.md`; anchor `2026-09-11-read-only-data-pilot`.
+
+Current September9 11:31–11:35UTC: same2PAID/four units/USD86.45 and no new creations/refunds. Rainbow7229023846497 now FULFILLED, Mermaid7109117280353 still UNFULFILLED. One successful Rainbow fulfillment matches both exact variants/quantities, with YunExpress recorded but no transit/delivery/ETA timestamp and0events. One exact-reference invoice search in the connected mailbox returned0messages; no cost or carrier-acceptance conclusion. Independent tracking_inventory PASS;18source checks in current_sales_checkpoint_20260908_evening.json. Next: actual Rainbow Girl4–5/MotherM procurement/service/freight/duty charges and settlement basis through permitted read-only access. ACTIVE_SOLVING remains appropriate; no new paid qualification or financial action. Anchor2026-09-09-ceo-turnaround-rainbow-fulfillment-observed.
+
+Historical September8 02:50UTC Shopify refresh confirmed the same2 PAID/unfulfilled orders,4units/USD86.45 and zero tax/recorded refunds, with all four exact Rainbow/Mermaid variants matched and complete pagination. No new qualifying order creation after saved cutoff; actual delivered expenses, paid-versus-organic acquisition and retained profit remained unknown. Fifteen source/local checks passed; no financial/order/fulfillment action. See current_sales_checkpoint_20260908.json/.md. Do not treat zero recorded refund as future retained profit.
+
+- Status: ACTIVE_SOLVING. Priority:P1. Owner:root. This is a profit-qualification gap, not an inferred fulfillment failure.
+- Fresh Sept5 00:00NY to Sept6 23:35:57UTC query returned two PAID, non-test, uncancelled web orders, four units/USD86.45; complete page. Both are UNFULFILLED and zero refunded currently. Country-only readback confirms Belgium for the Dutch-entry basket and United States for the Spanish-entry basket; no full addresses were read. Public product IDs7229023846497 and7109117280353; customer/raw order identifiers omitted.
+- Shopify first/last visits are Google via /nl/collections/dresses and the Spanish orange-swim product route. No UTMs/known ad-click markers; paid/organic classification and attribution to current work remain unresolved. Both precede this turn's fit/choice updates; earlier guide changes precede the Spanish visit and are not ruled out by timing alone. Do not add to the frozen28-day baseline or treat as retained/net-profit proof.
+- Next: match actual fulfilled/procurement/shipping/payment-fee costs and current fulfillment state to these exact two baskets through existing authorized read-only sources after normal unlock; reconcile source classification before a purchase-focused paid test. No ordering, payment, fulfillment or financial mutation is authorized.
+- Closing test: actual basket cost and fee evidence, remaining return/cost reserve uncertainty, source mapping and30% target math; otherwise hold spend for the unqualified basket.
+- Evidence: recent_paid_order_signal_20260906.json; recent_paid_order_signal_review.json/md. Anchor 2026-09-06-ceo-turnaround-localized-guide-buying-guidance.
+
+
+- September6 evening progress, anchor 2026-09-06-ceo-turnaround-rainbow-titles-and-order-fees: exact four variants and recorded fees now verified. BE revenue USD54.47/EUR46.90 with EUR2.78 fees; US USD31.98 with USD1.42 capture fee, authorization excluded. All current unit costs match the rounded50% default-price template; actual delivery cost remains unverified. Settlement ledger returned a missing-scope GraphQL error despite isError:false; no account absence inferred and no access workaround attempted. Reuse recent_order_basket_review.json exact size/variant worklist for the normal read-only provider check after unlock. These are the same two orders, not new growth; no mixed-currency fee sum or all-in-cost double subtraction.
+
+### `PROB-2026-09-06-RAINBOW-TRUNCATED-TITLES`
+
+- Status: SOLVED_READBACK_PASSED for the original19 repaired heading scope. Priority:P1 shopper clarity. Owner:root; original Analytics review and current order_delta_1934 public-receipt verifier.
+- IMPLEMENTED/API VERIFIED: English and existing Dutch product titles now complete and avoid suggesting a bundled pair. Exactly two operations, one dedicated title update and one digest-bound Dutch registration; both separately read back.
+- Preserved all eight variant/price/image/body/status/handle/SEO values and91othertranslationvalues. Seventeen other title flags became outdated; text is unchanged. English-only and earlier “Dress Set” proposals were superseded before execution.
+- September9 23:51UTC rendered verification: normal public in-app browser passed English/Dutch plus17 repaired headings with exact target values, routes/canonicals and one visible product H1; English desktop and Finnish390px sample checked. Earlier native-account lock remains separate. No new mutation or traffic/ranking/sales claim. Evidence: public_title_readback_20260909.json and public_title_postreview_20260909.json; anchor2026-09-09-ceo-turnaround-public-titles-verified.
+- Evidence: rainbow_title_plan.json, live_before, english_after, both mutation receipts, live_after and independent reviews; anchor 2026-09-06-ceo-turnaround-rainbow-titles-and-order-fees.
+
+
+### `PROB-2026-09-06-META-ACCOUNT-QUALIFICATION`
+
+- Priority: P1. Status: OWNER_APPROVAL_REQUIRED for the exact cart QA; usable existing Page publisher access remains ACCESS_RECOVERY_REQUIRED. Owner: root; TA-18. Page and dataset identities are now partially qualified.
+- Surface: existing Facebook & Instagram Shopify channel and owner-controlled Meta Page/Ads/Commerce/Events surfaces.
+- Symptom/business impact: Shopify app2329312/publication29172400225/AppCatalog7834435681 and four candidate publications are verified, but native Page/business/ad-account/Commerce-catalog identities and current event delivery are unknown. Publishing or spending without correct targets is not valid.
+- Fixed criteria: read the actual connected native identities, current eligibility and diagnostics; verify exact Page/duplicate/product/clickable-link gates before the reviewed organic post. Paid launch remains a separate actual-cost/CPC/measurement stage.
+- Attempt: targeted local history recovers pixel547553035448852 only as March26 evidence, historical94 successful publication repairs and May6 Connected/Optimized status. No current Page ID/URL recovered; local social-link blanks do not prove no Page. Current source inventory supplies no installed Meta purchase implementation. No fabricated patch or blind reconnect.
+- Current September12 outcome: normal task-owned Shopify Meta access verifies Page942388912516328/public facebook.com/dresslikemommy, retained dataset547553035448852, both shopsActive and257Approved summary. Business422152645220050 is link-derived; catalog/ad-account and full language coverage remain unknown. Public session voice is another managed brand; exact Page Business Suite route is unavailable. No blanket absence of permissions or current Mac lock is inferred.
+- Buyer qualification: root US/en seven-child/seven-adult selectors, displayed21.99/24.99USD and one-T-shirt disclosure pass. The separate subagent browser failure is retained. Automatic approval review rejected Add this piece to bag as purchase staging without specific authorization;0effects and three empty-cart readbacks. One exact two-item temporary QA question is pending; do not retry or use an alternate cart mechanism.
+- Policy inconsistency: Meta displays Returns not accepted, while the Sunshine PDP and linked /pages/return-policy display conditional30-day returns. Qualify supported Meta rule scope and authoritative store policy before any correction; preserve exclusions and do not invent a return address. This is not a legal conclusion.
+- September12 16:00 source qualification: September12 16:00 wake: saved Shopify refund policy14695685 was read through the validated Admin API and confirms conditional30-day returns from delivery, preserving swimwear/intimates, Final Sale and gift-card exclusions. The existing default rule240386145 separately shows return rules OFF and cancellation rules OFF; disabled final-sale controls do not establish actual exclusion membership. Meta still displays Returns not accepted and passively requests a connected Facebook account. Its return-setting source, override and scope remain unknown; no Change, Connect or policy/rule write was attempted. Do not enable Shopify rules merely to test a possible sync. The two public refund-policy web opens failed without retry, so current public rendering of those routes remains unverified. Evidence: facebook_return_policy_source_20260912.json; source qualification is complete, corrective release remains gated. Native default-rule checkboxes both0; no override/window/fee membership inferred from disabled controls. Normal Meta account prompt was left untouched; the earlier account connection and cart questions were not repeated.
+- Gates/next: after changed normal publisher access, finish the one pending permitted cart QA, relevant duplicates and native composer/image/caption/link/disclosure checks, then publish the existing reviewed post once under saved September8 authorization and read back its public ID/URL/clickthrough. No new account, reconnect, tracking change, post or paid authority. No repeated blanket permission question.
+- Parallel lane: existing Google/Microsoft/Pinterest/organic/UX owners retain their current tasks and clocks. Parent One Owner Action remains owner publication of verified theme137888792673; full-sales read due20:24:58UTC.
+- Evidence: cross_platform_meta_inventory_20260907.json; cross_platform_tracking_source_20260907.json; cross_platform_facebook_post_20260907.json; cross_platform_restart_review_20260907.json. Anchor 2026-09-06-ceo-turnaround-four-platform-restart. Current: facebook_native_qualification_20260912.json, facebook_native_qualification_review_20260912.json (32checks), facebook_sunshine_buyer_readback_20260912.json (16independent preservation/interpretation checks); anchor2026-09-12-facebook-page-bound-and-publishing-gates-qualified. Earlier identity-unavailable observations above are preserved as historical evidence.
+
+
+### September 6 evening Google replacement decision and resumed access dependency
+
+2026-09-06-ceo-turnaround-google-replacement-decision: PROB-2026-09-05-GOOGLE-GROWTH-ACCOUNT-ACCESS remains unresolved; replacement setup is now a conditional route to usable access, not restoration of old reporting history. Five campaign/feed artifacts are hashed for reconstruction. PROB-2026-09-05-GROWTH-BROWSER-MAC-LOCKED has a second resumed tool-reported recurrence, with the existing desktop-state clarification pending. No repeated native attempt or new goal status update. Original support validation/review stop is preserved; the discovered official Ads account-access form is read-only research, not submission or a bypass. Evidence: GOOGLE_RECOVERY_OR_REBUILD_20260907.md; google_replacement_decision_20260907.json; google_rebuild_reusable_assets_20260907.json; google_replacement_review_20260907.json.
+
+
+### September 6 evening explicit new-account approval
+
+2026-09-06-ceo-turnaround-new-google-account-authorized: The owner explicitly approved: “Yes, do the new account with new advertising history”. Create one new Google Ads operating account without a campaign under the intended existing owner identity/manager7001079966 after normal native target verification. Skip the prior optional15minute original-account recovery loop; do not ask for account-creation approval again. Merchant migration remains a separate step. Preserve GA4 property330266838 and existing work. Billing/payment/MFA/owner verification and paid launch remain distinct. New Ads customer ID is null: the fresh computer-control inventory again reports Mac locked before any account-creation screen. The desktop-state clarification remains pending; no external write or new account occurred. Third consecutive resumed occurrence: existing goal marked blocked again, not complete; existing four-hour heartbeat unchanged. Evidence: google_new_account_authorization_20260907.json.
+
+
+### September 6 remaining Rainbow language titles — scoped resolution
+
+September9 outcome supersedes the rendered-heading gap below: all17 further headings and the saved English/Dutch headings are publicly VERIFIED with independent review. TA-17 is closed for that19-heading scope. Earlier mutation/preservation and access history remains unchanged; explicit SEO and absent ru/sv rows are excluded. Evidence: public_title_readback_20260909.json and public_title_postreview_20260909.json.
+
+PROB-2026-09-06-RAINBOW-TRUNCATED-TITLES: remaining17existing title values SOLVED_SCOPED_API_READBACK; affected native headings not yet verified. IMPLEMENTED and API VERIFIED: one Shopify translationsRegister corrected17 existing product-title translations on ACTIVE Rainbow7229023846497. The source had set/bundle framing, literal truncation, and mixed-language text. Exact reviewed titles now identify matching rainbow maxi/long dresses for mother and daughter. Seventeen locale mappings equal the candidates with outdated:false; all75 other translation rows/flags, source content and every returned product field remain unchanged. English/Dutch, absent ru/sv title rows and explicit SEO were preserved. One mutation, zero userErrors, unused exact value rollback. Do not reapply.
+
+This is a listing/buyer-clarity repair, not measured traffic, sales, rankings or profit. No new Ads account, campaign or organic post was created this turn. Prior8-order/USD734.99 baseline and separate2-order/USD86.45 cohort remain unchanged; actual profit is unresolved. The existing approval to create a new Google Ads account remains valid without a recovery loop or repeated approval. Native rendering/publication still cannot run: normal Finder app control also reported Mac locked and took1357.31seconds; read-only ioreg returned unavailable, not an unlocked-state finding. Do not repeat unchanged CUA probes or reset helpers/permissions without new evidence. The existing desktop-state clarification is the owner dependency. Goal status remains blocked/notcomplete and the existing4h heartbeat is unchanged; the newly confirmed source defect allowed this independent API repair.
+
+Evidence: rainbow_remaining_titles_execution_20260907.json; rainbow_remaining_titles_plan_20260907.json; rainbow_remaining_titles_review_20260907.json; rainbow_remaining_titles_postreview_20260907.json. Anchor `2026-09-06-ceo-turnaround-rainbow-language-titles`.
+
+
+### September8 Google cutover/access and goal-transfer attempt
+
+Anchor `2026-09-08-ceo-turnaround-google-cutover-goal-transfer`.
+
+September8 current-task evidence supersedes the earlier create-another-account/unlock-next assumptions. Two authenticated Google notices verify Ads4683483813 linked at17:19:59UTC to Shopify Google Channel App manager7687093497, and Merchant5849532286 lost the dresslikemommy.com claim at17:26:47UTC. Winning Merchant ID is absent; later activity memory identifies5849297181 only as an unverified candidate. Forwarded notices and service principals do not establish direct human Admin or current links. Exclude unrelated Merchant513542500. Do not create further duplicates or repeat the obsolete recovery loop.
+
+Current structured Shopify source identifies shop15571635 and MAIN133290917985; layout and analytics.js have no direct Google sender/destination, so neither is a qualified removal target. Preserve GA4330266838/stream4030905738/G-N4EQNK0MMB, historical Ads reporting links, the completed pixel111181921 helper repair and all non-Google integrations. AW-18164235932 is still unmapped. The current owner requests connection plus selective obsolete-tracking retirement; exact targets/receipt remain unverified. Prefer the supported Google & YouTube app, prove purchase/value/currency/consent/deduplication, then disconnect only superseded Google emitters. Ads/GA4 can proceed independently of Merchant when access permits.
+
+Runtime goal is now ACTIVE in replacement task01a08223-036e-7fa3-8961-ecd297163fb5. Existing heartbeat dress-like-mommy-profitable-growth was moved here and read back ACTIVE with its original four-hour interval/prompt. No duplicate schedule. Goal activation is not sales or tracking completion. Full-paid authoritative control remains unchanged.
+
+Current execution gates: prior Chrome inspection received a forbidden-URL Computer Use policy stop (URL not returned); no current Mac-lock conclusion or bypass. Shopify appInstallations access was denied and no custom-pixel source/status API exists in the exposed schema. No live connection, claim transfer, tracking removal, paid launch or new purchase measurement occurred. Evidence: GOOGLE_CONNECTION_AND_TRACKING_CUTOVER_20260908.md, GOOGLE_NEW_ACCOUNT_NOTICE_CHECK_20260908.md and GOOGLE_TRACKING_INVENTORY_20260908.md. Owner need not reconstruct IDs or repeat blanket integration approval; the next dependency is permitted authenticated current settings/direct-role/claim access.
+
+PROB-2026-09-05-GOOGLE-GROWTH-ACCOUNT-ACCESS remains ACTIVE_SOLVING; closure requires direct/current correct-account settings and resulting links. The previous PROB-2026-09-05-GROWTH-BROWSER-MAC-LOCKED history is not proof of the current URL-policy restriction. No unchanged native retry or security-setting change. Tracking helper problem remains scoped-repaired; receipt/purchase parity remains open.
+
+### PROB-2026-09-08-LEGACY-GOOGLE-TRACKING-RUNBOOK
+
+Priority:P1. Status:SOLVED_READBACK_PASSED (local documentation scope). Stale pixels/README.md and docs/tracking-setup.md asserted a custom-pixel-only route and promoted old installation/Primary/Paused recipes. Current official Google guidance and missing-receiver evidence do not support those assertions. Both entrypoints and their headings are now ARCHIVE_REFERENCE; link the reviewed current cutover and retain source scripts/history. Closure check: archive labels/current links, narrow diff, unchanged source hashes and paid control. This does not resolve live tracking.
+
+### `PROB-2026-09-08-CONTEXT-RECENCY`
+
+Priority:P1. Status:SOLVED_READBACK_PASSED (local retrieval scope). Owner:root current replacement task. Surface: existing compile_task_context.py explicit-entity anchor selection.
+Symptom: three GA4-only330266838 queries select old cutover or purchase-capture records despite newer same-entity cleanup state; old cutover says exclude513542500, contradicting the current selected Merchant. Two combined-entity holdouts already pass. Business impact: fresh sessions can resurrect obsolete targets or repeat completed work despite strict continuity passing.
+Definition of fixed: all3 frozen queries recover latest relevant same-entity Merchant cleanup record; both holdouts and existing missing-entity, ambiguity, exact-authority and metadata-conflict tests remain intact.
+Attempt: read-only explorer reproduced ranking defect; root froze3failures/2holds and source hashes before editing. Ordinary prose score currently outranks recency for the same required entity. Alternative global-latest selection rejected because unrelated tasks must remain excluded.
+Outcome: narrow 11-line select_anchor repair chooses recency within the same complete explicitly required hit set after existing scope/ambiguity checks. Three frozen failures fixed; two holdouts preserved on the unchanged worklog; full focused suite passes. Independent microsoft_growth reproduced both compiler versions, verified all hashes and nine unchanged authority fields, and returned PASS (DID_NOT_BUILD_OR_EXECUTE). Additional tests preserve partial-scope exclusion, distinct hit sets, ambiguity, implicit semantics and authority-contradiction failure. No live authority, external action or second harness. Evidence context_recency_regression_20260908.json; original2files preserved in private temp. Recency is append order, and implicit selection remains unchanged. Analytics/GSC account work remains independently gated on desktop status clarification; this is not a tracking or growth-result closure.
+
+## PROB-2026-09-14-US-ES-LISTING-QUALIFICATION
+
+- September14 19:52 verified repair update: At September 14 19:51:32UTC, the sole Merchant owner saved exactly 25 global Spanish translation fields across 10 products. The complete 19:52:11UTC after-read and independent review verify every approved value and cleared stale flag, with 30 untargeted Spanish fields and 66 English source fields/digests unchanged. Golden Daisy and Red Heart corrected descriptions were observed publicly. Tropical7227378925665/body_html remains held for questionable child-weight source data. This closes the exact 25-field repair; earlier 18:04 US/es stale-field counts are dated pre-repair evidence, not a fresh post-repair feed qualification. Canada and UK complete sources each contain 238 parents/4,925 variants/4,741 candidates, with 162 existing-held and 22 unavailable variants. These are source candidates, not submitted or approved country offers. No Spanish/CA/GB feed was created. Published numeric-variant acceptance, supported transit facts and other locale/source issues remain open. The existing owner Admin publication of reviewed theme137888792673 remains first; retain MAIN133290917985 rollback and the UX claim. Paid authority, sales totals and every measurement clock are unchanged. Source: merchant_es25_source_acceptance_20260914_2025.json; es_translation_repair_1925/execution_handoff.json and independent_after_review.json; ca_gb_qualification_1917/source_and_buyer_qualification.json. Anchor 2026-09-14-ceo-spanish-25-field-live-repair-accepted.
+
+- Status: BLOCKED release; source and exact draft qualification VERIFIED_WITH_LIMITS.
+- Owner: Merchant01a08706 pipeline/native; UX01a088c3 theme/source; parent integration.
+- US/es qualification reconciles all4,925variants:4,552potential offers/221parents,189available required-stale offers/11parents,162existing held offers/sixparents and22unavailable. Global Spanish translations exist even though all238market-filtered arrays were empty. The13stale fields concern required title/body only; raw data has28outdated records across13parents, and freshness flags do not certify linguistic quality. No executable TSV or new Spanish source was produced.
+- The two failing MAIN US/es/USD variant links now independently pass preselection in the existing UNPUBLISHED137888792673:39756755861601 atUSD17.99 and41883237220449 atUSD22.99. No manual selection was required; both Add controls were ready. Six source bindings match the existing reviewed release. No new correction/upload/theme is needed. These are desktop preview/Add-readiness results, not new cart, mobile, checkout or published-MAIN acceptance. Owner Admin publication and exact subsequent live verification remain the release dependency.
+- Merchant01a08706 retains sole pipeline/account ownership under the September14 renewed daily mandate. Its local multilingual collector/generator and source-clock repair passed47tests; independent round1failed cached timestamps, then round2passed with limits after correction. No business deployment or new Spanish TSV occurred. Parent retained its independently reviewed local fallback patch only as ARCHIVE_REFERENCE; it was not applied. No competing runtime change, stale journal replay or relaxation of landing-context/source-integrity gates is authorized by this source acceptance. Preserve completed English US/AU receipts, all six holds, separate delivery/return-truth gates and source freshness bySeptember15 13:16:10UTC before the unchangedSeptember16 13:16:10.466UTC host expiry.
+- Next: use the completed sole-owner local implementation with exact current schema/scope/journal/English-preservation evidence and translation qualification; retain the published-context gate before a new Spanish source.
+- Evidence: merchant_us_spanish_parent_acceptance_20260914_1658.json.
+
+### September14 19:00UTC update — PROB-2026-09-06-RECENT-ORDER-PROFIT-QUALIFICATION
+
+At September14 19:00:17–18UTC, one full Shopify read returned4 all-status orders and3 qualifying PAID/non-test/noncancelled web orders:8 current units/USD207.25. One new Navy Floral order adds2units/USD40.82. The earlier Mermaid order is now cancelled with0current units and current totalUSD0.00, while financial status remainsPAID and recorded refunds remain0.00. Do not infer a refund, settlement, reason or retained cash from these flags. The qualifying count and units stay3/8; current order value risesUSD8.84 from the07:04:53 cohort. Historical original2orders/USD86.45 is preserved; that original cohort now has1qualifying order/2units/USD54.47. Four exact fulfillment joins at19:01:24–25UTC are complete. Rainbow remains marked fulfilled without carrier transit/delivery proof; the other current baskets are unfulfilled. The new-order signal justified this slightly early full read; next full read is September15 07:00:17UTC, earlier only on meaningful creation/lifecycle/cost evidence. Prior Tropical Palm GA4 transaction/four-item report proof is preserved separately; Navy Floral receiver, all paid attribution, actual costs and retained profit remain unqualified. No financial, order or fulfillment action was made. The cancellation reason and external refund/settlement were not queried or inferred. Existing inaccessible-provider/cost gates are preserved; no fresh generic question.
+
+### September14 channel operation update — PROB-2026-09-11-X-AUTOMATION-CHANNEL
+
+X owner renewed the first-profitable-attributed-sale objective, then correctly marked the business goalBLOCKED after the same supported API/publisher prerequisite recurred across3goal turns. Existing09:00/16:00 daily heartbeat remainsACTIVE. Separate source-bound attribution inspection found2eligible recent orders:one Direct visit without UTM/referrer and one ready empty journey; neither supports X credit. Its calendar-report amounts are not the parent full-sales cohort. R002 publication is still unverified. R011 is one reviewed LOCAL image option, not another queue item or release; at most one R010/R011 after justified evidence/cadence. Preserve image-origin/disclosure/preview, the one pending connection question, USD0/120minutes-per-week limits and September19/26/October12 checkpoints. Known effort66.79minutes excludes prior accounting gaps and does not certify the weekly cap.
+
+Sources: growth_source_acceptance_20260914_1900_v2.json, merchant_us_spanish_parent_acceptance_20260914_1658.json, order_fulfillment_checkpoint_20260914_1900_v2.json and independent reviews in the existing CEO packet. Peer source receipts remain in their owning packets; no channel sales/profit success is inferred from a schedule or reviewed preparation.
+
+Late source qualification: The Merchant Countries view betweenSeptember14 18:42:50 and19:08:51UTC now shows US4,741/4,741 and AU4,741/4,741 approved/Complete. Free listings are Active/On and the domain is Verified/Claimed. This is current native aggregate approval; serving, impressions, acquired sales and profit are not proved. Wallet declarations are Pending review and Store Quality hasNo score. Source-byte/six-hold/production-config preservation is separate from the deliberately changed local collector code. Canada5–6 and GB9–15days are configured delivery values, not validated actual transit; the current policy tables do not resolve that truth gate. The separate Ads19:10–19:15UTC receiver check for account6509972886/Purchase7760272273 remains Awaiting conversions with Today0allconversions/0value. This does not prove failure to ingest a non-ad-attributed purchase. No Shopify/GA4 replay, Save, identity attempt, campaign/measurement/paid write or editor rebuild occurred; the current source owner keeps the normal identity/Save gate. Late source: Merchant recovery_20260914/autonomous_daily_1841/execution_handoff.json and artifact_freeze.json; delivery_readback_1914.json; Ads current_campaign_repair/RECEIVER_SIGNAL_20260914_1910.json. Independent saved-source review: merchant_ads_late_source_independent_review_20260914_1900.json.

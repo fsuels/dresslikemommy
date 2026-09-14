@@ -1,0 +1,140 @@
+{
+  "schema": "dlm.us_es_shopify_translation_semantics_review.v1",
+  "reviewed_at_utc": "2026-09-14T18:11:47.908Z",
+  "reviewer": "/root/claim_lookup_cause",
+  "confidence": "H_FOR_DOCUMENTATION_AND_NARROW_CODE_READ__LIVE_CAUSE_NOT_INDEPENDENTLY_REPLAYED",
+  "verdict": "DOCUMENTED_SCOPE_MISMATCH_EXPLAINS_POSSIBLE_EMPTY_OVERRIDE_RESULT__OWNER_GLOBAL_READ_PENDING",
+  "scope": "Primary Shopify documentation plus only existing queries.js and generator.js. No GraphQL operation authored, validated or executed; no source builder, candidate or store data read.",
+  "sources": [
+    {
+      "id": "product_field",
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/product",
+      "title": "Product — translations",
+      "observed_api_version": "2026-07 latest",
+      "section": "translations / locale / marketId"
+    },
+    {
+      "id": "product_example",
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/queries/product",
+      "title": "product — Retrieve translations and localizations of a product's title and description",
+      "observed_api_version": "2026-07 latest",
+      "section": "Example separating translations(locale) from market-scoped localizations"
+    },
+    {
+      "id": "translatable_resource",
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/queries/translatableresource",
+      "title": "translatableResource",
+      "observed_api_version": "2026-07 latest",
+      "section": "TranslatableResource.translatableContent / translations / outdated"
+    },
+    {
+      "id": "translation",
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/Translation",
+      "title": "Translation",
+      "observed_api_version": "2026-07 latest",
+      "section": "market / outdated / value"
+    },
+    {
+      "id": "markets_fallback",
+      "url": "https://shopify.dev/docs/apps/build/markets",
+      "title": "About Shopify Markets",
+      "section": "Translations and localized content / Building an experience for customers"
+    }
+  ],
+  "documented_facts": [
+    {
+      "fact": "Product.translations returns published translations. locale is required; marketId is an optional filter for content specific to that market.",
+      "sources": [
+        "product_field"
+      ]
+    },
+    {
+      "fact": "Shopify's Product query example retrieves per-language translations without marketId and separately retrieves per-language/per-market localizations. It describes surfaced content falling back from an absent localization to the language translation, then base-language content.",
+      "sources": [
+        "product_example"
+      ]
+    },
+    {
+      "fact": "Translation.market=null identifies a translation available across all markets. Each record has its own key, locale, value and outdated state.",
+      "sources": [
+        "translation"
+      ]
+    },
+    {
+      "fact": "TranslatableResource provides original translatable content/digests and existing translations. Its translations include unpublished locales and can filter locale, marketId and outdated. The query requires read_translations. Presence here alone does not certify publication or actual storefront use.",
+      "sources": [
+        "translatable_resource"
+      ]
+    },
+    {
+      "fact": "outdated means original source content changed after the translation was updated. The reviewed reference does not state that an outdated market override is automatically ignored, deleted, or replaced with the global value at display time.",
+      "sources": [
+        "translation"
+      ]
+    },
+    {
+      "fact": "Liquid and Storefront API automatically resolve buyer-facing localization fallback. The Markets example first tries the requested locale for the market, then that locale globally, then market-default-language localized/global content, and finally shop-primary content. The exact store configuration and buyer context matter.",
+      "sources": [
+        "markets_fallback"
+      ]
+    }
+  ],
+  "absence_and_null_qualification": {
+    "documented": "A market filter requests that market's translation records; it is not documented as returning an already merged storefront fallback result.",
+    "supported_inference": "A successful empty market-scoped published array is consistent with no matching published overrides. It does not establish absence of global Spanish translations or absence of Spanish buyer-facing content.",
+    "explicit_null_limit": "The documented global-query example omits marketId. Because marketId is nullable, the owner's explicit-null probe is a reasonable diagnostic, but its returned scope/content remains owner-observed evidence. A returned null Translation.market identifies global scope; this review did not run or certify the explicit-null request.",
+    "not_proved": "The reported public /es rendering does not prove complete global title/body/handle coverage for all238 products, locale publication for every relevant resource, non-outdated content, or exact buyer-context equivalence."
+  },
+  "local_code_evidence": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/queries.js",
+      "sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+      "bytes": 4226,
+      "lines": [
+        31,
+        32,
+        45
+      ],
+      "observation": "PRODUCTS_QUERY declares nullable $marketId and requests only translations(locale:$locale,marketId:$marketId), with key/value/locale/outdated. It does not separately request global and market arrays or returned market identity."
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js",
+      "sha256": "7eed96af11540a1b455b006fc04ccf51c268d8b674e35696a1f32a8a24957d84",
+      "bytes": 19653,
+      "lines": [
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115
+      ],
+      "observation": "For a non-base locale, localizedContent builds one map from the supplied translation array after filtering out outdated records. It requires current title and body_html, rejects a stale translated handle, and otherwise permits the base handle. An empty market-only array therefore triggers missing_or_stale_translation even if separate global translations exist."
+    }
+  ],
+  "safe_implementation_assumptions_not_shopify_guarantees": [
+    "Keep global and applicable market records distinguishable by field and provenance before deriving a feed value. A blanket switch to global-only data could ignore valid market overrides.",
+    "An outdated override is present-but-needs-review, not the same as absent. Do not filter it away and silently select a global value while claiming storefront equivalence. A conservative feed freshness failure/qualification gate is a local policy, not documented Shopify display behavior.",
+    "Outdated=false is not a translation-quality or buyer-path certification. Missing, null and empty values need explicit qualification rather than an invented fallback rule.",
+    "Keep US country, currency and publication context separate from the translation-scope diagnostic. Shopify's fallback into another language is not permission to emit English content as a Spanish Google feed."
+  ],
+  "reported_live_context": {
+    "source": "Parent report only; not replayed or independently read",
+    "statement": "Merchant's US/es collector returned238 products with no market-scoped translations while a public /es route rendered Spanish. Existing Merchant owner is testing global scope with marketId:null.",
+    "causal_status": "The documented scope distinction and exact local code support a narrow collector-input mismatch hypothesis. Full live global coverage, stale overrides and exact field resolution remain pending owner evidence."
+  },
+  "next_step": "Reuse the existing owner's global-read result and preserve the market-scoped result as separate evidence. Qualify title/body/handle provenance and outdated overrides against the actual Spanish US buyer context before any independent candidate review; no duplicate API probe is requested.",
+  "independence": {
+    "reviewer_did_not_build_or_execute": true,
+    "later_source_review_remains_independent_of_builder": true,
+    "account_api_browser_credentials_source_snapshot_calls": 0,
+    "candidate_builds": 0,
+    "code_or_canonical_edits": 0,
+    "agents_spawned": 0,
+    "owned_output": "/private/tmp/dlm-us-es-shopify-translation-semantics-20260914.json",
+    "release_authority_added": "NONE"
+  },
+  "documentation_access_note": "Version-specific page opens returned web-tool errors; the official latest references loaded successfully and displayed2026-07. No failed page response was treated as schema evidence. Only Shopify documentation, not community posts, supports the conclusions.",
+  "skill_scope_note": "Shopify Admin guidance was read. The current task is documentation-only and explicitly excludes code building or API execution, so no operation or validation harness was generated."
+}

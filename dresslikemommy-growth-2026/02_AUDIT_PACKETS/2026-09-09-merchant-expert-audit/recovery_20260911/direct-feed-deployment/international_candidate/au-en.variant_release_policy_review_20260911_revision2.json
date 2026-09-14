@@ -1,0 +1,167 @@
+{
+  "schema": "dlm.au_variant_release_policy_review.v2",
+  "reviewed_at_utc": "2026-09-11T20:23:15.990145+00:00",
+  "reviewer": "/root/together_heart_source",
+  "verdict": "HOLD__EXACT_PILOT_BUYER_UI_AND_PRICE_IDENTIFICATION_NOT_ESTABLISHED",
+  "scope": "Recovered initial AU DOM plus corrected cart-method provenance for one existing candidate. No rebuild, external request or whole-cohort re-review.",
+  "confidence": {
+    "historical_DOM_and_saved_source_feed_binding": "H",
+    "visible_selector_and_Add_success": "NOT_VERIFIED",
+    "Google_eligibility": "NOT_VERIFIED"
+  },
+  "original_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.variant_release_policy_review_20260911.json",
+    "sha256": "7582becd697a7eb0966dd9aa6d3390e0b9a6063f9bd7e665c9796e185785f11d",
+    "preserved_byte_identical": true,
+    "correction": "The original manual-selector success claim is explicitly withdrawn. Exact-variant WebMCP cart/checkout acceptance does not establish buyer use of the visible selector and Add button. Original remains dated history; this revision supersedes that fact."
+  },
+  "new_provenance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-initial-rendered-saved-session-evidence_20260911.txt",
+    "observed_at_utc": "2026-09-11T16:16:17.799Z",
+    "method": "Merchant recovered a filtered historical accessibility snapshot from its same-task history; no new storefront request.",
+    "cart_method_correction": "Trailing owner correction, also independently forwarded by root, identifies supported WebMCP update_cart with the exact numeric variant. It supersedes the file introduction wording about manual cart/checkout.",
+    "independence_limit": "Reviewer read the recovered record and precision correction, not the complete unfiltered original call history. No browser action was replayed.",
+    "input_drift": "A prewrite guard caught the owner adding the cart-method correction: initial record SHA e607f8bb399204c3f58b3347a3ff55a7e3662194cd5083039af692fbe1e6f461 became 26bfcf8cfe6b2843b615a9171aeab4a5810040a60ef97edafbf27d9847a6582e. No report was written until the revised input was read."
+  },
+  "diagnosed_offer_not_qualified_for_release": {
+    "id": "shopify_AU_6718945034337_39756755861601",
+    "link": "https://www.dresslikemommy.com/products/mom-child-matching-two-piece-swimsuit?country=AU&currency=AUD&variant=39756755861601",
+    "item_group_id": "shopify_AU_6718945034337",
+    "size": "Child 2-3 years",
+    "color": "Black",
+    "price": "26.00 AUD",
+    "availability": "in_stock",
+    "paid_exclusion": "Shopping_ads",
+    "feed_sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+    "source_completed_at_utc": "2026-09-11T18:53:09.071Z",
+    "source_status": "ACTIVE",
+    "source_availableForSale": true,
+    "source_selectedOptions": [
+      {
+        "name": "Size",
+        "value": "Child 2-3 years"
+      },
+      {
+        "name": "Color",
+        "value": "Black"
+      }
+    ],
+    "source_contextualPricing": {
+      "price": {
+        "amount": "26.0",
+        "currencyCode": "AUD"
+      }
+    },
+    "limit": "Current saved-file binding, not a new live Shopify read or proof of owned inventory."
+  },
+  "initial_rendered_evidence": {
+    "known": [
+      "Australia | AUD $",
+      "Mom & Child Matching Two Piece Swimsuit",
+      "$26.00 AUD - $34.00 AUD",
+      "Child button",
+      "Black button",
+      "Cart 0 items"
+    ],
+    "unresolved_in_filtered_capture": [
+      "Exact Child 2-3 years size state",
+      "Selected or pressed status of the Child/Black controls",
+      "Explicit visible association of 26.00 AUD with Child 2-3 years / Black",
+      "Visible Add control state and successful buyer operation"
+    ],
+    "filter_limit": "Unobserved picker fields may have been removed by filtering; their absence from this excerpt does not prove absence from the actual page.",
+    "MAIN_binding": "Existing international_landing_checkout_receipt.json supplies MAIN context after the earlier draft-cookie interval; recovered text is not a fresh theme-role readback."
+  },
+  "cart_checkout_evidence": {
+    "receipt": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_landing_checkout_receipt.json",
+    "receipt_at_utc": "2026-09-11T16:23:02.636274+00:00",
+    "variant": "39756755861601",
+    "quantity": 1,
+    "price": "26.00 AUD",
+    "country": "AU",
+    "acceptance": "Saved exact cart and checkout currency/price passed; cleanup verified; no order or payment.",
+    "method": "WebMCP update_cart by numeric variant",
+    "manual_buyer_selector_Add_proof": false,
+    "window_limit": "16:16:17.799 initial snapshot to 16:23:02.636274 consolidated receipt; not exact individual action timestamps."
+  },
+  "official_requirements": [
+    {
+      "url": "https://support.google.com/merchants/answer/4752265?hl=en",
+      "section": "Minimum requirements: Show your product clearly",
+      "exact_excerpt": "additional prices should be clearly differentiable from the advertised base price",
+      "application": "Matching product/variant and price must be clear. A 26-34 AUD range alone proves neither compliance nor violation; this filtered record leaves the exact variant-price association unresolved."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/6324371?hl=en",
+      "section": "Minimum requirements",
+      "paraphrase": "Present variants/prices straightforwardly and match landing/checkout amount and currency. Source/JSON-LD/cart agreement supports price accuracy but does not settle visible variant identification."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/6324448?hl=en",
+      "section": "Minimum requirements",
+      "paraphrase": "Available products need a functional buying control and consistent availability. Numeric cart-tool acceptance does not test that control."
+    },
+    {
+      "url": "https://support.google.com/merchants/answer/6324416?hl=en",
+      "section": "Best practices",
+      "paraphrase": "Correct default variant selection is a best practice. Failed preselection alone is not the basis of this hold."
+    }
+  ],
+  "official_source_freshness": "Primary Google documentation read earlier in this same 2026-09-11 decision review; no additional network call in revision 2.",
+  "decision": {
+    "new_positive_evidence": "An actual historical rendered AU range and Child/Black buttons are now known. Server/cart/checkout accepted the exact 26 AUD variant.",
+    "remaining_decisive_gap": "Exact visible variant-price identification and buyer operation of the selector/Add control. The corrected WebMCP provenance removes the prior claimed manual-path proof.",
+    "eligible_pilot_offer": null,
+    "upload_after_state_packet": "NOT_ISSUED because no eligible pilot is established.",
+    "all_4923_eligibility": "NOT_ESTABLISHED; this one-offer review cannot establish it.",
+    "policy_violation": "NOT_PROVEN by the filtered evidence; the verdict concerns sufficiency to clear release."
+  },
+  "single_next_action": {
+    "owner": "Root coordinating exclusively with current UX owner",
+    "action": "After actual documented throttle recovery, determine whether one scoped ordinary-buyer test is permitted for the exact AU link. Verify visible exact size/color/price, operate the visible selector and Add control, read back exact cart variant/AUD price, and clean up.",
+    "limits": "No reviewer or Merchant public retry, publication workaround, new draft or production mutation. V7 publication is not required merely because of Google policy."
+  },
+  "authority": "Existing explicit AU free-listing submission authorization remains with sole Merchant owner. This review supplies no new production, theme or paid authority.",
+  "required_later_release_readback": "Only after buyer sufficiency clears, Merchant must separately verify the actual Google AU source/file receipt, processing and effective price/eligibility. No eligible offer or after-upload success is claimed now.",
+  "checks": {
+    "original_review_digest_preserved": true,
+    "corrected_initial_record_digest_read": true,
+    "exact_feed_digest_matches": true,
+    "one_exact_feed_offer_found": true,
+    "saved_source_options_and_AUD_price_match": true,
+    "manual_selector_claim_withdrawn": true,
+    "no_blanket_range_violation_claim": true,
+    "no_eligible_pilot_or_cohort_claim": true,
+    "only_revision_JSON_written": true
+  },
+  "input_manifest": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.variant_release_policy_review_20260911.json": {
+      "sha256": "7582becd697a7eb0966dd9aa6d3390e0b9a6063f9bd7e665c9796e185785f11d",
+      "bytes": 21969
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-initial-rendered-saved-session-evidence_20260911.txt": {
+      "sha256": "26bfcf8cfe6b2843b615a9171aeab4a5810040a60ef97edafbf27d9847a6582e",
+      "bytes": 1829
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.tsv": {
+      "sha256": "d599bb88a4c2b81653148f2cbe3d7b084411cb6a2358a9be30224802f818a843",
+      "bytes": 17284594
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_candidate/au-en.snapshot.json": {
+      "sha256": "bf2aadd8cf9cefdb387b8fe6b704420492b526905681182cd6ac08218b0cab4b",
+      "bytes": 6786947
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/international_landing_checkout_receipt.json": {
+      "sha256": "d25af448898e7352069d26d49525751502ca20d562670af91a56b8f935fda7dd",
+      "bytes": 4638
+    }
+  },
+  "operations": {
+    "write_target": "au-en.variant_release_policy_review_20260911_revision2.json",
+    "other_file_edits": 0,
+    "public_requests": 0,
+    "browser_UI_calls": 0,
+    "account_API_calls": 0,
+    "Shopify_mutations": 0
+  }
+}

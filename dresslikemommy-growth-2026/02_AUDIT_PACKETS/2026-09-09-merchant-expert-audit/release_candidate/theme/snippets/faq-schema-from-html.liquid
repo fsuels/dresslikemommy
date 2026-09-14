@@ -1,0 +1,45 @@
+{%- liquid
+  assign faq_source_content = content | default: '' | append: ''
+  assign faq_items = ''
+  assign faq_separator = ''
+  assign heading_tags = 'h2|h3' | split: '|'
+-%}
+
+{%- if faq_source_content != blank -%}
+  {%- for heading_tag in heading_tags -%}
+    {%- assign start_delimiter = '<' | append: heading_tag -%}
+    {%- assign end_delimiter = '</' | append: heading_tag | append: '>' -%}
+    {%- assign heading_segments = faq_source_content | split: start_delimiter -%}
+
+    {%- for segment in heading_segments -%}
+      {%- if forloop.first -%}{% continue %}{%- endif -%}
+
+      {%- assign heading_html = segment | split: end_delimiter | first -%}
+      {%- assign heading_text = heading_html | split: '>' | last | strip_html | strip -%}
+      {%- assign answer_raw = segment | split: end_delimiter | last -%}
+      {%- assign answer_text = answer_raw | split: '<h2' | first | split: '<h3' | first | strip_html | strip | replace: '&nbsp;', ' ' | replace: '  ', ' ' | truncatewords: 80 -%}
+
+      {%- if heading_text contains '?' and answer_text != blank -%}
+        {%- capture faq_items -%}{{ faq_items }}{{ faq_separator }}{
+          "@type": "Question",
+          "name": {{ heading_text | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ answer_text | json }}
+          }
+        }{%- endcapture -%}
+        {%- assign faq_separator = ',' -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if faq_items != blank -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{{ faq_items }}]
+  }
+  </script>
+{%- endif -%}

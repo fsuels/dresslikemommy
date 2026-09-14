@@ -1,0 +1,87 @@
+{
+  "checks": [
+    {
+      "check": "after_context",
+      "query": "Continue the September 5 CEO turnaround audit and profitable growth work",
+      "entities": [
+        "2026-09-05-ceo-turnaround-audit-harness"
+      ],
+      "exit_code": 0,
+      "status": "OK",
+      "anchor": "2026-09-05-ceo-turnaround-continuity-verified",
+      "errors": []
+    },
+    {
+      "check": "turnaround_context",
+      "query": "Continue the September 5 CEO turnaround audit and profitable growth work",
+      "entities": [
+        "2026-09-05-ceo-turnaround"
+      ],
+      "exit_code": 0,
+      "status": "OK",
+      "anchor": "2026-09-05-ceo-turnaround-continuity-verified",
+      "errors": []
+    },
+    {
+      "check": "account_pair_context",
+      "query": "Resume the Dress Like Mommy Google account recovery and turnaround",
+      "entities": [
+        "3990976848",
+        "124884876"
+      ],
+      "exit_code": 0,
+      "status": "OK",
+      "anchor": "2026-09-05-ceo-turnaround-continuity-verified",
+      "errors": []
+    },
+    {
+      "check": "prior_anchor_context",
+      "query": "Resume 2026-09-05-ceo-turnaround-audit-harness",
+      "entities": [
+        "Ads3990976848"
+      ],
+      "exit_code": 0,
+      "status": "OK",
+      "anchor": "2026-09-05-ceo-turnaround-continuity-verified",
+      "errors": []
+    },
+    {
+      "check": "quickstart_context",
+      "query": "Continue the September 5 CEO turnaround",
+      "entities": [
+        "2026-09-05-ceo-turnaround"
+      ],
+      "exit_code": 0,
+      "status": "OK",
+      "anchor": "2026-09-05-ceo-turnaround-continuity-verified",
+      "errors": []
+    },
+    {
+      "check": "after_score",
+      "exit_code": 0,
+      "report": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/continuity_verification/after_score.md",
+      "result_lines": [
+        "- Score: `17/17`",
+        "- Passed: `true`"
+      ]
+    },
+    {
+      "check": "quickstart_score",
+      "exit_code": 0,
+      "report": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/continuity_verification/quickstart_score.md",
+      "result_lines": [
+        "- Score: `17/17`",
+        "- Passed: `true`"
+      ]
+    }
+  ],
+  "frozen_sources_unchanged": {
+    "ops/scripts/compile_task_context.py": true,
+    "ops/scripts/score_paid_growth_handoff.py": true,
+    "ops/prompts/paid-growth-ai-army-continuation-prompt.md": true,
+    "ops/tests/test_compile_task_context.py": true,
+    "ops/tests/test_score_paid_growth_handoff.py": true,
+    "ops/tests/test_score_paid_growth_handoff_semantic.py": true,
+    "ops/tests/fixtures/paid_growth_handoff_capability/holdout_routine_local.md": true
+  }
+}

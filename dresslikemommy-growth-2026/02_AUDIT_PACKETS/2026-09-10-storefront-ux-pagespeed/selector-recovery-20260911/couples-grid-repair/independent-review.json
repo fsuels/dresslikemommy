@@ -1,0 +1,57 @@
+{
+  "decision": "PASS_WITH_LIMITS",
+  "reviewer": "theme_audit_review",
+  "review_date": "2026-09-11",
+  "scope": "Independent local review of the frozen numeric-ID three-file Couples proposal; no source, browser, Shopify or canonical writes by reviewer.",
+  "target": { "collection_id": "290635284577", "theme_id": "137888792673", "release_scope": "unpublished draft only" },
+  "blocking_findings": [],
+  "findings": [
+    "Visibility lines 185-187 override classification only for the exact saved collection ID. The sole caller in main-collection-product-grid.liquid lines 366-368 iterates collection.products, so the exception trusts native membership rather than introducing products or changing their tags/categories.",
+    "Banner lines 37-48 select the exact target's nonblank stored description before generated copy. Both source paragraphs are emitted without translation or claim rewriting. Disabled description and blank-source fallback retain their prior banner behavior.",
+    "SEO line 1 suppresses the target's obsolete lower content, including any schema generated from that obsolete content. It does not change other collection branches. Lower suppression intentionally remains active when the banner description setting is disabled or its stored source is blank.",
+    "Title selection, heading escaping, images, banner navigation and the banner FAQ-render hook are unchanged. Both section settings schemas are byte-identical and valid JSON. Metadata code, templates, configuration and product source are outside the three-file diff.",
+    "The numeric guard survives a renamed target and excludes a different collection with the same handle. The prior four selector-recovery files are the only other changes versus frozen V7."
+  ],
+  "files": [
+    {
+      "filename": "snippets/collection-grid-product-visible.liquid",
+      "sha256": "f776d6fb011c2de72e2b50e105d7522e35aa703c2c5e9ea52893e70c13ca4b29",
+      "bytes": 8612,
+      "before_sha256": "e6cd0e290f4d8eb0395eb0c0f9b99b6b4daa9dffd7c131e8ecbdbcb5f1c5bf2b"
+    },
+    {
+      "filename": "sections/main-collection-banner.liquid",
+      "sha256": "4549a997352be781db58c9eaedbb82a946caac3c3285b7c5b4acdf91275af8d0",
+      "bytes": 6154,
+      "before_sha256": "5d10ef1d8d6b480437c228620a2d971be595066b80ca072505153bee9c3abdef"
+    },
+    {
+      "filename": "sections/main-collection-seo.liquid",
+      "sha256": "a939fce648021be1cad2a992ee7e2543d377f3dc7defbb37718755d67c705c39",
+      "bytes": 11465,
+      "before_sha256": "434cab5aee8fc898ca2881a5cbd37d57c63d4ccde2852818dadd7dcebdefd602"
+    }
+  ],
+  "checks": {
+    "independent_command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node --test couples-render.test.mjs",
+    "result": "Exit 0; 10 passed, 0 failed, 0 skipped; 1151.299958 ms.",
+    "test_sha256": "133f191bef45edb1cf29ec30defcdbea7cb26a8f6982069b13598f159ca402f3",
+    "coverage": "Three exact source-category fixtures reproduce hidden-before/visible-after; 432 non-target visibility combinations; legacy classified members; both paragraphs in 21 saved locales; disabled/blank description; non-target banners/lower blocks; unchanged section schemas; renamed target; same-handle different ID.",
+    "composite": "Independently compared all 527 checked-copy files against frozen V7 and planned complete-file hashes: 7 changed, 520 preserved, zero added/deleted, zero planned-binding mismatches. All three before files exactly match frozen V7; all three proposals exactly match the checked copy.",
+    "theme_check": "Root reports full 527-file Theme Check exit 0. Independently inspected saved diagnostics [] and empty stderr; CLI was not rerun by this reviewer."
+  },
+  "payload_binding": {
+    "apply_sha256": "a4700979b45c76f5e29c4b57f2ae37f7290cec99f42c1c650f7982690f5231c4",
+    "inverse_sha256": "cebec9c78f298cfda54e80dcc6a2c674269eb2f804ad1b0a5bfad0b4097dca09",
+    "verification": "mutation-variables.json and inverse.json each target only theme 137888792673 and exactly these three TEXT files. Apply bodies match proposals byte-for-byte; inverse bodies match immutable before files byte-for-byte.",
+    "planned_binding_sha256_at_review": "16599443b525e0cde021112747bbdb7d305c900c1ca60d8220e0a3cc4550ab36"
+  },
+  "evidence": {
+    "classification": "../../../2026-09-09-organic-growth/couples-theme-classification-readback-20260911.json",
+    "classification_sha256": "b8171f366142e1a823e850af4f181cd68704faf57db3710ef6b3b557c5beecb0",
+    "saved_copy": "../../../2026-09-09-organic-growth/couples-collection-copy-20260911.json",
+    "saved_copy_sha256": "caa886a7de0d92f44b7f51d625dc45b4d7b2c7c07b4c3abe452b1c5cc5fafcd7"
+  },
+  "limitations": "LiquidJS rendered actual changed Liquid with controlled partials and Shopify-tag preprocessing; this is not Shopify server or browser rendering. Current membership/status and authorization are parent-owned evidence, not an independent live read. No translation certification, storefront perfection or publication approval is implied.",
+  "next_action": "After the parent reserves the three files and verifies current source, stage only the bound payload and read back the full draft. Then verify three product cards and links, both source paragraphs and absence of obsolete lower copy on EN desktop/mobile and FR/ES/AR, with a non-target collection holdout."
+}

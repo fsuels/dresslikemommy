@@ -1,0 +1,51 @@
+{
+  "schema": "dlm.merchant.direct_route_authority.v1",
+  "status": "AUTHORIZED_BUILD_AND_SUBMIT",
+  "owner_request": "Interact directly with Google Merchant and upload each active listing for all served markets, starting USA, Australia, Canada, UK, then rest.",
+  "retained_requirements": [
+    "Automatic active-product create/update/remove lifecycle",
+    "All supported served markets/languages",
+    "Correct source facts and actual Merchant receipt",
+    "No paid or billing change"
+  ],
+  "superseded": "No-new-source assumption for an intentional direct-feed transition; old Product sync navigation not needed for this route",
+  "source_auth": "Private Admin read credential verified against exact shop15571635/USD at2026-09-11T14:16:07.401371+00:00; token not emitted",
+  "production_boundaries": [
+    "Root owns Merchant and deployment writes",
+    "New isolated merchant-feed-worker only",
+    "Do not modify existing Pinterest feed infrastructure",
+    "No direct source or offers submitted yet"
+  ],
+  "canonical_addendum_operations": [
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "before_sha256": "3c9a6d06a04da2b386f94bbc3c8560ec704094d26b9bef72a6a87297097576f3",
+      "after_sha256": "4b9b74a0d8e9ff2e44b878d7d86049eed0f0e883de76e49e33fd5156a0247448"
+    },
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "before_sha256": "c0fc636fd2a28cc427bb1d3fbc42a98fd270d5c7ca5b228319bc1fb57a000c9c",
+      "after_sha256": "2d690b2d630dd164fb9fa5bdc60d8bbbe5ed27f1a81cdfa956df54a672e27cad"
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "before_sha256": "b90483d026056b370d2a02403a7f356287ed0b00dff558552ce731c3289200da",
+      "after_sha256": "9d891824638d683c7281d32225d5da66b4801fa40f2bd418f3ca83d278b818f4"
+    },
+    {
+      "path": "ops/marketing/action_queue.md",
+      "before_sha256": "951b17acb680c657e3839e54fba66d55e07a06f45935ae4e7335bb17b7c350e0",
+      "after_sha256": "65be298ec4c3fba13c72ec59cea55e3ae47cb80ff7a13bd729b0227f1cb9ba27"
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "before_sha256": "fd0a486e7cbc1b91a747fcc4b315eb2a939913aab0e409c2f70d9aafa69a2029",
+      "after_sha256": "7e2bcd2ff9f13a5ec470684c43c56b7a5eab1245206adf21f58f59a011ae2e81"
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "before_sha256": "42b4fe2357aed31edf08cfdadb924b706769d98b773b060ce90b08a778dc44c0",
+      "after_sha256": "c15ec0a0196de405c7797660e60a7e96e174d6b94a4e780ed6c6f08062a04a16"
+    }
+  ]
+}

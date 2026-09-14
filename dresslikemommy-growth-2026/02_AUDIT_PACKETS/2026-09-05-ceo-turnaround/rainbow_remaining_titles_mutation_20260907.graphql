@@ -1,0 +1,6 @@
+mutation RainbowRemainingTitles($resourceId: ID!, $translations: [TranslationInput!]!) {
+  translationsRegister(resourceId: $resourceId, translations: $translations) {
+    translations { key value outdated }
+    userErrors { field message }
+  }
+}

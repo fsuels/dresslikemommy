@@ -1,0 +1,57 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_REVIEW_NOT_UPLOADED",
+  "release_revision": 1,
+  "source_theme_id": "gid://shopify/OnlineStoreTheme/133290917985",
+  "candidate_target_theme_id": "gid://shopify/OnlineStoreTheme/137881223265",
+  "baseline_files": 525,
+  "candidate_files": 527,
+  "changed_files": 46,
+  "new_assets": 2,
+  "theme_check": {
+    "candidate_changed_files": 46,
+    "candidate_diagnostics": 0,
+    "baseline_changed_files": 44,
+    "baseline_diagnostics": 0,
+    "complete_MAIN_context": true
+  },
+  "tests": {
+    "landing_regression_results.txt": {
+      "total": 18,
+      "passed": 18,
+      "failed": 0,
+      "sha256": "adaa1be9eabadc7949dda106137dd9ccd88d62ee3c991b7c6ec3c87d67d375e1"
+    },
+    "consent_regression_results.txt": {
+      "total": 28,
+      "passed": 28,
+      "failed": 0,
+      "sha256": "075b31c70680499b92420eaea49164cb4a98c30c68b6765ea1015a9fb18472ac"
+    },
+    "cart_regression_results.txt": {
+      "total": 16,
+      "passed": 15,
+      "failed": 1,
+      "sha256": "fe39828a44cb4fc29587ed4e66de494d48d610982cab69eb307e2a908be74552"
+    },
+    "release_integration_results.txt": {
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "sha256": "bf077e275485e6aca1c5e86657c23e657110902a7a6b8ade98275fa12decb2f8"
+    }
+  },
+  "syntax_pass": [
+    "assets/product-desktop-ux-20260513-ruler-sync.js",
+    "assets/cart.js",
+    "assets/cookie-preferences.js"
+  ],
+  "whitespace_check": "PASS; expected diff exit1 with no diagnostics",
+  "known_cart_failure": "Existing quantity/subtotal fixture test16 fails identically in the unchanged reviewed cart source; no newly failing test. Not a full-cart certification.",
+  "consent_open_limit": "Shopify managed preferences dialog remains English on Arabic route in peer rendered evidence.",
+  "rendered_combined_acceptance": "NOT_RUN; root owns exact preview desktop/mobile/locales, cart/currency, full emitted JSON parsing and policy links.",
+  "external_writes": 0,
+  "merchant_revision3_immutable": true,
+  "full_patch_sha256": "2a030eaf2da94ae841b9db08aebf2c0996f6fb27948bdec5c32a2a08ca2b491f",
+  "delta_patch_sha256": "e5a20fd00f8dc492b7f441579323e8f2c5825c7cdfa5c92e916e10cbd95efd0b",
+  "rollback_sha256": "90c13468aeb356acf61e54e3a649b0ec6b9673cfa577eb6d5c277db633c7a9fc"
+}

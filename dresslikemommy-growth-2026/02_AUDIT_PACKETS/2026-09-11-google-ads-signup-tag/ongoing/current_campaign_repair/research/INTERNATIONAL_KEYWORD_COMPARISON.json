@@ -1,0 +1,105 @@
+{
+  "schema": "dlm.keyword_planner_country_comparison.v1",
+  "status": "LIVE_RESEARCH_NOT_FORECAST_NOT_LAUNCH_QUALIFICATION",
+  "recorded_at_utc": "2026-09-11T20:27:58Z",
+  "observation_time_bounds_utc": ["2026-09-11T19:51:59Z", "2026-09-11T20:27:58Z"],
+  "source": {
+    "account_id": "6509972886",
+    "surface": "Root-owned in-app browser tab 6, Google Ads Keyword Planner",
+    "url": "https://ads.google.com/aw/keywordplanner/ideas/new?ocid=8520129103&authuser=0&__u=2136917243&__c=1852023447",
+    "method": "Rendered UI readback after each single-country filter settled; no account campaign or saved keyword plan created.",
+    "language": "English",
+    "network": "Google",
+    "historical_period": "2025-09/2026-08",
+    "bid_currency": "USD account; displayed dollar estimates are not shopper-local currency",
+    "website_seed": null,
+    "public_storefront_requests": 0,
+    "seeds": [
+      "mommy and me dresses",
+      "mother daughter matching outfits",
+      "mommy and me dresses for pictures",
+      "mother daughter wedding guest dresses",
+      "matching t shirts for family photos",
+      "family matching striped t shirts",
+      "mother daughter striped t shirts",
+      "matching family vacation outfits",
+      "mommy and me pajamas",
+      "matching family sweaters"
+    ],
+    "us_receipt": "US_KEYWORD_PLANNER.json",
+    "international_selection": "Keyword contains / Text Match filter: mother daughter matching outfits; this filter also includes variants and does not establish exact match type. Default adult-idea exclusion retained.",
+    "international_sort": "Top-of-page bid low range descending for comparable core rows",
+    "download_status": "CSV UI action observed; no accessible export contents obtained or relied upon"
+  },
+  "comparison_keyword": "mother daughter matching outfits",
+  "country_rows": [
+    {
+      "country": "US",
+      "country_label": "United States",
+      "monthly_searches_displayed": "10K – 100K",
+      "competition": "High",
+      "top_of_page_bid_low_usd": 0.36,
+      "top_of_page_bid_high_usd": 1.46,
+      "unfiltered_idea_count": 2489,
+      "core_filter_count": null,
+      "selection": "Provided keyword row, saved US receipt"
+    },
+    {
+      "country": "AU",
+      "country_label": "Australia",
+      "monthly_searches_displayed": "1K – 10K",
+      "competition": "High",
+      "top_of_page_bid_low_usd": 0.26,
+      "top_of_page_bid_high_usd": 1.23,
+      "unfiltered_idea_count": 2516,
+      "core_filter_count": 93,
+      "selection": "Visible core phrase within Text Match filter"
+    },
+    {
+      "country": "GB",
+      "country_label": "United Kingdom",
+      "monthly_searches_displayed": "1K – 10K",
+      "competition": "High",
+      "top_of_page_bid_low_usd": 0.32,
+      "top_of_page_bid_high_usd": 1.11,
+      "unfiltered_idea_count": 2276,
+      "core_filter_count": 74,
+      "selection": "Visible core phrase within Text Match filter"
+    },
+    {
+      "country": "CA",
+      "country_label": "Canada",
+      "monthly_searches_displayed": "1K – 10K",
+      "competition": "High",
+      "top_of_page_bid_low_usd": 0.19,
+      "top_of_page_bid_high_usd": 0.76,
+      "unfiltered_idea_count": 2522,
+      "core_filter_count": 88,
+      "selection": "Visible core phrase within Text Match filter"
+    }
+  ],
+  "additional_observed_samples_not_qualified": [
+    {"country": "AU", "keyword": "mum and bub matching outfits", "monthly_searches_displayed": "10 – 100", "competition": "High", "low_usd": 0.62, "high_usd": 1.50, "status": "HELD_PRODUCT_AGE_FIT_AND_AUCTION_UNKNOWN"},
+    {"country": "AU", "keyword": "mum and newborn matching pyjamas", "monthly_searches_displayed": "10 – 100", "competition": "High", "low_usd": 0.53, "high_usd": 2.01, "status": "HELD_PRODUCT_AGE_FIT_AND_AUCTION_UNKNOWN"},
+    {"country": "AU", "keyword": "mommy and me dresses for pictures", "monthly_searches_displayed": "0 – 10", "competition": null, "low_usd": null, "high_usd": null, "status": "HELD_MISSING_ESTIMATES_NOT_ZERO_COST"},
+    {"country": "GB", "keyword": "mother and daughter matching wedding guest outfits", "monthly_searches_displayed": "10 – 100", "competition": "High", "low_usd": 0.44, "high_usd": 6.09, "status": "HELD_OUTSIDE_INITIAL_PHOTO_DRESS_COHORT"},
+    {"country": "CA", "keyword": "mother and infant daughter matching outfits", "monthly_searches_displayed": "10 – 100", "competition": "High", "low_usd": 0.20, "high_usd": 0.50, "status": "HELD_ACTUAL_VARIANT_AGE_FIT_UNVERIFIED"},
+    {"country": "CA", "keyword": "matching mother daughter outfits plus size", "monthly_searches_displayed": "10 – 100", "competition": "High", "low_usd": 0.19, "high_usd": 0.69, "status": "HELD_ACTUAL_VARIANT_FIT_UNVERIFIED_NO_BLANKET_PLUS_SIZE_NEGATIVE"}
+  ],
+  "interpretation": {
+    "retained_cpc_ceiling_usd": 0.15,
+    "all_four_core_low_range_estimates_exceed_ceiling": true,
+    "selected_keyword_activation_changes": 0,
+    "budget_allocated_usd": 0,
+    "conclusion": "These historical estimates inform country-specific research. They do not prove actual CPC, affordable delivery at the ceiling, profitability, or that a market cannot serve at the ceiling. Narrow product-aligned exact candidates remain unqualified until their own auction, route, measurement and cost evidence is obtained."
+  },
+  "limitations": [
+    "Idea counts describe the research response, not a count of relevant, affordable or approved keywords.",
+    "Core-phrase results do not qualify the different exact phrases in the Search campaign drafts.",
+    "Missing bid or volume estimates are unknown, not zero cost or proof of no demand.",
+    "In Account labels do not establish exact campaign ownership or keyword match type.",
+    "Country research is English only; Canada French and other native-language markets remain separate work.",
+    "The UI Save failure on the current PMax editor remains unresolved; no research action bypassed that gate.",
+    "All four country rows were seen in this session; the time range is a capture bound, not an invented exact timestamp for each row."
+  ]
+}

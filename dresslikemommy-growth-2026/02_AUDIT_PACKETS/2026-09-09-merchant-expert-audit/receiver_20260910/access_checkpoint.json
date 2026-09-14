@@ -1,0 +1,49 @@
+{
+  "schema": "dlm.merchant.receiver_access_checkpoint.v1",
+  "recorded_at_utc": "2026-09-10 19:02:12 UTC",
+  "merchant_account": "513542500",
+  "merchant_authorization": "RESOLVED; current user explicitly authorized native selection and operation",
+  "previous_unstable_chrome_gate": "SUPERSEDED by successful scoped Merchant and Shopify native readbacks",
+  "latest_native_action": {
+    "url": "https://merchants.google.com/mc/setup/returns?a=513542500&flow=onlineOnboarding&pli=1",
+    "account_read_before_attempt": "Dresslikemommy, 513542500",
+    "onboarding_progress": "4 OF 5 TASKS COMPLETED",
+    "page": "Add return details for Austria",
+    "intended_action": "Click Continue to open return-policy setup",
+    "result": "BLOCKED_MAC_LOCKED",
+    "tool_message": "The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing.",
+    "observation_window_utc": "After 18:51:58 and before 18:55:54 on September 10; individual call time not separately recorded",
+    "return_form_opened": false,
+    "return_policy_saved": false,
+    "unsaved_production_form": false,
+    "retry_after_lock": false
+  },
+  "owner_action": "Unlock the Mac; existing asynchronous question already pending",
+  "separate_product_sync_gate": {
+    "target": "Shopify Google & YouTube Settings: Product sync On",
+    "status": "AUTOMATIC_APPROVAL_REVIEW_REJECTED_TWICE__EXACT_CLICK_APPROVAL_PENDING",
+    "reason": "Reviewer considered the navigation click ambiguous and potentially disabling product sync, including after additional screenshot and sibling-navigation evidence",
+    "click_executed": false,
+    "workaround_used": false,
+    "pending_question": "Approve this exact click with preserve-On and restore-if-changed constraint, or open the details personally"
+  },
+  "implemented_this_checkpoint": {
+    "merchant_timezone_saves": 1,
+    "product_or_source_changes": 0,
+    "return_policy_changes": 0,
+    "logo_uploads": 0,
+    "paid_or_billing_changes": 0
+  },
+  "next_internal_steps": [
+    "After the existing unlock gate clears, verify exact account and page before continuing return setup against both current 30-day policy sources and their exclusions",
+    "Complete source-backed onboarding fields without inventing terms or assuming the return task explains zero submissions",
+    "Trace a genuine corrected active product into existing source10014302986 and prove update/removal behavior before expanding additional offers",
+    "Resolve the actual country/language discrepancies and inspect the supported branding surface"
+  ],
+  "limits": [
+    "No general Merchant access confirmation should be requested again",
+    "No native probe or bypass after the Mac lock without user unlock input",
+    "No Product sync card alternative route while its exact-click review gate remains unresolved",
+    "No product receipt, automatic lifecycle, country approval or logo approval success is claimed"
+  ]
+}

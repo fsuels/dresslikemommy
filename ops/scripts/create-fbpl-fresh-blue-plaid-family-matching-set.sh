@@ -39,7 +39,7 @@ MERCH_STYLE="Matching Family Set"
 MERCH_TYPE="Two-Piece Set"
 MERCH_COLLECTION_TAG="Matching Family Set"
 SEASON="Summer"
-VENDOR_URL="https://detail.1688.com/offer/1036106092808.html"
+VENDOR_URL=""
 VENDOR="dresslikemommy.com"
 FORCE_SPEC_PRICES="true"
 CHILD_PRICE="28.99"
@@ -581,7 +581,7 @@ tags = [
     "Father XL",
     "Father 2XL",
     "Father 3XL",
-    vendor_url,
+
 ]
 tags = sorted(dict.fromkeys(tags))
 
@@ -707,7 +707,7 @@ if [[ -z "$PRODUCT_ID" ]]; then
         vendor: $vendor,
         productType: $product_type,
         tags: $tags,
-        status: "ACTIVE",
+        status: "DRAFT",
         category: $category,
         seo: {title: $seo_title, description: $seo_description},
         productOptions: $product_options
@@ -756,7 +756,7 @@ PRODUCT_UPDATE_VARS="$(jq -nc \
       vendor: $vendor,
       productType: $product_type,
       tags: $tags,
-      status: "ACTIVE",
+      status: "DRAFT",
       category: $category,
       seo: {title: $seo_title, description: $seo_description}
     }
@@ -1011,24 +1011,9 @@ if [[ "$STALE_SHOPIFY_METAFIELDS_TO_DELETE_JSON" != "[]" ]]; then
   check_user_errors "$METAFIELDS_DELETE_RESPONSE" '.data.metafieldsDelete.userErrors' "metafieldsDelete"
 fi
 
-PUBLICATIONS_JSON='[
-  {"publicationId":"gid://shopify/Publication/55169925"},
-  {"publicationId":"gid://shopify/Publication/21969633377"},
-  {"publicationId":"gid://shopify/Publication/29172400225"},
-  {"publicationId":"gid://shopify/Publication/76582879329"},
-  {"publicationId":"gid://shopify/Publication/76604768353"}
-]'
-
-PUBLISH_MUTATION='mutation PublishablePublish($id: ID!, $input: [PublicationInput!]!) {
-  publishablePublish(id: $id, input: $input) {
-    publishable { availablePublicationsCount { count } }
-    userErrors { field message }
-  }
-}'
-
-PUBLISH_RESPONSE="$(gql "$PUBLISH_MUTATION" "$(jq -nc --arg id "$PRODUCT_ID" --argjson input "$PUBLICATIONS_JSON" '{id:$id, input:$input}')")"
-check_graphql_errors "$PUBLISH_RESPONSE" "publishablePublish"
-check_user_errors "$PUBLISH_RESPONSE" '.data.publishablePublish.userErrors' "publishablePublish"
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+echo "Sales-channel publication skipped; product remains a draft pending approval."
 
 MEDIA_QUERY='query ProductMedia($id: ID!) {
   product(id: $id) {
@@ -1310,13 +1295,13 @@ checks = [
     ("Size tables expose metric + imperial units", "kg/lbs" in html_body and "cm/in" in html_body and bool(re.search(r"\b(?:lbs|in)\b", html_body)), "kg/lbs + cm/in"),
     ("Each size table has 10 headers", table_header_counts and all(count == 10 for count in table_header_counts), str(table_header_counts)),
     ("Table row count matches SIZE_CHART", len(tbody_rows) == len(chart), str(len(tbody_rows))),
-    ("publishedAt is populated", bool(product["publishedAt"]), product["publishedAt"] or ""),
-    ("onlineStoreUrl is populated", bool(product["onlineStoreUrl"]), product["onlineStoreUrl"] or ""),
+    ("publishedAt is null", product["publishedAt"] is None, product["publishedAt"] or ""),
+    ("onlineStoreUrl is absent", not bool(product["onlineStoreUrl"]), product["onlineStoreUrl"] or ""),
     ("Taxonomy category is set", product["category"]["id"] == "gid://shopify/TaxonomyCategory/aa-1-11", product["category"]["id"]),
     ("Taxonomy category full name matches expected leaf", product["category"]["fullName"] == expected_taxonomy_full_name, product["category"]["fullName"]),
     ("Family-set merchandising tag is present", merch_collection_tag in product["tags"], ", ".join(product["tags"])),
     ("Family-set smart collection is attached", "family-sets" in collection_handles, str(sorted(collection_handles))),
-    ("Required publications are live", expected_publications.issubset(published_ids), str(sorted(published_ids))),
+    ("No sales-channel publications are live", len(published_ids) == 0, str(sorted(published_ids))),
 ]
 
 price_rows = []

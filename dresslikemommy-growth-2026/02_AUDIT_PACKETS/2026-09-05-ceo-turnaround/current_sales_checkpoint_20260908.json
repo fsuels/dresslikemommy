@@ -1,0 +1,365 @@
+{
+  "schema": "dlm.current_sales_checkpoint.v1",
+  "status": "LIVE_VERIFIED_NO_NEW_QUALIFYING_ORDERS",
+  "source": "Structured Shopify Admin connector; one bounded read-only query; no browser or event sends.",
+  "observed_window": {
+    "start_inclusive": "2026-09-05T04:00:00Z",
+    "end_exclusive": "2026-09-08T02:50:16Z",
+    "prior_end_exclusive": "2026-09-06T23:35:57.262Z",
+    "filter": "created_at:>='2026-09-05T04:00:00Z' created_at:<'2026-09-08T02:50:16Z'"
+  },
+  "read_observation_started_at_utc": "2026-09-08T02:50:16Z",
+  "shop": {
+    "name": "Dress Like Mommy",
+    "ianaTimezone": "America/New_York",
+    "currencyCode": "USD",
+    "primaryDomain": {
+      "host": "www.dresslikemommy.com"
+    }
+  },
+  "coverage": {
+    "order_pages_read": 1,
+    "orders_returned": 2,
+    "unique_order_ids_in_memory": 2,
+    "outer_has_next_page": false,
+    "line_item_pages_read": 2,
+    "line_item_pages_complete": true,
+    "total_line_items": 4,
+    "query_time_snapshot_atomicity": "NOT_GUARANTEED; one returned response; cutoff is order creation, current fields are read-time values."
+  },
+  "cohort_definition": {
+    "server_filter": "Quoted created_at bounds only; all statuses retained in memory for exclusion/change detection.",
+    "local_inclusion": "displayFinancialStatus == PAID AND test == false AND cancelledAt == null AND sourceName == web",
+    "excluded_orders": 0,
+    "excluded_financial_statuses": {},
+    "all_returned_financial_statuses": {
+      "PAID": 2
+    },
+    "no_ids_persisted": true
+  },
+  "totals": {
+    "orders": 2,
+    "original_units": 4,
+    "current_units": 4,
+    "current_subtotal": {
+      "USD": "86.45"
+    },
+    "current_total": {
+      "USD": "86.45"
+    },
+    "original_subtotal": {
+      "USD": "86.45"
+    },
+    "original_total": {
+      "USD": "86.45"
+    },
+    "current_tax": {
+      "USD": "0.00"
+    },
+    "recorded_refunds": {
+      "USD": "0.00"
+    },
+    "financial_status_counts": {
+      "PAID": 2
+    },
+    "fulfillment_status_counts": {
+      "UNFULFILLED": 2
+    }
+  },
+  "presentment_totals_by_currency": {
+    "current_subtotal": {
+      "EUR": "46.90",
+      "USD": "31.98"
+    },
+    "current_total": {
+      "EUR": "46.90",
+      "USD": "31.98"
+    },
+    "current_tax": {
+      "EUR": "0.00",
+      "USD": "0.00"
+    },
+    "recorded_refunds": {
+      "EUR": "0.00",
+      "USD": "0.00"
+    }
+  },
+  "country_aggregates": {
+    "BE": {
+      "orders": 1,
+      "original_units": 2,
+      "current_units": 2,
+      "current_subtotal": {
+        "USD": "54.47"
+      },
+      "current_total": {
+        "USD": "54.47"
+      },
+      "original_subtotal": {
+        "USD": "54.47"
+      },
+      "original_total": {
+        "USD": "54.47"
+      },
+      "current_tax": {
+        "USD": "0.00"
+      },
+      "recorded_refunds": {
+        "USD": "0.00"
+      },
+      "financial_status_counts": {
+        "PAID": 1
+      },
+      "fulfillment_status_counts": {
+        "UNFULFILLED": 1
+      }
+    },
+    "US": {
+      "orders": 1,
+      "original_units": 2,
+      "current_units": 2,
+      "current_subtotal": {
+        "USD": "31.98"
+      },
+      "current_total": {
+        "USD": "31.98"
+      },
+      "original_subtotal": {
+        "USD": "31.98"
+      },
+      "original_total": {
+        "USD": "31.98"
+      },
+      "current_tax": {
+        "USD": "0.00"
+      },
+      "recorded_refunds": {
+        "USD": "0.00"
+      },
+      "financial_status_counts": {
+        "PAID": 1
+      },
+      "fulfillment_status_counts": {
+        "UNFULFILLED": 1
+      }
+    }
+  },
+  "local_calendar_days": {
+    "2026-09-05": {
+      "orders": 1,
+      "current_units": 2,
+      "current_subtotal_usd": "54.47",
+      "calendar_day_complete": true
+    },
+    "2026-09-06": {
+      "orders": 1,
+      "current_units": 2,
+      "current_subtotal_usd": "31.98",
+      "calendar_day_complete": true
+    },
+    "2026-09-07": {
+      "orders": 0,
+      "current_units": 0,
+      "current_subtotal_usd": "0.00",
+      "calendar_day_complete": false
+    }
+  },
+  "change_since_saved_cutoff": {
+    "start_inclusive": "2026-09-06T23:35:57.262Z",
+    "end_exclusive": "2026-09-08T02:50:16Z",
+    "elapsed_seconds": 98058.738,
+    "all_order_creations": 0,
+    "qualifying_orders": 0,
+    "current_units": 0,
+    "current_subtotal_usd": "0.00",
+    "prior_saved_orders": 2,
+    "prior_saved_current_subtotal_usd": "86.45",
+    "saved_baskets_uniquely_matched": 2,
+    "unchanged_saved_basket_checks": 2,
+    "join_basis": "Saved evidence intentionally has no order IDs. Matched unique createdAt plus exact public product/variant IDs and ordered quantities in memory; separate money/status/country/current-quantity comparisons. No raw IDs/timestamps persisted here."
+  },
+  "trailing_24_hours": {
+    "start_inclusive": "2026-09-07T02:50:16.000Z",
+    "end_exclusive": "2026-09-08T02:50:16Z",
+    "orders": 0,
+    "current_subtotal_usd": "0.00"
+  },
+  "product_aggregates": [
+    {
+      "product_id": "gid://shopify/Product/7229023846497",
+      "title": "Vibrant Rainbow Mommy and Me Maxi Dresses",
+      "handle": "vibrant-rainbow-maxi-dress-set-for-mom-and-daughter-colorful-summer-matching-outfits",
+      "orders": 1,
+      "current_units": 2,
+      "original_units": 2,
+      "variants": [
+        {
+          "variant_id": "gid://shopify/ProductVariant/41878198943841",
+          "title": "Girl 4-5 Years / Multi Color",
+          "current_units": 1
+        },
+        {
+          "variant_id": "gid://shopify/ProductVariant/41878199107681",
+          "title": "Mother M / Multi Color",
+          "current_units": 1
+        }
+      ],
+      "current_subtotal_usd": "54.47",
+      "revenue_allocation_basis": "Whole current order subtotal; every observed basket contains only this product."
+    },
+    {
+      "product_id": "gid://shopify/Product/7109117280353",
+      "title": "Chic Pink Mermaid Scales Tankini Set for Mother and Daughter",
+      "handle": "chic-pink-mermaid-scales-tankini-set-for-mother-and-daughter",
+      "orders": 1,
+      "current_units": 2,
+      "original_units": 2,
+      "variants": [
+        {
+          "variant_id": "gid://shopify/ProductVariant/41497061949537",
+          "title": "Child 4-5 years / Multi-Color",
+          "current_units": 1
+        },
+        {
+          "variant_id": "gid://shopify/ProductVariant/41497061851233",
+          "title": "Mother L / Multi-Color",
+          "current_units": 1
+        }
+      ],
+      "current_subtotal_usd": "31.98",
+      "revenue_allocation_basis": "Whole current order subtotal; every observed basket contains only this product."
+    }
+  ],
+  "historical_campaign_candidate_join": {
+    "campaign_id": "23867953136",
+    "source_as_of": "2026-09-06T01:36:44.719Z",
+    "parent_products": 8,
+    "listed_variant_units": 19,
+    "matched_order_count": 0,
+    "matched_product_count": 0,
+    "exact_variant_join_required": false,
+    "reason": "No parent-product match to any of the eight historical candidate parents, so none of their19 listed variant units can match. Candidate campaign status/configuration not refreshed."
+  },
+  "frozen_28_day_baseline": {
+    "window": "2026-08-08 through 2026-09-04 inclusive, America/New_York",
+    "retained_paid_orders": 8,
+    "merchandise_usd": "734.99",
+    "total_usd": "760.97",
+    "refreshed": false,
+    "combined_with_current_cohort": false
+  },
+  "checks": [
+    {
+      "id": "fresh_shop_identity_usd_ny",
+      "pass": true
+    },
+    {
+      "id": "outer_and_item_pagination_complete",
+      "pass": true
+    },
+    {
+      "id": "unique_in_memory_order_ids",
+      "pass": true
+    },
+    {
+      "id": "all_created_at_inside_exact_window",
+      "pass": true
+    },
+    {
+      "id": "all_shop_money_usd",
+      "pass": true
+    },
+    {
+      "id": "cohort_predicates_apply_to_all_included",
+      "pass": true
+    },
+    {
+      "id": "two_saved_baskets_uniquely_reidentified_without_saved_ids",
+      "pass": true
+    },
+    {
+      "id": "saved_basket_money_status_country_fulfillment_quantities_unchanged",
+      "pass": true
+    },
+    {
+      "id": "all_known_four_variant_joins_preserved",
+      "pass": true
+    },
+    {
+      "id": "zero_tax_refund_and_original_current_subtotal_equal",
+      "pass": true
+    },
+    {
+      "id": "no_additional_order_creation_after_saved_cutoff",
+      "pass": true
+    },
+    {
+      "id": "no_matches_to_old_sold_product_campaign_cohort",
+      "pass": true
+    }
+  ],
+  "source_hashes": {
+    "recent_paid_order_signal_20260906.json": "9d23a144fe81ec4f5ae12a5109013d38bec0707333932310c7c508ad26a385e8",
+    "recent_paid_order_signal_queries.graphql": "12d6d10afc489c43019b36e953612128bb05252d73975b2baebd72ec2e3148a7",
+    "recent_paid_order_countries_20260906.json": "68a1d79d8af581d44304ecf307e0ff79b7cdcef06df502f575d01e489828c70c",
+    "recent_order_basket_variants_20260907.json": "9782ec236e6608e690dbae0dbdfc5640b4bdbcfa57b775c008268b45ea9a930a",
+    "sales_candidate_reconciliation_summary.json": "2970dddacc2323baad07fcb9796ce64414d73bd2db32da98c8b12d064513876d"
+  },
+  "calculation_basis": {
+    "money_arithmetic": "Decimal strings converted to exact integer cents; no binary floating-point money arithmetic.",
+    "merchandise_basis": "currentSubtotalPriceSet.shopMoney; current tax is0 and it equals original subtotal for both orders. Recorded refunds are shown separately and are not subtracted again.",
+    "presentment_currency": "Aggregate each currency separately. EUR46.90 is the Belgian basket presentment; USD54.47 is its Shopify shop-currency subtotal. No assumed settled FX conversion.",
+    "paid_label": "PAID means Shopify financial status, not paid-media attribution.",
+    "saved_basket_comparison": "Current public product title can reflect later title repairs; exact product/variant IDs and quantities identify the catalog selections."
+  },
+  "interpretation": {
+    "paid_growth_sales_since_previous_checkpoint": "UNKNOWN attribution;0 new qualifying Shopify order creations.",
+    "new_qualifying_order_revenue_usd": "0.00",
+    "acquisition_spend": null,
+    "cpa": null,
+    "roas": null,
+    "net_profit": null,
+    "growth_signal_improved": false,
+    "new_sales_learning": "No additional purchase or revenue signal in this scoped interval; no traffic/click or campaign serving measurement was performed.",
+    "fulfillment": "Both reported UNFULFILLED; this is Shopify admin status, not proof of supplier dispatch or eventual delivery.",
+    "source_attribution": "Prior saved Google visit labels were not refreshed. They did not establish paid versus organic; no new attribution conclusion is made.",
+    "refund_limit": "Recorded refunds0 at read time; future returns, disputes and retained economics are unresolved.",
+    "fee_cost_limit": "Prior scoped payment-fee evidence exists but was not refreshed or converted to settled USD here. Actual provider costs and acquisition expense are not reconciled in this checkpoint.",
+    "baseline": "The frozen Aug8–Sep4 eight-order/USD734.99 baseline stays separate; no combined28-day count or growth percentage.",
+    "next_action": "At normal native access, reconcile fulfillment and actual provider costs for these same two still-unfulfilled baskets before using either to qualify profitable paid expansion.",
+    "authority": "Read-only checkpoint; no campaign, budget, billing, tracking, listing, publication, account or paid-authority changes."
+  },
+  "privacy": {
+    "persisted": "Only aggregate counts/money/status/country/day and public catalog product/variant identifiers. No customer, order, transaction, address, contact, raw landing URL, query parameter or tracking identifiers.",
+    "in_memory_only": "Order IDs used to deduplicate the single current page; exact creation timestamps used only for the saved-basket comparison. No raw connector response saved.",
+    "clarification": "shippingAddress selected countryCodeV2 only; no names or street/contact fields. No financial transaction/payment-detail query.",
+    "identifying_pii_fields_requested": false
+  },
+  "execution": {
+    "order_query_calls": 1,
+    "external_mutations": 0,
+    "browser_calls": 0,
+    "event_sends": 0,
+    "connector_schema_types": [
+      "QueryRoot",
+      "Order",
+      "Shop",
+      "LineItem",
+      "OrderSortKeys",
+      "MoneyBag",
+      "MoneyV2",
+      "MailingAddress",
+      "ProductVariant"
+    ],
+    "connector_validation": "VALID, artifact current-sales-checkpoint-20260908-v1 revision1",
+    "bundled_local_validation": "VALID, same query/artifact/revision, exit0",
+    "docs_helper": "Bundled search_docs failed once with 'fetch failed'; no retry. Supported connector schema and documentation search succeeded. This was not a Shopify account permission failure.",
+    "official_sources": [
+      "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/Order",
+      "https://shopify.dev/docs/api/admin-graphql/latest/queries/orders"
+    ]
+  },
+  "query_file": "current_sales_checkpoint_20260908_query.graphql",
+  "query_sha256": "82744dfe022f0268b1ba29dfb8e8abd58e880a81258f7d9f9da6fc988a14cdd8",
+  "local_verification_file": "current_sales_checkpoint_20260908_checks.json"
+}

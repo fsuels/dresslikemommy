@@ -1,0 +1,167 @@
+{
+  "prepared_at": "2026-09-11T23:06:52.066985+00:00",
+  "classification": "BUILD",
+  "state": "PASS_LOCAL_CANDIDATES__RSA_MAPPER_ONLY_NOT_IMPORT_READY",
+  "owner": "/root/international_campaign_build",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "currency": "USD",
+  "native_action_authorized_by_this_artifact": false,
+  "paid_activation_authorized": false,
+  "campaign_bindings": [
+    {
+      "campaign_key": "ms_us_en_202609",
+      "campaign_name": "DLM | MS | US | EN | Search | 202609",
+      "campaign_id": "506254907",
+      "account_id": "477439",
+      "customer_id": "770182",
+      "observed_at": "2026-09-11T23:00:15.281455+00:00",
+      "status": "Paused",
+      "language": "English",
+      "budget_usd": "5.00",
+      "max_cpc_usd": "0.15",
+      "ai_max": false,
+      "text_customization": false,
+      "final_url_expansion": false,
+      "search_term_matching": false
+    },
+    {
+      "campaign_key": "ms_de_de_202609",
+      "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+      "campaign_id": "506254908",
+      "account_id": "477439",
+      "customer_id": "770182",
+      "observed_at": "2026-09-11T23:00:15.281455+00:00",
+      "status": "Paused",
+      "language": "German",
+      "budget_usd": "3.00",
+      "max_cpc_usd": "0.15",
+      "ai_max": false,
+      "text_customization": false,
+      "final_url_expansion": false,
+      "search_term_matching": false
+    }
+  ],
+  "source_sha256": {
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "ad_groups.csv": "dbf27dfc5ccd5cfb27c5aed898f202c76060b5b484ec353b3140ad701d950f92",
+    "keywords.csv": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012",
+    "responsive_search_ads.csv": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839"
+  },
+  "root_evidence_sha256": {
+    "campaign_after.json": "72c55f4f1d05a306183d8c88222427abbef5b134c2cb7d4424fd40046356833f",
+    "import_receiver_and_saved_settings.json": "fa6b42a496baac1394dfa8f518ead737188c82d94e63dd37de5ca2eaf0a7b7e4",
+    "native_mapping_and_options.json": "79f1d0ccf993f975385a0e0cb6c2d32d2fc72794c8d67c5f20d39620b6bc1208"
+  },
+  "ui_candidates": [
+    {
+      "path": "paused_groups_keywords.ui_candidate.csv",
+      "rows": 8,
+      "types": {
+        "Ad Group": 2,
+        "Keyword": 6
+      },
+      "all_serving_statuses": "Paused"
+    },
+    {
+      "path": "campaign_negatives.ui_candidate.csv",
+      "rows": 14,
+      "types": {
+        "Campaign Negative Keyword": 14
+      },
+      "negative_association_status": "Active",
+      "ad_activation_effect": "None"
+    }
+  ],
+  "withheld": [
+    {
+      "path": "rsa_assets.awaiting_ui_schema.json",
+      "rows": 2,
+      "reason": "Native import remains held. The exact source snapshot is preserved; the separately prepared RSA mapper candidate is authorized for preview only, with row acceptance and suffix mapping unproved."
+    }
+  ],
+  "fields_deliberately_omitted": [
+    "Campaign record",
+    "Campaign IDs in native CSV (names bind in manifest; no undocumented ID header)",
+    "Budget",
+    "Bid",
+    "Bid Strategy MaxCpc",
+    "Language",
+    "Network Distribution",
+    "Location targeting",
+    "Tracking templates",
+    "Group Final Url (source field is planning metadata; no supported group final-URL property)"
+  ],
+  "group_final_urls_retained_as_source_metadata": {
+    "ms_us_en_202609_dresses": "https://www.dresslikemommy.com/collections/dresses",
+    "ms_de_de_202609_dresses": "https://www.dresslikemommy.com/de/collections/dresses"
+  },
+  "import_constraints": [
+    "Independent reviewer must approve exact file hashes and root must qualify native mapping/options/row values before Import.",
+    "Use existing campaign names only; confirm both IDs and current Paused states, exact cap/budgets/languages/AI controls, zero unexpected children, and geographic/network scope before adding serveable assets.",
+    "Import only new items for these rows; no campaign creation or updates to existing items, bid/budget customizations, recommended bids, URL rewrites, automatic name suffixes, schedules or extensions.",
+    "Include paused campaigns when importing new items; select relevant new ad-group, keyword and negative import categories only. Ensure keyword landing-page option preserves exact URLs.",
+    "Names are binding keys in UI candidate; the manifest does not force account or ID routing. Confirm both campaign matches in the native preview; same ad-group name across two different campaigns is intentional.",
+    "Negative Status Active installs an exclusion on already Paused campaigns. Do not substitute Paused or interpret Active as spend permission.",
+    "No blind re-upload after partial success: enumerate returned created IDs and scope after-state; duplicate RSAs can otherwise be created.",
+    "Readback is required for 2 groups/6 Exact keywords/14 Phrase negatives; RSA preparation remains separately held. Confirm no changes to existing campaign settings."
+  ],
+  "limitations": [
+    "Official template and Bulk record semantics support the prepared local field candidates, not current browser server acceptance.",
+    "Current exact mapper dropdown labels for RSA assets were relayed by root but are not all saved in native_mapping_and_options.json.",
+    "The RSA UI row enum plus individual headline/description field encoding and pinning require native/export evidence or documented format.",
+    "Blank group numeric CPC may receive a platform default; campaign MaxClicks and its cap must remain the governing strategy. No numeric ad-group or keyword bid is proposed.",
+    "Root receipt records empty shells at its timestamp; no independent browser read was made by this builder.",
+    "No geography, network, paid purchase/consent/economics, native-language or editorial acceptance certification is made.",
+    "Account UTM Replace mode is preserved; literal ad suffix attribution behavior is not validated."
+  ],
+  "sources": [
+    {
+      "id": "UI_TEMPLATE",
+      "url": "https://adsuxprodfd-awb5gsddabddbqgv.z01.azurefd.net/cmuiresources-2/files/templates/Import/ImportTemplateWithAdExtensionsAndBSCAndAdGroupType.csv",
+      "sha256": "05f8f0a590e2054a77c64ca1b7939612e5df938beed34374f05f74a92d7ade04",
+      "role": "Official native template downloaded during preceding schema lane; Ad Group/Keyword/Campaign Negative Keyword, SearchStandard, InheritFromParent and Negative column examples. No RSA example."
+    },
+    {
+      "id": "AD_GROUP",
+      "url": "https://learn.microsoft.com/en-us/advertising/bulk-service/ad-group?view=bingads-13",
+      "role": "Bulk record semantics: SearchStandard, Paused, parent inheritance; language optional when set at campaign. Not equivalent to browser importer schema."
+    },
+    {
+      "id": "KEYWORD",
+      "url": "https://learn.microsoft.com/en-us/advertising/bulk-service/keyword?view=bingads-13",
+      "role": "Bulk record semantics: Exact/Paused, optional bid, final URL."
+    },
+    {
+      "id": "NEGATIVE",
+      "url": "https://learn.microsoft.com/en-us/advertising/bulk-service/campaign-negative-keyword?view=bingads-13",
+      "role": "Bulk negative association Active/Deleted only; Phrase/Exact. Bulk Keyword column differs from native template Negative."
+    },
+    {
+      "id": "RSA",
+      "url": "https://learn.microsoft.com/en-us/advertising/bulk-service/responsive-search-ad?view=bingads-13",
+      "role": "Bulk Responsive Search Ad uses JSON asset lists, Paused supported; duplicate ads allowed. Does not prove native individual-column import syntax."
+    }
+  ],
+  "artifact_sha256": {
+    "paused_groups_keywords.ui_candidate.csv": "15287d329200ac4c62f4af9e6a0cdb15738240484694c83377a9213b53cee370",
+    "campaign_negatives.ui_candidate.csv": "b566c095bfc152088b88ee9f450a87a9f7a25ee41c953e35c66488f9c9f122ae",
+    "rsa_assets.awaiting_ui_schema.json": "9f30f70a51a3aa726acdb0587847cda991c0d39495d2b46182cd9f1b156838b1",
+    "source_selection.json": "6c0e892c9fc21212d518dd432a2cc727ea1f2817227513abfca31c20fb82b2cc",
+    "checks.json": "32fb7177c4b8d70e18ffadd39d8bbcdaac35cbabf39ff103c1aa6bb3bd479249",
+    "README.md": "79b127e1adfaf93597c50e63295dcadd2b55bd552c3b0c128ddd3e3710084881",
+    "rsa_mapper_only_not_import_ready.csv": "1a6525d2a6682474a826f08fc763604c47a830c43e68e94c0ec75d259dcc8926",
+    "rsa_mapper_checks.json": "f0fb89d4a56435db839d3605575171033830fc3d5d9fe645b6ade779ddc195ac"
+  },
+  "latest_mapper_preparation": {
+    "status": "MAPPER_ONLY_NOT_IMPORT_READY",
+    "csv": "rsa_mapper_only_not_import_ready.csv",
+    "csv_sha256": "1a6525d2a6682474a826f08fc763604c47a830c43e68e94c0ec75d259dcc8926",
+    "checks": "rsa_mapper_checks.json",
+    "checks_passed": 8,
+    "prior_withheld_assets_remain_preserved": true,
+    "supersedes": "The prior decision to withhold a browser candidate is superseded only for a root-authorized review-only mapper probe. No native import readiness or approval is promoted."
+  },
+  "prior_preparation_state": "PASS_LOCAL_PARTIAL_PREPARATION__RSA_UI_SCHEMA_BLOCKED__NO_NATIVE_ACTION_APPROVED"
+}

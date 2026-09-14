@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-12T08:25:59.718995+00:00",
+  "reviewer": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "verdict": "GO_FOR_EXACT_THREE_FILE_MAPPER_ONLY_PREVIEW__FINAL_IMPORT_HELD",
+  "confidence": "H for exact local payload scope and preservation; native mapping, row acceptance and current parent state remain unverified",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "input_sha256": {
+    "children-preparation/manifest.json": "5a2be7e3f2f73f47682ad94d1cddd797f80c9e7021be94da5ba433454b0228e9",
+    "children-preparation/source_selection.json": "6c0e892c9fc21212d518dd432a2cc727ea1f2817227513abfca31c20fb82b2cc",
+    "children-preparation/checks.json": "32fb7177c4b8d70e18ffadd39d8bbcdaac35cbabf39ff103c1aa6bb3bd479249",
+    "children-preparation/rsa_mapper_checks.json": "f0fb89d4a56435db839d3605575171033830fc3d5d9fe645b6ade779ddc195ac",
+    "children-preparation/rsa_assets.awaiting_ui_schema.json": "9f30f70a51a3aa726acdb0587847cda991c0d39495d2b46182cd9f1b156838b1",
+    "children-preparation/paused_groups_keywords.ui_candidate.csv": "15287d329200ac4c62f4af9e6a0cdb15738240484694c83377a9213b53cee370",
+    "children-preparation/campaign_negatives.ui_candidate.csv": "b566c095bfc152088b88ee9f450a87a9f7a25ee41c953e35c66488f9c9f122ae",
+    "children-preparation/rsa_mapper_only_not_import_ready.csv": "1a6525d2a6682474a826f08fc763604c47a830c43e68e94c0ec75d259dcc8926"
+  },
+  "protected_main_source_sha256": {
+    "campaigns.csv": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e",
+    "ad_groups.csv": "dbf27dfc5ccd5cfb27c5aed898f202c76060b5b484ec353b3140ad701d950f92",
+    "keywords.csv": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012",
+    "responsive_search_ads.csv": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07",
+    "negative_keywords.csv": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839"
+  },
+  "checks": {
+    "exact_three_frozen_csv_hashes": true,
+    "all_eight_manifest_artifact_hashes": true,
+    "all_five_main_source_hashes_unchanged": true,
+    "all_root_source_evidence_hashes_match": true,
+    "all_exact_source_rows_match_main_files": true,
+    "only_expected_account_and_two_names_ids": true,
+    "manifest_no_native_action_or_spend_authority": true,
+    "exact_eight_group_keyword_rows": true,
+    "groups_exact_source_parent_inheritance": true,
+    "keywords_exact_source_text_type_url": true,
+    "all_serving_group_keyword_statuses_paused": true,
+    "six_keywords_exact_match": true,
+    "no_numeric_bid_budget_language_network_geography_fields": true,
+    "no_campaign_record_or_id_header": true,
+    "exact_fourteen_campaign_phrase_negatives": true,
+    "negative_scope_seven_each_no_duplicates": true,
+    "negative_no_lexical_positive_phrase_conflict": true,
+    "exact_two_rsa_paused_records": true,
+    "rsa_exact27_headers": true,
+    "rsa_parent_names_exact": true,
+    "all_thirty_rsa_source_asset_values_equal": true,
+    "all_unused_rsa_assets_empty_no_pinning": true,
+    "rsa_asset_counts_unique_headlines_and_limits": true,
+    "exact_dresses_urls_by_country": true,
+    "suffix_exact_source_bing_cpc_and_campaign_key": true,
+    "utf8_bom_crlf_no_malformed_row": true,
+    "rsa_mapper_review_remains_not_import_ready": true,
+    "candidate_files_match_required_literal_hashes": true
+  },
+  "checks_passed": 28,
+  "exact_source_rows_compared": 24,
+  "rsa_source_asset_fields_compared": 30,
+  "rsa_character_lengths": [
+    {
+      "campaign": "DLM | MS | US | EN | Search | 202609",
+      "headlines": [
+        18,
+        25,
+        23,
+        25,
+        28,
+        26,
+        28,
+        16
+      ],
+      "descriptions": [
+        79,
+        80,
+        78
+      ],
+      "paths": [
+        12,
+        7
+      ]
+    },
+    {
+      "campaign": "DLM | MS | DE | DE | Search | 202609",
+      "headlines": [
+        22,
+        22,
+        25,
+        28,
+        29,
+        25,
+        24,
+        16
+      ],
+      "descriptions": [
+        83,
+        77,
+        79
+      ],
+      "paths": [
+        14,
+        7
+      ]
+    }
+  ],
+  "lexical_negative_conflicts": [],
+  "reviewed_files": [
+    {
+      "file": "paused_groups_keywords.ui_candidate.csv",
+      "sha256": "15287d329200ac4c62f4af9e6a0cdb15738240484694c83377a9213b53cee370",
+      "records": "2 Paused SearchStandard groups inheriting campaign strategy plus 6 Paused Exact keywords with the exact dresses URLs"
+    },
+    {
+      "file": "campaign_negatives.ui_candidate.csv",
+      "sha256": "b566c095bfc152088b88ee9f450a87a9f7a25ee41c953e35c66488f9c9f122ae",
+      "records": "14 Campaign Negative Keyword associations, 7 Phrase exclusions per intended campaign; Active describes the exclusion association only"
+    },
+    {
+      "file": "rsa_mapper_only_not_import_ready.csv",
+      "sha256": "1a6525d2a6682474a826f08fc763604c47a830c43e68e94c0ec75d259dcc8926",
+      "records": "2 Paused RSA rows; exact existing 8 headlines and 3 descriptions per ad, paths, dresses URLs and UTM suffixes; no pinning or filler"
+    }
+  ],
+  "critical_premise_challenge": {
+    "premise": "The manifest campaign IDs and recognized column headers force correct native entity routing and prove an import-safe file.",
+    "finding": "Rejected. These CSVs bind by names rather than IDs, the repeated ad-group name is only unique within its campaign, and neither the RSA row enum nor field semantics are accepted merely because headers match. The RSA parents do not exist in the reviewed pre-interruption receipts.",
+    "resolution": "Approve only upload/column preview of the three frozen files in the exact account, with no final Import. Root must freshly recover both campaign identities/status/children and inspect exact mapping and rows. Final execution needs its own frozen native-options contract and independent review.",
+    "falsifier": "Different account or parent names, missing/misrouted Status/Type/parent/asset/URL fields, a direct-apply preview action, changed file bytes or a native result indicating prior import activity.",
+    "response": "Stop and cancel the preview; do not infer, coerce, enable, submit, fill recommended bids or blindly replay create rows."
+  },
+  "mapper_preview_requirements": [
+    "Fresh root account recovery after interruption must confirm account 477439/customer 770182 and exact US 506254907/DE 506254908 names, Paused status and current child inventory. Historical receipts are not present-state authority.",
+    "Use the exact files separately through native upload and Review column matching only. Native options may be inspected to prepare a later contract, but final Import must not be clicked under this verdict.",
+    "For groups/keywords inspect all 9 fields and all 8 rows: Type, Paused Status, Campaign, Ad Group, SearchStandard group type, InheritFromParent on group rows only, Exact keyword matches and exact Final Url.",
+    "For negatives inspect all 5 fields and all 14 rows: Campaign Negative Keyword type, Active exclusion association, exact campaign names, Negative text and Phrase match. Never treat the association status as campaign or ad activation.",
+    "For RSAs inspect all 27 fields and both rows, including blank unused assets. Map Description 1 RSA and Description 2 RSA to responsive-ad fields, not legacy expanded-text descriptions; preserve every populated headline, description, path, URL and suffix.",
+    "Do not accept skipped/coerced critical columns, default Active serving records, rewritten URLs/suffixes, automatic renaming, inherited campaign updates or recommended bid/budget changes. Empty RSA parent groups must be addressed before any later ad import.",
+    "Column matching is not server row validation. If any prior result is partial or uncertain, enumerate actual created IDs and contents before any new create operation."
+  ],
+  "final_import_authorized": false,
+  "campaign_or_child_changes_authorized_by_review": false,
+  "paid_activation_authorized": false,
+  "limitations": [
+    "The local copy and field limits match the frozen source; this is not native-language, editorial, search-demand or performance approval.",
+    "Blank group numeric bids do not independently establish cap inheritance; saved group strategy must be verified after any later approved creation.",
+    "The account UTM Replace mode may affect suffix attribution; exact preserved strings are not end-to-end attribution proof.",
+    "Country/presence historical acceptance is separately reviewed; current network/Audience distribution, purchase/consent, actual contribution costs and paid cash/loss gates remain outside this preview verdict.",
+    "No browser/account operations or source/shared writes were made by this reviewer."
+  ],
+  "next_action": "Root freshly recover current state, preview the exact mappings and preserve native evidence. Return the concrete final import contract for independent review before creating any children.",
+  "external_writes_by_reviewer": 0,
+  "browser_or_account_calls_by_reviewer": 0,
+  "shared_canonical_files_changed": false
+}

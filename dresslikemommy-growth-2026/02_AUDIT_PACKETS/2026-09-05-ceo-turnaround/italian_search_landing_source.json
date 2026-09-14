@@ -1,0 +1,952 @@
+{
+  "schema_version": "dlm.italian_search_landing_source.v1",
+  "created_at_utc": "2026-09-06T09:24:25.073859+00:00",
+  "operator": "/root/shopify_merchant_connection_repair",
+  "stage": "HANDOFF",
+  "status": "PARTIAL_LOCAL_EVIDENCE_VERIFIED__CURRENT_SOURCE_READBACK_BLOCKED",
+  "scope": {
+    "expected_shop": {
+      "name": "Dress Like Mommy",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com",
+      "shop_id_from_existing_reconciliation": "15571635",
+      "current_execution_identity_confirmed": false
+    },
+    "campaign_id": "23866684201",
+    "ads_customer_id": "3990976848",
+    "observed_query_parent_supplied": {
+      "term": "vestiti uguali mamma e figlia",
+      "clicks": 24,
+      "ads_cost_usd": "3.59",
+      "ga4_purchase_key_events": 1,
+      "provenance": "Parent assignment; not independently read by this subagent",
+      "window": "June 7–September 4, 2026; parent exact campaign investigation"
+    },
+    "allowed_actions": "Read existing sanitized aggregate evidence; structured Shopify schema/validation/read-only collection/product query; write only this JSON and paired Markdown.",
+    "excluded_actions": [
+      "Browser",
+      "Public HTTP or retry after429",
+      "New private order export or identifiers",
+      "Customer/order/vendor/supplier/cost/credential fields",
+      "External mutation",
+      "Canonical edits"
+    ],
+    "source_retrieval_frame": {
+      "hypothesis": "A documented dedicated dress collection might match the purchasing query more closely than the historical general mommy-and-me destination.",
+      "falsifier": "Current Italian source may be absent, unpublished, contain unsuitable items or exclude the known purchased product; present evidence may not support a change.",
+      "success_criteria": "Current exact collection/translation/publication/membership source facts, with bounded item sample and explicit limits.",
+      "kill_criteria": "Authentication/schema/policy failure or repeated service error after one permitted retry; no unsupported landing replacement.",
+      "outcome": "Repeated upstream service error; current-source-dependent hypothesis remains untested."
+    }
+  },
+  "existing_sanitized_cohort": {
+    "source_read_at_utc": "2026-09-06T01:36:44.719Z",
+    "shopify_merchandise_usd": "151.25",
+    "matched_orders": 1,
+    "ga4_purchase_revenue_usd": "151.463786",
+    "resolved_product_components": [
+      {
+        "product_id": "7536992976993",
+        "title": "Skyfade Family Matching Set - Dress & Shirt",
+        "evidence": "CURRENT_SALES_CANDIDATE_RECONCILIATION.md explicitly identifies Skyfade plus lines without current product IDs in the sole Italian Google CPC matched basket.",
+        "current_product_identity_not_requeried_successfully": true
+      }
+    ],
+    "other_product_components": "UNKNOWN: existing reconciliation reports lines without current product IDs; no title-based identity reconstruction or new private join.",
+    "skyfade_separate_90d_product_country_aggregate": {
+      "product_id": "7536992976993",
+      "orders_all_countries": 3,
+      "units_all_countries": 9,
+      "merchandise_all_countries_usd": "239.31",
+      "country_merchandise_usd": {
+        "IT": "81.87",
+        "RO": "80.47",
+        "US": "76.97"
+      },
+      "limit": "Country/product aggregate; not relabeled as a newly verified basket-line allocation."
+    },
+    "attribution_limit": "Shopify captured Google/SEO collection visit; GA4 native campaign attribution exists separately. This subtask does not settle touchpoint causation or assign the full basket to Skyfade."
+  },
+  "landing_candidates": {
+    "historical": {
+      "handle": "mommy-and-me",
+      "historical_ad_url": "https://www.dresslikemommy.com/it/collections/mommy-and-me?country=IT",
+      "shopify_recorded_journey_path": "/it/collections/mommy-and-me",
+      "ad_group_id": "196333557323",
+      "ad_group_name": "Mommy & Me Dresses",
+      "original_exact_keywords": [
+        "abiti mamma e figlia",
+        "abiti mamma figlia"
+      ],
+      "execution_date": "2026-05-19",
+      "inventory_created_at_utc": "2026-09-06T09:13:26.463325+00:00",
+      "historical_http_note": "May landing CSV records HTTP200 without per-row timestamp; not current availability.",
+      "current_collection_id": null,
+      "current_italian_title": null,
+      "current_online_store_publication": null,
+      "current_skyfade_membership": null,
+      "current_product_count": null,
+      "sampled_products": []
+    },
+    "documented_dress_alternatives": [
+      {
+        "handle": "dresses",
+        "source_urls": [
+          "https://www.dresslikemommy.com/da/collections/dresses",
+          "https://www.dresslikemommy.com/nl/collections/dresses"
+        ],
+        "current_collection_id": null,
+        "current_italian_title": null,
+        "current_online_store_publication": null,
+        "current_skyfade_membership": null,
+        "current_product_count": null,
+        "sampled_products": []
+      },
+      {
+        "handle": "mother-daughter-matching-dresses",
+        "source_urls": [
+          "https://www.dresslikemommy.com/da/collections/mother-daughter-matching-dresses",
+          "https://www.dresslikemommy.com/nl/collections/mother-daughter-matching-dresses"
+        ],
+        "current_collection_id": null,
+        "current_italian_title": null,
+        "current_online_store_publication": null,
+        "current_skyfade_membership": null,
+        "current_product_count": null,
+        "sampled_products": []
+      }
+    ],
+    "alternative_provenance": {
+      "file": "draft_rendered_preview.json",
+      "captured_at_utc": "2026-09-06T07:14:08.554428+00:00",
+      "theme_id": "137782591585",
+      "role": "UNPUBLISHED",
+      "locales": [
+        "da",
+        "nl"
+      ],
+      "country": "US",
+      "currency": "USD",
+      "scope_limit": "These are documented handles from DA/NL draft preview. They do not establish Italian route, MAIN publication, current product count, market price or collection superiority. Existing37/36 count discrepancy remains unreconciled."
+    },
+    "italian_alternative_url_constructed": false
+  },
+  "current_source_attempt": {
+    "query": "query ItalianSearchLandingSource($skyfadeId: ID!, $publishedQuery: String!, $publishedAfter: String) {\n  shop { name myshopifyDomain }\n  historical: collectionByIdentifier(identifier: {handle: \"mommy-and-me\"}) { ...LandingCollection }\n  dresses: collectionByIdentifier(identifier: {handle: \"dresses\"}) { ...LandingCollection }\n  dedicated: collectionByIdentifier(identifier: {handle: \"mother-daughter-matching-dresses\"}) { ...LandingCollection }\n  publishedCandidates: collections(first: 10, after: $publishedAfter, query: $publishedQuery) {\n    nodes { id handle }\n    pageInfo { hasNextPage endCursor }\n  }\n  skyfade: product(id: $skyfadeId) {\n    id title handle status onlineStoreUrl productType\n    translations(locale: \"it\") { key value locale outdated }\n  }\n}\nfragment LandingCollection on Collection {\n  id title handle sortOrder\n  productsCount { count precision }\n  hasSkyfade: hasProduct(id: $skyfadeId)\n  translations(locale: \"it\") { key value locale outdated }\n  products(first: 8, sortKey: COLLECTION_DEFAULT) {\n    nodes { id title handle status onlineStoreUrl productType }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+    "variables": {
+      "skyfadeId": "gid://shopify/Product/7536992976993",
+      "publishedQuery": "(handle:\"mommy-and-me\" OR handle:\"dresses\" OR handle:\"mother-daughter-matching-dresses\") AND published_status:published",
+      "publishedAfter": null
+    },
+    "schema_evidence": [
+      {
+        "type": "QueryRoot",
+        "fields": [
+          {
+            "name": "collectionByIdentifier",
+            "type": {
+              "name": "Collection",
+              "kind": "OBJECT",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "identifier",
+                "description": "The identifier of the collection.",
+                "type": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "CollectionIdentifierInput",
+                    "kind": "INPUT_OBJECT",
+                    "ofType": null
+                  }
+                }
+              }
+            ],
+            "description": "Return a collection by an identifier."
+          },
+          {
+            "name": "collections",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "CollectionConnection",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            },
+            "args": [
+              {
+                "name": "first",
+                "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "reverse",
+                "description": "Reverse the order of the underlying list.",
+                "type": {
+                  "name": "Boolean",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "sortKey",
+                "description": "Sort the underlying list using a key. If your query is slow or returns an error, then [try specifying a sort key that matches the field used in the search](https://shopify.dev/api/usage/pagination-graphql#search-performance-considerations).",
+                "type": {
+                  "name": "CollectionSortKeys",
+                  "kind": "ENUM",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "query",
+                "description": "A filter made up of terms, connectives, modifiers, and comparators.\n| name | type | description | acceptable_values | default_value | example_use |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n| default | string | Filter by a case-insensitive search of multiple fields in a document. | | | - `query=Bob Norman`<br/> - `query=title:green hoodie` |\n| collection_type | string | | - `custom`<br/> - `smart` |\n| handle | string |\n| id | id | Filter by `id` range. | | | - `id:1234`<br/> - `id:>=1234`<br/> - `id:<=1234` |\n| product_id | id | Filter by collections containing a product by its ID. |\n| product_publication_status | string | Filter by channel approval process status of the resource on a channel, such as the online store. The value is a composite of the [channel `app` ID](https://shopify.dev/api/admin-graphql/latest/objects/Channel#field-Channel.fields.app) (`Channel.app.id`) and one of the valid values. For simple visibility checks, use [published_status](https://shopify.dev/api/admin-graphql/latest/queries/products#argument-query-filter-published_status) instead. | - `* {channel_app_id}-approved`<br/> - `* {channel_app_id}-rejected`<br/> - `* {channel_app_id}-needs_action`<br/> - `* {channel_app_id}-awaiting_review`<br/> - `* {channel_app_id}-published`<br/> - `* {channel_app_id}-demoted`<br/> - `* {channel_app_id}-scheduled`<br/> - `* {channel_app_id}-provisionally_published` | | - `product_publication_status:189769876-approved` |\n| publishable_status | string | **Deprecated:** This parameter is deprecated as of 2025-12 and will be removed in a future API version. Use [published_status](https://shopify.dev/api/admin-graphql/latest/queries/products#argument-query-filter-published_status) for visibility checks. Filter by the publishable status of the resource on a channel. The value is a composite of the [channel `app` ID](https://shopify.dev/api/admin-graphql/latest/objects/Channel#field-Channel.fields.app) (`Channel.app.id`) and one of the valid status values. | - `* {channel_app_id}-unset`<br/> - `* {channel_app_id}-pending`<br/> - `* {channel_app_id}-approved`<br/> - `* {channel_app_id}-not_approved` | | - `publishable_status:580111-unset`<br/> - `publishable_status:580111-pending` |\n| published_at | time | Filter by the date and time when the collection was published to the Online Store. |\n| published_status | string | Filter resources by their visibility and publication state on a channel. Online store channel filtering: - `online_store_channel`: Returns all resources in the online store channel, regardless of publication status. - `published`/`visible`: Returns resources that are published to the online store. - `unpublished`: Returns resources that are not published to the online store. Channel-specific filtering using a channel ID, channel handle, [channel `app` ID](https://shopify.dev/api/admin-graphql/latest/objects/Channel#field-Channel.fields.app) (`Channel.app.id`), or app handle with suffixes: - `{id_or_handle}-published`: Returns resources published to the specified channel. - `{id_or_handle}-visible`: Same as `{id_or_handle}-published` (kept for backwards compatibility). - `{id_or_handle}-intended`: Returns resources added to the channel but not yet published. - `{id_or_handle}-hidden`: Returns resources not added to the channel or not published. The `online_store_channel` value applies only to the online store; other channels use the suffix format above. For example, the Point of Sale channel has the app handle `pos` and the `Channel.app.id` `129785`, so `pos-published` and `129785-published` both return resources published to Point of Sale. Other: - `unavailable`: Returns resources not published to any channel. | - `online_store_channel`<br/> - `published`<br/> - `visible`<br/> - `unpublished`<br/> - `* {channel_id_or_handle}-published`<br/> - `* {channel_id_or_handle}-visible`<br/> - `* {channel_id_or_handle}-intended`<br/> - `* {channel_id_or_handle}-hidden`<br/> - `* {channel_app_id_or_handle}-published`<br/> - `* {channel_app_id_or_handle}-visible`<br/> - `* {channel_app_id_or_handle}-intended`<br/> - `* {channel_app_id_or_handle}-hidden`<br/> - `unavailable` | | - `published_status:online_store_channel`<br/> - `published_status:published`<br/> - `published_status:580111-published`<br/> - `published_status:580111-hidden`<br/> - `published_status:pos-published`<br/> - `published_status:129785-published`<br/> - `published_status:my-channel-handle-published`<br/> - `published_status:unavailable` |\n| title | string |\n| updated_at | time |\nYou can apply one or more filters to a query. Learn more about [Shopify API search syntax](https://shopify.dev/api/usage/search-syntax).\n",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "savedSearchId",
+                "description": "The ID of a [saved search](https://shopify.dev/api/admin-graphql/latest/objects/savedsearch#field-id).\nThe search’s query string is used as the query argument.",
+                "type": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            ],
+            "description": "Retrieves a list of [collections](https://shopify.dev/docs/api/admin-graphql/latest/objects/Collection)\nin a store. Collections are groups of [products](https://shopify.dev/docs/api/admin-graphql/latest/objects/Product)\nthat merchants can organize for display in their [online store](https://shopify.dev/docs/apps/build/online-store) and\nother [sales channels](https://shopify.dev/docs/apps/build/sales-channels).\nFor example, an athletics store might create different collections for running attire, shoes, and accessories.\n\nUse the `collections` query when you need to:\n\n- Build a browsing interface for a store's product groupings.\n- Create collection searching, sorting, and filtering experiences (for example, by title, type, or published status).\n- Sync collection data with external systems.\n\nThe `collections` query supports [pagination](https://shopify.dev/docs/api/usage/pagination-graphql)\nfor large catalogs and [saved searches](https://shopify.dev/docs/api/admin-graphql/latest/queries/collections#arguments-savedSearchId)\nfor frequently used collection queries.\n\nThe `collections` query returns collections with their associated metadata, including:\n\n- Basic collection information (title, description, handle, and type)\n- Collection image and SEO metadata\n- Product count and product relationships\n- Collection rules or conditions\n- Publishing status and publication details\n- Metafields and custom attributes\n\nLearn more about [using metafields with collection conditions](https://shopify.dev/docs/apps/build/custom-data/metafields/use-metafield-capabilities)."
+          },
+          {
+            "name": "product",
+            "type": {
+              "name": "Product",
+              "kind": "OBJECT",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "id",
+                "description": "The ID of the `Product` to return.",
+                "type": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "ID",
+                    "kind": "SCALAR",
+                    "ofType": null
+                  }
+                }
+              }
+            ],
+            "description": "Retrieves a [product](https://shopify.dev/docs/api/admin-graphql/latest/objects/Product) by its ID.\nA product is an item that a merchant can sell in their store.\n\nUse the `product` query when you need to:\n\n- Access essential product data (for example, title, description, price, images, SEO metadata, and metafields).\n- Build product detail pages and manage inventory.\n- Handle international sales with localized pricing and content.\n- Manage product variants and product options.\n\nLearn more about working with [Shopify's product model](https://shopify.dev/docs/apps/build/graphql/migrate/new-product-model/product-model-components)."
+          },
+          {
+            "name": "shop",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Shop",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "Returns the Shop resource corresponding to the access token used in the request. The Shop resource contains\nbusiness and store management settings for the shop."
+          }
+        ]
+      },
+      {
+        "type": "Collection",
+        "fields": [
+          {
+            "name": "handle",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "A unique string that identifies the collection. If a handle isn't specified when a collection is created, it's automatically generated from the collection's original title, and typically includes words from the title separated by hyphens. For example, a collection that was created with the title `Summer Catalog 2022` might have the handle `summer-catalog-2022`.\n\nIf the title is changed, the handle doesn't automatically change.\n\nThe handle can be used in themes by the Liquid templating language to refer to the collection, but using the ID is preferred because it never changes."
+          },
+          {
+            "name": "hasProduct",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [
+              {
+                "name": "id",
+                "description": "The ID of the product to check.",
+                "type": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "ID",
+                    "kind": "SCALAR",
+                    "ofType": null
+                  }
+                }
+              }
+            ],
+            "description": "Whether the collection includes the specified product."
+          },
+          {
+            "name": "id",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "A globally-unique ID."
+          },
+          {
+            "name": "products",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "ProductConnection",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            },
+            "args": [
+              {
+                "name": "first",
+                "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+                "type": {
+                  "name": "Int",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+                "type": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "reverse",
+                "description": "Reverse the order of the underlying list.",
+                "type": {
+                  "name": "Boolean",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "sortKey",
+                "description": "Sort the underlying list using a key. If your query is slow or returns an error, then [try specifying a sort key that matches the field used in the search](https://shopify.dev/api/usage/pagination-graphql#search-performance-considerations).",
+                "type": {
+                  "name": "ProductCollectionSortKeys",
+                  "kind": "ENUM",
+                  "ofType": null
+                }
+              }
+            ],
+            "description": "The products that are included in the collection."
+          },
+          {
+            "name": "productsCount",
+            "type": {
+              "name": "Count",
+              "kind": "OBJECT",
+              "ofType": null
+            },
+            "args": [],
+            "description": "The number of products in the collection."
+          },
+          {
+            "name": "sortOrder",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "CollectionSortOrder",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "The order in which the products in the collection are displayed by default in the Shopify admin and in sales channels, such as an online store."
+          },
+          {
+            "name": "title",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "The name of the collection. It's displayed in the Shopify admin and is typically displayed in sales channels, such as an online store."
+          },
+          {
+            "name": "translations",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": null,
+                "kind": "LIST",
+                "ofType": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "Translation",
+                    "kind": "OBJECT",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "args": [
+              {
+                "name": "locale",
+                "description": "Filters translations locale.",
+                "type": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "String",
+                    "kind": "SCALAR",
+                    "ofType": null
+                  }
+                }
+              },
+              {
+                "name": "marketId",
+                "description": "Filters translations by market ID. Use this argument to retrieve content specific to a market.",
+                "type": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            ],
+            "description": "The published translations associated with the resource."
+          }
+        ]
+      },
+      {
+        "type": "Translation",
+        "fields": [
+          {
+            "name": "key",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "On the resource that this translation belongs to, the reference to the value being translated."
+          },
+          {
+            "name": "locale",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "ISO code of the translation locale."
+          },
+          {
+            "name": "outdated",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "Whether the original content has changed since this translation was updated."
+          },
+          {
+            "name": "value",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            },
+            "args": [],
+            "description": "Translation value."
+          }
+        ]
+      },
+      {
+        "type": "Product",
+        "fields": [
+          {
+            "name": "handle",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "A unique, human-readable string of the product's title. A handle can contain letters, hyphens (`-`), and numbers, but no spaces.\nThe handle is used in the online store URL for the product."
+          },
+          {
+            "name": "id",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "A globally-unique ID."
+          },
+          {
+            "name": "onlineStoreUrl",
+            "type": {
+              "name": "URL",
+              "kind": "SCALAR",
+              "ofType": null
+            },
+            "args": [],
+            "description": "The product's URL on the online store.\nIf `null`, then the product isn't published to the online store sales channel."
+          },
+          {
+            "name": "productType",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "The [product type](https://help.shopify.com/manual/products/details/product-type)\nthat merchants define."
+          },
+          {
+            "name": "status",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "ProductStatus",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "The [product status](https://help.shopify.com/manual/products/details/product-details-page#product-status),\nwhich controls visibility across all sales channels."
+          },
+          {
+            "name": "title",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "The name for the product that displays to customers. The title is used to construct the product's handle.\nFor example, if a product is titled \"Black Sunglasses\", then the handle is `black-sunglasses`."
+          },
+          {
+            "name": "translations",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": null,
+                "kind": "LIST",
+                "ofType": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "Translation",
+                    "kind": "OBJECT",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "args": [
+              {
+                "name": "locale",
+                "description": "Filters translations locale.",
+                "type": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "String",
+                    "kind": "SCALAR",
+                    "ofType": null
+                  }
+                }
+              },
+              {
+                "name": "marketId",
+                "description": "Filters translations by market ID. Use this argument to retrieve content specific to a market.",
+                "type": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            ],
+            "description": "The published translations associated with the resource."
+          }
+        ]
+      },
+      {
+        "type": "Count",
+        "fields": [
+          {
+            "name": "count",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "The count of elements."
+          },
+          {
+            "name": "precision",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "CountPrecision",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "The count's precision, or the exactness of the value."
+          }
+        ]
+      },
+      {
+        "type": "Shop",
+        "fields": [
+          {
+            "name": "myshopifyDomain",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "The shop's .myshopify.com domain name."
+          },
+          {
+            "name": "name",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            "args": [],
+            "description": "The shop's name."
+          }
+        ]
+      }
+    ],
+    "input_schema": {
+      "type": "CollectionIdentifierInput",
+      "fields": [
+        {
+          "name": "handle",
+          "description": "The handle of the collection.",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ]
+    },
+    "sort_enum": {
+      "type": "ProductCollectionSortKeys",
+      "value": "COLLECTION_DEFAULT",
+      "definition": {
+        "name": "COLLECTION_DEFAULT",
+        "description": "Sort by collection default order."
+      }
+    },
+    "official_documentation": [
+      "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/Collection",
+      "https://shopify.dev/docs/api/admin-graphql/latest/queries/collections"
+    ],
+    "skill_search": {
+      "status": "FAILED_NETWORK_FETCH",
+      "exit_code": 1,
+      "error": "Search failed: fetch failed",
+      "fallback": "Structured official Shopify documentation and schema discovery succeeded; no authentication or policy bypass."
+    },
+    "validation": {
+      "artifact_id": "italian-search-landing-source-bd46a7d1-5c7d-4197-9ab2-bcaa4ce1ec37",
+      "revision": 1,
+      "structured_validator": "PASS",
+      "local_skill_validator": "PASS",
+      "local_exit_code": 0,
+      "reported_required_scopes": [
+        "read_products"
+      ]
+    },
+    "attempts": [
+      {
+        "before": {
+          "current_time": "2026-09-06 09:18:09 UTC"
+        },
+        "after": {
+          "current_time": "2026-09-06 09:18:10 UTC"
+        },
+        "isError": true,
+        "result": {
+          "error": "upstream_error",
+          "error_description": "Shopify Admin couldn't complete this request right now. This looks like a temporary Shopify service issue, not a problem with your store connection, permissions, or product data. Please try again in a few minutes.",
+          "upstream_service": "admin_api",
+          "retryable": true,
+          "upstream_status_code": 500,
+          "error_code": "INVALID_ARGUMENT"
+        }
+      },
+      {
+        "before": {
+          "current_time": "2026-09-06 09:20:31 UTC"
+        },
+        "after": {
+          "current_time": "2026-09-06 09:20:31 UTC"
+        },
+        "isError": true,
+        "result": {
+          "error": "upstream_error",
+          "error_description": "Shopify Admin couldn't complete this request right now. This looks like a temporary Shopify service issue, not a problem with your store connection, permissions, or product data. Please try again in a few minutes.",
+          "upstream_service": "admin_api",
+          "retryable": true,
+          "upstream_status_code": 500,
+          "error_code": "INVALID_ARGUMENT"
+        }
+      }
+    ],
+    "retry_count": 1,
+    "classification": "Provider returned retryable upstream500 with INVALID_ARGUMENT twice. Its message describes a temporary service issue. Root cause remains UNKNOWN; do not infer credential/permission failure, invalid store data or a landing defect.",
+    "pagination": {
+      "requested_collection_publication_first": 10,
+      "requested_product_sample_first_per_collection": 8,
+      "requested_sample_sort": "COLLECTION_DEFAULT",
+      "successful_data_pages": 0,
+      "returned_collection_rows": 0,
+      "returned_product_rows": 0,
+      "completion": "BLOCKED; no pageInfo received; sample and publication matching NOT RUN successfully",
+      "sample_limit_if_successful": "Bounded first8 products per collection; not a full membership enumeration."
+    },
+    "further_api_retry": "NOT RUN; stopped after one permitted transient retry.",
+    "query_sha256": "bc8f9c8e285be0f29b86bf1f37e396bcd9fb36b2353e9fc1c6d132e3ed13fc60"
+  },
+  "existing_skyfade_gate": {
+    "problem_id": "PROB-2026-09-06-SKYFADE-SIZE-SOURCE-CONFLICT",
+    "source": "ops/PROBLEM_TRACKER.md:4545",
+    "status": "Existing source-truth gate; not re-audited here.",
+    "facts": "Existing audit records8 substantive EN versus recorded-chart conflicts across6 adult sizes and DA duplicate dress rows.",
+    "decision_limit": "Skyfade remains excluded from paid-test readiness until existing buyer-path, source-truth and cost gates pass. This is not evidence of an Italian displayed-chart defect or grounds to change the collection."
+  },
+  "decision": {
+    "source_fit_verdict": "UNDETERMINED_CURRENT_SOURCE",
+    "landing_change_recommended": false,
+    "reason": "A real purchase and documented dress alternatives justify a bounded hypothesis, but current Italian collection facts were not returned and the basket identity remains partial.",
+    "next_root_action": "Integrate partial basket and failed current-source receipt into the existing exact-query analysis; hold the landing-change hypothesis. Resume source proof only after changed connector/service evidence, preserving original Ads control recovery priority.",
+    "not_proven": [
+      "Current Italian translation/title",
+      "Current collection publication or membership",
+      "Complete current merchandise scope",
+      "Current product-photo/title fit or supplier-clean landing",
+      "Public render/availability/purchasability",
+      "Italy checkout or market pricing",
+      "Shipping/fit promises",
+      "Improved conversion rate",
+      "Incremental traffic/sales/net profit"
+    ]
+  },
+  "source_inventory": [
+    {
+      "source": "italian_search_original_scope.json",
+      "sha256": "1c28122ff401947bd9bbc91d359b2d6e87a473e939382c3f886d8efa3a46e792",
+      "bytes": 16773,
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/italian_search_original_scope.json"
+    },
+    {
+      "source": "italian_search_original_scope.md",
+      "sha256": "0a9945b06f2b6cd811f4850f77ff2c0572e26f4c695b2cd7a325287ae37e413f",
+      "bytes": 3151,
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/italian_search_original_scope.md"
+    },
+    {
+      "source": "CURRENT_SALES_CANDIDATE_RECONCILIATION.md",
+      "sha256": "82f96609d1b2fafc4501100269858f1e55ee288fc15f6d103ab8329010b8e90b",
+      "bytes": 13293,
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/CURRENT_SALES_CANDIDATE_RECONCILIATION.md"
+    },
+    {
+      "source": "current_product_sales_and_modeled_costs.csv",
+      "sha256": "7d9528ac0d526c09ae495af6b83e7400a9af6e3ed200cacf0dd3bd26fd1933c7",
+      "bytes": 7424,
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_product_sales_and_modeled_costs.csv"
+    },
+    {
+      "source": "sales_candidate_reconciliation_summary.json",
+      "sha256": "2970dddacc2323baad07fcb9796ce64414d73bd2db32da98c8b12d064513876d",
+      "bytes": 33308,
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sales_candidate_reconciliation_summary.json"
+    },
+    {
+      "source": "draft_rendered_preview.json",
+      "sha256": "af4cbc868ec49ff85342505aa54e26b21b3a34048340a894541953ad8c968f33",
+      "bytes": 9879,
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/draft_rendered_preview.json"
+    }
+  ],
+  "actions": {
+    "external_mutations": 0,
+    "browser_actions": 0,
+    "public_http_requests": 0,
+    "new_private_order_queries": 0,
+    "canonical_edits": 0,
+    "owned_files": [
+      "italian_search_landing_source.json",
+      "italian_search_landing_source.md"
+    ]
+  },
+  "local_verification": {
+    "status": "PASS_LOCAL_RECEIPT_INTEGRITY_ONLY",
+    "checks": {
+      "read_only_query": true,
+      "exact_historical_url_preserved": true,
+      "single_known_cohort_product": true,
+      "unresolved_basket_preserved": true,
+      "two_service_failures": true,
+      "one_retry_only": true,
+      "both_validators_pass": true,
+      "zero_successful_pages": true,
+      "no_current_source_claims": true,
+      "no_landing_change_recommendation": true,
+      "source_inputs_still_match": true,
+      "no_external_or_private_actions": true,
+      "report_within400words": true,
+      "owned_files_no_trailing_whitespace": true,
+      "no_private_resource_ids": true,
+      "source_gate_preserved": true
+    },
+    "passed": 16,
+    "report_word_count": 308,
+    "current_shopify_source_verification": "BLOCKED; these checks do not verify current collection facts"
+  }
+}

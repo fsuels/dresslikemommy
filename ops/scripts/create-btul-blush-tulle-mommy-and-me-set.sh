@@ -41,7 +41,7 @@ SEO_DESCRIPTION = "Blush tulle mommy-and-me set with baby romper, girl dress and
 PRINT_NAME = "Blush Tulle"
 SHORTCODE = "BTUL"
 COLOR_TOKEN = "BLUSH"
-VENDOR_URL = "https://detail.1688.com/offer/1045177962684.html"
+VENDOR_URL = ""
 VENDOR = "dresslikemommy.com"
 LISTING_MODE = "Mommy and Me"
 PRODUCT_TYPE = "Matching Family Sets"
@@ -275,7 +275,7 @@ def tags() -> list[str]:
         "Child 12-18M", "Child 1-2yr", "Child 2-3yr", "Child 4-5yr",
         "Child 6-8yr", "Child 9-10yr", "Mom Size S", "Mom Size M",
         "Mom Size L", "Mom Size XL", "Mom Size 2XL", "Mom Size 3XL",
-        "Mom Size 4XL", VENDOR_URL,
+        "Mom Size 4XL",
     ]
     values.extend(sorted({row["picker_label"] for row in SIZE_CHART}))
     return sorted(value for value in dict.fromkeys(values) if value)

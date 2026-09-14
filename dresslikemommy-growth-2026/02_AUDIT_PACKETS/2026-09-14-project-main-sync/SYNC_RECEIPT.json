@@ -1,0 +1,82 @@
+{
+  "schema": "dlm.project_main_sync.v1",
+  "as_of_utc": "2026-09-14T20:51:10.709750+00:00",
+  "stage": "LOCAL_MAIN_MERGED__NON_THEME_REMOTE_SYNC_PREPARATION",
+  "requested_target": "fsuels/dresslikemommy Git main",
+  "local_before": "8abff268ee4b3d4e8b0e811d34901a1f4d2cd806",
+  "remote_before": "cc626206380c20e693ba94b7aafc779d0ba9432d",
+  "theme_integration": {
+    "reviewed_release_binding_sha256": "13f693b864c90c3b82da07d2c59df85f0e1c33962af48d6932ea05b61343f029",
+    "reviewed_files_exact": 520,
+    "local_enhancements_preserved": 7,
+    "config_and_template_files_preserved": 22,
+    "v8_files_preserved": 58,
+    "root_theme_files": 527,
+    "independent_result": "PASS"
+  },
+  "validation": {
+    "node_and_python_syntax": "81 files PASS",
+    "reviewed_source_regression_tests": "30/30 PASS; root copies independently hash-bound to the tested source",
+    "pinterest_worker_tests": "14/14 PASS",
+    "git_diff_check": "Root theme cached diff check PASS. Whole staged repository FAILED whitespace check in 531 existing/imported evidence and source files (383590 trailing-whitespace findings, 94 extra-EOF findings); broad cleanup intentionally omitted to preserve source snapshots and unrelated work.",
+    "liquid_validation": "15/18 checked Liquid files PASS; 3 existing complexity errors in footer/main-product/jsonld-seo. All three are exact copies of reviewed source; no complexity check was disabled.",
+    "ops_unittest_discovery": "74 tests attempted; 2 outdated live-status expectations and 9 missing-dependency import errors. Modules requests, bs4, websocket and deep_translator unavailable. This sync did not change those assertions or their implementations.",
+    "strict_continuity": "PASS: CONTINUITY_OK after initial canonical sync records",
+    "independent_merge_review": "PASS; all527 theme hashes,22 config/templates,8 remote theme changes,2 remote instruction documents preserved; zero conflicts"
+  },
+  "remote_push": "NOT_ATTEMPTED",
+  "blocking_dependency": "Current Shopify Admin explicitly links active theme133290917985 to fsuels/dresslikemommy main. A remote theme push would update MAIN and bypass the connector owner-Admin release requirement. Recheck after local preparation.",
+  "external_theme_or_paid_writes": 0,
+  "preservation": {
+    "rollback_ref": "codex/main-before-sync-20260914-2024",
+    "local_before_files": "/Users/fsuels/.codex/tmp/dlm-main-sync-20260914-2024/theme-before",
+    "private_records": "Remain untouched on disk and excluded from public staging. Runtime caches are ignored.",
+    "public_worklog_and_prompt": "Private supplier URL values replaced with placeholders only in the Git index; local originals remain unchanged.",
+    "v8": "58/58 files unchanged locally;57 committed;1 historical worklog copy kept local as private source provenance"
+  },
+  "authorization": "User explicitly requested all local project changes and completed UX fixes on latest Git main; no renewed general approval is required. Existing platform restriction remains.",
+  "staging": {
+    "included_paths": 6831,
+    "excluded_paths": 22,
+    "public_index_redactions": [
+      {
+        "path": "ops/AGENT_WORKLOG.md",
+        "replacement_count": 2,
+        "local_original_unchanged": true
+      },
+      {
+        "path": "ops/prompts/shopify-listing-from-1688.md",
+        "replacement_count": 4,
+        "local_original_unchanged": true
+      }
+    ],
+    "remote_writes": 0
+  },
+  "local_snapshot_commit": "9ee5c13158c14fad34cb33c09c93ee60170a41e8",
+  "local_merge_commit": "c126eaa34eb645d308d34f803baea8e852e6a5fb",
+  "remote_project_files_sync": "PREPARING isolated commit with all theme directories and deployment configuration exactly equal to origin/main",
+  "remote_theme_sync": "BLOCKED_OWNER_ADMIN_PUBLICATION",
+  "non_theme_sync_basis": {
+    "documentation": "https://shopify.dev/docs/storefronts/themes/tools/github",
+    "rule": "Folders outside the default Shopify theme structure are ignored",
+    "frozen_directories": [
+      "assets",
+      "blocks",
+      "config",
+      "layout",
+      "locales",
+      "sections",
+      "snippets",
+      "templates",
+      ".github",
+      ".shopify"
+    ],
+    "additional_frozen_files": [
+      ".theme-check.yml",
+      ".shopifyignore",
+      "shopify.theme.toml",
+      "config.yml"
+    ],
+    "verification_required": "All frozen tree entries byte-identical to fresh origin/main; independent exact candidate commit review; no force push"
+  }
+}

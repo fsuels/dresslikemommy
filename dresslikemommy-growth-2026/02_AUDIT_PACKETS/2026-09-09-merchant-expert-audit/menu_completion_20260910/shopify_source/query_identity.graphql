@@ -1,0 +1,15 @@
+query MerchantSourceRefreshIdentity {
+  shop { id name primaryDomain { url } }
+  activeProducts: productsCount(query: "status:active", limit: null) { count precision }
+  googlePublication: publication(id: "gid://shopify/Publication/21969633377") { id autoPublish }
+  onlineStorePublication: publication(id: "gid://shopify/Publication/55169925") { id autoPublish }
+  googleApp: app(id: "gid://shopify/App/1780363") {
+    id title handle
+    feedback {
+      feedbackGeneratedAt state
+      app { id title }
+      messages { message }
+      link { label url }
+    }
+  }
+}

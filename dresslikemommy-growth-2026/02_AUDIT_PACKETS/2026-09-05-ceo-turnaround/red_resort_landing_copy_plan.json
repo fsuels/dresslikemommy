@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "status": "LOCAL_PROPOSAL_ONLY_NOT_APPLIED",
+  "owner": "/root/shopify_merchant_connection_repair",
+  "execution_owner": "/root",
+  "target": {
+    "store_context": "dresslikemommy-com.myshopify.com",
+    "product_id": "gid://shopify/Product/7545373130849",
+    "product_numeric_id": "7545373130849",
+    "handle": "red-resort-mommy-and-me-set",
+    "field": "descriptionHtml",
+    "current_title": "Red Resort Mommy and Me Set - Tee and Skirt",
+    "current_status": "ACTIVE"
+  },
+  "captured_source": {
+    "tool": "mcp__codex_apps__shopify_get_product",
+    "arguments": {
+      "id": "gid://shopify/Product/7545373130849"
+    },
+    "observation_window": {
+      "start": "2026-09-06 15:30:05 UTC",
+      "end": "2026-09-06 15:30:07 UTC"
+    },
+    "response_totalVariants": 10,
+    "returned_variants": 10,
+    "currencyCode": "USD",
+    "source_readback": "existing_pin_cohort_product_truth.json",
+    "source_readback_sha256": "a06e4e4b1b682592692fff53356c31288c7f6874bcfd82f6fecf1660f2f220f7",
+    "source_snapshot_sha256": "325cd18b619fbcefea75b893f77714fc9f486a61b281a2fba0582f7c46ffb389"
+  },
+  "trigger": {
+    "source": "Parent fresh MAIN rendered observation, supplied 2026-09-06; subagent did not replay browser.",
+    "live_theme_id": "133290917985",
+    "root_reported_visible_strings": [
+      "The attached product image supports girls and mothers only, so the draft resolves to Mommy and Me.",
+      "Draft-first setup: Created unpublished for fabric, inventory, and final image review before launch."
+    ],
+    "meaning": "The internal draft and unpublished setup language is confirmed publicly visible by root. This proposal removes only those two clauses."
+  },
+  "replacements": [
+    {
+      "before": "The attached product image supports girls and mothers only, so the draft resolves to Mommy and Me.",
+      "after": "Each selection includes one red tee and one white pleated skirt for one person.",
+      "reason": "Replace internal draft classification with the existing source-supported per-person sold unit."
+    },
+    {
+      "before": "<strong>Draft-first setup:</strong> Created unpublished for fabric, inventory, and final image review before launch.",
+      "after": "<strong>Choose your sizes:</strong> Select mother and child sizes separately for your matching outfits.",
+      "reason": "Remove the misleading unpublished/setup note and explain the existing separate wearer/size selections."
+    }
+  ],
+  "unchanged_scope": [
+    "All table HTML/size rows/headers/measurements and all body bytes outside the two exact replacements.",
+    "Every other product field: title, handle, status, variants/options, prices, images/media, tags, translations, SEO and publication.",
+    "All other source/measurement/fabric boilerplate, even where further review could be useful."
+  ],
+  "authority": {
+    "basis": "Parent delegated preparation after the owner's current automatic implementation instruction. This subagent is authorized only for local artifacts.",
+    "release_authority": "Root owns independent exact review, current user/platform authority and the normal dedicated Shopify update. This packet itself does not authorize an external write.",
+    "prior_auto_review_rejections": "No new mutation attempted for this packet; no retry or bypass of any prior rejection."
+  },
+  "freshness_gates": [
+    "Before any root update, use a fresh dedicated get of this exact product GID and require descriptionHtml byte-equal to this saved before body. If changed, stop and rebase review.",
+    "Require expected handle mapping, ACTIVE status and reviewed product/claim identity. Do not overwrite a changed source or other agent's product work.",
+    "Independent reviewer checks both replacements, sold-unit truth, unchanged body/table bytes and inverse rollback before root execution."
+  ],
+  "execution_plan": {
+    "tool_family": "Dedicated Shopify product update, normal supported tool only",
+    "permitted_product_fields": [
+      "id",
+      "descriptionHtml"
+    ],
+    "id": "gid://shopify/Product/7545373130849",
+    "descriptionHtml_source_file": "red_resort_landing_body_candidate.html",
+    "maximum_updates": 1,
+    "preflight": "Exact before-state comparison and independent review; no force overwrite.",
+    "verification": [
+      "Separate dedicated product get returns descriptionHtml byte-equal to candidate; compare all other returned product fields against fresh root before-state.",
+      "Root verifies the existing MAIN Red Resort PDP shows the two new clauses and lacks the two old clauses, desktop and narrow viewport as appropriate.",
+      "Preserve cart state; no purchase, billing, discount or paid-campaign action."
+    ]
+  },
+  "rollback": {
+    "kind": "Exact inverse two-replacement description-only rollback",
+    "source_file": "red_resort_landing_body_before.html",
+    "guard": "Only revert if a fresh descriptionHtml remains byte-equal to this candidate. Never overwrite unrelated subsequent edits.",
+    "inverse_replacements": [
+      {
+        "before": "Each selection includes one red tee and one white pleated skirt for one person.",
+        "after": "The attached product image supports girls and mothers only, so the draft resolves to Mommy and Me."
+      },
+      {
+        "before": "<strong>Choose your sizes:</strong> Select mother and child sizes separately for your matching outfits.",
+        "after": "<strong>Draft-first setup:</strong> Created unpublished for fabric, inventory, and final image review before launch."
+      }
+    ],
+    "authorization": "Root executes any required rollback through normal authority/review; subagent does not write externally."
+  },
+  "limitations": [
+    "Root-supplied public exposure is distinct from this independent local payload check.",
+    "Size/measurement accuracy, material composition, delivery, inventory, taxes, costs, checkout, translations and sales lift are not newly verified or changed.",
+    "Current source explicitly lacks adult skirt measurement values; no fit assurance is added.",
+    "The dedicated get responses do not include shop identity or publication fields. Known store context uses exact repository product GID/handle matching.",
+    "No additional API call was needed for preparation; source captured 15:30:05–15:30:07 UTC must be freshly guarded before execution."
+  ],
+  "subagent_activity": {
+    "new_external_reads_for_this_followup": 0,
+    "browser_actions": 0,
+    "external_writes": 0
+  },
+  "payloads": {
+    "before_file": "red_resort_landing_body_before.html",
+    "before_bytes": 4156,
+    "before_chars": 4156,
+    "before_sha256": "098d8c2d88ef86cb26472e62006d36df542c3437aac53058ba77486e6730a5e0",
+    "candidate_file": "red_resort_landing_body_candidate.html",
+    "candidate_bytes": 4124,
+    "candidate_chars": 4124,
+    "candidate_sha256": "f46fea199ddfc5ba10fdb83c7fc88d243d18182ef5d442370f113bdb27d94c29",
+    "table_count": 1,
+    "table_bytes": 1940,
+    "table_sha256": "ae896b43c0f641ffc0712ac8a8b2d2d430b8bc6bfde4605411f4e54d400ffbfa",
+    "table_body_rows": 10,
+    "table_headers": 10,
+    "encoding": "UTF-8; bytes exactly as captured, without an added terminal newline"
+  },
+  "validation": {
+    "result": "PASS",
+    "checks": {
+      "exact_two_replacements": true,
+      "each_before_occurs_once": true,
+      "no_after_already_in_before": true,
+      "each_after_occurs_once": true,
+      "old_clauses_absent_after": true,
+      "forward_replay_exact": true,
+      "inverse_rollback_exact": true,
+      "one_table_in_each": true,
+      "table_bytes_unchanged": true,
+      "markup_tokens_unchanged": true,
+      "10_body_rows_preserved": true,
+      "10_headers_preserved": true,
+      "body_no_urls": true,
+      "exact_target": true,
+      "only_id_description_update_fields": true,
+      "no_external_write": true
+    },
+    "check_count": 16,
+    "method": "Local Python exact occurrence checks, forward/inverse replay, table byte equality and HTML structural token comparison; no browser/API mutation."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "dlm.private_sales_source_cleanup.v1",
+  "recorded_at_utc": "2026-09-14T07:54:30.919937Z",
+  "status": "DELETED_VERIFIED",
+  "files": [
+    {
+      "path": "/private/tmp/dlm-sales-20260914-0704-source.json",
+      "before_sha256": "d0326a1650fc265c9c85af0c1c3773a6f6d28b585128c81a26b0b8b250178e1a",
+      "before_mode": "0600",
+      "deleted_and_absence_verified": true
+    },
+    {
+      "path": "/private/tmp/dlm-sales-20260914-0704-bindings.json",
+      "before_sha256": "35cbbdbb27c18704d45f5d881093bacead1a340facb73d684818bfe64a55f7e7",
+      "before_mode": "0600",
+      "deleted_and_absence_verified": true
+    }
+  ],
+  "scope": "Only root-created temporary raw sales source and call-binding addendum. Sanitized receipts and immutable prior evidence remain.",
+  "release_basis": "Original local source reviewers completed; exact receiver owner explicitly ended private source use and completed; current canonical-plan review uses sanitized receipts only.",
+  "persistent_repository_raw_copy_created": false,
+  "limits": "This confirms filesystem deletion only; historical tool outputs cannot be erased by this local action. Function-store raw objects are cleared separately by root."
+}

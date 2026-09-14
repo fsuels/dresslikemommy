@@ -1,0 +1,189 @@
+{
+  "schema": "dlm.google_ads_followup_evidence.v1",
+  "recorded_at_utc": "2026-09-13T06:57:24Z",
+  "trigger": {
+    "automation_id": "google-ads-markets-and-purchase-follow-up",
+    "fired_at_utc": "2026-09-13T06:53:22.855Z"
+  },
+  "decision": "HOLD_WITH_EVIDENCE_NO_ACTIONABLE_CHANGE",
+  "latest_relevant_anchor": "2026-09-12-google-ads-editor-recovered-and-creation-delta-integrated",
+  "ads": {
+    "customer_id_retained": "6509972886",
+    "campaign_id": "24247604341",
+    "asset_group_id": "6746545742",
+    "account_ocid": "8520129103",
+    "fresh_report_surface": "Task-owned IAB1/tab17",
+    "current_status": "PAUSED",
+    "configured_average_daily_budget_usd": 5,
+    "ad_strength_displayed": "Poor",
+    "today": {
+      "date": "2026-09-13",
+      "timezone": "America/New_York",
+      "partial": true,
+      "impressions": 0,
+      "clicks": 0,
+      "cost_usd": 0,
+      "conversions": 0,
+      "conversion_value": 0,
+      "sole_asset_group_and_campaign_totals_agree": true
+    },
+    "yesterday": {
+      "date": "2026-09-12",
+      "timezone": "America/New_York",
+      "calendar_day_complete": true,
+      "impressions": 0,
+      "clicks": 0,
+      "cost_usd": 0,
+      "conversions": 0,
+      "conversion_value": 0,
+      "sole_asset_group_and_campaign_totals_agree": true
+    },
+    "saved_copy": "Both freshly loaded report dates show the original long-headline and description examples; the reviewed replacement is still unsaved.",
+    "reference": {
+      "path": "FOLLOWUP_20260912_1850.json",
+      "sha256": "0cd067ea854d019ecbab34f79049e60803716c028beaccc7d3d537f3e1089bb1",
+      "fields": [
+        "ads.report_evidence_lines",
+        "ads.editor.observed_textbox_lines"
+      ]
+    },
+    "report_comparison": {
+      "today_date_button": "Sep 13, 2026 Not applicable",
+      "yesterday_date_button": "Sep 12, 2026 Not applicable",
+      "today_other_selected_lines_equal_reference": true,
+      "yesterday_all_eight_lines_equal_reference": true
+    },
+    "editor": {
+      "browser_id": "1",
+      "tab_id": "13",
+      "provider_tab_id": "browser-use:c89eed6d-ae6a-470d-846b-36e8b2ae3008",
+      "present_in_fresh_inventory": true,
+      "current_textbox_lines": 27,
+      "current_textbox_lines_equal_reference": true,
+      "reloaded": false,
+      "field_fills": 0,
+      "save_attempts": 0,
+      "identity_attempts": 0,
+      "identity_save_acceptance": "UNVERIFIED",
+      "mark_handoff_called": true
+    },
+    "comparison_method": "Current DOM textbox lines match all27 recorded values after trimming and removing only the focus annotation. Fresh current report was read for Today, then one Previous date-filter click loaded Yesterday. No new native accessibility replay claimed.",
+    "reporting_limit": "September12 calendar completion does not establish final Google processing or adjustments. September13 is partial; zero reported activity is not a guarantee of future zero exposure."
+  },
+  "shopify": {
+    "window": {
+      "from_inclusive": "2026-09-13T02:52:53Z",
+      "until_exclusive": "2026-09-13T06:54:26Z"
+    },
+    "query": "query AdsHeartbeatSep13MorningOrderCounts {\n  shop { id name ianaTimezone }\n  allNew: ordersCount(query:\"created_at:>='2026-09-13T02:52:53Z' created_at:<'2026-09-13T06:54:26Z'\",limit:null) { count precision }\n  webNonTest: ordersCount(query:\"created_at:>='2026-09-13T02:52:53Z' created_at:<'2026-09-13T06:54:26Z' source_name:web test:false\",limit:null) { count precision }\n  paidWebNonTest: ordersCount(query:\"created_at:>='2026-09-13T02:52:53Z' created_at:<'2026-09-13T06:54:26Z' source_name:web test:false financial_status:paid\",limit:null) { count precision }\n}",
+    "result": {
+      "shop": {
+        "id": "gid://shopify/Shop/15571635",
+        "name": "Dress Like Mommy",
+        "ianaTimezone": "America/New_York"
+      },
+      "allNew": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "webNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "paidWebNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      }
+    },
+    "workflow": "Fresh QueryRoot/Count/Shop schema discovery; VALID operation; read-only count query.",
+    "previous_delta": {
+      "path": "FOLLOWUP_20260913_0251.json",
+      "sha256": "93be1e01cda608653fb29960bd9c7fa01c4aa9c5c1970a2081fc6c09b25cc750",
+      "until_exclusive": "2026-09-13T02:52:53Z"
+    },
+    "limits": [
+      "Creation-only delta contiguous with the prior exact read. Older payment, cancellation, refund and fulfillment states were not reread.",
+      "No new genuine purchase candidate returned; no GA4 report, synthetic purchase or replay used.",
+      "No customer identity, order ID, payment details or address requested."
+    ]
+  },
+  "parent_evidence_reused": {
+    "latest_checkpoint_wake": "2026-09-13T06:26:20.747Z",
+    "latest_checkpoint_recorded_at": "2026-09-13T06:27:27.865422+00:00",
+    "result": "HOLD_NO_CHANGED_ACTIONABLE_STATE",
+    "order_cutoff": "2026-09-12T20:41:48Z",
+    "latest_fulfillment_evidence": "2026-09-12T20:42:15Z",
+    "full_order_source": "order_fulfillment_checkpoint_20260912_2041.json",
+    "full_order_source_sha256": "0f0bde5c470b3077f05029ce58d6bb247048deeaad2840b09fe724df3786edab",
+    "next_full_sales_read_due_at_utc": "2026-09-13T08:41:48Z",
+    "owner_action": "Owner Admin publication of verified existing theme137888792673; unchanged.",
+    "market_and_cost_qualification": "No new qualified evidence supplied; retain the current market, buyer and actual-cost gates."
+  },
+  "market_and_purchase_gates": {
+    "US_AU_GB_CA_campaign_drafts": "HELD_LOCAL_PREPARATION",
+    "frozen_source_payload": "research/SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+    "frozen_source_payload_sha256": "99aad3484b86cf758412a037c9cdb0361da8800cebe781ec5ba1f54ac95218c8",
+    "GA4_property": "330266838",
+    "Ads_purchase_action": "7760272273",
+    "purchase_acceptance": "UNVERIFIED",
+    "actual_costs_attribution_ROAS_retained_profit": "UNKNOWN",
+    "new_live_Merchant_or_market_read": false,
+    "constraints_preserved": {
+      "maximum_CPC_USD": 0.15,
+      "target_ROAS": 6.5,
+      "target_all_in_profit_margin": 0.3
+    }
+  },
+  "actions": {
+    "campaign_save_apply": 0,
+    "budget_bid_status_goal_changes": 0,
+    "keyword_negative_imports": 0,
+    "new_campaigns": 0,
+    "creative_uploads": 0,
+    "feed_mutations": 0,
+    "tracking_consent_changes": 0,
+    "public_storefront_requests": 0,
+    "purchases_payments": 0,
+    "editor_fills": 0,
+    "shared_canonical_writes": 0,
+    "report_date_previous_clicks": 1,
+    "temporary_tab17_closed": true,
+    "editor13_preserved": true,
+    "user_tab4_untouched": true,
+    "native_Chrome_used": false,
+    "GA4_report_read": "NOT_RUN"
+  },
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-09-13T06:57:24Z",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "material_decision": "NOT_MATERIAL",
+    "decision_depends_on_uncertain_state": true,
+    "independent_verifier": "NO_NEW_INDEPENDENT_LIVE_REPLAY",
+    "verifier_independence": "Separate root DOM/receipt comparison; no new material action.",
+    "decision_changing_evidence": "Normal owner Save/identity result, a genuine purchase, qualified market/economic evidence or exact authority.",
+    "if_evidence_supports_recommendation": "Resume only the corresponding exact authorized repair or preparation gate.",
+    "if_evidence_opposes_recommendation": "Retain paused state and reviewed payloads; no repeated unchanged Save/authentication, full-cohort read or speculative launch."
+  },
+  "runtime_goal": {
+    "status_from_get_goal": "BLOCKED",
+    "new_goal_created": false,
+    "goal_status_changed": false,
+    "complete": false
+  },
+  "preservation": {
+    "existing_four_hour_heartbeat": "UNCHANGED",
+    "peer_claims": "UNCHANGED"
+  },
+  "next_action": "Hold for the existing normal Google Save/identity result or another qualifying change. Parent full-sales read remains due September13 08:41:48UTC; no repeated owner question.",
+  "continuation_source": "/Users/fsuels/Projects/dresslikemommy/ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "verification": {
+    "current_editor_27_fields": "PASS",
+    "both_date_report_readbacks": "PASS",
+    "receipt_and_frozen_file_checks": "PASS_14_OF_14",
+    "strict_continuity": "PASS_10_OF_10_CONTINUITY_OK"
+  },
+  "owner_notification": "NO_ACTIONABLE_CHANGE"
+}

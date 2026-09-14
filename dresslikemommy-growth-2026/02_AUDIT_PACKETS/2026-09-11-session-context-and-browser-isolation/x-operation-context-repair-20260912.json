@@ -1,0 +1,295 @@
+{
+  "receipt_version": 1,
+  "captured_at": "2026-09-12T13:26:16.417785+00:00",
+  "status": "IMPLEMENTED_AND_LOCALLY_VERIFIED_ROOT_REVIEW_PENDING",
+  "requested_scope": "One local repair for continue X retrieval; root owns shared canonical files and all account surfaces.",
+  "root_cause": "X alias recognized, but bounded X task-subject matcher omitted plain X operation. Existing current TA-24 subject uses that phrase.",
+  "fix": "Add operation| to the existing bounded X subject alternation; one production line and ten added bytes.",
+  "changed_files": [
+    "ops/scripts/session_context.py",
+    "ops/tests/test_session_context.py"
+  ],
+  "scoped_file_sha256": {
+    "ops/scripts/session_context.py": {
+      "before": "b648f4062b59d04c309ea0e8b4df2b04cb78216eef738569a0fec1b72da4db16",
+      "after": "6ac02d610a619c8e8f0feb2262568888f0c221ae9cdb1406b99f084156c2848c"
+    },
+    "ops/tests/test_session_context.py": {
+      "before": "8e693dc7c9fc196c3e8b63390c4750b1b400832a63aa4692513102f284d21eb9",
+      "after": "7ef0958988fc0c50ee19dcdff70e1cd3e838ac5439e7448e302465aa2cd9f855"
+    },
+    "ops/scripts/compile_task_context.py": {
+      "before": "34d9bbfa6a5258ac31ee66eb4fc6dc3ba6a9bbc7885f3c19ab4b08e798c83a9d",
+      "after": "34d9bbfa6a5258ac31ee66eb4fc6dc3ba6a9bbc7885f3c19ab4b08e798c83a9d"
+    },
+    "ops/tests/test_compile_task_context.py": {
+      "before": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943",
+      "after": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943"
+    },
+    "ops/scripts/render_marketing_cockpit.py": {
+      "before": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0",
+      "after": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0"
+    }
+  },
+  "exact_changes": {
+    "ops/scripts/session_context.py": "--- before/ops/scripts/session_context.py\n+++ ops/scripts/session_context.py\n@@ -24,7 +24,7 @@\n     \"google-analytics\": r\"\\b(?:ga4|gtm)(?=\\b|\\d)|\\bgoogle[\\s_-]*analytics\\b\",\n     \"microsoft-ads\": r\"\\bmicrosoft(?=\\b|\\d)|\\bbing[\\s_-]*ads\\b|\\buet\\b\",\n     \"pinterest\": r\"\\bpinterest\\b|\\bpins?\\b\",\n-    \"x\": r\"\\b(?:x|twitter)(?:[\\s_-]+(?:public[\\s_-]+)?(?:profile|pilot|account|relaunch|organic[\\s_-]+(?:pilot|operation|relaunch|growth|content|posts?|publishing|traffic|marketing|campaign))\\b|\\.com/)\",\n+    \"x\": r\"\\b(?:x|twitter)(?:[\\s_-]+(?:public[\\s_-]+)?(?:profile|pilot|account|operation|relaunch|organic[\\s_-]+(?:pilot|operation|relaunch|growth|content|posts?|publishing|traffic|marketing|campaign))\\b|\\.com/)\",\n     \"shopify\": r\"\\bshopify(?=\\b|\\d)|\\bstorefront\\b|\\btheme(?=\\b|\\d)\",\n }\n QUERY_FILLERS = frozenset(\n",
+    "ops/tests/test_session_context.py": "--- before/ops/tests/test_session_context.py\n+++ ops/tests/test_session_context.py\n@@ -183,6 +183,39 @@\n         self.assertEqual(exact[\"selected_anchor\"][\"anchor_id\"], \"2026-01-10-x-organic-pilot\")\n         self.assertIsNone(exact[\"session_brief\"])\n \n+    def test_x_current_operation_continuation_queries(self):\n+        # The current task moved from a pilot/profile label to an ongoing\n+        # operation. Freeze that source wording and its newer linked handoff.\n+        self.add_x_fixture()\n+        queue = self.paths[\"action_queue.md\"]\n+        queue.write_text(queue.read_text().replace(\n+            \"Continue X organic pilot\",\n+            \"Grow qualified traffic through the ongoing Dress Like Mommy X operation\"))\n+        worklog = self.paths[\"AGENT_WORKLOG.md\"]\n+        latest = \"2026-01-11-x-proactive-traffic-loop-and-api-boundary\"\n+        worklog.write_text(worklog.read_text() + (\n+            f\"AGENT_CONTINUITY_ANCHOR: {latest}\\n\"\n+            \"task_entities: Xdresslikemommy,TA-08\\ntask_stage: HANDOFF\\n\"\n+            \"next_action_id: READ_ONLY_MARKETING_RECONCILIATION\\n\"\n+            \"Existing schedules preserved; new publication connection remains required.\\n---\\n\"\n+        ))\n+        for subject in (\"Shopify shirt Size x Color\", \"X operationz\", \"X operational costs\"):\n+            self.assertFalse(channel_matches(\"x\", subject, task=True))\n+        for query in (\"continue X\", \"continue working on X\", \"resume Twitter\", \"work on Twitter\"):\n+            with self.subTest(query=query):\n+                result = self.compile(query)\n+                self.assertEqual(result[\"diagnostics\"][\"status\"], \"OK\")\n+                brief = result[\"session_brief\"]\n+                self.assertEqual([row[\"id\"] for row in brief[\"current_tasks\"]], [\"TA-08\"])\n+                current = brief[\"current_tasks\"][0]\n+                self.assertEqual(current[\"fields\"][\"Owner agent\"], \"root08abcdef X owner\")\n+                self.assertEqual(current[\"fields\"][\"Gate\"], \"Publishing connection required; paid NONE\")\n+                self.assertEqual(current[\"identity_evidence\"][\"anchor_id\"], latest)\n+                self.assertIn(latest, [row[\"anchor_id\"] for row in brief[\"recent_anchors\"]])\n+                self.assertEqual(result[\"authority\"][\"fields\"][\"approved_external_scope\"], \"NONE\")\n+                self.assertFalse(brief[\"external_write_authorized\"])\n+                self.assertIsNone(result[\"selected_anchor\"])\n+\n     def test_x_channel_does_not_relax_relevance_or_authority(self):\n         self.add_x_fixture()\n         for subject in (\"Shopify shirt Size x Color\", \"Shopify product X large\",\n"
+  },
+  "frozen_evidence": {
+    "captured_at": "2026-09-12T13:17:20.588124+00:00",
+    "frozen_cases_sha256": "e5e9644602d81ec30f0144e6df37bce2d62da5c599f91058fc59020b32344de9",
+    "test_frozen_before_implementation_at": "2026-09-12T13:19:48.690261+00:00",
+    "frozen_test_sha256": "7ef0958988fc0c50ee19dcdff70e1cd3e838ac5439e7448e302465aa2cd9f855",
+    "baseline_test_result": {
+      "new_case_failures": 4,
+      "existing_methods_passed": 11
+    },
+    "source_sha256": {
+      "ops/scripts/session_context.py": "b648f4062b59d04c309ea0e8b4df2b04cb78216eef738569a0fec1b72da4db16",
+      "ops/scripts/compile_task_context.py": "34d9bbfa6a5258ac31ee66eb4fc6dc3ba6a9bbc7885f3c19ab4b08e798c83a9d",
+      "ops/tests/test_session_context.py": "8e693dc7c9fc196c3e8b63390c4750b1b400832a63aa4692513102f284d21eb9",
+      "ops/tests/test_compile_task_context.py": "4160af3da4c3fddc9583d8f7ef66ec1defb23717e80433f8e5b2ed9a6225f943",
+      "ops/scripts/render_marketing_cockpit.py": "a0084e3298f164df4d34fde692fe5a6467835ca063af3c238b40784b3e090ad0",
+      "ops/AGENT_WORKLOG.md": "7e1b354e0eb4c83a0efd548a047c79be3421a0ca43ce9e5efd4cfcf62c9b1374",
+      "ops/marketing/current_marketing_state.md": "507dc263f1a0e33b1d697541037c185e424bb09e0e4195565cf464131957e2ad",
+      "ops/PROBLEM_TRACKER.md": "1911eac1aae9decd1dfaa5b9889a56e4b6bfbaba97f5b5f5abae7d61cd6b6aae",
+      "ops/AGENT_COORDINATION.md": "258886ac96714bcd1132907e044826008a88f0f96163166cd6ec29de6a440c52",
+      "ops/marketing/action_queue.md": "c6992ddf4e1bebab89480bcdb37353d8f784dd8619f5690aa08e6b13e95e2bb7",
+      "ops/GROWTH_NORTH_STAR.md": "c864a0890c9e23f8fcadd1d851ae7f1c37a4c9c7c646c18959ef350bbc7a0c21"
+    },
+    "raw_directory": "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-x-operation-20260912-fqdw5kxa"
+  },
+  "frozen_production_cases": [
+    {
+      "query": "continue X",
+      "kind": "x_failure_case",
+      "before": {
+        "exit_code": 1,
+        "status": "FAILED_CLOSED",
+        "errors": [
+          "NO_CURRENT_CHANNEL_TASKS"
+        ],
+        "task_ids": [],
+        "payload_sha256": "c6864a62df8bc6592c6756ce1c7ddd5051932663d6ba12b4fdd1d6d96ab22348",
+        "target_x_anchor_included": false
+      },
+      "after": {
+        "exit_code": 0,
+        "status": "OK",
+        "task_ids": [
+          "TA-24"
+        ],
+        "payload_sha256": "84c3ac2bdd3edbb790fcfd2ec4970075aa4704577548833effc40bb41288cded",
+        "target_x_anchor_included": true
+      }
+    },
+    {
+      "query": "continue working on X",
+      "kind": "x_failure_case",
+      "before": {
+        "exit_code": 1,
+        "status": "FAILED_CLOSED",
+        "errors": [
+          "NO_CURRENT_CHANNEL_TASKS"
+        ],
+        "task_ids": [],
+        "payload_sha256": "840cf0d348daf400477e446a161018e7f4cba013050b4c98f8e323e22d2758f4",
+        "target_x_anchor_included": false
+      },
+      "after": {
+        "exit_code": 0,
+        "status": "OK",
+        "task_ids": [
+          "TA-24"
+        ],
+        "payload_sha256": "c78381719df57d4819175a33b33ac975481485b2ba20f63d30a7d560b6227fe9",
+        "target_x_anchor_included": true
+      }
+    },
+    {
+      "query": "resume Twitter",
+      "kind": "x_failure_case",
+      "before": {
+        "exit_code": 1,
+        "status": "FAILED_CLOSED",
+        "errors": [
+          "NO_CURRENT_CHANNEL_TASKS"
+        ],
+        "task_ids": [],
+        "payload_sha256": "0d9495f0c7119de73c3fb75ece6167219ebdd22dd973981987e2fc5dae22e6bc",
+        "target_x_anchor_included": false
+      },
+      "after": {
+        "exit_code": 0,
+        "status": "OK",
+        "task_ids": [
+          "TA-24"
+        ],
+        "payload_sha256": "e708a18fa0af248d045d2fbe72a02220990b30635ce73e99ad5205320152afdf",
+        "target_x_anchor_included": true
+      }
+    },
+    {
+      "query": "work on Twitter",
+      "kind": "x_failure_case",
+      "before": {
+        "exit_code": 1,
+        "status": "FAILED_CLOSED",
+        "errors": [
+          "NO_CURRENT_CHANNEL_TASKS"
+        ],
+        "task_ids": [],
+        "payload_sha256": "85809ab9fe38cb1d7b7fa6fd3b0a9ac0bc8983d1a19cf4de5d187eadf98f3e36",
+        "target_x_anchor_included": false
+      },
+      "after": {
+        "exit_code": 0,
+        "status": "OK",
+        "task_ids": [
+          "TA-24"
+        ],
+        "payload_sha256": "0825a4adc6bcfdf9888329028af7faedaa4a4ab67457afbb8a2c3b66a10a527f",
+        "target_x_anchor_included": true
+      }
+    },
+    {
+      "query": "continue Google Ads",
+      "kind": "passing_holdout",
+      "before": {
+        "exit_code": 0,
+        "status": "OK",
+        "task_ids": [
+          "TA-01",
+          "TA-09",
+          "TA-10"
+        ],
+        "payload_sha256": "912e51c4ccd1bc6c5ee912d2d52c518f31631b7fd6cb14f03933de03495f93f6",
+        "target_x_anchor_included": false
+      },
+      "after": {
+        "exit_code": 0,
+        "status": "OK",
+        "task_ids": [
+          "TA-01",
+          "TA-09",
+          "TA-10"
+        ],
+        "payload_sha256": "912e51c4ccd1bc6c5ee912d2d52c518f31631b7fd6cb14f03933de03495f93f6",
+        "target_x_anchor_included": false
+      },
+      "holdout_payload_byte_identical": true
+    },
+    {
+      "query": "Xdresslikemommy",
+      "explicit_entities": [
+        "Xdresslikemommy"
+      ],
+      "kind": "passing_holdout",
+      "before": {
+        "exit_code": 0,
+        "status": "OK",
+        "task_ids": [],
+        "selected_anchor": "2026-09-11-x-proactive-traffic-loop-and-api-boundary",
+        "payload_sha256": "240d4973912db6760b3694a702c68295322c5ce4afef68ca080b3b5cfa4eaf65",
+        "target_x_anchor_included": true
+      },
+      "after": {
+        "exit_code": 0,
+        "status": "OK",
+        "task_ids": [],
+        "selected_anchor": "2026-09-11-x-proactive-traffic-loop-and-api-boundary",
+        "payload_sha256": "240d4973912db6760b3694a702c68295322c5ce4afef68ca080b3b5cfa4eaf65",
+        "target_x_anchor_included": true
+      },
+      "holdout_payload_byte_identical": true
+    }
+  ],
+  "brief_cli": {
+    "before_exit_code": 1,
+    "after_exit_code": 0,
+    "before_bytes": 3768,
+    "after_bytes": 8275
+  },
+  "current_source_cli": {
+    "verified_at": "2026-09-12T13:24:43.761284+00:00",
+    "command": [
+      "/usr/bin/python3",
+      "ops/scripts/compile_task_context.py",
+      "--query",
+      "continue X",
+      "--format",
+      "brief"
+    ],
+    "exit_code": 0,
+    "stdout_bytes": 5711,
+    "stdout_sha256": "af005dff3a3c5a137bdac48f2f431a01e98966a34936430465ad086b8ad9803c",
+    "checks": {
+      "exit_zero": true,
+      "ta24_included": true,
+      "latest_x_anchor_included": true,
+      "existing_owner_included": true
+    },
+    "canonical_sha256": {
+      "ops/AGENT_WORKLOG.md": "7e1b354e0eb4c83a0efd548a047c79be3421a0ca43ce9e5efd4cfcf62c9b1374",
+      "ops/marketing/current_marketing_state.md": "2750169784125bb0bf046086fe02ccc8f4e56aeb72596efaa854099651e90295",
+      "ops/PROBLEM_TRACKER.md": "5f492f83a673af02a70369993e46fc4273a943824477f47f5c5a3fdc7a8dca0c",
+      "ops/AGENT_COORDINATION.md": "4541caea1f46cd458fa3ad089f55622c765bacb6d00320b419780b00c378f199",
+      "ops/marketing/action_queue.md": "18760428eee02f48f2a2174e720d1d67b1316f6ddbae2ebbd8e3fcea1c1005a1",
+      "ops/GROWTH_NORTH_STAR.md": "c864a0890c9e23f8fcadd1d851ae7f1c37a4c9c7c646c18959ef350bbc7a0c21"
+    }
+  },
+  "verification": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 ops/tests/test_session_context.py",
+      "exit_code": 0,
+      "result": "12 methods passed, including four frozen operation-query subcases, bounded negative subjects and preserved owner/authority assertions"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /usr/bin/python3 ops/tests/test_compile_task_context.py",
+      "exit_code": 0,
+      "result": "ok; unchanged original ten compatibility groups"
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "result": "CONTINUITY_OK"
+    },
+    {
+      "command": "git diff --check -- ops/scripts/session_context.py ops/scripts/compile_task_context.py ops/tests/test_session_context.py ops/tests/test_compile_task_context.py",
+      "exit_code": 0,
+      "result": "No output; these files are untracked, so exact captured-before diff and an added-line whitespace assertion additionally verified their content"
+    },
+    {
+      "check": "Frozen production cases and invariants",
+      "result": "Four prior failures now return only TA-24; latest X handoff included; existing X owner and supported-publisher next step preserved; approved scope NONE and external_write_authorized false; two holdout payloads byte-identical"
+    },
+    {
+      "check": "Scope and frozen test integrity",
+      "result": "Only two intended existing code/test files changed relative to captured snapshots; original compiler, compatibility tests and renderer unchanged; frozen regression test hash unchanged after implementation"
+    }
+  ],
+  "raw_tool_results": {
+    "path": "/var/folders/5t/g_ys4vp54n9c0cfg7zkjm4n00000gn/T/dlm-x-operation-20260912-fqdw5kxa/verification-tool-results.json",
+    "sha256": "fb9e052a16e423ed06f2be12852613a018877cba528e34a3b7fe9f6a5726f65c"
+  },
+  "limits": [
+    "No browser, account, external, prompt, global configuration, schedule, paid-authority, theme, worklog, coordination, queue, scorecard or cockpit writes in this repair.",
+    "Root concurrently refreshed current business records; frozen sources isolate the regression comparison. The fresh current-source CLI separately passed against the listed updated source hashes.",
+    "Current brief also surfaces the existing Couples collection recovery coordination claim because it shares TA-24. This pre-existing cross-lane claim identity remains unchanged and is flagged for root review; it does not transfer ownership or confer authority.",
+    "Latest X handoff is included through existing task-identity linkage; unrelated anchor ranking and matching semantics were not redesigned.",
+    "Local retrieval verification does not verify platform state, browser isolation or independent user-created task concurrency.",
+    "Raw before snapshots and probe output live in the local temporary directory and may be cleaned later; this receipt preserves their hashes, exact changes and summarized results. Root independent review and canonical checkpoint integration are pending."
+  ],
+  "rollback": "Use the exact inverse helper/test changes recorded here after checking current file hashes; captured before copies are available in the raw directory. Do not restore unrelated files or overwrite intervening edits.",
+  "next_owner_action": "Coordinating root independently reviews this receipt and current X brief, reconciles the duplicate TA-24 coordination reference if appropriate, then integrates its own canonical checkpoint.",
+  "all_frozen_cases_authority": {
+    "approved_external_scope": "NONE",
+    "external_write_authorized": false
+  },
+  "duplicate_claim_observation": {
+    "frozen_after_brief": true,
+    "current_brief": true,
+    "unrelated_claim": "Couples collection recovery [TA-24]",
+    "scope": "Observed pre-existing coordination reference; no change in this repair"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "as_of_utc": "2026-09-10T02:14:45.938322+00:00",
+  "user_instruction": "Continue",
+  "attempt": {
+    "tool": "mcp__cua_repl.js",
+    "action": "cua.getApp('Google Chrome')",
+    "count": 1,
+    "result": "BLOCKED_AUTO_REVIEW",
+    "stated_reason": "Selecting the existing Chrome app can expose unrelated private tabs/content and proceeds despite the unresolved stable-tab/readiness gate; the general Microsoft Ads request does not authorize this native-app access under the current prerequisite.",
+    "app_content_returned": false
+  },
+  "retry_or_workaround": false,
+  "external_changes": 0,
+  "native_campaigns_created_or_uploaded": 0,
+  "source_and_campaign_work": "Previously verified/prepared; not repeated this pass",
+  "exact_readiness_question": "Select Microsoft account477439 tab, leave Chrome untouched10minutes, explicitly confirm it may be inspected now",
+  "question_status": "PENDING",
+  "anchor": "2026-09-09-microsoft-native-resume-approval-gate",
+  "completed_safe_work": "Saved the specific current blocker and preserved previous source/campaign/landing work",
+  "full_paid_control_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+  "canonical_preservation_guard": "PASS",
+  "closeout_checks": {
+    "cockpit_renderer": "PASS",
+    "integration": {
+      "status": "PASS",
+      "integrated": 25,
+      "risks": 0
+    },
+    "strict_continuity": {
+      "status": "PASS",
+      "checks": 10,
+      "result": "CONTINUITY_OK"
+    },
+    "scoped_git_diff_check": "PASS"
+  }
+}

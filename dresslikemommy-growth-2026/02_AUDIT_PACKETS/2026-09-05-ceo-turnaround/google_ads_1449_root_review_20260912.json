@@ -1,0 +1,551 @@
+{
+  "schema": "dlm.independent_google_ads_followup_review.v1",
+  "reviewed_at_utc": "2026-09-12T15:07:27.988098+00:00",
+  "reviewer": "/root/together_heart_runner",
+  "verdict": "PASS_WITH_LIMITS",
+  "scope": "Independent local verification of the 14:49 Ads owner heartbeat and exact necessary saved sources; no native/account requery.",
+  "independence": {
+    "built_copy": false,
+    "executed_editor_restoration": false,
+    "executed_source_query": false,
+    "independent_live_browser_verification": false,
+    "shared_canonical_writer": "/root"
+  },
+  "primary_receipt": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260912_1449.json",
+    "sha256": "1454f0fee74be7902c9906bfaa708176f098d45fc2e0e43229b492a21dc7c047"
+  },
+  "source_bindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260912_1449.json",
+      "sha256": "1454f0fee74be7902c9906bfaa708176f098d45fc2e0e43229b492a21dc7c047"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/FOLLOWUP_20260912_1048.json",
+      "sha256": "65f47bc29c8b44ccee11e6100117cb956f0675eefa78c6b513c634c588a46ede"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/COPY_CHANGE_PLAN.json",
+      "sha256": "b1b7a7a475f6bec8beb7769dbcaf87981b83facb515635790bf449c9d0fa0a15"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/EXACT_COPY_PRE_SAVE_REVIEW.json",
+      "sha256": "ecc6ea17f713360efc31130b4dfc14d934b929db667a8a844c90b43209634b36"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/EDITOR_RECOVERY_20260911.json",
+      "sha256": "e01509a47ca795bb87b9adc6e233895258609c2a5f5917c9002d586e3fdda6b6"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/GA4_PROPERTY_SETTINGS_20260912.json",
+      "sha256": "4856adc1fed2fd236decf529a918134fe1d17ce6f4898f718a041f137a71c0e4"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/review/GB_SOURCE_REFRESH_REVIEW_20260912.json",
+      "sha256": "e8e7cf38b91f793e431583c787054dd21ceadbadb27a9e0d610edc36bc7f1fc4"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+      "sha256": "99aad3484b86cf758412a037c9cdb0361da8800cebe781ec5ba1f54ac95218c8"
+    }
+  ],
+  "check_summary": {
+    "passed": 81,
+    "failed": 0,
+    "check_count_basis": "Each named local assertion below counts once; owner-reported 18/27/10/15/23 checks are not added to this count."
+  },
+  "checks": [
+    {
+      "check": "exact_hash:FOLLOWUP_20260912_1449.json",
+      "status": "PASS",
+      "basis": "SHA256"
+    },
+    {
+      "check": "exact_hash:FOLLOWUP_20260912_1048.json",
+      "status": "PASS",
+      "basis": "SHA256"
+    },
+    {
+      "check": "exact_hash:COPY_CHANGE_PLAN.json",
+      "status": "PASS",
+      "basis": "SHA256"
+    },
+    {
+      "check": "exact_hash:review/EXACT_COPY_PRE_SAVE_REVIEW.json",
+      "status": "PASS",
+      "basis": "SHA256"
+    },
+    {
+      "check": "exact_hash:EDITOR_RECOVERY_20260911.json",
+      "status": "PASS",
+      "basis": "SHA256"
+    },
+    {
+      "check": "exact_hash:GA4_PROPERTY_SETTINGS_20260912.json",
+      "status": "PASS",
+      "basis": "SHA256"
+    },
+    {
+      "check": "exact_hash:review/GB_SOURCE_REFRESH_REVIEW_20260912.json",
+      "status": "PASS",
+      "basis": "SHA256"
+    },
+    {
+      "check": "exact_hash:research/SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+      "status": "PASS",
+      "basis": "SHA256"
+    },
+    {
+      "check": "schema",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "same_customer",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "same_campaign",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "same_asset_group",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "exact_google_editor_url",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "retained_customer_identity_not_picker_reverification",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "paused_status_preserved",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "configured_budget_5_not_new_allocation",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "today_date_timezone_partial",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "today_all_five_metrics_zero",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "yesterday_date_timezone",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "yesterday_metrics_exact",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "same_prior_daily_metrics_not_increment",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "displayed_CPC_arithmetic",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "displayed_CTR_rounding",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "totals_agreement_recorded_not_asset_sum",
+      "status": "PASS",
+      "basis": "OWNER_REPORTED_RECEIPT"
+    },
+    {
+      "check": "reporting_adjustment_limit_retained",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "prior_revision_history_not_overwritten",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "reviewed_copy_still_unsaved",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "saved_headline_examples_are_frozen_before",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "saved_long_headline_and_description_are_before",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "asset_slot_count_preserved:headlines",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "asset_slot_count_preserved:long_headlines",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "asset_slot_count_preserved:descriptions",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "exact_18_frozen_changes",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "18_change_distribution",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "27_total_expected_fields",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "restoration_counts_match_plan",
+      "status": "PASS",
+      "basis": "OWNER_REPORTED_COUNTS_PLUS_PLAN_RECONCILIATION"
+    },
+    {
+      "check": "copy_review_payload_bound",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "copy_review_15_checks_and_provenance",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "final_url_preserved",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "former_tab_8_matches_prior",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "missing_tab_cause_unknown",
+      "status": "PASS",
+      "basis": "OWNER_REPORTED_RECEIPT"
+    },
+    {
+      "check": "new_actor_scoped_tab_identity",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "linked_actor_identity_is_ads_owner",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "new_provider_differs_from_prior_editor",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "no_save_or_identity_retry",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "reopened_dialog_absence_not_acceptance",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "protected_asset_scope_recorded",
+      "status": "PASS",
+      "basis": "OWNER_REPORTED_RECEIPT"
+    },
+    {
+      "check": "logo_region_failure_preserved_not_false_full_pass",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "poor_strength_and_gaps_remain",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "DOM_AX_scope_explicit",
+      "status": "PASS",
+      "basis": "OWNER_REPORTED_RECEIPT"
+    },
+    {
+      "check": "handoff_recorded",
+      "status": "PASS",
+      "basis": "OWNER_REPORTED_RECEIPT"
+    },
+    {
+      "check": "exact_window",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "contiguous_half_open_windows",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "window_4h_25s",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "trigger_window_and_receipt_chronology",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "recorded_clock_not_query_end",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "query_is_read_only",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "all_three_exact_half_open_filters",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "nested_shopify_filters",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "shop_identity_timezone",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "zero_exact_count:allNew",
+      "status": "PASS",
+      "basis": "SAVED_PROVIDER_RESULT"
+    },
+    {
+      "check": "zero_exact_count:webNonTest",
+      "status": "PASS",
+      "basis": "SAVED_PROVIDER_RESULT"
+    },
+    {
+      "check": "zero_exact_count:paidWebNonTest",
+      "status": "PASS",
+      "basis": "SAVED_PROVIDER_RESULT"
+    },
+    {
+      "check": "older_order_states_explicitly_not_reread",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "no_tracking_failure_inference",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "receiver_not_requeried_or_accepted",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "receiver_ids_retained",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "GA4_settings_clock_remains_separate",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "market_payload_hash_matches_prior_review",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "market_held_no_current_changes",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "dated_GB_review_retained",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "market_manifest_not_launch_ready",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "country_language_gates_remain",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "no_new_market_or_public_price_claim",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "all_ten_consequential_action_counts_zero",
+      "status": "PASS",
+      "basis": "OWNER_REPORTED_RECEIPT"
+    },
+    {
+      "check": "protected_user_GA4_native_surfaces",
+      "status": "PASS",
+      "basis": "OWNER_REPORTED_RECEIPT"
+    },
+    {
+      "check": "restrictive_authority_fields",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "preparation_does_not_authorize_spend",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "goal_blocked_not_new_or_complete",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "same_heartbeat_and_parent_action",
+      "status": "PASS",
+      "basis": "LOCAL_SOURCE_COMPARISON"
+    },
+    {
+      "check": "source_hash_stability_before_review_write",
+      "status": "PASS",
+      "basis": "SHA256"
+    }
+  ],
+  "reconciled_facts": {
+    "Ads_customer": "6509972886",
+    "campaign": "24247604341",
+    "asset_group": "6746545742",
+    "status": "PAUSED",
+    "configured_daily_budget_USD": 5,
+    "new_budget_or_spend_authority": false,
+    "September12_partial_metrics": {
+      "impressions": 0,
+      "clicks": 0,
+      "cost_usd": 0,
+      "conversions": 0,
+      "conversion_value": 0
+    },
+    "September11_daily_totals": {
+      "impressions": 356,
+      "clicks": 5,
+      "cost_usd": 0.8,
+      "conversions": 0,
+      "conversion_value": 0
+    },
+    "September11_CPC_USD": "0.16",
+    "September11_CTR_percent_rounded": "1.4",
+    "repeat_daily_snapshot_not_increment": true,
+    "no_post_pause_delivery_inference": true,
+    "copy_fields_expected": 27,
+    "copy_fields_restored_owner_reported": 18,
+    "saved_copy_verified": false,
+    "identity_completion": "UNVERIFIED",
+    "new_creation_window": {
+      "from_inclusive": "2026-09-12T10:49:23Z",
+      "until_exclusive": "2026-09-12T14:49:48Z"
+    },
+    "creation_window_seconds": 14425,
+    "new_creation_counts": {
+      "allNew": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "webNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      },
+      "paidWebNonTest": {
+        "count": 0,
+        "precision": "EXACT"
+      }
+    },
+    "prior_window": {
+      "from_inclusive": "2026-09-12T08:24:58Z",
+      "until_exclusive": "2026-09-12T10:49:23Z"
+    },
+    "next_full_sales_read_utc": "2026-09-12T20:24:58Z",
+    "market_source_current_turn_changes": 0
+  },
+  "actor_scoped_browser_handoff": {
+    "owning_task": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+    "browser_id": "1",
+    "tab_id": "13",
+    "provider_tab_id": "browser-use:c89eed6d-ae6a-470d-846b-36e8b2ae3008",
+    "former_owned_tab": "8",
+    "former_tab_disappearance_cause": "UNKNOWN",
+    "root_tab13": "Separate root-scoped handle; root reports it closed. Numeric tab13 alone is not a global identity or evidence of collision.",
+    "verification_basis": "Saved Ads receipt plus exact parent assignment and linked GA4 actor receipt; no browser inventory by reviewer."
+  },
+  "limitations": [
+    "Saved owner receipt reports DOM and native accessibility 27/27 comparisons, exact18 restoration and protected selected assets. It does not embed the complete current DOM/AX snapshots, so this review independently verifies payload/count/hash consistency, not each native value or asset.",
+    "The full logo-region comparison failed because unselected asynchronous suggestions changed; only selected logos and unchanged controls are reported preserved. The failed intermediate comparison is retained.",
+    "Customer ID is retained from earlier verified binding; exact current campaign/asset-group URL is recorded, but no fresh account-picker verification is claimed.",
+    "The Sep11 USD0.80 cost is the same daily snapshot as the prior heartbeat, not incremental cost or proof of new/post-pause serving. Displayed USD0.16 CPC does not satisfy or relax a USD0.15 launch constraint.",
+    "Shopify paidWebNonTest means financially paid web orders, not paid-ad attribution. Zero exact counts cover only the declared creation interval; they do not refresh older order payment/refund/fulfillment states, full sales totals, purchase acceptance or profit.",
+    "14:58:23UTC is receipt time; the creation delta ends14:49:48UTC. Daily Ads reporting uses America/New_York and remains subject to provider adjustment.",
+    "GA4 settings remain dated11:51:23UTC; no new GA4 purchase report or genuine transaction receiver acceptance was obtained.",
+    "Existing locale/source gates were not refreshed. The heartbeat does not enumerate a new fourteen-locale read. Its hash-bound market manifest retains23 country-language entries (four held local drafts and19 queued qualification scopes); no new locale completion or market promotion is certified.",
+    "No source/live price/Google approval/auction forecast/retained-profit qualification follows from the unchanged market payload or prior GB23-check local review.",
+    "Owner-reported strict continuity10/10 is retained as source evidence, not rerun or independently recertified here. Root owns shared integration and its checks."
+  ],
+  "material_defects": [],
+  "next_action": "Root integrates the dated actor-scoped editor handoff and non-overlapping creation delta, retaining existing normal Save/identity and full-sales gates. This review grants no new external-write or paid authority.",
+  "actions_by_reviewer": {
+    "review_receipt_writes": 1,
+    "source_or_code_writes": 0,
+    "canonical_writes": 0,
+    "browser_account_api_calls": 0,
+    "external_writes": 0,
+    "broad_tests_or_audits": 0
+  }
+}

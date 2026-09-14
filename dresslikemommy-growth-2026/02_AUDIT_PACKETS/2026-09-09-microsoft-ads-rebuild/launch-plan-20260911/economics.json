@@ -1,0 +1,140 @@
+{
+  "as_of_utc": "2026-09-11T17:00:28.923029+00:00",
+  "revenue_definition": {
+    "R": "Merchandise after discounts/refunds, excluding tax and shipping charges",
+    "S": "Shipping charges actually retained",
+    "K": "Disjoint actual net product cost, payment fees, fulfillment/outbound freight, return handling and other variable costs",
+    "C": "R + S - K",
+    "allowable_cac": "min(0.15 * R, R / 6.67, C - 0.30 * R); reject nonpositive; unknown C means unknown actual allowable CAC",
+    "refund_rule": "Subtract merchandise refunds once; reconcile reserves with actual outcomes; apply supplier credits only when evidenced",
+    "allocation_rule": "Remaining Microsoft allocation needs an explicit period, owner cash/loss limits and all other marketing commitments; unknown inputs remain null",
+    "rounding_rule": "Money ceilings rounded DOWN to whole cents; displayed CVR uses that rounded ceiling"
+  },
+  "rule_provenance": {
+    "historical_file": "2026-04-29-shopify-margin-cac-export-pack/operating_rules.csv",
+    "historical_model": "summary.json marketing_cap_rate0.1500 / target_roas_floor6.6667; cost assumption0.50",
+    "current_user_research": "15% total marketing and6.67 ROAS retained as conservative planning constraints; not activation authority",
+    "canonical": "about6.5 ROAS and30% retained-profit objective; stricter6.67 used in this local plan only",
+    "cost_conflict": "Older rule labels50% all-in nonmarketing; field_map calls unitCost50%. Neither is invoice-backed landed-cost truth. Do not add overlapping modeled and actual costs."
+  },
+  "august_all_marketing_illustration": {
+    "sales_window": "2026-08-01 through2026-08-31, America/New_York",
+    "net_merchandise": "750.66",
+    "rate": "0.15",
+    "exact_envelope": "112.5990",
+    "cents_floor": "112.59",
+    "other_marketing_commitments": null,
+    "approved_test_cash": null,
+    "approved_test_loss": null,
+    "remaining_microsoft_budget": null,
+    "limitation": "Past-August sensitivity illustration, not September allowance or owner-approved budget"
+  },
+  "session_reconciliation": {
+    "window": "2026-06-12 through2026-09-09 inclusive,90complete dates",
+    "country_rows": 129,
+    "country_totals_reconcile": true,
+    "overall_cvr_percent": "0.1615",
+    "us_cvr_percent": "0.1400",
+    "limitation": "Session outcomes are not paid-order/customer counts. These mixed-source rates are not Microsoft forecasts. Tiny country numerators do not rank profitable markets."
+  },
+  "basket_scenarios": [
+    {
+      "basket": "Coral child dress, one piece",
+      "currency": "USD",
+      "pieces": 1,
+      "merchandise_revenue_before_any_discount_or_refund": "31.99",
+      "ratio_only_cac_ceiling": "4.79",
+      "required_cvr_at_0_15_cpc_percent": "3.1315",
+      "actual_contribution": null,
+      "approved_allowable_cac": null,
+      "supplier_stock_verified": false,
+      "microsoft_offer_ids": null,
+      "shopify_variant_ids": [
+        "gid://shopify/ProductVariant/45708175147105"
+      ],
+      "interpretation": "Arithmetic scenario only; not expected AOV, actual margin, campaign forecast or approved cohort"
+    },
+    {
+      "basket": "Coral mother dress, one piece",
+      "currency": "USD",
+      "pieces": 1,
+      "merchandise_revenue_before_any_discount_or_refund": "34.99",
+      "ratio_only_cac_ceiling": "5.24",
+      "required_cvr_at_0_15_cpc_percent": "2.8626",
+      "actual_contribution": null,
+      "approved_allowable_cac": null,
+      "supplier_stock_verified": false,
+      "microsoft_offer_ids": null,
+      "shopify_variant_ids": [
+        "gid://shopify/ProductVariant/45708175310945"
+      ],
+      "interpretation": "Arithmetic scenario only; not expected AOV, actual margin, campaign forecast or approved cohort"
+    },
+    {
+      "basket": "Coral mother + child, two separate pieces",
+      "currency": "USD",
+      "pieces": 2,
+      "merchandise_revenue_before_any_discount_or_refund": "66.98",
+      "ratio_only_cac_ceiling": "10.04",
+      "required_cvr_at_0_15_cpc_percent": "1.4940",
+      "actual_contribution": null,
+      "approved_allowable_cac": null,
+      "supplier_stock_verified": false,
+      "microsoft_offer_ids": null,
+      "shopify_variant_ids": [
+        "gid://shopify/ProductVariant/45708175310945",
+        "gid://shopify/ProductVariant/45708175147105"
+      ],
+      "interpretation": "Arithmetic scenario only; not expected AOV, actual margin, campaign forecast or approved cohort"
+    },
+    {
+      "basket": "Sunshine child tee, one piece",
+      "currency": "USD",
+      "pieces": 1,
+      "merchandise_revenue_before_any_discount_or_refund": "21.99",
+      "ratio_only_cac_ceiling": "3.29",
+      "required_cvr_at_0_15_cpc_percent": "4.5593",
+      "actual_contribution": null,
+      "approved_allowable_cac": null,
+      "supplier_stock_verified": false,
+      "microsoft_offer_ids": null,
+      "shopify_variant_ids": [
+        "gid://shopify/ProductVariant/44116031373409"
+      ],
+      "interpretation": "Arithmetic scenario only; not expected AOV, actual margin, campaign forecast or approved cohort"
+    },
+    {
+      "basket": "Sunshine adult tee, one piece",
+      "currency": "USD",
+      "pieces": 1,
+      "merchandise_revenue_before_any_discount_or_refund": "24.99",
+      "ratio_only_cac_ceiling": "3.74",
+      "required_cvr_at_0_15_cpc_percent": "4.0107",
+      "actual_contribution": null,
+      "approved_allowable_cac": null,
+      "supplier_stock_verified": false,
+      "microsoft_offer_ids": null,
+      "shopify_variant_ids": [
+        "gid://shopify/ProductVariant/44116031602785"
+      ],
+      "interpretation": "Arithmetic scenario only; not expected AOV, actual margin, campaign forecast or approved cohort"
+    },
+    {
+      "basket": "Sunshine adult + child, two separate pieces",
+      "currency": "USD",
+      "pieces": 2,
+      "merchandise_revenue_before_any_discount_or_refund": "46.98",
+      "ratio_only_cac_ceiling": "7.04",
+      "required_cvr_at_0_15_cpc_percent": "2.1307",
+      "actual_contribution": null,
+      "approved_allowable_cac": null,
+      "supplier_stock_verified": false,
+      "microsoft_offer_ids": null,
+      "shopify_variant_ids": [
+        "gid://shopify/ProductVariant/44116031602785",
+        "gid://shopify/ProductVariant/44116031373409"
+      ],
+      "interpretation": "Arithmetic scenario only; not expected AOV, actual margin, campaign forecast or approved cohort"
+    }
+  ]
+}

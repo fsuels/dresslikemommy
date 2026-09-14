@@ -1,0 +1,17 @@
+Confidence: H for the reviewed payload; native execution remains root-owned.
+
+Reviewer verdict: **PASS_WITH_GATES** for one exact Sunshine Stripe organic product-detail Pin.
+
+Decision ID: `DLM-DEC-2026-09-09-PINTEREST-REPAIR-AND-ORGANIC`. Decision status: `FROZEN_UNRESOLVED`. Reviewed September 9, 2026, 18:04:57 UTC by `/root/release_verifier`, who did not create the asset, write its copy, control Chrome, or publish it.
+
+The [frozen decision](REPAIR_EXECUTION.md), [resumed source](RESUMED_PRODUCT_CHECK.json), [earlier independent review](INDEPENDENT_REVIEW.md), [release plan](../2026-09-05-ceo-turnaround/sunshine_product_detail_release_plan.json), and applicable [safety checklist](../../../ops/marketing/reviewer_checklist.md) were examined. The contract bounds one Pin, three options, prediction, invalidating assumption, observable success/stop conditions, this checkpoint, USD 0 advertising exposure, and smallest corrective rollback. Root must append the observed outcome without rewriting this prediction.
+
+**Verified:** I independently viewed both the existing graphic and its reference. Shirt appearance and prominent separate-shirt disclosure match; title, description and alt text accurately describe this offer. SHA256 `751f8636c646032f88d975759a199885bd3e7237c000b6237328ee1121cb44f9`, reference hash, 1024×1536 geometry, 1,506,739 bytes, source-copy parity, and four unique exact UTMs passed **22 local checks**. No public supplier link, unsupported stock, price, delivery, review, promotion or material claim appears in the Pin payload. AI-modified metadata remains true; no AI person is depicted.
+
+An independent Shopify `get_product` read immediately before 18:04:57 UTC passed **six source checks**: exact product `7545279512673`, ACTIVE status, 14 variants, one-shirt disclosure, one-per-person instruction, and the described colors. The source explicitly says each selection is one T-shirt. This corroborates the resumed evidence. It does not prove current channel availability or checkout completion. A search-engine extract was two weeks old and was excluded from current-state verification.
+
+**Authority and checklist:** The owner's resumed “fix everything” instruction and saved one-Pin authority cover this reviewed organic release; no repeated publication permission is needed. Existing lifestyle Pin `343118065386636484` must remain intact. The evergreen family-shirt intent, precise product destination and distinct detail creative fit the buyer goal. Paid bidding, keyword changes, financial actions, campaigns, feeds and tracking changes are excluded. Full-paid stale control is unchanged. No traffic, sales, deduplication or profitability result is certified.
+
+**Required execution gates:** Root must confirm the current Dress Like Mommy account, existing Mommy & Me Matching Outfits board, absence of this exact published Pin or retained draft, intact tagged buyer route and purchasable selection, then exact native image/copy/alt/link/board preview. Preserve the four UTMs. Stop on wrong identity, duplicate ambiguity, mismatched content or unexpected platform prompt. These are verification gates, not new permission requests.
+
+**Next action:** After those checks pass, publish the same asset once. Independently read back the new Pin ID, saved fields, image, board and public buyer destination; inspect uncertain results before any retry. After-state review is pending. Root owns continuity and decision/outcome integration.

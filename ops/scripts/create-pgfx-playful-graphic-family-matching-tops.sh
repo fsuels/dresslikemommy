@@ -37,7 +37,7 @@ SETTINGS_JSON=$(cat <<'JSON'
   "merch_style": "Graphic T-Shirt",
   "merch_type": "Top",
   "season": "Summer",
-  "vendor_url": "https://detail.1688.com/offer/900909211573.html",
+  "vendor_url": "",
   "vendor": "dresslikemommy.com",
   "force_spec_prices": true,
   "child_price": "24.99",
@@ -906,7 +906,7 @@ tags = sorted({
     "Child 1-2yr", "Child 2-3yr", "Child 4-5yr", "Child 6-8yr", "Child 9-10yr",
     "Mother S", "Mother M", "Mother L", "Mother XL", "Mother 2XL",
     "Father S", "Father M", "Father L", "Father XL", "Father 2XL", "Father 3XL", "Father 4XL",
-    settings["vendor_url"],
+
 })
 size_chart_out_path.write_text(json.dumps(size_chart, indent=2), encoding="utf-8")
 body_html_out_path.write_text(body_html, encoding="utf-8")

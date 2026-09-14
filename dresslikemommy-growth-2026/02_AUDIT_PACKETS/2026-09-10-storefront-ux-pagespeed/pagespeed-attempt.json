@@ -1,0 +1,33 @@
+{
+  "observedAt": "2026-09-10T01:30:40.320Z",
+  "requestedUrl": "https://www.dresslikemommy.com/?preview_theme_id=137888792673",
+  "reportUrl": "https://pagespeed.web.dev/analysis/https-www-dresslikemommy-com/ups9jrhz6d?form_factor=mobile",
+  "scores": {
+    "performance": 71,
+    "accessibility": 92,
+    "bestPractices": 92,
+    "seo": 100
+  },
+  "lab": {
+    "fcpSeconds": 2.3,
+    "lcpSeconds": 9.2,
+    "tbtMs": 0,
+    "cls": 0,
+    "speedIndexSeconds": 3.9,
+    "imageSavingsKiB": 782
+  },
+  "targetVerification": "FAILED_WRONG_THEME",
+  "evidence": [
+    "LCP audit element references /cdn/shop/t/100/assets/hero-mobile.jpg and MAIN template--17118394024033.",
+    "Actual controlled draft browser references /cdn/shop/t/105/assets/hero-mobile.jpg and corrected h2/44px controls.",
+    "Report retains the original heading-order/touch-target/contrast failures."
+  ],
+  "conclusion": "This is not a post-fix preview performance result. Do not use the scores or savings as proof of candidate improvement or regression. A published-source-bound PageSpeed rerun remains required.",
+  "browserResourceSample": {
+    "beforeImageEntries": 21,
+    "beforeEncodedBytes": 2060128,
+    "previewImageEntries": 13,
+    "previewEncodedBytes": 1105388,
+    "limitation": "Different server-selected products, uncontrolled timing and preview overhead. Diagnostic reduction only, not a Lighthouse score or controlled conversion result."
+  }
+}

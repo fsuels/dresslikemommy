@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "status": "VERIFIED_SCOPED_ANALYTICS_REPORT",
+  "observed_date_utc": "2026-09-06",
+  "final_join_observed_by_utc": "2026-09-06T09:28:29Z",
+  "surface": {
+    "browser_profile": "Chrome Test",
+    "tab_id": "475224120",
+    "ga4_account": "88409806",
+    "ga4_property": "330266838",
+    "report": "Advertising > Key event performance > Google Ads",
+    "report_url": "https://analytics.google.com/analytics/web/#/a88409806p330266838/advertising/integrations-google-ads"
+  },
+  "scope": {
+    "start_date": "2026-06-07",
+    "end_date": "2026-09-04",
+    "key_events": [
+      "purchase"
+    ],
+    "customer_id": "3990976848",
+    "campaign_id": "23866684201",
+    "filter_relation": "AND",
+    "filter_match": "exactly matches",
+    "built_in_exclusion": "Google Ads customer ID not (not set) or empty"
+  },
+  "campaign": {
+    "clicks": 855,
+    "ads_cost_usd": "127.34",
+    "purchase_key_events": "1.00",
+    "total_revenue_usd": "151.46",
+    "display_roas": "1.19"
+  },
+  "keyword_dimension": {
+    "rows_returned": 7,
+    "rows_captured": 7,
+    "pagination": "1-7 of 7",
+    "rows_per_page": 10,
+    "clicks": 851,
+    "ui_cost_usd": "126.74",
+    "displayed_row_cost_sum_usd": "126.75",
+    "row_sum_minus_ui_usd": "0.01",
+    "unrepresented_campaign_cost_usd": "0.60",
+    "unrepresented_campaign_clicks": 4,
+    "purchase_key_events": "1.00",
+    "total_revenue_usd": "151.46",
+    "display_roas": "1.20",
+    "tsv_file": "italian_search_keywords_current.tsv",
+    "ui_transcription_fnv1a32": "55788ad1",
+    "ui_transcription_bytes": 357
+  },
+  "query_dimension": {
+    "rows_returned": 134,
+    "rows_captured": 134,
+    "pagination": "1-134 of 134",
+    "rows_per_page": 250,
+    "clicks": 663,
+    "ui_cost_usd": "98.76",
+    "displayed_row_cost_sum_usd": "98.78",
+    "row_sum_minus_ui_usd": "0.02",
+    "campaign_cost_coverage_pct": 77.55614889272813,
+    "unrepresented_campaign_cost_usd": "28.58",
+    "unrepresented_campaign_clicks": 192,
+    "purchase_key_events": "1.00",
+    "total_revenue_usd": "151.46",
+    "display_roas": "1.53",
+    "tsv_file": "italian_search_queries_current.tsv",
+    "ui_transcription_fnv1a32": "fe07967f",
+    "ui_transcription_bytes": 6258
+  },
+  "report_quality": {
+    "unsampled": true,
+    "available_data_pct": 100,
+    "processing": "daily data",
+    "coverage_gap_cause": "UNKNOWN",
+    "cent_difference_cause": "UNKNOWN",
+    "available_does_not_mean_complete_campaign_query_coverage": true
+  },
+  "converting_query": {
+    "text": "vestiti uguali mamma e figlia",
+    "clicks": 24,
+    "ads_cost_usd": "3.59",
+    "purchase_key_events": "1.00",
+    "total_revenue_usd": "151.46",
+    "display_roas": "42.19"
+  },
+  "exact_query_join": {
+    "status": "VERIFIED_NORMAL_REPORT_FILTER",
+    "additional_filter": {
+      "field": "Google Ads query",
+      "match": "exactly matches",
+      "value": "vestiti uguali mamma e figlia"
+    },
+    "keyword_view": {
+      "rows_returned": 1,
+      "keyword": "abiti mamma figlia",
+      "purchase_key_events": "1.00",
+      "total_revenue_usd": "151.46",
+      "ads_cost_usd": null,
+      "clicks": null,
+      "display_roas": null,
+      "empty_cost_click_fields": "Displayed Empty data cell; not zero or copied from another view"
+    },
+    "adgroup_view": {
+      "rows_returned": 1,
+      "ad_group_id": "196333557323",
+      "purchase_key_events": "1.00",
+      "total_revenue_usd": "151.46",
+      "ads_cost_usd": "3.59",
+      "clicks": 24,
+      "display_roas": "42.19"
+    },
+    "historical_adgroup_name": "Mommy & Me Dresses",
+    "historical_name_source": "italian_search_original_scope.json"
+  },
+  "operator_observed_row_excerpts": {
+    "campaign": "23866684201 1.00 (100%) $127.34 (100%) $127.34 855 (100%) $0.15 $151.46 (100%) 1.19",
+    "exact_query": "vestiti uguali mamma e figlia 1.00 (100%) $3.59 (100%) $3.59 24 (100%) $0.15 $151.46 (100%) 42.19",
+    "query_keyword_join": "abiti mamma figlia 1.00 (100%) Empty data cell. Empty data cell. Empty data cell. Empty data cell. $151.46 (100%) Empty data cell.",
+    "query_adgroup_join": "196333557323 1.00 (100%) $3.59 (100%) $3.59 24 (100%) $0.15 $151.46 (100%) 42.19"
+  },
+  "landing_source": {
+    "current_status": "BLOCKED_AFTER_TWO_UPSTREAM_500",
+    "receipt": "italian_search_landing_source.json",
+    "current_italian_collection_fit": "UNKNOWN",
+    "skyfade_product_id": "7536992976993",
+    "basket_membership": "one identified component, not entire basket",
+    "size_source_problem": "PROB-2026-09-06-SKYFADE-SIZE-SOURCE-CONFLICT",
+    "italian_rendered_chart_defect": "NOT_ESTABLISHED"
+  },
+  "limits": [
+    "Analytics reporting is not direct Ads credit, billing, current status or verified profit.",
+    "One purchase among 134 observed queries is a selected hypothesis, not repeatable profitability.",
+    "Zero recorded purchases does not prove zero actual orders; missing purchase coverage and Shopify organic attribution remain unresolved.",
+    "Historical EXACT keywords, negatives and URLs do not establish current settings.",
+    "The query already served; a new keyword does not establish incremental traffic.",
+    "134 of 134 returned query rows is not full campaign cost coverage.",
+    "No hard irrelevant negative is supported by the visible terms."
+  ],
+  "external_writes": {
+    "production_settings": 0,
+    "campaign_changes": 0,
+    "spend_initiated": 0,
+    "support_submissions": 0,
+    "publication": 0,
+    "report_only_changes": [
+      "dimension selection",
+      "three-condition report filter",
+      "pagination"
+    ],
+    "handoff": "left on exact query ad-group view; markHandoff completed"
+  },
+  "source_sha256": {
+    "italian_search_keywords_current.tsv": "b95660a32eb18a0db4fe2e9f456de6c0eba91d5269007ee2cc74c1b56bbfa7dc",
+    "italian_search_queries_current.tsv": "ac755f774e28b455194ae6bac315166a790711b747ddebc84355fe9642b8e35e",
+    "italian_search_original_scope.json": "1c28122ff401947bd9bbc91d359b2d6e87a473e939382c3f886d8efa3a46e792",
+    "italian_search_original_scope.md": "0a9945b06f2b6cd811f4850f77ff2c0572e26f4c695b2cd7a325287ae37e413f",
+    "italian_search_query_interpretation.md": "bf35ada0f03e8755db909a42ba83be6e1817389194a070edcdbe7e84c1923099",
+    "italian_search_landing_source.json": "e97deca8169ac09beaa14076fe77896334772a132c42a2aa835b774a4f210399",
+    "italian_search_landing_source.md": "4bee32bd900bbded403b70d79de783c989044c83e07f4cb790dc86dbad797154",
+    "italian_ga4_campaign_cost_readback.json": "c3a12cec7d333669bd11f8bcefb373b2ff44094daaa5cbba47aa34d6b6bd645a"
+  }
+}

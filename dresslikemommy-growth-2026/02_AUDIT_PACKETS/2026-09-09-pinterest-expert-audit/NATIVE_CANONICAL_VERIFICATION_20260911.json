@@ -1,0 +1,67 @@
+{
+  "verified_at_utc": "2026-09-11T20:53:56.838825+00:00",
+  "status": "VERIFIED_NATIVE_SUBMISSIONS_AND_CANONICAL_HANDOFF_WITH_LIMITS",
+  "anchor": "2026-09-11-pinterest-native-schedules-and-profile-saved",
+  "native_external_changes": {
+    "bio_saves": 1,
+    "scheduled_pin_submissions": 6,
+    "immediate_publications": 0,
+    "tracking_settings": 0,
+    "paid_changes": 0
+  },
+  "commands": [
+    {
+      "command": "python3 ops/scripts/render_marketing_cockpit.py",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "result": "PASS 25/25, 0 risks"
+    },
+    {
+      "command": "python3 ops/scripts/check_continuity_integrity.py --strict",
+      "result": "CONTINUITY_OK"
+    },
+    {
+      "command": "python3 ops/scripts/check_pinterest_feed_grouping.py --strict",
+      "result": "PASS 10 historical snapshots, 0 FAIL, 3 WARN, 0 ERROR; not current catalog acceptance"
+    },
+    {
+      "command": "git diff --check -- eight owning canonical files, generated cockpit/integration and own Pinterest packet",
+      "result": "PASS"
+    }
+  ],
+  "python_runtime": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "exact_applied_hashes_match": {
+    "ops/marketing/current_marketing_state.md": true,
+    "ops/marketing/action_queue.md": true,
+    "ops/marketing/blocker_board.md": true,
+    "ops/marketing/operator_cockpit.md": true,
+    "ops/marketing/daily_scorecard.md": true,
+    "ops/AGENT_COORDINATION.md": true,
+    "ops/PROBLEM_TRACKER.md": true,
+    "ops/AGENT_WORKLOG.md": true
+  },
+  "generated_html_expected_task_text_and_canonical_link_present": {
+    "Six Pins scheduled in Pinterest": true,
+    "Receiving verified; acceptance incomplete": true,
+    "href=\"action_queue.md\"": true
+  },
+  "initial_extra_html_filename_assertion": "FAILED: expected native receipt filename is not rendered. Inspection of existing source_links at render_marketing_cockpit.py:467 shows links resolve only marketing files and September5 CEO packet basenames, with a Canonical task record fallback. This existing renderer limitation is not a Pinterest submission failure; canonical task/current-state/scorecard references exist. No renderer code changed.",
+  "outside_owned_delta_bytes": "All eight full files matched fresh before-state after inverse-patch comparison; paid control and parent OneOwnerAction preserved exactly",
+  "paid_control_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+  "owner_action_sha256": "0f879ae5a831fd9b217c0a5651a77735133549ef944720506df65bff91278130",
+  "local_dashboard_visual_check": {
+    "result": "BLOCKED_BROWSER_URL_POLICY",
+    "attempt": "Task-owned tab file:///Users/fsuels/Projects/dresslikemommy/ops/marketing/operator_cockpit.html",
+    "action": "Stopped immediately, no localhost/alternate-surface/CDP workaround; unused tab closed",
+    "limit": "Generated output task text and renderer/continuity checks pass; no current visual dashboard readback. Native Pinterest live submission readbacks remain verified."
+  },
+  "reviews": {
+    "native_saved_fields": "PASS_WITH_LIMITS 87/87 root-captured receipt comparison; independent live browser unavailable",
+    "register_tracking": "PASS 114/114",
+    "proposed_canonical_delta": "PASS 41/41 after enum correction",
+    "applied_canonical_delta": "PASS 58/58; every before-hash reproduced by in-memory reversal"
+  },
+  "remaining": "Actual scheduled publication, public alt/AI readback, traffic/sales outcomes, ordinary consent restoration and controlled receiver, managed server metadata and genuine purchase/catalog/dedup acceptance remain open."
+}

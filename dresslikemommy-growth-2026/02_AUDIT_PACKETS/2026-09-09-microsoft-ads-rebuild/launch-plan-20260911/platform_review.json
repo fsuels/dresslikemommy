@@ -1,0 +1,89 @@
+{
+  "reviewed_at_utc": "2026-09-11T16:53:38.851907+00:00",
+  "scope": "Independent documentation and existing-packet comparison; root owns account access, economics, integration and action authority.",
+  "account_reference": {
+    "account_id": "477439",
+    "customer_id": "770182",
+    "identity_source": "existing campaign plan; no fresh account read"
+  },
+  "status": "PASS_DOCUMENT_REVIEW_WITH_CORRECTIONS_AND_LIVE_GATES",
+  "artifact": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/launch-plan-20260911/platform_review.md",
+    "sha256": "53c33f64cae08445317736136ee7e7607729fe37c166984288dcb985044b6b42",
+    "visible_word_count": 800,
+    "matrix_rows": 7
+  },
+  "inputs": [
+    {
+      "path": "/Users/fsuels/.codex/attachments/fcad2a44-3b3a-4a26-a400-6fc7e03183a9/pasted-text.txt",
+      "sha256": "a805de18e3f66af65454d633f9d93d5ee9cc2792e733ae744928a4e056af7a2b",
+      "bytes": 75263,
+      "unchanged_during_review": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/campaign_plan.md",
+      "sha256": "1a4356562e4881cfff0a045d1b29b5f893ba04c321af0e068e765bf04e880734",
+      "bytes": 20531,
+      "unchanged_during_review": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/microsoft_tracking_independent_review.md",
+      "sha256": "6001d602c16aa3fdf443733e7bc11ab7bb3da38155e217d77ac86bf276b447eb",
+      "bytes": 5989,
+      "unchanged_during_review": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/microsoft_consent_assessment.md",
+      "sha256": "4110c41b6ea34a60c128d5def59c0400707758bececb85923c43b776b579dc84",
+      "bytes": 5287,
+      "unchanged_during_review": true
+    }
+  ],
+  "primary_source_urls_observed": [
+    "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_proc_createproducttargetandad",
+    "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_bidstrategy",
+    "https://www.about.ads.microsoft.com/en/blog/post/august-2026/ai-max-for-search-and-other-product-news-for-august-2026",
+    "https://about.ads.microsoft.com/en/blog/post/august-2026/reimagining-search-campaigns-for-the-ai-era-with-ai-max",
+    "https://learn.microsoft.com/en-us/advertising/campaign-management-service/googleimportoption?view=bingads-13",
+    "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_bmc_shopify",
+    "https://learn.microsoft.com/en-us/advertising/shopping-content/catalogs-resource",
+    "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_bmcwhatiscatalog",
+    "https://github.com/MicrosoftDocs/Advertising/blob/main/advertising/msa-help/hlp_BA_PROC_UET_WebPlatform_Shopify.md",
+    "https://shopify.dev/docs/api/web-pixels-api/pixel-privacy",
+    "https://learn.microsoft.com/en-us/advertising/guides/uet-conversion-api-integration?view=bingads-13"
+  ],
+  "source_access_note": "Microsoft Learn Shopify UET example URL failed; the linked official MicrosoftDocs GitHub article was fully opened and its sample code read. Other cited sources were read through accessible primary-page bodies or the official API search result. CAPI current page had no matching refund text; absence does not prove refunds are supported.",
+  "corrections_or_qualifications": [
+    "eCPC starting bid is not the existing hard per-click cap.",
+    "Native English-only feed option is not US-only availability or multilingual feed coverage.",
+    "Record AI Max and import settings explicitly rather than relying on generic expansion wording.",
+    "transactionId does not replace shared event ID, tag and event name for documented UET/CAPI deduplication.",
+    "Pasted current-CAPI refund-prohibition attribution is not substantiated by the current retrieved guide."
+  ],
+  "live_unknowns": [
+    "Current Microsoft account and CPC/AI Max/distribution settings",
+    "Approved MMC catalog and exact country/language/variant offer coverage",
+    "Current received consent, purchase value/currency and deduplication",
+    "Product-level contribution economics and exact unused authorized exposure"
+  ],
+  "controls": {
+    "external_writes": 0,
+    "account_reads": 0,
+    "browser_or_cua_reads": 0,
+    "root_or_canonical_file_edits": 0,
+    "campaign_or_pixel_edits": 0,
+    "financial_data_verification": false,
+    "spend_authority_created": false,
+    "new_files_owned": [
+      "platform_review.md",
+      "platform_review.json"
+    ]
+  },
+  "validation": {
+    "word_limit_900": "PASS",
+    "seven_decision_rows": "PASS",
+    "all_four_input_hashes_preserved": "PASS",
+    "trailing_whitespace": "PASS",
+    "primary_citation_count": 11
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "asOfUtc": "2026-09-06T05:01:57.758Z",
+  "status": "PASS_EXTRACTED_ACTUAL_HELPERS",
+  "sourceSha256": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+  "candidateSha256": "964872eee1ecbbef337628e14bcd2336022ccffb1e8fdbe1bdd6e635c66b2d50",
+  "helperNames": [
+    "stripDiacritics",
+    "replaceLocaleDigits",
+    "normalizeText",
+    "getLocaleRoot",
+    "getLocaleMap",
+    "interpolateLabel",
+    "uiLabel"
+  ],
+  "changedKeys": [
+    "chooseRoleStep",
+    "chooseOptionsStep",
+    "chooseRoleCta",
+    "addCurrentPiece",
+    "readyToAdd"
+  ],
+  "baselineEnglishFallbackReproduced": {
+    "chooseRoleStep": "Choose who this piece is for",
+    "chooseOptionsStep": "Choose size and options",
+    "chooseRoleCta": "Choose a family member",
+    "addCurrentPiece": "Add this piece to bag",
+    "readyToAdd": "Ready to add"
+  },
+  "localeProof": [
+    {
+      "lang": "da",
+      "allFiveDanish": true,
+      "existingPluralInterpolationPreserved": true
+    },
+    {
+      "lang": "da-DK",
+      "allFiveDanish": true,
+      "existingPluralInterpolationPreserved": true
+    },
+    {
+      "lang": "da_DK",
+      "allFiveDanish": true,
+      "existingPluralInterpolationPreserved": true
+    }
+  ],
+  "holdouts": [
+    {
+      "lang": "en",
+      "allExistingEnglishKeyLookupsUnchanged": true
+    },
+    {
+      "lang": "es",
+      "allExistingEnglishKeyLookupsUnchanged": true
+    },
+    {
+      "lang": "nl",
+      "allExistingEnglishKeyLookupsUnchanged": true
+    },
+    {
+      "lang": "zz",
+      "allExistingEnglishKeyLookupsUnchanged": true
+    }
+  ],
+  "allOtherLocaleAndExistingDanishKeysUnchanged": true,
+  "scope": "Actual UI dictionary and seven helper functions extracted without editing; lang-only document stub, no DOM rendering or commerce operation",
+  "priorCheckFailure": {
+    "cause": "Root extraction initially omitted stripDiacritics and replaceLocaleDigits required by normalizeText",
+    "resolution": "Include both unchanged actual dependencies; no candidate change",
+    "productDefectInferred": false
+  },
+  "shopifyRenderedPreview": "NOT_RUN_MAC_LOCKED",
+  "nativeLanguageReview": "NOT_RUN"
+}

@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "verified_at_utc": "2026-09-14T16:24:49.680273+00:00",
+  "status": "PASS",
+  "url": "http://127.0.0.1:8767/ops/marketing/operator_cockpit.html",
+  "http_status": 200,
+  "initial_byte_inequality_explained": "The existing dashboard server inserts one revision meta tag at response time. Removing exactly that observed tag yields byte-for-byte equality with the generated local cockpit. No application or security configuration changed.",
+  "server_source": {
+    "path": "ops/scripts/marketing_dashboard_server.py",
+    "sha256": "30539cf34fab4c1276b6e5cec7e8368e56e14e0738925ed1e7aa7669050b1e1c",
+    "line_start": 344,
+    "line_end": 348
+  },
+  "revision_marker_count": 1,
+  "observed_revision": "9bd655ae9d2f71e75d51889d9d4d55afc230d019111e9537d648c42ad5a9fea7",
+  "served_sha256": "45f100125e8691cbef40750a678d472307b87e94c5182ce181094c79193ef2d5",
+  "local_sha256": "e13a5d6c04ae1c12d54ba53e80f1254b64cde4351575108bea60ca3cf7230591",
+  "normalized_served_sha256": "e13a5d6c04ae1c12d54ba53e80f1254b64cde4351575108bea60ca3cf7230591",
+  "normalized_served_equals_local": true,
+  "new_au_checkpoint_present": true,
+  "business_writes": 0
+}

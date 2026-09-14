@@ -8,7 +8,7 @@ Env vars
 - PORT (default 3000)
 - SHOPIFY_STORE_DOMAIN (e.g., myshop.myshopify.com)
 - SHOPIFY_STOREFRONT_TOKEN (Storefront API public token)
-- SHOPIFY_APP_PROXY_SECRET (App secret for verifying App Proxy signatures) – TODO wire verify
+- SHOPIFY_APP_PROXY_SECRET (app secret used to verify Shopify App Proxy signatures in production mode)
 - PINTEREST_FEED_TSV_PATH (optional; defaults to the repo-local unified Pinterest TSV)
 - PINTEREST_FEED_SHA256 (optional; defaults to the current Gate B-1 verified checksum)
 

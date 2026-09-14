@@ -1,0 +1,148 @@
+{
+  "schema": "dlm.together_heart.closeout_independent.v1",
+  "reviewed_at_utc": "2026-09-10T04:38:57.023550+00:00",
+  "reviewer": "/root/order_delta_1934",
+  "verdict": "PASS_SCOPED_INTEGRATION_REVIEW",
+  "independence": "Reviewer did not build or execute product repair, local backup synchronization, browser observations, runtime diagnosis or canonical closeout. Reviewer originally executed the separate sanitized sales query; root independently reviewed that receipt. This pass verifies file preservation and interpretation only.",
+  "scope": "Only the root closeout packet, exact frozen canonical snapshots, exact sales baseline/source and active backup synchronization artifacts; no broad audit, browser, network or production action.",
+  "checks": {
+    "all_11_frozen_canonical_hashes_match": true,
+    "full_paid_control_byte_exact": true,
+    "full_paid_none_false_and_stale_preserved": true,
+    "coordination_all_bytes_outside_one_root_row_exact": true,
+    "root_claim_target_owner_authority_and_exclusions_exact": true,
+    "root_claim_source_complete_runtime_gated": true,
+    "queue_only_six_relevant_existing_rows_changed": true,
+    "queue_only_two_new_repair_rows": true,
+    "14_unrelated_queue_rows_exact": true,
+    "current_release_137888792673_with_gates": true,
+    "buyer_acceptance_still_open": true,
+    "historical_worklog_prefix_byte_exact": true,
+    "stale_current_maclock_claim_removed": true,
+    "old_clone_publication_directive_removed": true,
+    "sales_exactly_one_entry_appended": true,
+    "all_seven_prior_sales_entries_exact": true,
+    "all_other_sales_top_level_fields_exact": true,
+    "new_sales_entry_source_exact_except_review_metadata": true,
+    "new_sales_source_hash_exact": true,
+    "root_sales_review_12_pass": true,
+    "original_independent_200_pass_artifact_unchanged": true,
+    "all_six_reviewed_saved_api_and_plan_artifacts_unchanged": true,
+    "200_source_checks_no_failed": true,
+    "both_backup_before_and_after_hashes_exact": true,
+    "active_body_exact_reviewed_primary": true,
+    "csv_98_rows_74_columns": true,
+    "csv_only_first_body_cell_changes": true,
+    "csv_all_other_raw_bytes_and_99_CRLF_preserved": true,
+    "four_shielded_artifacts_exact": true,
+    "root_sync_independent_12_pass": true,
+    "public_40_of_42_accounting_honest": true,
+    "runtime_all_21_public_copy_false": true,
+    "runtime_12_checks_pass": true,
+    "existing_ux_owner_and_candidate_handoff_exact": true,
+    "readback_source_and_runtime_truth_separated": true,
+    "ten_non_cockpit_final_canonical_hashes_match_receipt": true
+  },
+  "passed": 36,
+  "total": 36,
+  "failed": [],
+  "preservation_counts": {
+    "canonical_snapshots": 11,
+    "other_coordination_table_lines_preserved": 289,
+    "existing_queue_rows": 20,
+    "unchanged_queue_rows": 14,
+    "changed_relevant_queue_rows": [
+      "TA-01",
+      "TA-04",
+      "TA-06",
+      "TA-10",
+      "TA-13",
+      "TA-16"
+    ],
+    "new_queue_rows": [
+      "TA-21",
+      "TA-22"
+    ],
+    "prior_sales_entries_exact": 7,
+    "appended_sales_entries": 1,
+    "csv_data_rows": 98,
+    "csv_columns": 74,
+    "csv_non_target_data_cells": 7251,
+    "csv_header_cells": 74,
+    "source_independent_checks_retained": 200
+  },
+  "resolved_corrections": [
+    {
+      "finding": "Cockpit Current Google direction still called the earlier Mac-lock observation latest native evidence.",
+      "resolution": "Root replaced only this current section with the existing stable-selected Merchant gate, dated00:53 Shopify availability/feedback evidence and unknown receiving offers; independently reread."
+    },
+    {
+      "finding": "Cockpit historical predecessor section retained a publish-current directive for137881223265.",
+      "resolution": "Root changed that historical section to explicitly preserve the predecessor and point solely to TA-06 after TA-22 checks in137888792673; independently reread."
+    }
+  ],
+  "public_acceptance": {
+    "source_bodies_exact": 21,
+    "tables_exact": 21,
+    "paragraph_sets_exact": 19,
+    "French_accepted_with_one_semicolon_space_normalization": 1,
+    "Japanese_copy_failed": 1,
+    "Arabic_child_offers_dropped": 49,
+    "all_21_public_copies_accepted": false,
+    "source_vs_public_distinction": "200 saved-source checks are preserved. Raw public comparison was40/42. Root browser observations and source reviewer12checks diagnose Japanese native-prose deletion and Arabic child classification; these are not repaired or published by this closeout.",
+    "current_owner": "01a088c3-c890-71a1-98ee-f19b6905af55",
+    "sole_latest_release_target": "137888792673",
+    "release_gate": "Existing UX owner finishes both exact repairs, independently verifies final candidate and conflicts, then owner Shopify Admin publication and live readback."
+  },
+  "economics": {
+    "source_window": "2026-09-10T03:39:40Z through03:40:00Z",
+    "paid_non_test_non_cancelled_web_orders": 2,
+    "units": 4,
+    "current_subtotal_usd": "86.45",
+    "new_orders": 0,
+    "carrier_delivery_proven": false,
+    "attribution_CPA_ROAS_full_costs_retained_profit": "UNKNOWN",
+    "performance_claim": "No acquisition, purchase-receiver ingestion or retained-profit lift established by repair or QA visits."
+  },
+  "input_sha256": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/READBACK.md": "c8588c9ac2738a8dbadaa72f81eeaa55548e7caf98a5c9742b72bb548f38109f",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/public_discrepancies.json": "5b1d44c775585ad3aded0747adda7561d2a9d77087344cdf88d1269ce9be6ac8",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/runtime_diagnosis.json": "822a85f1c0176ad81c2c3b2b75187ddb95a4bb56f21ae3276788a55137bd8644",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/artifact_sync_root_review.json": "323f910bee54a721e33132ff27cbd1841b0e0737db5e0447aaa3e57aa09085b6",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/artifact_sync_checks.json": "143498c50064be77eb4933584cf65b4a2222b58f54b4c2d865c1dd8171ecfb61",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/sales_checkpoint_review.json": "732097d15666cf3f77178c752dd2dcc89541ef96e3a1b7aef7b07548a0018fd2",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/canonical_edit_receipt.json": "a8b44f4b00993cbee7fbb31a5aabe7e66468c23607d3a3b1042487699e165eae",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/closeout_checks.json": "9200d3c9d6cf9d9d37729c6cf9a3509826c96534e90263466d2e5c22fbc1e895",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-together-heart-source-repair/postwrite_review.json": "81838d07ef9bd338b689381998d381e11b569f2d11daf235096812a82aeea583",
+    "/private/tmp/dlm-together-heart-canonical-before-20260910/manifest.json": "3d911b349c771e042af90a3d5a96c5762fdb38dd5550c281ddf47640ba3e4c83",
+    "/private/tmp/dlm-sales-before-20260910-0336.json": "7193a75f4936e7474ff971306c6c6ad43663d203f4d1213d8e6f18ad04c2d9fe",
+    "/private/tmp/dlm-heartbeat-order-check-20260910-0336.json": "7b2cac6d93196ab6a3318f175002bd3ae62ccff6a465590d4649796da6575b20",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json": "96877fad46031cdf508cca4105b25acbf7f281fc8aca65fef98c6a42ff7691ea"
+  },
+  "reviewed_final_canonical_sha256": {
+    "ops/marketing/current_marketing_state.md": "b5430957c3728791c244972409a478a8f05af151f7efb081a3ff2234159e6163",
+    "ops/marketing/operator_cockpit.md": "329395ae25ad77b665070056e3950d3ecb6b85759078a2fb542aa1be0d73bf12",
+    "ops/marketing/action_queue.md": "89d169014153a0ef3b24e5b79f82b46d69d649829e2f93e333e95a731344e4d8",
+    "ops/marketing/blocker_board.md": "552d03bcc84a52c6d25b51677c94dec5db431da2ef42757600840f5818bdc758",
+    "ops/marketing/daily_scorecard.md": "609336391a54103dade922a442f32d00e8eb6f38c3705a48edc79cb55cdd1125",
+    "ops/marketing/decision_log.md": "396ee6712985f698fce26aa3634853485f3ba4b1a9aff4d03027d2b41ecaa3a3",
+    "ops/marketing/review_log.md": "728d4d1ef34094d93744828f42c4f4915789a54b3821fe7b9282bf65e66b325e",
+    "ops/marketing/memory_digest.md": "02568af1fcabd253fbf801f1401bfc02ff060691e65dc9ea1781bcfc49101ef4",
+    "ops/AGENT_COORDINATION.md": "45cac61473cdfde1aa342c55c507ac0ab5026cd86108bc617692e0596585a422",
+    "ops/PROBLEM_TRACKER.md": "c7c58170c497c813dd942f25c863c8bb7e92f113b099a23167ea13f74440e269",
+    "ops/AGENT_WORKLOG.md": "764d24c7b207232856d2433a6d9cdc9cd217442d6bbbee2f6dac6f9de76d50dc"
+  },
+  "limitations": [
+    "No independent API/browser replay in this pass; source proof is hash-bound to previously independently reviewed saved receipts.",
+    "Root required-check receipts record integration25files/0risks, strictCONTINUITY_OK and scoped diff0. Root will refresh final closeout hashes after the two cockpit corrections and after receiving this verdict; this review does not attest a future hash.",
+    "Older superseded owner claims/history retain predecessor identifiers by design; current top ownership, TA-04/06/10/22 and cockpit select only137888792673. No other owner row or boundary was rewritten.",
+    "Source200-pass does not close Japanese public copy, Arabic child offers, theme release, Merchant approvals, GA4 purchase receiver, traffic or profit outcomes."
+  ],
+  "actions": {
+    "repository_writes": 0,
+    "external_writes": 0,
+    "browser_or_network_calls": 0,
+    "written_artifact": "/private/tmp/dlm-together-heart-closeout-independent-20260910.json"
+  },
+  "single_next_action": "Parent refreshes final closeout hash/check receipt and hands the canonical interval back to the existing UX owner for the two accepted repairs."
+}

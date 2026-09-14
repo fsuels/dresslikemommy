@@ -1,0 +1,200 @@
+{
+  "recorded_at_utc": "2026-09-11 19:37:00 UTC",
+  "user_scope": "Proactively grow X traffic and keep improving on an ongoing basis; current account/organic authority persists.",
+  "live_readback": {
+    "account": "@dresslikemommy",
+    "exact_profile": "/dresslikemommy",
+    "edit_profile_visible": true,
+    "post_id": "2098481955721380021",
+    "published_at_utc": "2026-09-11T18:41:00.000Z",
+    "pinned": true,
+    "displayed_views_after_reload": 2,
+    "view_limit": "Includes possible operator activity; not unique visitors or acquired traffic.",
+    "notifications_all": "Nothing to see here — yet",
+    "new_inquiries_observed": 0,
+    "observation_limit": "One current All-notifications read, not a complete historic customer-message audit.",
+    "x_writes_this_turn": 0
+  },
+  "analytics": [
+    {
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE referrer_source = 'social' GROUP BY referrer_name SINCE -1d UNTIL today",
+      "columns": [
+        {
+          "name": "referrer_name",
+          "dataType": "STRING"
+        },
+        {
+          "name": "sessions",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_with_cart_additions",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_that_reached_checkout",
+          "dataType": "INTEGER"
+        },
+        {
+          "name": "sessions_that_completed_checkout",
+          "dataType": "INTEGER"
+        }
+      ],
+      "rows": [
+        [
+          "facebook",
+          "15",
+          "2",
+          "3",
+          "0"
+        ]
+      ],
+      "rowCount": 1,
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    {
+      "query": "FROM sales SHOW orders, total_sales GROUP BY order_referrer_source, order_referrer_name SINCE -1d UNTIL today",
+      "columns": [],
+      "rows": [],
+      "rowCount": 0,
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    {
+      "query": "FROM sessions SHOW sessions GROUP BY referrer_source, referrer_name SINCE -1d UNTIL today ORDER BY sessions DESC LIMIT 30",
+      "columns": [
+        {
+          "name": "referrer_source",
+          "dataType": "STRING"
+        },
+        {
+          "name": "referrer_name",
+          "dataType": "STRING"
+        },
+        {
+          "name": "sessions",
+          "dataType": "INTEGER"
+        }
+      ],
+      "rows": [
+        [
+          "direct",
+          "",
+          "246"
+        ],
+        [
+          "search",
+          "google",
+          "57"
+        ],
+        [
+          "social",
+          "facebook",
+          "15"
+        ],
+        [
+          "search",
+          "yahoo!",
+          "2"
+        ],
+        [
+          "unknown",
+          "chatgpt",
+          "2"
+        ],
+        [
+          "search",
+          "ecosia",
+          "1"
+        ],
+        [
+          "search",
+          "duckduckgo",
+          "1"
+        ],
+        [
+          "unknown",
+          "blog2026",
+          "1"
+        ],
+        [
+          "search",
+          "bing",
+          "1"
+        ]
+      ],
+      "rowCount": 9,
+      "chartHint": {
+        "type": "bar",
+        "xAxisColumnIndex": 0,
+        "yAxisColumnIndices": [
+          2
+        ],
+        "yAxisFormat": "number"
+      },
+      "summaryMetric": {
+        "label": "sessions",
+        "value": "326"
+      },
+      "shopDomain": "dresslikemommy-com.myshopify.com"
+    },
+    {
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE -1d UNTIL today",
+      "columns": [],
+      "rows": [],
+      "rowCount": 0,
+      "shopDomain": "dresslikemommy-com.myshopify.com",
+      "source": "Actual Shopify analytics tool response in current turn"
+    }
+  ],
+  "analytics_interpretation": "No X-tagged or X/twitter referrer row in the requested reports. Empty campaign/sales results include no column metadata; no verified order or incremental traffic conclusion. Relative report window includes prepublication time; store reporting timezone not independently read in this checkpoint. Reporting latency, operator QA, consent and unclassified/direct traffic limit inference.",
+  "research": {
+    "current_x_questions": {
+      "queries": [
+        "site:x.com \"family photo outfits\" after:2026-08-20",
+        "site:x.com \"family pictures\" \"wear\" after:2026-08-20"
+      ],
+      "result": "Search returned no results",
+      "qualified_conversations": 0,
+      "limit": "Search index coverage is incomplete; not proof of absent demand. No search-triggered replies sent."
+    },
+    "guide": {
+      "url": "https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas",
+      "status": "Public content retrieved",
+      "buyer_route": "Links to Rainbow and Pastel Bloom products and separate-purchase/size guidance."
+    },
+    "direct_product": {
+      "url": "https://www.dresslikemommy.com/products/vibrant-rainbow-maxi-dress-set-for-mom-and-daughter-colorful-summer-matching-outfits",
+      "public_h1": "Vibrant Rainbow Mommy and Me Maxi Dresses",
+      "supported_facts": [
+        "Rainbow stripe product",
+        "Mother and girl selections",
+        "Each selection sold separately"
+      ],
+      "future_gate": "Current full buyer UI, image rights/ALT if attached, available selections and truthful destination before any future publication; no price, stock, shipping or popularity promise in candidate."
+    }
+  },
+  "automation_risk": {
+    "source": "https://help.x.com/en/rules-and-policies/x-automation",
+    "source_updated": "April 2026",
+    "facts": "X prohibits non-API website scripting; AI reply bots need prior written X approval. Automated replies also have opt-in requirements.",
+    "correction": "Replace prior browser-publication/reply instructions with permitted API-only publishing and held automated replies. Continue Shopify analytics, public research and reviewed local preparation. Preserve existing native schedules.",
+    "relationship_to_launch": "This finding changes future automation. It does not prove the launch caused the X discoverability notice, which was observed earlier."
+  },
+  "integration_discovery": {
+    "callable_x_publisher_found": false,
+    "tools_inventory_scope": "Current ALL_TOOLS name/description search; no Twitter/X/Buffer/Hootsuite publisher or plugin-directory search tool callable",
+    "documented_business_credential_directory_exists": true,
+    "named_x_api_or_publisher_entry_names": [],
+    "credential_contents_read": false,
+    "xurl_on_current_path": false,
+    "limit": "Does not establish that no owner publishing service or API app exists elsewhere.",
+    "owner_question": "Which existing X developer app or publishing service is connected to @dresslikemommy?",
+    "question_state": "PENDING; no duplicate login or blanket permission request"
+  },
+  "outcomes": {
+    "acquired_x_visits": null,
+    "confirmed_x_orders": null,
+    "supported_contribution": null
+  },
+  "shared_records": "Wait for root shared-writer release before exact own canonical changes."
+}

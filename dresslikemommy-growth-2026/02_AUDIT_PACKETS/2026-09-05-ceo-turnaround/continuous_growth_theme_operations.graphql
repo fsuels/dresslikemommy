@@ -1,0 +1,5 @@
+mutation DlmDuplicateReviewedSeo($id:ID!,$name:String!){themeDuplicate(id:$id,name:$name){newTheme{id name role processing processingFailed} userErrors{field message}}}
+
+query DlmCurrentSeoThemes { shop{id name primaryDomain{url}} inventory:themes(first:50){nodes{id name role processing processingFailed}pageInfo{hasNextPage endCursor}} main:themes(first:1,roles:[MAIN]){nodes{id name role files(first:4,filenames:["locales/da.json","locales/nl.json","snippets/collection-seo-fallback.liquid","sections/main-article.liquid"]){nodes{filename checksumMd5 body{... on OnlineStoreThemeFileBodyText{content}}}pageInfo{hasNextPage endCursor}}}pageInfo{hasNextPage endCursor}}}
+
+mutation DlmScopedSeoRelease($themeId:ID!,$files:[OnlineStoreThemeFilesUpsertFileInput!]!){themeFilesUpsert(themeId:$themeId,files:$files){upsertedThemeFiles{filename} job{id done} userErrors{field message}}}

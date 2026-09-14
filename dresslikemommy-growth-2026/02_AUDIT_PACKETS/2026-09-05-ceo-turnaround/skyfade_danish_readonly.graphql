@@ -1,0 +1,1 @@
+query DlmSkyfadeDanishCopy($resourceId: ID!, $locale: String!) { translatableResource(resourceId: $resourceId) { resourceId translatableContent { key value digest locale } translations(locale: $locale) { key value locale outdated updatedAt market { id } } } }

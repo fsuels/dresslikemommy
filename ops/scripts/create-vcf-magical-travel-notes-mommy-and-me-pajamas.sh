@@ -35,7 +35,7 @@ PRODUCT_TYPE="Matching Family Pajamas"
 TAXONOMY_GID="gid://shopify/TaxonomyCategory/aa-1-17-4"
 CHILD_PRICE="35.99"
 MOTHER_PRICE="39.99"
-VENDOR_URL="https://detail.1688.com/offer/828526529351.html"
+VENDOR_URL=""
 SEO_TITLE="Magical Travel Notes Mommy & Me Pajamas | Dress Like Mommy"
 SEO_DESC="Shop our Magical Travel Notes matching mommy-and-me pajamas — soft cotton short-sleeve set for mom + daughter. Sizes 2Y–10Y & Mom S–XL."
 
@@ -215,7 +215,7 @@ PRODUCT_INPUT=$(jq -c -n \
   --argjson tags "$TAGS_JSON" '
 {
   title: $title, handle: $handle, descriptionHtml: $body,
-  productType: $ptype, vendor: $vendor, status: "ACTIVE",
+  productType: $ptype, vendor: $vendor, status: "DRAFT",
   category: $taxgid,
   tags: $tags,
   seo: {title: $seoT, description: $seoD},
@@ -287,20 +287,9 @@ echo "$RES" | jq '.data.metafieldsSet.userErrors'
 WROTE=$(echo "$RES" | jq '.data.metafieldsSet.metafields | length')
 echo "Metafields written: $WROTE"
 
-# ----- 5d. publishablePublish (5 channels) -----
-echo "== publishablePublish =="
-for PUB in \
-  "gid://shopify/Publication/55169925" \
-  "gid://shopify/Publication/21969633377" \
-  "gid://shopify/Publication/29172400225" \
-  "gid://shopify/Publication/76582879329" \
-  "gid://shopify/Publication/76604768353"; do
-cat > "$WORK/m_pub.json" <<EOF
-{"query":"mutation pub(\$id: ID!, \$pubs: [PublicationInput!]!) { publishablePublish(id: \$id, input: \$pubs) { userErrors { field message } } }","variables":{"id":"$PRODUCT_ID","pubs":[{"publicationId":"$PUB"}]}}
-EOF
-RES=$(curl -s -X POST "$API" -H "X-Shopify-Access-Token: $SHOPIFY_ADMIN_ACCESS_TOKEN" -H "Content-Type: application/json" --data @"$WORK/m_pub.json")
-echo "  $PUB -> $(echo "$RES" | jq -c '.data.publishablePublish.userErrors')"
-done
+# Safety gate: listing runners create/update products as Shopify drafts only.
+# Publishing to sales channels requires a separate human-approved action-time write.
+echo "Sales-channel publication skipped; product remains a draft pending approval."
 
 # ----- 5e. Media upload (idempotent — only if uploads dir has files) -----
 UPLOAD_DIR="${HOME}/Projects/dresslikemommy/uploads/${HANDLE}"

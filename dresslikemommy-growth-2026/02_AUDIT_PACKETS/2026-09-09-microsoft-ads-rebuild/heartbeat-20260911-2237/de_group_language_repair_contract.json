@@ -1,0 +1,36 @@
+{
+  "created_at_utc": "2026-09-12T08:50:13.513509+00:00",
+  "decision_id": "DLM-DEC-2026-09-12-MICROSOFT-DE-GROUP-LANGUAGE",
+  "status": "PENDING_INDEPENDENT_REVIEW",
+  "authority": "Existing explicit qualified paused USEN/DEDE preparation. Correct only the freshly created German group language; no new paid authority.",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "campaign_id": "506254908",
+  "group_id": "1262241151661314",
+  "before_and_proposal_sha256": "809567c27dd2eae2c11d744b71e535d2ead44fc2a24db9569d8794e5121fde4b",
+  "import_receiver_sha256": "fa5e838349017009833b41ac321c8cac9f1d5b900d4f7ba67e696a8f119e3f49",
+  "action": "One native group-settings Save with only language English -> German.",
+  "protected": "Exact group name/type/base domain, default Auto bid and inherited MaxClicks, Microsoft sites and select traffic, targeting/schedule/URLs; parent Paused/German/3USD/0.15CPCcap andUSgroup all unchanged.",
+  "critical_premise": "Group language inherited correctly merely because the campaign language is German.",
+  "falsifier_observed": "Saved native group Language showed English; the dropdown selected English and separately offered Use my campaign settings.",
+  "chosen_alternative": "Set this exact group explicitly German; using campaign settings would add another inheritance dependency.",
+  "containment": "Both campaign andgroup Paused; threePausedkeywords; zeroads. No reimport.",
+  "before_Save_checks": [
+    "Exact URL group1262241151661314 in campaign506254908/account477439",
+    "Only staged languageGerman; other controls unchanged",
+    "No new auth/policy/billing/dialog requirement",
+    "Save has not yet been clicked"
+  ],
+  "after_required": [
+    "Reopen exactgroupSettings and verify German persisted",
+    "Default bidAuto and Microsoft sites/selecttraffic preserved",
+    "Group/campaignremainPaused and exactkeywordIDs/text/Exact/URLs unchanged",
+    "No unintended new ads/campaign or status/budget/bid changes"
+  ],
+  "rollback": "BeforeSave Cancel; onverificationfailure holdtheexistingnewgroup/campaignPaused andaddnoads. OriginalEnglish value preserved for an exact reviewed inverse, not automatic restoration of the mismatch.",
+  "native_Save_limit": 1,
+  "material_decision": true,
+  "independent_verifier": "/root/paused_import_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "full_paid_scope": "NONE"
+}
