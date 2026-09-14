@@ -51574,8 +51574,8 @@ One Owner Action remains the current owner Admin publication of verified theme13
 AGENT_CONTINUITY_ANCHOR: 2026-09-14-project-main-local-synchronization
 
 - task_entities: local Git main; fsuels/dresslikemommy origin/main; reviewed theme137888792673; active GitHub-connected theme133290917985
-- task_stage: VERIFY
-- next_action_id: ISOLATED_NON_THEME_MAIN_SYNC
+- task_stage: BLOCKED
+- next_action_id: OWNER_PUBLISH_REVIEWED_THEME_THEN_SYNC_MAIN
 
 Current user explicitly requested all local project changes and completed UX fixes in the latest Git main. Local checkout started at8abff26; fresh origin/main cc62620 adds four commits, including the agent-harness bootstrap. Independent source comparison verified all527 reviewed source hashes and recommended60 byte copies while preserving7 additional local fixes. Root performed exactly that integration:520 reviewed-exact files plus7 local enhancements,22configuration/template files and58unappliedV8 files preserved. Independent final review PASS, SHA394a6ec02c2e373dfa383ccb178929c6ff5bd57cefdaef900b184e694df0b1f2. Before-files remain in a private local backup; rollback ref codex/main-before-sync-20260914-2024 preserves the initial commit.
 
@@ -51584,6 +51584,8 @@ Current user explicitly requested all local project changes and completed UX fix
 Current Admin read explicitly shows active theme133290917985 connected to github.com/fsuels/dresslikemommy/tree/main, and137888792673 remains a draft. Therefore remote theme push is a live write and cannot serve as a workaround for the connector's required owner-Admin publication step. Complete local commit/merge and fresh connection read before reporting the exact remaining dependency. No remote push, Shopify save/upload/publication, paid/account change or order occurred. Source and validation evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-14-project-main-sync/.
 
 Local source snapshot9ee5c13 and mergec126eaa now preserve all four newer origin/main commits. Independent merge review PASS (10927bf791bf1e622f1c40542f1422ce5b8ad6d7fe2e200c661cee479be1c649). All58V8 files remain unchanged locally;57 are committed and one private historical worklog copy remains excluded. Fresh Admin still shows active133290917985 linked to main and137888792673 Draft. A bounded non-theme-only GitHub sync is now being prepared under the existing user authorization: every Shopify theme directory and deployment configuration must equal fresh origin/main exactly, with independent candidate review before push. Official Shopify GitHub repository-structure documentation says other folders are ignored; the existing workflow is unchanged and has no push trigger/deployment. No theme release is included in that independent sync.
+
+Project-file synchronization completed20:57:41UTC: origin/main read back60ec4959d09c5c67e89bef648991921e6979806d after the authorized fast-forward push. Independent exact-candidate review PASS67ab229f2e7eef20c448d15c7888a14f1a6644f799544056a12c36f48e5e72c1 verified6804non-theme path changes,528guarded entries identical, zero theme changes in the pushed history, zero additions among22private exclusions and no oversized blob. Root source remains527files with72root-theme differences awaiting the owner publication dependency. Snapshot cutoff20:52:55UTC; later peer work is preserved outside this snapshot. No theme publication, live theme source change, paid/account or order action occurred. Evidence and owner continuation: 2026-09-14-project-main-sync/SYNC_REPORT.md and REMOTE_PROJECT_SYNC.json.
 
 ## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-x-publisher-proposal-and-n2-receipt
 
