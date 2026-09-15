@@ -237,7 +237,7 @@
           {% comment %} Only include if collection exists {% endcomment %}
           {% if subcat_collection != blank %}
             {% capture resolved_subcat_display_label %}
-              {% render 'breadcrumb-label', collection_handle: subcat_handle, default_label: subcat_collection.title | default: subcat_label %}
+              {% render 'breadcrumb-label', collection_handle: subcat_handle, default_label: subcat_collection.title, default: subcat_label %}
             {% endcapture %}
             {% assign subcat_display_label = resolved_subcat_display_label | strip %}
             {% assign subcat_display_label_key = subcat_display_label | handleize %}
@@ -272,3 +272,15 @@
     {% endif %}
   </nav>
 {% endunless %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'breadcrumb-label', collection_handle: subcat_handle, default_label:
+    subcat_collection.title | default: subcat_label %}"
+  to: "{% render 'breadcrumb-label', collection_handle: subcat_handle, default_label:
+    subcat_collection.title, default: subcat_label %}"
+  position: 14302..14430
+{% endcomment %}
