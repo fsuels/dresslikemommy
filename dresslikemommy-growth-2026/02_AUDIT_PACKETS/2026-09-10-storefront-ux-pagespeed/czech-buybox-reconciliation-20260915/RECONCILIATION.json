@@ -1,0 +1,246 @@
+{
+  "schema": "dlm.ux.saved_czech_buybox_reconciliation.v1",
+  "status": "VERIFIED_SAVED_CANDIDATE_HAS_BOTH_CZECH_LABELS__LIVE_ACCEPTANCE_PENDING",
+  "classifiedAs": "VERIFY",
+  "observedAtUtc": "2026-09-15 04:15:56 UTC",
+  "ownerTask": "01a088c3-c890-71a1-98ee-f19b6905af55",
+  "canonicalOwnerTask": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "scope": "Read-only reconciliation of the two reported Czech buybox instructions against the previously accepted candidate. Only this task-local evidence is written.",
+  "candidate": {
+    "id": "137888792673",
+    "name": "DLM UX Performance QA 2026-09-10",
+    "identityQualification": "Accepted saved candidate; no new Admin role/source read performed.",
+    "sourceBinding": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/FINAL_527_SOURCE_BINDING.json",
+      "sha256": "932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a"
+    },
+    "frozenManifest": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/FROZEN_MANIFEST.json",
+      "sha256": "cc119594723d83fcc68c8e7d2556434fc7f960fc46fde9eaa5a39ba8522acb21"
+    }
+  },
+  "incomingObservation": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_german_czech_source_freeze_20260915/czech-landing-qa-20260915.json",
+    "sha256": "c8fe1fbc5e360c6021572ffe4e133de2229637668aa7347edc880539fb4283d1",
+    "productId": "7607764287585",
+    "url": "https://www.dresslikemommy.com/cs/products/coral-blossom-mommy-and-me-dresses",
+    "recordedWindowUtc": [
+      "2026-09-15T03:54:33Z",
+      "2026-09-15T03:58:44Z"
+    ],
+    "country": "US",
+    "currency": "USD",
+    "cartItems": 0
+  },
+  "authoritativeScript": {
+    "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+    "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/french-unit-correction/after.js",
+    "sha256": "dbd748d10828f52bb24c2dfb22d019261f4abeb7f3e9f61eb86d350ee96c1bcb",
+    "md5": "9bec387aeaed044c62155d85dda98f37",
+    "bytes": 274761
+  },
+  "labels": [
+    {
+      "key": "UI_LABELS_BY_LOCALE.cs.chooseRoleStep",
+      "line": 406,
+      "value": "Vyberte, pro koho je tento kus",
+      "englishReported": "Choose who this piece is for",
+      "renderUses": [
+        3438,
+        3442
+      ],
+      "uses": "Step 1 heading and role-group aria-label"
+    },
+    {
+      "key": "UI_LABELS_BY_LOCALE.cs.chooseOptionsStep",
+      "line": 407,
+      "value": "Vyberte velikost a možnosti",
+      "englishReported": "Choose size and options",
+      "renderUses": [
+        3331
+      ],
+      "uses": "Step 2 heading"
+    }
+  ],
+  "runtimeRouting": {
+    "localeRootFunctionLines": [
+      929,
+      934
+    ],
+    "localeMapFunctionLines": [
+      936,
+      939
+    ],
+    "uiLabelFunctionLines": [
+      947,
+      951
+    ],
+    "resolution": "document.documentElement lang -> normalized base locale -> UI_LABELS_BY_LOCALE.cs -> localized key before English fallback.",
+    "labelOwner": "These two headings are script UI_LABELS_BY_LOCALE keys; products.product.choose_options in locales/cs.json is a different generic label."
+  },
+  "loadingChain": [
+    {
+      "filename": "templates/product.json",
+      "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/templates/product.json",
+      "sha256": "ec24f14bdd083e13685431d77a3acdeb3e0a86c7914bc1edc41551623cd2fc7f",
+      "line": 14,
+      "meaning": "Default product template selects main-product."
+    },
+    {
+      "filename": "sections/main-product.liquid",
+      "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/native-deeplink-repair/proposed/sections/main-product.liquid",
+      "sha256": "01a345e7d32c7bb23c6ba159c9388d7f9a839116378a56ef3fdcb351f1f3e6f1",
+      "lines": [
+        933,
+        1460
+      ],
+      "meaning": "Loads ruler-sync script with defer and renders product-desktop-ux snippet."
+    },
+    {
+      "filename": "snippets/product-desktop-ux.liquid",
+      "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/snippets/product-desktop-ux.liquid",
+      "sha256": "354c4f8a84c869645a7b6d35c4eb867b5445fc9aed3018ad40d883254c20f946",
+      "lines": [
+        97,
+        98
+      ],
+      "meaning": "Provides the product UX wrapper initialized by the script."
+    },
+    {
+      "filename": "layout/theme.liquid",
+      "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/layout/theme.liquid",
+      "sha256": "d5817734bb7db97f5352cd34bcb724c310db2a49dc9ace165f2a036fb06d77ab",
+      "line": 3,
+      "meaning": "html lang is Shopify request.locale.iso_code."
+    }
+  ],
+  "checks": {
+    "sourceHashesAndSizes": "Five directly relevant saved files match the accepted binding.",
+    "loaderSearch": {
+      "totalBoundFiles": 527,
+      "textSourcesSearched": 308,
+      "matchingScriptLoadSites": 1,
+      "matchingSnippetRenderSites": 1
+    },
+    "productionLabelResolution": {
+      "source": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/french-unit-correction/after.js",
+      "method": "Unmodified full saved script in isolated local JavaScript context; DOMContentLoaded callbacks are not run; two production uiLabel lookups per language form.",
+      "cases": [
+        {
+          "locale": "cs",
+          "labels": {
+            "role": "Vyberte, pro koho je tento kus",
+            "options": "Vyberte velikost a možnosti"
+          },
+          "passed": true
+        },
+        {
+          "locale": "cs-CZ",
+          "labels": {
+            "role": "Vyberte, pro koho je tento kus",
+            "options": "Vyberte velikost a možnosti"
+          },
+          "passed": true
+        },
+        {
+          "locale": "cs_CZ",
+          "labels": {
+            "role": "Vyberte, pro koho je tento kus",
+            "options": "Vyberte velikost a možnosti"
+          },
+          "passed": true
+        },
+        {
+          "locale": "en",
+          "labels": {
+            "role": "Choose who this piece is for",
+            "options": "Choose size and options"
+          },
+          "passed": true
+        }
+      ],
+      "totalLabelAssertions": 8,
+      "status": "PASS",
+      "browserRenderingVerified": false
+    },
+    "minorInspectionRecovery": "Initial standard JSON read of locales/cs.json rejected Shopify's leading generated-file comment. Removing only that comment enabled inspection; no source file changed."
+  },
+  "finding": {
+    "exactTwoKeyCandidateGap": "NONE_DETECTED_IN_ACCEPTED_SOURCE",
+    "duplicateThemeRepairRequired": false,
+    "releaseInterpretation": "The reported live English labels are consistent with the accepted Czech repair awaiting publication. No new live theme identity was checked, so current storefront behavior remains a separate post-publication gate.",
+    "broaderCzechCopyAudit": "NOT_PERFORMED",
+    "nativeHumanLanguageCertification": "NOT_PERFORMED"
+  },
+  "postPublicationAcceptanceAddendum": {
+    "operation": "ADD_ONLY",
+    "prerequisite": "Actual owner publication, fresh MAIN identity/source/GitHub-connection acceptance; preserve rollback 133290917985.",
+    "newCase": {
+      "caseId": "CS-7607764287585-BUYBOX-TWO-INSTRUCTIONS",
+      "productId": "7607764287585",
+      "url": "https://www.dresslikemommy.com/cs/products/coral-blossom-mommy-and-me-dresses",
+      "locale": "cs",
+      "viewports": [
+        "desktop",
+        "mobile"
+      ],
+      "expectedHeading1": "1 Vyberte, pro koho je tento kus",
+      "expectedHeading2": "2 Vyberte velikost a možnosti",
+      "expectedRoleGroupAriaLabel": "Vyberte, pro koho je tento kus",
+      "additionalChecks": [
+        "Document language is cs and accepted script loads from the actual MAIN theme without preview parameter.",
+        "Both instructions visibly render in Czech; the two reported English instructions do not render.",
+        "Preserve Maminka/Dívka role choices and existing separate-piece disclosure.",
+        "Observe initial cart and country/currency; a Czech-language URL does not establish Czech-country context."
+      ],
+      "status": "QUEUED_NOT_RUN",
+      "countryCurrencyInterpretation": "US/USD in the observed U.S. session is not evidence of a Czech-country currency defect."
+    },
+    "retainedCases": [
+      {
+        "scope": "All previously accepted affected buyer cases and release checks",
+        "handoffPath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/EXECUTION_HANDOFF.json",
+        "sha256": "9f789297857df6832ae262e1043c45a8ff421fe59558b670992aab47a3a42d85"
+      },
+      {
+        "scope": "Existing EN/FR/AR garment/role/unit, EN/AR/NL article CTA and three AU numeric-link cases",
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/BROWSER_ACCEPTANCE.json",
+        "sha256": "70840f18cbfd0214ef6101c71f0d6861232450b53c860cd2afad2f1fa1cfbd48"
+      },
+      {
+        "scope": "Current public Spanish numeric-preselection cases",
+        "variantIds": [
+          "39756755861601",
+          "41883237220449"
+        ],
+        "locale": "es",
+        "country": "US",
+        "currency": "USD",
+        "lastReportedFailureUtc": "2026-09-15T03:26:00Z",
+        "provenance": "Merchant handoff and parent canonical closeout in this existing task; not rechecked here."
+      },
+      {
+        "scope": "Corrected French Girl9–10 Dress/Cardigan source cells in the expanded guide",
+        "productId": "7670609346657",
+        "locale": "fr",
+        "dressLength": "74 cm / 29,1 pouces",
+        "cardiganLength": "41 cm / 16,1 pouces",
+        "sourceHandoffPath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_french_unit_cells_20260915/execution_handoff.json",
+        "sha256": "30a6a156c2bda35771822776262fafdb91794e7cae149f63d215a1c829d7e510",
+        "qualification": "Saved product repair/public hidden DOM accepted separately; expanded guide remains queued."
+      }
+    ],
+    "preservesAllExistingCases": true
+  },
+  "preservedBoundaries": [
+    "No production source edit, candidate save, upload, MAIN write, Publish, Git commit/push, preview/browser replay or unchanged metadata polling.",
+    "Parent remains sole canonical writer; Merchant owns product-body and collection-title repair.",
+    "Accepted full candidate source binding and owner Admin publication recommendation remain exact."
+  ],
+  "nextOwnerAction": {
+    "action": "Publish DLM UX Performance QA 2026-09-10 (137888792673) in Shopify Admin.",
+    "whyFirst": "The reviewed candidate contains both localized instructions; live acceptance requires its publication.",
+    "url": "https://admin.shopify.com/store/dresslikemommy-com/themes",
+    "newApprovalQuestion": false
+  }
+}
