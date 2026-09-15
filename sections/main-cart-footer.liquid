@@ -1,3 +1,4 @@
+{%- assign dlm_cart_language = request.locale.iso_code | split: '-' | first -%}
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -136,14 +137,14 @@
                 <div class="cart-page__checkout-note caption-large">
                   <span>
                     {%- if cart.taxes_included -%}
-                      Taxes included.
+                      {%- if dlm_cart_language == 'fr' -%}Taxes incluses.{%- else -%}Taxes included.{%- endif -%}
                     {%- else -%}
-                      Taxes calculated at checkout.
+                      {%- if dlm_cart_language == 'fr' -%}Taxes calculées au paiement.{%- else -%}Taxes calculated at checkout.{%- endif -%}
                     {%- endif -%}
                   </span>
                   {%- if shop.shipping_policy.body != blank -%}
                     <details class="cart-page__policy-details">
-                      <summary>Shipping details</summary>
+                      <summary>{% if dlm_cart_language == 'fr' %}Détails de la livraison{% else %}Shipping details{% endif %}</summary>
                       <div class="rte">
                         {{ shop.shipping_policy.body }}
                       </div>

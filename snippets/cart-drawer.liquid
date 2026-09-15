@@ -1,3 +1,4 @@
+{%- assign dlm_cart_language = request.locale.iso_code | split: '-' | first -%}
 {% comment %}
   Renders cart drawer
 
@@ -619,9 +620,9 @@
           <div class="cart-drawer__checkout-note caption-large">
             <span>
               {%- if cart.taxes_included -%}
-                Taxes included.
+                {%- if dlm_cart_language == 'fr' -%}Taxes incluses.{%- else -%}Taxes included.{%- endif -%}
               {%- else -%}
-                Taxes calculated at checkout.
+                {%- if dlm_cart_language == 'fr' -%}Taxes calculées au paiement.{%- else -%}Taxes calculated at checkout.{%- endif -%}
               {%- endif -%}
             </span>
             {%- if shop.shipping_policy.body != blank -%}
@@ -631,13 +632,13 @@
                 var isHidden = panel.hasAttribute('hidden');
                 panel.toggleAttribute('hidden', !isHidden);
                 this.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
-              ">Shipping details</button>
+              ">{% if dlm_cart_language == 'fr' %}Détails de la livraison{% else %}Shipping details{% endif %}</button>
             {%- endif -%}
           </div>
           {%- if shop.shipping_policy.body != blank -%}
             <div id="CartDrawer-ShippingPolicy" class="cart-drawer__policy-panel" hidden>
               <div class="cart-drawer__policy-panel-header">
-                <strong>Shipping details</strong>
+                <strong>{% if dlm_cart_language == 'fr' %}Détails de la livraison{% else %}Shipping details{% endif %}</strong>
                 <button type="button" class="cart-drawer__policy-close" aria-label="{{ 'accessibility.close' | t }}" onclick="
                   var panel = document.getElementById('CartDrawer-ShippingPolicy');
                   var trigger = document.querySelector('[aria-controls=&quot;CartDrawer-ShippingPolicy&quot;]');
