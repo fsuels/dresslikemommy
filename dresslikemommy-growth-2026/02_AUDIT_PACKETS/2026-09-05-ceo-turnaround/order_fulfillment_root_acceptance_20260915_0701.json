@@ -1,0 +1,61 @@
+{
+  "status": "AGGREGATE_SOURCE_ACCEPTED_WITH_IDENTITY_CASH_AND_PROFIT_LIMITS",
+  "recorded_at_utc": "2026-09-15T07:19:24.165914+00:00",
+  "source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260915_0701.json",
+    "sha256": "6828ed0735532b87efce705758f0f153b37dced37f506434531cb82fb6ff9b52"
+  },
+  "independent_calculation_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_independent_review_20260915_0701.json",
+    "sha256": "101904658cc8e2bc0069bcf6b8dcdb0a7befeac3c63df9ba3ab6ae7ed0761e94"
+  },
+  "reviewer_independence": "Did not perform the source API calls or prepare the root observed summary; independently calculated from the saved raw source. This reviewer also authored the sanitized checkpoint, so this is not a separate second-person review of that output.",
+  "root_source_execution": "One supported order read and four parallel fulfillment queries; no writes. Root read and reconciled the independently recalculated sanitized checkpoint against the original observed totals.",
+  "orders": 3,
+  "units": 8,
+  "current_order_total_usd": "207.25",
+  "new_order_creations": 0,
+  "order_cutoff_utc": "2026-09-15T07:01:34Z",
+  "fulfilled_administrative_orders": 1,
+  "carrier_or_delivery_proof": false,
+  "trailing24h": {
+    "start_inclusive": "2026-09-14T07:01:34Z",
+    "end_exclusive": "2026-09-15T07:01:34Z",
+    "all_order_creations": 1,
+    "qualifying_orders": 1,
+    "qualifying_totals": {
+      "orders": 1,
+      "current_units": 2,
+      "current_subtotal_usd": "40.82",
+      "current_total_usd": "40.82",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    },
+    "excluded_orders": 0
+  },
+  "last_completed_shop_day": {
+    "start_inclusive": "2026-09-14T04:00:00Z",
+    "end_exclusive": "2026-09-15T04:00:00Z",
+    "all_order_creations": 1,
+    "qualifying_orders": 1,
+    "qualifying_totals": {
+      "orders": 1,
+      "current_units": 2,
+      "current_subtotal_usd": "40.82",
+      "current_total_usd": "40.82",
+      "current_tax_usd": "0.00",
+      "recorded_refunds_usd": "0.00"
+    },
+    "excluded_orders": 0,
+    "shop_date": "2026-09-14",
+    "timezone": "America/New_York",
+    "utc_offset": "-0400"
+  },
+  "next_full_read_due_at_utc": "2026-09-15T19:01:34Z",
+  "historical_identity_limit": "The prior public report contains no stable private identity mapping accessible in this scope. Current ordinal labels, matching amounts and creation-window counts do not prove historical product/basket identity or exclude offsetting order-level changes.",
+  "refund_cash_retention_attribution_costs_profit": "UNKNOWN; no inference from current order value, PAID/cancelled status, or zero recorded refunds",
+  "canonical_integration": "PENDING_COMBINED_ROOT_PASS",
+  "private_source_disposition": "Restricted source retained only until canonical acceptance, then root removes it and records hash-only cleanup.",
+  "source_hash": "155a7ce3dedc58a72b69460d1844c889f2fe976a13a234ec61a4d9c41fabc425",
+  "new_business_lift_claim": false
+}

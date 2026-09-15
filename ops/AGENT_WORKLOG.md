@@ -40334,7 +40334,7 @@ Next best action:
 AGENT_CONTINUITY_ANCHOR: 2026-05-18-white-crochet-mommy-and-me-draft-listing-created
 
 Why:
-- Owner requested the canonical Shopify listing workflow for vendor URL `[PRIVATE_SUPPLIER_URL] with attached product image and size chart, `FORCE_SPEC_PRICES=true`, and the mandatory localized size-chart repair gate.
+- Owner requested the canonical Shopify listing workflow for vendor URL `[PRIVATE_SUPPLIER_URL]` with attached product image and size chart, `FORCE_SPEC_PRICES=true`, and the mandatory localized size-chart repair gate.
 
 What changed:
 - Created Shopify draft product `white-crochet-mommy-and-me-set` via Admin API only; no publish/live channel action was performed.
@@ -43835,7 +43835,7 @@ Next best action:
 AGENT_CONTINUITY_ANCHOR: 2026-06-02-blue-daisy-skirted-swimsuit-vendor-url-blocked
 
 Why:
-- Owner supplied the missing vendor URL `[PRIVATE_SUPPLIER_URL] and asked to push a Shopify draft.
+- Owner supplied the missing vendor URL `[PRIVATE_SUPPLIER_URL]` and asked to push a Shopify draft.
 
 Readback:
 - Direct HTTP fetch of the vendor URL returned 1688 `_____tmd_____` / captcha interception markup, not product details or child size rows.
@@ -51589,10 +51589,12 @@ Project-file synchronization completed20:57:41UTC: origin/main read back60ec4959
 
 Post-sync API readback21:06:34UTC: MAIN133290917985 processing=false and processingFailed=false;137888792673 remains UNPUBLISHED with unchanged September11source timestamp. Public homepage rendered normally with cart0. This is availability and role verification, not new buyer-flow/PageSpeed acceptance. Final verification receipts are in the same project-main-sync packet.
 
-## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-x-publisher-proposal-and-n2-receipt
+AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-x-publisher-proposal-and-n2-receipt
 
-- task_entities: TA-24; TA-25; @dresslikemommy; N2 scheduled3858290826238337152
-- task_stage: VERIFY / HANDOFF
+- task_entities: TA-24, TA-25, @dresslikemommy, 3858290826238337152
+- task_stage: HANDOFF
+- task_stage_detail: VERIFY / HANDOFF
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
 - X outcome: The X owner completed an independently reviewed X-only Buffer Free connection proposal (10/10 PASS_WITH_LIMITS), replacing an unspecified publisher search with a concrete conditional option. This is not an approved or connected service: actual Free-plan eligibility, identity, permission scope and supported API retrieval remain untested. The exact new third-party setup decision is already with the owner in the existing X task; do not repeat its question or start setup from this handoff. X goal remains BLOCKED and the existing 09:00/16:00 heartbeat ACTIVE. Preserve seven historical native submissions/current pending count UNKNOWN, R002 publication UNVERIFIED, 3–4 originals/week and at most one R010/R011 at a justified checkpoint. Known rolling effort is 80.33 minutes and known calendar-week effort51.54; earlier gaps prevent full cap certification. September19/26/October12, the expected September15 09:00 check and all other cohort clocks remain unchanged.
 - Pinterest source acceptance: N2 saved once forSeptember27 02:00PM native label; timezone unexposed. Queue6; priorP2–P6 and11other register rows preserved. Actual publication/publicPinID unknown; no N2 outcome clock starts. First actual daily wake20:00:49.119UTC accepted separately from future run claims. Parent preserves the owner-completed N2 canonical interval, which was explicitly released.
 - Source qualification: Evidence: x_publishing_proposal_freeze_20260914/PLAN.md and INDEPENDENT_REVIEW.json; x_n2_parent_acceptance_20260914.json. Anchor 2026-09-14-ceo-x-publisher-proposal-and-n2-receipt. Removing only later review metadata from N2_NATIVE_EXECUTION reconstructs the exact input of its46-check independent review; no native replay.
@@ -51611,3 +51613,693 @@ Post-sync API readback21:06:34UTC: MAIN133290917985 processing=false and process
 - Root scope: Shared factual records only; no owner redispatch, account mutation, order reread, goal/schedule/paid change or repeated owner question.
 - One Owner Action: Existing Shopify Admin publication of reviewed theme137888792673; preserve MAIN133290917985 rollback and UX ownership.
 - Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; preserve sole channel owners and separate clocks.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-google-all-market-local-build-accepted
+
+- task_entities: TA-10, Ads6509972886, campaign24247604341, root01a09194
+- task_stage: HANDOFF
+- task_stage_detail: BUILD verified locally / HANDOFF; live outcome BLOCKED
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- Outcome: Google Ads650 all-market preparation is complete locally: 65 country specifications,75 inferred country/language groups and21 locale packs contain126 headlines,63 descriptions,42 unqualified research seeds and95 phrase-negative candidates. These counts do not prove demand, native ad acceptance or launch readiness; six language packs remain unassigned. Independent review passed37/37 and the operator validation passed138/138; all16 frozen packet hashes match. The prior four country/product drafts and18 European measurements remain unchanged and held. No campaign/ad/negative/settings/budget/measurement write, Save/auth attempt, goal or schedule change occurred. Editor2 is retained UNSAVED; its values were not revalidated in this pass. Normal identity/Save confirmation remains pending in the existing Ads task, without a repeated question. Before any funded pilot, qualify actual product-country language/currency/variants/delivery/costs, native geography/CPC feasibility and genuine valued-purchase instrumentation/receiver/dedup. A prior paid-attributed sale is not a pre-launch requirement; attribution, retained ROAS and profit are post-launch outcomes. Resolve material language/RTL/segmentation uncertainty independently; no new mandatory human approval gate is added. Preserve Russia no-launch and Portugal pt-BR/pt adaptation holds from the dated source. Negative rollback removes only IDs actually created after fresh inherited-list dedup.
+- Current native source: campaignPaused,US/English,PresenceOrInterest; campaign/account negatives absent, auto-applyOff and PMaxMerchantNotSetUp. Sep7–13USD0.80/356impressions/5clicks/0conversions retained as historical; no new spend or negative-keyword savings claim.
+- Source: Evidence: google_all_market_source_acceptance_20260914.json; google_all_market_freeze_20260914/EXECUTION_HANDOFF.json, INDEPENDENT_REVIEW.json and PACKET_FREEZE.json. Anchor 2026-09-14-ceo-google-all-market-local-build-accepted.
+- source_live_evidence_as_of: September14source/20:58:30UTC handoff; old metrics retain Sep7–13window
+- live_state_mode: STALE_READBACK_REQUIRED
+- effective_approval_policy: FRESH_ACTION_TIME_APPROVAL_REQUIRED; exact current-campaign repair authority separately preserved
+- approved_external_scope: NONE standing paid; no new creation/spend or execution approval from local build
+- autonomous_action_ready: false
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: Changed normal identity/Save result; actual country buyer/cost/geography/CPC/instrumentation and exact exposure evidence
+- if_evidence_supports_recommendation: Sole Ads owner completes exact authorized repair with fresh field/list readback and actual-created-ID rollback; qualify only one selected pilot within current exact authority
+- if_evidence_opposes_recommendation: Hold affected action, preserve paused builds, and fix one specific qualification gap without repeated editor/auth/18-query loops or higher bids by default
+- material_decision: Source local build remains FROZEN_UNRESOLVED; parent factual acceptance only
+- independent_verifier: /root/tag_repair_review
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Independent scope: Eight saved inputs/37checks; operator-derived report/CSV/138checks are separately labeled. Parent verifies bindings and routine documentary preservation; no native/query/test replay.
+- Root ownership: Existing Ads claim located by exact heading, owner and account; only its evidence/result cells changed. Cold-start and all other claims preserved. No source-owner redispatch.
+- One Owner Action: Publish existing reviewed theme137888792673 through Shopify Admin; preserve MAIN133290917985 rollback and UX ownership. This local handoff does not replace it.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; use current source owners and existing pending owner answers; preserve all sales and independent cohort clocks.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-merchant-coverage-and-microsoft-live-repair
+
+**September14 Merchant coverage and cloud refresh.** Merchant513542500 native country readback at September14 20:41–20:43UTC confirms US and AU each4,741/4,741 approved/Complete; the other29 configured countries have0products. Shopify configuration reconciles65 served countries,21 effective inherited locales,6 active markets,238 active products and20 currencies. Its1,365 country-language combinations are configuration counts, not certified buyer routes or eligible offers. The native chooser exposes five additional served choices BG/HR/MT/ME/RS; none were added, and29 served countries were absent from that observed chooser. The earlier documentation-only country uncertainty is superseded only by this exact account readback. Account issues says No issues for you to fix; Store Quality still hasNo score/Missing information. Price updates are ON with3 optimized products, whose IDs and complete price reconciliation remain unverified. The77-test cloud package is independently VERIFIED LOCAL ONLY: six holds preserved,16-minute token margin,41-fetch synthetic rehearsal and11-module compiled binding. No app, credentials, queue or deployment were written. The existing Worker remains versiond117e959-0e32-44c6-a8e9-41d4821b73a7 at100%, without cron or Shopify credential bindings. US pointer retains4,741 rows from September14 13:16:10.466UTC; the next genuine source target is September15 13:16:10.466UTC and unchanged host expiry September16 13:16:10.466UTC. Old lifecycle guard pins predate this candidate and cannot certify a new run. The exact DLM Merchant Feed Reader six-read-scope app/encrypted destination question is already pending; the broad existing token was not transferred. Real narrow-token collection, live resources, cloud/Google receipts and a later scheduled run remain required. Merchant goal-tool readback at20:38:22UTC was usageLimited, separate from root goal or shared account quota. Its existing09:00/17:00 heartbeat update was read back; future execution is unproved. The25-field Spanish repair remains complete; Spanish/CA/GB feeds remain unsubmitted. Reviewed137888792673 is still UNPUBLISHED, MAIN133290917985 unchanged; exact live numeric-variant acceptance, supported transit and return truth/assignment remain separate gates. No traffic, sales or profit uplift is established.
+
+**September14 Microsoft targeting and support completion.** Microsoft477439/US506254907 received three Phrase-negative text refinements and three plural additions under the source owner's current exact negative-keyword mandate. The21:24:59UTC readback verifies10 unique Campaign/Phrase negatives, including preserved svg and four unchanged original IDs. Actual replacement/new IDs and narrow rollback are recorded. Three Exact positive IDs remain Paused. The21:26:53UTC controls retain Paused,English,USD5/day,MaximizeClicks cappedUSD0.15 and all three expansion options off; no settings were edited. The source owner compared all13 campaign ID/status/type/budget tuples before/after and reports them unchanged/Paused. Independent12-check receipt review passed with limits: native observations and the full before/after comparison remain source-owner evidence, not an independent live replay. Authorized diagnostic contact is DONE: human support case7108824779 acknowledged the full report. This supersedes the old pending-contact/UNSENT gate; do not resend it. Support promised an email update24–48hours after September14 16:58Eastern, so the expected window is September15–16 at16:58Eastern. Team consultation is pending; engineering escalation, email receipt and a production fix are unconfirmed. Support's expected automatic consent bridge is not proof that the observed standard pageLoad defect is repaired; the purchase-sandbox behavior remains unproved and the custom browser candidate stays rejected for deployment. The local reviewed package has20 language sets and35 country/language specifications across25 countries; all65 countries/six markets are accounted for, with40 country/territory qualification holds and Korean absent from native Search language choices. Native Hindi and exact Mexico country selection were observed. Package27/27 checks and independent assembly PASS_WITH_GATES establish local preparation, not a native Bulk import or approved demand. The existing daily-budget/maximum30-day-test-loss answer is pending. No campaign was enabled, budget changed, new campaign saved or tracking repair installed. The same4-hour heartbeat update was read back with no duplicate; the previously reported BLOCKED goal was not freshly re-read here. Genuine valued purchase/consent/dedup, costs, exact paid authority and incremental profit remain open.
+
+Evidence: merchant_cloud_coverage_source_acceptance_20260914.json and microsoft_negative_support_source_acceptance_20260914.json, with exact frozen owner handoffs and independent reviews in the existing CEO packet. Anchor 2026-09-14-ceo-merchant-coverage-and-microsoft-live-repair.
+
+- task_entities: TA-07, TA-15, Merchant513542500, Microsoft477439, customer770182, US506254907, support7108824779, 01a08706, 01a08703
+- task_stage: HANDOFF
+- task_stage_detail: VERIFY completed source receipts / HANDOFF; broader growth execution remains PARTIAL
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: Merchant countries20:43/account20:49/cloud21:15–21:16; Microsoft negative21:24:59/controls21:26:53/comparison21:28:21UTC; exact support times retain Eastern offset
+- live_state_mode: STALE_READBACK_REQUIRED for standing paid controls; completed exact nonspend source receipts separately qualified
+- effective_approval_policy: FRESH_ACTION_TIME_APPROVAL_REQUIRED; preserve saved exact nonspend mandates and already-completed source-authorized actions
+- approved_external_scope: NONE standing paid; source-only documentary integration grants no new setup, credential transfer, launch, billing, support send or storefront publication
+- autonomous_action_ready: false
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: Actual owner theme publication/exact live buyer acceptance; existing dedicated app/destination answer and limited-scope collection; support7108824779 response/supported consent repair; actual costs and exact numeric paid authority
+- if_evidence_supports_recommendation: Existing sole channel owners execute only the exact independently qualified approved action and verify native/production after-state; no duplicate owner, repeated question or new harness
+- if_evidence_opposes_recommendation: Hold the affected release, preserve current eligible source and paused campaigns, and repair the specific failed premise without expired guard replay or custom-sender workaround
+- material_decision: Existing independently reviewed cloud proposal and already-executed narrow Microsoft repair; root performs factual acceptance only
+- independent_verifier: /root/merchant_cloud_independent_review; /root/microsoft_plan_independent_review; /root/international_campaign_build for independent root package assembly
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE_REVIEWED_CHANGE
+- independent_verifier_status: Merchant PASS_WITH_LIMITS; Microsoft negative receipt12checks PASS with native-root limits; package PASS_WITH_GATES
+- Adversarial findings preserved: Merchant61-second token remainder fixed with16-minute margin and split bindings; Microsoft svg broadening rejected and original svg retained. No local synthetic check is promoted to a live outcome.
+- Parent boundary:0new dispatches,0business/account writes,0private/order/account queries and0goal/schedule changes. Existing59wakes/3messages to2owners and1full+4exact fulfillment reads in this wake remain; no new wake or owner question.
+- Shared records: Only TA-07/15 row result/evidence/next cells and the exact two existing claim evidence/result cells changed; peer owners/status/authority preserved. The pending Merchant intake is resolved by this completed frozen handoff, with original intake retained as history.
+- One Owner Action: Publish existing reviewed theme137888792673 through Shopify Admin, preserving MAIN133290917985 rollback and UX ownership. Connector requires owner Admin publication; this source integration does not create another publication question or bypass.
+- Measurement: Preserve current3qualifying orders/8units/USD207.25 at19:00UTC and next full readSeptember15 07:00:17UTC. No new GA4/paid-attribution/profit proof; all distinct organic/Pinterest/X release clocks remain.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; retrieve current owning source on a changed signal and preserve exact pending owner answers. The existing command layer remains authoritative.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-reviewed-local-merchant-refresh-profile
+
+**September14 local Merchant refresh path verified.** The existing Merchant owner completed the explicit local release profile native-holds-20260914 at September14 21:51:41UTC. This resolves the changed-builder/old-profile implementation mismatch for a NEW reviewed run; legacy defaults, old freeze and old-run isolation remain. All29 frozen file hashes,8 reviewed implementation hashes and14 pinned dependencies match. Independent review passed69/69 tests:44 original,17 profile and8 adversarial. Native generator replay verifies holds once, retains all six configured holds through archival/reactivation, and permits a protected omission only with complete source evidence and exact independent reasons. The historical238-parent/4,925-variant snapshot reproduced4,741 rows byte-identically and excluded162 available held rows; its old13:16:10.466UTC source clock was preserved, and the promotion guard rejected this offline replay. No fresh source scan, promotion, Merchant/Shopify/cloud write or new market occurred. The existing Merchant09:00/17:00 heartbeat was updated and separately read back with the same ID/target/cadence; its21:27:49UTC delivery occurred, but future runs are not guaranteed. For the due US refresh, the sole Merchant owner can use existing authorized LOCAL access independently of the pending cloud-app answer: choose --release-profile native-holds-20260914 at every phase, a new run, current before-state and exact independent source-specific review. Preserve the120-minute promotion window, uncertainty/readback rules and existing US destination. Contract82a3f587677d260cbe1af569a069ad26f318e91a33c97f9767b43dbab80b3e59 and lifecycle08580cd0f7d9bc61ade2b98e0d8b46d9c86f9a8ed6987936d6cecf85b7c6e14c are the exact bindings. The genuine source target remains September15 13:16:10.466UTC, before unchanged September16 host expiry. US/AU approvals, country gaps and store-quality figures retain their previous observation dates; no account re-audit or new traffic/sales/profit proof. Cloud activation, exact theme publication/live buyer acceptance, CA/GB transit and return-truth inputs remain separately gated; do not duplicate their pending questions or transfer the broad token.
+
+Evidence: merchant_local_profile_source_acceptance_20260914.json and merchant_local_profile_freeze_20260914/recovery_20260914/local_lifecycle_profile_2133/execution_handoff.json and independent_review/review.json. Anchor 2026-09-14-ceo-reviewed-local-merchant-refresh-profile.
+
+- task_entities: TA-07, Merchant513542500, US10727274744, native-holds-20260914, 01a08706, PROB-2026-09-14-MERCHANT-US-SCHEDULED-FETCH
+- task_stage: HANDOFF
+- task_stage_detail: Local BUILD/VERIFY completed; future source release NOT_RUN; parent HANDOFF
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: Actual sourceSeptember14 13:16:10.466UTC retained; this local implementation completed21:51:41UTC; prior native country/cloud observations were not repeated
+- live_state_mode: STALE_READBACK_REQUIRED for standing paid controls; separate existing nonspend Merchant scope unchanged
+- effective_approval_policy: FRESH_ACTION_TIME_APPROVAL_REQUIRED; exact existing nonspend source mandate and per-run review remain
+- approved_external_scope: NONE standing paid; no new cloud/credential/account/MAIN/market action inferred from local review
+- autonomous_action_ready: false
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: New genuinely complete source, current before-state/sole-writer authority and exact independent per-run review; separately existing owner theme and cloud/transit/return answers
+- if_evidence_supports_recommendation: Sole Merchant owner performs one exact authorized due US promotion under the reviewed explicit profile, then verifies pointer/public/source-age and Google processing separately
+- if_evidence_opposes_recommendation: Preserve previous valid pointer and holds, resolve uncertainty by reads, and review a successor without editing pins or relabeling historical source
+- material_decision: Source-owned explicit local refresh implementation already independently reviewed; parent accepts factual handoff only
+- independent_verifier: Local-profile source reviewer, saved independent_review/review.json
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE_PRODUCTION_CHANGE
+- independent_verifier_status: PASS_WITH_LIMITS,69offline tests; no production invocation or prior-cloud recertification
+- Adversarial evidence: Dependency drift, ambiguous committed/uncommitted pointers, expiry during upload, actual scan-clock binding, absent/reappearing held parent and wrong-profile review rejected. Historical full feed equality is separate from live freshness.
+- Parent0new dispatches/business writes/private queries/runtime changes; previous Microsoft support7108824779/10negative receipt, Google local pack and all peer outcomes preserved. No duplicate implementation audit or new source scan tonight.
+- One Owner Action: Owner publishes reviewed137888792673 in Shopify Admin with MAIN133290917985 rollback; UX owns exact live after-state. That expansion gate does not block the independently qualified due existing US local refresh.
+- Preserve3qualifying orders/8units/USD207.25 and next full readSeptember15 07:00:17UTC, all separate organic/Pinterest/X clocks, existing root goal and heartbeat, and pending owner questions.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; existing Merchant owner uses its explicit reviewed profile on the next due source run, without another harness or owner.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-sizing-guide-live-and-faq-repair
+
+**September14 sizing guide released; localized and FAQ repairs continuing.** Existing English sizing Article559700574305 is IMPLEMENTED and LIVE VERIFIED. Nineteen exact advice/link replacements removed blanket fit and automatic-size-up assumptions and unsupported general size ranges, distinguished body from garment measurements, and routed help to the working Contact us page. Exactly three body-only saves occurred at September14 22:53:37,23:00:02 and23:05:21UTC: editorial correction, table style, then12 cell styles after public layout failures. Final body c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88 was read back exactly. All130 owner preservation checks and33 independent frozen-evidence checks pass with limits;12 other article fields,5 nonbody source keys and90 translation values were preserved. Desktop700px/mobile345px tables and all12 cells have no horizontal overflow; long mobile words may wrap. Actual shopping navigation reaches36 rendered collection cards and help reaches the contact form; no cart or message was submitted. The independent reviewer checked saved evidence, without another live browser replay. The18 localized bodies retain old advice and are explicitly unresolved. Their exact reviewed correction is now dispatched to the existing organic owner; preserve completed English and all other translation fields.
+
+Page161933381 /pages/faqs owns eight inline-jQuery disclosure handlers and two obsolete scripts. One normal Sizing click at22:59:06UTC reproduced a jQuery ReferenceError; all eight answers remained hidden. The other handlers share that dependency, but were not each activated live in the diagnostic. The reviewed theme137888792673 contains no page-owned repair, based on527 frozen hashes and four fresh source bindings; no candidate preview was activated. The exact native details/summary proposal preserves all answers,labels,12links and business text. Its14 independent structural checks and15 local browser cases pass with limits; no live FAQ repair is yet accepted. Parent explicitly authorized and dispatched the same UX owner to complete this narrow page-body repair and independently qualified existing localized body markup after fresh source/translation checks. Conflicting sizing/payment/fulfillment claims are retained and require separate factual review. Existing owner Admin publication of theme137888792673 remains a separate unchanged action.
+
+No acquisition, sales or profit lift is established. The last full sales evidence remains3 qualifying orders/8 units/USD207.25 at19:00:17UTC; next full read September15 07:00:17UTC. Preserve family-photo ArticleSep17, SunshineSep18 and P1Sep21 reviews. The English sizing change receives its separate first full NewYork dateSep15 and7/14/30-date reviewsSep22/29/Oct15; later localization receives its actual release annotation, without resetting older cohorts. No new task, goal, heartbeat, harness, paid authority or account/order query.
+
+Evidence: sizing_english_release_source_acceptance_20260914.json; faq_diagnostic_source_acceptance_20260914.json; sizing_localization_release_plan_20260914.json; faq_release_plan_20260914.json and their successful dispatch receipts. Anchor 2026-09-14-ceo-sizing-guide-live-and-faq-repair.
+
+- task_entities: TA-20, TA-06, Article559700574305, Page161933381, PROB-2026-09-14-SIZING-GUIDE-FIT-GUIDANCE, PROB-2026-09-14-FAQ-JQUERY-DISCLOSURE
+- task_stage: HANDOFF
+- task_stage_detail: English VERIFY complete; localized article and FAQ BUILD/VERIFY in existing owner tasks; parent HANDOFF
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: English final Admin23:05:55UTC/public23:06–23:07UTC; FAQ unchanged source/roles23:07:05UTC; source reviews23:09 and23:13UTC
+- live_state_mode: LIVE_VERIFIED exact English article and FAQ defect only; STALE_READBACK_REQUIRED standing paid
+- effective_approval_policy: Current user exact reversible editorial/international/functional repair mandate; supported operation confirmation and per-source independent review; FRESH_ACTION_TIME_APPROVAL_REQUIRED for standing paid
+- approved_external_scope: NONE standing paid; exact source-owned existing Article559700574305 body translations and Page161933381 functional body/qualified existing translations separately delegated
+- autonomous_action_ready: false standing paid
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: Fresh localized source/digest/meaning and exact public destination/control readback; actual platform restrictions
+- if_evidence_supports_recommendation: Existing organic/UX owners finish only reviewed scoped publication and independent after-state checks
+- if_evidence_opposes_recommendation: Preserve qualified completed content, stop/rebase exact failed surface, record unresolved locale or real platform gate without generic reapproval or bypass
+- material_decision: Exact source-owned multilingual editorial and page interaction repair; no paid or policy-wording expansion
+- independent_verifier: Organic daily_operation_review33after checks; UX FAQ independent14structure checks; successor exact locale/source and live after reviews required
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE; source reviews rely on saved browser receipts rather than separate live replay
+- Parent accepted44 English and24 FAQ frozen files, including38/23 source-manifest entries; direct source acceptance preserves intermediate failures and exact3write chronology. Parent made0business writes and0account/order queries.
+- Two successful successor dispatches in this owner-completion continuation; original heartbeat remains60scheduled wakes and its2prior dispatches are preserved. Do not dispatch active owners again.
+- Merchant separately reported fresh French title/body/meta checks on up to10 existing products under its current user mandate. That product/fr scope is disjoint from the article/page translations; no completed French repair is inferred and no extra parent dispatch was sent.
+- One Owner Action unchanged: owner publishes reviewed137888792673 in Shopify Admin, retaining MAIN133290917985 rollback and UX after-state ownership. No theme bypass.
+- Preserve3qualified orders/8units/USD207.25, next full readSeptember15 07:00:17UTC, existing Merchant source/host clocks and pending questions, all prior channel releases and goal/heartbeat status.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; consume exact owner final handoffs, do not repeat English or local diagnostic work.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-au-navy-buyer-path-qualified
+
+**September14 exact AU Navy buyer route qualified.** The existing Ads owner qualified one AU/English Navy Sprig pair on product7670609346657 at September14 23:17:04–23:21:44UTC. A complete24-variant source has AU prices and recorded USD catalog costs. Dress/Mother M46501139611745 is AUD40 with configured USD14 cost; Dress/Child4Years46501139415137 is AUD35 with configured USD12 cost. The normal public selector reached a matching two-item AUD75 cart and Australia/en-au/AUD checkout entry. No address, contact, payment, discount or order submission occurred; shipping still required an address. Both test items were removed and cart0 read back; the temporary tab closed. Ads editor2 identity was preserved without rereading fields, Save or authentication. All35 independent saved-evidence checks pass with limits; parent verified the three hashes and exact source counts/sums, without a browser or account replay. This clears only the exact pair route/cart/checkout-entry prerequisite. Shipping rates, tax/payment execution, supplier availability, actual landed cost/fees/FX/returns, purchase events/receiver and all-market routes remain unverified. Configured USD26 is not invoice-backed cost; AUD75 is tested merchandise, not retained revenue or a sale. The conditional model is illustrative only and actual allowable CPA remains UNKNOWN. Paid NONE, normal identity/Save and all prior builds remain unchanged. Nonpurchase QA events may have occurred; actual emitted purchase events were NOT_INSPECTED.
+
+The public description advertises Mother S-3XL while current source/selector stop at2XL. Historical Aug31 listing evidence separately records26variants including both3XL garments. The proposed3XL-to2XL sentence repair is therefore held for exact lifecycle/source reconciliation; no text edit, variant restoration or size-chart validation is authorized by this receipt. The current Merchant French10-product scope excludes this product, so no active product overlap was found. Existing owners retain product and account authority.
+
+Evidence: navy_au_qualification_source_acceptance_20260914.json and navy_au_qualification_freeze_20260914/review/NAVY_AU_QUALIFICATION_20260914_REVIEW.json. Anchor 2026-09-14-ceo-au-navy-buyer-path-qualified.
+
+- task_entities: TA-10, Ads6509972886, AU/en, Product7670609346657, 46501139611745, 46501139415137, PROB-2026-09-14-NAVY-SPRIG-SIZE-RANGE
+- task_stage: HANDOFF
+- task_stage_detail: VERIFY exact source/buyer-entry outcome; actual costs/source range BLOCKED_OR_UNKNOWN; parent HANDOFF
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: Shopify23:17:04–05UTC; source-owner public/cart/checkout23:17:05–23:21:44UTC; independent frozen review23:27:44UTC
+- live_state_mode: LIVE_VERIFIED exact source-owner AU pair entry only; standing STALE_READBACK_REQUIRED
+- effective_approval_policy: Existing scoped source/UI qualification; FRESH_ACTION_TIME_APPROVAL_REQUIRED and paidNONE unchanged
+- approved_external_scope: NONE standing paid; no product/variant/campaign/theme write from this handoff
+- autonomous_action_ready: false
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: Actual AU landed economics and buyer shipping; separate historical/current variant lifecycle and fresh source/body translation read
+- if_evidence_supports_recommendation: Existing source owner proposes/completes exact reviewed source correction under valid authority; Ads proceeds only through existing normal Save and paid/instrumentation gates
+- if_evidence_opposes_recommendation: Retain qualified pair evidence, leave unknown costs unresolved, hold source edit and do not blindly add/delete variants or fund traffic
+- material_decision: Exact existing country/product qualification, not launch or product mutation
+- independent_verifier: /root/tag_repair_review,35checks PASS_WITH_LIMITS
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE; no independent browser/account/receiver replay
+- Parent froze3source artifacts and independently checked IDs/counts/currencies/sums; all24variants complete. Independent review distinguishes intentional events from uninspected actual emissions.
+- Parent new account/order/business writes0, new source-owner dispatch0, new goal/schedule/harness0; one bounded local history explorer handles26versus24variant contradiction while existing organic/FAQ/French owners continue disjoint work.
+- Preserve current3orders/8units/USD207.25, next full readSeptember15 07:00:17UTC, MerchantUSsource/host dates, all separate organic clocks and pending owner questions.
+- One Owner Action unchanged: existing owner Admin publication137888792673 with MAIN133290917985 rollback and UX after-state.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; consume ongoing final release handoffs and exact variant-history result, no repeated buyer/keyword/account audit.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-faq-french-live-and-source-evidence
+
+**September14 live FAQ and French releases accepted.** FAQ Page161933381 is LIVE VERIFIED: English and all17 existing translated bodies were repaired through two successful supported mutations at September14 23:30:04 and23:30:49–51UTC. All144 answer controls across18 bodies now use native disclosures. Exact API comparisons preserve19 translated titles and all missing records. Published verification covers36 English desktop/mobile/keyboard cases and all20 other language routes, with no captured post-release console errors or horizontal clipping. Independent after-review PASS_WITH_DOCUMENTED_LIMITS; parent verified the136-file freeze. PL/RU/SV still use English body fallback; ar/he retain prior LTR direction. Business, sizing and policy wording was preserved, not certified; registration resetting outdated=false is not semantic approval. Theme137888792673 remains UNPUBLISHED and MAIN133290917985 unchanged at23:36:04UTC. No duplicate FAQ functional write is needed.
+
+French product correction is LIVE VERIFIED:25 global fields on10 exact ACTIVE products were saved once, with final readback September14 23:36:28UTC. All25 reviewed values match and show outdated=false;25 untargeted French fields,60 English source fields/digests and10 product identities/status/URLs are unchanged. The25 fields comprise7 bodies,5 titles,6 meta titles,6 meta descriptions and1 product type;827 measurement cells were preserved. Independent review PASS_WITH_LIMITS; two French storefront routes were visibly checked. This is Shopify translation completion, not Merchant feed receipt or new traffic. German25 on the same10 products is source-owner work in progress, not an accepted release.
+
+Navy lifecycle: the two3XL deletions are now event-verified, while actor/reason/custom fulfillment remain UNKNOWN. Current advertised size consistency stays open. CA/GB shipping evidence:0 orders for either country in the exact30-date creation cohort; no delivery-time estimate is supported. These reads do not refresh full sales.
+
+Next owned work: existing organic owner completes18 sizing translations; existing Merchant owner continues German25 and the due genuine US source refresh; the same UX owner has a separate exact three-answer FAQ sizing correction plan. Completed English sizing, Spanish25, French25 and FAQ functional work must not be replayed. All paid, theme-owner, delivery/return, cloud-access and measurement gates remain.
+
+Evidence: faq_live_release_source_acceptance_20260914.json; merchant_fr25_release_source_acceptance_20260914.json; navy_history_source_freeze_20260914/; ca_gb_shipping_aggregate_freeze_20260914/. Anchor 2026-09-14-ceo-faq-french-live-and-source-evidence.
+
+A separate CA/French Navy pair reached Canada/fr-ca/CAD checkout at CAD74; French buyer labels remain under exact owner reconciliation. The organic owner now reports all18 sizing translations saved in one call at23:44:58–59UTC with323/323 after checks and desktop/mobile/link checks; final independent handoff is still pending. Its source-independent theme CTA contrast finding is routed to UX for scoped diagnosis, not an article-body rollback.
+
+Exact Shopify event reads now confirm destroy events for the two historical Navy Sprig Mother3XL variants46501286608993(Dress) and46501286641761(Cardigan) at September2 16:16:33UTC, events162571097669729/162571097702497. The positive discovery matches and direct ID reads agree; independent26/26 review passes. The discovery page was not a complete store history. Both attribution flags are false; Shopify Web does not prove actor, intent or reason. Custom fulfillment remains unknown. Preserve all24 currently offered variants; correct confirmed stale3XL availability claims only after fresh body/chart/SEO/translation qualification by the existing product owner. No variant restoration, runner replay or repeated AU cart test.
+
+The exact30 completed NewYork order-created dates August15–September13 returned10 non-test orders at September14 23:43:35–36UTC, one complete page and no missing country codes. CA0 and GB0 orders means no included transit/delivery observations; no fulfillment detail query was needed. Event/undelivered coverage is not applicable to the empty destination cohorts; durations remain UNKNOWN. This excludes older orders delivered during those dates and supports no broad historical-zero or future shipping promise. Only aggregate receipts were retained; raw rows/IDs were cleared. The existing Merchant owner received the result. The full-sales clock is unchanged.
+
+- task_entities: TA-06, TA-07, TA-10, TA-20, Page161933381, Article559700574305, Product7670609346657, Merchant513542500
+- task_stage: HANDOFF
+- task_stage_detail: VERIFY/HANDOFF completed FAQ and French releases; BUILD_VERIFY_RELEASE exact FAQ sizing successor; shipping/size evidence bounded
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: FAQ23:30:04–23:36:04UTC; French23:36:28UTC; Navy exact events23:41:03UTC; CA/GB23:43:35–36UTC September14
+- live_state_mode: LIVE_VERIFIED exact saved-source-owner outcomes only; standing STALE_READBACK_REQUIRED unchanged
+- effective_approval_policy: Current exact website/international nonspend mandate for bounded repairs; paid FRESH_ACTION_TIME_APPROVAL_REQUIRED
+- approved_external_scope: standing paid NONE; explicit exact FAQ sizing plan is separately delegated, not account or theme publication authority
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: current source/digest/language qualification and live buyer after-state; actual source-supported delivery, costs and purchase attribution
+- if_evidence_supports_recommendation: complete exact source-grounded next repair and read back; retain existing qualified releases
+- if_evidence_opposes_recommendation: isolate affected records, preserve working FAQ controls and all24current Navy variants; no blanket promise or rollback
+- material_decision: exact next FAQ sizing correction; observed release/source acceptance does not add funding authority
+- independent_verifier: source-owned FAQ/French reviewers plus parent bounded saved-source acceptance; Navy26/26; aggregate count/timezone checks
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE original releases; no independent browser replay or business-lift certification
+- Root performed3 scoped product/event queries,0 live business writes; shipping delegate performed1 identity+1 minimal order-cohort query,0 fulfillment-detail/mutation calls. Raw customer rows/IDs cleared; no full-sales refresh.
+- Source owners completed FAQ2 supported mutations and French1 operation. Root froze136FAQ+28French+5history+5aggregate artifacts; no completed operation replay.
+- Preserve current full-sales3orders/8units/USD207.25, nextSeptember15 07:00:17UTC, current MerchantUSsource/host targets, all organic/Pinterest/X clocks and pending owner inputs.
+- One Owner Action unchanged: owner Admin publication of reviewed137888792673, MAIN133290917985 rollback; connector restriction remains.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor. Consume existing localized sizing/German/FAQ sizing handoffs and register final outcomes; do not create a harness, goal, task or scheduler.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-german-live-and-owned-repairs-running
+
+**September14 German release complete; next repairs active.** German25 is now LIVE VERIFIED alongside French25: one ten-alias operation at September14 23:57:53–55UTC corrected25 global fields on10 ACTIVE products. The23:58:21UTC after-read matches all25 values/outdated=false and preserves25 untargeted German fields,60 English source fields/digests and10 product identities/status/URLs. Three targeted public German routes pass. The independent saved-source review is PASS_WITH_LIMITS; parent verified the32-file freeze and ten nonprivate review-file bindings. Historical private source hashes are retained as reviewer evidence, not independently reread by parent. Sixty FR/DE market-override arrays were empty in the specifically checked CA/International/Eurozone contexts; this is not all-market coverage. No feed/market/price/inventory or paid write occurred. The dated same-ten-product queue still has414 stale fields across17 other locales; it is not a full-store quality count.
+
+The same Merchant owner confirmed the German freeze and is continuing the exact Navy size-consistency plan, preserving all24 current variants. The same UX owner is observed running the three-answer FAQ sizing correction plus separate read-only CTA/French source diagnoses. Organic reports18 sizing bodies already saved and after-checked; its final independent handoff remains pending. Completed ES/FR/DE and FAQ functional releases must not be replayed. The existing Merchant heartbeat prompt now skips completed cohorts and continues qualified language work; its same ACTIVE id/target/09:00 and17:00cadence are read back, not a guarantee of future execution. Root goal remains saved/BLOCKED; active task work continues. Root goal/schedule and full-sales/measurement clocks are unchanged.
+
+Evidence: merchant_de25_release_source_acceptance_20260914.json; navy_size_consistency_release_plan_20260914.json; faq_sizing_truth_dispatch_receipt_20260914.json. Anchor 2026-09-14-ceo-german-live-and-owned-repairs-running.
+
+- task_entities: TA-07, TA07-DE-25-REPAIR-20260914, TA07-NAVY-SIZE-CONSISTENCY-20260914, TA06-FAQ-SIZING-TRUTH-20260914, TA20-SIZING-18-LOCALIZED-BODIES-20260914
+- task_stage: HANDOFF
+- task_stage_detail: VERIFY completed DE25; HANDOFF current bounded successors
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: September14 23:58:21UTC German after-read; current active-task/owner messages throughSeptember15 00:08UTC
+- live_state_mode: LIVE_VERIFIED exact globalDE cohort; standing STALE_READBACK_REQUIRED
+- effective_approval_policy: Current exact nonspend product correction mandate; paid FRESH_ACTION_TIME_APPROVAL_REQUIRED unchanged
+- approved_external_scope: standing paidNONE; existing source owner exact Navy plan separately authorized; no root account/business mutation
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: Fresh exact Navy source/language/chart and independent review; final localized sizing handoff; actual delivery/cost/receiver and owner theme publication
+- if_evidence_supports_recommendation: complete source-grounded scoped successor and accept exact after-state without replay
+- if_evidence_opposes_recommendation: isolate affected scope, preserve working released values/24variants and separate active lanes
+- material_decision: Observed DE25 acceptance and already authorized narrow successor execution
+- independent_verifier: /root/merchant_translation_review PASS_WITH_LIMITS; parent32frozen-file/10review-file/operation-scope checks, no private or live replay
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE original German operation
+- Root business writes0/new goal or schedule changes0; Merchant alone updated its existing daily prompt and verified samecadence/target. No new task/harness.
+- Preserve full-sales3orders/8units/USD207.25 and nextSeptember15 07:00:17UTC; MerchantUSsource/host times and all separate article/Pin/X clocks.
+- One Owner Action unchanged: owner Admin publication137888792673 with MAIN133290917985 rollback; connector limitation still applies.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; consume final sizing localization and ongoing FAQ/Navy handoffs.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-sizing-guide-localizations-live
+
+**September14 sizing localization release complete.** The18 existing localized sizing-guide bodies on Article559700574305 are now IMPLEMENTED and LIVE VERIFIED. Exactly one translationsRegister call ran September14 23:44:57.599–23:44:59.602UTC, with nine rows dated23:44:58 and nine23:44:59, no userErrors. The separate23:45:13.393UTC after-read matches all18 exact reviewed values/outdated=false. English body c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88,12 protected fields, all6 source entries,72 other translation values/metadata,21 locales and6 empty market contexts are unchanged. No new locale identities were created.
+
+All323 owner after-checks and independent groups A97/97,B348/348,C421/421 pass with limits. All18 public articles passed390px mobile and1280px desktop source-text/layout checks:31 blocks match each candidate,345/700px tables and12 cells fit/wrap, and ar/he body/table RTL is verified. Thirty-six native shopping/help link arrivals retain language and reach36-card collections/contact forms; no cart or form submission. An initial German locator timeout recovered through a native link; the saved/executed GraphQL final-newline difference is explicitly reconciled. Independent reviewers checked saved API/browser receipts, without another live browser replay; one per-locale digest summarizes both viewport checks. Language review is model-based, not native-human certification. This does not certify every country or theme chrome. The separate unreadable theme CTA remains open under UX ownership.
+
+Localization actually released September14 19:44:58–59 America/New_York. Its first complete local date is September15; reviews September22/29/October15 are a separate localization annotation even though English shares the dates. Preserve prior ArticleSeptember17, SunshineSeptember18 andP1September21. Conservatively qualify identifiable operator QA from23:18UTC through public completion; no new analytics filter or business-lift claim. Existing daily09:00NewYork organic operation is unchanged.
+
+Evidence: sizing_localization_release_source_acceptance_20260914.json. Anchor 2026-09-14-ceo-sizing-guide-localizations-live. Current UX FAQ-sizing and Merchant Navy-size corrections remain separate active work; do not replay this release.
+
+- task_entities: TA-20, TA20-SIZING-18-LOCALIZED-BODIES-20260914, Article559700574305, PROB-2026-09-14-SIZING-GUIDE-FIT-GUIDANCE
+- task_stage: HANDOFF
+- task_stage_detail: VERIFY/HANDOFF completed exact localization release
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: September14 23:44:58–59UTC release,23:45:13.393UTC after-read; public through23:53:16UTC; final independent review throughSeptember15 00:06:35UTC
+- live_state_mode: LIVE_VERIFIED exact18 global bodies; standing STALE_READBACK_REQUIRED unchanged
+- effective_approval_policy: Current exact daily editorial/international mandate; paid FRESH_ACTION_TIME_APPROVAL_REQUIRED unchanged
+- approved_external_scope: existing18Article body translations only; standing paidNONE, no new root external action
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: subsequent current-source/buyer regressions or mature attributable acquisition/order outcomes; distinct theme CTA remains unresolved
+- if_evidence_supports_recommendation: preserve completed release and measure existing daily cohorts; finish exact active UX/Merchant repairs
+- if_evidence_opposes_recommendation: isolate demonstrated record defect under fresh guards, no blanket rollback or repeated publication
+- material_decision: exact observed material public localization outcome; no new source/platform/paid authority
+- independent_verifier: independent rotating A97/97,B348/348,C421/421 PASS_WITH_LIMITS; parent frozen-file/hash/preservation acceptance
+- verifier_independence: DID_NOT_AUTHOR_REVIEWED_LANGUAGE_OR_EXECUTE; saved-source/browser-receipt review, no second live replay
+- Source owner one successful translation mutation, parent0business/account/browser/measurement writes or newread; no new task/goal/scheduler/harness.
+- Parent preserves3qualifyingorders/8units/USD207.25 and nextfullSeptember15 07:00:17UTC, current MerchantUSsource/host times and all separate clocks.
+- One Owner Action unchanged: owner Admin publication137888792673 with MAIN133290917985 rollback; root cannot bypass connector restriction.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; consume exact ongoing FAQ/Navy handoffs and existing daily organic tasks, no repeat sizing release.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-faq-sizing-progress-and-navy-label-scope
+
+At00:20UTC UX reports fresh FAQ/source/locale guards and54exact sizing paragraph replacements ready across English+17bodies; independent review is finishing and no new FAQ write is claimed. Two French Hip(cm/po) labels were traced to Product7670609346657 globalbody with noCanadaoverride. Parent sent the existing Merchant owner an exact label-only addendum: preserve all numbers, units and chart geometry; independently review wording; never alter a frozen/executed payload silently. This does not reopen completed sizing-guide18translations, FAQ functional controls or ES/FR/DE product releases.
+
+- task_entities: TA06-FAQ-SIZING-TRUTH-20260914, TA07-NAVY-SIZE-CONSISTENCY-20260914, TA07-NAVY-FR-HIP-LABEL-20260915, Product7670609346657, Page161933381
+- task_stage: VERIFY
+- task_stage_detail: BUILD/VERIFY source-owner progress; exact label-only successor permission recorded
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: UX reported2026-09-15 00:20UTC; parent no live replay
+- live_state_mode: Source-owner reported current scoped evidence; standing STALE_READBACK_REQUIRED
+- effective_approval_policy: Current exact nonspend website/international mandate and parent scoped addendum; paid FRESH_ACTION_TIME_APPROVAL_REQUIRED
+- approved_external_scope: only existing reviewed Navy body-label scope extension; no root business write; standing paidNONE
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: sole owner fresh source/meaning/preservation review and actual after-read
+- if_evidence_supports_recommendation: execute exact qualified labels with current guards, preserving all measurements and24variants
+- if_evidence_opposes_recommendation: isolate labels and leave frozen/current payload intact; no theme override or blind rewrite
+- material_decision: narrow prospective product-label correction; independent source/language review required before write
+- independent_verifier: existing product owner selects reviewer who did not author/execute; final review pending
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE required, not yet certified for this future mutation
+- Parent root business writes0/new goal/scheduler/task/harness0. Existing owners retain all source/browser/canonical boundaries.
+- Last completed material release anchor remains2026-09-14-ceo-sizing-guide-localizations-live;59owner integrations/60scheduled wakes unchanged. Current full-sales/paid/owner-theme/measurement/source-refresh gates preserved.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md from this progress anchor; accept pending exact FAQ/Navy releases without replaying completed work.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-navy-seo-title-guard-caught
+
+Navy Product7670609346657 English update at00:26:55–57UTC was followed by protected-field failure at00:28:20UTC:27expectedmetafields/26observed, existing global.title_tag removed and SEO title null. The source owner reports body/newdescription exact,24variants/options/prices/inventory/publications and100translation values unchanged. All40translation writes are held. Parent authorized only independently reviewed restoration of original SEOtitle with the already reviewed description, preserving changed body and every other field. If this one title record is recreated, record its exact newID/time and original value; do not ignore other protected identities. No restored-title or broader completion is claimed yet. Saved planned SEOinput includesdescription only; actual submitted payload/serialization reconciliation remains required before generalizing API semantics.
+
+- task_entities: TA-07, Product7670609346657, PROB-2026-09-15-NAVY-SEO-TITLE-PRESERVATION, TA07-NAVY-SIZE-CONSISTENCY-20260914
+- task_stage: BLOCKED
+- task_stage_detail: VERIFY_FAILED protectedfield; exact corrective review/execution pending; translationsHELD
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: September15 00:26:55–57UTC originalwrite,00:28:20UTC failedguard; parent saved-source intake only
+- live_state_mode: Source-owner reported exact current side effect; standing STALE_READBACK_REQUIRED
+- effective_approval_policy: Existing exact source repair/rollback authority; independent corrective review/currentguard required; paidFRESH_ACTION_TIME_APPROVAL_REQUIRED unchanged
+- approved_external_scope: only original SEOtitle restore with revieweddescription; no root account or business write
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: corrective exact response, protected27field readback and single title-tag identity transition if recreated
+- if_evidence_supports_recommendation: verify restoredtitle and allotherfields; then continue previously reviewed translations using fresh digests
+- if_evidence_opposes_recommendation: keep dependent translationsheld, no originalpayload replay or broad guard relaxation
+- material_decision: correction of unexpected protected customer-visible SEOfield loss
+- independent_verifier: source owner independent corrective reviewer, pending atintake
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE required before acceptance
+- Earlier59acceptedownerintegrations/60scheduledwakes and completed English/18sizing,FAQcontrols,ES/FR/DE releases remain valid. Preserve allsales,paid,theme-owner,source-refresh andmeasurementclocks.
+- One Owner Action remains existing owner Admin themepublication; this incident is being corrected by the authorized source owner without new userquestion.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md fromthisanchor; consume exact title restoration readback before broader Navy completion.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-faq-navy-live-and-theme-successor
+
+**September15 live FAQ and Navy repairs accepted; theme successor running.** FAQ Page161933381 now has54 corrected sizing paragraphs across English and17 existing translations;144 native controls,19 translated titles and unrelated answers are preserved. Nineteen browser cases verified57 answers and19 localized guide arrivals. Navy Product7670609346657 has42 corrected body/SEO-description fields across21 languages plus two separately reviewed French headers; all24 variants and retained measurements are preserved. All21 public language routes pass the exact size-copy/source-chart checks. Do not replay either release.
+
+Both original verification failures remain recorded. FAQ required an exact17-record metadata exception before registration. Navy required three corrective calls restoring its original SEO title/type/digest and20 translated-title flags; the recreated title_tag has new ID38753913929825. Independent source acceptance passed; this is not proof of sales lift, all-market coverage or native-human language certification.
+
+The existing UX owner is now correcting confirmed Cardigan/Arabic chart routing, article CTA contrast and remaining French theme labels in the same unpublished137888792673 candidate. Its old publish-now recommendation is superseded until the exact successor has independent review, a renewed full binding and preview acceptance. Owner Admin publication remains required; MAIN133290917985 and prior frozen evidence are preserved. Merchant US/AU source propagation is separately active and needs its own receiving receipt.
+
+Full sales remain3 qualifying orders/8 units/USD207.25 at September14 19:00:17–18UTC; next full read September15 07:00:17UTC. All paid, goal, schedule, account and measurement gates remain. Evidence: faq_sizing_release_source_acceptance_20260915.json; navy_size_release_source_acceptance_20260915.json; theme_buyer_truth_successor_plan_20260915.json. Anchor 2026-09-15-ceo-faq-navy-live-and-theme-successor.
+
+- task_entities: TA-06, TA-07, Page161933381, Product7670609346657, TA06-THEME-BUYER-TRUTH-SUCCESSOR-20260915
+- task_stage: HANDOFF
+- task_stage_detail: VERIFY completed content releases; BUILD/VERIFY exact theme successor; HANDOFF existing feed propagation
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: September15 FAQ00:27:16UTC after-read; Navy recovery00:39:04UTC/public00:40:27–00:45:39UTC/French00:48:32UTC; no root live replay
+- live_state_mode: LIVE_VERIFIED exact content scope; standing STALE_READBACK_REQUIRED
+- effective_approval_policy: current explicit website/international nonspend mandate; paid FRESH_ACTION_TIME_APPROVAL_REQUIRED
+- approved_external_scope: existing-owner exact seven-file UNPUBLISHED successor after guards/review; standing paidNONE; root businesswrites0
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: source drift, failed chart/role/contrast tests, new candidate binding and actual MAIN publication, Merchant final receiving evidence
+- if_evidence_supports_recommendation: accept renewed exact candidate and owner Admin publication then actual MAIN/buyer verification
+- if_evidence_opposes_recommendation: isolate failed scope and preserve prior source/receipts; no wrong-data workaround or broad rollback
+- material_decision: accept observed content releases and separately authorize exact unpublished theme successor
+- independent_verifier: existing independent source/before/after reviewers plus root child FAQ and Navy acceptance; theme successor independent before/after reviewers required
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE accepted releases; no second live browser replay
+- One Owner Action: Publish the same DLM UX Performance QA 2026-09-10 theme137888792673 through Shopify Admin only after the existing UX owner finishes and root accepts the newly scoped buyer-truth successor and its renewed full binding. The prior September12 binding13f693b864c90c3b82da07d2c59df85f0e1c33962af48d6932ea05b61343f029 remains preserved evidence but its publish-now recommendation is superseded by the confirmed Cardigan defect. No user action or new approval is needed while that repair is running. Keep MAIN133290917985 for rollback. Publication is already authorized; the connector requires owner Admin execution and forbids agent Publish/MAIN writes. After publication, UX must verify actual MAIN and affected buyer paths.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; consume current UX/Merchant handoffs, preserve completed releases and all clocks.
+
+- Follow-up measurement/active-owner note: September15 prospective measurement annotation: completed FAQ sizing and Navy source-size/French-header corrections each start their first complete America/New_York date on September15. Their own7/14/30-completed-date reviews fall September22/29/October15. These are two separately identified content-release annotations, even where dates match earlier article localization. They do not move existing article/Pin/X/full-sales clocks or start theme/feed exposure early. Existing qualified page/order/cost evidence will determine observable outcomes; baseline, causal lift, costs and profit are not invented. No new query, filter, scheduler, paid action or owner integration count. Source: faq_navy_measurement_annotations_20260915.json.
+- Existing UX reports fresh527candidate/525MAIN guards; Arabic unit normalization remains within the exact module scope, with final independent review and candidate preview pending. No candidate mutation or MAIN acceptance claimed by this progress note. Latest relevant anchor remains2026-09-15-ceo-faq-navy-live-and-theme-successor.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-us-au-feeds-received-and-color-scope
+
+**September15 US/AU feeds refreshed and received.** Merchant513542500 now has verified current receiving for4,741 existing offers in each country. US carried24 corrected Navy descriptions; AU carried24 descriptions plus186 Shopify-source price corrections. No offers were added or removed. Independent after-reviews passed33US and57AU checks; native verification sampled one current US Navy offer and ten AU offers. Preserve the initial US0updated/stale-description evidence and the separate three-case AU preselection failure. All-market coverage, actual traffic/sales/profit and automatic AU synchronization remain incomplete.
+
+New genuine-source deadlines: US next24-hour refresh September16 00:55:07.539UTC; computed unchanged48-hour host guard expiry September17 00:55:07.539UTC. AU next24-hour source refresh September16 01:15:14.273UTC. These supersede only the previous accepted source dates/deadlines; host TTL policy and schedules are unchanged. A meaningful approved source change can require an earlier new reviewed run. No duplicate current Update/upload is needed.
+
+The exact source47-color-field successor is authorized to the same Merchant owner after fresh guards and independent review; it is not yet an accepted live release. Existing UX continues the seven-file buyer-truth successor in the same candidate; owner publication remains conditional on its renewed verification. Completed FAQ/Navy source releases and61 prior integrations remain preserved. Evidence: us_au_feed_refresh_source_acceptance_20260915.json; merchant_color47_source_plan_20260915.json. Anchor 2026-09-15-ceo-us-au-feeds-received-and-color-scope.
+
+- task_entities: TA-07, TA07-NAVY-SOURCE-PROPAGATION-20260915, TA07-SOURCE-COLOR47-20260915, Merchant513542500, 10727274744, 10727245667
+- task_stage: HANDOFF
+- task_stage_detail: VERIFY accepted existing-source release; BUILD/VERIFY exact47field successor
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: USsource00:55:07.539UTC/nativefinal01:25:54UTC; AUsource01:15:14.273UTC/nativefinal01:26:48UTC and10samples through01:31:29UTC September15
+- live_state_mode: LIVE_VERIFIED exact existing US/AU receiving; standing STALE_READBACK_REQUIRED for paid
+- effective_approval_policy: current owner direct nonspend mandate plus sole Merchant exact scope; paidFRESH_ACTION_TIME_APPROVAL_REQUIRED
+- approved_external_scope: explicit47source-color targets after current source/definition/null-target/independent review; standing paidNONE; parent businesswrites0
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: exact target or palette/type drift, unexpected after-state, fresh source expiry or failed source/buyer/Google readback
+- if_evidence_supports_recommendation: finish exact supported source correction and independently qualified propagation; preserve completedreceipts
+- if_evidence_opposes_recommendation: isolate affectedscope, retain actualfailure and no blanket rollback or inferredpalette
+- material_decision: observed source receiving and prospective exact47field source correction
+- independent_verifier: USafter33/33 andAUafter57/57 plus root bounded frozen-source acceptance; colorsemantic independent review plus required exact prewrite/after reviewers
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE accepted source releases; no root native/browser/API replay
+- Parent integration62/scheduledwakes60; fullsales3orders/8units/USD207.25 atSeptember14 19:00:17–18UTC and nextSeptember15 07:00:17UTC unchanged. All existing article/Pin/X/FAQ/Navy measurement clocks remain separate.
+- One Owner Action unchanged: same137888792673 owner Admin publication only after exact buyer-truth successor renewedbinding/preview acceptance; MAIN133290917985 retained. No duplicate supplier question, newharness, goal or scheduler.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; accept current UX and47color handoffs without replaying source/product/FAQ releases.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-color-source-live-and-theme-ready
+
+- task_entities: TA-06, TA-07, TA07-SOURCE-COLOR47-20260915, TA06-THEME-BUYER-TRUTH-SUCCESSOR-20260915, 137888792673, 133290917985, mm-google-shopping.color, PROB-2026-09-15-ROOT-ANCHOR-RETRIEVAL
+- task_stage: HANDOFF
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+**September15 current release state.** Shopify47 color fields are saved and independently accepted; the exact seven-file theme successor is verified in137888792673 and ready for owner Admin publication. Google receipt of the new colors and17passing samples per country are owner-reported; independent feed closeout remains pending.
+
+One Owner Action: Publish the now-verified DLM UX Performance QA 2026-09-10 theme137888792673 in Shopify Admin, using renewed full-source binding932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a. Keep MAIN133290917985 for rollback. This makes the tested buyer-selection, sizing and CTA repairs available to shoppers. Publication is already authorized; the Shopify connector requires owner Admin execution and blocks agent Publish/MAIN writes. Existing UX then verifies actual MAIN, source, GitHub connection and affected live buyers before the separately held remote-theme sync. No new approval or duplicate theme upload is needed.
+
+The latest full sales evidence remains3 qualifying orders/8 units/USD207.25 atSeptember14 19:00:17–18UTC; next full readSeptember15 07:00:17UTC. No new traffic, attribution or profit result is claimed. Existing paid/measurement/cost and international qualification gates remain. Continuation retrieval now passes for the repaired13 root records. Evidence: merchant_color47_source_acceptance_20260915.json; theme_buyer_truth_successor_source_acceptance_20260915.json; continuity_anchor_normalization_verification_20260915.json. Anchor 2026-09-15-ceo-color-source-live-and-theme-ready.
+
+Shopify Color47 is IMPLEMENTED and VERIFIED: eight product fields and39 variant fields across nine parents/252 current variants. All491 existing metadata records remain,538 total across261 resources; no definitions were created. Two saves occurred02:03:15.436 and02:04:08.308UTC, final after-read02:05:23.788UTC. Independent root acceptance passed903 assertions. The original schema-field/pagination/claim guard stops and47.584ms timing addendum are preserved. Colors use explicit merchant-authored prose, not independent supplier/image truth. Cobalt, unresolved As-image and all six holds remain excluded. Existing blank-color gap is only partially repaired; genuine US/AU candidates each have252 color-only changes and719 remaining blanks. Final Google color receiving has been reported by the source owner; independent frozen release acceptance remains separate.
+
+The exact existing UNPUBLISHED137888792673 successor is VERIFIED and ready for owner Admin publication. Final save01:57:14UTC, full527-source binding932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a; seven changed files/520 prior files preserved, with all525MAIN files and metadata unchanged. Root independent acceptance passes591 assertions against467 frozen artifacts and527 source bindings. Bounded EN/FR/AR desktop/mobile garment/role/unit checks, nine article CTA states/three arrivals and three AU numeric selections pass. The first French unit failure and exact same-module correction remain recorded. This is candidate readiness, not a live MAIN release.
+
+AU cases precede the final French-only correction; compact/table units remain separate and baseline role switching resets size/type. Two pre-existing French product suffixes remain Merchant-owned. Missing/reversed/ambiguous-source cases are26 local regressions. No populated cart, checkout, fresh PageSpeed, native-human language certification or sales lift is claimed. Local source commit e2401a6723673ef460e4c6a40d040b5a332bd7da is preserved; Git push remains held because GitHubmain is connected to currentMAIN. Theme exposure starts only after actual publication and MAIN acceptance.
+
+Existing Merchant owner reports Color47 final receiving atAU02:35:35.466UTC andUS02:42:26.292UTC: each4,741updated/0new/All recognized/No issues, plus17passing native samples per country (11palette/type and6protected). One USpromotion02:32:55.915818UTC, AUupload02:33:32.871UTC andUSUpdate02:39:11.811UTC are reported. Initial old/blank/zero observations are retained. Independent after-review and frozen root acceptance remain pending; earlier accepted source clocks stay unchanged until then. The exact Merchant claim row stays unchanged.
+
+Thirteen malformed root worklog records were normalized to the existing bare-anchor and single-stage conventions, preserving original stage detail and all narrative/evidence. Six relevance-specific retrieval checks and strict continuity pass. The compiler, other-owner anchors, current paid control and all existing tasks/goals/schedules are unchanged; no new harness.
+
+- source_live_evidence_as_of: September15 source-after02:05:23.788UTC; theme finalsave01:57:14UTC and bound later API/browser receipts; no root live replay
+- live_state_mode: LIVE_VERIFIED exact Shopify source and UNPUBLISHED theme; standing paid STALE_READBACK_REQUIRED
+- effective_approval_policy: current user exact nonspend/publication mandate with existing owner and platform gates; paid FRESH_ACTION_TIME_APPROVAL_REQUIRED
+- approved_external_scope: completed47color fields and exact7fileUNPUBLISHED successor; separate bound feed propagation pending; standing paidNONE
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: actual MAIN publication/source/buyer verification, final Googlecolor receiving, material source/pointer/claim drift
+- if_evidence_supports_recommendation: accept exact public/receiving after-state and start only the matching exposure clock
+- if_evidence_opposes_recommendation: retain prior valid state and actual failure; no blind rollback, duplicate write or restriction bypass
+- material_decision: source acceptance and renewed exact owner publication recommendation
+- independent_verifier: source903assertions, theme591assertions; specialist source/after reviewers; canonical prewrite reviewer recorded separately
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Parent accepted integrations64; scheduledwakes60. Goal, fullsales, paid authority and all existing source/organic/Pin/FAQ/Navy clocks preserved. No fresh GA4/GSC/order read, business-lift claim, root business write, new task/goal/schedule or harness.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor. Owner publication is the one owner action; existing Merchant finishes independent color after-review and freeze, then the saved exact French/US Spanish qualification priority.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-color-feeds-received-and-spanish-next
+
+- task_entities: TA-07, TA07-COLOR47-US-AU-PROPAGATION-20260915, 513542500, 10727274744, 10727245667, TA07-NAVY-FR-TWO-UNIT-SUFFIXES-20260915, TA07-US-ES-QUALIFICATION-PRIORITY-20260915, 137888792673, 7227378925665
+- task_stage: HANDOFF
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+**September 15 current release state — Google color receiving verified.** Merchant Center 513542500 has accepted the Color47 release in the existing US source 10727274744 and AU source 10727245667: 4,741 offers received per country, 252 color-only row changes per country, 4,489 whole rows unchanged, zero additions or removals. All 34 native samples pass the intended color, unchanged price, approval, salability and country/free-listings checks. Independent after-reviews pass 363 US and 102 AU checks. All six held parents, 162 available held rows and 22 unavailable variants remain excluded. There are still 719 emitted blank-color rows per country.
+
+Current genuine-source clocks: US September 15 02:11:13.020 UTC, next 24-hour source target September 16 02:11:13.020 UTC, unchanged 48-hour host guard September 17 02:11:13.020 UTC; AU September 15 02:11:16.838 UTC, next 24-hour source target September 16 02:11:16.838 UTC. Only these accepted source clocks supersede the earlier Navy/price feed clocks; schedules and the host TTL policy are unchanged. AU remains manual.
+
+One Owner Action: Publish the now-verified DLM UX Performance QA 2026-09-10 theme137888792673 in Shopify Admin, using renewed full-source binding932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a. Keep MAIN133290917985 for rollback. This makes the tested buyer-selection, sizing and CTA repairs available to shoppers. Publication is already authorized; the Shopify connector requires owner Admin execution and blocks agent Publish/MAIN writes. Existing UX then verifies actual MAIN, source, GitHub connection and affected live buyers before the separately held remote-theme sync. No new approval or duplicate theme upload is needed.
+
+The existing Merchant owner completes the already dispatched exact French two-unit-suffix correction, then reconciles current US Spanish source eligibility. The preliminary 54-of-55 current-field result and 4,718 potential offers are not a released Spanish cohort; Tropical Beach 7227378925665 remains held for its unsupported child-weight chart. Color86 and variant_option stay local queued proposals. Actual MAIN buyer acceptance and the existing market, delivery, return, measurement and economics gates remain separate.
+
+Latest full sales evidence remains 3 qualifying orders / 8 units / USD 207.25 from September 14 19:00:17–18 UTC, with the next full read September 15 07:00:17 UTC. No fresh sales or profit read is claimed. Parent accepted owner integrations: 65; scheduled wakes: 60. Evidence: merchant_color47_us_au_receiving_source_acceptance_20260915.json. Anchor: 2026-09-15-ceo-color-feeds-received-and-spanish-next.
+
+Merchant Center 513542500 has accepted the Color47 release in the existing US source 10727274744 and AU source 10727245667: 4,741 offers received per country, 252 color-only row changes per country, 4,489 whole rows unchanged, zero additions or removals. All 34 native samples pass the intended color, unchanged price, approval, salability and country/free-listings checks. Independent after-reviews pass 363 US and 102 AU checks. All six held parents, 162 available held rows and 22 unavailable variants remain excluded. There are still 719 emitted blank-color rows per country.
+
+Receiving is not proof that all individual offers are serving or that traffic, orders or profit increased. The 34 samples do not certify every native color; Google archive bytes and the native display timezone remain unverified. Merchant-prose color evidence is not independent supplier certification. Earlier failed/old observations and the formal-plan timing addendum remain preserved. Do not repeat the successful Shopify saves, promotion, Google Update, AU upload or unchanged samples.
+
+- source_live_evidence_as_of: 2026-09-15T02:42:26.292Z US; 2026-09-15T02:35:35.466Z AU; source clocks separately above
+- live_state_mode: LIVE_VERIFIED exact US/AU receiving; standing paid STALE_READBACK_REQUIRED
+- effective_approval_policy: saved current user nonspend mandate and exact existing owner scopes; paid FRESH_ACTION_TIME_APPROVAL_REQUIRED
+- approved_external_scope: completed one US promotion/Update and one AU upload; exact separate French source plan already dispatched; no new authority; standing paid NONE
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: source drift, completed French after-state, final Spanish cohort and actual MAIN/source/buyer acceptance
+- if_evidence_supports_recommendation: progress the qualified next source without replaying completed actions
+- if_evidence_opposes_recommendation: preserve factual holds and source failure evidence; no stale timestamp or unsupported product statement
+- material_decision: accept exact completed US/AU color receiving and its genuine source clocks
+- independent_verifier: US 363-check after-review; AU 102-check after-review; root frozen hash acceptance; canonical prewrite review recorded separately
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Parent accepted integrations65; scheduledwakes60. Runtime goal, paid authority, full-sales and all article/Pin/FAQ/Navy clocks unchanged. Theme exposure remains unstarted until actual owner publication and acceptance.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md using this anchor.
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-french-live-and-spanish-source-qualified
+
+- task_entities: TA-06, TA-07, TA-10, TA07-NAVY-FR-TWO-UNIT-SUFFIXES-20260915, TA07-US-ES-QUALIFICATION-PRIORITY-20260915, 513542500, 7670609346657, 7227378925665, 137888792673, 39756755861601, 41883237220449
+- task_stage: HANDOFF
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+**September 15 current release state — French source complete; Spanish source qualification accepted.** Google previously received 4,741 US and 4,741 AU offers with 252 color-only corrections per country and 34 passing native samples. The exact French two-suffix source correction is now independently accepted.
+
+The genuine full US/es source scan completed September 15 03:23:50.568 UTC after 290 requests and complete pagination: 238 active products / 4,925 variants. The independently accepted partition is 4,718 source-qualified offers across 231 products, 162 offers under the existing six holds, 22 unavailable variants and 23 Tropical Beach offers excluded by the required stale Spanish body. Three translation records remain stale: that body and two optional fields. The 25 prior repairs and 55 bounded records are preserved. This is source/publication/required-translation qualification, not an executable or Google-approved Spanish feed. Both public Spanish/US/USD pilot links failed numeric variant selection at 03:26:23.710 and 03:26:45.605 UTC; the other six planned representatives remain untested. Keep Spanish enabled=false and landingContextVerified=false until actual owner theme publication and affected live-buyer acceptance.
+
+One Owner Action: Publish the now-verified DLM UX Performance QA 2026-09-10 theme137888792673 in Shopify Admin, using renewed full-source binding932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a. Keep MAIN133290917985 for rollback. This makes the tested buyer-selection, sizing and CTA repairs available to shoppers. Publication is already authorized; the Shopify connector requires owner Admin execution and blocks agent Publish/MAIN writes. Existing UX then verifies actual MAIN, source, GitHub connection and affected live buyers before the separately held remote-theme sync. No new approval or duplicate theme upload is needed.
+
+Current received-feed clocks stay US September 15 02:11:13.020 UTC and AU September 15 02:11:16.838 UTC. Their next 24-hour source targets are September 16 at the same respective times; the unchanged US 48-hour host guard is September 17 02:11:13.020 UTC. A new Spanish read does not refresh either submitted English source. The separate Spanish source-only refresh target is September 16 03:23:50.568 UTC, subject to any earlier material source change or stricter action-time guard. AU remains manual. All prior article, Pin, FAQ, Navy and full-sales clocks remain unchanged; the French suffix save is a separate annotation. Theme exposure starts only after actual publication and MAIN/buyer acceptance.
+
+Latest full sales read remains September 14 19:00:17–18 UTC: 3 qualifying paid, non-test, noncancelled orders / 8 units / USD 207.25 in the cohort created since September 5 04:00 UTC. Next full read September 15 07:00:17 UTC. Actual attribution, landed costs and retained profit remain unknown. Parent accepted integrations: 67; scheduled wakes: 60. Evidence: navy_french_unit_suffix_release_acceptance_20260915.json; merchant_us_es_full_qualification_acceptance_20260915.json; ads_source_prerequisite_consumption_acceptance_20260915.json. Anchor: 2026-09-15-ceo-french-live-and-spanish-source-qualified.
+
+The global French body on Navy Sprig product 7670609346657 is LIVE VERIFIED after one supported save at September 15 03:17:07–08 UTC. Two mistranslated inch suffixes now read 29,1 pouces and 16,1 pouces in the same Girl 9–10 garment rows. All 240 data cells, 20 headers, numerical values and HTML tags are retained; 238 cells, four other French records and six English source fields remain exact. Independent after-review passes 57 checks. API after-state is 03:17:23 UTC and the public French CA/CAD DOM receipt is 03:17:54.044 UTC. The tables are hidden under current theme styling; expanded guide acceptance remains separate. The initial terminal-newline guard stop occurred before any mutation; the renewed exact review and one successful save are preserved.
+
+Google Ads consumed the accepted Navy source and theme evidence: CAFR-07, CAFR-11 and CAFR-12 close from completed source-copy corrections. The remaining nine original text criteria depend on actual publication and affected acceptance of theme 137888792673. They are not nine separate code changes or a populated-cart test. Normal Google identity/Save, exact purchase measurement, actual costs and standing paid NONE remain. This downstream consumption adds no release or owner-integration count.
+
+Existing UX verifies actual MAIN/source/GitHub connection and affected live buyers after owner publication, including Spanish variants 39756755861601 and 41883237220449 and the corrected French guide rows. Merchant retains the full Spanish qualification and factual exclusions; any source proposal/submission follows the separately required published-buyer acceptance and exact scope review. Do not repeat completed French, color, feed or preview repairs. Color86 and variant_option remain local queued proposals; no paid or cloud authority is added.
+
+- source_live_evidence_as_of: French API2026-09-15T03:17:23Z/publicDOM03:17:54.044Z; Spanish genuine source2026-09-15T03:23:50.568Z/public buyers03:26:23.710Z and03:26:45.605Z
+- live_state_mode: LIVE_VERIFIED exact French source and Spanish source/failed buyer checks; standing paid STALE_READBACK_REQUIRED
+- effective_approval_policy: saved exact current user nonspend scope and existing owners; paid FRESH_ACTION_TIME_APPROVAL_REQUIRED
+- approved_external_scope: completed one French translation save; Spanish read-only qualification; no new feed submission, theme or paid authority; standing paid NONE
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: actual owner publication and affected MAIN/source/connection/buyer acceptance, source drift, authoritative Tropical chart/unit evidence
+- if_evidence_supports_recommendation: existing owner prepares the exact source proposal after all applicable prerequisites pass
+- if_evidence_opposes_recommendation: preserve exclusions and exact failed buyer evidence; no unsupported correction or blind resubmission
+- material_decision: accept French source release and qualified Spanish source while holding public submission
+- independent_verifier: Merchant independent57-check French after-review and bound full Spanish source reviewer; root source acceptance and canonical prewrite review
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Parent accepted integrations67; scheduledwakes60. Bounded Spanish prior stage and Ads prerequisite consumption add no second release/integration. All received-feed, full-sales, measurement, content, goal, schedule and paid controls remain.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor.
+
+- Later unchanged country coverage annotation: Country coverage annotation — September 15 03:51:08.295 UTC: Merchant 513542500 shows 31 configured country rows. US and Australia each have 4,741/4,741 approved; the other 29 configured rows, including Canada, the UK and the configured European countries, have zero products / Incomplete. This unchanged coverage read does not refresh any catalog source clock or add an integration/release. Canada en/CAD and UK en/GBP are the next new-country lanes after published-buyer and factual delivery/returns qualification, followed by French Canada and country-qualified European languages. US/es/USD qualification remains a separate language lane and does not qualify Spain/es/EUR. Existing source/paid/owner-publication gates remain unchanged. Evidence: country_coverage_annotation_acceptance_20260915.json. Same current anchor2026-09-15-ceo-french-live-and-spanish-source-qualified; integrations67/wakes60 and all completed work remain.
+
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-microsoft-german-negatives-and-czech-routing
+
+- task_entities: TA-15, TA-06, TA-07, MS-DE-NEGATIVE-PLURAL-20260915, PROB-2026-09-15-CZECH-BUYER-COPY, 477439, 770182, 506254908, 14166859907463, 14166859907464, 7607764287585, 137888792673, TA07-CZECH-COPY-SOURCE-20260915, TA06-CZECH-BUYBOX-RECONCILIATION-20260915
+- task_stage: HANDOFF
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Microsoft477439/customer770182 now has two additional Campaign/Phrase negatives in existing paused German campaign506254908: nähanleitungen14166859907463 and druckvorlagen14166859907464. The September15 04:01:17–04:03:06UTC native readback has nine negatives; all seven original IDs/text/matches and three Paused Exact positive keywords remain exact. The source operator separately reread all13 campaign ID/status/type/budget tuples through04:05:23.489UTC and found them unchanged/Paused. German after-controls show USD3/day, MaximizeClicks with checked USD0.15 cap and three expansions off; the source owner reports no settings edits, while separate raw before strategy/expansion fields are not supplied. The source owner reports two Save clicks and one effective submission; the network request count was not independently instrumented: the clipped first click left the same draft/seven rows, then the visible Save yielded exactly two new IDs. Before/after reporting dates rolled over, so only configuration equality is claimed. Independent source and parent saved-receipt reviews pass with stated limits; no independent live replay or measured business improvement.
+
+Czech public Product7607764287585 /cs has verified buyer-copy defects. Existing UX is reconciling the two English purchase instructions and Czech dresses H1 against already accepted theme137888792673 before any duplicate repair; existing Merchant localization is preparing only five exact cs/body_html spans. A fresh04:13:32.455UTC owner report identifies Collection240127941 with already-correct current cs/title Šaty, so preserve that field and route the theme-derived H1 to UX; the complete source packet is still pending. No Czech Shopify save, theme change or Czechia country/currency/checkout qualification is claimed. US/USD is expected for the observed U.S. session. Keep the Czech paid destination unqualified until source and affected public acceptance pass. Track PROB-2026-09-15-CZECH-BUYER-COPY; the parent owner-publication recommendation is unchanged.
+
+Prior US ten-negative release, support7108824779 and frozen35-blueprint/20-language package are preserved. The source owner confirms its existing4-hour automation ACTIVE in the same task, unchanged; root has not rescheduled it or reread the goal. Keep the already-pending numeric daily-budget/maximum30-day-loss question and September15–16 16:58Eastern support window without duplicate contact. Consent, genuine valued purchase/receiver/dedup, actual costs, paid NONE and incremental profit remain open. All Merchant, content, theme and full-sales clocks are unchanged.
+
+One Owner Action: Publish the now-verified DLM UX Performance QA 2026-09-10 theme137888792673 in Shopify Admin, using renewed full-source binding932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a. Keep MAIN133290917985 for rollback. This makes the tested buyer-selection, sizing and CTA repairs available to shoppers. Publication is already authorized; the Shopify connector requires owner Admin execution and blocks agent Publish/MAIN writes. Existing UX then verifies actual MAIN, source, GitHub connection and affected live buyers before the separately held remote-theme sync. No new approval or duplicate theme upload is needed.
+
+- source_live_evidence_as_of: Microsoft negative after2026-09-15T04:01:17–04:03:06Z/account after04:04:30–04:05:23.489Z; Czech product03:54:33–03:58:44Z, collection earlier same session
+- live_state_mode: LIVE_VERIFIED exact source-owner native negative readback; standing paid STALE_READBACK_REQUIRED
+- effective_approval_policy: completed saved exact nonspend negative mandate; Czech preparation only; paid FRESH_ACTION_TIME_APPROVAL_REQUIRED
+- approved_external_scope: completed two German Campaign/Phrase additions only; standing paid NONE; no new Shopify/theme/paid authority
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: exact current Czech source and existing candidate content, actual publication/buyer acceptance, real query relevance and purchase economics
+- if_evidence_supports_recommendation: bind only exact independently reviewed source corrections, accept actual public buyers and smallest later test within numeric authority
+- if_evidence_opposes_recommendation: preserve factual/country/paid holds, use existing correct candidate instead of duplicate changes; narrow rollback of two negative IDs only if independently justified
+- material_decision: accept completed Microsoft negative delta and route Czech buyer-copy qualification
+- independent_verifier: source Microsoft independent14-check reviewer and parent collector_global_fallback_fix saved-source review
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Evidence: microsoft_german_czech_source_acceptance_20260915.json; microsoft_german_czech_parent_intake_20260915.json; microsoft_german_czech_independent_acceptance_20260915.json. Parent integrations68/scheduledwakes60; all prior checkpoint fields except declared current integration/routing metadata preserved.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor.
+
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-czech-body-repair-bound
+
+- task_entities: TA-07, TA-06, TA07-CZECH-FIVE-BODY-SPANS-20260915, PROB-2026-09-15-CZECH-BUYER-COPY, 7607764287585, 240127941, 137888792673
+- task_stage: BUILD
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+September15 Czech product correction is bound to the existing Merchant owner: one global cs/body_html field on Product7607764287585, exactly five reviewed lexical replacements. One fresh guarded save and exact API/public after-review are required; no live completion is claimed yet. All100 size-table cells, nine variants, six English source records, four other Czech records, collection data and twelve observed override arrays are protected. Collection240127941 already has correct cs/title Šaty; its theme-derived H1 stays with existing UX, whose accepted candidate already fixes the two buybox labels. Residual Czech copy remains outside this exact five-span release. Owner theme publication,68 accepted integrations/60 wakes and all source/sales/paid clocks remain unchanged.
+
+One Owner Action: Publish the now-verified DLM UX Performance QA 2026-09-10 theme137888792673 in Shopify Admin, using renewed full-source binding932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a. Keep MAIN133290917985 for rollback. This makes the tested buyer-selection, sizing and CTA repairs available to shoppers. Publication is already authorized; the Shopify connector requires owner Admin execution and blocks agent Publish/MAIN writes. Existing UX then verifies actual MAIN, source, GitHub connection and affected live buyers before the separately held remote-theme sync. No new approval or duplicate theme upload is needed.
+
+- source_live_evidence_as_of: proposal product2026-09-15T04:13:32.455Z, collection04:15:33.831Z, override arrays04:16:41.642Z; fresh action-time guard required
+- live_state_mode: REPO_KNOWN exact reviewed proposal; no save; standing paid STALE_READBACK_REQUIRED
+- effective_approval_policy: current user direct repair mandate, exact parent scope, fresh independent guard
+- approved_external_scope: one global cs/body_html translation and only five frozen replacements; no other source/theme/collection/paid write
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: fresh source/digest/metadata or payload mismatch and API/public after-state
+- if_evidence_supports_recommendation: save once and independently verify protected source/public copy
+- if_evidence_opposes_recommendation: stop affected action and preserve exact failure; no broad reset
+- material_decision: exact customer-visible lexical correction
+- independent_verifier: merchant_translation_review semantic/source review plus mandatory independent action-time/after reviewers
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Source41 checks, independent PASS_WITH_LIMITS and parent hashes/exact substitution/table checks accepted. Evidence: merchant_czech_body_scope_20260915.json; merchant_czech_body_proposal_completion_20260915.json. No additional integration/release, goal/scheduler change or root business write.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor.
+
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-czech-source-and-heading-repairs-dispatched
+
+- task_entities: TA-06, TA-07, TA06-CZECH-DRESSES-H1-20260915, TA07-CZECH-FIVE-BODY-SPANS-20260915, PROB-2026-09-15-CZECH-BUYER-COPY, 137888792673, 133290917985, 7607764287585, 240127941, locales/cs.json
+- task_stage: BUILD
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+September15 exact Czech repairs are now in two disjoint existing-owner lanes. Merchant has the five-span Product7607764287585 global cs/body_html correction, with fresh save/API/public review pending. UX is bound to one locales/cs.json H1 key in the same UNPUBLISHED137888792673 candidate: Šaty pro mámu a já → Šaty pro maminku a dceru. All782 other locale values and526 other candidate files are protected; both dresses and mother-daughter-matching-dresses require actual desktop/narrow route/H1 outcomes. The two buybox keys are already fixed in the accepted module and must not be rebuilt. Collection240127941 cs/title Šaty stays unchanged. Publication authority persists; use the renewed ACTUAL full-source binding after this one-file update, not its expected map. No new live completion, paid spend, country coverage or business lift is claimed.
+
+One Owner Action: Publish DLM UX Performance QA 2026-09-10 theme137888792673 in Shopify Admin after the existing UX owner completes the bound one-string Czech heading correction and parent accepts its renewed full-source binding and affected buyer readback. Keep MAIN133290917985 for rollback. Publication is already authorized; the connector requires owner Admin execution and blocks agent Publish/MAIN writes. The original932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a binding stays immutable before evidence; wait for the actual accepted successor binding during this update. No new approval or duplicate theme is needed.
+
+Original59-check proposal review and18-check route-plan addendum are preserved. Root initial freeze stopped on the original proposal reference after the two-handle plan update; byte-exact prior-plan/PROPOSAL.json plus the reviewed final addendum resolve the mismatch. No source/payload change or external action occurred during that guard stop. Parent then checked all20 final packet files, all original/addendum refs and30 frozen payloads, the exact one-line/one-leaf delta, one TEXT upload/inverse and527 expected records/526 preserved. The source map remains EXPECTED only.
+
+- source_live_evidence_as_of: UX preparation2026-09-15T04:25:54Z; Merchant prior proposal04:13:32.455/04:15:33.831/04:16:41.642Z; both require fresh action-time guards
+- live_state_mode: REPO_KNOWN exact proposals; no new after-state; standing paid STALE_READBACK_REQUIRED
+- effective_approval_policy: current user direct correction/publication mandate, exact parent scopes and independent fresh/after guards
+- approved_external_scope: one existing Czech product translation; separately one existing unpublished theme file/key; no MAIN/agentPublish/paid scope
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: fresh source/role/body/inventory drift, unexpected after effects or failed affected public/preview acceptance
+- if_evidence_supports_recommendation: exact bounded saves and independent after-review, then replace only actual accepted successor binding
+- if_evidence_opposes_recommendation: stop affected lane, retain original binding/failures and continue independent lane; no broad reset or MAIN/Git workaround
+- material_decision: exact source and unpublished heading repairs
+- independent_verifier: Merchant translation review; UX main_sync_review59/18 reviews; mandatory action-time/after reviewers
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Evidence: theme_czech_heading_scope_20260915.json; theme_czech_heading_preparation_drift_resolution_20260915.json; merchant_czech_body_scope_20260915.json; merchant_czech_body_dispatch_receipt_20260915.json. Merchant row d0cc50cf0b889fa1ff42d8cdcb8b454d4f2cecd972e04c41a263df8c85a9ac82 preserved exactly while its execution is active. Integrations68/wakes60 and all other checkpoints/clocks unchanged.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor.
+
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-czech-product-copy-live-and-theme-followthrough
+
+- task_entities: TA-07, TA-06, TA07-CZECH-FIVE-BODY-SPANS-20260915, TA06-CZECH-DRESSES-H1-20260915, PROB-2026-09-15-CZECH-BUYER-COPY, 7607764287585, 137888792673, 513542500
+- task_stage: BUILD
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Coral Blossom Product7607764287585 now has the five reviewed global Czech body corrections saved and verified. One supported call completed September15 04:45:51.916–04:45:52.584UTC with zero errors; API after-readback completed04:47:04.694UTC. All nine variants, six English records, four other Czech records, collection data, twelve override arrays,100 table cells, numbers and markup are unchanged. Saved public text at04:52:30.778UTC contains all five corrections and both protected disclosures after native Čeština selection. Independent owner220-check and parent102-check reviews pass with limits. The initial local PASS-versus-VERIFIED parser stop occurred before any API attempt; do not replay the successful save.
+
+Initial direct /cs product navigation redirected to English, cause UNKNOWN. Language-menu recovery verifies the corrected text in US/USD, not cookie-independent ad/feed arrival, Czechia, checkout, all Czech copy, measurements or business lift. Residual wording and direct-arrival qualification remain open under PROB-2026-09-15-CZECH-BUYER-COPY.
+
+Existing UX is executing the bound one-key Czech collection H1 correction in UNPUBLISHED137888792673. The accepted Czech buybox labels and Collection240127941 cs/title Šaty already need no duplicate repair. Preserve fresh paired candidate527/MAIN525 guards, both collection handles at desktop/narrow widths and actual direct/redirect/unavailable outcomes. Country/currency URL parameters may be omitted to preserve the existing session; record observed context without inferring a country qualification. No actual new theme binding or MAIN publication is accepted yet. Owner Admin publication remains conditional on the renewed actual binding and affected buyer review; exact reviewed cs.json local-main sync is allowed, with connected-MAIN Git push held and unrelated files preserved.
+
+Unchanged Merchant513542500 country read September15 04:54:01.947–04:54:22.781UTC shows31 configured rows: US/AU each4741approved, the other29includingCanada/theUK/configuredEurope0/Incomplete. This annotation adds no release, integration or source refresh. Next new-country lanes remain Canada en/CAD, UK en/GBP, Canada fr/CAD, then individually qualified European countries/languages, after published-buyer and factual shipping/returns acceptance. US/es/USD does not qualify Spain/es/EUR.
+
+One Owner Action: Publish DLM UX Performance QA 2026-09-10 theme137888792673 in Shopify Admin after the existing UX owner completes the bound one-string Czech heading correction and parent accepts its renewed full-source binding and affected buyer readback. Keep MAIN133290917985 for rollback. Publication is already authorized; the connector requires owner Admin execution and blocks agent Publish/MAIN writes. The original932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a binding stays immutable before evidence; wait for the actual accepted successor binding during this update. No new approval or duplicate theme is needed.
+
+- source_live_evidence_as_of: Czech save2026-09-15T04:45:51.916–04:45:52.584Z; APIafter04:47:04.694Z; public04:52:30.778Z; country annotation04:54:01.947–04:54:22.781Z
+- live_state_mode: LIVE_VERIFIED exact five-span source/public text; standing paid STALE_READBACK_REQUIRED
+- effective_approval_policy: completed exact nonspend body scope; existing exact unpublished theme scope; paid FRESH_ACTION_TIME_APPROVAL_REQUIRED
+- approved_external_scope: completed one cs/body_html save only; no replay, new feed/country/paid/scheduler action
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: actual source roles, renewed candidate binding, direct locale routing, published MAIN buyer acceptance and country delivery/returns truth
+- if_evidence_supports_recommendation: accept actual one-key theme successor, retain owner Admin publication and qualifying international lanes
+- if_evidence_opposes_recommendation: preserve direct-arrival/country holds and exact failure evidence; do not use extra source writes or connected-MAIN push as a workaround
+- material_decision: accept completed Czech five-span source release with routing limitation; preserve disjoint existing UX execution
+- independent_verifier: merchant_translation_review220 saved-evidence checks; parent collector_global_fallback_fix102 raw-receipt checks
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Evidence: merchant_czech_body_release_source_acceptance_20260915.json; country_coverage_annotation_followup_acceptance_20260915_0454.json; theme_czech_heading_dispatch_receipt_20260915.json. Current parent accepted integrations:69; scheduled wakes:60. All existing US/AU/US-es source clocks, full-sales/measurement clocks, account ownership, paid NONE, goal and schedules remain unchanged. No new traffic, sales or retained profit is claimed.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor.
+
+
+September15 provisional UX mobile-heading follow-through — Newer UX progress, awaiting final source acceptance: the existing owner reports one successful Czech heading save at05:07:39UTC and40 passing source-after checks at05:07:54UTC, with candidateUNPUBLISHED and MAIN unchanged. Desktop headings display correctly. At390x844, the existing collection-hero container is display:none and the H1 is not visible; mobile heading acceptance FAILED. The owner reports identical suppression CSS in current MAIN and candidate, so the string change did not introduce it. Keep publication on hold. Only a read-only/local proposal for the smallest heading-visibility repair is requested; no extra CSS/template upload is yet authorized. Complete the immutable one-key handoff and independent after-review, then bind any exact eligible repair. Preserve honest direct-language/redirect outcomes. This provisional update adds no release/integration/source refresh. Evidence: theme_czech_heading_mobile_gap_intake_20260915.json; theme_czech_dispatch_context_attestation_20260915.json. The existing source acceptance and69 integrations/60 wakes remain unchanged.
+
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-czech-heading-source-accepted-and-mobile-repair-bound
+
+- task_entities: TA-06, TA06-MOBILE-COLLECTION-H1-CSS-20260915, TA06-CZECH-DRESSES-H1-20260915, PROB-2026-09-15-CZECH-BUYER-COPY, 137888792673, 133290917985
+- task_stage: BUILD
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+The one-key Czech collection heading save is now independently source-accepted. One successful save at05:07:39UTC changed only locales/cs.json / sections.collection_seo.display_titles.dresses to Šaty pro maminku a dceru. Actual527 source binding1c7774546b9c58a412fe7e0a6d34c7965ccdbec3755fc22915ca944027bbbbf7 is accepted;526othercandidate files and all525MAIN files/metadata are unchanged. Root56-check and owner40source/44browser-evidence reviews pass with limits. Both1280px Czech headings pass; both390px cases FAILED because the existing hero is hidden. Source completion is not mobile acceptance or MAIN publication. Do not replay the completed locale save.
+
+Existing UX now has exact root scope TA06-MOBILE-COLLECTION-H1-CSS-20260915 for at most one assets/theme-inline-body-static-07.css TEXT upsert in UNPUBLISHED137888792673. The52-check independent proposal exposes only the existing mobile H1 through767px, keeps other hero blocks hidden and leaves desktop declarations unchanged. This affects shared collection templates/locales. Fresh paired source guards, Czech320/390px,749/750/767/768breakpoints,1280pxdesktop, shared/long/RTL headings, actual cold-load filmstrip/CLS and independent after-review remain required. No CSS save or new after binding is claimed yet. Evidence: theme_mobile_collection_heading_scope_20260915.json.
+
+One Owner Action: Publish DLM UX Performance QA 2026-09-10 theme137888792673 in Shopify Admin after the bound mobile collection-heading repair passes actual buyer/cold-load checks and parent accepts its renewed actual527 source binding. Publication remains on hold during this repair. Keep MAIN133290917985 for rollback. Publication is already authorized; the connector requires owner Admin execution and blocks agent Publish/MAIN writes. Existing1c7774546b9c58a412fe7e0a6d34c7965ccdbec3755fc22915ca944027bbbbf7 and earlier932baa bindings stay immutable before evidence. No new approval or duplicate theme is needed.
+
+- source_live_evidence_as_of: Czech save2026-09-15T05:07:39Z; after05:07:54.385Z; mobile proposal paired source05:15:51.682Z; fresh action read required
+- live_state_mode: LIVE_VERIFIED completed one-key source; LIVE_READBACK_REQUIRED next exact candidate save; standing paid STALE_READBACK_REQUIRED
+- effective_approval_policy: saved user mandate plus exact root one-file claim and independent action/after guards
+- approved_external_scope: At most one supported exact assets/theme-inline-body-static-07.css TEXT upsert in existing UNPUBLISHED137888792673; no MAIN/Publish/paid action
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: fresh source/role/claim or actual mobile/shared/cold-load regression
+- if_evidence_supports_recommendation: exact save, actual renewed source and buyer acceptance, then conditional owner Admin publication
+- if_evidence_opposes_recommendation: hold affected action/publication and retain exact failed evidence; no MAIN/Git workaround
+- material_decision: accept completed Czech source and bind shared mobile H1 repair
+- independent_verifier: root navy_variant_history56source checks; UX main_sync_review52proposal checks plus required independent action/after review
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Evidence: theme_czech_heading_execution_source_acceptance_20260915.json; theme_mobile_collection_heading_scope_20260915.json. Current parent accepted integrations:70; scheduled wakes:60. All Merchant language/country/feed clocks, full-sales/measurement clocks, paid NONE, account ownership, goal and schedules remain unchanged. No traffic, sales or retained-profit improvement is claimed.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor.
+
+
+September15 exact mobile CSS execution dispatched after all five canonical checks passed. Existing UX task01a088c3-c890-71a1-98ee-f19b6905af55 received TA06-MOBILE-COLLECTION-H1-CSS-20260915; the send tool proves task delivery, not an execution turn or saved CSS. Actual source/browser/cold-load results and independent after-review remain pending. No integration, source clock, goal or schedule change. Evidence: theme_mobile_heading_dispatch_receipt_20260915.json; theme_mobile_heading_scope_verification_20260915.json. Seven additional local files are explicitly preserved in theme_seven_local_differences_disposition_20260915.json: five meaningful files in three bounded changes and two unused aliases, all runtime checks NOT RUN and no extra upload authority. Current integrations70/wakes60; publication HOLD.
+
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-mobile-heading-saved-and-critical-load-repair
+
+- task_entities: TA-06, TA06-MOBILE-COLLECTION-H1-CSS-20260915, TA06-MOBILE-H1-CRITICAL-PLACEMENT-20260915, PROB-2026-09-15-CZECH-BUYER-COPY, 137888792673
+- task_stage: BUILD
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+The exact mobile collection CSS was saved once in UNPUBLISHED137888792673 at September15 06:27:18UTC, with zero errors and jobnull; source after-readback completed06:27:44.176UTC. Parent28 raw-source checks and all527 actual source hashes verify only assets/theme-inline-body-static-07.css changed,526othercandidate files and all525MAIN records/metadata preserved. Actual saved source map41c42505144c16bec4457f2e72e0881adf36d1c631ddc4c0a3fa4416ef8b3b95 is received; final owner after-handoff/integration is pending. Do not replay this save.
+
+The first390px after-view has a visible H1 and36cards, but cold-load performance acceptance FAILED. Owner reports first main-frame CLS0.1035644 versus baseline0.0452703; repeat0.10799277 with FCP287.8ms confirms the issue beyond the initial slow CDN response. In the first trace, CSS completion1969.957ms precedes a1975.815ms55px product-grid shift and0.05829412 addedCLS; the filmstrip shows late H1 reveal. The760px sample is0.06059585 versus0.09565015 before;1280px0.00516257 versus0.00515091. These are bounded lab samples; no PageSpeed/field or whole-site performance certification. Full raw after/independent review is pending. Publication remains HOLD.
+
+Existing UX now prepares TA06-MOBILE-H1-CRITICAL-PLACEMENT-20260915 locally with an existing source specialist: put identical heading-only behavior before first paint using the smallest supported existing-source correction, with actual loading-order/cascade evidence, exact bytes/inverse and a bounded independent source review. Reuse valid current after-captures as the next baseline. No extra upload, rollback, MAIN/Publish, Git push or seven-local-file bundle is authorized by this preparation. Root binds any eligible next correction after its exact proposal; no new user approval question.
+
+One Owner Action: Publish DLM UX Performance QA 2026-09-10 theme137888792673 in Shopify Admin after the bound mobile collection-heading repair passes actual buyer/cold-load checks and parent accepts its renewed actual527 source binding. Publication remains on hold during this repair. Keep MAIN133290917985 for rollback. Publication is already authorized; the connector requires owner Admin execution and blocks agent Publish/MAIN writes. Existing1c7774546b9c58a412fe7e0a6d34c7965ccdbec3755fc22915ca944027bbbbf7 and earlier932baa bindings stay immutable before evidence. No new approval or duplicate theme is needed.
+
+- source_live_evidence_as_of: save2026-09-15T06:27:18Z; after06:27:44.176Z; failed first/repeat after trace reported by existing owner, raw final handoff pending
+- live_state_mode: LIVE_VERIFIED exact one-file source; LIVE_READBACK_REQUIRED next action; paid STALE_READBACK_REQUIRED
+- effective_approval_policy: completed exact candidate scope; next local preparation only until root binding; saved owner publication authority retained
+- approved_external_scope: completed one CSS upsert; no additional upload, rollback or MAIN/Publish
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: exact critical source/loading-order proposal, actual first-paint behavior and independent after acceptance
+- if_evidence_supports_recommendation: bind exact eligible correction and verify actual before-first-paint result
+- if_evidence_opposes_recommendation: keep publication HOLD and report evidence; no extra source write or MAIN workaround
+- material_decision: retain valid source outcome and failed performance; reroute narrowly to critical placement
+- independent_verifier: owner guard-only fallback28checks before save, plus preserved raced original review; final independent after review pending
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Evidence: theme_mobile_heading_source_intake_20260915.json; root_runtime_readback_20260915_0610.json. Current parent accepted integrations remain70; scheduled wakes60. This source/failure intake and preparation dispatch add no integration or source refresh. Existing Merchant, sales, measurement, paid NONE, owner, goal and schedule state is preserved.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor.
+
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-mobile-source-failure-accepted-and-critical-css-bound
+
+- task_entities: TA-06, TA06-MOBILE-H1-CRITICAL-PLACEMENT-20260915, TA06-MOBILE-COLLECTION-H1-CSS-20260915, PROB-2026-09-15-CZECH-BUYER-COPY, 137888792673
+- task_stage: BUILD
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+The first mobile CSS action is completed and accepted as SOURCE, SETTLED RENDER and INTERACTION PASS with PERFORMANCE FAIL. One save at06:27:18UTC produced actual527binding41c42505144c16bec4457f2e72e0881adf36d1c631ddc4c0a3fa4416ef8b3b95;526othercandidate and all525MAIN records/metadata are preserved. Root28raw-source checks/527hashes, independent41after checks/55bindings,16pairedcases/208checks and9interactionchecks support that outcome. All268ownerfrozenfiles are verified. The repeated390px late H1/grid reveal adds a demonstrated55px/.058294CLS shift in the first trace; performance fails. No local CSS copy, MAIN publication or business lift is accepted. Both raced action reviews are preserved; fallback76bc5975 actually authorized execution. Do not repeat the save.
+
+Existing UX now has exact TA06-MOBILE-H1-CRITICAL-PLACEMENT-20260915 scope for one head03 TEXT upsert in UNPUBLISHED137888792673:13d8c7→fe0434/14552bytes. The independently reviewed24-check proposal removes the obsolete749px hide and puts identical eight-selector values through767px in the existing HEAD stylesheet, scoped with MainContent specificity to beat later component rules. Saved body07cde012 and all526othercandidate files remain unchanged. Fresh paired equality/current claim precedes the single save; reuse the settled baseline and verify actual early heading/390repeat,760,desktop and affected buyer matrix. Expected527map is not actual proof. Evidence: theme_mobile_heading_critical_scope_20260915.json.
+
+One Owner Action: Publish DLM UX Performance QA 2026-09-10 theme137888792673 in Shopify Admin after the bound critical-loading correction passes actual first-paint, buyer and independent after checks and parent accepts its renewed ACTUAL527 source binding. Publication remains HOLD during this correction. Keep MAIN133290917985 for rollback. Publication is already authorized; the connector requires owner Admin execution and blocks agent Publish/MAIN writes. Current saved41c425 and prior1c777/932baa bindings remain immutable before evidence. No new approval or duplicate theme is needed.
+
+- source_live_evidence_as_of: firstCSSsave06:27:18UTC, after06:27:44.176UTC; criticalpairedsource06:47:51.652UTC; fresh immediate recheck required
+- live_state_mode: LIVE_VERIFIED completed source/failure; LIVE_READBACK_REQUIRED next exact candidate save; paid STALE_READBACK_REQUIRED
+- effective_approval_policy: current saved mandate, exact root claim, accepted independent source review and immediate fresh equality
+- approved_external_scope: At most one supported assets/theme-inline-head-static-03.css TEXT upsert in existing UNPUBLISHED137888792673; no other file or MAIN/paid action
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: fresh drift or actual repeated first-paint/render/source failure
+- if_evidence_supports_recommendation: save once and accept actual correction before conditional owner publication
+- if_evidence_opposes_recommendation: HOLD affected action/publication and preserve evidence without extra write/MAIN workaround
+- material_decision: accept completed firstCSS source/failure and bind critical loading correction
+- independent_verifier: buyer_truth_module41after checks plus root28source/527hashes/55bindings; main_sync_review24criticalsource checks
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Evidence: theme_mobile_heading_execution_acceptance_20260915.json; theme_mobile_heading_critical_scope_20260915.json. Current parent accepted integrations:71; scheduled wakes:60. The next critical-head save has not occurred. All Merchant country/language/feed clocks, full-sales/measurement clocks, account ownership, paid NONE, goal and schedules are preserved. No traffic, sales or retained-profit increase is claimed.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor.
+
+
+September15 critical-head execution dispatched after all five checks PASS. Existing UX received exact TA06-MOBILE-H1-CRITICAL-PLACEMENT-20260915 under claimf76d9910 and plan1084a710. No additional broad action-review loop is required after accepted independent24-check source review when immediate paired/source/claim equality holds. Actual save, renewed527binding and first-paint/render/independent after acceptance remain pending; publication HOLD. Evidence: theme_mobile_heading_critical_dispatch_receipt_20260915.json; theme_mobile_heading_critical_scope_verification_20260915.json. Owner reports reiterated user broader local-main sync request; root will provide a stable eligible-path cutoff after current source/sales integration, preserving active peer and private files. No Git push authority. Integrations71/wakes60 and all business/source clocks unchanged.
+
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-mobile-correction-accepted-and-sales-reconciled
+
+- task_entities: TA-06, TA-16, TA06-MOBILE-H1-CRITICAL-PLACEMENT-20260915, PROB-2026-09-15-CZECH-BUYER-COPY, PROB-2026-09-06-RECENT-ORDER-PROFIT-QUALIFICATION, 137888792673, 15571635
+- task_stage: HANDOFF
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Completed mobile heading correction accepted in UNPUBLISHED137888792673. One head03 save at07:01:18UTC produced actual527binding1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058; savedbody07 and526othercandidate/525MAIN records are preserved. Root30raw checks/527hashes, independent39checks/81bindings,16pairedcases/208checks and11interactions pass. All three390px CLS results are0.03957462 versus pre-heading0.04527028; the first painted heading precedes body07response, removing the prior late55px reveal. Mobile FCP966–1426ms remains slower than the earlier258ms sample, so overall speed improvement is not certified. Two exact CSS files were copied to localmain and committed by UX in72e6bc4cc9cbe1595d9db79057f538071ac95394;520local candidate files match and7prior local differences are preserved. No MAIN publication or Git push is claimed.
+
+Fresh September15 Shopify order cutoff07:01:34UTC, read07:01:34.908–35.720UTC and fulfillment07:02:59.973–07:03:00.704UTC:4all-status records,3qualifying PAID/non-test/noncancelled web orders,8current units/USD207.25. Zero new creations since September14 19:00:17UTC; aggregate totals are unchanged. Trailing24hours and completed September14 New York day each contain1order/2units/USD40.82. One cancelled PAID row remains0units/USD0.00 with0recorded refunds; refund/cash outcome is unknown. No current carrier events or physical delivery evidence; historical named-basket identity was not re-established from aggregate matches. Attribution, actual costs, settlement and retained profit remain unknown. Next full readSeptember15 19:01:34UTC, earlier only on a meaningful new signal.
+
+One Owner Action: In Shopify Admin, publish DLM UX Performance QA 2026-09-10 theme137888792673. The critical mobile heading correction has passed actual source, first-paint, rendered buyer, interaction and independent after acceptance; parent accepts actual527binding1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058. Keep MAIN133290917985 for rollback. Publication is already authorized; the connector requires owner Admin execution and blocks agent Publish/MAIN writes. After publication, existing UX verifies actual MAIN/source/GitHub and affected localized/variant/CTA buyer flows. No new approval, theme or Git push is needed.
+
+- source_live_evidence_as_of: candidate save07:01:18UTC /after07:01:38.115UTC; actual qualified after review07:13:34.536880UTC; ordercutoff07:01:34UTC /fulfillmentthrough07:03:00.704UTC
+- live_state_mode: LIVE_VERIFIED completed candidate and saved order source; owner publication and actual MAIN acceptance pending; paid STALE_READBACK_REQUIRED
+- effective_approval_policy: existing saved repair/publication mandate, exact source/after acceptance, owner Admin publishing required by connector
+- approved_external_scope: no remaining agent candidate save, MAIN write, Publish or Git push; exact completed local-main snapshot only; existing UX reads actual MAIN after owner action
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: owner publication or actual published source/buyer mismatch, meaningful new order/lifecycle/cost evidence
+- if_evidence_supports_recommendation: owner Admin publishes verified137888792673 and existingUX accepts actual MAIN/buyer state; consume fresh sales on its independent due clock
+- if_evidence_opposes_recommendation: retain rollback133290917985 and route exact source/buyer mismatch without blind republish, account bypass or paid activation
+- material_decision: completed critical correction accepted and actual fresh order aggregate reconciled, with distinct publication and profit limits
+- independent_verifier: main_sync_review39checks/81bindings; collector_global_fallback_fix41saved-order calculations
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE theme repair; sales reviewer did not perform rootAPIreads and also authored its sanitized checkpoint, not a separate second-person review of its output
+- Evidence: theme_mobile_heading_critical_execution_acceptance_20260915.json; order_fulfillment_checkpoint_20260915_0701.json; order_fulfillment_independent_review_20260915_0701.json; order_fulfillment_root_acceptance_20260915_0701.json. Accepted owner integrations:72; scheduled wakes:60. All Merchant country/language/feed clocks, existing GA4/GSC/Ads/Microsoft/Pinterest/X evidence, paid NONE, goal and schedules remain separate and unchanged. No traffic, conversion, sales or profit lift is claimed.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; preserve existing owners/harness/accounts and clocks.
