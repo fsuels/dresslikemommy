@@ -1,0 +1,651 @@
+{
+  "schema_version": 1,
+  "type": "CANONICAL_ONLY_PROPOSAL_NOT_APPLIED",
+  "created_at_utc": "2026-09-15T02:29:07.085812+00:00",
+  "scope": {
+    "write_owner": "root only for canonical application",
+    "this_agent_only_written_file": "/private/tmp/dlm-continuity-anchor-normalization-proposal-20260915.json",
+    "canonical_target": "/Users/fsuels/Projects/dresslikemommy/ops/AGENT_WORKLOG.md",
+    "exact_record_count": 13,
+    "preserve_other_owner_anchor": "2026-09-14-project-main-local-synchronization",
+    "no_code_control_authority_or_narrative_changes": true
+  },
+  "input_bindings": {
+    "worklog_sha256": "6d8d2a5b0b3992955ef8a87ee490e4bb1964cc3cf648766439946415156fd369",
+    "worklog_bytes": 4448522,
+    "current_control_sha256": "511bd253ed12b1c60ec1da24eea1b0d453e3657df67a7096d4bfcfcf9b0f0154",
+    "compiler_sha256": "a210e9d379cb29b843fccfac6e8ee6a49c3844a3474ca76af40d075c72639851",
+    "unchanged_prefix_sha256": "f09f8cb04e16a60302175e5f5c267e5386a0268ae3978ae4820a70e8438bcde2",
+    "unchanged_prefix_bytes": 4383388
+  },
+  "proposed_complete_worklog_sha256": "3048e021a9c37f81ba15f9f7865715efcbb5d766310197fedead0f660cf56f58",
+  "stage_policy": "Use HANDOFF for completed root integration/handoff records; VERIFY for still-pending source progress; BLOCKED for the historical failed guard. Preserve every former stage phrase verbatim as task_stage_detail. None of these historical stages changes current lane authority.",
+  "application_requirements": [
+    "Root must assert the input worklog hash or independently rebase exact record bytes against concurrent additions before application.",
+    "Apply each operation only inside its exact anchor record after matching original_record_sha256; never use an unrestricted whole-file field replacement.",
+    "Do not alter the valid Git-owner anchor or its local next_action_id.",
+    "Re-run the six compiler cases and strict continuity against actual canonical bytes after application."
+  ],
+  "proposals": [
+    {
+      "anchor": "2026-09-14-ceo-x-publisher-proposal-and-n2-receipt",
+      "original_start_line": 51592,
+      "original_record_sha256": "cd18a0f893e50080278fcb0aac50b804c5abae498979144712405d6004f74dc7",
+      "proposed_record_sha256": "4a716c12e00e5be3a8893be3208c335fafc27e8f0918458ec0542e5c1aced47a",
+      "original_metadata_lines": [
+        "- task_entities: TA-24; TA-25; @dresslikemommy; N2 scheduled3858290826238337152",
+        "- task_stage: VERIFY / HANDOFF"
+      ],
+      "canonical_stage": "HANDOFF",
+      "stage_rationale": "Historical parent handoff stage; detailed release and blocked-lane qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-x-publisher-proposal-and-n2-receipt",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-x-publisher-proposal-and-n2-receipt",
+          "original_line": 51592
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-24; TA-25; @dresslikemommy; N2 scheduled3858290826238337152",
+          "replacement": "- task_entities: TA-24, TA-25, @dresslikemommy, 3858290826238337152",
+          "original_line": 51594
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: VERIFY / HANDOFF",
+          "replacement": "- task_stage: HANDOFF\n- task_stage_detail: VERIFY / HANDOFF\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51595
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-14-ceo-google-all-market-local-build-accepted",
+      "original_start_line": 51615,
+      "original_record_sha256": "5653bcc8e1ff8ce6e44433b414a3115cf3b87514fa1cc923b06973bd74c78373",
+      "proposed_record_sha256": "4f991966b8558f756d2b9b6971a6080c6add8054b40df7fbf8025809cd1c559a",
+      "original_metadata_lines": [
+        "- task_entities: TA-10; Ads6509972886; campaign24247604341; root01a09194 existing Ads claim",
+        "- task_stage: BUILD verified locally / HANDOFF; live outcome BLOCKED"
+      ],
+      "canonical_stage": "HANDOFF",
+      "stage_rationale": "Historical parent handoff stage; detailed release and blocked-lane qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-google-all-market-local-build-accepted",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-google-all-market-local-build-accepted",
+          "original_line": 51615
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-10; Ads6509972886; campaign24247604341; root01a09194 existing Ads claim",
+          "replacement": "- task_entities: TA-10, Ads6509972886, campaign24247604341, root01a09194",
+          "original_line": 51617
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: BUILD verified locally / HANDOFF; live outcome BLOCKED",
+          "replacement": "- task_stage: HANDOFF\n- task_stage_detail: BUILD verified locally / HANDOFF; live outcome BLOCKED\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51618
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-14-ceo-merchant-coverage-and-microsoft-live-repair",
+      "original_start_line": 51639,
+      "original_record_sha256": "17c1a5cec89b1fcf583b6091a16f877affab169ad6b96ef944fd7ea08988a6f5",
+      "proposed_record_sha256": "84df78adabfaf68400db7047ad831ad11d05b6a17cb28e9dbd4cb046e8edc2db",
+      "original_metadata_lines": [
+        "- task_entities: TA-07; TA-15; Merchant513542500; Microsoft477439/customer770182; US506254907; support7108824779; existing sole owners01a08706/01a08703",
+        "- task_stage: VERIFY completed source receipts / HANDOFF; broader growth execution remains PARTIAL"
+      ],
+      "canonical_stage": "HANDOFF",
+      "stage_rationale": "Historical parent handoff stage; detailed release and blocked-lane qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-merchant-coverage-and-microsoft-live-repair",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-merchant-coverage-and-microsoft-live-repair",
+          "original_line": 51639
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-07; TA-15; Merchant513542500; Microsoft477439/customer770182; US506254907; support7108824779; existing sole owners01a08706/01a08703",
+          "replacement": "- task_entities: TA-07, TA-15, Merchant513542500, Microsoft477439, customer770182, US506254907, support7108824779, 01a08706, 01a08703",
+          "original_line": 51647
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: VERIFY completed source receipts / HANDOFF; broader growth execution remains PARTIAL",
+          "replacement": "- task_stage: HANDOFF\n- task_stage_detail: VERIFY completed source receipts / HANDOFF; broader growth execution remains PARTIAL\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51648
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-14-ceo-reviewed-local-merchant-refresh-profile",
+      "original_start_line": 51669,
+      "original_record_sha256": "e927605f8a1202c145aeca2128b915afc7611e48a88d8c506b0ddb5b370f1bf0",
+      "proposed_record_sha256": "c52fe28481f1218315632f2a6391f28ab80a46b39517146e8a337731357ae8bb",
+      "original_metadata_lines": [
+        "- task_entities: TA-07; Merchant513542500; US10727274744; local profile native-holds-20260914; existing owner01a08706; PROB-2026-09-14-MERCHANT-US-SCHEDULED-FETCH",
+        "- task_stage: Local BUILD/VERIFY completed; future source release NOT_RUN; parent HANDOFF"
+      ],
+      "canonical_stage": "HANDOFF",
+      "stage_rationale": "Historical parent handoff stage; detailed release and blocked-lane qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-reviewed-local-merchant-refresh-profile",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-reviewed-local-merchant-refresh-profile",
+          "original_line": 51669
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-07; Merchant513542500; US10727274744; local profile native-holds-20260914; existing owner01a08706; PROB-2026-09-14-MERCHANT-US-SCHEDULED-FETCH",
+          "replacement": "- task_entities: TA-07, Merchant513542500, US10727274744, native-holds-20260914, 01a08706, PROB-2026-09-14-MERCHANT-US-SCHEDULED-FETCH",
+          "original_line": 51675
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: Local BUILD/VERIFY completed; future source release NOT_RUN; parent HANDOFF",
+          "replacement": "- task_stage: HANDOFF\n- task_stage_detail: Local BUILD/VERIFY completed; future source release NOT_RUN; parent HANDOFF\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51676
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-14-ceo-sizing-guide-live-and-faq-repair",
+      "original_start_line": 51696,
+      "original_record_sha256": "2b5820266b7f6b6a4f90077be15b3f37fa2fafaa62f5ed5d100ade6b20075581",
+      "proposed_record_sha256": "e4cfd8973b37a102585da791f254d7ebbf626972c621aa3d95c682d5c11d88a4",
+      "original_metadata_lines": [
+        "- task_entities: TA-20; TA-06; Article559700574305; Page161933381; PROB-2026-09-14-SIZING-GUIDE-FIT-GUIDANCE; PROB-2026-09-14-FAQ-JQUERY-DISCLOSURE",
+        "- task_stage: English VERIFY complete; localized article and FAQ BUILD/VERIFY in existing owner tasks; parent HANDOFF"
+      ],
+      "canonical_stage": "HANDOFF",
+      "stage_rationale": "Historical parent handoff stage; detailed release and blocked-lane qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-sizing-guide-live-and-faq-repair",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-sizing-guide-live-and-faq-repair",
+          "original_line": 51696
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-20; TA-06; Article559700574305; Page161933381; PROB-2026-09-14-SIZING-GUIDE-FIT-GUIDANCE; PROB-2026-09-14-FAQ-JQUERY-DISCLOSURE",
+          "replacement": "- task_entities: TA-20, TA-06, Article559700574305, Page161933381, PROB-2026-09-14-SIZING-GUIDE-FIT-GUIDANCE, PROB-2026-09-14-FAQ-JQUERY-DISCLOSURE",
+          "original_line": 51706
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: English VERIFY complete; localized article and FAQ BUILD/VERIFY in existing owner tasks; parent HANDOFF",
+          "replacement": "- task_stage: HANDOFF\n- task_stage_detail: English VERIFY complete; localized article and FAQ BUILD/VERIFY in existing owner tasks; parent HANDOFF\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51707
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-14-ceo-au-navy-buyer-path-qualified",
+      "original_start_line": 51727,
+      "original_record_sha256": "35fa3c5151a3b15a05307bbc366b4b213c8b1bc95177a82bef68ece5b89c9dfa",
+      "proposed_record_sha256": "61098bf82f99d81fc8d91c6e89429fcfe1b7860b8b6a81902147f645ad693cce",
+      "original_metadata_lines": [
+        "- task_entities: TA-10; Ads6509972886; AU/en; Product7670609346657; variants46501139611745 and46501139415137; PROB-2026-09-14-NAVY-SPRIG-SIZE-RANGE",
+        "- task_stage: VERIFY exact source/buyer-entry outcome; actual costs/source range BLOCKED_OR_UNKNOWN; parent HANDOFF"
+      ],
+      "canonical_stage": "HANDOFF",
+      "stage_rationale": "Historical parent handoff stage; detailed release and blocked-lane qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-au-navy-buyer-path-qualified",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-au-navy-buyer-path-qualified",
+          "original_line": 51727
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-10; Ads6509972886; AU/en; Product7670609346657; variants46501139611745 and46501139415137; PROB-2026-09-14-NAVY-SPRIG-SIZE-RANGE",
+          "replacement": "- task_entities: TA-10, Ads6509972886, AU/en, Product7670609346657, 46501139611745, 46501139415137, PROB-2026-09-14-NAVY-SPRIG-SIZE-RANGE",
+          "original_line": 51735
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: VERIFY exact source/buyer-entry outcome; actual costs/source range BLOCKED_OR_UNKNOWN; parent HANDOFF",
+          "replacement": "- task_stage: HANDOFF\n- task_stage_detail: VERIFY exact source/buyer-entry outcome; actual costs/source range BLOCKED_OR_UNKNOWN; parent HANDOFF\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51736
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-14-ceo-faq-french-live-and-source-evidence",
+      "original_start_line": 51755,
+      "original_record_sha256": "e2a99279332d549f788d2c240908e13c857033cc5526c1cf537ec2cd0a28ca64",
+      "proposed_record_sha256": "e639d286a53921fff1172b4e504703e69b7eb75944f95e3395f483efbf9241c2",
+      "original_metadata_lines": [
+        "- task_entities: TA-06; TA-07; TA-10; TA-20; Page161933381; Article559700574305; Product7670609346657; Merchant513542500",
+        "- task_stage: VERIFY/HANDOFF completed FAQ and French releases; BUILD_VERIFY_RELEASE exact FAQ sizing successor; shipping/size evidence bounded"
+      ],
+      "canonical_stage": "HANDOFF",
+      "stage_rationale": "Historical parent handoff stage; detailed release and blocked-lane qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-faq-french-live-and-source-evidence",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-faq-french-live-and-source-evidence",
+          "original_line": 51755
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-06; TA-07; TA-10; TA-20; Page161933381; Article559700574305; Product7670609346657; Merchant513542500",
+          "replacement": "- task_entities: TA-06, TA-07, TA-10, TA-20, Page161933381, Article559700574305, Product7670609346657, Merchant513542500",
+          "original_line": 51773
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: VERIFY/HANDOFF completed FAQ and French releases; BUILD_VERIFY_RELEASE exact FAQ sizing successor; shipping/size evidence bounded",
+          "replacement": "- task_stage: HANDOFF\n- task_stage_detail: VERIFY/HANDOFF completed FAQ and French releases; BUILD_VERIFY_RELEASE exact FAQ sizing successor; shipping/size evidence bounded\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51774
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-14-ceo-german-live-and-owned-repairs-running",
+      "original_start_line": 51792,
+      "original_record_sha256": "c62860be23b66527802edff197d31bde6991a0907fb640d13505f447c2f8caf2",
+      "proposed_record_sha256": "0aa4eef76c0d4cc11cad8d44487c92b0f9c33150dabbe9cc51c85bc67fa935ce",
+      "original_metadata_lines": [
+        "- task_entities: TA-07; TA07-DE-25-REPAIR-20260914; TA07-NAVY-SIZE-CONSISTENCY-20260914; TA06-FAQ-SIZING-TRUTH-20260914; TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+        "- task_stage: VERIFY completed DE25; HANDOFF current bounded successors"
+      ],
+      "canonical_stage": "HANDOFF",
+      "stage_rationale": "Historical parent handoff stage; detailed release and blocked-lane qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-german-live-and-owned-repairs-running",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-german-live-and-owned-repairs-running",
+          "original_line": 51792
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-07; TA07-DE-25-REPAIR-20260914; TA07-NAVY-SIZE-CONSISTENCY-20260914; TA06-FAQ-SIZING-TRUTH-20260914; TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+          "replacement": "- task_entities: TA-07, TA07-DE-25-REPAIR-20260914, TA07-NAVY-SIZE-CONSISTENCY-20260914, TA06-FAQ-SIZING-TRUTH-20260914, TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+          "original_line": 51800
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: VERIFY completed DE25; HANDOFF current bounded successors",
+          "replacement": "- task_stage: HANDOFF\n- task_stage_detail: VERIFY completed DE25; HANDOFF current bounded successors\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51801
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-14-ceo-sizing-guide-localizations-live",
+      "original_start_line": 51818,
+      "original_record_sha256": "f5024ea405c29c9580df0020e2bbb015a4dc48fe86a4c5af6707023b6cf3246f",
+      "proposed_record_sha256": "6923c04e4329107fb4040cf525d275ea2bb3c53bc4cdca965ceac39bfac068b1",
+      "original_metadata_lines": [
+        "- task_entities: TA-20; TA20-SIZING-18-LOCALIZED-BODIES-20260914; Article559700574305; PROB-2026-09-14-SIZING-GUIDE-FIT-GUIDANCE",
+        "- task_stage: VERIFY/HANDOFF completed exact localization release"
+      ],
+      "canonical_stage": "HANDOFF",
+      "stage_rationale": "Historical parent handoff stage; detailed release and blocked-lane qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-sizing-guide-localizations-live",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-14-ceo-sizing-guide-localizations-live",
+          "original_line": 51818
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-20; TA20-SIZING-18-LOCALIZED-BODIES-20260914; Article559700574305; PROB-2026-09-14-SIZING-GUIDE-FIT-GUIDANCE",
+          "replacement": "- task_entities: TA-20, TA20-SIZING-18-LOCALIZED-BODIES-20260914, Article559700574305, PROB-2026-09-14-SIZING-GUIDE-FIT-GUIDANCE",
+          "original_line": 51828
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: VERIFY/HANDOFF completed exact localization release",
+          "replacement": "- task_stage: HANDOFF\n- task_stage_detail: VERIFY/HANDOFF completed exact localization release\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51829
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-15-ceo-faq-sizing-progress-and-navy-label-scope",
+      "original_start_line": 51846,
+      "original_record_sha256": "928d79e0c37b660838fdfa81d240ee8e6646e7bca8f3b61a08a89a82628edc92",
+      "proposed_record_sha256": "92142caad31da4f43f0b279c4f989a4bd0a15d5c89d26e8fcfde1cb755cce2f1",
+      "original_metadata_lines": [
+        "- task_entities: TA06-FAQ-SIZING-TRUTH-20260914; TA07-NAVY-SIZE-CONSISTENCY-20260914; TA07-NAVY-FR-HIP-LABEL-20260915; Product7670609346657/Page161933381",
+        "- task_stage: BUILD/VERIFY source-owner progress; exact label-only successor permission recorded"
+      ],
+      "canonical_stage": "VERIFY",
+      "stage_rationale": "Historical source progress awaiting exact verification; original progress qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-faq-sizing-progress-and-navy-label-scope",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-faq-sizing-progress-and-navy-label-scope",
+          "original_line": 51846
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA06-FAQ-SIZING-TRUTH-20260914; TA07-NAVY-SIZE-CONSISTENCY-20260914; TA07-NAVY-FR-HIP-LABEL-20260915; Product7670609346657/Page161933381",
+          "replacement": "- task_entities: TA06-FAQ-SIZING-TRUTH-20260914, TA07-NAVY-SIZE-CONSISTENCY-20260914, TA07-NAVY-FR-HIP-LABEL-20260915, Product7670609346657, Page161933381",
+          "original_line": 51850
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: BUILD/VERIFY source-owner progress; exact label-only successor permission recorded",
+          "replacement": "- task_stage: VERIFY\n- task_stage_detail: BUILD/VERIFY source-owner progress; exact label-only successor permission recorded\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51851
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-15-ceo-navy-seo-title-guard-caught",
+      "original_start_line": 51867,
+      "original_record_sha256": "8dcc7282254956f3256cb0ccc39405a7b1955220ef7e8d0229f73ed0737a8bee",
+      "proposed_record_sha256": "c0826c88fbc6763c3509b7260a05ebb4eec09cfae98d43d483fc35673d8cf6de",
+      "original_metadata_lines": [
+        "- task_entities: TA-07; Product7670609346657; PROB-2026-09-15-NAVY-SEO-TITLE-PRESERVATION; TA07-NAVY-SIZE-CONSISTENCY-20260914",
+        "- task_stage: VERIFY_FAILED protectedfield; exact corrective review/execution pending; translationsHELD"
+      ],
+      "canonical_stage": "BLOCKED",
+      "stage_rationale": "Historical failed guard with dependent translations held; later recovery records remain authoritative for current state.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-navy-seo-title-guard-caught",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-navy-seo-title-guard-caught",
+          "original_line": 51867
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-07; Product7670609346657; PROB-2026-09-15-NAVY-SEO-TITLE-PRESERVATION; TA07-NAVY-SIZE-CONSISTENCY-20260914",
+          "replacement": "- task_entities: TA-07, Product7670609346657, PROB-2026-09-15-NAVY-SEO-TITLE-PRESERVATION, TA07-NAVY-SIZE-CONSISTENCY-20260914",
+          "original_line": 51871
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: VERIFY_FAILED protectedfield; exact corrective review/execution pending; translationsHELD",
+          "replacement": "- task_stage: BLOCKED\n- task_stage_detail: VERIFY_FAILED protectedfield; exact corrective review/execution pending; translationsHELD\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51872
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-15-ceo-faq-navy-live-and-theme-successor",
+      "original_start_line": 51888,
+      "original_record_sha256": "8dbcb1d0ab2602ec00e7e290f5d7ad29646d657f6fbcbe09c69b14ec8a1b6085",
+      "proposed_record_sha256": "8b7e889b05fb37d0282296157dfbaa81261275aec38398f74452664004f011e3",
+      "original_metadata_lines": [
+        "- task_entities: TA-06; TA-07; Page161933381; Product7670609346657; TA06-THEME-BUYER-TRUTH-SUCCESSOR-20260915",
+        "- task_stage: VERIFY completed content releases; BUILD/VERIFY exact theme successor; HANDOFF existing feed propagation"
+      ],
+      "canonical_stage": "HANDOFF",
+      "stage_rationale": "Historical parent handoff stage; detailed release and blocked-lane qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-faq-navy-live-and-theme-successor",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-faq-navy-live-and-theme-successor",
+          "original_line": 51888
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-06; TA-07; Page161933381; Product7670609346657; TA06-THEME-BUYER-TRUTH-SUCCESSOR-20260915",
+          "replacement": "- task_entities: TA-06, TA-07, Page161933381, Product7670609346657, TA06-THEME-BUYER-TRUTH-SUCCESSOR-20260915",
+          "original_line": 51898
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: VERIFY completed content releases; BUILD/VERIFY exact theme successor; HANDOFF existing feed propagation",
+          "replacement": "- task_stage: HANDOFF\n- task_stage_detail: VERIFY completed content releases; BUILD/VERIFY exact theme successor; HANDOFF existing feed propagation\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51899
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    },
+    {
+      "anchor": "2026-09-15-ceo-us-au-feeds-received-and-color-scope",
+      "original_start_line": 51917,
+      "original_record_sha256": "79be51d6ea036ec45782eacd484dc669b2b853c9b4055ed13fd5bbb27a8ad488",
+      "proposed_record_sha256": "e47374295c897b50dbb5df533249dd143a5de0285043996e96bb27b913007f40",
+      "original_metadata_lines": [
+        "- task_entities: TA-07; TA07-NAVY-SOURCE-PROPAGATION-20260915; TA07-SOURCE-COLOR47-20260915; Merchant513542500; sources10727274744/10727245667",
+        "- task_stage: VERIFY accepted existing-source release; BUILD/VERIFY exact47field successor"
+      ],
+      "canonical_stage": "HANDOFF",
+      "stage_rationale": "Historical parent handoff stage; detailed release and blocked-lane qualifications remain verbatim.",
+      "operations": [
+        {
+          "field": "anchor_marker",
+          "original": "## AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-us-au-feeds-received-and-color-scope",
+          "replacement": "AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-us-au-feeds-received-and-color-scope",
+          "original_line": 51917
+        },
+        {
+          "field": "task_entities",
+          "original": "- task_entities: TA-07; TA07-NAVY-SOURCE-PROPAGATION-20260915; TA07-SOURCE-COLOR47-20260915; Merchant513542500; sources10727274744/10727245667",
+          "replacement": "- task_entities: TA-07, TA07-NAVY-SOURCE-PROPAGATION-20260915, TA07-SOURCE-COLOR47-20260915, Merchant513542500, 10727274744, 10727245667",
+          "original_line": 51925
+        },
+        {
+          "field": "task_stage_with_detail_and_next_action",
+          "original": "- task_stage: VERIFY accepted existing-source release; BUILD/VERIFY exact47field successor",
+          "replacement": "- task_stage: HANDOFF\n- task_stage_detail: VERIFY accepted existing-source release; BUILD/VERIFY exact47field successor\n- next_action_id: READ_ONLY_MARKETING_RECONCILIATION",
+          "original_line": 51926
+        }
+      ],
+      "next_action_id_preexisting": false,
+      "new_entity_tokens_all_literal_substrings_of_original_metadata": true,
+      "inverse_byte_reconstruction_pass": true
+    }
+  ],
+  "simulation": {
+    "method": "Unchanged compiler imported with PYTHONDONTWRITEBYTECODE=1; override its read_text only for the proposed worklog string in memory. All other canonical reads and compiler behavior unchanged. No proposed worklog file was written.",
+    "queries": [
+      {
+        "case": "Color47 exact original query",
+        "query": "continue Google Merchant Color47 TA07-SOURCE-COLOR47-20260915",
+        "explicit_entities": [],
+        "expected_relevance_anchor": "2026-09-15-ceo-us-au-feeds-received-and-color-scope",
+        "selected_anchor": "2026-09-15-ceo-us-au-feeds-received-and-color-scope",
+        "currentness": null,
+        "source_lines_simulated": [
+          51940,
+          51966
+        ],
+        "task_stage": "HANDOFF",
+        "next_action": {
+          "id": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_path": "ops/marketing/current_marketing_state.md"
+        },
+        "diagnostics_status": "OK",
+        "errors": [],
+        "warnings": [],
+        "newer_same_entity_records": [],
+        "pass": true
+      },
+      {
+        "case": "FAQ exact product-page entity",
+        "query": "continue FAQ sizing release Page161933381",
+        "explicit_entities": [
+          "Page161933381"
+        ],
+        "expected_relevance_anchor": "2026-09-15-ceo-faq-navy-live-and-theme-successor",
+        "selected_anchor": "2026-09-15-ceo-faq-navy-live-and-theme-successor",
+        "currentness": null,
+        "source_lines_simulated": [
+          51909,
+          51939
+        ],
+        "task_stage": "HANDOFF",
+        "next_action": {
+          "id": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_path": "ops/marketing/current_marketing_state.md"
+        },
+        "diagnostics_status": "OK",
+        "errors": [],
+        "warnings": [],
+        "newer_same_entity_records": [],
+        "pass": true
+      },
+      {
+        "case": "Navy exact product entity",
+        "query": "continue Navy size consistency Product7670609346657",
+        "explicit_entities": [
+          "Product7670609346657"
+        ],
+        "expected_relevance_anchor": "2026-09-15-ceo-faq-navy-live-and-theme-successor",
+        "selected_anchor": "2026-09-15-ceo-faq-navy-live-and-theme-successor",
+        "currentness": null,
+        "source_lines_simulated": [
+          51909,
+          51939
+        ],
+        "task_stage": "HANDOFF",
+        "next_action": {
+          "id": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_path": "ops/marketing/current_marketing_state.md"
+        },
+        "diagnostics_status": "OK",
+        "errors": [],
+        "warnings": [],
+        "newer_same_entity_records": [],
+        "pass": true
+      },
+      {
+        "case": "Article localization exact action entity",
+        "query": "continue article sizing localization TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+        "explicit_entities": [
+          "TA20-SIZING-18-LOCALIZED-BODIES-20260914"
+        ],
+        "expected_relevance_anchor": "2026-09-14-ceo-sizing-guide-localizations-live",
+        "selected_anchor": "2026-09-14-ceo-sizing-guide-localizations-live",
+        "currentness": null,
+        "source_lines_simulated": [
+          51833,
+          51862
+        ],
+        "task_stage": "HANDOFF",
+        "next_action": {
+          "id": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_path": "ops/marketing/current_marketing_state.md"
+        },
+        "diagnostics_status": "OK",
+        "errors": [],
+        "warnings": [],
+        "newer_same_entity_records": [],
+        "pass": true
+      },
+      {
+        "case": "German exact action entity",
+        "query": "continue German TA07-DE-25-REPAIR-20260914",
+        "explicit_entities": [
+          "TA07-DE-25-REPAIR-20260914"
+        ],
+        "expected_relevance_anchor": "2026-09-14-ceo-german-live-and-owned-repairs-running",
+        "selected_anchor": "2026-09-14-ceo-german-live-and-owned-repairs-running",
+        "currentness": null,
+        "source_lines_simulated": [
+          51805,
+          51832
+        ],
+        "task_stage": "HANDOFF",
+        "next_action": {
+          "id": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_path": "ops/marketing/current_marketing_state.md"
+        },
+        "diagnostics_status": "OK",
+        "errors": [],
+        "warnings": [],
+        "newer_same_entity_records": [],
+        "pass": true
+      },
+      {
+        "case": "Latest exact continuation anchor",
+        "query": "continue profitable growth from AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-us-au-feeds-received-and-color-scope",
+        "explicit_entities": [
+          "2026-09-15-ceo-us-au-feeds-received-and-color-scope"
+        ],
+        "expected_relevance_anchor": "2026-09-15-ceo-us-au-feeds-received-and-color-scope",
+        "selected_anchor": "2026-09-15-ceo-us-au-feeds-received-and-color-scope",
+        "currentness": null,
+        "source_lines_simulated": [
+          51940,
+          51966
+        ],
+        "task_stage": "HANDOFF",
+        "next_action": {
+          "id": "READ_ONLY_MARKETING_RECONCILIATION",
+          "source_path": "ops/marketing/current_marketing_state.md"
+        },
+        "diagnostics_status": "OK",
+        "errors": [],
+        "warnings": [],
+        "newer_same_entity_records": [],
+        "pass": true
+      }
+    ],
+    "checks": {
+      "record_count_13": true,
+      "all_13_records_separately_recognized": true,
+      "all_13_metadata_valid": true,
+      "inverse_reconstruction_all_records": true,
+      "entire_prefix_and_other_owner_anchor_byte_preserved": true,
+      "six_relevance_queries_pass": true,
+      "article_and_German_not_replaced_by_globally_latest": true,
+      "canonical_worklog_unchanged_by_agent": true,
+      "control_and_compiler_unmodified": true
+    }
+  },
+  "limits": [
+    "This is a proposal and in-memory verification, not a canonical repair or live account verification.",
+    "Line numbers and complete-file digest bind the observed input; root must account for concurrent append-only owner work.",
+    "Explicit entities are used in FAQ, Navy, article, German and latest cases; the original Color47 query passes without an explicit entity override.",
+    "Existing historical duplicate anchor IDs elsewhere remain unchanged; they caused no errors or warnings in these six cases.",
+    "No new authority, source release, theme publication, parser acceptance rule or harness is introduced."
+  ]
+}

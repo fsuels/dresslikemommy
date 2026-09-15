@@ -1,0 +1,201 @@
+{
+  "action": "TA07-LOCAL-REFRESH-PROFILE-INDEPENDENT-REVIEW-20260914-2133",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "HIGH_FOR_LOCAL_IMPLEMENTATION",
+  "checkedAt": "2026-09-14T21:47:19.490436+00:00",
+  "scope": "Named native-holds-20260914 local lifecycle fallback and offline verification only. Prior cloud review is reused as a pinned dependency and is not recertified.",
+  "findings": [],
+  "implementationStatus": "VERIFIED_LOCAL",
+  "productionStatus": "NOT_RUN",
+  "candidateHashes": {
+    "lifecycle.py": "08580cd0f7d9bc61ade2b98e0d8b46d9c86f9a8ed6987936d6cecf85b7c6e14c",
+    "native_release_profile.py": "af06a2bbdf93676911969d51767b7f0f5e42997b943997ed8bc5e2bf15573c2b",
+    "verify_native_candidate.mjs": "fbaf887aa418c2ee0aba021c3d1cd9778f2db3eed4a92b6512d8ca5e9983ec77",
+    "release_contract_20260914.json": "82a3f587677d260cbe1af569a069ad26f318e91a33c97f9767b43dbab80b3e59",
+    "test_native_release_profile.py": "a1dd2e27112b8edb467bbaebd908b3d3d539c10ac025f22335387d68dbb5fdf3",
+    "native_profile_fixture.mjs": "06a8652a2f200382a340c0f8a4f3956a5be1ca3a83fb48b03391aa522cd282e6",
+    "test_lifecycle.py": "86e0da29453480c3cb626e77c4bde25e2c22e3b8f84d2007515f2f5dd891f9a6",
+    "test_cohort_filter.py": "2f650ba22e058604c0d7fda7876ce2dec7aef1179aa77d8eb5f9c98c515d3f28"
+  },
+  "contractDependenciesVerified": [
+    {
+      "root": "builder",
+      "path": "bin/build.mjs",
+      "sha256": "08cfbfcbb4574507a5bb1ec52502eb9dcfa6b4a6e20ff81475cb4d7f3ce6ef83"
+    },
+    {
+      "root": "builder",
+      "path": "package.json",
+      "sha256": "b9b3f45df1dcabae85da66410d29da4fb58c947108b472d52f6375e9cf432d0f"
+    },
+    {
+      "root": "builder",
+      "path": "config.json",
+      "sha256": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8"
+    },
+    {
+      "root": "builder",
+      "path": "src/collector.js",
+      "sha256": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8"
+    },
+    {
+      "root": "builder",
+      "path": "src/queries.js",
+      "sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9"
+    },
+    {
+      "root": "builder",
+      "path": "src/generator.js",
+      "sha256": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f"
+    },
+    {
+      "root": "builder",
+      "path": "src/eligibility.js",
+      "sha256": "5441bb6aade0f2900f3770602109e14f0e4e964d3e819fff77bf935350038ac8"
+    },
+    {
+      "root": "local",
+      "path": "native_release_profile.py",
+      "sha256": "af06a2bbdf93676911969d51767b7f0f5e42997b943997ed8bc5e2bf15573c2b"
+    },
+    {
+      "root": "local",
+      "path": "verify_native_candidate.mjs",
+      "sha256": "fbaf887aa418c2ee0aba021c3d1cd9778f2db3eed4a92b6512d8ca5e9983ec77"
+    },
+    {
+      "root": "local",
+      "path": "cohort_filter.py",
+      "sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9"
+    },
+    {
+      "root": "local",
+      "path": "eligibility_holds_20260911.json",
+      "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733"
+    },
+    {
+      "root": "audit",
+      "path": "recovery_20260914/cloud_final_independent_review_2102/review.json",
+      "sha256": "304e081244c3398c6ea35a9a7fe3eda40f543b4017a9a4cf897775a25f8cc6b8"
+    },
+    {
+      "root": "audit",
+      "path": "recovery_20260914/cloud_activation_review_2042/integration_validation_final.json",
+      "sha256": "39a5aacd0b4966c086508d5481604a3167ca02877b3563264a31839c4563c46a"
+    },
+    {
+      "root": "audit",
+      "path": "recovery_20260911/direct-feed-deployment/international_candidate/au-en.full_cohort_qualification_20260911.json",
+      "sha256": "7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a"
+    }
+  ],
+  "historicalFreezeSha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed",
+  "verification": {
+    "command": "python3 -B /Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/local_lifecycle_profile_2133/independent_review/offline_runner.py",
+    "runs": 1,
+    "testsRun": 69,
+    "passed": 69,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "existingLifecycleAndCohortTests": 44,
+    "newBuilderProfileTests": 17,
+    "independentAdversarialCases": 8,
+    "log": "offline-tests.txt",
+    "machineResult": "offline-results.json",
+    "realNetworkCalls": 0,
+    "privateCredentialReads": 0,
+    "externalWrites": 0,
+    "networkRestriction": "Python network connect and Cloudflare constructor denied; Node preload denies fetch and HTTP/HTTPS/net/TLS connection entry points.",
+    "fixtureContext": "Synthetic source produced by the pinned real generator. FakeApi holds remote objects in memory; temporary files remain in this review directory."
+  },
+  "assessments": [
+    {
+      "area": "Profile and run isolation",
+      "status": "PASS",
+      "evidence": "CLI defaults to legacy. Only two named profiles are accepted. The native contract is hash-pinned; prepare/run/config/release-profile identity is verified, and legacy/native cross-use rejects."
+    },
+    {
+      "area": "Complete native replay and clocks",
+      "status": "PASS",
+      "evidence": "Pinned buildFeed validates complete catalog and variant manifests/counts. Offline replay compares the exact TSV, complete diagnostics and exact expected manifest. Candidate checks matching build/source receipt windows, source advancement and a current maximum 120-minute age independently of the replay clock. Containment copies evidence without restamping or applying a second filter."
+    },
+    {
+      "area": "Six holds and reactivation",
+      "status": "PASS",
+      "evidence": "All six canonical holds stay in the config while absent parents are reported separately. Independent absence/reactivation pair kept identical feed bytes and switched available-held count from zero to one when the held parent returned."
+    },
+    {
+      "area": "Protected offers and legitimate removals",
+      "status": "PASS",
+      "evidence": "Eligible protected offers must be in exact replay output. Complete-source absence, unpublished context, unavailable variants and explicit holds have enumerated omission reasons. Actual omitted IDs and reasons must exactly match the independently hash-bound review packet."
+    },
+    {
+      "area": "Exact review binding",
+      "status": "PASS",
+      "evidence": "Review hash binds candidate files, source clocks, before-state, build/prepare/containment receipts, uploader, contract, verifier and source qualification. Native profile/verifier and protected omission list cannot be replaced by otherwise valid old review fields."
+    },
+    {
+      "area": "Dependency drift",
+      "status": "PASS",
+      "evidence": "All 14 pinned dependencies verified. Independent fault injection rejected bin drift before any PUT and generator drift after one immutable-object PUT, before pointer PUT. Candidate/source age and review are revalidated after upload."
+    },
+    {
+      "area": "Uncertain commit",
+      "status": "PASS",
+      "evidence": "Through the full native path, a committed timeout is resolved by reads; a subsequent check issues no second pointer PUT. An uncommitted timeout preserves the prior pointer and the durable intent prevents a blind retry."
+    },
+    {
+      "area": "Publisher architecture",
+      "status": "PASS_WITH_LIMITS",
+      "evidence": "Local lock and single-writer review assertion remain; no server-side CAS is claimed. Actual sole-writer ownership and external authority must be rechecked at action time."
+    }
+  ],
+  "adversarialCases": [
+    "Dependency drift before upload blocks every PUT.",
+    "Dependency drift after immutable upload blocks pointer.",
+    "Uncertain committed pointer resolves without a second PUT.",
+    "Uncertain uncommitted pointer cannot be blindly retried.",
+    "Source expiry during upload cannot advance pointer.",
+    "Replay cannot override the actual scan receipt window.",
+    "Absent parent reactivation keeps all six configured holds.",
+    "Valid old review fields do not substitute for native profile binding."
+  ],
+  "testHistory": {
+    "initialRootRounds": "Root reported fixture market-context omissions in round one. Round two stopped the midpoint drift test early because FakeApi normalized pointer JSON; root corrected fixture transport bytes only.",
+    "finalRootFocusedRound": {
+      "log": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/local_lifecycle_profile_2133/tests-round3.txt",
+      "sha256": "e308c116c503970a8ebbf063cc79e56300743562902c8c71ae9ea84f4583fa54",
+      "testsRun": 61,
+      "pass": 61
+    },
+    "reviewConclusion": "No implementation defect found in this independent pass. Earlier fixture failures are not represented as passing runs."
+  },
+  "requiredBeforeLiveUse": [
+    "Use a new run directory with explicit --release-profile native-holds-20260914 and recheck the exact implementation and contract hashes.",
+    "Capture current US pointer/host/before-state and active sole-writer authority; do not treat this local implementation review as source-specific promotion approval.",
+    "Collect a genuinely fresh complete Shopify source with the existing authorized local access. Never relabel a historical replay as a fresh source scan.",
+    "Independently reconcile the fresh candidate, all prices, additions, removals, holds and every protected omission; bind exact per-run artifact hashes before any promotion.",
+    "Use existing approved US destination only. Cloud deployment, credential transfer, queue creation and new markets remain outside this profile and this review.",
+    "Preserve the 120-minute promotion window and uncertain-attempt/readback rules; use reads to resolve ambiguous writes.",
+    "After an authorized promotion, verify exact immutable/pointer/public bytes and source-age context, then Google processing separately. The previously observed public HTTP 403 remains a root-owned live gate."
+  ],
+  "limits": [
+    "This is implementation verification using synthetic fixtures and FakeApi, not a live Shopify collection, public-host verification or Merchant receipt.",
+    "Root owns any historical real-source replay in the parent packet; that replay is separate and does not establish freshness.",
+    "The current legacy builder config has changed; preserving the old legacy defaults/freeze does not mean an old run can be promoted through the new profile.",
+    "This review does not recertify or activate the earlier cloud package."
+  ],
+  "ownership": {
+    "evidenceDirectoryOnly": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/local_lifecycle_profile_2133/independent_review",
+    "implementationEdits": 0,
+    "canonicalEdits": 0,
+    "priorFrozenPacketEdits": 0,
+    "credentialsRead": 0,
+    "externalWrites": 0,
+    "liveSourceRefreshes": 0,
+    "promotions": 0
+  },
+  "nextAction": "Root completes its historical replay and prepares a new source-specific local refresh for the Sep 15 proactive target, subject to existing exact authority and live gates.",
+  "continuation": "Continue with the explicit native-holds-20260914 profile; preserve the pinned contract and obtain a fresh source-specific review before any live promotion."
+}

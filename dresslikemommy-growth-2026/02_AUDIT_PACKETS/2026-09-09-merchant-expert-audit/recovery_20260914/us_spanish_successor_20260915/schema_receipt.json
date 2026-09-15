@@ -1,0 +1,571 @@
+{
+  "source": "Shopify graphql_schema calls; selected exact fields only",
+  "types": [
+    {
+      "type": "QueryRoot",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "market",
+          "description": "Returns a `Market` resource by ID.",
+          "type": {
+            "name": "Market",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [
+            {
+              "name": "id",
+              "description": "The ID of the `Market` to return.",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "nodes",
+          "description": "Returns the list of nodes (any objects that implement the\n[Node](https://shopify.dev/api/admin-graphql/latest/interfaces/Node)\ninterface) with the given IDs, in accordance with the\n[Relay specification](https://relay.dev/docs/guides/graphql-server-specification/#object-identification).",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": "Node",
+                "kind": "INTERFACE",
+                "ofType": null
+              }
+            }
+          },
+          "args": [
+            {
+              "name": "ids",
+              "description": "The IDs of the Nodes to return.",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": null,
+                  "kind": "LIST",
+                  "ofType": {
+                    "name": null,
+                    "kind": "NON_NULL",
+                    "ofType": {
+                      "name": "ID",
+                      "kind": "SCALAR",
+                      "ofType": null
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "product",
+          "description": "Retrieves a [product](https://shopify.dev/docs/api/admin-graphql/latest/objects/Product) by its ID.\nA product is an item that a merchant can sell in their store.\n\nUse the `product` query when you need to:\n\n- Access essential product data (for example, title, description, price, images, SEO metadata, and metafields).\n- Build product detail pages and manage inventory.\n- Handle international sales with localized pricing and content.\n- Manage product variants and product options.\n\nLearn more about working with [Shopify's product model](https://shopify.dev/docs/apps/build/graphql/migrate/new-product-model/product-model-components).",
+          "type": {
+            "name": "Product",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [
+            {
+              "name": "id",
+              "description": "The ID of the `Product` to return.",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop",
+          "description": "Returns the Shop resource corresponding to the access token used in the request. The Shop resource contains\nbusiness and store management settings for the shop.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Shop",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "translatableResource",
+          "description": "Retrieves a resource that has translatable fields. Returns the resource's [`Translation`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Translation) objects for different locales and markets, along with the original [`TranslatableContent`](https://shopify.dev/docs/api/admin-graphql/latest/objects/TranslatableContent) and digest values needed to register new translations. Provides access to existing translations, translatable content with digest hashes for translation registration, and nested translatable resources like [`ProductVariant`](https://shopify.dev/docs/api/admin-graphql/latest/objects/ProductVariant) objects or [`Metafield`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Metafield) objects.\n\nLearn more about [managing translated content](https://shopify.dev/docs/apps/build/markets/manage-translated-content).",
+          "type": {
+            "name": "TranslatableResource",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [
+            {
+              "name": "resourceId",
+              "description": "Find a translatable resource by ID.",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "translatableResourcesByIds",
+          "description": "Returns a paginated list of [`TranslatableResource`](https://shopify.dev/docs/api/admin-graphql/latest/objects/TranslatableResource) objects for the specified resource IDs. Each resource provides translatable content and digest values needed for the [`translationsRegister`](https://shopify.dev/docs/api/admin-graphql/latest/mutations/translationsRegister) mutation.\n\nLearn more about [managing translated content](https://shopify.dev/docs/apps/build/markets/manage-translated-content).",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "TranslatableResourceConnection",
+              "kind": "OBJECT",
+              "ofType": null
+            }
+          },
+          "args": [
+            {
+              "name": "resourceIds",
+              "description": "Return only resources for given IDs.",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": null,
+                  "kind": "LIST",
+                  "ofType": {
+                    "name": null,
+                    "kind": "NON_NULL",
+                    "ofType": {
+                      "name": "ID",
+                      "kind": "SCALAR",
+                      "ofType": null
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "first",
+              "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "after",
+              "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "last",
+              "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+              "type": {
+                "name": "Int",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "before",
+              "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            },
+            {
+              "name": "reverse",
+              "description": "Reverse the order of the underlying list.",
+              "type": {
+                "name": "Boolean",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Product",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "handle",
+          "description": "A unique, human-readable string of the product's title. A handle can contain letters, hyphens (`-`), and numbers, but no spaces.\nThe handle is used in the online store URL for the product.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "id",
+          "description": "A globally-unique ID.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "status",
+          "description": "The [product status](https://help.shopify.com/manual/products/details/product-details-page#product-status),\nwhich controls visibility across all sales channels.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ProductStatus",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "translations",
+          "description": "The published translations associated with the resource.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "Translation",
+                  "kind": "OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": [
+            {
+              "name": "locale",
+              "description": "Filters translations locale.",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "name": "marketId",
+              "description": "Filters translations by market ID. Use this argument to retrieve content specific to a market.",
+              "type": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ]
+        },
+        {
+          "name": "updatedAt",
+          "description": "The date and time when the product was last modified.\nA product's `updatedAt` value can change for different reasons. For example, if an order\nis placed for a product that has inventory tracking set up, then the inventory adjustment\nis counted as an update.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "DateTime",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        }
+      ]
+    },
+    {
+      "type": "TranslatableResource",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "resourceId",
+          "description": "GID of the resource.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "translatableContent",
+          "description": "Translatable content.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "TranslatableContent",
+                  "kind": "OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": [
+            {
+              "name": "marketId",
+              "description": "Filters translatable content by market ID. Use this argument to retrieve translatable content specific to a market.",
+              "type": {
+                "name": "ID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Translation",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "key",
+          "description": "On the resource that this translation belongs to, the reference to the value being translated.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "locale",
+          "description": "ISO code of the translation locale.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "market",
+          "description": "The market that the translation is specific to. Null value means the translation is available in all markets.",
+          "type": {
+            "name": "Market",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": []
+        },
+        {
+          "name": "outdated",
+          "description": "Whether the original content has changed since this translation was updated.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "value",
+          "description": "Translation value.",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          },
+          "args": []
+        }
+      ]
+    },
+    {
+      "type": "TranslatableContent",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "digest",
+          "description": "Hash digest representation of the content value.",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          },
+          "args": []
+        },
+        {
+          "name": "key",
+          "description": "The resource field that's being translated.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "locale",
+          "description": "Locale of the content.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        }
+      ]
+    },
+    {
+      "type": "Market",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "id",
+          "description": "A globally-unique ID.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "name",
+          "description": "The name of the market. Not shown to customers.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "status",
+          "description": "Status of the market. Replaces the enabled field.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "MarketStatus",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          "args": []
+        }
+      ]
+    },
+    {
+      "type": "Shop",
+      "kind": "OBJECT",
+      "fields": [
+        {
+          "name": "id",
+          "description": "A globally-unique ID.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "name",
+          "description": "The shop's name.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        }
+      ]
+    }
+  ]
+}

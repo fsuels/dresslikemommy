@@ -1,0 +1,779 @@
+{
+  "status": "PASS_SOURCE_DIAGNOSIS_AND_BOUNDED_IN_MEMORY_PROPOSAL",
+  "syntheticOnly": true,
+  "sourceSha256": {
+    "main": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+    "candidate": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20"
+  },
+  "lineage": [
+    {
+      "name": "stripDiacritics",
+      "mainLine": 150,
+      "candidateLine": 150,
+      "mainSha256": "d1d03124f1a5d887bb5e0953eae1fcffd49c9c6b84b7273f258f34ad7aefc8f8",
+      "candidateSha256": "d1d03124f1a5d887bb5e0953eae1fcffd49c9c6b84b7273f258f34ad7aefc8f8",
+      "identical": true
+    },
+    {
+      "name": "replaceLocaleDigits",
+      "mainLine": 156,
+      "candidateLine": 156,
+      "mainSha256": "1ce5b78b177c43528a53ff522ea504e7401951d94cf0351f63fd75435f92c0d4",
+      "candidateSha256": "1ce5b78b177c43528a53ff522ea504e7401951d94cf0351f63fd75435f92c0d4",
+      "identical": true
+    },
+    {
+      "name": "normalizeText",
+      "mainLine": 166,
+      "candidateLine": 166,
+      "mainSha256": "bd68a4aeddc9fe656761ef9956502373c820984baf5893e50e25d60eedd89603",
+      "candidateSha256": "bd68a4aeddc9fe656761ef9956502373c820984baf5893e50e25d60eedd89603",
+      "identical": true
+    },
+    {
+      "name": "containsDictionaryToken",
+      "mainLine": 835,
+      "candidateLine": 949,
+      "mainSha256": "be91bad13a84b51cab09293d74deaceac1bbf897ef22499e14c9bf817518780b",
+      "candidateSha256": "be91bad13a84b51cab09293d74deaceac1bbf897ef22499e14c9bf817518780b",
+      "identical": true
+    },
+    {
+      "name": "isTypeLikeLabel",
+      "mainLine": 848,
+      "candidateLine": 962,
+      "mainSha256": "0b8a87284ef066d138ab9ee683ab42a2320feec8918d8431d6eebfdba5c2cfc2",
+      "candidateSha256": "0b8a87284ef066d138ab9ee683ab42a2320feec8918d8431d6eebfdba5c2cfc2",
+      "identical": true
+    },
+    {
+      "name": "getGarmentKeys",
+      "mainLine": 1043,
+      "candidateLine": 1157,
+      "mainSha256": "62828b1ba436b131e024a74ea853670ba71ed98dd943a6985329b806e5433094",
+      "candidateSha256": "62828b1ba436b131e024a74ea853670ba71ed98dd943a6985329b806e5433094",
+      "identical": true
+    },
+    {
+      "name": "getGarmentKey",
+      "mainLine": 1085,
+      "candidateLine": 1199,
+      "mainSha256": "2c71ebdbd23ebb83d3e6a94f18fdf8b0870e1fc1d2c7a3e412adc03a3d99caa1",
+      "candidateSha256": "2c71ebdbd23ebb83d3e6a94f18fdf8b0870e1fc1d2c7a3e412adc03a3d99caa1",
+      "identical": true
+    },
+    {
+      "name": "getSingularGarmentKey",
+      "mainLine": 1090,
+      "candidateLine": 1204,
+      "mainSha256": "0397ca881f169a9dc5e627e78be8968bd45b1822a6b13d104ece7421877c7635",
+      "candidateSha256": "0397ca881f169a9dc5e627e78be8968bd45b1822a6b13d104ece7421877c7635",
+      "identical": true
+    },
+    {
+      "name": "getCurrentOptionContext",
+      "mainLine": 1403,
+      "candidateLine": 1510,
+      "mainSha256": "9e0c039d5ee684de2866623361ae690ee46ddad6fb918a0e79f825b19d608bd2",
+      "candidateSha256": "9e0c039d5ee684de2866623361ae690ee46ddad6fb918a0e79f825b19d608bd2",
+      "identical": true
+    },
+    {
+      "name": "getOptionNameFromControl",
+      "mainLine": 1417,
+      "candidateLine": 1524,
+      "mainSha256": "65a78f79f4ea5c7f597ae80aea99c76e404744925214ef2a2a498459935ed3c3",
+      "candidateSha256": "65a78f79f4ea5c7f597ae80aea99c76e404744925214ef2a2a498459935ed3c3",
+      "identical": true
+    },
+    {
+      "name": "getAxisNamesForGroup",
+      "mainLine": 2435,
+      "candidateLine": 2570,
+      "mainSha256": "3ff0b774efedc6edd3382034be6489b91def2e6082daca1d88b8307529e9aa29",
+      "candidateSha256": "3ff0b774efedc6edd3382034be6489b91def2e6082daca1d88b8307529e9aa29",
+      "identical": true
+    },
+    {
+      "name": "getTypeAxisNamesForGroup",
+      "mainLine": 2463,
+      "candidateLine": 2598,
+      "mainSha256": "1c9bbd216d448c59cbfb19ee785568a16c3404e0f1bc826d721c68df238e550c",
+      "candidateSha256": "1c9bbd216d448c59cbfb19ee785568a16c3404e0f1bc826d721c68df238e550c",
+      "identical": true
+    },
+    {
+      "name": "getOptionTypeValue",
+      "mainLine": 2469,
+      "candidateLine": 2604,
+      "mainSha256": "5fd247abe079869610fd59fa00f38adcdb3e9941646420c6c32cffd1729d81b3",
+      "candidateSha256": "5fd247abe079869610fd59fa00f38adcdb3e9941646420c6c32cffd1729d81b3",
+      "identical": true
+    },
+    {
+      "name": "getTypeValuesForGroupSize",
+      "mainLine": 2479,
+      "candidateLine": 2614,
+      "mainSha256": "70ff2a86bae5011ccb5a21118e89ec3ebf7202accf5a4584ee015cb4042c1250",
+      "candidateSha256": "70ff2a86bae5011ccb5a21118e89ec3ebf7202accf5a4584ee015cb4042c1250",
+      "identical": true
+    },
+    {
+      "name": "getSelectedTypeValue",
+      "mainLine": 2497,
+      "candidateLine": 2632,
+      "mainSha256": "7528347c1e6582dd9962ced4fbc3177d9e1198dbd4216ba903ac3c2414783058",
+      "candidateSha256": "7528347c1e6582dd9962ced4fbc3177d9e1198dbd4216ba903ac3c2414783058",
+      "identical": true
+    },
+    {
+      "name": "getPendingMeasurementAxisLabel",
+      "mainLine": 2507,
+      "candidateLine": 2642,
+      "mainSha256": "fe90062e9b34b94fdb66f1e9a3e6463a766f182d1036622043d1a8956bffc750",
+      "candidateSha256": "fe90062e9b34b94fdb66f1e9a3e6463a766f182d1036622043d1a8956bffc750",
+      "identical": true
+    },
+    {
+      "name": "getMeasurementGarmentKey",
+      "mainLine": 2514,
+      "candidateLine": 2649,
+      "mainSha256": "d0c06e9646c07abcfd8d4454555719eccd7e6d74ca40bb8191ce53b1544e523a",
+      "candidateSha256": "d0c06e9646c07abcfd8d4454555719eccd7e6d74ca40bb8191ce53b1544e523a",
+      "identical": true
+    },
+    {
+      "name": "getMeasurementContextForInstance",
+      "mainLine": 2530,
+      "candidateLine": 2665,
+      "mainSha256": "150bb2e002bff912d1ede388810d2d4bf97029db5d158348eee6e5049edaca80",
+      "candidateSha256": "150bb2e002bff912d1ede388810d2d4bf97029db5d158348eee6e5049edaca80",
+      "identical": true
+    },
+    {
+      "name": "getSelectedGuideTypeValue",
+      "mainLine": 3747,
+      "candidateLine": 3974,
+      "mainSha256": "71871912af3d9609a6b30b8fefefbbd0d7f6fa7f4af71f4b1bcda0542d84654c",
+      "candidateSha256": "71871912af3d9609a6b30b8fefefbbd0d7f6fa7f4af71f4b1bcda0542d84654c",
+      "identical": true
+    },
+    {
+      "name": "getSizeGuideTableContextText",
+      "mainLine": 4085,
+      "candidateLine": 4312,
+      "mainSha256": "9afc050c43c256bcde2715515735b2937d1d994d095617cb29a4367255599e21",
+      "candidateSha256": "9afc050c43c256bcde2715515735b2937d1d994d095617cb29a4367255599e21",
+      "identical": true
+    },
+    {
+      "name": "tableMatchesSelectedType",
+      "mainLine": 4104,
+      "candidateLine": 4331,
+      "mainSha256": "d4231580a1cca49e89ee031f35487ae842ea249fa0e4f28a93b8bb7380a2453f",
+      "candidateSha256": "d4231580a1cca49e89ee031f35487ae842ea249fa0e4f28a93b8bb7380a2453f",
+      "identical": true
+    },
+    {
+      "name": "contextContainsGarmentKey",
+      "mainLine": 4151,
+      "candidateLine": 4378,
+      "mainSha256": "59e1846b24be35ea2027e9810a4d36b83dc6b2cf93bedacf78cf7311fe4b50ad",
+      "candidateSha256": "59e1846b24be35ea2027e9810a4d36b83dc6b2cf93bedacf78cf7311fe4b50ad",
+      "identical": true
+    },
+    {
+      "name": "getSizeGuideTable",
+      "mainLine": 4203,
+      "candidateLine": 4430,
+      "mainSha256": "e487678265df11292f944632fdee911881081634cb50e4ce39040570c6bd8011",
+      "candidateSha256": "e487678265df11292f944632fdee911881081634cb50e4ce39040570c6bd8011",
+      "identical": true
+    },
+    {
+      "name": "getFitGroupFromProductTables",
+      "mainLine": 5302,
+      "candidateLine": 5529,
+      "mainSha256": "cfacc1b1e1b64a004062ebf0f6cafe5721efb68299cc5b03393219ac9e44d08e",
+      "candidateSha256": "cfacc1b1e1b64a004062ebf0f6cafe5721efb68299cc5b03393219ac9e44d08e",
+      "identical": true
+    },
+    {
+      "name": "getFitModalGroups",
+      "mainLine": 5146,
+      "candidateLine": 5373,
+      "mainSha256": "44e5d52a125e2ad37536d3d15b839021eb5564b20e570f7710173952fc0a128e",
+      "candidateSha256": "44e5d52a125e2ad37536d3d15b839021eb5564b20e570f7710173952fc0a128e",
+      "identical": true
+    },
+    {
+      "name": "findActiveFitGroupInList",
+      "mainLine": 5270,
+      "candidateLine": 5497,
+      "mainSha256": "d03f0a8b6a34f0f5686fd5c995949a3e0f233f130de2953ecc7604fdd1422e31",
+      "candidateSha256": "d03f0a8b6a34f0f5686fd5c995949a3e0f233f130de2953ecc7604fdd1422e31",
+      "identical": true
+    },
+    {
+      "name": "getFitModalActiveGroup",
+      "mainLine": 5331,
+      "candidateLine": 5558,
+      "mainSha256": "28688072aa9b264a5f2c4009ffd315416bcd15d4980384bffa8882801f62351e",
+      "candidateSha256": "28688072aa9b264a5f2c4009ffd315416bcd15d4980384bffa8882801f62351e",
+      "identical": true
+    },
+    {
+      "name": "pruneFitGroupForGarment",
+      "mainLine": 5218,
+      "candidateLine": 5445,
+      "mainSha256": "ada28f5e98f9f5b2284f269b94681422cb7062e138e2169a1f3aacbf00510f1b",
+      "candidateSha256": "ada28f5e98f9f5b2284f269b94681422cb7062e138e2169a1f3aacbf00510f1b",
+      "identical": true
+    },
+    {
+      "name": "getFitHeaderGarmentKeys",
+      "mainLine": 5168,
+      "candidateLine": 5395,
+      "mainSha256": "31ce7ac7bfd9f76e0f0d08fc2ca2c034e85511ef2d835ba6dc9a8c524e01ac36",
+      "candidateSha256": "31ce7ac7bfd9f76e0f0d08fc2ca2c034e85511ef2d835ba6dc9a8c524e01ac36",
+      "identical": true
+    },
+    {
+      "name": "fitGarmentKeysCompatible",
+      "mainLine": 5162,
+      "candidateLine": 5389,
+      "mainSha256": "5de215c75e7600ad83280eda2c5d4acc9b92278e7375302aa93263a6a8557e9c",
+      "candidateSha256": "5de215c75e7600ad83280eda2c5d4acc9b92278e7375302aa93263a6a8557e9c",
+      "identical": true
+    },
+    {
+      "name": "isSharedFitMeasurementHeader",
+      "mainLine": 1095,
+      "candidateLine": 1209,
+      "mainSha256": "40c05ddb2c4784651e435da4ff6a10c7f186fe6b3c5627c63b36ca1d83102d48",
+      "candidateSha256": "40c05ddb2c4784651e435da4ff6a10c7f186fe6b3c5627c63b36ca1d83102d48",
+      "identical": true
+    },
+    {
+      "name": "pruneGuideGroupColumns",
+      "mainLine": 6037,
+      "candidateLine": 6264,
+      "mainSha256": "fbe4f0835b4e1683cf3f208273ee278c9c05597b5996c881387c419c42060fca",
+      "candidateSha256": "fbe4f0835b4e1683cf3f208273ee278c9c05597b5996c881387c419c42060fca",
+      "identical": true
+    },
+    {
+      "name": "isGuideEmptyValue",
+      "mainLine": 6029,
+      "candidateLine": 6256,
+      "mainSha256": "4039add0709028d66eb3af45431e0fc8e87d634670a67244a7580fa8f295e9eb",
+      "candidateSha256": "4039add0709028d66eb3af45431e0fc8e87d634670a67244a7580fa8f295e9eb",
+      "identical": true
+    },
+    {
+      "name": "cellText",
+      "mainLine": 6023,
+      "candidateLine": 6250,
+      "mainSha256": "567541152723b65bea24876df1bd433f556e34e009c83f8c1514114cd35f1c83",
+      "candidateSha256": "567541152723b65bea24876df1bd433f556e34e009c83f8c1514114cd35f1c83",
+      "identical": true
+    },
+    {
+      "name": "renderInlineFitPanel",
+      "mainLine": 5463,
+      "candidateLine": 5690,
+      "mainSha256": "ec935b4ff0ae3d74d90de6ad2582ad75718cb6fdfa38f0d0bf775b1b0ba987fe",
+      "candidateSha256": "ec935b4ff0ae3d74d90de6ad2582ad75718cb6fdfa38f0d0bf775b1b0ba987fe",
+      "identical": true
+    },
+    {
+      "name": "makeSizeMeasurementLookup",
+      "mainLine": 1720,
+      "candidateLine": 1855,
+      "mainSha256": "7859fc9eb70720d9d298592d43dd2980cba19b663b8f192dc481d67c48745365",
+      "candidateSha256": "7859fc9eb70720d9d298592d43dd2980cba19b663b8f192dc481d67c48745365",
+      "identical": true
+    },
+    {
+      "name": "makeMeasurementEntryKey",
+      "mainLine": 1729,
+      "candidateLine": 1864,
+      "mainSha256": "eda6be7f2f764e0acfcbcfec902a6c1ca5aaf5032dc989207a5eb95da97d710f",
+      "candidateSha256": "eda6be7f2f764e0acfcbcfec902a6c1ca5aaf5032dc989207a5eb95da97d710f",
+      "identical": true
+    },
+    {
+      "name": "normalizeSizeKey",
+      "mainLine": 1716,
+      "candidateLine": 1851,
+      "mainSha256": "5d379330bfb7b95bbc753927bdd273c5a0b018accbdc89325c3af02d2a4859bd",
+      "candidateSha256": "5d379330bfb7b95bbc753927bdd273c5a0b018accbdc89325c3af02d2a4859bd",
+      "identical": true
+    },
+    {
+      "name": "addSizeMeasurementEntry",
+      "mainLine": 2059,
+      "candidateLine": 2194,
+      "mainSha256": "0c4e68fa90f655a8565edd0e9c4a8946f6f6a6993c1fb16b85b33c563cea2a1e",
+      "candidateSha256": "0c4e68fa90f655a8565edd0e9c4a8946f6f6a6993c1fb16b85b33c563cea2a1e",
+      "identical": true
+    },
+    {
+      "name": "findMeasurementsForOption",
+      "mainLine": 2163,
+      "candidateLine": 2298,
+      "mainSha256": "fc51f1e41e16e68bbde111859b4ee919cea0cf7e543c59173a127e9ea8b9492c",
+      "candidateSha256": "fc51f1e41e16e68bbde111859b4ee919cea0cf7e543c59173a127e9ea8b9492c",
+      "identical": true
+    },
+    {
+      "name": "garmentKeysCompatible",
+      "mainLine": 1956,
+      "candidateLine": 2091,
+      "mainSha256": "8b925f0b85220e9c52351165ad1236cb82ecb3870350d6471c4eb64315382989",
+      "candidateSha256": "8b925f0b85220e9c52351165ad1236cb82ecb3870350d6471c4eb64315382989",
+      "identical": true
+    }
+  ],
+  "cases": [
+    {
+      "source": "main",
+      "mode": "UNCHANGED_SOURCE",
+      "role": "mother",
+      "selectedType": "Dress",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "dress",
+      "renderedRows": [
+        [
+          "S",
+          "111",
+          "222"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "main",
+      "mode": "UNCHANGED_SOURCE",
+      "role": "mother",
+      "selectedType": "Cardigan",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "",
+      "renderedRows": [
+        [
+          "S",
+          "111",
+          "222",
+          "333"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length",
+        "Garment Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "main",
+      "mode": "UNCHANGED_SOURCE",
+      "role": "girl",
+      "selectedType": "Dress",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "dress",
+      "renderedRows": [
+        [
+          "S",
+          "112",
+          "223"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "main",
+      "mode": "UNCHANGED_SOURCE",
+      "role": "girl",
+      "selectedType": "Cardigan",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "",
+      "renderedRows": [
+        [
+          "S",
+          "112",
+          "223",
+          "334"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length",
+        "Garment Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "main",
+      "mode": "UNCHANGED_SOURCE",
+      "case": "compact-tooltip-cardigan",
+      "returnedGarmentKey": "",
+      "row": [
+        "S",
+        "444",
+        "555",
+        "666"
+      ],
+      "explanation": "Untyped Cardigan entry overwrites generic role/size lookup; apparent success is not exact garment discrimination"
+    },
+    {
+      "source": "main",
+      "mode": "UNCHANGED_SOURCE",
+      "case": "native-controls-cardigan",
+      "selectedTable": "size-chart-cardigan",
+      "explanation": "Raw native type matching can find Cardigan; builder selection is a separate state path"
+    },
+    {
+      "source": "main",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "role": "mother",
+      "selectedType": "Dress",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "dress",
+      "renderedRows": [
+        [
+          "S",
+          "111",
+          "222"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "main",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "role": "mother",
+      "selectedType": "Cardigan",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "cardigan",
+      "renderedRows": [
+        [
+          "S",
+          "444",
+          "555",
+          "666"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Sleeve Length",
+        "Garment Length"
+      ],
+      "expectedSyntheticChart": "size-chart-cardigan"
+    },
+    {
+      "source": "main",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "role": "girl",
+      "selectedType": "Dress",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "dress",
+      "renderedRows": [
+        [
+          "S",
+          "112",
+          "223"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "main",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "role": "girl",
+      "selectedType": "Cardigan",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "cardigan",
+      "renderedRows": [
+        [
+          "S",
+          "445",
+          "556",
+          "667"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Sleeve Length",
+        "Garment Length"
+      ],
+      "expectedSyntheticChart": "size-chart-cardigan"
+    },
+    {
+      "source": "main",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "case": "compact-tooltip-cardigan",
+      "returnedGarmentKey": "cardigan",
+      "row": [
+        "S",
+        "444",
+        "555",
+        "666"
+      ],
+      "explanation": "Exact role + cardigan key"
+    },
+    {
+      "source": "main",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "case": "native-controls-cardigan",
+      "selectedTable": "size-chart-cardigan",
+      "explanation": "Raw native type matching can find Cardigan; builder selection is a separate state path"
+    },
+    {
+      "source": "candidate",
+      "mode": "UNCHANGED_SOURCE",
+      "role": "mother",
+      "selectedType": "Dress",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "dress",
+      "renderedRows": [
+        [
+          "S",
+          "111",
+          "222"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "candidate",
+      "mode": "UNCHANGED_SOURCE",
+      "role": "mother",
+      "selectedType": "Cardigan",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "",
+      "renderedRows": [
+        [
+          "S",
+          "111",
+          "222",
+          "333"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length",
+        "Garment Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "candidate",
+      "mode": "UNCHANGED_SOURCE",
+      "role": "girl",
+      "selectedType": "Dress",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "dress",
+      "renderedRows": [
+        [
+          "S",
+          "112",
+          "223"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "candidate",
+      "mode": "UNCHANGED_SOURCE",
+      "role": "girl",
+      "selectedType": "Cardigan",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "",
+      "renderedRows": [
+        [
+          "S",
+          "112",
+          "223",
+          "334"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length",
+        "Garment Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "candidate",
+      "mode": "UNCHANGED_SOURCE",
+      "case": "compact-tooltip-cardigan",
+      "returnedGarmentKey": "",
+      "row": [
+        "S",
+        "444",
+        "555",
+        "666"
+      ],
+      "explanation": "Untyped Cardigan entry overwrites generic role/size lookup; apparent success is not exact garment discrimination"
+    },
+    {
+      "source": "candidate",
+      "mode": "UNCHANGED_SOURCE",
+      "case": "native-controls-cardigan",
+      "selectedTable": "size-chart-cardigan",
+      "explanation": "Raw native type matching can find Cardigan; builder selection is a separate state path"
+    },
+    {
+      "source": "candidate",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "role": "mother",
+      "selectedType": "Dress",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "dress",
+      "renderedRows": [
+        [
+          "S",
+          "111",
+          "222"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "candidate",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "role": "mother",
+      "selectedType": "Cardigan",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "cardigan",
+      "renderedRows": [
+        [
+          "S",
+          "444",
+          "555",
+          "666"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Sleeve Length",
+        "Garment Length"
+      ],
+      "expectedSyntheticChart": "size-chart-cardigan"
+    },
+    {
+      "source": "candidate",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "role": "girl",
+      "selectedType": "Dress",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "dress",
+      "renderedRows": [
+        [
+          "S",
+          "112",
+          "223"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Skirt Length"
+      ],
+      "expectedSyntheticChart": "size-chart"
+    },
+    {
+      "source": "candidate",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "role": "girl",
+      "selectedType": "Cardigan",
+      "nativeType": "Dress",
+      "triggerGarmentKey": "cardigan",
+      "renderedRows": [
+        [
+          "S",
+          "445",
+          "556",
+          "667"
+        ]
+      ],
+      "renderedHeaders": [
+        "Size",
+        "Chest/Bust",
+        "Sleeve Length",
+        "Garment Length"
+      ],
+      "expectedSyntheticChart": "size-chart-cardigan"
+    },
+    {
+      "source": "candidate",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "case": "compact-tooltip-cardigan",
+      "returnedGarmentKey": "cardigan",
+      "row": [
+        "S",
+        "444",
+        "555",
+        "666"
+      ],
+      "explanation": "Exact role + cardigan key"
+    },
+    {
+      "source": "candidate",
+      "mode": "IN_MEMORY_CARDIGAN_RECOGNITION_ONLY",
+      "case": "native-controls-cardigan",
+      "selectedTable": "size-chart-cardigan",
+      "explanation": "Raw native type matching can find Cardigan; builder selection is a separate state path"
+    }
+  ],
+  "unchangedSourceCoreFunctionsIdentical": true,
+  "isolation": {
+    "actualSourceExecuted": "Garment classifier, builder measurement context, native type reader, source-table selector, inline-fit routing, garment pruning, compact lookup index/read",
+    "modeledDependencies": "Synthetic parsed tables/groups, fixed role compatibility and role pruning, token generation, no-op display bindings; table parser, broader role inference and real DOM rendering not tested",
+    "numericData": "Invented markers 111/222/333 and 444/555/666; no actual product measurement cells copied",
+    "writes": "This packet only; no theme, product, test suite, browser, Git, canonical, network or API writes"
+  }
+}

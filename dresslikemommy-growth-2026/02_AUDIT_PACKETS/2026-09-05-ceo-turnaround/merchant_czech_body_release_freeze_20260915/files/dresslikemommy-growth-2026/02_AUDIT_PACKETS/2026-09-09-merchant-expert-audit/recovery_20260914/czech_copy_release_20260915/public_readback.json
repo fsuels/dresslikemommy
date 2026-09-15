@@ -1,0 +1,97 @@
+{
+  "status": "PASS_EXACT_FIVE_SPANS_PUBLIC_AFTER_NATIVE_LANGUAGE_SELECTION",
+  "recordedAt": "2026-09-15T04:52:30.778Z",
+  "source": "Task-owned browser1/tab8 native accessibility readback after clicking the visible header Čeština link",
+  "requestedUrl": "https://www.dresslikemommy.com/cs/products/coral-blossom-mommy-and-me-dresses",
+  "actualUrl": "https://www.dresslikemommy.com/cs/products/coral-blossom-mommy-and-me-dresses",
+  "priorDirectNavigation": {
+    "status": "REDIRECT_OBSERVED",
+    "resultUrl": "https://www.dresslikemommy.com/products/coral-blossom-mommy-and-me-dresses",
+    "language": "English",
+    "country": "United States",
+    "currency": "USD",
+    "cartCount": 0,
+    "cause": "UNKNOWN"
+  },
+  "recoveryActions": [
+    "Opened visible header English language selector",
+    "Clicked visible Čeština link",
+    "Read resulting native accessibility state"
+  ],
+  "result": {
+    "heading": "Šaty Coral Blossom Mommy and Me",
+    "language": "Čeština",
+    "country": "Spojené státy",
+    "currency": "USD",
+    "cartCount": 0
+  },
+  "checks": [
+    {
+      "expected": "Potisk:",
+      "present": true
+    },
+    {
+      "expected": "Rozsah velikostí:",
+      "present": true
+    },
+    {
+      "expected": "Sladěné šaty pro maminku a dceru:",
+      "present": true
+    },
+    {
+      "expected": "Volánky a odhalená ramena:",
+      "present": true
+    },
+    {
+      "expected": "Přidejte velikosti, které potřebujete, a vytvořte si veselé ladící šaty pro příští slunečnou rodinnou vzpomínku.",
+      "present": true
+    },
+    {
+      "expected": "Vyberte velikost pro každou osobu. Každá volba zahrnuje jedny šaty; šaty pro maminku a dceru se prodávají samostatně.",
+      "present": true
+    },
+    {
+      "expected": "Rozměry boků a všechny rozměry velikosti XL pro maminku jsou odhady, nikoli naměřené hodnoty.",
+      "present": true
+    }
+  ],
+  "oldSpansAbsent": [
+    {
+      "text": "Ptisk:",
+      "absent": true
+    },
+    {
+      "text": "Srozsah velikostí:",
+      "absent": true
+    },
+    {
+      "text": "Matka + dcera zápas:",
+      "absent": true
+    },
+    {
+      "text": "Volníky na studených ramenech:",
+      "absent": true
+    },
+    {
+      "text": "APřidejte",
+      "absent": true
+    }
+  ],
+  "protectedActionsNotTaken": [
+    "Country selection",
+    "Variant or size selection",
+    "Cart change",
+    "Checkout",
+    "Additional Shopify mutation",
+    "Theme change",
+    "Merchant change"
+  ],
+  "limits": [
+    "Five corrected prose spans only; not all Czech copy",
+    "Initial direct language URL redirect cause unresolved; this native language selection read does not qualify cookie-independent feed arrivals",
+    "US/USD context, not Czechia market or currency qualification",
+    "No size-table expansion or truth certification",
+    "Existing English buybox instructions and other Czech residuals preserved for their respective owners",
+    "No free-listing serving, traffic, sales or profit claim"
+  ]
+}

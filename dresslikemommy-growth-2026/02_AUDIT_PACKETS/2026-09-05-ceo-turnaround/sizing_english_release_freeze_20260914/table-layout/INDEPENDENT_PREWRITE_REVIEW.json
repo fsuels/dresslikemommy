@@ -1,0 +1,133 @@
+{
+  "schema": "dlm.sizing_table_layout_independent_prewrite_review.v1",
+  "action_id": "TA20-SIZING-GUIDE-EDITORIAL-20260914",
+  "revision": 3,
+  "reviewed_at_utc": "2026-09-14T22:59:11.764538+00:00",
+  "reviewer": "/root/daily_operation_review",
+  "verdict": "PASS_WITH_LIMITS",
+  "blocking_findings": [],
+  "target_id": "gid://shopify/Article/559700574305",
+  "candidate_sha256": "367db0385db73a1a31c81af0f99184d693a1a57db5790748bd1ae63857f68c98",
+  "before_body_sha256": "7f8ccb04c9e4951b00b1a4c123640b46f2b090da700784b5f96bf2e2ab2ed975",
+  "checks_passed": 16,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "id": "same_published_article",
+      "status": "PASS",
+      "evidence": "Same published Article559700574305; no other page or theme asset targeted."
+    },
+    {
+      "id": "source_guard_matches_current_saved_afterstate",
+      "status": "PASS",
+      "evidence": "Layout before-body equals the saved, already-corrected editorial body and prior reviewed candidate."
+    },
+    {
+      "id": "revision_three_candidate_hash",
+      "status": "PASS",
+      "evidence": "Exact revision3 candidate bytes verified."
+    },
+    {
+      "id": "one_unique_substitution",
+      "status": "PASS",
+      "evidence": "Exactly one table opening tag is changed."
+    },
+    {
+      "id": "forward_and_reverse_exact",
+      "status": "PASS",
+      "evidence": "The single substitution reproduces the candidate; reversing it restores the corrected editorial body byte for byte."
+    },
+    {
+      "id": "balanced_unchanged_element_sequence",
+      "status": "PASS",
+      "evidence": "Source and candidate are balanced; every element remains in the same position."
+    },
+    {
+      "id": "all_text_links_preserved",
+      "status": "PASS",
+      "evidence": "Every text node and all four shopping/support hrefs are unchanged."
+    },
+    {
+      "id": "only_table_style_attribute",
+      "status": "PASS",
+      "evidence": "The only attribute delta is the exact reviewed table style; no script, class, form, image or other inline style introduced."
+    },
+    {
+      "id": "css_targets_recorded_failure",
+      "status": "PASS",
+      "evidence": "Inline display/width restore a constrained fixed-layout table, normal white space allows inherited cell wrapping, and anywhere permits breaking otherwise unbreakable strings. This addresses recorded nowrap overflow without changing theme rules."
+    },
+    {
+      "id": "body_only_mutation_and_rollback",
+      "status": "PASS",
+      "evidence": "Both variable objects are body-only on the same article. Layout rollback retains the corrected advice and contact links, not the original unsafe advice."
+    },
+    {
+      "id": "twelve_protected_fields_preserved_at_layout_before",
+      "status": "PASS",
+      "evidence": "All 12 original protected fields still match the saved layout-before article; recheck after the second write."
+    },
+    {
+      "id": "source_body_and_five_nonbody_keys_bound",
+      "status": "PASS",
+      "evidence": "Current saved body source/digest matches the guarded revision; five nonbody translatable entries remain exactly bound to the original review."
+    },
+    {
+      "id": "ninety_translation_values_still_preserved",
+      "status": "PASS",
+      "evidence": "All 90 values match original fingerprints. The 18 body translations are already outdated after the initial editorial write; this layout write does not translate them and may refresh body metadata again."
+    },
+    {
+      "id": "same_validated_operation",
+      "status": "PASS",
+      "evidence": "Same frozen single articleUpdate operation and saved successful schema validation apply; no remote validation repeated."
+    },
+    {
+      "id": "guarded_smallest_rollback",
+      "status": "PASS",
+      "evidence": "Layout rollback removes only the reviewed style while preserving intervening edits through a fresh hash guard; no conversion or lift claim."
+    },
+    {
+      "id": "no_rendered_acceptance_claimed",
+      "status": "PASS",
+      "evidence": "Static CSS reasoning supports the candidate, but actual cell inheritance, any competing !important rules, Shopify style persistence, wrapped readability and overflow must be checked on the published page after the write."
+    }
+  ],
+  "source_sha256": {
+    "change-plan.json": "191af10f6c389e390d986c3f92e914941240c452690b5a935b8492ef28b6e63f",
+    "candidate-final.html": "367db0385db73a1a31c81af0f99184d693a1a57db5790748bd1ae63857f68c98",
+    "mutation-variables.json": "7c860664e944e9029559e8fc4642b80464ac5e89558cccf6b15488ff67d1768a",
+    "rollback-variables.json": "3cbda9a2c45fc8dd213766f38e797c69554aa9827779fd1dee2aa13f5acf7c1c",
+    "../PUBLIC_INITIAL_MOBILE_QA.json": "1f44d5a578798c187b717387dd74245240e0ab337c93cf6278ce2d27a4143afb",
+    "../article-after.json": "7aad6d2057f8d136eb23a1f693cc3c007a16dafb014412e0238d08b7eb95d679",
+    "../translations-after.json": "77b09ed48e4c849ac0a2670380db1919bf907ef4948e50de23194cfaef2ad59f",
+    "../change-plan.json": "4960d5976e7a411b4e17ec24c5940e6b33526d79a0d08176e9ae71663cb1f704",
+    "../mutation.graphql": "7cec8ec41c1082ff46178895b4581bc9c780e7baa86c55688f95596d1ec2c95a",
+    "../mutation-validation.json": "a2d2b3ca34d0c9c660e93e73b299144a8cb1c462dba7d6a5d9743ed87a5799bc",
+    "../INDEPENDENT_PREWRITE_REVIEW.json": "9f22208f6aed560cdd25efcede3b12ba91b96604d0d3df5bed7570a7faad8d4b"
+  },
+  "scope_verdict": "One reversible article-body table style attribute is a justified correction to the regression observed during initial publication QA. It preserves all copy, links, markup structure and other store surfaces; this is a second article-body write, not a theme deployment.",
+  "css_assessment": "EXPECTED: display:table plus width:100% and fixed layout constrain the three columns; white-space:normal and overflow-wrap:anywhere normally inherit into cells to permit wrapping. Actual rendered cell styles and readable line breaks are not certified by this static review.",
+  "prior_review_timing": {
+    "initial_prewrite_review_at_utc": "2026-09-14T22:52:55.985022+00:00",
+    "initial_check_count_observed_by_root_guard": 22,
+    "root_guard_count_source": "Parent task message; root guard artifact was not independently read in this bounded review.",
+    "operation_validation_added_at_utc": "2026-09-14T22:53:33.579793+00:00",
+    "current_original_review_check_count": 24,
+    "qualification": "Do not retroactively claim that the root initial guard included the later two operation-validation checks. Both additions preserve the original candidate hash."
+  },
+  "limitations": [
+    "Reviewer performed no live/browser/account mutation or render. Mobile failure evidence is the supplied root receipt.",
+    "Requested viewport390px and actual document375px are distinct; the 345px table width is the recorded available content area, not an assumed viewport width.",
+    "After-state must show that Shopify preserved the style and that cells actually wrap without clipping or document overflow on mobile and desktop.",
+    "All 90 translation values and 12 protected fields must remain unchanged. Eighteen localized body values already contain the older advice and are outdated; this correction does not complete localization.",
+    "No traffic, purchase or profit result is inferred."
+  ],
+  "required_after_state": [
+    "Fresh exact source-body/protected-field check before the second mutation; stop on drift.",
+    "One body-only layout save and independent exact body, field and translation after-read.",
+    "Published narrow and desktop screenshots plus measured table client/scroll width and computed cell whiteSpace/overflowWrap; verify all three columns readable without clipping, excessive horizontal scrolling or document overflow.",
+    "Actual shopping/contact link arrivals stay valid; no contact submission, cart, checkout or purchase."
+  ],
+  "next_action": "Parent may apply this exact layout-only revision after its fresh source guard, then supply frozen final source and published QA evidence."
+}

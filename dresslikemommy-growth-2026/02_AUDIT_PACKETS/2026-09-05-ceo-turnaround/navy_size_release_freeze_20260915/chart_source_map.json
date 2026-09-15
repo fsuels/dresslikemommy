@@ -1,0 +1,491 @@
+{
+  "schema": "dlm.navy.chart-source-map.v1",
+  "action": "TA07-NAVY-SIZE-CONSISTENCY-20260914",
+  "status": "VERIFIED_LOCAL_SOURCE_MAPPING__LIVE_STATE_NOT_READ",
+  "confidence": "H for local code/source mapping; current live product/theme parity remains unknown",
+  "recordedAt": "2026-09-15T00:10:39.051671+00:00",
+  "productId": "gid://shopify/Product/7670609346657",
+  "handle": "navy-sprig-mommy-and-me-dresses",
+  "scope": {
+    "externalReads": 0,
+    "externalWrites": 0,
+    "implementationEdits": 0,
+    "ownedArtifact": "chart_source_map.json",
+    "requiredPreservation": "Retain all 24 current variants, options, prices and existing measurements; no historical 3XL restoration."
+  },
+  "authority": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/navy_size_consistency_release_plan_20260914.json",
+    "line": 15,
+    "endLine": 25
+  },
+  "sources": [
+    {
+      "surface": "Visible size charts, selected-size measurements, full comparison and fit panels",
+      "owner": "Product content supplies measurements; theme builds presentation.",
+      "fields": [
+        "Product.descriptionHtml",
+        "TranslatableResource body_html, per existing locale and applicable market override"
+      ],
+      "tableIds": [
+        "size-chart",
+        "size-chart-cardigan"
+      ],
+      "findings": "The product description block renders product.description through optimized-product-description. The loaded guide parses size-chart tables from that rendered description, using garment/role context. No separate chart metafield appears in these reader paths.",
+      "evidence": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/sections/main-product.liquid",
+          "line": 1164,
+          "endLine": 1172
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/snippets/optimized-product-description.liquid",
+          "line": 9,
+          "endLine": 52
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-variant-picker.liquid",
+          "line": 398,
+          "endLine": 427
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 1842,
+          "endLine": 1847
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 2282,
+          "endLine": 2293
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 5529,
+          "endLine": 5552
+        }
+      ],
+      "currentLiveValues": "UNKNOWN in this read-only local mapping; parent owns fresh source and all-locale reads."
+    },
+    {
+      "surface": "Native and custom localized variant/size picker",
+      "owner": "Product options and variants supply choices; theme dictionaries format labels.",
+      "fields": [
+        "Product.options/options_with_values",
+        "Product.variants id, title, option1, option2, option3, available"
+      ],
+      "findings": "Picker choices come from product.options_with_values and product.variants, serialized in ProductMatchingSetData. Theme resolves locale from document language and formats garment, role and age labels. A chart row is not a new variant, and altering chart content must not recreate 3XL options.",
+      "evidence": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-variant-picker.liquid",
+          "line": 58
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-variant-options.liquid",
+          "line": 28,
+          "endLine": 49
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-desktop-ux.liquid",
+          "line": 179,
+          "endLine": 210
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 126,
+          "endLine": 136
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 925,
+          "endLine": 945
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 1219,
+          "endLine": 1224
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 1396,
+          "endLine": 1410
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 1619,
+          "endLine": 1625
+        }
+      ]
+    },
+    {
+      "surface": "SEO description/title and search metadata",
+      "owner": "Product SEO/global translation source; theme applies fallback and formatting.",
+      "fields": [
+        "Product.seo.title",
+        "Product.seo.description",
+        "global.title_tag",
+        "global.description_tag",
+        "TranslatableResource meta_title/meta_description"
+      ],
+      "findings": "Historical listing code writes both Product.seo and global title_tag/description_tag. The historical description_tag advertises Mother S-3XL; title_tag does not. Theme starts with page_description, falling back to stripped product.description only when missing or generic. SEO fields are not chart data inputs.",
+      "evidence": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/create-nspr-navy-sprig-mommy-and-me-dresses.sh",
+          "line": 587,
+          "endLine": 593
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/create-nspr-navy-sprig-mommy-and-me-dresses.sh",
+          "line": 738,
+          "endLine": 741
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/verify-navy-sprig-mommy-and-me-dresses.json",
+          "line": 903,
+          "endLine": 914
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-seo-description-fallback.liquid",
+          "line": 1,
+          "endLine": 7
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-seo-description-fallback.liquid",
+          "line": 37,
+          "endLine": 51
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/layout/theme.liquid",
+          "line": 142,
+          "endLine": 145
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/layout/theme.liquid",
+          "line": 231,
+          "endLine": 232
+        }
+      ],
+      "currentLiveValues": "Parent must reconcile current SEO and translated equivalents; historical paired writes do not establish today's values."
+    }
+  ],
+  "metafieldFindings": {
+    "dedicatedVisibleChartMetafield": "NOT FOUND in the targeted current local theme readers or returned historical Navy metadata.",
+    "historicalRelevantFields": [
+      {
+        "namespace": "global",
+        "key": "title_tag",
+        "type": "single_line_text_field",
+        "role": "SEO title; no historical 3XL token",
+        "evidence": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/verify-navy-sprig-mommy-and-me-dresses.json",
+          "line": 905
+        }
+      },
+      {
+        "namespace": "global",
+        "key": "description_tag",
+        "type": "single_line_text_field",
+        "role": "SEO description; historical S-3XL availability claim",
+        "evidence": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/verify-navy-sprig-mommy-and-me-dresses.json",
+          "line": 911
+        }
+      },
+      {
+        "namespace": "shopify",
+        "key": "size",
+        "type": "list.metaobject_reference",
+        "role": "Historical category size references (13), not a measurement chart or picker source in the inspected theme. Do not change category data under this plan.",
+        "evidence": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/verify-navy-sprig-mommy-and-me-dresses.json",
+          "line": 1035,
+          "endLine": 1039
+        }
+      }
+    ],
+    "absenceLimit": "The historical snapshot returns 26 metafields without an explicit pagination receipt. No fresh metafield read was performed here; this is not proof that no additional live chart metafield exists.",
+    "staticSearch": {
+      "directories": [
+        "sections",
+        "snippets",
+        "assets",
+        "layout",
+        "templates"
+      ],
+      "patterns": [
+        "metafields.*size",
+        "metafields.*chart"
+      ],
+      "matches": 0
+    },
+    "conditionalTreatment": "If parent discovers a current product-owned chart outside body that is actually rendered, bind its exact namespace/key and before-value, then remove only the two unavailable 3XL garment rows or apply independently reviewed not-currently-offered labeling. Preserve all other cells and original archival source. Do not invent a chart field or modify unused category references."
+  },
+  "themeBehavior": [
+    {
+      "finding": "The local product template enables dropdown picker and description blocks; main-product loads product-desktop-ux-20260513-ruler-sync.js. Older similarly named JS files are not the referenced asset at this entry point.",
+      "evidence": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/templates/product.json",
+          "line": 34,
+          "endLine": 54
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/sections/main-product.liquid",
+          "line": 927,
+          "endLine": 933
+        }
+      ]
+    },
+    {
+      "finding": "The guide may fetch default-locale /products/{handle}.js and extract description/body_html tables when no usable initial guide exists. Source and localized bodies both matter.",
+      "evidence": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 3879,
+          "endLine": 3933
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 5986,
+          "endLine": 5991
+        }
+      ]
+    },
+    {
+      "finding": "Original description tables are hidden by the theme after parsing, but remain data sources. CSS hiding alone does not remove stale rows from guide data.",
+      "evidence": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 2286,
+          "endLine": 2292
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 4284,
+          "endLine": 4309
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "line": 5939,
+          "endLine": 5968
+        }
+      ]
+    },
+    {
+      "finding": "size-conversion.js formats size labels and reads HTML tables; it does not supply a separate persisted measurement chart.",
+      "evidence": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/layout/theme.liquid",
+          "line": 1308
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/size-conversion.js",
+          "line": 247,
+          "endLine": 266
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/size-conversion.js",
+          "line": 502,
+          "endLine": 525
+        }
+      ]
+    }
+  ],
+  "historicalArtifacts": {
+    "evidenceDate": "2026-08-31; historical DRAFT closeout, not current offer authority.",
+    "chartJson": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/size-chart-navy-sprig-mommy-and-me-dresses.json",
+      "rows": 26,
+      "garments": [
+        "Dress",
+        "Cardigan"
+      ],
+      "threeXlRows": 2,
+      "threeXlKnownData": "Weight recommendation 73-80 kg; unprovided garment measurements remain missing markers.",
+      "evidence": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/size-chart-navy-sprig-mommy-and-me-dresses.json",
+          "line": 232,
+          "endLine": 247
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/size-chart-navy-sprig-mommy-and-me-dresses.json",
+          "line": 479,
+          "endLine": 494
+        }
+      ]
+    },
+    "generatedBody": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/body-navy-sprig-mommy-and-me-dresses.html",
+      "tableIds": [
+        "size-chart",
+        "size-chart-cardigan"
+      ],
+      "threeXlRangeLine": 7,
+      "threeXlRowLines": [
+        37,
+        68
+      ],
+      "imageElements": 0
+    },
+    "originalImage": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/source-size-chart-navy-sprig-mommy-and-me-dresses.png",
+      "treatment": "Preserve untouched. Image bytes were hashed, not interpreted or redrawn. The historical generated body contains no image elements; listing media helper excludes filenames containing size-chart.",
+      "evidence": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/create-nspr-navy-sprig-mommy-and-me-dresses.sh",
+          "line": 65,
+          "endLine": 67
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/create-nspr-navy-sprig-mommy-and-me-dresses.sh",
+          "line": 771,
+          "endLine": 775
+        }
+      ]
+    },
+    "generatorBoundary": {
+      "finding": "Historical table_for builds two HTML tables from archived rows; these files are preparation/history, not a runtime Shopify chart datastore. Replaying the broad runner risks restoring historical scope.",
+      "evidence": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/create-nspr-navy-sprig-mommy-and-me-dresses.sh",
+          "line": 439,
+          "endLine": 479
+        }
+      ]
+    },
+    "oldCloseout": {
+      "status": "passed for historical draft",
+      "sourceTables": 2,
+      "sourceBodyLength": 8534,
+      "evidence": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/navy-sprig-mommy-and-me-dresses-localization-closeout.json",
+          "line": 6
+        },
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/navy-sprig-mommy-and-me-dresses-localization-closeout.json",
+          "line": 138,
+          "endLine": 143
+        }
+      ]
+    }
+  },
+  "minimalPermittedTreatment": {
+    "recommended": "Under fresh source proof, remove only the unavailable Mother 3XL row from each current Dress/Cardigan body table and its existing localized equivalents; change confirmed availability ranges to stop at Mother 2XL and repair current SEO equivalents. Keep table IDs, all 24 supported rows/variants, other cells, units and missing markers unchanged. Preserve archived JSON, HTML, original image and historical receipts.",
+    "noThemeChangeNeededFromThisMap": true,
+    "requiresIndependentReview": "Exact language and measurement preservation; current field/digest bindings and rendered chart coverage remain parent-owned.",
+    "existingTooling": "Localized chart repair operates on product.descriptionHtml and translations body_html. Its force-rebuild mode can replace all localized tables, so use only a reviewed narrow source delta appropriate to this plan.",
+    "evidence": [
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/repair_localized_product_size_charts.py",
+        "line": 137,
+        "endLine": 161
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/repair_localized_product_size_charts.py",
+        "line": 177,
+        "endLine": 198
+      }
+    ],
+    "criticalVerificationLimit": "Existing variant mapping audit checks only availableForSale variants for ACTIVE products and only variant-to-row existence. A pass alone cannot prove all 24 protected variants/measurements were retained or extra unavailable 3XL rows removed.",
+    "verificationEvidence": [
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/audit_localized_size_chart_variant_mapping.py",
+        "line": 590,
+        "endLine": 610
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/audit_localized_size_chart_variant_mapping.py",
+        "line": 620,
+        "endLine": 645
+      }
+    ]
+  },
+  "unknowns": [
+    "Current live product body, SEO, metafields, all locale/market overrides, and exact 24 variant values were not read by this agent.",
+    "Current deployed theme parity with these local files is unverified.",
+    "Current media or image-based chart presets may differ from the historical body; any such current visible chart needs parent source/rendered verification.",
+    "No archive or local source file establishes today's 3XL availability or authorizes restoration."
+  ],
+  "sourceBindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/templates/product.json",
+      "sha256": "ec24f14bdd083e13685431d77a3acdeb3e0a86c7914bc1edc41551623cd2fc7f"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/sections/main-product.liquid",
+      "sha256": "01a345e7d32c7bb23c6ba159c9388d7f9a839116378a56ef3fdcb351f1f3e6f1"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-variant-picker.liquid",
+      "sha256": "bde5488071ab11ef2b0ff005e5fc34d356073c94fe0e685750f11f5415daa18b"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-variant-options.liquid",
+      "sha256": "1ff45823e0db6dc747f3269c09eb6c00d48dd61c55ddc4b118f5b07d776ec3be"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-desktop-ux.liquid",
+      "sha256": "354c4f8a84c869645a7b6d35c4eb867b5445fc9aed3018ad40d883254c20f946"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/snippets/optimized-product-description.liquid",
+      "sha256": "f560608d019290a62ad8e6f4e0f83583d5646432ea9c2dc0ae405a7586d24558"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-seo-description-fallback.liquid",
+      "sha256": "ff490a05d102923fddd2487d90c400b8d8b3e3bb990559c01bbcea507a797154"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/layout/theme.liquid",
+      "sha256": "d5817734bb7db97f5352cd34bcb724c310db2a49dc9ace165f2a036fb06d77ab"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+      "sha256": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/assets/size-conversion.js",
+      "sha256": "1d57ccf7f571187ac71734d79a0fa165a8bef6f833c7e13a7e69bdb99601c6af"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-description.js",
+      "sha256": "1619781d32528954002be7127073486d302153c27696a4c67e112e7068473563"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/repair_localized_product_size_charts.py",
+      "sha256": "27e3a1a0eb4bee1b96744bc280816847a5813002803b9ece2e03ec51ccfeaab3"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/audit_localized_size_chart_variant_mapping.py",
+      "sha256": "439fd549634143de59cfda8e4f93ff013ad11228617ed58ac9112063567ce1ef"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/create-nspr-navy-sprig-mommy-and-me-dresses.sh",
+      "sha256": "bed756b2293afb670c6155c55a8ee76f8ef7095b164c265766ca00d0989b46a4"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/size-chart-navy-sprig-mommy-and-me-dresses.json",
+      "sha256": "d315dbc7b867b1369bfa60fde475b27ef23643c6a9101e25d6a0f1e5f994fbe7"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/body-navy-sprig-mommy-and-me-dresses.html",
+      "sha256": "e9aceaf168b6c2ac06fe4113635598e44198d9015fea5e632050f0f8a8522593"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/verify-navy-sprig-mommy-and-me-dresses.json",
+      "sha256": "dd7467e3fbf9bed2b558c0c06bab7e7ca2b3f3a7a07c95d455cc44e0ea85b160"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/navy-sprig-mommy-and-me-dresses-localization-closeout.json",
+      "sha256": "b0164848fcf3689d7d802ec75d1b43972b8e8abfd505cc6374e490ca9f2cc50a"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/source-size-chart-navy-sprig-mommy-and-me-dresses.png",
+      "sha256": "19d915dc3f34a70fb56c169216da40a5ce467399e3026459d824e96970279571"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/navy_size_consistency_release_plan_20260914.json",
+      "sha256": "9d614cf51b72c7a3c9f1c40828caece2a165797617a715f7366bcf8eec65bd8c"
+    }
+  ]
+}

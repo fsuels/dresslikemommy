@@ -1,0 +1,347 @@
+{
+  "schema": "dlm.sizing_localized_body_independent_review.v1",
+  "action_id": "TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+  "locale": "pl",
+  "target_resource": "gid://shopify/Article/559700574305",
+  "target_key": "body_html",
+  "market": null,
+  "reviewer": "/root/daily_operation_review",
+  "candidate_author": "/root/sizing_locales_b",
+  "reviewed_at_utc": "2026-09-14T23:35:25.474754+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "blocking_findings": [],
+  "independence": "Reviewer did not author this Group B candidate and made no candidate edits. Reviewer authored separate Group A candidates only.",
+  "candidate_sha256": "0d09fc739a7d63bda8b65413132a51ac94c28ac405e98b144a193346a8fc65eb",
+  "english_source_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "before_sha256": "b0625862042aa2d9b2cf5de3515b0d3edbcdd602fe86bf865f5a239c48b3aa09",
+  "source_sha256": {
+    "ROOT_PLAN.json": "923dd593b8d656dc5f70387e7b7e6f0e1ce8514b9254c3ae74f875a51009e6f7",
+    "english-final.html": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+    "english-before.html": "7c6d26272eac0068e189434ea3bb2dd4990c5d6c018843141f8ca6fb624989c1",
+    "english-change-plan.json": "4960d5976e7a411b4e17ec24c5940e6b33526d79a0d08176e9ae71663cb1f704",
+    "ROUTES.json": "9f67a31a1463503fbd26a96669ce71f7d095a088d1a3941dee80d62be89999d5",
+    "locales/pl/before.html": "b0625862042aa2d9b2cf5de3515b0d3edbcdd602fe86bf865f5a239c48b3aa09",
+    "locales/pl/before.json": "2996ac2fe50576763c680237fba2bbdae7a290cee8e8defb7d1d783822646a41",
+    "locales/pl/candidate.html": "0d09fc739a7d63bda8b65413132a51ac94c28ac405e98b144a193346a8fc65eb",
+    "locales/pl/AUTHOR_NOTES.json": "46c586c1e170ae83856fbe190067c27332898b9c033fee44446770aae9d0f4ae"
+  },
+  "static_check_count": 12,
+  "static_checks": [
+    {
+      "id": "source_and_candidate_hash_bound",
+      "status": "PASS",
+      "evidence": "English final, candidate and before hashes independently recomputed and bound."
+    },
+    {
+      "id": "correct_existing_locale_identity",
+      "status": "PASS",
+      "evidence": "Existing global body_html row for the exact locale/article; no new locale or market identity."
+    },
+    {
+      "id": "reviewer_is_not_author",
+      "status": "PASS",
+      "evidence": "Reviewer authored Group A, not this Group B candidate."
+    },
+    {
+      "id": "balanced_forty_three_element_sequence",
+      "status": "PASS",
+      "evidence": "All43element positions match source and remain balanced."
+    },
+    {
+      "id": "all_four_discovered_locale_hrefs",
+      "status": "PASS",
+      "evidence": "All four hrefs equal locale routes in ROUTES.json; actual arrivals remain root-owned."
+    },
+    {
+      "id": "all_thirteen_styles_match_final_english",
+      "status": "PASS",
+      "evidence": "One table and twelve cell style attributes exactly match verified final English."
+    },
+    {
+      "id": "unchanged_headings_labels_and_intro_preserved",
+      "status": "PASS",
+      "evidence": "Unchanged headings/table labels, intro text and shopping-link labels preserved, with the required locale href change only."
+    },
+    {
+      "id": "final_paragraph_unchanged_prefix_preserved",
+      "status": "PASS",
+      "evidence": "Original final-paragraph prefix and first shopping label are retained; only the contact help clause changes."
+    },
+    {
+      "id": "no_other_byte_changes",
+      "status": "PASS",
+      "evidence": "Reversing only22semantic element spans,4hrefs and13style additions reproduces every original byte."
+    },
+    {
+      "id": "universal_ranges_and_unrelated_markup_absent",
+      "status": "PASS",
+      "evidence": "Invented universal size ranges removed; no executable or submission markup added."
+    },
+    {
+      "id": "all_nineteen_semantic_changes_reviewed",
+      "status": "PASS",
+      "evidence": "Every19source change reviewed individually across22corresponding element spans, including both contact paragraphs and six revised table cells."
+    },
+    {
+      "id": "language_findings_scoped_honestly",
+      "status": "PASS",
+      "evidence": "Changed guidance is intelligible and semantically faithful. Per-locale idiomatic limitations and proven inherited wording weaknesses are recorded; this is not full legacy-copy or human-native certification."
+    }
+  ],
+  "semantic_check_count": 19,
+  "semantic_checks": [
+    {
+      "english_change_id": 1,
+      "element_indices_zero_based": [
+        5
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Exact product chart; body versus garment measurements; same units/method; flat width distinct from circumference; clarify unclear method.",
+      "candidate_spans": [
+        "Zacznij od tabeli rozmiarów dokładnie tego elementu stroju, który chcesz zamówić. Sprawdź, jakich wymiarów wymaga i czy podaje wymiary ciała, czy ubrania. Postępuj zgodnie z instrukcją i używaj tych samych jednostek co w tabeli. Szerokość ubrania mierzonego na płasko nie jest tym samym wymiarem co obwód ciała. Jeśli sposób mierzenia jest niejasny, poproś o wyjaśnienie przed wyborem rozmiaru."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 2,
+      "element_indices_zero_based": [
+        6
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Adult women heading directs to the selected piece chart.",
+      "candidate_spans": [
+        "Rozmiarówka dla dorosłych kobiet: sprawdź tabelę dla wybranego elementu stroju"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 3,
+      "element_indices_zero_based": [
+        7
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Compare each measurement; no size choice from letters/photos; cross-size or unclear fit requires help; larger size is not a universal solution.",
+      "candidate_spans": [
+        "W przypadku sukienek, bluzek i zestawów dla mamy i dziecka porównaj swoje wymiary z tabelą konkretnego elementu stroju dla dorosłych. Sprawdź każdy podany wymiar, zamiast wybierać rozmiar wyłącznie na podstawie oznaczenia literowego lub wyglądu stroju na zdjęciu. Jeśli Twoje wymiary odpowiadają różnym rozmiarom albo tabela nie wyjaśnia, czy ubranie będzie leżeć tak, jak potrzebujesz, poproś o pomoc przed zamówieniem. Nie zakładaj, że większy rozmiar rozwiąże każdą wątpliwość dotyczącą dopasowania."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 4,
+      "element_indices_zero_based": [
+        9
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Measure each child separately using current chart dimensions; age alone is insufficient; available age ranges cannot be assumed.",
+      "candidate_spans": [
+        "Zmierz każde dziecko osobno, uwzględniając wymiary wymagane w tabeli wybranego produktu. Użyj aktualnych pomiarów; samo oznaczenie wieku nie potwierdza, że ubranie będzie pasować. Sprawdź dostępne rozmiary dziecięce danego produktu, zamiast zakładać, że każdy model ze wspólnym wzorem obejmuje ten sam zakres wieku."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 5,
+      "element_indices_zero_based": [
+        10
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Disclose layers/future wear; no automatic growth upsizing; use product dimensions and verified fit guidance.",
+      "candidate_spans": [
+        "Jeśli strój będzie noszony z dodatkową warstwą ubrania lub planujesz jego użycie w późniejszym terminie, wspomnij o tym, pytając o dopasowanie. Nie zamawiaj automatycznie większego rozmiaru z myślą o przyszłym wzroście dziecka. Kieruj się wymiarami produktu i ewentualnymi potwierdzonymi wskazówkami dotyczącymi dopasowania."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 6,
+      "element_indices_zero_based": [
+        12
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Specific adult shirt/piece; S/M/L/XL alone insufficient; garment comparison requires same method; body charts require body instructions.",
+      "candidate_spans": [
+        "W przypadku koszul dla taty i dziecka oraz innych elementów stroju dla dorosłych sprawdź wymiary na stronie konkretnego produktu. Znane oznaczenie S, M, L czy XL nie wystarcza, aby potwierdzić dopasowanie innego ubrania. Jeśli tabela podaje wymiary ubrania, możesz je porównać z dobrze leżącym ubraniem tylko wtedy, gdy używasz tej samej metody pomiaru. Jeśli tabela podaje wymiary ciała, postępuj zgodnie z zawartą w niej instrukcją mierzenia ciała."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 7,
+      "element_indices_zero_based": [
+        13
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Family-member checklist heading.",
+      "candidate_spans": [
+        "Co sprawdzić dla każdego członka rodziny"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 8,
+      "element_indices_zero_based": [
+        14
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Current chart and available options; shopping aid is not a universal chart or size-range promise.",
+      "candidate_spans": [
+        "Dla każdego wybranego elementu stroju korzystaj z aktualnej tabeli i dostępnych opcji. Ta lista pomaga w zakupach; nie jest uniwersalną tabelą rozmiarów ani obietnicą, że każdy model występuje w tych samych rozmiarach:"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 9,
+      "element_indices_zero_based": [
+        20
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Confirm before ordering column heading.",
+      "candidate_spans": [
+        "Potwierdź przed zamówieniem"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 10,
+      "element_indices_zero_based": [
+        24,
+        25
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Adult piece measurements, chart units, measurement method and available size.",
+      "candidate_spans": [
+        "Wymiary wymagane dla wybranego elementu stroju dla dorosłych",
+        "Jednostki w tabeli, metodę pomiaru i dostępny rozmiar"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 11,
+      "element_indices_zero_based": [
+        28,
+        29
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Current child measurements and selected child size rather than age alone.",
+      "candidate_spans": [
+        "Aktualne wymiary każdego dziecka zgodnie z wymaganiami tabeli",
+        "Wybrany rozmiar dziecięcy, a nie tylko wiek"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 12,
+      "element_indices_zero_based": [
+        32,
+        33
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Selected shirt/other-piece measurements; distinguish body from garment chart.",
+      "candidate_spans": [
+        "Wymiary wymagane dla wybranej koszuli lub innego elementu stroju",
+        "Czy tabela podaje wymiary ciała, czy ubrania"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 13,
+      "element_indices_zero_based": [
+        34
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Unclear-size help heading.",
+      "candidate_spans": [
+        "Co zrobić, gdy rozmiar budzi wątpliwości"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 14,
+      "element_indices_zero_based": [
+        36
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Recheck exact chart, units and measurement instructions.",
+      "candidate_spans": [
+        "Ponownie sprawdź tabelę konkretnego produktu, podane jednostki i instrukcję pomiaru."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 15,
+      "element_indices_zero_based": [
+        37
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Use verified product details; do not infer fit or stretch from photos.",
+      "candidate_spans": [
+        "Korzystaj z potwierdzonych informacji o produkcie, zamiast zgadywać dopasowanie lub elastyczność na podstawie zdjęcia."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 16,
+      "element_indices_zero_based": [
+        38
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Request help for measurements spanning sizes or incomplete chart.",
+      "candidate_spans": [
+        "Poproś o pomoc, jeśli wymiary odpowiadają różnym rozmiarom lub tabela jest niekompletna."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 17,
+      "element_indices_zero_based": [
+        39
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Each cart row: wearer, piece, size, quantity; separate selections may be needed; confirm included items.",
+      "candidate_spans": [
+        "Przed przejściem do kasy sprawdź przy każdej pozycji w koszyku, dla kogo jest przeznaczona, wybrany element stroju, rozmiar i ilość. Pasujące do siebie produkty mogą wymagać osobnego wyboru; potwierdź, co zawiera produkt."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 18,
+      "element_indices_zero_based": [
+        2
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Contact before ordering with product, wearer and unclear measurements; no response or delivery promise.",
+      "candidate_spans": [
+        "Jeśli tabela rozmiarów produktu nie odpowiada na Twoje pytanie, <a href=\"/pl/pages/contact-us\">skontaktuj się z nami</a> przed złożeniem zamówienia. Podaj nazwę produktu, dla kogo przeznaczony jest wybrany element stroju oraz wymiary, z których interpretacją potrzebujesz pomocy."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 19,
+      "element_indices_zero_based": [
+        40
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Preserve prior shopping guidance and direct remaining sizing questions to contact before ordering.",
+      "candidate_spans": [
+        "Najlepszym ostatnim krokiem jest powolne budowanie koszyka, sprawdzając każdego członka rodziny względem strony produktu, zamiast traktować cały zestaw jako jedną decyzję dotyczącą rozmiaru. Zacznij od <a href=\"/pl/collections/matching-outfits\">Dopasowanych Strojów</a> i <a href=\"/pl/pages/contact-us\">skontaktuj się z nami</a>, jeśli przed zamówieniem potrzebujesz wyjaśnienia informacji o rozmiarach produktu."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    }
+  ],
+  "language_review": {
+    "confidence": "Medium-high for semantic and grammatical review; model-based, not native certification.",
+    "notes": "Wymiary ciała versus ubrania, mierzone na płasko and obwód preserve the measurement distinction. Instructions retain the same method, do not convert size labels and preserve wearer/piece/size/quantity. Accusative table entries follow the Potwierdź instruction.",
+    "inherited": [],
+    "style_limits": [
+      "The contact paragraph is understandable but slightly cumbersome around z których interpretacją potrzebujesz pomocy; its meaning remains a request for help interpreting measurements."
+    ]
+  },
+  "reviewer_language_basis": "Model multilingual competence used for direct source/target comparison; no human review or native-speaker certification claimed.",
+  "scope_qualification": "Acceptance covers the exact19English semantic corrections, four locale paths, formatting and unchanged-copy preservation. Existing legacy grammatical/style weaknesses deliberately retained under the narrow task are not certified as polished full-article copy.",
+  "not_verified": [
+    "Actual per-locale article/shopping/contact arrivals, displayed language and market behavior.",
+    "Public desktop/mobile table layout and long-word wrapping after save.",
+    "Live translation persistence, fresh source digest and preservation of unrelated translation/source fields.",
+    "Traffic, sales, contribution profit or customer-message delivery."
+  ],
+  "external_actions": 0,
+  "candidate_edits_by_reviewer": 0,
+  "next_action": "Root may use this exact hash in its bounded publication packet after remaining route/render/source guards; any candidate change requires review of the changed bytes."
+}

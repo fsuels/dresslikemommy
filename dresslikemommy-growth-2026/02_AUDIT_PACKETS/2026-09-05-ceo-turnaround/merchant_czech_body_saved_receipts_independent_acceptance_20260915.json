@@ -1,0 +1,748 @@
+{
+  "schema": "dlm.czech_five_spans.saved_receipts_independent_acceptance.v1",
+  "action_id": "TA07-CZECH-FIVE-BODY-SPANS-20260915",
+  "reviewed_at_utc": "2026-09-15T05:06:19.505635+00:00",
+  "status": "PASS_WITH_LIMITS",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewer": "/root/collector_global_fallback_fix",
+  "reviewer_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "checks_passed": 102,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "root_scope_hash",
+      "status": "PASS",
+      "method": "Hash exact root scope bytes."
+    },
+    {
+      "check": "scope_identity",
+      "status": "PASS",
+      "method": "Compare exact action, shop, product, locale, global market and field."
+    },
+    {
+      "check": "scope_binding_proposal",
+      "status": "PASS",
+      "method": "Hash exact frozen scope reference; semantic root summaries are not used as after-state proof."
+    },
+    {
+      "check": "scope_binding_freeze",
+      "status": "PASS",
+      "method": "Hash exact frozen scope reference; semantic root summaries are not used as after-state proof."
+    },
+    {
+      "check": "scope_binding_independent_semantic_review",
+      "status": "PASS",
+      "method": "Hash exact frozen scope reference; semantic root summaries are not used as after-state proof."
+    },
+    {
+      "check": "scope_binding_root_source_checks",
+      "status": "PASS",
+      "method": "Hash exact frozen scope reference; semantic root summaries are not used as after-state proof."
+    },
+    {
+      "check": "scope_binding_mutation",
+      "status": "PASS",
+      "method": "Hash exact frozen scope reference; semantic root summaries are not used as after-state proof."
+    },
+    {
+      "check": "scope_binding_variables",
+      "status": "PASS",
+      "method": "Hash exact frozen scope reference; semantic root summaries are not used as after-state proof."
+    },
+    {
+      "check": "scope_binding_rollback_variables",
+      "status": "PASS",
+      "method": "Hash exact frozen scope reference; semantic root summaries are not used as after-state proof."
+    },
+    {
+      "check": "proposal_frozen_inventory_count",
+      "status": "PASS",
+      "method": "Count unique frozen proposal manifest entries."
+    },
+    {
+      "check": "frozen_proposal_candidate.variables.json",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_candidate_cs_body.html",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_cli_validation_1.json",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_correction.graphql",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_original_cs_body.html",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_proposal.json",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_rollback.variables.json",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_source_before_1.json",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_source_before_2.json",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_source_before_3.json",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_source_read_1.graphql",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_source_read_2.graphql",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_source_read_3.graphql",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_validation_receipt.json",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_collection_heading_provenance.json",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_independent_czech_review.json",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "frozen_proposal_root_checks.json",
+      "status": "PASS",
+      "method": "Recompute declared frozen payload SHA256 and byte length."
+    },
+    {
+      "check": "prewrite_bound_scope_and_query",
+      "status": "PASS",
+      "method": "Compare action guard scope/query digest and byte count to frozen bytes."
+    },
+    {
+      "check": "payload_query_exact_with_terminal_newline",
+      "status": "PASS",
+      "method": "Compare entire executed query bytes with frozen operation, including final newline."
+    },
+    {
+      "check": "payload_variables_exact",
+      "status": "PASS",
+      "method": "Compare executed variables object and bound frozen file hash."
+    },
+    {
+      "check": "one_global_translation_input",
+      "status": "PASS",
+      "method": "Require one TranslationInput for exact global Czech body."
+    },
+    {
+      "check": "frozen_proposal_same_target_and_spans",
+      "status": "PASS",
+      "method": "Join frozen proposal to root exact target and five replacements."
+    },
+    {
+      "check": "fresh_before_1_guard_hash",
+      "status": "PASS",
+      "method": "Bind fresh raw source receipt to action-time guard."
+    },
+    {
+      "check": "query_and_variables_equal_1",
+      "status": "PASS",
+      "method": "Compare exact source query name and variables on both sides; query bytes bound in proposal freeze."
+    },
+    {
+      "check": "proposal_to_fresh_source_equal_1",
+      "status": "PASS",
+      "method": "Compare complete saved proposal-source data with action-time raw source."
+    },
+    {
+      "check": "fresh_before_2_guard_hash",
+      "status": "PASS",
+      "method": "Bind fresh raw source receipt to action-time guard."
+    },
+    {
+      "check": "query_and_variables_equal_2",
+      "status": "PASS",
+      "method": "Compare exact source query name and variables on both sides; query bytes bound in proposal freeze."
+    },
+    {
+      "check": "proposal_to_fresh_source_equal_2",
+      "status": "PASS",
+      "method": "Compare complete saved proposal-source data with action-time raw source."
+    },
+    {
+      "check": "fresh_before_3_guard_hash",
+      "status": "PASS",
+      "method": "Bind fresh raw source receipt to action-time guard."
+    },
+    {
+      "check": "query_and_variables_equal_3",
+      "status": "PASS",
+      "method": "Compare exact source query name and variables on both sides; query bytes bound in proposal freeze."
+    },
+    {
+      "check": "proposal_to_fresh_source_equal_3",
+      "status": "PASS",
+      "method": "Compare complete saved proposal-source data with action-time raw source."
+    },
+    {
+      "check": "unique_raw_global_target",
+      "status": "PASS",
+      "method": "Use raw shop/product/global translation identities."
+    },
+    {
+      "check": "raw_before_and_candidate_value_hashes",
+      "status": "PASS",
+      "method": "Hash raw API translation strings, not display HTML files."
+    },
+    {
+      "check": "old_span_unique_1",
+      "status": "PASS",
+      "method": "Count the next exact approved old span before replacement."
+    },
+    {
+      "check": "old_span_unique_2",
+      "status": "PASS",
+      "method": "Count the next exact approved old span before replacement."
+    },
+    {
+      "check": "old_span_unique_3",
+      "status": "PASS",
+      "method": "Count the next exact approved old span before replacement."
+    },
+    {
+      "check": "old_span_unique_4",
+      "status": "PASS",
+      "method": "Count the next exact approved old span before replacement."
+    },
+    {
+      "check": "old_span_unique_5",
+      "status": "PASS",
+      "method": "Count the next exact approved old span before replacement."
+    },
+    {
+      "check": "exact_five_span_forward_delta",
+      "status": "PASS",
+      "method": "Apply only the five approved replacements to the raw before value; require exact after/payload equality."
+    },
+    {
+      "check": "exact_content_rollback",
+      "status": "PASS",
+      "method": "Verify exact one-field rollback content and protected input identity/digest."
+    },
+    {
+      "check": "display_file_newline_distinction",
+      "status": "PASS",
+      "method": "Verify display files add one newline; executed raw values do not inherit it."
+    },
+    {
+      "check": "source_body_digest_bound",
+      "status": "PASS",
+      "method": "Compare source-returned English body digest to scope and payload, without inventing a digest algorithm."
+    },
+    {
+      "check": "six_English_records_exact",
+      "status": "PASS",
+      "method": "Compare all six English values/digests/locales."
+    },
+    {
+      "check": "nine_variants_exact_complete",
+      "status": "PASS",
+      "method": "Compare all nine raw variant records and complete pagination metadata."
+    },
+    {
+      "check": "native_product_fields_exact",
+      "status": "PASS",
+      "method": "Compare complete queried native product object, including status, prices, inventory, SEO and timestamps; no prose emitted."
+    },
+    {
+      "check": "four_other_cs_records_exact",
+      "status": "PASS",
+      "method": "Compare four other Czech records with values/flags/timestamps/markets."
+    },
+    {
+      "check": "target_metadata_only_updatedAt_changes",
+      "status": "PASS",
+      "method": "Preserve target key/locale/outdated/market; allow only explicit Shopify-managed timestamp advance."
+    },
+    {
+      "check": "all_raw_data1_other_fields_exact",
+      "status": "PASS",
+      "method": "Restore exactly two permitted target leaves; compare entire raw data object."
+    },
+    {
+      "check": "collection_fields_and_four_translations_exact",
+      "status": "PASS",
+      "method": "Compare entire observed collection and preserved current Czech title."
+    },
+    {
+      "check": "all_raw_collection_source_and_market_identity_exact",
+      "status": "PASS",
+      "method": "Compare complete raw second source: five collection English records, four Czech records, six market identities. No market status inference."
+    },
+    {
+      "check": "all_raw_market_scope_data_exact",
+      "status": "PASS",
+      "method": "Compare complete raw third source and both resource IDs."
+    },
+    {
+      "check": "protected_override_productTranslation_au",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "protected_override_productTranslation_ca",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "protected_override_productTranslation_eu",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "protected_override_productTranslation_international",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "protected_override_productTranslation_gb",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "protected_override_productTranslation_us",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "protected_override_collectionTranslation_au",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "protected_override_collectionTranslation_ca",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "protected_override_collectionTranslation_eu",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "protected_override_collectionTranslation_international",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "protected_override_collectionTranslation_gb",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "protected_override_collectionTranslation_us",
+      "status": "PASS",
+      "method": "Compare the exact market-scoped translation array; record empty, not a fallback or active-market claim."
+    },
+    {
+      "check": "full_table_HTML_exact",
+      "status": "PASS",
+      "method": "Compare the complete size-table HTML substring byte-for-byte."
+    },
+    {
+      "check": "all100_table_cells_exact",
+      "status": "PASS",
+      "method": "Count 90 data cells plus 10 headers and compare all full cell markup."
+    },
+    {
+      "check": "all_HTML_tags_attributes_and_numbers_exact",
+      "status": "PASS",
+      "method": "Compare complete tag/attribute token sequence and numerical token sequence."
+    },
+    {
+      "check": "protected_disclosure_source_and_AX_1",
+      "status": "PASS",
+      "method": "Require retained separate-piece/estimate text in both raw source values and saved public AX excerpt."
+    },
+    {
+      "check": "protected_disclosure_source_and_AX_2",
+      "status": "PASS",
+      "method": "Require retained separate-piece/estimate text in both raw source values and saved public AX excerpt."
+    },
+    {
+      "check": "one_mutation_receipt_zero_errors",
+      "status": "PASS",
+      "method": "Inspect actual result.data mutation response, not summary or root_after_checks."
+    },
+    {
+      "check": "mutation_response_matches_raw_after",
+      "status": "PASS",
+      "method": "Compare full returned translation with subsequent raw API target record."
+    },
+    {
+      "check": "mutation_payload_and_review_bindings",
+      "status": "PASS",
+      "method": "Recompute payload/review/attempt-marker bindings."
+    },
+    {
+      "check": "independent_action_time_review_schema",
+      "status": "PASS",
+      "method": "Read actual review schema; its 47 checks are preserved evidence, not substituted for our raw comparisons."
+    },
+    {
+      "check": "single_call_inside_original_source_review_window",
+      "status": "PASS",
+      "method": "Order independent review, retained local guard failure, marker and one call within unchanged deadline."
+    },
+    {
+      "check": "guard_failure_preserved_before_mutation",
+      "status": "PASS",
+      "method": "Retain original PASS-versus-VERIFIED parser stop; no payload, review or deadline change inferred."
+    },
+    {
+      "check": "raw_after_clock_1",
+      "status": "PASS",
+      "method": "Require saved mutation response before independent source after collection and later public readback."
+    },
+    {
+      "check": "raw_after_clock_2",
+      "status": "PASS",
+      "method": "Require saved mutation response before independent source after collection and later public readback."
+    },
+    {
+      "check": "raw_after_clock_3",
+      "status": "PASS",
+      "method": "Require saved mutation response before independent source after collection and later public readback."
+    },
+    {
+      "check": "public_corrected_text_1",
+      "status": "PASS",
+      "method": "Search actual saved AX excerpt and raw after body for exact approved text."
+    },
+    {
+      "check": "public_corrected_text_2",
+      "status": "PASS",
+      "method": "Search actual saved AX excerpt and raw after body for exact approved text."
+    },
+    {
+      "check": "public_corrected_text_3",
+      "status": "PASS",
+      "method": "Search actual saved AX excerpt and raw after body for exact approved text."
+    },
+    {
+      "check": "public_corrected_text_4",
+      "status": "PASS",
+      "method": "Search actual saved AX excerpt and raw after body for exact approved text."
+    },
+    {
+      "check": "public_corrected_text_5",
+      "status": "PASS",
+      "method": "Search actual saved AX excerpt and raw after body for exact approved text."
+    },
+    {
+      "check": "public_old_text_absent_1",
+      "status": "PASS",
+      "method": "Search actual saved AX excerpt and raw after body for absent old text; excerpt is not a full-page crawl."
+    },
+    {
+      "check": "public_old_text_absent_2",
+      "status": "PASS",
+      "method": "Search actual saved AX excerpt and raw after body for absent old text; excerpt is not a full-page crawl."
+    },
+    {
+      "check": "public_old_text_absent_3",
+      "status": "PASS",
+      "method": "Search actual saved AX excerpt and raw after body for absent old text; excerpt is not a full-page crawl."
+    },
+    {
+      "check": "public_old_text_absent_4",
+      "status": "PASS",
+      "method": "Search actual saved AX excerpt and raw after body for absent old text; excerpt is not a full-page crawl."
+    },
+    {
+      "check": "public_old_text_absent_5",
+      "status": "PASS",
+      "method": "Search actual saved AX excerpt and raw after body for absent old text; excerpt is not a full-page crawl."
+    },
+    {
+      "check": "public_after_language_USD_and_zero_cart",
+      "status": "PASS",
+      "method": "Cross-check saved raw native excerpt with public receipt context."
+    },
+    {
+      "check": "direct_redirect_and_language_selection_limit_retained",
+      "status": "PASS",
+      "method": "Retain failed direct Czech arrival and successful selected-language readback separately; no cause claim."
+    },
+    {
+      "check": "no_claim_of_market_MAIN_or_business_outcome",
+      "status": "PASS",
+      "method": "Preserve public scope and outcome limits without live replay."
+    },
+    {
+      "check": "late_owner_review_supplied_hash",
+      "status": "PASS",
+      "method": "Bind supplied late review hash without replacing raw-evidence verification."
+    },
+    {
+      "check": "all_reviewed_source_bytes_unchanged",
+      "status": "PASS",
+      "method": "Rehash every recorded input immediately before writing acceptance."
+    }
+  ],
+  "findings": [],
+  "exact_input_bindings": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_scope_20260915.json": {
+      "sha256": "d07c37efeb2c39eaf1a9ba81d66e41815ad9f3488f414dcb6b68829cb43c022d",
+      "bytes": 7800
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/proposal.json": {
+      "sha256": "cebf0b93a4a48c9bc7d64d8ae06f4613914797a940a357027da3202c4509318a",
+      "bytes": 5136
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/manifest.json": {
+      "sha256": "015e2e802dd3e5f58a4c532b9fa70cd0f1d5f24a3efdd2c832493060876093d1",
+      "bytes": 7539
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/independent_czech_review.json": {
+      "sha256": "9d2b5947555a5a51119592ecaf438f89c58952bb60240af1f4fa20e0a254d291",
+      "bytes": 7063
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/root_checks.json": {
+      "sha256": "57690d848ac9856f7f6bce7a3347ef8f7f8db7d1a21fcfb403f152744e241060",
+      "bytes": 5169
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/correction.graphql": {
+      "sha256": "96ab00f06e77ec1b84f17e533eb5eaba099864dcb66ca43124105b2c17f282a1",
+      "bytes": 291
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/candidate.variables.json": {
+      "sha256": "c8de7fd87f13607c7525c330b117f18c48d501731af9047360f7b8cca0c56022",
+      "bytes": 4321
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/rollback.variables.json": {
+      "sha256": "54f012c31b68062240f1381e688e4a8f0a89637ae60d45a19da45813efd1a1e8",
+      "bytes": 4311
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/candidate_cs_body.html": {
+      "sha256": "19b5c49a6334ae4871124043da2ba067253bd373fa7d39ad0b8a52f62d5f7d77",
+      "bytes": 3882
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/cli_validation_1.json": {
+      "sha256": "d29744fee1b89c19acae07b41bc4b12ecdc44cfc15d01af8ebafd2613aac864a",
+      "bytes": 601
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/original_cs_body.html": {
+      "sha256": "9f6e87c06192c155e07327c8ec24d71954a1598936756515e4ed42d01abf12b2",
+      "bytes": 3872
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/source_before_1.json": {
+      "sha256": "2349dfae863bcfc1a7531b0dea61228fd6bd6668fd57fd3daf104b9c5e823af4",
+      "bytes": 25596
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/source_before_2.json": {
+      "sha256": "275c84afc3fa895fe7fca951e2ceeebc18bf4d6d44fca94c27dc407933b3b3f2",
+      "bytes": 5717
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/source_before_3.json": {
+      "sha256": "4940651151df6377108e9c319fe9d0c10a60725c74198108851f5078b9cb1b87",
+      "bytes": 948
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/source_read_1.graphql": {
+      "sha256": "19a30f5f4516c5a4a128d67b468bf09042960458cc75bb7acfbcc0da8df5edc3",
+      "bytes": 1033
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/source_read_2.graphql": {
+      "sha256": "38b4868d9f0e232dbcb915386e224e33f805f91f739ef7388bea9eec3a2a9425",
+      "bytes": 438
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/source_read_3.graphql": {
+      "sha256": "9fdf19546229625795da47d3826e7b32900705f9b9be04726531eb8fc6597e2d",
+      "bytes": 1683
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/validation_receipt.json": {
+      "sha256": "83ee9604cbaa2ba7bde076fcbf3536151379438996d4f1b2400fa3282f041731",
+      "bytes": 3708
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_proposal_freeze_20260915/collection_heading_provenance.json": {
+      "sha256": "13a8c36cb1a5f4c9306d3c320158b337ea223bfb205986b5c27b113cc2966039",
+      "bytes": 1571
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/before_1.json": {
+      "sha256": "7633e1761e5267ab3d3ce107ac305f3de87d60becdc570a95018f8f685e36d25",
+      "bytes": 25700
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/before_2.json": {
+      "sha256": "72b9d4471219a382f4208e8faa708b647dc6140436caad9f8ea5073752fcbf4a",
+      "bytes": 5789
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/before_3.json": {
+      "sha256": "7654a522d9469b2e8a7a277e53cd17699c34ff48c9f01c6d320812bb54d508c1",
+      "bytes": 988
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/after_1.json": {
+      "sha256": "c7e09acdfcb1226a8f63171e8f24f079b06c8c93401dd6d167abf977182e7b17",
+      "bytes": 25710
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/after_2.json": {
+      "sha256": "d6857908253c683ab610caf82a609832f01d2eaaf549cfbc9cce806e90cdfe11",
+      "bytes": 5789
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/after_3.json": {
+      "sha256": "d7c799a0e781cf1c2010f430670b23ff826dbc0716d570de4509f280821bae51",
+      "bytes": 988
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/exact_payload.json": {
+      "sha256": "928094fa28db36c1da963a3c10e9da344bf0644df668985817868376b162b12f",
+      "bytes": 4674
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/mutation_receipt.json": {
+      "sha256": "c16ce72fc7f119e99a81023ad270fbde3c1eb96e6ae26f4a6c030e8640f6c4c8",
+      "bytes": 9509
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/prewrite_guard.json": {
+      "sha256": "d42409298fc2ef85a63e62a8f90169d937f8faa65c12c9b57205dd2e4737b212",
+      "bytes": 5696
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/independent_prewrite_review.json": {
+      "sha256": "a7e21b1a446c57f68b06f8a1f9e7320f539944747518f23ffa11f3b304170bdd",
+      "bytes": 25065
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/guard_failure_1.json": {
+      "sha256": "d95752a9fec69d15ccbd3378ff173ed3022385e0befec67f6d3d5d9cc407ae9a",
+      "bytes": 669
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/attempt_marker.json": {
+      "sha256": "7d0a88b504804b1e2bfdb9f3e6a5a2438431af8d38caa230107af43c0981fd04",
+      "bytes": 506
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/public_readback.json": {
+      "sha256": "21fca9ce7bc54f74cada32b501be5e9fb51d1ac72354322a16bd63ee97cf498b",
+      "bytes": 3026
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/public_readback_plan.json": {
+      "sha256": "d3db1bfb153ac706f90a87f8e8fe78cfde6aee7d71b955ca38b271892cdd2e55",
+      "bytes": 1111
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/public_ax_excerpt.txt": {
+      "sha256": "9ec55e8b9be71720146c4930870ddcc04db8083eb2d3fc9a80454858abe7ee3c",
+      "bytes": 1248
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/independent_after_review.json": {
+      "sha256": "570894a74862aa0215d7450039028afd99b95b45ff2ad86db2f2ec5c456b6958",
+      "bytes": 10712
+    }
+  },
+  "raw_comparison_result": {
+    "only_changed_raw_data_leaves": [
+      "data.productTranslation.translations[body_html,cs,global].value",
+      "data.productTranslation.translations[body_html,cs,global].updatedAt"
+    ],
+    "before_raw_value_sha256": "cadfefdddcee8a0b9a32e8fa519e73ef47647d2ff830b6b5e6662216692b5eea",
+    "after_raw_value_sha256": "178fb432324f7509d57085987463d9d95684af0a3da68621ac2c576ef2939c12",
+    "query_sha256": "96ab00f06e77ec1b84f17e533eb5eaba099864dcb66ca43124105b2c17f282a1",
+    "payload_sha256": "928094fa28db36c1da963a3c10e9da344bf0644df668985817868376b162b12f",
+    "source_English_body_digest": "d825a242d7853f9ac59d19c4185d4c93b82d653e3bcc5cdb0bb87db712227498",
+    "five_spans": 5,
+    "variants_preserved": 9,
+    "English_records_preserved": 6,
+    "other_Czech_records_preserved": 4,
+    "table_data_cells_preserved": 90,
+    "table_headers_preserved": 10,
+    "total_table_cells_preserved": 100,
+    "collection_source_records_preserved": 5,
+    "collection_Czech_records_preserved": 4,
+    "market_override_arrays_preserved": 12,
+    "mutation_receipts": 1,
+    "mutation_user_errors": 0,
+    "before_target_updatedAt": "2026-09-09T18:22:50Z",
+    "after_target_updatedAt": "2026-09-15T04:45:52Z"
+  },
+  "clocks": {
+    "save": {
+      "startedAt": "2026-09-15T04:45:51.916Z",
+      "receivedAt": "2026-09-15T04:45:52.584Z"
+    },
+    "source_after": [
+      {
+        "startedAt": "2026-09-15T04:47:03.967Z",
+        "receivedAt": "2026-09-15T04:47:04.694Z"
+      },
+      {
+        "startedAt": "2026-09-15T04:47:03.967Z",
+        "receivedAt": "2026-09-15T04:47:04.587Z"
+      },
+      {
+        "startedAt": "2026-09-15T04:47:03.967Z",
+        "receivedAt": "2026-09-15T04:47:04.549Z"
+      }
+    ],
+    "public_after": "2026-09-15T04:52:30.778Z",
+    "source_and_review_deadline": "2026-09-15T04:46:55.749000+00:00"
+  },
+  "retained_operational_failure": {
+    "file": "guard_failure_1.json",
+    "at": "2026-09-15T04:44:56Z",
+    "business_mutation_attempts": 0,
+    "cause": "Local parser expected PASS per check; immutable independent report used VERIFIED. Original report, payload and deadline preserved."
+  },
+  "public_limit": {
+    "initial_direct_cs_arrival": "REDIRECTED_TO_ENGLISH_CAUSE_UNKNOWN",
+    "accepted_readback": "Czech public text after explicit native language selection in US/USD session",
+    "cookie_independent_arrival": "NOT_ESTABLISHED"
+  },
+  "late_owner_after_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/independent_after_review.json",
+    "sha256": "570894a74862aa0215d7450039028afd99b95b45ff2ad86db2f2ec5c456b6958",
+    "use": "Late owner review hash only; no reliance on its checks or input audit."
+  },
+  "owner_final_handoff_and_manifest": "NOT_REVIEWED; outside this raw saved-receipt acceptance",
+  "root_after_checks_summary_used": false,
+  "limits": [
+    "Independent recomputation from raw saved API before/after/mutation and public AX excerpt; no independent live browser/API replay or authenticated mutation performed.",
+    "The single mutation count is supported by the sole saved receipt, attempt marker and resulting exact delta; this is not a global audit of all account requests.",
+    "Only global Product7607764287585 cs/body_html five-span correction is accepted. Target Shopify-managed updatedAt advanced; all other queried raw fields compare equal. Content rollback does not restore managed timestamp.",
+    "Full table HTML and 100 cells remain unchanged; no measurement truth, expanded size-guide rendering or complete Czech linguistic/native-human certification. Residual Czech copy and English buybox strings remain outside scope.",
+    "Direct /cs arrival redirected to English, cause unknown. Later native language selection exposed corrected Czech text in US/USD; no cookie-independent paid/feed arrival, Czechia country/currency/checkout, cart action, numeric-variant or mobile qualification.",
+    "No theme/MAIN publication, feed release, serving, traffic, purchase, CPA/ROAS or retained-profit claim. Source save is a separate annotation and does not refresh other source/measurement clocks.",
+    "Original release root_after_checks.json and validation.json were not used to prove the after-state. Original proposal/root semantic reviews remain scope inputs only; late owner independent review was hash-bound, not replayed."
+  ],
+  "reviewer_actions": {
+    "external_reads": 0,
+    "business_writes": 0,
+    "source_or_candidate_edits": 0,
+    "canonical_claim_goal_schedule_git_edits": 0,
+    "new_harness_or_agent": false
+  },
+  "recommended_integration": "Accept the exact saved one-field/five-span source outcome with updatedAt and redirect limits, retain the initial local guard failure, and bind the owner final handoff/freeze separately when complete. Keep language-arrival and theme/MAIN gates open."
+}

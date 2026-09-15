@@ -1,0 +1,44 @@
+{
+  "status": "PREPARED_REVIEW_PENDING",
+  "action_id": "TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+  "target": "gid://shopify/Article/559700574305",
+  "only_field": "body_html",
+  "only_context": "Existing global translations; marketId omitted",
+  "rows": 18,
+  "current_source_digest": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "action_time_required": [
+    "All18 language reviews PASS or PASS_WITH_LIMITS and exact candidate hashes match",
+    "Supported mutation validation success",
+    "Fresh21locale/6market inventory identical; allmarket translations still empty",
+    "English body/digest unchanged",
+    "All current translation values and metadata still match before",
+    "12 protected English fields and5other source keys unchanged",
+    "Exact18input identities already exist; source body digest current",
+    "Independent batch scope/rollback review passes"
+  ],
+  "after_state_required": [
+    "Exact18candidate values read back; outdated false",
+    "72other global values+metadata unchanged",
+    "All6market contexts empty",
+    "English body+12protected fields and6sourceentries unchanged",
+    "No new locale or translation identities",
+    "Every repaired public article and actual shopping/contact links verified",
+    "Mobile table/cells and ar/he body/table RTL verified"
+  ],
+  "rollback_requirements": [
+    "Read current state; verify exact target candidates before undo",
+    "Restore only exact before body values using freshly read English source digest",
+    "Never overwrite intervening changes",
+    "Read afterstate again; prior outdated metadata may not be restorable via translation registration"
+  ],
+  "excluded": [
+    "English article/source",
+    "All other translation keys",
+    "New locale rows",
+    "FAQ Page161933381",
+    "Product/theme/price/policy/tracking/account/Pins/outreach/paid changes",
+    "Shared canonical files",
+    "Schedules/goals/Git/global memory"
+  ],
+  "business_lift_claimed": false
+}

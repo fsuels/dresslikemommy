@@ -1,0 +1,28 @@
+{
+  "action": "TA06-FAQ-NATIVE-DISCLOSURE-RELEASE-20260914",
+  "validatedAt": "2026-09-14T23:37:25.503795+00:00",
+  "status": "LIVE_FUNCTIONAL_PASS_WITH_LIMITS",
+  "english_cases": 36,
+  "other_language_routes": 20,
+  "total_language_routes": 21,
+  "existing_translated_bodies_repaired": 17,
+  "new_translation_records": 0,
+  "global_records_verified": 36,
+  "scoped_locale_combinations_inventoried": 147,
+  "repaired_answer_controls": 144,
+  "postrelease_console_errors_or_warnings": 0,
+  "horizontal_overflow_or_control_clipping_failures": 0,
+  "minimum_control_height_px": 44,
+  "actual_country_drift": "AU/AUD to CA/CAD during language-only navigation; no country control actions and no peer override",
+  "source_wording_changes": 0,
+  "theme_writes": 0,
+  "git_writes": 0,
+  "frozen_diagnostic_files_unchanged": 23,
+  "limits": [
+    "Only functional mechanical repair; existing business/size/payment claims preserved, not certified.",
+    "Arabic/Hebrew inherit the same pre-existing left-to-right page direction; normal native answer access and narrow overflow checks passed, full RTL layout remains unresolved.",
+    "PL/RU/SV have no body translation and show English fallback; no translation created.",
+    "Country selector was never operated. Initial AU/AUD changed to CA/CAD during route QA; shared-session/external cause unverified. Latest observed CA selection left in place to avoid overwriting peer state.",
+    "No Safari/Firefox-specific run; no PageSpeed, order, revenue or conversion-lift claim."
+  ]
+}

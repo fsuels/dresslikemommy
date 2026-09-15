@@ -1,0 +1,20 @@
+query CzechMarketTranslationBindings($productId: ID!, $collectionId: ID!, $au: ID!, $ca: ID!, $eu: ID!, $international: ID!, $gb: ID!, $us: ID!) {
+  productTranslation: translatableResource(resourceId: $productId) {
+    resourceId
+    au: translations(locale: "cs", marketId: $au) { key value locale outdated updatedAt market { id name } }
+    ca: translations(locale: "cs", marketId: $ca) { key value locale outdated updatedAt market { id name } }
+    eu: translations(locale: "cs", marketId: $eu) { key value locale outdated updatedAt market { id name } }
+    international: translations(locale: "cs", marketId: $international) { key value locale outdated updatedAt market { id name } }
+    gb: translations(locale: "cs", marketId: $gb) { key value locale outdated updatedAt market { id name } }
+    us: translations(locale: "cs", marketId: $us) { key value locale outdated updatedAt market { id name } }
+  }
+  collectionTranslation: translatableResource(resourceId: $collectionId) {
+    resourceId
+    au: translations(locale: "cs", marketId: $au) { key value locale outdated updatedAt market { id name } }
+    ca: translations(locale: "cs", marketId: $ca) { key value locale outdated updatedAt market { id name } }
+    eu: translations(locale: "cs", marketId: $eu) { key value locale outdated updatedAt market { id name } }
+    international: translations(locale: "cs", marketId: $international) { key value locale outdated updatedAt market { id name } }
+    gb: translations(locale: "cs", marketId: $gb) { key value locale outdated updatedAt market { id name } }
+    us: translations(locale: "cs", marketId: $us) { key value locale outdated updatedAt market { id name } }
+  }
+}

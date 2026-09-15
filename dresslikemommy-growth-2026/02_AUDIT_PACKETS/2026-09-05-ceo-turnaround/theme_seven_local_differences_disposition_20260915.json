@@ -1,0 +1,404 @@
+{
+  "schemaVersion": 1,
+  "recordedDate": "2026-09-15",
+  "task": "TA06 seven additional committed local theme differences",
+  "status": "SOURCE_DISPOSITION_VERIFIED__RUNTIME_ACCEPTANCE_NOT_RUN",
+  "confidence": "H for source comparison and loading relationships; no live or runtime acceptance",
+  "artifactOwner": "theme_seven_local_diffs; root owns canonical integration and release authority",
+  "scope": "Persist the already accepted seven-file source disposition only. No new investigation or release action.",
+  "evidence": {
+    "candidateBinding": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/ACTUAL_527_SOURCE_BINDING.json",
+      "sha256": "1c7774546b9c58a412fe7e0a6d34c7965ccdbec3755fc22915ca944027bbbbf7",
+      "observedAt": "2026-09-15T05:07:54.385Z",
+      "candidateId": 137888792673,
+      "roleAtThatObservation": "UNPUBLISHED"
+    },
+    "originalSevenFileRecord": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/SEVEN_ADDITIONAL_LOCAL_FILES.json",
+      "sha256": "6dbeb51cb84a132760d64fd79abbdfafa4f638abc043b62d91f03eb359bd51fd",
+      "recordedLocalMain": "c7b4d3667059929a903cfb4618a9aeaa23b3a911"
+    },
+    "comparisonLocalCommit": "da7d37d1cf976613bdfdf8b017dcc278e0125c99",
+    "comparisonMethod": "Read each of seven exact sourcePath blobs, verify candidate SHA256/length, read committed local bytes with git show <commit>:<filename>, verify local SHA256/length, and inspect unified diffs. All seven candidate and seven local hashes match the recorded values.",
+    "loaderMethod": "Narrow direct-dependency source reads and exact quoted old-alias filename lookup across 228 bound Liquid/JavaScript executable source paths; zero old-alias loader hits. This is a static literal-reference finding, not an audit of all527 files or app-injected runtime behavior.",
+    "dependencySources": [
+      {
+        "filename": "sections/main-cart-items.liquid",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/sections/main-cart-items.liquid",
+        "sha256": "2e98d0814483c05ecf947e57dc3482484a90908017c6d38543b6c6708bc19842",
+        "lines": [
+          22,
+          23,
+          24
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "snippets/cart-drawer.liquid",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/candidate-after/snippets/cart-drawer.liquid",
+        "sha256": "6979a8027c1e985a5ed4c695ecfbee9b750612b1bd17bacaa0d969667202a84b",
+        "lines": [
+          12
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "layout/theme.liquid",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/layout/theme.liquid",
+        "sha256": "d5817734bb7db97f5352cd34bcb724c310db2a49dc9ace165f2a036fb06d77ab",
+        "lines": [
+          1127,
+          1128,
+          1129
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "templates/cart.json",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/templates/cart.json",
+        "sha256": "c7026f20177108fc4dd58eeb4976d3a34b194b6cd58d743186053a0a102af66c",
+        "lines": [
+          1
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "assets/cart-drawer.js",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/assets/cart-drawer.js",
+        "sha256": "1dd304f7932732a7d2e6c6c7d370604200b9a75fbb072a3ace858567c515a00e",
+        "lines": [
+          169,
+          170,
+          175,
+          180
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "sections/main-product.liquid",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/native-deeplink-repair/proposed/sections/main-product.liquid",
+        "sha256": "01a345e7d32c7bb23c6ba159c9388d7f9a839116378a56ef3fdcb351f1f3e6f1",
+        "lines": [
+          933,
+          1451,
+          1460
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/french-unit-correction/after.js",
+        "sha256": "dbd748d10828f52bb24c2dfb22d019261f4abeb7f3e9f61eb86d350ee96c1bcb",
+        "lines": [
+          502,
+          503
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "snippets/buy-buttons.liquid",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/snippets/buy-buttons.liquid",
+        "sha256": "7b264e4f96e5ae9447d3b8011d9ac682c5f0de3e2c96ec4548db161302400756",
+        "lines": [
+          17,
+          18,
+          98,
+          99
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "templates/product.json",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/templates/product.json",
+        "sha256": "ec24f14bdd083e13685431d77a3acdeb3e0a86c7914bc1edc41551623cd2fc7f",
+        "lines": [
+          14,
+          49
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "layout/password.liquid",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/layout/password.liquid",
+        "sha256": "ef693565ad629d77d16b0c38686fe58b1af386ca0cb0579754647d8ec30fe740",
+        "lines": [
+          203
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "locales/en.default.json",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/locales/en.default.json",
+        "sha256": "5c68d102886662eb8bb6ec78164b8a5ac4c54924a8c808974ca49eb17667abec",
+        "lines": [
+          15
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "locales/es.json",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/locales/es.json",
+        "sha256": "97ae63470ab28506009cab5e3b531a5c8d955532c50c4f5253783a6513b10400",
+        "lines": [
+          15
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      },
+      {
+        "filename": "locales/fr.json",
+        "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/candidate-after/locales/fr.json",
+        "sha256": "4fe2284d178234da13267783d9df1479b54814b5b017445f0a4ed3554d5fe552",
+        "lines": [
+          15
+        ],
+        "sourceHashVerifiedDuringInvestigation": true
+      }
+    ]
+  },
+  "summary": {
+    "comparedFileCount": 7,
+    "meaningfulFileCount": 5,
+    "meaningfulBoundedChangeCount": 3,
+    "parityAliasCount": 2,
+    "boundedChanges": [
+      {
+        "id": "cart_subtotal_target",
+        "files": [
+          "assets/cart.js",
+          "sections/main-cart-footer.liquid"
+        ],
+        "classification": "Active cart-page selector hardening; no currently demonstrated subtotal defect; atomic pair"
+      },
+      {
+        "id": "gift_recipient_errors_and_lifecycle",
+        "files": [
+          "assets/recipient-form.js",
+          "snippets/gift-card-recipient-form.liquid"
+        ],
+        "classification": "Real conditional subscription cleanup and date-field error-link/ARIA fixes"
+      },
+      {
+        "id": "password_label_association",
+        "files": [
+          "sections/main-password-header.liquid"
+        ],
+        "classification": "Real conditional localized label-association fix"
+      }
+    ],
+    "parityAliases": [
+      "assets/product-desktop-ux-20260513.js",
+      "assets/product-desktop-ux.js"
+    ]
+  },
+  "files": [
+    {
+      "filename": "assets/cart.js",
+      "disposition": "ACTIVE_CART_PAGE_HARDENING__ATOMIC_PAIR",
+      "boundedChange": "cart_subtotal_target",
+      "candidateSourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/assets/cart.js",
+      "bindingFilenameLine": 171,
+      "candidateSha256": "424bc9441658a476179df100a37ebf66e4162231e0ec97d99fcd805aa1c76fa6",
+      "candidateBytes": 24541,
+      "committedLocalSha256": "3e56046d72019380c0d48ecbd7ec5c12473813278eaeff90090fcec4124955be",
+      "committedLocalBytes": 24555,
+      "localChangedLines": [
+        {
+          "start": 134,
+          "end": 134
+        }
+      ],
+      "behavior": "Changes the main-cart-footer section replacement selector from .js-contents to #main-cart-footer-subtotal.",
+      "loading": "Loaded by accepted sections/main-cart-items.liquid:23 unless cart_type is drawer, or by snippets/cart-drawer.liquid:12 through layout/theme.liquid:1127-1129 when cart_type is drawer. The changed list is for CartItems on the cart page; assets/cart-drawer.js:169-180 overrides the drawer item render list.",
+      "assessment": "Referenced active code, but no current subtotal defect is established: the accepted footer has one .js-contents and templates/cart.json configures subtotal/buttons only. The ID is precise targeting that avoids ambiguity if another matching element is introduced.",
+      "inclusionDependency": "Include with sections/main-cart-footer.liquid. This JS alone would request a response selector missing from the old footer; cart.js:296-297 dereferences querySelector(selector).innerHTML without a null guard.",
+      "minimumVerification": [
+        "Verify one unique subtotal ID and matching returned section selector.",
+        "At desktop and narrow widths, change quantity and remove an item; confirm totals/discounts update without console errors.",
+        "Preserve the drawer override and unaffected cart controls."
+      ],
+      "runtimeAcceptance": "NOT RUN"
+    },
+    {
+      "filename": "assets/product-desktop-ux-20260513.js",
+      "disposition": "UNUSED_DUPLICATE_ALIAS__SOURCE_PARITY_ONLY",
+      "boundedChange": null,
+      "candidateSourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/assets/product-desktop-ux-20260513.js",
+      "bindingFilenameLine": 1051,
+      "candidateSha256": "4208430b7754b2bb5a644875ff8da0600244bb3ba75d9cdcd1addab0baf6b6dd",
+      "candidateBytes": 258243,
+      "committedLocalSha256": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+      "committedLocalBytes": 258347,
+      "localChangedLines": [
+        {
+          "start": 482,
+          "end": 483
+        }
+      ],
+      "behavior": "Adds Spanish chooseRoleStep ('Elige para quién es esta pieza') and chooseOptionsStep ('Elige talla y opciones') strings.",
+      "loading": "No literal loader reference to this alias was found in the accepted bound executable theme sources. Accepted sections/main-product.liquid:933 loads product-desktop-ux-20260513-ruler-sync.js instead.",
+      "assessment": "No missing runtime Spanish fix. The accepted active ruler-sync module already contains these exact strings at lines502-503. This alias is byte-identical to assets/product-desktop-ux.js in both compared versions.",
+      "inclusionDependency": "Preserve as source-parity work only; do not replace the active ruler-sync module with this older alias.",
+      "minimumVerification": [
+        "If including for source parity, retain the ruler-sync loader and confirm the two Spanish headings on one matching-set PDP."
+      ],
+      "runtimeAcceptance": "NOT RUN"
+    },
+    {
+      "filename": "assets/product-desktop-ux.js",
+      "disposition": "UNUSED_DUPLICATE_ALIAS__SOURCE_PARITY_ONLY",
+      "boundedChange": null,
+      "candidateSourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/assets/product-desktop-ux.js",
+      "bindingFilenameLine": 1059,
+      "candidateSha256": "4208430b7754b2bb5a644875ff8da0600244bb3ba75d9cdcd1addab0baf6b6dd",
+      "candidateBytes": 258243,
+      "committedLocalSha256": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+      "committedLocalBytes": 258347,
+      "localChangedLines": [
+        {
+          "start": 482,
+          "end": 483
+        }
+      ],
+      "behavior": "Adds the same two Spanish strings as assets/product-desktop-ux-20260513.js.",
+      "loading": "No literal loader reference to this alias was found in the accepted bound executable theme sources. The accepted main-product section loads the ruler-sync module instead.",
+      "assessment": "Second unused byte-identical parity alias; the active module already contains this Spanish behavior.",
+      "inclusionDependency": "Same parity-only treatment as the dated alias; do not swap the active loader.",
+      "minimumVerification": [
+        "Share the dated alias's narrow parity verification; no separate runtime fix is established."
+      ],
+      "runtimeAcceptance": "NOT RUN"
+    },
+    {
+      "filename": "assets/recipient-form.js",
+      "disposition": "REAL_CONDITIONAL_FIXES__GIFT_RECIPIENT",
+      "boundedChange": "gift_recipient_errors_and_lifecycle",
+      "candidateSourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/assets/recipient-form.js",
+      "bindingFilenameLine": 1163,
+      "candidateSha256": "791e56ea26b07b95e7b0e93aca983676c7680a89c58082dcb93c3d2c4e8db1e7",
+      "candidateBytes": 6504,
+      "committedLocalSha256": "d677c7894c4681c82dd2c8c4cfc06392d2a3e26c1b92a962bd993bdebd607997",
+      "committedLocalBytes": 6659,
+      "localChangedLines": [
+        {
+          "start": 45,
+          "end": 45
+        },
+        {
+          "start": 104,
+          "end": 107
+        },
+        {
+          "start": 120,
+          "end": 120
+        }
+      ],
+      "behavior": "Stores the cartError unsubscriber in cartErrorUnsubscriber instead of overwriting cartUpdateUnsubscriber, allowing disconnectedCallback to remove both subscriptions. Maps API send_on to the actual send-on DOM ID and sendonInput property, repairing the error-summary link and field aria-invalid/aria-describedby.",
+      "loading": "snippets/gift-card-recipient-form.liquid:14 loads this script. snippets/buy-buttons.liquid:17-18 and98-99 render that snippet only when show_gift_card_recipient and product.gift_card? are true; the accepted product template enables the setting at line49.",
+      "assessment": "Real code defects on a referenced conditional path. Actual gift-card product availability and runtime activation were not inspected.",
+      "inclusionDependency": "Group with snippets/gift-card-recipient-form.liquid for JS and server-rendered error parity.",
+      "minimumVerification": [
+        "Mount, disconnect, and remount the recipient element; verify the cartUpdate/cartError/variantChange subscriptions clean up without duplicate callbacks.",
+        "Exercise a send_on error and one ordinary-field error; confirm summary links, field error text, and ARIA associations.",
+        "Confirm a successful product-form cart update resets recipient fields."
+      ],
+      "runtimeAcceptance": "NOT RUN"
+    },
+    {
+      "filename": "sections/main-cart-footer.liquid",
+      "disposition": "ACTIVE_CART_PAGE_HARDENING__ATOMIC_PAIR",
+      "boundedChange": "cart_subtotal_target",
+      "candidateSourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/candidate-after/sections/main-cart-footer.liquid",
+      "bindingFilenameLine": 2867,
+      "candidateSha256": "837bb2c9890cc26d7e46c30c172cd11bb75518d917b01cc580ce3339a1eac6a1",
+      "candidateBytes": 16559,
+      "committedLocalSha256": "7a32f8dea8d3f853dcbf79c5374527df9970142cc4b1e9ed22dd656a48014e45",
+      "committedLocalBytes": 16590,
+      "localChangedLines": [
+        {
+          "start": 94,
+          "end": 94
+        }
+      ],
+      "behavior": "Adds id=main-cart-footer-subtotal to the existing subtotal .js-contents wrapper; no pricing or content logic changes.",
+      "loading": "Accepted templates/cart.json:1 includes main-cart-footer with subtotal and buttons blocks.",
+      "assessment": "Active matching half of the precise selector change. The old selector currently resolves the same sole .js-contents wrapper in the accepted footer.",
+      "inclusionDependency": "Include with assets/cart.js; preserve existing successor footer content.",
+      "minimumVerification": [
+        "Run the shared cart-pair verification and assert the subtotal ID remains unique."
+      ],
+      "runtimeAcceptance": "NOT RUN"
+    },
+    {
+      "filename": "sections/main-password-header.liquid",
+      "disposition": "REAL_CONDITIONAL_FIX__LOCALIZED_ACCESSIBILITY",
+      "boundedChange": "password_label_association",
+      "candidateSourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/sections/main-password-header.liquid",
+      "bindingFilenameLine": 2947,
+      "candidateSha256": "0c7a0fc6290d2a5d20e622198e17eb47a7379b4e7c0bc9614d81e52435b62b5f",
+      "candidateBytes": 4327,
+      "committedLocalSha256": "4dfbd8a1e7b4c136df268443b936affec15b3aae09b0b0f43e3eb10b1570afc7",
+      "committedLocalBytes": 4276,
+      "localChangedLines": [
+        {
+          "start": 70,
+          "end": 70
+        }
+      ],
+      "behavior": "Changes the label for value from translated login_form_password_label to stable Password, matching the password input ID at line61.",
+      "loading": "Accepted layout/password.liquid:203 renders main-password-header.",
+      "assessment": "Real localized label-association defect. English translation Password already matches, but accepted Spanish Contraseña and French Mot de passe do not. Actual password-page exposure is unknown.",
+      "inclusionDependency": "No source dependency among the other six files; retain existing storefront protection settings.",
+      "minimumVerification": [
+        "Render the password modal in English and one translated locale; verify label.control identifies the Password input and clicking the label focuses it.",
+        "Do not change storefront protection or enter authentication material to perform this check."
+      ],
+      "runtimeAcceptance": "NOT RUN"
+    },
+    {
+      "filename": "snippets/gift-card-recipient-form.liquid",
+      "disposition": "REAL_CONDITIONAL_FIX__SERVER_RENDERED_GIFT_ERROR",
+      "boundedChange": "gift_recipient_errors_and_lifecycle",
+      "candidateSourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/snippets/gift-card-recipient-form.liquid",
+      "bindingFilenameLine": 3323,
+      "candidateSha256": "1c26367bbd9ce7f29d61c51e2b8bf991969151f67430f2975934900406430dfa",
+      "candidateBytes": 8416,
+      "committedLocalSha256": "75353f37457130bcc93b98320b47c6a22abfaaa5096000927e3fcfff28c13d37",
+      "committedLocalBytes": 8609,
+      "localChangedLines": [
+        {
+          "start": 68,
+          "end": 72
+        }
+      ],
+      "behavior": "Maps server-rendered send_on error-summary anchors to Recipient-send-on-<section ID>, matching the date input. Other field anchors are preserved.",
+      "loading": "Rendered through snippets/buy-buttons.liquid:17-18,98-99 only for gift-card products with the recipient feature enabled; accepted templates/product.json:49 enables that setting.",
+      "assessment": "Real server-rendered counterpart to the JS error mapping. The existing date input and send_on error IDs are confirmed in the candidate at lines198 and214.",
+      "inclusionDependency": "Group with assets/recipient-form.js; actual gift-card catalog activation remains unknown.",
+      "minimumVerification": [
+        "Render a server-side send_on form error and verify its summary link targets the date input.",
+        "Retain correct ordinary-field links and verify consistency with the JS error path."
+      ],
+      "runtimeAcceptance": "NOT RUN"
+    }
+  ],
+  "limitations": [
+    "Candidate identity/role are the frozen binding's historical observation, not a current live readback.",
+    "No tests, browser checks, API calls, deployment, publication, Git writes, or source changes were performed by this lane.",
+    "The five meaningful files include two cart hardening files; this does not establish five active buyer defects.",
+    "Actual gift-card product availability, recipient-path activation, and storefront password-page exposure are UNKNOWN.",
+    "Literal source-reference absence cannot certify behavior injected outside the accepted theme sources.",
+    "No runtime fix, production readiness, release completeness, order, conversion, or profit outcome is claimed.",
+    "The separate one-file mobile CSS action belongs to root and is not a dependency of this disposition."
+  ],
+  "nextAction": "Existing TA06 owner qualifies the five meaningful files as the three bounded changes and preserves the two aliases as source-parity work whose Spanish behavior is already present. Root retains exact scope, current binding, release and canonical-state authority.",
+  "persistence": {
+    "changedFilesOnly": [
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_seven_local_differences_disposition_20260915.json",
+      "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_seven_local_differences_disposition_20260915.md"
+    ],
+    "canonicalOrSourceWrites": false,
+    "investigationRerun": false
+  }
+}
+

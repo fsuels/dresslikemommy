@@ -1,0 +1,33 @@
+{
+  "recorded_at_utc": "2026-09-15T04:17:56.189365+00:00",
+  "source_freeze": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_german_czech_source_freeze_20260915/manifest.json",
+    "sha256": "305001a5ed7f48c2df43d8da9aeb4bf6b96e1ce32a68dc2a4402ba77e74519e6"
+  },
+  "classification": "VERIFY",
+  "source_owner": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "parent": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "dispatches": [
+    {
+      "action_id": "TA07-CZECH-COPY-SOURCE-20260915",
+      "owner_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+      "turn_id": "01a0a342-951e-7362-b4ff-2bfb2645eea6",
+      "status": "EXACT_SOURCE_AND_TRANSLATION_PROPOSAL_REQUESTED",
+      "scope": "Fresh exact Product7607764287585 cs/body_html and /cs/collections/dresses title identity/source, smallest reviewed replacements, preservation/rollback; no save yet.",
+      "delivered": true,
+      "scope_refinement": "Owner reports fresh read04:13:32.455UTC: Collection240127941 current global cs/title is Šaty. Preserve it; H1 is theme-derived. Prepare only five product-body spans, with full source/review still pending."
+    },
+    {
+      "action_id": "TA06-CZECH-BUYBOX-RECONCILIATION-20260915",
+      "owner_task": "01a088c3-c890-71a1-98ee-f19b6905af55",
+      "turn_id": "01a0a342-a585-7c51-b7a5-67af91daaf14",
+      "status": "SAVED_CANDIDATE_RECONCILIATION_REQUESTED",
+      "scope": "Compare two English buyer instructions on Product7607764287585 /cs with already accepted candidate137888792673; return exact source keys/hashes/gaps and retain post-publication case. No duplicate build/upload/preview or MAIN/Publish/Git write.",
+      "delivered": true,
+      "scope_refinement": "Delivered follow-up: also reconcile sections.collection_seo.display_titles.dresses and collection-seo-fallback H1, as source owner reports the collection title itself is already Šaty. No collection or theme mutation under this dispatch."
+    }
+  ],
+  "current_owner_action_unchanged": true,
+  "new_business_write_authority": false,
+  "no_new_harness_goal_or_schedule": true
+}

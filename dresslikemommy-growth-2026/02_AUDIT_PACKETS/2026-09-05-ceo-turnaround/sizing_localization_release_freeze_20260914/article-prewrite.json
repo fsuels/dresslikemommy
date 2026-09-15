@@ -1,0 +1,149 @@
+{
+  "read_at_utc": "2026-09-14T23:38:05.256Z",
+  "query": "query SizingArticleRead($id: ID!) {\n shop { id myshopifyDomain ianaTimezone }\n shopLocales { locale primary published }\n article(id: $id) {\n  id handle title body summary tags isPublished publishedAt createdAt updatedAt templateSuffix\n  blog { id handle }\n  author { name }\n  image { id url altText width height }\n }\n}",
+  "result": {
+    "data": {
+      "shop": {
+        "id": "gid://shopify/Shop/15571635",
+        "myshopifyDomain": "dresslikemommy-com.myshopify.com",
+        "ianaTimezone": "America/New_York"
+      },
+      "shopLocales": [
+        {
+          "locale": "ar",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "cs",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "da",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "de",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "el",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "en",
+          "primary": true,
+          "published": true
+        },
+        {
+          "locale": "es",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "fi",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "fr",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "he",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "hi",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "it",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ja",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ko",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "nl",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "no",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "pl",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "pt-BR",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ro",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ru",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "sv",
+          "primary": false,
+          "published": true
+        }
+      ],
+      "article": {
+        "id": "gid://shopify/Article/559700574305",
+        "handle": "matching-outfit-sizing-guide-right-fit-for-everyone",
+        "title": "Matching Outfit Sizing Guide: How to Get the Right Fit for Everyone",
+        "body": "<p>Shopping matching outfits gets easier when you treat sizing like a plan instead of a guess. The biggest mistake families make is assuming everyone should order the same way just because the print matches. In reality, mom's fit needs, kids' growth room, and dad's preferred ease can all be different. The best approach is to start with measurements, compare each item to the product page details, and shop one person at a time inside <a href=\"/collections/matching-outfits\">Matching Outfits</a>.</p>\n\n<p>If the product's size chart leaves a question unanswered, <a href=\"/pages/contact-us\">contact us</a> before ordering. Include the product name, the selected wearer, and the measurements you need help interpreting.</p>\n\n<h2>Start with the right measurements</h2>\n<p>Start with the size chart for the exact piece you want to order. Check which measurements it asks for and whether it describes body measurements or garment measurements. Follow those instructions and use the same units as the chart. A flat garment width is not the same measurement as a body circumference. If the measurement method is unclear, ask for clarification before choosing a size.</p>\n\n<h2>Adult women's sizing: check the chart for the selected piece</h2>\n<p>For mommy-and-me dresses, tops, and coordinated sets, compare your measurements with the chart for the specific adult piece. Check each listed measurement rather than selecting a size from its letter label or how the outfit looks in a photo. If your measurements fall across different sizes, or the chart does not explain the fit you need, request help before ordering. Do not assume that choosing a larger size will resolve every fit question.</p>\n\n<h2>Kids sizing: toddler through teen</h2>\n<p>Measure each child separately using the dimensions requested by the selected product's chart. Use current measurements; an age label alone does not establish fit. Check the available child sizes on that product rather than assuming that every matching style includes the same age range.</p>\n\n<p>If the outfit will be worn with another layer, or you are planning for a later date, explain that when asking about fit. Avoid automatically ordering a larger size for future growth. The product's measurements and any verified fit instructions should guide the choice.</p>\n\n<h2>Men's sizing for daddy-and-me outfits</h2>\n<p>For daddy-and-me shirts and other adult pieces, check the measurements on the exact product page. A familiar S, M, L, or XL label is not enough to confirm the fit of a different item. If the chart gives garment measurements, you can compare a garment that fits well only when you use the same measurement method. If the chart gives body measurements, follow its body-measuring instructions instead.</p>\n\n<h2>What to check for each family member</h2>\n<p>Use the current chart and available options for each selected piece. This checklist is a shopping aid, not a universal size chart or a promise that every style offers the same sizes:</p>\n\n<table style=\"display: table; width: 100%; table-layout: fixed; white-space: normal; overflow-wrap: anywhere;\">\n  <thead>\n    <tr>\n      <th style=\"white-space: normal;\">Shopper</th>\n      <th style=\"white-space: normal;\">Start with</th>\n      <th style=\"white-space: normal;\">Confirm before ordering</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td style=\"white-space: normal;\">Women's items</td>\n      <td style=\"white-space: normal;\">The measurements requested by the selected adult piece</td>\n      <td style=\"white-space: normal;\">Chart units, measurement method and available size</td>\n    </tr>\n    <tr>\n      <td style=\"white-space: normal;\">Kids and toddlers</td>\n      <td style=\"white-space: normal;\">Each child's current measurements, as requested by the chart</td>\n      <td style=\"white-space: normal;\">The selected child size rather than age alone</td>\n    </tr>\n    <tr>\n      <td style=\"white-space: normal;\">Men's items</td>\n      <td style=\"white-space: normal;\">The measurements requested by the selected shirt or other piece</td>\n      <td style=\"white-space: normal;\">Whether the chart lists body or garment measurements</td>\n    </tr>\n  </tbody>\n</table>\n\n<h2>What to do when a size is unclear</h2>\n<ul>\n  <li>Recheck the exact product chart, its units and its measurement instructions.</li>\n  <li>Use verified product details rather than guessing the fit or stretch from a photo.</li>\n  <li>Ask for help if measurements fall across sizes or the chart is incomplete.</li>\n  <li>Check the selected wearer, piece, size and quantity on each cart line before checkout. Matching items may require separate selections; confirm what the product includes.</li>\n</ul>\n\n<p>The best final step is to build the cart slowly, checking each family member against the product page rather than treating the whole set as one sizing decision. Start with <a href=\"/collections/matching-outfits\">Matching Outfits</a>, and <a href=\"/pages/contact-us\">contact us</a> if the product's sizing information needs clarification before ordering.</p>",
+        "summary": "Use this matching outfit sizing guide to choose the right fit for women, kids, and men, with simple chart advice and smart sizing tips for sets.",
+        "tags": [
+          "Sizing & Help"
+        ],
+        "isPublished": true,
+        "publishedAt": "2026-03-27T02:41:28Z",
+        "createdAt": "2026-03-27T02:41:29Z",
+        "updatedAt": "2026-09-14T23:05:21Z",
+        "templateSuffix": null,
+        "blog": {
+          "id": "gid://shopify/Blog/41450437",
+          "handle": "news"
+        },
+        "author": {
+          "name": "Dress Like Mommy Team"
+        },
+        "image": {
+          "id": "gid://shopify/ArticleImage/108435472481",
+          "url": "https://cdn.shopify.com/s/files/1/1557/1635/articles/ChatGPT_Image_Mar_23_2026_02_48_47_AM_8777f03d-ba1d-4288-9100-3e218022266b.png?v=1774582420",
+          "altText": "Family in coordinated matching outfits styled together for fit planning",
+          "width": 1024,
+          "height": 1536
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "action": "TA07-CLOUD-FINAL-INDEPENDENT-REVIEW-20260914-2102",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "HIGH_FOR_LOCAL_CANDIDATE",
+  "checkedAt": "2026-09-14T21:20:38.840314+00:00",
+  "scope": "Independent local authentication, configuration, request-budget and exact compiled-package verification. Frozen prior hold-only review remains unchanged.",
+  "implementationStatus": "VERIFIED_LOCAL",
+  "activationStatus": "BLOCKED_EXACT_ACCESS_APPROVAL_AND_LIVE_PROOF",
+  "unresolvedLocalImplementationDefects": [],
+  "resolvedFindings": [
+    {
+      "severity": "P1",
+      "finding": "A token with only 61 seconds remaining could be captured by a reader for a 15-minute Queue invocation and expire during source reads.",
+      "resolution": "Fixed 16-minute token safety margin covers the maximum consumer duration plus one minute; independent 900-second simulation passes with one exchange before the new consumer and no per-Admin OAuth call.",
+      "evidence": [
+        "near-expiry-reproduction.json",
+        "near-expiry-fix-verification.json"
+      ]
+    },
+    {
+      "severity": "P2",
+      "finding": "The initial 5092-byte inline configuration was close to the documented 5 KB Cloudflare variable limit, whose decimal/binary interpretation was not established.",
+      "resolution": "Split bindings of 1643 and 3461 UTF-8 bytes reconstruct the identical original configuration and fingerprint; missing, malformed or ambiguous binding rejects. This was a boundary risk, not proof of a rejected deployment.",
+      "evidence": "final-package-verification.json"
+    },
+    {
+      "severity": "P2",
+      "finding": "Initial integration receipt referenced a nonexistent prior-review filename.",
+      "resolution": "Final receipt points to the existing frozen review.json and repair receipt; both links verified."
+    }
+  ],
+  "verification": {
+    "finalRuntimeSuite": {
+      "command": "node --test test/*.test.mjs",
+      "workingDirectory": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1",
+      "runsAfterFinalChange": 1,
+      "tests": 77,
+      "pass": 77,
+      "fail": 0,
+      "exitCode": 0,
+      "log": "runtime-tests-final.txt"
+    },
+    "initialSupersededRuntimeSuite": {
+      "tests": 75,
+      "pass": 75,
+      "fail": 0,
+      "runs": 1,
+      "log": "runtime-tests.txt",
+      "note": "Historical initial authentication candidate, before the expiry and split-binding corrections. Not the final count."
+    },
+    "independentExpiry": {
+      "status": "PASS_EXPIRY_DEFECT_FIXED",
+      "authSha256": "11c3253ff5a5a4afcdf15d32e46d368a656078d604f769f918079b720256a8d3",
+      "case": "A warm cached token with 61 seconds remaining is replaced before the reader is created; 18 simulated 50-second Admin operations complete without another exchange or expired-token use.",
+      "exchangesAcrossTwoReaders": 2,
+      "exchangesInsideNewConsumer": 1,
+      "adminCalls": 18,
+      "simulatedConsumerDurationSeconds": 900,
+      "realNetworkCalls": 0,
+      "sourceCredentials": "synthetic only"
+    },
+    "exactFinalPackage": {
+      "status": "PASS_FINAL_LOCAL_PACKAGE_AND_BINDING",
+      "checkedAt": "2026-09-14T21:13:42.529Z",
+      "integrationReceiptSha256": "39a5aacd0b4966c086508d5481604a3167ca02877b3563264a31839c4563c46a",
+      "verifiedSourceHashes": {
+        "src/admin-reader.js": "77c501a87a66cc6b391be840dcc1557c992e4a02527c18f24928382d3d4ff326",
+        "src/automation.js": "d85d465ff5fe7ae0b9f2f564c6c30a11416b782e7a161509365770e7f3cb4be5",
+        "src/checkpoint.js": "5c859d5e8d336420324ae87b356269b4f25734ced709c0d3213606ad27d6ab5a",
+        "src/collector.js": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8",
+        "src/eligibility.js": "5441bb6aade0f2900f3770602109e14f0e4e964d3e819fff77bf935350038ac8",
+        "src/generator.js": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f",
+        "src/host.js": "666883d2d62989ef57f11e2a4b2ac5f067c2fc68478b14db908d219c5e7c6518",
+        "src/queries.js": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+        "src/shopify-auth.js": "11c3253ff5a5a4afcdf15d32e46d368a656078d604f769f918079b720256a8d3",
+        "src/stream-publish.js": "bf49e3dedc35120edba1c6483260e1739f3953e92cca320f362a8c863afa508e",
+        "src/worker.js": "00288587ad8f555e07e4244901d0c4fd24125f9f88eb1d78cc5b7722bbc60941",
+        "config.json": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+        "wrangler.toml": "1c852929a6aff41443e316b701125fee67037bb1de4abeea50adacfd6ba60c4e",
+        "package.json": "b9b3f45df1dcabae85da66410d29da4fb58c947108b472d52f6375e9cf432d0f",
+        "test/auth-integration.test.mjs": "864a3905d1f1715873e86a8b04a21f33f442c686b051d29afe6a829a11ba149b",
+        "test/shopify-auth.test.mjs": "e028f85cd6cb3580e77c0006753adbaed72fba417afaf3c07451580314b908cc"
+      },
+      "verifiedBundleHashes": {
+        "package-final/README.md": "24aa0382f9bc72310e9d612f4cd11c9637446e63ce8871bfa10dbf00ddd9a9f5",
+        "package-final/automation.js": "5dac031ca9f8f6d25324bef43557373332f3898bb6335892da8b696b1300b256",
+        "package-final/automation.js.map": "48f80af03d3216cc8410414efba4859ef49648b5cd63428955879d172e4a5dce",
+        "package-final/bundle-meta.json": "fa5b02ce0094fad55a4ca953e3d05ea07dcbc032158dbc14a604e8a5ff79c885"
+      },
+      "bundledSourceContentsMatch": true,
+      "modules": 11,
+      "bundleBytes": 72131,
+      "bindingBytes": {
+        "SHOPIFY_AUTH_MODE": 18,
+        "MERCHANT_CONFIG_JSON": 1643,
+        "MERCHANT_ELIGIBILITY_HOLDS_JSON": 3461
+      },
+      "effectiveConfigExactAndFingerprintPreserved": true,
+      "holds": 6,
+      "enabledMarkets": [
+        "us-en"
+      ],
+      "invalidBindingCasesRejected": 6,
+      "evidenceLinksExist": true,
+      "bundledAuthFailure": {
+        "authRequests": 1,
+        "legacyFallback": false,
+        "controlStatus": "FAILED",
+        "statusCode": "shopify_auth_scope_not_allowed",
+        "priorPointerPreserved": true,
+        "messageAcked": true,
+        "secretMaterialPersisted": false,
+        "existingImmutableFeedStillServed": true,
+        "publicPostRejected": true
+      },
+      "actualDeployment": false,
+      "realNetworkCalls": 0,
+      "realCredentialsRead": false,
+      "limits": [
+        "Real dedicated grant eligibility, scopes, full source read, cloud plan/resources and live refresh remain unverified.",
+        "No claim of Merchant source receipt or market buyer readiness."
+      ]
+    },
+    "finalRequestBudget": {
+      "status": "PASS_SYNTHETIC_MAXIMUM_EXTERNAL_FETCH_REHEARSAL",
+      "perConsumer": {
+        "get": 3,
+        "put": 2,
+        "delete": 0,
+        "queueSend": 1,
+        "authFetches": 1,
+        "adminFetches": 40
+      },
+      "logicalSourceCalls": 20,
+      "externalFetches": 41,
+      "checkpointed": true,
+      "finalSplitConfig": true,
+      "realNetworkCalls": 0,
+      "livePlanReadback": false,
+      "limitsSource": "https://developers.cloudflare.com/workers/platform/limits/",
+      "limitation": "Counts one deterministic checkpoint branch; does not prove live CPU, memory, wall time, account quota or grant eligibility."
+    },
+    "strictContinuity": {
+      "command": "python3 ops/scripts/check_continuity_integrity.py --strict",
+      "exitCode": 0,
+      "result": "CONTINUITY_OK",
+      "log": "strict-continuity.txt"
+    },
+    "packagingDryRun": {
+      "performedBy": "Root integrator",
+      "reviewerReran": false,
+      "version": "Wrangler 4.86.0",
+      "exitCode": 0,
+      "didDeploy": false,
+      "evidence": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/cloud_activation_review_2042/integration_validation_final.json",
+      "verification": "Reviewer verified resulting bundle hashes, all 11 source-map contents, and exercised the compiled bundle locally with synthetic I/O."
+    }
+  },
+  "authAssessment": {
+    "endpoint": "https://dresslikemommy-com.myshopify.com/admin/oauth/access_token",
+    "request": "POST form body; exact configured single-label myshopify.com host; redirect error and credentials omit",
+    "scopeCeiling": [
+      "read_products",
+      "read_publications",
+      "read_markets",
+      "read_locales",
+      "read_translations",
+      "read_metaobjects"
+    ],
+    "minimumCompleteScopeSet": "NOT_PROVEN; the relevant six read-only families are an allowlist, not proof that each allowed subset is sufficient.",
+    "rejectedScopeFamilies": [
+      "write_*",
+      "customer access",
+      "order access",
+      "unrelated read scopes"
+    ],
+    "cache": "Memory-only; hashed shop/client/secret key; concurrent acquisition joined; rotation isolates credentials; fixed 16-minute expiry margin.",
+    "explicitCloudMode": "Requires client credentials and never reads/falls back to legacy Admin token.",
+    "failureBehavior": "Constant sanitized errors; rejects unsafe scopes and malformed token responses; terminal FAILED status preserves the prior immutable pointer and public feed.",
+    "credentialsInspectedByReviewer": false
+  },
+  "preservedHoldReview": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/cloud_hold_independent_review_2042/review.json",
+    "sha256": "d3c643db09caa2e711530f124020f7af6dbc4408e2bdb5cffd9408ee64956d62",
+    "manifestSha256": "bfca7f2b66cea2c7c3063a98a761be606e6d84dc280ce749df626b5825a104be",
+    "configSha256": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+    "unchangedRuntimeModules": [
+      "src/automation.js",
+      "src/host.js",
+      "src/collector.js",
+      "src/queries.js",
+      "src/generator.js",
+      "src/eligibility.js",
+      "src/stream-publish.js"
+    ],
+    "sixCanonicalHoldsPreserved": true,
+    "savedSourceRegression": "Prior review checked five saved snapshots: US/AU/CA/GB each 4741 rows after 162 available held and 22 unavailable variants; Spanish saved case 4552 rows with 189 translation exclusions. These are dated saved-source checks, not fresh live market proof."
+  },
+  "reviewedActivationPlan": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/cloud_activation_review_2042/activation_plan.json",
+    "sha256": "31115aaa8e2bd2e67ad5046e563461961621b3275804643984d531167cf9f2da",
+    "assessment": "PASS_AS_GATED_PLAN; exact dedicated app and encrypted destination approval, real narrow-token collector proof, public-host acceptance, before-state/rollback and post-deploy receipts are retained.",
+    "rootReportedLiveEvidence": [
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/cloud_activation_review_2042/cloud_before_readback.json",
+        "sha256": "c3f39c3a9d19c529282ab2ed009de20759561f2755ab4977a58a3fd767393bed"
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/cloud_activation_review_2042/cloud_runtime_before_readback.json",
+        "sha256": "7992cbc07eb66423f687b1cbf21cc39ff61825508be3c7e5dd7430da1c0d1878"
+      }
+    ],
+    "reviewerExternalVerification": false,
+    "liveLimitation": "Root receipts record no current cron, the prior host deployment, an unchanged 4741-row US pointer and one unresolved public HTTP 403. Reviewer read receipts only; public Google acceptance is not established."
+  },
+  "candidate": {
+    "integrationReceipt": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/cloud_activation_review_2042/integration_validation_final.json",
+    "integrationReceiptSha256": "39a5aacd0b4966c086508d5481604a3167ca02877b3563264a31839c4563c46a",
+    "sourceHashes": {
+      "src/admin-reader.js": "77c501a87a66cc6b391be840dcc1557c992e4a02527c18f24928382d3d4ff326",
+      "src/automation.js": "d85d465ff5fe7ae0b9f2f564c6c30a11416b782e7a161509365770e7f3cb4be5",
+      "src/checkpoint.js": "5c859d5e8d336420324ae87b356269b4f25734ced709c0d3213606ad27d6ab5a",
+      "src/collector.js": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8",
+      "src/eligibility.js": "5441bb6aade0f2900f3770602109e14f0e4e964d3e819fff77bf935350038ac8",
+      "src/generator.js": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f",
+      "src/host.js": "666883d2d62989ef57f11e2a4b2ac5f067c2fc68478b14db908d219c5e7c6518",
+      "src/queries.js": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+      "src/shopify-auth.js": "11c3253ff5a5a4afcdf15d32e46d368a656078d604f769f918079b720256a8d3",
+      "src/stream-publish.js": "bf49e3dedc35120edba1c6483260e1739f3953e92cca320f362a8c863afa508e",
+      "src/worker.js": "00288587ad8f555e07e4244901d0c4fd24125f9f88eb1d78cc5b7722bbc60941",
+      "config.json": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+      "wrangler.toml": "1c852929a6aff41443e316b701125fee67037bb1de4abeea50adacfd6ba60c4e",
+      "package.json": "b9b3f45df1dcabae85da66410d29da4fb58c947108b472d52f6375e9cf432d0f",
+      "test/auth-integration.test.mjs": "864a3905d1f1715873e86a8b04a21f33f442c686b051d29afe6a829a11ba149b",
+      "test/shopify-auth.test.mjs": "e028f85cd6cb3580e77c0006753adbaed72fba417afaf3c07451580314b908cc"
+    },
+    "bundleHashes": {
+      "package-final/README.md": "24aa0382f9bc72310e9d612f4cd11c9637446e63ce8871bfa10dbf00ddd9a9f5",
+      "package-final/automation.js": "5dac031ca9f8f6d25324bef43557373332f3898bb6335892da8b696b1300b256",
+      "package-final/automation.js.map": "48f80af03d3216cc8410414efba4859ef49648b5cd63428955879d172e4a5dce",
+      "package-final/bundle-meta.json": "fa5b02ce0094fad55a4ca953e3d05ea07dcbc032158dbc14a604e8a5ff79c885"
+    }
+  },
+  "activationConditions": [
+    "Dedicated installed app must satisfy Shopify same-organization eligibility and exact owner approval of the six named read scopes.",
+    "Read back the actual new credential scopes and complete the exact full collector with that limited credential; do not silently broaden permissions or substitute the legacy broad Admin token.",
+    "Owner must approve the exact encrypted SHOPIFY_CLIENT_ID and SHOPIFY_CLIENT_SECRET destination at the named Cloudflare account and Worker. Generic authority is not credential-transfer authority.",
+    "Qualify and resolve the single public-host HTTP 403 before activation completion. That client result alone does not establish Google fetch failure.",
+    "Recheck current Worker deployment/settings, queue/bucket/pointer and supported account resources without billing changes; retain exact before-state and a tested, target-specific rollback.",
+    "Only under current exact authority create the isolated queue, install the approved encrypted bindings and deploy the reviewed bundle with matching split configuration; only us-en is enabled.",
+    "Observe a complete real cloud source collection and atomic promotion; verify current source partition, hosted byte count, SHA256, row count, country/language/currency and source age.",
+    "Confirm Merchant processing on existing US source 10727274744 and observe a later scheduled cloud run before certifying continuous operation.",
+    "Real Cloudflare CPU, memory, wall time and account quotas remain unverified by local tests; 41 external fetches is the bounded source-request premise, not full production capacity proof.",
+    "Additional markets require separate fresh buyer, landing, price, shipping, translation, policy and Google eligibility evidence; this candidate enables no additional market."
+  ],
+  "reproductionLimitations": [
+    "Initial expiry reproduction is retained as historical evidence of the superseded code; it expected the old failure. It is not a passing current-regression command.",
+    "Initial source files are preserved under initial_source only as review evidence.",
+    "The prior Sep 11 freeze/readiness/dry-run artifacts do not certify this final package.",
+    "bin/build.mjs and bin/verify-queue.mjs default to config.example.json; any applicable rehearsal must explicitly pass --config config.json.",
+    "No real network calls were made by synthetic checks, and no private source credentials were inspected."
+  ],
+  "reviewerWrites": {
+    "implementation": 0,
+    "canonical": 0,
+    "external": 0,
+    "credentialTransfer": 0,
+    "deployment": 0,
+    "evidenceDirectoryOnly": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/cloud_final_independent_review_2102"
+  },
+  "nextAction": "Root obtains exact approval and verifies the dedicated read-only app and encrypted destination before any access transfer or activation.",
+  "continuation": "Continue from this frozen review and activation_plan.json; preserve hashes and satisfy the named live gates before claiming deployment or continuous Merchant operation."
+}

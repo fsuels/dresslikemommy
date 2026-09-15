@@ -1,0 +1,55 @@
+{
+  "status": "LIVE_METADATA_AND_POINTER_VERIFIED__PUBLIC_GET_FAILED_403",
+  "observedAt": "2026-09-14T21:15:03.249003+00:00",
+  "account": "6b1df53f8a1ce4b5b5312f833a2cd966",
+  "worker": {
+    "id": "dlm-merchant-feed-worker",
+    "etag": "4ff49bf8d5f077e11cab29c8e16e652b8a2481d11d45621675c568d07bd2ae55",
+    "created_on": "2026-09-11T14:53:19.49425Z",
+    "modified_on": "2026-09-11T14:53:20.462319Z"
+  },
+  "bucket": "dlm-merchant-feeds",
+  "pointerKey": "merchant/us-en/current.json",
+  "pointerSha256": "4ad2a5832c792991454b544b4fc663fce2774fbb830707b4c0affbed8dc12cf7",
+  "pointerEtag": "W/\"ae728533f2d9c12a85f17d86dc48eb71\"",
+  "manifest": {
+    "bytes": 16504238,
+    "expectedMd5": "3a16d1062f58170ebb546769777ae76b",
+    "generatedAt": "2026-09-14T13:16:10.470Z",
+    "market": {
+      "country": "US",
+      "currency": "USD",
+      "key": "us-en",
+      "locale": "en",
+      "marketId": "gid://shopify/Market/544735329"
+    },
+    "objectEtag": "3a16d1062f58170ebb546769777ae76b",
+    "objectKey": "merchant/us-en/b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571.tsv",
+    "previous": null,
+    "returnPolicyLabelsConfirmed": true,
+    "rows": 4741,
+    "schemaVersion": 1,
+    "sha256": "b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571",
+    "sourceCompletedAt": "2026-09-14T13:16:10.466Z",
+    "sourceParents": 238,
+    "sourceVariants": 4925,
+    "rowIdsCount": 4741,
+    "rowIdsSha256": "b766449985c6f14542ce0e2e72fed6f576cabf23eceac63018a835bee44202ed"
+  },
+  "publicUrl": "https://dlm-merchant-feed-worker.dresslikemommy.workers.dev/feeds/us-en.tsv",
+  "publicRead": {
+    "attemptedAroundUtc": "2026-09-14T21:15Z",
+    "httpStatus": 403,
+    "status": "FAILED",
+    "cause": "UNKNOWN; public permission-style response was not retried or bypassed",
+    "notEvidenceOfMerchantFetchFailure": true
+  },
+  "externalWrites": 0,
+  "liveWorkerVersion": "NOT_READ",
+  "credentialDestinationChanged": false,
+  "rollbackRequirement": "At activation capture current deployment version and preserve existing read-only host code, settings and pointer before any write.",
+  "manifestLimits": [
+    "returnPolicyLabelsConfirmed is a historical host compatibility field and does not prove effective Google policy assignment.",
+    "The unchanged source freshness expiry is2026-09-16T13:16:10.466Z; refresh proactively by2026-09-15T13:16:10.466Z."
+  ]
+}

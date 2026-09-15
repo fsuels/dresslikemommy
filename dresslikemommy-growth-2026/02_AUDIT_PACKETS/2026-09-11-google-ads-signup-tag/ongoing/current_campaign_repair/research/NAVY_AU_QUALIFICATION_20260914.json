@@ -1,0 +1,154 @@
+{
+  "schema": "dlm.country_product_qualification.v1",
+  "decision_id": "ADS650-NAVY-AU-QUALIFICATION-20260914",
+  "recorded_at_utc": "2026-09-14 23:21:44 UTC",
+  "task_owner": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+  "action_id": "TA-10",
+  "status": "PARTIAL_PREREQUISITES_VERIFIED__PAID_LAUNCH_HELD",
+  "entity": {
+    "shop_id": "15571635",
+    "product_id": "7670609346657",
+    "country": "AU",
+    "language": "en",
+    "account_id": "6509972886"
+  },
+  "strategy_basis": "Qualify one existing AU Search research candidate using the prior dated Planner result and approved all-market local build; do not fund or fragment 65 countries. No new keyword query.",
+  "source": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NAVY_AU_COST_SOURCE_20260914.json",
+  "source_checks": {
+    "shop_identity_matches": true,
+    "product_identity_matches": true,
+    "active": true,
+    "variants_returned": 24,
+    "unique_variant_ids": 24,
+    "has_next_page": false,
+    "all_au_prices_in_aud": true,
+    "configured_cost_present_all_24": true,
+    "mother_dress_price_aud": "40.0",
+    "child_dress_price_aud": "35.0",
+    "mother_configured_cost_usd": "14.0",
+    "child_configured_cost_usd": "12.0"
+  },
+  "browser_readback": {
+    "owner_task": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+    "browser_id": "1",
+    "tab_id": "5",
+    "observation_window_utc": [
+      "2026-09-14 23:17:05 UTC",
+      "2026-09-14 23:21:44 UTC"
+    ],
+    "method": "Normal storefront UI and accessibility readbacks in a task-owned temporary background tab. New one-product AU qualification pass after current catalog cost read. No alternate HTTP, proxy or anti-bot bypass.",
+    "route": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses?country=AU&currency=AUD",
+    "initial_cart_items": 0,
+    "selected_country": "Australia",
+    "selected_language": "English",
+    "selected_currency": "AUD",
+    "mother_selection": {
+      "type": "Dress",
+      "size": "Mother M",
+      "variant_id": "46501139611745",
+      "quantity": 1,
+      "unit_price_aud": "40.00"
+    },
+    "child_selection": {
+      "type": "Dress",
+      "size": "Child 4 Years",
+      "variant_id": "46501139415137",
+      "quantity": 1,
+      "unit_price_aud": "35.00"
+    },
+    "native_form_requires_size_and_type": true,
+    "cart": {
+      "item_count": 2,
+      "estimated_total_aud": "75.00",
+      "shipping_destination": "Australia",
+      "variant_links_matched_source": true
+    },
+    "checkout": {
+      "country": "Australia",
+      "locale_path": "en-au",
+      "currency": "AUD",
+      "subtotal_aud": "75.00",
+      "item_count": 2,
+      "both_garment_and_size_labels_match": true,
+      "shipping_text": "Enter your shipping address to view available shipping methods.",
+      "contact_fields_empty": true,
+      "payment_fields_empty": true,
+      "shipping_rate_qualification": "NOT_RUN_NO_ADDRESS_ENTERED"
+    },
+    "cleanup": {
+      "removed_only_two_test_items": true,
+      "final_header": "Cart 0 items",
+      "final_main_heading": "Your cart is empty",
+      "temporary_tab_close": "VERIFIED_CLOSED; browser inventory retains only Ads editor2 at its exact original URL/provider identity"
+    },
+    "preservation": {
+      "ads_editor_tab_id": "2",
+      "same_provider_tab_id_verified": true,
+      "marked_handoff": true,
+      "editor_field_recheck": false,
+      "editor_save": false,
+      "ads_authentication_attempt": false
+    },
+    "checkout_token_or_customer_data_persisted": false
+  },
+  "old_gate_scope": {
+    "old_public_http_429": "Historical observation retained; this normal browser route loaded without 429/CAPTCHA. Supersedes only AU Navy product/cart/checkout-entry NOT_RUN for the exact selected pair.",
+    "no_general_clearance": "Does not clear every market route, delivery promise, checkout shipping rate, actual fulfillment, supplier availability, size charts, payment processing or purchase receiver/dedup."
+  },
+  "truth_issue": {
+    "status": "EXISTING_SOURCE_MISMATCH_CONFIRMED_PUBLICLY",
+    "description": "Public description still advertises Mother S-3XL, while the current complete variant source and rendered selector stop at Mother 2XL.",
+    "advertised_ads_claim": false,
+    "narrow_repair_proposal": {
+      "before": "Mother S-3XL for both Dress and Cardigan.",
+      "after": "Mother S-2XL for both Dress and Cardigan.",
+      "execution": "Existing Shopify product owner must fresh-read exact body and translations and review narrow replacement; do not mutate from this receipt."
+    },
+    "supplier_or_measurement_claims": "Not independently qualified; this correction does not validate the chart values."
+  },
+  "economics": {
+    "configuration_not_actual_cost": true,
+    "pair_list_subtotal_aud": "75.00",
+    "pair_catalog_goods_cost_usd": "26.00",
+    "actual_supplier_invoice_cost": null,
+    "actual_fulfillment_cost": null,
+    "payment_and_fx_fees": null,
+    "return_loss_allowance": null,
+    "overhead_allocation": null,
+    "settlement_fx": null,
+    "conditional_model": {
+      "assumption": "R=75 AUD retained revenue, with no tax, discount, refund or shipping-income adjustment; illustrative bound only, not a current CPA or spending authorization.",
+      "ROAS6_5_ad_ceiling_aud_exact": "75/6.5",
+      "ROAS6_5_ad_ceiling_aud_rounded_down": "11.53",
+      "max_total_nonad_cost_at_30pct_profit_and_exact6_5_roas_aud": "40.96153846153846",
+      "let_x": "Actual supported AUD per USD settlement rate",
+      "remaining_non_goods_cost_capacity_aud": "40.96153846153846 - 26*x",
+      "interpretation": "At full 6.5x ROAS ad allowance, catalog goods consume part of this small non-ad cost envelope; shipping, fees, FX, returns and overhead still have to fit. Do not treat configured costs as supplier invoices or infer current profitability."
+    },
+    "allowable_actual_CPA": null,
+    "authorized_new_spend_usd": 0,
+    "launch_qualified": false
+  },
+  "external_effects": {
+    "catalog_or_theme_writes": 0,
+    "ads_account_writes": 0,
+    "budget_or_bid_changes": 0,
+    "cart_additions": 2,
+    "cart_removals": 2,
+    "checkout_entry": 1,
+    "contact_address_payment_entries": 0,
+    "pay_or_order_submissions": 0,
+    "live_ad_clicks": 0,
+    "intentional_purchase_event_generation": 0,
+    "actual_emitted_purchase_events": "NOT_INSPECTED; no collector or receiver validation was performed in this buyer-path check",
+    "analytics_effects": "Product views, cart actions and checkout-entry may create nonpurchase session events; not conversion proof or customer demand. No event collector inspection or suppression attempted."
+  },
+  "authority": {
+    "standing_paid": "NONE",
+    "existing_current_campaign_repair": "Preserved; normal Google identity/Save result still pending.",
+    "new_account_campaign_creation": false
+  },
+  "independent_review": "Read the separate review/NAVY_AU_QUALIFICATION_20260914_REVIEW.json receipt for verdict and exact reviewed input hashes",
+  "next_step": "Existing source/cost owner verifies actual AU landed basket cost and source truth; Ads owner completes already-authorized campaign repair only after changed normal identity/Save handoff. Keep existing measured keyword and all-market builds unchanged.",
+  "parent_integration": "Root01a08223 retains shared canonical writer role; accept under existing Ads claim and TA-10, preserve other owners and current sale/measurement clocks."
+}

@@ -1,0 +1,111 @@
+{
+  "actionId": "TA06-THEME-BUYER-TRUTH-SUCCESSOR-20260915",
+  "reviewedAt": "2026-09-15T01:56:25.296347+00:00",
+  "reviewer": "/root/main_sync_review",
+  "status": "PASS_ONE_MODULE_CORRECTION_BEFORE_REVIEW_WITH_ACTION_TIME_GATES",
+  "sourceBeforeSha256": "86c6bf6ab98ee2a61f60dd755c41a2861c3d371d040db45655de23e9ce0f46b3",
+  "sourceAfterSha256": "dbd748d10828f52bb24c2dfb22d019261f4abeb7f3e9f61eb86d350ee96c1bcb",
+  "uploadPayloadSha256": "8e0aeb5fca202e062654a13f4a17ef077c7728e02887da46f3299532c5936086",
+  "rollbackPayloadSha256": "86416089a5ddb895dd3f9197d8cdb9fff1bfd352ea0f650ec9b1b666f84ad5c0",
+  "checks": [
+    {
+      "name": "exact_before_source",
+      "pass": true
+    },
+    {
+      "name": "exact_after_source",
+      "pass": true
+    },
+    {
+      "name": "root_matches_proposed",
+      "pass": true
+    },
+    {
+      "name": "exact_one_line_alias_addition_all_other_source_bytes_preserved",
+      "pass": true
+    },
+    {
+      "name": "before_binds_first_saved_API_md5_size",
+      "pass": true
+    },
+    {
+      "name": "first_candidate_identity_role",
+      "pass": true
+    },
+    {
+      "name": "upload-payload.json:exact_sha",
+      "pass": true
+    },
+    {
+      "name": "upload-payload.json:exact_only_one_file_payload",
+      "pass": true
+    },
+    {
+      "name": "rollback-payload.json:exact_sha",
+      "pass": true
+    },
+    {
+      "name": "rollback-payload.json:exact_only_one_file_payload",
+      "pass": true
+    },
+    {
+      "name": "prepared_metadata_hashes_exact",
+      "pass": true
+    },
+    {
+      "name": "previous25_test_bytes_unchanged_new_French_case_only_appended",
+      "pass": true
+    },
+    {
+      "name": "original_French_failure_preserved",
+      "pass": true
+    },
+    {
+      "name": "same_French_oracle_now_passes",
+      "pass": true
+    },
+    {
+      "name": "26_tests_original_sizing_oracle_syntax_all_pass",
+      "pass": true
+    },
+    {
+      "name": "first_save_independent_API_receipt_unchanged",
+      "pass": true
+    }
+  ],
+  "conclusion": "The exact one-line normalization of existing French po/pouces inch-unit headers corrects the reproduced compact imperial mismatch. It selects the existing paired source inches without editing measurements, decimal text, conversion math, role behavior, or independent control state. All other module bytes are preserved.",
+  "regressionEvidence": {
+    "original26thFrenchFailure": "Reproduced independently against saved86c6bf6a; four of eight normalization/value/render assertions fail, with EN/AR/metric holdouts passing.",
+    "correctedFrenchOracle": "All eight identical independent assertions pass.",
+    "previousSizingFailureOracle": "Both original independent cases pass unchanged.",
+    "focusedSuite": "26/26 independently rerun PASS; previous25 test bytes unchanged, exact live-source French test appended.",
+    "protectedFunctions": "Every source byte outside the one normalization line is identical to independently approved86c6bf6a; this preserves all nine previously checked protected functions."
+  },
+  "beforeSaveRequired": [
+    "Root must freshly verify full candidate and MAIN inventories exactly match the first-save accepted state, including candidate UNPUBLISHED and no processing; stop on drift.",
+    "Confirm supported Shopify validation binds dbd748d1 and passes, then verify exact one-file payload8e0aeb5f before the supported draft-only mutation."
+  ],
+  "afterRequired": "Fresh complete API readback must show only this module changed from first save, all other526 candidate records and525 MAIN records unchanged; actual French compact cm\u2192in\u2192cm behavior and remaining planned browser matrix must pass.",
+  "rollback": "Exact one-file rollback restores saved86c6bf6a only if candidate remains UNPUBLISHED and the changed module matches reviewed dbd748d1; never overwrite drift.",
+  "limits": [
+    "Reviewer authored no source and performed no external/Git/browser action. First-save API evidence and original failed browser/local checks retained.",
+    "Guide and compact controls remain separate; existing role-switch reset behavior is unchanged. No new persistence claim.",
+    "French source-text artifacts such as the observed dans suffix are product-source qualifications outside this theme-code correction; no supplier/business fact certification."
+  ],
+  "reviewedFileHashes": {
+    "french-unit-correction/before.js": "86c6bf6ab98ee2a61f60dd755c41a2861c3d371d040db45655de23e9ce0f46b3",
+    "french-unit-correction/after.js": "dbd748d10828f52bb24c2dfb22d019261f4abeb7f3e9f61eb86d350ee96c1bcb",
+    "french-unit-correction/PREPARED.json": "5883286d735066cd0878efc80a3e03d1427a9cc5b8d7b414e3b881574ee36cc6",
+    "french-unit-correction/upload-payload.json": "8e0aeb5fca202e062654a13f4a17ef077c7728e02887da46f3299532c5936086",
+    "french-unit-correction/rollback-payload.json": "86416089a5ddb895dd3f9197d8cdb9fff1bfd352ea0f650ec9b1b666f84ad5c0",
+    "review/french-unit-challenges.cjs": "ed0aa72999a22747d32907d395d077995163cace73a9cd58596eb156af88b4c8",
+    "review/french-unit-original-failures.json": "4e9bf7cf8f594f6122c1abaf0280778f21f6dff58d2d07832ef74110fc0d977a",
+    "review/french-unit-corrected-source-review.json": "2137f71c96de680d631927d8da567cf95e90b7b451192270cf083eaf866c9642",
+    "review/independent-api-after-review.json": "18426144077b1dc8c455d11584628902ec277ae5bf096e669717825fe6edc044",
+    "api-after.json": "8ba3d9a379e50d87807dc2c1640ba445b4f078bc4c12744c18226e545f238206",
+    "preview-before-french.json": "3c1cfa485806b080425f1bb8a0d6d57395208b495a5d11840fc53e1e22c5ae6c",
+    "module/buyer-truth.test.cjs": "693fbdccb3c1a064304088b8ce8d35554c27a4d100d6f7ab6fb23ef2b26c0872",
+    "module/round2-before-french-unit-normalization/buyer-truth.test.cjs": "d4d7a1ee42aa0ea04c3d20b9469dcc7cdd2b6b0bad7e8dc2afcf75a39cb55442",
+    "browser/fr-mobile-mother-s-cardigan-compact-imperial.json": "8437a9f69ee11602ce3a21dc6b32827363355bcaa0c77fe9479df630cd420643"
+  }
+}

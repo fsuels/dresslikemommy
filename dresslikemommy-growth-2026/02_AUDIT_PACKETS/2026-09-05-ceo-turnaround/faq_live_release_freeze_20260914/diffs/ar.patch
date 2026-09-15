@@ -1,0 +1,196 @@
+--- ar.before
++++ ar.candidate
+@@ -1,42 +1,19 @@
+ <div id="page-content">
+-<script>// <![CDATA[
+-function remove_classes_active() {
+-    alert( 'FOUND' );
+-    var $aSelected = $('.question-answer-block').find('a');
+-    
+-    if( $aSelected.hasClass('active') ){
+-      alert( 'FOUND' );
+-      $('.question-answer-block > a').removeClass('active');
+-    }else{
+-      alert( 'NOT FOUND' );
+-    }
+-  }
+-// ]]></script><script>// <![CDATA[
+-jQuery("document").ready(function($){
+-    var nav = $('#nav');
+-    $(window).scroll(function () {
+-     	if(getWidthBrowser() > 1200){
+-    		if ($(this).scrollTop() > 136){
+-              nav.addClass("on animated"); 		
+-            } 
+-            else {
+-              nav.removeClass("on animated"); 		
+-            } 
+-  		}
+-          $('#goGrid').trigger('click');
++<style>
++#page-content .help-page summary.ask { display: list-item; list-style: disclosure-closed inside; min-height: 44px; padding: 10px 0; cursor: pointer; }
++#page-content .help-page details[open] > summary.ask { list-style-type: disclosure-open; }
++#page-content .help-page summary.ask::-webkit-details-marker { display: inline; }
++#page-content .help-page summary.ask h3 { display: inline; margin: 0; }
++#page-content .help-page summary.ask:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
++</style>
+ 
+-      
+-    });  
+-    
+-  });
+-// ]]></script>
+ <div class="help-page">
+ <div id="General Questions">
+ <div class="faq-item-title" name="General Questions">
+ <h2>معلومات عنا</h2>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">أ. أسئلة عامة</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>أ. أسئلة عامة</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. هل هذا الموقع آمن للاستخدام؟ </strong></p>
+ <p>بالتأكيد هو آمن. نستخدم PayPal لمعالجة المدفوعات. لذلك حتى موظفونا لا يرون تفاصيل الدفع الخاصة بك. PayPal هو أكبر مزود دفع آمن في العالم. موقعنا مبني على منصة Shopify الآمنة. جميع معلوماتك الشخصية محمية بشكل محكم.</p>
+ <p> </p>
+@@ -48,36 +25,36 @@
+ <p> </p>
+ <p><strong>4. لماذا أسعاركم رخيصة جدًا؟</strong></p>
+ <p>نقطع جميع الوسطاء ونوصل المنتجات مباشرة إلى المستهلكين من المصنعين لدينا مما يسمح لنا بتقديم أسعار منخفضة جدًا.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="Before You Place an Order">
+ <div class="faq-item-title" name="before you place an order">
+ <h2>قبل تقديم الطلب</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">أ. المقاسات</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>أ. المقاسات</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. أين يمكنني العثور على جدول المقاسات بالسنتيمترات؟</strong></p>
+ <p>يمكنك العثور على جداول المقاسات بالسنتيمترات في صفحة المقاسات لدينا هنا: <a href="http://www.assassinshoodies.com/pages/sizing-information" alt="صفحة المقاسات">صفحة المقاسات</a> أو في وصف كل منتج.</p>
+ <p> </p>
+ <p><strong>2. هل سأستلم منتجًا بمقاس أكبر بمقدار مقاسين؟</strong></p>
+ <p>لا. سنرسل المقاس الذي طلبته. إذا كنت ترتدي عادةً مقاس متوسط أوروبي، اختر المقاس المتوسط (M) وستتلقى مقاس متوسط.</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">ب. المدفوعات</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>ب. المدفوعات</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. ما أنواع المدفوعات التي تقبلونها؟</strong></p>
+ <p>نقبل PayPal وبطاقات الائتمان/الخصم (Visa، Mastercard، American Express، Discover).</p>
+ <p> </p>
+ <p><strong>2. أريد الدفع ببطاقتي الائتمانية، لكن يتم توجيهي إلى صفحة PayPal؟</strong></p>
+ <p>نستخدم PayPal لمعالجة جميع مدفوعاتنا. في صفحة PayPal على اليمين يمكنك اختيار أحد الخيارين: "الدفع بحساب PayPal الخاص بي" <i>أو</i> "الدفع ببطاقتي الائتمانية أو الخصم"</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">ج. الشحن</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>ج. الشحن</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. ما هو سعر الشحن؟</strong></p>
+ <p>نقدم توصيلًا مجانيًا تمامًا في جميع أنحاء العالم.</p>
+ <p> </p>
+@@ -89,16 +66,16 @@
+ <p> </p>
+ <p><strong>4. هل أحتاج لدفع أي رسوم جمركية؟</strong></p>
+ <p>لا، لست بحاجة لدفع رسوم الجمارك. نحن نضع علامة على جميع طلباتنا كهدايا منخفضة القيمة. علاوة على ذلك، نرسل الطلبات الأكبر في طرود منفصلة.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="After You Place an Order">
+ <div class="faq-item-title" name="After You Place an Order">
+ <h2>بعد تقديم الطلب</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">أ. حالة الطلب</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>أ. حالة الطلب</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. ماذا يعني: حالة الطلب "غير منفذ"؟</strong></p>
+ <p>يتم الآن معالجة طلبك ورقم تتبع الطلب قيد الانتظار. عادةً ما نقوم بتنفيذ الطلبات وإرسال رقم التتبع لعملائنا عندما يتم تقديم رقم تتبع الطلب إلى النظام البريدي، والذي يستغرق من 5 إلى 7 أيام بعد شحن الطلب.</p>
+ <p> </p>
+@@ -107,11 +84,11 @@
+ <p> </p>
+ <p><strong>3. مر وقت طويل، أين طلبي؟</strong></p>
+ <p>يرجى التحقق من تتبع طلبك لمزيد من المعلومات. إذا استمرت المشكلة، يرجى مراسلتنا عبر البريد الإلكتروني: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">ب. تتبع الطلب</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>ب. تتبع الطلب</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. كيف أتتبع طلبي؟</strong></p>
+ <p>نوفر رمز تتبع الطلب بعد 5-7 أيام من تقديم الطلب. يمكنك تتبع طلبك هنا: <a hef="www.assassinshoodies.com/pages/track-your-order" alt="تتبع طلبك">تتبع طلبك</a></p>
+ <p> </p>
+@@ -123,11 +100,11 @@
+ <p> </p>
+ <p><strong>4. كيف أبقى على اطلاع بتتبع طلبي؟</strong></p>
+ <p>نستخدم نظام تتبع After Ship لتتبع طلبات عملائنا، لذا كلما تم تحديث معلومات التتبع، يجب أن تتلقى بريدًا إلكترونيًا.</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">ب. أريد تغيير أو إلغاء طلبي</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>ب. أريد تغيير أو إلغاء طلبي</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. طلبت شيئًا، لكنني أريد الإلغاء</strong></p>
+ <p>يجب عليك الاتصال بنا خلال يوم عمل واحد من تقديم الطلب لترتيب تغيير الطلب. يمكنك القيام بذلك عبر البريد الإلكتروني <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> مع رقم طلبك كموضوع.</p>
+ <p> </p>
+@@ -136,16 +113,16 @@
+ <p> </p>
+ <p><strong>3. طلبت شيئًا، لكن أريد تغيير عنوان التوصيل</strong></p>
+ <p>يجب عليك الاتصال بنا خلال يوم عمل واحد من تقديم الطلب لترتيب تغيير الطلب. يمكنك القيام بذلك عبر البريد الإلكتروني <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> مع عنوان التوصيل الجديد الخاص بك.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="After You Receive an Order">
+ <div class="faq-item-title" name="After You Receive an Orde">
+ <h2>بعد استلامك للطلب</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">أ. أريد تغيير أو إرجاع طلبي</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>أ. أريد تغيير أو إرجاع طلبي</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. وصل طلبي، لكن المنتجات كانت بمقاسين أكبر</strong></p>
+ <p>يرجى ملاحظة أن جميع المقاسات في متجرنا معروضة بوحدات القياس الأوروبية والأمريكية. بينما يكون المقاس الفعلي للملابس (المكتوب على المنتج) عادةً أكبر بمرتين. يقع مصنعونا في شرق آسيا ونرسل تلقائيًا المقاس الآسيوي المكافئ للمقاس الأوروبي/الأمريكي. هذا يعني أنه إذا طلبت مقاس Medium (M – EU/US) سنرسل لك المقاس الآسيوي المكافئ Extra Large (XL).</p>
+ <p> </p>
+@@ -157,8 +134,8 @@
+ <p> </p>
+ <p><strong>4. وصل طلبي، لكنني أريد إرجاعه.</strong></p>
+ <p>يرجى الاتصال بنا على <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> وقم بتزويدنا برقم طلبك. يمكنك إعادة المنتج إلينا وسنقوم بإصدار استرداد. *تكاليف الشحن ستكون على حسابك.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ </div>
+ </div>

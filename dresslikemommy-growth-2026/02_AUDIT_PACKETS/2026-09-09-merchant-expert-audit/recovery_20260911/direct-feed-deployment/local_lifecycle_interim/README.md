@@ -6,6 +6,20 @@ Merchant task `01a08706-c63a-7e01-ba48-7777bcb1788a` remains the sole writer for
 
 The exact target is Merchant513542500/source10727274744, US/en/USD, free listings. Preserve its existing URL and daily12AM NewYork fetch. AU/CA/GB and Google-discovered sources are outside this executable's scope.
 
+## Current generator profile — September 14
+
+New runs using the reviewed current generator must pass `--release-profile native-holds-20260914` on **every** command. Omitting the flag selects the historical `legacy` profile; it does not silently select current code. The current profile pins `release_contract_20260914.json`, the current config, the full local collection/build dependency set, both native verification helpers, and the unchanged eligibility holds and source qualification. Historical runs and approvals cannot be reused across profiles. The historical 28-file freeze is preserved and is expected to reject the newer generator files.
+
+Use the same sequential prepare/build/review/promote/readback flow below with a new run path and the explicit profile flag. The current generator already applies the six reviewed parent holds. The native containment phase replays the complete saved snapshot offline at its **original** generation clock and requires exact TSV, manifest and diagnostics equality; it never filters the rows a second time. The four files under `unfiltered/` are preserved original generator output despite the historical directory name. Live collection, the 120-minute promotion window, before-state comparison, independent review and immediate pre-commit checks still apply.
+
+A held parent may be absent from the complete ACTIVE source catalog after archival or deletion; the hold remains configured for possible reactivation. A protected offer may be omitted only when the complete source proves a specific eligibility reason, such as removal, unpublication or actual unavailability. The reviewer must copy the exact `protected_omissions` list to `protected_omissions_verified`, including an empty list when nothing was omitted. The review also binds `release_profile` and `native_verifier_sha256` in addition to the existing 16 fields. Eligible protected rows cannot be dropped. Changing holds requires a separately reviewed release profile; `revise-containment` is unavailable under this profile.
+
+The profile is a local fallback. It does not activate the pending cloud app, move credentials, change a Worker, create a scheduler or certify international feeds. Local validation is `python3 -m unittest -v test_lifecycle.py test_cohort_filter.py test_native_release_profile.py`. A profile review establishes code readiness; every actual feed promotion still needs fresh source evidence and its own exact independent review.
+
+## Historical legacy profile
+
+The remaining implementation details describe the preserved legacy behavior. Its old assumptions that every held parent and protected offer must remain in the source are superseded **only** when the explicit current profile above is selected.
+
 Use the bundled Python executable with this directory's `lifecycle.py`. Each run is a new child of `runs/`, with a name such as `20260911T213300Z-us-refresh`. Never recycle a failed run or its approval. Commands are sequential:
 
 1. `prepare --run ABSOLUTE_RUN_PATH` captures current remote pointer, original full TSV and both Worker metadata records. It does not publish.

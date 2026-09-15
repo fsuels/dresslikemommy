@@ -1,0 +1,9 @@
+{
+  "status": "PASS_NO_WHITESPACE_ERRORS_IN_AUTHORED_DELTA",
+  "command": "git diff --no-index --check before-css proposed-css",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "",
+  "exitInterpretation": "no-index implies difference exit status1; expected source delta is present with empty whitespace diagnostic output. Root initially treated1 as failure before accounting for this mode; no source change followed.",
+  "meaning": "Authored CSS delta is whitespace-clean; exact raw before/rollback retain source whitespace."
+}

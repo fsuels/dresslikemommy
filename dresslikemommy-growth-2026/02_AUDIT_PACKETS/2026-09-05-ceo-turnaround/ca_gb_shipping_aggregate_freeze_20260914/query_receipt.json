@@ -1,0 +1,70 @@
+{
+  "schema": "dlm.ca_gb_shipping_query_receipt.v1",
+  "identity": {
+    "start": "2026-09-14T23:42:50.812Z",
+    "end": "2026-09-14T23:42:51.309Z",
+    "expected_shop_matched": true,
+    "tool": "shopify_graphql_query",
+    "write": false
+  },
+  "cohort": {
+    "filter": "test:false created_at:>='2026-08-15T04:00:00Z' created_at:<'2026-09-14T04:00:00Z'",
+    "lower_utc": "2026-08-15T04:00:00Z",
+    "upper_utc": "2026-09-14T04:00:00Z",
+    "max_orders": 500,
+    "total_orders": 10,
+    "selected_ca": 0,
+    "selected_gb": 0,
+    "other_country_orders": 10,
+    "missing_country_orders": 0,
+    "order_pagination_complete": true,
+    "truncated_at_order_limit": false,
+    "calls": [
+      {
+        "operation": "cohort",
+        "page": 1,
+        "started": "2026-09-14T23:43:35.377Z",
+        "completed": "2026-09-14T23:43:36.034Z",
+        "first": 50,
+        "after_supplied": false,
+        "returned": 10,
+        "has_next_page": false,
+        "end_cursor_present": true,
+        "cost": null
+      }
+    ]
+  },
+  "executed_operations": [
+    "identity",
+    "cohort"
+  ],
+  "validated_not_run": [
+    "details",
+    "event_page"
+  ],
+  "operations": {
+    "identity": "query ShippingEvidenceStoreIdentity { shop { id myshopifyDomain } }",
+    "cohort": "query ShippingEvidenceCohort($first: Int!, $after: String, $filter: String!) { orders(first: $first, after: $after, query: $filter, sortKey: CREATED_AT) { nodes { id createdAt test shippingAddress { countryCodeV2 } } pageInfo { hasNextPage endCursor } } }",
+    "details": "query ShippingEvidenceOrder($id: ID!) { order(id: $id) { id createdAt test shippingAddress { countryCodeV2 } fulfillmentsCount { count precision } fulfillments { id status displayStatus createdAt inTransitAt deliveredAt events(first: 100) { nodes { status happenedAt } pageInfo { hasNextPage endCursor } } } } }",
+    "event_page": "query ShippingEvidenceEventPage($id: ID!, $after: String) { node(id: $id) { ... on Fulfillment { id events(first: 100, after: $after) { nodes { status happenedAt } pageInfo { hasNextPage endCursor } } } } }"
+  },
+  "artifact_ids": {
+    "identity": "a20ef33b-9906-4a13-8a4b-39d03c237169",
+    "cohort": "0defe7a3-31c6-4250-a7bd-e74b48808dca",
+    "details": "d077bc46-d790-4167-8cac-fd76ed2804b5",
+    "event_page": "2a8daf06-c880-4cd2-9431-2837e49c75a1"
+  },
+  "revisions": {
+    "identity": 1,
+    "cohort": 1,
+    "details": 1,
+    "event_page": 1
+  },
+  "source_docs": [
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/queries/orders",
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/Fulfillment",
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/objects/FulfillmentEvent"
+  ],
+  "schema_filter_basis": "QueryRoot.orders query description contains created_at and test filters; no country-named filter was present.",
+  "country_join": "IDs and cursors used only in memory; zero CA/GB orders meant no ID-based fulfillment call."
+}

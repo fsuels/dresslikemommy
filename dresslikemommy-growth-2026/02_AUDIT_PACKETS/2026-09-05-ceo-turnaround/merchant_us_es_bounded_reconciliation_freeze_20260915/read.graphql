@@ -1,0 +1,56 @@
+query MerchantSpanishSuccessorRead($ids: [ID!]!, $marketId: ID!) {
+  nodes(ids: $ids) {
+    ... on Product {
+      id status handle updatedAt
+      globalTranslations: translations(locale: "es", marketId: null) { ...SpanishTranslationFields }
+      marketTranslations: translations(locale: "es", marketId: $marketId) { ...SpanishTranslationFields }
+    }
+  }
+  r0: translatableResource(resourceId: "gid://shopify/Product/7227375714401") {
+    resourceId
+    translatableContent { key digest locale }
+  }
+  r1: translatableResource(resourceId: "gid://shopify/Product/7227378892897") {
+    resourceId
+    translatableContent { key digest locale }
+  }
+  r2: translatableResource(resourceId: "gid://shopify/Product/7227378925665") {
+    resourceId
+    translatableContent { key digest locale }
+  }
+  r3: translatableResource(resourceId: "gid://shopify/Product/7229026304097") {
+    resourceId
+    translatableContent { key digest locale }
+  }
+  r4: translatableResource(resourceId: "gid://shopify/Product/7536709664865") {
+    resourceId
+    translatableContent { key digest locale }
+  }
+  r5: translatableResource(resourceId: "gid://shopify/Product/7536984359009") {
+    resourceId
+    translatableContent { key digest locale }
+  }
+  r6: translatableResource(resourceId: "gid://shopify/Product/7545279217761") {
+    resourceId
+    translatableContent { key digest locale }
+  }
+  r7: translatableResource(resourceId: "gid://shopify/Product/7545279512673") {
+    resourceId
+    translatableContent { key digest locale }
+  }
+  r8: translatableResource(resourceId: "gid://shopify/Product/7545279840353") {
+    resourceId
+    translatableContent { key digest locale }
+  }
+  r9: translatableResource(resourceId: "gid://shopify/Product/7545373130849") {
+    resourceId
+    translatableContent { key digest locale }
+  }
+  r10: translatableResource(resourceId: "gid://shopify/Product/7546613530721") {
+    resourceId
+    translatableContent { key digest locale }
+  }
+}
+fragment SpanishTranslationFields on Translation {
+  key value locale outdated market { id }
+}

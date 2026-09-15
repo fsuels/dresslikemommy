@@ -1,0 +1,6 @@
+mutation RegisterSizingTranslations($resourceId: ID!, $translations: [TranslationInput!]!) {
+ translationsRegister(resourceId: $resourceId, translations: $translations) {
+  translations { locale key outdated updatedAt market { id } }
+  userErrors { field message code }
+ }
+}

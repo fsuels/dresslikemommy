@@ -1,0 +1,161 @@
+{
+  "name": "inventory",
+  "query": "query SizingLocaleInventory($after: String) {\n shopLocales { locale primary published }\n markets(first: 100, after: $after) { nodes { id name handle status } pageInfo { hasNextPage endCursor } }\n}",
+  "variables": {},
+  "result": {
+    "data": {
+      "shopLocales": [
+        {
+          "locale": "ar",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "cs",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "da",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "de",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "el",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "en",
+          "primary": true,
+          "published": true
+        },
+        {
+          "locale": "es",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "fi",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "fr",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "he",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "hi",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "it",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ja",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ko",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "nl",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "no",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "pl",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "pt-BR",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ro",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "ru",
+          "primary": false,
+          "published": true
+        },
+        {
+          "locale": "sv",
+          "primary": false,
+          "published": true
+        }
+      ],
+      "markets": {
+        "nodes": [
+          {
+            "id": "gid://shopify/Market/22986424417",
+            "name": "Australia",
+            "handle": "australia",
+            "status": "ACTIVE"
+          },
+          {
+            "id": "gid://shopify/Market/22986326113",
+            "name": "Canada",
+            "handle": "canada",
+            "status": "ACTIVE"
+          },
+          {
+            "id": "gid://shopify/Market/544800865",
+            "name": "Eurozone",
+            "handle": "eu",
+            "status": "ACTIVE"
+          },
+          {
+            "id": "gid://shopify/Market/544866401",
+            "name": "International",
+            "handle": "international",
+            "status": "ACTIVE"
+          },
+          {
+            "id": "gid://shopify/Market/22986260577",
+            "name": "United Kingdom",
+            "handle": "united-kingdom",
+            "status": "ACTIVE"
+          },
+          {
+            "id": "gid://shopify/Market/544735329",
+            "name": "United States",
+            "handle": "us",
+            "status": "ACTIVE"
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "eyJsYXN0X2lkIjo1NDQ3MzUzMjksImxhc3RfdmFsdWUiOiJVbml0ZWQgU3RhdGVzIn0="
+        }
+      }
+    }
+  },
+  "read_at_utc": "2026-09-14T23:45:12.962Z"
+}

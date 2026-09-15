@@ -1,0 +1,178 @@
+{
+  "scopeId": "TA06-MOBILE-H1-CRITICAL-PLACEMENT-20260915",
+  "status": "PASS_QUALIFIED_SOURCE_ONLY",
+  "confidence": "H",
+  "reviewedAtUtc": "2026-09-15T06:46:44.598864+00:00",
+  "reviewer": "/root/main_sync_review",
+  "independence": "Reviewer did not author or execute the proposed CSS. Only this review artifact was written.",
+  "exactTarget": {
+    "themeId": 137888792673,
+    "requiredRole": "UNPUBLISHED",
+    "filename": "assets/theme-inline-head-static-03.css",
+    "beforeSha256": "13d8c7a58b8c4fc489317ed615a081bd990e56a7e6e7b3f1f9294c9671736571",
+    "beforeMd5": "04ef41cf3abe10fae9727b7be8e3327c",
+    "beforeBytes": 13719,
+    "afterSha256": "fe0434381d34757f889dcf3e2c2bc86defe2c16e1987d52e97a69bcd49b87d31",
+    "afterMd5": "5af87229fdfba2daeed15f0f511982d7",
+    "afterBytes": 14552
+  },
+  "verdict": [
+    "PASS for this exact local source proposal and inverse. Independent byte comparisons show only the obsolete <=749px hero hide removed and one <=767px critical block inserted. All other head03 bytes, including breadcrumbs and pills, remain exact. The expected map retains all 527 unique keys and preserves the other 526 source byte bindings; it is not an observed saved state.",
+    "The six rules expand to eight selectors with declaration values and importance identical to current saved body07. MainContent ID specificity defeats the identified later class-only component and section rules for title margin, image padding, inner padding and 750–767px text flex-basis. This prevents those selected declarations being reintroduced by the later styles. Existing escaped H1 markup and hidden image/support behavior are preserved. Both changed media ranges are inactive at >=768px.",
+    "Source order and recorded markup agree: head03 is an ordinary HEAD stylesheet before MainContent, component CSS and body07. No new asset reference or JavaScript is introduced. A preload trace's non_blocking label does not guarantee first-paint timing.",
+    "The one-file option is defensible: it retains the already saved body fallback and has an exact one-file inverse. A two-file relocation reduces duplication but changes another accepted file. The selected option adds 833 head-source bytes and duplicates declarations; future changes must keep both copies consistent.",
+    "Author evidence retains 15 passing checks and 14 synthetic width/image cases, plus the original failed breadcrumb-phase assertion and its bounded correction. Reviewer independently checked bytes, rule equality, specificity premises, source order and payloads; the author's cascade harness was not rerun and no new renderer was built."
+  ],
+  "blockers": [],
+  "limits": [
+    "New browser, first-paint, cold-load CLS and publication acceptance are NOT RUN. The established 390px CLS failure remains unresolved until actual repeated traces demonstrate correction against the pre-heading baseline.",
+    "Real image-enabled, RTL/long-title and boundary rendering remain parent acceptance duties. Existing breadcrumb timing and other font/layout shifts are outside this source repair.",
+    "No live read or current claim verification was performed by this reviewer. Parent must bind exact authority and refresh paired candidate/MAIN source, metadata and claim immediately before any permitted write. MAIN publication or Git push is not authorized by this receipt."
+  ],
+  "nextAction": "Parent binds exact one-file scope, refreshes source and claim, then conducts only the authorized candidate save and actual cold-load/render verification.",
+  "checks": {
+    "count": 24,
+    "passed": 24,
+    "failed": [],
+    "results": {
+      "proposal_frozen_hash": true,
+      "manifest_frozen_hash": true,
+      "outputs_all_exact": true,
+      "readOnlyInputs_all_exact": true,
+      "before_sha_md5_size": true,
+      "after_sha_md5_size": true,
+      "inverse_equals_original_source": true,
+      "only_remove_obsolete_hide_add_one_block": true,
+      "six_rules_eight_selectors_values_importance_equal_body07": true,
+      "all_new_selectors_scoped_to_MainContent": true,
+      "new_block_only_max767": true,
+      "body07_preserved_hash": true,
+      "forward_diff_exact": true,
+      "inverse_diff_reconstructs_exact_before": true,
+      "payload_binding_files_exact": true,
+      "proposed-upload.variables.json_single_exact_target_body": true,
+      "proposed-rollback.variables.json_single_exact_target_body": true,
+      "expected527_unique_samekeys": true,
+      "expected526_all_source_bytes_preserved": true,
+      "expected_single_head_target_matches": true,
+      "ordinary_HEAD_link_precedes_Main_component_body": true,
+      "source_order_supports_actual_markup": true,
+      "author_static15_and14_with_fail_history_retained": true,
+      "static_covers_both_image_branches_and_boundaries": true
+    }
+  },
+  "expectedMapMetadata": {
+    "status": "EXPECTED_ONLY_NOT_SAVED",
+    "observedAt": null,
+    "savedAt": null,
+    "candidateId": 137888792673,
+    "requiredRoleAtFutureAction": "UNPUBLISHED",
+    "preserveMainId": 133290917985,
+    "totalFiles": 527,
+    "parentActualBindingSha256": "41c42505144c16bec4457f2e72e0881adf36d1c631ddc4c0a3fa4416ef8b3b95"
+  },
+  "boundInputHashes": {
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/PROPOSAL.json": {
+      "sha256": "0225a80fd7a989c08ca5c7014aa019ab1366efcd9b67885ea8d40194cd717c5b",
+      "bytes": 16751
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/MANIFEST.json": {
+      "sha256": "258f2cfec4ca86aeb995500af8bcb26fb1b2969721c453d71557d33bed330a61",
+      "bytes": 4949
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/DIAGNOSIS.md": {
+      "sha256": "cee284e93c569623eaccf6f34f2526043936a9ed85247edbf04bc473f6ea9a54",
+      "bytes": 4334
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/STATIC_ASSERTIONS.json": {
+      "sha256": "0ddb49e1e6f53c38698a9de7a7e418d16d02b8581482867ee70067cbff838307",
+      "bytes": 9326
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/NARROW.diff": {
+      "sha256": "281051a8b2a26777f5b3ced0095d56d635252b15de478211901f9b27caba966a",
+      "bytes": 1567
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/INVERSE.diff": {
+      "sha256": "1e08942c30f79e7dbdf72970944ef90b52a736dd904c5974a7adb7e853ad4443",
+      "bytes": 1567
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/proposal/assets/theme-inline-head-static-03.css": {
+      "sha256": "fe0434381d34757f889dcf3e2c2bc86defe2c16e1987d52e97a69bcd49b87d31",
+      "bytes": 14552
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/rollback/assets/theme-inline-head-static-03.css": {
+      "sha256": "13d8c7a58b8c4fc489317ed615a081bd990e56a7e6e7b3f1f9294c9671736571",
+      "bytes": 13719
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/ACTUAL_527_SOURCE_BINDING.json": {
+      "sha256": "41c42505144c16bec4457f2e72e0881adf36d1c631ddc4c0a3fa4416ef8b3b95",
+      "bytes": 225022
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/actual-stylesheet-link-order.json": {
+      "sha256": "f947f0e5b50aabb75829f914a7f8c8ef836018cc899675f20c8715354edfe0a9",
+      "bytes": 1329
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/before-dresses-390-comparable-trace.json": {
+      "sha256": "f0b89c3e2f1b464753da13dd68674efa07fbb0bc4df8ec5fb170a3ca0caaf06b",
+      "bytes": 19466
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/after-dresses-390-trace.json": {
+      "sha256": "dbc7860453f4a970b768a0d6c26ad5e303d34bc2e000953a71b1a22459b63139",
+      "bytes": 22663
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/after-dresses-390-repeat-trace.json": {
+      "sha256": "04a08ae4fea9f62cda92f89c0a95ea7e4bb1124776881f57b142a70366aed975",
+      "bytes": 20259
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/assets/theme-inline-head-static-03.css": {
+      "sha256": "13d8c7a58b8c4fc489317ed615a081bd990e56a7e6e7b3f1f9294c9671736571",
+      "bytes": 13719
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/source/assets/theme-inline-body-static-07.css": {
+      "sha256": "cde012519aca7deab9cb065962166e8010dfee9a720405d0958b25f89f620736",
+      "bytes": 1019
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/layout/theme.liquid": {
+      "sha256": "d5817734bb7db97f5352cd34bcb724c310db2a49dc9ace165f2a036fb06d77ab",
+      "bytes": 86646
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/couples-grid-repair/proposed/sections/main-collection-banner.liquid": {
+      "sha256": "4549a997352be781db58c9eaedbb82a946caac3c3285b7c5b4acdf91275af8d0",
+      "bytes": 6154
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/assets/component-collection-hero.css": {
+      "sha256": "f675056540dddd62bdfa922a3b8e915a27aa07b8f1c3334411e241f0bd24d458",
+      "bytes": 8463
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/static-assertions.py": {
+      "sha256": "88cb97d1cec121c74c85a3cc58d738a8558143d33bf3970fe2d0d06ed0307683",
+      "bytes": 13357
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/payload/PAYLOAD_BINDING.json": {
+      "sha256": "9af93c74bde92a840a4aef6e7b079bdbced6abe5d3ed7e6ba53a3fc30a10d258",
+      "bytes": 1605
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/payload/EXPECTED_AFTER_527_SOURCE_BINDING.json": {
+      "sha256": "f627fd4aa642ebe0704202468b43371bc38e3ed9665503e96dcccef8350c8d6e",
+      "bytes": 224196
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/payload/proposed-rollback.variables.json": {
+      "sha256": "f4b9d56c2b7d62cf1f1aae2d294af1f84dbba1d0a13e84b10a2e254b16c63365",
+      "bytes": 14538
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/payload/proposed-upload.variables.json": {
+      "sha256": "8b6e77940fc8ef2aff16d26ba79b82d70d12fe01130fa285b30d307d8cc1f543",
+      "bytes": 15400
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/payload/proposed-upsert.graphql": {
+      "sha256": "1550957c64be79ebdcb591f11ad7beaa859937ae13ee744c007ac5724dabfb6a",
+      "bytes": 269
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/payload/read.graphql": {
+      "sha256": "536a7c76d0c501ae245f07779d59d0d9b2d4f715cdadd6a5c58db3169ed5155f",
+      "bytes": 881
+    }
+  },
+  "publicationReady": false,
+  "externalWriteAuthority": false
+}

@@ -1,0 +1,7 @@
+query FaqReleaseInventory($after: String) {
+ shop { id name myshopifyDomain primaryDomain { url } }
+ page(id:"gid://shopify/Page/161933381") { id handle title body createdAt updatedAt isPublished publishedAt templateSuffix }
+ shopLocales { locale primary published marketWebPresences { id rootUrls { locale url } } }
+ markets(first:50, after:$after) { nodes { id name status webPresences(first:50) { nodes { id rootUrls { locale url } } pageInfo { hasNextPage endCursor } } } pageInfo { hasNextPage endCursor } }
+ translatableResource(resourceId:"gid://shopify/Page/161933381") { resourceId translatableContent { key locale value digest type } }
+}

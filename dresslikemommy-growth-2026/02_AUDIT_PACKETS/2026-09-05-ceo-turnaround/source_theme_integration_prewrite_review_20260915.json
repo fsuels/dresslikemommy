@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-15T02:55:37.241230+00:00",
+  "verdict": "PASS",
+  "prewrite_apply_ready": true,
+  "review_type": "Bounded independent static PREWRITE review; did not build or execute integration",
+  "script": {
+    "path": "/private/tmp/dlm-source-theme-closeout-20260915.py",
+    "sha256": "42f7540b628d0759fb987153975d4990586348f7e16324762e151de36763732d",
+    "execution": "NOT RUN"
+  },
+  "source_bindings": {
+    "merchant_color47_source_acceptance_20260915.json": "b1c79a9d42bd666917a9fe1cc766171e70477ee0c6a0b2085725a894933ee228",
+    "theme_buyer_truth_successor_source_acceptance_20260915.json": "aacba16e844e3760b1e0aa4c2bf01159fba829e078ec40f3fdacaa0a6453cf6e",
+    "merchant_color47_source_independent_acceptance_20260915.json": "1c499c5a0735058845c5c27610646def9ed80023175566a1049e2ceba88ebd01",
+    "theme_buyer_truth_successor_independent_acceptance_20260915.json": "51f772eea2d2ec56fb34cc8e12e98a20688c92df8110cd9303cb3cdc876427ad",
+    "FINAL_527_SOURCE_BINDING.json": "932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a",
+    "BROWSER_ACCEPTANCE.json": "70840f18cbfd0214ef6101c71f0d6861232450b53c860cd2afad2f1fa1cfbd48",
+    "continuity_anchor_normalization_verification_20260915.json": "aeadeb37eaf4541b2aa03852864cd607548790e0303e2472930898e120658aac",
+    "color47_native_receiving_progress_intake_20260915.json": "72b835e3d535ef3390efa0f49088341046dc00859a68395d896581491d207542",
+    "merchant_next_language_priority_20260915.json": "f7326815bdf71ee42efe017a86eaa2e1bacd580479d091f10f11fbe90e155b2f"
+  },
+  "checks": {
+    "python_ast_parse": "PASS",
+    "acceptance_alignment": "PASS: accepted source 47 new fields (8 product/39 variant), 491 preserved metadata; unpublished theme 7 changed/520 preserved/527 total, MAIN 525 files and metadata preserved. Source 903 and theme 591 checks are accepted independent reviewer evidence, not newly rerun checks.",
+    "theme_publication_boundary": "PASS: same exact owner Admin publication followed by MAIN/source/buyer acceptance before held remote-theme sync; no agent Publish, live MAIN, Git push or business-lift claim.",
+    "source_feed_distinction": "PASS: Shopify source accepted; US/AU native receiving (4741 updated/0 new/17 samples each) owner-reported pending independent after-review and frozen handoffs. Prior accepted source clocks remain unchanged.",
+    "checkpoint_staging_and_types": "PASS: deep-copy checkpoint staged before canonical writes, exact pending IDs and count guards, namespace separation, canonical hash-before-write and checkpoint byte-before-write guards.",
+    "integration_counters": "PASS: current 62 integrations/60 wakes/3 pending; proposed 64 integrations/60 wakes/1 existing propagation pending.",
+    "protected_state": "PASS: explicit equality guards retain full sales, paid authority, goal/runtime readback, schedules, sizing/FAQ/Navy/US/AU source clocks; masked outer-checkpoint equality preserves other branches.",
+    "canonical_scope": "PASS: exact TA-06/TA-07 and UX row updates, existing peer rows/control block/CurrentGoal retained; Merchant row byte binding preserved; prior source/browser/publication references kept.",
+    "anchor_metadata": "PASS: bare 2026-09-15-ceo-color-source-live-and-theme-ready with HANDOFF and READ_ONLY_MARKETING_RECONCILIATION; accepted 13-entry metadata normalization remains code/control neutral.",
+    "final_next_actions": "PASS: queue/cockpit/worklog now finish independent after-review and frozen handoffs without repeated promotion/Update/upload or unchanged sample run.",
+    "new_priority_scope": "PASS: exact priority receipt hash; French source proposal then reconcile prior dated US Spanish 13-required-stale-field cohort against completed releases. No new source write scope; Color86/variant_option remain local lower-priority proposals.",
+    "current_checkpoint_unchanged": "PASS",
+    "current_Merchant_row_unchanged": "PASS"
+  },
+  "current_before_bindings": {
+    "checkpoint_sha256": "62532a34966d3442ae73dfaefbacbdc6ce71f48a8dfe6ba4fb33751c960f08aa",
+    "Merchant_coordination_row_sha256": "bdfd089c137a49dde7787cb57649fc43eb490f4142c7a4e6498560be4573918f"
+  },
+  "resolved_findings": [
+    {
+      "reviewed_script_sha256": "c9b545275b48b68c47d05ec7b533733a33f0556e5f40b9efae6b9dfc603c5fcb",
+      "status": "RESOLVED",
+      "finding": "Queue and cockpit still requested receiving/samples despite newly reported completion. Final script lines 54,57,64,77 now target independent after-review/freeze with no repeated actions."
+    }
+  ],
+  "open_findings": [],
+  "limits": [
+    "Static prewrite acceptance only; script and post-application render/audit/strict/targeted-retrieval/diff checks NOT RUN by this reviewer.",
+    "Existing accepted source and operational reviews reused; no new source semantic audit, source freeze, private data, browser or API replay.",
+    "No independent final Color47 feed acceptance, live MAIN publication, Git push, worldwide delivery, serving, exposure, sales or profit inference.",
+    "Source palette text is merchant-authored; Cobalt, unresolved As-image, all six holds and future palettes remain excluded.",
+    "French unit failure/correction, remote JavaScript body binding limitation and other accepted theme limitations remain preserved in linked source records."
+  ],
+  "reviewer_writes": [
+    "/private/tmp/dlm-source-theme-integration-prewrite-review-20260915.json"
+  ],
+  "next_action": "Root may apply this exact guarded local integration and run its standard checks; retain the existing owner publication and Merchant after-review boundaries."
+}

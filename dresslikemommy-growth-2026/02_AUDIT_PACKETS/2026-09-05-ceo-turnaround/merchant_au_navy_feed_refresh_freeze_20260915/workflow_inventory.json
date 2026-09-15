@@ -1,0 +1,36 @@
+{
+  "status": "VERIFIED_LOCAL_WORKFLOW_ONLY__NEW_AU_FULL_COLLECTION_REQUIRED",
+  "paths": {
+    "deployment": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment",
+    "prior_au": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/au_source_freshness_1453",
+    "prior_independent_review": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_au_independent_release_review_20260914_1453.json"
+  },
+  "prior_success": {
+    "source": "513542500/10727245667; existing File(manual), AU/en/AU-label, Free listings only",
+    "collection_completed_utc": "2026-09-14T15:03:55.842Z",
+    "candidate": "prior_au/candidate/au-en.tsv",
+    "candidate_sha256": "f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236",
+    "counts": "238 ACTIVE parents; 4925 variants; 22 unavailable; 4903 raw rows; 162 held; 4741 uploaded rows/232 parents.",
+    "receipts": ["prior_au/build.json", "prior_au/release_execution_handoff.json", "prior_au/native_google_receiving_result.json", "prior_au/native_sample_readback.json", "prior_au/native_omission_followup_20260914T1604Z.json"],
+    "receiving": "One upload; 4741 updated/0 new, all recognized/no issues. Twelve native samples passed. The 16:10:07Z follow-up supersedes the handoff's pending omissions: source/list counts 4741, all 20 source-qualified omissions absent. This does not prove serving."
+  },
+  "fresh_workflow": {
+    "command_provenance": "Equivalent CLI reconstructed from build.mjs:8-55; historical receipt lacks argv. NOT RUN. Resolve deployment/prior_au aliases above and NEW_SOURCE to a new source directory.",
+    "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node deployment/automation_release_v1/bin/build.mjs --config deployment/international_candidate_config.json --market au-en --live --previous-manifest prior_au/candidate/au-en.manifest.json --out NEW_SOURCE",
+    "config_sha256": "6be63f2712324d9a3d0bddf750b1f46616e5e910e9cecb15073c3b17754163ed",
+    "context": "AU/AUD; market 544866401; catalog 910622817/publication 77105823841; country=AU&currency=AUD landing context. Live collector must reconfirm these.",
+    "containment": "cohort_filter.py:20-85 apply_holds(raw TSV, manifest, diagnostics, exact hold bytes, previous AU rowIds, reviewed protected AU IDs, complete source parent IDs). Preserve retained bytes and original snapshot clocks; derive new counts.",
+    "holds_file": "deployment/local_lifecycle_interim/eligibility_holds_20260911.json",
+    "holds_sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+    "held_parent_ids": ["7516369715297", "7516479848545", "7536337125473", "7536992976993", "7536988520545", "7536086089825"],
+    "profile_boundary": "lifecycle.py:269-271/native-holds-20260914 is US-only. International config has no native holds; eligibility.js:6-7 confirms none applied. Do not double-filter a future native-hold config. Legacy containment rejects absent held/protected parents; reconcile independently, never weaken guards.",
+    "review_bindings": "Freeze actual current builder dependency closure, AU config, complete snapshot, holds, qualification, before manifest, candidate SHA/MD5/bytes/IDs, full delta, protected identities/prices, current sole-writer claim and exact native source. Old builder freeze/review expired; bind a fresh independently reviewed source-age deadline.",
+    "upload_verification": "After parent authorization/review: native existing-source chooser, exact candidate, Upload once. Reconcile new receiving counts/issues, Navy descriptions, changed/protected prices and actual omissions. Do not assume only 24 descriptions changed or reuse prior counts/prices."
+  },
+  "us_snapshot_exclusion": {
+    "path": "deployment/local_lifecycle_interim/runs/20260915T005200Z-us-navy-refresh/candidate/us-en.snapshot.json",
+    "sha256": "16583317982df66149643d3e1986f225e4cf7e8f5c3cbe13efbbff893f82bf33",
+    "evidence": "Completed 2026-09-15T00:55:07.539Z: all 4925 contextual prices USD; US market 544735329/publication 77106053217. No AU context. collector.js:90,112,170 and generator.js:146-150 bind country/currency/market."
+  },
+  "limits": "Only this inventory written. No collection, upload, source-clock update, credentials, external calls or shared-state changes. Never reuse old feed as fresh or infer AUD prices."
+}

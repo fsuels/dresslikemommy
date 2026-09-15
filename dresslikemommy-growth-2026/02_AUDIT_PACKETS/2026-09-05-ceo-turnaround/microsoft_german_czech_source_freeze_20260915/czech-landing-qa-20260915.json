@@ -1,0 +1,50 @@
+{
+  "schema": "dlm.microsoft.localized_landing_addendum.v1",
+  "owner_thread": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "status": "PUBLIC_COPY_DEFECTS_VERIFIED__REPAIR_ROUTING_REQUIRED",
+  "campaign_key": "ms_cz_cs_202609",
+  "product_id": "7607764287585",
+  "product_handle": "coral-blossom-mommy-and-me-dresses",
+  "product_url": "https://www.dresslikemommy.com/cs/products/coral-blossom-mommy-and-me-dresses",
+  "collection_url": "https://www.dresslikemommy.com/cs/collections/dresses",
+  "surface": {"browser":"Codex In-app Browser","browser_id":"2","tab_id":"9","owner":"01a08703-644f-7940-8f67-9a2fa63722bb","background":true},
+  "observation": {
+    "product_readback_window_utc": {"start":"2026-09-15T03:54:33Z","complete_by":"2026-09-15T03:58:44Z"},
+    "collection_provenance":"Earlier same-session rendered collection observation, retained in task-owned browser state; product URL was directly observed on that collection.",
+    "navigation":"Direct navigation to observed exact product URL succeeded after one stale collection accessibility-link click. This does not establish a successful collection-card click.",
+    "selected_language":"Čeština",
+    "selected_country":"United States",
+    "selected_currency":"USD",
+    "cart_items":0,
+    "role_choices":["Maminka","Dívka"],
+    "adult_sizes":["S","M","L","XL"],
+    "price_display":"$31.99 USD - $34.99 USD",
+    "separate_piece_disclosure":"Vyberte velikost pro každou osobu. Každá volba zahrnuje jedny šaty; šaty pro maminku a dceru se prodávají samostatně.",
+    "country_currency_interpretation":"US/USD is expected for the current U.S. session. No Czech-country currency defect is inferred from a Czech-language URL.",
+    "country_selection_cart_checkout_or_order_actions":false
+  },
+  "copy_findings": [
+    {"surface":"collection title","before":"Šaty pro mámu a já","proposed":"Šaty pro maminku a dceru","finding":"Incorrect grammatical case; proposal preserves mother-daughter dress intent.","owner":"Shopify collection/localization owner"},
+    {"surface":"PDP purchase instruction","before":"1 Choose who this piece is for","proposed":"1 Vyberte, pro koho je tento kus určen","finding":"Untranslated buyer instruction; preserves separate-piece meaning.","owner":"Existing UX theme owner; check already-reviewed unpublished successor before any duplicate repair"},
+    {"surface":"PDP purchase instruction","before":"2 Choose size and options","proposed":"2 Vyberte velikost a další možnosti","finding":"Untranslated buyer instruction.","owner":"Existing UX theme owner; check already-reviewed unpublished successor before any duplicate repair"},
+    {"surface":"product body label","before":"Ptisk:","proposed":"Potisk:","finding":"Spelling error."},
+    {"surface":"product body label","before":"Srozsah velikostí:","proposed":"Rozsah velikostí:","finding":"Extraneous leading letter; no size-value changes."},
+    {"surface":"product body label","before":"Matka + dcera zápas:","proposed":"Sladěné šaty pro maminku a dceru:","finding":"Zápas denotes a contest rather than coordinated clothing."},
+    {"surface":"product body label","before":"Volníky na studených ramenech:","proposed":"Volánky:","finding":"Misspelled ruffle term and literal cold-shoulder translation. Short label avoids adding an unverified construction claim.","requires_source_review_before_longer_claim":true},
+    {"surface":"product body closing sentence","before":"APřidejte velikosti, které potřebujete, a vytvořte si veselé ladící šaty pro příští slunečnou rodinnou vzpomínku.","proposed":null,"finding":"Joined capitalized prefix is defective. Preserve full-source context and decide whether A is stray or a conjunction before writing."}
+  ],
+  "independent_review": {
+    "reviewer":"/root/international_campaign_build",
+    "verdict":"CERTAIN_COPY_ERRORS_CONFIRMED__LOCAL_AD_COPY_ACCEPTABLE",
+    "campaign_asset_set":"dresses_cs",
+    "ad_headlines_checked":8,
+    "ad_descriptions_checked":3,
+    "exact_keyword_candidates_checked":5,
+    "same_copy_errors_in_ads":false,
+    "limits":"Model linguistic review of root-supplied rendered text and local campaign assets; no independent browser replay or native-human certificate."
+  },
+  "recommended_action":"Route exact text to existing UX and product/collection localization owners through parent01a08223. Compare with unpublished theme137888792673 before treating its buybox instructions as a new repair. Keep the Czech paid landing qualification open until corrected or an already-qualified destination is selected.",
+  "writes_performed":[],
+  "not_established":["Czechia shipping/checkout eligibility","Czechia local currency behavior","Mobile buyer path","Add-to-cart functionality","Actual conversion impact","New campaign creation or paid launch"],
+  "frozen_campaign_package_changed":false
+}

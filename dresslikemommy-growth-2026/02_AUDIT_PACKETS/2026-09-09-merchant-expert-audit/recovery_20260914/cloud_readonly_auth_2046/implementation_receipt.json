@@ -1,0 +1,191 @@
+{
+  "action": "TA07-CLOUD-READONLY-AUTH-20260914-2046",
+  "status": "FROZEN_LOCAL_ADAPTER__ROOT_INTEGRATION_AND_INDEPENDENT_REVIEW_PENDING",
+  "completedAt": "2026-09-14T20:59:20.249523+00:00",
+  "ownedFiles": {
+    "src/shopify-auth.js": "d11f984bd7300c2a5c01d24508467391b1c46879889fe3ae59d31e17669ac708",
+    "test/shopify-auth.test.mjs": "108b39c927977e5408da667adeb4d028d42d23e00858fa20f66704f42ea59282"
+  },
+  "runtimeDirectory": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1",
+  "interface": {
+    "resolver": "resolveShopifyAdminToken(env, { domain, fetchImpl = globalThis.fetch, now = Date.now }) -> Promise<string>",
+    "factory": "createShopifyAdminTokenResolver({ requestTimeoutMs = 15000 }) -> isolated resolver with the same interface",
+    "clock": "now is a function returning epoch milliseconds as a safe integer or Date",
+    "mode": "SHOPIFY_AUTH_MODE must exactly equal client_credentials",
+    "bindings": [
+      "SHOPIFY_CLIENT_ID",
+      "SHOPIFY_CLIENT_SECRET"
+    ],
+    "legacy": "SHOPIFY_ADMIN_ACCESS_TOKEN is never read or used by this module; legacy handling remains outside it",
+    "scopeExport": "SHOPIFY_CATALOG_READ_SCOPES, frozen array",
+    "errors": "collector SourceError with constant .code/.message and no cause",
+    "missingCredentialsCode": "shopify_auth_missing_credentials",
+    "invalidOrMissingModeCode": "shopify_auth_mode_required"
+  },
+  "behavior": [
+    "Validates an exact lowercase one-label myshopify.com domain before a same-shop POST form exchange, with redirect:error and credentials:omit.",
+    "Requires HTTP200 JSON with exactly access_token/scope/expires_in; rejects malformed bodies, token/control characters, extra keys, redirects, mismatched response URLs and non-allowlisted scopes.",
+    "Caches tokens only in memory by hashed domain/client-ID/secret identity. A transient credential identity joins concurrent calls before asynchronous hashing and is removed on settlement.",
+    "Uses request-start-based expiry with a60-second safety margin, validates clocks and lifetime, isolates rotation and old-request completion, and aborts timed-out requests.",
+    "Returns only the token; emits no logs, credential-bearing URLs, upstream error text, error body or cause. No persistence, retry or legacy fallback."
+  ],
+  "allowedScopes": [
+    "read_products",
+    "read_publications",
+    "read_markets",
+    "read_locales",
+    "read_translations",
+    "read_metaobjects"
+  ],
+  "scopeAssessment": {
+    "status": "CATALOG_ONLY_ALLOWLIST__EXACT_LIVE_MINIMUM_UNVERIFIED",
+    "productData": "read_products covers the Product/ProductVariant resource family used by counts, media, prices and product-owned metafields.",
+    "marketAndLanguageData": "read_markets/read_publications/read_locales/read_translations correspond to current market/catalog/publication/locale/translation queries.",
+    "metadata": "read_metaobjects is justified by taxonomy metafield references reading Metaobject.displayName. The collector does not query definitions, so read_metaobject_definitions is not allowed.",
+    "minimum": "Any nonempty returned subset is accepted only for permission safety; auth does not certify that the subset suffices for all collector queries. Full live limited-token collection is a separate gate.",
+    "excluded": "All write, customer, order, theme, billing and other unrelated read scopes are rejected."
+  },
+  "officialSources": [
+    {
+      "url": "https://shopify.dev/docs/apps/build/authentication-authorization/client-credentials-grant?lang=node",
+      "finding": "Current guide requires an installed Dev Dashboard app in the same Shopify organization as the store; token scope reflects installed app-version permissions, not request-time narrowing. Documented expiry is86399 seconds."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/usage/access-scopes",
+      "finding": "Current read-scope resource mappings support products, markets, locales, translations and metaobjects."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/queries/publications",
+      "finding": "Current2026-07 query reference explicitly requires read_publications, which the general table omits."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/Metaobject",
+      "finding": "Current2026-07 object reference requires read_metaobjects."
+    }
+  ],
+  "validation": {
+    "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node --test test/shopify-auth.test.mjs",
+    "tests": 16,
+    "passed": 16,
+    "failed": 0,
+    "exitCode": 0,
+    "finalToolChunkId": "c6bea3",
+    "regressionFixed": "The initial concurrency-failure test found8 exchanges from8 concurrent callers because async hashing finished after a fast failure cleared the in-flight promise. Joining before hashing fixed it; final tests verify one exchange and later explicit recovery.",
+    "coverage": [
+      "endpoint and encoded form",
+      "no legacy getter access",
+      "domain/credential validation before fetch",
+      "write/customer/order/unrelated scope rejection",
+      "strict token/JSON/content-type/schema/expiry",
+      "cache margin and Date clock",
+      "credential/domain/factory isolation",
+      "concurrent success/failure cleanup",
+      "late old-credential completion",
+      "HTTP401/403/429/500 without body read/retry/fallback",
+      "expired-cache renewal failure",
+      "redirect/wrong response URL",
+      "sanitized errors",
+      "invalid/backward clock",
+      "timeout abort and explicit recovery"
+    ],
+    "newFileWhitespaceAndFinalNewline": "PASS",
+    "protectedObservedFiles": {
+      "src/checkpoint.js": {
+        "before": "a4c5101f8627e2cde1362d92ee507b9c0b7ebd2a6f02d4f33f14471b23a82839",
+        "after": "5c859d5e8d336420324ae87b356269b4f25734ced709c0d3213606ad27d6ab5a",
+        "status": "ROOT_CONCURRENT_INTEGRATION_CHANGE"
+      },
+      "src/worker.js": {
+        "before": "5fef8fa3755c3926b401bc1ed63df9ed8a5dec6c211d0ff85093f50bef0ecef8",
+        "after": "f258f9ae2441da7450ac7f14426c032caa86271f04ddb19f3a5b1d02f1190c70",
+        "status": "ROOT_CONCURRENT_INTEGRATION_CHANGE"
+      },
+      "src/collector.js": {
+        "before": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8",
+        "after": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8",
+        "status": "UNCHANGED"
+      },
+      "src/generator.js": {
+        "before": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f",
+        "after": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f",
+        "status": "UNCHANGED"
+      },
+      "src/eligibility.js": {
+        "before": "5441bb6aade0f2900f3770602109e14f0e4e964d3e819fff77bf935350038ac8",
+        "after": "5441bb6aade0f2900f3770602109e14f0e4e964d3e819fff77bf935350038ac8",
+        "status": "UNCHANGED"
+      },
+      "config.json": {
+        "before": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+        "after": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+        "status": "UNCHANGED"
+      },
+      "src/queries.js": {
+        "before": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+        "after": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+        "status": "UNCHANGED"
+      },
+      "package.json": {
+        "before": "b9b3f45df1dcabae85da66410d29da4fb58c947108b472d52f6375e9cf432d0f",
+        "after": "b9b3f45df1dcabae85da66410d29da4fb58c947108b472d52f6375e9cf432d0f",
+        "status": "UNCHANGED"
+      },
+      "test/feed.test.mjs": {
+        "before": "e1a1a58895beef4acf76abb37793f3ae7e38d0447053d2f9f137b38ce8b270c5",
+        "after": "e1a1a58895beef4acf76abb37793f3ae7e38d0447053d2f9f137b38ce8b270c5",
+        "status": "UNCHANGED"
+      },
+      "test/checkpoint.test.mjs": {
+        "before": "d442fa322fc97faa8312b8594c48b1798a07a586e92dd1f80fad543cba6e633f",
+        "after": "d442fa322fc97faa8312b8594c48b1798a07a586e92dd1f80fad543cba6e633f",
+        "status": "UNCHANGED"
+      },
+      "test/eligibility.test.mjs": {
+        "before": "a17f679b3713d1fb264e43b9ba4919ad6adacb4496e16b1969646c087c7eb945",
+        "after": "a17f679b3713d1fb264e43b9ba4919ad6adacb4496e16b1969646c087c7eb945",
+        "status": "UNCHANGED"
+      },
+      "wrangler.toml.example": {
+        "before": "daa188a209d7a35a8120dddac304d702a69de9bca9314cdbebada7b1f49302c4",
+        "after": "daa188a209d7a35a8120dddac304d702a69de9bca9314cdbebada7b1f49302c4",
+        "status": "UNCHANGED"
+      },
+      "wrangler.toml": {
+        "before": "a6a1d6d66888c75c7be5f4c9c7ecc7836824edeab327fa3a3f91a7af5645f03d",
+        "after": "ef6bf944071d726129013a6ba4e68a91ddafe5552dd613e1dfdfcd7a874883af",
+        "status": "ROOT_CONCURRENT_INTEGRATION_CHANGE"
+      }
+    },
+    "broaderSuiteAndStrictContinuity": "NOT RUN by this subagent after parent requested final checks after root integration."
+  },
+  "errorCodes": [
+    "shopify_auth_failed",
+    "shopify_auth_http_error",
+    "shopify_auth_invalid_clock",
+    "shopify_auth_invalid_domain",
+    "shopify_auth_invalid_expiry",
+    "shopify_auth_invalid_options",
+    "shopify_auth_invalid_response",
+    "shopify_auth_missing_credentials",
+    "shopify_auth_mode_required",
+    "shopify_auth_redirect_rejected",
+    "shopify_auth_rejected",
+    "shopify_auth_request_failed",
+    "shopify_auth_scope_not_allowed",
+    "shopify_auth_timeout"
+  ],
+  "liveGates": [
+    "Same-organization Dev Dashboard app and store eligibility.",
+    "Dedicated app permissions and owner-authorized encrypted Cloudflare secret bindings.",
+    "Independent review plus root adapter integration and dry-run.",
+    "Actual narrow returned scopes and complete restricted-token collector/readback success.",
+    "No cloud activation before the reviewed feed/runtime configuration is verified together."
+  ],
+  "rootOwnership": "Root is concurrently changing admin-reader/worker/checkpoint/Wrangler and integration tests. This subagent changed only the two owned auth files and this evidence packet.",
+  "externalBusinessRequests": 0,
+  "credentialsInspected": false,
+  "dependenciesAdded": false,
+  "liveAuthAttempted": false,
+  "deployed": false,
+  "rollback": "Before activation, remove only these two new files after hash verification and have root undo any integration changes under its separate ownership."
+}

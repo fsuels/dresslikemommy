@@ -1,0 +1,31 @@
+query NavyCurrentProductSource($id:ID!,$ids:[ID!]!,$after:String){
+shop{id myshopifyDomain}
+product(id:$id){id handle title status onlineStoreUrl publishedAt descriptionHtml seo{title description} tags productType totalInventory
+options{id name values}
+variants(first:50,after:$after){nodes{id title sku barcode price compareAtPrice selectedOptions{name value} inventoryPolicy inventoryQuantity sellableOnlineQuantity inventoryItem{id tracked}}pageInfo{hasNextPage endCursor}}
+metafields(first:50,after:$after){nodes{id namespace key type value compareDigest}pageInfo{hasNextPage endCursor}}
+resourcePublicationsV2(first:50,after:$after){nodes{isPublished publishDate publication{id}}pageInfo{hasNextPage endCursor}}
+}
+translatableResourcesByIds(resourceIds:$ids,first:10,after:$after){nodes{resourceId translatableContent{key value locale digest}
+l_ar:translations(locale:"ar",marketId:null){key value locale outdated}
+l_cs:translations(locale:"cs",marketId:null){key value locale outdated}
+l_da:translations(locale:"da",marketId:null){key value locale outdated}
+l_de:translations(locale:"de",marketId:null){key value locale outdated}
+l_el:translations(locale:"el",marketId:null){key value locale outdated}
+l_es:translations(locale:"es",marketId:null){key value locale outdated}
+l_fi:translations(locale:"fi",marketId:null){key value locale outdated}
+l_fr:translations(locale:"fr",marketId:null){key value locale outdated}
+l_he:translations(locale:"he",marketId:null){key value locale outdated}
+l_hi:translations(locale:"hi",marketId:null){key value locale outdated}
+l_it:translations(locale:"it",marketId:null){key value locale outdated}
+l_ja:translations(locale:"ja",marketId:null){key value locale outdated}
+l_ko:translations(locale:"ko",marketId:null){key value locale outdated}
+l_nl:translations(locale:"nl",marketId:null){key value locale outdated}
+l_no:translations(locale:"no",marketId:null){key value locale outdated}
+l_pl:translations(locale:"pl",marketId:null){key value locale outdated}
+l_pt_BR:translations(locale:"pt-BR",marketId:null){key value locale outdated}
+l_ro:translations(locale:"ro",marketId:null){key value locale outdated}
+l_ru:translations(locale:"ru",marketId:null){key value locale outdated}
+l_sv:translations(locale:"sv",marketId:null){key value locale outdated}
+}pageInfo{hasNextPage endCursor}}
+}

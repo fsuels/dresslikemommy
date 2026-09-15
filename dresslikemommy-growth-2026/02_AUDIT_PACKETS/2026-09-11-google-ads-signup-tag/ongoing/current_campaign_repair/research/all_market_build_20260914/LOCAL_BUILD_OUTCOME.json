@@ -1,0 +1,46 @@
+{
+  "outcome_id": "ADS650-ALL-MARKET-LOCAL-BUILD-20260914",
+  "decision_id": "ADS650-ALL-MARKET-LANGUAGE-BUILD-20260914",
+  "outcome_scope": "LOCAL_IMPLEMENTATION_ONLY",
+  "status": "IMPLEMENTED_LOCAL_VERIFIED__INDEPENDENT_PASS_WITH_GATES__LIVE_BLOCKED",
+  "counts": {
+    "market_records": 6,
+    "country_memberships": 68,
+    "distinct_country_codes": 65,
+    "country_language_candidates": 75,
+    "published_locale_packs": 21,
+    "headlines": 126,
+    "descriptions": 63,
+    "research_seed_records": 42,
+    "phrase_negative_candidates": 95
+  },
+  "observed": "Fresh Shopify metadata and Ads target gaps reconciled; local country builds and language asset library produced with 138/138 integration checks and original draft hash preserved.",
+  "not_observed": [
+    "Saved campaign repair",
+    "Native new campaigns/ads/keyword/negative records",
+    "Country target eligibility",
+    "Actual localized buyer-path acceptance",
+    "Low-CPC auction admission",
+    "Qualified paid purchase attribution",
+    "Contribution profit"
+  ],
+  "external_writes": 0,
+  "new_spend_allocation_usd": 0,
+  "paid_decision_outcome": "UNRESOLVED_NOT_A_LIVE_RESULT",
+  "continuity_check": {
+    "command": "ops/scripts/check_continuity_integrity.py --strict",
+    "result": "CONTINUITY_OK_10_OF_10_PASS",
+    "latest_anchor_at_run": "2026-09-14-ceo-x-publisher-proposal-and-n2-receipt"
+  },
+  "whitespace_check": "PASS",
+  "existing_source_draft_sha256": "99aad3484b86cf758412a037c9cdb0361da8800cebe781ec5ba1f54ac95218c8",
+  "review_correction": "Rollback removes only newly created IDs after inherited dedup; never assumes four insertions.",
+  "independent_review": {
+    "verdict": "PASS_WITH_GATES",
+    "sha256": "0e1922bddbd3ba0d777dad57b5c32513cfa18e1d630eec99ffd074cc9748a2e4",
+    "checks_passed": 37,
+    "checks_total": 37,
+    "reviewer": "/root/tag_repair_review",
+    "scope": "Saved source verification; no independent live UI replay"
+  }
+}

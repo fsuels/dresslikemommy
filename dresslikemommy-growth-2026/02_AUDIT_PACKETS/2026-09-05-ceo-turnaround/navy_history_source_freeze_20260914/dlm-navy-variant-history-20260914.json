@@ -1,0 +1,101 @@
+{
+  "schema": "dlm.navy_variant_history_readonly.v1",
+  "scope": "Read-only saved product/listing/variant evidence; no live queries, customer order source access, mutation, shared canonical edits, or product authority expansion.",
+  "product_id": "7670609346657",
+  "verdict": "VERIFIED_VARIANT_OMISSION__CAUSE_AND_INTENT_UNKNOWN",
+  "historical": {
+    "date": "2026-08-31",
+    "count": 26,
+    "status": "DRAFT",
+    "last_intentional_variant_change_found": "Two custom Mother 3XL variants restored and all 26 verified; no later intentional removal receipt found in the exact relevant repository evidence."
+  },
+  "current_source": {
+    "started_at": "2026-09-14T23:17:04Z",
+    "completed_at": "2026-09-14T23:17:05Z",
+    "count": 24,
+    "query_unfiltered_variants": true,
+    "has_next_page": false,
+    "same_retained_id_option_pairs": 24,
+    "added_ids": [],
+    "missing_ids": [
+      {
+        "id": "gid://shopify/ProductVariant/46501286608993",
+        "sku": "DLM-NSPR-MOM-DRS-3XL-NAVYGRAY",
+        "title": "Dress / Mother 3XL"
+      },
+      {
+        "id": "gid://shopify/ProductVariant/46501286641761",
+        "sku": "DLM-NSPR-MOM-CDG-3XL-NAVYGRAY",
+        "title": "Cardigan / Mother 3XL"
+      }
+    ]
+  },
+  "chart_evidence": {
+    "source_image_inspected": true,
+    "custom_3xl_label_present": true,
+    "source_weight_jin": "146-160",
+    "stored_kg": "73-80",
+    "fixed_garment_measurements": "absent",
+    "fulfillment": "UNCONFIRMED; explicit Aug31 owner confirmation gate retained; no newer confirmation found"
+  },
+  "dated_history": {
+    "first_later_24_variant_receipt_inspected": "2026-09-11T17:13:00.564/17:15:54.083Z",
+    "published_at_recorded": "2026-09-02T16:10:41Z",
+    "product_updated_at_recorded": "2026-09-07T18:33:16Z",
+    "timestamp_limit": "Publication and product updatedAt do not establish the variant deletion time, actor or reason."
+  },
+  "text_only_proposal": "Do not accept S-3XL to S-2XL as the complete source repair yet. It matches current selectable sizes, but exact missing variant lifecycle/intent is unresolved and stored body charts, SEO and localizations also carried 3XL. Do not restore variants or rerun the listing runner.",
+  "smallest_next_source_read": "Existing Shopify source owner should read this product activity/change history from Aug31 closeout through Sep11 source read, targeting the two exact missing variant IDs/SKUs and any custom-size fulfillment decision; capture deletion/bulk-edit actor/time/reason if exposed. No need to repeat the completed AU cart/checkout or catalog-cost queries.",
+  "source_bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/verify-navy-sprig-mommy-and-me-dresses.json",
+      "sha256": "dd7467e3fbf9bed2b558c0c06bab7e7ca2b3f3a7a07c95d455cc44e0ea85b160"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NAVY_AU_COST_SOURCE_20260914.json",
+      "sha256": "30049d8d45c33eaebd7389cdc43ec24e1e6f610a00d68ac3d7e8e77b927ee3e0"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/size-chart-navy-sprig-mommy-and-me-dresses.json",
+      "sha256": "d315dbc7b867b1369bfa60fde475b27ef23643c6a9101e25d6a0f1e5f994fbe7"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/source-size-chart-navy-sprig-mommy-and-me-dresses.png",
+      "sha256": "19d915dc3f34a70fb56c169216da40a5ce467399e3026459d824e96970279571"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/US_NAVY_SOURCE_READBACK.json",
+      "sha256": "510e9650d3d1f421d7dd6e0e3625e0ae37622026a2fd0881abe60ad9872c92c5"
+    }
+  ],
+  "canonical_references": [
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "lines": [
+        46325,
+        46326,
+        46340,
+        46343,
+        46344,
+        46361,
+        46365
+      ]
+    },
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "lines": [
+        100
+      ]
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "lines": [
+        4470,
+        4471,
+        4479
+      ]
+    }
+  ],
+  "tests": "NOT RUN: no implementation or shared continuity change; direct JSON set comparison and source image inspection performed.",
+  "local_check_note": "Initial report assembly guessed productByHandle and stopped before file creation; exact-ID recursive selection corrected it and final assertions passed."
+}

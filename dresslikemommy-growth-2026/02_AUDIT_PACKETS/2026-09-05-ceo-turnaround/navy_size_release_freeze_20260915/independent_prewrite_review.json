@@ -1,0 +1,512 @@
+{
+  "action": "TA07-NAVY-SIZE-CONSISTENCY-20260914",
+  "reviewer": "/root/merchant_translation_review",
+  "reviewed_at_utc": "2026-09-15T00:26:35.934849+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewed_proposal_sha256": "d200d5dc31fdfb443641e40e1729cfbf347a294938a8a3c7461c4f9eb5a28661",
+  "reviewed_english_query_sha256": "7c7bbe147207878437332b9217ab3ce765c0290c750dd88044c28e8b65a98929",
+  "reviewed_english_variables_sha256": "bacab73819f08bbae5b66c37bc3cd7e08c606c5ebcce63d0b13d8f9511f0a459",
+  "reviewed_translation_query_sha256": "e46e4a322fad20c499e3d93e1d63893cdae8ae9c8087cd8f2658be0a4bc87f26",
+  "reviewed_guard_sha256": "c48fc08d905fbba6b538f99260223b4f2d5d1aef3b5e0bf0571a80c958207436",
+  "independence": {
+    "did_not_author_candidate": true,
+    "did_not_execute_live_action": true,
+    "network_calls": 0,
+    "owned_artifact": "independent_prewrite_review.json only"
+  },
+  "scope": {
+    "productId": "gid://shopify/Product/7670609346657",
+    "English_source_fields": 2,
+    "existing_global_translation_fields": 40,
+    "locales_including_English": 21,
+    "keys": [
+      "body_html",
+      "meta_description"
+    ],
+    "marketId": null,
+    "candidate_blocked_fields": 0,
+    "English_write": "Exact bound ProductUpdate after root source-prewrite guard",
+    "translation_write": "PENDING actual post-English source digests and independent_translation_binding_review.json; no unbound future variables approved"
+  },
+  "source": {
+    "original_completed_at": "2026-09-15T00:07:33Z",
+    "private_before_sha256": "cfee12b0feeedaf04b81da3366d96a84d6b0e9ae1129c66caff4d9f6be5e71b4",
+    "sanitized_before_sha256": "2bf21a5d758f64fc357a35dd487c6b1c5462e195e0418eabc9cc84dd01bb184e",
+    "private_metafield_value_hashes_verified": 27,
+    "current_unique_variants": 24,
+    "size_options": 12,
+    "highest_current_mother_size": "2XL",
+    "garment_types": [
+      "Dress",
+      "Cardigan"
+    ],
+    "variant_metafield_publication_pagination_complete": true,
+    "metafield_records": 27,
+    "publication_records": 9,
+    "English_translatable_fields": 6,
+    "existing_translation_fields": 100
+  },
+  "fresh_prewrite": {
+    "private_prewrite_sha256": "471d64e0449f686e7ae1b611b4e542c2dca93a44c21c2e93c0fd1e2d8cb25566",
+    "sanitized_prewrite_sha256": "a302cbe6d45e073b501d0efbf0a8075c4a79282475b411b8ee6a709d37630086",
+    "observed_at": "2026-09-15T00:22:00Z",
+    "completed_at": "2026-09-15T00:22:01Z",
+    "age_seconds_at_independent_check": 274.934849,
+    "entire_data_object_identical_to_before": true,
+    "external_read_by_reviewer": false
+  },
+  "checks": [
+    {
+      "name": "Current offer and scope",
+      "status": "PASS",
+      "detail": "Verified 24 unique current variants equal Dress/Cardigan times 12 sizes through Mother 2XL; complete connections. Exactly 42 source/locale/key pairs match before values, value hashes and current source digests. No historical 3XL restoration."
+    },
+    {
+      "name": "Exact permitted deltas",
+      "status": "PASS",
+      "detail": "Independent parser-derived output matches all 42 candidate values. Each body removes only the final Mother 3XL row in each of the two named charts and changes one range endpoint. Each SEO field changes only one endpoint. All 85 declared edits, Unicode/UTF-8 positions, hashes and reverse reconstructions pass."
+    },
+    {
+      "name": "Measurements and markup",
+      "status": "PASS",
+      "detail": "42 rows/420 cells removed. All 5460 retained cells and headers preserve exact raw row bytes, numeric values, units, order and attributes. Every byte outside the allowed changes remains identical."
+    },
+    {
+      "name": "French typo",
+      "status": "PASS",
+      "detail": "Chaque is the correct singular determiner before pièce. Replacing exactly one Echaque leaves the existing independent piece/type/size selection meaning unchanged."
+    },
+    {
+      "name": "Executable English scope",
+      "status": "PASS",
+      "detail": "Exact document and variables supply only this product ID, descriptionHtml and seo.description. No variant, option, metafield, publication or unrelated input. Both local mutation schema-validation receipts report success."
+    },
+    {
+      "name": "Staged guards",
+      "status": "PASS_CODE_REVIEW",
+      "detail": "Reviewed full-data before/prewrite equality, English after-state reconstruction and preserved product/translation records. Only the two English values/digests, derived SEO mirror value/compareDigest and 40 outdated flags may change at stage one. Stage two requires a separate independently bound payload with 40 exact existing translations and observed new digests, then full-data reconstruction. Reviewer did not execute report-writing guard paths.",
+      "file": "verify_repair.py",
+      "lines": "64-163"
+    },
+    {
+      "name": "Market override baseline",
+      "status": "PASS_WITH_TIME_LIMIT",
+      "detail": "Verified six identity-matched ACTIVE markets and 126 queried market/language combinations with zero explicit override records. Reads completed 00:11:27 UTC and are distinct from the 00:22:01 source snapshot; empty overrides do not imply missing global translations."
+    }
+  ],
+  "approved_fields": [
+    {
+      "locale": "en",
+      "key": "body_html",
+      "beforeValueSha256": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "valueSha256": "af819a75e9947b8a0075e301217679f87fad2fcae08f06fa3fa81773385183b6",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "en",
+      "key": "meta_description",
+      "beforeValueSha256": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "valueSha256": "a44148db3c4eca52966ce99aecc2711be52785df0fff06d6aedd1c80ce70ee4d",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "ar",
+      "key": "body_html",
+      "beforeValueSha256": "41bd968f4e38433a222ef2b41f11f7afee9beb1f21fde6f7b35a18a0eec40590",
+      "valueSha256": "cff1810c34d30406c8d49f4e52f726d80a369f424de79dacfe0372f308cc3efb",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "ar",
+      "key": "meta_description",
+      "beforeValueSha256": "f89209a4d68f70dd8cbf876855e521efd0b900e76e9fa60e8f077667f3372a52",
+      "valueSha256": "f9b90707e1b19c7e7d1deac824e93263b213a4fd0ab9519278c47e6d8a144b4a",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "cs",
+      "key": "body_html",
+      "beforeValueSha256": "5441b73a2d7c97f0397e553510372412b46bd30cf029b1f6fa647dd450226af2",
+      "valueSha256": "1d37f0f586edda60aed11221b837fbcc9643cf024a061be600eb0fab13ec545b",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "cs",
+      "key": "meta_description",
+      "beforeValueSha256": "97662b78694145f30c3dd68e9b58e9345188dbc72d54f4771af8793d656045fe",
+      "valueSha256": "927ce1c8af234d6e0f37c1ebb2bf7d3643bac5567272496ca65fa4a36dbf88cc",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "da",
+      "key": "body_html",
+      "beforeValueSha256": "15466e4e30772db0ce447e6c7841d99770d8c4c07b18f0e1320f4b48bdca37e7",
+      "valueSha256": "716f2822d4f8606a80b280490d0d43778da0068beb9c230ced44d0483c660325",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "da",
+      "key": "meta_description",
+      "beforeValueSha256": "291971c5e551610542936e3f22721ec4a6dbe35762e1946028c619cdda489366",
+      "valueSha256": "49b83074d66f4a0e7ec7b45c66bc2e29a76f3976093104798cbe31af90d56ee8",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "de",
+      "key": "body_html",
+      "beforeValueSha256": "5cbb79b96c3902675be2562996c795fee5351886c73509fd7b02541c80112bb1",
+      "valueSha256": "0454ae998e89865478979e1ff912efac5667e355143344a50df447bd45e09f2c",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "de",
+      "key": "meta_description",
+      "beforeValueSha256": "da247b62d223773feb3e420fd5c2c88bbe408c7e1c4fa96064691282af9a855d",
+      "valueSha256": "bc3b372de37d431e6763bd227a9be93506587d4cdaea849cee98fa7e8369d481",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "el",
+      "key": "body_html",
+      "beforeValueSha256": "3c726dc9e28a7b20174aeffb335e8901871aea0e2bdb8bb46e32575af369ddc8",
+      "valueSha256": "666b4edc9038b7f638f50451d41a06b22e8453a7830b24f5a581fd43e0ccd19c",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "el",
+      "key": "meta_description",
+      "beforeValueSha256": "da1eca5b6f7c26dca27d6f01b248759140b5aad5efed48923c6847a522709807",
+      "valueSha256": "5d57d4118c5471af8d4fee4f063f2591974840bf6384476b85de889ad20f03fc",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "es",
+      "key": "body_html",
+      "beforeValueSha256": "d9b52b1987cb95fe5f9b8fe877257fa00577d929d44ea9192a6eccf7409768c2",
+      "valueSha256": "fbb3a139117b28644f7dc3d22e38f3bd4459eee312ac999286bf6fdc3f7f549f",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "es",
+      "key": "meta_description",
+      "beforeValueSha256": "8a1e9e8e9c2be8be6b1641f42a8f201001c37618cfaae4411db3e803b42ff9c2",
+      "valueSha256": "30dce051e5335b115e82f2161808d2ec4f1d904ca16b07f825c7bd551212ad4c",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "fi",
+      "key": "body_html",
+      "beforeValueSha256": "afb43752db750c8756a6f6752e86cb54ebef1f75b03cf33e8a2dc041bf6aa0e9",
+      "valueSha256": "5dca5796f59bd9742c9b5b02bdacef6999f01d4363ad164cac38798e8ad89c89",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "fi",
+      "key": "meta_description",
+      "beforeValueSha256": "fdf7af32cf10846d39d3d5b2e336a2a9074edffb038975c01f52f146cd27fa76",
+      "valueSha256": "79fc8f429321107f948267ef933a73e567243b922bfa5241aa02c38ffc8c4b37",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "fr",
+      "key": "body_html",
+      "beforeValueSha256": "4e6fd52560e8a8cd6459b04f31644d4cb6afacebd66f4d03579c21c34c4b3d1d",
+      "valueSha256": "d53c181559e9ac10fcf8d2a1b1f9afee9be3b6f062ef60a69aa44f5b5c807b89",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "fr",
+      "key": "meta_description",
+      "beforeValueSha256": "9a9bae24a23cd6541fed8c6a2bc0435f836ad93410d28106a6b953f6e75ef545",
+      "valueSha256": "dd8b956165f2eb19fccf100cddf1ad2344402d47023b988ed3d57465ad9d1a2c",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "he",
+      "key": "body_html",
+      "beforeValueSha256": "775d717e0a146ef90ed893d95826edab49607fa4e11d9ac3fd783f02a0feb497",
+      "valueSha256": "3840972664cb8d8e11e9b3a51c18212a66a2b6c0f798d0dbc3e16b6655e4c79c",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "he",
+      "key": "meta_description",
+      "beforeValueSha256": "8b1e6f6f467eff6b2697fbbfd2af4e96015b213b2812a1751c7a2158c098b289",
+      "valueSha256": "28d250e9a5e9b5b3b1b40ea4cca66bb700d976693d56e215c841cba5b51fbd87",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "hi",
+      "key": "body_html",
+      "beforeValueSha256": "0541fade1f8ac019772c908ab887c1b709611df7905454397cfce0a89528ec94",
+      "valueSha256": "75575dd876338274aa8f87ef009036c4c5857c6b8e03b41103fb2ec8b2d86634",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "hi",
+      "key": "meta_description",
+      "beforeValueSha256": "58ec7fd43b4ebc1736573d1a42cde1823abfdd78bf81e6df319c2779e2acded4",
+      "valueSha256": "202459a599be71fc1d97221778d504c80f6ba9bc7627ab5a08c92d4606738588",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "it",
+      "key": "body_html",
+      "beforeValueSha256": "ff007d74c4f8b549057ed38c8e7e8dceadf34145ffcd31b271b05dd8802f2e5d",
+      "valueSha256": "0593261152c932cfa71c978d680fe0b81d418f25e9883f4028ab599bad4e2555",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "it",
+      "key": "meta_description",
+      "beforeValueSha256": "b2566180dda6e5087d2529136004e813df85b36597ad6d6fcd8f555cb6bbe2a6",
+      "valueSha256": "0c29c83837f713d137e8ccda696f09af96630a28972ffdc9384efc2d4bb0c814",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "ja",
+      "key": "body_html",
+      "beforeValueSha256": "65e9a93fbc83beb229edf5563641508e1be7f709d032534eff2bb2fde4ef1c11",
+      "valueSha256": "18df2b54743f3e0a0615c3c93b5ae1794557f0738198dc2ad2cec1097f782238",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "ja",
+      "key": "meta_description",
+      "beforeValueSha256": "da17422bb3339b866e7b0526740d5ed43ec80346ebbefaf084782c95f34fff42",
+      "valueSha256": "6e762c8324854fe266e3043f697005891d959be35eb5a69ba0ac7439a170c611",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "ko",
+      "key": "body_html",
+      "beforeValueSha256": "54224ec66f2c90e0aa7e6cbe5676dfbc830e1c91203e25407d2f121795095e4f",
+      "valueSha256": "31d8440b88b44f0addc75b600ce3f66d1fa651992632aacc44adcf1dec6b9c98",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "ko",
+      "key": "meta_description",
+      "beforeValueSha256": "60c713ab295ebdcede1fadf55843737c936d3903e64289f4ac2da8976e115b1f",
+      "valueSha256": "7a33535b4e2d17acda9afa4e4ddf3e395f2d2d56f210a13408ec69db0b450fa1",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "nl",
+      "key": "body_html",
+      "beforeValueSha256": "c88005d63137df54e9faa1c7d879ab4af2cdfaf07494df19e4f5549131bb80f7",
+      "valueSha256": "cb70737dd1c5cccfc08c90aa2350fb7fd4a70d9d5a610be674da341ec766d5c2",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "nl",
+      "key": "meta_description",
+      "beforeValueSha256": "ff9e489903c0c5f20b06389399405462a22c731225c25c7d6e77a62a8b41fa22",
+      "valueSha256": "10ee01f3d692d711597d2567863284c1ad71ff58d37758cf54d16785fb9d40ec",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "no",
+      "key": "body_html",
+      "beforeValueSha256": "b5e38c20ef019363d76ad1ecec10c456ec45391475d861424342cabac3fa02b4",
+      "valueSha256": "c72c39ba899cde457578c06e228dc600affddcec2005206dc6a1bf3ad6868774",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "no",
+      "key": "meta_description",
+      "beforeValueSha256": "16f708263f314167c51232aab97b7e873188ec1ba300fb1c8fda397f49d7fa2e",
+      "valueSha256": "e6138617f161e4d8cc9d29b88eb407620c4293b67dab035c58ff232f836f1d4d",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "pl",
+      "key": "body_html",
+      "beforeValueSha256": "23fb7ac29a1738899cf35f427f2552e3b38c485a2457cc444af6a8da13cc9349",
+      "valueSha256": "ba7daa159c77d2ab6d1cff6046da97ecb36fe393138678b28b8b272765bebc41",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "pl",
+      "key": "meta_description",
+      "beforeValueSha256": "36e2aba0efe5e19b49d392f61a3eea4ad8b419f690379c1bc837c4f97a8b3319",
+      "valueSha256": "05b9397532260be0f98a65fcbb52db94d1eae514ae2b437f9d1f9ce28650775c",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "pt-BR",
+      "key": "body_html",
+      "beforeValueSha256": "b7cb2eef7d6fb0785a93a12ef3ba48205063ca86ad7872c790bf633d679aa679",
+      "valueSha256": "d05fb9eba1d7a6eaa42e02e7fac11954d7d88b082c2e16b054fb737011078efe",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "pt-BR",
+      "key": "meta_description",
+      "beforeValueSha256": "dfa23db220f67921534b88241d748a41a4fa66740a8bbd4c3aa4cd904c723567",
+      "valueSha256": "4be042b5de909c767ff2c98731b1f4e84e3fcc4db795627eec6bee46d0b5d8cf",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "ro",
+      "key": "body_html",
+      "beforeValueSha256": "6c5bf45b8a58a00d9045cdbf421c79c05e07901d49a18e3a2945c88125a34718",
+      "valueSha256": "a757f0b7b4860c194e131ec18b743e959f1a0ecadcf3f7f36e631118ebfbe3ad",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "ro",
+      "key": "meta_description",
+      "beforeValueSha256": "7bc958053c3167a217b1097485cf250d111861feb01b4830f17ea9c9a18a17a5",
+      "valueSha256": "85948b37e663a8b335d2fae21d01d0389119a351784a255ec72d4d2dd1f15220",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "ru",
+      "key": "body_html",
+      "beforeValueSha256": "59a7711f3b9e875f5da40587b5525f63f3bac339544e8c3d2ddf546c735b16b1",
+      "valueSha256": "b97e07ca5eba94684608ad8daeb9fffe8fe9a6369e824e0c72d92e6757258b57",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "ru",
+      "key": "meta_description",
+      "beforeValueSha256": "135f42831a4d27bd11a560a9c489eaa31fcd246611a9cb86225dbdbb3870b076",
+      "valueSha256": "7d6ce001c9138c2c8b2aff4761786b57c0a4ce3c3eb9051ee6bd369f056f4ff6",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "sv",
+      "key": "body_html",
+      "beforeValueSha256": "6065ba6e629c169a83386aac40cbcb45d978c1740334eb9aba2bdef959092e9d",
+      "valueSha256": "83a9bbca3f8533378cd0b2e9193a88c3404df795bd7eca0794f808d424887f6c",
+      "sourceDigestBefore": "7020c4f06c3a853f9dd1f7034c64e7eb8febd691306f1c40901d23b1441d1ce0",
+      "sourceDigestAfter": null
+    },
+    {
+      "locale": "sv",
+      "key": "meta_description",
+      "beforeValueSha256": "475f8ff97a9847dd43ca2087d439ee7b60fcf2ddb16a6f0c5e59ed2ce3c5e7a7",
+      "valueSha256": "7a183539613749663dc4f52447f3864af31b09c9918cb20e540b19dc366304a6",
+      "sourceDigestBefore": "da80b3c1eb8bfedaaa25e10ce3d44d78db14e631a8e673cc3d57c54990c9b9e7",
+      "sourceDigestAfter": null
+    }
+  ],
+  "expected_derived_changes": [
+    "Only the existing global.description_tag value and compareDigest may follow the new English SEO; no explicit metafield mutation. The other 26 metafields remain protected.",
+    "New body_html/meta_description Shopify digests must be read after ProductUpdate, not predicted from content hashes.",
+    "The 40 existing translations are expected to become outdated after English changes; their values remain untouched until the separately bound registration."
+  ],
+  "protected_fields": [
+    "All 24 variant IDs/options/prices/inventory, all options, tags, identity/status/publication records and unrelated metadata",
+    "Four untargeted English fields and 60 untargeted translation fields",
+    "Other products, locales/markets/overrides, archived charts/images, themes, FAQs, feeds and account state",
+    "The newly proposed French Hip-label correction is a separate follow-up, excluded from these frozen 42 fields"
+  ],
+  "findings": [],
+  "limits": [
+    "This exact size-consistency review does not certify every pre-existing translated sentence or supplier measurement. Broader retranslation is excluded.",
+    "Saved source and older override snapshots do not prove current all-market serving or absence of subsequent edits. Root retains action-time guarding and override/rendered checks.",
+    "English mutation, new source digests, final 40-field variables, destination readback and public route verification remain pending.",
+    "No Merchant feed, eligibility, ratings, traffic or sales conclusion follows from this content repair."
+  ],
+  "evidence": [
+    {
+      "file": "proposal.json",
+      "sha256": "d200d5dc31fdfb443641e40e1729cfbf347a294938a8a3c7461c4f9eb5a28661"
+    },
+    {
+      "file": "proposal_notes.md",
+      "sha256": "1213414b5ba0bd79a4ac9cd1406ff158cab14b4db94e1e46427ef18799b82b1f"
+    },
+    {
+      "file": "build_proposal.py",
+      "sha256": "47e516d180402b3c7645c0298a48005900a6c10fb3380aa0835fae4f44d0e422"
+    },
+    {
+      "file": "update_english.graphql",
+      "sha256": "7c7bbe147207878437332b9217ab3ce765c0290c750dd88044c28e8b65a98929"
+    },
+    {
+      "file": "update_english.variables.json",
+      "sha256": "bacab73819f08bbae5b66c37bc3cd7e08c606c5ebcce63d0b13d8f9511f0a459"
+    },
+    {
+      "file": "update_translations.graphql",
+      "sha256": "e46e4a322fad20c499e3d93e1d63893cdae8ae9c8087cd8f2658be0a4bc87f26"
+    },
+    {
+      "file": "verify_repair.py",
+      "sha256": "c48fc08d905fbba6b538f99260223b4f2d5d1aef3b5e0bf0571a80c958207436"
+    },
+    {
+      "file": "read.graphql",
+      "sha256": "ebc9d4d2b6cfbaaa56aecaabcee0f083bd3a40dbba98ce2afe2788de877d85f2"
+    },
+    {
+      "file": "chart_source_map.json",
+      "sha256": "d0bc74d36236fbfb8d1cc3a225317a01484fd864d16acdc7809c3e94cb9691c6"
+    },
+    {
+      "file": "market_overrides_before.json",
+      "sha256": "fa6b4046e75284af49ab32842348c654cdf9b1bc4e77fcc8501da8d9704bc453"
+    },
+    {
+      "file": "markets_before.json",
+      "sha256": "19f36d357e7e2eb7126ee867fe612173b76101ca52dd98785a4dd08306cabc17"
+    },
+    {
+      "file": "overrides_query.graphql",
+      "sha256": "61d199b53966bb573172dd84853e36d7142dfc914c1cfe15b30aedbb754a587e"
+    },
+    {
+      "file": "update_english_cli_validation.txt",
+      "sha256": "950927d51266f515b6ac139eb50c128c1163fa09b108f629dc82b69e920de436"
+    },
+    {
+      "file": "update_translations_cli_validation.txt",
+      "sha256": "5e3966dd75bf5cc473819ba795a1431d375a89ad8f33c09d8b01c1f055499be4"
+    }
+  ],
+  "next_action": "Root runs the source-prewrite guard and exact English update, reads actual new source digests, then obtains the separate 40-field translation binding review before registration."
+}

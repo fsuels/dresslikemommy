@@ -1,0 +1,27 @@
+query MerchantColorSourceBefore($ids: [ID!]!) {
+  shop { id myshopifyDomain }
+  productDefinitions: metafieldDefinitions(first: 10, ownerType: PRODUCT, namespace: "mm-google-shopping", key: "color") {
+    nodes { id namespace key ownerType type { name } validations { name value } access { admin storefront } }
+    pageInfo { hasNextPage endCursor }
+  }
+  variantDefinitions: metafieldDefinitions(first: 10, ownerType: PRODUCTVARIANT, namespace: "mm-google-shopping", key: "color") {
+    nodes { id namespace key ownerType type { name } validations { name value } access { admin storefront } }
+    pageInfo { hasNextPage endCursor }
+  }
+  nodes(ids: $ids) {
+    ... on Product {
+      id title handle status description descriptionHtml updatedAt onlineStoreUrl
+      options { id name values position }
+      gColor: metafield(namespace: "mm-google-shopping", key: "color") { id namespace key type value jsonValue compareDigest }
+      resourcePublicationsV2(first: 20) { nodes { isPublished publication { id } } pageInfo { hasNextPage endCursor } }
+      variants(first: 50) {
+        nodes {
+          id title price compareAtPrice inventoryQuantity inventoryPolicy availableForSale
+          selectedOptions { name value }
+          gColor: metafield(namespace: "mm-google-shopping", key: "color") { id namespace key type value jsonValue compareDigest }
+        }
+        pageInfo { hasNextPage endCursor }
+      }
+    }
+  }
+}

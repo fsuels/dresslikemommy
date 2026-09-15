@@ -1,0 +1,196 @@
+--- cs.before
++++ cs.candidate
+@@ -1,42 +1,19 @@
+ <div id="page-content">
+-<script>// <![CDATA[
+-function remove_classes_active() {
+-    alert( 'FOUND' );
+-    var $aSelected = $('.question-answer-block').find('a');
+-    
+-    if( $aSelected.hasClass('active') ){
+-      alert( 'FOUND' );
+-      $('.question-answer-block > a').removeClass('active');
+-    }else{
+-      alert( 'NOT FOUND' );
+-    }
+-  }
+-// ]]></script><script>// <![CDATA[
+-jQuery("document").ready(function($){
+-    var nav = $('#nav');
+-    $(window).scroll(function () {
+-     	if(getWidthBrowser() > 1200){
+-    		if ($(this).scrollTop() > 136){
+-              nav.addClass("on animated"); 		
+-            } 
+-            else {
+-              nav.removeClass("on animated"); 		
+-            } 
+-  		}
+-          $('#goGrid').trigger('click');
++<style>
++#page-content .help-page summary.ask { display: list-item; list-style: disclosure-closed inside; min-height: 44px; padding: 10px 0; cursor: pointer; }
++#page-content .help-page details[open] > summary.ask { list-style-type: disclosure-open; }
++#page-content .help-page summary.ask::-webkit-details-marker { display: inline; }
++#page-content .help-page summary.ask h3 { display: inline; margin: 0; }
++#page-content .help-page summary.ask:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
++</style>
+ 
+-      
+-    });  
+-    
+-  });
+-// ]]></script>
+ <div class="help-page">
+ <div id="General Questions">
+ <div class="faq-item-title" name="General Questions">
+ <h2>O nás</h2>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Obecné otázky</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Obecné otázky</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Je tato stránka bezpečná k použití? </strong></p>
+ <p>Ano, je to bezpečné. Pro zpracování plateb používáme PayPal, takže ani náš personál nevidí vaše platební údaje. PayPal je největší světový poskytovatel bezpečných plateb. Naše webová stránka je postavena na zabezpečené platformě Shopify. Všechny vaše osobní údaje jsou pečlivě chráněny.</p>
+ <p> </p>
+@@ -48,36 +25,36 @@
+ <p> </p>
+ <p><strong>4. Proč jste tak levní?</strong></p>
+ <p>Vynecháváme všechny prostředníky a dodáváme produkty přímo od výrobců zákazníkům, což nám umožňuje nabízet extrémně nízké ceny.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="Before You Place an Order">
+ <div class="faq-item-title" name="before you place an order">
+ <h2>Před zadáním objednávky</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Velikosti</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Velikosti</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Kde najdu tabulku velikostí v centimetrech?</strong></p>
+ <p>Tabulky velikostí v centimetrech najdete na naší stránce s velikostmi zde: <a href="http://www.assassinshoodies.com/pages/sizing-information" alt="Stránka velikostí">Stránka velikostí</a> nebo v popisu každého produktu.</p>
+ <p> </p>
+ <p><strong>2. Dostanu zboží o dvě velikosti větší?</strong></p>
+ <p>Ne. Pošleme velikost, kterou jste si objednali. Pokud obvykle nosíte evropskou střední velikost, vyberte střední (M) velikost a obdržíte střední velikost.</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Platby</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. Platby</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Jaké typy plateb přijímáte?</strong></p>
+ <p>Přijímáme PayPal a kreditní/debetní karty (Visa, Mastercard, American Express, Discover).</p>
+ <p> </p>
+ <p><strong>2. Chci platit kreditní kartou, ale jsem přesměrován na stránku PayPal?</strong></p>
+ <p>Pro zpracování plateb používáme PayPal. Na stránce PayPal vpravo si můžete vybrat ze dvou možností: „Zaplatit pomocí mého PayPal účtu“ <i>nebo</i> „Zaplatit kreditní nebo debetní kartou“</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">C. Doprava</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>C. Doprava</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Jaká je cena dopravy?</strong></p>
+ <p>Nabízíme zcela ZDARMA doručení po celém světě.</p>
+ <p> </p>
+@@ -89,16 +66,16 @@
+ <p> </p>
+ <p><strong>4. Musím platit clo?</strong></p>
+ <p>Ne, clo platit nemusíte. Všechny naše objednávky označujeme jako dárky s nízkou hodnotou. Navíc větší objednávky zasíláme v samostatných balíčcích.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="After You Place an Order">
+ <div class="faq-item-title" name="After You Place an Order">
+ <h2>Po zadání objednávky</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Stav objednávky</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Stav objednávky</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Co znamená stav objednávky „Nevyřízeno“?</strong></p>
+ <p>Vaše objednávka je zpracovávána a sledovací číslo objednávky je v čekání. Obvykle objednávky vyřizujeme a zasíláme zákazníkům sledovací číslo, když je sledovací číslo odesláno do poštovního systému, což trvá 5-7 dní po odeslání objednávky.</p>
+ <p> </p>
+@@ -107,11 +84,11 @@
+ <p> </p>
+ <p><strong>3. Už to trvá příliš dlouho, kde je moje objednávka?</strong></p>
+ <p>Prosím zkontrolujte sledování vaší objednávky pro více informací. Pokud problém přetrvává, napište nám e-mail: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Sledování objednávky</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. Sledování objednávky</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Jak mohu sledovat svou objednávku?</strong></p>
+ <p>Sledovací kód objednávky poskytujeme 5-7 dní po zadání objednávky. Svoji objednávku můžete sledovat zde: <a hef="www.assassinshoodies.com/pages/track-your-order" alt="Sledovat objednávku">Sledovat objednávku</a></p>
+ <p> </p>
+@@ -123,11 +100,11 @@
+ <p> </p>
+ <p><strong>4. Jak zůstat informován o sledování mé objednávky?</strong></p>
+ <p>Používáme sledovací systém After Ship k sledování objednávek našich zákazníků, takže kdykoli jsou informace o sledování aktualizovány, měli byste obdržet e-mail.</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Chci změnit nebo zrušit svou objednávku</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. Chci změnit nebo zrušit svou objednávku</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Objednal jsem něco, ale chci objednávku zrušit</strong></p>
+ <p>Musíte nás kontaktovat do 1 pracovního dne od zadání objednávky, abyste domluvili změnu objednávky. Můžete tak učinit zasláním e-mailu na <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> s číslem vaší objednávky v předmětu.</p>
+ <p> </p>
+@@ -136,16 +113,16 @@
+ <p> </p>
+ <p><strong>3. Objednal jsem něco, ale chci změnit doručovací adresu</strong></p>
+ <p>Musíte nás kontaktovat do 1 pracovního dne od zadání objednávky, abyste domluvili změnu objednávky. Můžete tak učinit zasláním e-mailu na <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> s vaší novou doručovací adresou.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="After You Receive an Order">
+ <div class="faq-item-title" name="After You Receive an Orde">
+ <h2>Po obdržení objednávky</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Chci změnit nebo vrátit svou objednávku</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Chci změnit nebo vrátit svou objednávku</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Moje objednávka dorazila, ale zboží bylo o dvě velikosti větší</strong></p>
+ <p>Vezměte prosím na vědomí, že všechny velikosti v našem obchodě jsou uváděny v EU a US měrných jednotkách. Skutečná velikost oděvu (uvedená na produktu) je obvykle dvakrát větší. Naši výrobci sídlí ve východní Asii a automaticky zasíláme asijský ekvivalent evropské/americké velikosti. To znamená, že pokud objednáte Medium (M – EU/US), zašleme vám asijský ekvivalent Extra Large (XL).</p>
+ <p> </p>
+@@ -157,8 +134,8 @@
+ <p> </p>
+ <p><strong>4. Moje objednávka dorazila, ale chci ji vrátit.</strong></p>
+ <p>Prosím kontaktujte nás na <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> a poskytněte nám číslo vaší objednávky. Můžete nám zboží zaslat zpět a my vám vrátíme peníze. *Náklady na poštovné hradíte vy.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ </div>
+ </div>

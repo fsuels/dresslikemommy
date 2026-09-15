@@ -1,0 +1,11 @@
+--- saved86/assets/product-desktop-ux-20260513-ruler-sync.js
++++ corrected/assets/product-desktop-ux-20260513-ruler-sync.js
+@@ -6148,7 +6148,7 @@
+   var token = normalizeText(unit);
+   if (!token) return '';
+   if (token === 'cms' || token === 'centimeter' || token === 'centimeters' || token === 'centimetre' || token === 'centimetres' || token === 'سم') return 'cm';
+-  if (token === 'inch' || token === 'inches' || token === 'بوصة' || token === 'بوصات' || token === 'انش' || token === 'إنش') return 'in';
++  if (token === 'inch' || token === 'inches' || token === 'po' || token === 'pouces' || token === 'بوصة' || token === 'بوصات' || token === 'انش' || token === 'إنش') return 'in';
+   if (token === 'lb' || token === 'lbs') return 'lbs';
+   if (token === 'kilogram' || token === 'kilograms' || token === 'كجم' || token === 'كغ') return 'kg';
+   if (token === 'رطل' || token === 'ارطال' || token === 'أرطال') return 'lbs';

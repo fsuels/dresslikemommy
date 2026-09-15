@@ -1,0 +1,62 @@
+{
+  "status": "DIAGNOSIS_COMPLETE__NATIVE_PAYLOAD_UNVERIFIED",
+  "confidence": "H for local semantics; unresolved live cause",
+  "reviewer": "/root/merchant_translation_review",
+  "reviewed_at_utc": "2026-09-15T01:13:05.211152+00:00",
+  "target": {
+    "merchant_account": "513542500",
+    "source_id": "10727274744",
+    "offer_id": "shopify_US_7670609346657_46501139349601"
+  },
+  "feed_sha256": "00b9e1ec7ae36448fec9a2c1ae08b511065853d0c7113f3337612feae07c8ae4",
+  "evidence_sha256": {
+    "promote_receipt": "9f37e7cc68cc89fb80afa36b717c7fcd8bc6a586ab2eb9769610291883e8d68f",
+    "promote_intent": "5e6bed5ecf44410b6597a4d5518223b3f6c8493c330c232665e5ab7ac49f0c7b",
+    "native_before_source": "9c4a4f30b6d852c0f66001bc7ebb4403d742233abeff57ebda86a438a83048bb",
+    "native_offer_before": "3da2885c48933e6497da9dac3345f94c199caa84afa9a032b17f54eb371f0778",
+    "native_fetch_intent": "ee7b94252493d6243ba6c81e9729bc806d4ce808c8f2aaee476d22a04588bb05",
+    "host_source": "666883d2d62989ef57f11e2a4b2ac5f067c2fc68478b14db908d219c5e7c6518",
+    "host_deploy_receipt": "107cbe6b34e98679e04436eb6358c52141393fdfd6d27708b2071854dbef3661",
+    "uploader": "08580cd0f7d9bc61ade2b98e0d8b46d9c86f9a8ed6987936d6cecf85b7c6e14c"
+  },
+  "verified": [
+    {
+      "finding": "Promotion proves R2 pointer, immutable bytes and unchanged Worker metadata, not the public response. public_verified is absent.",
+      "source": "local_lifecycle_interim/lifecycle.py:466-479,529-530; promote receipt"
+    },
+    {
+      "finding": "Host reads the current pointer and immutable object, emits public,max-age=300 and SHA-based ETag; it implements no conditional-header or 304 branch and emits no Last-Modified.",
+      "source": "automation_release_v1/src/host.js:17-31"
+    },
+    {
+      "finding": "Offline execution with the actual candidate returned exact new bytes/status 200 for unconditional GET, old/current If-None-Match and future If-Modified-Since. All four recorded host-source copies hash identically.",
+      "source": "Independent in-memory Node check; no external requests"
+    },
+    {
+      "finding": "Old/new feed lengths both equal 16504238 bytes, but content hashes/ETags differ; equal size does not demonstrate unchanged content.",
+      "source": "before.pointer.json and candidate/us-en.manifest.json"
+    },
+    {
+      "finding": "Optional public readback requests Cache-Control:no-cache; it was not part of this promotion receipt.",
+      "source": "local_lifecycle_interim/lifecycle.py:169-173,564-566"
+    }
+  ],
+  "reported_native_observation": {
+    "provenance": "Root message; post-click native artifacts not present at diagnosis read",
+    "update_clicked_once_utc": "2026-09-15T01:08:05.271Z",
+    "processing": "Updated/no issues; total updated 0, new 0 at 01:08:46 and 01:09:21",
+    "offer_at_utc": "2026-09-15T01:09:57Z",
+    "result": "Approved/USD23.99/free US, but old Mother S–3XL description"
+  },
+  "assessment": "Five-minute cache reuse or Merchant processing/detail-view propagation could explain the observation; neither is proven. Google received status, headers and bytes are unavailable, so an intermediary 304 cannot be confirmed or excluded. No host-code 304 defect is evidenced. New=0 agrees with zero added IDs; updated=0 does not prove the changed description arrived. Cache expiry alone does not trigger another Google fetch.",
+  "next_observation": {
+    "not_before_utc": "2026-09-15T01:23:05Z",
+    "action": "Read-only reload the exact en/US Navy offer and save the expanded description with observation time, source identity and approval state. Look for Mother S–2XL and zero 3XL mentions. Do not repeat Update or retry blocked downloads.",
+    "interpretation": "This 15-minute checkpoint tests propagation, not a guaranteed processing deadline. If still old, keep native payload pending for the existing scheduled fetch."
+  },
+  "independent_after_receipt_required": true,
+  "after_receipt_scope": "Bind subsequent native receiving evidence to this source/version and corrected offer description; distinguish one sampled offer from all 24. Hosted commit alone cannot close native verification.",
+  "external_calls": 0,
+  "external_writes": 0,
+  "other_files_changed": 0
+}

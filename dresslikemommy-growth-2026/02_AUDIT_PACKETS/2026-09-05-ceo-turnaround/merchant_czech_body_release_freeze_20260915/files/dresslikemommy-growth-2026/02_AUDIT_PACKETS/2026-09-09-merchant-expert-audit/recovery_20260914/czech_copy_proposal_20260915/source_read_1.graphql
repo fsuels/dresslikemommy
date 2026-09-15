@@ -1,0 +1,21 @@
+query CzechCopySourceQualification($productId: ID!, $collectionHandle: String!, $variantAfter: String) {
+  shop { id myshopifyDomain }
+  product(id: $productId) {
+    id title handle status descriptionHtml updatedAt publishedAt onlineStoreUrl templateSuffix productType tags totalInventory
+    seo { title description }
+    variants(first: 50, after: $variantAfter) {
+      nodes { id title sku price compareAtPrice inventoryQuantity inventoryPolicy selectedOptions { name value } }
+      pageInfo { hasNextPage endCursor }
+    }
+  }
+  productTranslation: translatableResource(resourceId: $productId) {
+    resourceId
+    translatableContent { key value locale digest }
+    translations(locale: "cs") { key value locale outdated updatedAt market { id name } }
+  }
+  collection: collectionByIdentifier(identifier: { handle: $collectionHandle }) {
+    id title handle descriptionHtml updatedAt templateSuffix
+    seo { title description }
+    translations(locale: "cs") { key value locale outdated updatedAt market { id name } }
+  }
+}

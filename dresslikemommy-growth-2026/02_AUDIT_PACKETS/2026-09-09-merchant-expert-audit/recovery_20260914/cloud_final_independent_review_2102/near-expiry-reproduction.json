@@ -1,0 +1,12 @@
+{
+  "status": "REPRODUCED_EXPIRY_WINDOW_FAILURE",
+  "case": "A new queue reader accepts a cached token with 61 seconds remaining, then two 50-second successful Admin operations exhaust that lifetime. Third read retains the expired token.",
+  "exchanges": 1,
+  "adminCalls": 3,
+  "resultCode": "shopify_http_401",
+  "realShopifyExpirySeconds": 86399,
+  "virtualSuccessfulOperationLatencySeconds": 50,
+  "realNetworkCalls": 0,
+  "credentials": "synthetic only",
+  "productionImplication": "A consumer can fail near token expiry even though its total runtime is well inside the 15-minute queue limit. Preserve fail-closed behavior, but guarantee sufficient remaining token lifetime for the entire consumer or resolve validity at each request."
+}

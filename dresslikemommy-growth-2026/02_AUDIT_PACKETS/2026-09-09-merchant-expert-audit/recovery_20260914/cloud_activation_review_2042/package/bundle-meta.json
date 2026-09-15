@@ -1,0 +1,270 @@
+{
+  "inputs": {
+    "src/host.js": {
+      "bytes": 2942,
+      "imports": [
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/queries.js": {
+      "bytes": 4226,
+      "imports": [],
+      "format": "esm"
+    },
+    "src/collector.js": {
+      "bytes": 12350,
+      "imports": [
+        {
+          "path": "src/queries.js",
+          "kind": "import-statement",
+          "original": "./queries.js"
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/shopify-auth.js": {
+      "bytes": 7987,
+      "imports": [
+        {
+          "path": "src/collector.js",
+          "kind": "import-statement",
+          "original": "./collector.js"
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/admin-reader.js": {
+      "bytes": 961,
+      "imports": [
+        {
+          "path": "src/collector.js",
+          "kind": "import-statement",
+          "original": "./collector.js"
+        },
+        {
+          "path": "src/shopify-auth.js",
+          "kind": "import-statement",
+          "original": "./shopify-auth.js"
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/eligibility.js": {
+      "bytes": 2338,
+      "imports": [
+        {
+          "path": "src/collector.js",
+          "kind": "import-statement",
+          "original": "./collector.js"
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/generator.js": {
+      "bytes": 23485,
+      "imports": [
+        {
+          "path": "src/collector.js",
+          "kind": "import-statement",
+          "original": "./collector.js"
+        },
+        {
+          "path": "src/eligibility.js",
+          "kind": "import-statement",
+          "original": "./eligibility.js"
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/worker.js": {
+      "bytes": 8067,
+      "imports": [
+        {
+          "path": "src/collector.js",
+          "kind": "import-statement",
+          "original": "./collector.js"
+        },
+        {
+          "path": "src/admin-reader.js",
+          "kind": "import-statement",
+          "original": "./admin-reader.js"
+        },
+        {
+          "path": "src/generator.js",
+          "kind": "import-statement",
+          "original": "./generator.js"
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/stream-publish.js": {
+      "bytes": 2830,
+      "imports": [
+        {
+          "path": "src/collector.js",
+          "kind": "import-statement",
+          "original": "./collector.js"
+        },
+        {
+          "path": "src/generator.js",
+          "kind": "import-statement",
+          "original": "./generator.js"
+        },
+        {
+          "path": "src/worker.js",
+          "kind": "import-statement",
+          "original": "./worker.js"
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/checkpoint.js": {
+      "bytes": 11363,
+      "imports": [
+        {
+          "path": "src/collector.js",
+          "kind": "import-statement",
+          "original": "./collector.js"
+        },
+        {
+          "path": "src/admin-reader.js",
+          "kind": "import-statement",
+          "original": "./admin-reader.js"
+        },
+        {
+          "path": "src/generator.js",
+          "kind": "import-statement",
+          "original": "./generator.js"
+        },
+        {
+          "path": "src/worker.js",
+          "kind": "import-statement",
+          "original": "./worker.js"
+        },
+        {
+          "path": "src/stream-publish.js",
+          "kind": "import-statement",
+          "original": "./stream-publish.js"
+        },
+        {
+          "path": "<runtime>",
+          "kind": "import-statement",
+          "external": true
+        }
+      ],
+      "format": "esm"
+    },
+    "src/automation.js": {
+      "bytes": 882,
+      "imports": [
+        {
+          "path": "src/host.js",
+          "kind": "import-statement",
+          "original": "./host.js"
+        },
+        {
+          "path": "src/worker.js",
+          "kind": "import-statement",
+          "original": "./worker.js"
+        },
+        {
+          "path": "src/checkpoint.js",
+          "kind": "import-statement",
+          "original": "./checkpoint.js"
+        }
+      ],
+      "format": "esm"
+    }
+  },
+  "outputs": {
+    "../../../recovery_20260914/cloud_activation_review_2042/package/automation.js.map": {
+      "imports": [],
+      "exports": [],
+      "inputs": {},
+      "bytes": 124246
+    },
+    "../../../recovery_20260914/cloud_activation_review_2042/package/automation.js": {
+      "imports": [],
+      "exports": [
+        "default"
+      ],
+      "entryPoint": "src/automation.js",
+      "inputs": {
+        "src/host.js": {
+          "bytesInOutput": 2775
+        },
+        "src/queries.js": {
+          "bytesInOutput": 4089
+        },
+        "src/collector.js": {
+          "bytesInOutput": 12518
+        },
+        "src/shopify-auth.js": {
+          "bytesInOutput": 7747
+        },
+        "src/admin-reader.js": {
+          "bytesInOutput": 748
+        },
+        "src/eligibility.js": {
+          "bytesInOutput": 2515
+        },
+        "src/generator.js": {
+          "bytesInOutput": 24098
+        },
+        "src/worker.js": {
+          "bytesInOutput": 2541
+        },
+        "src/stream-publish.js": {
+          "bytesInOutput": 2448
+        },
+        "src/checkpoint.js": {
+          "bytesInOutput": 10890
+        },
+        "src/automation.js": {
+          "bytesInOutput": 725
+        }
+      },
+      "bytes": 71551
+    }
+  }
+}

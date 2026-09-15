@@ -1,0 +1,172 @@
+{
+  "schema": "dlm.navy_history_events_independent_addendum.v1",
+  "reviewer": "/root/navy_variant_history",
+  "verdict": "PASS_WITH_LIMITS",
+  "scope": "Independent local review of exactly three root Admin event receipts and prior local history report. Did not issue live queries, execute mutations, inspect other files, or alter shared canonical/source files.",
+  "source_bindings": [
+    {
+      "role": "product_history",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/navy_variant_event_readback_20260914.json",
+      "sha256": "f876134f1ea9b350fe2c08f563f7c8a365fd7017a9214ea710410eb2dd0db1be"
+    },
+    {
+      "role": "destroy_discovery",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/navy_variant_destroy_event_readback_20260914.json",
+      "sha256": "a65c9121b6cfeab36487789e9a55de1d1b4ef3a24274aeb658a259b65c022ccf"
+    },
+    {
+      "role": "exact_events",
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/navy_exact_variant_deletions_20260914.json",
+      "sha256": "d7562cb22f9b18a4cbd84479143e147e978078d47a61ccf41d8558c6c44ed00a"
+    },
+    {
+      "role": "prior_history",
+      "path": "/private/tmp/dlm-navy-variant-history-20260914.json",
+      "sha256": "49a67a9bf4d744731dccfd60c8e9c4d217f27f52b275d9b511ddf591bcd7e44e"
+    }
+  ],
+  "checks": [
+    {
+      "name": "prior history exactly two expected missing IDs",
+      "passed": true
+    },
+    {
+      "name": "prior before 26, after 24, retained 24 and no new IDs",
+      "passed": true
+    },
+    {
+      "name": "product event source exact product identity",
+      "passed": true
+    },
+    {
+      "name": "all parent events are product-scoped",
+      "passed": true
+    },
+    {
+      "name": "product query complete only within its date and parent scope",
+      "passed": true
+    },
+    {
+      "name": "parent activity contains explicit activation timestamp",
+      "passed": true
+    },
+    {
+      "name": "discovery only desired action type and date interval",
+      "passed": true
+    },
+    {
+      "name": "discovery 50 with further pages; not complete audit",
+      "passed": true
+    },
+    {
+      "name": "no unrelated event rows persisted",
+      "passed": true
+    },
+    {
+      "name": "both positive discovery records match prior missing IDs",
+      "passed": true
+    },
+    {
+      "name": "all three root read receipts have no reported errors",
+      "passed": true
+    },
+    {
+      "name": "exact query targets both discovered event IDs",
+      "passed": true
+    },
+    {
+      "name": "exact receipt has only two expected aliases",
+      "passed": true
+    },
+    {
+      "name": "dress identity/type binds known 3XL",
+      "passed": true
+    },
+    {
+      "name": "dress positive destroy event exact date",
+      "passed": true
+    },
+    {
+      "name": "dress discovery/direct read agreement",
+      "passed": true
+    },
+    {
+      "name": "dress no attributed actor",
+      "passed": true
+    },
+    {
+      "name": "dress appTitle field only; not actor proof",
+      "passed": true
+    },
+    {
+      "name": "cardigan identity/type binds known 3XL",
+      "passed": true
+    },
+    {
+      "name": "cardigan positive destroy event exact date",
+      "passed": true
+    },
+    {
+      "name": "cardigan discovery/direct read agreement",
+      "passed": true
+    },
+    {
+      "name": "cardigan no attributed actor",
+      "passed": true
+    },
+    {
+      "name": "cardigan appTitle field only; not actor proof",
+      "passed": true
+    },
+    {
+      "name": "three chronological read timestamps",
+      "passed": true
+    },
+    {
+      "name": "prior custom size fulfillment remains unconfirmed",
+      "passed": true
+    },
+    {
+      "name": "source bytes unchanged during verification",
+      "passed": true
+    }
+  ],
+  "passed": 26,
+  "total": 26,
+  "defects": [],
+  "changed_conclusion": {
+    "before": "Exact two 3XL variants absent; deletion date/mechanism unknown.",
+    "now": "Both known Mother 3XL variant IDs have positive destroy events at 2026-09-02T16:16:33Z, independently matched between filtered discovery and exact event read. Current 24 matches removal of exactly those two historical variants.",
+    "destroyed_variants": [
+      {
+        "garment": "dress",
+        "variant_id": "gid://shopify/ProductVariant/46501286608993",
+        "event_id": "gid://shopify/BasicEvent/162571097669729",
+        "destroyed_at": "2026-09-02T16:16:33Z"
+      },
+      {
+        "garment": "cardigan",
+        "variant_id": "gid://shopify/ProductVariant/46501286641761",
+        "event_id": "gid://shopify/BasicEvent/162571097702497",
+        "destroyed_at": "2026-09-02T16:16:33Z"
+      }
+    ],
+    "still_unknown": [
+      "Actor",
+      "Intent",
+      "Business or fulfillment reason for deletion",
+      "Current supplier custom 3XL fulfillment"
+    ],
+    "actor_limit": "Both attributeToApp=false and attributeToUser=false for both destruction events. appTitle=Shopify Web is metadata, not proof of human/owner/app actor or intentionality.",
+    "pagination_limit": "Parent product-events query returns 17 records and hasNextPage=false within its product/date scope; it is not a child-variant deletion audit. Filtered global destroy discovery returned 50 and hasNextPage=true. Positive exact matches are sufficient for these two destruction facts, but no absence/completeness claim about all lifecycle events or other deletion mechanisms is justified.",
+    "reason_limit": "Event messages were omitted/redacted. No reason or fulfillment confirmation was exposed; do not infer one from adjacent publication or shared appTitle."
+  },
+  "smallest_justified_next_correction_scope": "Existing Shopify source owner: exact product 7670609346657 current-size consistency correction, after fresh guarded body/chart/SEO and existing-translation read. Align only stale shopper-facing 3XL availability statements/rows with the current offered Mother S-2XL range wherever the fresh source confirms the contradiction. Preserve all 24 existing variants, IDs, options, pricing, cost, inventory, publication and unrelated prose; keep historical supplier chart evidence unchanged. Do not create/restore 3XL or replay the runner. This review is evidence acceptance and a scoped recommendation, not product-write authorization.",
+  "closure_limits": "A one-sentence correction alone cannot certify body/chart/SEO/localized consistency without inspecting those exact current fields. Supplier custom 3XL availability/intent remains a separate unresolved fact; no additional history polling is required to restate the verified current selectable range.",
+  "changes": {
+    "external_queries": 0,
+    "external_mutations": 0,
+    "shared_canonical_edits": 0,
+    "only_output": "/private/tmp/dlm-navy-history-events-review-20260914.json"
+  }
+}

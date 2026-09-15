@@ -1,0 +1,49 @@
+{
+  "status": "LIVE_VERIFIED_COUNTRY_COUNTS__INTERNATIONAL_LAUNCH_PARTIAL",
+  "observedAt": "2026-09-15T03:51:08.295Z",
+  "account": "513542500",
+  "url": "https://merchants.google.com/mc/countries?a=513542500&hl=en",
+  "method": "Task-owned Codex in-app browser tab 3; native Countries table, including lower rows after table scroll. Exact table extraction with an old Playwright handle timed out; current native accessibility state provided the complete 31-row receipt.",
+  "configuredCountryCount": 31,
+  "completeCountries": [
+    {"country": "United States", "approved": 4741, "total": 4741},
+    {"country": "Australia", "approved": 4741, "total": 4741}
+  ],
+  "incompleteCountriesWithZeroProducts": [
+    "Austria", "Belgium", "Canada", "Cyprus", "Czechia", "Denmark", "El Salvador", "Finland", "France", "Germany", "Greece", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Mexico", "Netherlands", "New Zealand", "Norway", "Poland", "Portugal", "Romania", "Russia", "Slovakia", "Spain", "Sweden", "Switzerland", "United Kingdom"
+  ],
+  "zeroCountryCount": 29,
+  "externalMutations": [],
+  "historicalSourceQualification": {
+    "source": "../ca_gb_qualification_1917/source_and_buyer_qualification.json",
+    "CA": {"language": "en", "currency": "CAD", "sourceCompletedAt": "2026-09-14T19:22:54Z", "sourceCandidates": 4741, "submitted": false},
+    "GB": {"language": "en", "currency": "GBP", "sourceCompletedAt": "2026-09-14T19:25:28Z", "sourceCandidates": 4741, "submitted": false},
+    "limits": "These are earlier source-only results, not fresh scans, executable uploads, Merchant approval, or full buyer-route acceptance. The six existing product holds and 22 unavailable variants remain excluded. French Canada has no complete submitted source."
+  },
+  "existingBlockingEvidence": [
+    "The published Canada variant URL did not preselect the intended variant; manual cart selection is not numeric variant-link acceptance.",
+    "Canada 5-6 day and UK 9-15 day Merchant configurations are not verified supplier delivery promises. Published policy gives 1-3 business days processing but no numeric country transit commitment. Country delivery and effective returns settings require factual qualification.",
+    "Current canonical state requires owner Admin publication of verified theme 137888792673 because the Shopify connector blocks agent Publish/MAIN writes; UX must verify the actual published theme and affected live buyers afterward.",
+    "Full per-country European translated source, price/currency, landing and checkout qualification has not been completed. US/es/USD source qualification does not qualify Spain/es/EUR.",
+    "Fully unattended cloud collection still needs the dedicated scoped Shopify reader; Australia remains a manual source. Scheduled monitoring does not prove autonomous country feed synchronization."
+  ],
+  "continuationOrder": [
+    "After the existing publication dependency and factual delivery/returns qualification, finish Canada en/CAD and UK en/GBP, then submit and verify each exact source and native free-listing destination.",
+    "Qualify French Canada fr/CAD and European French, German, Spanish, Italian and Dutch in their country contexts. Reuse one language/currency source only where actual prices, eligibility and buyer behavior are compatible.",
+    "Continue remaining served European languages/countries. Do not silently treat Brazil Portuguese as Portugal-localized copy, or replace Shopify's observed currency configuration with an assumed local currency.",
+    "Maintain existing US/AU freshness targets and permanent product-lifecycle exclusions while new countries are qualified."
+  ],
+  "googleLanguageRequirements": {
+    "url": "https://support.google.com/merchants/answer/160637?hl=en",
+    "accessDate": "2026-09-15",
+    "finding": "Supported languages may target supported countries; product data and purchase-enabling landing/checkout content must use the chosen language. Publishing Shopify translations alone does not submit a Merchant data source."
+  },
+  "unchanged": {
+    "USSourceObservedAt": "2026-09-15T02:11:13.020Z",
+    "AUSourceObservedAt": "2026-09-15T02:11:16.838Z",
+    "checkpointSha256": "327df79ad43580b7a13b729b343c8732c535cac1b3a0df6fe6f8c8f402592e35",
+    "sourceClocksRefreshedByThisReadback": false,
+    "allMarketsComplete": false,
+    "salesOrTrafficLiftProven": false
+  }
+}

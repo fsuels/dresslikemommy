@@ -1,0 +1,88 @@
+{
+  "action_id": "TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+  "locale": "el",
+  "candidate_sha256": "9cd57ec02fdd7415542cb7383c559ceefed88fa117c65a4ebf9c0efd611eba72",
+  "source_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "before_sha256": "4028f00cd060ece60c9d5fac8e24f465ad325b3c725507f356f55b937bdd606d",
+  "routes_sha256": "9f67a31a1463503fbd26a96669ce71f7d095a088d1a3941dee80d62be89999d5",
+  "reviewer": "/root/sizing_locales_b",
+  "author": "/root/sizing_locales_c",
+  "status": "PASS_WITH_LIMITS",
+  "reviewed_at_utc": "2026-09-14T23:43:57.776597+00:00",
+  "review_scope": "Independent full-text reading of all 31 leaf elements, detailed comparison of all 22 changed leaf elements carrying the 19 English semantic replacements, plus independently recomputed static checks. Candidate author did not perform this review.",
+  "reviewed_changed_leaf_positions": [
+    1,
+    3,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    12,
+    15,
+    17,
+    18,
+    20,
+    21,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "semantic_assessment": "Read all candidate text. Product-specific chart/units and body-versus-garment/flat-width-versus-circumference distinctions are explicit. Same-method comparison, current child measures, asking about layered or later use, and no automatic larger size are preserved. Table/checklist wording avoids universal size ranges; cart and contact guidance cover every source element.",
+  "language_assessment": "New Greek passages are grammatical and comprehensible. The second-person plural address is consistent; fit (εφαρμογή) and stretch (ελαστικότητα) are used correctly for apparel. A few phrases are literal translations but do not weaken the instructions.",
+  "terminology_observed": [
+    "διαστάσεις σώματος",
+    "διαστάσεις ρούχου",
+    "πλάτος ενός ρούχου απλωμένου σε επίπεδη επιφάνεια",
+    "περίμετρο του σώματος"
+  ],
+  "findings": [
+    {
+      "severity": "NON_BLOCKING_EXISTING",
+      "leaf_positions": [
+        0
+      ],
+      "description": "The unchanged introductory shopping-one-person-at-a-time phrase is literal Greek; it was preserved and does not alter the corrected sizing advice."
+    }
+  ],
+  "blocking_findings": [],
+  "checks": {
+    "source_sha_matches_final": true,
+    "candidate_hash_bound": true,
+    "before_hash_bound": true,
+    "before_html_equals_existing_value": true,
+    "existing_global_body_identity": true,
+    "author_is_other_agent": true,
+    "source_changed_leaf_positions_match": true,
+    "notes_exact_candidate_spans": true,
+    "html_balanced": true,
+    "all_31_leaf_elements_preserved": true,
+    "unchanged_nine_leaf_contents_preserved": true,
+    "four_hrefs_match_route_manifest": true,
+    "table_and_twelve_cell_styles_equal_english": true,
+    "only_bounded_rtl_wrapper_added": true,
+    "original_43_element_order_preserved": true,
+    "old_general_ranges_removed": true
+  },
+  "competence": {
+    "basis": "Independent model-based bilingual editorial assessment of the complete supplied text, not inferred from structural tests.",
+    "language": "Greek",
+    "bounded_assessment": "Sufficient confidence for this everyday apparel sizing guidance; no unresolved meaning ambiguity or new grammatical error requiring a hold was found.",
+    "human_native_certification": false
+  },
+  "limits": [
+    "No native-speaker or human certification is claimed.",
+    "This review approves the exact textual candidate and bounded markup only; root retains publication authority.",
+    "Actual localized destination arrivals, public rendering, mobile layout and computed RTL behavior were NOT RUN by this reviewer; root must verify them.",
+    "Existing unchanged localized copy was checked for preservation and noted where awkward; this is not a broad quality certification of the entire storefront.",
+    "Review is invalid if source or candidate hashes change."
+  ],
+  "external_writes": 0,
+  "business_lift_claimed": false
+}

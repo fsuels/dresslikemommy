@@ -1,0 +1,29 @@
+{
+  "status": "PREPARED_READ_ONLY__NO_ORDER_OR_FULFILLMENT_QUERY_RUN",
+  "prepared_at_utc": "2026-09-15T06:37:29.397Z",
+  "next_full_read_not_before_utc": "2026-09-15T07:00:17Z",
+  "earlier_read_rule": "Only a meaningful new creation/lifecycle/cost signal; none asserted by this preparation.",
+  "source_checkpoint": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_1900_v2.json",
+  "operations": {
+    "order_operation": "query GrowthHeartbeatDelta($filter: String!, $after: String) {\n  shop { id name ianaTimezone currencyCode primaryDomain { host } }\n  orders(first: 50, after: $after, query: $filter, sortKey: CREATED_AT) {\n    nodes {\n      id createdAt test cancelledAt sourceName\n      displayFinancialStatus displayFulfillmentStatus\n      currentSubtotalPriceSet { shopMoney { amount currencyCode } }\n      currentTotalPriceSet { shopMoney { amount currencyCode } }\n      currentTotalTaxSet { shopMoney { amount currencyCode } }\n      totalRefundedSet { shopMoney { amount currencyCode } }\n      lineItems(first:50) {\n        nodes { currentQuantity product { id } variant { id } }\n        pageInfo { hasNextPage endCursor }\n      }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+    "fulfillment_operation": "query ChangedBasketFulfillment($id: ID!) {\n  shop { id name primaryDomain { host } currencyCode }\n  order(id: $id) {\n    displayFinancialStatus displayFulfillmentStatus\n    currentSubtotalPriceSet { shopMoney { amount currencyCode } }\n    totalRefundedSet { shopMoney { amount currencyCode } }\n    fulfillments(first:50) {\n      status displayStatus totalQuantity deliveredAt inTransitAt estimatedDeliveryAt\n      trackingInfo { company }\n      fulfillmentLineItems(first:50) {\n        nodes { quantity lineItem { product { id } variant { id } } }\n        pageInfo { hasNextPage endCursor }\n      }\n      events(first:50) {\n        nodes { status happenedAt }\n        pageInfo { hasNextPage endCursor }\n      }\n    }\n  }\n}"
+  },
+  "schema_types_refreshed": [
+    "QueryRoot",
+    "Order",
+    "Fulfillment",
+    "Shop"
+  ],
+  "validator_receipt": {
+    "content": [
+      {
+        "type": "text",
+        "text": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 2\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-order-checkpoint-20260915-0700\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_orders, read_marketplace_orders, read_quick_sale, read_products\n\n### Code Block 2\n**Artifact ID:** dlm-fulfillment-checkpoint-20260915-0700\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_orders, read_marketplace_orders, read_quick_sale, read_assigned_fulfillment_orders, read_merchant_managed_fulfillment_orders, read_third_party_fulfillment_orders, read_marketplace_fulfillment_orders, read_products\n\n"
+      }
+    ],
+    "isError": false
+  },
+  "source_clock_reset": false,
+  "new_integration": false,
+  "business_writes": 0
+}

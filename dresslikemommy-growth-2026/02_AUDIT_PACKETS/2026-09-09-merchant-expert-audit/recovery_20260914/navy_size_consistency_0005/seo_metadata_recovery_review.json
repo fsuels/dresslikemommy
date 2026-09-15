@@ -1,0 +1,26 @@
+{
+  "action": "TA07-NAVY-SEO-METADATA-RECOVERY",
+  "reviewer": "/root/merchant_translation_review",
+  "reviewed_at_utc": "2026-09-15T00:37:06.971220+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewed_type_query_sha256": "9bad11c0b1b12b09031a6a2839d889644679a2aed7a5c08882783d3b88181211",
+  "reviewed_type_variables_sha256": "0a1a958c1e1d03c4c0c78c654e4cfe0ccfbe8e2fd697b27994add11d2141d71c",
+  "reviewed_translation_query_sha256": "e46e4a322fad20c499e3d93e1d63893cdae8ae9c8087cd8f2658be0a4bc87f26",
+  "reviewed_translation_variables_sha256": "84b4073788c2828713ca71e6da9c2351ff15bcfa34b7d31b27b7743ec79b48d9",
+  "private_source_sha256": "ffd558a9ba37923e1b85360c1ad16a5d64316e9bde442407c6e861a8c4493036",
+  "source_completed_at": "2026-09-15T00:32:52Z",
+  "private_before_sha256": "cfee12b0feeedaf04b81da3366d96a84d6b0e9ae1129c66caff4d9f6be5e71b4",
+  "checks": "Exact restored title/source digest verified. Type payload changes only the existing global.title_tag to original single_line_text_field with unchanged value and exact current compareDigest. Translation payload re-registers exactly 20 unchanged original meta_title values using the actually restored digest. Protected state and all translation values independently compared; no unexplained differences.",
+  "sequence": [
+    "Fresh-guard, write type only, then full readback. Require current title_tag ID 38753913929825, original type/value, original English title/digest, and unchanged other records.",
+    "Fresh-guard against that readback; ensure restored source digest still matches the frozen translation payload. Register only the 20 original meta_title values, then full readback with all 20 outdated flags false."
+  ],
+  "after_criteria": "Original title text/type/source and translated values restored; original meta_title flags false. Document old/new title_tag IDs. Keep corrected size source, 24 variants/options/inventory/publications, other 26 metafields and all other translations unchanged from their current baselines.",
+  "findings": [],
+  "limits": "Read-only local evidence review; no writes performed. Root owns immediate guards and sequential readbacks. No 40-field size translation write, old-guard relaxation, or frozen-report edit is approved.",
+  "next_action": "Root executes the two exact stages sequentially with their required readbacks.",
+  "private_fresh_prewrite_sha256": "1fbcdfe37c24806b363b315d5741f9c376fecc94e231329b0e80cdfcd61ee0cb",
+  "fresh_prewrite_completed_at": "2026-09-15T00:36:45Z",
+  "fresh_prewrite_age_seconds_at_review": 50.932508,
+  "fresh_prewrite_entire_data_unchanged": true
+}

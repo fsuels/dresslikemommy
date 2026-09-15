@@ -1,0 +1,42 @@
+{
+  "verdict": "PASS_WITH_LIMITS",
+  "independent": true,
+  "reviewer": "/root/merchant_translation_review",
+  "reviewed_at_utc": "2026-09-15T02:49:37.376613+00:00",
+  "checks_passed": 363,
+  "scope": "Completed US Color47 receiving: Merchant 513542500/source 10727274744, existing Free listings.",
+  "artifact_sha256": {
+    "independent_review.json": "2073b7c703bd23cd9268622548576ee2e794f6d474bfc7e1546821f6f9c3d344",
+    "candidate/us-en.tsv": "fc7aa665746887d1ce37f5bce2d3afa5ed6ea363f9cd362007d4825313797bb3",
+    "candidate/us-en.manifest.json": "a433a6c3d6bc17e0e49ffef0f34d9cc32741bad4ea0003abaf9412ad433434a1",
+    "candidate/us-en.snapshot.json": "b0be0027f7fc782e5211b65e6eec771752d58b8acb32215ae5f712d15fd65d69",
+    "candidate/us-en.diagnostics.json": "031a8c7e8aafe09c177dd7d68d3960d2a29a247a84129d40e591edf55e623847",
+    "root_prepromotion_guard.json": "0391fd0738f4babccf01796d64ca3b2c078c3cebe69aea7988d4d219bec2c360",
+    "root_release_acceptance.json": "a847914c31c4b054baa81ba56c50f9ee52ce0aa34fe5507cae1a5fd9cdfd5b86",
+    "promote.intent.json": "123d61dc2973fc45d1e62425fd22a0216e269df391aae7714d58737e8c722eb9",
+    "promote.result-20260915T023255915854Z.json": "cf6d75d8ab4bea855c3505297250f48b6bca43dee5f11a27eee0695bc810c57d",
+    "native_action_identity.json": "6a0a8f6cfd8bec9a2a48f20ac36ec31a1c9859f9a0f1c365c17973a8cfa19b5e",
+    "native_update_intent.json": "b51480b03484ce65b94c4152bd218c92a38f99dfffe1f3036b7fb8994c750374",
+    "native_update_receipt.json": "c9bda52c214a349405441e28ac1be9b582de9e5d9a9a72bf521175240a498b2b",
+    "native_receiving_after.json": "e8d63031c2687713834a3ee345e5fb913f9bc8de12a097818222746bc339cd51",
+    "native_samples_after.json": "1cde5b01154f8e409d21e1a06ad3da8e001c4b40c74c12e4122a956db37a1901",
+    "color_native_sample_plan.json": "bc781eefaef7cb6c8fcb1e9316dfa7bcdd1944bb6b95cd1651815f35105820a3",
+    "native_verification_plan.json": "1383ce170a67f34ea2ab1f5b5f6837857fc31f333824911e17b29e423800d9f9",
+    "parent_binding_timing_note.json": "ecc46a94a8ab9f3ced59e07dec336100ac2e223442bf841cf692596b7e772b42"
+  },
+  "parent_artifact_sha256": {
+    "merchant_color47_source_plan_20260915.json": "95f5b000a00c90947fba9e9e38b27cfc105fca3c82659abbd0b3a02169413cbc",
+    "merchant_color47_feed_propagation_plan_20260915.json": "7d118745c9ac01a54aafa6fec2fa24b322d42ffb9af94cb08ca1f14269d5eae8",
+    "merchant_color47_feed_propagation_preflight_20260915.json": "e360a205b13e59f478da88c49907b9fe533267c04f547a9d1a2232e03474f0f9"
+  },
+  "verified": [
+    "All 16 reviewed bindings and 14 dependency pins unchanged. Complete source: 238 ACTIVE parents/4925 variants; 4741 exact eligible rows; six holds/162 offers and 22 unavailable variants omitted.",
+    "Exactly 252 color-only changes, 4489 unchanged rows, zero added/removed IDs; every price unchanged. Original source clock 02:11:13.020Z; deadline 04:11:13.020Z.",
+    "One recorded promotion at 02:32:55.915818Z: COMMITTED_VERIFIED, exact R2 pointer/full bytes and unchanged Workers. One recorded native Update at 02:39:11.811Z.",
+    "Initial zero counters preserved. At 02:42:26.292Z Google reports 4741 updated/0 new, All recognized/No issues found.",
+    "All 17 distinct native samples match frozen plans/candidate: 11 corrected palette/garment samples plus six protected offers with unchanged prices/colors; Approved/In stock/United States/Free listings."
+  ],
+  "authority_chronology": "Preaction bindings recorded at 02:29:23Z under standing user scope and prior parent delegation; current sole-writer claim matches. Formal preflight 02:33:17Z and parent plan 02:34:27Z postdate host promotion, precede Google Update. They are not retroactively represented as earlier approvals.",
+  "limits": "Saved execution receipts and native transcriptions reviewed; no external calls. Single-action conclusion is packet-bounded. Public Worker GET and Google archive bytes were not inspected; native timezone unverified. Samples do not prove all 252 colors individually, all-offer serving, checkout, traffic or sales. Existing landing/return/attribute limitations remain; no new market or further write authorized.",
+  "blocking_findings": []
+}

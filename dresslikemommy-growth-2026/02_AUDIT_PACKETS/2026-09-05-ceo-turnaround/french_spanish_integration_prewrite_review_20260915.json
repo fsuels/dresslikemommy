@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "findings": [],
+  "apply_ready": true,
+  "manifest_sha256": "bcc9842b226455ed94ecdc1b41253d5aed659ff244e80e00756b2b7289763f1e",
+  "script_sha256": "7f75ae1a55f77bd24bfea4a06d35b1f7ff0ddbb9599c96854b38a4fdabd0e143",
+  "reviewed_at_utc": "2026-09-15T03:50:13.522609+00:00",
+  "review_type": "Independent static review of exact staged canonical changes; reviewer did not build or execute integration",
+  "manifest_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/french_spanish_integration_manifest_20260915.json",
+  "script_path": "/private/tmp/dlm-french-spanish-closeout-20260915.py",
+  "source_acceptances": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/navy_french_unit_suffix_release_acceptance_20260915.json",
+      "sha256": "13f93ebc989cf97eb47fa86a306cbbf0b6d9ad527d20fe265d3707089a75c9e2"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_es_full_qualification_acceptance_20260915.json",
+      "sha256": "01e713b99436a4d96c72d45b98ac8cc526f793123a88748c3e6146b7e56d56ef"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ads_source_prerequisite_consumption_acceptance_20260915.json",
+      "sha256": "9a6ae614d392ceb9b192861d662bccad475261cfbf10fdc314eb4393579801cd"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_es_bounded_reconciliation_acceptance_20260915.json",
+      "sha256": "f61a7b0c55c32a0d9e0b41ace035dc545948af8ec02b1fe115bb2543d8cb8851"
+    }
+  ],
+  "checks": {
+    "source_acceptance_bindings": "PASS: all four accepted French/full-ES/bounded-ES/Ads hashes match.",
+    "staged_bindings": "PASS: 11 unique scoped targets, 11 before hashes, 11 candidate hashes, 11 current-equals-before hashes, exact temporary staging paths. No drift.",
+    "checkpoint_counters": "PASS: 65 to 67, append only French and full US/es outcomes; 60 wakes unchanged. Bounded ES and Ads add zero integrations.",
+    "pending_resolution": "PASS: exact sole French pending entry resolved with prior intake preserved; no unrelated pending entry removed.",
+    "checkpoint_preservation": "PASS: only ten specified keys change; all 52 protected keys and every outer checkpoint branch compare equal.",
+    "control_and_owner_preservation": "PASS: paid/full-sales/runtime-goal/schedules, exact one-owner publication action, candidate137888792673 source932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a and MAIN133290917985 rollback remain unchanged.",
+    "source_clocks": "PASS: received US02:11:13.020 and AU02:11:16.838 Sep15 clocks, respective Sep16 24h targets and US Sep17 48h guard unchanged. Spanish source03:23:50.568 has distinct Sep16 same-time source-only target. French save is a separate annotation.",
+    "Spanish_partition_and_gates": "PASS: 4718 source-qualified +23 required-stale Tropical +162 existing held +22 unavailable =4925; 231 qualified parents. Three stale records (one required/two optional), both current public buyer failures and six untested representatives retained. No Spanish feed built/submitted, enabled=false and landingContextVerified=false retained in exact accepted summary.",
+    "French_scope_and_limits": "PASS: one save, 57 existing independent after-review checks, two suffix changes, 240 cells/238 untouched/20 headers, four other French and six English records preserved. Hidden public DOM and pre-mutation guard failure retained.",
+    "Merchant_claim": "PASS: only status/evidence/notes cells 3/7/8 change after final accepted handoffs. Owner/authority/block cells 0/1/2/4/5/6/9 and all other claims preserved; exact inverse reproduces prior coordination file.",
+    "Ads_dependency_scope": "PASS: closes exactly CAFR-07/11/12; nine remaining criteria depend on published MAIN/buyer acceptance. No campaign, measurement, margin or paid authority added.",
+    "text_scope_and_history": "PASS: six top summaries, exact TA-07/TA-10 cells and cockpit Merchant line, one completed Merchant row, one French problem update plus one new Spanish problem, and append-only decisions/worklog. Other text and earlier evidence preserved; problem inverse reproduces exact before bytes.",
+    "apply_guards": "PASS: script parses and apply requires PASS plus exact script/manifest/current-before/candidate hashes before canonical writes. Reviewer did not run apply or validators."
+  },
+  "merchant_claim_before_sha256": "b49a25b14aeb6ac35cef3b86fb0e7b7997894ec522636df39af205a3e0ff065d",
+  "merchant_claim_after_sha256": "165ee59f6532406c2694b54d75d5b859cbff370bf7342e88baba4a9c055cec6c",
+  "limitations": [
+    "Prewrite acceptance of exact staged bytes only. Prepare, apply and standard repository validators NOT RUN by reviewer; root applies and performs final checks.",
+    "Accepted operational reviews reused; no API/browser/private-source retrieval, source/review replay, new technical source audit, business writes or authority expansion.",
+    "Fresh translation flags and the source partition do not certify language or measurement truth, executable feed readiness, Google approval, serving, sales or profit. Actual owner publication and affected MAIN/source/buyer acceptance remain required.",
+    "One reviewer-only inverse-normalization check initially consumed an existing blank line; corrected normalization proves exact problem-history preservation. No candidate correction was required."
+  ],
+  "reviewer_writes": [
+    "/private/tmp/dlm-french-spanish-prewrite-review-20260915.json"
+  ],
+  "next_action": "Root applies the exact reviewed candidates through hash guards, then runs standard checks. Preserve the existing owner publication action and Spanish submission gates."
+}

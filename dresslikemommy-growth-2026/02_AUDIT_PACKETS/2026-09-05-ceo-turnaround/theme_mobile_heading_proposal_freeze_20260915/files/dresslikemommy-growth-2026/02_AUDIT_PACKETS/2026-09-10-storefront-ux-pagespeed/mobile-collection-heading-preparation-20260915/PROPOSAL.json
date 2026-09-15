@@ -1,0 +1,136 @@
+{
+  "status": "PREPARED_LOCAL_ONLY",
+  "preparedAtUtc": "2026-09-15T05:30:03.216253+00:00",
+  "publicationReady": false,
+  "parentScopeBinding": "PENDING",
+  "independentReview": "NOT RUN",
+  "afterBrowserAcceptance": "NOT RUN",
+  "intendedReviewTarget": {
+    "themeId": "gid://shopify/OnlineStoreTheme/137888792673",
+    "roleAtRead": "UNPUBLISHED",
+    "externalMutationAuthorizedByThisPacket": false
+  },
+  "files": [
+    {
+      "filename": "assets/theme-inline-body-static-07.css",
+      "candidatePath": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/proposal/assets/theme-inline-body-static-07.css",
+      "rollbackPath": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/rollback/assets/theme-inline-body-static-07.css",
+      "beforeSha256": "63d4589f6c6a7bd06dea98eea70e35a0ca2b37274fe4ade7a36ba3e141da67d8",
+      "beforeMd5": "265b2123fbd6c72251a1a218ca7f9886",
+      "beforeBytes": 387,
+      "afterSha256": "cde012519aca7deab9cb065962166e8010dfee9a720405d0958b25f89f620736",
+      "afterMd5": "70bc51581a240afcb82f16366384fa0a",
+      "afterBytes": 1019,
+      "MAINBeforeMatchesCandidate": true,
+      "rollbackGuard": "Apply exact rollback bytes only to this key after checking the target still equals the reviewed proposed after hash; otherwise stop and reconcile drift."
+    }
+  ],
+  "diffPath": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/NARROW.diff",
+  "sourceReadback": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/fresh-source-readback.json",
+    "sha256": "38c474a924e51c965a9dd91a8cd47a6b303c80d2eb9ba405aaaf1c26d4d6873b",
+    "receivedAtUtc": "2026-09-15T05:15:51.682Z"
+  },
+  "sourceExtraction": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/SOURCE_EXTRACTION.json",
+    "sha256": "cdc7ab25bc46a835313559d43b50498c8ccd6ce10b291a26eaa39086ec2756f9"
+  },
+  "staticStatus": {
+    "status": "PASS",
+    "assertions": 278,
+    "syntheticCases": 32,
+    "scope": "Bounded source/cascade model; not browser acceptance"
+  },
+  "requiredNextSteps": [
+    "Parent binds this exact one-key scope and after hash after independent review.",
+    "Parent performs any separately authorized candidate-only mutation using fresh before-state/inventory guards; this preparer has no external-write authority.",
+    "Parent reads back exact source and completes EXPECTED browser checks, including cold-load layout-shift/performance evidence."
+  ],
+  "noPublicationOrMainSyncClaim": true,
+  "expectedBrowserChecks": [
+    {
+      "case": "Czech exact aliases, mobile",
+      "status": "EXPECTED / NOT RUN",
+      "urls": [
+        "https://www.dresslikemommy.com/cs/collections/dresses",
+        "https://www.dresslikemommy.com/cs/collections/mother-daughter-matching-dresses"
+      ],
+      "widths": [
+        320,
+        390
+      ],
+      "acceptance": [
+        "Retain cs, exact route, selected preview theme identity and inherited country/currency/cart state.",
+        "Exactly one visible MainContent collection H1 with unchanged Czech text and a positive rectangle; one level-one collection heading in accessibility tree.",
+        "No clipping, overlap, horizontal page overflow or duplicate H1; long title wraps naturally.",
+        "Image, description, subcategory cards, merchandising and journal remain hidden in hero; category links, filter/sort and 36 current-page cards remain available.",
+        "Perform one category-link/filter-sort smoke and ordinary product-card navigation without cart/checkout mutation; no new console errors."
+      ]
+    },
+    {
+      "case": "Boundary and image-enabled structure",
+      "status": "EXPECTED / NOT RUN",
+      "widths": [
+        749,
+        750,
+        767,
+        768
+      ],
+      "acceptance": [
+        "Through 767: heading only; no reserved image height/padding or half-width text column.",
+        "At 768: existing desktop component behavior resumes; compare baseline, including image/description/support blocks when actually enabled.",
+        "Use one verified image-enabled collection; if none is available, mark that branch NOT RUN rather than invent a handle."
+      ]
+    },
+    {
+      "case": "Desktop unchanged",
+      "status": "EXPECTED / NOT RUN",
+      "widths": [
+        1280
+      ],
+      "acceptance": [
+        "Both Czech aliases retain one heading, same title text, existing hero content, original card order/count and working controls.",
+        "Compare before/after screenshot and bounding boxes; do not treat static model as pixel proof."
+      ]
+    },
+    {
+      "case": "Shared handles and localization",
+      "status": "EXPECTED / NOT RUN",
+      "urls": [
+        "https://www.dresslikemommy.com/collections/mommy-and-me",
+        "https://www.dresslikemommy.com/collections/pajamas"
+      ],
+      "acceptance": [
+        "Confirm currently existing routes before navigation; one hub/excluded-callout handle and one other shared handle.",
+        "Mobile existing native H1 is visible; no extra hero blocks become visible; desktop remains baseline.",
+        "One long localized heading and one RTL heading should wrap without clipping using real existing locale routes; do not fabricate translated text or alter locale data.",
+        "Check animation-enabled/reduced-motion states if the stored theme setting uses scroll reveal; no opacity/animation workaround is included."
+      ]
+    },
+    {
+      "case": "Cold-load performance and source readback",
+      "status": "EXPECTED / NOT RUN",
+      "acceptance": [
+        "After parent-approved candidate-only upload, read back exact target bytes and full paired inventory to establish only the authorized key changed and MAIN remained unchanged.",
+        "Inspect final served stylesheet URL/response, actual computed winning rule, and first-paint/layout-shift timing on cold-cache narrow navigation; repeat at 750–767 and desktop.",
+        "Body07 is discovered late; if hero appears after an earlier paint, the added heading can shift category navigation/cards. Record measured CLS and filmstrip instead of asserting no regression.",
+        "No new asset/JavaScript/image-source reference is introduced, but network bytes, request timing, LCP, CLS, PageSpeed and buyer acceptance have not been measured for the proposal."
+      ]
+    }
+  ],
+  "validationHistory": [
+    {
+      "attempt": 1,
+      "status": "FAILED",
+      "scope": "Local model only",
+      "reason": "Attempted to parse the entire unrelated head stylesheet; the bounded parser rejected unconsumed trailing syntax. No theme/proposal byte change followed."
+    },
+    {
+      "attempt": 2,
+      "status": "PASS",
+      "scope": "Exact collection block, component, section style and body07; guarded that the head excerpt contains its only .collection-hero selector.",
+      "assertions": 278,
+      "cases": 32
+    }
+  ]
+}

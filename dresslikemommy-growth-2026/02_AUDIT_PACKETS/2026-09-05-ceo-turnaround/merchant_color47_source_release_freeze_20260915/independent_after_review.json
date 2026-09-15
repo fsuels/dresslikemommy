@@ -1,0 +1,62 @@
+{
+  "schema": "dlm.merchant.color47.independent-after-review.v1",
+  "verdict": "PASS_WITH_LIMITS",
+  "independent": true,
+  "reviewer": "/root/merchant_lifecycle_code_inventory",
+  "reviewed_at_utc": "2026-09-15T02:09:58.350Z",
+  "action_id": "TA07-SOURCE-COLOR47-20260915",
+  "shop_id": "gid://shopify/Shop/15571635",
+  "exact_target_digest": "5c7495c5878e4cbc67f61c400ed47a6eee74dbaab3764568ea05a03aae54ac5d",
+  "bindings_sha256": {
+    "independent_prewrite_review.json": "db57b4d81cc0d62afa026ce39415038382da288dbf9aa4ab107963a9e622ec79",
+    "prewrite_plan.json": "72dc773d1adc3ab4a09f83f4a4e8c05a2fe25cc6c488091e19450cf228ac4684",
+    "parent_plan": "95f5b000a00c90947fba9e9e38b27cfc105fca3c82659abbd0b3a02169413cbc",
+    "mutation.graphql": "46eab851ff38ae8d6728810804962607a40ec2019be8f09bc1a06d6546206eae",
+    "mutation_batches.json": "23adf0dcf34ea585585325b17e6557d43c5ba08e53e95d831af6714c6e9fe334",
+    "execution_guard.json": "209a99a7a9dc8e24f4a4ea79c274b80a2eab2f2ede7c658195e4f013888e7193",
+    "execution_progress.json": "e0075cd0b293829adecd607dd97fffa241319c7b6f66d6823bb3c585960a8d7e",
+    "mutation_1_receipt.json": "b79d75ec1cb993f8b3707c0403c9f3a490fe185283d69eebcf915fe9eb4261c1",
+    "mutation_2_receipt.json": "a59657a104439445abc0bfbbdbf104f3bcc99a57de65f4dcb97717b9f9f2c170",
+    "root_after_checks.json": "bbe1ac27971f223149f8052f54f85f51e93e65c2772ae4628d7f9acc898b16cd",
+    "private/prewrite_current.json": "ced1bd3f6d68c685a3d3f65ef621e12c264ddb5d64d540ac4f925eff84fbb1e2",
+    "private/source_interim.json": "74e49eaba17dab65e74ef97ae69e75091d3836cdcfd49f373378d8f4dc8039e5",
+    "private/source_after.json": "96cfdfa62c5ffa405842c51d684f7275d7fd9093bc08ca55674cb480f4f48fc2",
+    "private/metadata_after.json": "305f373757561a70495deb92b62500ff2a179f2c33c5c797d301bcd1f4644982"
+  },
+  "canonical_bindings": {
+    "serialization": "UTF-8 JSON, sorted object keys, compact separators, unescaped Unicode.",
+    "created_fields_by_owner_id_sha256": "94c421bacead207633e108f163e92b9d73df0625666ab2a4e9442c838d5e935a",
+    "source_after_products_by_id_sha256": "a9431f138cb069993e145ec92c3fd58cab21383207ab9606bc411914d37bc26d",
+    "metadata_after_resources_by_id_sha256": "8c0eecc5616d4aac44b9c15a31a2346659684ce1a68a383d00d28bd3c0d73658"
+  },
+  "checks": {
+    "passed": 48,
+    "total": 48,
+    "failures": []
+  },
+  "verified": [
+    "Frozen approval, plan, original 13 evidence bindings and three supplemental schema/validation receipts remain exact. Mutation text and 25+22 null-CAS variable scopes are unchanged.",
+    "Fresh prewrite source completed 02:02:07.792 UTC and exactly matches the reviewed before-state. All target fields were absent.",
+    "Batch 1: 25 fields saved 02:03:15.436 UTC; receipt completed 02:03:16.476. Batch 2: 22 fields saved 02:04:08.308; receipt completed 02:04:09.106. Both report zero errors and exact owner/namespace/key sets.",
+    "All 47 returned field IDs are unique; type single_line_text_field, value/jsonValue and compareDigest match intended inputs and fresh source/metadata readback.",
+    "Interim source observed 02:03:51.035–02:03:52.003 UTC reconstructs exactly the first 25 additions; the remaining 22 are null and all captured protected values remain unchanged before batch 2.",
+    "Source after completed 02:04:40.281 UTC; metadata after completed 02:04:40.328. Exactly 47 additions across 8 products and 39 variants; all 491 prior fields unchanged, 538 total across the same 261 complete resources.",
+    "Nine products and 252 variants reconstruct exactly from before plus approved colors. Only product updatedAt additionally changes. Captured body, options, price, inventory, publication and remaining source values are preserved; both definition lists remain absent.",
+    "Both saves and after reads precede the approved 2026-09-15T02:22:54.025Z deadline."
+  ],
+  "claim_reconciliation": {
+    "reviewed_row_sha256": "23ed8493a50af908ec0dfd24cce0dec06abfb989f79ffbf2ec23fd97a6e99c82",
+    "execution_and_current_row_sha256": "bdfd089c137a49dde7787cb57649fc43eb490f4142c7a4e6498560be4573918f",
+    "finding": "execution_guard preserves the pre-mutation literal-hash stop and parent reconfirmation after history integration. Current local row matches the execution hash and same sole Merchant writer. Exact parent authority, targets, mutation and CAS bindings remain unchanged."
+  },
+  "historical_status": "execution_progress.json is the preserved 02:01:08 prewrite snapshot. Its zero-write/pending state is superseded by the two receipts and verified after-state.",
+  "limits": [
+    "Local/private evidence review only; no independent external observation or mutation by reviewer.",
+    "Source colors are merchant-prose based; supplier/image-pixel truth and uncaptured fields are not certified.",
+    "This closes the exact Shopify source-field save/readback. New US/AU feed candidates and Google receiving require their separate reviews; no traffic or sales result is inferred.",
+    "No rollback was authorized or executed by this review. Preserve the absent-before rollback safeguards and completed release freezes."
+  ],
+  "changed_files": [
+    "independent_after_review.json"
+  ]
+}

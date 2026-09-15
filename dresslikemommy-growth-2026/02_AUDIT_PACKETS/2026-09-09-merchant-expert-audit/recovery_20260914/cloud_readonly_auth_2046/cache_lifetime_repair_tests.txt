@@ -1,0 +1,25 @@
+✔ client credentials sends one form POST to the exact shop with redirects disabled (14.712709ms)
+✔ explicit mode is mandatory and legacy access-token properties are never read (1.26975ms)
+✔ invalid domains and malformed secret bindings fail before making any request (0.388791ms)
+✔ scope readback rejects every write or unrelated read, with no token cached (3.073791ms)
+✔ strict token response schema rejects missing, extra, malformed and oversized values (2.326167ms)
+✔ expiry requires a safe integer duration with usable margin and accounts for response latency (1.344625ms)
+✔ warm cache refreshes at its 16-minute margin and supports a Date-returning clock (0.345417ms)
+✔ one token survives a full 15-minute catalog invocation from the reproduced near-expiry boundary (0.3595ms)
+✔ domain, client-ID, secret rotation and resolver instance are separate cache identities (0.374917ms)
+✔ concurrent requests share one exchange and do not persist an in-flight failure (0.404791ms)
+✔ late completion of an old credential exchange cannot overwrite a rotated token (0.258791ms)
+✔ HTTP and authorization failures read no error body and never retry or fall back (0.286375ms)
+✔ renewal failure cannot reuse a token that has reached its safety margin (0.2185ms)
+✔ redirect responses and mismatched response URLs are rejected without exposing destinations (0.37975ms)
+✔ upstream errors and malformed response operations disclose only constant codes (0.913333ms)
+✔ clock errors, backward time and invalid injection options fail safely (0.417125ms)
+✔ timeout aborts the request, clears concurrent state and permits a later explicit attempt (6.705917ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 73.903458

@@ -1,0 +1,216 @@
+{
+  "action_id": "NAVY-SPRIG-VARIANT-HISTORY-READ-20260914",
+  "started_at_utc": "2026-09-14 23:37:53 UTC",
+  "completed_at_utc": "2026-09-14 23:37:53 UTC",
+  "query": "query NavyVariantEventHistory($id: ID!, $after: String) {\n  product(id: $id) {\n    id\n    events(first: 50, after: $after, query: \"created_at:>=2026-08-31 AND created_at:<2026-09-12 AND comments:false\") {\n      nodes {\n        id action createdAt message appTitle attributeToApp attributeToUser\n        ... on BasicEvent { subjectId subjectType }\n      }\n      pageInfo { hasNextPage endCursor }\n    }\n  }\n}",
+  "variables": {
+    "id": "gid://shopify/Product/7670609346657"
+  },
+  "validation": {
+    "schema_discovered": [
+      "QueryRoot",
+      "Product",
+      "Event",
+      "BasicEvent"
+    ],
+    "connector_validator": "SUCCESS",
+    "skill_validator": "SUCCESS read_products",
+    "documentation_fallback": "Shell search fetch failed; supported Shopify documentation connector returned BasicEvent/event reference."
+  },
+  "product_id": "gid://shopify/Product/7670609346657",
+  "events": [
+    {
+      "id": "gid://shopify/BasicEvent/162467817914465",
+      "action": "create",
+      "createdAt": "2026-08-31T20:14:08Z",
+      "message": "[Actor] created a new product: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "n8n Integration",
+      "attributeToApp": true,
+      "attributeToUser": false,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570813407329",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:40Z",
+      "message": "[Actor] included a product on Microsoft Copilot: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570813440097",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:40Z",
+      "message": "[Actor] included a product on Meta: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570813603937",
+      "action": "status_changed",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] changed product status from draft to active: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570813931617",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included on Estonia: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": null,
+      "attributeToApp": false,
+      "attributeToUser": false,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570813964385",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included on Eurozone: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": null,
+      "attributeToApp": false,
+      "attributeToUser": false,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570813997153",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included on International: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": null,
+      "attributeToApp": false,
+      "attributeToUser": false,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570814029921",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included on United States: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": null,
+      "attributeToApp": false,
+      "attributeToUser": false,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570814750817",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included a product on Google &amp; YouTube: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570814783585",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included a product on Facebook &amp; Instagram: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570814816353",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included a product on Online Store: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570814849121",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included a product on Pinterest: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570814881889",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included a product on Microsoft Channel: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570814914657",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included a product on TikTok: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570814947425",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included a product on Buy Button: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570814980193",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included a product on Point of Sale: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162570815012961",
+      "action": "published",
+      "createdAt": "2026-09-02T16:10:41Z",
+      "message": "[Actor] included a product on n8n Integration: Navy Sprig Mommy and Me Dresses — Dress &amp; Cardigan.",
+      "appTitle": "Shopify Web",
+      "attributeToApp": true,
+      "attributeToUser": true,
+      "subjectId": "gid://shopify/Product/7670609346657",
+      "subjectType": "PRODUCT"
+    }
+  ],
+  "pageInfo": {
+    "hasNextPage": false,
+    "endCursor": "eyJsYXN0X2lkIjoxNjI1NzA4MTUwMTI5NjEsImxhc3RfdmFsdWUiOiIxNjI1NzA4MTUwMTI5NjEifQ=="
+  },
+  "errors": [],
+  "privacy": "Product-scoped events only; actor-name prefixes and links/emails omitted. No customer/order data, raw event-message file or mutation."
+}

@@ -1,0 +1,85 @@
+{
+  "schema": "dlm.ca_gb_shipping_aggregate.v1",
+  "status": "VERIFIED_EMPTY_CA_GB_ORDER_COHORT__NO_TRANSIT_OBSERVATIONS",
+  "reviewer": "/root/claim_lookup_cause",
+  "read_authority": "Parent-authorized read-only aggregate assignment for the exact 30 completed New York dates; ephemeral order IDs permitted only for the country join.",
+  "source": "Connected Shopify Admin GraphQL; expected Dress Like Mommy store identity matched before order read.",
+  "cohort": {
+    "calendar": "America/New_York",
+    "date_start_inclusive": "2026-08-15",
+    "date_end_inclusive": "2026-09-13",
+    "completed_dates": 30,
+    "order_created_start_inclusive_utc": "2026-08-15T04:00:00Z",
+    "order_created_end_exclusive_utc": "2026-09-14T04:00:00Z",
+    "test_filter": false,
+    "other_order_status_filters": "NONE"
+  },
+  "observed_at_utc": {
+    "started": "2026-09-14T23:43:35.377Z",
+    "completed": "2026-09-14T23:43:36.034Z"
+  },
+  "enumeration": {
+    "orders": 10,
+    "pages": 1,
+    "max_orders": 500,
+    "page_size": 50,
+    "has_next_page": false,
+    "pagination_complete": true,
+    "truncated": false,
+    "missing_shipping_country_code": 0,
+    "other_country_orders": 10,
+    "country_filter": "No country search filter documented in discovered schema; approved minimal all-country cohort reduced locally."
+  },
+  "countries": {
+    "CA": {
+      "orders": 0,
+      "fulfillments_in_eligible_cohort": 0,
+      "fulfillment_detail_queries": 0,
+      "delivered_timestamp_observations": 0,
+      "in_transit_timestamp_observations": 0,
+      "event_observations": 0,
+      "paired_transit_delivery_timestamps": 0,
+      "missing_events_among_eligible_fulfillments": 0,
+      "undelivered_fulfillments_in_eligible_cohort": 0,
+      "event_and_status_availability": "NOT_APPLICABLE_EMPTY_ORDER_COHORT; no fulfillment-detail read occurred.",
+      "shipment_date_coverage": null,
+      "observed_duration_days": null,
+      "weekday_proxy": null
+    },
+    "GB": {
+      "orders": 0,
+      "fulfillments_in_eligible_cohort": 0,
+      "fulfillment_detail_queries": 0,
+      "delivered_timestamp_observations": 0,
+      "in_transit_timestamp_observations": 0,
+      "event_observations": 0,
+      "paired_transit_delivery_timestamps": 0,
+      "missing_events_among_eligible_fulfillments": 0,
+      "undelivered_fulfillments_in_eligible_cohort": 0,
+      "event_and_status_availability": "NOT_APPLICABLE_EMPTY_ORDER_COHORT; no fulfillment-detail read occurred.",
+      "shipment_date_coverage": null,
+      "observed_duration_days": null,
+      "weekday_proxy": null
+    }
+  },
+  "interpretation": "No CA/GB delivered-shipment or transit observation exists in this enumerated order-created cohort. This is not a count of all historical CA/GB shipments and does not establish that no shipments were delivered in the same calendar period.",
+  "limits": [
+    "Selection is by order creation, not shipment or delivery date. Older orders shipped/delivered during these dates and orders created outside the cutoff are excluded.",
+    "Shipping country is the current order shipping-address country code at observation, not a historical immutable destination audit.",
+    "Zero eligible orders means no event timeline or delivery-status read was required. It does not prove events are absent on excluded shipments.",
+    "No elapsed transit or weekday measure can be computed. Provider/locale transit timezone and holiday conventions were not established; weekday counts would be proxies.",
+    "Completed-order-date selection does not guarantee completed shipment follow-up. No right-censored CA/GB shipment is present to analyze in this empty cohort.",
+    "No raw order rows, identifiers, cursors, customer contacts, addresses beyond country codes, line items, financial fields, tracking numbers/URLs or free-text events are saved."
+  ],
+  "actual_execution": {
+    "store_identity_queries": 1,
+    "order_cohort_queries": 1,
+    "fulfillment_detail_queries": 0,
+    "event_page_queries": 0,
+    "mutation_calls": 0,
+    "business_or_canonical_writes": 0,
+    "sales_refresh_or_clock_change": false,
+    "raw_source_retention": "Ephemeral memory only; discarded after separate verification."
+  },
+  "next_step": "Return this empty-cohort evidence to the parent and existing Merchant owner. No broader query, supplier-capability conclusion or policy change is authorized by this result."
+}

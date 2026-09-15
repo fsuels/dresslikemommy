@@ -1,0 +1,21 @@
+query NavyMarketTranslations($ids:[ID!]!,$marketId:ID!,$after:String){shop{id myshopifyDomain} translatableResourcesByIds(resourceIds:$ids,first:10,after:$after){nodes{resourceId l_en:translations(locale:"en",marketId:$marketId){key value locale outdated}
+l_ar:translations(locale:"ar",marketId:$marketId){key value locale outdated}
+l_cs:translations(locale:"cs",marketId:$marketId){key value locale outdated}
+l_da:translations(locale:"da",marketId:$marketId){key value locale outdated}
+l_de:translations(locale:"de",marketId:$marketId){key value locale outdated}
+l_el:translations(locale:"el",marketId:$marketId){key value locale outdated}
+l_es:translations(locale:"es",marketId:$marketId){key value locale outdated}
+l_fi:translations(locale:"fi",marketId:$marketId){key value locale outdated}
+l_fr:translations(locale:"fr",marketId:$marketId){key value locale outdated}
+l_he:translations(locale:"he",marketId:$marketId){key value locale outdated}
+l_hi:translations(locale:"hi",marketId:$marketId){key value locale outdated}
+l_it:translations(locale:"it",marketId:$marketId){key value locale outdated}
+l_ja:translations(locale:"ja",marketId:$marketId){key value locale outdated}
+l_ko:translations(locale:"ko",marketId:$marketId){key value locale outdated}
+l_nl:translations(locale:"nl",marketId:$marketId){key value locale outdated}
+l_no:translations(locale:"no",marketId:$marketId){key value locale outdated}
+l_pl:translations(locale:"pl",marketId:$marketId){key value locale outdated}
+l_pt_BR:translations(locale:"pt-BR",marketId:$marketId){key value locale outdated}
+l_ro:translations(locale:"ro",marketId:$marketId){key value locale outdated}
+l_ru:translations(locale:"ru",marketId:$marketId){key value locale outdated}
+l_sv:translations(locale:"sv",marketId:$marketId){key value locale outdated}}pageInfo{hasNextPage endCursor}}}

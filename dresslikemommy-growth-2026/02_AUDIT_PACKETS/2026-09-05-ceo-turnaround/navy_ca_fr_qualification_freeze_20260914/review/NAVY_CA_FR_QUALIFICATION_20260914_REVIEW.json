@@ -1,0 +1,298 @@
+{
+  "schema": "dlm.navy_ca_fr.independent_qualification_review.v1",
+  "reviewed_at_utc": "2026-09-14T23:53:05.547590+00:00",
+  "reviewer": "/root/tag_repair_review",
+  "stage": "VERIFY",
+  "verdict": "PASS_WITH_LIMITS",
+  "did_build_or_execute": false,
+  "scope": "Two frozen operator inputs; narrowly referenced same-day variant source, French ad subset and five exact local source references. No browser/API/account/customer reads, external writes, canonical edits or codebase-wide exploration. Only this review written.",
+  "primary_input_hashes": {
+    "research/NAVY_CA_FR_QUALIFICATION_20260914.json": "51a1aabc22194753ce271c228991f620f8f47da4aead3696cd8de3105c2fdcfb",
+    "research/CANADA_FRENCH_LANDING_FIX_20260914.md": "ed4741578d9b9499912e10bb86d38f68a1f143c25cf531a150337ae81f5f4041"
+  },
+  "supporting_source_hashes": {
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/all_market_build_20260914/LOCALE_ADS_EUROPE.json": "18ec00d08ed2b38780d800150f112f57c0f3e523932ee516290409d952b8006e",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-google-ads-signup-tag/ongoing/current_campaign_repair/research/NAVY_AU_COST_SOURCE_20260914.json": "30049d8d45c33eaebd7389cdc43ec24e1e6f610a00d68ac3d7e8e77b927ee3e0",
+    "/Users/fsuels/Projects/dresslikemommy/sections/main-product.liquid": "01a345e7d32c7bb23c6ba159c9388d7f9a839116378a56ef3fdcb351f1f3e6f1",
+    "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20",
+    "/Users/fsuels/Projects/dresslikemommy/sections/main-cart-footer.liquid": "89712b8893fdca9cbc3f0bc335f986b0b218ba8fb3b1aa0aeff5602408470865",
+    "/Users/fsuels/Projects/dresslikemommy/snippets/cart-drawer.liquid": "4fe84c743dd340f9298a6579295a786feca92bb97295966f392499936f35bcf3",
+    "/Users/fsuels/Projects/dresslikemommy/locales/fr.json": "16925cc07dbf3689ea129dce67215b50a278a7fe558d78ac54802b2bf0098acd"
+  },
+  "summary": {
+    "checks_passed": 39,
+    "checks_failed": 0,
+    "exact_variant_ids": [
+      "46501139611745",
+      "46501139415137"
+    ],
+    "CA_pair_subtotal": "CAD74.00",
+    "AU_pair_subtotal_reference": "AUD75.00; not used as Canadian price proof",
+    "correction_strings": 12,
+    "already_prepared_local": 4,
+    "remaining_narrow_candidates": 8,
+    "unresolved_material_defects": 0
+  },
+  "checks": [
+    {
+      "id": "INPUT_HASH_1",
+      "result": "PASS",
+      "evidence": {
+        "path": "research/NAVY_CA_FR_QUALIFICATION_20260914.json",
+        "sha256": "51a1aabc22194753ce271c228991f620f8f47da4aead3696cd8de3105c2fdcfb"
+      }
+    },
+    {
+      "id": "INPUT_HASH_2",
+      "result": "PASS",
+      "evidence": {
+        "path": "research/CANADA_FRENCH_LANDING_FIX_20260914.md",
+        "sha256": "ed4741578d9b9499912e10bb86d38f68a1f143c25cf531a150337ae81f5f4041"
+      }
+    },
+    {
+      "id": "REUSED_SOURCE_HASH_1",
+      "result": "PASS",
+      "evidence": {
+        "path": "research/all_market_build_20260914/LOCALE_ADS_EUROPE.json",
+        "sha256": "18ec00d08ed2b38780d800150f112f57c0f3e523932ee516290409d952b8006e",
+        "use": "Unchanged French ad copy, two unmeasured exact research seeds and five phrase-negative candidates; this country-route test does not establish keyword demand."
+      }
+    },
+    {
+      "id": "REUSED_SOURCE_HASH_2",
+      "result": "PASS",
+      "evidence": {
+        "path": "research/NAVY_AU_COST_SOURCE_20260914.json",
+        "sha256": "30049d8d45c33eaebd7389cdc43ec24e1e6f610a00d68ac3d7e8e77b927ee3e0",
+        "use": "Same-day complete 24-variant identity and size inventory only. AU contextual prices are not substituted for Canadian prices; configured USD goods costs are not landed costs."
+      }
+    },
+    {
+      "id": "LOCAL_SOURCE_HASH_1",
+      "result": "PASS",
+      "evidence": {
+        "path": "sections/main-product.liquid",
+        "sha256": "01a345e7d32c7bb23c6ba159c9388d7f9a839116378a56ef3fdcb351f1f3e6f1"
+      }
+    },
+    {
+      "id": "LOCAL_SOURCE_HASH_2",
+      "result": "PASS",
+      "evidence": {
+        "path": "assets/product-desktop-ux-20260513-ruler-sync.js",
+        "sha256": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20"
+      }
+    },
+    {
+      "id": "LOCAL_SOURCE_HASH_3",
+      "result": "PASS",
+      "evidence": {
+        "path": "sections/main-cart-footer.liquid",
+        "sha256": "89712b8893fdca9cbc3f0bc335f986b0b218ba8fb3b1aa0aeff5602408470865"
+      }
+    },
+    {
+      "id": "LOCAL_SOURCE_HASH_4",
+      "result": "PASS",
+      "evidence": {
+        "path": "snippets/cart-drawer.liquid",
+        "sha256": "4fe84c743dd340f9298a6579295a786feca92bb97295966f392499936f35bcf3"
+      }
+    },
+    {
+      "id": "LOCAL_SOURCE_HASH_5",
+      "result": "PASS",
+      "evidence": {
+        "path": "locales/fr.json",
+        "sha256": "16925cc07dbf3689ea129dce67215b50a278a7fe558d78ac54802b2bf0098acd"
+      }
+    },
+    {
+      "id": "IDENTITY_SCOPE",
+      "result": "PASS",
+      "evidence": "Same exact Navy product; CA French CAD is distinct from source query AU context."
+    },
+    {
+      "id": "EXACT_PAIR_IDS",
+      "result": "PASS",
+      "evidence": "Mother M dress46501139611745 and Child4 dress46501139415137, one each; translated labels preserve exact source selections."
+    },
+    {
+      "id": "CAD_ARITHMETIC",
+      "result": "PASS",
+      "evidence": "Operator CA CAD40+CAD34=CAD74; quantities and checkout subtotal reconcile."
+    },
+    {
+      "id": "NO_AU_PRICE_SUBSTITUTION",
+      "result": "PASS",
+      "evidence": "AU source pair is AUD40+AUD35=AUD75. Canadian child priceCAD34 is from operator UI receipt, not this AU Admin query; currencies/totals not mixed."
+    },
+    {
+      "id": "COUNTRY_LANGUAGE_ROUTE",
+      "result": "PASS",
+      "evidence": "Operator-reported route, selected locale/country/currency and checkout entry match; no independent browser replay."
+    },
+    {
+      "id": "SOURCE_GRID_AND_SIZE_LIMIT",
+      "result": "PASS",
+      "evidence": "Same-day complete24 rows support S–2XL and child2 through9–10 for both types. Configured range is not supplier availability, chart accuracy or all-variant checkout proof."
+    },
+    {
+      "id": "SIZE_SENTENCE_PROPOSAL",
+      "result": "PASS",
+      "evidence": "Only this product French range sentence proposed; public3XL wording is operator excerpt and source-side2XL verified locally."
+    },
+    {
+      "id": "TWELVE_UNIQUE_CORRECTIONS",
+      "result": "PASS",
+      "evidence": "12 unique candidate IDs and before/after strings; no duplicate edits proposed."
+    },
+    {
+      "id": "JSON_MARKDOWN_PARITY",
+      "result": "PASS",
+      "evidence": "All12 JSON before/after pairs exactly match the Markdown table."
+    },
+    {
+      "id": "BEFORE_TEXT_OBSERVED",
+      "result": "PASS",
+      "evidence": "Every proposed before-string appears within selected operator public product/cart excerpts; not a full raw transcript."
+    },
+    {
+      "id": "FRENCH_MEANING",
+      "result": "PASS",
+      "evidence": "Read all12 final French strings. Purchase instructions, size labels, tax/shipping detail labels and typo correction preserve meaning. Pièce is feminine, so destinée/Prête à être ajoutée agree. Ensemble assorti remains a selectable coordinated outfit in the explicit separate-item context, not bundled pricing. Model review is not human-native certification."
+    },
+    {
+      "id": "DYNAMIC_AND_MEASUREMENT_PRESERVATION",
+      "result": "PASS",
+      "evidence": "Dynamic values, measurement numbers, product-only typo context and other languages preserved; no size-chart measurement certification."
+    },
+    {
+      "id": "FOUR_EXISTING_EIGHT_CANDIDATES",
+      "result": "PASS",
+      "evidence": "Four existing local translations are preserved; eight remaining candidates require source/owner reconciliation, not twelve new edits."
+    },
+    {
+      "id": "PREPARED_TRANSLATION_EXACT_MATCH",
+      "result": "PASS",
+      "evidence": "Four prepared values exactly match the current referenced local module French block; do not replace with superseded draft alternatives."
+    },
+    {
+      "id": "TEMPLATE_MODULE_REFERENCE",
+      "result": "PASS",
+      "evidence": "Local template line933 references ruler-sync module, not the old unsuffixed mirror. This is not proof of effective live asset or published theme."
+    },
+    {
+      "id": "REMAINING_SIZE_LABEL_SOURCE",
+      "result": "PASS",
+      "evidence": "Both size-label candidates share one dynamic source expression; owner should implement the narrow French formatting change once, preserving dynamic role labels."
+    },
+    {
+      "id": "REMAINING_CART_SOURCES",
+      "result": "PASS",
+      "evidence": "Specified local cart/footer and drawer occurrences match; exact shared keys/instances still need owner action-time reconciliation."
+    },
+    {
+      "id": "HEADING_SOURCE",
+      "result": "PASS",
+      "evidence": "Existing French heading matches the exact local locale-source reference."
+    },
+    {
+      "id": "LOCAL_LIVE_CAUSE_UNKNOWN",
+      "result": "PASS",
+      "evidence": "Local French values plus earlier live English establish a discrepancy only. Effective live asset, locale/runtime selection and publication cause remain unresolved."
+    },
+    {
+      "id": "NARROW_OWNERSHIP_ROLLBACK",
+      "result": "PASS",
+      "evidence": "Existing owners/current frozen release preserved; exact affected keys/fields, current authority, snapshots and concurrency-safe rollback required. No blanket English or full-locale replacement."
+    },
+    {
+      "id": "RELEASE_READBACK_SCOPE",
+      "result": "PASS",
+      "evidence": "Affected product selection/cart controls require actual release readback on desktop/narrow; no repeated checkout-entry test solely to regenerate evidence."
+    },
+    {
+      "id": "UNCHANGED_KEYWORD_NEGATIVE_BINDING",
+      "result": "PASS",
+      "evidence": "Exactly two existing French research seeds and five phrase negatives reused without new demand or CPC measurement; English Canadian demand cannot qualify French queries."
+    },
+    {
+      "id": "PROTECTED_INTENT",
+      "result": "PASS",
+      "evidence": "Floral finished-dress buyer intent protected. Literal check is not a Google matching/segmentation guarantee; no negative added."
+    },
+    {
+      "id": "PRODUCT_ONLY_NO_COLLECTION_PROMOTION",
+      "result": "PASS",
+      "evidence": "One exact product/pair check does not qualify generic collection, all-market coverage, all variants or live campaigns."
+    },
+    {
+      "id": "DESKTOP_AND_EXCERPT_LIMIT",
+      "result": "PASS",
+      "evidence": "Operator excerpts and existing desktop viewport only; reviewer did not independently view or reproduce the native path."
+    },
+    {
+      "id": "NO_PAYMENT_SHIPPING_OR_MARGIN_PROOF",
+      "result": "PASS",
+      "evidence": "Shipping after an address, final tax/total, payment, actual landed cost/FX/fees, retained revenue and margin unqualified."
+    },
+    {
+      "id": "NO_PURCHASE_RECEIVER_PROOF",
+      "result": "PASS",
+      "evidence": "No intentional purchase event; emitted events/receiver/dedup not inspected. Operator cart/checkout telemetry is not demand."
+    },
+    {
+      "id": "CLEANUP_AND_EDITOR_PRESERVATION",
+      "result": "PASS",
+      "evidence": "Operator reports only two test items removed, empty cart, temp tab closed and existing Ads editor2 preserved; not independently replayed."
+    },
+    {
+      "id": "AUTHORITY_HELD",
+      "result": "PASS",
+      "evidence": "No current paid or production action authority is created; normal Google identity/Save remains a separate unresolved gate."
+    },
+    {
+      "id": "DATED_EVIDENCE_SEPARATION",
+      "result": "PASS",
+      "evidence": "June command-control timestamp is not the September14 browser clock. Local source reconciliation follows the bounded23:32:39–23:41:04UTC browser interval."
+    }
+  ],
+  "findings": [
+    {
+      "id": "PAIR_AND_CURRENCY",
+      "classification": "VERIFIED_SAVED_EVIDENCE",
+      "finding": "Exact Mother M and Child4 dress IDs reconcile. Canadian operator totals are CAD40+CAD34=CAD74; same-day AU source has AUD40+AUD35=AUD75. CAD prices are operator UI evidence, not independently verified through an Admin query or live replay."
+    },
+    {
+      "id": "CORRECTION_DEDUPLICATION",
+      "classification": "PASS_WITH_OWNER_RECONCILIATION",
+      "finding": "Twelve French strings are specific and semantically sound. Four exactly match already-prepared French values in the locally referenced ruler-sync module and must be preserved. Eight remaining candidates require existing owners to resolve exact current keys/fields. Local/live discrepancy cause remains UNKNOWN; publication is neither a proven cause nor a certified fix. The S–2XL correction is grounded in the complete same-day source, without measurement or supplier-availability proof."
+    },
+    {
+      "id": "READINESS_LIMIT",
+      "classification": "PARTIAL_PREREQUISITE_ONLY",
+      "finding": "Saved operator excerpts support only this desktop product/pair/cart/checkout-entry milestone and reported cleanup. Generic collection, other markets/variants, shipping after address, payment, purchase receiver/dedup, actual margin and French keyword feasibility remain unqualified. No paid-launch or production-write authority follows from this review."
+    }
+  ],
+  "independence_limits": [
+    "Reviewed saved operator excerpts; did not reproduce Shopify/browser/checkout/Ads actions, cart cleanup or editor preservation.",
+    "Verified exact supporting local hashes and stated source excerpts, not the effective live bundle, current live theme publication or runtime locale choice.",
+    "French wording review is model-based and not human-native certification; human advice may help uncertain regional phrasing, but this review adds no mandatory human approval gate.",
+    "No size-chart numbers, material, shipping, returns, supplier inventory or actual economic claims were certified.",
+    "All costs, demand, measurement and authority gates remain separate. A prior paid-attributed sale is not required merely to validate pre-launch instrumentation; paid attribution and realized retained ROAS are post-launch outcomes."
+  ],
+  "source_revision_note": {
+    "original_qualification_sha256": "33ceda7fb58efd895e220d6f0093fcdec47ddf87f5981281b83da4659f0890f1",
+    "original_fix_md_sha256": "9d244248a22ef4028696732fa943fa4c4c05574af5c8918d5e2e824868af8438",
+    "final_review_binds_revised_inputs": true,
+    "reason": "Root reconciled prepared local translations before review freeze; final verdict does not approve the superseded12-new-edits framing. Reviewer requested cause remain unknown and did not edit operator or implementation files."
+  },
+  "next_action": {
+    "owner": "Canonical parent and existing storefront/product owners",
+    "action": "Reconcile the eight remaining candidates with the prepared release and resolve effective live asset/locale/publication state; preserve the four prepared translations, then implement only exact currently authorized changes with affected French control readback.",
+    "why_first": "It addresses observed buyer-language defects without duplicating another owner’s work or assuming that republishing alone fixes them."
+  },
+  "continuation_prompt": "Use the final two frozen input hashes and this source-bound review. Preserve four existing French translations, current frozen release, exact CAD pair and paid-NONE. Route the eight remaining candidates through current owners; verify affected desktop/narrow controls after authorized implementation. Do not repeat completed checkout entry or promote this product check to collection/all-market readiness."
+}

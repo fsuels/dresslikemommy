@@ -1,0 +1,34 @@
+{
+  "at_utc": "2026-09-15T01:56:32.946Z",
+  "blocks": [
+    {
+      "artifactId": "9ad5cd64-1d93-4cf9-a452-6011ceeb3552",
+      "revision": 2,
+      "content": "query MerchantColorSourceBefore($ids: [ID!]!) {\n  shop { id myshopifyDomain }\n  productDefinitions: metafieldDefinitions(first: 10, ownerType: PRODUCT, namespace: \"mm-google-shopping\", key: \"color\") {\n    nodes { id namespace key ownerType type { name } validations { name value } access { admin storefront } }\n    pageInfo { hasNextPage endCursor }\n  }\n  variantDefinitions: metafieldDefinitions(first: 10, ownerType: PRODUCTVARIANT, namespace: \"mm-google-shopping\", key: \"color\") {\n    nodes { id namespace key ownerType type { name } validations { name value } access { admin storefront } }\n    pageInfo { hasNextPage endCursor }\n  }\n  nodes(ids: $ids) {\n    ... on Product {\n      id title handle status description descriptionHtml updatedAt onlineStoreUrl\n      options { id name values position }\n      gColor: metafield(namespace: \"mm-google-shopping\", key: \"color\") { id namespace key type value jsonValue compareDigest }\n      resourcePublicationsV2(first: 20) { nodes { isPublished publication { id } } pageInfo { hasNextPage endCursor } }\n      variants(first: 50) {\n        nodes {\n          id title price compareAtPrice inventoryQuantity inventoryPolicy availableForSale\n          selectedOptions { name value }\n          gColor: metafield(namespace: \"mm-google-shopping\", key: \"color\") { id namespace key type value jsonValue compareDigest }\n        }\n        pageInfo { hasNextPage endCursor }\n      }\n    }\n  }\n}"
+    },
+    {
+      "artifactId": "4f065932-848c-4092-823a-9da6fc4867f5",
+      "revision": 1,
+      "content": "query MerchantColorProtectedMetadata($ids: [ID!]!, $first: Int!) {\n  shop { id myshopifyDomain }\n  nodes(ids: $ids) {\n    id\n    ... on Product { metafields(first: $first) { nodes { id namespace key type value compareDigest } pageInfo { hasNextPage endCursor } } }\n    ... on ProductVariant { metafields(first: $first) { nodes { id namespace key type value compareDigest } pageInfo { hasNextPage endCursor } } }\n  }\n}"
+    },
+    {
+      "artifactId": "346ca9a8-46ab-4ad6-b4d6-cdb283fa7549",
+      "revision": 2,
+      "content": "mutation MerchantColorFieldsSet($metafields: [MetafieldsSetInput!]!) {\n  metafieldsSet(metafields: $metafields) {\n    metafields {\n      id namespace key type value jsonValue compareDigest\n      owner { ... on Product { id } ... on ProductVariant { id } }\n    }\n    userErrors { field message code elementIndex }\n  }\n}"
+    },
+    {
+      "artifactId": "2f7dd2ec-2489-4f5a-b2d6-f403c96405ef",
+      "revision": 1,
+      "content": "mutation MerchantColorFieldsRollback($metafields: [MetafieldIdentifierInput!]!) {\n  metafieldsDelete(metafields: $metafields) {\n    deletedMetafields { ownerId namespace key }\n    userErrors { field message }\n  }\n}"
+    }
+  ],
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 4\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** 9ad5cd64-1d93-4cf9-a452-6011ceeb3552\n**Revision:** 2\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_products, read_publications\n\n### Code Block 2\n**Artifact ID:** 4f065932-848c-4092-823a-9da6fc4867f5\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_products\n\n### Code Block 3\n**Artifact ID:** 346ca9a8-46ab-4ad6-b4d6-cdb283fa7549\n**Revision:** 2\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL mutation against schema.\n\n### Code Block 4\n**Artifact ID:** 2f7dd2ec-2489-4f5a-b2d6-f403c96405ef\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL mutation against schema.\n\n"
+      }
+    ],
+    "isError": false
+  }
+}

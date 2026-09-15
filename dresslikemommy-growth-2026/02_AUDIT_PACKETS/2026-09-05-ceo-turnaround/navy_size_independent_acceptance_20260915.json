@@ -1,0 +1,1258 @@
+{
+  "schema": "dlm.navy_size_release_independent_acceptance.v1",
+  "reviewer": "/root/navy_variant_history",
+  "reviewed_at_utc": "2026-09-15T01:22:39.044723+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "scope": "Independent local hash verification, saved receipt parsing and whole-data reconstruction. No live replay, business queries, new semantic/UI audit or source/shared writes.",
+  "packet": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005",
+  "freeze_sha256": "e110c2284270fa60c2b657a9058af5411bb40c3050751ec9123cca08564a983c",
+  "handoff_sha256": "e05963bfbdc8c55dcff7aae8fce172b376d240b355d4c8fce90ce26a14edec6a",
+  "checks": [
+    {
+      "name": "Expected freeze/handoff and all 81 unique frozen hashes and lengths",
+      "passed": true
+    },
+    {
+      "name": "Handoff main and French references match frozen bytes",
+      "passed": true
+    },
+    {
+      "name": "Nineteen source-map references match; one independently observed ruler-source drift is retained as a UX-context limit",
+      "passed": true,
+      "details": [
+        {
+          "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+          "expected_sha256": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20",
+          "actual_sha256": "05dc274279a9b25ddce044d13d2c160d79d8362e6ad78b056c716a70493cc11a",
+          "label": "mapped source",
+          "match": false
+        }
+      ]
+    },
+    {
+      "name": "All nine exact private receipt hashes match",
+      "passed": true
+    },
+    {
+      "name": "27 original private metadata value bindings match sanitized source",
+      "passed": true
+    },
+    {
+      "name": "Whole fresh prewrite equals original source",
+      "passed": true
+    },
+    {
+      "name": "Identity, full 24 unique variants, complete product/resource connections",
+      "passed": true
+    },
+    {
+      "name": "Every captured stage preserves all 24 variant records and option definitions",
+      "passed": true
+    },
+    {
+      "name": "Every stage preserves publication, state, tags, inventory and noncopy product fields",
+      "passed": true
+    },
+    {
+      "name": "Exactly 42 unique fields, two keys in each of 21 languages",
+      "passed": true
+    },
+    {
+      "name": "All 42 exact before/hash/edit/source/final field comparisons",
+      "passed": true
+    },
+    {
+      "name": "All 42 source chart tables retain exact remaining rows and 5460 cells",
+      "passed": true
+    },
+    {
+      "name": "Exactly 42 row removals, 42 endpoint edits and one French typo",
+      "passed": true,
+      "details": {
+        "remove_unavailable_mother_3xl_row": 42,
+        "range_endpoint_3xl_to_2xl": 42,
+        "french_exact_typo": 1
+      }
+    },
+    {
+      "name": "Observed failed first stage entirely reconstructed, including null source meta_title and empty-content digest",
+      "passed": true
+    },
+    {
+      "name": "Original guard failure preserved and its 27-record invariant actually fails",
+      "passed": true
+    },
+    {
+      "name": "Submitted English operation bound exactly, SEO title not supplied",
+      "passed": true
+    },
+    {
+      "name": "Whole title-value recovery reconstructed with new ID and temporary string type",
+      "passed": true
+    },
+    {
+      "name": "Whole type recovery reconstructed: only original type restored",
+      "passed": true
+    },
+    {
+      "name": "Exactly 20 unchanged title values have original false flags restored, whole data matches",
+      "passed": true
+    },
+    {
+      "name": "Original SEO title value/type/compareDigest/source and 20 title records restored except documented ID",
+      "passed": true
+    },
+    {
+      "name": "All 100 translation values unchanged throughout English/recovery",
+      "passed": true
+    },
+    {
+      "name": "Forty exact size inputs bind actual recovered source digests",
+      "passed": true
+    },
+    {
+      "name": "Entire final size-release data reconstructed from recovery plus exactly 40 values/flags",
+      "passed": true
+    },
+    {
+      "name": "Other 60 translations and four source fields remain original",
+      "passed": true
+    },
+    {
+      "name": "French fresh private prewrite entirely matches completed 42 release",
+      "passed": true
+    },
+    {
+      "name": "French exact two-header-only delta matches hashes",
+      "passed": true
+    },
+    {
+      "name": "Whole final French data reconstructed with only same body value changed",
+      "passed": true
+    },
+    {
+      "name": "French 240 data cells and all other 99 translations, six sources, 27 metadata, 24 variants preserved",
+      "passed": true
+    },
+    {
+      "name": "French one-input payload binds actual source digest",
+      "passed": true
+    },
+    {
+      "name": "Exact returned translation values seo_title_translations_restore_receipt.json",
+      "passed": true
+    },
+    {
+      "name": "Exact returned translation values translations_mutation_receipt.json",
+      "passed": true
+    },
+    {
+      "name": "Exact returned translation values french_hip_label_followup/mutation_receipt.json",
+      "passed": true
+    },
+    {
+      "name": "Six actual parsed mutation results each have zero top-level/user errors",
+      "passed": true
+    },
+    {
+      "name": "Six calls chronological, three ordinary correction and three incident recovery",
+      "passed": true
+    },
+    {
+      "name": "Recovery fully read back before size translations began",
+      "passed": true
+    },
+    {
+      "name": "Ten exact independent input/guard/after-review bindings match",
+      "passed": true
+    },
+    {
+      "name": "Twenty-one distinct recorded public language checks match repaired scope",
+      "passed": true
+    },
+    {
+      "name": "Recorded public context is inherited Canada/CAD; no country/cart/checkout mutation",
+      "passed": true
+    },
+    {
+      "name": "Final French recorded browser check confirms both Hanches headers after API readback",
+      "passed": true
+    },
+    {
+      "name": "Six fresh market reads have 126 explicitly empty override arrays",
+      "passed": true
+    },
+    {
+      "name": "42 unique improvement fields excludes 20 recovery registrations and repeat French body",
+      "passed": true
+    },
+    {
+      "name": "Handoff retains original FAIL, wire uncertainty and old/new metadata ID distinction",
+      "passed": true
+    },
+    {
+      "name": "All inspected bound bytes unchanged during review",
+      "passed": true
+    }
+  ],
+  "passed_checks": 43,
+  "total_checks": 43,
+  "blocking_findings": [],
+  "source_bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/packet_freeze.json",
+      "expected_sha256": "e110c2284270fa60c2b657a9058af5411bb40c3050751ec9123cca08564a983c",
+      "actual_sha256": "e110c2284270fa60c2b657a9058af5411bb40c3050751ec9123cca08564a983c",
+      "label": "freeze",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/execution_handoff.json",
+      "expected_sha256": "e05963bfbdc8c55dcff7aae8fce172b376d240b355d4c8fce90ce26a14edec6a",
+      "actual_sha256": "e05963bfbdc8c55dcff7aae8fce172b376d240b355d4c8fce90ce26a14edec6a",
+      "label": "handoff",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/RESULT.md",
+      "expected_sha256": "e627da0e441f77fd0c6f2d77772be7a69e019a3a894aaa5bc53b57748387f5ea",
+      "actual_sha256": "e627da0e441f77fd0c6f2d77772be7a69e019a3a894aaa5bc53b57748387f5ea",
+      "label": "frozen RESULT.md",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/after.json",
+      "expected_sha256": "d846a95e8e94b4d33a3ab83d8b37c437f106db2bb450c00e09f699ec31929fd6",
+      "actual_sha256": "d846a95e8e94b4d33a3ab83d8b37c437f106db2bb450c00e09f699ec31929fd6",
+      "label": "frozen after.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/after_english.json",
+      "expected_sha256": "8f9104dbd61cef5efb0d97a26eeccade9a3872e52cf51482775df6fa3773e704",
+      "actual_sha256": "8f9104dbd61cef5efb0d97a26eeccade9a3872e52cf51482775df6fa3773e704",
+      "label": "frozen after_english.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/after_english_complete.json",
+      "expected_sha256": "4688ed95442c248c2a2cc7525a468fc6f6c70160e28db114828bec088dfd87c0",
+      "actual_sha256": "4688ed95442c248c2a2cc7525a468fc6f6c70160e28db114828bec088dfd87c0",
+      "label": "frozen after_english_complete.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/after_english_initial_failed.json",
+      "expected_sha256": "8f9104dbd61cef5efb0d97a26eeccade9a3872e52cf51482775df6fa3773e704",
+      "actual_sha256": "8f9104dbd61cef5efb0d97a26eeccade9a3872e52cf51482775df6fa3773e704",
+      "label": "frozen after_english_initial_failed.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/after_english_restored.json",
+      "expected_sha256": "ad305d8b6f96d8767881ec9fc6ae41eccc05b32a008aa3caee9e05ef405e6c0b",
+      "actual_sha256": "ad305d8b6f96d8767881ec9fc6ae41eccc05b32a008aa3caee9e05ef405e6c0b",
+      "label": "frozen after_english_restored.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/after_restored_verification.json",
+      "expected_sha256": "68bad4f935aa9f1fdf592c2c5680c56d4c2b91b8c6b0bd78b06b377516eb950e",
+      "actual_sha256": "68bad4f935aa9f1fdf592c2c5680c56d4c2b91b8c6b0bd78b06b377516eb950e",
+      "label": "frozen after_restored_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/after_title_type_restore.json",
+      "expected_sha256": "de464d8673c521d9a81b57119a17eb12e52c21ea95c45a738b306abb8deade39",
+      "actual_sha256": "de464d8673c521d9a81b57119a17eb12e52c21ea95c45a738b306abb8deade39",
+      "label": "frozen after_title_type_restore.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/before.json",
+      "expected_sha256": "2bf21a5d758f64fc357a35dd487c6b1c5462e195e0418eabc9cc84dd01bb184e",
+      "actual_sha256": "2bf21a5d758f64fc357a35dd487c6b1c5462e195e0418eabc9cc84dd01bb184e",
+      "label": "frozen before.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/build_proposal.py",
+      "expected_sha256": "47e516d180402b3c7645c0298a48005900a6c10fb3380aa0835fae4f44d0e422",
+      "actual_sha256": "47e516d180402b3c7645c0298a48005900a6c10fb3380aa0835fae4f44d0e422",
+      "label": "frozen build_proposal.py",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/cardigan_guide_mismatch.json",
+      "expected_sha256": "5888cd926e49ddda2562771fb2bd5fb245021c18877d14b1728fd9c0641b07f8",
+      "actual_sha256": "5888cd926e49ddda2562771fb2bd5fb245021c18877d14b1728fd9c0641b07f8",
+      "label": "frozen cardigan_guide_mismatch.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/chart_source_map.json",
+      "expected_sha256": "d0bc74d36236fbfb8d1cc3a225317a01484fd864d16acdc7809c3e94cb9691c6",
+      "actual_sha256": "d0bc74d36236fbfb8d1cc3a225317a01484fd864d16acdc7809c3e94cb9691c6",
+      "label": "frozen chart_source_map.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/english_mutation_receipt.json",
+      "expected_sha256": "ef2266e6cf5894950f6c858bac99ba69e60f21e8e336daf326b084e301b3d872",
+      "actual_sha256": "ef2266e6cf5894950f6c858bac99ba69e60f21e8e336daf326b084e301b3d872",
+      "label": "frozen english_mutation_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/execution_handoff.json",
+      "expected_sha256": "e05963bfbdc8c55dcff7aae8fce172b376d240b355d4c8fce90ce26a14edec6a",
+      "actual_sha256": "e05963bfbdc8c55dcff7aae8fce172b376d240b355d4c8fce90ce26a14edec6a",
+      "label": "frozen execution_handoff.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/after.json",
+      "expected_sha256": "c9274eebe0bd0148a5d044d5f77e4aff05dc8a0c721e5a5d6362d6cc1ea175ca",
+      "actual_sha256": "c9274eebe0bd0148a5d044d5f77e4aff05dc8a0c721e5a5d6362d6cc1ea175ca",
+      "label": "frozen french_hip_label_followup/after.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/after_verification.json",
+      "expected_sha256": "02d0b27e5d446942466e1346603e069ec121daa3cf6fa89529e6780871ce7e6c",
+      "actual_sha256": "02d0b27e5d446942466e1346603e069ec121daa3cf6fa89529e6780871ce7e6c",
+      "label": "frozen french_hip_label_followup/after_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/build_proposal.py",
+      "expected_sha256": "28d1969e874e2d8a4e3262897f5bdb2f26b149ec18032644ba79c959e5344b0a",
+      "actual_sha256": "28d1969e874e2d8a4e3262897f5bdb2f26b149ec18032644ba79c959e5344b0a",
+      "label": "frozen french_hip_label_followup/build_proposal.py",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/independent_after_review.json",
+      "expected_sha256": "2e099f9deba5fd551220aa996b457f0e17f8c13a4cdef44d2696d4ce4f4b3cb4",
+      "actual_sha256": "2e099f9deba5fd551220aa996b457f0e17f8c13a4cdef44d2696d4ce4f4b3cb4",
+      "label": "frozen french_hip_label_followup/independent_after_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/independent_binding_review.json",
+      "expected_sha256": "40ee6ef7074aed74f49afbb903427c255b184f668fbbcfd8b45188ed8f769fe7",
+      "actual_sha256": "40ee6ef7074aed74f49afbb903427c255b184f668fbbcfd8b45188ed8f769fe7",
+      "label": "frozen french_hip_label_followup/independent_binding_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/independent_candidate_review.json",
+      "expected_sha256": "b4f23586f5054646d195f97ab575a4d690ebadc2e5d004c5f6fb141c7e0f4498",
+      "actual_sha256": "b4f23586f5054646d195f97ab575a4d690ebadc2e5d004c5f6fb141c7e0f4498",
+      "label": "frozen french_hip_label_followup/independent_candidate_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/mutation_receipt.json",
+      "expected_sha256": "2309e090e07db9bb75c82b96fea8d01639621db26e7ad05a3b7149764e7fddfd",
+      "actual_sha256": "2309e090e07db9bb75c82b96fea8d01639621db26e7ad05a3b7149764e7fddfd",
+      "label": "frozen french_hip_label_followup/mutation_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/notes.md",
+      "expected_sha256": "f94d9449bc55507405d0a97842cccf08c3a9cd3be9862359cee68beb8c8e350d",
+      "actual_sha256": "f94d9449bc55507405d0a97842cccf08c3a9cd3be9862359cee68beb8c8e350d",
+      "label": "frozen french_hip_label_followup/notes.md",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/prewrite.json",
+      "expected_sha256": "a1b3bad72182b1e4d479cb8c064268a871886171532447723e5379d927e11747",
+      "actual_sha256": "a1b3bad72182b1e4d479cb8c064268a871886171532447723e5379d927e11747",
+      "label": "frozen french_hip_label_followup/prewrite.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/prewrite_verification.json",
+      "expected_sha256": "f00af803a22ab41125f811f0981a0654343fbd5bdad97f5fc1134adcf5aa6f8a",
+      "actual_sha256": "f00af803a22ab41125f811f0981a0654343fbd5bdad97f5fc1134adcf5aa6f8a",
+      "label": "frozen french_hip_label_followup/prewrite_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/proposal.json",
+      "expected_sha256": "bfb1be4aad96a16c9ae13774ba7c988e207062c9391ba46b55d9189031cc8c9c",
+      "actual_sha256": "bfb1be4aad96a16c9ae13774ba7c988e207062c9391ba46b55d9189031cc8c9c",
+      "label": "frozen french_hip_label_followup/proposal.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/public_verification.json",
+      "expected_sha256": "7801d78891c35d81aba2e8a3fe275624dc377fb2ab04344d64a29c7c2ae6920d",
+      "actual_sha256": "7801d78891c35d81aba2e8a3fe275624dc377fb2ab04344d64a29c7c2ae6920d",
+      "label": "frozen french_hip_label_followup/public_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/source_binding.json",
+      "expected_sha256": "a0be024cac087585b68bad805ba4b7939f56fda6db7f19e5bfadfd68fc1b06f3",
+      "actual_sha256": "a0be024cac087585b68bad805ba4b7939f56fda6db7f19e5bfadfd68fc1b06f3",
+      "label": "frozen french_hip_label_followup/source_binding.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/update.graphql",
+      "expected_sha256": "e46e4a322fad20c499e3d93e1d63893cdae8ae9c8087cd8f2658be0a4bc87f26",
+      "actual_sha256": "e46e4a322fad20c499e3d93e1d63893cdae8ae9c8087cd8f2658be0a4bc87f26",
+      "label": "frozen french_hip_label_followup/update.graphql",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/update.variables.json",
+      "expected_sha256": "22c35681108a7f47126c6677d44d4f3a074b00cb06b8dcb04cb24d8624cbee89",
+      "actual_sha256": "22c35681108a7f47126c6677d44d4f3a074b00cb06b8dcb04cb24d8624cbee89",
+      "label": "frozen french_hip_label_followup/update.variables.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/independent_after_review.json",
+      "expected_sha256": "85c2555837c1a598421fff4a2282471a69b122bc726cff464dfb0e7db06769cb",
+      "actual_sha256": "85c2555837c1a598421fff4a2282471a69b122bc726cff464dfb0e7db06769cb",
+      "label": "frozen independent_after_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/independent_prewrite_review.json",
+      "expected_sha256": "e315d0f5e6651a174b4b2185dcafe959a575f96dd78c55393f8d6ac1d049a93a",
+      "actual_sha256": "e315d0f5e6651a174b4b2185dcafe959a575f96dd78c55393f8d6ac1d049a93a",
+      "label": "frozen independent_prewrite_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/independent_translation_binding_review.json",
+      "expected_sha256": "95868efb1d130e64984962c59ac8b142ed78bc1592ff313fc4f517a3a47a071d",
+      "actual_sha256": "95868efb1d130e64984962c59ac8b142ed78bc1592ff313fc4f517a3a47a071d",
+      "label": "frozen independent_translation_binding_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/market_overrides_before.json",
+      "expected_sha256": "fa6b4046e75284af49ab32842348c654cdf9b1bc4e77fcc8501da8d9704bc453",
+      "actual_sha256": "fa6b4046e75284af49ab32842348c654cdf9b1bc4e77fcc8501da8d9704bc453",
+      "label": "frozen market_overrides_before.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/market_overrides_pretranslation.json",
+      "expected_sha256": "daf0d76f552904405ad139fbe51d007fa8a99c99ab3360013d60906a85ec315e",
+      "actual_sha256": "daf0d76f552904405ad139fbe51d007fa8a99c99ab3360013d60906a85ec315e",
+      "label": "frozen market_overrides_pretranslation.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/markets_before.json",
+      "expected_sha256": "19f36d357e7e2eb7126ee867fe612173b76101ca52dd98785a4dd08306cabc17",
+      "actual_sha256": "19f36d357e7e2eb7126ee867fe612173b76101ca52dd98785a4dd08306cabc17",
+      "label": "frozen markets_before.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/markets_query.graphql",
+      "expected_sha256": "aeda701f29bd668c6239b141557ae39dd2f9273eac2cd9ed464d814279ea8364",
+      "actual_sha256": "aeda701f29bd668c6239b141557ae39dd2f9273eac2cd9ed464d814279ea8364",
+      "label": "frozen markets_query.graphql",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/markets_query_cli_validation.txt",
+      "expected_sha256": "8db49684c5c99cbe3264994794e251e7cb2913a70fda1dbdb868a084a36a98a9",
+      "actual_sha256": "8db49684c5c99cbe3264994794e251e7cb2913a70fda1dbdb868a084a36a98a9",
+      "label": "frozen markets_query_cli_validation.txt",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/merchant_feed_followup.json",
+      "expected_sha256": "607ba0963d777ac0f5882673efd16bc3be4476cd00206bfc59b0b98c662d6a79",
+      "actual_sha256": "607ba0963d777ac0f5882673efd16bc3be4476cd00206bfc59b0b98c662d6a79",
+      "label": "frozen merchant_feed_followup.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/overrides_query.graphql",
+      "expected_sha256": "61d199b53966bb573172dd84853e36d7142dfc914c1cfe15b30aedbb754a587e",
+      "actual_sha256": "61d199b53966bb573172dd84853e36d7142dfc914c1cfe15b30aedbb754a587e",
+      "label": "frozen overrides_query.graphql",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/overrides_query_cli_validation.txt",
+      "expected_sha256": "c1e37e14633349a435f0a3f8461bcb636236821d716869ba3aee4ab57c6b323c",
+      "actual_sha256": "c1e37e14633349a435f0a3f8461bcb636236821d716869ba3aee4ab57c6b323c",
+      "label": "frozen overrides_query_cli_validation.txt",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/prewrite.json",
+      "expected_sha256": "a302cbe6d45e073b501d0efbf0a8075c4a79282475b411b8ee6a709d37630086",
+      "actual_sha256": "a302cbe6d45e073b501d0efbf0a8075c4a79282475b411b8ee6a709d37630086",
+      "label": "frozen prewrite.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/proposal.json",
+      "expected_sha256": "d200d5dc31fdfb443641e40e1729cfbf347a294938a8a3c7461c4f9eb5a28661",
+      "actual_sha256": "d200d5dc31fdfb443641e40e1729cfbf347a294938a8a3c7461c4f9eb5a28661",
+      "label": "frozen proposal.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/proposal_notes.md",
+      "expected_sha256": "1213414b5ba0bd79a4ac9cd1406ff158cab14b4db94e1e46427ef18799b82b1f",
+      "actual_sha256": "1213414b5ba0bd79a4ac9cd1406ff158cab14b4db94e1e46427ef18799b82b1f",
+      "label": "frozen proposal_notes.md",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/public_before.json",
+      "expected_sha256": "f63e5638f0f8982f0d222d16e62cc073ea62c56b3ba43d7821ea1abb5df6bbf9",
+      "actual_sha256": "f63e5638f0f8982f0d222d16e62cc073ea62c56b3ba43d7821ea1abb5df6bbf9",
+      "label": "frozen public_before.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/public_route_plan.json",
+      "expected_sha256": "61db094781975e13fd2ca3e444be706e18f5a1b60a4f3649cfd8a9d17a72987a",
+      "actual_sha256": "61db094781975e13fd2ca3e444be706e18f5a1b60a4f3649cfd8a9d17a72987a",
+      "label": "frozen public_route_plan.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/public_verification.json",
+      "expected_sha256": "d7c7601948200a99192b942736b733b920cfc7503c5eee64ba1154070876def2",
+      "actual_sha256": "d7c7601948200a99192b942736b733b920cfc7503c5eee64ba1154070876def2",
+      "label": "frozen public_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/read.graphql",
+      "expected_sha256": "ebc9d4d2b6cfbaaa56aecaabcee0f083bd3a40dbba98ce2afe2788de877d85f2",
+      "actual_sha256": "ebc9d4d2b6cfbaaa56aecaabcee0f083bd3a40dbba98ce2afe2788de877d85f2",
+      "label": "frozen read.graphql",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/read_cli_validation.txt",
+      "expected_sha256": "0dd04d56419905940745b1eac50616650b86926a5e55e0e127f2ff95af2a4ca5",
+      "actual_sha256": "0dd04d56419905940745b1eac50616650b86926a5e55e0e127f2ff95af2a4ca5",
+      "label": "frozen read_cli_validation.txt",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/read_validation.json",
+      "expected_sha256": "ee8c507a99f080cb20822cb5ea4b6cf76c125705f01c3b143b7bd21b0915c685",
+      "actual_sha256": "ee8c507a99f080cb20822cb5ea4b6cf76c125705f01c3b143b7bd21b0915c685",
+      "label": "frozen read_validation.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/rollback_prepared.json",
+      "expected_sha256": "fcfd4b1082e1d3823036a93ed366747b60513298e72c069b2aa1871163c4f561",
+      "actual_sha256": "fcfd4b1082e1d3823036a93ed366747b60513298e72c069b2aa1871163c4f561",
+      "label": "frozen rollback_prepared.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_metadata_recovery_prewrite.json",
+      "expected_sha256": "bc9bcb5ce7aacf6e6602fc812794bd4ce1e93c3a6cb94cf7f4847135c9a0e433",
+      "actual_sha256": "bc9bcb5ce7aacf6e6602fc812794bd4ce1e93c3a6cb94cf7f4847135c9a0e433",
+      "label": "frozen seo_metadata_recovery_prewrite.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_metadata_recovery_review.json",
+      "expected_sha256": "63f1b9a80be2a0235ba7b4117e8894127de5002467213cc3521d6168c785cba3",
+      "actual_sha256": "63f1b9a80be2a0235ba7b4117e8894127de5002467213cc3521d6168c785cba3",
+      "label": "frozen seo_metadata_recovery_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_metadata_recovery_verification.json",
+      "expected_sha256": "3a0954c293c2b88ec915f524d77d701fb1d886b72dd0f36872217f868558394a",
+      "actual_sha256": "3a0954c293c2b88ec915f524d77d701fb1d886b72dd0f36872217f868558394a",
+      "label": "frozen seo_metadata_recovery_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_restore.graphql",
+      "expected_sha256": "7c7bbe147207878437332b9217ab3ce765c0290c750dd88044c28e8b65a98929",
+      "actual_sha256": "7c7bbe147207878437332b9217ab3ce765c0290c750dd88044c28e8b65a98929",
+      "label": "frozen seo_title_restore.graphql",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_restore.variables.json",
+      "expected_sha256": "f2068b8382e2e6e6a79460d79cbcaa981c71fd81cf755e5d421f7558b98cfe8a",
+      "actual_sha256": "f2068b8382e2e6e6a79460d79cbcaa981c71fd81cf755e5d421f7558b98cfe8a",
+      "label": "frozen seo_title_restore.variables.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_restore_incident.json",
+      "expected_sha256": "2be192d6123b81d73ceffdfdf7281ede59cc777cdc016c3b6bf785558a39c509",
+      "actual_sha256": "2be192d6123b81d73ceffdfdf7281ede59cc777cdc016c3b6bf785558a39c509",
+      "label": "frozen seo_title_restore_incident.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_restore_receipt.json",
+      "expected_sha256": "fe487d7bcf99a9a6c24d4672cdfd8c4a634a9136de2185098293d9f520486c03",
+      "actual_sha256": "fe487d7bcf99a9a6c24d4672cdfd8c4a634a9136de2185098293d9f520486c03",
+      "label": "frozen seo_title_restore_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_restore_review.json",
+      "expected_sha256": "d2196d7d06f05b2b69e69974427ff68e4225f6c42bc44b4bba615503156be970",
+      "actual_sha256": "d2196d7d06f05b2b69e69974427ff68e4225f6c42bc44b4bba615503156be970",
+      "label": "frozen seo_title_restore_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_restore_value_readback.json",
+      "expected_sha256": "cc690ef255f9abf495621a35af7ae973c6ed58a6ab8c3e5f7a4835a2106d6d60",
+      "actual_sha256": "cc690ef255f9abf495621a35af7ae973c6ed58a6ab8c3e5f7a4835a2106d6d60",
+      "label": "frozen seo_title_restore_value_readback.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_translations_restore.graphql",
+      "expected_sha256": "e46e4a322fad20c499e3d93e1d63893cdae8ae9c8087cd8f2658be0a4bc87f26",
+      "actual_sha256": "e46e4a322fad20c499e3d93e1d63893cdae8ae9c8087cd8f2658be0a4bc87f26",
+      "label": "frozen seo_title_translations_restore.graphql",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_translations_restore.variables.json",
+      "expected_sha256": "84b4073788c2828713ca71e6da9c2351ff15bcfa34b7d31b27b7743ec79b48d9",
+      "actual_sha256": "84b4073788c2828713ca71e6da9c2351ff15bcfa34b7d31b27b7743ec79b48d9",
+      "label": "frozen seo_title_translations_restore.variables.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_translations_restore_receipt.json",
+      "expected_sha256": "bd4d4bc38a3716e128553d0e56c3ebe889b7781d2335b098f716d8636dadb304",
+      "actual_sha256": "bd4d4bc38a3716e128553d0e56c3ebe889b7781d2335b098f716d8636dadb304",
+      "label": "frozen seo_title_translations_restore_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_type_restore.graphql",
+      "expected_sha256": "9bad11c0b1b12b09031a6a2839d889644679a2aed7a5c08882783d3b88181211",
+      "actual_sha256": "9bad11c0b1b12b09031a6a2839d889644679a2aed7a5c08882783d3b88181211",
+      "label": "frozen seo_title_type_restore.graphql",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_type_restore.variables.json",
+      "expected_sha256": "0a1a958c1e1d03c4c0c78c654e4cfe0ccfbe8e2fd697b27994add11d2141d71c",
+      "actual_sha256": "0a1a958c1e1d03c4c0c78c654e4cfe0ccfbe8e2fd697b27994add11d2141d71c",
+      "label": "frozen seo_title_type_restore.variables.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_type_restore_cli_validation.txt",
+      "expected_sha256": "d9b5565d399e4d99cd55274fe65ddd5b8b0bf2a08fecdc31fe15e00c7fc22135",
+      "actual_sha256": "d9b5565d399e4d99cd55274fe65ddd5b8b0bf2a08fecdc31fe15e00c7fc22135",
+      "label": "frozen seo_title_type_restore_cli_validation.txt",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_type_restore_receipt.json",
+      "expected_sha256": "639aa3d10a873ece511696deecd1094e61a586fdcf02de03564a7708ca69e246",
+      "actual_sha256": "639aa3d10a873ece511696deecd1094e61a586fdcf02de03564a7708ca69e246",
+      "label": "frozen seo_title_type_restore_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_type_restore_verification.json",
+      "expected_sha256": "6d029ed81cdc9c05ea0646439d5d596b284b15d6a121e80735ceab7e328b26ee",
+      "actual_sha256": "6d029ed81cdc9c05ea0646439d5d596b284b15d6a121e80735ceab7e328b26ee",
+      "label": "frozen seo_title_type_restore_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/source-after_restored_verification.json",
+      "expected_sha256": "757f74b4fbe6726ff1de770f57496d72f6fe442a99e5f129daceb51cfdfcfcd5",
+      "actual_sha256": "757f74b4fbe6726ff1de770f57496d72f6fe442a99e5f129daceb51cfdfcfcd5",
+      "label": "frozen source-after_restored_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/source-prewrite_verification.json",
+      "expected_sha256": "acc4ef36290194389f4ef7162b37559a49ad37dab428daa7c9173ca2fd040feb",
+      "actual_sha256": "acc4ef36290194389f4ef7162b37559a49ad37dab428daa7c9173ca2fd040feb",
+      "label": "frozen source-prewrite_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/source_after_initial_failure.json",
+      "expected_sha256": "638cbea0ffeeb3fb4501c6c80f7b916791d46fd9155cd054d0f49cf62b3cc3cf",
+      "actual_sha256": "638cbea0ffeeb3fb4501c6c80f7b916791d46fd9155cd054d0f49cf62b3cc3cf",
+      "label": "frozen source_after_initial_failure.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/source_findings.json",
+      "expected_sha256": "daeeb661b82264d07c135185e1e87ff22113d43aff8cf74e8d8218998722b1ea",
+      "actual_sha256": "daeeb661b82264d07c135185e1e87ff22113d43aff8cf74e8d8218998722b1ea",
+      "label": "frozen source_findings.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/translations-prewrite_restored_verification.json",
+      "expected_sha256": "acc2afdb1ec89f8c83d09f9b51844ac0a5cabcf438668349c0cba43387957b4f",
+      "actual_sha256": "acc2afdb1ec89f8c83d09f9b51844ac0a5cabcf438668349c0cba43387957b4f",
+      "label": "frozen translations-prewrite_restored_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/translations_mutation_receipt.json",
+      "expected_sha256": "55090d72da738eebadcab5416f215f2245ec5a997e95552365d8f1ef1bc28c46",
+      "actual_sha256": "55090d72da738eebadcab5416f215f2245ec5a997e95552365d8f1ef1bc28c46",
+      "label": "frozen translations_mutation_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/update_english.graphql",
+      "expected_sha256": "7c7bbe147207878437332b9217ab3ce765c0290c750dd88044c28e8b65a98929",
+      "actual_sha256": "7c7bbe147207878437332b9217ab3ce765c0290c750dd88044c28e8b65a98929",
+      "label": "frozen update_english.graphql",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/update_english.variables.json",
+      "expected_sha256": "bacab73819f08bbae5b66c37bc3cd7e08c606c5ebcce63d0b13d8f9511f0a459",
+      "actual_sha256": "bacab73819f08bbae5b66c37bc3cd7e08c606c5ebcce63d0b13d8f9511f0a459",
+      "label": "frozen update_english.variables.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/update_english_cli_validation.txt",
+      "expected_sha256": "950927d51266f515b6ac139eb50c128c1163fa09b108f629dc82b69e920de436",
+      "actual_sha256": "950927d51266f515b6ac139eb50c128c1163fa09b108f629dc82b69e920de436",
+      "label": "frozen update_english_cli_validation.txt",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/update_translations.graphql",
+      "expected_sha256": "e46e4a322fad20c499e3d93e1d63893cdae8ae9c8087cd8f2658be0a4bc87f26",
+      "actual_sha256": "e46e4a322fad20c499e3d93e1d63893cdae8ae9c8087cd8f2658be0a4bc87f26",
+      "label": "frozen update_translations.graphql",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/update_translations.variables.json",
+      "expected_sha256": "1aecbbfdeef9e0a8fe2f52841002c1cec51d38b7c2d04752ff3d9d24f2cddde5",
+      "actual_sha256": "1aecbbfdeef9e0a8fe2f52841002c1cec51d38b7c2d04752ff3d9d24f2cddde5",
+      "label": "frozen update_translations.variables.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/update_translations_cli_validation.txt",
+      "expected_sha256": "5e3966dd75bf5cc473819ba795a1431d375a89ad8f33c09d8b01c1f055499be4",
+      "actual_sha256": "5e3966dd75bf5cc473819ba795a1431d375a89ad8f33c09d8b01c1f055499be4",
+      "label": "frozen update_translations_cli_validation.txt",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/verify_repair.py",
+      "expected_sha256": "c48fc08d905fbba6b538f99260223b4f2d5d1aef3b5e0bf0571a80c958207436",
+      "actual_sha256": "c48fc08d905fbba6b538f99260223b4f2d5d1aef3b5e0bf0571a80c958207436",
+      "label": "frozen verify_repair.py",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/verify_repair_restored.py",
+      "expected_sha256": "928f5a1e3c959a0fa4c50bde22e78b3891b2d04b1c152e02201720caf576069e",
+      "actual_sha256": "928f5a1e3c959a0fa4c50bde22e78b3891b2d04b1c152e02201720caf576069e",
+      "label": "frozen verify_repair_restored.py",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/proposal.json",
+      "expected_sha256": "d200d5dc31fdfb443641e40e1729cfbf347a294938a8a3c7461c4f9eb5a28661",
+      "actual_sha256": "d200d5dc31fdfb443641e40e1729cfbf347a294938a8a3c7461c4f9eb5a28661",
+      "label": "handoff proposal.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/independent_prewrite_review.json",
+      "expected_sha256": "e315d0f5e6651a174b4b2185dcafe959a575f96dd78c55393f8d6ac1d049a93a",
+      "actual_sha256": "e315d0f5e6651a174b4b2185dcafe959a575f96dd78c55393f8d6ac1d049a93a",
+      "label": "handoff independent_prewrite_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/english_mutation_receipt.json",
+      "expected_sha256": "ef2266e6cf5894950f6c858bac99ba69e60f21e8e336daf326b084e301b3d872",
+      "actual_sha256": "ef2266e6cf5894950f6c858bac99ba69e60f21e8e336daf326b084e301b3d872",
+      "label": "handoff english_mutation_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/source_after_initial_failure.json",
+      "expected_sha256": "638cbea0ffeeb3fb4501c6c80f7b916791d46fd9155cd054d0f49cf62b3cc3cf",
+      "actual_sha256": "638cbea0ffeeb3fb4501c6c80f7b916791d46fd9155cd054d0f49cf62b3cc3cf",
+      "label": "handoff source_after_initial_failure.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_restore_receipt.json",
+      "expected_sha256": "fe487d7bcf99a9a6c24d4672cdfd8c4a634a9136de2185098293d9f520486c03",
+      "actual_sha256": "fe487d7bcf99a9a6c24d4672cdfd8c4a634a9136de2185098293d9f520486c03",
+      "label": "handoff seo_title_restore_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_type_restore_receipt.json",
+      "expected_sha256": "639aa3d10a873ece511696deecd1094e61a586fdcf02de03564a7708ca69e246",
+      "actual_sha256": "639aa3d10a873ece511696deecd1094e61a586fdcf02de03564a7708ca69e246",
+      "label": "handoff seo_title_type_restore_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_title_translations_restore_receipt.json",
+      "expected_sha256": "bd4d4bc38a3716e128553d0e56c3ebe889b7781d2335b098f716d8636dadb304",
+      "actual_sha256": "bd4d4bc38a3716e128553d0e56c3ebe889b7781d2335b098f716d8636dadb304",
+      "label": "handoff seo_title_translations_restore_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/seo_metadata_recovery_verification.json",
+      "expected_sha256": "3a0954c293c2b88ec915f524d77d701fb1d886b72dd0f36872217f868558394a",
+      "actual_sha256": "3a0954c293c2b88ec915f524d77d701fb1d886b72dd0f36872217f868558394a",
+      "label": "handoff seo_metadata_recovery_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/independent_translation_binding_review.json",
+      "expected_sha256": "95868efb1d130e64984962c59ac8b142ed78bc1592ff313fc4f517a3a47a071d",
+      "actual_sha256": "95868efb1d130e64984962c59ac8b142ed78bc1592ff313fc4f517a3a47a071d",
+      "label": "handoff independent_translation_binding_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/translations_mutation_receipt.json",
+      "expected_sha256": "55090d72da738eebadcab5416f215f2245ec5a997e95552365d8f1ef1bc28c46",
+      "actual_sha256": "55090d72da738eebadcab5416f215f2245ec5a997e95552365d8f1ef1bc28c46",
+      "label": "handoff translations_mutation_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/after_restored_verification.json",
+      "expected_sha256": "68bad4f935aa9f1fdf592c2c5680c56d4c2b91b8c6b0bd78b06b377516eb950e",
+      "actual_sha256": "68bad4f935aa9f1fdf592c2c5680c56d4c2b91b8c6b0bd78b06b377516eb950e",
+      "label": "handoff after_restored_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/independent_after_review.json",
+      "expected_sha256": "85c2555837c1a598421fff4a2282471a69b122bc726cff464dfb0e7db06769cb",
+      "actual_sha256": "85c2555837c1a598421fff4a2282471a69b122bc726cff464dfb0e7db06769cb",
+      "label": "handoff independent_after_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/public_verification.json",
+      "expected_sha256": "d7c7601948200a99192b942736b733b920cfc7503c5eee64ba1154070876def2",
+      "actual_sha256": "d7c7601948200a99192b942736b733b920cfc7503c5eee64ba1154070876def2",
+      "label": "handoff public_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/market_overrides_pretranslation.json",
+      "expected_sha256": "daf0d76f552904405ad139fbe51d007fa8a99c99ab3360013d60906a85ec315e",
+      "actual_sha256": "daf0d76f552904405ad139fbe51d007fa8a99c99ab3360013d60906a85ec315e",
+      "label": "handoff market_overrides_pretranslation.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/cardigan_guide_mismatch.json",
+      "expected_sha256": "5888cd926e49ddda2562771fb2bd5fb245021c18877d14b1728fd9c0641b07f8",
+      "actual_sha256": "5888cd926e49ddda2562771fb2bd5fb245021c18877d14b1728fd9c0641b07f8",
+      "label": "handoff cardigan_guide_mismatch.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/merchant_feed_followup.json",
+      "expected_sha256": "607ba0963d777ac0f5882673efd16bc3be4476cd00206bfc59b0b98c662d6a79",
+      "actual_sha256": "607ba0963d777ac0f5882673efd16bc3be4476cd00206bfc59b0b98c662d6a79",
+      "label": "handoff merchant_feed_followup.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/proposal.json",
+      "expected_sha256": "bfb1be4aad96a16c9ae13774ba7c988e207062c9391ba46b55d9189031cc8c9c",
+      "actual_sha256": "bfb1be4aad96a16c9ae13774ba7c988e207062c9391ba46b55d9189031cc8c9c",
+      "label": "handoff french_hip_label_followup/proposal.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/independent_candidate_review.json",
+      "expected_sha256": "b4f23586f5054646d195f97ab575a4d690ebadc2e5d004c5f6fb141c7e0f4498",
+      "actual_sha256": "b4f23586f5054646d195f97ab575a4d690ebadc2e5d004c5f6fb141c7e0f4498",
+      "label": "handoff french_hip_label_followup/independent_candidate_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/independent_binding_review.json",
+      "expected_sha256": "40ee6ef7074aed74f49afbb903427c255b184f668fbbcfd8b45188ed8f769fe7",
+      "actual_sha256": "40ee6ef7074aed74f49afbb903427c255b184f668fbbcfd8b45188ed8f769fe7",
+      "label": "handoff french_hip_label_followup/independent_binding_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/mutation_receipt.json",
+      "expected_sha256": "2309e090e07db9bb75c82b96fea8d01639621db26e7ad05a3b7149764e7fddfd",
+      "actual_sha256": "2309e090e07db9bb75c82b96fea8d01639621db26e7ad05a3b7149764e7fddfd",
+      "label": "handoff french_hip_label_followup/mutation_receipt.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/after_verification.json",
+      "expected_sha256": "02d0b27e5d446942466e1346603e069ec121daa3cf6fa89529e6780871ce7e6c",
+      "actual_sha256": "02d0b27e5d446942466e1346603e069ec121daa3cf6fa89529e6780871ce7e6c",
+      "label": "handoff french_hip_label_followup/after_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/independent_after_review.json",
+      "expected_sha256": "2e099f9deba5fd551220aa996b457f0e17f8c13a4cdef44d2696d4ce4f4b3cb4",
+      "actual_sha256": "2e099f9deba5fd551220aa996b457f0e17f8c13a4cdef44d2696d4ce4f4b3cb4",
+      "label": "handoff french_hip_label_followup/independent_after_review.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/public_verification.json",
+      "expected_sha256": "7801d78891c35d81aba2e8a3fe275624dc377fb2ab04344d64a29c7c2ae6920d",
+      "actual_sha256": "7801d78891c35d81aba2e8a3fe275624dc377fb2ab04344d64a29c7c2ae6920d",
+      "label": "handoff french_hip_label_followup/public_verification.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/templates/product.json",
+      "expected_sha256": "ec24f14bdd083e13685431d77a3acdeb3e0a86c7914bc1edc41551623cd2fc7f",
+      "actual_sha256": "ec24f14bdd083e13685431d77a3acdeb3e0a86c7914bc1edc41551623cd2fc7f",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/sections/main-product.liquid",
+      "expected_sha256": "01a345e7d32c7bb23c6ba159c9388d7f9a839116378a56ef3fdcb351f1f3e6f1",
+      "actual_sha256": "01a345e7d32c7bb23c6ba159c9388d7f9a839116378a56ef3fdcb351f1f3e6f1",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-variant-picker.liquid",
+      "expected_sha256": "bde5488071ab11ef2b0ff005e5fc34d356073c94fe0e685750f11f5415daa18b",
+      "actual_sha256": "bde5488071ab11ef2b0ff005e5fc34d356073c94fe0e685750f11f5415daa18b",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-variant-options.liquid",
+      "expected_sha256": "1ff45823e0db6dc747f3269c09eb6c00d48dd61c55ddc4b118f5b07d776ec3be",
+      "actual_sha256": "1ff45823e0db6dc747f3269c09eb6c00d48dd61c55ddc4b118f5b07d776ec3be",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-desktop-ux.liquid",
+      "expected_sha256": "354c4f8a84c869645a7b6d35c4eb867b5445fc9aed3018ad40d883254c20f946",
+      "actual_sha256": "354c4f8a84c869645a7b6d35c4eb867b5445fc9aed3018ad40d883254c20f946",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/snippets/optimized-product-description.liquid",
+      "expected_sha256": "f560608d019290a62ad8e6f4e0f83583d5646432ea9c2dc0ae405a7586d24558",
+      "actual_sha256": "f560608d019290a62ad8e6f4e0f83583d5646432ea9c2dc0ae405a7586d24558",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/snippets/product-seo-description-fallback.liquid",
+      "expected_sha256": "ff490a05d102923fddd2487d90c400b8d8b3e3bb990559c01bbcea507a797154",
+      "actual_sha256": "ff490a05d102923fddd2487d90c400b8d8b3e3bb990559c01bbcea507a797154",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/layout/theme.liquid",
+      "expected_sha256": "d5817734bb7db97f5352cd34bcb724c310db2a49dc9ace165f2a036fb06d77ab",
+      "actual_sha256": "d5817734bb7db97f5352cd34bcb724c310db2a49dc9ace165f2a036fb06d77ab",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+      "expected_sha256": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20",
+      "actual_sha256": "05dc274279a9b25ddce044d13d2c160d79d8362e6ad78b056c716a70493cc11a",
+      "label": "mapped source",
+      "match": false
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/assets/size-conversion.js",
+      "expected_sha256": "1d57ccf7f571187ac71734d79a0fa165a8bef6f833c7e13a7e69bdb99601c6af",
+      "actual_sha256": "1d57ccf7f571187ac71734d79a0fa165a8bef6f833c7e13a7e69bdb99601c6af",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-description.js",
+      "expected_sha256": "1619781d32528954002be7127073486d302153c27696a4c67e112e7068473563",
+      "actual_sha256": "1619781d32528954002be7127073486d302153c27696a4c67e112e7068473563",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/repair_localized_product_size_charts.py",
+      "expected_sha256": "27e3a1a0eb4bee1b96744bc280816847a5813002803b9ece2e03ec51ccfeaab3",
+      "actual_sha256": "27e3a1a0eb4bee1b96744bc280816847a5813002803b9ece2e03ec51ccfeaab3",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/audit_localized_size_chart_variant_mapping.py",
+      "expected_sha256": "439fd549634143de59cfda8e4f93ff013ad11228617ed58ac9112063567ce1ef",
+      "actual_sha256": "439fd549634143de59cfda8e4f93ff013ad11228617ed58ac9112063567ce1ef",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/create-nspr-navy-sprig-mommy-and-me-dresses.sh",
+      "expected_sha256": "bed756b2293afb670c6155c55a8ee76f8ef7095b164c265766ca00d0989b46a4",
+      "actual_sha256": "bed756b2293afb670c6155c55a8ee76f8ef7095b164c265766ca00d0989b46a4",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/size-chart-navy-sprig-mommy-and-me-dresses.json",
+      "expected_sha256": "d315dbc7b867b1369bfa60fde475b27ef23643c6a9101e25d6a0f1e5f994fbe7",
+      "actual_sha256": "d315dbc7b867b1369bfa60fde475b27ef23643c6a9101e25d6a0f1e5f994fbe7",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/body-navy-sprig-mommy-and-me-dresses.html",
+      "expected_sha256": "e9aceaf168b6c2ac06fe4113635598e44198d9015fea5e632050f0f8a8522593",
+      "actual_sha256": "e9aceaf168b6c2ac06fe4113635598e44198d9015fea5e632050f0f8a8522593",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/verify-navy-sprig-mommy-and-me-dresses.json",
+      "expected_sha256": "dd7467e3fbf9bed2b558c0c06bab7e7ca2b3f3a7a07c95d455cc44e0ea85b160",
+      "actual_sha256": "dd7467e3fbf9bed2b558c0c06bab7e7ca2b3f3a7a07c95d455cc44e0ea85b160",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/navy-sprig-mommy-and-me-dresses-localization-closeout.json",
+      "expected_sha256": "b0164848fcf3689d7d802ec75d1b43972b8e8abfd505cc6374e490ca9f2cc50a",
+      "actual_sha256": "b0164848fcf3689d7d802ec75d1b43972b8e8abfd505cc6374e490ca9f2cc50a",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/listings/source-size-chart-navy-sprig-mommy-and-me-dresses.png",
+      "expected_sha256": "19d915dc3f34a70fb56c169216da40a5ce467399e3026459d824e96970279571",
+      "actual_sha256": "19d915dc3f34a70fb56c169216da40a5ce467399e3026459d824e96970279571",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/navy_size_consistency_release_plan_20260914.json",
+      "expected_sha256": "9d614cf51b72c7a3c9f1c40828caece2a165797617a715f7366bcf8eec65bd8c",
+      "actual_sha256": "9d614cf51b72c7a3c9f1c40828caece2a165797617a715f7366bcf8eec65bd8c",
+      "label": "mapped source",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260915-navy-size-consistency/before.json",
+      "expected_sha256": "cfee12b0feeedaf04b81da3366d96a84d6b0e9ae1129c66caff4d9f6be5e71b4",
+      "actual_sha256": "cfee12b0feeedaf04b81da3366d96a84d6b0e9ae1129c66caff4d9f6be5e71b4",
+      "label": "private before.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260915-navy-size-consistency/prewrite.json",
+      "expected_sha256": "471d64e0449f686e7ae1b611b4e542c2dca93a44c21c2e93c0fd1e2d8cb25566",
+      "actual_sha256": "471d64e0449f686e7ae1b611b4e542c2dca93a44c21c2e93c0fd1e2d8cb25566",
+      "label": "private prewrite.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260915-navy-size-consistency/after_english_initial_failed.json",
+      "expected_sha256": "7591a5c45cd85df3d85099385155f31b8bbb1c4bdc4f815e874aaaae60c2c560",
+      "actual_sha256": "7591a5c45cd85df3d85099385155f31b8bbb1c4bdc4f815e874aaaae60c2c560",
+      "label": "private after_english_initial_failed.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260915-navy-size-consistency/after_english_restored.json",
+      "expected_sha256": "ffd558a9ba37923e1b85360c1ad16a5d64316e9bde442407c6e861a8c4493036",
+      "actual_sha256": "ffd558a9ba37923e1b85360c1ad16a5d64316e9bde442407c6e861a8c4493036",
+      "label": "private after_english_restored.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260915-navy-size-consistency/after_title_type_restore.json",
+      "expected_sha256": "f3429d2c82883e6040b8e5c17d3c82cee031b5f5a61ca8bdb6718f0dec2f983c",
+      "actual_sha256": "f3429d2c82883e6040b8e5c17d3c82cee031b5f5a61ca8bdb6718f0dec2f983c",
+      "label": "private after_title_type_restore.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260915-navy-size-consistency/after_english_complete.json",
+      "expected_sha256": "76d7136b9dd580373f13d40c268404a4bb21acfaa5d8f30fa6bccbc032550631",
+      "actual_sha256": "76d7136b9dd580373f13d40c268404a4bb21acfaa5d8f30fa6bccbc032550631",
+      "label": "private after_english_complete.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260915-navy-size-consistency/after.json",
+      "expected_sha256": "84903f9d3bd5c5465611d8ceb8007ed6bb9734d4fc6692cad6ed63436dc1352d",
+      "actual_sha256": "84903f9d3bd5c5465611d8ceb8007ed6bb9734d4fc6692cad6ed63436dc1352d",
+      "label": "private after.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260915-navy-size-consistency/french_header_prewrite.json",
+      "expected_sha256": "273aa3d5298ad972d2c93e6d9d069825a6f76e89b633181abe811bd3da8a3ef2",
+      "actual_sha256": "273aa3d5298ad972d2c93e6d9d069825a6f76e89b633181abe811bd3da8a3ef2",
+      "label": "private french_header_prewrite.json",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260915-navy-size-consistency/french_header_after.json",
+      "expected_sha256": "fac357758408c8ec200d280d0e217b814737ecd39a7279c070c267e55f4c0097",
+      "actual_sha256": "fac357758408c8ec200d280d0e217b814737ecd39a7279c070c267e55f4c0097",
+      "label": "private french_header_after.json",
+      "match": true
+    }
+  ],
+  "accepted_outcome": {
+    "unique_improvement_fields": 42,
+    "english_fields": 2,
+    "existing_translation_fields": 40,
+    "languages": 21,
+    "chart_rows_removed": 42,
+    "range_endpoint_edits": 42,
+    "retained_chart_cells_with_headers": 5460,
+    "additional_French_header_edits": 2,
+    "additional_unique_fields_from_French_followup": 0,
+    "same_value_title_flag_restorations_not_growth_fields": 20,
+    "preserved_variants": 24,
+    "recorded_public_locale_checks": 21
+  },
+  "operation_chronology": [
+    {
+      "receipt": "english_mutation_receipt.json",
+      "start": "2026-09-15 00:26:55 UTC",
+      "end": "2026-09-15 00:26:57 UTC",
+      "operation": "productUpdate",
+      "translation_count": 0,
+      "purpose": "SIZE_OR_HEADER_CORRECTION"
+    },
+    {
+      "receipt": "seo_title_restore_receipt.json",
+      "start": "2026-09-15 00:32:14 UTC",
+      "end": "2026-09-15 00:32:15 UTC",
+      "operation": "productUpdate",
+      "translation_count": 0,
+      "purpose": "INCIDENT_RECOVERY"
+    },
+    {
+      "receipt": "seo_title_type_restore_receipt.json",
+      "start": "2026-09-15 00:37:37 UTC",
+      "end": "2026-09-15 00:37:37 UTC",
+      "operation": "metafieldsSet",
+      "translation_count": 0,
+      "purpose": "INCIDENT_RECOVERY"
+    },
+    {
+      "receipt": "seo_title_translations_restore_receipt.json",
+      "start": "2026-09-15 00:38:17 UTC",
+      "end": "2026-09-15 00:38:18 UTC",
+      "operation": "translationsRegister",
+      "translation_count": 20,
+      "purpose": "INCIDENT_RECOVERY"
+    },
+    {
+      "receipt": "translations_mutation_receipt.json",
+      "start": "2026-09-15 00:42:59 UTC",
+      "end": "2026-09-15 00:43:03 UTC",
+      "operation": "translationsRegister",
+      "translation_count": 40,
+      "purpose": "SIZE_OR_HEADER_CORRECTION"
+    },
+    {
+      "receipt": "french_hip_label_followup/mutation_receipt.json",
+      "start": "2026-09-15 00:48:06 UTC",
+      "end": "2026-09-15 00:48:07 UTC",
+      "operation": "translationsRegister",
+      "translation_count": 1,
+      "purpose": "SIZE_OR_HEADER_CORRECTION"
+    }
+  ],
+  "incident": {
+    "original_guard": "FAILED and retained; original 27 metadata count became 26; Product.seo.title and source meta_title.value were null, with empty-content source digest",
+    "original_guard_sha256": "c48fc08d905fbba6b538f99260223b4f2d5d1aef3b5e0bf0571a80c958207436",
+    "reconciled_guard_sha256": "928f5a1e3c959a0fa4c50bde22e78b3891b2d04b1c152e02201720caf576069e",
+    "original_id": "38482068078689",
+    "recreated_id": "38753913929825",
+    "title_value_type_compareDigest_source_and20_original_title_flags_restored": true,
+    "identity_unchanged": false,
+    "wire_serialization_unobserved": true,
+    "universal_API_partial_object_semantics_not_established": true,
+    "initial_Product_seo_title": null,
+    "initial_translatable_meta_title_value": null,
+    "initial_translatable_meta_title_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "external_context_binding_drift": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/assets/product-desktop-ux-20260513-ruler-sync.js",
+      "expected_sha256": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20",
+      "actual_sha256": "05dc274279a9b25ddce044d13d2c160d79d8362e6ad78b056c716a70493cc11a",
+      "label": "mapped source",
+      "match": false
+    }
+  ],
+  "material_residuals": [
+    "The dated chart-source map matches 19 of 20 current external files; its ruler script changed during review after an initial 20/20 match. Current theme source parity is not accepted or required for this exact product-data release.",
+    "Cardigan fit guide can display Dress measurements; separate UX issue remains open.",
+    "Arabic expanded guide shows combined child/mother rows; audience filtering remains separate.",
+    "At this freeze, released US feed retains the old description; the separate full-source refresh and Merchant ingestion are outside this acceptance.",
+    "Public checks are source-owner recorded in Canada/CAD, not independently replayed or proof of all-country checkout.",
+    "No certification of unrelated translation quality, retained historical measurement derivations, supplier custom 3XL fulfillment, traffic, sales or profit.",
+    "Recreated title metadata ID must remain disclosed; 20 same-value flag restorations are recovery, not improvement fields."
+  ],
+  "next_action": "Accept completed exact 42-field copy correction plus two French headers without replay. Preserve existing UX and Merchant feed follow-ups under their respective owners.",
+  "reviewer_changes": {
+    "external_queries": 0,
+    "external_writes": 0,
+    "shared_canonical_edits": 0,
+    "source_packet_edits": 0,
+    "only_output": "/private/tmp/dlm-navy-size-release-acceptance-20260915.json"
+  },
+  "external_context_drift_disposition": {
+    "status": "EXPECTED_DISJOINT_UX_SOURCE_WORK_CONFIRMED_BY_ROOT",
+    "source": "Direct parent message during independent acceptance",
+    "existing_UX_successor_plan_sha256": "d91de44661b03d19452ea1cbac50f6d6091cf63af009d7b5bef1c950fcd4d184",
+    "effect": "Preserve dated source-map digest and observed current working-file drift. No new theme acceptance or current deployed-source parity claim. Frozen 81 artifacts and exact private receipts remain the release evidence."
+  }
+}

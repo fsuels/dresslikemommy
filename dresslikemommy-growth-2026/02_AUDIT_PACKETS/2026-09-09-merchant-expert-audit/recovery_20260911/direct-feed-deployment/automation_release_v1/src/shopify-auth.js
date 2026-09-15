@@ -12,7 +12,9 @@ const errorCodes = new Set([
   'shopify_auth_redirect_rejected', 'shopify_auth_invalid_response', 'shopify_auth_scope_not_allowed',
   'shopify_auth_invalid_expiry', 'shopify_auth_failed',
 ]);
-const EXPIRY_MARGIN_MS = 60_000;
+// One resolved token must cover a full 15-minute Queue invocation, plus a
+// one-minute buffer, without exchanges during the catalog request sequence.
+const EXPIRY_MARGIN_MS = 16 * 60_000;
 const MAX_TOKEN_LIFETIME_SECONDS = 86_400;
 
 function requireValue(value, code) { if (!value) throw new SourceError(code); }
@@ -94,20 +96,31 @@ export function createShopifyAdminTokenResolver({ requestTimeoutMs = 15_000 } = 
       const clientId = env.SHOPIFY_CLIENT_ID, clientSecret = env.SHOPIFY_CLIENT_SECRET;
       requireValue(credential(clientId) && credential(clientSecret), 'shopify_auth_missing_credentials');
       requireValue(typeof fetchImpl === 'function' && typeof now === 'function', 'shopify_auth_invalid_options');
-      const currentTime = timestamp(now), key = await credentialKey(domain, clientId, clientSecret);
-      for (const [cachedKey, entry] of cache) if (currentTime >= entry.refreshAt) cache.delete(cachedKey);
-      const cached = cache.get(key);
-      if (cached) {
-        requireValue(currentTime >= cached.startedAt, 'shopify_auth_invalid_clock');
-        return cached.token;
+      // Join before the asynchronous digest so even an immediate HTTP failure
+      // cannot cause one exchange per concurrent caller. This transient identity
+      // is removed on settlement; long-lived cache keys are SHA-256 digests.
+      const identity = JSON.stringify([domain, clientId, clientSecret]);
+      let pending = inFlight.get(identity);
+      if (!pending) {
+        pending = (async () => {
+          const key = await credentialKey(domain, clientId, clientSecret), currentTime = timestamp(now);
+          for (const [cachedKey, entry] of cache) if (currentTime >= entry.refreshAt) cache.delete(cachedKey);
+          const cached = cache.get(key);
+          if (cached) {
+            requireValue(currentTime >= cached.startedAt, 'shopify_auth_invalid_clock');
+            return cached;
+          }
+          const entry = await exchange({ domain, clientId, clientSecret, fetchImpl, now, requestTimeoutMs });
+          cache.set(key, entry); return entry;
+        })();
+        inFlight.set(identity, pending);
       }
-      if (inFlight.has(key)) return await inFlight.get(key);
-      const pending = exchange({ domain, clientId, clientSecret, fetchImpl, now, requestTimeoutMs }).then(entry => {
-        cache.set(key, entry); return entry.token;
-      });
-      inFlight.set(key, pending);
-      try { return await pending; }
-      finally { if (inFlight.get(key) === pending) inFlight.delete(key); }
+      try {
+        const entry = await pending, completedAt = timestamp(now);
+        requireValue(completedAt >= entry.startedAt && completedAt < entry.refreshAt, 'shopify_auth_invalid_expiry');
+        return entry.token;
+      }
+      finally { if (inFlight.get(identity) === pending) inFlight.delete(identity); }
     } catch (error) {
       // Re-create only known constant codes; never expose upstream error text,
       // credentials, response bodies, endpoint URLs or an error cause.

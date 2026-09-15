@@ -1,4 +1,5 @@
-import { collectCatalog, createAdminReader, SourceError } from './collector.js';
+import { collectCatalog, SourceError } from './collector.js';
+import { createConfiguredAdminReader } from './admin-reader.js';
 import { buildFeed } from './generator.js';
 
 const TSV_TYPE = 'text/tab-separated-values; charset=utf-8';
@@ -8,7 +9,15 @@ function json(value, status = 200, headers = {}) {
 }
 export function runtimeConfig(env) {
   let config;
-  try { config = JSON.parse(env.MERCHANT_CONFIG_JSON); } catch { throw new SourceError('feed_config_missing_or_invalid'); }
+  try {
+    config = JSON.parse(env.MERCHANT_CONFIG_JSON);
+    if (config.eligibilityHoldsExternal === true) {
+      if (config.eligibilityHolds !== undefined || typeof env.MERCHANT_ELIGIBILITY_HOLDS_JSON !== 'string') throw new Error();
+      delete config.eligibilityHoldsExternal;
+      config.eligibilityHolds = JSON.parse(env.MERCHANT_ELIGIBILITY_HOLDS_JSON);
+      if (!config.eligibilityHolds || typeof config.eligibilityHolds !== 'object' || Array.isArray(config.eligibilityHolds)) throw new Error();
+    } else if (config.eligibilityHoldsExternal !== undefined || env.MERCHANT_ELIGIBILITY_HOLDS_JSON !== undefined) throw new Error();
+  } catch { throw new SourceError('feed_config_missing_or_invalid'); }
   if (!Array.isArray(config.markets) || !config.shopId || !config.storeDomain) throw new SourceError('feed_config_missing_or_invalid');
   return config;
 }
@@ -57,7 +66,7 @@ export async function refreshMarket(env, marketKey, { graphql, now = () => new D
   if (!market) throw new SourceError('market_not_enabled');
   if (!env.MERCHANT_FEED_BUCKET) throw new SourceError('feed_bucket_missing');
   const before = await currentManifest(env.MERCHANT_FEED_BUCKET, market.key);
-  const reader = graphql || createAdminReader({ domain: config.storeDomain, token: env.SHOPIFY_ADMIN_ACCESS_TOKEN, apiVersion: config.apiVersion });
+  const reader = graphql || await createConfiguredAdminReader(env, config);
   const snapshot = await collectCatalog(reader, config, market, { now });
   const result = await buildFeed(snapshot, config, market, { now: now(), previousIds: before.manifest?.rowIds || [] });
   if (!result.ok) throw new SourceError('feed_validation_failed');

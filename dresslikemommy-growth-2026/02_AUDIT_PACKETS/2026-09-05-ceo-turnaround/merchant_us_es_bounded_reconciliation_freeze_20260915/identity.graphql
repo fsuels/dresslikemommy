@@ -1,0 +1,4 @@
+query MerchantSpanishSuccessorIdentity($marketId: ID!) {
+  shop { id name }
+  market(id: $marketId) { id name status }
+}

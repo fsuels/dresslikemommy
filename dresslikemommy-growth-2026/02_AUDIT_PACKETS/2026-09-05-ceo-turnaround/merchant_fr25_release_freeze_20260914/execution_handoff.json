@@ -1,0 +1,110 @@
+{
+  "action": "TA07-FR-25-REPAIR-20260914",
+  "at_utc": "2026-09-14T23:45:03.175251+00:00",
+  "status": "IMPLEMENTED_VERIFIED_LIVE_FRENCH_25__ALL_MARKET_RELEASE_PARTIAL",
+  "executor_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "source_live_evidence_as_of": "2026-09-14T23:36:28Z",
+  "live_state_mode": "LIVE_VERIFIED_EXACT_GLOBAL_FR_COHORT",
+  "effective_approval_policy": "Current user all-language active-product/Merchant correction mandate, exact reviewed source and sole writer claim; no broader production or permission authority inferred",
+  "approved_external_scope": "25 global fr translations on 10 named ACTIVE Shopify products; 10 aliases in one translationsRegister operation",
+  "decision_depends_on_uncertain_state": true,
+  "material_decision": "MATERIAL",
+  "decision_changing_evidence": "Source/product/translation drift, independent semantic mismatch or failed exact readback",
+  "if_evidence_supports_recommendation": "Close exact FR25 operation after matching independent after-read; do not replay registration",
+  "if_evidence_opposes_recommendation": "Stop affected product scope and prepare a source-bound correction or rollback",
+  "independent_verifier": "/root/merchant_translation_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "shopify_store_id": "15571635",
+  "merchant_account_id": "513542500",
+  "locale": "fr",
+  "marketId": null,
+  "implemented": {
+    "translation_fields": 25,
+    "products": 10,
+    "body_html": 7,
+    "titles": 5,
+    "meta_titles": 6,
+    "meta_descriptions": 6,
+    "product_types": 1,
+    "required_feed_title_body_fields": 12
+  },
+  "verified": {
+    "exact_new_values_outdated_false": 25,
+    "untargeted_French_unchanged": 25,
+    "English_source_fields_and_digests_unchanged": 60,
+    "ACTIVE_product_records_unchanged": 10,
+    "user_errors": 0,
+    "public_routes": 2,
+    "table_cells_preserved": 827
+  },
+  "independent_review_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/fr_translation_repair_2325/independent_after_review.json",
+  "independent_review_sha256": "7316d5eb234f60319a288cd1ca3bc6f846e38f6034333a069556977c37750ecd",
+  "after_verification_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/fr_translation_repair_2325/after_verification.json",
+  "after_verification_sha256": "90055a670d31230fdd65ad51de447021f5bb0d39fdf9c5561c8b58dd7c0dea71",
+  "mutation_receipt_sha256": "5cfccfd6d185a577d41da8ac7be0ebba1a84ec23a9cbaf49c86daafe498a9c4f",
+  "public_smoke_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/fr_translation_repair_2325/public_smoke.json",
+  "completion_validation_sha256": "1fb7f26638a5835541252f31a6a4cc11ee9061f7c05caf4f67c47c331d254465",
+  "live_account_followup": {
+    "scope": "Read-only Merchant513542500 account details during French repair",
+    "browser": "Codex in-app browser1, task-owned tab5",
+    "store_quality_url": "https://merchants.google.com/mc/quality?a=513542500&region=US&hl=en",
+    "store_quality": "No score / Missing information",
+    "store_quality_native_possible_causes": [
+      "missing shipping and return policies",
+      "no recent Free Listings offers",
+      "insufficient offer impressions"
+    ],
+    "root_causal_conclusion": "Native text lists possibilities; it does not establish the exact cause. Existing shipping/return truth and effective assignment gates remain.",
+    "notification_issue": "Google Ads account650-997-2886 has paused/removed campaigns; no free-listing suspension inferred and no paid action taken",
+    "notification_growth": "Update descriptions for Shirts & Tops;4160 products suggested; recommendation is not a disapproval count",
+    "automation_url": "https://merchants.google.com/mc/automations?a=513542500&hl=en",
+    "image_automation": "OFF; native states no current image issues",
+    "shipping_automation": "OFF",
+    "price_automation": "ON; native optimized count2, offer IDs not exposed in current details",
+    "availability_and_condition": "Automatic updates reported; no affected count exposed",
+    "writes": 0,
+    "source": "Current rendered native UI readback in this turn",
+    "date_utc": "2026-09-14"
+  },
+  "language_backlog": {
+    "source": "known_cohort_language_staleness_before_fr.json",
+    "scope": "Same10products only, global translations; 20 nonEnglish published locales; outdated flags are not complete quality or missing-key coverage",
+    "French_after": 0,
+    "Spanish_before": 0,
+    "German_before": 25,
+    "next_cohort": "DE25 fresh read23:42:36UTC; proposal under review, not saved yet"
+  },
+  "live_actions": {
+    "shopify_translation_mutation_calls": 1,
+    "fields_saved": 25,
+    "Merchant_writes": 0,
+    "feed_uploads": 0,
+    "new_markets": 0,
+    "theme_or_FAQ_writes": 0,
+    "price_or_inventory_writes": 0,
+    "cloud_or_credentials_writes": 0
+  },
+  "source_freshness": {
+    "last_actual_US_source_completed_at": "2026-09-14T13:16:10.466Z",
+    "proactive_refresh_target": "2026-09-15T13:16:10.466Z",
+    "unchanged_public_host_expiry": "2026-09-16T13:16:10.466Z",
+    "translation_read_not_a_catalog_feed_refresh": true
+  },
+  "next_owner_action": "Publish reviewed Shopify theme137888792673 through Admin; connector restriction requires owner action. It goes first because exact published numeric-variant entry blocks the next localized/feed release. Existing prompt remains pending; do not duplicate.",
+  "next_internal_action": "Finish source-bound German25 proposal/review/save/readback on same10products, then continue the dated language queue. Maintain due local US refresh through existing daily heartbeat.",
+  "independent_gates": [
+    "CA/UK supported transit times",
+    "Return-policy truth and effective assignments",
+    "Exact dedicated cloud-reader approval already pending"
+  ],
+  "limits": [
+    "Global translations do not prove market-specific overrides or Merchant receipt/approval",
+    "US/AU4741approvals and29countrygaps retain prior dated native observations",
+    "No new traffic, orders, profit or perfect Store Quality proved",
+    "Tropical7227378925665/source holds remain excluded",
+    "Root exact-source evidence stays private; public copies sanitize supplier/Admin references"
+  ],
+  "rollback": "Exact private before values retained with SHA bindings. Re-read current English digests and locale values before any separately reviewed reverse operation; do not overwrite intervening changes.",
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md plus latest owned Merchant checkpoint"
+}

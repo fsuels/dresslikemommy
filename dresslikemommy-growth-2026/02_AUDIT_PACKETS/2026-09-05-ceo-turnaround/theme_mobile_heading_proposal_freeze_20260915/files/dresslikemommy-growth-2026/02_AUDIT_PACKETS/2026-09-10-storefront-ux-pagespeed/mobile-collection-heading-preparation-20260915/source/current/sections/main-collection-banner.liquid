@@ -1,0 +1,138 @@
+{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign collection_handle = collection.handle | default: ''
+  capture collection_seo_display_title
+    render 'collection-seo-fallback', collection: collection, field: 'display_title'
+  endcapture
+  assign collection_seo_display_title = collection_seo_display_title | strip
+
+  capture collection_seo_hero_summary
+    render 'collection-seo-fallback', collection: collection, field: 'hero_summary'
+  endcapture
+  assign collection_seo_hero_summary = collection_seo_hero_summary | strip
+
+  capture collection_seo_body_description
+    render 'collection-seo-fallback', collection: collection, field: 'body_description'
+  endcapture
+  assign collection_seo_body_description = collection_seo_body_description | strip
+
+  capture collection_seo_force_theme
+    render 'collection-seo-fallback', collection: collection, field: 'force_theme_seo'
+  endcapture
+  assign collection_seo_force_theme = collection_seo_force_theme | strip
+  assign collection_description_content = blank
+
+  assign collection_display_title = collection.title
+  if collection_seo_display_title != blank
+    assign collection_display_title = collection_seo_display_title
+  endif
+
+  capture collection_image_alt
+    render 'product-image-alt', media: collection.image, collection: collection, fallback_title: collection_display_title
+  endcapture
+  assign collection_image_alt = collection_image_alt | strip
+
+  if section.settings.show_collection_description
+    if collection_seo_hero_summary != blank
+      assign collection_description_content = collection_seo_hero_summary
+    elsif collection_seo_force_theme == 'true' and collection_seo_body_description != blank
+      assign collection_description_content = collection_seo_body_description
+    elsif collection.description != blank
+      assign collection_description_content = collection.description
+    elsif collection_seo_body_description != blank
+      assign collection_description_content = collection_seo_body_description
+    endif
+  endif
+-%}
+
+{%- style -%}
+  @media screen and (max-width: 749px) {
+    .collection-hero--with-image .collection-hero__inner {
+      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
+    }
+  }
+{%- endstyle -%}
+
+<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
+  <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="collection-hero__text-wrapper">
+      <h1 class="collection-hero__title">
+        {{- collection_display_title | escape -}}
+      </h1>
+
+      {%- if collection_description_content != blank -%}
+        <div class="collection-hero__description rte">{{ collection_description_content }}</div>
+      {%- endif -%}
+
+      {%- unless collection_handle == 'mommy-and-me'
+        or collection_handle == 'pajamas'
+        or collection_handle == 'matching-outfits'
+        or collection_handle == 'family-matching-outfits'
+        or collection_handle == 'new-women-outfits'
+      -%}
+        {% render 'collection-hub-subcategory-cards', collection: collection %}
+        {% render 'collection-merchandising-callout', collection: collection %}
+      {%- endunless -%}
+      {% render 'style-journal-internal-links', mode: 'collection_guide_links', collection: collection %}
+    </div>
+
+    {%- if section.settings.show_collection_image and collection.image -%}
+      <div class="collection-hero__image-container media gradient">
+        <img
+          srcset="
+            {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
+            {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
+            {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {{ collection.image | image_url }} {{ collection.image.width }}w
+          "
+          src="{{ collection.image | image_url: width: 750 }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+          alt="{{ collection_image_alt | escape }}"
+          width="{{ collection.image.width }}"
+          height="{{ collection.image.height }}"
+        >
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- if collection_description_content != blank -%}
+  {% render 'faq-schema-from-html', content: collection_description_content %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-banner.name",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "default": false,
+      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
+      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}

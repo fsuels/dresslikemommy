@@ -1,0 +1,196 @@
+--- fi.before
++++ fi.candidate
+@@ -1,42 +1,19 @@
+ <div id="page-content">
+-<script>// <![CDATA[
+-function remove_classes_active() {
+-    alert( 'FOUND' );
+-    var $aSelected = $('.question-answer-block').find('a');
+-    
+-    if( $aSelected.hasClass('active') ){
+-      alert( 'FOUND' );
+-      $('.question-answer-block > a').removeClass('active');
+-    }else{
+-      alert( 'NOT FOUND' );
+-    }
+-  }
+-// ]]></script><script>// <![CDATA[
+-jQuery("document").ready(function($){
+-    var nav = $('#nav');
+-    $(window).scroll(function () {
+-     	if(getWidthBrowser() > 1200){
+-    		if ($(this).scrollTop() > 136){
+-              nav.addClass("on animated"); 		
+-            } 
+-            else {
+-              nav.removeClass("on animated"); 		
+-            } 
+-  		}
+-          $('#goGrid').trigger('click');
++<style>
++#page-content .help-page summary.ask { display: list-item; list-style: disclosure-closed inside; min-height: 44px; padding: 10px 0; cursor: pointer; }
++#page-content .help-page details[open] > summary.ask { list-style-type: disclosure-open; }
++#page-content .help-page summary.ask::-webkit-details-marker { display: inline; }
++#page-content .help-page summary.ask h3 { display: inline; margin: 0; }
++#page-content .help-page summary.ask:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
++</style>
+ 
+-      
+-    });  
+-    
+-  });
+-// ]]></script>
+ <div class="help-page">
+ <div id="General Questions">
+ <div class="faq-item-title" name="General Questions">
+ <h2>Tietoa meistä</h2>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Yleiset kysymykset</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Yleiset kysymykset</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Onko tämä sivusto turvallinen käyttää? </strong></p>
+ <p>Kyllä on. Käytämme PayPalia maksujen käsittelyyn. Joten edes henkilökuntamme ei näe maksutietojasi. PayPal on maailman suurin turvallinen maksupalveluntarjoaja. Verkkosivustomme on rakennettu Shopifyn turvalliselle alustalle. Kaikki henkilökohtaiset tietosi ovat tiukasti suojattuja.</p>
+ <p> </p>
+@@ -48,36 +25,36 @@
+ <p> </p>
+ <p><strong>4. Miksi olette niin halpoja?</strong></p>
+ <p>Leikkaamme kaikki välikädet pois ja toimitamme tuotteet suoraan valmistajilta kuluttajille, mikä mahdollistaa erittäin alhaiset hinnat.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="Before You Place an Order">
+ <div class="faq-item-title" name="before you place an order">
+ <h2>Ennen tilauksen tekemistä</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Koot</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Koot</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Mistä löydän koko-taulukon senttimetreinä?</strong></p>
+ <p>Koko-taulukot senttimetreinä löydät kokotietosivultamme täältä: <a href="http://www.assassinshoodies.com/pages/sizing-information" alt="Kokosivu">Kokosivu</a> tai jokaisen tuotteen kuvauksesta.</p>
+ <p> </p>
+ <p><strong>2. Saanko kaksi kokoa isomman tuotteen?</strong></p>
+ <p>Ei. Lähetämme tilaamasi koon. Jos yleensä käytät eurooppalaista keskikokoa, valitse koko medium (M) ja saat keskikoon.</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Maksut</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. Maksut</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Mitä maksutapoja hyväksytte?</strong></p>
+ <p>Hyväksymme PayPalin sekä luotto- ja pankkikortit (Visa, Mastercard, American Express, Discover).</p>
+ <p> </p>
+ <p><strong>2. Haluan maksaa luottokortilla, mutta minut ohjataan PayPal-sivulle?</strong></p>
+ <p>Käytämme PayPalia kaikkien maksujen käsittelyyn. PayPal-sivulla oikealla voit valita kahdesta vaihtoehdosta: "Maksa PayPal-tililläni" <i>tai</i> "Maksa luotto- tai pankkikortilla"</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">C. Toimitus</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>C. Toimitus</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Mikä on toimituksen hinta?</strong></p>
+ <p>Tarjoamme täysin ILMAISEN toimituksen maailmanlaajuisesti.</p>
+ <p> </p>
+@@ -89,16 +66,16 @@
+ <p> </p>
+ <p><strong>4. Pitääkö minun maksaa tullimaksuja?</strong></p>
+ <p>Ei, sinun ei tarvitse maksaa tullimaksua. Merkitsemme kaikki tilauksemme vähäarvoisiksi lahjoiksi. Lisäksi lähetämme suuremmat tilaukset erillisissä paketeissa.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="After You Place an Order">
+ <div class="faq-item-title" name="After You Place an Order">
+ <h2>Tilauksen tekemisen jälkeen</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Tilaustila</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Tilaustila</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Mitä tarkoittaa tilaustila "Täyttämätön"?</strong></p>
+ <p>Tilauksesi käsitellään ja tilauksen seurantanumero on vireillä. Yleensä täytämme tilaukset ja lähetämme asiakkaillemme seurantakoodin, kun tilauksen seurantanumero on lähetetty postijärjestelmään, mikä kestää 5-7 päivää tilauksen lähettämisen jälkeen.</p>
+ <p> </p>
+@@ -107,11 +84,11 @@
+ <p> </p>
+ <p><strong>3. On kulunut liian kauan, missä tilaukseni on?</strong></p>
+ <p>Tarkista tilauksesi seuranta lisätietoja varten. Jos ongelma jatkuu, lähetä meille sähköpostia: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Tilausseuranta</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. Tilausseuranta</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Miten seuraan tilaustani?</strong></p>
+ <p>Annamme tilauksen seurantakoodin 5-7 päivän kuluttua tilauksen tekemisestä. Voit seurata tilaustasi täällä: <a hef="www.assassinshoodies.com/pages/track-your-order" alt="Seuraa tilaustasi">Seuraa tilaustasi</a></p>
+ <p> </p>
+@@ -123,11 +100,11 @@
+ <p> </p>
+ <p><strong>4. Miten pysyn ajan tasalla tilaukseni seurannasta?</strong></p>
+ <p>Käytämme After Ship -seurantajärjestelmää asiakkaidemme tilausten seuraamiseen, joten aina kun seurantatiedot päivittyvät, saat sähköpostin.</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Haluan vaihtaa tai peruuttaa tilaukseni</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. Haluan vaihtaa tai peruuttaa tilaukseni</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Tilasin jotain, mutta haluan peruuttaa</strong></p>
+ <p>Sinun on otettava meihin yhteyttä yhden arkipäivän kuluessa tilauksen tekemisestä tilausmuutoksen järjestämiseksi. Voit tehdä tämän lähettämällä sähköpostia osoitteeseen <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> aiheena tilausnumerosi.</p>
+ <p> </p>
+@@ -136,16 +113,16 @@
+ <p> </p>
+ <p><strong>3. Tilasin jotain, mutta haluan vaihtaa toimitusosoitetta</strong></p>
+ <p>Sinun on otettava meihin yhteyttä yhden arkipäivän kuluessa tilauksen tekemisestä tilausmuutoksen järjestämiseksi. Voit tehdä tämän lähettämällä sähköpostia osoitteeseen <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> uudella toimitusosoitteellasi.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="After You Receive an Order">
+ <div class="faq-item-title" name="After You Receive an Orde">
+ <h2>Tilauksen vastaanottamisen jälkeen</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Haluan vaihtaa tai palauttaa tilaukseni</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Haluan vaihtaa tai palauttaa tilaukseni</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Tilaukseni saapui, mutta tuotteet olivat kaksi kokoa liian suuria</strong></p>
+ <p>Huomioithan, että kaikki kokomme kaupassamme näytetään EU- ja US-mittayksiköissä. Varsinainen vaatteen koko (tuotteessa ilmoitettu) on yleensä kaksinkertainen. Valmistajamme sijaitsevat Itä-Aasiassa, ja lähetämme automaattisesti Aasian koon, joka vastaa Euroopan/US-kokoa. Tämä tarkoittaa, että jos tilaat Mediumin (M – EU/US), lähetämme sinulle Extra Large (XL) Aasian vastaavan koon.</p>
+ <p> </p>
+@@ -157,8 +134,8 @@
+ <p> </p>
+ <p><strong>4. Tilaukseni saapui, mutta haluan palauttaa sen.</strong></p>
+ <p>Ota meihin yhteyttä osoitteessa <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> ja anna meille tilausnumerosi. Voit lähettää tuotteen takaisin, ja me hyvitetään rahasi. *Postikulut ovat sinun vastuullasi.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ </div>
+ </div>

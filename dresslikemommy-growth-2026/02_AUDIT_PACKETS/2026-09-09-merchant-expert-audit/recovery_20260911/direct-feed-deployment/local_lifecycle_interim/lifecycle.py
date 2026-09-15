@@ -52,6 +52,11 @@ PROTECTED_US_IDS = (
 )
 CONFIG_SHA = '83ab7abf281a88e4efb9cd21fbe6c4d8923aaa65d9ef400da2c8eb16f847b07b'
 FREEZE_SHA = '1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed'
+LEGACY_CONFIG_SHA, LEGACY_FREEZE_SHA = CONFIG_SHA, FREEZE_SHA
+RELEASE_PROFILE = 'legacy'
+NATIVE_PROFILE_MANIFEST = HERE / 'release_contract_20260914.json'
+NATIVE_PROFILE_CONFIG_SHA = '668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8'
+NATIVE_PROFILE_FREEZE_SHA = '82a3f587677d260cbe1af569a069ad26f318e91a33c97f9767b43dbab80b3e59'
 MARKET = {'key': 'us-en', 'country': 'US', 'locale': 'en', 'currency': 'USD',
           'marketId': 'gid://shopify/Market/544735329'}
 HEADERS = ['id', 'item_group_id', 'title', 'description', 'link', 'image_link',
@@ -169,6 +174,9 @@ class Cloudflare:
 
 
 def verify_freeze():
+    if RELEASE_PROFILE == 'native-holds-20260914':
+        import native_release_profile
+        return native_release_profile.verify_release(sys.modules[__name__])
     manifest_path = RELEASE / 'freeze_manifest.json'
     require(sha(manifest_path.read_bytes()) == FREEZE_SHA, 'builder_freeze_manifest_drift')
     for item in read(manifest_path)['files']:
@@ -176,6 +184,26 @@ def verify_freeze():
         require(path.resolve().is_relative_to(RELEASE.resolve()), 'freeze_path_out_of_scope')
         require(sha(path.read_bytes()) == item['sha256'], 'frozen_builder_file_drift')
     require(sha((RELEASE / 'config.json').read_bytes()) == CONFIG_SHA, 'us_config_drift')
+
+
+def select_release_profile(name):
+    """Select one named, pinned contract; never accept an arbitrary manifest."""
+    global RELEASE_PROFILE, CONFIG_SHA, FREEZE_SHA
+    require(name in ('legacy', 'native-holds-20260914'), 'unknown_release_profile')
+    RELEASE_PROFILE = name
+    if name == 'legacy':
+        CONFIG_SHA, FREEZE_SHA = LEGACY_CONFIG_SHA, LEGACY_FREEZE_SHA
+    else:
+        CONFIG_SHA, FREEZE_SHA = NATIVE_PROFILE_CONFIG_SHA, NATIVE_PROFILE_FREEZE_SHA
+
+
+def verify_run_profile(run):
+    if RELEASE_PROFILE == 'native-holds-20260914':
+        import native_release_profile
+        native_release_profile.verify_run_profile(sys.modules[__name__], run)
+    else:
+        require(read(run / 'prepare.json').get('release_profile', 'legacy') == 'legacy',
+                'run_release_profile_mismatch')
 
 
 def validate_manifest(manifest, body):
@@ -213,6 +241,8 @@ def compare_rows(before, after):
 
 
 def prepare(api, run, hold_path=None):
+    if RELEASE_PROFILE != 'legacy':
+        verify_freeze()
     hold_path = hold_path or HOLD_SPEC
     require(not run.exists(), 'run_directory_already_exists')
     run.mkdir(mode=0o700, parents=False)
@@ -228,10 +258,12 @@ def prepare(api, run, hold_path=None):
          'pointer_etag': headers.get('etag'), 'before_feed_sha256': sha(body), 'workers': api.workers(),
          'account': ACCOUNT, 'bucket': BUCKET, 'pointer': POINTER, 'merchant_source': '10727274744',
          'config_sha256': CONFIG_SHA, 'builder_freeze_sha256': FREEZE_SHA,
+         'release_profile': RELEASE_PROFILE,
          'planned_eligibility_holds_sha256': sha(hold_bytes)})
 
 
 def build(run):
+    verify_run_profile(run)
     require((run / 'prepare.json').exists() and not (run / 'build.json').exists(), 'prepare_missing_or_build_already_attempted')
     require(not (run / 'candidate').exists(), 'candidate_directory_already_exists')
     command = [str(NODE), str(RELEASE / 'bin/build.mjs'), '--config', str(RELEASE / 'config.json'),
@@ -248,6 +280,8 @@ def build(run):
     save(run / 'build.json', {'started_at_utc': started, 'finished_at_utc': stamp(), 'returncode': result.returncode,
                             'stdout': result.stdout, 'stderr': result.stderr, 'live': True})
     require(result.returncode == 0, 'fresh_source_build_failed')
+    if RELEASE_PROFILE != 'legacy':
+        verify_freeze()
     contain(run)
     summary = candidate(run)
     save(run / 'candidate_review_packet.json', summary)
@@ -255,6 +289,10 @@ def build(run):
 
 def contain(run, hold_path=None, revise=False):
     """Contain the completed local scan, preserving its original four files."""
+    if RELEASE_PROFILE == 'native-holds-20260914':
+        import native_release_profile
+        return native_release_profile.contain(sys.modules[__name__], run, hold_path, revise)
+    verify_run_profile(run)
     hold_path = hold_path or HOLD_SPEC
     previous_receipt = None
     if revise:
@@ -310,6 +348,10 @@ def contain(run, hold_path=None, revise=False):
 
 
 def verify_containment(run):
+    if RELEASE_PROFILE == 'native-holds-20260914':
+        import native_release_profile
+        return native_release_profile.verify_containment(sys.modules[__name__], run)
+    verify_run_profile(run)
     require((run / 'contain.receipt.json').exists(), 'known_eligibility_holds_not_applied')
     receipt = read(run / 'contain.receipt.json')
     hold_bytes = (run / 'eligibility_holds.json').read_bytes()
@@ -328,6 +370,7 @@ def verify_containment(run):
 
 
 def candidate(run):
+    verify_run_profile(run)
     prepared = read(run / 'prepare.json')
     before_raw, before_body = (run / 'before.pointer.json').read_bytes(), (run / 'before.tsv').read_bytes()
     require(sha(before_raw) == prepared['pointer_sha256'] and sha(before_body) == prepared['before_feed_sha256'], 'before_evidence_changed')
@@ -356,13 +399,13 @@ def candidate(run):
     require(diagnostics['returnPolicyLabelsEmitted'] is False, 'return_contract_changed')
     delta = compare_rows(before, after)
     require(sorted(diagnostics['lifecycle']['added']) == delta['added_ids'] and sorted(diagnostics['lifecycle']['removed']) == delta['removed_ids'], 'lifecycle_delta_mismatch')
-    return {'status': 'CANDIDATE_REQUIRES_INDEPENDENT_REVIEW', 'market': MARKET,
+    packet = {'status': 'CANDIDATE_REQUIRES_INDEPENDENT_REVIEW', 'market': MARKET,
             'eligibility_holds_sha256': containment['hold_spec_sha256'],
             'source_qualification_sha256': qualification_sha,
             'cohort_filter_sha256': containment['cohort_filter_sha256'],
             'containment_receipt_sha256': sha((run / 'contain.receipt.json').read_bytes()),
-            'contained_available_rows': diagnostics['eligibilityHolds']['removed_available_rows'],
-            'eligible_parent_count': diagnostics['eligibilityHolds']['kept_parents'],
+            'contained_available_rows': containment['result']['removed_available_rows'],
+            'eligible_parent_count': containment['result']['kept_parents'],
             'prepare_receipt_sha256': sha((run / 'prepare.json').read_bytes()),
             'live_build_receipt_sha256': sha((run / 'build.json').read_bytes()),
             'live_build_intent_sha256': sha((run / 'build.intent.json').read_bytes()),
@@ -375,6 +418,11 @@ def candidate(run):
             'prices_above_1000_usd': [key for key, row in after.items() if decimal.Decimal(row['price'].split()[0]) > 1000],
             'mass_removal_review_required': len(delta['removed_ids']) > max(25, len(before) * 0.1),
             'bytes_unchanged': sha(body) == sha(before_body), 'source_renewal_requires_this_fresh_scan': True}
+    if RELEASE_PROFILE != 'legacy':
+        packet.update(release_profile=RELEASE_PROFILE,
+                      native_verifier_sha256=containment['native_verifier_sha256'],
+                      protected_omissions=containment['native_replay']['protectedOmissions'])
+    return packet
 
 
 def validate_review(run, review_path, expected_hash):
@@ -389,6 +437,12 @@ def validate_review(run, review_path, expected_hash):
               'before_pointer_sha256', 'candidate_manifest_sha256', 'candidate_feed_sha256', 'candidate_snapshot_sha256',
               'candidate_diagnostics_sha256', 'uploader_sha256', 'config_sha256', 'builder_freeze_sha256', 'source_completed_at')
     require(all(review.get(key) == packet[key] for key in fields), 'independent_review_binding_mismatch')
+    if RELEASE_PROFILE != 'legacy':
+        require(review.get('release_profile') == packet['release_profile'] and
+                review.get('native_verifier_sha256') == packet['native_verifier_sha256'],
+                'independent_review_profile_mismatch')
+        require(review.get('protected_omissions_verified') == packet['protected_omissions'],
+                'protected_omissions_not_independently_verified')
     require(review.get('source_eligibility_and_all_prices_verified') is True, 'source_reconciliation_missing')
     require(review.get('source_eligibility_holds_verified') is True, 'source_hold_review_missing')
     require(review.get('single_writer_claim_verified') is True, 'single_writer_claim_missing')
@@ -482,7 +536,9 @@ def main():
     parser.add_argument('--run', required=True)
     parser.add_argument('--review')
     parser.add_argument('--review-sha256')
+    parser.add_argument('--release-profile', choices=('legacy', 'native-holds-20260914'), default='legacy')
     args = parser.parse_args()
+    select_release_profile(args.release_profile)
     run = Path(args.run).resolve()
     require(run.parent == (HERE / 'runs').resolve() and re.fullmatch(r'\d{8}T\d{6}Z-[a-z0-9-]+', run.name), 'run_path_out_of_scope')
     require(not Path(args.run).is_symlink(), 'run_symlink_refused')

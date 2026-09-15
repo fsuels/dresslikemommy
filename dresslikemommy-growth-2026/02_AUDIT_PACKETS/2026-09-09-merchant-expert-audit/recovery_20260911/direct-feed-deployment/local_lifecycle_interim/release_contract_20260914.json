@@ -1,0 +1,85 @@
+{
+  "schema": "dlm.local_merchant_release_contract.v1",
+  "profile": "native-holds-20260914",
+  "createdAt": "2026-09-14T21:39:48.533915+00:00",
+  "configSha256": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+  "historicalFreezeUnchanged": {
+    "path": "automation_release_v1/freeze_manifest.json",
+    "sha256": "1837f202c7c49d78ef4669c320e29e87682ff3811fabfd5ac39e5be863ccffed"
+  },
+  "scope": "Existing US English local publisher only; no deployment, credential transfer, scheduler or new Merchant source.",
+  "holdMode": "generator_native_holds_v1",
+  "sourceClock": "Genuine complete live read; maximum120minutes at publication. Offline replay uses original generatedAt only for byte comparison.",
+  "files": [
+    {
+      "root": "builder",
+      "path": "bin/build.mjs",
+      "sha256": "08cfbfcbb4574507a5bb1ec52502eb9dcfa6b4a6e20ff81475cb4d7f3ce6ef83"
+    },
+    {
+      "root": "builder",
+      "path": "package.json",
+      "sha256": "b9b3f45df1dcabae85da66410d29da4fb58c947108b472d52f6375e9cf432d0f"
+    },
+    {
+      "root": "builder",
+      "path": "config.json",
+      "sha256": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8"
+    },
+    {
+      "root": "builder",
+      "path": "src/collector.js",
+      "sha256": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8"
+    },
+    {
+      "root": "builder",
+      "path": "src/queries.js",
+      "sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9"
+    },
+    {
+      "root": "builder",
+      "path": "src/generator.js",
+      "sha256": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f"
+    },
+    {
+      "root": "builder",
+      "path": "src/eligibility.js",
+      "sha256": "5441bb6aade0f2900f3770602109e14f0e4e964d3e819fff77bf935350038ac8"
+    },
+    {
+      "root": "local",
+      "path": "native_release_profile.py",
+      "sha256": "af06a2bbdf93676911969d51767b7f0f5e42997b943997ed8bc5e2bf15573c2b"
+    },
+    {
+      "root": "local",
+      "path": "verify_native_candidate.mjs",
+      "sha256": "fbaf887aa418c2ee0aba021c3d1cd9778f2db3eed4a92b6512d8ca5e9983ec77"
+    },
+    {
+      "root": "local",
+      "path": "cohort_filter.py",
+      "sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9"
+    },
+    {
+      "root": "local",
+      "path": "eligibility_holds_20260911.json",
+      "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733"
+    },
+    {
+      "root": "audit",
+      "path": "recovery_20260914/cloud_final_independent_review_2102/review.json",
+      "sha256": "304e081244c3398c6ea35a9a7fe3eda40f543b4017a9a4cf897775a25f8cc6b8"
+    },
+    {
+      "root": "audit",
+      "path": "recovery_20260914/cloud_activation_review_2042/integration_validation_final.json",
+      "sha256": "39a5aacd0b4966c086508d5481604a3167ca02877b3563264a31839c4563c46a"
+    },
+    {
+      "root": "audit",
+      "path": "recovery_20260911/direct-feed-deployment/international_candidate/au-en.full_cohort_qualification_20260911.json",
+      "sha256": "7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a"
+    }
+  ]
+}

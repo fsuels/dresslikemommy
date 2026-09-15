@@ -1,0 +1,130 @@
+{
+  "action_id": "TA06-THEME-BUYER-TRUTH-SUCCESSOR-20260915",
+  "accepted_at_utc": "2026-09-15T02:39:59.516122+00:00",
+  "status": "VERIFIED_UNPUBLISHED_SUCCESSOR__OWNER_ADMIN_PUBLICATION_REQUIRED",
+  "root_packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_buyer_truth_successor_freeze_20260915",
+  "handoff": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_buyer_truth_successor_freeze_20260915/EXECUTION_HANDOFF.json",
+    "sha256": "9f789297857df6832ae262e1043c45a8ff421fe59558b670992aab47a3a42d85"
+  },
+  "manifest": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_buyer_truth_successor_freeze_20260915/FROZEN_MANIFEST.json",
+    "sha256": "cc119594723d83fcc68c8e7d2556434fc7f960fc46fde9eaa5a39ba8522acb21"
+  },
+  "source_binding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_buyer_truth_successor_freeze_20260915/FINAL_527_SOURCE_BINDING.json",
+    "sha256": "932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a"
+  },
+  "browser_acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_buyer_truth_successor_freeze_20260915/BROWSER_ACCEPTANCE.json",
+    "sha256": "70840f18cbfd0214ef6101c71f0d6861232450b53c860cd2afad2f1fa1cfbd48"
+  },
+  "independent_source_after": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_buyer_truth_successor_freeze_20260915/review/independent-final-after-review.json",
+    "sha256": "39ccae849d2631967f5d0350a3e6f0440ea6af4944700abce69734be68a8f5e7"
+  },
+  "independent_root_acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_buyer_truth_successor_independent_acceptance_20260915.json",
+    "sha256": "51f772eea2d2ec56fb34cc8e12e98a20688c92df8110cd9303cb3cdc876427ad"
+  },
+  "root_frozen_files": 469,
+  "candidate": {
+    "id": "137888792673",
+    "name": "DLM UX Performance QA 2026-09-10",
+    "role": "UNPUBLISHED",
+    "files": 527,
+    "savedAt": "2026-09-15T01:57:14Z",
+    "firstSaveAt": "2026-09-15T01:46:17Z",
+    "netChangedFiles": 7,
+    "unchangedPriorCandidateFiles": 520,
+    "finalModuleSha256": "dbd748d10828f52bb24c2dfb22d019261f4abeb7f3e9f61eb86d350ee96c1bcb"
+  },
+  "preserved_MAIN": {
+    "id": "133290917985",
+    "name": "dresslikemommy/main",
+    "files": 525,
+    "allFilesAndMetadataUnchanged": true,
+    "gitHubMainConnected": true
+  },
+  "validation": {
+    "focusedRegressionTests": 26,
+    "rootBrowserAssertions": 352,
+    "independentRawBrowserAssertions": 656,
+    "browserArtifactHashesVerified": 128,
+    "guideCases": 48,
+    "compactUnitCases": 24,
+    "imperialGuides": 12,
+    "reopens": 12,
+    "noTypeCases": 6,
+    "noSizeCases": 1,
+    "articleCtaStates": 9,
+    "articleArrivals": 3,
+    "auAutomaticVariantCases": 3,
+    "cartStayedZero": true,
+    "strictContinuity": "PASS at recorded snapshot; parent owns subsequent shared canonical integration"
+  },
+  "local_git_source_evidence": {
+    "status": "VERIFIED_LOCAL_MAIN_COMMIT",
+    "recordedAt": "2026-09-15T02:18:28.669268+00:00",
+    "branch": "main",
+    "commit": "e2401a6723673ef460e4c6a40d040b5a332bd7da",
+    "parent": "4203184e6937167281ed41d8014d30f4652b0c63",
+    "files": [
+      "assets/component-product-desktop-ux-ruler-sync.css",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "assets/section-blog-post.css",
+      "locales/fr.json",
+      "sections/main-cart-footer.liquid",
+      "snippets/cart-drawer.liquid",
+      "snippets/product-page-copy-map.liquid"
+    ],
+    "allCommittedBytesMatchVerifiedLocalSource": true,
+    "remoteMain": "e077c69e06bbc729da121533a480c55456b079ba",
+    "remoteThemeDifferences": 74,
+    "gitPushPerformed": false,
+    "remainingDependency": "Current Shopify MAIN133290917985 is connected to GitHub main. Connector blocks agent publishing/MAIN writes; pending theme push remains held until owner Admin publication and connection/role verification."
+  },
+  "two_product_source_suffixes": {
+    "owner": "Merchant",
+    "finding": "Existing French Girl9\u201310 garment-length suffixes29,1dans and16,1dans",
+    "parentNotified": true,
+    "themeRegression": false
+  },
+  "limits": [
+    "Browser product examples use MotherS/youngestGirl, not every product/size. Missing/reversed/ambiguous sources are covered by26 synthetic regression tests.",
+    "Three AU cases were successful on saved86; final one-line French alias correction preserves variant functions. Successful AU cases were not repeated.",
+    "CTA labels/destinations are preserved, including existing English copy in AR/NL. No full accessibility/RTL certification.",
+    "Compact/table unit controls retain separate in-memory selections. Baseline single-piece role switch resets size/type; no persistence or multiple-card browser claim.",
+    "French source16,1dans/29,1dans remains Merchant-owned product translation; neither theme save introduced it.",
+    "No populated cart/checkout/purchase or fresh PageSpeed test. Cart tax/shipping text source-reviewed. No conversion-lift claim.",
+    "Acceptance uses cited final accepted-* raw captures; earlier diagnostic labeling/test-format mismatches and first-save French unit failure remain historical evidence.",
+    "Root independent reviewer verified saved receipts; no fresh live/API/browser/Git replay.",
+    "JS remote API body uses URL union; final bytes are bound by source SHA, fresh remote MD5/size and browser version/behavior, not claimed fresh remote SHA readback.",
+    "Ten historical first-save references resolve byte-exact to preserved original copies; no broad hash guard exemption."
+  ],
+  "scope": "Exact7files only; 520 prior candidatefiles and all525MAINfiles/metadata preserved. 26 local regressions and bounded EN/FR/ARdesktop/mobile, CTA and AUbuyer evidence. No full-store or traffic/profit certification.",
+  "publication": {
+    "required_actor": "Owner through Shopify Admin",
+    "candidate_id": "137888792673",
+    "candidate_name": "DLM UX Performance QA 2026-09-10",
+    "accepted_binding": "932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a",
+    "rollback_MAIN": "133290917985",
+    "already_authorized": true,
+    "gate_source": "Shopify connector blocks agent Publish and MAIN file writes; GitHubmain connection must not be used to bypass that restriction.",
+    "after": "Existing UX owner verifies actual MAIN/source/GitHubconnection and affected live buyers before any remaining remote-theme sync.",
+    "theme_measurement_clock": "Starts only after actual public publication and MAIN/buyer acceptance; no draft exposure baseline started."
+  },
+  "source_live_evidence_as_of": "2026-09-15T01:57:14Z final save; frozen source/browser after receipts",
+  "live_state_mode": "LIVE_VERIFIED exact UNPUBLISHED candidate; MAIN not released; standing paid STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "User publication authorization preserved; owner Admin action required by connector",
+  "approved_external_scope": "Completed exact seven-file UNPUBLISHED successor only; standing paid NONE; root businesswrites0",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "Actual owner publication and fresh MAIN/source/connection/buyer acceptance or target drift",
+  "if_evidence_supports_recommendation": "Accept actual public release, annotate exposure and continue exact owned verification",
+  "if_evidence_opposes_recommendation": "Preserve existing MAIN/rollback and investigate affected evidence without blind source overwrite",
+  "material_decision": "Accept exact unpublished successor and recommend already-authorized owner Admin publication",
+  "independent_verifier": "UX source after-review and /root/navy_variant_history root acceptance",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "root_business_writes": 0,
+  "canonical_integration_pending": true
+}

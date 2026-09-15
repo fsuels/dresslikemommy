@@ -1,0 +1,669 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "verdict": "PASS_WITH_LIMITS",
+  "apply_ready": true,
+  "reviewed_at_utc": "2026-09-15T05:21:41.606600+00:00",
+  "reviewer": "/root/collector_global_fallback_fix",
+  "independence": "DID_NOT_BUILD_OR_APPLY_CANONICAL_CANDIDATE",
+  "manifest_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_release_integration_manifest_20260915.json",
+  "manifest_sha256": "542ade6562f53d2f00223e500189c590806e832b2af48584e4fffc7f53f75559",
+  "source_acceptance_sha256": "28649f44ad724bf994e34c18212b401977d63f157930a1436244408d58eee547",
+  "context_attestation": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_dispatch_context_attestation_20260915.json",
+    "sha256": "60bcba1d19cee6eae17a6f4039f0bb432bcc083339e4cd15253da7ccabaa55af"
+  },
+  "verification_counts": {
+    "hash_comparisons": 42,
+    "hash_matches": 42,
+    "before_candidate_pairs": 11,
+    "current_files_match_before": 11,
+    "check_groups": 30,
+    "check_groups_passed": 30,
+    "failed": 0,
+    "unchanged_checkpoint_keys": 61,
+    "unchanged_other_coordination_table_rows": 301,
+    "source_reviews_reused_not_rerun": {
+      "parent_raw_receipts": 102,
+      "owner_after_review": 220,
+      "owner_final_files": 26,
+      "root_freeze_files": 60
+    }
+  },
+  "bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_release_integration_manifest_20260915.json",
+      "role": "integration_manifest",
+      "expected_sha256": "542ade6562f53d2f00223e500189c590806e832b2af48584e4fffc7f53f75559",
+      "actual_sha256": "542ade6562f53d2f00223e500189c590806e832b2af48584e4fffc7f53f75559",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/before/ops/marketing/current_marketing_state.md",
+      "role": "before_snapshot",
+      "expected_sha256": "f697598ab135d3d5bad6543428fbaaa2b96b8da8a6aa78e422ffc927283c170f",
+      "actual_sha256": "f697598ab135d3d5bad6543428fbaaa2b96b8da8a6aa78e422ffc927283c170f",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/candidate/ops/marketing/current_marketing_state.md",
+      "role": "candidate_snapshot",
+      "expected_sha256": "24b004b068215f90bb57b6279943dcbf6d0e8d1a9a0b0e1ef43b3de654129058",
+      "actual_sha256": "24b004b068215f90bb57b6279943dcbf6d0e8d1a9a0b0e1ef43b3de654129058",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/marketing/current_marketing_state.md",
+      "role": "current_canonical_before",
+      "expected_sha256": "f697598ab135d3d5bad6543428fbaaa2b96b8da8a6aa78e422ffc927283c170f",
+      "actual_sha256": "f697598ab135d3d5bad6543428fbaaa2b96b8da8a6aa78e422ffc927283c170f",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/before/ops/marketing/action_queue.md",
+      "role": "before_snapshot",
+      "expected_sha256": "ad34c6a3a60abcc66a5c919677baf0d17d85aa7307909300cae43915df4e8122",
+      "actual_sha256": "ad34c6a3a60abcc66a5c919677baf0d17d85aa7307909300cae43915df4e8122",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/candidate/ops/marketing/action_queue.md",
+      "role": "candidate_snapshot",
+      "expected_sha256": "021b6c6105a58ad833c923adb367c14dac6c0874ce1bff176107b906c1440128",
+      "actual_sha256": "021b6c6105a58ad833c923adb367c14dac6c0874ce1bff176107b906c1440128",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/marketing/action_queue.md",
+      "role": "current_canonical_before",
+      "expected_sha256": "ad34c6a3a60abcc66a5c919677baf0d17d85aa7307909300cae43915df4e8122",
+      "actual_sha256": "ad34c6a3a60abcc66a5c919677baf0d17d85aa7307909300cae43915df4e8122",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/before/ops/marketing/daily_scorecard.md",
+      "role": "before_snapshot",
+      "expected_sha256": "942717a89fe34970fd66ee0c1c1f2825ef129e6b0eab5226541b6b702187eaec",
+      "actual_sha256": "942717a89fe34970fd66ee0c1c1f2825ef129e6b0eab5226541b6b702187eaec",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/candidate/ops/marketing/daily_scorecard.md",
+      "role": "candidate_snapshot",
+      "expected_sha256": "a7fb722b4a46500b41e9e544d8c30ea8725a2b6b808bf4ead7f13d9e14abffa1",
+      "actual_sha256": "a7fb722b4a46500b41e9e544d8c30ea8725a2b6b808bf4ead7f13d9e14abffa1",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/marketing/daily_scorecard.md",
+      "role": "current_canonical_before",
+      "expected_sha256": "942717a89fe34970fd66ee0c1c1f2825ef129e6b0eab5226541b6b702187eaec",
+      "actual_sha256": "942717a89fe34970fd66ee0c1c1f2825ef129e6b0eab5226541b6b702187eaec",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/before/ops/marketing/blocker_board.md",
+      "role": "before_snapshot",
+      "expected_sha256": "89974599a09283bcb1e155a9e9b8cd83f74dc25f2fdda314d4de230d1b6ebb4a",
+      "actual_sha256": "89974599a09283bcb1e155a9e9b8cd83f74dc25f2fdda314d4de230d1b6ebb4a",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/candidate/ops/marketing/blocker_board.md",
+      "role": "candidate_snapshot",
+      "expected_sha256": "61ddf3b1d2d814fe89f68e88aa0fe33ac8e7f2a4948e7482746fe61e15e0891b",
+      "actual_sha256": "61ddf3b1d2d814fe89f68e88aa0fe33ac8e7f2a4948e7482746fe61e15e0891b",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/marketing/blocker_board.md",
+      "role": "current_canonical_before",
+      "expected_sha256": "89974599a09283bcb1e155a9e9b8cd83f74dc25f2fdda314d4de230d1b6ebb4a",
+      "actual_sha256": "89974599a09283bcb1e155a9e9b8cd83f74dc25f2fdda314d4de230d1b6ebb4a",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/before/ops/marketing/operator_cockpit.md",
+      "role": "before_snapshot",
+      "expected_sha256": "d651fbe926a12cbc66bd49e9b75fec6658d1c6497af857a3a28673ff9de774e9",
+      "actual_sha256": "d651fbe926a12cbc66bd49e9b75fec6658d1c6497af857a3a28673ff9de774e9",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/candidate/ops/marketing/operator_cockpit.md",
+      "role": "candidate_snapshot",
+      "expected_sha256": "7dc32db764eaafdabceeb086181d39f10da61927686a7ef1d6458099920039b4",
+      "actual_sha256": "7dc32db764eaafdabceeb086181d39f10da61927686a7ef1d6458099920039b4",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/marketing/operator_cockpit.md",
+      "role": "current_canonical_before",
+      "expected_sha256": "d651fbe926a12cbc66bd49e9b75fec6658d1c6497af857a3a28673ff9de774e9",
+      "actual_sha256": "d651fbe926a12cbc66bd49e9b75fec6658d1c6497af857a3a28673ff9de774e9",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/before/ops/marketing/memory_digest.md",
+      "role": "before_snapshot",
+      "expected_sha256": "e71f9395a8840aa3e3b66557139afa84611467d173d7d3fdb2eab62ef3c9cf72",
+      "actual_sha256": "e71f9395a8840aa3e3b66557139afa84611467d173d7d3fdb2eab62ef3c9cf72",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/candidate/ops/marketing/memory_digest.md",
+      "role": "candidate_snapshot",
+      "expected_sha256": "c45113c5e306dcfff737e5a463ef2b3a7519e5812c2bb317c73a3c8abf68dfaf",
+      "actual_sha256": "c45113c5e306dcfff737e5a463ef2b3a7519e5812c2bb317c73a3c8abf68dfaf",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/marketing/memory_digest.md",
+      "role": "current_canonical_before",
+      "expected_sha256": "e71f9395a8840aa3e3b66557139afa84611467d173d7d3fdb2eab62ef3c9cf72",
+      "actual_sha256": "e71f9395a8840aa3e3b66557139afa84611467d173d7d3fdb2eab62ef3c9cf72",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/before/ops/AGENT_COORDINATION.md",
+      "role": "before_snapshot",
+      "expected_sha256": "08263068a28bb33d3ced274e8a221769e1e94d0164378acf9510f64e877d8e35",
+      "actual_sha256": "08263068a28bb33d3ced274e8a221769e1e94d0164378acf9510f64e877d8e35",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/candidate/ops/AGENT_COORDINATION.md",
+      "role": "candidate_snapshot",
+      "expected_sha256": "3be3288641d9822a0029550d9e2135ba7006715b2187af0908def384e922a566",
+      "actual_sha256": "3be3288641d9822a0029550d9e2135ba7006715b2187af0908def384e922a566",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/AGENT_COORDINATION.md",
+      "role": "current_canonical_before",
+      "expected_sha256": "08263068a28bb33d3ced274e8a221769e1e94d0164378acf9510f64e877d8e35",
+      "actual_sha256": "08263068a28bb33d3ced274e8a221769e1e94d0164378acf9510f64e877d8e35",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/before/ops/PROBLEM_TRACKER.md",
+      "role": "before_snapshot",
+      "expected_sha256": "fd4ff75f467d4817bb11910f88dcc3c07d740504f916f8d7c538d81b60a40b47",
+      "actual_sha256": "fd4ff75f467d4817bb11910f88dcc3c07d740504f916f8d7c538d81b60a40b47",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/candidate/ops/PROBLEM_TRACKER.md",
+      "role": "candidate_snapshot",
+      "expected_sha256": "f91ae407faad53f467d207b6da9427e14d4f55b224e4d9207ee65c7d3f63f1cb",
+      "actual_sha256": "f91ae407faad53f467d207b6da9427e14d4f55b224e4d9207ee65c7d3f63f1cb",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/PROBLEM_TRACKER.md",
+      "role": "current_canonical_before",
+      "expected_sha256": "fd4ff75f467d4817bb11910f88dcc3c07d740504f916f8d7c538d81b60a40b47",
+      "actual_sha256": "fd4ff75f467d4817bb11910f88dcc3c07d740504f916f8d7c538d81b60a40b47",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/before/ops/marketing/decision_log.md",
+      "role": "before_snapshot",
+      "expected_sha256": "047a932bbde2d6b21d4ab5585a215f4b848f3d3cb65cf24e353d3cfda156510d",
+      "actual_sha256": "047a932bbde2d6b21d4ab5585a215f4b848f3d3cb65cf24e353d3cfda156510d",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/candidate/ops/marketing/decision_log.md",
+      "role": "candidate_snapshot",
+      "expected_sha256": "32bd14860f254a22564c1be97a8bd3211f7daa08ec253de9bc1e1f2db88a4e60",
+      "actual_sha256": "32bd14860f254a22564c1be97a8bd3211f7daa08ec253de9bc1e1f2db88a4e60",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/marketing/decision_log.md",
+      "role": "current_canonical_before",
+      "expected_sha256": "047a932bbde2d6b21d4ab5585a215f4b848f3d3cb65cf24e353d3cfda156510d",
+      "actual_sha256": "047a932bbde2d6b21d4ab5585a215f4b848f3d3cb65cf24e353d3cfda156510d",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/before/ops/AGENT_WORKLOG.md",
+      "role": "before_snapshot",
+      "expected_sha256": "343aa53bd81b04f3c294f6019405f39665df9e89230d0834c0f91afb8a3568a0",
+      "actual_sha256": "343aa53bd81b04f3c294f6019405f39665df9e89230d0834c0f91afb8a3568a0",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/candidate/ops/AGENT_WORKLOG.md",
+      "role": "candidate_snapshot",
+      "expected_sha256": "b204c75aac4639f48dbc994d3be2b397f6be6ef8fea687bd08f955b1f4281846",
+      "actual_sha256": "b204c75aac4639f48dbc994d3be2b397f6be6ef8fea687bd08f955b1f4281846",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/ops/AGENT_WORKLOG.md",
+      "role": "current_canonical_before",
+      "expected_sha256": "343aa53bd81b04f3c294f6019405f39665df9e89230d0834c0f91afb8a3568a0",
+      "actual_sha256": "343aa53bd81b04f3c294f6019405f39665df9e89230d0834c0f91afb8a3568a0",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/before/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+      "role": "before_snapshot",
+      "expected_sha256": "4009bfb289757f620d99bb3ec9b6744617d0a6f478054fdfc2f73171bf125199",
+      "actual_sha256": "4009bfb289757f620d99bb3ec9b6744617d0a6f478054fdfc2f73171bf125199",
+      "match": true
+    },
+    {
+      "path": "/private/tmp/dlm-czech-body-release-integration-20260915/candidate/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+      "role": "candidate_snapshot",
+      "expected_sha256": "762791bcade57adb40905e5be80f696007b0afad9c4332ddc7c913161a58f7e4",
+      "actual_sha256": "762791bcade57adb40905e5be80f696007b0afad9c4332ddc7c913161a58f7e4",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+      "role": "current_canonical_before",
+      "expected_sha256": "4009bfb289757f620d99bb3ec9b6744617d0a6f478054fdfc2f73171bf125199",
+      "actual_sha256": "4009bfb289757f620d99bb3ec9b6744617d0a6f478054fdfc2f73171bf125199",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_release_source_acceptance_20260915.json",
+      "role": "source_acceptance",
+      "expected_sha256": "28649f44ad724bf994e34c18212b401977d63f157930a1436244408d58eee547",
+      "actual_sha256": "28649f44ad724bf994e34c18212b401977d63f157930a1436244408d58eee547",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/country_coverage_annotation_followup_acceptance_20260915_0454.json",
+      "role": "country_annotation",
+      "expected_sha256": "029c2b5754c57b0af5a6b9f18265e67d3657c5bb4476d397f346cfb6d882833c",
+      "actual_sha256": "029c2b5754c57b0af5a6b9f18265e67d3657c5bb4476d397f346cfb6d882833c",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_heading_dispatch_receipt_20260915.json",
+      "role": "theme_dispatch",
+      "expected_sha256": "5f57726f58316f61625dc3f13848c152ae51be1121016610b3f3e754211bc26d",
+      "actual_sha256": "5f57726f58316f61625dc3f13848c152ae51be1121016610b3f3e754211bc26d",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_release_freeze_20260915/manifest.json",
+      "role": "source_freeze",
+      "expected_sha256": "02c104d0f19fa3f2ffb30b59606974e0a594060665b6874bb31ef72b9dbacd05",
+      "actual_sha256": "02c104d0f19fa3f2ffb30b59606974e0a594060665b6874bb31ef72b9dbacd05",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_release_freeze_20260915/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/execution_handoff.json",
+      "role": "source_handoff",
+      "expected_sha256": "41929ad34d0b504ec7647365345b6de71d26be97909a0237bcbf4e5ef5ac0650",
+      "actual_sha256": "41929ad34d0b504ec7647365345b6de71d26be97909a0237bcbf4e5ef5ac0650",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_release_freeze_20260915/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_release_20260915/independent_after_review.json",
+      "role": "independent_owner_review",
+      "expected_sha256": "570894a74862aa0215d7450039028afd99b95b45ff2ad86db2f2ec5c456b6958",
+      "actual_sha256": "570894a74862aa0215d7450039028afd99b95b45ff2ad86db2f2ec5c456b6958",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_saved_receipts_independent_acceptance_20260915.json",
+      "role": "independent_parent_review",
+      "expected_sha256": "57f71957f0e3917f5bea8f247361a21f37de727ccad399a326304f9508fdb7d4",
+      "actual_sha256": "57f71957f0e3917f5bea8f247361a21f37de727ccad399a326304f9508fdb7d4",
+      "match": true
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_dispatch_context_attestation_20260915.json",
+      "role": "root_context_attestation",
+      "expected_sha256": "60bcba1d19cee6eae17a6f4039f0bb432bcc083339e4cd15253da7ccabaa55af",
+      "actual_sha256": "60bcba1d19cee6eae17a6f4039f0bb432bcc083339e4cd15253da7ccabaa55af",
+      "match": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "exact_declared_checkpoint_change_set",
+      "status": "PASS",
+      "detail": [
+        "canonical_anchor",
+        "latest_Czech_body_release",
+        "latest_Merchant_country_coverage_annotation",
+        "latest_completed_release_anchor",
+        "latest_scoped_progress",
+        "latest_theme_czech_execution_dispatch",
+        "owner_readback_integrations",
+        "pending_owner_integrations",
+        "resolved_owner_integration_intakes"
+      ]
+    },
+    {
+      "check": "all_61_other_checkpoint_keys_exact",
+      "status": "PASS"
+    },
+    {
+      "check": "outer_checkpoint_document_exact",
+      "status": "PASS"
+    },
+    {
+      "check": "one_integration_append_68_to_69",
+      "status": "PASS"
+    },
+    {
+      "check": "body_action_occurs_once_as_only_new_integration",
+      "status": "PASS"
+    },
+    {
+      "check": "all_60_wakes_exact",
+      "status": "PASS"
+    },
+    {
+      "check": "only_body_pending_intake_resolved",
+      "status": "PASS"
+    },
+    {
+      "check": "ux_intake_identity_plan_history_preserved",
+      "status": "PASS"
+    },
+    {
+      "check": "pending_ux_dispatch_owner_action_and_root_observed_turn_bound",
+      "status": "PASS"
+    },
+    {
+      "check": "dispatch_is_not_actual_upload_or_new_binding_acceptance",
+      "status": "PASS"
+    },
+    {
+      "check": "one_owner_action_exact_and_publication_conditional",
+      "status": "PASS"
+    },
+    {
+      "check": "country_annotation_retains_previous_and_adds_no_integration_or_source_clock",
+      "status": "PASS"
+    },
+    {
+      "check": "accepted_release_summary_counts_and_preserved_source_clocks",
+      "status": "PASS"
+    },
+    {
+      "check": "scoped_diff_and_exact_inverse:ops/marketing/current_marketing_state.md",
+      "status": "PASS",
+      "detail": {
+        "opcodes_zero_based": [
+          [
+            "replace",
+            2,
+            3,
+            2,
+            3
+          ],
+          [
+            "replace",
+            4,
+            5,
+            4,
+            11
+          ]
+        ]
+      }
+    },
+    {
+      "check": "current_prose_retains_source_routing_failure_and_business_limits",
+      "status": "PASS",
+      "detail": {
+        "required_phrases_present": {
+          "five reviewed global Czech body corrections": true,
+          "before any API attempt": true,
+          "cause UNKNOWN": true,
+          "Residual wording and direct-arrival qualification remain open": true,
+          "No actual new theme binding or MAIN publication is accepted yet": true,
+          "Owner Admin publication remains conditional": true,
+          "with connected-MAIN Git push held": true,
+          "31 configured rows": true,
+          "other29": true,
+          "adds no release, integration or source refresh": true,
+          "No new traffic, sales or retained profit": true
+        }
+      }
+    },
+    {
+      "check": "scoped_diff_and_exact_inverse:ops/marketing/action_queue.md",
+      "status": "PASS",
+      "detail": {
+        "opcodes_zero_based": [
+          [
+            "replace",
+            2,
+            3,
+            2,
+            3
+          ],
+          [
+            "replace",
+            4,
+            5,
+            4,
+            11
+          ],
+          [
+            "replace",
+            198,
+            200,
+            204,
+            206
+          ]
+        ]
+      }
+    },
+    {
+      "check": "queue_only_ta06_ta07_scoped_cells_changed",
+      "status": "PASS"
+    },
+    {
+      "check": "scoped_diff_and_exact_inverse:ops/marketing/daily_scorecard.md",
+      "status": "PASS",
+      "detail": {
+        "opcodes_zero_based": [
+          [
+            "replace",
+            2,
+            3,
+            2,
+            3
+          ],
+          [
+            "replace",
+            4,
+            5,
+            4,
+            11
+          ]
+        ]
+      }
+    },
+    {
+      "check": "scoped_diff_and_exact_inverse:ops/marketing/blocker_board.md",
+      "status": "PASS",
+      "detail": {
+        "opcodes_zero_based": [
+          [
+            "replace",
+            2,
+            3,
+            2,
+            3
+          ],
+          [
+            "replace",
+            4,
+            5,
+            4,
+            11
+          ]
+        ]
+      }
+    },
+    {
+      "check": "scoped_diff_and_exact_inverse:ops/marketing/operator_cockpit.md",
+      "status": "PASS",
+      "detail": {
+        "opcodes_zero_based": [
+          [
+            "replace",
+            2,
+            3,
+            2,
+            3
+          ],
+          [
+            "replace",
+            4,
+            5,
+            4,
+            11
+          ]
+        ]
+      }
+    },
+    {
+      "check": "scoped_diff_and_exact_inverse:ops/marketing/memory_digest.md",
+      "status": "PASS",
+      "detail": {
+        "opcodes_zero_based": [
+          [
+            "replace",
+            2,
+            3,
+            2,
+            3
+          ],
+          [
+            "replace",
+            4,
+            5,
+            4,
+            11
+          ]
+        ]
+      }
+    },
+    {
+      "check": "scoped_diff_and_exact_inverse:ops/AGENT_COORDINATION.md",
+      "status": "PASS",
+      "detail": {
+        "opcodes_zero_based": [
+          [
+            "replace",
+            2,
+            3,
+            2,
+            5
+          ],
+          [
+            "replace",
+            40,
+            41,
+            42,
+            43
+          ]
+        ]
+      }
+    },
+    {
+      "check": "merchant_only_status_evidence_notes_and_exact_claim_hashes",
+      "status": "PASS"
+    },
+    {
+      "check": "merchant_prior_evidence_and_notes_preserved",
+      "status": "PASS"
+    },
+    {
+      "check": "all_301_other_table_rows_exact_including_live_ux",
+      "status": "PASS"
+    },
+    {
+      "check": "prior_coordination_intro_preserved_as_dated_history",
+      "status": "PASS"
+    },
+    {
+      "check": "scoped_diff_and_exact_inverse:ops/PROBLEM_TRACKER.md",
+      "status": "PASS",
+      "detail": {
+        "opcodes_zero_based": [
+          [
+            "replace",
+            5579,
+            5580,
+            5579,
+            5580
+          ],
+          [
+            "replace",
+            5584,
+            5586,
+            5584,
+            5586
+          ],
+          [
+            "insert",
+            5593,
+            5593,
+            5593,
+            5596
+          ]
+        ]
+      }
+    },
+    {
+      "check": "scoped_diff_and_exact_inverse:ops/marketing/decision_log.md",
+      "status": "PASS",
+      "detail": {
+        "opcodes_zero_based": [
+          [
+            "insert",
+            1319,
+            1319,
+            1319,
+            1332
+          ]
+        ]
+      }
+    },
+    {
+      "check": "scoped_diff_and_exact_inverse:ops/AGENT_WORKLOG.md",
+      "status": "PASS",
+      "detail": {
+        "opcodes_zero_based": [
+          [
+            "insert",
+            52155,
+            52155,
+            52155,
+            52186
+          ]
+        ]
+      }
+    },
+    {
+      "check": "worklog_bare_anchor_valid_stage_readonly_next_and_exact_owner_action",
+      "status": "PASS"
+    }
+  ],
+  "findings": [],
+  "scope_and_provenance_limits": [
+    "Static prewrite acceptance of the exact staged 11-file candidate only. No canonical application, business write, browser/API request, live replay, Git action, new dispatch or repository validator was performed.",
+    "Source technical acceptance is reused from the exact pinned 102-check parent and 220-check owner saved-receipt reviews. This pass verifies their bindings and canonical representation; it does not claim another 322 technical checks or re-audit the 26/60-file freezes.",
+    "The UX dispatch receipt proves successful delivery to the same owner and action, and records no accepted upload or renewed binding. The exact execution turn is ROOT_OBSERVED through separately attested wait/read metadata; this reviewer did not independently query the peer task.",
+    "Precise user main-sync wording is SOURCE_OWNER_REPORTED; root did not retrieve that verbatim user message. Root qualifies the exact reviewed local cs.json sync/commit as an existing-UX reversible implementation step under its saved user mandate. No remote push, connected MAIN write, agent Publish or unrelated-file scope is accepted.",
+    "Later owner-reported UX save and narrow-view H1 gap arrived after staging and are outside these immutable candidate bytes. The current review accepts only the dated pending stage and its unchanged conditional owner-publication action; it does not certify theme completion or publication readiness.",
+    "Direct /cs arrival remains redirected to English with UNKNOWN cause. Language-menu recovery supports the exact saved public text in the observed US/USD session, not cookie-independent arrival, Czechia, all Czech copy, source measurements, checkout, serving, sales or profit.",
+    "The 31-country reread is an unchanged annotation, not a new release, integration or source clock. Previous US/AU/US-es clocks, full-sales/measurement records, paid gates, goals and schedules remain exact."
+  ],
+  "recommended_integration": "Root may apply this exact source-release stage after its usual final before-hash guard, retain the context attestation with this review, and separately append the newly reported provisional UX mobile-gap intake. Keep owner publication conditional on an accepted actual successor binding and affected buyer readback; do not replay the Czech body save.",
+  "reproduction": "SHA-256 each manifest before/candidate/current file and named receipt; compare checkpoint dictionaries outside exactly nine declared keys and restore that checkpoint subtree to prove outer equality; verify old integration/resolution list prefixes, pending action identity and one append; compare full table rows/cells; whitelist all ten text-file diff opcode ranges and reverse only those hunks to reproduce before bytes."
+}

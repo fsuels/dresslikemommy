@@ -1,0 +1,259 @@
+{
+  "schema": "dlm.merchant.market-override-readback.v1",
+  "action": "READ_ONLY_FR_DE_OVERRIDES_FOR_DE10_20260914",
+  "status": "VERIFIED_NO_EXPLICIT_OVERRIDES_RETURNED",
+  "confidence": "H",
+  "shopId": "gid://shopify/Shop/15571635",
+  "sourceCohort": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/de_translation_repair_2342/before.json",
+    "sha256": "5f5d752eb41fa2af74bb335676f29dff48f56aa911404ddcd1ceec36e1d47377",
+    "observedAt": "2026-09-14T23:42:35Z",
+    "completedAt": "2026-09-14T23:42:36Z",
+    "products": 10
+  },
+  "marketIdentityRead": {
+    "observedAt": "2026-09-14T23:48:52.815Z",
+    "completedAt": "2026-09-14T23:48:53.374Z",
+    "query": "query MerchantMarketOverrideIdentities($ca: ID!, $intl: ID!, $eu: ID!, $products: [ID!]!) {\n  shop { id }\n  canada: market(id: $ca) { id name handle status }\n  international: market(id: $intl) { id name handle status }\n  eurozone: market(id: $eu) { id name handle status }\n  nodes(ids: $products) { ... on Product { id status } }\n}",
+    "variables": {
+      "ca": "gid://shopify/Market/22986326113",
+      "intl": "gid://shopify/Market/544866401",
+      "eu": "gid://shopify/Market/544800865",
+      "products": [
+        "gid://shopify/Product/7227375714401",
+        "gid://shopify/Product/7227378892897",
+        "gid://shopify/Product/7229026304097",
+        "gid://shopify/Product/7536709664865",
+        "gid://shopify/Product/7536984359009",
+        "gid://shopify/Product/7545279217761",
+        "gid://shopify/Product/7545279512673",
+        "gid://shopify/Product/7545279840353",
+        "gid://shopify/Product/7545373130849",
+        "gid://shopify/Product/7546613530721"
+      ]
+    },
+    "shopId": "gid://shopify/Shop/15571635",
+    "markets": [
+      {
+        "id": "gid://shopify/Market/22986326113",
+        "name": "Canada",
+        "handle": "canada",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Market/544866401",
+        "name": "International",
+        "handle": "international",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Market/544800865",
+        "name": "Eurozone",
+        "handle": "eu",
+        "status": "ACTIVE"
+      }
+    ],
+    "products": [
+      {
+        "id": "gid://shopify/Product/7227375714401",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Product/7227378892897",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Product/7229026304097",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Product/7536709664865",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Product/7536984359009",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Product/7545279217761",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Product/7545279512673",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Product/7545279840353",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Product/7545373130849",
+        "status": "ACTIVE"
+      },
+      {
+        "id": "gid://shopify/Product/7546613530721",
+        "status": "ACTIVE"
+      }
+    ]
+  },
+  "overrideRead": {
+    "observedAt": "2026-09-14T23:49:25.599Z",
+    "completedAt": "2026-09-14T23:49:26.220Z",
+    "query": "query MerchantFrenchGermanMarketOverrides($ids: [ID!]!, $ca: ID!, $intl: ID!, $eu: ID!, $after: String) {\n  shop { id }\n  translatableResourcesByIds(resourceIds: $ids, first: 20, after: $after) {\n    nodes {\n      resourceId\n      frCanada: translations(locale: \"fr\", marketId: $ca) { key locale outdated market { id } }\n      deCanada: translations(locale: \"de\", marketId: $ca) { key locale outdated market { id } }\n      frInternational: translations(locale: \"fr\", marketId: $intl) { key locale outdated market { id } }\n      deInternational: translations(locale: \"de\", marketId: $intl) { key locale outdated market { id } }\n      frEurozone: translations(locale: \"fr\", marketId: $eu) { key locale outdated market { id } }\n      deEurozone: translations(locale: \"de\", marketId: $eu) { key locale outdated market { id } }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+    "variables": {
+      "ids": [
+        "gid://shopify/Product/7227375714401",
+        "gid://shopify/Product/7227378892897",
+        "gid://shopify/Product/7229026304097",
+        "gid://shopify/Product/7536709664865",
+        "gid://shopify/Product/7536984359009",
+        "gid://shopify/Product/7545279217761",
+        "gid://shopify/Product/7545279512673",
+        "gid://shopify/Product/7545279840353",
+        "gid://shopify/Product/7545373130849",
+        "gid://shopify/Product/7546613530721"
+      ],
+      "ca": "gid://shopify/Market/22986326113",
+      "intl": "gid://shopify/Market/544866401",
+      "eu": "gid://shopify/Market/544800865",
+      "after": null
+    },
+    "shopId": "gid://shopify/Shop/15571635",
+    "pagination": {
+      "hasNextPage": false,
+      "endCursor": "eyJsYXN0X2lkIjo3NTQ2NjEzNTMwNzIxLCJsYXN0X3ZhbHVlIjo3NTQ2NjEzNTMwNzIxfQ=="
+    },
+    "resourceIdentities": [
+      "gid://shopify/Product/7227375714401",
+      "gid://shopify/Product/7227378892897",
+      "gid://shopify/Product/7229026304097",
+      "gid://shopify/Product/7536709664865",
+      "gid://shopify/Product/7536984359009",
+      "gid://shopify/Product/7545279217761",
+      "gid://shopify/Product/7545279512673",
+      "gid://shopify/Product/7545279840353",
+      "gid://shopify/Product/7545373130849",
+      "gid://shopify/Product/7546613530721"
+    ],
+    "marketLocaleResults": [
+      {
+        "alias": "frCanada",
+        "locale": "fr",
+        "marketId": "gid://shopify/Market/22986326113",
+        "productsQueried": 10,
+        "productsWithExplicitOverrides": 0,
+        "fieldCount": 0,
+        "outdatedFieldCount": 0,
+        "fields": []
+      },
+      {
+        "alias": "deCanada",
+        "locale": "de",
+        "marketId": "gid://shopify/Market/22986326113",
+        "productsQueried": 10,
+        "productsWithExplicitOverrides": 0,
+        "fieldCount": 0,
+        "outdatedFieldCount": 0,
+        "fields": []
+      },
+      {
+        "alias": "frInternational",
+        "locale": "fr",
+        "marketId": "gid://shopify/Market/544866401",
+        "productsQueried": 10,
+        "productsWithExplicitOverrides": 0,
+        "fieldCount": 0,
+        "outdatedFieldCount": 0,
+        "fields": []
+      },
+      {
+        "alias": "deInternational",
+        "locale": "de",
+        "marketId": "gid://shopify/Market/544866401",
+        "productsQueried": 10,
+        "productsWithExplicitOverrides": 0,
+        "fieldCount": 0,
+        "outdatedFieldCount": 0,
+        "fields": []
+      },
+      {
+        "alias": "frEurozone",
+        "locale": "fr",
+        "marketId": "gid://shopify/Market/544800865",
+        "productsQueried": 10,
+        "productsWithExplicitOverrides": 0,
+        "fieldCount": 0,
+        "outdatedFieldCount": 0,
+        "fields": []
+      },
+      {
+        "alias": "deEurozone",
+        "locale": "de",
+        "marketId": "gid://shopify/Market/544800865",
+        "productsQueried": 10,
+        "productsWithExplicitOverrides": 0,
+        "fieldCount": 0,
+        "outdatedFieldCount": 0,
+        "fields": []
+      }
+    ]
+  },
+  "verification": {
+    "schemaDiscoveredTypes": [
+      "QueryRoot",
+      "Market",
+      "TranslatableResource",
+      "Translation",
+      "TranslatableResourceConnection",
+      "Shop",
+      "Product",
+      "PageInfo"
+    ],
+    "schemaMarketIdArgument": "Filters translations by market ID. Use this argument to retrieve content specific to a market.",
+    "schemaTranslationMarket": "The market that the translation is specific to. Null value means the translation is available in all markets.",
+    "validation": [
+      {
+        "artifactId": "merchant-market-override-identities-20260914",
+        "revision": 1,
+        "connector": "VALID",
+        "skillScript": "VALID",
+        "scriptExitCode": 0
+      },
+      {
+        "artifactId": "merchant-fr-de-market-overrides-20260914",
+        "revision": 1,
+        "connector": "VALID",
+        "skillScript": "VALID",
+        "scriptExitCode": 0
+      }
+    ],
+    "marketIdsNamesAndActiveStatusVerifiedBeforeOverrideRead": true,
+    "exactSourceProductIdsAndActiveStatusVerified": true,
+    "exactTranslatableResourceSet": true,
+    "hasNextPage": false,
+    "productsQueried": 10,
+    "marketsQueried": 3,
+    "localesQueried": 2,
+    "resourceLocaleMarketCombinations": 60,
+    "explicitOverrideFields": 0,
+    "emptyMarketFilteredArrays": 60,
+    "customerOrOrderDataQueried": false,
+    "translatedOrSourceTextValuesQueried": false,
+    "supplierOrAdminUrlsQueried": false,
+    "externalMutations": 0
+  },
+  "conclusion": "For exactly these 10 products, no explicit FR or DE overrides were returned by TranslatableResource.translations filtered to the three verified market IDs at the recorded read time.",
+  "limits": [
+    "Empty market-filtered arrays do not mean global translations are missing. This operation did not query or judge global FR/DE translation values or freshness.",
+    "Only the three named market IDs, two locales, and exact ten products were checked. Market parent relationships, other market-specific fields, other products, variants, and locales are outside this read.",
+    "This read does not establish rendered country checkout behavior, contextual prices, shipping/returns, country-specific product eligibility, Merchant feed inclusion, Google approval, or actual serving.",
+    "Catalog and translation state can change after the recorded timestamps. This independent qualification does not authorize or block the separate exact global-DE repair."
+  ],
+  "documentation": [
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/queries/translatableResource"
+  ],
+  "externalWrites": [],
+  "filesOwned": [
+    "market_override_readback.json"
+  ]
+}

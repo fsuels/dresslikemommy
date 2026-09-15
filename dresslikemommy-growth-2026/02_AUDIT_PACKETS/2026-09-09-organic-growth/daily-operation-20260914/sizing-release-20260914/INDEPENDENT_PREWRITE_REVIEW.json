@@ -1,0 +1,263 @@
+{
+  "schema": "dlm.sizing_article_independent_prewrite_review.v1",
+  "action_id": "TA20-SIZING-GUIDE-EDITORIAL-20260914",
+  "reviewed_at_utc": "2026-09-14T22:52:55.985022+00:00",
+  "reviewer": "/root/daily_operation_review",
+  "verdict": "PASS_WITH_LIMITS",
+  "blocking_findings": [],
+  "target_id": "gid://shopify/Article/559700574305",
+  "target_url": "https://www.dresslikemommy.com/blogs/news/matching-outfit-sizing-guide-right-fit-for-everyone",
+  "candidate_revision": 2,
+  "candidate_sha256": "7f8ccb04c9e4951b00b1a4c123640b46f2b090da700784b5f96bf2e2ab2ed975",
+  "before_body_sha256": "7c6d26272eac0068e189434ea3bb2dd4990c5d6c018843141f8ca6fb624989c1",
+  "checks_passed": 24,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "id": "exact_target_and_published_english",
+      "status": "PASS",
+      "evidence": "Existing published sizing article on the correct Shopify store; source keys are English and saved public route is exact."
+    },
+    {
+      "id": "before_body_hash",
+      "status": "PASS",
+      "evidence": "Captured source body matches the frozen before hash."
+    },
+    {
+      "id": "final_candidate_hash",
+      "status": "PASS",
+      "evidence": "Exact revision 2 candidate bytes independently hashed."
+    },
+    {
+      "id": "nineteen_bounded_replacements",
+      "status": "PASS",
+      "evidence": "Nineteen exact before/after replacements are specified; no full-article rewrite beyond these substitutions."
+    },
+    {
+      "id": "first_seventeen_revision_reproduced",
+      "status": "PASS",
+      "evidence": "First 17 replacements exactly reproduce the prior candidate; revision delta is only the final two support paragraphs."
+    },
+    {
+      "id": "forward_exact_candidate",
+      "status": "PASS",
+      "evidence": "All 19 replacements each match once and reproduce every final candidate byte."
+    },
+    {
+      "id": "reverse_nineteen_exact",
+      "status": "PASS",
+      "evidence": "Reversing all 19 substitutions restores the entire original body exactly."
+    },
+    {
+      "id": "valid_balanced_html",
+      "status": "PASS",
+      "evidence": "Independent HTML parser found balanced properly nested source and candidate elements."
+    },
+    {
+      "id": "unchanged_element_sequence",
+      "status": "PASS",
+      "evidence": "Every element position and count is preserved; changes are text plus the two reviewed support href values."
+    },
+    {
+      "id": "only_two_support_href_attribute_changes",
+      "status": "PASS",
+      "evidence": "Only two attribute changes: FAQ href to Contact us href; no script, style, image, form or external destination added."
+    },
+    {
+      "id": "shopping_links_and_table_preserved",
+      "status": "PASS",
+      "evidence": "Both shopping links, three-column/three-shopper table and four-item checklist remain structurally intact."
+    },
+    {
+      "id": "mutation_body_only",
+      "status": "PASS",
+      "evidence": "Forward variables target this article and contain only its reviewed body; no title, handle, publication, product, policy or translation inputs."
+    },
+    {
+      "id": "rollback_body_only",
+      "status": "PASS",
+      "evidence": "Rollback variables restore only the exact captured source body on the same article."
+    },
+    {
+      "id": "twelve_protected_fields_bound",
+      "status": "PASS",
+      "evidence": "All 12 protected fields bind exactly to the before read; only body and platform updatedAt may change. Actual after-state must verify their preservation."
+    },
+    {
+      "id": "translatable_source_bound",
+      "status": "PASS",
+      "evidence": "Source body and digest match; five nonbody translatable keys are captured for exact after-state preservation."
+    },
+    {
+      "id": "all_locale_translation_inventory",
+      "status": "PASS",
+      "evidence": "All 21 enabled locales captured: 90 values, including 18 body values and 72 other values; en/ru/sv return no translation rows."
+    },
+    {
+      "id": "translation_values_preservation_plan",
+      "status": "PASS",
+      "evidence": "All 90 before rows are current with no market-specific rows returned. No translation mutation is proposed; only 18 body stale flags/metadata are expected to change and must be independently read back."
+    },
+    {
+      "id": "faq_to_contact_delta_supported",
+      "status": "PASS",
+      "evidence": "Two observed FAQ sizing expansion failures justify replacing the two help references with the rendered existing contact route. The delta remains within the article body; no FAQ/theme/policy edit or message submission."
+    },
+    {
+      "id": "unsupported_blanket_advice_removed",
+      "status": "PASS",
+      "evidence": "No invented size ranges or blanket true-to-size/size-up recommendations remain in the changed text; advice uses product-specific method, units, measurements and clarification."
+    },
+    {
+      "id": "customer_truth_and_scope_manual_review",
+      "status": "PASS",
+      "evidence": "Independent content review: revised copy makes no garment-material, inventory, delivery, response-time, returns, promotion, review or sales promise. It distinguishes body from garment dimensions, avoids judging stretch from photos and asks shoppers to verify wearer/piece/size/quantity. The unchanged broad introductory superlative is not a new empirical claim."
+    },
+    {
+      "id": "release_and_rollback_gates",
+      "status": "PASS",
+      "evidence": "One intended write, fresh drift check, uncertain-outcome readback before retry and guarded smallest rollback are specified; no business lift claimed."
+    },
+    {
+      "id": "ninety_unique_translation_value_fingerprints",
+      "status": "PASS",
+      "evidence": "All 90 translation identity/value pairs have independent hashes available for the frozen after-state review."
+    },
+    {
+      "id": "single_frozen_article_update_operation",
+      "status": "PASS",
+      "evidence": "Frozen mutation.graphql contains exactly one articleUpdate using the reviewed id and ArticleUpdateInput variables; selection reads article identity/body/updatedAt/publication and userErrors only."
+    },
+    {
+      "id": "provided_current_schema_validation",
+      "status": "PASS",
+      "evidence": "Saved mutation-validation.json reports isError=false and SUCCESS schema validation for ta20-sizing-article-update-20260914 revision1. This is root validator evidence, not an independently rerun remote validation or proof of live execution."
+    }
+  ],
+  "source_sha256": {
+    "change-plan.json": "4960d5976e7a411b4e17ec24c5940e6b33526d79a0d08176e9ae71663cb1f704",
+    "candidate-final.html": "7f8ccb04c9e4951b00b1a4c123640b46f2b090da700784b5f96bf2e2ab2ed975",
+    "article-before.json": "ab4706b544df738b9261754a9c9dfa96b1d2294e8b770658a53c71854f96580b",
+    "translations-before.json": "568b6e69327850ff17f46c310d902f42f9ef88dc6e980d3cc8e3ab7b96f5ded1",
+    "public-before-and-support.json": "1fd99b583a2198c8c23ba6b41955d95db7df892376a0fcdf95bb11c0a3b1b2e7",
+    "mutation-variables.json": "3cbda9a2c45fc8dd213766f38e797c69554aa9827779fd1dee2aa13f5acf7c1c",
+    "rollback-variables.json": "6b5ec3de61913b4d5e046ea9e4e98d2def708b703da95d616cb5b25a4ee04901",
+    "mutation.graphql": "7cec8ec41c1082ff46178895b4581bc9c780e7baa86c55688f95596d1ec2c95a",
+    "mutation-validation.json": "a2d2b3ca34d0c9c660e93e73b299144a8cb1c462dba7d6a5d9743ed87a5799bc"
+  },
+  "protected_field_count": 12,
+  "protected_fields_sha256": "f3427f847ffb164a0ea330fb4a81d7829f6696387b9f71d380600216bd38f65b",
+  "nonbody_translatable_content_sha256": "0b9fb323ef2c58530907c7071fa385c0fd780c86b0643f20348bde61247c2d9a",
+  "translation_value_count": 90,
+  "expected_body_translation_metadata_rows": 18,
+  "translation_value_sha256": {
+    "ar::title::GLOBAL": "a8eaf7ea1d28645a54a8aedf227f3716c8f430cdc06eb6bbca4a2170a88aba3f",
+    "ar::body_html::GLOBAL": "5baf0efc4da6fbe241a062d243a5e4e7bfc87f8ae669768315c772e50c93503d",
+    "ar::summary_html::GLOBAL": "bfc80797adf7efcd526355e4a87cf723a3ce5446f26066a274310cad6a19911b",
+    "ar::meta_title::GLOBAL": "a8eaf7ea1d28645a54a8aedf227f3716c8f430cdc06eb6bbca4a2170a88aba3f",
+    "ar::meta_description::GLOBAL": "61b434b0e548997e923fe1c05f21e14b425a7fa378fee37194f091ba85e1042e",
+    "cs::title::GLOBAL": "d7c129511b635ead02af78809591668a33738639a7e1cc1e2c93ae88aabe68e9",
+    "cs::body_html::GLOBAL": "ff4ddf043ad9419af837b4c6c35906c6cb9a9e0497eabbf899c11309b6d6ca65",
+    "cs::summary_html::GLOBAL": "d620a56011e42af0cc067c9e0ded8843760e7b44366dd76cb7ba29706afe174e",
+    "cs::meta_title::GLOBAL": "d7c129511b635ead02af78809591668a33738639a7e1cc1e2c93ae88aabe68e9",
+    "cs::meta_description::GLOBAL": "8201fdc16a1b3837f5e9aeb4b7f4544b4e44631d81e04c3e63d4aa2489c27667",
+    "da::title::GLOBAL": "8703b8375b7a28bacfe6789ba24edcdf954a9229c76573136d97a873a7752d41",
+    "da::body_html::GLOBAL": "b3dc275cbe4d851268b5fdf317f1715eee6274cf2663d17b837a2ffc1216f850",
+    "da::summary_html::GLOBAL": "ac27bff2ff672dd5ce9099961a935ec2402c9f906606f99db05a304741de0723",
+    "da::meta_title::GLOBAL": "8b2c1eb6005aba8fd10175fa56899caae6ac78988822a87e279dc810af3b2ae1",
+    "da::meta_description::GLOBAL": "c3aec5c14f9b84ee7fe7b1c968908ac390d2cc36428dc7a75dbfcea512077ebb",
+    "de::title::GLOBAL": "6ddb25c76df00ee1ba759c6fb51f18636d5e6f722ebbbef4bda4f3a418e6446e",
+    "de::body_html::GLOBAL": "2689482de6db2eeed1f1ce9273b4044dff2adef22cad5df1c63c44b9b0aa35e8",
+    "de::summary_html::GLOBAL": "b1508d814e4b89f1750de4383dc0335a2dfbab863909559e3624199697154104",
+    "de::meta_title::GLOBAL": "6ddb25c76df00ee1ba759c6fb51f18636d5e6f722ebbbef4bda4f3a418e6446e",
+    "de::meta_description::GLOBAL": "27b42dc0d7746138182299bd8e4b59475a486e52d9d9d9a4f051f52a57b12fd4",
+    "el::title::GLOBAL": "b29b55a28a7be9518de7e20de8f62055015fbf25f624227b247e0c239efc21dc",
+    "el::body_html::GLOBAL": "4028f00cd060ece60c9d5fac8e24f465ad325b3c725507f356f55b937bdd606d",
+    "el::summary_html::GLOBAL": "a6c4a4d9e7bc1466f542d43e32fc34ee0cb4bd799bbb5660fcfb9330f60f9e7c",
+    "el::meta_title::GLOBAL": "d64bead1baf4513abc5ba33a07e71d769aa196985ada9ad909a438d2a9a2f3ed",
+    "el::meta_description::GLOBAL": "ecf970657b37d3f07e0bf3cddb2069221d6c6b15a7b13dd5dd394b72f508bcfa",
+    "es::title::GLOBAL": "09e660762346c76097a29ad86d82be60c5d6dffcd3c0739479cd089472eb553a",
+    "es::body_html::GLOBAL": "7bd2362eca079dfaebf06152d5ad64c1fa2e645f996d3303c090fe1b28c86763",
+    "es::summary_html::GLOBAL": "3201558ada93dd6992ad11bb0ba6d8441fca111fa0ebadc69c0bd7e45079d1a1",
+    "es::meta_title::GLOBAL": "09e660762346c76097a29ad86d82be60c5d6dffcd3c0739479cd089472eb553a",
+    "es::meta_description::GLOBAL": "ecd20fff338ce4913d1e44bea8283a298a5008dee101e1ffba57b48d7b21ae31",
+    "fi::title::GLOBAL": "0b8e21f36cf2752f7a15b05d8f05c2ab0155f0d87d5de3bd793b9fef23825f59",
+    "fi::body_html::GLOBAL": "176c258912922876e3e8c4209ffe01ba0a80afd1b5094d04ab5f22c891c393d3",
+    "fi::summary_html::GLOBAL": "222c1f65d9cf26a07d3530f48d179a5d02c7c42ad2da947e2e5254f0f1a165d3",
+    "fi::meta_title::GLOBAL": "c3382cfa5268f55d06fe64b400d0421c049b5ed5ffbfeab2d4e3e3caafde44b7",
+    "fi::meta_description::GLOBAL": "539f361b899158119751f51568cdc088a05b3ad63397e9ecfee41c079c1a5455",
+    "fr::title::GLOBAL": "5c846f44a26186490f3422c301b7957563cbcb63df4532835e18dc1fe9b5dd59",
+    "fr::body_html::GLOBAL": "84db3f79a7db65fe0b1a072e14e84ed70495437da6c48ab121ca1fe2ffc229b4",
+    "fr::summary_html::GLOBAL": "4dd04a2772ba60e1c0afd3da8540ad90e43a1fe0b356934a43e754ef08da0985",
+    "fr::meta_title::GLOBAL": "5c846f44a26186490f3422c301b7957563cbcb63df4532835e18dc1fe9b5dd59",
+    "fr::meta_description::GLOBAL": "3ec6e20e8f35b42caecdbbbe7288af60330bf9e681ca1ba896054ea4752c00bc",
+    "he::title::GLOBAL": "2f207fc32350d24bb0c5ed7a0353f1d5faed6b2b814e5d83a670b7251c00942b",
+    "he::body_html::GLOBAL": "bb47cc2cc83de3d72b0e9e9a2bfee84d423bb49eba1ca3896231831d2a0c63e7",
+    "he::summary_html::GLOBAL": "cb8f14d53940f5b7b096bc28aecf89dc1dfeff9c6211d851b8dada3cc2e6e2f5",
+    "he::meta_title::GLOBAL": "2f207fc32350d24bb0c5ed7a0353f1d5faed6b2b814e5d83a670b7251c00942b",
+    "he::meta_description::GLOBAL": "eb581a6e8f20f0c7f3dc05d08e26e1d944efa2aefae47fe632c07534e1f45703",
+    "hi::title::GLOBAL": "a9f0a0c21817405542fcc7fc15ed6cb8e17f297c55d0e0d651b46182e6870caf",
+    "hi::body_html::GLOBAL": "6bc0a0190f19f343a8deb969c81c57aa66189f2ce40c004028bfe6ccf64e8712",
+    "hi::summary_html::GLOBAL": "302307e122da5088ae818d11713ddc107bba91fc559bb921a21392376cf7e352",
+    "hi::meta_title::GLOBAL": "a9f0a0c21817405542fcc7fc15ed6cb8e17f297c55d0e0d651b46182e6870caf",
+    "hi::meta_description::GLOBAL": "a2e6f47b42d89b2c9e9f007a79c0674b8ed1a96f87fdda2366bf1fc20b411fe3",
+    "it::title::GLOBAL": "8aeb2a731dad19d0413a8c3235379d6a76459471c70cd569e40a0f5d2cb9998d",
+    "it::body_html::GLOBAL": "7d937a21b108bd080735dfbb440364270314e2f6cda5cbf07c827f4d66c480c5",
+    "it::summary_html::GLOBAL": "5102e95ab98bca1f3a2410eb76a411c5864b4e2f0ffcab0a5f516f28f9862ee4",
+    "it::meta_title::GLOBAL": "8aeb2a731dad19d0413a8c3235379d6a76459471c70cd569e40a0f5d2cb9998d",
+    "it::meta_description::GLOBAL": "05cee394ff52ffcd53860f5ab8d34f2065f4fbaa30dfd4cc0cdb7ffe2f8bfc41",
+    "ja::title::GLOBAL": "da9aa506de6b0719d29fd8507a58563aaf7b9f5146cb7ee911adeb522c30e3cd",
+    "ja::body_html::GLOBAL": "ae686291ad13eb5b35d26ef44549d2240da63d352c31d48bd52c6fbc674823cc",
+    "ja::summary_html::GLOBAL": "90e0c37b43f3c13576ff8b40515545d668b4cf2c50d2f5e9c5a455f202339fac",
+    "ja::meta_title::GLOBAL": "8d1c1a5b13f8cf22c51ae23f3c3decb16415582e3fc1ad4a04c559e6f16a8baf",
+    "ja::meta_description::GLOBAL": "d13267c59b0a55d5881498709949c5d1c42d0f6e42e2ccf02067ebf1d36ee29b",
+    "ko::title::GLOBAL": "c6bb03b2ba29ed620250104840c612d99408d61d532b2b292a4990edb0aab53a",
+    "ko::body_html::GLOBAL": "a20b7996d500bf0811408e1f8ac413a28f551cfd8eafcb425743975ff5a3707a",
+    "ko::summary_html::GLOBAL": "ff9e85ae0b3ed81fefc0243efab4e39f3e5a6a49aa063df09dc91b8d1328b9fd",
+    "ko::meta_title::GLOBAL": "f58695158a09698c5569c5045de1b573a6be0234bea08e580d0444d954def2f9",
+    "ko::meta_description::GLOBAL": "f96c7658ed5e15da9e2a993205203b427591de511f439afa22f01685ead6e74d",
+    "nl::title::GLOBAL": "63545a25adab978611b9c71e9176097aa0f1fa6bc5b3c8b052f20d360dd4f0d9",
+    "nl::body_html::GLOBAL": "902ec3a1442f11b0e4e9ff759d2c926e2b8865759129ec65e16489d812e94344",
+    "nl::summary_html::GLOBAL": "2dc899ecfbe10c76072fb0b57faaee35a19587f5540ec91dbbb8e0595600d736",
+    "nl::meta_title::GLOBAL": "63545a25adab978611b9c71e9176097aa0f1fa6bc5b3c8b052f20d360dd4f0d9",
+    "nl::meta_description::GLOBAL": "0f08ce23b146a120883de46d9c6015e49b952e5102eabaa3af74fc26e11aec99",
+    "no::title::GLOBAL": "65408da44da6ca0688c4c6a3cbfc4164daf06c7c030418f56320029f4863c884",
+    "no::body_html::GLOBAL": "4e7d2deb0031d040bd167ddb26fdaa18c5a14eb5026db436d5145df3ab2f8421",
+    "no::summary_html::GLOBAL": "62e025c1a0a823a444f73a5b29e01ec7891024053b992b4299a9030006017147",
+    "no::meta_title::GLOBAL": "65408da44da6ca0688c4c6a3cbfc4164daf06c7c030418f56320029f4863c884",
+    "no::meta_description::GLOBAL": "a699fdfc824e56a2871a3b09710b057f85eaff0e377c969cfce89f6cad19fa46",
+    "pl::title::GLOBAL": "51525c06dc7888c334a997b3fc2aa62d4056dae847207461f8fbe8a29cf4666e",
+    "pl::body_html::GLOBAL": "b0625862042aa2d9b2cf5de3515b0d3edbcdd602fe86bf865f5a239c48b3aa09",
+    "pl::summary_html::GLOBAL": "5fc9404e7e4c4bd62e3dc93e5a17aaa79aa8f402b51ae5f768eb2f6fd9aa959a",
+    "pl::meta_title::GLOBAL": "51525c06dc7888c334a997b3fc2aa62d4056dae847207461f8fbe8a29cf4666e",
+    "pl::meta_description::GLOBAL": "dadf55b00c897048cca528cd24c5540224eab2321cbb12a8e0149c4ce481d919",
+    "pt-BR::title::GLOBAL": "5ab12f9b0003a8694655d07c4712773721d663d1f9b25aa1f634e492bc5a1628",
+    "pt-BR::body_html::GLOBAL": "b44df09f6f03a12694ebabb42affc2c4aedf5342cc6a019b1774b130ffb9e884",
+    "pt-BR::summary_html::GLOBAL": "e0d7e12151de8725ed22bb4214e318b224c5a7eafb3f5ba54cd612ecbfb5cb8e",
+    "pt-BR::meta_title::GLOBAL": "5ab12f9b0003a8694655d07c4712773721d663d1f9b25aa1f634e492bc5a1628",
+    "pt-BR::meta_description::GLOBAL": "5b1f96514bee9b37fbc37d75a57d5503e9828382105b12ff6a1a1260d55c051f",
+    "ro::title::GLOBAL": "753ce3e896c7cea399b98a4a14d65d3e44fb603cd6c766180d7843b8d1406f74",
+    "ro::body_html::GLOBAL": "97b313fdb8a915028dc979713a902596b9b90d9e19c307556aeffb714e7c6a8f",
+    "ro::summary_html::GLOBAL": "3fa9882bfdb03c553f475562437ac104a051e91a1dd7479f3d0f3df19c015772",
+    "ro::meta_title::GLOBAL": "753ce3e896c7cea399b98a4a14d65d3e44fb603cd6c766180d7843b8d1406f74",
+    "ro::meta_description::GLOBAL": "fdf6b32b1c342a38577334ddcc62cdc4a172c12b8516452a81c920a6dc56ab76"
+  },
+  "faq_scope_delta_verdict": "JUSTIFIED: two article-only support paragraph replacements use the observed rendered contact destination after the actual FAQ sizing answer failed to expand with jQuery undefined. This does not authorize repairing the FAQ/theme or claim successful contact delivery.",
+  "authority_basis": "Current September 14 daily editorial mandate plus exact parent dispatch for this existing English article body correction; this review confirms the concrete revision without broadening product, theme, account or paid scope.",
+  "limitations": [
+    "Prewrite review only: no live write, browser interaction or current platform read performed by this reviewer.",
+    "Public FAQ/contact observations are supplied root evidence, independently interpreted here but not replayed. Contact rendering does not certify submission delivery or response time.",
+    "Balanced markup is verified statically; published desktop/mobile readability, actual shopping/support link arrivals and saved article fields remain required after release.",
+    "All 90 translation values must remain unchanged. Eighteen localized body translations may become outdated and retain the old advice; this English-only correction does not complete localization.",
+    "Shopify may normalize whitespace and change body-translation metadata. Accept only an explicitly bounded after-state normalization; body rollback may not restore metadata exactly.",
+    "No traffic, purchase, revenue or profit improvement is established."
+  ],
+  "required_after_state": [
+    "Fresh before-write identity, body-hash and protected-field check; stop on drift.",
+    "Single successful exact article body mutation, or inspect uncertain result before any repeat.",
+    "Frozen independent article/translation after-read: exact candidate or separately reviewed platform-only whitespace normalization, all 12 protected fields and five nonbody source keys preserved, all 90 values preserved.",
+    "Published English desktop/mobile render and actual shopping/contact navigation; no cart, checkout, purchase or contact submission."
+  ],
+  "next_action": "Parent may execute only this exact reviewed body correction after its final fresh drift check, then supply frozen after-state evidence for independent verification.",
+  "mutation_validation_added_at_utc": "2026-09-14T22:53:33.579793+00:00"
+}

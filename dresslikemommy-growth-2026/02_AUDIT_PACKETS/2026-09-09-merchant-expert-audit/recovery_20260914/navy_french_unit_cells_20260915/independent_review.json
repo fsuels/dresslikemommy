@@ -1,0 +1,188 @@
+{
+  "status": "APPROVE_LOCAL_CANDIDATE",
+  "reviewedAtUtc": "2026-09-15T02:52:18.123552+00:00",
+  "reviewer": "merchant_es_translation_proposal",
+  "scope": "Independent local semantic and diff review only. Approval is bound to the exact candidate/proposal hashes and permits no subagent mutation or release.",
+  "inputBindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_french_unit_cells_20260915/proposal.json",
+      "sha256": "267c47dcddb20acb56b8a3bf594fb4923bf994c82a551268047bfc1b0a317b6e"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_french_unit_cells_20260915/source_before.json",
+      "sha256": "a5f750daf41222520ddbab5b4c9c7b24a1d9d0f6c7c88fb37992fb5046d52f16"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_french_unit_cells_20260915/before.fr.body.html",
+      "sha256": "d9289e4ea7c86b903d9cf5e36cd6aac74d9d65153e97c998c797b484d654b595"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_french_unit_cells_20260915/candidate.fr.body.html",
+      "sha256": "24083c5a4a1eec687d17025a3bcaf06698e64486c3b0cebb3bb1353e7e85ad03"
+    }
+  ],
+  "target": {
+    "shopId": "15571635",
+    "resourceId": "gid://shopify/Product/7670609346657",
+    "locale": "fr",
+    "marketId": null,
+    "key": "body_html",
+    "outdatedBefore": false,
+    "sourceReceivedAtUtc": "2026-09-15T02:46:51.459Z",
+    "englishSourceDigest": "af819a75e9947b8a0075e301217679f87fad2fcae08f06fa3fa81773385183b6"
+  },
+  "decision": "The two changes correctly replace mistranslated inch-unit suffixes with French pouces. Decimal-comma measurements, metric values, row associations, and all other text/markup remain exact.",
+  "semanticBasis": "In these length cells, English in is the unit inch, rendered pouces in the neighboring French cells. Dans is a French preposition and not a measurement unit. Both candidate plurals are appropriate. This review confirms translation equivalence, not independent garment-measurement accuracy.",
+  "changedCells": [
+    {
+      "tableIndexZeroBased": 0,
+      "tableId": "size-chart",
+      "rowIndexZeroBasedIncludingHeader": 7,
+      "columnIndexZeroBased": 9,
+      "sourceEnglishRowLabel": "Child 9-10 Years",
+      "existingFrenchRowLabel": "Fille 9-10 ans",
+      "columnHeader": "Longueur du vêtement (cm/po)",
+      "englishCell": "74 cm / 29.1 in",
+      "beforeFrenchCell": "74 cm / 29,1dans",
+      "candidateFrenchCell": "74 cm / 29,1 pouces",
+      "neighborAbove": "71 cm / 28 pouces",
+      "neighborBelow": "114 cm / 44,9 pouces",
+      "numericValuesIdenticalToEnglish": true
+    },
+    {
+      "tableIndexZeroBased": 1,
+      "tableId": "size-chart-cardigan",
+      "rowIndexZeroBasedIncludingHeader": 7,
+      "columnIndexZeroBased": 9,
+      "sourceEnglishRowLabel": "Child 9-10 Years",
+      "existingFrenchRowLabel": "Fille 9-10 ans",
+      "columnHeader": "Longueur du vêtement (cm/po)",
+      "englishCell": "41 cm / 16.1 in",
+      "beforeFrenchCell": "41 cm / 16,1dans",
+      "candidateFrenchCell": "41 cm / 16,1 pouces",
+      "neighborAbove": "39 cm / 15,4 pouces",
+      "neighborBelow": "40 cm / 15,7 pouces",
+      "numericValuesIdenticalToEnglish": true
+    }
+  ],
+  "tableValidation": {
+    "tableCountBeforeAndAfter": 2,
+    "rowsPerTableIncludingHeader": [
+      13,
+      13
+    ],
+    "columnsPerRow": 10,
+    "dataCellsBeforeAndAfter": 240,
+    "changedDataCells": 2,
+    "unchangedDataCells": 238,
+    "unchangedHeaderCells": 20,
+    "tableIdsAndAllCellAttributesIdentical": true,
+    "coordinatesIndependentlyParsed": true
+  },
+  "wholeBodyValidation": {
+    "exactTwoStringReplacementsExplainEntireCandidate": true,
+    "additionalTextChanges": 0,
+    "numberTokenCount": 384,
+    "orderedNumberTokensIdentical": true,
+    "numberTokensSha256": "5d35b6a9f55ced7a60e1a49cb858042969b42373a4a73cb97338da4a373be8fa",
+    "rawHtmlTagTokenCount": 644,
+    "rawHtmlTagsIdentical": true,
+    "rawHtmlTagsSha256": "474c7974518b44296a6220219bc94627ec5f40f306f8963be5369594b2dc3d64",
+    "beforeUtf8Bytes": 9220,
+    "candidateUtf8Bytes": 9226,
+    "byteLengthDelta": 6,
+    "sourceFrenchBodyEqualsBeforeArtifact": true,
+    "sourceEnglishBodyEqualsProductDescriptionHtml": true
+  },
+  "protectedFrenchRecords": [
+    {
+      "key": "title",
+      "locale": "fr",
+      "outdated": false,
+      "valueSha256": "01488d23c5656c32b1cf6a76562db1f1bb9d3ccaa8495c952d1dd6fa89f17761",
+      "fullRecordCanonicalSha256": "807b0db8d3e8094e2abc63415c9d5e1fcf7f130f2f6ef9a8c4058fd57e238877",
+      "mustBeUnchangedAtAfterReadback": true
+    },
+    {
+      "key": "product_type",
+      "locale": "fr",
+      "outdated": false,
+      "valueSha256": "4a5ca881708f46b7c1b381a2a01e012c7b1106a690dea45dea9934d68c982c0f",
+      "fullRecordCanonicalSha256": "319252ce9170e574324fca38b543b2eeb62c125bbc6cfced8bcbe9db2dd02600",
+      "mustBeUnchangedAtAfterReadback": true
+    },
+    {
+      "key": "meta_title",
+      "locale": "fr",
+      "outdated": false,
+      "valueSha256": "09c2559f3ae645de0e0d3d680c77d171a7b728a19e57039eb0b75e81ccaab7f7",
+      "fullRecordCanonicalSha256": "7220b0f3b2f1915f527870aca7aee7fd080a1f12345f9d0e6d733933f93e6a83",
+      "mustBeUnchangedAtAfterReadback": true
+    },
+    {
+      "key": "meta_description",
+      "locale": "fr",
+      "outdated": false,
+      "valueSha256": "dd8b956165f2eb19fccf100cddf1ad2344402d47023b988ed3d57465ad9d1a2c",
+      "fullRecordCanonicalSha256": "70446c3bd5d873f9cc989f40163353bf790568368e3bb2347478e7caf81f657c",
+      "mustBeUnchangedAtAfterReadback": true
+    }
+  ],
+  "protectedEnglishSourceFields": [
+    {
+      "key": "title",
+      "locale": "en",
+      "digest": "85fa5f55bd8ce65daa3d893f5f7fc445b8e9041778ed61eca617efa2b6a82fa2",
+      "valueSha256": "85fa5f55bd8ce65daa3d893f5f7fc445b8e9041778ed61eca617efa2b6a82fa2"
+    },
+    {
+      "key": "body_html",
+      "locale": "en",
+      "digest": "af819a75e9947b8a0075e301217679f87fad2fcae08f06fa3fa81773385183b6",
+      "valueSha256": "af819a75e9947b8a0075e301217679f87fad2fcae08f06fa3fa81773385183b6"
+    },
+    {
+      "key": "handle",
+      "locale": "en",
+      "digest": "92fb3a0029e02f1cbe934fa5964192800fad3840ea3c3465cc9206a599b2530a",
+      "valueSha256": "92fb3a0029e02f1cbe934fa5964192800fad3840ea3c3465cc9206a599b2530a"
+    },
+    {
+      "key": "product_type",
+      "locale": "en",
+      "digest": "bb12673a6906da9fb5881478517092e4877220c924e64298ec3808daba75fe20",
+      "valueSha256": "bb12673a6906da9fb5881478517092e4877220c924e64298ec3808daba75fe20"
+    },
+    {
+      "key": "meta_title",
+      "locale": "en",
+      "digest": "e681b560708f91843170aef817dca4286d47e7f2d3996cd64325781d7cf84b7c",
+      "valueSha256": "e681b560708f91843170aef817dca4286d47e7f2d3996cd64325781d7cf84b7c"
+    },
+    {
+      "key": "meta_description",
+      "locale": "en",
+      "digest": "a44148db3c4eca52966ce99aecc2711be52785df0fff06d6aedd1c80ce70ee4d",
+      "valueSha256": "a44148db3c4eca52966ce99aecc2711be52785df0fff06d6aedd1c80ce70ee4d"
+    }
+  ],
+  "nonBodyProtection": "The proposal targets only French body_html; all four other returned French records have exact before hashes above and no proposed new values. All six English translatable fields remain source evidence only. A live after-state was not read or claimed.",
+  "parentExecutionBoundary": [
+    "Reconfirm actual French before value and English digest immediately before the one-field translation registration.",
+    "Require exactly one target: global French body_html on this product. Reject any extra fields, locales or market overrides.",
+    "Read back exact candidate body plus the four protected French records after any root-authorized write; verify source English values remain unchanged."
+  ],
+  "checks": {
+    "inputHashes": "VERIFIED",
+    "sourceIdentityAndLocale": "VERIFIED",
+    "twoTablesAnd240DataCells": "VERIFIED",
+    "exactCoordinatesAndEnglishMeasurements": "VERIFIED",
+    "onlyTwoSuffixCorrections": "VERIFIED",
+    "allOtherNumbersTagsAndText": "VERIFIED",
+    "fourUntargetedFrenchRecordsBound": "VERIFIED",
+    "externalCalls": "NOT RUN",
+    "externalWrites": "NOT RUN",
+    "liveAfterState": "NOT RUN"
+  },
+  "findings": []
+}

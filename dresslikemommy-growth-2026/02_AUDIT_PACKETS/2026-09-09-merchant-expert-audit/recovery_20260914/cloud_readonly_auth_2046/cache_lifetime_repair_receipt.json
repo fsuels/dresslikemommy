@@ -1,0 +1,65 @@
+{
+  "action": "TA07-CLOUD-READONLY-AUTH-CACHE-LIFETIME-REPAIR-20260914",
+  "status": "IMPLEMENTED_LOCAL_ONLY__FOCUSED_TESTS_PASS",
+  "completedAt": "2026-09-14T21:06:52.065619+00:00",
+  "supersedes": "Only the one-minute token safety margin and the two auth-file hashes in the prior frozen implementation receipt; prior receipt is retained byte-identical.",
+  "priorReceiptSha256": "2533eb6ea5993cfe1e70feb50191c269e4262273c255e111f7eabdc23a7fd759",
+  "change": "Fixed EXPIRY_MARGIN_MS to16minutes:15-minute permitted Queue invocation plus1-minute buffer. All returned tokens have more than16minutes remaining; no per-read OAuth, retry or fallback was added.",
+  "interface": "Unchanged: resolveShopifyAdminToken(env,{domain,fetchImpl,now}) -> Promise<string>; existing factory, allowed scopes and safe SourceError codes preserved.",
+  "changedFiles": {
+    "src/shopify-auth.js": "11c3253ff5a5a4afcdf15d32e46d368a656078d604f769f918079b720256a8d3",
+    "test/shopify-auth.test.mjs": "e028f85cd6cb3580e77c0006753adbaed72fba417afaf3c07451580314b908cc"
+  },
+  "focusedTests": {
+    "command": "node --test test/shopify-auth.test.mjs",
+    "tests": 17,
+    "passed": 17,
+    "failed": 0,
+    "exitCode": 0,
+    "artifact": "cache_lifetime_repair_tests.txt",
+    "sha256": "b73ff92a57eb43e68549a6383815c217849a4658f948ec822abd2727792aa73a"
+  },
+  "newRegression": {
+    "caseA": "Seed a warm token with61seconds remaining, resolve once for an invocation, then perform20 synthetic Admin reads across a15-minute window. The token is refreshed once before reads; all20 return200 and at least1minute remains after the window.",
+    "caseB": "A cached token with16minutes plus1millisecond remaining is reused with zero additional exchange, and remains valid through the same15-minute invocation plus buffer.",
+    "oldBehaviorEvidence": "Root independent review supplied the third50-second-read401 reproduction. The new test models that sequence before continuing the remaining invocation."
+  },
+  "adaptedTests": [
+    "Reject expiry durations at or below960seconds.",
+    "Account for response latency before the16-minute boundary.",
+    "Refresh the warm cache exactly at the new boundary.",
+    "Keep renewal failures closed without reusing a token at the boundary."
+  ],
+  "protectedObservations": {
+    "src/admin-reader.js": {
+      "before": "77c501a87a66cc6b391be840dcc1557c992e4a02527c18f24928382d3d4ff326",
+      "after": "77c501a87a66cc6b391be840dcc1557c992e4a02527c18f24928382d3d4ff326",
+      "status": "UNCHANGED"
+    },
+    "src/worker.js": {
+      "before": "f258f9ae2441da7450ac7f14426c032caa86271f04ddb19f3a5b1d02f1190c70",
+      "after": "00288587ad8f555e07e4244901d0c4fd24125f9f88eb1d78cc5b7722bbc60941",
+      "status": "ROOT_CONCURRENT_CHANGE_NO_SUBAGENT_EDIT"
+    },
+    "src/checkpoint.js": {
+      "before": "5c859d5e8d336420324ae87b356269b4f25734ced709c0d3213606ad27d6ab5a",
+      "after": "5c859d5e8d336420324ae87b356269b4f25734ced709c0d3213606ad27d6ab5a",
+      "status": "UNCHANGED"
+    },
+    "config.json": {
+      "before": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+      "after": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+      "status": "UNCHANGED"
+    },
+    "wrangler.toml": {
+      "before": "ef6bf944071d726129013a6ba4e68a91ddafe5552dd613e1dfdfcd7a874883af",
+      "after": "1c852929a6aff41443e316b701125fee67037bb1de4abeea50adacfd6ba60c4e",
+      "status": "ROOT_CONCURRENT_CHANGE_NO_SUBAGENT_EDIT"
+    }
+  },
+  "scope": "Only src/shopify-auth.js, test/shopify-auth.test.mjs and new additive repair evidence were edited. Root integration/config splitting remains root-owned.",
+  "externalCalls": 0,
+  "dependenciesAdded": false,
+  "deployed": false,
+  "nextAction": "Root reruns its independent lifecycle reproduction and final integration checks against these exact hashes."
+}

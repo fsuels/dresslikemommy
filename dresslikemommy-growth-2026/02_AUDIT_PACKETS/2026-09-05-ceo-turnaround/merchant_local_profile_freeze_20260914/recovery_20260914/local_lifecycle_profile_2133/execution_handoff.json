@@ -1,0 +1,88 @@
+{
+  "action": "TA07-LOCAL-REFRESH-PROFILE-20260914-2133",
+  "at_utc": "2026-09-14T21:51:41.982814+00:00",
+  "status": "IMPLEMENTED_VERIFIED_LOCAL__AUTOMATION_UPDATED__ALL_MARKET_RELEASE_PARTIAL",
+  "executor_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "release_profile": "native-holds-20260914",
+  "contract_sha256": "82a3f587677d260cbe1af569a069ad26f318e91a33c97f9767b43dbab80b3e59",
+  "lifecycle_sha256": "08580cd0f7d9bc61ade2b98e0d8b46d9c86f9a8ed6987936d6cecf85b7c6e14c",
+  "independent_review_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/local_lifecycle_profile_2133/independent_review/review.json",
+  "independent_review_sha256": "0bc91bf21221f1f167ba9a0f6269b546c2dafb14d5c89e0fdf12a146f2a3f9f3",
+  "integration_validation_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/local_lifecycle_profile_2133/integration_validation.json",
+  "integration_validation_sha256": "ec5dbd4d5bd7cdd1a15bfd6f55ba26c35057bb16007774b8e56f427e1c2bad43",
+  "historical_replay_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/local_lifecycle_profile_2133/historical_replay_receipt.json",
+  "historical_replay_sha256": "d224abf2990a8b29b209364a23981d1a28f6e1e29c607fd079307747ae491a83",
+  "implemented": [
+    "Explicit current generator profile with pinned collection/build dependencies; old profile and old approvals remain separate",
+    "Exact native generator replay instead of a second hold filter",
+    "Complete-source-proven protected removals need exact independent omission review; archived held parents no longer block refresh",
+    "Existing daily heartbeat now routes due refreshes through the reviewed local profile"
+  ],
+  "verified": {
+    "focused_tests": 61,
+    "independent_total_tests": 69,
+    "independent_additional_cases": 8,
+    "historical_US_rows": 4741,
+    "historical_feed_sha256": "b958efdda00396723ef0ee0f952e5bd9c15382ead4d748991dc83023483d0571",
+    "source_parents": 238,
+    "source_variants": 4925,
+    "held_available_rows": 162,
+    "configured_holds": 6,
+    "old_source_timestamp_preserved": true,
+    "offline_promotion_rejected": true
+  },
+  "heartbeat": {
+    "automation_id": "google-merchant-all-market-free-listings",
+    "status": "ACTIVE",
+    "same_cadence_and_target": true,
+    "delivery_observed_at_utc": "2026-09-14T21:27:49.466Z",
+    "work_completed_at_utc": "2026-09-14T21:51:41.982814+00:00",
+    "future_execution_guaranteed": false,
+    "before_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/local_lifecycle_profile_2133/automation_before.json",
+    "after_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/local_lifecycle_profile_2133/automation_after.json",
+    "after_sha256": "a54ebd87a89cd859b96fc91442d51317e06a8b3275b60910ab9a256ab5e57096"
+  },
+  "live_actions_this_heartbeat": {
+    "automation_prompt_update": 1,
+    "live_source_refreshes": 0,
+    "feed_promotions": 0,
+    "new_markets": 0,
+    "shopify_mutations": 0,
+    "merchant_mutations": 0,
+    "cloud_mutations": 0
+  },
+  "unchanged_live_facts_from_prior_verified_receipt": {
+    "verified_at": "2026-09-14T20:41:00Z through 21:16:00Z; exact clocks in prior handoff",
+    "US_approved": 4741,
+    "AU_approved": 4741,
+    "other_configured_countries_without_products": 29,
+    "store_quality": "No score / Missing information",
+    "no_reaudit_this_heartbeat": true
+  },
+  "source_freshness": {
+    "last_actual_US_source_completed_at": "2026-09-14T13:16:10.466Z",
+    "proactive_refresh_target": "2026-09-15T13:16:10.466Z",
+    "unchanged_public_host_limit": "2026-09-16T13:16:10.466Z",
+    "historical_replay_did_not_renew_source": true
+  },
+  "next_owner_action": "Publish the already reviewed Shopify theme DLM UX Performance QA 2026-09-10 (137888792673) through Shopify Admin; connector policy prevents agent publication or MAIN writes. Exact current numeric-variant buyer entry remains required before localized or CA/GB feed release.",
+  "independent_pending_inputs": [
+    "Existing exact dedicated cloud-app approval request remains unanswered",
+    "Supplier-supported Canada/UK transit times remain unanswered",
+    "Published return-policy truth conflict remains unresolved"
+  ],
+  "next_internal_actions": [
+    "Use the new explicit local profile for the next due genuinely fresh US source scan and exact independent per-run review if cloud remains gated",
+    "After owner theme publication, existing UX owner verifies live exact variant/country/language entry; Merchant resumes the next qualified market cohort",
+    "Reconcile supplier shipping and return terms when the existing owner answers arrive"
+  ],
+  "limits": [
+    "Local code readiness is not a fresh collection, Google receiving, free-listing exposure, sales or profit",
+    "Cloud app/Worker deployment remains unexecuted; broad Admin credential transfer remains prohibited",
+    "Do not repeat the known public-client HTTP403 request or infer Google fetch failure from it",
+    "Parent owns shared canonical integration and generated cockpit; no direct shared edits made here"
+  ],
+  "rollback": "Default legacy profile and old freeze remain preserved. The new profile has no production invocation yet. Select neither profile for a live write if current fingerprint/source/review gates fail; review a successor rather than changing pins. Revert only local files owned by this repair if needed. Restore the recorded prior heartbeat prompt through automation_update if the profile is withdrawn.",
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md plus latest Merchant checkpoint; no competing continuation prompt"
+}

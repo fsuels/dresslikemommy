@@ -1,0 +1,37 @@
+{
+  "schema": "microsoft-campaign-package-independent-review.v1",
+  "verdict": "PASS_WITH_GATES",
+  "scope": "LOCAL_ASSEMBLY_ONLY_NO_IMPORT_AUTHORITY",
+  "reviewer": "/root/international_campaign_build",
+  "subject": "campaign-package.json",
+  "subject_sha256": "7453e80f173753b0e653cce8c539e57c0226348ad74f89d93dd8a0784f154288",
+  "reviewed_counts": {
+    "language_sets": 20,
+    "campaign_blueprints": 35,
+    "countries_with_blueprints": 25,
+    "countries_accounted_for": 65,
+    "countries_gated_without_blueprints": 40,
+    "keyword_rows": 204,
+    "negative_rows": 324,
+    "profile_negatives": 149
+  },
+  "verified": [
+    "All seven source hashes match.",
+    "CSV and JSON bindings reconcile.",
+    "No literal negative-positive conflicts.",
+    "Text limits including Japanese wide characters pass.",
+    "Existing US/DE campaign/ad/group IDs and original baseline text remain preserved.",
+    "Portugal variant and exploratory US language holds remain explicit.",
+    "US/DE previously saved country targets not mislabeled unsaved.",
+    "All proposed UTM suffixes carry native automatic-tag mapping verification gate.",
+    "Four all-channel session count metrics reconcile against independent total query."
+  ],
+  "qualifications": [
+    "Native UI observations are root-supplied evidence, not independently inspected by this reviewer.",
+    "No native editorial, country delivery, shipping, consent, purchase attribution, economics or profit proof.",
+    "No import, launch, budget or tracking release authority."
+  ],
+  "required_corrections_remaining": 0,
+  "reviewer_external_mutations": 0,
+  "reviewer_file_edits": 0
+}

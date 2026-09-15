@@ -1,0 +1,271 @@
+{
+  "schema": "dlm.navy_au.independent_qualification_review.v1",
+  "reviewed_at_utc": "2026-09-14T23:27:44.865Z",
+  "reviewer": "/root/tag_repair_review",
+  "task_classification": "VERIFY",
+  "role": "INDEPENDENT_SAVED_EVIDENCE_REVIEWER",
+  "did_build_or_execute": false,
+  "verdict": "PASS_WITH_LIMITS",
+  "accepted_milestone": "One exact AU English Navy dress pair has source-consistent variant/price configuration and an operator-reported successful product/cart/checkout-entry check. Actual landed economics, purchase measurement and paid launch remain unqualified.",
+  "scope": {
+    "read_inputs": [
+      "research/NAVY_AU_COST_SOURCE_20260914.json",
+      "research/NAVY_AU_QUALIFICATION_20260914.json"
+    ],
+    "guidance_read": [
+      "AGENTS.md",
+      "ops/AGENT_HARNESS_V3.md"
+    ],
+    "only_written_artifact": "review/NAVY_AU_QUALIFICATION_20260914_REVIEW.json",
+    "external_calls": 0,
+    "browser_replay": false,
+    "canonical_writes": 0,
+    "all_market_packet_reread": false,
+    "other_agents_spawned": 0
+  },
+  "source_hashes": {
+    "research/NAVY_AU_COST_SOURCE_20260914.json": "30049d8d45c33eaebd7389cdc43ec24e1e6f610a00d68ac3d7e8e77b927ee3e0",
+    "research/NAVY_AU_QUALIFICATION_20260914.json": "23ebe35d505a32368c6d4b438bcf12e636e4e8773243db65e69f5d43e374fcd9"
+  },
+  "summary": {
+    "checks_passed": 35,
+    "checks_failed": 0,
+    "unresolved_material_defects": 0,
+    "variant_count": 24,
+    "mother_variant": "46501139611745",
+    "child_variant": "46501139415137",
+    "pair_subtotal_AUD": "75.00",
+    "configured_goods_USD": "26.00",
+    "conditional_ROAS_adcap_floor_AUD": "11.53",
+    "conditional_nonad_envelope_AUD": "40.96153846153846153846153846"
+  },
+  "checks": [
+    {
+      "id": "SOURCE_SHOP_ID",
+      "result": "PASS",
+      "evidence": "Source shop 15571635, Dress Like Mommy, base USD."
+    },
+    {
+      "id": "SOURCE_PRODUCT_ID",
+      "result": "PASS",
+      "evidence": "Exact query variable, returned product and candidate identity match."
+    },
+    {
+      "id": "SOURCE_STATUS_URL",
+      "result": "PASS",
+      "evidence": "Active product and exact onlineStoreUrl in saved source, not independent live availability proof."
+    },
+    {
+      "id": "QUERY_SCOPE",
+      "result": "PASS",
+      "evidence": "Saved source requests AU contextual prices and catalog inventoryItem.unitCost; query validation/execution reported by root, not replayed."
+    },
+    {
+      "id": "COMPLETE_24_ROWS",
+      "result": "PASS",
+      "evidence": "24 unique variant IDs, first50 query exhausted; no missing page in saved response."
+    },
+    {
+      "id": "VARIANT_GRID",
+      "result": "PASS",
+      "evidence": "12 Dress and 12 Cardigan combinations, each seven child and five mother sizes; no Mother3XL row."
+    },
+    {
+      "id": "PRICE_CURRENCY_ALL24",
+      "result": "PASS",
+      "evidence": "All AU contextual selling prices AUD."
+    },
+    {
+      "id": "COST_CURRENCY_ALL24",
+      "result": "PASS",
+      "evidence": "All 24 configured unit costs present in USD, without invoice/fulfillment verification."
+    },
+    {
+      "id": "ALL24_PRICE_COST_VALUES",
+      "result": "PASS",
+      "evidence": "Seven child dresses AUD35/USD12; five mother dresses AUD40/USD14; seven child cardigans AUD26/USD9; five mother cardigans AUD29/USD10."
+    },
+    {
+      "id": "PAIR_MOTHER",
+      "result": "PASS",
+      "evidence": {
+        "variant_id": "46501139611745",
+        "type": "Dress",
+        "size": "Mother M",
+        "quantity": 1,
+        "price_AUD": "40",
+        "catalog_cost_USD": "14"
+      }
+    },
+    {
+      "id": "PAIR_CHILD",
+      "result": "PASS",
+      "evidence": {
+        "variant_id": "46501139415137",
+        "type": "Dress",
+        "size": "Child 4 Years",
+        "quantity": 1,
+        "price_AUD": "35",
+        "catalog_cost_USD": "12"
+      }
+    },
+    {
+      "id": "PAIR_ARITHMETIC",
+      "result": "PASS",
+      "evidence": "AUD40+35=AUD75 selected merchandise; configured USD14+12=USD26. Currency amounts are not directly subtracted."
+    },
+    {
+      "id": "BROWSER_CART_CHECKOUT_RECONCILIATION",
+      "result": "PASS",
+      "evidence": "Root-reported exact pair, country, language, currency, labels and cart/checkout-entry totals reconcile; no independent browser replay."
+    },
+    {
+      "id": "BROWSER_ROUTE_SCOPE",
+      "result": "PASS",
+      "evidence": "One existing AU English candidate and exact product route; no universal route conclusion."
+    },
+    {
+      "id": "TIME_SEQUENCE",
+      "result": "PASS",
+      "evidence": "Saved source23:17:04–05UTC precedes/coincides with browser window23:17:05–23:21:44UTC onSep14."
+    },
+    {
+      "id": "NO_SHIPPING_QUOTE_CLAIM",
+      "result": "PASS",
+      "evidence": "Checkout entry is not a shipping rate, delivery, final tax, payment or fulfillment validation."
+    },
+    {
+      "id": "NO_CUSTOMER_PAYMENT_ENTRY",
+      "result": "PASS",
+      "evidence": "No customer/address/payment entry or order submission reported; no private checkout token retained."
+    },
+    {
+      "id": "CART_CLEANUP",
+      "result": "PASS",
+      "evidence": "Root receipt restores initially empty cart after removing only two test items; no independent current-cart read."
+    },
+    {
+      "id": "SURFACE_PRESERVATION",
+      "result": "PASS",
+      "evidence": "Root reports temporary tab closed and editor2 identity/handoff preserved; editor fields not rechecked and no Save/auth attempt."
+    },
+    {
+      "id": "429_AND_MEASUREMENT_LIMITS",
+      "result": "PASS",
+      "evidence": "Historical429 is retained; successful normal UI only clears exact selected pair entry. No alternate network/bypass inference, all-market clearance or measurement acceptance."
+    },
+    {
+      "id": "SOURCE_RANGE_PROPOSAL",
+      "result": "PASS",
+      "evidence": "Variant-side range independently confirmed. Public3XL wording is root UI evidence, not independently viewed. Exact body/translation reread remains product-owner prerequisite; no chart dimensions validated."
+    },
+    {
+      "id": "NO_PRODUCT_REPAIR_EXECUTED",
+      "result": "PASS",
+      "evidence": "Narrow source proposal only; no Shopify body/translation/theme repair executed or delegated live-write authority granted."
+    },
+    {
+      "id": "CATALOG_NOT_INVOICE",
+      "result": "PASS",
+      "evidence": "Configured USD26 does not establish actual goods cost, landed fulfillment, fees, FX, retained revenue, CPA or profit; unknown actual amounts remain null."
+    },
+    {
+      "id": "ROAS_BOUND",
+      "result": "PASS",
+      "evidence": "Conditional75/6.5=AUD11.538461...; strict cent cap floors to11.53, not11.54."
+    },
+    {
+      "id": "NONAD_BOUND",
+      "result": "PASS",
+      "evidence": "AUD75×70%−75/6.5=AUD40.96153846153846 non-ad envelope at exact6.5x and30% profit; rounding tolerance below1e-13AUD."
+    },
+    {
+      "id": "FX_FORMULA",
+      "result": "PASS",
+      "evidence": "USD26×supportedAUD/USD rate must be deducted from the conditional AUD envelope; actual FX and remaining costs are unknown."
+    },
+    {
+      "id": "CONDITIONAL_NOT_ACTUAL",
+      "result": "PASS",
+      "evidence": "AUD75 retained revenue is explicitly hypothetical, not validated net settlement or current allowable spend."
+    },
+    {
+      "id": "PAID_HELD",
+      "result": "PASS",
+      "evidence": "No funded or qualified launch; existing normal Google Save gate remains pending."
+    },
+    {
+      "id": "NO_NEW_ACCOUNT_ACTIONS",
+      "result": "PASS",
+      "evidence": "No Ads change, spend/bid change, ad click or repeated keyword research; prior builds retained."
+    },
+    {
+      "id": "NONPURCHASE_ANALYTICS_LIMIT",
+      "result": "PASS",
+      "evidence": "Normal cart and checkout-entry activity may create analytics effects, not demand or purchase-receiver proof."
+    },
+    {
+      "id": "SOURCE_HASH_FROZEN",
+      "result": "PASS",
+      "evidence": "Configured-cost source unchanged from assignment."
+    },
+    {
+      "id": "QUALIFICATION_HASH_FROZEN",
+      "result": "PASS",
+      "evidence": "Bound to root's final corrected qualification receipt."
+    },
+    {
+      "id": "EVENT_WORDING_RESOLVED",
+      "result": "PASS",
+      "evidence": "Zero intentional generation/order submission is distinct from actual emitted events, which were not inspected."
+    },
+    {
+      "id": "EXACT_DELTA_LIMIT",
+      "result": "PASS",
+      "evidence": "Reversing only the event-wording distinction and independent-review pointer reconstructs the exact original qualification SHA256 ae1514b38141c8e3e890074d31be86a874d8df0e9817f32d252f4992435317fa."
+    },
+    {
+      "id": "SEPARATE_REVIEW_POINTER",
+      "result": "PASS",
+      "evidence": "Operator receipt points to this independent verdict; operator does not self-certify the independent result."
+    }
+  ],
+  "resolved_finding": {
+    "id": "UNOBSERVED_PURCHASE_EMISSION",
+    "original_qualification_sha256": "ae1514b38141c8e3e890074d31be86a874d8df0e9817f32d252f4992435317fa",
+    "issue": "purchase_event_generation=0 could imply observed runtime absence despite no collector or receiver inspection.",
+    "root_correction": "Renamed to intentional_purchase_event_generation=0 and recorded actual_emitted_purchase_events as NOT_INSPECTED; separate independent-review pointer also added.",
+    "reviewer_changed_operator_input": false,
+    "exact_reversal_hash_verified": true
+  },
+  "judgment": {
+    "configuration": "24 complete unique rows, twelve Dress and twelve Cardigan combinations. The exact Mother M dress 46501139611745 and Child 4 Years dress 46501139415137 have AUD40 and AUD35 prices and USD14 and USD12 configured catalog costs.",
+    "arithmetic": "AUD75/6.5 yields a strict cent-denominated illustrative ad ceiling of AUD11.53. At exact6.5x and30% margin, total non-ad cost capacity is AUD40.961538...; illustrative remaining capacity is that amount minus26 times an actual supported AUD/USD settlement rate.",
+    "actual_economics": "USD26 is catalog configuration, not invoice-backed goods or landed cost. Actual fulfillment, payment/FX fees, returns, overhead, FX and retained settlement revenue remain unknown. No actual allowable CPA or profit is established.",
+    "source_truth": "The complete saved variant grid ends at Mother2XL. Public3XL description and rendered selector are operator-reported evidence; independently verified only the variant side. Fresh body/translation read and exact narrow3XL-to-2XL proposal belong to the existing product owner; no repair or size-chart validation occurred.",
+    "strategic_challenge": "A successful checkout entry and catalog-cost availability remove limited prerequisites; they cannot justify funding a candidate before actual landed cost, buyer shipping acceptance, measurement and present authority qualify. No additional country expansion or repeated keyword query is justified by this milestone."
+  },
+  "independence_limits": [
+    "No Shopify query, browser, checkout, Google Ads, event collector or receiver was independently replayed. Local reconciliation validates the saved evidence and internal consistency, not current live state.",
+    "Catalog source completeness is limited to the saved first50 exhausted response. Active product and unitCost do not establish supplier availability, fulfillment, invoice cost or future price stability.",
+    "One exact AU pair's operator-reported checkout entry does not verify shipping rates without an address, final tax, discounts, payment processing, all variant sizes, other markets or universal routes.",
+    "Cleanup and Ads editor identity/handoff preservation are operator-reported; reviewer did not recheck cart or editor fields. The receipt explicitly reports no editor field recheck.",
+    "No contact/address/payment entry or order was submitted. Nonpurchase analytics effects may occur; actual purchase-event emission, receiver ingestion and dedup were not inspected.",
+    "Paid attribution and realized retained ROAS/profit are post-launch outcomes, not a circular prerequisite for the first authorized launch. This receipt grants no launch authority.",
+    "No private checkout token, customer data, credentials or vendor/source secrets were accessed or copied."
+  ],
+  "preserved_gates": {
+    "standing_paid_authority": "NONE",
+    "authorized_new_spend_usd": 0,
+    "launch_qualified": false,
+    "actual_allowable_CPA": null,
+    "normal_google_identity_save": "PENDING_UNCHANGED",
+    "source_repair": "PROPOSAL_ONLY_EXISTING_PRODUCT_OWNER"
+  },
+  "next_action": {
+    "owner": "Existing AU product/source-cost owner",
+    "action": "Reconcile the exact Mother M and Child4 dress pair against actual supplier/fulfillment and settlement-fee/FX evidence to calculate supported AU landed cost; retain unknowns until evidenced.",
+    "why_first": "The catalog USD26 entry cannot establish ad capacity, so landed-cost qualification is the next funding-critical prerequisite."
+  },
+  "continuation_prompt": "Use the two frozen AU input hashes and this independent receipt. Preserve the exact pair, paused/paid-NONE and normal Save gates. Advance actual AU landed-cost qualification and route the narrow3XL-to-2XL proposal to the existing product owner; do not repeat the buyer-path test or treat this milestone as measurement or launch approval."
+}

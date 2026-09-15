@@ -1,4 +1,5 @@
-import { collectCatalog, createAdminReader, SourceError } from './collector.js';
+import { collectCatalog, SourceError } from './collector.js';
+import { createConfiguredAdminReader } from './admin-reader.js';
 import { buildFeed, sha256 } from './generator.js';
 import { runtimeConfig, currentManifest } from './worker.js';
 import { publishStreamedResult } from './stream-publish.js';
@@ -67,7 +68,8 @@ function sanitize(data) {
 // An immutable read journal lets the same fully tested collector resume by
 // replaying already completed reads. It never falls back to an older feed.
 // Twenty new logical calls mean at most 40 external fetches with the reader's
-// one transient retry, below Free's 50 external subrequests per invocation.
+// one transient retry, plus at most one OAuth exchange for cloud credentials,
+// below Free's 50 external subrequests per invocation.
 export async function consumeRefresh(env, message, { graphql, now = () => new Date(), randomId = () => crypto.randomUUID(), streamOptions = {} } = {}) {
   requireValue(message?.schemaVersion === 1 && keyPattern.test(message.key || '') && idPattern.test(message.jobId || '') && Number.isSafeInteger(message.revision) && message.revision >= 0, 'refresh_message_invalid');
   const { config, market, bucket, queue } = configured(env, message.key);
@@ -106,7 +108,9 @@ export async function consumeRefresh(env, message, { graphql, now = () => new Da
     return { complete: true, recoveredPromotion: true, rows: present.manifest.rows };
   }
   let index = 0, newCalls = 0, firstClock = true, lastReadObservedAt = control.startedAt;
-  const reader = graphql || createAdminReader({ domain: config.storeDomain, token: env.SHOPIFY_ADMIN_ACCESS_TOKEN, apiVersion: config.apiVersion });
+  let reader;
+  try { reader = graphql || await createConfiguredAdminReader(env, config); }
+  catch (error) { return fail(error instanceof SourceError ? error.code : 'refresh_authentication_failed'); }
   const replayReader = async (query, variables) => {
     const key = await sha256(query + '\n' + JSON.stringify(variables));
     if (index < journal.entries.length) {

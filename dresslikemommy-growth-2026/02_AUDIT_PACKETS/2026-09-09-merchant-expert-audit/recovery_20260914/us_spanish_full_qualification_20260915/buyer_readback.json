@@ -1,0 +1,68 @@
+{
+  "status": "FAILED_PUBLISHED_ROUTE_NUMERIC_VARIANT_PRESELECTION",
+  "source_completed_at_utc": "2026-09-15T03:23:50.568Z",
+  "private_source_sha256": "5b868f1470ec06834a9b74b2960021a24fcc6da1c1c6b17b8f6b2d094a39ad88",
+  "method": "Task-owned IAB tab7, public URLs without preview_theme_id. Direct navigation only; no manual options, cart or checkout changes.",
+  "observations": [
+    {
+      "observed_at_utc": "2026-09-15T03:26:23.710Z",
+      "url": "https://www.dresslikemommy.com/es/products/mom-child-matching-two-piece-swimsuit?country=US&currency=USD&variant=39756755861601",
+      "variant_id": "39756755861601",
+      "expected_options": [
+        "Child 2-3 years",
+        "Black"
+      ],
+      "expected_price": "17.99 USD",
+      "heading": "Traje de baño de dos piezas a juego para mamá e hijo",
+      "country_currency": "Estados Unidos | USD $",
+      "cart_zero": 1,
+      "current_role_buttons": [
+        "button \"Mamá\" [pressed]",
+        "button \"Niño\""
+      ],
+      "size_prompt_enabled": false,
+      "price_range": "$17.99 USD - $23.99 USD",
+      "result": "FAIL_NUMERIC_VARIANT_NOT_PRESELECTED",
+      "evidence": "Mamá role remains pressed; no size or color selected; size-choice control disabled. No manual selection, cart or checkout."
+    },
+    {
+      "observed_at_utc": "2026-09-15T03:26:45.605Z",
+      "url": "https://www.dresslikemommy.com/es/products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors?country=US&currency=USD&variant=41883237220449",
+      "variant_id": "41883237220449",
+      "expected_options": [
+        "Adult 2XL",
+        "White"
+      ],
+      "expected_price": "22.99 USD",
+      "heading": "Conjunto de Camisetas Minimalistas con Corazón - Diseño de Amor Simple i...",
+      "country_currency": "Estados Unidos | USD $",
+      "cart_zero": 1,
+      "size_prompt_enabled": false,
+      "size2xl_pressed": "false",
+      "price_range": "$19.99 USD - $22.99 USD",
+      "result": "FAIL_NUMERIC_VARIANT_NOT_PRESELECTED",
+      "evidence": "Adulto role is pressed, but 2XL and White are not selected; size-choice control remains disabled. No manual selection, cart or checkout."
+    }
+  ],
+  "passed": [
+    "Spanish page headings load",
+    "United States/USD context",
+    "Source availability true for both exact variants",
+    "Cart0 preserved"
+  ],
+  "failed": [
+    "Automatic selected variant and corresponding single price/Add readiness"
+  ],
+  "not_run": [
+    "cart",
+    "checkout",
+    "mobile",
+    "all offer public URLs",
+    "Shopify MAIN theme identity re-query"
+  ],
+  "release_implication": "Keep landingContextVerified false and no new Spanish feed/source submission. Existing reviewed theme publication and subsequent exact public acceptance remain required.",
+  "observation_errors": [
+    "Initial heading locator used an unsupported level option and failed strict matching; replaced with observed exact heading name before obtaining final receipts.",
+    "One undeclared REPL binding read failed before navigation; final two recorded route observations are successful actual inspections."
+  ]
+}

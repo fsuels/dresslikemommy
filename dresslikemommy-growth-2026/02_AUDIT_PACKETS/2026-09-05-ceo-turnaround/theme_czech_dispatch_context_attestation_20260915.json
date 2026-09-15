@@ -1,0 +1,31 @@
+{
+  "status": "ROOT_OBSERVED_TURN_METADATA__LOCAL_SYNC_AUTHORITY_PROVENANCE_QUALIFIED",
+  "recorded_at_utc": "2026-09-15T05:18:53.046Z",
+  "stage_manifest": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_release_integration_manifest_20260915.json",
+    "sha256": "542ade6562f53d2f00223e500189c590806e832b2af48584e4fffc7f53f75559"
+  },
+  "execution_turn": {
+    "thread_id": "01a088c3-c890-71a1-98ee-f19b6905af55",
+    "turn_id": "01a0a36a-baad-7ce3-9e43-82bb99211d4b",
+    "started_at_unix": 1789448075,
+    "status": "inProgress",
+    "root_observation_methods": [
+      "wait_threads after successful execution dispatch returned this exact active turn with cursor04b49b02-aff8-4649-9afc-17a62464f1cb:13",
+      "Subsequent direct read_thread turnLimit2 includeOutputsfalse returned the same exact turn and startedAt1789448075; current turn items were empty."
+    ],
+    "send_tool_receipt_limit": "send_message_to_thread response includes threadId only; turn identity comes from the separate root-observed wait/read results, not from the send response."
+  },
+  "local_main_sync": {
+    "source_owner_report": "Existing UX task reports the user repeated that all local fixes must reach main, and plans only the exact reviewed cs.json local copy/commit after candidate save acceptance.",
+    "direct_root_user_scope": [
+      "User explicitly requested publication of prepared work and completing changes rather than leaving drafts.",
+      "User authorized taking control of the growth changes and doing the work needed to achieve the goal."
+    ],
+    "root_interpretation": "An exact reviewed local cs.json source sync/local commit in the existing UX ownership is a routine reversible implementation step within saved user scope. It does not authorize Git push, automatic connected-MAIN writes, a theme Publish workaround or overwriting unrelated local files.",
+    "provenance_limit": "The precise main-sync wording is reported by the UX owner from its own user context; root did not retrieve a verbatim user message through read_thread because the tool returned empty items. Do not describe this as root independently reading that separate user message.",
+    "new_external_write_authority": false
+  },
+  "no_staged_file_changes": true,
+  "root_business_writes": 0
+}

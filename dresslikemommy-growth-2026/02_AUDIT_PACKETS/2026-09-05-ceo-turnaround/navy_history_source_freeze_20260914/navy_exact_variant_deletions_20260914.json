@@ -1,0 +1,32 @@
+{
+  "action_id": "NAVY-SPRIG-EXACT-3XL-DELETION-EVIDENCE-20260914",
+  "read_at_utc": "2026-09-14 23:41:03 UTC",
+  "query": "query NavyExactVariantDeletionEvents {\n  dress: event(id: \"gid://shopify/BasicEvent/162571097669729\") {\n    id action createdAt message appTitle attributeToApp attributeToUser\n    ... on BasicEvent { subjectId subjectType }\n  }\n  cardigan: event(id: \"gid://shopify/BasicEvent/162571097702497\") {\n    id action createdAt message appTitle attributeToApp attributeToUser\n    ... on BasicEvent { subjectId subjectType }\n  }\n}",
+  "validation": "Schema-discovered event/BasicEvent; connector and skill validators SUCCESS",
+  "events": {
+    "dress": {
+      "id": "gid://shopify/BasicEvent/162571097669729",
+      "action": "destroy",
+      "createdAt": "2026-09-02T16:16:33Z",
+      "message": "[Message omitted; event action retained]",
+      "appTitle": "Shopify Web",
+      "attributeToApp": false,
+      "attributeToUser": false,
+      "subjectId": "gid://shopify/ProductVariant/46501286608993",
+      "subjectType": "PRODUCT_VARIANT"
+    },
+    "cardigan": {
+      "id": "gid://shopify/BasicEvent/162571097702497",
+      "action": "destroy",
+      "createdAt": "2026-09-02T16:16:33Z",
+      "message": "[Message omitted; event action retained]",
+      "appTitle": "Shopify Web",
+      "attributeToApp": false,
+      "attributeToUser": false,
+      "subjectId": "gid://shopify/ProductVariant/46501286641761",
+      "subjectType": "PRODUCT_VARIANT"
+    }
+  },
+  "errors": [],
+  "privacy": "Only exact2product-variant event records, staff-name prefix removed; no raw actor name, customer/order/financial data persisted."
+}

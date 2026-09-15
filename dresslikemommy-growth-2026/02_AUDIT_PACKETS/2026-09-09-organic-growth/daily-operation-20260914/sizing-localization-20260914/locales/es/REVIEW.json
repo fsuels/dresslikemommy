@@ -1,0 +1,69 @@
+{
+  "action_id": "TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+  "locale": "es",
+  "field": "body_html",
+  "status": "PASS_WITH_LIMITS",
+  "reviewer": "/root/sizing_locales_c",
+  "author": "/root/daily_operation_review",
+  "reviewed_at_utc": "2026-09-14T23:34:21.161134+00:00",
+  "candidate_sha256": "c777f3c8a3b95497e77106e68cc4b9a34fb61575be39491b1ddeff0d08669466",
+  "source_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "before_sha256": "7bd2362eca079dfaebf06152d5ad64c1fa2e645f996d3303c090fe1b28c86763",
+  "author_notes_sha256": "4b0863aa6e642b0e7f33bc2cc87fad4907dfeb64622fa6a9c9c9324aa349570b",
+  "bindings": {
+    "ROOT_PLAN.json": "923dd593b8d656dc5f70387e7b7e6f0e1ce8514b9254c3ae74f875a51009e6f7",
+    "english-before.html": "7c6d26272eac0068e189434ea3bb2dd4990c5d6c018843141f8ca6fb624989c1",
+    "english-change-plan.json": "4960d5976e7a411b4e17ec24c5940e6b33526d79a0d08176e9ae71663cb1f704",
+    "ROUTES.json": "9f67a31a1463503fbd26a96669ce71f7d095a088d1a3941dee80d62be89999d5"
+  },
+  "qualification": "Independent multilingual model review of the entire candidate and each corrected span against the English final source; reviewer did not author or modify this locale candidate. This is not human native-language certification.",
+  "review_scope": {
+    "semantic_source_changes": 19,
+    "changed_text_leaves": 22,
+    "original_elements": 43,
+    "all_candidate_text_read": true,
+    "language_grammar_and_meaning_reviewed": true,
+    "source_chart_units_and_body_garment_distinction": true,
+    "no_automatic_size_up_or_universal_ranges": true,
+    "wearer_piece_size_quantity_and_product_inclusions": true,
+    "localized_href_values_checked": true,
+    "styles_and_preservation_checked": true
+  },
+  "checks": {
+    "independent_author_identity": true,
+    "english_source_exact": true,
+    "candidate_author_binding_exact": true,
+    "before_record_matches_exact": true,
+    "html_balanced": true,
+    "original_43_element_order_preserved": true,
+    "leaf_order_preserved": true,
+    "four_exact_localized_links": true,
+    "table_style_exact": true,
+    "twelve_cell_styles_exact": true,
+    "other_attributes_unchanged": true,
+    "all_22_corrected_leaves_changed": true,
+    "unrelated_copy_preserved": true,
+    "permitted_edits_reverse_to_exact_before": true,
+    "old_universal_ranges_absent": true
+  },
+  "findings": [
+    {
+      "severity": "info",
+      "message": "The reviewed Spanish correctly distinguishes medidas del cuerpo, de la prenda, ancho en plano and contorno."
+    },
+    {
+      "severity": "info",
+      "message": "The conditional size guidance, per-product available sizes and all four cart checks are clear and faithful."
+    },
+    {
+      "severity": "info",
+      "message": "No material defect found in the corrected spans. Existing unrelated introductory wording, unchanged headings and table row labels were preserved as required rather than broadly rewritten."
+    }
+  ],
+  "limits": [
+    "Frozen local candidate review only; no Shopify source mutation or external browser navigation by this reviewer.",
+    "Per-locale route arrivals, rendered mobile layout and deployed-value/stale-flag verification remain root responsibilities.",
+    "This review qualifies the corrected meanings and bounded preservation; it does not certify every legacy sentence as polished copy or claim audience acceptance."
+  ],
+  "business_lift_claimed": false
+}

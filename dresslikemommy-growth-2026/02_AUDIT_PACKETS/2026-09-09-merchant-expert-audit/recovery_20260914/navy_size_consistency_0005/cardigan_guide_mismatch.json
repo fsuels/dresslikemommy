@@ -1,0 +1,48 @@
+{
+  "status": "LIVE_RENDERED_GARMENT_CHART_MISMATCH",
+  "observedAt": "2026-09-15T00:40:56.155Z",
+  "url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses",
+  "inheritedMarketCurrency": "CA/CAD",
+  "selectedGarment": "Cardigan",
+  "steps": [
+    "Loaded correctedEnglishPDP",
+    "Opened Mother fit and verified five S\u20132XLrows",
+    "Clicked existing Cardigan type control (pressedtrue)",
+    "Reopened Mother fit (type selectionhadcollapsed it)"
+  ],
+  "visibleMotherSRow": [
+    "S",
+    "37.5-45",
+    "84",
+    "114",
+    "90",
+    "82",
+    "114"
+  ],
+  "visibleHeaders": [
+    "Size",
+    "Weight (kg)",
+    "Chest/Bust (cm)",
+    "Skirt Length (cm)",
+    "Hip (cm)",
+    "Waist (cm)",
+    "Garment Length (cm)"
+  ],
+  "actualOriginalCardiganMotherSRow": [
+    "Mother S",
+    "-",
+    "37.5-45 kg / 82.7-99.2 lbs",
+    "-",
+    "80 cm / 31.5 in",
+    "56 cm / 22 in",
+    "-",
+    "80 cm / 31.5 in",
+    "68 cm / 26.8 in",
+    "40 cm / 15.7 in"
+  ],
+  "interpretation": "SelectedCardigan fit guide rendersDress row84bust/114length rather thanCardigan80bust/40length. Bothcorrectedsourcetablesarepresent; type tooltip reflectsCardigan but expandedfit table doesnot.",
+  "confidence": "Observed current route only; root-cause/theme lineage and otherlocale behavior pending UX owner.",
+  "cartCountryCheckoutChanged": false,
+  "themeOrProductMutationInThisCheck": false,
+  "scope": "Separate theme rendering issue. Does not invalidate exact3XLrow removal; preventsclaimallgarmentguidesperfect."
+}

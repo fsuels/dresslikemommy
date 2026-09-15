@@ -1,0 +1,9 @@
+query CzechCollectionTranslationSource($collectionId: ID!, $after: String) {
+  shop { id myshopifyDomain }
+  collectionTranslation: translatableResource(resourceId: $collectionId) {
+    resourceId
+    translatableContent { key value locale digest }
+    translations(locale: "cs") { key value locale outdated updatedAt market { id name } }
+  }
+  markets(first: 20, after: $after) { nodes { id name } pageInfo { hasNextPage endCursor } }
+}

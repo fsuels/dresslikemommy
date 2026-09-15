@@ -1,0 +1,1 @@
+query NavyFrenchUnitSource($id:ID!){shop{id myshopifyDomain} product(id:$id){id title handle status updatedAt descriptionHtml} translatableResource(resourceId:$id){resourceId translatableContent{key value locale digest} translations(locale:"fr",marketId:null){key value locale outdated}}}

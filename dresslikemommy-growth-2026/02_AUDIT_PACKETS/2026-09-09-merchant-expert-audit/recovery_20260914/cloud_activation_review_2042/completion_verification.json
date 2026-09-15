@@ -1,0 +1,55 @@
+{
+  "at_utc": "2026-09-14T21:25:35.307938+00:00",
+  "status": "PASS_LOCAL_EVIDENCE_AND_CONTINUITY_WITH_LIVE_GATES",
+  "checks": [
+    {
+      "check": "exact_reviewed_source_hashes",
+      "count": 16,
+      "status": "PASS"
+    },
+    {
+      "check": "exact_reviewed_bundle_hashes",
+      "count": 4,
+      "status": "PASS"
+    },
+    {
+      "check": "independent_review_frozen_files",
+      "count": 23,
+      "status": "PASS"
+    },
+    {
+      "check": "handoff_evidence_hashes",
+      "count": 16,
+      "status": "PASS"
+    },
+    {
+      "check": "checkpoint_history_preserved",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parse_and_obvious_secret_patterns",
+      "jsonFiles": 16,
+      "scannedFiles": 29,
+      "status": "PASS",
+      "limit": "Pattern check is not a universal secret detector; authenticated outputs were also filtered before persistence."
+    }
+  ],
+  "runtimeTests": {
+    "passed": 77,
+    "failed": 0,
+    "source": "integration_validation_final.json"
+  },
+  "gitDiffCheck": {
+    "scope": "automation_release_v1 and own execution checkpoint",
+    "exitCode": 0
+  },
+  "strictContinuity": {
+    "command": "python3 ops/scripts/check_continuity_integrity.py --strict",
+    "exitCode": 0,
+    "result": "CONTINUITY_OK",
+    "globalLatestAnchorAtCheck": "2026-09-14-ceo-google-all-market-local-build-accepted"
+  },
+  "externalRelease": "NOT_RUN",
+  "appApproval": "PENDING",
+  "canonicalIntegration": "PARENT_HANDOFF_PENDING"
+}

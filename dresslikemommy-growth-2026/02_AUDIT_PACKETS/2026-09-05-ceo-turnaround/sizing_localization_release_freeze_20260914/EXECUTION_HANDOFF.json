@@ -1,0 +1,176 @@
+{
+  "schema": "dlm.organic_sizing_localization_execution_handoff.v1",
+  "action_id": "TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+  "execution_status": "IMPLEMENTED_LIVE_VERIFIED__INDEPENDENT_AFTER_REVIEW_PASS_WITH_LIMITS",
+  "recorded_at_utc": "2026-09-15T00:08:06.655790+00:00",
+  "owner_task_id": "01a0870a-e632-7773-ac5d-8ee2616b31bc",
+  "parent_integrator_task_id": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "target": {
+    "id": "gid://shopify/Article/559700574305",
+    "url": "https://www.dresslikemommy.com/blogs/news/matching-outfit-sizing-guide-right-fit-for-everyone",
+    "key": "body_html",
+    "context": "18 existing global translations only",
+    "locales": [
+      "ar",
+      "cs",
+      "da",
+      "de",
+      "el",
+      "es",
+      "fi",
+      "fr",
+      "he",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "no",
+      "pl",
+      "pt-BR",
+      "ro"
+    ]
+  },
+  "parent_plan_sha256": "2110566aa7d8007a6e1de308e4a5a4c653cdc723e7377378982d40f34e13144e",
+  "protected_english_body_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "implemented": "Translate the19corrected English advice/link changes within existing bodies; preserve unrelated copy; localize four shopping/help routes perbody; retain table and12cell styles; add body-only RTL wrappers for ar/he.",
+  "write_count": 1,
+  "writes": [
+    {
+      "mutation": "translationsRegister",
+      "started_at_utc": "2026-09-14T23:44:57.599Z",
+      "completed_at_utc": "2026-09-14T23:44:59.602Z",
+      "returned_updatedAt_counts": {
+        "2026-09-14T23:44:58Z": 9,
+        "2026-09-14T23:44:59Z": 9
+      },
+      "rows": 18,
+      "user_errors": 0,
+      "result": "SUCCESS_EXACT_ALL18_READBACK"
+    }
+  ],
+  "preservation": {
+    "checks": 323,
+    "passed": 323,
+    "existing_body_values_changed": 18,
+    "outdated_after": 0,
+    "other_global_values_and_metadata_preserved": 72,
+    "english_and12protected_fields_unchanged": true,
+    "all_source_entries_unchanged": true,
+    "enabled_locales_enumerated": 21,
+    "markets_fully_enumerated": 6,
+    "market_specific_rows_before_and_after": 0,
+    "new_locale_rows": 0
+  },
+  "public_verification": {
+    "file": "PUBLIC_VERIFICATION.json",
+    "mobile_articles": 18,
+    "desktop_articles": 18,
+    "source_text_blocks_each": 31,
+    "normalized_source_text_hash_matches": 36,
+    "mobile_table_width": 345,
+    "desktop_table_width": 700,
+    "all12cells_fit_and_wrap_each": true,
+    "rtl_verified": [
+      "ar",
+      "he"
+    ],
+    "actual_link_arrivals": 36,
+    "shopping_destinations_each_rendered_cards": 36,
+    "contact_forms_rendered": 18,
+    "cart_or_form_submitted": false,
+    "limits": [
+      "Root observed live browser; independent after reviewers audit saved evidence, not a second live replay.",
+      "One browser session, not every market-country combination.",
+      "Body-only repair; theme chrome/other content retains separate issues.",
+      "Language qualification is model-based, not native-human certification."
+    ]
+  },
+  "review_evidence": {
+    "language_reviews": "locales/*/REVIEW.json",
+    "release_mechanics": "RELEASE_MECHANICS_REVIEW.json",
+    "prepublication_freeze": "PREPUBLICATION_MANIFEST.json",
+    "final_after_reviews": {
+      "A": {
+        "file": "AFTER_REVIEW_GROUP_A.json",
+        "sha256": "1c0f53ecb30b6469184edac2af6830a2d715fb4f2c2908c0254601559770c93b",
+        "reviewer": "/root/sizing_locales_c",
+        "status": "PASS_WITH_LIMITS",
+        "checks_passed": 97,
+        "checks_total": 97,
+        "bound_input_files": 44
+      },
+      "B": {
+        "file": "AFTER_REVIEW_GROUP_B.json",
+        "sha256": "ea3b8ce9aa7a77ebe674ed2c58eeed0352587a37667aa8763c510933255e1bfe",
+        "reviewer": "/root/daily_operation_review",
+        "status": "PASS_WITH_LIMITS",
+        "checks_passed": 348,
+        "checks_total": 348,
+        "bound_input_files": 43
+      },
+      "C": {
+        "file": "AFTER_REVIEW_GROUP_C.json",
+        "sha256": "f219e9ea6e874f39baf070741f2eecee930fe4c03f4d8ad1306d97d3b862d981",
+        "reviewer": "/root/sizing_locales_b",
+        "status": "PASS_WITH_LIMITS",
+        "checks_passed": 421,
+        "checks_total": 421,
+        "bound_input_files": 42
+      }
+    },
+    "source_manifest": "SOURCE_MANIFEST.json"
+  },
+  "rollback": {
+    "executed": false,
+    "template": "rollback-variables.json",
+    "requirements": "Fresh current candidate hashes and source digest before any restore; never overwrite intervening changes; exact before values available; old outdated/updatedAt metadata cannot be promised restored."
+  },
+  "shared_canonical_writes_by_this_continuation": [],
+  "parent_integration": "Parent alone updates queue/state/worklog/claim/cockpit/problem/decision records. Accept exact one-call localization chronology; do not repeat English or translation publication.",
+  "separate_theme_issue": "SEPARATE_THEME_FINDING.json: injected button has dark text on dark background in ar/nl/en; sent to parent for existing UX/theme owner. No theme correction claimed.",
+  "source_live_evidence_as_of": "2026-09-14T23:45:13.393Z",
+  "public_evidence_as_of": "2026-09-14T23:53:16.720845+00:00",
+  "live_state_mode": "LIVE_VERIFIED_18_EXISTING_LOCALIZED_BODIES__ENGLISH_PRESERVED",
+  "effective_approval_policy": "Current daily editorial/international-language mandate and exact parent plan; supported schema/validation/mutation flow completed without repeated generic approval.",
+  "approved_external_scope": "Only18existing global body_html translations for Article559700574305; no English/newlocale/other translationkey/product/theme/price/policy/tracking/account/paid/Pin/outreach change.",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "Future attributable buyer results; current candidate/source drift or demonstrated publication regression.",
+  "if_evidence_supports_recommendation": "Preserve completed release and continue daily qualified organic acquisition; assess each full cohort window.",
+  "if_evidence_opposes_recommendation": "Do not blindly republish or overwrite drift; correct only verified scoped defects with independent review, retaining exact chronology and rollback evidence.",
+  "material_decision": "MATERIAL_PUBLIC_EXISTING_TRANSLATION_CORRECTION",
+  "independent_verifier": {
+    "group_A": "/root/sizing_locales_c",
+    "group_B": "/root/daily_operation_review",
+    "group_C": "/root/sizing_locales_b"
+  },
+  "verifier_independence": "Each language reviewer did not author its reviewed candidate or execute the store mutation. Root is sole store writer.",
+  "review_clocks_preserved": {
+    "family_photo_article_first_review": "2026-09-17",
+    "sunshine_pin_first_review": "2026-09-18",
+    "p1_guide_pin_first_review": "2026-09-21",
+    "english_sizing_reviews": [
+      "2026-09-22",
+      "2026-09-29",
+      "2026-10-15"
+    ]
+  },
+  "localization_clock": {
+    "released_local": "2026-09-14 19:44:58–59 America/New_York",
+    "first_complete_local_day": "2026-09-15",
+    "reviews": [
+      "2026-09-22",
+      "2026-09-29",
+      "2026-10-15"
+    ],
+    "qualification": "Annotate actual localization release separately from English even though both share the same first complete local date."
+  },
+  "measurement_reads_this_continuation": 0,
+  "no_measured_traffic_or_sales_lift_claimed": true,
+  "scheduled_operation": "Existing daily 09:00 America/New_York organic heartbeat, verified earlier in ../automation-readback.json. Next scheduled run September15,2026. No scheduler or goal change in this continuation.",
+  "next_action": "Parent accepts this completed localization handoff and routes the separate unreadable injected button to the existing UX owner; daily organic operation continues automatically.",
+  "why_first": "The18body repair is complete; fix the separate visible shopping-button clarity defect without duplicating completed releases.",
+  "continuation_prompt": "Continue the existing daily organic operation from the completed sizing localization release. Preserve articleSep17,SunshineSep18,P1Sep21 and sizingSep22/29/Oct15 clocks; qualify identifiable QA; use exact sales/order evidence before claiming lift and keep theme issues with the existing UX owner.",
+  "english_frozen_packet_preservation": "ENGLISH_PACKET_PRESERVATION.json:38source plus5final bindings unchanged",
+  "operation_format_note": "Executed validated GraphQL operation and saved mutation.graphql differ only by a final newline; independent Group B review verified this non-semantic distinction."
+}

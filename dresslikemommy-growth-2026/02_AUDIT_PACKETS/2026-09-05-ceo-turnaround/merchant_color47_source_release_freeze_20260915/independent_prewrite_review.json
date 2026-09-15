@@ -1,0 +1,75 @@
+{
+  "schema": "dlm.merchant.color47.independent-prewrite-review.v1",
+  "decision": "APPROVE_EXACT_SHOPIFY_COLOR47",
+  "verdict": "PASS_WITH_LIMITS",
+  "independent": true,
+  "reviewer": "/root/merchant_lifecycle_code_inventory",
+  "reviewed_at_utc": "2026-09-15T02:00:57.851Z",
+  "action_id": "TA07-SOURCE-COLOR47-20260915",
+  "shop_id": "gid://shopify/Shop/15571635",
+  "executor": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "mutation_deadline_utc": "2026-09-15T02:22:54.025Z",
+  "reviewed_prewrite_plan_sha256": "72dc773d1adc3ab4a09f83f4a4e8c05a2fe25cc6c488091e19450cf228ac4684",
+  "reviewed_parent_plan_sha256": "95f5b000a00c90947fba9e9e38b27cfc105fca3c82659abbd0b3a02169413cbc",
+  "exact_target_digest": "5c7495c5878e4cbc67f61c400ed47a6eee74dbaab3764568ea05a03aae54ac5d",
+  "mutation_query_sha256": "46eab851ff38ae8d6728810804962607a40ec2019be8f09bc1a06d6546206eae",
+  "mutation_batches_sha256": "23adf0dcf34ea585585325b17e6557d43c5ba08e53e95d831af6714c6e9fe334",
+  "batch_variables_canonical_sha256": [
+    "09bcb7540a3c1a782d363b6deb22e9fa28502a87168808c27e908799a0756c29",
+    "35bb0d67faccf50922e1f0002c9a16bc8ec3bad05b9a71cf1015130eb9aaeb8c"
+  ],
+  "source_before_v2_sha256": "7779ab4bfc921b3c1b01cb7bdfa2d196f78a8eee706f1dbb159d40b79ffd00cd",
+  "source_before_v1_sha256": "a6b6abf36b41fdb1ca47a99cae7e7742d4ce9d268485adebd56a8c7ada2e8139",
+  "metadata_before_sha256": "6863ae8d5892c34fa11e88a41775bccf788b3fdbb7b64aa58bb6eb0f1c524470",
+  "source_products_by_id_canonical_sha256": "b7506eac34a0fa656b4584829f9aa87c7d7807133d60c3f50b8dc19894675b57",
+  "metadata_resources_by_id_canonical_sha256": "21e1b4e94f285f8fb6a2ef3d5df22609fbc004c883c7b1c42b90c61f1dcdfc0c",
+  "supplemental_receipts_sha256": {
+    "mcp_validation_receipt.json": "74df06f5b09b28835d694ae453493aa3256bd575daa13b2b4b1a80ee2394dff2",
+    "cli_validation_receipt.json": "b9efebba1e7883f38272c5f5e69c8dcf61b467635f61ffdc78bc40b446c910bf",
+    "schema_receipt.json": "11b8f5a87856d0a71015a35906904e8584e45fb4f69c9cf73534878c8b5c5b2e"
+  },
+  "claim": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/ops/AGENT_COORDINATION.md",
+    "line": 36,
+    "row_sha256": "23ed8493a50af908ec0dfd24cce0dec06abfb989f79ffbf2ec23fd97a6e99c82",
+    "sole_writer_verified": true,
+    "recheck_at_execution": true
+  },
+  "approved_scope": {
+    "namespace": "mm-google-shopping",
+    "key": "color",
+    "type": "single_line_text_field",
+    "compareDigest": null,
+    "product_fields": 8,
+    "variant_fields": 39,
+    "parents": 9,
+    "current_affected_variants": 252,
+    "batch_sizes": [
+      25,
+      22
+    ],
+    "definition_or_schema_changes": 0
+  },
+  "verification": [
+    "All 13 prewrite-plan bindings and three supplemental receipts match. Fifty independent local assertions passed.",
+    "Exact target order/values match parent scope and semantic subset. All 47 current fields are absent in both direct reads and complete metadata. No Cobalt, As image or six held parents included.",
+    "All nine ACTIVE identities and plain-description/title digests match the proposal; all 252 variant IDs/options/availability match saved source. V2 differs from retained V1 only by adding the plain description field.",
+    "All 261 metadata resources are complete, containing 491 unique existing fields. Initial incomplete records remain present and match subsets of the complete reads.",
+    "Both definition lists are empty and complete. Explicit single_line_text_field suits these plain color strings; exact query creates no definition/schema. Saved schema confirms maximum 25 and null-CAS semantics.",
+    "MCP and CLI receipts validate the exact four source/metadata/mutation/rollback operations. Mutation selects Product/ProductVariant owner IDs, field IDs/type/value/digest and indexed errors for exact result mapping.",
+    "Deadline equals earliest V2 receipt plus 30 minutes; review occurred within it. Source or metadata clocks were not rewritten."
+  ],
+  "execution_conditions": [
+    "Root must recheck exact hashes, current sole-writer scope, freshness and absence of conflicting source changes before saves. Both batches must execute before the stated deadline.",
+    "Submit batch 1 once; require zero errors and exact 25 results keyed by owner.id/namespace/key, never response order. Verify returned type/value/ID/digest and current remaining-null targets before the exact 22-field batch.",
+    "Each call is atomic; the two-call sequence is not. On error, drift or uncertain receipt, stop and read state; no blind retry, scope expansion or automatic rollback."
+  ],
+  "required_after": [
+    "Fresh exact source and complete 261-resource metadata reads: 47 intended new fields with owner/field identities; all 491 prior records unchanged; expected total 538 fields.",
+    "Preserve all captured product/variant/options/prices/inventory/publication/body values, allowing only intended gColor additions and product updatedAt. Recheck both definition lists remain absent.",
+    "Obtain independent after-state review. Later full-source feed generation, propagation and market samples remain separate work, not additional prewrite dependencies."
+  ],
+  "rollback": "Prepared identifiers cover exactly the 47 absent-before fields. No automatic deletion. Any separately authorized rollback requires fresh created-ID/value/type/digest matching and an exclusive claim; metafieldsDelete has no CAS guard, so stale or changed fields must not be deleted.",
+  "limits": "This is exact source-field approval, not supplier/image truth, uncaptured-field verification, Google acceptance or sales proof. Reviewer made no external calls or mutations. Only this review file was written.",
+  "blocking_findings": []
+}

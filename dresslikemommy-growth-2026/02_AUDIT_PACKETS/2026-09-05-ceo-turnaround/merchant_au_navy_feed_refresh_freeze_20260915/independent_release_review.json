@@ -1,0 +1,93 @@
+{
+  "status": "APPROVE_EXACT_AU_NATIVE_UPLOAD",
+  "decision": "APPROVE_EXACT_AU_NATIVE_UPLOAD",
+  "verdict": "PASS_WITH_LIMITS",
+  "independent": true,
+  "reviewer": "/root/merchant_translation_review",
+  "confidence": "H for exact saved-source reconciliation",
+  "reviewed_at_utc": "2026-09-15T01:23:11.780385+00:00",
+  "scope": {
+    "account_id": "513542500",
+    "source_id": "10727245667",
+    "source_name": "DLM AU English Free Listings",
+    "source_type": "File (manual)",
+    "country": "AU",
+    "language": "en",
+    "currency": "AUD",
+    "feed_label": "AU",
+    "marketing_methods": [
+      "Free listings"
+    ],
+    "action": "One exact existing-source file replacement; root retains live-write authority."
+  },
+  "candidate_sha256": "b992897bef0252a2ef5e28999c3d159d46bcbb701e3f52d7dbc71ba986da4a11",
+  "candidate_md5": "03df42b314cad95bf219ca4c3913666f",
+  "candidate_bytes": 16618022,
+  "candidate_rows": 4741,
+  "candidate_manifest_sha256": "a29f8096755cfe5090a54adaa647e46a090dc65c26e4a8da1dd38d5923c53332",
+  "candidate_snapshot_sha256": "33974f1679e73707e88d940f8c01df6d20c41cc7099e0aec9bae994f4d4cbc97",
+  "candidate_diagnostics_sha256": "763b2e512f32916d1ad1d7c38944fa225c225918a4c728e2ad4ad385e8c9e067",
+  "raw_source_bindings": {
+    "au-en.tsv": "b9c8145f46d23649a09c00274188f78636b429bd83cf4868324bb62709ba55d4",
+    "au-en.manifest.json": "74a9ac96bec79d0af009b20e2901cbff2ecbe1666d8644a4ef9af0939c5c9f36",
+    "au-en.snapshot.json": "33974f1679e73707e88d940f8c01df6d20c41cc7099e0aec9bae994f4d4cbc97",
+    "au-en.diagnostics.json": "4c1afccfb126b4a5b79fae95facd44927d1a20c6164323e120a72647ae9a42e6"
+  },
+  "source_completed_at": "2026-09-15T01:15:14.273Z",
+  "original_generated_at": "2026-09-15T01:15:14.276Z",
+  "release_deadline_utc": "2026-09-15T03:15:14.273Z",
+  "config_sha256": "6be63f2712324d9a3d0bddf750b1f46616e5e910e9cecb15073c3b17754163ed",
+  "dependency_pins_sha256": "f610e1acda1234a3f5939230991032ce37693bb30fe1ea8ad510acdd1492776b",
+  "package_json_sha256": "b9b3f45df1dcabae85da66410d29da4fb58c947108b472d52f6375e9cf432d0f",
+  "build_intent_sha256": "1d287a1bf2c2c4f81f88dcdcfff734545bd75c036e082c571cf2f631364133e2",
+  "build_receipt_sha256": "cd2f7f50e80bc407a2771e7e794a163011b5b64f876fdc2cfd89818955f46f66",
+  "build_stdout_sha256": "222dfabd1d54dec4a92f19afe51e1fe1025095a57dbcadfc0deb7ceb9edc5614",
+  "build_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "before_feed_sha256": "f7198145a7cf57e23e517f3c42bbd3b781348344481da19fd16fc68355390236",
+  "before_manifest_sha256": "7eb8b576097cecbdf8abb6d804ca488764015834228d0a8e47313040cff3953f",
+  "hold_spec_sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+  "cohort_filter_sha256": "9dc0bc78c19f854666e0b5c9d6dfc5ab61b3828b6c5ebc9d775fdf6f783174c9",
+  "source_qualification_sha256": "7d044700eec2b354eed5436d62b95e2e52883f45f350b0b08409cbbe76eff00a",
+  "containment_delta_sha256": "125ef46aef51d9440d14a8d859c4b9b5841a22c452ffcf84a4e7d53d87fb2c9a",
+  "context_query_sha256": "77e4d15567fcc494244ac356b67285cdd2b580a378eb104a8c9ed770dc69889b",
+  "context_result_sha256": "9ca72ebca82a6afc7e88817f26d5e9515a94b5aaaab4d6dbd1179161431b5428",
+  "native_before_sha256": "fb05e908129e91e9a8f74cb9ed0834450d94a61ce0fe19454d1ab276de4060bd",
+  "public_price_samples_sha256": "0b933b3f07589238d27b6bb7724f0948a08ef0b758446304e3bec2a7b12da142",
+  "single_writer_claim_verified": true,
+  "single_writer_claim": {
+    "path": "ops/AGENT_COORDINATION.md",
+    "line": 36,
+    "row_sha256": "9d0b5ca425471544e7719fbacf1ba063ceac18da3c39c5249660f0abfad6278e",
+    "thread": "01a08706-c63a-7e01-ba48-7777bcb1788a"
+  },
+  "checks": {
+    "dependency_closure": "All 15 pins match; all five reachable local JavaScript modules covered. Package metadata additionally bound above.",
+    "source": "238 unique ACTIVE parents/4925 variants; exact initial/final counts, manifests and active online/country/catalog publication. Fresh AU-resolved AUD/catalog910622817/publication77105823841/International544866401 agree with both scan contexts.",
+    "replay": "Exact raw TSV/manifest/diagnostics replay at original generation clock; then exact single six-hold containment. Snapshot bytes and clocks unchanged.",
+    "all_rows": "All 4741 IDs, contextual AUD prices, in-stock availability, group IDs and AU/AUD variant links match source. Range AUD22–57. All six protected offers retained.",
+    "omissions": "162 available offers under the unchanged six holds plus 22 source-unavailable variants; no unexplained omissions.",
+    "delta": "Zero added/removed IDs. 186 price-only changes: 93 at38→37, 50 at48→47, 43 at58→57 AUD. Only24 Navy descriptions also change; remaining4531 rows byte-identical.",
+    "navy": "All24 descriptions match corrected English source, Mother S–2XL with no3XL.",
+    "before": "Before feed and manifest exactly match the prior accepted AU candidate; fresh native source identity/count confirmed."
+  },
+  "landing_decision": {
+    "automatic_variant_preselection": "FAILED in three current root observations",
+    "manual_selected_price_samples": "3/3 source-bound AUD groups match; no cart/checkout operation",
+    "release_scope_reason": "Existing frozen qualification explicitly separates initial default/range from manual selection and does not impose blanket preselection gating. Current file adds no offers or links and restores exact source prices. This scoped replacement does not approve buyer qualification or waive identity failures covered by the six holds."
+  },
+  "blocking_findings": [],
+  "limits": [
+    "5942 warnings concern included offers:4617 unknown identifiers,162 missing age,971 missing color,192 missing gender;235 further warnings concern held offers retained in diagnostics.",
+    "700 return-exception rows retain suppressed labels. returnPolicyLabelsConfirmed=true is build compatibility, not native return assignment; nativeLabelConfirmed remains false.",
+    "Known numeric preselection and Navy Cardigan fit-guide defects remain parent/UX work. Three manual price samples do not certify186 shopper routes or checkout.",
+    "No new country/language launch, paid activity, source creation, Worker/credential/schedule change or automatic AU synchronization is authorized. No traffic/sales/serving guarantee."
+  ],
+  "pre_upload_guards": [
+    "Root rechecks exact file/hash, dependency/config/hold bindings, source deadline and current native account/source/manual/AU/en/Free-listings identity before one upload. Stop on drift or stale source."
+  ],
+  "required_after_state": [
+    "Capture exact native receiving file/time/counts/recognized attributes/issues. Verify the three changed-price-group representatives, all six protected offers and corrected Navy description by exact AU offer IDs. Record samples versus full4741 scope and independent after-review; do not infer success from upload alone or repeat an uncertain upload."
+  ],
+  "reviewer_external_calls": 0,
+  "reviewer_external_writes": 0
+}

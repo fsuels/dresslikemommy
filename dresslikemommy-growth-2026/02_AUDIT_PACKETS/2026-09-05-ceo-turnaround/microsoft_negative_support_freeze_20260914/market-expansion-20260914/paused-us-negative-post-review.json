@@ -1,0 +1,30 @@
+{
+  "schema": "microsoft-negative-post-execution-review.v1",
+  "verdict": "PASS",
+  "scope": "ROOT_SAVED_UI_RECEIPT_REVIEW_NOT_INDEPENDENT_NATIVE_BROWSER_READ",
+  "reviewer": "/root/microsoft_plan_independent_review",
+  "subject": "paused-us-negative-repair.json",
+  "subject_sha256": "4b4002e8a0012280eee36b3c81adbee3612aa3bc8449b556db596215cfe7537e",
+  "offline_checks_passed": 12,
+  "remaining_material_issues": 0,
+  "verified": [
+    "Three approved replacements and three additions reconcile to ten unique Campaign/Phrase rows.",
+    "Regenerated IDs map to reviewed text replacements.",
+    "Four original rows including svg preserved.",
+    "Three Exact positive identities and statuses unchanged in reported native evidence.",
+    "Reported U.S. controls remain Paused, USD5/day and USD0.15 CPC ceiling.",
+    "Rollback uses current mapped IDs and only root changes.",
+    "Profit improvement explicitly unverified."
+  ],
+  "evidence_limitations": [
+    "Reviewer inspected root's saved UI evidence, not the native browser.",
+    "All13 campaign before/after equality is root's recorded comparison. The hashed receipt contains after tuples only; reviewer could not independently replay that comparison."
+  ],
+  "bookkeeping_resolution": {
+    "superseded_field": "independent_review.separate_plural_addition_review=PENDING",
+    "authoritative_newer_field": "independent_review.plural_addition_review.verdict=PASS",
+    "effect": "No open plural preflight review remains; frozen snapshot preserved."
+  },
+  "reviewer_files_edited": 0,
+  "reviewer_account_changes": 0
+}

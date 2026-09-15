@@ -1,0 +1,9 @@
+query ThemeSourceBodyType($id: ID!) {
+  theme(id: $id) {
+    id role updatedAt
+    files(first: 1, filenames: ["assets/product-desktop-ux-20260513-ruler-sync.js"]) {
+      nodes { filename checksumMd5 body { __typename ... on OnlineStoreThemeFileBodyText { content } ... on OnlineStoreThemeFileBodyBase64 { contentBase64 } } }
+      pageInfo { hasNextPage endCursor }
+    }
+  }
+}

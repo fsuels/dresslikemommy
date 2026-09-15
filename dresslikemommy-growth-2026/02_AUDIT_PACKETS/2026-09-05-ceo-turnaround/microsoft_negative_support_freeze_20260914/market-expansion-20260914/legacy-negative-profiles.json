@@ -1,0 +1,2211 @@
+{
+  "schema": "dlm.microsoft.legacy_negative_profiles.v1",
+  "prepared_at_utc": "2026-09-14T21:16:03.793852+00:00",
+  "owner": "/root/microsoft_campaign_research",
+  "status": "LOCAL_VALIDATED_PROPOSAL_NOT_UPLOADED",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "profiles": [
+    {
+      "locale": "es",
+      "language": "Spanish",
+      "intent": "Finished mother-daughter matching dresses",
+      "status": "LOCAL_VALIDATED_PROPOSAL_NOT_NATIVE_IMPLEMENTATION",
+      "legacy_campaign_keys": [
+        "ms_us_es_202609",
+        "ms_es_es_202609"
+      ],
+      "existing_campaign_ids_to_preserve": {},
+      "negatives": [
+        {
+          "key": "legacy_es_neg_01",
+          "text": "patrón de costura",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Sewing pattern for making clothing; reused narrow local seed.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [
+            {
+              "campaign_key": "ms_us_es_202609",
+              "local_state": "PROPOSED_ONLY"
+            },
+            {
+              "campaign_key": "ms_es_es_202609",
+              "local_state": "PROPOSED_ONLY"
+            }
+          ],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_es_neg_02",
+          "text": "patrones de costura",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural sewing-pattern form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [
+            {
+              "campaign_key": "ms_us_es_202609",
+              "local_state": "PROPOSED_ONLY"
+            },
+            {
+              "campaign_key": "ms_es_es_202609",
+              "local_state": "PROPOSED_ONLY"
+            }
+          ],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_es_neg_03",
+          "text": "tutorial de costura",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Instructional sewing tutorial, not finished-dress shopping.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_es_neg_04",
+          "text": "patrones pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital PDF pattern request; PDF qualifies the pattern word.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_es_neg_05",
+          "text": "archivo svg",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital SVG file request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_es_neg_06",
+          "text": "archivos svg",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural digital SVG-file request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_es_neg_07",
+          "text": "alquiler de vestidos madre e hija",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete mother-daughter dress-rental query.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_es_neg_08",
+          "text": "renta de vestidos mamá e hija",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete rental query using wording relevant to some US-Spanish shoppers; demand unknown.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        }
+      ],
+      "tests": {
+        "method": "Unicode NFKC, case-folding, whitespace tokens. Phrase requires ordered contiguous tokens; Exact requires the full sequence. Accents are preserved. Not a Microsoft semantic/punctuation/auction simulator.",
+        "all_affected_positive_rows_checked": 28,
+        "dress_positive_rows_checked": 14,
+        "positive_keys_checked": [
+          "ms_us_es_202609_dresses_exact_1",
+          "ms_us_es_202609_dresses_exact_2",
+          "ms_us_es_202609_dresses_exact_3",
+          "ms_us_es_202609_dresses_exact_4",
+          "ms_us_es_202609_dresses_exact_5",
+          "ms_us_es_202609_dresses_phrase_1",
+          "ms_us_es_202609_dresses_phrase_2",
+          "ms_us_es_202609_tees_exact_1",
+          "ms_us_es_202609_tees_exact_2",
+          "ms_us_es_202609_tees_exact_3",
+          "ms_us_es_202609_tees_exact_4",
+          "ms_us_es_202609_tees_exact_5",
+          "ms_us_es_202609_tees_phrase_1",
+          "ms_us_es_202609_tees_phrase_2",
+          "ms_es_es_202609_dresses_exact_1",
+          "ms_es_es_202609_dresses_exact_2",
+          "ms_es_es_202609_dresses_exact_3",
+          "ms_es_es_202609_dresses_exact_4",
+          "ms_es_es_202609_dresses_exact_5",
+          "ms_es_es_202609_dresses_phrase_1",
+          "ms_es_es_202609_dresses_phrase_2",
+          "ms_es_es_202609_tees_exact_1",
+          "ms_es_es_202609_tees_exact_2",
+          "ms_es_es_202609_tees_exact_3",
+          "ms_es_es_202609_tees_exact_4",
+          "ms_es_es_202609_tees_exact_5",
+          "ms_es_es_202609_tees_phrase_1",
+          "ms_es_es_202609_tees_phrase_2"
+        ],
+        "literal_positive_conflicts": [],
+        "ordinary_buyer_holdouts": [
+          {
+            "query": "vestidos iguales madre e hija",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "vestidos madre e hija baratos",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "vestidos a juego mamá e hija envío gratis",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "vestidos madre e hija con estampado floral",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "vestidos madre e hija talla grande",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "vestidos madre e hija para fotos de cumpleaños",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "vestidos camiseta madre e hija",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "regalo vestidos madre e hija opiniones",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          }
+        ],
+        "negative_intent_probes": [
+          {
+            "query": "patrón de costura",
+            "expected_negative_key": "legacy_es_neg_01",
+            "negative_matches": [
+              "legacy_es_neg_01"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "patrones de costura",
+            "expected_negative_key": "legacy_es_neg_02",
+            "negative_matches": [
+              "legacy_es_neg_02"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "tutorial de costura",
+            "expected_negative_key": "legacy_es_neg_03",
+            "negative_matches": [
+              "legacy_es_neg_03"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "patrones pdf",
+            "expected_negative_key": "legacy_es_neg_04",
+            "negative_matches": [
+              "legacy_es_neg_04"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "archivo svg",
+            "expected_negative_key": "legacy_es_neg_05",
+            "negative_matches": [
+              "legacy_es_neg_05"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "archivos svg",
+            "expected_negative_key": "legacy_es_neg_06",
+            "negative_matches": [
+              "legacy_es_neg_06"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "alquiler de vestidos madre e hija",
+            "expected_negative_key": "legacy_es_neg_07",
+            "negative_matches": [
+              "legacy_es_neg_07"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "renta de vestidos mamá e hija",
+            "expected_negative_key": "legacy_es_neg_08",
+            "negative_matches": [
+              "legacy_es_neg_08"
+            ],
+            "result": "PASS"
+          }
+        ],
+        "known_coverage_gap_probes": [
+          {
+            "query": "vestidos madre e hija patron de costura",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "Unaccented patron is not the supplied patrón; this test does not strip accents."
+          },
+          {
+            "query": "alquiler de vestidos madre e hija online",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "The Exact rental exclusion does not cover a longer query. This is a deliberate scope gap, not full protection against rental searches."
+          }
+        ],
+        "mixed_buyer_challenge": {
+          "query": "comprar vestidos madre e hija en lugar de un tutorial de costura",
+          "intent": "Buying finished dresses instead of following sewing instructions.",
+          "negative_matches": [
+            "legacy_es_neg_03"
+          ],
+          "result": "KNOWN_FALSE_POSITIVE_RISK",
+          "next_decision": "Inspect real native queries. If this mixed retail intent matters, narrow only the affected phrase to justified full-query Exact exclusions."
+        },
+        "native_account_shared_list_inheritance": "NOT_READ",
+        "native_negative_conflict_report": "NOT_RUN",
+        "native_language_certification": "NOT_PERFORMED",
+        "actual_search_term_or_performance_evidence": "NONE"
+      },
+      "language_notes": "Keep US-Spanish and Spain-Spanish country applicability distinct. Rental synonyms, accents and tutorial plurals are not fully covered.",
+      "merge_policy": "Resolve exact locale, parent IDs and native before-state. Retain identical native IDs and preserve current negatives until a reviewed delta is executed. Never upscope ad-group garment-routing exclusions. Recheck every new root-library positive term."
+    },
+    {
+      "locale": "fr",
+      "language": "French",
+      "intent": "Finished mother-daughter matching dresses",
+      "status": "LOCAL_VALIDATED_PROPOSAL_NOT_NATIVE_IMPLEMENTATION",
+      "legacy_campaign_keys": [
+        "ms_fr_fr_202609"
+      ],
+      "existing_campaign_ids_to_preserve": {},
+      "negatives": [
+        {
+          "key": "legacy_fr_neg_01",
+          "text": "patron de couture",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Qualified sewing pattern, not the bare word patron.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_fr_neg_02",
+          "text": "patrons de couture",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural sewing-pattern form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_fr_neg_03",
+          "text": "tutoriel de couture",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "A sewing tutorial rather than retail dress shopping.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_fr_neg_04",
+          "text": "patron pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital PDF pattern; PDF qualifies the pattern word.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_fr_neg_05",
+          "text": "fichier svg",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital SVG file request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_fr_neg_06",
+          "text": "fichiers svg",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural digital-file form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_fr_neg_07",
+          "text": "location robes mère fille",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete mother-daughter dress-rental query.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_fr_neg_08",
+          "text": "louer robes mère fille",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete query explicitly asking to rent dresses.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        }
+      ],
+      "tests": {
+        "method": "Unicode NFKC, case-folding, whitespace tokens. Phrase requires ordered contiguous tokens; Exact requires the full sequence. Accents are preserved. Not a Microsoft semantic/punctuation/auction simulator.",
+        "all_affected_positive_rows_checked": 14,
+        "dress_positive_rows_checked": 7,
+        "positive_keys_checked": [
+          "ms_fr_fr_202609_dresses_exact_1",
+          "ms_fr_fr_202609_dresses_exact_2",
+          "ms_fr_fr_202609_dresses_exact_3",
+          "ms_fr_fr_202609_dresses_exact_4",
+          "ms_fr_fr_202609_dresses_exact_5",
+          "ms_fr_fr_202609_dresses_phrase_1",
+          "ms_fr_fr_202609_dresses_phrase_2",
+          "ms_fr_fr_202609_tees_exact_1",
+          "ms_fr_fr_202609_tees_exact_2",
+          "ms_fr_fr_202609_tees_exact_3",
+          "ms_fr_fr_202609_tees_exact_4",
+          "ms_fr_fr_202609_tees_exact_5",
+          "ms_fr_fr_202609_tees_phrase_1",
+          "ms_fr_fr_202609_tees_phrase_2"
+        ],
+        "literal_positive_conflicts": [],
+        "ordinary_buyer_holdouts": [
+          {
+            "query": "robes assorties mère fille",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "robes mère fille pas chères",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "robes mère fille livraison gratuite",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "robes mère fille à motifs fleuris",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "robes mère fille grande taille",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "robes mère fille photos anniversaire",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "robes t shirt mère fille",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "cadeau robes mère fille avis",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          }
+        ],
+        "negative_intent_probes": [
+          {
+            "query": "patron de couture",
+            "expected_negative_key": "legacy_fr_neg_01",
+            "negative_matches": [
+              "legacy_fr_neg_01"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "patrons de couture",
+            "expected_negative_key": "legacy_fr_neg_02",
+            "negative_matches": [
+              "legacy_fr_neg_02"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "tutoriel de couture",
+            "expected_negative_key": "legacy_fr_neg_03",
+            "negative_matches": [
+              "legacy_fr_neg_03"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "patron pdf",
+            "expected_negative_key": "legacy_fr_neg_04",
+            "negative_matches": [
+              "legacy_fr_neg_04"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "fichier svg",
+            "expected_negative_key": "legacy_fr_neg_05",
+            "negative_matches": [
+              "legacy_fr_neg_05"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "fichiers svg",
+            "expected_negative_key": "legacy_fr_neg_06",
+            "negative_matches": [
+              "legacy_fr_neg_06"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "location robes mère fille",
+            "expected_negative_key": "legacy_fr_neg_07",
+            "negative_matches": [
+              "legacy_fr_neg_07"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "louer robes mère fille",
+            "expected_negative_key": "legacy_fr_neg_08",
+            "negative_matches": [
+              "legacy_fr_neg_08"
+            ],
+            "result": "PASS"
+          }
+        ],
+        "known_coverage_gap_probes": [
+          {
+            "query": "robes mère fille patrons pdf",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "The supplied patron pdf is singular; the plural is not automatically included."
+          },
+          {
+            "query": "location robes mère fille online",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "The Exact rental exclusion does not cover a longer query. This is a deliberate scope gap, not full protection against rental searches."
+          }
+        ],
+        "mixed_buyer_challenge": {
+          "query": "acheter robes mère fille plutôt que suivre un tutoriel de couture",
+          "intent": "Buying finished dresses instead of following sewing instructions.",
+          "negative_matches": [
+            "legacy_fr_neg_03"
+          ],
+          "result": "KNOWN_FALSE_POSITIVE_RISK",
+          "next_decision": "Inspect real native queries. If this mixed retail intent matters, narrow only the affected phrase to justified full-query Exact exclusions."
+        },
+        "native_account_shared_list_inheritance": "NOT_READ",
+        "native_negative_conflict_report": "NOT_RUN",
+        "native_language_certification": "NOT_PERFORMED",
+        "actual_search_term_or_performance_evidence": "NONE"
+      },
+      "language_notes": "The old packet also has telegraphic patron couture without de. This short list does not cover every preposition, plural or accent variant.",
+      "merge_policy": "Resolve exact locale, parent IDs and native before-state. Retain identical native IDs and preserve current negatives until a reviewed delta is executed. Never upscope ad-group garment-routing exclusions. Recheck every new root-library positive term."
+    },
+    {
+      "locale": "de",
+      "language": "German",
+      "intent": "Finished mother-daughter matching dresses",
+      "status": "LOCAL_VALIDATED_PROPOSAL_NOT_NATIVE_IMPLEMENTATION",
+      "legacy_campaign_keys": [
+        "ms_de_de_202609"
+      ],
+      "existing_campaign_ids_to_preserve": {
+        "ms_de_de_202609": "506254908"
+      },
+      "negatives": [
+        {
+          "key": "legacy_de_neg_01",
+          "text": "nähanleitung für kleider",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Instructions for sewing dresses.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_de_neg_02",
+          "text": "kleid selber nähen",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Explicitly sewing a dress yourself.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_de_neg_03",
+          "text": "kleider selber nähen",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural dress-making form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_de_neg_04",
+          "text": "schnittmuster pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital PDF sewing-pattern request; no bare pattern exclusion.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_de_neg_05",
+          "text": "svg datei",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital SVG file request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_de_neg_06",
+          "text": "svg dateien",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural digital SVG-file request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_de_neg_07",
+          "text": "mutter tochter kleider mieten",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete query for renting mother-daughter dresses.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_de_neg_08",
+          "text": "mama tochter kleider mieten",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete rental query using mama wording.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        }
+      ],
+      "tests": {
+        "method": "Unicode NFKC, case-folding, whitespace tokens. Phrase requires ordered contiguous tokens; Exact requires the full sequence. Accents are preserved. Not a Microsoft semantic/punctuation/auction simulator.",
+        "all_affected_positive_rows_checked": 14,
+        "dress_positive_rows_checked": 7,
+        "positive_keys_checked": [
+          "ms_de_de_202609_dresses_exact_1",
+          "ms_de_de_202609_dresses_exact_2",
+          "ms_de_de_202609_dresses_exact_3",
+          "ms_de_de_202609_dresses_exact_4",
+          "ms_de_de_202609_dresses_exact_5",
+          "ms_de_de_202609_dresses_phrase_1",
+          "ms_de_de_202609_dresses_phrase_2",
+          "ms_de_de_202609_tees_exact_1",
+          "ms_de_de_202609_tees_exact_2",
+          "ms_de_de_202609_tees_exact_3",
+          "ms_de_de_202609_tees_exact_4",
+          "ms_de_de_202609_tees_exact_5",
+          "ms_de_de_202609_tees_phrase_1",
+          "ms_de_de_202609_tees_phrase_2"
+        ],
+        "literal_positive_conflicts": [],
+        "ordinary_buyer_holdouts": [
+          {
+            "query": "partnerlook kleider mutter tochter",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "mutter tochter kleider günstig",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "mutter tochter kleider kostenloser versand",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "mutter tochter kleider blumenmuster",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "mutter tochter kleider große größen",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "mutter tochter kleider familienfotos geburtstag",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "t shirt kleider mutter tochter",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "geschenk mutter tochter kleider erfahrungen",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          }
+        ],
+        "negative_intent_probes": [
+          {
+            "query": "nähanleitung für kleider",
+            "expected_negative_key": "legacy_de_neg_01",
+            "negative_matches": [
+              "legacy_de_neg_01"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "kleid selber nähen",
+            "expected_negative_key": "legacy_de_neg_02",
+            "negative_matches": [
+              "legacy_de_neg_02"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "kleider selber nähen",
+            "expected_negative_key": "legacy_de_neg_03",
+            "negative_matches": [
+              "legacy_de_neg_03"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "schnittmuster pdf",
+            "expected_negative_key": "legacy_de_neg_04",
+            "negative_matches": [
+              "legacy_de_neg_04"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "svg datei",
+            "expected_negative_key": "legacy_de_neg_05",
+            "negative_matches": [
+              "legacy_de_neg_05"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "svg dateien",
+            "expected_negative_key": "legacy_de_neg_06",
+            "negative_matches": [
+              "legacy_de_neg_06"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "mutter tochter kleider mieten",
+            "expected_negative_key": "legacy_de_neg_07",
+            "negative_matches": [
+              "legacy_de_neg_07"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "mama tochter kleider mieten",
+            "expected_negative_key": "legacy_de_neg_08",
+            "negative_matches": [
+              "legacy_de_neg_08"
+            ],
+            "result": "PASS"
+          }
+        ],
+        "known_coverage_gap_probes": [
+          {
+            "query": "mutter tochter kleider naehanleitung fuer kleider",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "naehanleitung/fuer are not the supplied umlaut spellings in this local check."
+          },
+          {
+            "query": "mutter tochter kleider mieten online",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "The Exact rental exclusion does not cover a longer query. This is a deliberate scope gap, not full protection against rental searches."
+          }
+        ],
+        "mixed_buyer_challenge": {
+          "query": "mutter tochter kleider kaufen statt kleid selber nähen",
+          "intent": "Buying finished dresses instead of following sewing instructions.",
+          "negative_matches": [
+            "legacy_de_neg_02"
+          ],
+          "result": "KNOWN_FALSE_POSITIVE_RISK",
+          "next_decision": "Inspect real native queries. If this mixed retail intent matters, narrow only the affected phrase to justified full-query Exact exclusions."
+        },
+        "native_account_shared_list_inheritance": "NOT_READ",
+        "native_negative_conflict_report": "NOT_RUN",
+        "native_language_certification": "NOT_PERFORMED",
+        "actual_search_term_or_performance_evidence": "NONE"
+      },
+      "language_notes": "Compound and umlaut-transliteration forms need distinct review. Preserve German campaign506254908 and current negatives until an exact native delta is reviewed.",
+      "merge_policy": "Resolve exact locale, parent IDs and native before-state. Retain identical native IDs and preserve current negatives until a reviewed delta is executed. Never upscope ad-group garment-routing exclusions. Recheck every new root-library positive term."
+    },
+    {
+      "locale": "da",
+      "language": "Danish",
+      "intent": "Finished mother-daughter matching dresses",
+      "status": "LOCAL_VALIDATED_PROPOSAL_NOT_NATIVE_IMPLEMENTATION",
+      "legacy_campaign_keys": [
+        "ms_dk_da_202609"
+      ],
+      "existing_campaign_ids_to_preserve": {},
+      "negatives": [
+        {
+          "key": "legacy_da_neg_01",
+          "text": "syvejledning til kjole",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Sewing instructions for a dress.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_da_neg_02",
+          "text": "syvejledning til kjoler",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Sewing instructions with plural dress wording.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_da_neg_03",
+          "text": "symønster pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "PDF sewing pattern rather than a clothing print.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_da_neg_04",
+          "text": "symønstre pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural PDF sewing-pattern form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_da_neg_05",
+          "text": "svg fil",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital SVG file request; spaced spelling.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_da_neg_06",
+          "text": "svg filer",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural digital-file form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_da_neg_07",
+          "text": "leje af kjoler mor og datter",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete mother-daughter dress-rental query.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_da_neg_08",
+          "text": "udlejning af kjoler mor og datter",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete dress-hire query.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        }
+      ],
+      "tests": {
+        "method": "Unicode NFKC, case-folding, whitespace tokens. Phrase requires ordered contiguous tokens; Exact requires the full sequence. Accents are preserved. Not a Microsoft semantic/punctuation/auction simulator.",
+        "all_affected_positive_rows_checked": 14,
+        "dress_positive_rows_checked": 7,
+        "positive_keys_checked": [
+          "ms_dk_da_202609_dresses_exact_1",
+          "ms_dk_da_202609_dresses_exact_2",
+          "ms_dk_da_202609_dresses_exact_3",
+          "ms_dk_da_202609_dresses_exact_4",
+          "ms_dk_da_202609_dresses_exact_5",
+          "ms_dk_da_202609_dresses_phrase_1",
+          "ms_dk_da_202609_dresses_phrase_2",
+          "ms_dk_da_202609_tees_exact_1",
+          "ms_dk_da_202609_tees_exact_2",
+          "ms_dk_da_202609_tees_exact_3",
+          "ms_dk_da_202609_tees_exact_4",
+          "ms_dk_da_202609_tees_exact_5",
+          "ms_dk_da_202609_tees_phrase_1",
+          "ms_dk_da_202609_tees_phrase_2"
+        ],
+        "literal_positive_conflicts": [],
+        "ordinary_buyer_holdouts": [
+          {
+            "query": "ens kjoler mor og datter",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "mor og datter kjoler billige",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "mor og datter kjoler gratis fragt",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "mor og datter kjoler blomstermønster",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "mor og datter kjoler store størrelser",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "mor og datter kjoler familiefoto fødselsdag",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "t shirt kjoler mor og datter",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "gave mor og datter kjoler anmeldelser",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          }
+        ],
+        "negative_intent_probes": [
+          {
+            "query": "syvejledning til kjole",
+            "expected_negative_key": "legacy_da_neg_01",
+            "negative_matches": [
+              "legacy_da_neg_01"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "syvejledning til kjoler",
+            "expected_negative_key": "legacy_da_neg_02",
+            "negative_matches": [
+              "legacy_da_neg_02"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "symønster pdf",
+            "expected_negative_key": "legacy_da_neg_03",
+            "negative_matches": [
+              "legacy_da_neg_03"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "symønstre pdf",
+            "expected_negative_key": "legacy_da_neg_04",
+            "negative_matches": [
+              "legacy_da_neg_04"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "svg fil",
+            "expected_negative_key": "legacy_da_neg_05",
+            "negative_matches": [
+              "legacy_da_neg_05"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "svg filer",
+            "expected_negative_key": "legacy_da_neg_06",
+            "negative_matches": [
+              "legacy_da_neg_06"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "leje af kjoler mor og datter",
+            "expected_negative_key": "legacy_da_neg_07",
+            "negative_matches": [
+              "legacy_da_neg_07"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "udlejning af kjoler mor og datter",
+            "expected_negative_key": "legacy_da_neg_08",
+            "negative_matches": [
+              "legacy_da_neg_08"
+            ],
+            "result": "PASS"
+          }
+        ],
+        "known_coverage_gap_probes": [
+          {
+            "query": "mor datter kjoler symonster pdf",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "symonster is not the supplied symønster. Compound and hyphenated SVG forms also remain uncertified."
+          },
+          {
+            "query": "leje af kjoler mor og datter online",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "The Exact rental exclusion does not cover a longer query. This is a deliberate scope gap, not full protection against rental searches."
+          }
+        ],
+        "mixed_buyer_challenge": {
+          "query": "køb kjoler til mor og datter i stedet for syvejledning til kjole",
+          "intent": "Buying finished dresses instead of following sewing instructions.",
+          "negative_matches": [
+            "legacy_da_neg_01"
+          ],
+          "result": "KNOWN_FALSE_POSITIVE_RISK",
+          "next_decision": "Inspect real native queries. If this mixed retail intent matters, narrow only the affected phrase to justified full-query Exact exclusions."
+        },
+        "native_account_shared_list_inheritance": "NOT_READ",
+        "native_negative_conflict_report": "NOT_RUN",
+        "native_language_certification": "NOT_PERFORMED",
+        "actual_search_term_or_performance_evidence": "NONE"
+      },
+      "language_notes": "Danish compounds, vowel variants and natural query wording remain model-reviewed candidates. No query-frequency or native-speaker certificate is asserted.",
+      "merge_policy": "Resolve exact locale, parent IDs and native before-state. Retain identical native IDs and preserve current negatives until a reviewed delta is executed. Never upscope ad-group garment-routing exclusions. Recheck every new root-library positive term."
+    },
+    {
+      "locale": "nl",
+      "language": "Dutch",
+      "intent": "Finished mother-daughter matching dresses",
+      "status": "LOCAL_VALIDATED_PROPOSAL_NOT_NATIVE_IMPLEMENTATION",
+      "legacy_campaign_keys": [
+        "ms_nl_nl_202609"
+      ],
+      "existing_campaign_ids_to_preserve": {},
+      "negatives": [
+        {
+          "key": "legacy_nl_neg_01",
+          "text": "jurk naaien",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Sewing a dress rather than choosing a finished one.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_nl_neg_02",
+          "text": "jurken naaien",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural dress-sewing form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_nl_neg_03",
+          "text": "naaipatroon pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital PDF sewing pattern.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_nl_neg_04",
+          "text": "naaipatronen pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural PDF sewing-pattern form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_nl_neg_05",
+          "text": "svg bestand",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital SVG file request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_nl_neg_06",
+          "text": "svg bestanden",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural digital-file request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_nl_neg_07",
+          "text": "jurken moeder dochter huren",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete mother-daughter dress-rental query.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_nl_neg_08",
+          "text": "jurken moeder dochter verhuur",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete dress-hire query.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        }
+      ],
+      "tests": {
+        "method": "Unicode NFKC, case-folding, whitespace tokens. Phrase requires ordered contiguous tokens; Exact requires the full sequence. Accents are preserved. Not a Microsoft semantic/punctuation/auction simulator.",
+        "all_affected_positive_rows_checked": 14,
+        "dress_positive_rows_checked": 7,
+        "positive_keys_checked": [
+          "ms_nl_nl_202609_dresses_exact_1",
+          "ms_nl_nl_202609_dresses_exact_2",
+          "ms_nl_nl_202609_dresses_exact_3",
+          "ms_nl_nl_202609_dresses_exact_4",
+          "ms_nl_nl_202609_dresses_exact_5",
+          "ms_nl_nl_202609_dresses_phrase_1",
+          "ms_nl_nl_202609_dresses_phrase_2",
+          "ms_nl_nl_202609_tees_exact_1",
+          "ms_nl_nl_202609_tees_exact_2",
+          "ms_nl_nl_202609_tees_exact_3",
+          "ms_nl_nl_202609_tees_exact_4",
+          "ms_nl_nl_202609_tees_exact_5",
+          "ms_nl_nl_202609_tees_phrase_1",
+          "ms_nl_nl_202609_tees_phrase_2"
+        ],
+        "literal_positive_conflicts": [],
+        "ordinary_buyer_holdouts": [
+          {
+            "query": "matchende jurken moeder dochter",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "goedkope jurken moeder dochter",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "jurken moeder dochter gratis verzending",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "jurken moeder dochter bloemenpatroon",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "jurken moeder dochter grote maten",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "jurken moeder dochter familiefoto verjaardag",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "t shirt jurken moeder dochter",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "cadeau jurken moeder dochter reviews",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          }
+        ],
+        "negative_intent_probes": [
+          {
+            "query": "jurk naaien",
+            "expected_negative_key": "legacy_nl_neg_01",
+            "negative_matches": [
+              "legacy_nl_neg_01"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "jurken naaien",
+            "expected_negative_key": "legacy_nl_neg_02",
+            "negative_matches": [
+              "legacy_nl_neg_02"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "naaipatroon pdf",
+            "expected_negative_key": "legacy_nl_neg_03",
+            "negative_matches": [
+              "legacy_nl_neg_03"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "naaipatronen pdf",
+            "expected_negative_key": "legacy_nl_neg_04",
+            "negative_matches": [
+              "legacy_nl_neg_04"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "svg bestand",
+            "expected_negative_key": "legacy_nl_neg_05",
+            "negative_matches": [
+              "legacy_nl_neg_05"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "svg bestanden",
+            "expected_negative_key": "legacy_nl_neg_06",
+            "negative_matches": [
+              "legacy_nl_neg_06"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "jurken moeder dochter huren",
+            "expected_negative_key": "legacy_nl_neg_07",
+            "negative_matches": [
+              "legacy_nl_neg_07"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "jurken moeder dochter verhuur",
+            "expected_negative_key": "legacy_nl_neg_08",
+            "negative_matches": [
+              "legacy_nl_neg_08"
+            ],
+            "result": "PASS"
+          }
+        ],
+        "known_coverage_gap_probes": [
+          {
+            "query": "moeder dochter jurken pdf naaipatroon",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "Reversed order pdf naaipatroon does not match naaipatroon pdf."
+          },
+          {
+            "query": "jurken moeder dochter huren online",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "The Exact rental exclusion does not cover a longer query. This is a deliberate scope gap, not full protection against rental searches."
+          }
+        ],
+        "mixed_buyer_challenge": {
+          "query": "moeder dochter jurken kopen in plaats van een jurk naaien",
+          "intent": "Buying finished dresses instead of following sewing instructions.",
+          "negative_matches": [
+            "legacy_nl_neg_01"
+          ],
+          "result": "KNOWN_FALSE_POSITIVE_RISK",
+          "next_decision": "Inspect real native queries. If this mixed retail intent matters, narrow only the affected phrase to justified full-query Exact exclusions."
+        },
+        "native_account_shared_list_inheritance": "NOT_READ",
+        "native_negative_conflict_report": "NOT_RUN",
+        "native_language_certification": "NOT_PERFORMED",
+        "actual_search_term_or_performance_evidence": "NONE"
+      },
+      "language_notes": "No bare patroon, zelf maken or verhuur is included. Inflections, compounds and different word order need separate query review.",
+      "merge_policy": "Resolve exact locale, parent IDs and native before-state. Retain identical native IDs and preserve current negatives until a reviewed delta is executed. Never upscope ad-group garment-routing exclusions. Recheck every new root-library positive term."
+    },
+    {
+      "locale": "it",
+      "language": "Italian",
+      "intent": "Finished mother-daughter matching dresses",
+      "status": "LOCAL_VALIDATED_PROPOSAL_NOT_NATIVE_IMPLEMENTATION",
+      "legacy_campaign_keys": [
+        "ms_it_it_202609"
+      ],
+      "existing_campaign_ids_to_preserve": {},
+      "negatives": [
+        {
+          "key": "legacy_it_neg_01",
+          "text": "tutorial di cucito",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Qualified sewing tutorial.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_it_neg_02",
+          "text": "tutorial cucito",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Compact sewing-tutorial wording without di; demand unmeasured.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_it_neg_03",
+          "text": "come cucire",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Explicit how-to-sew instructional request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_it_neg_04",
+          "text": "cartamodello pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital PDF sewing pattern.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_it_neg_05",
+          "text": "cartamodelli pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural PDF sewing-pattern form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_it_neg_06",
+          "text": "file svg",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital SVG file; file is invariant in Italian singular/plural usage.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_it_neg_07",
+          "text": "noleggio abiti mamma e figlia",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete mother-daughter dress-rental query.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_it_neg_08",
+          "text": "affitto vestiti mamma e figlia",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete rental wording; comparative query frequency is unknown.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        }
+      ],
+      "tests": {
+        "method": "Unicode NFKC, case-folding, whitespace tokens. Phrase requires ordered contiguous tokens; Exact requires the full sequence. Accents are preserved. Not a Microsoft semantic/punctuation/auction simulator.",
+        "all_affected_positive_rows_checked": 14,
+        "dress_positive_rows_checked": 7,
+        "positive_keys_checked": [
+          "ms_it_it_202609_dresses_exact_1",
+          "ms_it_it_202609_dresses_exact_2",
+          "ms_it_it_202609_dresses_exact_3",
+          "ms_it_it_202609_dresses_exact_4",
+          "ms_it_it_202609_dresses_exact_5",
+          "ms_it_it_202609_dresses_phrase_1",
+          "ms_it_it_202609_dresses_phrase_2",
+          "ms_it_it_202609_tees_exact_1",
+          "ms_it_it_202609_tees_exact_2",
+          "ms_it_it_202609_tees_exact_3",
+          "ms_it_it_202609_tees_exact_4",
+          "ms_it_it_202609_tees_exact_5",
+          "ms_it_it_202609_tees_phrase_1",
+          "ms_it_it_202609_tees_phrase_2"
+        ],
+        "literal_positive_conflicts": [],
+        "ordinary_buyer_holdouts": [
+          {
+            "query": "abiti uguali mamma figlia",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "vestiti mamma e figlia economici",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "vestiti mamma e figlia spedizione gratuita",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "vestiti mamma e figlia fantasia floreale",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "vestiti mamma e figlia taglie grandi",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "vestiti mamma e figlia foto famiglia compleanno",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "abiti t shirt mamma e figlia",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "regalo vestiti mamma e figlia recensioni",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          }
+        ],
+        "negative_intent_probes": [
+          {
+            "query": "tutorial di cucito",
+            "expected_negative_key": "legacy_it_neg_01",
+            "negative_matches": [
+              "legacy_it_neg_01"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "tutorial cucito",
+            "expected_negative_key": "legacy_it_neg_02",
+            "negative_matches": [
+              "legacy_it_neg_02"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "come cucire",
+            "expected_negative_key": "legacy_it_neg_03",
+            "negative_matches": [
+              "legacy_it_neg_03"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "cartamodello pdf",
+            "expected_negative_key": "legacy_it_neg_04",
+            "negative_matches": [
+              "legacy_it_neg_04"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "cartamodelli pdf",
+            "expected_negative_key": "legacy_it_neg_05",
+            "negative_matches": [
+              "legacy_it_neg_05"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "file svg",
+            "expected_negative_key": "legacy_it_neg_06",
+            "negative_matches": [
+              "legacy_it_neg_06"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "noleggio abiti mamma e figlia",
+            "expected_negative_key": "legacy_it_neg_07",
+            "negative_matches": [
+              "legacy_it_neg_07"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "affitto vestiti mamma e figlia",
+            "expected_negative_key": "legacy_it_neg_08",
+            "negative_matches": [
+              "legacy_it_neg_08"
+            ],
+            "result": "PASS"
+          }
+        ],
+        "known_coverage_gap_probes": [
+          {
+            "query": "vestiti mamma e figlia pdf cartamodelli",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "Reversed order pdf cartamodelli is not the supplied cartamodelli pdf phrase."
+          },
+          {
+            "query": "noleggio abiti mamma e figlia online",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "The Exact rental exclusion does not cover a longer query. This is a deliberate scope gap, not full protection against rental searches."
+          }
+        ],
+        "mixed_buyer_challenge": {
+          "query": "comprare vestiti mamma e figlia invece di seguire un tutorial di cucito",
+          "intent": "Buying finished dresses instead of following sewing instructions.",
+          "negative_matches": [
+            "legacy_it_neg_01"
+          ],
+          "result": "KNOWN_FALSE_POSITIVE_RISK",
+          "next_decision": "Inspect real native queries. If this mixed retail intent matters, narrow only the affected phrase to justified full-query Exact exclusions."
+        },
+        "native_account_shared_list_inheritance": "NOT_READ",
+        "native_negative_conflict_report": "NOT_RUN",
+        "native_language_certification": "NOT_PERFORMED",
+        "actual_search_term_or_performance_evidence": "NONE"
+      },
+      "language_notes": "No bare cartamodello, fai da te, da stampare or ingrosso is included. The qualified list is deliberately narrower than every instruction query.",
+      "merge_policy": "Resolve exact locale, parent IDs and native before-state. Retain identical native IDs and preserve current negatives until a reviewed delta is executed. Never upscope ad-group garment-routing exclusions. Recheck every new root-library positive term."
+    },
+    {
+      "locale": "cs",
+      "language": "Czech",
+      "intent": "Finished mother-daughter matching dresses",
+      "status": "LOCAL_VALIDATED_PROPOSAL_NOT_NATIVE_IMPLEMENTATION",
+      "legacy_campaign_keys": [
+        "ms_cz_cs_202609"
+      ],
+      "existing_campaign_ids_to_preserve": {},
+      "negatives": [
+        {
+          "key": "legacy_cs_neg_01",
+          "text": "návod na šití",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Sewing instructions; reused narrow local seed.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [
+            {
+              "campaign_key": "ms_cz_cs_202609",
+              "local_state": "PROPOSED_ONLY"
+            }
+          ],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_cs_neg_02",
+          "text": "návody na šití",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural sewing-instruction form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_cs_neg_03",
+          "text": "střih pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "PDF pattern request; bare střih can also refer to a garment cut.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_cs_neg_04",
+          "text": "střihy pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural digital-pattern form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_cs_neg_05",
+          "text": "svg soubor",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital SVG file request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_cs_neg_06",
+          "text": "svg soubory",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural digital-file request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_cs_neg_07",
+          "text": "půjčovna šatů máma dcera",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete mother-daughter dress-hire query.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_cs_neg_08",
+          "text": "půjčení šatů pro maminku a dceru",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete query requesting rental dresses.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        }
+      ],
+      "tests": {
+        "method": "Unicode NFKC, case-folding, whitespace tokens. Phrase requires ordered contiguous tokens; Exact requires the full sequence. Accents are preserved. Not a Microsoft semantic/punctuation/auction simulator.",
+        "all_affected_positive_rows_checked": 14,
+        "dress_positive_rows_checked": 7,
+        "positive_keys_checked": [
+          "ms_cz_cs_202609_dresses_exact_1",
+          "ms_cz_cs_202609_dresses_exact_2",
+          "ms_cz_cs_202609_dresses_exact_3",
+          "ms_cz_cs_202609_dresses_exact_4",
+          "ms_cz_cs_202609_dresses_exact_5",
+          "ms_cz_cs_202609_dresses_phrase_1",
+          "ms_cz_cs_202609_dresses_phrase_2",
+          "ms_cz_cs_202609_tees_exact_1",
+          "ms_cz_cs_202609_tees_exact_2",
+          "ms_cz_cs_202609_tees_exact_3",
+          "ms_cz_cs_202609_tees_exact_4",
+          "ms_cz_cs_202609_tees_exact_5",
+          "ms_cz_cs_202609_tees_phrase_1",
+          "ms_cz_cs_202609_tees_phrase_2"
+        ],
+        "literal_positive_conflicts": [],
+        "ordinary_buyer_holdouts": [
+          {
+            "query": "stejné šaty pro maminku a dceru",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "levné šaty máma dcera",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "šaty máma dcera doprava zdarma",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "šaty máma dcera s květinovým vzorem",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "šaty máma dcera velké velikosti",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "šaty máma dcera narozeninové focení",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "tričkové šaty máma dcera",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "dárek šaty máma dcera recenze",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          }
+        ],
+        "negative_intent_probes": [
+          {
+            "query": "návod na šití",
+            "expected_negative_key": "legacy_cs_neg_01",
+            "negative_matches": [
+              "legacy_cs_neg_01"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "návody na šití",
+            "expected_negative_key": "legacy_cs_neg_02",
+            "negative_matches": [
+              "legacy_cs_neg_02"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "střih pdf",
+            "expected_negative_key": "legacy_cs_neg_03",
+            "negative_matches": [
+              "legacy_cs_neg_03"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "střihy pdf",
+            "expected_negative_key": "legacy_cs_neg_04",
+            "negative_matches": [
+              "legacy_cs_neg_04"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "svg soubor",
+            "expected_negative_key": "legacy_cs_neg_05",
+            "negative_matches": [
+              "legacy_cs_neg_05"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "svg soubory",
+            "expected_negative_key": "legacy_cs_neg_06",
+            "negative_matches": [
+              "legacy_cs_neg_06"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "půjčovna šatů máma dcera",
+            "expected_negative_key": "legacy_cs_neg_07",
+            "negative_matches": [
+              "legacy_cs_neg_07"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "půjčení šatů pro maminku a dceru",
+            "expected_negative_key": "legacy_cs_neg_08",
+            "negative_matches": [
+              "legacy_cs_neg_08"
+            ],
+            "result": "PASS"
+          }
+        ],
+        "known_coverage_gap_probes": [
+          {
+            "query": "saty mama dcera navod na siti",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "Unaccented navod na siti is not návod na šití. Case endings also require distinct review."
+          },
+          {
+            "query": "půjčovna šatů máma dcera online",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "The Exact rental exclusion does not cover a longer query. This is a deliberate scope gap, not full protection against rental searches."
+          }
+        ],
+        "mixed_buyer_challenge": {
+          "query": "chci koupit šaty pro maminku a dceru ne návod na šití",
+          "intent": "Buying finished dresses instead of following sewing instructions.",
+          "negative_matches": [
+            "legacy_cs_neg_01"
+          ],
+          "result": "KNOWN_FALSE_POSITIVE_RISK",
+          "next_decision": "Inspect real native queries. If this mixed retail intent matters, narrow only the affected phrase to justified full-query Exact exclusions."
+        },
+        "native_account_shared_list_inheritance": "NOT_READ",
+        "native_negative_conflict_report": "NOT_RUN",
+        "native_language_certification": "NOT_PERFORMED",
+        "actual_search_term_or_performance_evidence": "NONE"
+      },
+      "language_notes": "Czech inflection and diacritic-free queries materially limit a short literal list. This file does not certify native eligibility or phrase demand.",
+      "merge_policy": "Resolve exact locale, parent IDs and native before-state. Retain identical native IDs and preserve current negatives until a reviewed delta is executed. Never upscope ad-group garment-routing exclusions. Recheck every new root-library positive term."
+    },
+    {
+      "locale": "ro",
+      "language": "Romanian",
+      "intent": "Finished mother-daughter matching dresses",
+      "status": "LOCAL_VALIDATED_PROPOSAL_NOT_NATIVE_IMPLEMENTATION",
+      "legacy_campaign_keys": [
+        "ms_ro_ro_202609"
+      ],
+      "existing_campaign_ids_to_preserve": {},
+      "negatives": [
+        {
+          "key": "legacy_ro_neg_01",
+          "text": "tutorial de cusut",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Qualified sewing tutorial.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_ro_neg_02",
+          "text": "cum să cos",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "How-to-sew intent; reused local instruction seed.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [
+            {
+              "campaign_key": "ms_ro_ro_202609",
+              "local_state": "PROPOSED_ONLY"
+            }
+          ],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_ro_neg_03",
+          "text": "tipar pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital PDF pattern; no bare tipar or clothing-print exclusion.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_ro_neg_04",
+          "text": "tipare pdf",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural PDF-pattern form.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_ro_neg_05",
+          "text": "fișier svg",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Digital SVG file request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_ro_neg_06",
+          "text": "fișiere svg",
+          "match_type": "Phrase",
+          "scope": "Campaign",
+          "rationale": "Separate plural digital-file request.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_ro_neg_07",
+          "text": "închiriere rochii mamă fiică",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Only this complete mother-daughter dress-rental query.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        },
+        {
+          "key": "legacy_ro_neg_08",
+          "text": "inchiriere rochii mama fiica",
+          "match_type": "Exact",
+          "scope": "Campaign",
+          "rationale": "Explicit diacritic-free variant of that complete rental query.",
+          "status": "LOCAL_CANDIDATE_NOT_UPLOADED",
+          "identical_existing_local_rows": [],
+          "native_negative_id": null
+        }
+      ],
+      "tests": {
+        "method": "Unicode NFKC, case-folding, whitespace tokens. Phrase requires ordered contiguous tokens; Exact requires the full sequence. Accents are preserved. Not a Microsoft semantic/punctuation/auction simulator.",
+        "all_affected_positive_rows_checked": 14,
+        "dress_positive_rows_checked": 7,
+        "positive_keys_checked": [
+          "ms_ro_ro_202609_dresses_exact_1",
+          "ms_ro_ro_202609_dresses_exact_2",
+          "ms_ro_ro_202609_dresses_exact_3",
+          "ms_ro_ro_202609_dresses_exact_4",
+          "ms_ro_ro_202609_dresses_exact_5",
+          "ms_ro_ro_202609_dresses_phrase_1",
+          "ms_ro_ro_202609_dresses_phrase_2",
+          "ms_ro_ro_202609_tees_exact_1",
+          "ms_ro_ro_202609_tees_exact_2",
+          "ms_ro_ro_202609_tees_exact_3",
+          "ms_ro_ro_202609_tees_exact_4",
+          "ms_ro_ro_202609_tees_exact_5",
+          "ms_ro_ro_202609_tees_phrase_1",
+          "ms_ro_ro_202609_tees_phrase_2"
+        ],
+        "literal_positive_conflicts": [],
+        "ordinary_buyer_holdouts": [
+          {
+            "query": "rochii asortate mamă fiică",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "rochii mama fiica ieftine",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "rochii mama fiica livrare gratuită",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "rochii mama fiica imprimeu floral",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "rochii mama fiica mărimi mari",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "rochii mama fiica poze aniversare",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "rochii tricou mama fiica",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          },
+          {
+            "query": "cadou rochii mama fiica recenzii",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS"
+          }
+        ],
+        "negative_intent_probes": [
+          {
+            "query": "tutorial de cusut",
+            "expected_negative_key": "legacy_ro_neg_01",
+            "negative_matches": [
+              "legacy_ro_neg_01"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "cum să cos",
+            "expected_negative_key": "legacy_ro_neg_02",
+            "negative_matches": [
+              "legacy_ro_neg_02"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "tipar pdf",
+            "expected_negative_key": "legacy_ro_neg_03",
+            "negative_matches": [
+              "legacy_ro_neg_03"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "tipare pdf",
+            "expected_negative_key": "legacy_ro_neg_04",
+            "negative_matches": [
+              "legacy_ro_neg_04"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "fișier svg",
+            "expected_negative_key": "legacy_ro_neg_05",
+            "negative_matches": [
+              "legacy_ro_neg_05"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "fișiere svg",
+            "expected_negative_key": "legacy_ro_neg_06",
+            "negative_matches": [
+              "legacy_ro_neg_06"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "închiriere rochii mamă fiică",
+            "expected_negative_key": "legacy_ro_neg_07",
+            "negative_matches": [
+              "legacy_ro_neg_07"
+            ],
+            "result": "PASS"
+          },
+          {
+            "query": "inchiriere rochii mama fiica",
+            "expected_negative_key": "legacy_ro_neg_08",
+            "negative_matches": [
+              "legacy_ro_neg_08"
+            ],
+            "result": "PASS"
+          }
+        ],
+        "known_coverage_gap_probes": [
+          {
+            "query": "rochii mama fiica fisier svg",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "fisier is not the supplied fișier. Comma/cedilla and grammatical variants are not certified as equivalent."
+          },
+          {
+            "query": "închiriere rochii mamă fiică online",
+            "expected": "NOT_BLOCKED",
+            "negative_matches": [],
+            "result": "PASS",
+            "interpretation": "The Exact rental exclusion does not cover a longer query. This is a deliberate scope gap, not full protection against rental searches."
+          }
+        ],
+        "mixed_buyer_challenge": {
+          "query": "vreau să cumpăr rochii mamă fiică nu un tutorial de cusut",
+          "intent": "Buying finished dresses instead of following sewing instructions.",
+          "negative_matches": [
+            "legacy_ro_neg_01"
+          ],
+          "result": "KNOWN_FALSE_POSITIVE_RISK",
+          "next_decision": "Inspect real native queries. If this mixed retail intent matters, narrow only the affected phrase to justified full-query Exact exclusions."
+        },
+        "native_account_shared_list_inheritance": "NOT_READ",
+        "native_negative_conflict_report": "NOT_RUN",
+        "native_language_certification": "NOT_PERFORMED",
+        "actual_search_term_or_performance_evidence": "NONE"
+      },
+      "language_notes": "Only the rental Exact query has an explicit accent-free counterpart here. Other accented words do not imply coverage of unaccented spelling.",
+      "merge_policy": "Resolve exact locale, parent IDs and native before-state. Retain identical native IDs and preserve current negatives until a reviewed delta is executed. Never upscope ad-group garment-routing exclusions. Recheck every new root-library positive term."
+    }
+  ],
+  "constraints": {
+    "campaign_purpose": "DRESSES retail intent; campaign scope also affects every other child group.",
+    "native_changes_performed": false,
+    "existing_native_negatives_modified": false,
+    "budgets_or_bid_caps_changed": false,
+    "preserved_max_cpc_usd": 0.15,
+    "existing_us_campaign_id_to_preserve": "506254907",
+    "existing_de_campaign_id_to_preserve": "506254908",
+    "future_affected_entity_status": "Paused",
+    "not_import_ready": true,
+    "scope_warning": "Exactly8 requested locales and9 legacy campaign candidates. Root owns the20-language library. This file does not certify shipping, eligibility or local demand.",
+    "language_review": "Model semantic/linguistic review from existing dress intent, not an independent native-speaker certificate.",
+    "forbidden_global_exclusions": "No bare pattern/style, free, cheap, gift, age/size, garment, wholesale or rental term. No account-wide or brand/competitor exclusions.",
+    "coverage_limit": "No automatic negative variants. Plurals, synonyms, spelling, accents, compounds, order and Exact extra words require deliberate review. This is not an exhaustive list."
+  },
+  "sources": {
+    "negative_rules": {
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_aboutnegativekeywords",
+      "updated": "2026-06-19",
+      "basis": "Body read earlier in the same-day primary-source pass.",
+      "claim": "Negative Phrase filters the ordered phrase; Exact filters the complete query. Variants need separate entries. Campaign scope reaches child groups."
+    },
+    "positive_match_rules": {
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_matchoptions",
+      "updated": "2026-06-26",
+      "basis": "Body read earlier in the same-day primary-source pass.",
+      "claim": "Positive Exact reaches meaning/close variants, so literal overlap checks alone are incomplete."
+    },
+    "baseline_files": [
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/campaigns.csv",
+        "sha256": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e"
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/keywords.csv",
+        "sha256": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012"
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/negative_keywords.csv",
+        "sha256": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839"
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/negative-review-20260911/negative_review.csv",
+        "sha256": "185f4b21b3680611197daa65c50e569727099ab64aa91b9f4a599ea916c7ccf2"
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/negative-review-20260911/qualified_local_seeds.csv",
+        "sha256": "42b803e1e04d245334a9b84a52e3e8862d3a361a5ce5b262676378ca9a08b49b"
+      }
+    ],
+    "new_broad_research_performed": false
+  },
+  "validation": {
+    "locale_count": 8,
+    "negative_count": 64,
+    "phrase_count": 48,
+    "exact_count": 16,
+    "legacy_campaign_count": 9,
+    "dress_positive_rows_checked": 63,
+    "all_affected_positive_rows_checked": 126,
+    "literal_conflicts": 0,
+    "ordinary_buyer_holdouts_passed": 64,
+    "negative_intent_probes_passed": 64,
+    "known_coverage_gap_probes_passed": 16,
+    "explicit_mixed_buyer_false_positive_risks": 8,
+    "native_test_status": "NOT_RUN",
+    "profit_or_CPA_result": "NOT_OBSERVED"
+  }
+}

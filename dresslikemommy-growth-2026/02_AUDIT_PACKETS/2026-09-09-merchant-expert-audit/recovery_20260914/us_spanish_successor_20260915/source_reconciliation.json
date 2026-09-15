@@ -1,0 +1,198 @@
+{
+  "status": "BOUNDED_SOURCE_RECONCILIATION_COMPLETE__ONE_REQUIRED_STALE_FIELD_REMAINS",
+  "confidence": "H",
+  "read_completed_at_utc": "2026-09-15T02:56:09.456Z",
+  "shop_id": "15571635",
+  "market_id": "544735329",
+  "locale": "es",
+  "counts": {
+    "active_parents_read": 11,
+    "required_fields": 22,
+    "required_current": 21,
+    "required_stale": 1,
+    "global_records_current": 54,
+    "global_records_stale": 1,
+    "explicit_US_market_records": 0,
+    "prior_required_stale_fields_cleared": 12,
+    "prior_completed_repairs_preserved": 25,
+    "all_prior_global_values_and_flags_unchanged": 55,
+    "English_source_digests_unchanged": 66,
+    "checks_passed": 231,
+    "checks_failed": 0
+  },
+  "remaining": [
+    {
+      "product_id": "gid://shopify/Product/7227378925665",
+      "handle": "tropical-matching-family-beach-outfits-colorful-leaf-print-summer-dresses-shorts-set",
+      "key": "body_html",
+      "selected_scope": "global",
+      "outdated": true,
+      "current_English_source_digest": "39870518565c9b7e0d9743389bfb4d5c1386eaafac104551e2bdfa57d486fd28",
+      "current_Spanish_value_sha256": "bebb67e32b2d2f87958d635df3b7f13d467e4d8b27e64ba63407fea418f3aac1",
+      "current_US_English_emitted_rows": 23,
+      "reason": "Questionable child-weight chart remains a factual source dependency; no measurement was changed or recertified."
+    }
+  ],
+  "cleared_prior_required_fields": {
+    "gid://shopify/Product/7227375714401": [
+      "body_html"
+    ],
+    "gid://shopify/Product/7227378892897": [
+      "title"
+    ],
+    "gid://shopify/Product/7229026304097": [
+      "body_html"
+    ],
+    "gid://shopify/Product/7536709664865": [
+      "title"
+    ],
+    "gid://shopify/Product/7536984359009": [
+      "title"
+    ],
+    "gid://shopify/Product/7545279217761": [
+      "title",
+      "body_html"
+    ],
+    "gid://shopify/Product/7545279512673": [
+      "body_html"
+    ],
+    "gid://shopify/Product/7545279840353": [
+      "body_html"
+    ],
+    "gid://shopify/Product/7545373130849": [
+      "body_html"
+    ],
+    "gid://shopify/Product/7546613530721": [
+      "title",
+      "body_html"
+    ]
+  },
+  "body_evidence": {
+    "fresh_status_and_hash_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_successor_20260915/read_result.sanitized.json",
+    "old_full_Spanish_before_path": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260914-es-translation-repair/before.json",
+    "old_full_Spanish_before_sha256": "221d3873fc1cb61a88add71c88f0b3bbb1a2539d73c9dd81a872975d9fc040b9",
+    "retained_full_value_after_path": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260914-es-translation-repair/after.json",
+    "retained_full_value_after_sha256": "79032a4fe68cab753edeb454c8c1fe9b7bf12e4bab278e52c80a9f2fa7ae294d",
+    "locator": "data.translatableResourcesByIds.nodes[resourceId=gid://shopify/Product/7227378925665].translations[key=body_html]",
+    "English_locator": "data.translatableResourcesByIds.nodes[resourceId=gid://shopify/Product/7227378925665].translatableContent[key=body_html]",
+    "qualification": "Private historical bodies are byte-identical to the fresh Spanish value hash and current English digest; they were not restamped as fresh files."
+  },
+  "bounded_eligibility": {
+    "US_catalog_source_completed_at_utc": "2026-09-15T02:11:13.020Z",
+    "fresh_English_rows_in_cohort": 189,
+    "current_English_rows_for_10_cleared_parents": 166,
+    "current_English_rows_for_stale_parent": 23,
+    "historical_potential_Spanish_offers": 4552,
+    "conditional_potential_Spanish_offers": 4718,
+    "explanation": "4741-23=4718 (also historical 4552+166) is only a local eligibility implication, conditional on unchanged eligibility/translations elsewhere. Fresh full US/es collection and buyer-route qualification are required; no executable Spanish feed is established."
+  },
+  "current_code_rule": {
+    "collector": "src/collector.js:60-73,125-146: global values merged with explicit market overrides; stale/empty overrides cannot fall through.",
+    "generator": "src/generator.js:111-116: selected title/body must be present and current; stale handle is separately rejected.",
+    "interpretation": "Empty market arrays mean no explicit US overrides on this surface, not missing global translations."
+  },
+  "bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_spanish_parent_acceptance_20260914_1658.json",
+      "sha256": "f488b345219caef42c0fc51c687c7a7dbd687828f9512058366b47674b458fda"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/us_spanish_source_independent_review_20260914_1658.json",
+      "sha256": "86c6ef7d078f3762290c660d937e056ed30ed086736f1ed443274b1ce9d5d824"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/source_reconciliation.json",
+      "sha256": "196094ddcb5cb1fec3dc0f610559829fe210e5856a09d6273fcce0dea0b70838"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/parent_translation_qualification.csv",
+      "sha256": "0d05e65e17abe88f2decd00f76325cf861bc784406339392deeaf3f3299bf969"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/es_translation_repair_1925/execution_handoff.json",
+      "sha256": "9fadafd8e7cbc491a354408bb9dcedc5564e1ff99f86e71c48d414631674fa71"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/es_translation_repair_1925/proposal.json",
+      "sha256": "8f4fee9765c5b4ec4a5943955959c51d55ec4c4da2e85c8b2f89b2295f1241e6"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/es_translation_repair_1925/after.json",
+      "sha256": "b0e6c54ddf0c5500692be8065a0564ec0ca1d74fcf086377d625fc50f87742c5"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/es_translation_repair_1925/independent_after_review.json",
+      "sha256": "b720efd499ae6f049e1d01d18f899d5dd136bb61be4ab7cae9b90bfbbd8a7fec"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/es_translation_repair_1925/remaining_content_issues.json",
+      "sha256": "059f88d2c1acd0bb17eac40d7f62197c7e5344f54b341f1d0ff244e935c7c860"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js",
+      "sha256": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js",
+      "sha256": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/queries.js",
+      "sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/config.json",
+      "sha256": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/eligibility_holds_20260911.json",
+      "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260915T015530Z-us-color47-refresh/candidate/us-en.snapshot.json",
+      "sha256": "b0be0027f7fc782e5211b65e6eec771752d58b8acb32215ae5f712d15fd65d69"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260915T015530Z-us-color47-refresh/candidate/us-en.tsv",
+      "sha256": "fc7aa665746887d1ce37f5bce2d3afa5ed6ea363f9cd362007d4825313797bb3"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_successor_20260915/cli_validation_receipt.json",
+      "sha256": "05ba1f7bf3e18dac7568dadd325329095eee866ecde546ad1efa822336653396"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_successor_20260915/identity.graphql",
+      "sha256": "5656d64929bdf6d6b0a09493f71e44d80ec9a5ed073fb3c45e2a686c5997d1a8"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_successor_20260915/identity_result.json",
+      "sha256": "88390035085fa71c5dab5ee39d99bcac380a2916756981f3827ae91b6dc25747"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_successor_20260915/mcp_validation_receipt.json",
+      "sha256": "b12fe9519f55ebf699176fa4639d1d2cae9e178f28b4fe1df72d42a47154734a"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_successor_20260915/read.graphql",
+      "sha256": "a141f76dfe5ec4f9c29fe60ded3ad03f56e4e1916f2c0a9a2aac48779805a5eb"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_successor_20260915/read.variables.json",
+      "sha256": "9a37a9755e1e49982158ab356fcae18196b001f05b0599969028d6c9edbd5a0b"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_successor_20260915/read_result.sanitized.json",
+      "sha256": "134931937698f219b3542afd2714b3617ebc56a9cea4ab5e8ac80e0904c6bc91"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_successor_20260915/schema_receipt.json",
+      "sha256": "39f3b12ef4f3a2959183df63c98564bca9e6677fa967a65806b63e6ed9fba448"
+    }
+  ],
+  "limits": "Only these 11 products were freshly read. All 54 current global records, measurements and six existing holds are preserved. Language quality, remaining catalog freshness, landing/checkout eligibility, Google submission and serving remain unproved. Local observation contains hashes instead of legacy supplier URLs. No customer data or credentials read.",
+  "next_owner_action": "Independently review this qualification and existing child-weight source issue. Preserve the Tropical factual hold and all 54 current global records. No Spanish body write, cosmetic re-registration or duplicate repair is justified; fresh full US/es collection and buyer-route qualification precede any feed proposal.",
+  "api_business_reads": 2,
+  "api_mutations": 0,
+  "feed_or_theme_writes": 0,
+  "canonical_edits": 0
+}

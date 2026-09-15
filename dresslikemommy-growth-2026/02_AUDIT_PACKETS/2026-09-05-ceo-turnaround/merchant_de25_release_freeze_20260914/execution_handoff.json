@@ -1,0 +1,148 @@
+{
+  "action": "TA07-DE-25-REPAIR-20260914",
+  "at_utc": "2026-09-15T00:04:33.384374+00:00",
+  "status": "IMPLEMENTED_VERIFIED_LIVE_GERMAN_25__DAILY_CONTINUATION_UPDATED__ALL_MARKET_RELEASE_PARTIAL",
+  "executor_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "source_live_evidence_as_of": "2026-09-14T23:58:21Z",
+  "live_state_mode": "LIVE_VERIFIED_EXACT_GLOBAL_DE_COHORT",
+  "effective_approval_policy": "Current user all-language active-product/Merchant correction mandate, exact reviewed source and sole writer claim; no broader production or permission authority inferred",
+  "approved_external_scope": "25 global de translations on 10 named ACTIVE Shopify products; one ten-alias registration. Update only the existing daily heartbeat prompt.",
+  "decision_depends_on_uncertain_state": true,
+  "material_decision": "MATERIAL",
+  "decision_changing_evidence": "Source/product/translation drift, independent semantic mismatch or failed exact readback",
+  "if_evidence_supports_recommendation": "Close exact DE25 after matching independent after-read and public samples, then continue the dated language queue without replay.",
+  "if_evidence_opposes_recommendation": "Stop affected product scope and prepare a source-bound correction or rollback",
+  "independent_verifier": "/root/merchant_translation_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "shopify_store_id": "15571635",
+  "merchant_account_id": "513542500",
+  "locale": "de",
+  "marketId": null,
+  "implemented": {
+    "translation_fields": 25,
+    "products": 10,
+    "body_html": 7,
+    "titles": 5,
+    "meta_titles": 6,
+    "meta_descriptions": 6,
+    "product_types": 1,
+    "required_feed_title_body_fields": 12
+  },
+  "verified": {
+    "exact_new_values_outdated_false": 25,
+    "untargeted_German_unchanged": 25,
+    "English_source_fields_and_digests_unchanged": 60,
+    "ACTIVE_product_records_unchanged": 10,
+    "user_errors": 0,
+    "public_routes": 3,
+    "table_cells_preserved": 827,
+    "market_specific_FR_DE_override_arrays_empty": 60
+  },
+  "independent_review_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/de_translation_repair_2342/independent_after_review.json",
+  "independent_review_sha256": "4d6fdf8d077ca3b52c02d73ef752b30243e77340fdffa9f2bb6405d415b27569",
+  "after_verification_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/de_translation_repair_2342/after_verification.json",
+  "after_verification_sha256": "4bb450d8ef81c0ec0231a551b5b4a4c06113e5a9e4e7c9b086016b60702067fe",
+  "mutation_receipt_sha256": "9b4d69a0a8f8ec5d280cf0919d18993ed80c6a65e945019f7833e0b3dbb9a05a",
+  "public_smoke_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/de_translation_repair_2342/public_smoke.json",
+  "completion_validation_sha256": "2ab114a550b44722ef293dc04704db0432981ce82fbbd9076eb4ce66efd2b9de",
+  "language_backlog": {
+    "source_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/de_translation_repair_2342/language_queue.json",
+    "baseline_at_utc": "2026-09-14T23:34:42Z",
+    "scope": "Same 10 products only, not full-store missing/quality coverage",
+    "remaining_baseline_locales": 17,
+    "remaining_baseline_outdated_fields": 414,
+    "remaining_baseline_required_title_body_fields": 197,
+    "fresh_read_required_before_each_write": true
+  },
+  "live_actions": {
+    "shopify_translation_mutation_calls": 1,
+    "fields_saved": 25,
+    "existing_heartbeat_prompt_updates": 1,
+    "Merchant_writes": 0,
+    "feed_uploads": 0,
+    "new_markets": 0,
+    "theme_or_FAQ_writes": 0,
+    "price_or_inventory_writes": 0,
+    "cloud_or_credentials_writes": 0
+  },
+  "source_freshness": {
+    "last_actual_US_source_completed_at": "2026-09-14T13:16:10.466Z",
+    "proactive_refresh_target": "2026-09-15T13:16:10.466Z",
+    "unchanged_public_host_expiry": "2026-09-16T13:16:10.466Z",
+    "translation_read_not_a_catalog_feed_refresh": true
+  },
+  "next_owner_action": "Publish reviewed Shopify theme137888792673 through Admin; connector restriction requires owner action. It goes first because exact published numeric-variant entry blocks the next localized/feed release. Existing prompt remains pending; do not duplicate.",
+  "next_internal_action": "Continue fresh source-bound language corrections from the dated queue, prioritizing the due genuine US source scan through native-holds-20260914 in the existing daily task. Reuse completed ES/FR/DE receipts.",
+  "independent_gates": [
+    "CA/UK supported transit times",
+    "Return-policy truth and effective assignments",
+    "Exact dedicated cloud-reader approval already pending"
+  ],
+  "limits": [
+    "Global translations do not prove market-specific overrides or Merchant receipt/approval",
+    "US/AU4741approvals and29countrygaps retain prior dated native observations",
+    "No new traffic, orders, profit or perfect Store Quality proved",
+    "Tropical7227378925665/source holds remain excluded",
+    "Root exact-source evidence stays private; public copies sanitize supplier/Admin references",
+    "Untargeted German metadata and broader language quality were not certified",
+    "The empty CA/UK recent-order cohort does not establish supplier transit capability"
+  ],
+  "rollback": "Exact private before values retained; re-read current source digests and translations before any independently reviewed reverse operation. Restore the prior heartbeat prompt via automation_update if needed without altering cadence or target.",
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md plus latest owned Merchant checkpoint",
+  "concrete_corrections": [
+    "Palm Tree Christmas metadata replaced with beach-outfit facts",
+    "Green Palm title corrected from shorts to dress and shirt",
+    "Scarlet title/type/body/meta corrected from a full outfit to the sold tank top",
+    "Separate top/pants scope and source-backed material/measurement details retained"
+  ],
+  "same_turn_completed_French": {
+    "handoff_path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/fr_translation_repair_2325/execution_handoff.json",
+    "handoff_sha256": "b8eb3a74e4dd83c220dba0ee9309e0ee4fac6bfe375f302de48e6d95c368ddd6",
+    "fields_saved": 25,
+    "same_products": 10,
+    "after_at": "2026-09-14T23:36:28Z"
+  },
+  "same_turn_total_fields_saved": 50,
+  "automation": {
+    "status": "VERIFIED_SAME_HEARTBEAT_WITH_ACTIONABLE_LANGUAGE_CONTINUATION",
+    "automationId": "google-merchant-all-market-free-listings",
+    "changedAtUtc": "2026-09-14T23:50:11.093000+00:00",
+    "active": true,
+    "cadenceAndTargetPreserved": true,
+    "addedRouting": "Continue independent, reviewed language corrections; skip completed receipts and honor current controls",
+    "beforeSha256": "a54ebd87a89cd859b96fc91442d51317e06a8b3275b60910ab9a256ab5e57096",
+    "afterSha256": "eb445b1b88610ea727c67da7a0c7f1a8ddbb42d2b42caa2c68ecde60c7c331b9",
+    "futureExecutionGuaranteed": false
+  },
+  "shipping_evidence": {
+    "evidencePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ca_gb_shipping_aggregate_freeze_20260914/aggregate_result.json",
+    "sha256": "1f30415d0df57f9a6fd8526b834e209e90d0b6c6fe833ad1f7ab395700550749",
+    "receiptFrom": "Parent01a08223 aggregate-only accepted evidence",
+    "observedAtUtc": "2026-09-14T23:43:35Z through23:43:36Z",
+    "creationCohortUtc": "[2026-08-15T04:00:00Z,2026-09-14T04:00:00Z)",
+    "allNonTestOrdersInCohort": 10,
+    "CanadaOrders": 0,
+    "GreatBritainOrders": 0,
+    "usableDeliveryObservations": 0,
+    "transitDays": "UNKNOWN",
+    "limits": [
+      "Creation cohort excludes older-created orders delivered in this period",
+      "No evidence of future supplier/carrier capability",
+      "No policy or feed field update authorized by empty cohort"
+    ],
+    "externalWrites": 0
+  },
+  "market_override_evidence": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/de_translation_repair_2342/market_override_readback.json",
+    "sha256": "18c0c0d1cd9ba232dd964e1c5586bea3a134fcbe165759662a8888c8a2f1e9d6",
+    "scope": "FR/DE on these 10 products in identity-verified Canada, International and Eurozone markets; empty arrays do not establish checkout or Google eligibility"
+  },
+  "runtime_status": {
+    "goal_checked_at_utc": "2026-09-15T00:00:07Z",
+    "continuous_goal_status": "usageLimited",
+    "goal_control_changed": false,
+    "ordinary_current_turn_operations_succeeded": true,
+    "daily_schedule_not_an_override": true
+  }
+}

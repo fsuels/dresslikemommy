@@ -1,0 +1,8 @@
+query MerchantColorProtectedMetadata($ids: [ID!]!, $first: Int!) {
+  shop { id myshopifyDomain }
+  nodes(ids: $ids) {
+    id
+    ... on Product { metafields(first: $first) { nodes { id namespace key type value compareDigest } pageInfo { hasNextPage endCursor } } }
+    ... on ProductVariant { metafields(first: $first) { nodes { id namespace key type value compareDigest } pageInfo { hasNextPage endCursor } } }
+  }
+}

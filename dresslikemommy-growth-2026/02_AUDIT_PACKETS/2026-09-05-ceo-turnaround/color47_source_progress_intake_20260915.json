@@ -1,0 +1,52 @@
+{
+  "recorded_at_utc": "2026-09-15T02:10:19.712589+00:00",
+  "status": "OWNER_REPORTED_SOURCE_SAVE__FINAL_ACCEPTANCE_PENDING",
+  "pending_intake": {
+    "action_id": "TA07-SOURCE-COLOR47-20260915",
+    "status": "SHOPIFY_47FIELD_SAVE_REPORTED__EXACT_INDEPENDENT_AFTER_AND_FROZEN_HANDOFF_PENDING",
+    "owner_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+    "execution_turn_id": "01a0a234-63cf-7e51-81f3-9fc920e6a7f7",
+    "plan": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_color47_source_plan_20260915.json",
+      "sha256": "95f5b000a00c90947fba9e9e38b27cfc105fca3c82659abbd0b3a02169413cbc"
+    },
+    "dispatch_receipt": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_color47_dispatch_receipt_20260915.json",
+      "sha256": "4209eb6f312f596517a3f9311c531ea351dd6e6807177054e2a2e0ba60869a60"
+    },
+    "next_action": "Accept exact source47 independent final handoff without repeating saves; inspect separate fresh US/AU color propagation bindings before promotion/upload.",
+    "latest_owner_report": {
+      "recorded_at_utc": "2026-09-15T02:10:19.712589+00:00",
+      "source": "Direct existing Merchant owner progress message",
+      "mutations": [
+        {
+          "at_utc": "2026-09-15T02:03:15Z",
+          "fields": 25
+        },
+        {
+          "at_utc": "2026-09-15T02:04:08Z",
+          "fields": 22
+        }
+      ],
+      "user_errors": 0,
+      "owner_after_at_utc": "2026-09-15T02:05:23Z",
+      "owner_checks": "47 exact new colors;491 existing metadata records unchanged,538total across261resources/9parents/252variants; definitions still absent; captured bodies/options/prices/inventory/publications preserved except expected productupdatedAt.",
+      "source_after_sha256": "96cfdfa62c5ffa405842c51d684f7275d7fd9093bc08ca55674cb480f4f48fc2",
+      "metadata_after_sha256": "305f373757561a70495deb92b62500ff2a179f2c33c5c797d301bcd1f4644982",
+      "initial_claim_row_guard_stop": "Stopped before writes after parent canonical history changed; exact current sameowner47scope/exclusions rebound, no general guard exemption.",
+      "independent_final_acceptance": "PENDING",
+      "source_propagation": "Genuine US/AU builds running in new separate packets; no Google color upload yet.",
+      "no_replay": true
+    }
+  },
+  "checkpoint_sha256": "09aa5d206606ce07ca986500e3d21468a21719c36476c9a2e4b41c40eea1c3ce",
+  "checks": {
+    "strict_exit": 0,
+    "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 51940 lines; latest anchor 2026-09-15-ceo-us-au-feeds-received-and-color-scope\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-15-ceo-us-au-feeds-received-and-color-scope\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n"
+  },
+  "integration_counts_unchanged": [
+    62,
+    60
+  ],
+  "parent_business_writes": 0
+}

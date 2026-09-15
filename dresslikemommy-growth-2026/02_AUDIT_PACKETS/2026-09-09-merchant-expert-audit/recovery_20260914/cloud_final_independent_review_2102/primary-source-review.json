@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-09-14T21:06:27.349Z",
+  "sourceType": "Current primary documentation retrieved through web tool",
+  "results": [
+    {
+      "url": "https://shopify.dev/docs/apps/build/authentication-authorization/client-credentials-grant?lang=node",
+      "verified": "Client-credentials grant uses an installed app in the same Shopify organization as the shop. The form POST endpoint is /admin/oauth/access_token. Response fields are access_token, scope, expires_in; documented expiry is 86399 seconds. Scope reflects installed app-version access, not narrowing in the token request.",
+      "implication": "A dedicated approved app and actual returned-scope proof remain necessary. A static short-lived token alone does not establish durable cloud authentication."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/usage/access-scopes",
+      "verified": "read_products maps to Product/ProductVariant; read_markets to Market; read_locales to ShopLocale; read_translations to Translation/TranslatableResource; read_metaobjects to Metaobject. A write scope includes read authority, so write access must not be added merely to satisfy an aggregated query validator.",
+      "implication": "The six-scope allowlist is restricted to relevant read families, with read_publications corroborated separately. It is a permission ceiling, not proof that every subset can execute the collector."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/queries/publications",
+      "verified": "Retrieved the current official publications reference; read_publications is the relevant documented read scope.",
+      "implication": "Publication access can remain read-only."
+    },
+    {
+      "url": "https://shopify.dev/docs/api/admin-graphql/latest/objects/Metaobject",
+      "verified": "Retrieved the official Metaobject reference for the collector taxonomy-reference field family.",
+      "implication": "No Metaobject definition writes or definition scope is needed by the exact collector query."
+    },
+    {
+      "url": "https://developers.cloudflare.com/workers/platform/limits/",
+      "verified": "Current docs state Free per-invocation subrequests 50 and internal-service subrequests 1000; redirects can add subrequests. Variable size is stated as 5 KB. Memory is 128 MB and platform plan/CPU constraints remain separate.",
+      "implication": "The observed 41 external fetch case leaves external-request headroom; R2/Queue accounting is distinct. Initial 5092-byte config is too close to the stated variable boundary, so the primary agent is separating bindings and requiring exact reconstruction."
+    },
+    {
+      "url": "https://developers.cloudflare.com/queues/platform/limits/",
+      "verified": "Current queue documentation gives a 15-minute consumer wall-clock limit and separate CPU limits.",
+      "implication": "Reader token validity must cover the complete possible consumer duration, not only a 60-second margin at reader construction."
+    }
+  ],
+  "unverified": [
+    "Actual installed app organization ownership and scope sufficiency",
+    "Actual Cloudflare plan, queue/bucket state and remaining quotas",
+    "Live resource usage and completed cloud refresh",
+    "Owner approval of the exact credential destination"
+  ],
+  "note": "No external account inspection, mutation or credential read was performed by this reviewer."
+}

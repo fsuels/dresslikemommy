@@ -1,0 +1,65 @@
+{
+  "action_id": "TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+  "parent_plan_sha256": "2110566aa7d8007a6e1de308e4a5a4c653cdc723e7377378982d40f34e13144e",
+  "status": "BUILD",
+  "target": "gid://shopify/Article/559700574305",
+  "source_digest": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "verified": {
+    "locales": 21,
+    "markets": 6,
+    "body_rows": 18,
+    "unrelated_translation_rows": 72,
+    "market_specific_rows": 0,
+    "english_unchanged": true
+  },
+  "inferred": "Independent language candidates preserve source meanings; rendered release acceptance remains pending.",
+  "unresolved": [
+    "Exact language-qualified candidates and reviews",
+    "Per-locale public article/shopping/contact arrivals",
+    "Body mobile/RTL layout"
+  ],
+  "blocked": [],
+  "next_action": "Prepare18localized candidates while root verifies routes and supported translation update operation.",
+  "ownership": {
+    "root": "External writes, integration, source/identity/drift/afterread guard, own packet only",
+    "parent": "All shared canonical files",
+    "authors": {
+      "a": [
+        "de",
+        "fr",
+        "es",
+        "it",
+        "pt-BR",
+        "nl"
+      ],
+      "b": [
+        "cs",
+        "da",
+        "fi",
+        "no",
+        "pl",
+        "ro"
+      ],
+      "c": [
+        "ar",
+        "he",
+        "hi",
+        "el",
+        "ja",
+        "ko"
+      ]
+    },
+    "review_rotation": "a reviews b; b reviews c; c reviews a, with no candidate-author reviewing own candidate"
+  },
+  "rtl_before": {
+    "locale": "ar",
+    "htmlLang": "ar",
+    "htmlDir": "",
+    "articleBodyComputedDirection": "ltr",
+    "tableComputedDirection": "ltr",
+    "remedy": "Arabic/Hebrew article body gets one div with dir=rtl and language; body-only scope, full page chrome remains unchanged."
+  },
+  "authority": "Current user daily editorial and international-language mandate; parent exact action. Only existing body_html global rows; no new locale rows, English/source update or unrelated writes.",
+  "rollback": "Existing exact before values keyedresource/locale/market/body_html, afterhashguard; source digest refreshed before restore.",
+  "business_lift_claimed": false
+}
