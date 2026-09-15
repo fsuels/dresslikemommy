@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "checks": {
+    "sort_url_selected_value": true,
+    "sort_changes_first_product": true,
+    "sort_first_four_prices_nondecreasing": true,
+    "category_exact_arrival": true,
+    "category_22cards_visible_heading": true,
+    "product_exact_arrival": true,
+    "product_cs_preview": true,
+    "cart_preserved": true,
+    "console_errors_zero": true
+  },
+  "scope": "One mobile filter-open and price-sort smoke, restorecreated-descending, category link, product-card navigation; no cart/checkout mutation",
+  "instrumentNotes": [
+    "An exact-name locator for the filter toggle matched no node after AJAX refresh. Fresh AX index closed the actual toggle; this was an automation selector mismatch, not a failed buyer action.",
+    "Some immediate AX snapshots captured the transition state; settled DOM, selected sort URL and actual destination are the acceptance evidence."
+  ]
+}

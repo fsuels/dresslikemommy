@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "passed": 11,
+  "checks": [
+    {
+      "name": "filter_open_native",
+      "pass": true
+    },
+    {
+      "name": "actual_sort_url",
+      "pass": true
+    },
+    {
+      "name": "both_sorted_controls",
+      "pass": true
+    },
+    {
+      "name": "sort_changed_first_product",
+      "pass": true
+    },
+    {
+      "name": "actual_restored_url",
+      "pass": true
+    },
+    {
+      "name": "both_restored_controls",
+      "pass": true
+    },
+    {
+      "name": "restored_full_card_order",
+      "pass": true
+    },
+    {
+      "name": "category_arrival",
+      "pass": true
+    },
+    {
+      "name": "product_arrival",
+      "pass": true
+    },
+    {
+      "name": "no_console_errors",
+      "pass": true
+    },
+    {
+      "name": "cart_preserved",
+      "pass": true
+    }
+  ],
+  "instrumentation": [
+    "Role-text lookup for filter and category returned no matches; fresh AX targets succeeded.",
+    "Initial sort capture was taken before asynchronous navigation and restored too early. Both observations are retained as intermediate-only. Subsequent runs explicitly waited for each observed URL and captured actual sorted and restored states."
+  ],
+  "limits": [
+    "No cart or checkout mutation or order.",
+    "Existing US USD preview session; no country-independent or cookie-independent qualification."
+  ]
+}

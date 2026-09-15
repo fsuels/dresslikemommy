@@ -128,6 +128,10 @@
       padding-top: 10px;
       margin-top: 0;
     }
+    /* Hide collection hero on mobile — active pill already shows the collection name */
+    .collection-hero {
+      display: none !important;
+    }
     /* Horizontal scroll for pills */
     .collection-category-nav__tabs-wrap {
       overflow-x: auto;
@@ -149,39 +153,6 @@
       flex-shrink: 0;
       padding: 6px 14px;
       font-size: 12px;
-    }
-  }
-
-  /* Establish the mobile heading before body styles load. */
-  @media (max-width: 767px) {
-    /* Show the existing heading; keep the compact mobile banner. */
-    #MainContent .collection-hero {
-        display: block !important;
-    }
-
-    #MainContent .collection-hero__image-container,
-    #MainContent .collection-hero__text-wrapper > :not(.collection-hero__title) {
-        display: none !important;
-    }
-
-    /* Remove space reserved for the hidden collection image. */
-    #MainContent .collection-hero.collection-hero--with-image,
-    #MainContent .collection-hero .collection-hero__text-wrapper {
-        padding: 0;
-    }
-
-    #MainContent .collection-hero .collection-hero__inner {
-        padding-bottom: 0;
-    }
-
-    #MainContent .collection-hero .collection-hero__text-wrapper {
-        flex-basis: 100%;
-    }
-
-    #MainContent .collection-hero .collection-hero__title {
-        margin: 1.8rem auto 0;
-        max-width: 24ch;
-        text-wrap: balance;
     }
   }
 
