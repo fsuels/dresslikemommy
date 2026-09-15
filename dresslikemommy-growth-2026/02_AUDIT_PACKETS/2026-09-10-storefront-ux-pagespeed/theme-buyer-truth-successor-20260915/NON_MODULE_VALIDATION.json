@@ -1,0 +1,27 @@
+{
+  "observedAt": "2026-09-15T01:25:27.725Z",
+  "firstAttempt": {
+    "chunk_id": "e05e92",
+    "wall_time_seconds": 0.021322083,
+    "exit_code": 1,
+    "original_token_count": 278,
+    "output": "node:internal/modules/package_json_reader:301\n  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);\n        ^\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find package '@shopify/theme-check-common' imported from /Users/fsuels/.codex/plugins/cache/openai-curated-remote/shopify/4.0.1/skills/shopify-liquid/scripts/validate.mjs\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)\n    at packageResolve (node:internal/modules/esm/resolve:768:81)\n    at moduleResolve (node:internal/modules/esm/resolve:859:18)\n    at defaultResolve (node:internal/modules/esm/resolve:992:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)\n    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)\n    at #resolve (node:internal/modules/esm/loader:683:17)\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)\n    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {\n  code: 'ERR_MODULE_NOT_FOUND'\n}\n\nNode.js v24.19.0\n"
+  },
+  "resolvedValidation": {
+    "chunk_id": "2d5cd5",
+    "wall_time_seconds": 0.000001084,
+    "exit_code": 0,
+    "original_token_count": 500,
+    "output": "Loaded resource from /Users/fsuels/Library/Caches/theme-liquid-docs-nodejs/tags.json\nLoaded resource from /Users/fsuels/Library/Caches/theme-liquid-docs-nodejs/filters.json\nLoaded resource from /Users/fsuels/Library/Caches/theme-liquid-docs-nodejs/shopify_system_translations.json\nLoaded resource from /Users/fsuels/Library/Caches/theme-liquid-docs-nodejs/objects.json\n## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Files:** 6\n\n## Detailed Results\n\n### File 1\n**Artifact ID:** ce871257-6ea3-43fb-a08b-e4d21a74c003\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** assets/component-product-desktop-ux-ruler-sync.css passed all checks.\n\n### File 2\n**Artifact ID:** ce871257-6ea3-43fb-a08b-e4d21a74c003\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** assets/section-blog-post.css passed all checks.\n\n### File 3\n**Artifact ID:** ce871257-6ea3-43fb-a08b-e4d21a74c003\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** sections/main-cart-footer.liquid passed all checks.\n\n### File 4\n**Artifact ID:** ce871257-6ea3-43fb-a08b-e4d21a74c003\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** snippets/cart-drawer.liquid passed all checks.\n\n### File 5\n**Artifact ID:** ce871257-6ea3-43fb-a08b-e4d21a74c003\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** locales/fr.json passed all checks.\n\n### File 6\n**Artifact ID:** ce871257-6ea3-43fb-a08b-e4d21a74c003\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** snippets/product-page-copy-map.liquid passed all checks.\n\n\n"
+  },
+  "diffCheck": "PASS for six non-module files",
+  "files": [
+    "assets/component-product-desktop-ux-ruler-sync.css",
+    "assets/section-blog-post.css",
+    "sections/main-cart-footer.liquid",
+    "snippets/cart-drawer.liquid",
+    "locales/fr.json",
+    "snippets/product-page-copy-map.liquid"
+  ],
+  "runtime": "Unmodified Shopify validation script with exact declared packages in an isolated temporary folder."
+}

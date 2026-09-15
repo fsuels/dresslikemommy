@@ -1,0 +1,196 @@
+--- hi.before
++++ hi.candidate
+@@ -1,42 +1,19 @@
+ <div id="page-content">
+-<script>// <![CDATA[
+-function remove_classes_active() {
+-    alert( 'FOUND' );
+-    var $aSelected = $('.question-answer-block').find('a');
+-    
+-    if( $aSelected.hasClass('active') ){
+-      alert( 'FOUND' );
+-      $('.question-answer-block > a').removeClass('active');
+-    }else{
+-      alert( 'NOT FOUND' );
+-    }
+-  }
+-// ]]></script><script>// <![CDATA[
+-jQuery("document").ready(function($){
+-    var nav = $('#nav');
+-    $(window).scroll(function () {
+-     	if(getWidthBrowser() > 1200){
+-    		if ($(this).scrollTop() > 136){
+-              nav.addClass("on animated"); 		
+-            } 
+-            else {
+-              nav.removeClass("on animated"); 		
+-            } 
+-  		}
+-          $('#goGrid').trigger('click');
++<style>
++#page-content .help-page summary.ask { display: list-item; list-style: disclosure-closed inside; min-height: 44px; padding: 10px 0; cursor: pointer; }
++#page-content .help-page details[open] > summary.ask { list-style-type: disclosure-open; }
++#page-content .help-page summary.ask::-webkit-details-marker { display: inline; }
++#page-content .help-page summary.ask h3 { display: inline; margin: 0; }
++#page-content .help-page summary.ask:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
++</style>
+ 
+-      
+-    });  
+-    
+-  });
+-// ]]></script>
+ <div class="help-page">
+ <div id="General Questions">
+ <div class="faq-item-title" name="General Questions">
+ <h2>हमारे बारे में</h2>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. सामान्य प्रश्न</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. सामान्य प्रश्न</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. क्या यह साइट उपयोग करने के लिए सुरक्षित है? </strong></p>
+ <p>यह निश्चित ही सुरक्षित है। हम भुगतान प्रक्रिया के लिए PayPal का उपयोग करते हैं। इसलिए हमारी टीम भी आपके भुगतान विवरण नहीं देख पाती। PayPal दुनिया का सबसे बड़ा सुरक्षित भुगतान प्रदाता है। हमारी वेबसाइट Shopify के सुरक्षित प्लेटफॉर्म पर बनी है। आपकी सभी व्यक्तिगत जानकारी पूरी तरह सुरक्षित है।</p>
+ <p> </p>
+@@ -48,36 +25,36 @@
+ <p> </p>
+ <p><strong>4. आप इतने सस्ते क्यों हैं?</strong></p>
+ <p>हम सभी मध्यस्थों को हटा देते हैं और उत्पादों को सीधे हमारे निर्माताओं से उपभोक्ताओं तक पहुंचाते हैं, जिससे हम बेहद कम कीमतें पेश कर पाते हैं।</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="Before You Place an Order">
+ <div class="faq-item-title" name="before you place an order">
+ <h2>ऑर्डर करने से पहले</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. साइजिंग</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. साइजिंग</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. मैं सेंटीमीटर में साइजिंग टेबल कहाँ पा सकता हूँ?</strong></p>
+ <p>आप हमारे साइजिंग पेज पर सेंटीमीटर में साइजिंग टेबल पा सकते हैं: <a href="http://www.assassinshoodies.com/pages/sizing-information" alt="साइजिंग पेज">साइजिंग पेज</a> या हर उत्पाद के विवरण में।</p>
+ <p> </p>
+ <p><strong>2. क्या मुझे दो साइज बड़ा आइटम मिलेगा?</strong></p>
+ <p>नहीं। हम वही साइज भेजेंगे जो आपने ऑर्डर किया है। यदि आप आमतौर पर यूरोपीय M साइज पहनते हैं, तो M साइज चुनें और आपको M साइज ही मिलेगा।</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. भुगतान</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. भुगतान</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. आप किस प्रकार के भुगतान स्वीकार करते हैं?</strong></p>
+ <p>हम PayPal और क्रेडिट/डेबिट कार्ड (Visa, Mastercard, American Express, Discover) स्वीकार करते हैं।</p>
+ <p> </p>
+ <p><strong>2. मैं अपने क्रेडिट कार्ड से भुगतान करना चाहता हूँ, लेकिन मुझे PayPal पेज पर भेज दिया जाता है?</strong></p>
+ <p>हम अपने सभी भुगतान प्रक्रिया के लिए PayPal का उपयोग करते हैं। PayPal पेज पर दाईं ओर आप दो विकल्पों में से चुन सकते हैं: "मेरे PayPal खाते से भुगतान करें" <i>या</i> "मेरे क्रेडिट या डेबिट कार्ड से भुगतान करें"</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">C. शिपिंग</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>C. शिपिंग</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. शिपिंग की कीमत क्या है?</strong></p>
+ <p>हम पूरी दुनिया में बिल्कुल मुफ्त डिलीवरी प्रदान करते हैं।</p>
+ <p> </p>
+@@ -89,16 +66,16 @@
+ <p> </p>
+ <p><strong>4. क्या मुझे कोई कस्टम शुल्क देना होगा?</strong></p>
+ <p>नहीं, आपको कस्टम शुल्क नहीं देना होगा। हम अपने सभी ऑर्डरों को कम मूल्य वाले उपहार के रूप में चिह्नित करते हैं। इसके अलावा, हम बड़े ऑर्डर अलग-अलग पैकेजों में भेजते हैं।</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="After You Place an Order">
+ <div class="faq-item-title" name="After You Place an Order">
+ <h2>ऑर्डर करने के बाद</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. ऑर्डर स्थिति</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. ऑर्डर स्थिति</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. ऑर्डर स्थिति "अधूरी" का क्या मतलब है?</strong></p>
+ <p>आपका ऑर्डर प्रक्रिया में है और ऑर्डर का ट्रैकिंग नंबर लंबित है। हम आमतौर पर ऑर्डर पूरा करते हैं और जब ऑर्डर का ट्रैकिंग नंबर डाक प्रणाली को भेजा जाता है, जो कि ऑर्डर भेजे जाने के 5-7 दिन बाद होता है, तब अपने ग्राहकों को ट्रैकिंग नंबर भेजते हैं।</p>
+ <p> </p>
+@@ -107,11 +84,11 @@
+ <p> </p>
+ <p><strong>3. बहुत समय हो गया है, मेरा ऑर्डर कहाँ है?</strong></p>
+ <p>कृपया अधिक जानकारी के लिए अपने ऑर्डर की ट्रैकिंग जांचें। यदि समस्या बनी रहती है तो कृपया हमें ईमेल करें: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. ऑर्डर ट्रैकिंग</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. ऑर्डर ट्रैकिंग</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. मैं अपना ऑर्डर कैसे ट्रैक करूँ?</strong></p>
+ <p>हम ऑर्डर देने के 5-7 दिन बाद ऑर्डर का ट्रैकिंग कोड प्रदान करते हैं। आप यहाँ अपना ऑर्डर ट्रैक कर सकते हैं: <a hef="www.assassinshoodies.com/pages/track-your-order" alt="अपना ऑर्डर ट्रैक करें">अपना ऑर्डर ट्रैक करें</a></p>
+ <p> </p>
+@@ -123,11 +100,11 @@
+ <p> </p>
+ <p><strong>4. मैं अपने ऑर्डर ट्रैकिंग के बारे में कैसे अपडेट रहूँ?</strong></p>
+ <p>हम After Ship ट्रैकिंग सिस्टम का उपयोग करते हैं ताकि हमारे ग्राहकों के ऑर्डर ट्रैक किए जा सकें, इसलिए जब भी ट्रैकिंग जानकारी अपडेट होती है, आपको ईमेल प्राप्त होगा।</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. मैं अपना ऑर्डर बदलना या रद्द करना चाहता हूँ</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. मैं अपना ऑर्डर बदलना या रद्द करना चाहता हूँ</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. मैंने कुछ ऑर्डर किया है, लेकिन मैं इसे रद्द करना चाहता हूँ</strong></p>
+ <p>ऑर्डर बदलने के लिए आपको ऑर्डर देने के 1 कार्य दिवस के भीतर हमसे संपर्क करना होगा। आप यह ईमेल करके कर सकते हैं <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> अपने ऑर्डर नंबर को विषय के रूप में लिखें।</p>
+ <p> </p>
+@@ -136,16 +113,16 @@
+ <p> </p>
+ <p><strong>3. मैंने कुछ ऑर्डर किया है, लेकिन डिलीवरी पता बदलना चाहता हूँ</strong></p>
+ <p>ऑर्डर बदलने के लिए आपको ऑर्डर देने के 1 कार्य दिवस के भीतर हमसे संपर्क करना होगा। आप यह ईमेल करके कर सकते हैं <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> अपने नए डिलीवरी पते के साथ।</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="After You Receive an Order">
+ <div class="faq-item-title" name="After You Receive an Orde">
+ <h2>ऑर्डर प्राप्त करने के बाद</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. मैं अपना ऑर्डर बदलना या वापस करना चाहता हूँ</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. मैं अपना ऑर्डर बदलना या वापस करना चाहता हूँ</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. मेरा ऑर्डर आ गया है, लेकिन आइटम दो साइज बड़े थे</strong></p>
+ <p>ध्यान दें कि हमारे शॉप में सभी साइज EU और US मापन इकाइयों में दिखाए जाते हैं। जबकि वास्तविक वस्त्र साइज (जो उत्पाद पर लिखा होता है) आमतौर पर दो गुना बड़ा होता है। हमारे निर्माता पूर्वी एशिया में स्थित हैं और हम स्वचालित रूप से यूरोपीय/US साइज के एशियाई समकक्ष भेजते हैं। इसका मतलब है कि यदि आप Medium (M – EU/US) ऑर्डर करते हैं तो हम आपको Extra Large (XL) एशियाई समकक्ष भेजेंगे।</p>
+ <p> </p>
+@@ -157,8 +134,8 @@
+ <p> </p>
+ <p><strong>4. मेरा ऑर्डर आ गया है, लेकिन मैं इसे वापस करना चाहता हूँ।</strong></p>
+ <p>कृपया हमसे संपर्क करें <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> और हमें अपना ऑर्डर नंबर प्रदान करें। आप हमें अपना आइटम वापस भेज सकते हैं और हम आपको रिफंड जारी करेंगे। *डाक खर्च आपके खर्च पर होगा।</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ </div>
+ </div>

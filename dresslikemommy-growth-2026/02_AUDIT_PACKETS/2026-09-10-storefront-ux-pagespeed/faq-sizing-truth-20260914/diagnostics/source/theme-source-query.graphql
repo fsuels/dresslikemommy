@@ -1,0 +1,9 @@
+query ThemeSourceDiagnosis($id: ID!, $filenames: [String!]!, $after: String) {
+  theme(id: $id) {
+    id name role processing processingFailed updatedAt
+    files(first: 50, filenames: $filenames, after: $after) {
+      nodes { filename checksumMd5 updatedAt body { ... on OnlineStoreThemeFileBodyText { content } } }
+      pageInfo { hasNextPage endCursor }
+    }
+  }
+}

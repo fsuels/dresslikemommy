@@ -1,0 +1,56 @@
+{
+  "action": "TA06-FAQ-NATIVE-DISCLOSURE-RELEASE-20260914",
+  "completedAt": "2026-09-14T23:40:38.941583+00:00",
+  "status": "LIVE_VERIFIED_FUNCTIONAL_REPAIR_COMPLETE_WITH_DOCUMENTED_LIMITS",
+  "page_id": "gid://shopify/Page/161933381",
+  "public_url": "https://www.dresslikemommy.com/pages/faqs",
+  "english_sha256": "c2797437bb4ec0296fbbc5b9ac85f4ea7a4275e7cfd00e5ddf8c5e6ce5dfe0ff",
+  "existing_translated_bodies_updated": 17,
+  "new_translation_records": 0,
+  "protected_translated_titles": 19,
+  "total_language_routes_checked": 21,
+  "english_browser_cases": 36,
+  "mutation_calls": 2,
+  "retries": 0,
+  "rollbacks": 0,
+  "theme_writes": 0,
+  "git_writes": 0,
+  "shared_canonical_writes": 0,
+  "frozen_diagnostic_files_unchanged": 23,
+  "independent_before_review_sha256": "20bec11a7188acb03146aaef63bec0e5ef55d7271e5d0fc856a8f3f91a3cbc3f",
+  "independent_after_review_sha256": "96b88157b30d9cdc11551bb8d63d2483513ee8eedaa05fb272632b13d503083d",
+  "browser_receipt_sha256": "7f619cda8df5e82adafd84cd72dc436b598fe5aca79da7ac82f33f46261eed48",
+  "source_manifest_sha256": "922393209087a68bcf1e2679fb4079c0a9f7268eee8166f2f488d4f3c2077fc9",
+  "mutation_chronology": [
+    {
+      "operation": "pageUpdate",
+      "target": "gid://shopify/Page/161933381",
+      "startedAt": "2026-09-14T23:30:03.937Z",
+      "completedAt": "2026-09-14T23:30:04.512Z",
+      "variablesArtifact": "page-update.variables.json",
+      "variablesSha256": "7b17fb2e19a42da81790fcb3bd26d5cecc1716edc6ed8d6921890e55484d23f8",
+      "userErrors": [],
+      "retry_count": 0,
+      "result": "SUCCESS"
+    },
+    {
+      "operation": "translationsRegister",
+      "target": "gid://shopify/Page/161933381",
+      "startedAt": "2026-09-14T23:30:49.523Z",
+      "completedAt": "2026-09-14T23:30:51.969Z",
+      "variablesArtifact": "translations-register.variables.expected.json",
+      "variablesSha256": "7b0590c8943699da0737a5809d5fa5e28b47d7987e3acf1cf4172bc64af3fd99",
+      "userErrors": [],
+      "retry_count": 0,
+      "result": "SUCCESS"
+    }
+  ],
+  "residual_limits": [
+    "Only functional mechanical repair; existing business/size/payment claims preserved, not certified.",
+    "Arabic/Hebrew inherit the same pre-existing left-to-right page direction; normal native answer access and narrow overflow checks passed, full RTL layout remains unresolved.",
+    "PL/RU/SV have no body translation and show English fallback; no translation created.",
+    "Country selector was never operated. Initial AU/AUD changed to CA/CAD during route QA; shared-session/external cause unverified. Latest observed CA selection left in place to avoid overwriting peer state.",
+    "No Safari/Firefox-specific run; no PageSpeed, order, revenue or conversion-lift claim."
+  ],
+  "parent_next_action": "Integrate completed FAQ release into TA-06 while preserving separate owner theme-publication and buyer-acceptance gates; do not repeat released body updates."
+}

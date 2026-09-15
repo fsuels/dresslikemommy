@@ -1,0 +1,1 @@
+mutation FaqTranslationRepair($resourceId:ID!, $translations:[TranslationInput!]!) { translationsRegister(resourceId:$resourceId,translations:$translations) { translations { key locale value outdated updatedAt market { id } } userErrors { code field message } } }
