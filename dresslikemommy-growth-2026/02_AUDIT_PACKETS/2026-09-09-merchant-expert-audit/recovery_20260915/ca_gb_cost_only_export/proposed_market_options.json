@@ -1,0 +1,49 @@
+{
+  "schema": "dlm.ca_gb_cost_only_market_options_proposal.v1",
+  "status": "LOCAL_PROPOSAL_NOT_ACTIVATED_OR_RELEASE_APPROVED",
+  "sourceEvidence": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_shipping_coverage_1332/readback_v2.json",
+    "sha256": "482e430c12ff3ec74cfe205bb5f4fad82ea6e734f1225695af7491d9faf5abd2",
+    "observed": {
+      "startedAt": "2026-09-15T13:34:36.538Z",
+      "receivedAt": "2026-09-15T13:34:37.245Z"
+    },
+    "coverageChecksPath": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_shipping_coverage_1332/coverage_checks.json",
+    "coverageChecksSha256": "1184fd6b03ec5289c4c7cf118622aebfe08618e9f5167c04271c80f2eb180433",
+    "coverageChecksPassed": 15
+  },
+  "marketOptions": {
+    "ca-en": {
+      "shippingCostOnly": {
+        "country": "CA",
+        "currency": "CAD",
+        "amount": "0.00",
+        "verified": true,
+        "evidenceSha256": "482e430c12ff3ec74cfe205bb5f4fad82ea6e734f1225695af7491d9faf5abd2"
+      }
+    },
+    "gb-en": {
+      "shippingCostOnly": {
+        "country": "GB",
+        "currency": "GBP",
+        "amount": "0.00",
+        "verified": true,
+        "evidenceSha256": "482e430c12ff3ec74cfe205bb5f4fad82ea6e734f1225695af7491d9faf5abd2"
+      }
+    }
+  },
+  "doesNotSet": [
+    "enabled",
+    "landingContextVerified",
+    "returnPolicy",
+    "eligibilityHolds"
+  ],
+  "limits": [
+    "No current config was edited; these are only proposed property additions for later exact independent release review.",
+    "Published country/variant/currency/checkout acceptance remains required.",
+    "The source is delivery-profile configuration, not shipment history or a delivery-time commitment.",
+    "Google can still use crawled/modeled ETA or default/website return information."
+  ],
+  "externalCallsByThisSubtask": 0,
+  "realFeedsGenerated": 0
+}

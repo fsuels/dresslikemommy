@@ -1,0 +1,146 @@
+{
+  "schema": "dlm.organic_local_content_review.v1",
+  "reviewed_at_utc": "2026-09-15T13:14:27.141685+00:00",
+  "reviewer": "/root/daily_operation_review",
+  "target_resource": "gid://shopify/Article/559471886433",
+  "scope": "Independent review of the exact local English body candidate only. Reviewer did not author/edit it and made no external reads, browser/account actions, publication or shared canonical edits.",
+  "status": "PASS_WITH_LIMITS",
+  "release_readiness": "NOT ASSESSED; full preservation/translation inventory and current product destination proof are unfinished.",
+  "candidate_sha256": "5bf9d0ec3656f473e2a6dfc8a040d8d74a91146e820cca3d7ea577e70b0b5931",
+  "checks_passed": 18,
+  "checks_total": 18,
+  "checks": [
+    {
+      "id": "exact_article_identity",
+      "status": "PASS",
+      "evidence": "Saved Admin response targets the named existing published article; no new article is proposed."
+    },
+    {
+      "id": "before_matches_admin_body",
+      "status": "PASS",
+      "evidence": "The before HTML differs from the saved Admin body only by one final newline."
+    },
+    {
+      "id": "saved_public_source_matches_admin",
+      "status": "PASS",
+      "evidence": "The exact saved Admin body occurs in the cookie-free article HTTP source."
+    },
+    {
+      "id": "both_http_receipts_bound",
+      "status": "PASS",
+      "evidence": "Both saved HTTP sources match recorded byte counts and SHA256; this verifies recorded source evidence, not a new request or rendered behavior."
+    },
+    {
+      "id": "balanced_simple_draft_html",
+      "status": "PASS",
+      "evidence": "Parsed candidate has balanced ordinary article markup without scripts, forms, event behavior or theme changes."
+    },
+    {
+      "id": "actual_product_anchor_labels",
+      "status": "PASS",
+      "evidence": "Both exact product URLs and displayed short-/long-sleeve labels occur together in collection anchors."
+    },
+    {
+      "id": "gift_checklist_buyer_utility",
+      "status": "PASS",
+      "evidence": "Six checklist items cover recipients, exact charts, included pieces and quantities, material/care information, gift timing and returns/contact; useful unresolved questions are addressed before purchase."
+    },
+    {
+      "id": "n2_described_angle_alignment",
+      "status": "PASS",
+      "evidence": "The gift checklist and wearer-by-wearer selections align with the N2 angle described in GIFT_GUIDE_BRIEF.md. The native N2 asset and schedule were not independently inspected."
+    },
+    {
+      "id": "bundle_and_range_truth",
+      "status": "PASS",
+      "evidence": "Explicitly says a group photo does not confirm a whole-family bundle; each wearer must have a suitable option, and current size availability is not promised."
+    },
+    {
+      "id": "measurement_guidance",
+      "status": "PASS",
+      "evidence": "Requires current measurements, the exact product/wearer chart, units and body-versus-garment distinction; links the completed sizing guide and discourages guessed sizes."
+    },
+    {
+      "id": "existing_child_warning_preserved",
+      "status": "PASS",
+      "evidence": "Existing child-sleepwear warning and CPSC link are preserved semantically and verbatim apart from the curly apostrophe in the link label."
+    },
+    {
+      "id": "child_intended_fit_no_automatic_upsize",
+      "status": "PASS",
+      "evidence": "Additional paragraph expressly rejects automatic growth upsizing, requires intended fit/label guidance, and says a pajamas listing is not proof of compliance."
+    },
+    {
+      "id": "material_and_care_uncertainty",
+      "status": "PASS",
+      "evidence": "Generic fabric/environmental benefits and universal wash/dry instructions are removed; exact product details and garment labels govern. Gauze is retained only within the observed product name, without an independent composition claim."
+    },
+    {
+      "id": "arrival_and_policy_uncertainty",
+      "status": "PASS",
+      "evidence": "Delivery is expressly an estimate, not a guarantee; current return information and contact help are linked without inventing terms, discounts, services or delivery promises."
+    },
+    {
+      "id": "unsupported_popularity_and_assortment_removed",
+      "status": "PASS",
+      "evidence": "The prior universal bonding, popularity, lifetime memory and broad holiday/onesie/pet assortment assertions are replaced by practical buying checks and two observed collection examples."
+    },
+    {
+      "id": "plain_link_scope",
+      "status": "PASS",
+      "evidence": "Eight anchor occurrences target seven expected destinations; actual PDP/support/sizing arrivals remain unverified in this review."
+    },
+    {
+      "id": "draft_only_limits_explicit",
+      "status": "PASS",
+      "evidence": "Brief identifies body-only intent, incomplete preservation/translation inventory and PDP evidence, preview/cached-source limitations, and publication NOT RUN. This review grants no release-ready status."
+    },
+    {
+      "id": "no_outcome_claim",
+      "status": "PASS",
+      "evidence": "Candidate and review make no measured acquisition, traffic, orders, sales or profit claim."
+    }
+  ],
+  "content_blockers": [],
+  "recommendations": [
+    {
+      "priority": "before_release",
+      "item": "Complete exact article-field baseline and complete global/market translation inventory; preserve omitted author/image/blog/createdAt and other fields, bind the mutation/rollback to current source and handle translation impact explicitly."
+    },
+    {
+      "priority": "before_release",
+      "item": "Complete current product destination readbacks for both named examples, including their wearer options, chart/included-piece information and any conflicting material/intended-use claims. Collection anchor labels alone do not certify variants, contents, materials or child sleepwear suitability."
+    },
+    {
+      "priority": "before_release",
+      "item": "Verify the actual seven destinations and affected desktop/mobile article behavior on the intended public theme; distinguish inherited preview state from MAIN acceptance. Preserve independent release/measurement windows."
+    }
+  ],
+  "limitations": [
+    "Model editorial assessment, not human reader or conversion testing.",
+    "HTTP source files prove the recorded responses only; no independent current rendered storefront, stock, checkout, fulfillment or all-market verification.",
+    "N2 alignment is bounded to the supplied brief, not a native Pin asset/schedule readback.",
+    "The retained CPSC statement was checked for preservation; this reviewer did not newly review the external PDF or certify product/all-country compliance.",
+    "No mutation variables, final complete baseline, translation inventory, product-detail readback or after-publication evidence was available in this bounded assignment.",
+    "Title/URL/other-field preservation is proposed, not yet demonstrated by a mutation and after-state readback. No traffic or sales lift is claimed."
+  ],
+  "observed_collection_product_labels": [
+    {
+      "href": "/products/meow-star-garden-mommy-and-me-pajamas",
+      "label": "Meow Star Garden Mommy and Me Pajamas — Short-Sleeve Set"
+    },
+    {
+      "href": "/products/peter-rabbit-gauze-mommy-and-me-pajamas",
+      "label": "Peter Rabbit Gauze Mommy and Me Pajamas — Long-Sleeve Set"
+    }
+  ],
+  "input_sha256": {
+    "GIFT_GUIDE_BRIEF.md": "c308d329de28dbe1cf4c7b24eebe8ab26d6cb95ec705279dbb3b262d15312889",
+    "gift-guide-source.json": "1d399714becd380606b80f9badccdfe31a11b1895a46aa8aed3394e38338ba6e",
+    "gift-guide-before.html": "f3d39891dd50bc9be511472f98d0e5fb396733e312e67b5652a33c65fe1b5a89",
+    "gift-guide-candidate.html": "5bf9d0ec3656f473e2a6dfc8a040d8d74a91146e820cca3d7ea577e70b0b5931",
+    "public-http-readback.json": "2076c0fb210011562ce3c5ad8838b44915d2dac4783ff1ac1dde8117a8e04247",
+    "gift-guide-public-source.html": "8ef2636de8341c76bfb1e266b3e4d49fabd9d958a2dd60a75427155801dced57",
+    "pajama-collection-public-source.html": "d3700fd21065d2c4f87b8bcd8f3363b9ee5cce96f8a3473aac3ed38e3d0b82b4"
+  }
+}

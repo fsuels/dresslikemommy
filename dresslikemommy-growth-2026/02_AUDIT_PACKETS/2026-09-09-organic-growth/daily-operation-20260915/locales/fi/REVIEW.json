@@ -1,0 +1,314 @@
+{
+  "schema": "dlm.gift_guide_locale_independent_review.v1",
+  "locale": "fi",
+  "target_resource": "gid://shopify/Article/559471886433",
+  "target_key": "body_html",
+  "market": null,
+  "status": "PASS_WITH_LIMITS",
+  "reviewer": "/root/daily_operation_review",
+  "author": "/root/sizing_locales_c",
+  "reviewed_at_utc": "2026-09-15T13:33:18.314340+00:00",
+  "candidate_sha256": "42323a881867c85e5f94ba1da3babff3c5cf5d61c5c107501e0c9f403164e2cb",
+  "source_sha256": "e224120f4608e5266b09938c47a6e07dc436b62356a2bc705eff4692fe10f6ba",
+  "before_sha256": "b1b50d657be1dbb0cceb6d502df2d2577f07b2daf095c3fcd552b709b7a36928",
+  "author_notes_sha256": "dd971b1badc290105ddcfe743cda81ffe628ffbc9d86284ba3292ec50a202685",
+  "independence": "Reviewer read complete locale body and did not author/edit it. Reviewer authors only separate ko/nl/no/pt-BR/ro candidates; those are not assessed here.",
+  "static_checks_passed": 15,
+  "static_checks_total": 15,
+  "static_checks": [
+    {
+      "id": "independent_author_identity",
+      "status": "PASS",
+      "evidence": "Reviewer did not author or edit this locale."
+    },
+    {
+      "id": "exact_english_and_candidate_hashes",
+      "status": "PASS",
+      "evidence": "Source and candidate hashes independently recomputed."
+    },
+    {
+      "id": "exact_before_and_record_hashes",
+      "status": "PASS",
+      "evidence": "Before HTML and complete source record match author bindings."
+    },
+    {
+      "id": "existing_article_locale_body_identity",
+      "status": "PASS",
+      "evidence": "Exact existing global locale/body identity; no new record."
+    },
+    {
+      "id": "full_html_element_sequence",
+      "status": "PASS",
+      "evidence": "All43source element positions preserved; Hebrew adds only the44th outer wrapper element."
+    },
+    {
+      "id": "six_h2_and_lists",
+      "status": "PASS",
+      "evidence": "Six section headings, six ordered steps and two product bullets."
+    },
+    {
+      "id": "all24_blocks_and_order",
+      "status": "PASS",
+      "evidence": "Every source paragraph/heading/list item has its corresponding block."
+    },
+    {
+      "id": "eight_exact_locale_hrefs",
+      "status": "PASS",
+      "evidence": "All internal destinations have the exact locale prefix; CPSC URL unchanged."
+    },
+    {
+      "id": "observed_locale_article_prefix",
+      "status": "PASS",
+      "evidence": "Prefix is grounded in observed alternate article routes; destination replay is separate."
+    },
+    {
+      "id": "no_extra_wrapper",
+      "status": "PASS",
+      "evidence": "No unrequested wrapper or new element."
+    },
+    {
+      "id": "no_extra_attributes",
+      "status": "PASS",
+      "evidence": "Only source anchors plus the separately verified Hebrew dir/lang attributes."
+    },
+    {
+      "id": "proper_product_name_bases",
+      "status": "PASS",
+      "evidence": "Exact product name bases retained; translated sleeve suffixes individually read."
+    },
+    {
+      "id": "v1_archive_hashes",
+      "status": "PASS",
+      "evidence": "Both historical author artifacts match their recorded hashes."
+    },
+    {
+      "id": "v2_single_callout_change",
+      "status": "PASS",
+      "evidence": "Removing only localized Meow callout exactly recreates V1; no other candidate-byte changes."
+    },
+    {
+      "id": "current_input_stability",
+      "status": "PASS",
+      "evidence": "All hashed inputs unchanged during review."
+    }
+  ],
+  "semantic_blocks_reviewed": 24,
+  "semantic_checks": [
+    {
+      "block_index_zero_based": 0,
+      "tag": "p",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Gift context, recipients/sizes/inclusions, and separate selections despite group photos.",
+      "candidate_block_text_sha256": "96d6d191cebe0906e0de17eec46a74ae38a7bfa8fe4dd96fa27c5b0d6fd3e8ab",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 1,
+      "tag": "p",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Compare styles for photos/occasion/mother-and-child gifts and confirm every wearer before selection.",
+      "candidate_block_text_sha256": "7edfc89fcb7d937f7f12e2686bf72ae0d3dc94dafb08cee06a5775e9b83b269f",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 2,
+      "tag": "h2",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Gift-checklist heading preserved.",
+      "candidate_block_text_sha256": "defee0cc1cbcd1fcca3357eca9642ed621f3f4d33c0b0db499fc64cccd011b1b",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 3,
+      "tag": "li",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Every wearer checked; no all-adult/child/baby range assumption.",
+      "candidate_block_text_sha256": "2748ca5e7b8d09a9977352a8e7a8dc0258a39d29e97e10ae571fdf213fa25750",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 4,
+      "tag": "li",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Current exact product/wearer chart, units, body-versus-garment distinction and sizing-guide link.",
+      "candidate_block_text_sha256": "ff9b825e65eddf9539dbea0258c8d66a309d17271ff4be29a4c8f558043de176",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 5,
+      "tag": "li",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Read selected-option contents; individual selections where required; names/sizes/quantities; no whole-family bundle proof from photo.",
+      "candidate_block_text_sha256": "bae71870ff3f34a7a014ce207a77c84c30b7414dc709f694e915711c7c2224c5",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 6,
+      "tag": "li",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Product/label governs material/care; print/name/photo does not establish fibers, washing or sleep suitability.",
+      "candidate_block_text_sha256": "78f712b4a8729b0ac730262b63b5381a24889a0b2c3b59974a8e6c7280bd650f",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 7,
+      "tag": "li",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Check gift date/destination before payment; estimate explicitly not guaranteed arrival.",
+      "candidate_block_text_sha256": "8af4d0e49ff4c6c28020994c4dfb71430ba411e931db8dbc859c560708054467",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 8,
+      "tag": "li",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Current return terms/contact before order for unclear size/use/timing.",
+      "candidate_block_text_sha256": "25c94cac0c512130d82b1cb804c5262319fa0da1d15ee5e149816134ceecfbba",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 9,
+      "tag": "h2",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Style-comparison heading preserved.",
+      "candidate_block_text_sha256": "cd019d9c6b4468f958d1fc67942385fa37bcde89faeed083d8e8c9b948ebd554",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 10,
+      "tag": "p",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Recipient preference and conditional examples; no current all-size availability promise.",
+      "candidate_block_text_sha256": "9e2cd3ffe35866fcbe4b8f464811c7d10e539f741be09277e702a5754f5cca7b",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 11,
+      "tag": "li",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Exact Meow identity/short-sleeve suffix; chart/pieces checks; explicit ambiguous units and contact to clarify units plus body-versus-garment before size choice.",
+      "candidate_block_text_sha256": "94eddb719acac6d27eb0ff63763fdc6b1ad8799833636d9684540d603d7bdfa2",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 12,
+      "tag": "li",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Exact Peter Rabbit identity/long-sleeve suffix; own product measures, no imported size choice.",
+      "candidate_block_text_sha256": "1e93bc250c1c4b836802e581058a8689f65d0b9b1f7a5929a4b6b42140570ac1",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 13,
+      "tag": "p",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Larger-family suitable options must be confirmed; similar colors are an optional photo approach.",
+      "candidate_block_text_sha256": "b8bf2acddccf7e256f4ba4b295264bf52cc16d60bd33300102dadd31e76de5b9",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 14,
+      "tag": "h2",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Unknown-size gift heading preserved.",
+      "candidate_block_text_sha256": "83c8d3ca70594173848af869ae45a4ee04472b1e853f9173137d22e532dd56b6",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 15,
+      "tag": "p",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Share with recipient/parent; confirm measurements; age/usual size not a replacement; resolve missing details before order.",
+      "candidate_block_text_sha256": "209eb775adba4e63332eb0a34dc38c039cb8381bc13f423ee3333960aab1b46e",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 16,
+      "tag": "h2",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Child sleepwear intended-fit heading preserved.",
+      "candidate_block_text_sha256": "a8195aafd834fda81788f5a52f524be16d135e16aa0e7037d1a1ca652f2e938c",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 17,
+      "tag": "p",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Size-appropriate sleepwear, safety label/intended fit; no fabric/daywear suitability assumption; oversized loose cotton hazard warning/CPSC link retained.",
+      "candidate_block_text_sha256": "81774aa2ecbd6550fe1127a31b0a44f9b8fb11c6647989c4e14b16f151b4e711",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 18,
+      "tag": "p",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "No automatic growth upsizing; check fit/label; category/style not proof of compliance.",
+      "candidate_block_text_sha256": "3b50fb001a55a29cb81b8123a72d1ad48bbfb02fc07141eed9e5d4b0e8c728c3",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 19,
+      "tag": "h2",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Care/occasion heading preserved.",
+      "candidate_block_text_sha256": "aeee7b486df45c3afded9ad8f2b790b664498dc35a42885e39423e67eaf2d1e8",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 20,
+      "tag": "p",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Follow wash/dry/iron label; no identical-care or predictable-shrinkage assumption.",
+      "candidate_block_text_sha256": "96cf8e4f5a79fc2c107fe3839916696554b6a9bb7353783c800c0c819fa64b78",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 21,
+      "tag": "p",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Photo print/color preference and Christmas example; agree options before event-based order planning.",
+      "candidate_block_text_sha256": "689fb9449ba4d9501288afd0b0e44a3e547e02ada4a48c1a9835519c96e618a5",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 22,
+      "tag": "h2",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Shop/browse family pajama heading preserved.",
+      "candidate_block_text_sha256": "8fafa98f2d752f34e6e21f5ff2ea22047aa89b7339c908b7b4aaaca9230089af",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    },
+    {
+      "block_index_zero_based": 23,
+      "tag": "p",
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Browse/compare and checklist per wearer; confirm sizes/pieces/quantities before cart.",
+      "candidate_block_text_sha256": "5e5d30025159db90d8cc905033849e18623ffd7b6e75ce81e0655e20ec8ece6b",
+      "assessment": "Complete block independently read against English V2; no material omission, reversal or added customer claim found."
+    }
+  ],
+  "language_assessment": {
+    "assessment": "Meaning is faithful across all24blocks. Samistelu is appropriate colloquial retail language; kayttaja/user wording for wearer is slightly functional but clear in context. No material grammar or meaning defect found.",
+    "limits": "Finnish model review; idiomatic preference is not native-editor certification."
+  },
+  "blocking_findings": [],
+  "limits": [
+    "Model multilingual review; no human/native language certification or conversion test.",
+    "No public browser, translated destination, country-market, cart/checkout or actual publication/readback was performed by this reviewer.",
+    "Product names are labels only; no garment/material/compliance/stock certification. The known Meow measurement ambiguity is disclosed, not fixed.",
+    "English V2 is the required source; future source/candidate changes need fresh hash binding and corresponding review."
+  ],
+  "business_lift_claimed": false,
+  "input_sha256": {
+    "gift-guide-candidate.html": "e224120f4608e5266b09938c47a6e07dc436b62356a2bc705eff4692fe10f6ba",
+    "GIFT_GUIDE_RELEASE_PLAN.json": "1b36588600cd9e759b8f203cc84f6b6d8810d5ec4952b3bcc9fa30bd23802490",
+    "ENGLISH_REVISION_2.json": "16372888e75d1db1b0a69b409729582251fc2869fad79017c85e46cd662ca787",
+    "gift-guide-translations.json": "e08dfb15904593a91062533006b0f30bc81775224e93c901fecba88b6155e0a7",
+    "locales/fi/candidate.html": "42323a881867c85e5f94ba1da3babff3c5cf5d61c5c107501e0c9f403164e2cb",
+    "locales/fi/AUTHOR_NOTES.json": "dd971b1badc290105ddcfe743cda81ffe628ffbc9d86284ba3292ec50a202685",
+    "locales/fi/before.html": "b1b50d657be1dbb0cceb6d502df2d2577f07b2daf095c3fcd552b709b7a36928",
+    "locales/fi/before.json": "f92a7006958310e1b2b64216558882ee53993536de14b38de7f2cbd6d367f34a",
+    "locales/fi/candidate-v1.html": "435a42b12864a42e0542e84e706b488b6130c8d91dd529c8efe36e22569b2cd1",
+    "locales/fi/AUTHOR_NOTES_v1.json": "3d47f4fa15ebf1983b5de553f115da1ce2f6bb7f2c34df25739e1b5c0d5449df"
+  }
+}

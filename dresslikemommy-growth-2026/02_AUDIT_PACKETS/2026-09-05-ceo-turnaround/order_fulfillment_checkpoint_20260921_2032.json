@@ -1,0 +1,106 @@
+{
+  "schema": "dlm.qualified_order_checkpoint.v1",
+  "status": "LIVE_VERIFIED_AGGREGATE_WITH_LIMITS",
+  "observed_cutoff_utc": "2026-09-21T20:32:03Z",
+  "query_started_at": "2026-09-21T20:32:03.534Z",
+  "query_completed_at_utc": "2026-09-21T20:32:04.168Z",
+  "shop": {
+    "id": "gid://shopify/Shop/15571635",
+    "name": "Dress Like Mommy",
+    "ianaTimezone": "America/New_York",
+    "currencyCode": "USD",
+    "primaryDomain": {
+      "host": "www.dresslikemommy.com"
+    }
+  },
+  "window_start_utc": "2026-09-05T04:00:00Z",
+  "all_status_records": 6,
+  "qualifying_definition": "non-test, noncancelled, PAID, sourceName web; current quantities and shopMoney",
+  "qualifying": {
+    "orders": 5,
+    "current_units": 12,
+    "currentSubtotalPriceSet": "339.21",
+    "currentTotalPriceSet": "339.21",
+    "currentTotalTaxSet": "0.00",
+    "totalRefundedSet": "0.00"
+  },
+  "new_creations_since_previous": {
+    "cutoff": "2026-09-15T07:01:34Z",
+    "all_status": 2,
+    "qualifying": {
+      "orders": 2,
+      "current_units": 4,
+      "currentSubtotalPriceSet": "131.96",
+      "currentTotalPriceSet": "131.96",
+      "currentTotalTaxSet": "0.00",
+      "totalRefundedSet": "0.00"
+    }
+  },
+  "last_24_hours": {
+    "orders": 0,
+    "current_units": 0,
+    "currentSubtotalPriceSet": "0.00",
+    "currentTotalPriceSet": "0.00",
+    "currentTotalTaxSet": "0.00",
+    "totalRefundedSet": "0.00"
+  },
+  "completed_sep20_new_york": {
+    "orders": 0,
+    "current_units": 0,
+    "currentSubtotalPriceSet": "0.00",
+    "currentTotalPriceSet": "0.00",
+    "currentTotalTaxSet": "0.00",
+    "totalRefundedSet": "0.00"
+  },
+  "excluded": [
+    {
+      "test": false,
+      "cancelled": true,
+      "financial_status": "REFUNDED",
+      "source": "web",
+      "orders": 1,
+      "current_units": 0,
+      "currentSubtotalPriceSet": "0.00",
+      "currentTotalPriceSet": "0.00",
+      "currentTotalTaxSet": "0.00",
+      "totalRefundedSet": "31.98"
+    }
+  ],
+  "qualifying_fulfillment_statuses": {
+    "FULFILLED": 4,
+    "UNFULFILLED": 1
+  },
+  "all_orders_pagination_complete": true,
+  "all_line_items_pagination_complete": true,
+  "queries_run": 1,
+  "read_only": true,
+  "attribution_actual_costs_settlement_retained_profit": "UNKNOWN",
+  "sales_lift_causality": "NOT_ESTABLISHED",
+  "new_purchases_sent": false,
+  "prior_checkpoint": "order_fulfillment_checkpoint_20260915_0701.json",
+  "schema_types": [
+    "QueryRoot",
+    "Order",
+    "Shop"
+  ],
+  "validator_artifact": "dlm-order-checkpoint-20260921-2035",
+  "validator_revision": 1,
+  "fulfillment": {
+    "records": 6,
+    "fulfillment_objects": 4,
+    "total_fulfilled_quantity": 10,
+    "has_delivered_at": 0,
+    "has_in_transit_at": 0,
+    "events": {},
+    "unpaginated_nested_connections": 0,
+    "statuses": {
+      "SUCCESS/FULFILLED": 4
+    }
+  },
+  "fulfillment_window": {
+    "started": "2026-09-21T20:34:09.460Z",
+    "completed": "2026-09-21T20:34:11.126Z"
+  },
+  "carrier_physical_delivery_proved": false,
+  "next_full_read_not_before_utc": "2026-09-22T08:32:03Z"
+}

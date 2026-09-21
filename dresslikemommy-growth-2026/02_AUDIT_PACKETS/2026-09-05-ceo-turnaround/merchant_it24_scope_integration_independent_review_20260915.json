@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS_WITH_LIMITS",
+  "reviewedAtUtc": "2026-09-15T13:50:55.582666+00:00",
+  "reviewer": "/root/theme_seven_local_diffs",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE_THIS_SCOPE_ANNOTATION",
+  "actionId": "TA07-ITALIAN24-TRANSLATIONS-20260915",
+  "anchor": "2026-09-15-ceo-italian-exact-scope-bound",
+  "confidence": "H for saved-source annotation and hash preservation; actual owner execution/after-readback not evaluated.",
+  "inputs": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_it24_scope_integration_20260915.json",
+      "sha256": "165f61a81620a7b4cf857ed361eb0f5ea98e59965666646cc082813739ce3aa4"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_it24_exact_scope_20260915.json",
+      "sha256": "d3da440221802453d0994997a29336906d892e6d94707f3f8d0bbcd18c591588"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_it24_scope_standard_checks_20260915.json",
+      "sha256": "dc3e24806d0134e6a1ff81a1d3bbf0b260bc2ed32d6097b28fc98ffcdff6000f"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_it24_proposal_independent_review_20260915.json",
+      "sha256": "6ceb4760bcc315919eb3b8e68134c810715190a498885add510e0a1da6086a57"
+    }
+  ],
+  "counts": {
+    "checks": 28,
+    "passed": 28,
+    "failed": 0,
+    "boundBeforeFiles": 8,
+    "boundCurrentFiles": 8,
+    "frozenScopeInputs": 8,
+    "targetProducts": 9,
+    "globalItalianFields": 24,
+    "ownerRecordsPreserved": 74,
+    "wakeRecordsPreserved": 64,
+    "clockScalarsPreserved": 132
+  },
+  "checks": [
+    {
+      "id": "eight_private_before_hashes",
+      "status": "PASS",
+      "evidence": "All8 private-before digests match; no private snapshot or worklog text is copied."
+    },
+    {
+      "id": "eight_current_after_hashes",
+      "status": "PASS",
+      "evidence": "All8 current bound files match the manifest after digests."
+    },
+    {
+      "id": "exact_scope_hash",
+      "status": "PASS",
+      "evidence": "The authoritative exact Italian scope has the bound SHA256."
+    },
+    {
+      "id": "scope_eight_frozen_input_hashes",
+      "status": "PASS",
+      "evidence": "The eight frozen proposal/payload/rollback/validator/source inputs match scope bindings; no proposal test or live execution was repeated."
+    },
+    {
+      "id": "independent_proposal_review_hash",
+      "status": "PASS",
+      "evidence": "The already completed independent proposal review is source-bound; translation evaluation was not repeated."
+    },
+    {
+      "id": "spend_before_current_hash_pair",
+      "status": "PASS",
+      "evidence": "Retained before digest, independent13:41:17.665953UTC pre-annotation measurement and current spend file agree at a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c."
+    },
+    {
+      "id": "paid_authoritative_control_exact",
+      "status": "PASS",
+      "evidence": "The entire authoritative paid-control section is unchanged."
+    },
+    {
+      "id": "checkpoint_four_key_scope",
+      "status": "PASS",
+      "evidence": "The entire checkpoint is exact outside four annotation/pending-intake keys; no other nested history or business data changed."
+    },
+    {
+      "id": "owner_records_74_exact",
+      "status": "PASS",
+      "evidence": "All74 owner acceptance records are unchanged; no release count was added."
+    },
+    {
+      "id": "wake_records_64_exact",
+      "status": "PASS",
+      "evidence": "All64 wake records are unchanged."
+    },
+    {
+      "id": "one_owner_action_and_paid_fields_exact",
+      "status": "PASS",
+      "evidence": "Exact existing One Owner Action and paid-authority objects are preserved."
+    },
+    {
+      "id": "protected_sales_source_content_owner_state_exact",
+      "status": "PASS",
+      "evidence": "All19 selected sales, US/AU, content, release, theme-publication, CA/GB, channel and owner-coordination objects are unchanged."
+    },
+    {
+      "id": "protected_clock_scalars_exact",
+      "status": "PASS",
+      "evidence": "All132 pre-existing selected clock/freshness/next-due scalars are preserved, in addition to complete protected-object comparisons."
+    },
+    {
+      "id": "prior_pending_intakes_preserved",
+      "status": "PASS",
+      "evidence": "Prior pending intake prefix is preserved; exactly one Italian execution/after-review pending item is added."
+    },
+    {
+      "id": "scope_not_completed_release",
+      "status": "PASS",
+      "evidence": "Scope binding and active-owner reply are not relabeled as completed release or completed after-readback."
+    },
+    {
+      "id": "no_new_idle_continuation_or_root_write",
+      "status": "PASS",
+      "evidence": "Annotation retains the existing active owner and adds no idle continuation, dispatch, root business write or scheduled action."
+    },
+    {
+      "id": "exact_24_global_Italian_fields_on_nine_products",
+      "status": "PASS",
+      "evidence": "Scope is exactly24 unique existing global Italian fields on9 products, with the frozen six/five/six/six/one field-key distribution."
+    },
+    {
+      "id": "one_attempt_nine_aliases",
+      "status": "PASS",
+      "evidence": "Exactly one attempt with r0-r8 aliases is allowed; no retry or additional target surface is implied."
+    },
+    {
+      "id": "sole_existing_Merchant_owner_preserved",
+      "status": "PASS",
+      "evidence": "Only the existing Merchant coordination row changes; owner identity remains exact."
+    },
+    {
+      "id": "Allowed_Actions_exact_scope_append",
+      "status": "PASS",
+      "evidence": "Allowed Actions preserves its complete prior text and appends only the exact one-attempt Italian scope hash and guard requirements. Evidence/note columns are the other changes."
+    },
+    {
+      "id": "Forbidden_Actions_and_status_exact",
+      "status": "PASS",
+      "evidence": "Existing Merchant Forbidden Actions, status and surface columns remain exact; no paid, MAIN, feed/source/country or account authority is broadened."
+    },
+    {
+      "id": "scope_explicit_exclusions_and_business_limits",
+      "status": "PASS",
+      "evidence": "Exact translation authority excludes native/theme/other-locale/market/feed/country/paid/account changes and retains MAIN/Italy-EUR/outcome boundaries."
+    },
+    {
+      "id": "prewrite_response_after_gates_preserved",
+      "status": "PASS",
+      "evidence": "Fresh native/override guards, complete alias/error/value response inspection and protected/public independent after-review remain required; annotation does not certify their execution."
+    },
+    {
+      "id": "private_rollback_constraints_retained",
+      "status": "PASS",
+      "evidence": "One private old-body hydration remains in-memory only, with guarded actual-state rollback and irreversible metadata limits; no private body or URL is copied here."
+    },
+    {
+      "id": "worklog_append_only",
+      "status": "PASS",
+      "evidence": "All prior worklog bytes are preserved; only a bounded append occurs and no worklog text is reproduced."
+    },
+    {
+      "id": "five_recorded_standard_checks",
+      "status": "PASS",
+      "evidence": "Five actual root standard-check receipts pass; no broad test or command replay by this reviewer."
+    },
+    {
+      "id": "creation_status_remains_historical",
+      "status": "PASS",
+      "evidence": "Creation-time check/execution status remains historical; the independent scope receipt does not rewrite it."
+    },
+    {
+      "id": "final_bound_current_hashes",
+      "status": "PASS",
+      "evidence": "All8 bound current hashes still match at review completion."
+    }
+  ],
+  "fileBindings": [
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "beforeSha256": "356bb98fd138d75937192fa8dc9acd5edaf155fde04122afeb4b40deb17eee51",
+      "currentSha256": "83a37f4976c1ef4a91d78e87e964224fe6fcf6f6b61df84400f0d855cbd767f8",
+      "beforeMatches": true,
+      "currentMatches": true
+    },
+    {
+      "path": "ops/marketing/action_queue.md",
+      "beforeSha256": "bf89cc65d7eea4d7057da19933170bf75863899f5decbc745c88800b592893ab",
+      "currentSha256": "de6977f26b1b91f1e4933faca4e505c34673a78d622d6725c776fd1caba03656",
+      "beforeMatches": true,
+      "currentMatches": true
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "beforeSha256": "9a4a4a282922f2c659b776939fe2ba11908a8655fecbb0fee161ab02b3ecaccc",
+      "currentSha256": "88f0b8b2144d6e6791729e1f5585bc3f74167bd206be41e2b8d97e42ff75ed8f",
+      "beforeMatches": true,
+      "currentMatches": true
+    },
+    {
+      "path": "ops/marketing/memory_digest.md",
+      "beforeSha256": "d0e4cbb3bce23f966505bf55e548a6a7fba5ed2f96b484ea71df7f65bd516886",
+      "currentSha256": "305f03125b6e6c252355748ff3c8e0de5dfcaee39dde2ff23f1a2f1fac5fc900",
+      "beforeMatches": true,
+      "currentMatches": true
+    },
+    {
+      "path": "ops/marketing/decision_log.md",
+      "beforeSha256": "9d567bb19ac76237899abd923a42cb60295ec960630177e46211594a5b10720a",
+      "currentSha256": "2b79c609b58d552100f220249485ff88716b55ca7244b5c757a94b070dadaa29",
+      "beforeMatches": true,
+      "currentMatches": true
+    },
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "beforeSha256": "1c558a8495cd963388b7a4c3771e899639f27bf65fcef4287734b97a9bb35f05",
+      "currentSha256": "ffa025078c456584d36024f06b49c29be2c7c81f333f101b9ea28925c2c42e3f",
+      "beforeMatches": true,
+      "currentMatches": true
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "beforeSha256": "58bcd5cfb9b33beb0eb5c754d7fcce0414f65d4a9415f26f4021ac5d5793f792",
+      "currentSha256": "871f590da8d725e38b0f6ca9546828faec260e4ffc7b87f1e5469fd5cc4d7e84",
+      "beforeMatches": true,
+      "currentMatches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+      "beforeSha256": "6b016600edbc905d01e8b29994630b881d8f5aec9c4c4965298c0280f28f035a",
+      "currentSha256": "122522536ad166bf2b95aadd7bc269df21af2c822dbdbe10e65aee3d73591dd6",
+      "beforeMatches": true,
+      "currentMatches": true
+    }
+  ],
+  "scopeInputBindings": [
+    {
+      "label": "proposal.json",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/proposal.json",
+      "sha256": "8bb43dc7c42447de8de0e022fa9a04a5e772a8589dc44c2b73573b58582800a5",
+      "matches": true
+    },
+    {
+      "label": "register.variables.json",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/register.variables.json",
+      "sha256": "cb98e824cd125699d9d9dc00a44a8ad86e37d70d9f712d471e4b8bbc5280ff36",
+      "matches": true
+    },
+    {
+      "label": "rollback.variables.json",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/rollback.variables.json",
+      "sha256": "5208320872a1f4d6924b145e74ad921a8cff594053c0d28aa06ac46a6d43d4af",
+      "matches": true
+    },
+    {
+      "label": "register.graphql",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/register.graphql",
+      "sha256": "20a5a7a63336ab4479eee73891be38ec4e88a43379b50fd63adf4b3ad5cc1702",
+      "matches": true
+    },
+    {
+      "label": "verify_release.py",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/verify_release.py",
+      "sha256": "add5fbfaf90e6c473c83662d73081fbb182f9489986c39e3594abc5afdfa2265",
+      "matches": true
+    },
+    {
+      "label": "independent_proposal_review.json",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/independent_proposal_review.json",
+      "sha256": "9986cb435262e1b9766c373f682d04bf1201477df381da51ae3c1acf545e58b7",
+      "matches": true
+    },
+    {
+      "label": "before.json",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/before.json",
+      "sha256": "91c459ed1da4d1cd1442e7e812e7b82a7ba1708d40995b7fe4f710ddde2c42db",
+      "matches": true
+    },
+    {
+      "label": "market_overrides_before.json",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/market_overrides_before.json",
+      "sha256": "424f16264aa59148e01d5896459136e483d7763127669f126d7bb02389aace97",
+      "matches": true
+    }
+  ],
+  "spendHashPair": {
+    "path": "ops/marketing/spend_authorization.md",
+    "retainedBeforeSha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+    "currentSha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+    "equal": true,
+    "additionalIndependentPriorMeasurement": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ca_gb_channel_integration_independent_review_20260915.json",
+      "sha256": "54240081e0330749b3aacc17732973b84f27a097e7532e7abe5f46348347cff8",
+      "measuredAtUtc": "2026-09-15T13:41:17.665953+00:00",
+      "spendSha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c"
+    }
+  },
+  "checkpointChangedKeys": [
+    "canonical_anchor",
+    "latest_ca_gb_channel_canonical_verification",
+    "latest_italian_source_scope",
+    "pending_owner_integrations"
+  ],
+  "protectedCheckpointKeys": [
+    "latest_full_sales",
+    "latest_full_sales_history",
+    "latest_full_sales_acceptance",
+    "latest_US_AU_source_propagation",
+    "latest_AU_current_source_outcome",
+    "latest_completed_release_anchor",
+    "latest_sizing_english_release",
+    "latest_sizing_localized_release",
+    "latest_faq_functional_release",
+    "latest_faq_sizing_release",
+    "latest_color47_source_release",
+    "latest_merchant_spanish_source_qualification",
+    "latest_navy_size_release",
+    "latest_theme_publication_gate_readback",
+    "latest_ca_gb_cost_only_gate_reassessment",
+    "latest_pinterest_morning_readback_acceptance",
+    "latest_x_morning_readback_annotation",
+    "latest_active_owner_coordination_20260915",
+    "latest_shared_canonical_writer_interval"
+  ],
+  "coordinationChangedColumns": [
+    5,
+    7,
+    8
+  ],
+  "findings": [],
+  "limits": [
+    "This verifies only the8-file scope annotation and its frozen inputs. It is not a new approval, retrospective execution approval or completed Italian release acceptance.",
+    "The existing Merchant owner is executing under saved explicit authority; actual attempt timing, renewed five-minute guards, complete response, protected after-state and public Italian verification belong to the owner execution receipt and independent after-review.",
+    "No live/API/browser/Git/network call or test replay occurred. Source method/copy scope does not establish Italy/EUR eligibility, country/feed release, MAIN publication, traffic, orders or profit.",
+    "Retained private-before files and worklog were used only for comparison; their text and supplier URLs were not persisted. Only this report is written.",
+    "Organic ownership and all previous source/sales/content clocks remain separate."
+  ],
+  "mutations": {
+    "reportOnly": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_it24_scope_integration_independent_review_20260915.json",
+    "sharedFiles": 0,
+    "externalCalls": 0,
+    "GitWrites": 0,
+    "testReplay": 0
+  }
+}

@@ -1,0 +1,37 @@
+✔ the candidate is derived from the exact active owner profile; configs remain disabled (2.51775ms)
+✔ absent option preserves every US default result and streaming byte with labels on/off (26.573541ms)
+✔ absent option preserves every AU default result and streaming byte with labels on/off (1.913542ms)
+✔ absent option preserves every CA default result and streaming byte with labels on/off (1.326375ms)
+✔ absent option preserves every GB default result and streaming byte with labels on/off (1.296459ms)
+✔ CA opt-in changes only one TSV column; stream and materialized outputs match (1.040333ms)
+✔ CA retains all six holds, unavailable partition and complete-source-proven archival (0.660667ms)
+✔ GB opt-in changes only one TSV column; stream and materialized outputs match (0.62225ms)
+✔ GB retains all six holds, unavailable partition and complete-source-proven archival (0.964166ms)
+✔ no opt-in carries over to a subsequent US or AU build (1.318125ms)
+✔ invalid or broadened country/language/currency scope is rejected (1.08225ms)
+✔ an accidentally global shipping option is rejected rather than silently ignored (0.124125ms)
+✔ missing fields, unknown fields and ETA/return/service additions fail closed (0.671791ms)
+✔ nonzero, numeric, padded and noncanonical cost values reject without conversion (0.743125ms)
+✔ verification must be literal true and bind a nonempty SHA256 receipt (0.498916ms)
+✔ disabled or unverified landing scope cannot be bypassed even for an empty complete source (0.403458ms)
+✔ new opt-in requires existing holds and explicit disabled return-label emission (0.244667ms)
+✔ shipping opt-in preserves existing pagination source rejection (0.091625ms)
+✔ shipping opt-in preserves existing shop identity source rejection (0.057084ms)
+✔ shipping opt-in preserves existing stale clock source rejection (0.054875ms)
+✔ shipping opt-in preserves existing future clock source rejection (0.052916ms)
+✔ shipping opt-in preserves existing manifest drift source rejection (0.0735ms)
+✔ shipping opt-in preserves existing incomplete variants source rejection (0.086792ms)
+✔ shipping opt-in preserves existing duplicate variant source rejection (0.081875ms)
+✔ shipping opt-in preserves existing market context drift source rejection (0.056917ms)
+✔ shipping opt-in preserves existing catalog identity source rejection (0.060667ms)
+✔ malformed currency, price, numeric identity and unavailable state never yield a partial feed (0.630042ms)
+✔ publication and unavailable exclusions retain exact membership and shipping applies only to kept rows (1.949542ms)
+✔ active owner dependencies and current CA/GB config bytes are still unchanged after all builds (1.832166ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 116.08

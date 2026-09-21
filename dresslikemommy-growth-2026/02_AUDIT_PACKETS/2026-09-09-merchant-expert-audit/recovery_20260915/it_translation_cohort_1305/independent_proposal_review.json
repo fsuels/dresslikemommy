@@ -1,0 +1,102 @@
+{
+  "status": "PASS_WITH_LIMITS",
+  "reviewerRole": "DID_NOT_BUILD_OR_EXECUTE",
+  "reviewer": "merchant_translation_review",
+  "reviewedAtUtc": "2026-09-15T13:32:55.428562+00:00",
+  "bindings": {
+    "register.graphql": "20a5a7a63336ab4479eee73891be38ec4e88a43379b50fd63adf4b3ad5cc1702",
+    "register.variables.json": "cb98e824cd125699d9d9dc00a44a8ad86e37d70d9f712d471e4b8bbc5280ff36",
+    "verify_release.py": "add5fbfaf90e6c473c83662d73081fbb182f9489986c39e3594abc5afdfa2265",
+    "proposal.json": "8bb43dc7c42447de8de0e022fa9a04a5e772a8589dc44c2b73573b58582800a5",
+    "rollback.variables.json": "5208320872a1f4d6924b145e74ad921a8cff594053c0d28aa06ac46a6d43d4af"
+  },
+  "sourceBindings": {
+    "privateBeforeSha256": "2b1b8e4f6c5fc1db0b5bddf777bcaf56c83ef2a0c563b4ae091f82baeddde4a6",
+    "sanitizedBeforeSha256": "91c459ed1da4d1cd1442e7e812e7b82a7ba1708d40995b7fe4f710ddde2c42db",
+    "sourceCompletedAt": "2026-09-15T13:06:00.023Z",
+    "marketOverridesSha256": "424f16264aa59148e01d5896459136e483d7763127669f126d7bb02389aace97",
+    "marketOverridesReceivedAt": "2026-09-15T13:07:29.541Z",
+    "notesSha256": "d8e3c633c421283cd6e87a2ef3c5e7a44881a9fd7f3fec261bb467877d0e548b"
+  },
+  "counts": {
+    "targetProducts": 9,
+    "fields": 24,
+    "bodies": 6,
+    "tableDataCells": 698,
+    "tableHeaders": 51,
+    "protectedNativeProducts": 10,
+    "protectedVariants": 167,
+    "protectedEnglishFields": 60,
+    "protectedCurrentItalianFields": 26,
+    "protectedSpanishFrenchGermanFields": 150,
+    "protectedEmptyMarketOverrides": 60
+  },
+  "checksPassed": 1876,
+  "blockingFindings": [],
+  "semanticFindings": [
+    "All 24 meanings are supported by current English: Palm beach context, Denim vests and jeans, Green Palm dress and shirt, Scarlet top-only, Sunshine 95% cotton/5% elastane, Red Heart 95% cotton/top-only, Red Resort both pieces, Golden Daisy separates. Italian wording is natural within this bounded correction.",
+    "Unknown fibers and unavailable measurements remain explicit. Source size roles, all numbers, units and cell positions are preserved. Golden Daisy table is byte-exact; Red Resort changes only seven authorized header texts. Four obsolete tables follow current English geometry.",
+    "Only the empty Golden Daisy internal artifact and approved workflow/provenance prose are omitted or rewritten as buyer guidance; no buyer fact is removed."
+  ],
+  "tableEvidence": [
+    {
+      "productId": "7227375714401",
+      "dataCells": 180,
+      "headerCells": 9,
+      "candidateTableSha256": "85ef116683a34adb9f3820f6357c1d3bcf053e945f4365e2d3e66e773e6607ff",
+      "emptyArtifactOmissions": 0
+    },
+    {
+      "productId": "7545279217761",
+      "dataCells": 40,
+      "headerCells": 5,
+      "candidateTableSha256": "e4942ca2af5d622bf8ed1872f35fb0400c4b17af615763281dc7b77acd0fa395",
+      "emptyArtifactOmissions": 0
+    },
+    {
+      "productId": "7545279512673",
+      "dataCells": 98,
+      "headerCells": 7,
+      "candidateTableSha256": "92a9657a378d9fddb457d43a820226ed2f32ec22543e2a446d6c91f659dda4a3",
+      "emptyArtifactOmissions": 0
+    },
+    {
+      "productId": "7545279840353",
+      "dataCells": 170,
+      "headerCells": 10,
+      "candidateTableSha256": "3714d9002f3ce8f35a151dc380b245189557c48eaff70497d80ca81b056c740d",
+      "emptyArtifactOmissions": 0
+    },
+    {
+      "productId": "7545373130849",
+      "dataCells": 100,
+      "headerCells": 10,
+      "candidateTableSha256": "1cd68df1142734e6c4914969980178cbbaebb334e88e1531f842dcab449d80bf",
+      "emptyArtifactOmissions": 0
+    },
+    {
+      "productId": "7546613530721",
+      "dataCells": 110,
+      "headerCells": 10,
+      "candidateTableSha256": "3595ec59beb92383ddda739b04e60148168eff0417af979c76093fc745769acf",
+      "emptyArtifactOmissions": 1
+    }
+  ],
+  "rollback": "In-memory hydration of the one null Yellow body from its exact private pointer/hash reproduces all 24 original values. The repository wrapper is not directly executable. Fresh rollback guards and independent review remain required; managed timestamps/outdated state are not restorable.",
+  "guardReview": {
+    "sha256": "add5fbfaf90e6c473c83662d73081fbb182f9489986c39e3594abc5afdfa2265",
+    "coverage": "Source and complete variant/native preservation; 60 English, 150 ES/FR/DE, 26 other IT; 60 overrides; exact stale membership/global locale/digests; reviewed file hashes; original source two-hour and both fresh reads five-minute limits. Root separately enforces exact parent claim and actual-call bytes.",
+    "tests": [
+      "Original saved source at controlled 13:07:30 UTC: PASS; not current live readiness.",
+      "register.graphql reviewed-hash mismatch rejected",
+      "register.variables.json reviewed-hash mismatch rejected",
+      "Expired override observation rejected"
+    ]
+  },
+  "reviewExecutionNote": "The first local unit-token check misread the Italian preposition in in a header as inches; it stopped without writing. Final checks use parenthesized header units and cell positions. No candidate/source value changed.",
+  "limits": [
+    "Proposal-only independent model review; no save, public acceptance or native-human certification.",
+    "Root must perform fresh exact source and override reads, actual-call hash/authority guards, one supported registration and independent after-review.",
+    "Protected zero-stale product 7229026304097 and Tropical 7227378925665 remain outside the mutation. Measurement truth, theme, feed eligibility, traffic and sales are not certified."
+  ]
+}

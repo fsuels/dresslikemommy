@@ -1,0 +1,84 @@
+{
+  "status": "PASS_WITH_LIMITS",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewerRole": "DID_NOT_BUILD_OR_EXECUTE",
+  "reviewer": "merchant_translation_review",
+  "reviewedAtUtc": "2026-09-15T13:52:36.664995+00:00",
+  "action": "TA07-ITALIAN24-TRANSLATIONS-20260915",
+  "method": "Independent local saved-receipt comparison, complete expected after-state reconstruction, read-only guard rerun and public transcript reconciliation. No API/browser calls or live write by reviewer.",
+  "mutationClock": {
+    "startedAt": "2026-09-15T13:42:05.843Z",
+    "receivedAt": "2026-09-15T13:42:08.466Z"
+  },
+  "afterClock": {
+    "startedAt": "2026-09-15T13:42:33.186Z",
+    "receivedAt": "2026-09-15T13:42:34.435Z"
+  },
+  "marketOverridesAfterClock": {
+    "startedAt": "2026-09-15T13:42:33.186Z",
+    "receivedAt": "2026-09-15T13:42:33.739Z"
+  },
+  "counts": {
+    "savedFields": 24,
+    "savedResources": 9,
+    "successfulAliases": 9,
+    "userErrors": 0,
+    "protectedProducts": 10,
+    "protectedVariants": 167,
+    "protectedEnglishFields": 60,
+    "protectedOtherItalianFields": 26,
+    "protectedESFRDEFields": 150,
+    "protectedEmptyOverrides": 60,
+    "sourceChartCells": 749,
+    "publicPages": 9,
+    "exactPublicTitleSeoChecks": 17,
+    "bodySentinelsInDOM": 19,
+    "bodySentinelsVisible": 17
+  },
+  "verification": {
+    "apiAssertionsPassed": 468,
+    "publicAndFinalBindingsPassed": 147,
+    "readOnlyGuardRerun": {
+      "status": "PASS",
+      "checks": 282
+    },
+    "blockingFindings": []
+  },
+  "findings": "One recorded guarded registration returned all 24 exact reviewed global Italian values current, with zero errors. Full private after-state differs only in those values, outdated flags and managed translation timestamps. All protected queried data, 167 variants and 60 override arrays remain exact. Fresh pre-call reads were within one minute; the original source was within two hours. Nine saved public observations match 17 targeted title/SEO values and 19 source-backed factual sentinels.",
+  "publicObservationWindow": {
+    "first": "2026-09-15T13:48:46.742Z",
+    "last": "2026-09-15T13:48:57.336Z",
+    "context": "Italian, US/USD, cart 0, no preview bar"
+  },
+  "limits": [
+    "Saved evidence review, not my fresh independent live observation or native-human Italian certification.",
+    "After preview exit, direct Italian URL reload redirected to English; cause UNKNOWN. Native Italiano selection recovered. Italy/EUR, cookie-independent arrivals and Merchant/feed acceptance remain unqualified.",
+    "Two Yellow chart-tail sentinels are in DOM but hidden in the collapsed guide. No complete expanded-guide, responsive, variant-selection, cart or checkout acceptance.",
+    "Seven pages retain English picker steps and nine retain three missing Italian footer headings; theme-owner scope. Product type is API-only. Other nonstale copy and supplier measurement truth are not certified.",
+    "No serving, traffic, sales or profit conclusion."
+  ],
+  "inputBindings": {
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/independent_proposal_review.json": "9986cb435262e1b9766c373f682d04bf1201477df381da51ae3c1acf545e58b7",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/register.graphql": "20a5a7a63336ab4479eee73891be38ec4e88a43379b50fd63adf4b3ad5cc1702",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/register.variables.json": "cb98e824cd125699d9d9dc00a44a8ad86e37d70d9f712d471e4b8bbc5280ff36",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/verify_release.py": "add5fbfaf90e6c473c83662d73081fbb182f9489986c39e3594abc5afdfa2265",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/proposal.json": "8bb43dc7c42447de8de0e022fa9a04a5e772a8589dc44c2b73573b58582800a5",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/rollback.variables.json": "5208320872a1f4d6924b145e74ad921a8cff594053c0d28aa06ac46a6d43d4af",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/mutation_receipt.json": "cd12af8068f00f11d2b4ee5f21b1578a902ae55d40152d4996ee8606c5a5d495",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/execution_attempt.json": "44620fe0237670bd0389850b0b37e6664475146863bee493d1b984ef3fa5d85d",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/execution_plan.json": "580d03c885a9f80c0f9849a29517843f4290811bcac2dce318b9eb425bc8ffcf",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/precall_verification.json": "ae72f6d84422d9ba48cab252f092e34c5a6b0136a5b430f178e34f4bd7e88ab5",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/prewrite_final_verification.json": "be4bb95c0372dfba59e8bed96c2870f7748b92b78d38d88e4cd359a16283a9ba",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/after_verification.json": "f36b6e3d2f12cf5224ad5da10d04b0a4b0a33daa53f8128b958ad9a5edc53087",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/after.json": "931d686ff68fcde11dfec874ef270e6166ecc8b37679d6fd5de792e13235b086",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/overrides_after.json": "531716f7d9236b2e7a44248c8974ed2abe01e90fa306b762f9ed64b419221761",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/market_overrides_before.json": "424f16264aa59148e01d5896459136e483d7763127669f126d7bb02389aace97",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/public_read_plan.json": "b073c1d242e064f50f8791ee0cd80c5b31579c61ac3d2c1c0b8a12cece1eca0e",
+    "/Users/fsuels/.config/dresslikemommy/merchant-execution-receipts/20260915-it-cohort-1305/before.json": "2b1b8e4f6c5fc1db0b5bddf777bcaf56c83ef2a0c563b4ae091f82baeddde4a6",
+    "/Users/fsuels/.config/dresslikemommy/merchant-execution-receipts/20260915-it-cohort-1305/prewrite_final.json": "cac3609ed76ca93c4beae2694c71753d92958bbdfd25070d4623dfab1db98c33",
+    "/Users/fsuels/.config/dresslikemommy/merchant-execution-receipts/20260915-it-cohort-1305/overrides_final.json": "84b0c6e32b9641c9af0151b70748ebcef36c25830a3e0d53ae3fcbcc3b5d3750",
+    "/Users/fsuels/.config/dresslikemommy/merchant-execution-receipts/20260915-it-cohort-1305/after.json": "c4f07fe0c4a719c3c75b52881ff6e33caf5b9b9a078c0f79deffd8e340ff169e",
+    "/Users/fsuels/.config/dresslikemommy/merchant-execution-receipts/20260915-it-cohort-1305/overrides_after.json": "97e5e75ce53b18e0e5b66b185153dfc53ae08b173b334b35e43997f1b8cdfea6",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/public_after.json": "a09741153ff371230eecafc96e8ae3d03a544520d083c92d9138cfd89c7715c7"
+  }
+}

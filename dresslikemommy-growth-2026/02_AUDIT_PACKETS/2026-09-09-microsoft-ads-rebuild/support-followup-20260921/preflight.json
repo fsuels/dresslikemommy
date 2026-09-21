@@ -1,0 +1,46 @@
+{
+  "schema": "dlm.microsoft.support_followup.v1",
+  "stage": "READY_FOR_EXISTING_CASE_STATUS_REQUEST",
+  "recorded_at_utc": "2026-09-21T20:27:00Z",
+  "owning_task": "TA-15",
+  "root_thread_id": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "uet_tag_id": "36005151",
+  "existing_case_id": "7108824779",
+  "authority_context": "Current heartbeat directs follow-up of the previously authorized and delivered Microsoft diagnostic through its existing case. Routine status and supported-correction proposal only; no duplicate case or business changes.",
+  "approved_external_scope": "EXISTING_CASE_ROUTINE_STATUS_REQUEST_ONLY",
+  "effective_approval_policy": "EXACT_SCOPE_ONLY_NO_BUSINESS_WRITE",
+  "live_state_mode": "STALE_READBACK_REQUIRED_FOR_BUSINESS_CHANGES",
+  "source_live_evidence_as_of": "2026-09-21T20:26:00Z",
+  "before_state": {
+    "browser_recovery": "Prior browser2 URL handle unavailable. One supported task-owned background recovery succeeded in browser1/tab1.",
+    "url": "https://ui.ads.microsoft.com/campaign/vnext/uettag?aid=477439&ccuisrc=4&cid=770182&uid=2290164",
+    "prompt_state": "Authenticated exact account; no login, chooser, MFA or permission prompt.",
+    "uet_36005151": "Tag active",
+    "old_tags_4003544_4003545_36000629": "Tag inactive",
+    "chat_history": "Exact prior diagnostic routing conversation recovered. Only prior Copilot routing message visible; human case contents unavailable here. UI renders a current date on restored historical text; not treated as a fresh send.",
+    "business_settings_changed": false
+  },
+  "mail_readback": {
+    "configured_connector": "Outlook Email",
+    "profile_read_successful": true,
+    "profile_matches_ads_signin": false,
+    "query": "7108824779 received>=2026-09-14",
+    "returned_count": 0,
+    "has_more": false,
+    "recipient_established": false,
+    "full_message_reads": 0,
+    "limitation": "No match in this connected mailbox does not prove no reply or identify the actual support recipient. No account switching or broad mail search."
+  },
+  "independent_review": {
+    "verifier": "/root/support_followup_review",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "verdict": "PASS_WITH_GATES",
+    "message_characters": 375,
+    "gates": ["Existing case only", "No claim no email arrived", "No account/app change", "Reported correction is not verified repair"]
+  },
+  "verification_plan": "Read the sent text and existing-case acknowledgment; capture actual status, supported correction and next update time. Do not infer repair from a support statement.",
+  "rollback": "Discard unsent composer before submission. After submission, no recall assumed; clarify within the same case if necessary.",
+  "paid_controls": "No new budget, spend, enablement, tracking release, billing, purchase or app installation. Existing pending numeric budget/test-loss question remains pending."
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "dlm.growth_recovery_acceptance.v1",
+  "anchor": "2026-09-21-ceo-growth-resumed-and-sales-reconciled",
+  "recorded_at_utc": "2026-09-21T20:44:23.955613+00:00",
+  "status": "SAVED_ORGANIC_RELEASE_AND_CURRENT_SALES_ACCEPTED_WITH_LIMITS",
+  "independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/recovery_source_review_20260921.json",
+    "sha256": "4dd28e3c582fca7b622572739a3c426860b0ee4c709c0e9b011c954bb60af8ad"
+  },
+  "organic_prior_substantive_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_gift_guide_release_independent_review_20260915.json",
+    "sha256": "a1c82a9e40ed222b6ec60cb5359057ebf9656ba4f45d063eaeb3db639d113f2b"
+  },
+  "sales": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260921_2032.json",
+    "sha256": "870094bbf9bcc192596bec94b9e6ec4cc2b74e3f56db7e565b02ecef139ef8df"
+  },
+  "theme_metadata": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_publication_gate_20260921_2038.json",
+    "sha256": "0f89c8939d0b04f6dad01048c9514036973e7b5f35d3f09e0e68e7f8bff58e7b"
+  },
+  "dispatches": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/heartbeat_recovery_20260921_2021.json",
+    "sha256": "f1b638732a423d515cc2f746330b9db5cbb3d138c5e20033fcd85cdffc40b83d"
+  },
+  "microsoft_owner_snapshot": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/support-followup-20260921/account-drift-readback.json",
+    "sha256": "50827af4fb1e237fda0eeaf9c7e78d0f535a5fa0a388e48610b7d41766ef1899"
+  },
+  "microsoft_final_handoff": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/support-followup-20260921/handoff.json",
+    "sha256": "69b128bed65cdffa170aa21aa34e8231295f9964af0d4dfcac15e5488e2def77"
+  },
+  "microsoft_independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/support-followup-20260921/independent-review.json",
+    "sha256": "1525001650cad894d0f4dc332b66424c03fdf444aa04ec8268e882ed72301195"
+  },
+  "microsoft_source_limit": "Eight handoff bindings exact; independent23 initial and13 addendum checks PASS_WITH_LIMITS, not claimed disjoint. Parent reconciled arithmetic and exact IDs. No independent live replay or authority inference.",
+  "saved_organic_release_date": "2026-09-15",
+  "accepted_owner_record_increment": 2,
+  "new_live_release_on_integration_date": false,
+  "gift_guide": {
+    "article_id": "559471886433",
+    "languages": 18,
+    "body_mutations": 2,
+    "first_full_date": "2026-09-16",
+    "reviews": [
+      "2026-09-23",
+      "2026-09-30",
+      "2026-10-16"
+    ],
+    "replay": false
+  },
+  "pinterest_n2_annotation": "Existing destination-only annotation accepted; no new Pin, no count increment, native scheduled Sep27 14:00 timezone unexposed, actual publication unverified.",
+  "paid_control_preserved": true,
+  "spend_authorization_sha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+  "root_business_writes": 0,
+  "current_decision": {
+    "stage": "VERIFY",
+    "objective": "Recover unfinished authorized operations and make current sales and exposure visible without repeating completed releases.",
+    "alternative": "Restart the audit or replay completed content; rejected because frozen receipts remain exact.",
+    "success": "Saved release accepted, fresh scoped sales/role facts, exact existing-owner continuations and canonical readback.",
+    "kill": "Source drift, ambiguous authority, conflicting writer or failed checks.",
+    "rollback": "Restore only this integration from exact private before snapshots if it is wrong, preserving later writers.",
+    "decision_depends_on_uncertain_state": true,
+    "decision_changing_evidence": "Current Microsoft exact authority/CPC decision, current Merchant source receipts and actual theme source/buyer acceptance.",
+    "if_evidence_supports_recommendation": "Existing owners execute only the exact authorized next action and verify the destination.",
+    "if_evidence_opposes_recommendation": "Retain exact hold; do not publish, spend or replay.",
+    "independent_verifier": "/root/recovery_source_verifier",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE"
+  },
+  "no_cost_settlement_attribution_or_profit_inferred": true,
+  "scope_readback": "Actual Merchant user sync instruction dated September15 14:17:53.115UTC, resumed September21; no fresh September21 user instruction inferred. UX owns the next local-main cutoff; parent owns canonical writes until exact release."
+}

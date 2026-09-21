@@ -1,0 +1,15 @@
+{
+  "receipt": "N2_DESTINATION_RELEASE_ACCEPTANCE_20260915.json",
+  "receipt_sha256": "9fc6620bb80a3069fa90d7283b95e0feb004c7b70eba540baa1ca4dd1c40fca0",
+  "checks": {
+    "strict_continuity": {
+      "exit_code": 0,
+      "output": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 52400 lines; latest anchor 2026-09-15-ceo-italian-live-and-ca-gb-candidate-verified\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-15-ceo-italian-live-and-ca-gb-candidate-verified\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n"
+    },
+    "scoped_diff": {
+      "exit_code": 0,
+      "output": ""
+    }
+  },
+  "canonical_integration_owner": "Parent01a08223; no shared files modified by this handoff"
+}

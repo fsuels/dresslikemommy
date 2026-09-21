@@ -1,0 +1,4088 @@
+{
+  "schema_version": 1,
+  "action_id": "TA07-ITALIAN24-TRANSLATIONS-20260915",
+  "status": "PASS_WITH_LIMITS",
+  "verdict": "PASS",
+  "source_acceptance_ready": true,
+  "reviewer": {
+    "identity": "collector_global_fallback_fix",
+    "independence": "DID_NOT_BUILD_OR_EXECUTE_RELEASE",
+    "role": "Independent saved-receipt after-state reconciliation",
+    "business_writes": 0,
+    "live_calls": 0,
+    "source_mutations": 0
+  },
+  "reviewed_at_utc": "2026-09-15T14:00:50.188486+00:00",
+  "scope": "Accept the exact completed global Italian source correction from saved receipts. This report provides no new execution, country, feed, theme or paid authority.",
+  "summary": "741 independently recomputed checks passed, zero failures. One recorded registration attempt returned all nine aliases and 24 exact current global Italian fields. The separately captured after-state equals the original data with only those 24 values, outdated flags and managed timestamps replaced. All 37 frozen artifacts match their declared hashes and byte counts.",
+  "verification": {
+    "check_count": 741,
+    "passed": 741,
+    "failed_count": 0,
+    "checks_by_category": {
+      "hashes": 9,
+      "freeze": 112,
+      "private_binding": 3,
+      "privacy": 36,
+      "scope": 13,
+      "pagination": 3,
+      "mutation": 25,
+      "targets": 192,
+      "protected": 139,
+      "counts": 1,
+      "chart": 1,
+      "timing": 5,
+      "binding": 7,
+      "public": 124,
+      "owner_review": 23,
+      "handoff": 10,
+      "drift": 38
+    },
+    "checks": [
+      {
+        "category": "hashes",
+        "check": "parent pin artifact_freeze.json",
+        "pass": true
+      },
+      {
+        "category": "hashes",
+        "check": "parent pin execution_handoff.json",
+        "pass": true
+      },
+      {
+        "category": "hashes",
+        "check": "parent pin mutation_receipt.json",
+        "pass": true
+      },
+      {
+        "category": "hashes",
+        "check": "parent pin public_after.json",
+        "pass": true
+      },
+      {
+        "category": "hashes",
+        "check": "parent pin independent_after_review.json",
+        "pass": true
+      },
+      {
+        "category": "hashes",
+        "check": "parent pin proposal.json",
+        "pass": true
+      },
+      {
+        "category": "hashes",
+        "check": "parent pin register.variables.json",
+        "pass": true
+      },
+      {
+        "category": "hashes",
+        "check": "parent pin rollback.variables.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "exact 37 unique files",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path after.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash after.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes after.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path after_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash after_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes after_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path before.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash before.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes before.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path capture_receipt.py",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash capture_receipt.py",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes capture_receipt.py",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path execution_attempt.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash execution_attempt.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes execution_attempt.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path execution_handoff.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash execution_handoff.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes execution_handoff.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path execution_plan.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash execution_plan.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes execution_plan.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path independent_after_review.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash independent_after_review.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes independent_after_review.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path independent_proposal_review.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash independent_proposal_review.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes independent_proposal_review.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path market_overrides_before.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash market_overrides_before.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes market_overrides_before.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path mutation_receipt.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash mutation_receipt.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes mutation_receipt.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path overrides.graphql",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash overrides.graphql",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes overrides.graphql",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path overrides_after.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash overrides_after.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes overrides_after.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path overrides_final.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash overrides_final.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes overrides_final.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path overrides_prewrite.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash overrides_prewrite.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes overrides_prewrite.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path overrides_validation.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash overrides_validation.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes overrides_validation.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path precall_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash precall_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes precall_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path prewrite.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash prewrite.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes prewrite.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path prewrite_final.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash prewrite_final.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes prewrite_final.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path prewrite_final_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash prewrite_final_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes prewrite_final_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path prewrite_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash prewrite_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes prewrite_verification.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path proposal.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash proposal.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes proposal.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path proposal_notes.md",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash proposal_notes.md",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes proposal_notes.md",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path public_after.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash public_after.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes public_after.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path public_before.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash public_before.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes public_before.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path public_read_plan.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash public_read_plan.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes public_read_plan.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path query_cli_validation.txt",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash query_cli_validation.txt",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes query_cli_validation.txt",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path read.graphql",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash read.graphql",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes read.graphql",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path read.variables.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash read.variables.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes read.variables.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path read_validation.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash read_validation.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes read_validation.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path register.graphql",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash register.graphql",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes register.graphql",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path register.variables.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash register.variables.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes register.variables.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path register_cli_validation.txt",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash register_cli_validation.txt",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes register_cli_validation.txt",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path register_validation.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash register_validation.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes register_validation.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path registration_schema.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash registration_schema.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes registration_schema.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path rollback.variables.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash rollback.variables.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes rollback.variables.json",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "safe path verify_release.py",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "hash verify_release.py",
+        "pass": true
+      },
+      {
+        "category": "freeze",
+        "check": "bytes verify_release.py",
+        "pass": true
+      },
+      {
+        "category": "hashes",
+        "check": "earlier independent proposal binding",
+        "pass": true
+      },
+      {
+        "category": "private_binding",
+        "check": "exact authorized old-value receipt",
+        "pass": true
+      },
+      {
+        "category": "private_binding",
+        "check": "private before hash",
+        "pass": true
+      },
+      {
+        "category": "private_binding",
+        "check": "private before file mode",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after exact redaction count",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after old-value hash 0",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after sanitized-value reconstruction 0",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after old-value hash 1",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after sanitized-value reconstruction 1",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after old-value hash 2",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after sanitized-value reconstruction 2",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after old-value hash 3",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after sanitized-value reconstruction 3",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after old-value hash 4",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after sanitized-value reconstruction 4",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after old-value hash 5",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after sanitized-value reconstruction 5",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after old-value hash 6",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after sanitized-value reconstruction 6",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after old-value hash 7",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "after sanitized-value reconstruction 7",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite exact redaction count",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite old-value hash 0",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite sanitized-value reconstruction 0",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite old-value hash 1",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite sanitized-value reconstruction 1",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite old-value hash 2",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite sanitized-value reconstruction 2",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite old-value hash 3",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite sanitized-value reconstruction 3",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite old-value hash 4",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite sanitized-value reconstruction 4",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite old-value hash 5",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite sanitized-value reconstruction 5",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite old-value hash 6",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite sanitized-value reconstruction 6",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite old-value hash 7",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite sanitized-value reconstruction 7",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite old-value hash 8",
+        "pass": true
+      },
+      {
+        "category": "privacy",
+        "check": "final prewrite sanitized-value reconstruction 8",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "fresh prewrite exact original data",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "fresh override data exact original",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "24 unique targets",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "nine resources",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "exact locale/global",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "field distribution",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "all ten source identities",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "all source active",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "shop identity preserved",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "shopLocales exact",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "markets exact",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "query variables preserve IDs and Italian",
+        "pass": true
+      },
+      {
+        "category": "pagination",
+        "check": "original all queried connections complete",
+        "pass": true
+      },
+      {
+        "category": "pagination",
+        "check": "final prewrite all queried connections complete",
+        "pass": true
+      },
+      {
+        "category": "pagination",
+        "check": "after all queried connections complete",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "tool not error",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "no top-level GraphQL errors",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "exact alias set",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "exact variables key set",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "query/variables match executed receipt",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "attempt and receipt same bindings and start",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r0 no userErrors",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r0 exact nonduplicate returned field set",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r0:body_html exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r0:body_html current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r0:body_html exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r0:body_html old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r0:body_html exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r0:body_html current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r0:body_html complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r0:body_html managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r1 no userErrors",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r1 exact nonduplicate returned field set",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:title exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:title current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:title exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:title old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:title exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:title current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:title complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:title managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_title exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_title current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_title exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_title old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_title exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_title current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_title complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_title managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_description exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_description current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_description exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_description old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_description exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_description current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_description complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r1:meta_description managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r2 no userErrors",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r2 exact nonduplicate returned field set",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r2:title exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r2:title current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r2:title exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r2:title old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r2:title exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r2:title current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r2:title complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r2:title managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r3 no userErrors",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r3 exact nonduplicate returned field set",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r3:title exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r3:title current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r3:title exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r3:title old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r3:title exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r3:title current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r3:title complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r3:title managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r4 no userErrors",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r4 exact nonduplicate returned field set",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:title exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:title current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:title exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:title old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:title exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:title current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:title complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:title managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:body_html exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:body_html current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:body_html exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:body_html old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:body_html exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:body_html current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:body_html complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:body_html managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:product_type exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:product_type current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:product_type exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:product_type old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:product_type exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:product_type current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:product_type complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:product_type managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_title exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_title current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_title exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_title old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_title exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_title current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_title complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_title managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_description exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_description current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_description exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_description old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_description exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_description current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_description complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r4:meta_description managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r5 no userErrors",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r5 exact nonduplicate returned field set",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:body_html exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:body_html current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:body_html exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:body_html old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:body_html exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:body_html current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:body_html complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:body_html managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_title exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_title current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_title exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_title old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_title exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_title current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_title complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_title managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_description exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_description current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_description exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_description old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_description exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_description current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_description complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r5:meta_description managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r6 no userErrors",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r6 exact nonduplicate returned field set",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:body_html exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:body_html current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:body_html exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:body_html old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:body_html exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:body_html current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:body_html complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:body_html managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_title exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_title current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_title exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_title old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_title exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_title current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_title complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_title managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_description exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_description current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_description exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_description old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_description exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_description current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_description complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r6:meta_description managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r7 no userErrors",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r7 exact nonduplicate returned field set",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:body_html exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:body_html current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:body_html exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:body_html old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:body_html exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:body_html current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:body_html complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:body_html managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_title exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_title current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_title exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_title old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_title exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_title current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_title complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_title managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_description exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_description current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_description exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_description old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_description exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_description current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_description complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r7:meta_description managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r8 no userErrors",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "r8 exact nonduplicate returned field set",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:title exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:title current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:title exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:title old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:title exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:title current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:title complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:title managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:body_html exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:body_html current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:body_html exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:body_html old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:body_html exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:body_html current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:body_html complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:body_html managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_title exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_title current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_title exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_title old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_title exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_title current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_title complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_title managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_description exact input binding",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_description current source digest",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_description exact old value/metadata",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_description old outdated global Italian",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_description exact returned and after value",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_description current global Italian after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_description complete response record equals after",
+        "pass": true
+      },
+      {
+        "category": "targets",
+        "check": "r8:meta_description managed timestamp during recorded call",
+        "pass": true
+      },
+      {
+        "category": "mutation",
+        "check": "exactly 24 returned records",
+        "pass": true
+      },
+      {
+        "category": "scope",
+        "check": "complete reconstructed after-state equality",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 whole native product",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 whole English source",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 spanish all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 french all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 german all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 Italian title",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 Italian product_type",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 Italian meta_title",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 Italian meta_description",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 whole native product",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 whole English source",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 spanish all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 french all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 german all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 Italian body_html",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 Italian product_type",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 whole native product",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 whole English source",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 spanish all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 french all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 german all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 Italian title",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 Italian body_html",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 Italian product_type",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 Italian meta_title",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 Italian meta_description",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 whole native product",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 whole English source",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 spanish all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 french all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 german all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 Italian body_html",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 Italian product_type",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 Italian meta_title",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 Italian meta_description",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 whole native product",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 whole English source",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 spanish all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 french all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 german all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 Italian body_html",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 Italian product_type",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 Italian meta_title",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 Italian meta_description",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279217761 whole native product",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279217761 whole English source",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279217761 spanish all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279217761 french all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279217761 german all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 whole native product",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 whole English source",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 spanish all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 french all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 german all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 Italian title",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 Italian product_type",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 whole native product",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 whole English source",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 spanish all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 french all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 german all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 Italian title",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 Italian product_type",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 whole native product",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 whole English source",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 spanish all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 french all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 german all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 Italian title",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 Italian product_type",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 whole native product",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 whole English source",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 spanish all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 french all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 german all records",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 Italian product_type",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "whole zero-stale product and translations",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "Tropical excluded",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "whole after override data equals original",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 empty au",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 empty ca",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 empty eu",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 empty international",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 empty gb",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227375714401 empty us",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 empty au",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 empty ca",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 empty eu",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 empty international",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 empty gb",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7227378892897 empty us",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 empty au",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 empty ca",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 empty eu",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 empty international",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 empty gb",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7229026304097 empty us",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 empty au",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 empty ca",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 empty eu",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 empty international",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 empty gb",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536709664865 empty us",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 empty au",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 empty ca",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 empty eu",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 empty international",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 empty gb",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7536984359009 empty us",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279217761 empty au",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279217761 empty ca",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279217761 empty eu",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279217761 empty international",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279217761 empty gb",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279217761 empty us",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 empty au",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 empty ca",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 empty eu",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 empty international",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 empty gb",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279512673 empty us",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 empty au",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 empty ca",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 empty eu",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 empty international",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 empty gb",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545279840353 empty us",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 empty au",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 empty ca",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 empty eu",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 empty international",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 empty gb",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7545373130849 empty us",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 empty au",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 empty ca",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 empty eu",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 empty international",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 empty gb",
+        "pass": true
+      },
+      {
+        "category": "protected",
+        "check": "7546613530721 empty us",
+        "pass": true
+      },
+      {
+        "category": "counts",
+        "check": "protected counts",
+        "pass": true
+      },
+      {
+        "category": "chart",
+        "check": "six exact saved bodies contain 698 data and 51 header cells",
+        "pass": true
+      },
+      {
+        "category": "timing",
+        "check": "exact actual-call clock",
+        "pass": true
+      },
+      {
+        "category": "timing",
+        "check": "both final reads precede call and under five minutes",
+        "pass": true
+      },
+      {
+        "category": "timing",
+        "check": "original source within two hours",
+        "pass": true
+      },
+      {
+        "category": "timing",
+        "check": "final gate immediately before call",
+        "pass": true
+      },
+      {
+        "category": "timing",
+        "check": "separate reads follow mutation",
+        "pass": true
+      },
+      {
+        "category": "binding",
+        "check": "precall before raw receipt identity",
+        "pass": true
+      },
+      {
+        "category": "binding",
+        "check": "precall prewrite_final raw receipt identity",
+        "pass": true
+      },
+      {
+        "category": "binding",
+        "check": "precall overrides_final raw receipt identity",
+        "pass": true
+      },
+      {
+        "category": "binding",
+        "check": "after guard before raw receipt identity",
+        "pass": true
+      },
+      {
+        "category": "binding",
+        "check": "after guard after raw receipt identity",
+        "pass": true
+      },
+      {
+        "category": "binding",
+        "check": "after guard overrides_after raw receipt identity",
+        "pass": true
+      },
+      {
+        "category": "binding",
+        "check": "owner after guard pass retained",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "plan hash exact",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "plan exact nine IDs",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "plan fields 7227375714401",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "plan fields 7227378892897",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "plan fields 7536709664865",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "plan fields 7536984359009",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "plan fields 7545279217761",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "plan fields 7545279512673",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "plan fields 7545279840353",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "plan fields 7545373130849",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "plan fields 7546613530721",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 identity and requested URL",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 Italian US/USD captured context",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 observed after source read",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 exact title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 saved success title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 exact meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 saved success meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 exact meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 saved success meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 sentinel source membership 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 sentinel saved DOM presence 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 sentinel source membership 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 sentinel saved DOM presence 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 sentinel source membership 2",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 sentinel saved DOM presence 2",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 sentinel source membership 3",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 1 sentinel saved DOM presence 3",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 identity and requested URL",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 Italian US/USD captured context",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 observed after source read",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 untouched title unclaimed",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 untouched meta_title unclaimed",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 untouched meta_description unclaimed",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 sentinel source membership 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 sentinel saved DOM presence 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 sentinel source membership 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 sentinel saved DOM presence 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 sentinel source membership 2",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 sentinel saved DOM presence 2",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 sentinel source membership 3",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 2 sentinel saved DOM presence 3",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 3 identity and requested URL",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 3 Italian US/USD captured context",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 3 observed after source read",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 3 exact title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 3 saved success title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 3 exact meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 3 saved success meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 3 exact meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 3 saved success meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 4 identity and requested URL",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 4 Italian US/USD captured context",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 4 observed after source read",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 4 exact title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 4 saved success title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 4 untouched meta_title unclaimed",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 4 untouched meta_description unclaimed",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 5 identity and requested URL",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 5 Italian US/USD captured context",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 5 observed after source read",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 5 exact title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 5 saved success title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 5 untouched meta_title unclaimed",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 5 untouched meta_description unclaimed",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 identity and requested URL",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 Italian US/USD captured context",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 observed after source read",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 exact title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 saved success title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 exact meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 saved success meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 exact meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 saved success meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 sentinel source membership 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 sentinel saved DOM presence 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 sentinel source membership 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 sentinel saved DOM presence 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 sentinel source membership 2",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 6 sentinel saved DOM presence 2",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 identity and requested URL",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 Italian US/USD captured context",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 observed after source read",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 untouched title unclaimed",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 exact meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 saved success meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 exact meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 saved success meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 sentinel source membership 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 sentinel saved DOM presence 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 sentinel source membership 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 7 sentinel saved DOM presence 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 identity and requested URL",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 Italian US/USD captured context",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 observed after source read",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 untouched title unclaimed",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 exact meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 saved success meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 exact meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 saved success meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 sentinel source membership 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 sentinel saved DOM presence 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 sentinel source membership 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 sentinel saved DOM presence 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 sentinel source membership 2",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 8 sentinel saved DOM presence 2",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 identity and requested URL",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 Italian US/USD captured context",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 observed after source read",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 untouched title unclaimed",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 exact meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 saved success meta_title",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 exact meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 saved success meta_description",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 sentinel source membership 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 sentinel saved DOM presence 0",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 sentinel source membership 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 sentinel saved DOM presence 1",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 sentinel source membership 2",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "page 9 sentinel saved DOM presence 2",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "nine unique scoped pages",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "17 exact title and SEO fields",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "19 DOM and 17 visible sentinels",
+        "pass": true
+      },
+      {
+        "category": "public",
+        "check": "recorded old-MAIN limits retained",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "final status and clock",
+        "pass": true
+      },
+      {
+        "category": "handoff",
+        "check": "exact mutation counts",
+        "pass": true
+      },
+      {
+        "category": "handoff",
+        "check": "scope exact aliases",
+        "pass": true
+      },
+      {
+        "category": "handoff",
+        "check": "clock matches saved receipts",
+        "pass": true
+      },
+      {
+        "category": "handoff",
+        "check": "declared binding mutation_receipt",
+        "pass": true
+      },
+      {
+        "category": "handoff",
+        "check": "declared binding api_after_guard",
+        "pass": true
+      },
+      {
+        "category": "handoff",
+        "check": "declared binding public_after",
+        "pass": true
+      },
+      {
+        "category": "handoff",
+        "check": "declared binding independent_after",
+        "pass": true
+      },
+      {
+        "category": "handoff",
+        "check": "declared binding register_query",
+        "pass": true
+      },
+      {
+        "category": "handoff",
+        "check": "declared binding register_variables",
+        "pass": true
+      },
+      {
+        "category": "handoff",
+        "check": "declared binding rollback_template",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input independent_proposal_review.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input register.graphql",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input register.variables.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input verify_release.py",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input proposal.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input rollback.variables.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input mutation_receipt.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input execution_attempt.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input execution_plan.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input precall_verification.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input prewrite_final_verification.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input after_verification.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input after.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input overrides_after.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input market_overrides_before.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input public_read_plan.json",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "private before actually hashed",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "private prewrite_final.json declared hash cross-binding",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "private overrides_final.json declared hash cross-binding",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "private after.json declared hash cross-binding",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "private overrides_after.json declared hash cross-binding",
+        "pass": true
+      },
+      {
+        "category": "owner_review",
+        "check": "public input public_after.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable after.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable after_verification.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable before.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable capture_receipt.py",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable execution_attempt.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable execution_handoff.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable execution_plan.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable independent_after_review.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable independent_proposal_review.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable market_overrides_before.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable mutation_receipt.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable overrides.graphql",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable overrides_after.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable overrides_final.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable overrides_prewrite.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable overrides_validation.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable precall_verification.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable prewrite.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable prewrite_final.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable prewrite_final_verification.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable prewrite_verification.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable proposal.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable proposal_notes.md",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable public_after.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable public_before.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable public_read_plan.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable query_cli_validation.txt",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable read.graphql",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable read.variables.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable read_validation.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable register.graphql",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable register.variables.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable register_cli_validation.txt",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable register_validation.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable registration_schema.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable rollback.variables.json",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable verify_release.py",
+        "pass": true
+      },
+      {
+        "category": "drift",
+        "check": "final stable artifact_freeze.json",
+        "pass": true
+      }
+    ]
+  },
+  "exact_scope": [
+    {
+      "alias": "r0",
+      "product_id": "7227375714401",
+      "keys": [
+        "body_html"
+      ]
+    },
+    {
+      "alias": "r1",
+      "product_id": "7227378892897",
+      "keys": [
+        "title",
+        "meta_title",
+        "meta_description"
+      ]
+    },
+    {
+      "alias": "r2",
+      "product_id": "7536709664865",
+      "keys": [
+        "title"
+      ]
+    },
+    {
+      "alias": "r3",
+      "product_id": "7536984359009",
+      "keys": [
+        "title"
+      ]
+    },
+    {
+      "alias": "r4",
+      "product_id": "7545279217761",
+      "keys": [
+        "title",
+        "body_html",
+        "product_type",
+        "meta_title",
+        "meta_description"
+      ]
+    },
+    {
+      "alias": "r5",
+      "product_id": "7545279512673",
+      "keys": [
+        "body_html",
+        "meta_title",
+        "meta_description"
+      ]
+    },
+    {
+      "alias": "r6",
+      "product_id": "7545279840353",
+      "keys": [
+        "body_html",
+        "meta_title",
+        "meta_description"
+      ]
+    },
+    {
+      "alias": "r7",
+      "product_id": "7545373130849",
+      "keys": [
+        "body_html",
+        "meta_title",
+        "meta_description"
+      ]
+    },
+    {
+      "alias": "r8",
+      "product_id": "7546613530721",
+      "keys": [
+        "title",
+        "body_html",
+        "meta_title",
+        "meta_description"
+      ]
+    }
+  ],
+  "independently_reconciled_counts": {
+    "protected_native_products": 10,
+    "protected_variants": 167,
+    "protected_english_fields": 60,
+    "protected_other_italian_fields": 26,
+    "protected_es_fr_de_fields": 150,
+    "protected_empty_market_override_arrays": 60,
+    "target_records": 24,
+    "target_resources": 9,
+    "successful_aliases": 9,
+    "returned_records": 24,
+    "recorded_mutation_attempts": 1,
+    "source_body_data_cells": 698,
+    "source_body_header_cells": 51,
+    "public_pages": 9,
+    "exact_public_title_seo_fields": 17,
+    "body_sentinels_in_dom": 19,
+    "body_sentinels_visible": 17,
+    "old_main_pages_with_english_picker_steps": 7,
+    "old_main_pages_with_three_missing_italian_footer_headings": 9,
+    "captured_graphql_top_level_errors": 0,
+    "captured_alias_user_errors": 0,
+    "after_restored_protected_redactions": 8,
+    "final_prewrite_restored_redactions": 9,
+    "complete_saved_bodies": 6,
+    "complete_source_chart_cells": 749,
+    "source_freeze_files_hashed": 37,
+    "source_freeze_file_hash_mismatches": 0,
+    "public_hidden_collapsed_chart_sentinels": 2
+  },
+  "clocks": {
+    "mutation_started_at_utc": "2026-09-15T13:42:05.843Z",
+    "mutation_received_at_utc": "2026-09-15T13:42:08.466Z",
+    "call_elapsed_seconds": 2.623,
+    "final_source_age_at_call_seconds": 49.056,
+    "final_override_age_at_call_seconds": 49.766,
+    "original_source_age_at_call_seconds": 2165.82,
+    "precall_guard_to_call_seconds": 0.035409,
+    "source_after_received_at_utc": "2026-09-15T13:42:34.435Z",
+    "overrides_after_received_at_utc": "2026-09-15T13:42:33.739Z",
+    "public_first_at_utc": "2026-09-15T13:48:46.742Z",
+    "public_last_at_utc": "2026-09-15T13:48:57.336Z"
+  },
+  "source_bindings": {
+    "packet": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305",
+    "artifact_freeze": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/artifact_freeze.json",
+      "sha256": "480b6863bc2e456b71df0eec631015bc82a99e7cb7976df7f2414a0c661f096a",
+      "file_count": 37,
+      "created_at_utc": "2026-09-15T13:55:26.408617+00:00"
+    },
+    "artifacts": [
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/after.json",
+        "sha256": "931d686ff68fcde11dfec874ef270e6166ecc8b37679d6fd5de792e13235b086"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/after_verification.json",
+        "sha256": "f36b6e3d2f12cf5224ad5da10d04b0a4b0a33daa53f8128b958ad9a5edc53087"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/before.json",
+        "sha256": "91c459ed1da4d1cd1442e7e812e7b82a7ba1708d40995b7fe4f710ddde2c42db"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/capture_receipt.py",
+        "sha256": "155d32f71204acee5b06dc002b8632bbe8344473fa0cc9489640291ea901facf"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/execution_attempt.json",
+        "sha256": "44620fe0237670bd0389850b0b37e6664475146863bee493d1b984ef3fa5d85d"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/execution_handoff.json",
+        "sha256": "5e04ad3cf769cc4dcd8268ced6e5ae0cdc8a7e93bc587d1f3e542ed403ba9a2f"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/execution_plan.json",
+        "sha256": "580d03c885a9f80c0f9849a29517843f4290811bcac2dce318b9eb425bc8ffcf"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/independent_after_review.json",
+        "sha256": "026ee374453a66be4ece40e33d3cb48911df04c96b1b1d621b963230b4512401"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/independent_proposal_review.json",
+        "sha256": "9986cb435262e1b9766c373f682d04bf1201477df381da51ae3c1acf545e58b7"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/market_overrides_before.json",
+        "sha256": "424f16264aa59148e01d5896459136e483d7763127669f126d7bb02389aace97"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/mutation_receipt.json",
+        "sha256": "cd12af8068f00f11d2b4ee5f21b1578a902ae55d40152d4996ee8606c5a5d495"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/overrides.graphql",
+        "sha256": "0aa2e0c43c288047e6f10d4b0d798ec35b0d3b4ea7a7c462789965f12af91340"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/overrides_after.json",
+        "sha256": "531716f7d9236b2e7a44248c8974ed2abe01e90fa306b762f9ed64b419221761"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/overrides_final.json",
+        "sha256": "caad4151a68068e83fdd14f31367f26b1f684edfe7e63f2b0cd0f2b5daf43d10"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/overrides_prewrite.json",
+        "sha256": "b62fe80104bdef4f0a1b1aa5b249e56a0e0200d75ab4488fd1db157aa96c8e6f"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/overrides_validation.json",
+        "sha256": "5a3603126f730f61d00b102eaeec05a45655f1c2a8da3391c96654ecfc250fbb"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/precall_verification.json",
+        "sha256": "ae72f6d84422d9ba48cab252f092e34c5a6b0136a5b430f178e34f4bd7e88ab5"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/prewrite.json",
+        "sha256": "cd09c7779d4855aff7ffad8ae1f31ca9c19c79f9882d41ff8fa432384986ae6c"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/prewrite_final.json",
+        "sha256": "71d761696652dd93a1049997fc81f17c394473676b1d6c5b06b1e538ae029202"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/prewrite_final_verification.json",
+        "sha256": "be4bb95c0372dfba59e8bed96c2870f7748b92b78d38d88e4cd359a16283a9ba"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/prewrite_verification.json",
+        "sha256": "63d84c073fb711116f2c1c60783ecf4f96f9d7ccb8c4f4c16190b1356d52c8f2"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/proposal.json",
+        "sha256": "8bb43dc7c42447de8de0e022fa9a04a5e772a8589dc44c2b73573b58582800a5"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/proposal_notes.md",
+        "sha256": "d8e3c633c421283cd6e87a2ef3c5e7a44881a9fd7f3fec261bb467877d0e548b"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/public_after.json",
+        "sha256": "a09741153ff371230eecafc96e8ae3d03a544520d083c92d9138cfd89c7715c7"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/public_before.json",
+        "sha256": "4c018da0b50ccc7c0491692cc6a6b0c5b34dc0748af962740c13bf7a48d84df6"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/public_read_plan.json",
+        "sha256": "b073c1d242e064f50f8791ee0cd80c5b31579c61ac3d2c1c0b8a12cece1eca0e"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/query_cli_validation.txt",
+        "sha256": "042c8d01222fb6e21de0b8d9896a3d30c2764a37ff60155a308ccf52da5312ed"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/read.graphql",
+        "sha256": "3fecda27be5b1d7f945c324ddfe303cae1125a22a68398bb55ce45b37a032136"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/read.variables.json",
+        "sha256": "fcc9ffae0247e235be048e7a8fbe1d83a1b516b54aae6556c85245e09b9e6597"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/read_validation.json",
+        "sha256": "2bfccb57b589b7dc4de1a7d0da5733bde318b02611bbf2f33f96f3aeb6464f4c"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/register.graphql",
+        "sha256": "20a5a7a63336ab4479eee73891be38ec4e88a43379b50fd63adf4b3ad5cc1702"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/register.variables.json",
+        "sha256": "cb98e824cd125699d9d9dc00a44a8ad86e37d70d9f712d471e4b8bbc5280ff36"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/register_cli_validation.txt",
+        "sha256": "ca643e562241dafce4efe11ac704f870fbc15a9f87691b98134e78000179ff7c"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/register_validation.json",
+        "sha256": "9cd8f6e213ff284930c23fa84616533994aacca4d9d87c0b1bc31a3484c26ca1"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/registration_schema.json",
+        "sha256": "7aac857a11d07223587aeb5d562b80aee0666cd15a39ea57d5b90b70e5e19402"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/rollback.variables.json",
+        "sha256": "5208320872a1f4d6924b145e74ad921a8cff594053c0d28aa06ac46a6d43d4af"
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/it_translation_cohort_1305/verify_release.py",
+        "sha256": "add5fbfaf90e6c473c83662d73081fbb182f9489986c39e3594abc5afdfa2265"
+      }
+    ],
+    "prior_independent_proposal_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_it24_proposal_independent_review_20260915.json",
+      "sha256": "6ceb4760bcc315919eb3b8e68134c810715190a498885add510e0a1da6086a57"
+    },
+    "private_original_before": {
+      "sha256": "2b1b8e4f6c5fc1db0b5bddf777bcaf56c83ef2a0c563b4ae091f82baeddde4a6",
+      "verification": "Exact authorized receipt read and hashed in memory; file mode 0600. No private values or paths copied into this report."
+    }
+  },
+  "method": [
+    "Hashed all 37 manifest entries, checked byte counts, unique safe paths and all exact parent pins; repeated hashes at the end to detect drift.",
+    "Independently reconciled the saved response to register variables and proposal without relying on the parent's 106-check intake. Checked no tool/top-level errors, exact r0-r8 set, every alias userErrors array, unique expected keys, exact returned values, locale=it, market=null, current flags and equality to the separately captured after-records.",
+    "Read the authorized private original before receipt in memory. For each protected after redaction, independently checked its old raw-value digest and reproduced its sanitized value before restoring that old value in memory. Reconstructed the complete expected after data and compared exact object equality, including native products/variants, English source, all other locales, market arrays, shop locale/configuration and pagination.",
+    "Checked current-source digests and saved old values/metadata for all 24 targets, final prewrite equality to the original source, all six market override arrays for every source product, and the fully protected zero-stale product.",
+    "Recomputed fresh-call ages and chronological ordering. Compared the 24 full returned translation records with after records; only managed timestamps within the recorded call interval, allowing their captured whole-second precision, are accepted.",
+    "Confirmed exact after-body bytes equal the previously independently reviewed proposal and counted 698 data plus 51 header cells. Earlier numeric/table and language review bindings remain exact; no new linguistic or supplier factual certification is inferred.",
+    "Recomputed the nine public-page identity/context and 17 exact title/SEO comparisons from captured strings, verified 19 sentinel strings occur in saved body text, and counted the recorded DOM/visibility booleans. No browser replay or semantic review of all untouched content.",
+    "Checked final handoff scope/counts/clocks and declared receipt links. Verified owner independent-review public input hashes and cross-bound its private hashes without reading private after/prewrite files."
+  ],
+  "owner_review": {
+    "status": "PASS_WITH_LIMITS",
+    "reviewed_at_utc": "2026-09-15T13:52:36.664995+00:00",
+    "sha256": "026ee374453a66be4ece40e33d3cb48911df04c96b1b1d621b963230b4512401",
+    "reported_api_assertions": 468,
+    "reported_public_and_final_binding_assertions": 147,
+    "reported_guard_rerun_checks": 282,
+    "count_provenance": "Owner independent-review assertions, not added to this review's 741 checks.",
+    "binding_coverage": {
+      "public_files_verified": 17,
+      "private_digest_cross_bindings_verified": 5,
+      "other_references_not_opened": 0
+    }
+  },
+  "preserved_failure_and_limit_history": {
+    "earlier_prewrite": "The earlier intended prewrite window expired; it was renewed before the recorded successful attempt. No zero-intermediate-failure claim.",
+    "direct_italian_arrival": "At 13:47:27.221 UTC, reload of an Italian URL after preview exit redirected to English. Cause remains UNKNOWN. Native Italiano selection recovered the nine later Italian observations; cookie-independent direct arrival is unqualified.",
+    "collapsed_guide": "Two Yellow chart-tail sentinels exist in captured product DOM but are not visible in the collapsed guide. Seventeen of nineteen sentinels were captured visible.",
+    "existing_main_observations": "Seven recorded pages retain English picker steps; all nine retain three missing Italian footer headings. These are dated existing-MAIN observations. Comparison with the already accepted unpublished candidate is a separate pending UX task; this review establishes neither a new theme defect nor a theme repair.",
+    "public_context": "Italian language in US/USD after native language selection; cart count zero and absent preview bar are observations only.",
+    "private_after_limit": "Eight protected redacted strings were verified against their recorded raw-value digests and exact sanitized representations using the authorized private before receipt. The private after file's complete bytes were not separately opened or rehashed by this reviewer; its digest is cross-bound between captured receipts and the owner review.",
+    "recorded_operation_limit": "One recorded attempt, a complete nine-alias response and separate after-read are verified. This is not independent instrumentation of all account traffic or a claim about unrecorded actions."
+  },
+  "uncertainty_and_retry": {
+    "partial_success_or_uncertain_result": "Not observed in the captured final result: all nine aliases and all 24 separate after-records agree.",
+    "completed_scope": "Do not replay the completed registration.",
+    "any_later_uncertain_operation": "Read actual affected state and identify successful aliases before any bounded recovery; never blindly resubmit all nine aliases.",
+    "rollback": "Not performed in the accepted packet. A rollback would require current justification and exact scope; hydrate the single private Yellow old body by its bound old-value hash in memory. The null/sanitized rollback template is not executable as-is."
+  },
+  "limits": [
+    "Saved-source acceptance only; this reviewer made no live API/browser calls and did not independently audit account authority or observe every account mutation.",
+    "No Italy/EUR, any other country, cookie-independent route, numeric variant, layout, expanded guide, cart, checkout, Merchant/feed release, theme MAIN publication or serving acceptance.",
+    "Scarlet product_type is source/API-only; it is not claimed publicly rendered.",
+    "Fresh translation flags and exact source text are not native-human Italian review, complete editorial quality, or independent supplier/measurement truth.",
+    "No traffic, sales, revenue attribution, retained cash or profit conclusion. No source clock, paid, goal or schedule change is authorized by this receipt.",
+    "Untouched older title/SEO/body text and current theme observations remain outside the completed 24-field source correction."
+  ],
+  "recommended_integration": "Accept and record this exact completed source release once, retaining all route/country/public visibility and private-evidence limits. Preserve the existing UX-owned candidate/MAIN comparison and publication boundary; do not replay the registration or promote this receipt into feed/country/theme readiness."
+}
+

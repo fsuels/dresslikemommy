@@ -1,0 +1,229 @@
+{
+  "observedAt": "2026-09-15T13:18:59.957Z",
+  "types": [
+    {
+      "name": "Mutation",
+      "kind": "OBJECT",
+      "description": "The schema's entry point for all mutation operations.",
+      "fields": [
+        {
+          "name": "translationsRegister",
+          "description": "Creates or updates translations for a resource's [translatable content](https://shopify.dev/docs/api/admin-graphql/latest/objects/TranslatableContent).\n\nEach translation requires a digest value from the resource's translatable content. Use the [`translatableResource`](https://shopify.dev/docs/api/admin-graphql/latest/queries/translatableResource) query to get a resource's translatable content and digest values before creating translations. You can optionally scope translations to specific markets using the `marketId` field in each translation input.\n\nLearn more about [managing translations](https://shopify.dev/docs/apps/build/markets/manage-translated-content).",
+          "type": {
+            "name": "TranslationsRegisterPayload",
+            "kind": "OBJECT",
+            "ofType": null
+          },
+          "args": [
+            {
+              "name": "resourceId",
+              "description": "ID of the resource that is being translated.",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "ID",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            },
+            {
+              "name": "translations",
+              "description": "Specifies the input fields for a translation.",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": null,
+                  "kind": "LIST",
+                  "ofType": {
+                    "name": null,
+                    "kind": "NON_NULL",
+                    "ofType": {
+                      "name": "TranslationInput",
+                      "kind": "INPUT_OBJECT",
+                      "ofType": null
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "inputFields": null,
+      "enumValues": null
+    },
+    {
+      "name": "TranslationInput",
+      "kind": "INPUT_OBJECT",
+      "description": "The input fields and values for creating or updating a translation.",
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "locale",
+          "description": "ISO code of the locale being translated into. Only locales returned in `shopLocales` are valid.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "key",
+          "description": "On the resource that this translation belongs to, the reference to the value being translated.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "value",
+          "description": "The value of the translation.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "translatableContentDigest",
+          "description": "Hash digest representation of the content being translated.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "marketId",
+          "description": "The ID of the market that the translation is specific to. Not specifying this field means that the translation will be available in all markets.",
+          "type": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "enumValues": null
+    },
+    {
+      "name": "TranslationsRegisterPayload",
+      "kind": "OBJECT",
+      "description": "Return type for `translationsRegister` mutation.",
+      "fields": [
+        {
+          "name": "translations",
+          "description": "The translations that were created or updated.",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Translation",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "userErrors",
+          "description": "The list of errors that occurred from executing the mutation.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "TranslationUserError",
+                  "kind": "OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          "args": []
+        }
+      ],
+      "inputFields": null,
+      "enumValues": null
+    },
+    {
+      "name": "TranslationUserError",
+      "kind": "OBJECT",
+      "description": "Represents an error that happens during the execution of a translation mutation.",
+      "fields": [
+        {
+          "name": "code",
+          "description": "The error code.",
+          "type": {
+            "name": "TranslationErrorCode",
+            "kind": "ENUM",
+            "ofType": null
+          },
+          "args": []
+        },
+        {
+          "name": "field",
+          "description": "The path to the input field that caused the error.",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          },
+          "args": []
+        },
+        {
+          "name": "message",
+          "description": "The error message.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          "args": []
+        }
+      ],
+      "inputFields": null,
+      "enumValues": null
+    }
+  ]
+}

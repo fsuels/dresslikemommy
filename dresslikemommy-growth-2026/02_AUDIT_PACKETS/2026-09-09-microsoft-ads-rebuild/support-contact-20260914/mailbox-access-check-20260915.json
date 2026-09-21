@@ -1,0 +1,21 @@
+{
+  "schema": "dlm.microsoft.support_mailbox_readiness.v1",
+  "recorded_at_utc": "2026-09-15 11:52:50 UTC",
+  "root_thread_id": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "case_id": "7108824779",
+  "status": "CONNECTED_PROFILE_READ__EXACT_SUPPORT_MAILBOX_NOT_ESTABLISHED",
+  "support_response_window_starts": "2026-09-15T16:58:00-04:00",
+  "observations": {
+    "connector": "Microsoft Outlook Email",
+    "profile_read": "SUCCESS",
+    "profile_email_matches_observed_Microsoft_Ads_sign_in_email": false,
+    "actual_support_delivery_recipient": "NOT_VERIFIED",
+    "mailbox_search_performed": false,
+    "message_bodies_read": 0
+  },
+  "limits": "A different connected profile is not proof of no support email, failed authentication, or inaccessible Microsoft Advertising. The Ads sign-in email is not independently verified as the support delivery recipient.",
+  "next_action": "At changed evidence or the existing response window, reconcile the exact support mailbox or use the task-owned authenticated Microsoft support surface for existing case7108824779. Do not search an assumed mailbox, create a duplicate case or send the diagnostic again.",
+  "external_writes": [],
+  "canonical_controls_changed": false,
+  "user_action_required_now": false
+}

@@ -1,0 +1,628 @@
+{
+  "schemaVersion": 1,
+  "reviewedAtUtc": "2026-09-15T13:41:17.665953+00:00",
+  "reviewer": "/root/theme_seven_local_diffs",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE_THIS_CANONICAL_INTEGRATION",
+  "status": "PASS_WITH_LIMITS",
+  "scope": "Independent saved-source after-review of the exact11-file canonical integration; report-only ownership.",
+  "anchor": "2026-09-15-ceo-ca-gb-launch-path-and-channel-readbacks",
+  "confidence": "H for bound canonical/source checks; no live replay; separate spend-file temporal byte guard remains root-attested.",
+  "inputs": {
+    "manifest": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ca_gb_channel_integration_20260915.json",
+      "sha256": "a41c765a80d93bad5a48bb7d755c5f30f8bee7a962ab4c23a0ff103da3eca40e"
+    },
+    "standardChecks": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ca_gb_channel_standard_checks_20260915.json",
+      "sha256": "4c10391c116f3d70db6bb386eb48a0ac10578b844fa009bc957cf6bbae6f1861"
+    },
+    "MerchantAcceptance": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_ca_gb_gate_reassessment_20260915.json",
+      "sha256": "24b72edb055d0917af4fd02a0b21ca63513f9ca2545440a409383f5e62097e2d"
+    },
+    "PinterestAcceptance": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/pinterest_morning_source_acceptance_20260915.json",
+      "sha256": "0eeab83071f2e4afecf8a1182e5f054447def9a0722b6b02358c37ac0ee70c37"
+    },
+    "independentDocumentationReview": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_ca_gb_shipping_requirement_independent_review_20260915.json",
+      "sha256": "8f7bbcc144399d893c1d15bd67793ed68673651a7ebfe3fef980f8238b4a1e99"
+    },
+    "XAnnotation": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-15-morning.json",
+      "sha256": "079d0c47acd62e01b6dd24ba2579df002c2e9b22af89a81aa8cfe048f613b5ce"
+    }
+  },
+  "counts": {
+    "checks": 35,
+    "passed": 35,
+    "failed": 0,
+    "beforeFiles": 11,
+    "afterFiles": 11,
+    "sourceDependencies": 9,
+    "preservedCohortKeys": 88,
+    "ownerRecordsBefore": 72,
+    "ownerRecordsAfter": 74,
+    "scheduledWakeRecordsPreserved": 64,
+    "clockScalarsPreserved": 132
+  },
+  "checks": [
+    {
+      "id": "input_acceptance_hashes",
+      "status": "PASS",
+      "evidence": "Both exact parent acceptances and the independent documentation review match their expected SHA256 values."
+    },
+    {
+      "id": "eleven_before_hashes",
+      "status": "PASS",
+      "evidence": "All11 private-before files match the manifest. Private contents are not included in this report."
+    },
+    {
+      "id": "eleven_after_hashes",
+      "status": "PASS",
+      "evidence": "All11 current canonical/checkpoint after files match the manifest."
+    },
+    {
+      "id": "nine_source_dependency_hashes",
+      "status": "PASS",
+      "evidence": "All4 Merchant and5 Pinterest source dependencies match the accepted hashes."
+    },
+    {
+      "id": "authoritative_control_exact",
+      "status": "PASS",
+      "evidence": "Authoritative Execution Control section is exactly preserved; no readiness or authority promotion."
+    },
+    {
+      "id": "checkpoint_eight_key_scope",
+      "status": "PASS",
+      "evidence": "The entire checkpoint is identical outside exactly eight intended cohort metadata keys; reconstruction restored the complete before object."
+    },
+    {
+      "id": "previous_integration_history_exact",
+      "status": "PASS",
+      "evidence": "The prior complete integration record/history is retained as an exact nested object."
+    },
+    {
+      "id": "owner_records_72_to_74_exact",
+      "status": "PASS",
+      "evidence": "All72 earlier owner records preserved; exactly two new acceptance records appended."
+    },
+    {
+      "id": "new_records_are_acceptances_not_releases",
+      "status": "PASS",
+      "evidence": "Only Pinterest saved-source acceptance and CA/GB documented-method acceptance are counted; both record zero root business writes."
+    },
+    {
+      "id": "scheduled_wakes_64_exact",
+      "status": "PASS",
+      "evidence": "All64 recorded wake objects are identical; no wake is appended or modified."
+    },
+    {
+      "id": "continuation_dispatch_count_preserved",
+      "status": "PASS",
+      "evidence": "Continuation list length remains two; the intended nested metadata update is not a new dispatch."
+    },
+    {
+      "id": "paid_authority_and_one_owner_action_exact",
+      "status": "PASS",
+      "evidence": "Exact paid-authority and One Owner Action checkpoint objects preserved, alongside the unchanged authoritative-control section."
+    },
+    {
+      "id": "sales_source_release_and_content_objects_exact",
+      "status": "PASS",
+      "evidence": "All18 selected paid/action/sales/source/content/release/runtime objects are exactly preserved; no prior release is relabeled or replayed."
+    },
+    {
+      "id": "clock_scalars_exact",
+      "status": "PASS",
+      "evidence": "All132 pre-existing clock/freshness/next-due scalar values selected by key names are preserved. Full sales, source and content objects were also compared in full."
+    },
+    {
+      "id": "US_AU_existing_state_preserved",
+      "status": "PASS",
+      "evidence": "US/AU accepted propagation and source state are exact; Pinterest source receipt does not refresh Google Merchant clocks.",
+      "limit": "No live feed/file receiver was replayed; this is canonical-state preservation and declared canonical-only scope."
+    },
+    {
+      "id": "spend_root_guard_and_current_hash",
+      "status": "PASS",
+      "evidence": "Root records paid_spend_file_preserved=true; the current spend file is SHA256 a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c.",
+      "limit": "The eleven-file manifest/private snapshots contain no pre-integration spend-file digest. Exact temporal byte preservation of that separate file is root-attested, not independently paired here. Paid-control section and checkpoint objects are independently exact."
+    },
+    {
+      "id": "Pinterest_eight_file_owner_handoff_bridge",
+      "status": "PASS",
+      "evidence": "All8 Pinterest owner after hashes match the root integration private-before hashes; parent began from the accepted owner closeout."
+    },
+    {
+      "id": "Pinterest_writer_release_chronology",
+      "status": "PASS",
+      "evidence": "Explicit Pinterest shared-writer release at13:21:24.753855UTC precedes root13:30:59.566300UTC integration; checkpoint release and accepted receipt agree."
+    },
+    {
+      "id": "Pinterest_source_metrics_and_limits",
+      "status": "PASS",
+      "evidence": "Saved owner source supports six schedules and4924/0/277 ingestion. The19 filter count has zero rendered item rows and does not prove literal item/group/market identity; warning and21-row-delta causes remain unqualified."
+    },
+    {
+      "id": "Pinterest_no_release_or_clock_promotion",
+      "status": "PASS",
+      "evidence": "Pinterest closeout is a saved-source/channel receipt, with no new Pin release or Merchant source-clock promotion; P2 native timezone remains unexposed."
+    },
+    {
+      "id": "X_source_hash_and_completed_day",
+      "status": "PASS",
+      "evidence": "X source hash verified; September15 report describes completed September14 only."
+    },
+    {
+      "id": "X_192_sessions_not_X_attribution",
+      "status": "PASS",
+      "evidence": "Six returned referrer rows total192 sessions. No matched X campaign/named-X row supports attributed sales or profit; unknown/direct traffic is not treated as zero influence."
+    },
+    {
+      "id": "X_annotation_no_extra_count_or_order_clock",
+      "status": "PASS",
+      "evidence": "X is an annotation only, without a third owner integration, new order read, release or new scheduled wake."
+    },
+    {
+      "id": "CA_GB_documented_cost_only_method",
+      "status": "PASS",
+      "evidence": "Independent saved current-document review explicitly supports a matching product shipping-price override with omitted handling/transit. Plain TSV syntax remains conditional on exact header, offer currency and truthful destination/service coverage."
+    },
+    {
+      "id": "history_and_new_returns_submission_not_general_prerequisites",
+      "status": "PASS",
+      "evidence": "Integration removes unsupported general prerequisites for this cost-only branch; the old manual-ETA timing criteria are explicitly qualified by the independent addendum."
+    },
+    {
+      "id": "real_MAIN_coverage_currency_and_source_gates_retained",
+      "status": "PASS",
+      "evidence": "Actual MAIN destination buyer/currency/checkout, current coverage, six holds, exact source/export, US/AU preservation and effective processed-state readback gates remain."
+    },
+    {
+      "id": "Google_derived_ETA_and_default_returns_retained",
+      "status": "PASS",
+      "evidence": "No inherited account timing is kept distinct from possible Google-derived ETA; omitted return labels do not erase applicable defaults or discovered website policy."
+    },
+    {
+      "id": "truth_and_Terms_Refund_conflict_retained",
+      "status": "PASS",
+      "evidence": "Website policy truth and the existing Terms/Refund conflict remain real, separately owned conditions; optional Merchant submission does not waive them."
+    },
+    {
+      "id": "documented_method_not_live_eligibility",
+      "status": "PASS",
+      "evidence": "Documentation/local preparation acceptance is distinct from current account eligibility, submission, serving, sales or profit. No new country release is accepted."
+    },
+    {
+      "id": "organic_Italian_proposals_still_preparation",
+      "status": "PASS",
+      "evidence": "Current top-level state explicitly retains Italian and Organic work as preparation; no new content acceptance object is added."
+    },
+    {
+      "id": "markdown_scope_bound",
+      "status": "PASS",
+      "evidence": "Only two Merchant/X action-queue rows and two Merchant/X coordination rows are replaced; other Markdown changes are bounded insertions. Worklog content is append-only and not reproduced."
+    },
+    {
+      "id": "worklog_prior_bytes_preserved",
+      "status": "PASS",
+      "evidence": "The complete private-before worklog remains an exact prefix. Only hash/hunk metadata is reported; no worklog text is copied."
+    },
+    {
+      "id": "five_standard_checks_receipt",
+      "status": "PASS",
+      "evidence": "Saved root receipts record successful cockpit render, integration audit, strict continuity, exact context retrieval and scoped whitespace check. No standard check was replayed by this reviewer."
+    },
+    {
+      "id": "historical_creation_pending_preserved",
+      "status": "PASS",
+      "evidence": "Manifest creation-time PENDING is intentionally historical and is left unchanged; this separate receipt supplies the after-review result."
+    },
+    {
+      "id": "final_bound_after_readback",
+      "status": "PASS",
+      "evidence": "All11 bound current hashes still match at review completion; no shared file was modified by this reviewer."
+    }
+  ],
+  "fileBindings": [
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "before_sha256": "5462b0c7f20b935051ae3b80c773bf97fda9b18f3a787014905a96a89637db98",
+      "after_sha256": "356bb98fd138d75937192fa8dc9acd5edaf155fde04122afeb4b40deb17eee51",
+      "before_matches": true,
+      "after_matches": true,
+      "hunks": [
+        {
+          "operation": "insert",
+          "before_start": 2,
+          "before_line_count": 0,
+          "after_start": 2,
+          "after_line_count": 10
+        }
+      ]
+    },
+    {
+      "path": "ops/marketing/action_queue.md",
+      "before_sha256": "e8033899d21f76a3be4869f8e49e79fc50178b8c899560dd1be5503b70cdd1bd",
+      "after_sha256": "bf89cc65d7eea4d7057da19933170bf75863899f5decbc745c88800b592893ab",
+      "before_matches": true,
+      "after_matches": true,
+      "hunks": [
+        {
+          "operation": "insert",
+          "before_start": 2,
+          "before_line_count": 0,
+          "after_start": 2,
+          "after_line_count": 10
+        },
+        {
+          "operation": "replace",
+          "before_start": 250,
+          "before_line_count": 1,
+          "after_start": 260,
+          "after_line_count": 1
+        },
+        {
+          "operation": "replace",
+          "before_start": 260,
+          "before_line_count": 1,
+          "after_start": 270,
+          "after_line_count": 1
+        }
+      ]
+    },
+    {
+      "path": "ops/marketing/blocker_board.md",
+      "before_sha256": "e52f620869c30318e32f119387f533f3d9a82efdfaca87e567af8d3068eccd5a",
+      "after_sha256": "c7ee97af051abad26f06beec5e73673aa709d41a4dacc249520559915dc59de5",
+      "before_matches": true,
+      "after_matches": true,
+      "hunks": [
+        {
+          "operation": "insert",
+          "before_start": 2,
+          "before_line_count": 0,
+          "after_start": 2,
+          "after_line_count": 10
+        }
+      ]
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "before_sha256": "46da7c8991575792364f37d36b0a516b4aca5c559363e08e24004f7543b988b1",
+      "after_sha256": "9a4a4a282922f2c659b776939fe2ba11908a8655fecbb0fee161ab02b3ecaccc",
+      "before_matches": true,
+      "after_matches": true,
+      "hunks": [
+        {
+          "operation": "insert",
+          "before_start": 2,
+          "before_line_count": 0,
+          "after_start": 2,
+          "after_line_count": 10
+        }
+      ]
+    },
+    {
+      "path": "ops/marketing/daily_scorecard.md",
+      "before_sha256": "a3f560ed5145ec168934244a3b62b018aeb99d049e8091309c677111394f5fc7",
+      "after_sha256": "50027258a714b18927f33bc73e078923e07e3d4a9526810459661697b1a186f2",
+      "before_matches": true,
+      "after_matches": true,
+      "hunks": [
+        {
+          "operation": "insert",
+          "before_start": 604,
+          "before_line_count": 0,
+          "after_start": 604,
+          "after_line_count": 5
+        }
+      ]
+    },
+    {
+      "path": "ops/marketing/memory_digest.md",
+      "before_sha256": "e800c24d4e4c0eb95386dc72bae66b995ed107f2549730fb0deb047be2f7c9a2",
+      "after_sha256": "d0e4cbb3bce23f966505bf55e548a6a7fba5ed2f96b484ea71df7f65bd516886",
+      "before_matches": true,
+      "after_matches": true,
+      "hunks": [
+        {
+          "operation": "insert",
+          "before_start": 2,
+          "before_line_count": 0,
+          "after_start": 2,
+          "after_line_count": 10
+        }
+      ]
+    },
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "before_sha256": "b5a9621c5f2071d5f4610ba5b8a55addc3d644b718814b75d754a09c8f9bee80",
+      "after_sha256": "1c558a8495cd963388b7a4c3771e899639f27bf65fcef4287734b97a9bb35f05",
+      "before_matches": true,
+      "after_matches": true,
+      "hunks": [
+        {
+          "operation": "insert",
+          "before_start": 2,
+          "before_line_count": 0,
+          "after_start": 2,
+          "after_line_count": 4
+        },
+        {
+          "operation": "replace",
+          "before_start": 45,
+          "before_line_count": 1,
+          "after_start": 49,
+          "after_line_count": 1
+        },
+        {
+          "operation": "replace",
+          "before_start": 51,
+          "before_line_count": 1,
+          "after_start": 55,
+          "after_line_count": 1
+        }
+      ]
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "before_sha256": "91d3c79cefc59ed3225c19516081e241c0d9d26dcb5859e0a82fa54480b47da6",
+      "after_sha256": "1e48e946f5ad9fc3eb04901a980767fc047b24f73387480d3b307ca44d2f1c3d",
+      "before_matches": true,
+      "after_matches": true,
+      "hunks": [
+        {
+          "operation": "insert",
+          "before_start": 5046,
+          "before_line_count": 0,
+          "after_start": 5046,
+          "after_line_count": 2
+        }
+      ]
+    },
+    {
+      "path": "ops/marketing/decision_log.md",
+      "before_sha256": "9641e6bad88afb9204c219c3aecd1b8704258f3e93a5b173778fa57a292428ab",
+      "after_sha256": "9d567bb19ac76237899abd923a42cb60295ec960630177e46211594a5b10720a",
+      "before_matches": true,
+      "after_matches": true,
+      "hunks": [
+        {
+          "operation": "insert",
+          "before_start": 1389,
+          "before_line_count": 0,
+          "after_start": 1389,
+          "after_line_count": 7
+        }
+      ]
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "before_sha256": "43f38f4e7d36d5928fdee2a971f7786f8c39797ae3c37c0798e4f768bbf9c167",
+      "after_sha256": "58bcd5cfb9b33beb0eb5c754d7fcce0414f65d4a9415f26f4021ac5d5793f792",
+      "before_matches": true,
+      "after_matches": true,
+      "hunks": [
+        {
+          "operation": "insert",
+          "before_start": 52345,
+          "before_line_count": 0,
+          "after_start": 52345,
+          "after_line_count": 28
+        }
+      ]
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+      "before_sha256": "5abe3b1a23b3ca6ff7f3b012b57a96651ce4ae8bc3249b25b0217ee30948dd6e",
+      "after_sha256": "6b016600edbc905d01e8b29994630b881d8f5aec9c4c4965298c0280f28f035a",
+      "before_matches": true,
+      "after_matches": true
+    }
+  ],
+  "sourceBindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_ca_gb_shipping_requirement_independent_review_20260915.json",
+      "expected_sha256": "8f7bbcc144399d893c1d15bd67793ed68673651a7ebfe3fef980f8238b4a1e99",
+      "actual_sha256": "8f7bbcc144399d893c1d15bd67793ed68673651a7ebfe3fef980f8238b4a1e99",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_launch_review_1313.md",
+      "expected_sha256": "064e2692e5db0a1a36757e1d1c7a8b3d7bac50b2ad346a97cfc6dc265d66d3f6",
+      "actual_sha256": "064e2692e5db0a1a36757e1d1c7a8b3d7bac50b2ad346a97cfc6dc265d66d3f6",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_es25_acceptance_freeze_20260914_2025/ca_gb_source_and_buyer_qualification.json",
+      "expected_sha256": "caeec4cd4fc9768b53a8e2145c30c7630725087c9048464e8cf28a2d9e8299a9",
+      "actual_sha256": "caeec4cd4fc9768b53a8e2145c30c7630725087c9048464e8cf28a2d9e8299a9",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ca_gb_shipping_aggregate_freeze_20260914/aggregate_result.json",
+      "expected_sha256": "1f30415d0df57f9a6fd8526b834e209e90d0b6c6fe833ad1f7ab395700550749",
+      "actual_sha256": "1f30415d0df57f9a6fd8526b834e209e90d0b6c6fe833ad1f7ab395700550749",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/MORNING_CANONICAL_VERIFICATION_20260915.json",
+      "expected_sha256": "5d1fdd489a3f4b23d6ef325ea547ca1ac5d361a54174af465548f993f5dec3ad",
+      "actual_sha256": "5d1fdd489a3f4b23d6ef325ea547ca1ac5d361a54174af465548f993f5dec3ad",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/MORNING_OPERATOR_RECEIPT_20260915.json",
+      "expected_sha256": "2728c285e75b5cbd0a12d28d320d0bb5b7096eee23793829c53701ca2aa7e55d",
+      "actual_sha256": "2728c285e75b5cbd0a12d28d320d0bb5b7096eee23793829c53701ca2aa7e55d",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/MORNING_RAINBOW_SOURCE_20260915.json",
+      "expected_sha256": "eeac9dd7ff31ccfff30f50843e1c9d644a4709554fff73c654af5f818c05a519",
+      "actual_sha256": "eeac9dd7ff31ccfff30f50843e1c9d644a4709554fff73c654af5f818c05a519",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/MORNING_TRACKING_DIAGNOSIS_REVIEW_20260915.md",
+      "expected_sha256": "3c9228246d2e4cdf4ffa2c92d2a7cab50f9590a915cdc309a922590968cb5270",
+      "actual_sha256": "3c9228246d2e4cdf4ffa2c92d2a7cab50f9590a915cdc309a922590968cb5270",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/morning_canonical_20260915/final_checks.json",
+      "expected_sha256": "ac655a89ab352cdf949677fe4dc2b137d0a3932d470459f211994dc109410997",
+      "actual_sha256": "ac655a89ab352cdf949677fe4dc2b137d0a3932d470459f211994dc109410997",
+      "matches": true
+    }
+  ],
+  "PinterestOwnerToRootBeforeBridge": [
+    {
+      "path": "ops/marketing/action_queue.md",
+      "matches_root_before": true
+    },
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "matches_root_before": true
+    },
+    {
+      "path": "ops/marketing/daily_scorecard.md",
+      "matches_root_before": true
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "matches_root_before": true
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "matches_root_before": true
+    },
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "matches_root_before": true
+    },
+    {
+      "path": "ops/marketing/decision_log.md",
+      "matches_root_before": true
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "matches_root_before": true
+    }
+  ],
+  "checkpointScope": {
+    "cohortPath": "continuation_dispatches/0/release_hold_reassessment/current_execution_revision/latest_qualified_cohort_checkpoint",
+    "changedKeys": [
+      "canonical_anchor",
+      "latest_active_owner_coordination_20260915",
+      "latest_ca_gb_cost_only_gate_reassessment",
+      "latest_canonical_integration",
+      "latest_pinterest_morning_readback_acceptance",
+      "latest_shared_canonical_writer_interval",
+      "latest_x_morning_readback_annotation",
+      "owner_readback_integrations"
+    ],
+    "protectedObjects": [
+      {
+        "key": "paid_authority",
+        "exactly_preserved": true
+      },
+      {
+        "key": "one_owner_action",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_full_sales",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_full_sales_history",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_full_sales_acceptance",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_US_AU_source_propagation",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_AU_current_source_outcome",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_completed_release_anchor",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_sizing_english_release",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_sizing_localized_release",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_faq_functional_release",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_faq_sizing_release",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_color47_source_release",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_merchant_spanish_source_qualification",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_navy_size_release",
+        "exactly_preserved": true
+      },
+      {
+        "key": "new_goal_or_harness_or_automation_created",
+        "exactly_preserved": true
+      },
+      {
+        "key": "no_sales_lift_claim",
+        "exactly_preserved": true
+      },
+      {
+        "key": "latest_theme_publication_gate_readback",
+        "exactly_preserved": true
+      }
+    ]
+  },
+  "spendFile": {
+    "path": "ops/marketing/spend_authorization.md",
+    "currentSha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c",
+    "rootGuard": true,
+    "independentBeforeDigestAvailable": false,
+    "status": "CURRENT_HASH_VERIFIED__TEMPORAL_BYTE_PRESERVATION_ROOT_ATTESTED"
+  },
+  "findings": [],
+  "caveats": [
+    "The separate spend file has a verified current SHA and explicit root unchanged guard, but its pre-integration digest is absent from the supplied11-file before/after binding; that temporal byte guard is not independently paired.",
+    "Documentation/source-method acceptance does not establish live CA/GB offer eligibility, complete coverage, effective shipping/return attributes, MAIN buyer acceptance or country release.",
+    "US/AU canonical source state and clocks are exactly unchanged; live sources/account state were not replayed.",
+    "Pinterest filtered count19 does not establish literal item/group/market identity;277 warnings and the21-row change remain unexplained. P2 native timezone is unexposed.",
+    "X192 sessions describe completed September14 aggregate referrers, not attributed X orders or profit.",
+    "Organic and Italian proposals remain unaccepted preparation; existing publication/owner gates are unchanged.",
+    "The manifest PENDING status remains intentional creation-time history. Root may append final verification/acceptance separately."
+  ],
+  "mutations": {
+    "ownedReportOnly": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ca_gb_channel_integration_independent_review_20260915.json",
+    "sharedFiles": 0,
+    "Git": 0,
+    "accountBrowserNetwork": 0,
+    "businessWrites": 0,
+    "standardTestsReplayed": 0
+  },
+  "privateHandling": "Private snapshots used only for local comparisons; no private before/worklog text or supplier URLs persisted in this report."
+}

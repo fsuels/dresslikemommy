@@ -1,0 +1,118 @@
+{
+  "status": "PASS_PRESERVE_REMOTE_LOCAL_MERGE_WITH_DOCUMENTED_SOURCE_RISKS",
+  "reviewedAtUtc": "2026-09-21T20:41:43.993807+00:00",
+  "scope": "Four remote Shopify-authored source deltas; independent read-only comparison. No live/rendered verification or theme publication approval.",
+  "remoteHead": "c865a7750ca536de4ff0ad6623b920f217827cab",
+  "commonBase": "e077c69e06bbc729da121533a480c55456b079ba",
+  "localHead": "cb7ff3a0fb55f423d3132fa65229f553ea903d52",
+  "rows": [
+    {
+      "path": "sections/collection-list.liquid",
+      "remoteBlob": "ae243b57a94a6e17f114d022b6a0ef020bbfdf41",
+      "localWorkingBlob": "53df2bb4d20d8b44e2b1be6e04f3cd98685325d4",
+      "localHeadBlob": "53df2bb4d20d8b44e2b1be6e04f3cd98685325d4",
+      "remoteParentBlob": "53df2bb4d20d8b44e2b1be6e04f3cd98685325d4",
+      "localEqualsRemote": false,
+      "localEqualsRemoteParent": true,
+      "localWorkingEqualsHead": true,
+      "remoteStatus": "modified",
+      "remoteSha256": "61349faad543d6c0217bb99acfbbafb70441720faf73142b06e0f16460baf11e",
+      "baseAndLocalSha256": "d337ed6bee607fba9663970b9f5a951742f68b2b39f436180217d35daaf5ff79",
+      "remoteBytes": 13648,
+      "beforeBytes": 12897
+    },
+    {
+      "path": "sections/new-arrivals-mixed.liquid",
+      "remoteBlob": "b1212528de8b756a8c4f819fa48c252be3583cfd",
+      "localWorkingBlob": "fe75f258117c18b0334de3b440e4358674147d84",
+      "localHeadBlob": "fe75f258117c18b0334de3b440e4358674147d84",
+      "remoteParentBlob": "fe75f258117c18b0334de3b440e4358674147d84",
+      "localEqualsRemote": false,
+      "localEqualsRemoteParent": true,
+      "localWorkingEqualsHead": true,
+      "remoteStatus": "modified",
+      "remoteSha256": "e3ec05e81ec6d99bfdb67f57eec973bea597840fc10b7b06b6f402d5a2663d44",
+      "baseAndLocalSha256": "bc1502cfeff474d587eeff11edf453aa74c9bb737a5610796f9939efe38b13a8",
+      "remoteBytes": 10395,
+      "beforeBytes": 9722
+    },
+    {
+      "path": "snippets/breadcrumbs.liquid",
+      "remoteBlob": "056caa9ab76475a659df74ea3151034e78cbec63",
+      "localWorkingBlob": "df51b3bfc3c25a231c85ea9b319383d74ec4ddef",
+      "localHeadBlob": "df51b3bfc3c25a231c85ea9b319383d74ec4ddef",
+      "remoteParentBlob": "df51b3bfc3c25a231c85ea9b319383d74ec4ddef",
+      "localEqualsRemote": false,
+      "localEqualsRemoteParent": true,
+      "localWorkingEqualsHead": true,
+      "remoteStatus": "modified",
+      "remoteSha256": "548d9244d0a89fdb29dfde4924dde4fd291c9cb19fc15b2e42dc96ad4e5e4a5a",
+      "baseAndLocalSha256": "b9e42316d9ef43fa0dd17727fb5413cac545d342d52c73c01cd3a77f7151d56b",
+      "remoteBytes": 16919,
+      "beforeBytes": 16501
+    },
+    {
+      "path": "snippets/product-variant-options.liquid",
+      "remoteBlob": "ae73b1110c1910b95788238358e4e1def5e0e6ae",
+      "localWorkingBlob": "17996e2c1acff3b5962cd228ee35ec412efdbccf",
+      "localHeadBlob": "17996e2c1acff3b5962cd228ee35ec412efdbccf",
+      "remoteParentBlob": "17996e2c1acff3b5962cd228ee35ec412efdbccf",
+      "localEqualsRemote": false,
+      "localEqualsRemoteParent": true,
+      "localWorkingEqualsHead": true,
+      "remoteStatus": "modified",
+      "remoteSha256": "6c542ac65321996c2e06b4dbdaa32303f6da083dc80c4dd61f3e5befadf29e6b",
+      "baseAndLocalSha256": "1ff45823e0db6dc747f3269c09eb6c00d48dd61c55ddc4b118f5b07d776ec3be",
+      "remoteBytes": 11736,
+      "beforeBytes": 10981
+    }
+  ],
+  "dependencyBindings": [
+    {
+      "path": "snippets/card-collection.liquid",
+      "sha256": "0bb3c35702a849bf83f3c51210e0d8849fa57701c5e534fa0f0bf362897e3033",
+      "unchangedBetweenBaseAndLocal": true
+    },
+    {
+      "path": "snippets/breadcrumb-label.liquid",
+      "sha256": "33cd7c7ec3d5bd021c31ca4bfe3786fb76be110123008925b43fff108b79be19",
+      "unchangedBetweenBaseAndLocal": true
+    },
+    {
+      "path": "snippets/swatch-input.liquid",
+      "sha256": "27570ddb9a6b9d1d7a4cb738168a842f55a7e3e55c699def5307d39159b81758",
+      "unchangedBetweenBaseAndLocal": true
+    }
+  ],
+  "localOverlaps": [],
+  "textualConflictExpected": false,
+  "preservationRecommendation": "Merge actual c865a775 ancestry into local main and retain each exact remote blob for these four files. Preserve all other local committed changes; do not revert Shopify edits or silently repair source as part of synchronization.",
+  "behaviors": [
+    {
+      "paths": [
+        "sections/collection-list.liquid",
+        "sections/new-arrivals-mixed.liquid"
+      ],
+      "observed": "Shopify rewrites the render call and passes request.page_type rather than an inline equality expression. Callee card-collection independently requires request.page_type == index, preserving the homepage-only branch condition. Generated migration comments are also appended.",
+      "limit": "Source analysis only; no current visual/rendered equivalence claim."
+    },
+    {
+      "paths": [
+        "snippets/breadcrumbs.liquid"
+      ],
+      "observed": "Shopify splits the default filter in a render argument into an additional default argument. breadcrumb-label does not consume that additional argument.",
+      "conditionalRisk": "If the title argument is empty and handle-specific resolution does not apply, subcat_label fallback can be lost; occurrence on an actual buyer path is unknown."
+    },
+    {
+      "paths": [
+        "snippets/product-variant-options.liquid"
+      ],
+      "observed": "Shopify removes the caller escape filter from swatch-input value. swatch-input emits value into value/title/aria-label attributes without its own escaping.",
+      "conditionalRisk": "Option strings containing HTML-significant characters may render incorrectly; current affected options and live impact were not inspected. No claim of confirmed live breakage."
+    }
+  ],
+  "repoWrites": false,
+  "sourceFilesModified": false,
+  "indexTouched": false,
+  "separateFollowUp": "UX should retain a bounded follow-up for remote rewrite semantics after sync; this does not justify altering the four remote blobs silently."
+}

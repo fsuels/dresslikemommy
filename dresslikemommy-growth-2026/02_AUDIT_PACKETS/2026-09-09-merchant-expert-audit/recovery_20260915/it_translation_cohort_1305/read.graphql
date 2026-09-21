@@ -1,0 +1,29 @@
+query MerchantItalianRepairSources($ids: [ID!]!, $locale: String!, $after: String) {
+  shop { id myshopifyDomain }
+  shopLocales { locale name primary published }
+  markets(first: 50) { nodes { id name } pageInfo { hasNextPage endCursor } }
+  nodes(ids: $ids) {
+    ... on Product {
+      id status title handle onlineStoreUrl descriptionHtml updatedAt publishedAt productType tags
+      seo { title description }
+      variants(first: 50) {
+        nodes { id title sku price compareAtPrice inventoryQuantity inventoryPolicy selectedOptions { name value } }
+        pageInfo { hasNextPage endCursor }
+      }
+    }
+  }
+  translatableResourcesByIds(resourceIds: $ids, first: 20, after: $after) {
+    nodes {
+      resourceId
+      translatableContent { key value locale digest }
+      italian: translations(locale: $locale, marketId: null) { ...TranslationFields }
+      spanish: translations(locale: "es", marketId: null) { ...TranslationFields }
+      french: translations(locale: "fr", marketId: null) { ...TranslationFields }
+      german: translations(locale: "de", marketId: null) { ...TranslationFields }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}
+fragment TranslationFields on Translation {
+  key value locale outdated updatedAt market { id name }
+}

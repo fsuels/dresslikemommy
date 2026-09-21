@@ -1,0 +1,179 @@
+{
+  "schema": "dlm.english_release_supplement_review.v1",
+  "reviewer": "/root/daily_operation_review",
+  "reviewed_at_utc": "2026-09-15T13:28:57.429662+00:00",
+  "status": "PASS_WITH_LIMITS",
+  "target_resource": "gid://shopify/Article/559471886433",
+  "english_candidate_sha256": "e224120f4608e5266b09938c47a6e07dc436b62356a2bc705eff4692fe10f6ba",
+  "scope": "Independent supplement review of root-authored English V2 and static release requests. No review of this agent own five localized candidates; no source/canonical/external changes.",
+  "checks_passed": 22,
+  "checks_total": 22,
+  "checks": [
+    {
+      "id": "exact_revision2_hash",
+      "status": "PASS",
+      "evidence": "Reviewed exact root-authored V2; previous frozen English review applies to archived V1 only."
+    },
+    {
+      "id": "exact_revision1_hash",
+      "status": "PASS",
+      "evidence": "Archived V1 exactly matches the initially reviewed source."
+    },
+    {
+      "id": "sole_revision2_text_change",
+      "status": "PASS",
+      "evidence": "Removing the one added Meow callout recreates every V1 byte, including original markup and eight hrefs."
+    },
+    {
+      "id": "same_exact_shop_article",
+      "status": "PASS",
+      "evidence": "Same shop/article identity."
+    },
+    {
+      "id": "source_no_drift_at_supplement_capture",
+      "status": "PASS",
+      "evidence": "Every initially captured article field matches the supplemented saved inventory."
+    },
+    {
+      "id": "full_protected_field_baseline",
+      "status": "PASS",
+      "evidence": "All12 protected fields captured, including author/blog/image/createdAt; before-state coverage only."
+    },
+    {
+      "id": "english_source_digest_bound",
+      "status": "PASS",
+      "evidence": "Five source entries; English body/digest match original article baseline."
+    },
+    {
+      "id": "locale_market_inventory_complete",
+      "status": "PASS",
+      "evidence": "21configured locales and all6markets captured; no next market page."
+    },
+    {
+      "id": "all_global_locale_aliases",
+      "status": "PASS",
+      "evidence": "All21configured global locales queried."
+    },
+    {
+      "id": "existing_translation_identity_scope",
+      "status": "PASS",
+      "evidence": "17existing body translations plus36other rows; no new body locale is authorized by this inventory."
+    },
+    {
+      "id": "all_market_contexts_complete_empty",
+      "status": "PASS",
+      "evidence": "6market contexts each contain21empty locale results and empty source content."
+    },
+    {
+      "id": "exact_prepared_english_body_only",
+      "status": "PASS",
+      "evidence": "Exact V2 body is the only article field in the prepared request."
+    },
+    {
+      "id": "exact_body_only_rollback",
+      "status": "PASS",
+      "evidence": "Rollback restores the exact Admin before body, not the before.html extra newline."
+    },
+    {
+      "id": "same_single_update_operation",
+      "status": "PASS",
+      "evidence": "Single identical articleUpdate operation for forward/rollback."
+    },
+    {
+      "id": "saved_requests_unexecuted",
+      "status": "PASS",
+      "evidence": "Prepared statuses indicate no execution; no after-state claimed."
+    },
+    {
+      "id": "product_label_and_variant_list_support",
+      "status": "PASS",
+      "evidence": "Exact sleeve-style product labels with11recorded variants each; availability, bundles and material facts are not certified."
+    },
+    {
+      "id": "five_saved_link_sources_verified",
+      "status": "PASS",
+      "evidence": "Both PDPs, return/contact and sizing-guide saved HTTP200 response hashes and destinations match."
+    },
+    {
+      "id": "main_theme_before_receipt",
+      "status": "PASS",
+      "evidence": "Root-observed native Exit preview/MAIN identity before release; reviewer did not replay."
+    },
+    {
+      "id": "chart_ambiguity_directly_observed",
+      "status": "PASS",
+      "evidence": "Combined-unit headings have single values/ranges; measurement units/type are unresolved, not inferred."
+    },
+    {
+      "id": "known_ambiguity_now_disclosed",
+      "status": "PASS",
+      "evidence": "V2 explicitly discloses the unit-label problem adjacent to Meow and requires clarification before size choice; no unit or measurement correction is invented."
+    },
+    {
+      "id": "conditional_style_examples_no_certification",
+      "status": "PASS",
+      "evidence": "Both direct links remain defensible only as observed sleeve-style examples for comparison under the explicit product/label/intended-fit and no-compliance-proof cautions. Product cotton-gauze and relaxed-bedtime copy is not independent safety/material evidence."
+    },
+    {
+      "id": "inputs_unchanged_during_review",
+      "status": "PASS",
+      "evidence": "All20read input files retained their hashed bytes during this review."
+    }
+  ],
+  "blocking_findings": [],
+  "finding_history": [
+    {
+      "id": "MEOW_CHART_DISCLOSURE",
+      "prior_source_sha256": "5bf9d0ec3656f473e2a6dfc8a040d8d74a91146e820cca3d7ea577e70b0b5931",
+      "status": "RESOLVED_IN_ENGLISH_V2",
+      "finding": "V1 referred shoppers to a chart whose combined-unit labels and single values were known to be ambiguous, without disclosing that specific issue at the example.",
+      "communication": "Finding sent directly to root before further source propagation; no initial supplement review file was published.",
+      "resolution": "This chart's unit labels need clarification. Contact us to confirm the units and whether the figures are body or garment measurements before choosing a size.",
+      "underlying_product_chart_fixed": false,
+      "localized_callout_updates_and_independent_reviews": "Separate required work; not certified by this English review."
+    }
+  ],
+  "direct_link_decision": {
+    "decision": "Retain both exact direct links as conditional sleeve-style comparisons with V2 disclosure and existing intended-fit/no-compliance-proof warnings.",
+    "premise": "Article does not transfer PDP cotton-gauze, relaxed bedtime, care, all-size or stock assertions into verified advice; it requires unresolved details to be clarified before ordering.",
+    "counterconsideration": "Linking the named products could otherwise look like endorsement of their unresolved chart or child sleepwear claims. V2 addresses the known chart issue in place; the retained safety paragraph expressly denies that a pajamas listing proves compliance.",
+    "limits": "Neither product is certified suitable for child sleepwear, cotton composition, safe fit, current stock or all-market delivery. The underlying PDP issues remain separate and unresolved."
+  },
+  "gap_status": {
+    "protected_before_inventory": "12article fields and5source entries captured",
+    "translation_inventory": "17existing body values,36other rows,6empty market contexts",
+    "forward_rollback_static_scope": "Exact body only",
+    "destination_source_proof": "5recorded current HTTP200 sources; not rendered buyer acceptance",
+    "preview_main_before_identity": "Root-observed MAIN with no preview bar",
+    "schema_action_time_execution_afterstate": "Separate work not established by this review"
+  },
+  "limitations": [
+    "English V2 source only; localized language review must use this new source hash and a reviewer other than each author.",
+    "Saved API/HTTP proof is bounded to its recorded capture times.",
+    "No independent browser/account/PDP replay, external CPSC review, garment label or product safety certificate was inspected.",
+    "Fresh action-time drift guard, current API schema validation, actual write and rollback readiness, preservation readbacks and desktop/mobile public acceptance remain root execution responsibilities.",
+    "No traffic, orders, sales or profit lift claimed."
+  ],
+  "source_sha256": {
+    "GIFT_GUIDE_REVIEW.json": "b7a1939ff05dc3f2cc4f56fbd3162feec41bee0601cfac21213be6ffad9f7513",
+    "gift-guide-candidate-v1.html": "5bf9d0ec3656f473e2a6dfc8a040d8d74a91146e820cca3d7ea577e70b0b5931",
+    "gift-guide-candidate.html": "e224120f4608e5266b09938c47a6e07dc436b62356a2bc705eff4692fe10f6ba",
+    "ENGLISH_REVISION_2.json": "16372888e75d1db1b0a69b409729582251fc2869fad79017c85e46cd662ca787",
+    "gift-guide-before.html": "f3d39891dd50bc9be511472f98d0e5fb396733e312e67b5652a33c65fe1b5a89",
+    "gift-guide-source.json": "1d399714becd380606b80f9badccdfe31a11b1895a46aa8aed3394e38338ba6e",
+    "gift-guide-inventory.json": "e05867c47f8ea0a8e550bb97b6a67dc9310f0c979e63bf2fd30990f698166f0e",
+    "gift-guide-translations.json": "e08dfb15904593a91062533006b0f30bc81775224e93c901fecba88b6155e0a7",
+    "gift-guide-market-translations.json": "257d1d0dac52a467b84f13d12ccf00fd2c3de00bf1b34b20cb7e90df7c15ae66",
+    "gift-guide-products.json": "9577e835bc1bec53bac1ec527ba6e0b0ef20be2b6184ad8e651ce1b454e01b36",
+    "candidate-link-source-readback.json": "613e825c955768ce799232856954794e235e49907025501a6d038008d678d28b",
+    "browser-main-before.json": "3faf9de78e28a3fb6436eea9d7f16b7413616db3dfe0dbd1cefc7d7019db4b32",
+    "english-mutation-request.json": "c27dca6d29d8be0ed8d73716ea5b5cc402f93b24b080b297c37ae32801fdb4ed",
+    "english-rollback-request.json": "c79b0df997ec18d0806e07791112a6b5d28faccc2e45070484292cc633450a78",
+    "GIFT_GUIDE_RELEASE_PLAN.json": "1b36588600cd9e759b8f203cc84f6b6d8810d5ec4952b3bcc9fa30bd23802490",
+    "meow-pdp-public-source.html": "d3e3ee319313b18d7a9fb89b435d72bea09576ad56163d0eaf1d20cf5a2c53c9",
+    "rabbit-pdp-public-source.html": "c769c592898156ab6ae5eb6c6e114e1d42221f3c0e9d9b4ea594f337feeb9a9b",
+    "returns-public-source.html": "ae7700e56b530759ea33139c9ece730deef4294ee09cbc4ead2544308e822c41",
+    "contact-public-source.html": "622838ec96fe572803a31cfde04ac3ff2137f248777eb315c242599ff413a227",
+    "sizing-guide-public-source.html": "0a4b6e6f5a59e3229b91257b52f5bc6f08ad6bbe2b97f1b28b99074dddc88c51"
+  }
+}

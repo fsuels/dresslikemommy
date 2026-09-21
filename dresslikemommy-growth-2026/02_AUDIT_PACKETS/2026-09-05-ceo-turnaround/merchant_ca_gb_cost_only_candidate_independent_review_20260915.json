@@ -1,0 +1,382 @@
+{
+  "schema": "dlm.ca_gb_cost_only_candidate_independent_review.v1",
+  "reviewed_at_utc": "2026-09-15T13:54:06.846890+00:00",
+  "reviewer": "/root/navy_variant_history",
+  "status": "PASS_WITH_LIMITS_LOCAL_CANDIDATE__DEPLOYMENT_AND_ACTUAL_MAIN_BUYER_GATES_OPEN",
+  "scope": "Only frozen local candidate/dependencies, saved shipping configuration and safe synthetic tests. No activation, real feed generation or production acceptance.",
+  "material_defects": [],
+  "input_bindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_cost_only_export/freeze_manifest.json",
+      "sha256": "81b07d83e05d92f36a6baee927a70776b2c7a65dd83387d86c8a643b41d24927",
+      "bytes": 3502
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_cost_only_export/generator.patch",
+      "sha256": "7add5d1c1846d25a3d88572501610f75da7926719641c0a120361c0e2cfdef51",
+      "bytes": 4985
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_cost_only_export/dependency_bindings.json",
+      "sha256": "24d4f5721f3d53e38c978371711c89373f6ac31e5862a4130c097d4a5ccd94d8",
+      "bytes": 8105
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_cost_only_export/candidate/src/generator.js",
+      "sha256": "b008a07456cfb6efed2732e37eb49cb030a07e9ac510f99f3e23bc341de8b6a4",
+      "bytes": 25929
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_cost_only_export/candidate/test/shipping-cost-only.test.mjs",
+      "sha256": "6eada313316723b09079b455cda28911109d3e51ce12adec63a1f6971f81d2e0",
+      "bytes": 15951
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_cost_only_export/README.md",
+      "sha256": "27765028415a4de6716ee1ef6b2dfaf7daba4e732d3c06a09e30346b8e842c57",
+      "bytes": 5782
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_cost_only_export/proposed_market_options.json",
+      "sha256": "fcb7362c9073efb57759f63d572979050fbcab0aff532fb1a63368b8e0ff344d",
+      "bytes": 2012
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_shipping_coverage_1332/readback_v2.json",
+      "sha256": "482e430c12ff3ec74cfe205bb5f4fad82ea6e734f1225695af7491d9faf5abd2",
+      "bytes": 27457
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_shipping_coverage_1332/coverage_checks.json",
+      "sha256": "1184fd6b03ec5289c4c7cf118622aebfe08618e9f5167c04271c80f2eb180433",
+      "bytes": 1834
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_shipping_coverage_1332/query_v2.graphql",
+      "sha256": "b957c7a3940f9e246d5ab9ab7946dc396044eac49dad59ef3551d21f44363a52",
+      "bytes": 752
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/release_contract_20260914.json",
+      "sha256": "82a3f587677d260cbe1af569a069ad26f318e91a33c97f9767b43dbab80b3e59",
+      "bytes": 3130
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/ca_gb_qualification_1917/qualification.config.json",
+      "sha256": "44216ccb468ddabbb7a5aa9f03fdc5c83e0211fb088ad452feb6ebd8938df7f2",
+      "bytes": 1927
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/eligibility_holds_20260911.json",
+      "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+      "bytes": 4385
+    }
+  ],
+  "binding_counts": {
+    "frozen_packet_files_verified": 18,
+    "owner_profile_pins_verified": 14,
+    "original_inputs_verified": 16,
+    "additional_original_inputs": "Fixture source and disabled CA/GB qualification config, beyond the 14 profile pins.",
+    "byte_identical_dependency_copies": 5,
+    "patch_hunks_reconstructed_in_memory": 4
+  },
+  "checks_passed": 19,
+  "checks": [
+    {
+      "check": "frozen 18-file manifest matches count and all SHA256/byte values",
+      "pass": true
+    },
+    {
+      "check": "all 16 referenced inputs remain unchanged after synthetic tests",
+      "pass": true
+    },
+    {
+      "check": "five dependency copies match exact originals",
+      "pass": true
+    },
+    {
+      "check": "exact 14 owner-profile dependency pins preserved within 16 inputs",
+      "pass": true
+    },
+    {
+      "check": "patch hunk header 1",
+      "pass": true
+    },
+    {
+      "check": "patch hunk header 2",
+      "pass": true
+    },
+    {
+      "check": "patch hunk header 3",
+      "pass": true
+    },
+    {
+      "check": "patch hunk header 4",
+      "pass": true
+    },
+    {
+      "check": "four hunks reproduce exact candidate from pinned active generator without applying patch",
+      "pass": true
+    },
+    {
+      "check": "all six hold records are exact copies, including evidence and release conditions",
+      "pass": true
+    },
+    {
+      "check": "current CA/GB configs remain disabled/unverified with no shipping opt-in",
+      "pass": true
+    },
+    {
+      "check": "proposal binds exact coverage read and checks",
+      "pass": true
+    },
+    {
+      "check": "15 coverage predicates independently match saved review",
+      "pass": true
+    },
+    {
+      "check": "coverage query enumerates profiles/zones/methods without a country/default filter and exposes pagination",
+      "pass": true
+    },
+    {
+      "check": "proposed options only add exact two cost properties",
+      "pass": true
+    },
+    {
+      "check": "exact proposed option ca-en",
+      "pass": true
+    },
+    {
+      "check": "exact proposed option gb-en",
+      "pass": true
+    },
+    {
+      "check": "29 frozen synthetic tests reran successfully",
+      "pass": true
+    },
+    {
+      "check": "six independent missing cases passed",
+      "pass": true
+    }
+  ],
+  "coverage": {
+    "observed": {
+      "startedAt": "2026-09-15T13:34:36.538Z",
+      "receivedAt": "2026-09-15T13:34:37.245Z"
+    },
+    "independent_predicates_passed": 15,
+    "predicates": [
+      {
+        "check": "shop",
+        "pass": true
+      },
+      {
+        "check": "all_profiles_enumerated",
+        "pass": true
+      },
+      {
+        "check": "single_default_profile",
+        "pass": true
+      },
+      {
+        "check": "zone_page_complete",
+        "pass": true
+      },
+      {
+        "check": "method_page_complete:gid://shopify/DeliveryZone/21400485985",
+        "pass": true
+      },
+      {
+        "check": "method_page_complete:gid://shopify/DeliveryZone/21400715361",
+        "pass": true
+      },
+      {
+        "check": "one_CA_GB_zone",
+        "pass": true
+      },
+      {
+        "check": "Canada_explicit",
+        "pass": true
+      },
+      {
+        "check": "UK_explicit",
+        "pass": true
+      },
+      {
+        "check": "Canada_13_provinces_territories",
+        "pass": true
+      },
+      {
+        "check": "UK_constituent_countries",
+        "pass": true
+      },
+      {
+        "check": "existing_standard_method",
+        "pass": true
+      },
+      {
+        "check": "active_standard",
+        "pass": true
+      },
+      {
+        "check": "unconditional_standard",
+        "pass": true
+      },
+      {
+        "check": "zero_standard_rate",
+        "pass": true
+      }
+    ],
+    "profiles": 1,
+    "profile_location_groups": 1,
+    "zones": 2,
+    "method_pages_complete": 2,
+    "CA_GB_zone_id": "gid://shopify/DeliveryZone/21400485985",
+    "CA_regions": [
+      "AB",
+      "BC",
+      "MB",
+      "NB",
+      "NL",
+      "NS",
+      "NT",
+      "NU",
+      "ON",
+      "PE",
+      "QC",
+      "SK",
+      "YT"
+    ],
+    "GB_regions": [
+      "BFP",
+      "ENG",
+      "NIR",
+      "SCT",
+      "WLS"
+    ],
+    "standard_method": {
+      "id": "gid://shopify/DeliveryMethodDefinition/36297965665",
+      "name": "Free Standard Shipping",
+      "active": true,
+      "methodConditions": [],
+      "rateProvider": {
+        "__typename": "DeliveryRateDefinition",
+        "id": "gid://shopify/DeliveryRateDefinition/28908748897",
+        "price": {
+          "amount": "0.0",
+          "currencyCode": "USD"
+        }
+      }
+    },
+    "other_CA_GB_method": {
+      "name": "Priority Shipping",
+      "active": true,
+      "rate": {
+        "amount": "12.99",
+        "currencyCode": "USD"
+      },
+      "conditions_count": 2
+    },
+    "meaning": "VERIFIED configuration at the recorded time: one enumerated General default profile, explicit regions, active unconditional zero-USD standard rate. Not shipment history, inventory/source completion, every-offer checkout or native CAD/GBP buyer proof. GBP/CA zero-cost values are the proposed destination representation, not separately observed rate currency in this record."
+  },
+  "implementation_acceptance": {
+    "candidate_generator_sha256": "b008a07456cfb6efed2732e37eb49cb030a07e9ac510f99f3e23bc341de8b6a4",
+    "source_generator_sha256": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f",
+    "only_behavioral_delta": "Opt-in costOnlyShipping validation, one row.shipping field, one final shipping TSV column and explicit evidence/limitations diagnostics; default column array and unopted-in output unchanged.",
+    "country_scope": "ca-en/CA/en/CAD and gb-en/GB/en/GBP only; sourceLocale en; amount exact string 0.00.",
+    "option_guards": "Reject global placement, extra/missing fields, invalid values/receipt SHA, wrong country/currency/language, disabled markets, unverified or wrong landing context, absent holds and return-label emission.",
+    "six_holds": "Exact six records/evidence/release conditions preserved. Synthetic available/unavailable exclusion, absent-parent archival and reactivation remain protected.",
+    "source_and_output_guards": "Existing identity, pagination/count/manifest, age/future clock, catalog, native money, numeric variant URLs, publication exclusions and no-partial-feed guards retain behavior.",
+    "US_AU": "Default materialized/streamed results byte-equal to pinned original with return labels on/off; sequential CA/GB opt-in does not leak into US/AU.",
+    "no_timing_or_returns_added": "TSV has one shipping column only; no timing, returns or return_policy_label column under opt-in. Row objects retain the existing blank return_policy_label key, which is not emitted. No Google processed-attribute/annotation readback occurred.",
+    "evidence_boundary": "Runtime validates the evidence SHA shape and configured hold structure; it does not open or independently verify receipts, prove actual buyer context, impose an immutable six-ID set on arbitrary caller configs, or inspect Google inheritance. Exact release configuration/pins remain essential."
+  },
+  "tests": {
+    "frozen_suite": {
+      "command": "node --test candidate/test/shipping-cost-only.test.mjs",
+      "runtime": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "tests": 29,
+      "pass": 29,
+      "fail": 0,
+      "stdout": "✔ the candidate is derived from the exact active owner profile; configs remain disabled (2.83825ms)\n✔ absent option preserves every US default result and streaming byte with labels on/off (21.778917ms)\n✔ absent option preserves every AU default result and streaming byte with labels on/off (1.402667ms)\n✔ absent option preserves every CA default result and streaming byte with labels on/off (1.356791ms)\n✔ absent option preserves every GB default result and streaming byte with labels on/off (1.071166ms)\n✔ CA opt-in changes only one TSV column; stream and materialized outputs match (1.846667ms)\n✔ CA retains all six holds, unavailable partition and complete-source-proven archival (0.726083ms)\n✔ GB opt-in changes only one TSV column; stream and materialized outputs match (0.635125ms)\n✔ GB retains all six holds, unavailable partition and complete-source-proven archival (0.537583ms)\n✔ no opt-in carries over to a subsequent US or AU build (1.122959ms)\n✔ invalid or broadened country/language/currency scope is rejected (1.06125ms)\n✔ an accidentally global shipping option is rejected rather than silently ignored (0.125375ms)\n✔ missing fields, unknown fields and ETA/return/service additions fail closed (0.708417ms)\n✔ nonzero, numeric, padded and noncanonical cost values reject without conversion (0.376583ms)\n✔ verification must be literal true and bind a nonempty SHA256 receipt (0.428625ms)\n✔ disabled or unverified landing scope cannot be bypassed even for an empty complete source (1.063541ms)\n✔ new opt-in requires existing holds and explicit disabled return-label emission (0.27125ms)\n✔ shipping opt-in preserves existing pagination source rejection (0.100667ms)\n✔ shipping opt-in preserves existing shop identity source rejection (0.064916ms)\n✔ shipping opt-in preserves existing stale clock source rejection (0.0635ms)\n✔ shipping opt-in preserves existing future clock source rejection (0.05825ms)\n✔ shipping opt-in preserves existing manifest drift source rejection (0.075542ms)\n✔ shipping opt-in preserves existing incomplete variants source rejection (0.084875ms)\n✔ shipping opt-in preserves existing duplicate variant source rejection (0.07975ms)\n✔ shipping opt-in preserves existing market context drift source rejection (0.084334ms)\n✔ shipping opt-in preserves existing catalog identity source rejection (0.061709ms)\n✔ malformed currency, price, numeric identity and unavailable state never yield a partial feed (1.066667ms)\n✔ publication and unavailable exclusions retain exact membership and shipping applies only to kept rows (3.578333ms)\n✔ active owner dependencies and current CA/GB config bytes are still unchanged after all builds (3.477875ms)\nℹ tests 29\nℹ suites 0\nℹ pass 29\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 107.849333\n"
+    },
+    "additional_independent_cases": {
+      "scope": "Synthetic in-memory only; no network or generated files",
+      "cases": [
+        {
+          "name": "CA empty complete source retains exact single shipping header and lifecycle",
+          "pass": true
+        },
+        {
+          "name": "CA unused source timing and return properties cannot leak into TSV",
+          "pass": true
+        },
+        {
+          "name": "CA reserved variant query override fails without a partial feed",
+          "pass": true
+        },
+        {
+          "name": "GB empty complete source retains exact single shipping header and lifecycle",
+          "pass": true
+        },
+        {
+          "name": "GB unused source timing and return properties cannot leak into TSV",
+          "pass": true
+        },
+        {
+          "name": "GB reserved variant query override fails without a partial feed",
+          "pass": true
+        }
+      ],
+      "pass": 6,
+      "fail": 0
+    },
+    "additional_reproduction_js": "import assert from 'node:assert/strict';\nimport fs from 'node:fs/promises';\nimport { createHash } from 'node:crypto';\nimport { buildFeed, tsvChunks } from './candidate/src/generator.js';\nimport { config as baseConfig, market as baseMarket, now, product, variant, snapshot } from './candidate/test/fixtures.js';\nglobalThis.fetch=()=>{throw new Error('network_prohibited');};\nconst hash=s=>createHash('sha256').update(s).digest('hex');\nconst holds=JSON.parse(await fs.readFile('./candidate/test/holds.fixture.json','utf8'));\nconst cases=[];\nfunction fixture(country,products){\n const currency=country==='CA'?'CAD':'GBP';\n const market={...structuredClone(baseMarket),country,currency,key:country.toLowerCase()+'-en',\n  landingQuery:{country,currency},marketId:'gid://shopify/Market/99001',\n  expectedCatalogs:[{id:'gid://shopify/MarketCatalog/99002',publicationId:'gid://shopify/Publication/99003'}],\n  shippingCostOnly:{country,currency,amount:'0.00',verified:true,evidenceSha256:hash('INDEPENDENT_SYNTHETIC_ONLY')}};\n const config=structuredClone(baseConfig);config.returnPolicy.emitLabels=false;config.eligibilityHolds=structuredClone(holds);config.markets=[market];\n products??=[product(1,[variant(101,currency)])];products.forEach(p=>{p.catalogPublished=true;});\n const source=snapshot(products,market);source.marketContext={currency,catalogs:structuredClone(market.expectedCatalogs),activeMarketIds:[market.marketId]};source.finalMarketContext=structuredClone(source.marketContext);\n return {source,config,market};\n}\nfor(const country of ['CA','GB']){\n let f=fixture(country,[]),r=await buildFeed(f.source,f.config,f.market,{now,previousIds:['old-synthetic-offer']});\n let s=await buildFeed(f.source,f.config,f.market,{now,materialize:false});\n assert.equal(r.ok,true);assert.equal(r.rows.length,0);assert.deepEqual(r.diagnostics.lifecycle.removed,['old-synthetic-offer']);\n assert.equal(s.columns.filter(x=>x==='shipping').length,1);assert.equal(r.tsv,s.columns.join('\\t')+'\\n');\n assert.equal(Buffer.concat([...tsvChunks(s.rows,s.columns)]).toString(),r.tsv);\n cases.push({name:country+' empty complete source retains exact single shipping header and lifecycle',pass:true});\n f=fixture(country);Object.assign(f.source.products[0],{shipping:'UNTRUSTED',max_handling_time:1,max_transit_time:1,returns:'UNTRUSTED',return_policy_label:'UNTRUSTED'});\n Object.assign(f.source.products[0].variants[0],{shipping:'UNTRUSTED',max_handling_time:1,max_transit_time:1,returns:'UNTRUSTED',return_policy_label:'UNTRUSTED'});\n r=await buildFeed(f.source,f.config,f.market,{now});assert.equal(r.ok,true);\n assert.equal(r.rows[0].shipping,country+':::0.00 '+f.market.currency);assert.ok(!r.tsv.includes('UNTRUSTED'));\n const header=r.tsv.split('\\n')[0].split('\\t');assert.ok(!header.some(x=>/handling|transit|return/.test(x)));assert.equal(header.filter(x=>x==='shipping').length,1);\n cases.push({name:country+' unused source timing and return properties cannot leak into TSV',pass:true});\n f=fixture(country);f.market.landingQuery.variant='999';\n r=await buildFeed(f.source,f.config,f.market,{now});assert.equal(r.ok,false);assert.equal(r.tsv,null);assert.deepEqual(r.rows,[]);\n assert.ok(r.diagnostics.errors.some(x=>x.code==='unsupported_landing_query'));\n cases.push({name:country+' reserved variant query override fails without a partial feed',pass:true});\n}\nprocess.stdout.write(JSON.stringify({scope:'Synthetic in-memory only; no network or generated files',cases,pass:cases.length,fail:0})+'\\n');",
+    "execution_limit": "Network-prohibited synthetic fixtures; outputs held in memory. No real Shopify source or real feed was generated. Test counts are distinct technical checks, not buyer or growth outcomes.",
+    "failure_history": "The packet retains the original helper syntax failure and subsequent 29-test owner run; no frozen history rewritten."
+  },
+  "unresolved_gates": [
+    {
+      "status": "NOT AUTHORIZED BY THIS REVIEW",
+      "gate": "Activation and dependency transition",
+      "detail": "Candidate is outside the active publisher. Existing native-holds-20260914 contract authorizes US English only. A separate exact integration and dependency/pin review is needed; do not replace active US/AU hashes to make this candidate load."
+    },
+    {
+      "status": "NOT READY",
+      "gate": "Effective CA/GB configuration",
+      "detail": "Current qualification markets are disabled and landingContextVerified false with no shippingCostOnly property. This raw qualification config also contains no eligibilityHolds property; exact existing six holds must be supplied/bound through the reviewed integration. Proposed cost properties do not enable or verify anything."
+    },
+    {
+      "status": "NOT RUN",
+      "gate": "Fresh complete source and native prices",
+      "detail": "No real country collection/build was performed. Bind genuine complete CA/GB country/catalog sources, actual native prices, full row/exclusion reconciliation and release-specific source deadlines."
+    },
+    {
+      "status": "NOT RUN",
+      "gate": "Actual published MAIN buyer acceptance",
+      "detail": "Verify current published theme and actual CA/GB arrival, numeric variant selection, native currency/price, correct purchasable item, cart and checkout costs/coverage. A preview or boolean setting cannot substitute for this evidence."
+    },
+    {
+      "status": "NOT RUN",
+      "gate": "Native Merchant receive and effective settings",
+      "detail": "After any separately authorized release, owner must verify native source/product processing, Free listings scope, effective shipping values and exclusion preservation. Local omission does not prove no Google ETA/return annotation or cure conflicting website return terms."
+    }
+  ],
+  "prior_documentation_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_ca_gb_shipping_requirement_independent_review_20260915.json",
+    "previously_reported_sha256": "8f7bbcc144399d893c1d15bd67793ed68673651a7ebfe3fef980f8238b4a1e99",
+    "use": "Prior requirement conclusions retained; no fresh web/account review repeated."
+  },
+  "reviewer_actions": {
+    "live_api_calls": 0,
+    "browser_actions": 0,
+    "real_feeds_generated": 0,
+    "active_module_or_config_or_pin_edits": 0,
+    "source_refreshes": 0,
+    "production_operations": 0,
+    "git_operations": 0,
+    "shared_canonical_edits": 0,
+    "owned_receipt_writes": 1
+  },
+  "confidence": "High for exact local implementation, frozen bindings and recorded shipping-configuration interpretation. No deployment, all-offer buyer or Google acceptance claim."
+}

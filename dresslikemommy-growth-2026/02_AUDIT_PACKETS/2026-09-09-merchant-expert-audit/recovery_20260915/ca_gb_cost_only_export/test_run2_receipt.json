@@ -1,0 +1,70 @@
+{
+  "schema": "dlm.ca_gb_cost_only_export_test_run.v1",
+  "scope": "LOCAL_SYNTHETIC_ONLY",
+  "command": [
+    "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "candidate/test/shipping-cost-only.test.mjs"
+  ],
+  "cwd": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260915/ca_gb_cost_only_export",
+  "nodeVersion": "v24.19.0",
+  "startedAtUtc": "2026-09-15T13:36:20.065006+00:00",
+  "completedAtUtc": "2026-09-15T13:36:20.174291+00:00",
+  "exitCode": 0,
+  "summary": {
+    "tests": 29,
+    "pass": 29,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "syntaxChecks": [
+    {
+      "file": "candidate/src/generator.js",
+      "sha256": "b008a07456cfb6efed2732e37eb49cb030a07e9ac510f99f3e23bc341de8b6a4",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "file": "candidate/test/shipping-cost-only.test.mjs",
+      "sha256": "6eada313316723b09079b455cda28911109d3e51ce12adec63a1f6971f81d2e0",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "tapPath": "tests.run2.tap",
+  "tapSha256": "0759248eded993f20f8fbbfcd1a0aa7408c835bde346fa38ab336837160f0dea",
+  "inputBindings": [
+    {
+      "path": "generator.patch",
+      "sha256": "7add5d1c1846d25a3d88572501610f75da7926719641c0a120361c0e2cfdef51"
+    },
+    {
+      "path": "dependency_bindings.json",
+      "sha256": "24d4f5721f3d53e38c978371711c89373f6ac31e5862a4130c097d4a5ccd94d8"
+    },
+    {
+      "path": "candidate/src/generator.js",
+      "sha256": "b008a07456cfb6efed2732e37eb49cb030a07e9ac510f99f3e23bc341de8b6a4"
+    },
+    {
+      "path": "candidate/test/shipping-cost-only.test.mjs",
+      "sha256": "6eada313316723b09079b455cda28911109d3e51ce12adec63a1f6971f81d2e0"
+    },
+    {
+      "path": "candidate/test/holds.fixture.json",
+      "sha256": "2061c2b2f52113adad5c4ec0a14f78c8c544019f3828a22e6e12969ba13e9532"
+    },
+    {
+      "path": "candidate/test/fixtures.js",
+      "sha256": "80423e206de23809597b1ad6c56e86784fd8c6c83bcaf08712e51408c03676dd"
+    }
+  ],
+  "externalCalls": 0,
+  "realFeedsGenerated": 0,
+  "activeFilesEdited": 0
+}

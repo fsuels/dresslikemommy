@@ -1,0 +1,227 @@
+{
+  "started_at_utc": "2026-09-15T13:52:16.505Z",
+  "completed_at_utc": "2026-09-15T13:52:17.171Z",
+  "query": "query GiftGuideReleaseInventory($id: ID!, $after: String) {\n shop { id name myshopifyDomain ianaTimezone }\n shopLocales { locale primary published }\n markets(first:50, after:$after) { nodes { id name } pageInfo { hasNextPage endCursor } }\n article(id:$id) { id title handle body summary tags templateSuffix isPublished publishedAt updatedAt createdAt author { name } blog { id handle title } image { id url altText width height } }\n translatableResource(resourceId:$id) { resourceId translatableContent { key locale value digest type } }\n}",
+  "data": {
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "name": "Dress Like Mommy",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com",
+      "ianaTimezone": "America/New_York"
+    },
+    "shopLocales": [
+      {
+        "locale": "ar",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "cs",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "da",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "de",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "el",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "en",
+        "primary": true,
+        "published": true
+      },
+      {
+        "locale": "es",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "fi",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "fr",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "he",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "hi",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "it",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ja",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ko",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "nl",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "no",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "pl",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "pt-BR",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ro",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ru",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "sv",
+        "primary": false,
+        "published": true
+      }
+    ],
+    "markets": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Market/22986424417",
+          "name": "Australia"
+        },
+        {
+          "id": "gid://shopify/Market/22986326113",
+          "name": "Canada"
+        },
+        {
+          "id": "gid://shopify/Market/544800865",
+          "name": "Eurozone"
+        },
+        {
+          "id": "gid://shopify/Market/544866401",
+          "name": "International"
+        },
+        {
+          "id": "gid://shopify/Market/22986260577",
+          "name": "United Kingdom"
+        },
+        {
+          "id": "gid://shopify/Market/544735329",
+          "name": "United States"
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjo1NDQ3MzUzMjksImxhc3RfdmFsdWUiOiJVbml0ZWQgU3RhdGVzIn0="
+      }
+    },
+    "article": {
+      "id": "gid://shopify/Article/559471886433",
+      "title": "Family Matching Pajamas: Our Top Picks for Cozy Nights",
+      "handle": "family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "body": "<p>Choosing <a href=\"/collections/pajamas\">family matching pajamas</a> as a gift starts with a few practical checks: who you are buying for, which sizes each design offers, and what each selection includes. A matching photo can show several people even when their outfits must be selected separately.</p>\n\n<p>Use this checklist to compare designs for a shared photo, a holiday morning or a thoughtful mother-and-child gift. Confirm the details for every wearer before choosing your set.</p>\n\n<h2>Family Pajama Gift Checklist</h2>\n<ol>\n<li>\n<strong>List every wearer.</strong> Check the options on the individual product page. Do not assume that a design pictured on a family is offered for every adult, child or baby.</li>\n<li>\n<strong>Confirm each size.</strong> Use current measurements and the chart for that exact product and wearer. Check the units and whether the chart lists body or garment measurements. Our <a href=\"/blogs/news/matching-outfit-sizing-guide-right-fit-for-everyone\">matching outfit sizing guide</a> explains what to compare.</li>\n<li>\n<strong>Check what is included.</strong> Read the description and selected option before ordering. Select each person's option separately where required, then check the cart's item names, sizes and quantities. A group photo does not confirm a whole-family bundle.</li>\n<li>\n<strong>Read the material and care information.</strong> Check the exact product details and garment label. A print, product name or photograph does not establish fiber content, washing instructions or suitability for sleeping.</li>\n<li>\n<strong>Check your gift date.</strong> Review the current shipping information and any delivery estimate shown for your destination before payment. Allow for uncertainty; an estimate is not a guaranteed arrival date.</li>\n<li>\n<strong>Review the return terms.</strong> Read the current <a href=\"/pages/return-policy\">return information</a> before buying a gift. If the size, intended use or timing is unclear, <a href=\"/pages/contact-us\">contact us</a> before ordering.</li>\n</ol>\n\n<h2>Matching Pajama Styles to Compare</h2>\n<p>Start with a style the recipients would choose for themselves. These are examples to compare in our collection, rather than a promise that every size is currently available:</p>\n<ul>\n<li>\n<strong>A short-sleeve option:</strong> <a href=\"/products/meow-star-garden-mommy-and-me-pajamas\">Meow Star Garden Mommy and Me Pajamas — Short-Sleeve Set</a>. Open the product page to check the wearer options, size chart and included pieces. This chart's unit labels need clarification. Contact us to confirm the units and whether the figures are body or garment measurements before choosing a size.</li>\n<li>\n<strong>A long-sleeve option:</strong> <a href=\"/products/peter-rabbit-gauze-mommy-and-me-pajamas\">Peter Rabbit Gauze Mommy and Me Pajamas — Long-Sleeve Set</a>. Compare its own measurements and product details; do not transfer a size choice from another design.</li>\n</ul>\n<p>For a larger family, confirm a suitable option for everyone before settling on one print. Similar colors can also make a coordinated photo when the same design does not offer every size you need.</p>\n\n<h2>Buying a Gift When You Do Not Know Their Size</h2>\n<p>Share the product link with the recipient or the child's parent and confirm the measurements together. An age label or usual clothing size is a starting point, not a substitute for the product chart. If the necessary details are missing, resolve them before placing the order rather than guessing.</p>\n\n<h2>Children's Sleepwear: Check the Intended Fit</h2>\n<p><strong>For kids:</strong> Choose size-appropriate sleepwear and follow its safety label and intended fit. Check the product details rather than assuming that a fabric or a daytime outfit is suitable for sleeping. The <a href=\"https://www.cpsc.gov/s3fs-public/5132.pdf\">CPSC children's sleepwear guide</a> explains why oversized, loose-fitting cotton sleepwear can be a hazard.</p>\n<p>Do not automatically size up children's sleepwear to allow for growth. Confirm the intended fit and label guidance for the garment you are considering. A matching style or a listing under pajamas is not, by itself, proof of sleepwear compliance.</p>\n\n<h2>Care and Occasion Planning</h2>\n<p>Follow the garment's care label for washing, drying and ironing. Avoid assuming that all matching pieces share the same instructions, or that a particular fabric will shrink by a predictable amount.</p>\n<p>For a holiday photo, choose a print or color scheme the family likes. Everyday designs can work for a Christmas-morning photo without a Christmas-specific print. Agree on the look and verify everyone's options before planning the order around an event date.</p>\n\n<h2>Shop Family Matching Pajamas</h2>\n<p>Browse the <a href=\"/collections/pajamas\">matching pajama collection</a>, choose a design to compare, and work through the checklist for each wearer. Confirm sizes, included pieces and quantities before adding the selections you need to your cart.</p>\n",
+      "summary": "",
+      "tags": [
+        "Christmas Pajamas",
+        "Cozy Nights",
+        "Family Fashion",
+        "Family Matching",
+        "Matching Outfits",
+        "Pajamas"
+      ],
+      "templateSuffix": "article",
+      "isPublished": true,
+      "publishedAt": "2024-12-08T13:00:00Z",
+      "updatedAt": "2026-09-15T13:45:25Z",
+      "createdAt": "2026-01-28T03:00:35Z",
+      "author": {
+        "name": "Jessica Martinez"
+      },
+      "blog": {
+        "id": "gid://shopify/Blog/41450437",
+        "handle": "news",
+        "title": "News"
+      },
+      "image": {
+        "id": "gid://shopify/ArticleImage/108371509345",
+        "url": "https://cdn.shopify.com/s/files/1/1557/1635/articles/comfy-matching-family-outfits-cozy-pajamas.jpg?v=1774301468",
+        "altText": null,
+        "width": 1000,
+        "height": 1000
+      }
+    },
+    "translatableResource": {
+      "resourceId": "gid://shopify/Article/559471886433",
+      "translatableContent": [
+        {
+          "key": "title",
+          "locale": "en",
+          "value": "Family Matching Pajamas: Our Top Picks for Cozy Nights",
+          "digest": "ea077fbcf2390db6bb026fda3e0fca126ec5e7314071b97c4a35a6f1b7d489e1",
+          "type": "SINGLE_LINE_TEXT_FIELD"
+        },
+        {
+          "key": "body_html",
+          "locale": "en",
+          "value": "<p>Choosing <a href=\"/collections/pajamas\">family matching pajamas</a> as a gift starts with a few practical checks: who you are buying for, which sizes each design offers, and what each selection includes. A matching photo can show several people even when their outfits must be selected separately.</p>\n\n<p>Use this checklist to compare designs for a shared photo, a holiday morning or a thoughtful mother-and-child gift. Confirm the details for every wearer before choosing your set.</p>\n\n<h2>Family Pajama Gift Checklist</h2>\n<ol>\n<li>\n<strong>List every wearer.</strong> Check the options on the individual product page. Do not assume that a design pictured on a family is offered for every adult, child or baby.</li>\n<li>\n<strong>Confirm each size.</strong> Use current measurements and the chart for that exact product and wearer. Check the units and whether the chart lists body or garment measurements. Our <a href=\"/blogs/news/matching-outfit-sizing-guide-right-fit-for-everyone\">matching outfit sizing guide</a> explains what to compare.</li>\n<li>\n<strong>Check what is included.</strong> Read the description and selected option before ordering. Select each person's option separately where required, then check the cart's item names, sizes and quantities. A group photo does not confirm a whole-family bundle.</li>\n<li>\n<strong>Read the material and care information.</strong> Check the exact product details and garment label. A print, product name or photograph does not establish fiber content, washing instructions or suitability for sleeping.</li>\n<li>\n<strong>Check your gift date.</strong> Review the current shipping information and any delivery estimate shown for your destination before payment. Allow for uncertainty; an estimate is not a guaranteed arrival date.</li>\n<li>\n<strong>Review the return terms.</strong> Read the current <a href=\"/pages/return-policy\">return information</a> before buying a gift. If the size, intended use or timing is unclear, <a href=\"/pages/contact-us\">contact us</a> before ordering.</li>\n</ol>\n\n<h2>Matching Pajama Styles to Compare</h2>\n<p>Start with a style the recipients would choose for themselves. These are examples to compare in our collection, rather than a promise that every size is currently available:</p>\n<ul>\n<li>\n<strong>A short-sleeve option:</strong> <a href=\"/products/meow-star-garden-mommy-and-me-pajamas\">Meow Star Garden Mommy and Me Pajamas — Short-Sleeve Set</a>. Open the product page to check the wearer options, size chart and included pieces. This chart's unit labels need clarification. Contact us to confirm the units and whether the figures are body or garment measurements before choosing a size.</li>\n<li>\n<strong>A long-sleeve option:</strong> <a href=\"/products/peter-rabbit-gauze-mommy-and-me-pajamas\">Peter Rabbit Gauze Mommy and Me Pajamas — Long-Sleeve Set</a>. Compare its own measurements and product details; do not transfer a size choice from another design.</li>\n</ul>\n<p>For a larger family, confirm a suitable option for everyone before settling on one print. Similar colors can also make a coordinated photo when the same design does not offer every size you need.</p>\n\n<h2>Buying a Gift When You Do Not Know Their Size</h2>\n<p>Share the product link with the recipient or the child's parent and confirm the measurements together. An age label or usual clothing size is a starting point, not a substitute for the product chart. If the necessary details are missing, resolve them before placing the order rather than guessing.</p>\n\n<h2>Children's Sleepwear: Check the Intended Fit</h2>\n<p><strong>For kids:</strong> Choose size-appropriate sleepwear and follow its safety label and intended fit. Check the product details rather than assuming that a fabric or a daytime outfit is suitable for sleeping. The <a href=\"https://www.cpsc.gov/s3fs-public/5132.pdf\">CPSC children's sleepwear guide</a> explains why oversized, loose-fitting cotton sleepwear can be a hazard.</p>\n<p>Do not automatically size up children's sleepwear to allow for growth. Confirm the intended fit and label guidance for the garment you are considering. A matching style or a listing under pajamas is not, by itself, proof of sleepwear compliance.</p>\n\n<h2>Care and Occasion Planning</h2>\n<p>Follow the garment's care label for washing, drying and ironing. Avoid assuming that all matching pieces share the same instructions, or that a particular fabric will shrink by a predictable amount.</p>\n<p>For a holiday photo, choose a print or color scheme the family likes. Everyday designs can work for a Christmas-morning photo without a Christmas-specific print. Agree on the look and verify everyone's options before planning the order around an event date.</p>\n\n<h2>Shop Family Matching Pajamas</h2>\n<p>Browse the <a href=\"/collections/pajamas\">matching pajama collection</a>, choose a design to compare, and work through the checklist for each wearer. Confirm sizes, included pieces and quantities before adding the selections you need to your cart.</p>\n",
+          "digest": "3dcef8da979c7a8772f47db7b3ad3090457a0f85b0142746f0aad240ff8fba06",
+          "type": "HTML"
+        },
+        {
+          "key": "summary_html",
+          "locale": "en",
+          "value": "",
+          "digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "type": "HTML"
+        },
+        {
+          "key": "handle",
+          "locale": "en",
+          "value": "family-matching-pajamas-our-top-picks-for-cozy-nights",
+          "digest": "2e9b392b58feb4572113b7043625a858e3baccdc646a87cacf3a15b513d251e0",
+          "type": "URI"
+        },
+        {
+          "key": "meta_description",
+          "locale": "en",
+          "value": "Explore family matching pajama styles and sizing tips. Browse mommy-and-me pajamas, check each person’s size, and confirm what each selection includes.",
+          "digest": "4f64e7c30500a6a6b03f20cfa30740dcac7e14ac92a45e457f9c13cc37de5ba8",
+          "type": "MULTI_LINE_TEXT_FIELD"
+        }
+      ]
+    }
+  }
+}

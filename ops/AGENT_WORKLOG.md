@@ -40334,7 +40334,7 @@ Next best action:
 AGENT_CONTINUITY_ANCHOR: 2026-05-18-white-crochet-mommy-and-me-draft-listing-created
 
 Why:
-- Owner requested the canonical Shopify listing workflow for vendor URL `[PRIVATE_SUPPLIER_URL]` with attached product image and size chart, `FORCE_SPEC_PRICES=true`, and the mandatory localized size-chart repair gate.
+- Owner requested the canonical Shopify listing workflow for vendor URL `[PRIVATE_SUPPLIER_URL] with attached product image and size chart, `FORCE_SPEC_PRICES=true`, and the mandatory localized size-chart repair gate.
 
 What changed:
 - Created Shopify draft product `white-crochet-mommy-and-me-set` via Admin API only; no publish/live channel action was performed.
@@ -43835,7 +43835,7 @@ Next best action:
 AGENT_CONTINUITY_ANCHOR: 2026-06-02-blue-daisy-skirted-swimsuit-vendor-url-blocked
 
 Why:
-- Owner supplied the missing vendor URL `[PRIVATE_SUPPLIER_URL]` and asked to push a Shopify draft.
+- Owner supplied the missing vendor URL `[PRIVATE_SUPPLIER_URL] and asked to push a Shopify draft.
 
 Readback:
 - Direct HTTP fetch of the vendor URL returned 1688 `_____tmd_____` / captcha interception markup, not product details or child size rows.
@@ -52303,3 +52303,117 @@ One Owner Action: In Shopify Admin, publish DLM UX Performance QA 2026-09-10 the
 - verifier_independence: DID_NOT_BUILD_OR_EXECUTE theme repair; sales reviewer did not perform rootAPIreads and also authored its sanitized checkpoint, not a separate second-person review of its output
 - Evidence: theme_mobile_heading_critical_execution_acceptance_20260915.json; order_fulfillment_checkpoint_20260915_0701.json; order_fulfillment_independent_review_20260915_0701.json; order_fulfillment_root_acceptance_20260915_0701.json. Accepted owner integrations:72; scheduled wakes:60. All Merchant country/language/feed clocks, existing GA4/GSC/Ads/Microsoft/Pinterest/X evidence, paid NONE, goal and schedules remain separate and unchanged. No traffic, conversion, sales or profit lift is claimed.
 - Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; preserve existing owners/harness/accounts and clocks.
+
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-local-main-sync-closed-and-release-held
+
+- task_entities: TA-01, TA-06, TA-13, 137888792673, 513542500, 10727274744, 10727245667, cb7ff3a
+- task_stage: HANDOFF
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+September15 scheduled follow-up: the completed local-main sync is verified atcb7ff3a0fb55f423d3132fa65229f553ea903d52 and its exact cutoff is closed. Do not repeat those commits or the accepted theme saves. Owner Admin publication137888792673 and actual published buyer acceptance remain the existing next release dependency; no new publication/access response is recorded. The TA01 source-maintenance instruction now uses the already accepted USSeptember16 02:11:13.020UTC and AU02:11:16.838UTC deadlines, replacing its supersededSeptember15 13:16 instruction. Sales remain the dated07:01:34UTC checkpoint; next full read19:01:34UTC. No new provider read, business write, release count, goal, scheduler or dispatch. Integrations72; wakes61. Evidence: local_main_sync_parent_closeout_20260915_0805.json. Current anchor: 2026-09-15-ceo-local-main-sync-closed-and-release-held.
+
+- source_live_evidence_as_of: no new provider read; exact current local Git/cutoff verified; native theme/GitHub last07:23UTC, orders07:01:34UTC and US/AU02:11UTC remain dated evidence
+- live_state_mode: REPO_KNOWN local closeout; paid STALE_READBACK_REQUIRED
+- effective_approval_policy: existing saved user publication mandate and connector owner-Admin gate; no new authority
+- approved_external_scope: NONE new; no dispatch or external write
+- decision_depends_on_uncertain_state: true
+- decision_changing_evidence: owner publication/access response, meaningful lifecycle/cost signal or existing due window
+- if_evidence_supports_recommendation: exact matching existing owner resumes after current scope/status verification
+- if_evidence_opposes_recommendation: retain completed results and current hold without duplicate sync, source read, account attempt or schedule
+- material_decision: NOT_MATERIAL
+- Notification: DONT_NOTIFY; prior completion and owner action already communicated.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor; no repeated completed local-main sync.
+
+
+## 2026-09-15 Pinterest morning run and catalog prerequisite diagnosis
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-pinterest-morning-catalog-diagnosis
+- task_entities: TA-12, TA-25, PROB-2026-09-09-PINTEREST-MEASUREMENT-ACCEPTANCE, advertiser549756244483, source3041760867124595727, Product7229023846497, PIN-20260915-CATALOG-PREREQUISITE-READBACK
+- task_stage: DIAGNOSE
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+The existing09:00NewYork operator woke at13:00:53.218UTC. All six native schedules are unchanged throughSep27; P2Sep15 12:30PM is not yet due. No Pin was created solely to fill this run. Native timezone remains unexposed. Current health updatedSep13 still separates Tag payment ProductID100%/lowmatch fromCAPI0%; bothFair.
+
+English Shopify source3041760867124595727 completedSep15 05:20EDT with4924successful/0failed/277warnings, images completed. Its accepted count fell21 since the previous ingestion; no erroneous exclusion is inferred. Old source3041760916127467912 remains Paused. Fresh structured Shopify read verified ACTIVE Rainbow parent7229023846497 and8variants; the applied known parent+variant ItemID filter reports19matches but renders no rows. A first Escape canceled the filter before Apply; one screenshot-grounded recovery succeeded. English Diagnostics separately shows277warnings but an empty issue table. These are detail-availability conflicts, not absent products or cleared warnings. No accepted literal item/group/market or actual affected event ID was obtained. Yesterday's failed sample download was not retried.
+
+Native Organic/Last30Days catalog metrics show rounded2.26kimpressions/3outboundclicks/1.24kaudience; separate Beta30/1paid+organic ConversionInsights reports0checkouts/$0revenue. Scope/date/modeling limits are retained; these do not prove Shopify sales absence, a mature Pin result or profit. No customer data, signed source URL, business write, consent change, fake event, paid click or financial action was persisted/performed.
+
+Root evidence MORNING_OPERATOR_RECEIPT_20260915.json and MORNING_RAINBOW_SOURCE_20260915.json; independent saved-evidence review MORNING_TRACKING_DIAGNOSIS_REVIEW_20260915.md in the existing Pinterest audit packet. Parent yielded the narrow shared writer; TA-20 kept its own packet. Canonical before-state/inverse proof and render/integration/strict results are recorded in MORNING_CANONICAL_VERIFICATION_20260915.json. No peer record, authoritative control or One Owner Action is changed.
+
+Next: afternoon verify P2 actual public receipt and then assign its conservative completed-date cohort; later obtain a supported affected-ID/catalog-row join before a repair, without repeating unchanged failed/empty paths. Preserve all six submissions and source holds, existing exact consent/restoration and real purchase gates, full-paidNONE, current UX publication owner and TA-20 article/Sunshine/P1 clocks. Continue via ops/prompts/paid-growth-ai-army-continuation-prompt.md; no new goal, heartbeat or duplicate owner was created.
+
+
+## September15 CA/GB launch path and channel readbacks
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-ca-gb-launch-path-and-channel-readbacks
+- task_entities: TA-07, TA-12, TA-24, TA-25, Merchant513542500, CA/en/CAD, GB/en/GBP, theme137888792673, Article559471886433
+- task_stage: BUILD
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- source_live_evidence_as_of: 2026-09-15 documented and owner-source receipts; no new root account query
+- live_state_mode: REPO_KNOWN; exact dated source readbacks only; paid STALE_READBACK_REQUIRED unchanged
+- approved_external_scope: NONE new
+- material_decision: CA/GB launch-gate interpretation narrowed, without enabling release
+- independent_verifier: /root/navy_variant_history, DID_NOT_BUILD_OR_EXECUTE
+
+September15 CA/GB launch-path correction: independent current Google documentation supports a country-specific product shipping-cost override without handling/transit or optional Merchant returns annotations. Delivered-order history and a submitted returns policy are not general prerequisites for this path. The local proposal is CA:::0.00 CAD / GB:::0.00 GBP; no country feed, shipping setting or policy was changed. Actual published numeric-variant/currency/checkout acceptance remains required, followed by one current source qualification and exact guarded export review. Preserve all six holds, truthful website policies and destination shipping coverage. Google may still derive an ETA or returns annotation from other data.
+
+Pinterest morning source and its bounded shared-file closeout are accepted: six schedules preserved, English source4,924 accepted/0failed/277warnings, and the19-filter count does not identify actual catalog rows. The X September15 morning report for completedSeptember14 has192 sessions in six referrer rows and no matched X campaign or named X referrer; X attribution and profit remain unknown. These are dated channel readbacks, not sales-lift evidence.
+
+The parent shared writer has resumed. Merchant is preparing Italian copy and the isolated cost-only export candidate; Organic is preparing Article559471886433 English plus17 existing bodies. Neither new source/content release is accepted yet. Previous sizing, FAQ, Navy, color, feed, preview and local-main releases must not repeat. Parent accepted owner records:74; recorded scheduled wakes:64. Full sales remains3qualifying orders/8units/USD207.25 at07:01:34UTC; next full read19:01:34UTC. US/AU source targets remainSeptember16 02:11:13.020/02:11:16.838UTC. Paid NONE, goal, schedules and the existing One Owner Action are unchanged.
+
+Evidence: merchant_ca_gb_gate_reassessment_20260915.json; pinterest_morning_source_acceptance_20260915.json. Current anchor: 2026-09-15-ceo-ca-gb-launch-path-and-channel-readbacks.
+
+Earlier dated checkpoints follow; only the stated CA/GB gate interpretation and channel readback dates are superseded.
+
+
+One Owner Action: In Shopify Admin, publish DLM UX Performance QA 2026-09-10 theme137888792673. The critical mobile heading correction has passed actual source, first-paint, rendered buyer, interaction and independent after acceptance; parent accepts actual527binding1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058. Keep MAIN133290917985 for rollback. Publication is already authorized; the connector requires owner Admin execution and blocks agent Publish/MAIN writes. After publication, existing UX verifies actual MAIN/source/GitHub and affected localized/variant/CTA buyer flows. No new approval, theme or Git push is needed.
+
+Next independent work: Merchant finishes exact Italian proposal and isolated cost-only export; Organic finishes reviewed existing article bodies and actual readback. Parent integrates only completed evidence. No duplicate publication, feed refresh, price/copy save, owner question, goal or scheduler.
+
+## 2026-09-15 — Parent binds exact Italian correction and freezes channel integration
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-italian-exact-scope-bound
+- task_entities: TA07-ITALIAN24-TRANSLATIONS-20260915, TA-07, 513542500, 15571635, 7227375714401, 7227378892897, 7536709664865, 7536984359009, 7545279217761, 7545279512673, 7545279840353, 7545373130849, 7546613530721
+- task_stage: VERIFY
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+The prior CA/GB/Pinterest/X canonical integration passed all five standard checks and35 independent checks; its exact11-file state is frozen in ca_gb_channel_integration_verification_20260915.json. Paid-control/One Owner Action, prior72 records and64 wakes were independently preserved; two zero-write source/method acceptance records brought the count to74. Separate spend-file temporal byte equality was executed/root-attested; only its current digest was retained for independent review.
+
+The existing active Merchant owner requested exact Italian scope binding then reported proceeding under its saved user nonspend repair mandate after renewing the expired13:34 prewrite. Parent sent complete r0-r8/top-level/userErrors/24-value response checks and private rollback hydration requirements. This is same-owner coordination, not a new idle continuation, approval request or completed release. The packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_it24_exact_scope_20260915.json` binds24 fields/9 products,167 variants and all protected source/locale/table/override counts and reviewed hashes. No paid, theme, country-source, scheduler or root business write occurred. Parent owns shared files; owner owns the exact supported operation and independent after-readback.
+
+Accepted owner records stay74; recorded wakes64; latest completed release anchor and all source/content/sales clocks stay unchanged. The existing owner publication of theme137888792673 remains the single owner action; the exact Italian source/public receipt is the next internal acceptance dependency. No new approval question is needed for this saved-authority correction. Standard checks for this separate annotation are pending its receipt.
+
+## 2026-09-15 — Italian source corrections accepted live; Canada/UK candidate verified
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-15-ceo-italian-live-and-ca-gb-candidate-verified
+- task_entities: TA07-ITALIAN24-TRANSLATIONS-20260915, TA-07, 513542500, 15571635, CA, GB, 137888792673, 133290917985, 7545279217761, 7546613530721
+- task_stage: VERIFY
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Existing Merchant owner executed exactly one24-field/nine-alias Italian registration13:42:05.843–13:42:08.466UTC under saved user nonspend authority/current sole-writer claim and prior parent coordination. The13:45 formal scope addendum documented that existing authority; no action-time permission is invented after the fact. Fresh source13:41 and the261-check pre-call guard preceded the save. Complete response21checks, owner282-check API after, independent468API+147public/final checks and parent106response checks support acceptance with the separate parent after-review. All37 frozen files bind. Native source/167variants/60English/26otherIT/150ES-FR-DE/60override contexts and749 chart cells are preserved. Root performed no business mutation.
+
+Nine public Italian pages13:48:46–57 verify17title/SEO checks and19DOM sentinels,17visible, inUS/USD with empty cart and no preview. Initial direct reload redirected to English with causeUNKNOWN; native language selection recovered. Product type isAPI-only and two Yellow chart tails are collapsed. Seven old-MAIN pages expose English picker headings and allnine missingITfooter headings; existing UX owner is comparing exact accepted candidate source before proposing anything. No theme/save/sync/push replay or Italy/EUR/country qualification is implied.
+
+Current13:34 CA/GB complete delivery-profile read independently verifies all13Canadian subdivisions andUKfourcountries+BFP with existing unconditional Free Standard0USD. Isolated export candidate binds18files/14profilepins, passes29existing+6additional tests and40parent source/dependency bindings. All active code/pins/configs/US-AU output and clocks remain unchanged; no country source was generated or submitted. Parent source acceptance is merchant_ca_gb_candidate_source_acceptance_20260915.json; later owner handoff is ca_gb_cost_only_execution_handoff.json. The source config is not transit or checkout truth. Required next step remains owner publication of reviewed137888792673, then actual destination buyer acceptance and one fresh exact country source/output/native receipt.
+
+One accepted Italian owner record brings74to75; the CA/GB candidate/current coverage is a linked annotation without another release count. All64 wakes, prior records, paidNONE, One Owner Action, full-sales07:01:34/next19:01:34UTC, US/AU nextSeptember16 02:11:13.020/02:11:16.838UTC and prior content clocks remain unchanged. Organic Article559471886433 continues independently; no publication claimed here. Parent owns all shared canonical changes and preserves prior scope/receipt histories. Evidence: merchant_it24_release_source_acceptance_20260915.json; merchant_ca_gb_candidate_source_acceptance_20260915.json; integration verification follows the standard checks.
+
+## 2026-09-21 — Recover interrupted growth execution and reconcile current orders
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-21-ceo-growth-resumed-and-sales-reconciled
+- task_entities: TA-01, TA-06, TA-07, TA-15, TA-20, 513542500, 15571635, 559471886433, 137888792673, 133290917985, 477439, PROB-2026-09-21-MICROSOFT-ACTIVE-SPEND-DRIFT
+- task_stage: VERIFY
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Quota failure is superseded by ordinaryUsageAllowed=true on September21; no reset credit or purchase was used. Exactly two idle existing owners were resumed: TA07-US-AU-SOURCE-MAINTENANCE-20260921 and TA20-DUE-ORGANIC-ASSESSMENT-20260921. Both acknowledged and are active; this proves dispatch, not completion. Merchant currently prioritizes the saved unfinished local-main sync through UX; live feed maintenance is not yet executed. Its latest accepted US/AU source clocks remain September15 02:11:13.020/02:11:16.838UTC and are overdue. Interrupted Meow read-only diagnosis remains unfinished. No intervening failed wake is counted as performed work.
+
+September21 Shopify cutoff20:32:03UTC: six all-status records since September5 04:00UTC; five qualifying PAID, non-test, noncancelled web orders, 12 current units and USD339.21. Two new qualifying creations since September15 07:01:34 add four units/USD131.96. The trailing24hours and completed September20 New York day each have zero qualifying creations. One excluded cancelled order is now REFUNDED with USD31.98 recorded refunds; settlement remains unknown. Four SUCCESS/FULFILLED objects total10units, without transit/delivery timestamps or carrier events. Attribution, actual costs and retained profit remain UNKNOWN. Next full read September22 08:32:03UTC, earlier only for meaningful new lifecycle/cost evidence.
+
+The existing Article559471886433 gift-guide correction is accepted from its September15 frozen receipt: one English body save and one registration of17 existing translations, with18language/36view public verification. All194 frozen files and the prior273-check independent review remain exact. This is September21 integration of a September15 release, not a new publication. No replay. Gift reviews stay September23/30 andOctober16; sizingSeptember22/29/October15 and earlier article/Pin windows remain separate. Pinterest N2 received only its destination annotation; actual publication remains unverified.
+
+Microsoft477439/customer770182 owner readback September21 20:28–20:34UTC contradicts the dated all-paused baseline: six Enabled campaigns have USD20/day each (USD120/day configured, not actual spend or a hard account cap). The US506254907 CPC cap is USD0.20, above the retained USD0.15 ceiling. Completed September15–20 account-reporting days show USD19.70/156clicks/0reportedconversions; USD15.21 is Audience spend. Today is a separate partial USD4.34/28clicks/0reportedconversions. Parent verified all eight frozen handoff bindings and snapshot arithmetic; independent23 initial plus13 addendum checks pass with limits, not claimed disjoint. One exact six-campaign pause question is pending with the existing owner; no duplicate question. No actor, approval, Shopify attribution or profit is inferred and no parent campaign change occurred.
+
+Fresh complete six-theme metadata read on September21 confirms MAIN133290917985 and candidate137888792673 still UNPUBLISHED. Both have September15 18:50 updatedAt values later than the accepted source review; metadata alone does not establish unchanged527files. UX separately reports a newer Shopify-authored remote commit c865a775 changing four theme files; candidate preservation of those changes is not accepted. Renewed source reconciliation is required before publication. Existing UX must renew the exact source/buyer checks. Its Italian three-label footer proposal and article027 hero finding remain unexecuted; no MAIN publication, candidate perfection or new upload is claimed. The saved local-main sync request remains with UX; remote connected-theme push is held.
+
+Parent accepts one saved organic release and one current Microsoft owner readback, records75→77 and records only this recovered wake64→65; queued/failed intervening heartbeat messages are not performed checks. Separate dispatch and completion states persist in current_sales_checkpoint_20260908_evening.json. No root business write, new goal, task, harness, automation, paid authority or Git operation. Exact shared cutoff for UX follows standard checks; current private order source is removed after independent review. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/growth_recovery_acceptance_20260921.json`; verification follows.

@@ -1,0 +1,432 @@
+{
+  "schema": "dlm.root_recovery_source_review.v1",
+  "created_at_utc": "2026-09-21T20:39:48.273804+00:00",
+  "reviewer": "/root/recovery_source_verifier",
+  "status": "PASS_WITH_LIMITS_SAVED_SOURCE_INTEGRITY_ACCEPTED",
+  "stage": "VERIFY",
+  "scope": "Local saved-source integrity and aggregate recomputation only; no external/API/browser/Git actions, semantic re-audit, source repair, publication, or canonical edits.",
+  "checks": {
+    "total": 49,
+    "passed": 49,
+    "failures": [],
+    "results": {
+      "three_frozen_anchor_hashes_match": true,
+      "all_194_manifest_files_match": true,
+      "no_unlisted_packet_files": true,
+      "all_27_prior_root_inputs_rebound": true,
+      "prior_273_checks_recorded_pass": true,
+      "all_5_pinterest_frozen_source_bindings_match": true,
+      "pinterest_register_before_after_hashes_match": true,
+      "one_N2_row": true,
+      "sole_register_delta_is_N2_destination_receipt": true,
+      "register_inverse_object_match": true,
+      "register_inverse_bytes_match": true,
+      "11_other_register_rows_preserved": true,
+      "guide_clock_consistent_across_sources": true,
+      "guide_first_full_date_preserved": true,
+      "N2_schedule_and_unpublished_clock_preserved": true,
+      "N2_tracking_url_preserved": true,
+      "source_file_permissions_600_directory_700": true,
+      "no_graphql_error_records": true,
+      "order_receipt_all_status_records_matches": true,
+      "order_receipt_qualifying_matches": true,
+      "order_receipt_new_creations_since_previous_matches": true,
+      "order_receipt_last_24_hours_matches": true,
+      "order_receipt_completed_sep20_new_york_matches": true,
+      "order_receipt_qualifying_fulfillment_statuses_matches": true,
+      "excluded_receipt_aggregate_matches": true,
+      "one_cancelled_nontest_web_REFUNDED": true,
+      "qualifying_known_expected_totals": true,
+      "new_known_expected_totals": true,
+      "zero_all_status_trailing24_and_sep20": true,
+      "fulfillment_receipt_all_fields_match": true,
+      "fulfilled_line_quantities_equal_reported_10": true,
+      "each_fulfillment_quantity_matches_its_lines": true,
+      "six_unique_order_ids_and_matching_unique_wrappers": true,
+      "shop_identity_matches_receipt_and_prior": true,
+      "all_fulfillment_shop_identities_match": true,
+      "all_joined_financial_fulfillment_status_and_amount_fields_match": true,
+      "all_fulfilled_item_product_variant_identities_match_joined_order": true,
+      "all_order_and_fulfillment_amounts_USD": true,
+      "all_six_orders_inside_exact_filter_interval": true,
+      "order_query_filter_exact": true,
+      "orders_and_line_items_connections_complete": true,
+      "fulfillment_line_items_and_events_connections_complete": true,
+      "all_fulfillment_arrays_below_requested_limit_50": true,
+      "source_receipt_clock_bindings_match": true,
+      "prior_cutoff_and_window_start_match": true,
+      "receipt_clock_sequence_valid": true,
+      "next_full_read_is_12h_after_actual_cutoff": true,
+      "no_attribution_profit_delivery_or_lift_claim": true,
+      "all_inputs_still_match_after_review": true
+    }
+  },
+  "organic_release": {
+    "target": {
+      "shop_id": "gid://shopify/Shop/15571635",
+      "article_id": "gid://shopify/Article/559471886433",
+      "public_url": "https://www.dresslikemommy.com/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights"
+    },
+    "expected_anchor_bindings": [
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260915/FINAL_MANIFEST.json",
+        "expected_sha256": "2fb83cef585dc856cdbdcb960070e3d3ec2710f15d7101d83a06a1114a610f92",
+        "observed_sha256": "2fb83cef585dc856cdbdcb960070e3d3ec2710f15d7101d83a06a1114a610f92",
+        "matches": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260915/EXECUTION_HANDOFF.json",
+        "expected_sha256": "a80a488454f99815fa186fd1c0e981369e7a9dbee2a2c48ee4e5b837db90d064",
+        "observed_sha256": "a80a488454f99815fa186fd1c0e981369e7a9dbee2a2c48ee4e5b837db90d064",
+        "matches": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_gift_guide_release_independent_review_20260915.json",
+        "expected_sha256": "a1c82a9e40ed222b6ec60cb5359057ebf9656ba4f45d063eaeb3db639d113f2b",
+        "observed_sha256": "a1c82a9e40ed222b6ec60cb5359057ebf9656ba4f45d063eaeb3db639d113f2b",
+        "matches": true
+      }
+    ],
+    "frozen_manifest": {
+      "frozen_at_utc": "2026-09-15T14:04:51.099934+00:00",
+      "declared_files": 194,
+      "entries": 194,
+      "matched_files": 194,
+      "missing": [],
+      "hash_drift": [],
+      "unlisted_files": [],
+      "enumeration_scope": "All regular files except FINAL_MANIFEST.json and Python bytecode/cache; independent directory enumeration performed."
+    },
+    "prior_independent_review": {
+      "recorded_status": "PASS_WITH_LIMITS_SAVED_RELEASE_ACCEPTED",
+      "recorded_passed_checks": 273,
+      "checks_rerun": false,
+      "input_bindings_rechecked": 27,
+      "all_input_bindings_match": true,
+      "method": "Prior substantive 273 checks retained because their exact artifact and every frozen input are unchanged; these are not new recovery checks."
+    },
+    "recorded_release_date": "2026-09-15",
+    "recorded_publication": {
+      "english_save_updatedAt": "2026-09-15T13:45:25Z",
+      "english_saved_sha256": "3dcef8da979c7a8772f47db7b3ad3090457a0f85b0142746f0aad240ff8fba06",
+      "english_reviewed_input_sha256": "e224120f4608e5266b09938c47a6e07dc436b62356a2bc705eff4692fe10f6ba",
+      "exact_serialization_delta": "Eight LF insertions before strong tags inside li elements; no other byte differences",
+      "localized_updatedAt_min": "2026-09-15T13:52:01Z",
+      "localized_updatedAt_max": "2026-09-15T13:52:02Z",
+      "english_mutations": 1,
+      "localized_mutations": 1,
+      "localized_records": 17,
+      "user_errors": 0,
+      "rollback_executed": false
+    },
+    "recovery_integration_review_date": "2026-09-21",
+    "integration_effect": "Parent may reconcile existing recorded release into canonical state; integration is not a new release or a reset of measurement clocks.",
+    "measurement": {
+      "timezone": "America/New_York",
+      "gift_guide_revision": {
+        "article_id": "559471886433",
+        "english_saved_updatedAt": "2026-09-15T13:45:25Z",
+        "english_request_interval_utc": [
+          "2026-09-15T13:45:25.403Z",
+          "2026-09-15T13:45:26.107Z"
+        ],
+        "localized_request_interval_utc": [
+          "2026-09-15T13:52:00.436Z",
+          "2026-09-15T13:52:03.079Z"
+        ],
+        "first_full_date": "2026-09-16",
+        "window_7": [
+          "2026-09-16",
+          "2026-09-22"
+        ],
+        "assess_7": "2026-09-23",
+        "assess_14": "2026-09-30",
+        "assess_30": "2026-10-16",
+        "publication_metadata_unchanged": true,
+        "note": "These dates measure the September15 content revision. Existing article publication date remains December8 2024."
+      },
+      "separate_prior_cohorts": {
+        "original_article": {
+          "article_id": "559471919201",
+          "window_7": [
+            "2026-09-10",
+            "2026-09-16"
+          ],
+          "assess_7": "2026-09-17",
+          "assess_14": "2026-09-24",
+          "assess_30": "2026-10-10"
+        },
+        "sunshine_pin": {
+          "pin_id": "343118065387544334",
+          "window_7": [
+            "2026-09-11",
+            "2026-09-17"
+          ],
+          "assess_7": "2026-09-18",
+          "assess_14": "2026-09-25",
+          "assess_30": "2026-10-11",
+          "destination_type": "direct_product"
+        },
+        "p1_pin": {
+          "pin_id": "343118065387567020",
+          "actual_publication_timestamp": "UNKNOWN",
+          "public_verified_date": "2026-09-13",
+          "first_full_date": "2026-09-14",
+          "window_7": [
+            "2026-09-14",
+            "2026-09-20"
+          ],
+          "assess_7": "2026-09-21",
+          "non_additive": "P1 is a source segment of article traffic, not an additional additive cohort"
+        },
+        "sizing_revision": {
+          "article_id": "559700574305",
+          "release_date": "2026-09-14",
+          "first_full_date": "2026-09-15",
+          "assess_7": "2026-09-22",
+          "assess_14": "2026-09-29",
+          "assess_30": "2026-10-15",
+          "do_not_republish": true
+        }
+      },
+      "business_lift_claimed": false
+    },
+    "public_evidence_limits": "Saved 18 language routes / 36 viewport observations / 23 successful unique locale-destination receipts, as qualified by unchanged prior review. No replay or fresh live truth."
+  },
+  "pinterest": {
+    "acceptance_binding": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/N2_DESTINATION_RELEASE_ACCEPTANCE_20260915.json",
+      "observed_sha256": "9fc6620bb80a3069fa90d7283b95e0feb004c7b70eba540baa1ca4dd1c40fca0",
+      "historical_external_hash_supplied": false
+    },
+    "register_bindings": [
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/n2_destination_20260915/CONTENT_REGISTER.before.json",
+        "expected_sha256": "cc0bfe65d1fd6d50c6120e128ff69f7411ac488c461c9d50a309c33bc45a7d01",
+        "observed_sha256": "cc0bfe65d1fd6d50c6120e128ff69f7411ac488c461c9d50a309c33bc45a7d01",
+        "matches": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/CONTENT_REGISTER_20260911.json",
+        "expected_sha256": "fbcf10f3cca7e93b92fa32aa63f332fd14dd59d2a5c337838bc1d6b876fd0741",
+        "observed_sha256": "fbcf10f3cca7e93b92fa32aa63f332fd14dd59d2a5c337838bc1d6b876fd0741",
+        "matches": true
+      }
+    ],
+    "source_bindings": [
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260915/AFTER_API_REVIEW.json",
+        "expected_sha256": "2908e60f6ca0fc5cf3fe690ec3d49af93954c8d8e7f05bf091817c682070b363",
+        "observed_sha256": "2908e60f6ca0fc5cf3fe690ec3d49af93954c8d8e7f05bf091817c682070b363",
+        "matches": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260915/PUBLIC_READBACK_REVIEW.json",
+        "expected_sha256": "30c40734d549d8eb6d83850e974c4b85d5912594bd867cd0d70e01145fad3d66",
+        "observed_sha256": "30c40734d549d8eb6d83850e974c4b85d5912594bd867cd0d70e01145fad3d66",
+        "matches": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260915/READBACK.md",
+        "expected_sha256": "e9d2d32e0f3c0b4f376ea045d961cfb5b7808b68c923d836c0663bba67067db7",
+        "observed_sha256": "e9d2d32e0f3c0b4f376ea045d961cfb5b7808b68c923d836c0663bba67067db7",
+        "matches": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260915/PUBLIC_READBACK.json",
+        "expected_sha256": "9ce5a0f231e337ed12798c952ff0116c041a732bd3a806323e88e7957dcb158d",
+        "observed_sha256": "9ce5a0f231e337ed12798c952ff0116c041a732bd3a806323e88e7957dcb158d",
+        "matches": true
+      },
+      {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260915/verification-after-serialization.json",
+        "expected_sha256": "7a11513e714c52dbc7aa0080f0ccf225ae3c5052fbfa3763aeda47f6d35aec9e",
+        "observed_sha256": "7a11513e714c52dbc7aa0080f0ccf225ae3c5052fbfa3763aeda47f6d35aec9e",
+        "matches": true
+      }
+    ],
+    "exact_register_delta": [
+      {
+        "path": "/rows/10/destination_revision_receipt",
+        "operation": "added",
+        "value": "N2_DESTINATION_RELEASE_ACCEPTANCE_20260915.json"
+      }
+    ],
+    "inverse_bytes_match": true,
+    "other_rows_preserved": 11,
+    "all_other_content_clocks_schedules_preserved": true,
+    "N2": {
+      "scheduled_record_id": "3858290826238337152",
+      "scheduled_date": "2026-09-27",
+      "native_display": "Sun, 9/27 02:00 PM",
+      "timezone_basis": "Not explicitly exposed; New_York intent only",
+      "tracking_url": "https://www.dresslikemommy.com/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights?utm_source=pinterest&utm_medium=social&utm_campaign=organic_202609&utm_content=n2",
+      "saved_status": "NATIVE_SCHEDULED_VERIFIED_NOT_YET_PUBLIC",
+      "public_pin_id": null,
+      "actual_publication_at": null,
+      "measurement_clock_started": false
+    },
+    "limit": "N2 remains scheduled/not public in unchanged saved evidence; its live state was not checked on September21. Guide assessments September23/30/October16 are not N2 measurement dates."
+  },
+  "order_checkpoint": {
+    "status": "VERIFIED_SAVED_SOURCE_AGGREGATES_WITH_IDENTITY_AND_CASH_LIMITS",
+    "receipt_binding": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260921_2032.json",
+      "sha256": "870094bbf9bcc192596bec94b9e6ec4cc2b74e3f56db7e565b02ecef139ef8df"
+    },
+    "private_source": {
+      "sha256": "64a7567b68a81d3cb4ef8c0fceac7b1ad5dab5806411f501443d2d9f2cec3c55",
+      "raw_rows_or_ids_copied_to_repo": false,
+      "file_mode": "0600",
+      "directory_mode": "0700",
+      "disposal_owner": "Parent removes private source after receiving review."
+    },
+    "prior_checkpoint_binding": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260915_0701.json",
+      "sha256": "6828ed0735532b87efce705758f0f153b37dced37f506434531cb82fb6ff9b52"
+    },
+    "method": "Independently filtered all six saved records, used Decimal shopMoney sums and current line quantities, validated all returned pagination and joins, and recomputed completed-date windows. No API replay.",
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "name": "Dress Like Mommy",
+      "ianaTimezone": "America/New_York",
+      "currencyCode": "USD",
+      "primaryDomain": {
+        "host": "www.dresslikemommy.com"
+      }
+    },
+    "as_of": {
+      "order_cutoff_utc": "2026-09-21T20:32:03Z",
+      "order_request_started_at": "2026-09-21T20:32:03.534Z",
+      "order_request_completed_at_from_receipt": "2026-09-21T20:32:04.168Z",
+      "fulfillment_window": {
+        "started": "2026-09-21T20:34:09.460Z",
+        "completed": "2026-09-21T20:34:11.126Z"
+      }
+    },
+    "window": {
+      "start_inclusive": "2026-09-05T04:00:00Z",
+      "end_exclusive": "2026-09-21T20:32:03Z",
+      "trailing_24h_start_inclusive": "2026-09-20T20:32:03+00:00",
+      "trailing_24h_end_exclusive": "2026-09-21T20:32:03+00:00",
+      "completed_shop_date": "2026-09-20",
+      "completed_shop_date_start_utc": "2026-09-20T04:00:00+00:00",
+      "completed_shop_date_end_utc": "2026-09-21T04:00:00+00:00"
+    },
+    "aggregates": {
+      "all_status_records": 6,
+      "qualifying": {
+        "orders": 5,
+        "current_units": 12,
+        "currentSubtotalPriceSet": "339.21",
+        "currentTotalPriceSet": "339.21",
+        "currentTotalTaxSet": "0.00",
+        "totalRefundedSet": "0.00"
+      },
+      "new_creations_since_previous": {
+        "cutoff": "2026-09-15T07:01:34Z",
+        "all_status": 2,
+        "qualifying": {
+          "orders": 2,
+          "current_units": 4,
+          "currentSubtotalPriceSet": "131.96",
+          "currentTotalPriceSet": "131.96",
+          "currentTotalTaxSet": "0.00",
+          "totalRefundedSet": "0.00"
+        }
+      },
+      "last_24_hours": {
+        "orders": 0,
+        "current_units": 0,
+        "currentSubtotalPriceSet": "0.00",
+        "currentTotalPriceSet": "0.00",
+        "currentTotalTaxSet": "0.00",
+        "totalRefundedSet": "0.00"
+      },
+      "completed_sep20_new_york": {
+        "orders": 0,
+        "current_units": 0,
+        "currentSubtotalPriceSet": "0.00",
+        "currentTotalPriceSet": "0.00",
+        "currentTotalTaxSet": "0.00",
+        "totalRefundedSet": "0.00"
+      },
+      "excluded": {
+        "orders": 1,
+        "current_units": 0,
+        "currentSubtotalPriceSet": "0.00",
+        "currentTotalPriceSet": "0.00",
+        "currentTotalTaxSet": "0.00",
+        "totalRefundedSet": "31.98"
+      },
+      "excluded_status_counts": {
+        "REFUNDED": 1
+      },
+      "qualifying_fulfillment_statuses": {
+        "FULFILLED": 4,
+        "UNFULFILLED": 1
+      }
+    },
+    "fulfillment": {
+      "records": 6,
+      "fulfillment_objects": 4,
+      "total_fulfilled_quantity": 10,
+      "has_delivered_at": 0,
+      "has_in_transit_at": 0,
+      "events": {},
+      "unpaginated_nested_connections": 0,
+      "statuses": {
+        "SUCCESS/FULFILLED": 4
+      }
+    },
+    "delivery_proved": false,
+    "new_creation_comparison": "Two new qualifying creations are established from current exact createdAt dates after prior cutoff. Aggregate increase is four units/USD131.96. No stable prior/current named-order lifecycle match is claimed.",
+    "excluded_lifecycle": "Current saved snapshot has one cancelled/non-test/web REFUNDED order with zero current quantity/value and USD31.98 recorded refunds. Prior anonymous checkpoint had one cancelled PAID exclusion and zero recorded refunds; exact per-order transition and cash settlement are not independently established.",
+    "pagination_limit": "All returned order, order-line, fulfillment-line, event connections report hasNextPage=false. Six fulfillment arrays are below requested first:50; the list itself has no pageInfo. Request context does not separately serialize the optional after variable; whole first-page provenance relies on the bound one-query receipt.",
+    "identity_limit": "Fulfillment wrappers match six unique returned order IDs and all shared status/amount and product/variant fields. Fulfillment response itself omits order.id, so request-wrapper identity is not an independent server-returned order-ID receipt.",
+    "clock_limit": "Source binds cutoff/start and fulfillment request window. Order completion timestamp is receipt-only; snapshot cannot certify intervening state or later changes.",
+    "unknown": [
+      "purchase ingestion and source attribution",
+      "actual costs",
+      "FX and cash settlement",
+      "returns or disputes maturity",
+      "retained profit",
+      "sales lift causality"
+    ],
+    "next_full_read_not_before_utc": "2026-09-22T08:32:03Z"
+  },
+  "unresolved_owner_findings": [
+    {
+      "finding": "Meow unit labels and body-versus-garment meaning",
+      "status": "UNRESOLVED_IN_THIS_REVIEW",
+      "source_sha256": "f6940c319d7edec1d709010a09f8f8731756ad128f3258877580d8063ba11f56",
+      "action": "Existing product/source owner reconciles dated finding; no repair performed."
+    },
+    {
+      "finding": "Article027 MAIN hero asset contains cropped product-description/size-care text",
+      "status": "UNRESOLVED_IN_THIS_REVIEW",
+      "source_sha256": "05c28e67f85ba162d90d71d63896e2d9a524efcab4ed17fa04d730d279703586",
+      "action": "Existing UX owner checks exact prepared candidate coverage; no theme change."
+    },
+    {
+      "finding": "Hebrew/Dutch pajamas collection headings contain literal entities",
+      "status": "UNRESOLVED_IN_THIS_REVIEW__FIELD_CAUSE_UNKNOWN",
+      "source_sha256": "9ce5a0f231e337ed12798c952ff0116c041a732bd3a806323e88e7957dcb158d",
+      "saved_json_pointers": [
+        "/navigation_checks/16",
+        "/navigation_checks/21"
+      ],
+      "action": "Existing collection/localization owner traces exact source; no field or translation edit."
+    }
+  ],
+  "limits": [
+    "September15 release evidence acceptance is preserved, not new publication or September21 live verification.",
+    "Prior substantive independent checks and historical failures remain intact; no broad semantic audit repeated.",
+    "No source access, spend, publication, scheduling, customer message, or repair is authorized by this review.",
+    "Parent alone owns canonical integration and problem/coordination updates."
+  ],
+  "next_action": "Parent integrates the accepted saved release and dated aggregate checkpoint into its existing canonical state, preserving all clocks and unresolved owner findings.",
+  "files_written": [
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/recovery_source_review_20260921.json"
+  ]
+}

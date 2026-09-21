@@ -1,0 +1,1 @@
+mutation OrganicGiftGuideLocalizedBodies($id: ID!, $translations: [TranslationInput!]!) { translationsRegister(resourceId: $id, translations: $translations) { translations { key locale value outdated updatedAt } userErrors { field message } } }

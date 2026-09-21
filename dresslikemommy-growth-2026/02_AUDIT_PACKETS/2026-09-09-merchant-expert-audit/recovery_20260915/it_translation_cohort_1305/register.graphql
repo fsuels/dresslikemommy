@@ -1,0 +1,48 @@
+mutation MerchantItalianCohortRegistration(
+  $resource0: ID!, $translations0: [TranslationInput!]!,
+  $resource1: ID!, $translations1: [TranslationInput!]!,
+  $resource2: ID!, $translations2: [TranslationInput!]!,
+  $resource3: ID!, $translations3: [TranslationInput!]!,
+  $resource4: ID!, $translations4: [TranslationInput!]!,
+  $resource5: ID!, $translations5: [TranslationInput!]!,
+  $resource6: ID!, $translations6: [TranslationInput!]!,
+  $resource7: ID!, $translations7: [TranslationInput!]!,
+  $resource8: ID!, $translations8: [TranslationInput!]!
+) {
+  r0: translationsRegister(resourceId: $resource0, translations: $translations0) {
+    translations { key value locale outdated updatedAt market { id name } }
+    userErrors { field message code }
+  }
+  r1: translationsRegister(resourceId: $resource1, translations: $translations1) {
+    translations { key value locale outdated updatedAt market { id name } }
+    userErrors { field message code }
+  }
+  r2: translationsRegister(resourceId: $resource2, translations: $translations2) {
+    translations { key value locale outdated updatedAt market { id name } }
+    userErrors { field message code }
+  }
+  r3: translationsRegister(resourceId: $resource3, translations: $translations3) {
+    translations { key value locale outdated updatedAt market { id name } }
+    userErrors { field message code }
+  }
+  r4: translationsRegister(resourceId: $resource4, translations: $translations4) {
+    translations { key value locale outdated updatedAt market { id name } }
+    userErrors { field message code }
+  }
+  r5: translationsRegister(resourceId: $resource5, translations: $translations5) {
+    translations { key value locale outdated updatedAt market { id name } }
+    userErrors { field message code }
+  }
+  r6: translationsRegister(resourceId: $resource6, translations: $translations6) {
+    translations { key value locale outdated updatedAt market { id name } }
+    userErrors { field message code }
+  }
+  r7: translationsRegister(resourceId: $resource7, translations: $translations7) {
+    translations { key value locale outdated updatedAt market { id name } }
+    userErrors { field message code }
+  }
+  r8: translationsRegister(resourceId: $resource8, translations: $translations8) {
+    translations { key value locale outdated updatedAt market { id name } }
+    userErrors { field message code }
+  }
+}

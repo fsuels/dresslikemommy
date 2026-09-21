@@ -1,0 +1,44 @@
+{
+  "action": "TA07-ITALIAN24-TRANSLATIONS-20260915",
+  "status": "PREPARED_PENDING_INDEPENDENT_REVIEW_AND_FRESH_GUARD",
+  "merchantAccount": "513542500",
+  "shop": "gid://shopify/Shop/15571635",
+  "executorTask": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "sharedClaimOwner": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "source_live_evidence_as_of": "2026-09-15T13:06:00.023Z",
+  "live_state_mode": "LIVE_READBACK_REQUIRED_BEFORE_SAVE",
+  "effective_approval_policy": "SAVED_USER_NONSPEND_AUTHORITY_WITH_EXACT_CLAIM_AND_INDEPENDENT_SOURCE_REVIEW",
+  "approved_external_scope": "Correct only 24 existing outdated global Italian translation fields across the nine products enumerated in the reviewed proposal. One supported translationsRegister operation with nine resource aliases. No price, inventory, status, theme, other-locale, feed or paid changes.",
+  "decision_depends_on_uncertain_state": true,
+  "material_decision": true,
+  "uncertainty_branches": {
+    "live_source_exact_and_independent_review_pass": "Execute exact bound query/variables once; record every alias and error; independently read all protected source and market data afterward.",
+    "source_or_binding_drift": "No mutation; reconcile only changed evidence and obtain a successor exact review.",
+    "uncertain_mutation_receipt": "Do not retry blindly. Read exact saved translations first and reconcile the nine aliases.",
+    "aftercheck_failure": "Preserve evidence and stop dependent feed use; scope any correction or rollback to observed failure after review."
+  },
+  "expectedChangedFields": 24,
+  "expectedProducts": 9,
+  "protected": {
+    "nativeProducts": 10,
+    "variants": 167,
+    "englishRecords": 60,
+    "otherItalianRecords": 26,
+    "spanishFrenchGermanRecords": 150,
+    "emptyMarketContexts": 60
+  },
+  "validation": {
+    "mcp": "PASS",
+    "cli": "PASS",
+    "prewriteGuard": "verify_release.py before; under-five-minute live and override reads; exact reviewed artifact hashes",
+    "after": "verify_release.py after plus nine public localized product/metadata readbacks and independent saved-evidence review"
+  },
+  "rollback": "Keep the exact private original receipt. Hydrate the one omitted old Yellow HTML value only in memory after its hash matches. The 24 old values can be restored only after fresh expected-current value/digest checking and exact review; Shopify timestamps cannot be restored.",
+  "independent_verifier": {
+    "agent": "merchant_translation_review",
+    "role": "DID_NOT_BUILD_OR_EXECUTE",
+    "status": "PENDING_FINAL_CANDIDATE_REVIEW"
+  },
+  "limitation": "Italian source correction is not Italy/EUR feed submission, country approval, full Italian/storefront quality certification, serving or business lift.",
+  "dailyContinuation": "Preserve existing09:00/17:00America/New_York heartbeat, accepted US/AU true-source clocks, CA/GB buyer-publication dependency and all six product holds."
+}

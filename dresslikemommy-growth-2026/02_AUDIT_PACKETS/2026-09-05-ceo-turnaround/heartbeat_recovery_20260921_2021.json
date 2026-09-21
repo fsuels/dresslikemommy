@@ -1,0 +1,94 @@
+{
+  "schema": "dlm.parent_heartbeat_recovery.v1",
+  "wake_id": "2026-09-21T20:21:41.919Z",
+  "recorded_at_utc": "2026-09-21T20:31:14.183Z",
+  "parent_task_id": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "recovered_anchor": "2026-09-15-ceo-italian-live-and-ca-gb-candidate-verified",
+  "retrieval": {
+    "broad_mixed_query": "FAILED_CLOSED_AMBIGUOUS_RELEVANT_ANCHOR",
+    "exact_query": "TA07-ITALIAN24-TRANSLATIONS-20260915",
+    "exact_query_result": "OK",
+    "newer_relevant_anchor_found": false,
+    "python_path_fallback": "Bundled runtime used after python3.13 absent from PATH"
+  },
+  "usage": {
+    "ordinaryUsageAllowed": true,
+    "codex_used_percent": 1,
+    "reset_or_purchase_performed": false,
+    "prior_owner_failures": "Usage-limit failures, not operational completion"
+  },
+  "authority": {
+    "source_live_evidence_as_of": "2026-06-01",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "next_best_action": "READ_ONLY_MARKETING_RECONCILIATION",
+    "saved_nonspend_scope": "Existing exact owner scopes retained; continuation grants no new authority"
+  },
+  "dispatches": [
+    {
+      "action_id": "TA07-US-AU-SOURCE-MAINTENANCE-20260921",
+      "recipient_task_id": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+      "sent_at_utc": "2026-09-21T20:30:01.602Z",
+      "receipt": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"threadId\":\"01a08706-c63a-7e01-ba48-7777bcb1788a\"}"
+          }
+        ],
+        "isError": false
+      },
+      "pre_status": {
+        "type": "notLoaded"
+      },
+      "pre_turn_status": "failed",
+      "pre_turn_id": "01a0c40e-271f-7fc1-a9e4-10f12101f16f",
+      "pre_cursor": "b0c58a2a-e988-41b5-9c51-29b12a05b775:1",
+      "status": "DISPATCH_RECEIVED__EXECUTION_PENDING",
+      "completion_verified": false
+    },
+    {
+      "action_id": "TA20-DUE-ORGANIC-ASSESSMENT-20260921",
+      "recipient_task_id": "01a0870a-e632-7773-ac5d-8ee2616b31bc",
+      "sent_at_utc": "2026-09-21T20:30:33.907Z",
+      "receipt": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"threadId\":\"01a0870a-e632-7773-ac5d-8ee2616b31bc\"}"
+          }
+        ],
+        "isError": false
+      },
+      "pre_status": {
+        "type": "notLoaded"
+      },
+      "pre_turn_status": "failed",
+      "pre_turn_id": "01a0c40e-9c5a-7e62-b2a0-95870b3683c5",
+      "pre_cursor": "5e232928-46d4-44d4-91ae-c47619fed43e:1",
+      "status": "DISPATCH_RECEIVED__EXECUTION_PENDING",
+      "completion_verified": false
+    }
+  ],
+  "root_owns_shared_canonical": true,
+  "old_meow_dispatch": {
+    "action_id": "TA07-MEOW-SIZE-UNIT-DIAGNOSIS-20260915",
+    "recipient_task_id": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+    "observed_receipt": "Recipient turn01a0a56c-ceb1-74b0-9f75-ec2b1c0ff439 began exact chart investigation then quota-failed",
+    "status": "RECEIVED_INTERRUPTED__COMPLETION_UNVERIFIED",
+    "resent": false
+  },
+  "unaccepted_microsoft_alert": {
+    "at_utc": "2026-09-21T20:29:00Z approximate",
+    "source_task": "01a08703-644f-7940-8f67-9a2fa63722bb",
+    "reported": "Six Enabled campaigns at USD20/day each; current Today USD4.34/28clicks/0reportedconversions",
+    "status": "OWNER_REPORTED__FROZEN_RECEIPT_REVIEW_PENDING",
+    "authority_or_actor_inferred": false,
+    "root_account_write": false
+  },
+  "goal_status": "blocked unchanged",
+  "new_task_goal_harness_or_scheduler": false,
+  "intervening_trigger_count_assumed": 0,
+  "root_business_writes": 0
+}

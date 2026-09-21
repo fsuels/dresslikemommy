@@ -1,0 +1,30 @@
+--- before/sections/footer.liquid
++++ after/sections/footer.liquid
+@@ -69,6 +69,12 @@
+                     {%- when 'sektioner.fodtekst_overskrifter.firma_info' -%}
+                       {%- assign footer_block_heading = 't:sections.footer_headings.company_info' -%}
+                     {%- when 'sections.footer_headings.kundeservice' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.customer_care' -%}
++                    {%- when 'sezioni.intestazioni_piede_informazioni_azienda' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.company_info' -%}
++                    {%- when 'sezioni.intestazioni_piede_aiuto_supporto' -%}
++                      {%- assign footer_block_heading = 't:sections.footer_headings.help_support' -%}
++                    {%- when 'sezioni.intestazioni_piede_cliente' -%}
+                       {%- assign footer_block_heading = 't:sections.footer_headings.customer_care' -%}
+                   {%- endcase -%}
+                   {%- assign footer_block_heading_prefix = footer_block_heading | slice: 0, 2 -%}
+--- before/locales/it.json
++++ after/locales/it.json
+@@ -598,9 +598,9 @@
+       "you_may_also_like": "You may also like"
+     },
+     "footer_headings": {
+-      "company_info": "Company info",
+-      "help_support": "Help & support",
+-      "customer_care": "Customer care"
++      "company_info": "Informazioni sull'azienda",
++      "help_support": "Aiuto e supporto",
++      "customer_care": "Servizio clienti"
+     },
+     "breadcrumbs": {
+       "home": "Casa",

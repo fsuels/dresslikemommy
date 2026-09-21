@@ -1,0 +1,142 @@
+{
+  "status": "PASS_WITH_LIMITS",
+  "reviewer": "Merchant root; independent of implementation, reran local tests, no live execution",
+  "materialReviewerRole": "DID_NOT_BUILD_OR_EXECUTE",
+  "scope": "Isolated local cost-only export candidate. No approval to integrate active modules, change frozen pins, enable markets, or upload feeds.",
+  "checks": [
+    {
+      "check": "freeze:README.md",
+      "pass": true
+    },
+    {
+      "check": "freeze:candidate/package.json",
+      "pass": true
+    },
+    {
+      "check": "freeze:candidate/src/collector.js",
+      "pass": true
+    },
+    {
+      "check": "freeze:candidate/src/eligibility.js",
+      "pass": true
+    },
+    {
+      "check": "freeze:candidate/src/generator.js",
+      "pass": true
+    },
+    {
+      "check": "freeze:candidate/src/queries.js",
+      "pass": true
+    },
+    {
+      "check": "freeze:candidate/test/fixtures.js",
+      "pass": true
+    },
+    {
+      "check": "freeze:candidate/test/holds.fixture.json",
+      "pass": true
+    },
+    {
+      "check": "freeze:candidate/test/shipping-cost-only.test.mjs",
+      "pass": true
+    },
+    {
+      "check": "freeze:dependency_bindings.json",
+      "pass": true
+    },
+    {
+      "check": "freeze:generator.patch",
+      "pass": true
+    },
+    {
+      "check": "freeze:proposed_market_options.json",
+      "pass": true
+    },
+    {
+      "check": "freeze:syntax_initial_failure.json",
+      "pass": true
+    },
+    {
+      "check": "freeze:test_run1_receipt.json",
+      "pass": true
+    },
+    {
+      "check": "freeze:test_run2_receipt.json",
+      "pass": true
+    },
+    {
+      "check": "freeze:tests.run1.tap",
+      "pass": true
+    },
+    {
+      "check": "freeze:tests.run2.tap",
+      "pass": true
+    },
+    {
+      "check": "freeze:validation_summary.json",
+      "pass": true
+    },
+    {
+      "check": "18_bound_files",
+      "pass": true
+    },
+    {
+      "check": "retained_failure:shipping_cost_only_market_disabled",
+      "pass": true
+    },
+    {
+      "check": "retained_failure:landing_context_unverified",
+      "pass": true
+    },
+    {
+      "check": "retained_failure:shipping_cost_only_scope_mismatch",
+      "pass": true
+    },
+    {
+      "check": "retained_failure:shipping_cost_only_landing_scope_mismatch",
+      "pass": true
+    },
+    {
+      "check": "retained_failure:shipping_cost_only_requires_eligibility_holds",
+      "pass": true
+    },
+    {
+      "check": "retained_failure:shipping_cost_only_requires_return_labels_disabled",
+      "pass": true
+    },
+    {
+      "check": "retained_failure:shipping_cost_only_must_be_zero",
+      "pass": true
+    },
+    {
+      "check": "retained_failure:shipping_cost_only_unverified",
+      "pass": true
+    },
+    {
+      "check": "retained_failure:shipping_cost_only_must_be_market_scoped",
+      "pass": true
+    },
+    {
+      "check": "independently_rerun_29_tests_pass",
+      "pass": true
+    }
+  ],
+  "checkCount": 29,
+  "localTests": 29,
+  "sourceFreezeSHA256": "81b07d83e05d92f36a6baee927a70776b2c7a65dd83387d86c8a643b41d24927",
+  "generatorSHA256": "b008a07456cfb6efed2732e37eb49cb030a07e9ac510f99f3e23bc341de8b6a4",
+  "shippingCoverageSourceSHA256": "482e430c12ff3ec74cfe205bb5f4fad82ea6e734f1225695af7491d9faf5abd2",
+  "assessment": [
+    "Opt-in is bounded to CA/en/CAD and GB/en/GBP; exact zero shipping cost only.",
+    "Default output and existing source/currency/landing/hold safeguards pass the independent synthetic rerun.",
+    "Evidence hash and verified flag reference an external review; they do not establish truth by themselves.",
+    "Google may use other sources for ETA/default returns; omitting attributes gives no display guarantee."
+  ],
+  "requiredBeforeUse": [
+    "Actual published country/variant/price/checkout acceptance.",
+    "Fresh complete destination source and applicable shipping coverage review.",
+    "Exact country export dependency transition and output review; preserve existing US/AU profile.",
+    "Native source receipt plus representative offer/shipping readback."
+  ],
+  "externalWrites": 0
+}

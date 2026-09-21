@@ -1,0 +1,105 @@
+{
+  "status": "UNCHANGED_OWNER_PUBLICATION_GATE_LIVE_VERIFIED",
+  "wake_id": "2026-09-15T08:43:22.040Z",
+  "started_at_utc": "2026-09-15T08:46:09.237Z",
+  "received_at_utc": "2026-09-15T08:46:09.886Z",
+  "scope": "One minimal supported read of the two exact theme identities, roles, processing flags and update timestamps, to detect owner publication without repeating the blocked Publish action, full source audit, browser work or due-not-yet sales/feed checks.",
+  "query": "query DlmExactThemePublicationGate { shop { id name myshopifyDomain } current: theme(id: \"gid://shopify/OnlineStoreTheme/133290917985\") { id name role updatedAt processing processingFailed } candidate: theme(id: \"gid://shopify/OnlineStoreTheme/137888792673\") { id name role updatedAt processing processingFailed } }",
+  "schema_types_read": [
+    "QueryRoot",
+    "OnlineStoreTheme",
+    "Shop"
+  ],
+  "validation": {
+    "artifact_id": "dlm-theme-role-gate-20260915-0843",
+    "revision": 1,
+    "is_error": false,
+    "response": [
+      "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-theme-role-gate-20260915-0843\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_themes\n\n"
+    ]
+  },
+  "actual_data": {
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "name": "Dress Like Mommy",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "current": {
+      "id": "gid://shopify/OnlineStoreTheme/133290917985",
+      "name": "dresslikemommy/main",
+      "role": "MAIN",
+      "updatedAt": "2026-09-14T20:57:48Z",
+      "processing": false,
+      "processingFailed": false
+    },
+    "candidate": {
+      "id": "gid://shopify/OnlineStoreTheme/137888792673",
+      "name": "DLM UX Performance QA 2026-09-10",
+      "role": "UNPUBLISHED",
+      "updatedAt": "2026-09-15T07:01:18Z",
+      "processing": false,
+      "processingFailed": false
+    }
+  },
+  "owner_status_readbacks": [
+    {
+      "thread_id": "01a088c3-c890-71a1-98ee-f19b6905af55",
+      "status": "idle",
+      "latest_turn_id": "01a0a3a3-d42f-7953-a038-20c2b856b05f",
+      "latest_turn_completed_at_unix": 1789457609,
+      "cursor": "04b49b02-aff8-4649-9afc-17a62464f1cb:15"
+    },
+    {
+      "thread_id": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+      "status": "notLoaded",
+      "latest_turn_id": "01a0a387-b6bb-76d3-8069-4becd23104c3",
+      "latest_turn_completed_at_unix": 1789449994,
+      "cursor": "3faa7e5e-7aa5-4da4-8f91-ad7eacc1b7f2:19"
+    },
+    {
+      "thread_id": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+      "status": "idle",
+      "latest_turn_id": "01a0a3f5-c88a-7822-8c91-06e147f5e468",
+      "latest_turn_completed_at_unix": 1789457342,
+      "cursor": "2d197ebc-d4f7-4da1-bd28-b5fd5755f3d2:3"
+    },
+    {
+      "thread_id": "01a08703-644f-7940-8f67-9a2fa63722bb",
+      "status": "idle",
+      "latest_turn_id": "01a0a40b-3064-7d52-b780-f753133c487b",
+      "latest_turn_completed_at_unix": 1789458753,
+      "cursor": "0f029dcf-ce11-46e2-8975-0bcbe66e9ef6:1"
+    },
+    {
+      "thread_id": "01a0870a-e632-7773-ac5d-8ee2616b31bc",
+      "status": "notLoaded",
+      "latest_turn_id": "01a0a236-44ea-7e02-9340-a9d72bad0f76",
+      "latest_turn_completed_at_unix": 1789431020,
+      "cursor": "2616d472-e18f-46fc-a6ec-019e0aa90c8e:3"
+    },
+    {
+      "thread_id": "01a08704-8176-7171-b6f5-928a09d7c3f9",
+      "status": "notLoaded",
+      "latest_turn_id": "01a0a192-4711-7b53-820d-160c2a19eb0b",
+      "latest_turn_completed_at_unix": 1789418472,
+      "cursor": "7627f43b-7dc6-4cea-a743-c5be861207a7:2"
+    },
+    {
+      "thread_id": "01a0915d-9105-7833-9d4b-eb467ab0ebbd",
+      "status": "notLoaded",
+      "latest_turn_id": "01a0a197-06ea-7591-b26c-f7b6e95fb288",
+      "latest_turn_completed_at_unix": 1789418121,
+      "cursor": "37a9c15c-005d-443c-92f6-98bbb90b95ef:1"
+    }
+  ],
+  "publication_performed": false,
+  "root_business_writes": 0,
+  "dispatches": [],
+  "new_order_or_feed_read": false,
+  "source_527_hashes_revalidated": false,
+  "latest_qualified_527_binding_preserved": "1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058",
+  "all_other_source_content_sales_and_due_clocks": "PRESERVED; this is a theme-role read only.",
+  "next_action": "Await existing owner Admin publication or changed access/evidence; then resume the existing matching owner. Sales19:01:34UTC and US/AUSep16 source clocks remain separate.",
+  "notification": "DONT_NOTIFY; exact required owner action already pending and unchanged.",
+  "local_lookup_correction": "Initial read.graphql local lookup omitted the payload directory; resolved with targeted file listing before building the new metadata-only operation. No API execution relied on the failed lookup."
+}

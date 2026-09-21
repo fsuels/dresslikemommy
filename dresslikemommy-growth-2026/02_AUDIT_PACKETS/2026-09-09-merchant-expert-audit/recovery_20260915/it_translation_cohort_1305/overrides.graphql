@@ -1,0 +1,16 @@
+query MerchantItalianOverrides($ids: [ID!]!, $after: String) {
+  shop { id myshopifyDomain }
+  translatableResourcesByIds(resourceIds: $ids, first: 20, after: $after) {
+    nodes {
+      resourceId
+      au: translations(locale: "it", marketId: "gid://shopify/Market/22986424417") { ...TF }
+      ca: translations(locale: "it", marketId: "gid://shopify/Market/22986326113") { ...TF }
+      eu: translations(locale: "it", marketId: "gid://shopify/Market/544800865") { ...TF }
+      international: translations(locale: "it", marketId: "gid://shopify/Market/544866401") { ...TF }
+      gb: translations(locale: "it", marketId: "gid://shopify/Market/22986260577") { ...TF }
+      us: translations(locale: "it", marketId: "gid://shopify/Market/544735329") { ...TF }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}
+fragment TF on Translation { key value locale outdated updatedAt market { id name } }
