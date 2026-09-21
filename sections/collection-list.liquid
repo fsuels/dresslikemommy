@@ -123,14 +123,7 @@
                 assign collection_card_lazy_load = false
               endif
             -%}
-            {% render 'card-collection',
-              card_collection: block.settings.collection,
-              media_aspect_ratio: section.settings.image_ratio,
-              columns: columns,
-              placeholder_image: placeholder_image,
-              lazy_load: collection_card_lazy_load,
-              use_homepage_collection_image_strategy: request.page_type == 'index'
-            %}
+            {% render 'card-collection', card_collection: block.settings.collection, media_aspect_ratio: section.settings.image_ratio, columns: columns, placeholder_image: placeholder_image, lazy_load: collection_card_lazy_load, use_homepage_collection_image_strategy: request.page_type %}
             {% comment %}theme-check-enable UnusedAssign{% endcomment %}
           </li>
         {%- endfor -%}
@@ -350,3 +343,24 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'card-collection',
+                  card_collection: block.settings.collection,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  columns: columns,
+                  placeholder_image: placeholder_image,
+                  lazy_load: collection_card_lazy_load,
+                  use_homepage_collection_image_strategy: request.page_type == 'index'
+                %}
+  to: "{% render 'card-collection', card_collection: block.settings.collection, media_aspect_ratio:
+    section.settings.image_ratio, columns: columns, placeholder_image: placeholder_image,
+    lazy_load: collection_card_lazy_load, use_homepage_collection_image_strategy:
+    request.page_type %}"
+  position: 6523..6800
+{% endcomment %}

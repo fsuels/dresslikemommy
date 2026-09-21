@@ -56,13 +56,7 @@
           -%}
 
           <li id="Slide-{{ section.id }}-{{ render_count }}" class="grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {% if settings.animations_reveal_on_scroll %}data-cascade style="--animation-order: {{ render_count }};"{% endif %} {{ block.shopify_attributes }}>
-            {% render 'card-collection',
-              card_collection: col,
-              media_aspect_ratio: section.settings.image_ratio,
-              columns: section.settings.columns_desktop,
-              lazy_load: collection_card_lazy_load,
-              use_homepage_collection_image_strategy: request.page_type == 'index'
-            %}
+            {% render 'card-collection', card_collection: col, media_aspect_ratio: section.settings.image_ratio, columns: section.settings.columns_desktop, lazy_load: collection_card_lazy_load, use_homepage_collection_image_strategy: request.page_type %}
             {% comment %}theme-check-enable UnusedAssign{% endcomment %}
           </li>
         {%- endfor -%}
@@ -280,3 +274,22 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'card-collection',
+                  card_collection: col,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  columns: section.settings.columns_desktop,
+                  lazy_load: collection_card_lazy_load,
+                  use_homepage_collection_image_strategy: request.page_type == 'index'
+                %}
+  to: "{% render 'card-collection', card_collection: col, media_aspect_ratio: section.settings.image_ratio,
+    columns: section.settings.columns_desktop, lazy_load: collection_card_lazy_load,
+    use_homepage_collection_image_strategy: request.page_type %}"
+  position: 3388..3630
+{% endcomment %}
