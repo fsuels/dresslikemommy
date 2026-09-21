@@ -1,0 +1,293 @@
+{
+  "schema": "dlm.microsoft.german_czech.independent_saved_source_acceptance.v1",
+  "reviewed_at_utc": "2026-09-15T04:14:15.487552+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "status": "PASS_WITH_LIMITS",
+  "reviewer": "/root/collector_global_fallback_fix",
+  "reviewer_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "scope": "Only four payloads and manifest within the named frozen directory; no source or live replay.",
+  "source_directory": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_german_czech_source_freeze_20260915",
+  "manifest_sha256": "305001a5ed7f48c2df43d8da9aeb4bf6b96e1ce32a68dc2a4402ba77e74519e6",
+  "payload_bindings": [
+    {
+      "file": "german-negative-variants-20260915.json",
+      "sha256": "780cd23f18aca0991ea2f7b0eef794864e277541c411845a48ffea87e7a39247",
+      "bytes": 11723
+    },
+    {
+      "file": "czech-landing-qa-20260915.json",
+      "sha256": "c8fe1fbc5e360c6021572ffe4e133de2229637668aa7347edc880539fb4283d1",
+      "bytes": 4859
+    },
+    {
+      "file": "followthrough-handoff-20260915.json",
+      "sha256": "03731189af28f3f3d907a40fc50f5a35b919742daf7071ef9363948046a4e1ae",
+      "bytes": 6177
+    },
+    {
+      "file": "campaign-package.json",
+      "sha256": "7453e80f173753b0e653cce8c539e57c0226348ad74f89d93dd8a0784f154288",
+      "bytes": 191494
+    }
+  ],
+  "checks": [
+    {
+      "check": "freeze_inventory_exact",
+      "status": "PASS",
+      "method": "Compare the bounded directory inventory with four payload names plus manifest."
+    },
+    {
+      "check": "manifest_identity",
+      "status": "PASS",
+      "method": "SHA256 of exact frozen manifest bytes."
+    },
+    {
+      "check": "manifest_four_unique_payload_bindings",
+      "status": "PASS",
+      "method": "Count and compare manifest frozen basenames."
+    },
+    {
+      "check": "payload_binding_german-negative-variants-20260915.json",
+      "status": "PASS",
+      "method": "Require exact in-scope path, recompute SHA256 and byte length.",
+      "observed": {
+        "sha256": "780cd23f18aca0991ea2f7b0eef794864e277541c411845a48ffea87e7a39247",
+        "bytes": 11723
+      }
+    },
+    {
+      "check": "payload_binding_czech-landing-qa-20260915.json",
+      "status": "PASS",
+      "method": "Require exact in-scope path, recompute SHA256 and byte length.",
+      "observed": {
+        "sha256": "c8fe1fbc5e360c6021572ffe4e133de2229637668aa7347edc880539fb4283d1",
+        "bytes": 4859
+      }
+    },
+    {
+      "check": "payload_binding_followthrough-handoff-20260915.json",
+      "status": "PASS",
+      "method": "Require exact in-scope path, recompute SHA256 and byte length.",
+      "observed": {
+        "sha256": "03731189af28f3f3d907a40fc50f5a35b919742daf7071ef9363948046a4e1ae",
+        "bytes": 6177
+      }
+    },
+    {
+      "check": "payload_binding_campaign-package.json",
+      "status": "PASS",
+      "method": "Require exact in-scope path, recompute SHA256 and byte length.",
+      "observed": {
+        "sha256": "7453e80f173753b0e653cce8c539e57c0226348ad74f89d93dd8a0784f154288",
+        "bytes": 191494
+      }
+    },
+    {
+      "check": "handoff_source_hashes",
+      "status": "PASS",
+      "method": "Recompute all three handoff source_hashes using only frozen payloads."
+    },
+    {
+      "check": "post_review_subject_binding",
+      "status": "PASS",
+      "method": "Bind the embedded prior independent post-review to exact German receipt bytes; do not treat its 14 checks as ours."
+    },
+    {
+      "check": "source_owner_and_account_campaign_identity",
+      "status": "PASS",
+      "method": "Compare saved owner, account, customer and target campaign IDs."
+    },
+    {
+      "check": "negative_counts_unique",
+      "status": "PASS",
+      "method": "Count original/after rows and require unique IDs/texts."
+    },
+    {
+      "check": "seven_original_negatives_exact",
+      "status": "PASS",
+      "method": "Compare complete original ID/text/match dictionaries against after state."
+    },
+    {
+      "check": "exact_two_additions",
+      "status": "PASS",
+      "method": "Set-difference by ID; compare exact new IDs, Unicode text and match types.",
+      "observed": [
+        {
+          "id": "14166859907463",
+          "text": "nähanleitungen",
+          "match_type": "Phrase"
+        },
+        {
+          "id": "14166859907464",
+          "text": "druckvorlagen",
+          "match_type": "Phrase"
+        }
+      ]
+    },
+    {
+      "check": "campaign_phrase_scope_only",
+      "status": "PASS",
+      "method": "Compare saved scope and proposed text/type/scope set with actual additions."
+    },
+    {
+      "check": "three_positive_keywords_exact_paused",
+      "status": "PASS",
+      "method": "Compare complete positive keyword arrays and unique ID/type/status constraints."
+    },
+    {
+      "check": "all13_campaign_tuples_preserved",
+      "status": "PASS",
+      "method": "Compare 13 unique ID/status/type/budget tuples keyed by ID; no metric comparison."
+    },
+    {
+      "check": "DE_saved_after_controls",
+      "status": "PASS",
+      "method": "Compare saved after-controls and preserved DE tuple. Pre-state strategy/cap/expansion fields are not separately supplied."
+    },
+    {
+      "check": "recorded_time_order",
+      "status": "PASS",
+      "method": "Parse UTC windows and require before, negative after, account after, handoff, freeze chronology."
+    },
+    {
+      "check": "date_rollover_not_metric_equality",
+      "status": "PASS",
+      "method": "Verify distinct displayed dates and explicit metric/performance limitation; do not infer reporting timezone."
+    },
+    {
+      "check": "two_clicks_one_reported_effective_submission",
+      "status": "PASS",
+      "method": "Reconcile native_save_calls=2 with narrative and exact delta. Successful request count is not independently instrumented."
+    },
+    {
+      "check": "no_new_spend_or_setting_authority",
+      "status": "PASS",
+      "method": "Check saved nonspend scope and no settings/shared-write claims; no independent user-authority replay."
+    },
+    {
+      "check": "Czech_language_country_currency_distinct",
+      "status": "PASS",
+      "method": "Inspect saved selected language versus selected country/currency; no Czechia qualification inference."
+    },
+    {
+      "check": "Czech_earlier_collection_and_direct_product_limits",
+      "status": "PASS",
+      "method": "Retain earlier collection provenance and product window; distinguish direct navigation from failed stale-link click."
+    },
+    {
+      "check": "Czech_no_checkout_or_write_proof",
+      "status": "PASS",
+      "method": "Check no cart/order/country action and explicit non-established outcomes."
+    },
+    {
+      "check": "Czech_model_review_asset_binding",
+      "status": "PASS",
+      "method": "Join exact Czech campaign and asset set; reproduce reviewed asset counts."
+    },
+    {
+      "check": "Czech_model_not_native_human_or_independent_browser",
+      "status": "PASS",
+      "method": "Retain explicit model linguistic-review class; no new semantic certification."
+    },
+    {
+      "check": "Czech_exact_routing_and_no_duplicate_theme_repair",
+      "status": "PASS",
+      "method": "Count routed findings, retain ambiguous closing-sentence proposal and source-gated longer claim; inspect existing theme first."
+    },
+    {
+      "check": "frozen_package_35_blueprints_20_languages",
+      "status": "PASS",
+      "method": "Count unique blueprint keys, asset IDs and locales; compare blueprint/asset locale sets."
+    },
+    {
+      "check": "package_local_only_numeric_authority_unresolved",
+      "status": "PASS",
+      "method": "Verify blueprint package is local preparation, not 35 created or funded campaigns."
+    },
+    {
+      "check": "package_upstream_pins_accounted_not_followed",
+      "status": "PASS",
+      "method": "Enumerate seven inherited hash pins not included in this freeze; do not assert their bytes verified."
+    },
+    {
+      "check": "inputs_unchanged_at_close",
+      "status": "PASS",
+      "method": "Rehash all five frozen files before writing the sole output."
+    }
+  ],
+  "checks_passed": 31,
+  "checks_failed": 0,
+  "findings": [],
+  "verified_saved_delta": {
+    "account_id": "477439",
+    "campaign_id": "506254908",
+    "original_negatives_preserved": 7,
+    "new_negatives": [
+      {
+        "id": "14166859907463",
+        "text": "nähanleitungen",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166859907464",
+        "text": "druckvorlagen",
+        "match_type": "Phrase"
+      }
+    ],
+    "after_negative_count": 9,
+    "positive_paused_Exact_keywords_preserved": 3,
+    "campaign_ID_status_type_budget_tuples_preserved": 13,
+    "recorded_Save_click_attempts": 2,
+    "reported_effective_submission": 1,
+    "independently_instrumented_submission_count": "UNKNOWN",
+    "negative_after_UTC": {
+      "start": "2026-09-15T04:01:17Z",
+      "complete_by": "2026-09-15T04:03:06Z"
+    },
+    "account_after_UTC": {
+      "start": "2026-09-15T04:04:30Z",
+      "complete_by": "2026-09-15T04:05:23.489021+00:00"
+    }
+  },
+  "package_counts": {
+    "blueprints": 35,
+    "unique_locales": 20,
+    "assets": 20,
+    "configured_country_entries": 65,
+    "native_campaigns_created_by_package": 0
+  },
+  "unverified_inherited_package_source_hashes": {
+    "status": "NOT_REHASHED_OUTSIDE_FROZEN_SCOPE",
+    "pins": {
+      "market-language-inventory.json": "c768a388756563083369b29c4e1c8fa48f4517dbd0d8aab5098501ad883d5299",
+      "native-creation-readback.json": "0f7bc6c976dfac605d525c594bcb5e87050844ee6049f00879a891f944a49938",
+      "localized-assets-missing.json": "40c93672840be48c22776f3c2df32dca02a358bb71223d908f9d4727ee05eeeb",
+      "english-master-assets.json": "4890e6b49256dcb68fbfd62923a6a717a3d922274cb4cee1d1c22d8519e0e893",
+      "legacy-negative-profiles.json": "6c26dea79277f38e133b347180902a8512537b63eee72605250f7ff5d02dddf7",
+      "market-session-evidence.json": "18ad0056e0d578cab4374c8cb3bd4b27bf24261d47120103cede12797529d212",
+      "strategy-controls.json": "4c60a5a9cfb7510a2e78e845a6c69cc49260c0241747860b32d66ed64955ef4c"
+    }
+  },
+  "limits": [
+    "Saved-source consistency acceptance, not independent native browser, API, auction, query or performance verification. The existing 14-check post-review is bound operator evidence, not this reviewer live work.",
+    "Seven campaign-package upstream hash pins have no bytes in the permitted freeze and were not followed. Exact frozen package identity is corroborated by manifest and handoff; its 35/20 counts were recomputed.",
+    "Thirteen recorded ID/status/type/budget tuples compare equal. DE strategy/cap/expansions are recorded after-state; separate raw before control fields and live UI are not supplied. Settings-not-edited is source-reported.",
+    "Two Save click attempts are explicitly retained: first reportedly had no effect, second submitted. Exact seven-to-nine row delta is independently recomputed; receipt alone does not establish network request count.",
+    "The Today date changed September14 to15; zero metrics do not prove performance, and reporting timezone is not independently established.",
+    "Czech product observation is Czech-language under United States/USD. Collection evidence is earlier same-session and not separately frozen as a raw DOM/screenshot. Successful direct product navigation does not certify a collection-card click, Czechia currency/shipping/checkout, mobile or Add-to-cart.",
+    "Czech correction and ad-copy judgments are model reviews, not native-human or independent rendered acceptance; the closing sentence and longer garment claim still require exact source review.",
+    "Four-hour automation ACTIVE, unchanged configuration, pending numeric authority and source authorization are handoff-reported only; no scheduler/account/user-instruction readback was performed in this bounded review.",
+    "No verified incremental purchases, CPA/ROAS or retained profit; no new campaign, spend, tracking, theme or localization authority."
+  ],
+  "recommended_integration": "Append the exact two German Campaign/Phrase IDs as a dated nonspend completed delta, retaining all paused controls, two-click caveat and date rollover. Route eight Czech findings to existing product/collection and UX owners; inspect unpublished theme137888792673 before duplicate buybox work. Preserve the parent single owner action and existing numeric-authority question; keep Czech paid qualification open.",
+  "reviewer_actions": {
+    "external_calls": 0,
+    "business_writes": 0,
+    "source_writes": 0,
+    "canonical_or_claim_edits": 0,
+    "goal_schedule_or_git_edits": 0,
+    "written_files": [
+      "microsoft_german_czech_independent_acceptance_20260915.json"
+    ]
+  }
+}

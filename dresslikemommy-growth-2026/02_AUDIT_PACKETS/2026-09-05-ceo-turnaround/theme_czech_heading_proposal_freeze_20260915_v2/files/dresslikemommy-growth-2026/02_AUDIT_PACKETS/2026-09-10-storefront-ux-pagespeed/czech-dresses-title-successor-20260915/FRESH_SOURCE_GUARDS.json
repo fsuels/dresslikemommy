@@ -1,0 +1,90 @@
+{
+  "status": "PASS_PREPARATION_ONLY",
+  "freshReadStartedAtUtc": "2026-09-15 04:25:52 UTC",
+  "freshReadReceivedAtUtc": "2026-09-15 04:25:54 UTC",
+  "freshReadbackSha256": "352bed17424e5eee24d44ad4dfaeaf4b5a5f1a7fa0b8f715594b2d6b07eeb233",
+  "checksPassed": 16,
+  "checks": [
+    {
+      "name": "current exact role/id and stable processing",
+      "passed": true
+    },
+    {
+      "name": "current complete inventory",
+      "passed": true
+    },
+    {
+      "name": "current metadata preserved",
+      "passed": true
+    },
+    {
+      "name": "current full inventory records preserved",
+      "passed": true
+    },
+    {
+      "name": "current exact selected Czech file",
+      "passed": true
+    },
+    {
+      "name": "candidate exact role/id and stable processing",
+      "passed": true
+    },
+    {
+      "name": "candidate complete inventory",
+      "passed": true
+    },
+    {
+      "name": "candidate metadata preserved",
+      "passed": true
+    },
+    {
+      "name": "candidate full inventory records preserved",
+      "passed": true
+    },
+    {
+      "name": "candidate exact selected Czech file",
+      "passed": true
+    },
+    {
+      "name": "fresh candidate Czech body equals accepted before bytes",
+      "passed": true
+    },
+    {
+      "name": "fresh candidate Czech source metadata matches bytes",
+      "passed": true
+    },
+    {
+      "name": "all 527 accepted file digests and sizes match fresh candidate",
+      "passed": true
+    },
+    {
+      "name": "fresh MAIN Czech content matches saved MAIN source",
+      "passed": true
+    },
+    {
+      "name": "exact one JSON leaf changed",
+      "passed": true
+    },
+    {
+      "name": "all other bytes preserved and rollback exact",
+      "passed": true
+    }
+  ],
+  "totalLocaleLeafValues": 783,
+  "changedKeys": [
+    "sections.collection_seo.display_titles.dresses"
+  ],
+  "preservedLocaleLeafValues": 782,
+  "before": {
+    "sha256": "b942083af422129281ccdb7f745d6fa51f5ad54a8a002a0c52f76cc92e7a9106",
+    "md5": "6077f54fd2a4d0c8a02d534fd1edacdc",
+    "bytes": 73875
+  },
+  "proposed": {
+    "sha256": "9e8e70419398c315373bf647bdbe4d06b48f18d2c1e1ca0b24f411e1dc6a7493",
+    "md5": "417ee9c23d7f75a841db85f0dc762414",
+    "bytes": 73879
+  },
+  "executionAuthority": "NO_UPLOAD_UNDER_PREPARATION_MESSAGE; parent exact scope/claim binding pending",
+  "actionTimeRequirement": "Immediately before any separately bound upload, repeat role/body/full inventory guards; stop on any drift, incomplete pagination or processing. This preparation read is not an indefinite execution grant."
+}

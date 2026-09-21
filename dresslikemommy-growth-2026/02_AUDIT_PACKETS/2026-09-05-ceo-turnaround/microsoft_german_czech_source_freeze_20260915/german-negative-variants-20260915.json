@@ -1,0 +1,405 @@
+{
+  "schema": "dlm.microsoft.negative_variant_delta.v1",
+  "owner_thread": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "status": "IMPLEMENTED_AND_NATIVE_READBACK_VERIFIED",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "campaign_id": "506254908",
+  "campaign_name": "DLM | MS | DE | DE | Search | 202609",
+  "surface": {
+    "browser": "Codex In-app Browser",
+    "browser_id": "2",
+    "tab_id": "8",
+    "url": "https://ui.ads.microsoft.com/campaign/vnext/negative-keywords?aid=477439&campaignId=506254908&cid=770182&uid=2290164"
+  },
+  "readback_window_utc": {
+    "start": "2026-09-15T03:54:33Z",
+    "before_complete_by": "2026-09-15T03:58:44Z"
+  },
+  "authorization": {
+    "source": "Current user request to target each language and use negative keywords to avoid bad clicks; ongoing nonspend qualified paused German campaign scope in ops/AGENT_COORDINATION.md row41.",
+    "exact_action": "Add only two Campaign/Phrase negatives to existing paused German campaign506254908.",
+    "spend_or_launch_authority": false,
+    "shared_canonical_writer_lease": false
+  },
+  "before": {
+    "scope": "Campaign",
+    "negatives": [
+      {
+        "id": "14166858625196",
+        "text": "schnittmuster",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625197",
+        "text": "nähanleitung",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625198",
+        "text": "selber nähen",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625199",
+        "text": "verleih",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625200",
+        "text": "großhandel",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625201",
+        "text": "svg",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625202",
+        "text": "druckvorlage",
+        "match_type": "Phrase"
+      }
+    ],
+    "positive_keywords": [
+      {
+        "id": "78890601681408",
+        "text": "mama tochter kleider",
+        "match_type": "Exact",
+        "status": "Paused"
+      },
+      {
+        "id": "78890601681407",
+        "text": "gleiche kleider mutter tochter",
+        "match_type": "Exact",
+        "status": "Paused"
+      },
+      {
+        "id": "78890601681406",
+        "text": "partnerlook kleider mutter tochter",
+        "match_type": "Exact",
+        "status": "Paused"
+      }
+    ],
+    "campaigns": [
+      {
+        "id": "506254908",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 3
+      },
+      {
+        "id": "506254907",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 5
+      },
+      {
+        "id": "402056811",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 5
+      },
+      {
+        "id": "402056810",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 5
+      },
+      {
+        "id": "402056809",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 5
+      },
+      {
+        "id": "402056808",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 5
+      },
+      {
+        "id": "291767342",
+        "status": "Paused",
+        "type": "Shopping",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291767159",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291767149",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291766588",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291766575",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291536445",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291532658",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 10
+      }
+    ],
+    "reporting": {
+      "ui_date_range": "Today: 9/14/2026 - 9/14/2026",
+      "partial_day": true,
+      "spend_usd": 0,
+      "revenue_usd": 0,
+      "conversions": 0,
+      "clicks": 0,
+      "impressions": 0,
+      "zero_denominator_ratios": "UNDEFINED_NOT_PERFORMANCE_EVIDENCE"
+    }
+  },
+  "proposed_additions": [
+    {
+      "text": "nähanleitungen",
+      "match_type": "Phrase",
+      "scope": "Campaign",
+      "meaning": "sewing instructions (plural)"
+    },
+    {
+      "text": "druckvorlagen",
+      "match_type": "Phrase",
+      "scope": "Campaign",
+      "meaning": "print templates (plural)"
+    }
+  ],
+  "rationale": "Add the explicit plural forms of two existing exclusions because Microsoft negative keywords do not automatically cover plural variants. Preserve all seven existing negatives.",
+  "source": {
+    "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_aboutnegativekeywords",
+    "source_updated": "2026-06-19",
+    "reopened_utc_date": "2026-09-15"
+  },
+  "independent_pre_review": {
+    "reviewer": "/root/microsoft_plan_independent_review",
+    "verdict": "PASS",
+    "three_positive_conflicts": 0,
+    "ordinary_buyer_cases_preserved": 12,
+    "irrelevant_instruction_template_cases_excluded": 4,
+    "evidence_type": "Independent synthetic language/matching review using root-supplied native readback; no independent browser inspection.",
+    "residual_risk": "Mixed retail queries saying buy ready-made dresses instead of sewing instructions or print templates can still be excluded. No actual query or performance improvement is claimed."
+  },
+  "rollback": "If a rollback is authorized and necessary, remove only the two newly returned negative IDs after confirming their text, Campaign/Phrase scope and campaign506254908. Preserve all original seven IDs and all unrelated entities.",
+  "incidental_notice": "The recurring informational Adopt Consent Mode for UET immediately modal was dismissed with X on the campaign routes; no radio choice or Continue submission. It does not establish a consent repair or receiver state.",
+  "after": {
+    "negative_readback_window_utc": {
+      "start": "2026-09-15T04:01:17Z",
+      "complete_by": "2026-09-15T04:03:06Z"
+    },
+    "scope": "Campaign",
+    "negatives": [
+      {
+        "id": "14166858625196",
+        "text": "schnittmuster",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625197",
+        "text": "nähanleitung",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625198",
+        "text": "selber nähen",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625199",
+        "text": "verleih",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625200",
+        "text": "großhandel",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625201",
+        "text": "svg",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166858625202",
+        "text": "druckvorlage",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166859907463",
+        "text": "nähanleitungen",
+        "match_type": "Phrase"
+      },
+      {
+        "id": "14166859907464",
+        "text": "druckvorlagen",
+        "match_type": "Phrase"
+      }
+    ],
+    "original_seven_ids_text_and_match_preserved": true,
+    "positive_keywords": [
+      {
+        "id": "78890601681408",
+        "text": "mama tochter kleider",
+        "match_type": "Exact",
+        "status": "Paused"
+      },
+      {
+        "id": "78890601681407",
+        "text": "gleiche kleider mutter tochter",
+        "match_type": "Exact",
+        "status": "Paused"
+      },
+      {
+        "id": "78890601681406",
+        "text": "partnerlook kleider mutter tochter",
+        "match_type": "Exact",
+        "status": "Paused"
+      }
+    ],
+    "positive_readback": "Native keyword table independently reread after the Save; all three exact identities, texts and Paused statuses matched.",
+    "campaign_controls": {
+      "status": "Paused",
+      "language": "German",
+      "daily_budget_usd": 3,
+      "bid_strategy": "Maximize Clicks",
+      "maximum_cpc_enabled": true,
+      "maximum_cpc_usd": 0.15,
+      "text_customization": false,
+      "final_url_expansion": false,
+      "search_term_matching": false
+    },
+    "settings_edited": false,
+    "campaigns": [
+      {
+        "id": "506254908",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 3
+      },
+      {
+        "id": "506254907",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 5
+      },
+      {
+        "id": "402056811",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 5
+      },
+      {
+        "id": "402056810",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 5
+      },
+      {
+        "id": "402056809",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 5
+      },
+      {
+        "id": "402056808",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 5
+      },
+      {
+        "id": "291767342",
+        "status": "Paused",
+        "type": "Shopping",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291767159",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291767149",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291766588",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291766575",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291536445",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 15
+      },
+      {
+        "id": "291532658",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": 10
+      }
+    ],
+    "all_13_id_status_type_budget_comparison": "PASS_EQUAL",
+    "native_save_calls": 2,
+    "save_call_note": "First AX click had no effect with Save clipped below the viewport. Screenshot confirmed the unchanged two-line draft/seven-row baseline; scrolling exposed Save and the next click submitted. Nine rows with exactly two new IDs were then verified. No blind duplicate submission.",
+    "account_readback_window_utc": {
+      "start": "2026-09-15T04:04:30Z",
+      "complete_by": "2026-09-15T04:05:23.489021+00:00"
+    },
+    "account_ui_date_range": "Today: 9/15/2026 - 9/15/2026",
+    "reporting_date_rollover_note": "The date rolled over during this work. Equality compares only campaign ID/status/type/budget; no same-day metric change or performance lift is inferred."
+  },
+  "business_outcome": "Purchase attribution, CPA, ROAS and profit improvement remain unverified.",
+  "root_receipt_validation": {
+    "checks": {
+      "negative_count_9": true,
+      "unique_negative_ids": true,
+      "unique_negative_texts": true,
+      "all_original_negatives_preserved": true,
+      "only_two_expected_additions": true,
+      "all_negatives_phrase": true,
+      "positives_preserved": true,
+      "campaigns_13": true,
+      "campaign_tuples_preserved": true,
+      "all_campaigns_paused": true,
+      "german_controls": true,
+      "cpc_cap": true,
+      "expansions_off": true,
+      "review_pass": true
+    },
+    "passed": 14,
+    "failed": 0,
+    "limits": "Consistency checks on saved root UI readback, not a native auction/performance simulator."
+  }
+}

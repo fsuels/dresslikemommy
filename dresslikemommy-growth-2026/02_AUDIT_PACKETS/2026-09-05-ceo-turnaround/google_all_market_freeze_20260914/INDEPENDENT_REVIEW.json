@@ -1,0 +1,289 @@
+{
+  "schema_version": "dlm.all_market.independent_review.v1",
+  "reviewed_at_utc": "2026-09-14T20:58:28.607237+00:00",
+  "reviewer": "/root/tag_repair_review",
+  "role": "INDEPENDENT_SAVED_SOURCE_VERIFIER",
+  "did_build_or_execute": false,
+  "verdict": "PASS_WITH_GATES",
+  "scope": "Only eight named saved inputs; no account, browser, storefront, credential, customer/order, new public-source or canonical access/writes. Only this receipt written. Root-generated report, CSV and operator validation are outside independent evidence scope.",
+  "source_hashes": {
+    "MARKETS_LIVE_READBACK.json": "b69d94e36d761fad8661489c8fcdb09b3bb0fd48726c06fad19b85c267a40b06",
+    "ALL_MARKET_CAMPAIGN_BUILD.json": "94badeb0901ee5d671c3c9db03c3996dc84db0968728213b13d2f02eefed54c1",
+    "ADS_TARGETING_LIVE_READBACK.json": "e68603b457d05fa7bed80cfbdca0bce9c897683e06d7fb445de862126b91b460",
+    "SOURCE_DECISIONS.json": "82b8862ada0f6607fa671b8bce64e92ec5497dd4f7931162c181a5b79f9f0666",
+    "TARGETING_REPAIR_ADDENDUM.json": "0c2b850602bbb69b3d1adfe247f61f8766d2c73bdf4740194247771158cb41cf",
+    "DECISION_CONTRACT.json": "4ac0d42e57756e770bd6572f52cc95383de42fe03dca161a626f8c6ad19420a7",
+    "LOCALE_ADS_EUROPE.json": "18ec00d08ed2b38780d800150f112f57c0f3e523932ee516290409d952b8006e",
+    "LOCALE_ADS_REMAINING.json": "1117786dee42db8c5b154842863cf15572c31c9e65ff52537ad767c846e1db58"
+  },
+  "summary": {
+    "checks_passed": 37,
+    "checks_failed": 0,
+    "countries": 65,
+    "membership_rows": 68,
+    "published_locales": 21,
+    "inferred_country_language_groups": 75,
+    "headlines": 126,
+    "descriptions": 63,
+    "unmeasured_seed_records": 42,
+    "phrase_negative_candidates": 95,
+    "qualified_initial_keywords": 0,
+    "new_authorized_exposure_usd": 0
+  },
+  "checks": [
+    {
+      "id": "HASH_01",
+      "result": "PASS",
+      "evidence": {
+        "file": "MARKETS_LIVE_READBACK.json",
+        "sha256": "b69d94e36d761fad8661489c8fcdb09b3bb0fd48726c06fad19b85c267a40b06"
+      }
+    },
+    {
+      "id": "HASH_02",
+      "result": "PASS",
+      "evidence": {
+        "file": "ALL_MARKET_CAMPAIGN_BUILD.json",
+        "sha256": "94badeb0901ee5d671c3c9db03c3996dc84db0968728213b13d2f02eefed54c1"
+      }
+    },
+    {
+      "id": "HASH_03",
+      "result": "PASS",
+      "evidence": {
+        "file": "ADS_TARGETING_LIVE_READBACK.json",
+        "sha256": "e68603b457d05fa7bed80cfbdca0bce9c897683e06d7fb445de862126b91b460"
+      }
+    },
+    {
+      "id": "HASH_04",
+      "result": "PASS",
+      "evidence": {
+        "file": "SOURCE_DECISIONS.json",
+        "sha256": "82b8862ada0f6607fa671b8bce64e92ec5497dd4f7931162c181a5b79f9f0666"
+      }
+    },
+    {
+      "id": "HASH_05",
+      "result": "PASS",
+      "evidence": {
+        "file": "TARGETING_REPAIR_ADDENDUM.json",
+        "sha256": "0c2b850602bbb69b3d1adfe247f61f8766d2c73bdf4740194247771158cb41cf"
+      }
+    },
+    {
+      "id": "HASH_06",
+      "result": "PASS",
+      "evidence": {
+        "file": "DECISION_CONTRACT.json",
+        "sha256": "4ac0d42e57756e770bd6572f52cc95383de42fe03dca161a626f8c6ad19420a7"
+      }
+    },
+    {
+      "id": "HASH_07",
+      "result": "PASS",
+      "evidence": {
+        "file": "LOCALE_ADS_EUROPE.json",
+        "sha256": "18ec00d08ed2b38780d800150f112f57c0f3e523932ee516290409d952b8006e"
+      }
+    },
+    {
+      "id": "HASH_08",
+      "result": "PASS",
+      "evidence": {
+        "file": "LOCALE_ADS_REMAINING.json",
+        "sha256": "1117786dee42db8c5b154842863cf15572c31c9e65ff52537ad767c846e1db58"
+      }
+    },
+    {
+      "id": "SOURCE_PAGINATION",
+      "result": "PASS",
+      "evidence": "All 15 saved connection pagination flags false; no independent live connector replay."
+    },
+    {
+      "id": "COUNTRY_COVERAGE",
+      "result": "PASS",
+      "evidence": "65 unique country codes, each represented once."
+    },
+    {
+      "id": "MARKET_MEMBERSHIPS",
+      "result": "PASS",
+      "evidence": "68 membership rows across six active markets; AU/CA/GB overlap is not duplicated as new countries."
+    },
+    {
+      "id": "METADATA_JOINS",
+      "result": "PASS",
+      "evidence": "Every country name, market ID/name set and configured currency set matches saved Shopify source. Configured currency is not checkout proof."
+    },
+    {
+      "id": "LOCALE_ROOTS",
+      "result": "PASS",
+      "evidence": "21 published locales and all candidate route roots reconcile; exact country buyer routes remain unverified."
+    },
+    {
+      "id": "LANGUAGE_INFERENCE",
+      "result": "PASS",
+      "evidence": "75 unique proposed country/language groups, not Shopify-declared language assignments or measured demand."
+    },
+    {
+      "id": "UNASSIGNED_LOCALES",
+      "result": "PASS",
+      "evidence": "Six packs unassigned to non-Russia countries; no new countries inferred from language availability."
+    },
+    {
+      "id": "RUSSIA_HOLD",
+      "result": "PASS",
+      "evidence": "Russia remains no-serve/no-launch; Russian templates may only be considered for separately supported countries. Official policy receipt accepted as saved source, not freshly replayed."
+    },
+    {
+      "id": "PORTUGAL_REGIONAL_GAP",
+      "result": "PASS",
+      "evidence": "Published pt-BR /pt/ is not pt-PT or proof of Portugal-native copy; adaptation and buyer-route review remain required."
+    },
+    {
+      "id": "NULL_ACTIVATION_FIELDS",
+      "result": "PASS",
+      "evidence": "65 local rows have no created campaign IDs, geo IDs, funded budget, qualified initial keywords or final validated URL."
+    },
+    {
+      "id": "ZERO_NEW_EXECUTION",
+      "result": "PASS",
+      "evidence": "Prepared specifications; no import/creation/exposure claim."
+    },
+    {
+      "id": "PACK_COVERAGE",
+      "result": "PASS",
+      "evidence": "11 Europe plus 10 remaining packs exactly cover published locales."
+    },
+    {
+      "id": "HEADLINES",
+      "result": "PASS",
+      "evidence": {
+        "field_count": 126,
+        "maximum_weighted_characters": 30,
+        "limit": 30
+      }
+    },
+    {
+      "id": "DESCRIPTIONS",
+      "result": "PASS",
+      "evidence": {
+        "field_count": 63,
+        "maximum_weighted_characters": 90,
+        "limit": 90
+      }
+    },
+    {
+      "id": "UNICODE",
+      "result": "PASS",
+      "evidence": "NFC strings; every East Asian W/F code point counted two, including JA/KO; combining marks counted separately conservatively. This is local length validation, not Google acceptance."
+    },
+    {
+      "id": "RESEARCH_SEEDS",
+      "result": "PASS",
+      "evidence": {
+        "research_record_count": 42,
+        "maximum_seed_or_negative_codepoints": 38,
+        "maximum_whitespace_words": 7,
+        "interpretation": "Unmeasured locale templates, not new country measurements or qualified launch keywords; preserve all prior holds. Exact match is not literal-only delivery."
+      }
+    },
+    {
+      "id": "NEGATIVE_SAFEGUARDS",
+      "result": "PASS",
+      "evidence": "95 phrase candidates, unique within each locale; literal protected-example and positive-seed overlap checks pass. No claim to emulate Google segmentation, inflection or cross-language matching."
+    },
+    {
+      "id": "COPY_SEMANTICS",
+      "result": "PASS",
+      "evidence": "Independently read all 21 packs. Candidate copy concerns matching mother/daughter dresses, separate item/size selection and product/size-guide inspection. No material, shipping, bundle price, owned inventory, guaranteed performance or unsupported promotional claims found. Model review is not human-native certification."
+    },
+    {
+      "id": "NATIVE_REVIEW_HELD",
+      "result": "PASS",
+      "evidence": "Native phrasing, RTL rendering, buyer-country language, JA/KO segmentation and specific product fit remain release gates."
+    },
+    {
+      "id": "CURRENT_CAMPAIGN_STATE",
+      "result": "PASS",
+      "evidence": "Operator saved current account/campaign readback retained; reviewer did not replay UI."
+    },
+    {
+      "id": "HISTORICAL_COST_LIMIT",
+      "result": "PASS",
+      "evidence": "USD0.80 is retained historical completed-date total, not new spend. Previous YouTube attribution is historical, not reread. Search negatives cannot be credited with fixing those costs or guaranteeing savings."
+    },
+    {
+      "id": "REPAIR_ADDITIONS",
+      "result": "PASS",
+      "evidence": "Two original phrases plus two narrow instruction-intent candidates. Preventive relevance judgment, not observed query waste or a YouTube remedy."
+    },
+    {
+      "id": "INHERITED_REFRESH",
+      "result": "PASS",
+      "evidence": "Shared-list Sep11 value explicitly historical; refresh and dedup all levels immediately before any application, retain unrelated entries."
+    },
+    {
+      "id": "ROLLBACK_RESOLVED",
+      "result": "PASS",
+      "evidence": "Original fixed-four rollback was corrected by root before execution; final rollback removes only the actual created IDs after dedup."
+    },
+    {
+      "id": "SAVE_AND_AUTHORITY_GATES",
+      "result": "PASS",
+      "evidence": "Current user request supports preparation; existing exact repair scope stays action-bound. Normal identity/Save unresolved, no retry authorization, no paid launch authority created. Editor values were not revalidated this pass."
+    },
+    {
+      "id": "FINANCIAL_LIMITS",
+      "result": "PASS",
+      "evidence": "USD0.15 control, 6.5x ROAS goal and 30% all-in retained-revenue margin retained. Actual costs and exposure allowance remain required; targets are not proven results."
+    },
+    {
+      "id": "EXPANSION_OFF_CANDIDATE",
+      "result": "PASS",
+      "evidence": "Proposed Search controls are prepared requirements; actual native rollout, currency and bid-control behavior must be checked, not inferred from documents or this plan."
+    },
+    {
+      "id": "ALTERNATIVE_CHALLENGE",
+      "result": "PASS",
+      "evidence": "One qualified country Search pilot is preferable to 65-country PMax expansion for controlled attribution and cost qualification. A large template count is not an opportunity ranking; with zero qualified keywords/budgets even the preferred pilot is not launch-ready."
+    },
+    {
+      "id": "NO_RESEARCH_LOOP",
+      "result": "PASS",
+      "evidence": "Reuse completed candidate evidence; do not interpret 42 language seeds or 75 groups as new measured opportunities or justify repeating unchanged research."
+    }
+  ],
+  "resolved_finding": {
+    "id": "ROLLBACK_CREATION_CARDINALITY",
+    "original_source_sha256": "de5cd1da2c3ed9a679acbd1f87621cd03c6470f8a97a49c0b420a5b16ab6ee6d",
+    "issue": "Exactly four newly created negatives cannot be assumed after inherited-list deduplication.",
+    "resolution": "Root corrected rollback to IDs actually created after dedup, never pre-existing records; reviewed final addendum hash is bound above.",
+    "reviewer_changed_source": false
+  },
+  "unresolved_material_defects": [],
+  "release_gates": [
+    "Ordinary Google identity/Save gate, exact current target/action authority and sole-writer ownership; no general growth or local-review approval becomes paid launch authority.",
+    "Fresh account/shared/campaign negatives and complete actual field readback before repair; record after-state and only actually created IDs.",
+    "Independent native-language and visual RTL/segmentation qualification, specific product and separate-item fit, verified country language/currency/variants/shipping/buyer route; pt-BR is not pt-PT. Human language review is advisory where uncertainty warrants it, not a newly imposed mandatory human approval gate.",
+    "Supported native geography and actual Search UI/control behavior; Russia remains held; no new country inferred from an unassigned language.",
+    "Before funding, reuse dated keyword evidence and validate auction/CPC feasibility, purchase instrumentation and a genuine valued purchase receiver/dedup path, actual basket/settlement/fulfillment/fees/refunds/overhead and exact approved exposure. A prior paid-attributed sale is not required for the first launch. Paid attribution, retained ROAS and realized profit are post-launch outcomes to measure, not pre-launch proof requirements."
+  ],
+  "independence_limits": [
+    "Saved Shopify response and root native UI summaries were reconciled locally; no independent live replay occurred. Source policy summaries were read, not re-fetched.",
+    "Localized semantic review is model-based, not human-native approval or proof of country demand, buyer-route quality, Google acceptance or profitable sales.",
+    "Literal negative overlap tests do not model close variants, native segmentation, inherited-list interactions or every legitimate query.",
+    "Prepared 65-country coverage and 75 inferred language groups are neither active account coverage nor 65 viable paid opportunities."
+  ],
+  "next_action": {
+    "owner": "root",
+    "action": "Finish the already-authorized exact current-campaign repair only after the normal identity/Save gate changes and fresh inherited-list/field readback passes; while unchanged, resolve one existing country Search qualification gap using prior evidence.",
+    "why_first": "A verified saved repair is the closest account outcome; an unresolved Save gate must not trigger repeated retries, editor reconstruction or additional PMax creative expansion."
+  },
+  "continuation_prompt": "Use this source-bound review. Preserve the paused US PMax, zero incremental paid authority and existing editor. On a changed valid Save handoff, execute only exact current-authorized repairs with before/after and actual-created-ID rollback; otherwise advance one independently executable Search qualification gap without repeating completed keyword queries.",
+  "clarification_note": {
+    "scope": "Two precision-only clarifications requested by root before final freeze; no new analysis, source changes, verdict changes or substantive check changes.",
+    "purchase_gate": "Pre-funding instrumentation, valued receiver and dedup validation does not require a prior paid-attributed sale. Paid attribution, retained ROAS and realized profit are post-launch outcomes.",
+    "language_review": "Human-native review was not performed. Independent native-language, RTL/segmentation and buyer-route qualification remains required; human review is advisory when uncertainty warrants it, not an added mandatory approval requirement."
+  }
+}

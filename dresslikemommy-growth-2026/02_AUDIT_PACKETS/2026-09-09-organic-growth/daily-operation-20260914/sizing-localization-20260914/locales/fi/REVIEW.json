@@ -1,0 +1,353 @@
+{
+  "schema": "dlm.sizing_localized_body_independent_review.v1",
+  "action_id": "TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+  "locale": "fi",
+  "target_resource": "gid://shopify/Article/559700574305",
+  "target_key": "body_html",
+  "market": null,
+  "reviewer": "/root/daily_operation_review",
+  "candidate_author": "/root/sizing_locales_b",
+  "reviewed_at_utc": "2026-09-14T23:35:25.472528+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "blocking_findings": [],
+  "independence": "Reviewer did not author this Group B candidate and made no candidate edits. Reviewer authored separate Group A candidates only.",
+  "candidate_sha256": "42b93f8f62ea8038755106222ce49d823ea73fb36c83c02121f2e4c90726ae67",
+  "english_source_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "before_sha256": "176c258912922876e3e8c4209ffe01ba0a80afd1b5094d04ab5f22c891c393d3",
+  "source_sha256": {
+    "ROOT_PLAN.json": "923dd593b8d656dc5f70387e7b7e6f0e1ce8514b9254c3ae74f875a51009e6f7",
+    "english-final.html": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+    "english-before.html": "7c6d26272eac0068e189434ea3bb2dd4990c5d6c018843141f8ca6fb624989c1",
+    "english-change-plan.json": "4960d5976e7a411b4e17ec24c5940e6b33526d79a0d08176e9ae71663cb1f704",
+    "ROUTES.json": "9f67a31a1463503fbd26a96669ce71f7d095a088d1a3941dee80d62be89999d5",
+    "locales/fi/before.html": "176c258912922876e3e8c4209ffe01ba0a80afd1b5094d04ab5f22c891c393d3",
+    "locales/fi/before.json": "98a1ca6f4a9c773983ff1ddf4eb6626ce4975479a708b2bb6d93562ff874ea5c",
+    "locales/fi/candidate.html": "42b93f8f62ea8038755106222ce49d823ea73fb36c83c02121f2e4c90726ae67",
+    "locales/fi/AUTHOR_NOTES.json": "7faddd4eedd7d22f632d0a2a7d08e57ef94876f62feda80e4813e0ade5e6c6ff"
+  },
+  "static_check_count": 12,
+  "static_checks": [
+    {
+      "id": "source_and_candidate_hash_bound",
+      "status": "PASS",
+      "evidence": "English final, candidate and before hashes independently recomputed and bound."
+    },
+    {
+      "id": "correct_existing_locale_identity",
+      "status": "PASS",
+      "evidence": "Existing global body_html row for the exact locale/article; no new locale or market identity."
+    },
+    {
+      "id": "reviewer_is_not_author",
+      "status": "PASS",
+      "evidence": "Reviewer authored Group A, not this Group B candidate."
+    },
+    {
+      "id": "balanced_forty_three_element_sequence",
+      "status": "PASS",
+      "evidence": "All43element positions match source and remain balanced."
+    },
+    {
+      "id": "all_four_discovered_locale_hrefs",
+      "status": "PASS",
+      "evidence": "All four hrefs equal locale routes in ROUTES.json; actual arrivals remain root-owned."
+    },
+    {
+      "id": "all_thirteen_styles_match_final_english",
+      "status": "PASS",
+      "evidence": "One table and twelve cell style attributes exactly match verified final English."
+    },
+    {
+      "id": "unchanged_headings_labels_and_intro_preserved",
+      "status": "PASS",
+      "evidence": "Unchanged headings/table labels, intro text and shopping-link labels preserved, with the required locale href change only."
+    },
+    {
+      "id": "final_paragraph_unchanged_prefix_preserved",
+      "status": "PASS",
+      "evidence": "Original final-paragraph prefix and first shopping label are retained; only the contact help clause changes."
+    },
+    {
+      "id": "no_other_byte_changes",
+      "status": "PASS",
+      "evidence": "Reversing only22semantic element spans,4hrefs and13style additions reproduces every original byte."
+    },
+    {
+      "id": "universal_ranges_and_unrelated_markup_absent",
+      "status": "PASS",
+      "evidence": "Invented universal size ranges removed; no executable or submission markup added."
+    },
+    {
+      "id": "all_nineteen_semantic_changes_reviewed",
+      "status": "PASS",
+      "evidence": "Every19source change reviewed individually across22corresponding element spans, including both contact paragraphs and six revised table cells."
+    },
+    {
+      "id": "language_findings_scoped_honestly",
+      "status": "PASS",
+      "evidence": "Changed guidance is intelligible and semantically faithful. Per-locale idiomatic limitations and proven inherited wording weaknesses are recorded; this is not full legacy-copy or human-native certification."
+    }
+  ],
+  "semantic_check_count": 19,
+  "semantic_checks": [
+    {
+      "english_change_id": 1,
+      "element_indices_zero_based": [
+        5
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Exact product chart; body versus garment measurements; same units/method; flat width distinct from circumference; clarify unclear method.",
+      "candidate_spans": [
+        "Aloita juuri sen vaatteen kokotaulukosta, jonka haluat tilata. Tarkista, mitä mittoja siinä pyydetään ja ovatko ne vartalon vai vaatteen mittoja. Noudata ohjeita ja käytä samoja mittayksiköitä kuin taulukossa. Tasolle levitetyn vaatteen leveys ei ole sama mitta kuin vartalon ympärysmitta. Jos mittaustapa on epäselvä, pyydä selvennystä ennen koon valintaa."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 2,
+      "element_indices_zero_based": [
+        6
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Adult women heading directs to the selected piece chart.",
+      "candidate_spans": [
+        "Aikuisten naisten koot: tarkista valitun vaatteen kokotaulukko"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 3,
+      "element_indices_zero_based": [
+        7
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Compare each measurement; no size choice from letters/photos; cross-size or unclear fit requires help; larger size is not a universal solution.",
+      "candidate_spans": [
+        "Kun valitset äidin ja lapsen yhteensopivia mekkoja, toppeja tai asukokonaisuuksia, vertaa omia mittojasi kyseisen aikuisen vaatteen kokotaulukkoon. Tarkista jokainen ilmoitettu mitta sen sijaan, että valitsisit koon pelkän kirjainmerkinnän tai valokuvassa näkyvän asun perusteella. Jos mittasi osuvat eri kokoihin tai taulukko ei selvennä tarvitsemaasi istuvuutta, pyydä apua ennen tilaamista. Älä oleta, että suurempi koko ratkaisee kaikki istuvuuteen liittyvät kysymykset."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 4,
+      "element_indices_zero_based": [
+        9
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Measure each child separately using current chart dimensions; age alone is insufficient; available age ranges cannot be assumed.",
+      "candidate_spans": [
+        "Mittaa jokainen lapsi erikseen valitun tuotteen kokotaulukossa pyydetyistä kohdista. Käytä tämänhetkisiä mittoja; pelkkä ikämerkintä ei kerro, istuuko vaate. Tarkista kyseisen tuotteen saatavilla olevat lastenkoot sen sijaan, että olettaisit kaikkien yhteensopivien mallien kattavan saman ikähaarukan."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 5,
+      "element_indices_zero_based": [
+        10
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Disclose layers/future wear; no automatic growth upsizing; use product dimensions and verified fit guidance.",
+      "candidate_spans": [
+        "Jos asun kanssa käytetään toista vaatekerrosta tai suunnittelet sen käyttöä myöhempänä ajankohtana, kerro siitä kysyessäsi istuvuudesta. Älä tilaa automaattisesti suurempaa kokoa tulevan kasvun varalta. Valinnan tulee perustua tuotteen mittoihin ja mahdollisiin vahvistettuihin istuvuusohjeisiin."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 6,
+      "element_indices_zero_based": [
+        12
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Specific adult shirt/piece; S/M/L/XL alone insufficient; garment comparison requires same method; body charts require body instructions.",
+      "candidate_spans": [
+        "Tarkista isän ja lapsen yhteensopivien paitojen sekä muiden aikuisten vaatteiden mitat juuri kyseisen tuotteen sivulta. Tuttu S-, M-, L- tai XL-merkintä ei riitä varmistamaan toisen vaatteen istuvuutta. Jos taulukossa ilmoitetaan vaatteen mitat, voit verrata niitä hyvin istuvaan vaatteeseen vain käyttämällä samaa mittaustapaa. Jos taulukossa ilmoitetaan vartalon mitat, noudata sen sijaan vartalon mittausohjeita."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 7,
+      "element_indices_zero_based": [
+        13
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Family-member checklist heading.",
+      "candidate_spans": [
+        "Mitä jokaisen perheenjäsenen kohdalla kannattaa tarkistaa"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 8,
+      "element_indices_zero_based": [
+        14
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Current chart and available options; shopping aid is not a universal chart or size-range promise.",
+      "candidate_spans": [
+        "Käytä jokaisen valitun vaatteen ajantasaista taulukkoa ja saatavilla olevia vaihtoehtoja. Tämä tarkistuslista on ostamisen apuväline, ei yleispätevä kokotaulukko tai lupaus siitä, että kaikkia malleja on saatavilla samoissa koissa:"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 9,
+      "element_indices_zero_based": [
+        20
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Confirm before ordering column heading.",
+      "candidate_spans": [
+        "Varmista ennen tilaamista"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 10,
+      "element_indices_zero_based": [
+        24,
+        25
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Adult piece measurements, chart units, measurement method and available size.",
+      "candidate_spans": [
+        "Valitun aikuisen vaatteen edellyttämät mitat",
+        "Taulukon mittayksiköt, mittaustapa ja saatavilla oleva koko"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 11,
+      "element_indices_zero_based": [
+        28,
+        29
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Current child measurements and selected child size rather than age alone.",
+      "candidate_spans": [
+        "Jokaisen lapsen tämänhetkiset mitat taulukon ohjeiden mukaan",
+        "Valittu lapsen koko, ei pelkkä ikä"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 12,
+      "element_indices_zero_based": [
+        32,
+        33
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Selected shirt/other-piece measurements; distinguish body from garment chart.",
+      "candidate_spans": [
+        "Valitun paidan tai muun vaatteen edellyttämät mitat",
+        "Ilmoittaako taulukko vartalon vai vaatteen mitat"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 13,
+      "element_indices_zero_based": [
+        34
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Unclear-size help heading.",
+      "candidate_spans": [
+        "Mitä tehdä, jos koon valinta on epäselvä"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 14,
+      "element_indices_zero_based": [
+        36
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Recheck exact chart, units and measurement instructions.",
+      "candidate_spans": [
+        "Tarkista uudelleen juuri kyseisen tuotteen kokotaulukko, sen mittayksiköt ja mittausohjeet."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 15,
+      "element_indices_zero_based": [
+        37
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Use verified product details; do not infer fit or stretch from photos.",
+      "candidate_spans": [
+        "Käytä vahvistettuja tuotetietoja sen sijaan, että arvioisit istuvuutta tai joustavuutta valokuvasta."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 16,
+      "element_indices_zero_based": [
+        38
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Request help for measurements spanning sizes or incomplete chart.",
+      "candidate_spans": [
+        "Pyydä apua, jos mitat osuvat eri kokoihin tai taulukko on puutteellinen."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 17,
+      "element_indices_zero_based": [
+        39
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Each cart row: wearer, piece, size, quantity; separate selections may be needed; confirm included items.",
+      "candidate_spans": [
+        "Tarkista ennen kassalle siirtymistä jokaiselta ostoskorin riviltä, kenelle vaate on tarkoitettu, mikä vaate on valittu sekä koko ja määrä. Yhteensopivat tuotteet saattavat vaatia erilliset valinnat; varmista, mitä tuotteeseen sisältyy."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 18,
+      "element_indices_zero_based": [
+        2
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Contact before ordering with product, wearer and unclear measurements; no response or delivery promise.",
+      "candidate_spans": [
+        "Jos tuotteen kokotaulukko ei vastaa kysymykseesi, <a href=\"/fi/pages/contact-us\">ota meihin yhteyttä</a> ennen tilaamista. Kerro tuotteen nimi, kenelle valitsemasi vaate on tarkoitettu ja mitkä mitat vaativat selvennystä."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 19,
+      "element_indices_zero_based": [
+        40
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Preserve prior shopping guidance and direct remaining sizing questions to contact before ordering.",
+      "candidate_spans": [
+        "Paras lopullinen vaihe on rakentaa ostoskori hitaasti, tarkistaen jokainen perheenjäsen tuotteen sivun tietojen mukaan sen sijaan, että käsittelisit koko settiä yhtenä kokovalintana. Aloita <a href=\"/fi/collections/matching-outfits\">Yhdenmukaiset asut</a> -osiosta ja <a href=\"/fi/pages/contact-us\">ota meihin yhteyttä</a>, jos tuotteen kokotiedot vaativat selvennystä ennen tilaamista."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    }
+  ],
+  "language_review": {
+    "confidence": "Medium-high for the bounded meaning and grammar checks; Finnish idiomatic nuance remains model-assessed. No native certification.",
+    "notes": "Vartalon versus vaatteen mitat and leveys versus ympärysmitta preserve the critical dimensional distinction. Units, current child measures, same-method garment comparison and conditional separate selections are all present. No automatic upsizing instruction remains in changed content.",
+    "inherited": [
+      {
+        "element": 0,
+        "excerpt": "isän mieltynyt väljyys",
+        "note": "Legacy awkward phrasing retained in the unchanged introduction."
+      }
+    ],
+    "style_limits": [
+      "Aikuisen vaatteen is understandable here as an adult garment; aikuisille tarkoitetun vaatteen would be more explicit, but the current wording does not reverse body-versus-garment guidance."
+    ]
+  },
+  "reviewer_language_basis": "Model multilingual competence used for direct source/target comparison; no human review or native-speaker certification claimed.",
+  "scope_qualification": "Acceptance covers the exact19English semantic corrections, four locale paths, formatting and unchanged-copy preservation. Existing legacy grammatical/style weaknesses deliberately retained under the narrow task are not certified as polished full-article copy.",
+  "not_verified": [
+    "Actual per-locale article/shopping/contact arrivals, displayed language and market behavior.",
+    "Public desktop/mobile table layout and long-word wrapping after save.",
+    "Live translation persistence, fresh source digest and preservation of unrelated translation/source fields.",
+    "Traffic, sales, contribution profit or customer-message delivery."
+  ],
+  "external_actions": 0,
+  "candidate_edits_by_reviewer": 0,
+  "next_action": "Root may use this exact hash in its bounded publication packet after remaining route/render/source guards; any candidate change requires review of the changed bytes."
+}

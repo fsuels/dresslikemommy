@@ -1,0 +1,134 @@
+{
+  "action": "TA07-DE-25-REPAIR-20260914",
+  "reviewer": "/root/merchant_translation_review",
+  "reviewed_at_utc": "2026-09-15T00:01:00.305192+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewed_proposal_sha256": "c7bd80dab869af66ea9ed5426193eb7e6d323845a21a7e03df7d0a8d60f56fd8",
+  "reviewed_query_sha256": "c4f698c881b924a27912aa58c6d52f041c46987eb251121829b2a9ff0a7b2edf",
+  "reviewed_variables_sha256": "1abdc0dc343b0bafeaa44ea271beb874fa76458554be58f4dd1a5757d496089f",
+  "independent_prewrite_review_sha256": "6a74d7ef086e7bf686ac84763e99365e9a1213ec069ebe0c527f05724689f255",
+  "independence": {
+    "did_not_author_or_execute_repair": true,
+    "external_calls": 0,
+    "private_saved_responses_compared_directly": true,
+    "owned_artifact": "independent_after_review.json only",
+    "root_guard_output_not_overwritten": true
+  },
+  "clocks": {
+    "fresh_source_completed_at": "2026-09-14T23:54:36Z",
+    "root_guard_validated_at": "2026-09-14T23:57:34.333924+00:00",
+    "root_recorded_mutation_started_at": "2026-09-14 23:57:53 UTC",
+    "root_recorded_mutation_completed_at": "2026-09-14 23:57:55 UTC",
+    "after_observed_at": "2026-09-14T23:58:20Z",
+    "after_completed_at": "2026-09-14T23:58:21Z",
+    "chronology_and_source_age": "PASS"
+  },
+  "results": {
+    "approved_global_German_fields_exact_and_current": 25,
+    "untargeted_German_fields_identical": 25,
+    "English_source_fields_and_digests_identical": 60,
+    "ACTIVE_product_identity_status_title_handle_URL_records_identical": 10,
+    "receipt_aliases": 10,
+    "receipt_exact_current_values": 25,
+    "user_errors": 0,
+    "German_outdated_before": 25,
+    "German_outdated_after": 0,
+    "expected_entire_after_data_matches_actual": true,
+    "changed_scalar_values": 25,
+    "changed_outdated_flags": 25,
+    "unrelated_data_differences": 0
+  },
+  "checks": [
+    {
+      "name": "Frozen approval and executable bindings",
+      "status": "PASS",
+      "detail": "Approved proposal/query/variables and prewrite-review hashes unchanged; exact ten-alias mutation submits only the 25 reviewed global-DE values and source digests."
+    },
+    {
+      "name": "Mutation receipt",
+      "status": "PASS",
+      "detail": "Structured receipt has exactly r0-r9, no transport error or userErrors, and all 25 exact submitted translations returned with locale de and outdated false."
+    },
+    {
+      "name": "Exact private before/prewrite/after comparison",
+      "status": "PASS",
+      "detail": "Before data equals fresh prewrite. Every after translation matches the approved value hash and current flag. All 25 untargeted DE fields, 60 English source values/digests and ten product records remain identical."
+    },
+    {
+      "name": "Whole-response scoped reconstruction",
+      "status": "PASS",
+      "detail": "Copied fresh data and changed only the 25 approved translation values plus outdated flags. That complete expected data equals actual after data. Recursive diff contains exactly those 50 scalar changes."
+    },
+    {
+      "name": "Guard cross-check",
+      "status": "PASS",
+      "detail": "Previously reviewed guard code is unchanged. Independently reproduced its after assertions in memory and matched root reports/bindings. Did not execute its report-writing path."
+    }
+  ],
+  "findings": [],
+  "repair_needed": null,
+  "exclusions": [
+    "Tropical product 7227378925665 remains outside the operation.",
+    "No approval or verification of new feeds, commercial terms, theme/FAQ changes, paid activation or market-specific overrides."
+  ],
+  "limits": [
+    "Evidence is the saved private Shopify responses and structured mutation receipt, independently compared locally; reviewer made no new external read.",
+    "Other locales, variants, prices, inventory and publications were not fetched; exact mutation scope excludes changes to them, but their live state is not independently verified here.",
+    "Public German rendering is being checked by root. Merchant submission, feed eligibility, market checkout readiness, serving, ratings, traffic and sales remain separate checks."
+  ],
+  "evidence": [
+    {
+      "file": "independent_prewrite_review.json",
+      "sha256": "6a74d7ef086e7bf686ac84763e99365e9a1213ec069ebe0c527f05724689f255"
+    },
+    {
+      "file": "proposal.json",
+      "sha256": "c7bd80dab869af66ea9ed5426193eb7e6d323845a21a7e03df7d0a8d60f56fd8"
+    },
+    {
+      "file": "register.graphql",
+      "sha256": "c4f698c881b924a27912aa58c6d52f041c46987eb251121829b2a9ff0a7b2edf"
+    },
+    {
+      "file": "register.variables.json",
+      "sha256": "1abdc0dc343b0bafeaa44ea271beb874fa76458554be58f4dd1a5757d496089f"
+    },
+    {
+      "file": "mutation_receipt.json",
+      "sha256": "9b4d69a0a8f8ec5d280cf0919d18993ed80c6a65e945019f7833e0b3dbb9a05a"
+    },
+    {
+      "file": "mutation_clock.json",
+      "sha256": "4301713bd22646dcbd0d0d1500d5f5143693e53ef04b9ae8075c2e7a53aada81"
+    },
+    {
+      "file": "prewrite_verification.json",
+      "sha256": "6966c86bf6dbaa0ef659d517e79632b33e21780b1ded663c68790fdb098d1166"
+    },
+    {
+      "file": "after_verification.json",
+      "sha256": "4bb450d8ef81c0ec0231a551b5b4a4c06113e5a9e4e7c9b086016b60702067fe"
+    },
+    {
+      "file": "execution_intent.json",
+      "sha256": "d27f2b68ec5cfdeb3c5f6af77f07fd895951f5c3aef19f7407089744a7b20412"
+    },
+    {
+      "file": "verify_repair.py",
+      "sha256": "9fcc8ed5b6a1ae6a08cdf8b2409c553834dea52252c718831c923b9ca728db43"
+    },
+    {
+      "private_artifact": "before.json",
+      "sha256": "e64a1856e6bea356943218951af43104d3f4bf31b39f44352bc1bad78c4e461e"
+    },
+    {
+      "private_artifact": "prewrite_final.json",
+      "sha256": "db7f41c60c786ba1d15ed737d7f5a2b9fbf959848ba262c9e7b3aa48f1acab52"
+    },
+    {
+      "private_artifact": "after.json",
+      "sha256": "dc07c38e136ca4abaeab267e2c10379f8986207aa835d5a1a612b5e1c7e7bad4"
+    }
+  ],
+  "next_action": "Close the exact DE25 translation repair without repeating the mutation; use root public smoke results for the separate rendering check."
+}

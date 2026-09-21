@@ -1,0 +1,331 @@
+<div id="page-content">
+
+<script>// <![CDATA[
+function remove_classes_active() {
+    alert( 'FOUND' );
+    var $aSelected = $('.question-answer-block').find('a');
+    
+    if( $aSelected.hasClass('active') ){
+      alert( 'FOUND' );
+      $('.question-answer-block > a').removeClass('active');
+    }else{
+      alert( 'NOT FOUND' );
+    }
+  }
+// ]]></script><script>// <![CDATA[
+jQuery("document").ready(function($){
+    var nav = $('#nav');
+    $(window).scroll(function () {
+     	if(getWidthBrowser() > 1200){
+    		if ($(this).scrollTop() > 136){
+              nav.addClass("on animated"); 		
+            } 
+            else {
+              nav.removeClass("on animated"); 		
+            } 
+  		}
+          $('#goGrid').trigger('click');
+
+      
+    });  
+    
+  });
+// ]]></script>
+<div class="help-page">
+
+<div id="General Questions">
+
+<div class="faq-item-title" name="General Questions">
+
+<h2> Sobre nosotros</h2>
+
+<div class="question-answer-block">
+
+<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Preguntas generales</a>
+</h3>
+
+<div class="answer" style="display: none; font-size: 16px;">
+
+<p> <strong>1. ¿Es seguro utilizar este sitio?</strong></p>
+
+<p> Por supuesto que sí. Usamos PayPal para procesar los pagos, por lo que ni siquiera nuestro personal puede ver los detalles de tu pago. PayPal es el proveedor de pagos seguros más grande del mundo. Nuestro sitio web está construido sobre la plataforma segura de Shopify. Toda tu información personal está protegida de forma estricta.</p>
+
+ <p></p>
+
+<p><strong>2. ¿Con qué rapidez responde a las consultas por correo electrónico?</strong></p>
+
+<p> Respondemos todos los correos electrónicos dentro de un día hábil.</p>
+
+<p></p>
+
+<p> <strong>3. ¿Dónde estás basado?</strong></p>
+
+<p> Nuestras principales operaciones se llevan a cabo en la Unión Europea acompañadas de nuestro Centro de Soporte en Lituania y Fabricantes y Almacenes en el Este de Asia.</p>
+
+<p></p>
+
+<p> <strong>4. ¿Por qué eres tan tacaño?</strong></p>
+
+<p> Eliminamos a todos los intermediarios y entregamos los productos directamente a los consumidores desde nuestros fabricantes, lo que nos permite ofrecer precios extremadamente bajos. </p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+<div id="Before You Place an Order">
+
+<div class="faq-item-title" name="before you place an order">
+
+<h2> Antes de realizar un pedido</h2>
+
+
+</div>
+
+<div class="question-answer-block">
+
+<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Dimensionamiento</a>
+</h3>
+
+<div class="answer" style="display: none; font-size: 16px;">
+
+<p> <strong>1. ¿Dónde puedo encontrar la tabla de tallas en centímetros?</strong></p>
+
+ <p>Puede encontrar tablas de tallas en centímetros en nuestra página de tallas aquí: <a href="http://www.assassinshoodies.com/pages/sizing-information" alt="Sizing Page">Página de Tallas</a> o en la descripción de cada producto.</p>
+
+<p></p>
+
+<p> <strong>2. ¿Recibiré un artículo dos tallas más grande?</strong></p>
+
+<p> No. Te enviaremos la talla que hayas pedido. Si normalmente usas una talla mediana europea, selecciona la talla mediana (M) y recibirás una talla mediana.</p>
+
+
+</div>
+
+
+</div>
+
+<div class="question-answer-block">
+
+<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Pagos</a>
+</h3>
+
+<div class="answer" style="display: none; font-size: 16px;">
+
+<p> <strong>1. ¿Qué tipos de pagos aceptan?</strong></p>
+
+<p> Aceptamos PayPal y tarjetas de crédito/débito (Visa, Mastercard, American Express, Discover).</p>
+
+<p></p>
+
+<p> <strong>2. Quiero pagar con mi tarjeta de crédito, pero me redirigen a la página de PayPal.</strong></p>
+
+ <p>Utilizamos PayPal para procesar todos nuestros pagos. En la página de PayPal que aparece a la derecha, puedes seleccionar entre dos opciones: “Pagar con mi cuenta de PayPal” <i>o</i> “Pagar con mi tarjeta de crédito o débito”.</p>
+
+
+</div>
+
+
+</div>
+
+<div class="question-answer-block">
+
+<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">C. Envío</a>
+</h3>
+
+<div class="answer" style="display: none; font-size: 16px;">
+
+<p> <strong>1. ¿Cuál es el precio del envío?</strong></p>
+
+<p> Ofrecemos envío totalmente GRATIS a todo el mundo.</p>
+
+<p></p>
+
+<p> <strong>2. ¿Hacen envíos a mi país?</strong></p>
+
+<p> Sí, hacemos envíos a todos los países del mundo.</p>
+
+<p></p>
+
+<p> <strong>3. ¿Cuánto tiempo tardaré en llegar mi pedido?</strong></p>
+
+<p> El plazo de entrega suele ser de entre 15 y 30 días. No obstante, puedes consultar el plazo de entrega exacto aquí: <a href="https://www.dresslikemommy.com/pages/shipping-and-delivery" alt="Shipping Page">Página de envíos</a></p>
+
+<p></p>
+
+ <p><strong>4. ¿Tengo que pagar algún arancel aduanero?</strong></p>
+
+<p> No, no es necesario pagar aranceles aduaneros. Marcamos todos nuestros pedidos como obsequios de bajo valor. Además, enviamos pedidos más grandes en paquetes separados. </p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+<div id="After You Place an Order">
+
+<div class="faq-item-title" name="After You Place an Order">
+
+<h2> Después de realizar un pedido</h2>
+
+
+</div>
+
+<div class="question-answer-block">
+
+<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Estado del pedido</a>
+</h3>
+
+<div class="answer" style="display: none; font-size: 16px;">
+
+<p> <strong>1. ¿Qué significa: estado del pedido "No cumplido"?</strong></p>
+
+<p> Su pedido está siendo procesado y el número de seguimiento del pedido está pendiente. Por lo general, procesamos los pedidos y enviamos a nuestros clientes el número de seguimiento cuando el número de seguimiento del pedido se envía al sistema postal, lo que demora entre 5 y 7 días después de que el pedido ya se haya enviado.</p>
+
+<p></p>
+
+<p> <strong>2. ¿Qué significa: estado del pedido "Cumplido"?</strong></p>
+
+<p> Eso significa que su pedido está siendo enviado.</p>
+
+<p></p>
+
+ <p><strong>3. Ha pasado demasiado tiempo, ¿dónde está mi pedido?</strong></p>
+
+<p> Consulta el seguimiento de tu pedido para obtener más información. Si el problema persiste, envíanos un correo electrónico a: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+
+
+</div>
+
+
+</div>
+
+<div class="question-answer-block">
+
+<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Seguimiento de pedidos</a>
+</h3>
+
+<div class="answer" style="display: none; font-size: 16px;">
+
+<p> <strong>1. ¿Cómo puedo rastrear mi pedido?</strong></p>
+
+<p> Te proporcionamos el código de seguimiento del pedido entre 5 y 7 días después de realizarlo. Puedes hacer un seguimiento de tu pedido aquí: <a hef="www.assassinshoodies.com/pages/track-your-order" alt="Track Your Order">Seguimiento de tu pedido</a></p>
+
+<p></p>
+
+<p> <strong>2. Mi código de seguimiento dice “pendiente” o “no hay información disponible en este momento”.</strong></p>
+
+ <p>A veces, los primeros resultados de seguimiento aparecen entre 5 y 10 días hábiles después de recibir el número de seguimiento del pedido. Si el problema persiste durante más de 10 días hábiles, comuníquese con nosotros: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+
+<p></p>
+
+<p> <strong>3. Mi código de seguimiento dice "vencido"</strong></p>
+
+<p> Comuníquese con nosotros: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> y resolveremos rápidamente este problema.</p>
+
+<p></p>
+
+<p> <strong>4. ¿Cómo puedo mantenerme actualizado sobre el seguimiento de mi pedido?</strong></p>
+
+<p> Utilizamos el sistema de seguimiento After Ship para rastrear los pedidos de nuestros clientes, por lo que cada vez que se actualice la información de seguimiento, debería recibir un correo electrónico.</p>
+
+
+</div>
+
+
+</div>
+
+<div class="question-answer-block">
+
+ <h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Quiero cambiar o cancelar mi pedido</a></h3>
+
+<div class="answer" style="display: none; font-size: 16px;">
+
+<p> <strong>1. Pedí algo, pero quiero cancelarlo.</strong></p>
+
+<p> Debes comunicarte con nosotros dentro de 1 día hábil después de realizar el pedido para coordinar un cambio. Puedes hacerlo enviando un correo electrónico <a href="mail%20to:support@dresslikemommy.com">a support@dresslikemommy.com</a> con tu número de pedido como asunto.</p>
+
+<p></p>
+
+<p> <strong>2. Pedí algo, pero quiero cambiar el color o el tamaño del artículo.</strong></p>
+
+<p> Debes comunicarte con nosotros dentro de 1 día hábil después de realizar el pedido para coordinar un cambio de pedido. Puedes hacerlo enviando un correo electrónico <a href="mail%20to:support@dresslikemommy.com">a support@dresslikemommy.com</a> con tu nueva opción de color o talle.</p>
+
+<p></p>
+
+ <p><strong>3. Pedí algo, pero quiero cambiar la dirección de entrega.</strong></p>
+
+<p> Debes comunicarte con nosotros dentro de 1 día hábil después de realizar el pedido para coordinar un cambio de pedido. Puedes hacerlo enviando un correo electrónico <a href="mail%20to:support@dresslikemommy.com">a support@dresslikemommy.com</a> con tu nueva dirección de envío. </p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+<div id="After You Receive an Order">
+
+<div class="faq-item-title" name="After You Receive an Orde">
+
+<h2> Después de recibir un pedido</h2>
+
+
+</div>
+
+<div class="question-answer-block">
+
+<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Quiero cambiar o devolver mi pedido</a>
+</h3>
+
+<div class="answer" style="display: none; font-size: 16px;">
+
+<p> <strong>1. Mi pedido llegó, pero los artículos eran dos tallas más grandes.</strong></p>
+
+ <p>Tenga en cuenta que todos los tamaños en nuestra tienda se muestran en unidades de medida de la UE y EE. UU. Si bien el tamaño real de la prenda (escrito en el producto) suele ser dos veces mayor. Nuestros fabricantes están ubicados en el este de Asia y enviamos automáticamente el tamaño asiático equivalente al tamaño europeo/estadounidense. Eso significa que si pides M (UE/EE. UU.), te enviaremos el equivalente asiático Extra Grande (XL).</p>
+
+<p></p>
+
+<p> <strong>2. Mi pedido llegó, pero recibí los artículos equivocados.</strong></p>
+
+<p> Comuníquese con nosotros a <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> y proporciónenos su número de pedido. Si el problema es nuestro, puede devolvernos los artículos y le enviaremos los artículos correctos a nuestro cargo (o le reembolsaremos el dinero).</p>
+
+<p></p>
+
+<p> <strong>3. Mi pedido llegó y quiero cambiar la talla/color</strong></p>
+
+ <p>Comuníquese con nosotros a <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> y proporciónenos su número de pedido. Puede devolvernos su artículo y le enviaremos uno nuevo con la talla actualizada. *Los costos de envío correrán por su cuenta.</p>
+
+<p></p>
+
+<p> <strong>4. Mi pedido llegó, pero quiero devolverlo.</strong></p>
+
+<p> Comuníquese con nosotros a <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> y proporciónenos su número de pedido. Puede devolvernos el artículo y le reembolsaremos el importe. *Los gastos de envío correrán a su cargo.</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>

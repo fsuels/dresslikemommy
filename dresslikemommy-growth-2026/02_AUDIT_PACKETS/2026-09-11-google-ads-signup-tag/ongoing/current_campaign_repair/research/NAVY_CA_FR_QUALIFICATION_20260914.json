@@ -1,0 +1,187 @@
+{
+  "schema": "dlm.localized_paid_landing_qualification.v1",
+  "decision_id": "ADS650-NAVY-CA-FR-QUALIFICATION-20260914",
+  "stage": "VERIFY",
+  "status": "PARTIAL_BUYER_PATH_VERIFIED__LOCALIZATION_CORRECTIONS_PREPARED__LAUNCH_HELD",
+  "created_at_utc": "2026-09-14T23:47:09Z",
+  "operator_task": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+  "canonical_integration_owner": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "canonical_prompt": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "action_id": "TA-10",
+  "source_live_evidence_as_of": "2026-06-01",
+  "source_live_evidence_as_of_scope": "Existing authoritative command control; distinct from this exact September 14 public-browser observation.",
+  "live_state_mode": "STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+  "approved_external_scope": "NONE",
+  "observed_browser_window_utc": ["2026-09-14T23:32:39Z", "2026-09-14T23:41:04Z"],
+  "window_precision": "Clock-bounded interval containing this turn's native browser observations, not per-action timestamps.",
+  "scope": {
+    "product_id": "7670609346657",
+    "handle": "navy-sprig-mommy-and-me-dresses",
+    "country": "CA",
+    "language_route": "fr",
+    "currency": "CAD",
+    "product_url": "https://www.dresslikemommy.com/fr/products/navy-sprig-mommy-and-me-dresses?country=CA&currency=CAD",
+    "checkout_locale": "fr-ca",
+    "browser": "Task-owned Codex in-app browser 1, temporary tab 6",
+    "viewport_scope": "Existing desktop viewport only; no narrow-viewport check this turn."
+  },
+  "source_reuse": [
+    {
+      "path": "research/all_market_build_20260914/LOCALE_ADS_EUROPE.json",
+      "sha256": "18ec00d08ed2b38780d800150f112f57c0f3e523932ee516290409d952b8006e",
+      "use": "Unchanged French ad copy, two unmeasured exact research seeds and five phrase-negative candidates; this country-route test does not establish keyword demand."
+    },
+    {
+      "path": "research/NAVY_AU_COST_SOURCE_20260914.json",
+      "sha256": "30049d8d45c33eaebd7389cdc43ec24e1e6f610a00d68ac3d7e8e77b927ee3e0",
+      "use": "Same-day complete 24-variant identity and size inventory only. AU contextual prices are not substituted for Canadian prices; configured USD goods costs are not landed costs."
+    }
+  ],
+  "verified": {
+    "initial_cart_quantity": 0,
+    "selected_country_label": "Canada | CAD $",
+    "selected_language_label": "Français",
+    "selection_requires_size_and_type": true,
+    "items_added": [
+      {"variant_id": "46501139611745", "type": "Robe", "size": "Maman M", "quantity": 1, "unit_price": "40.00", "currency": "CAD"},
+      {"variant_id": "46501139415137", "type": "Robe", "size": "Fille 4 ans", "quantity": 1, "unit_price": "34.00", "currency": "CAD"}
+    ],
+    "cart_quantity": 2,
+    "cart_subtotal": "74.00",
+    "checkout_country": "Canada",
+    "checkout_language": "French",
+    "checkout_items_match_cart": true,
+    "checkout_subtotal": "74.00",
+    "checkout_currency": "CAD",
+    "shipping_message": "Saisissez votre adresse d’expédition pour voir les modes d’expédition disponibles.",
+    "contact_address_and_payment_fields": "Left empty; no values entered or submitted.",
+    "final_cart_quantity": 0,
+    "final_cart_message": "Votre panier est vide",
+    "temporary_tab_closed": true,
+    "ads_editor_preserved": "Existing tab 2 marked for handoff; no Save, authentication attempt or field edits this turn."
+  },
+  "public_observation_excerpts": {
+    "product": [
+      "Facultatif : choisissez une taille pour chaque membre de la famille que vous souhaitez inclure. Chaque sélection ajoute une pièce distincte au panier. 1 Choose who this piece is for",
+      "2 Choose size and options Maman Robe",
+      "Maman size",
+      "Fille size",
+      "Ready to add Maman - M - 40,00 $CA",
+      "Ready to add Fille - 4 ans - 34,00 $CA",
+      "ADD THIS PIECE TO BAG",
+      "Hip (Cm)",
+      "Construisez votre ensemble correspondant",
+      "Filles, enfants de 2 ans à enfants de 9 à 10 ans et mère S-3XL pour la robe et le cardigan.",
+      "Echaque pièce est sélectionnée indépendamment par type et taille, le panier contient donc uniquement le vêtement que vous choisissez."
+    ],
+    "cart": [
+      "variant=46501139415137; Robe; Fille 4 ans; quantity 1; $34.00",
+      "variant=46501139611745; Robe; Maman M; quantity 1; $40.00",
+      "$74.00 CAD",
+      "Taxes calculated at checkout.",
+      "Shipping details",
+      "Procéder au paiement"
+    ],
+    "checkout": [
+      "Dress Like Mommy Paiement",
+      "Pays/région: Canada",
+      "Robe / Fille 4 ans; quantity 1; 34,00 $",
+      "Robe / Maman M; quantity 1; 40,00 $",
+      "Sous-total · 2 articles: 74,00 $",
+      "CAD",
+      "Saisir une adresse d’expédition"
+    ],
+    "normalization": "Selected public text only; whitespace normalized and related displayed labels/values grouped. These are operator excerpts, not a complete raw AX transcript. Checkout identifiers, wallet URLs and customer data are excluded."
+  },
+  "local_source_reconciliation": {
+    "observed_at_utc": "2026-09-14T23:47:09Z",
+    "classification": "REPO_KNOWN__NOT_LIVE_DEPLOYMENT_PROOF",
+    "cause": "UNKNOWN: publication state, effective live asset and locale/runtime selection require exact owner reconciliation; the discrepancy alone does not prove that republishing fixes it.",
+    "finding": "Four proposed replacements already exist in the current local module referenced by the local product template. Reuse the existing owner's prepared wording and release; do not duplicate edits or modify the frozen theme candidate. The live public route still showed English in this earlier browser window.",
+    "loaded_module_reference": {"path": "sections/main-product.liquid", "line": 933, "asset": "product-desktop-ux-20260513-ruler-sync.js", "sha256": "01a345e7d32c7bb23c6ba159c9388d7f9a839116378a56ef3fdcb351f1f3e6f1"},
+    "local_module": {
+      "path": "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "sha256": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20",
+      "french_block_start_line": 508,
+      "existing_values": {
+        "chooseRoleStep": "Choisissez à qui cette pièce est destinée",
+        "chooseOptionsStep": "Choisissez la taille et les options",
+        "chooseRoleCta": "Choisissez un membre de la famille",
+        "addCurrentPiece": "Ajouter cette pièce au panier",
+        "readyToAdd": "Prête à être ajoutée"
+      },
+      "remaining_size_label_expression": "escapeHtml(group.label + ' size')",
+      "remaining_size_label_line": 3293
+    },
+    "remaining_cart_sources": [
+      {"path": "sections/main-cart-footer.liquid", "sha256": "89712b8893fdca9cbc3f0bc335f986b0b218ba8fb3b1aa0aeff5602408470865", "tax_text_line": 141, "shipping_details_line": 146},
+      {"path": "snippets/cart-drawer.liquid", "sha256": "4fe84c743dd340f9298a6579295a786feca92bb97295966f392499936f35bcf3", "tax_text_line": 624, "shipping_details_lines": [634, 640]}
+    ],
+    "remaining_heading_source": {"path": "locales/fr.json", "line": 197, "sha256": "16925cc07dbf3689ea129dce67215b50a278a7fe558d78ac54802b2bf0098acd"},
+    "measurement_and_product_body_source": "Exact authoritative translation/measurement fields still require their existing owner to resolve before mutation.",
+    "limitations": "The current local template reference is not proof of the script served by the live theme or of any theme publication. Local source hashes may drift; revalidate only affected source before any implementation."
+  },
+  "correction_candidates": [
+    {"id": "CAFR-01", "scope": "French product purchase controls", "before": "Choose who this piece is for", "after": "Choisissez à qui cette pièce est destinée", "priority": "P1", "status": "ALREADY_PREPARED_LOCAL__VERIFY_EXISTING_RELEASE"},
+    {"id": "CAFR-02", "scope": "French product purchase controls", "before": "Choose size and options", "after": "Choisissez la taille et les options", "priority": "P1", "status": "ALREADY_PREPARED_LOCAL__VERIFY_EXISTING_RELEASE"},
+    {"id": "CAFR-03", "scope": "French product selection status; retain dynamic recipient, size and formatted price", "before": "Ready to add", "after": "Prête à être ajoutée", "priority": "P1", "status": "ALREADY_PREPARED_LOCAL__VERIFY_EXISTING_RELEASE"},
+    {"id": "CAFR-04", "scope": "French main and sticky purchase buttons", "before": "ADD THIS PIECE TO BAG", "after": "Ajouter cette pièce au panier", "priority": "P1", "status": "ALREADY_PREPARED_LOCAL__VERIFY_EXISTING_RELEASE"},
+    {"id": "CAFR-05", "scope": "French mother size selector accessible label", "before": "Maman size", "after": "Taille pour maman", "priority": "P1", "status": "LOCAL_PROPOSAL_NOT_APPLIED"},
+    {"id": "CAFR-06", "scope": "French child size selector accessible label", "before": "Fille size", "after": "Taille pour fille", "priority": "P1", "status": "LOCAL_PROPOSAL_NOT_APPLIED"},
+    {"id": "CAFR-07", "scope": "French measurement label only; leave numeric measurements unchanged", "before": "Hip (Cm)", "after": "Hanches (cm)", "priority": "P1", "status": "LOCAL_PROPOSAL_NOT_APPLIED"},
+    {"id": "CAFR-08", "scope": "French cart and cart drawer", "before": "Taxes calculated at checkout.", "after": "Taxes calculées au moment du paiement.", "priority": "P1", "status": "LOCAL_PROPOSAL_NOT_APPLIED"},
+    {"id": "CAFR-09", "scope": "French cart and cart drawer", "before": "Shipping details", "after": "Détails de livraison", "priority": "P1", "status": "LOCAL_PROPOSAL_NOT_APPLIED"},
+    {"id": "CAFR-10", "scope": "French product selector heading", "before": "Construisez votre ensemble correspondant", "after": "Créez votre ensemble assorti", "priority": "P2", "status": "LOCAL_PROPOSAL_NOT_APPLIED"},
+    {"id": "CAFR-11", "scope": "This product's French size-range body sentence only", "before": "Filles, enfants de 2 ans à enfants de 9 à 10 ans et mère S-3XL pour la robe et le cardigan.", "after": "Tailles fille de 2 ans à 9–10 ans et tailles maman du S au 2XL, pour la robe et le cardigan.", "priority": "P1", "evidence": "Same-day complete 24-variant source and live mother selector show S, M, L, XL, 2XL; no 3XL. Child endpoints are 2 and 9–10 years.", "status": "LOCAL_PROPOSAL_NOT_APPLIED"},
+    {"id": "CAFR-12", "scope": "This product's French body typo only", "before": "Echaque pièce est sélectionnée", "after": "Chaque pièce est sélectionnée", "priority": "P2", "status": "LOCAL_PROPOSAL_NOT_APPLIED"}
+  ],
+  "implementation_boundary": {
+    "owner": "Existing storefront/theme and product-localization owners through the canonical parent",
+    "before_action": "Preserve the four already-prepared French control values and current frozen theme release. Reconcile the eight remaining correction candidates with the existing owners' current work. Resolve the current live theme/product translation source, exact existing strings, claim and authority; snapshot only affected keys/fields. A successor change needs its own review. Do not globally replace English text or alter another owner's working files.",
+    "after_action": "Read back the saved exact fields; verify the relevant French product, size-selection and cart controls on desktop and narrow viewports. Reuse this completed checkout-entry evidence unless the changed behavior warrants a replay.",
+    "rollback": "Restore only captured pre-change values for the exact modified keys/fields, after checking for concurrent edits.",
+    "live_correction_writes_in_this_turn": 0
+  },
+  "ad_fit": {
+    "supported_by_this_route": "The existing French copy's separate item/size selection matches the demonstrated product/cart behavior. Mother-daughter dress intent matches the tested product.",
+    "not_established": "Country-specific demand, profitable CPC, fulfillment, delivery speed, payment processing, purchase event ingestion or native-human acceptance of every French ad.",
+    "french_keyword_research_seeds": ["robes assorties mère fille", "robes maman et fille assorties"],
+    "keyword_evidence_status": "UNMEASURED_RESEARCH_SEED_NOT_LAUNCH_QUALIFIED",
+    "phrase_negative_candidates_unchanged": ["patron de couture de robe", "patrons de couture de robes", "comment coudre une robe", "tutoriel couture robe", "apprendre à coudre une robe"],
+    "protected_purchase_intent": "robes mère fille à motifs fleuris",
+    "do_not_negative_alone": "motif",
+    "generic_collection_final_url": "NOT_QUALIFIED_BY_THIS_PRODUCT_ONLY_CHECK",
+    "all_market_build": "Unchanged accepted local build; not live campaigns.",
+    "new_campaign_budget": null,
+    "incremental_spend_authority": "NONE"
+  },
+  "decision_depends_on_uncertain_state": true,
+  "material_decision": "FROZEN_UNRESOLVED",
+  "decision_changing_evidence": "Existing owners save and verify French purchase-control/product corrections; actual CA landed cost and shipping/fees/returns are substantiated; purchase measurement/receiver proof, exact French keyword feasibility and paid-launch authority are resolved.",
+  "if_evidence_supports_recommendation": "Qualify the existing CA French candidate for a separately reviewed bounded test only after its remaining launch prerequisites and exact current authorization pass.",
+  "if_evidence_opposes_recommendation": "Keep the CA French candidate held, correct the specific failing prerequisite through its owner, or prioritize a better-supported existing cohort; do not invent demand or raise bids for volume.",
+  "separate_existing_ads_repair_gate": "Normal Google identity/Save response remains unresolved; continuation is not evidence that verification succeeded. No new Save attempt this turn.",
+  "effects": {
+    "google_ads_account_writes": 0,
+    "paid_spend_allocation": 0,
+    "catalog_theme_or_tracking_writes": 0,
+    "test_cart_additions": 2,
+    "test_cart_removals": 2,
+    "checkout_entries": 1,
+    "customer_data_entered": 0,
+    "payment_or_order_submission": 0,
+    "intentional_purchase_event_generation": 0,
+    "actual_emitted_purchase_events": "NOT_INSPECTED",
+    "ordinary_cart_checkout_telemetry": "May have occurred; exclude this operator test from demand/performance evidence."
+  },
+  "remaining_gates": [
+    "French corrections have not been applied or read back live",
+    "Actual landed cost, FX/fees, shipping acceptance and final total after address are unqualified",
+    "Purchase payload, receiver and deduplication evidence are separate and unresolved",
+    "French country-specific keyword demand and CPC feasibility remain unmeasured",
+    "Exact paid-launch budget/authority is absent",
+    "Existing Google identity/Save handoff remains unresolved"
+  ],
+  "next_action": "Canonical parent routes this reconciled finding to the existing storefront/product owners: preserve the four prepared control translations and frozen release; qualify the eight remaining narrow correction candidates, then read back the affected French buyer controls through the authorized release path."
+}

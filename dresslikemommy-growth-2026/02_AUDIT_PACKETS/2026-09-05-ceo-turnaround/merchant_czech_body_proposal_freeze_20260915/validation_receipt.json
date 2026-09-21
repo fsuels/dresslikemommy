@@ -1,0 +1,69 @@
+{
+  "source1": {
+    "chunk_id": "da157d",
+    "wall_time_seconds": 0.611915708,
+    "exit_code": 0,
+    "original_token_count": 114,
+    "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** f127bb14-czech-source-product-collection-20260915\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_products, read_translations, read_markets, write_markets\n\n\n"
+  },
+  "source2": {
+    "chunk_id": "055bb4",
+    "wall_time_seconds": 0.609906667,
+    "exit_code": 0,
+    "original_token_count": 109,
+    "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** 627356bc-czech-collection-source-20260915\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_translations, read_markets, write_markets\n\n\n"
+  },
+  "source3": {
+    "chunk_id": "69643f",
+    "wall_time_seconds": 0.520313125,
+    "exit_code": 0,
+    "original_token_count": 108,
+    "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** df245e6a-czech-market-bindings-20260915\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_translations, read_markets, write_markets\n\n\n"
+  },
+  "preparedCorrection": {
+    "chunk_id": "11d17b",
+    "wall_time_seconds": 0.568350459,
+    "exit_code": 0,
+    "original_token_count": 114,
+    "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** a41f5260-czech-body-correction-20260915\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL mutation against schema.\nRequired scopes: write_translations, read_translations, read_markets, write_markets\n\n\n"
+  },
+  "MCPValidations": [
+    {
+      "artifactId": "f127bb14-czech-source-product-collection-20260915",
+      "revision": 1,
+      "status": "SUCCESS"
+    },
+    {
+      "artifactId": "627356bc-czech-collection-source-20260915",
+      "revision": 1,
+      "status": "SUCCESS"
+    },
+    {
+      "artifactId": "df245e6a-czech-market-bindings-20260915",
+      "revision": 1,
+      "status": "SUCCESS"
+    },
+    {
+      "artifactId": "a41f5260-czech-body-correction-20260915",
+      "revision": 1,
+      "status": "SUCCESS"
+    }
+  ],
+  "execution": {
+    "readQueries": 3,
+    "mutations": 0
+  },
+  "docs": [
+    "https://shopify.dev/docs/api/admin-graphql/2026-07/mutations/translationsRegister"
+  ],
+  "errorsPreserved": [
+    {
+      "stage": "Documentation CLI before source read",
+      "error": "search_docs.mjs does not accept --artifact-id/--revision; removed those validation-only flags; corrected search exit0."
+    },
+    {
+      "stage": "Local parsing after successful source query1",
+      "error": "Tried to parse text-content blocks instead of structuredContent; store(undefined) failed to serialize. Structured source result and original query clock were retained and parsed, with no second source query1 call."
+    }
+  ]
+}

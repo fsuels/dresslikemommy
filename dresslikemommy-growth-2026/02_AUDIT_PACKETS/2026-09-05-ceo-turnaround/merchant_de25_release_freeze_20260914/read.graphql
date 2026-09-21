@@ -1,0 +1,12 @@
+query MerchantGermanRepairSources($ids: [ID!]!, $after: String) {
+  shop { id myshopifyDomain }
+  nodes(ids: $ids) { ... on Product { id status title handle onlineStoreUrl } }
+  translatableResourcesByIds(resourceIds: $ids, first: 20, after: $after) {
+    nodes {
+      resourceId
+      translatableContent { key value locale digest }
+      translations(locale: "de", marketId: null) { key value locale outdated }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}

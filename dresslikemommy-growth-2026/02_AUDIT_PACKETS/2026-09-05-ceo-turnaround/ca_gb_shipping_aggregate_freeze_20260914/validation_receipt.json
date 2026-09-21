@@ -1,0 +1,49 @@
+{
+  "schema": "dlm.ca_gb_shipping_validation_receipt.v1",
+  "connector": {
+    "content": [
+      {
+        "type": "text",
+        "text": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 4\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** a20ef33b-9906-4a13-8a4b-39d03c237169\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\n\n### Code Block 2\n**Artifact ID:** 0defe7a3-31c6-4250-a7bd-e74b48808dca\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_orders, read_marketplace_orders, read_quick_sale\n\n### Code Block 3\n**Artifact ID:** d077bc46-d790-4167-8cac-fd76ed2804b5\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_orders, read_marketplace_orders, read_quick_sale, read_assigned_fulfillment_orders, read_merchant_managed_fulfillment_orders, read_third_party_fulfillment_orders, read_marketplace_fulfillment_orders\n\n### Code Block 4\n**Artifact ID:** 2a8daf06-c880-4cd2-9431-2837e49c75a1\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_orders, read_marketplace_orders, read_assigned_fulfillment_orders, read_merchant_managed_fulfillment_orders, read_third_party_fulfillment_orders, read_marketplace_fulfillment_orders\n\n"
+      }
+    ],
+    "isError": false
+  },
+  "skill_validation": {
+    "identity": {
+      "chunk_id": "48f3d0",
+      "wall_time_seconds": 0.0351885,
+      "exit_code": 0,
+      "original_token_count": 91,
+      "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** a20ef33b-9906-4a13-8a4b-39d03c237169\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\n\n\n"
+    },
+    "cohort": {
+      "chunk_id": "e760ea",
+      "wall_time_seconds": 0.041454709,
+      "exit_code": 0,
+      "original_token_count": 109,
+      "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** 0defe7a3-31c6-4250-a7bd-e74b48808dca\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_orders, read_marketplace_orders, read_quick_sale\n\n\n"
+    },
+    "details": {
+      "chunk_id": "2fde6b",
+      "wall_time_seconds": 0.035853583,
+      "exit_code": 0,
+      "original_token_count": 147,
+      "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** d077bc46-d790-4167-8cac-fd76ed2804b5\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_orders, read_marketplace_orders, read_quick_sale, read_assigned_fulfillment_orders, read_merchant_managed_fulfillment_orders, read_third_party_fulfillment_orders, read_marketplace_fulfillment_orders\n\n\n"
+    },
+    "event_page": {
+      "chunk_id": "59d548",
+      "wall_time_seconds": 0.022312792,
+      "exit_code": 0,
+      "original_token_count": 142,
+      "output": "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** 2a8daf06-c880-4cd2-9431-2837e49c75a1\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_orders, read_marketplace_orders, read_assigned_fulfillment_orders, read_merchant_managed_fulfillment_orders, read_third_party_fulfillment_orders, read_marketplace_fulfillment_orders\n\n\n"
+    }
+  },
+  "skill": "/Users/fsuels/.codex/plugins/cache/openai-curated-remote/shopify/4.0.1/skills/shopify-admin/SKILL.md",
+  "documentation_searches": [
+    "orders query supported search filters test created_at shipping country",
+    "Fulfillment inTransitAt deliveredAt events happenedAt status"
+  ],
+  "instrumentation_opt_out": true,
+  "live_authority_limit": "Validation passes are not mutation or scope permission; only read-only identity and exact cohort executed."
+}

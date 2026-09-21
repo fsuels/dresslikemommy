@@ -1,0 +1,35 @@
+{
+  "action": "TA07-NAVY-SIZE-CONSISTENCY-20260914-TRANSLATION-BINDING",
+  "reviewer": "/root/merchant_translation_review",
+  "reviewed_at_utc": "2026-09-15T00:42:15.689662+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewed_variables_sha256": "1aecbbfdeef9e0a8fe2f52841002c1cec51d38b7c2d04752ff3d9d24f2cddde5",
+  "reviewed_query_sha256": "e46e4a322fad20c499e3d93e1d63893cdae8ae9c8087cd8f2658be0a4bc87f26",
+  "reviewed_guard_sha256": "928f5a1e3c959a0fa4c50bde22e78b3891b2d04b1c152e02201720caf576069e",
+  "reviewed_proposal_sha256": "d200d5dc31fdfb443641e40e1729cfbf347a294938a8a3c7461c4f9eb5a28661",
+  "private_source_sha256": "76d7136b9dd580373f13d40c268404a4bb21acfaa5d8f30fa6bccbc032550631",
+  "source_completed_at": "2026-09-15T00:39:04Z",
+  "source_age_seconds_at_review": 191.689662,
+  "recovery_verification_sha256": "3a0954c293c2b88ec915f524d77d701fb1d886b72dd0f36872217f868558394a",
+  "recovery_review_sha256": "63f1b9a80be2a0235ba7b4117e8894127de5002467213cc3521d6168c785cba3",
+  "type_recovery_receipt_sha256": "639aa3d10a873ece511696deecd1094e61a586fdcf02de03564a7708ca69e246",
+  "title_translation_recovery_receipt_sha256": "bd4d4bc38a3716e128553d0e56c3ebe889b7781d2335b098f716d8636dadb304",
+  "checks": [
+    "Independently reconstructed type-stage data with exactly one type change, then final recovery data with exactly 20 original meta_title outdated flags reset. Both structured receipts contain zero errors and exact expected returns.",
+    "Original title text/type/compareDigest/source digest and all 20 title translation values/flags are restored. All 24 variants remain exact. Whole original-to-recovered data reconstruction passes, allowing only intended size source changes and the proven title_tag ID/order/cursor transition.",
+    "Exactly 40 existing global locale/key inputs match the approved size-correction values and actually observed body_html/meta_description digests. No extra fields, locales, override IDs or title registrations.",
+    "Reviewed guard lines 105-152 require recovery hash, exact old/new title IDs, complete 27-record metadata equality after the allowed SEO mirror change, and full recovered-data equality. Lines 154-182 bind 40 inputs, enforce ten-minute source age, then require exact final-data reconstruction. No arbitrary product or metadata change is allowed."
+  ],
+  "new_source_digests": {
+    "body_html": "af819a75e9947b8a0075e301217679f87fad2fcae08f06fa3fa81773385183b6",
+    "meta_description": "a44148db3c4eca52966ce99aecc2711be52785df0fff06d6aedd1c80ce70ee4d"
+  },
+  "findings": [],
+  "limits": [
+    "Review applies to translations-prewrite and after phases only; no English replay or other live write is approved.",
+    "Root must confirm frozen guard/query/variables hashes and current source before registration. Public locale checks and the separate French Hip-label repair remain outside this verdict."
+  ],
+  "original_guard_sha256": "c48fc08d905fbba6b538f99260223b4f2d5d1aef3b5e0bf0571a80c958207436",
+  "original_prewrite_review_sha256": "e315d0f5e6651a174b4b2185dcafe959a575f96dd78c55393f8d6ac1d049a93a",
+  "next_action": "Root runs the reconciled translations-prewrite guard, registers the exact 40 fields once, and obtains complete independent after-readback."
+}

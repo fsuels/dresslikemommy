@@ -1,0 +1,437 @@
+{
+  "at_utc": "2026-09-15T01:56:32.956Z",
+  "note": "Saved from source schema calls made before operations were built; existing session schemas, not a new schema read.",
+  "mutationFields": [
+    {
+      "name": "metafieldsDelete",
+      "description": "Deletes [`Metafield`](https://shopify.dev/docs/api/admin-graphql/current/objects/Metafield) objects in bulk by specifying combinations of owner ID, namespace, and key.\n\nReturns the identifiers of successfully deleted metafields. If a specified metafield doesn't exist, then the mutation still succeeds but returns `null` for that identifier in the response.",
+      "type": {
+        "name": "MetafieldsDeletePayload",
+        "kind": "OBJECT",
+        "ofType": null
+      },
+      "args": [
+        {
+          "name": "metafields",
+          "description": "A list of identifiers specifying metafields to delete. At least one identifier must be specified.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "MetafieldIdentifierInput",
+                  "kind": "INPUT_OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "metafieldsSet",
+      "description": "Sets metafield values. Metafield values will be set regardless if they were previously created or not.\n\nAllows a maximum of 25 metafields to be set at a time, with a maximum total request payload size of 10MB.\n\nThis operation is atomic, meaning no changes are persisted if an error is encountered.\n\nAs of `2024-07`, this operation supports compare-and-set functionality to better handle concurrent requests.\nIf `compareDigest` is set for any metafield, the mutation will only set that metafield if the persisted metafield value matches the digest used on `compareDigest`.\nIf the metafield doesn't exist yet, but you want to guarantee that the operation will run in a safe manner, set `compareDigest` to `null`.\nThe `compareDigest` value can be acquired by querying the metafield object and selecting `compareDigest` as a field.\nIf the `compareDigest` value does not match the digest for the persisted value, the mutation will return an error.\nYou can opt out of write guarantees by not sending `compareDigest` in the request.",
+      "type": {
+        "name": "MetafieldsSetPayload",
+        "kind": "OBJECT",
+        "ofType": null
+      },
+      "args": [
+        {
+          "name": "metafields",
+          "description": "The list of metafield values to set. Maximum of 25.",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "MetafieldsSetInput",
+                  "kind": "INPUT_OBJECT",
+                  "ofType": null
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "metafieldsSetInput": {
+    "name": "MetafieldsSetInput",
+    "kind": "INPUT_OBJECT",
+    "description": "The input fields for a metafield value to set.",
+    "fields": null,
+    "inputFields": [
+      {
+        "name": "ownerId",
+        "description": "The unique ID of the resource that the metafield is attached to.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "namespace",
+        "description": "The container for a group of metafields that the metafield is or will be associated with. Used in tandem\nwith `key` to lookup a metafield on a resource, preventing conflicts with other metafields with the\nsame `key`. If omitted the app-reserved namespace will be used.\n\nMust be 3-255 characters long and can contain alphanumeric, hyphen, and underscore characters.",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "key",
+        "description": "The unique identifier for a metafield within its namespace.\n\nMust be 2-64 characters long and can contain alphanumeric, hyphen, and underscore characters.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "value",
+        "description": "The data stored in the metafield. Always stored as a string, regardless of the metafield's type.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "compareDigest",
+        "description": "The `compareDigest` value obtained from a previous query. Provide this with updates to ensure the metafield is modified safely.",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "type",
+        "description": "The type of data that's stored in the metafield.\nThe type must be one of the [supported types](https://shopify.dev/apps/metafields/types).\n\nRequired when there's no corresponding definition for the given `namespace`, `key`, and\nowner resource type (derived from `ownerId`).",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ],
+    "enumValues": null
+  },
+  "metafieldIdentifierInput": {
+    "name": "MetafieldIdentifierInput",
+    "kind": "INPUT_OBJECT",
+    "description": "The input fields that identify metafields.",
+    "fields": null,
+    "inputFields": [
+      {
+        "name": "ownerId",
+        "description": "The unique ID of the resource that the metafield is attached to.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "namespace",
+        "description": "The namespace of the metafield.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      },
+      {
+        "name": "key",
+        "description": "The key of the metafield.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      }
+    ],
+    "enumValues": null
+  },
+  "metafield": {
+    "name": "Metafield",
+    "kind": "OBJECT",
+    "description": "Metafields enable you to attach additional information to a Shopify resource, such as a [Product](https://shopify.dev/api/admin-graphql/latest/objects/product) or a [Collection](https://shopify.dev/api/admin-graphql/latest/objects/collection).\nFor more information about where you can attach metafields refer to [HasMetafields](https://shopify.dev/api/admin-graphql/latest/interfaces/HasMetafields).\nSome examples of the data that metafields enable you to store are specifications, size charts, downloadable documents, release dates, images, or part numbers.\nMetafields are identified by an owner resource, namespace, and key. and store a value along with type information for that value.",
+    "fields": [
+      {
+        "name": "compareDigest",
+        "description": "The data stored in the resource, represented as a digest.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "createdAt",
+        "description": "The date and time when the metafield was created.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "definition",
+        "description": "The metafield definition that the metafield belongs to, if any.",
+        "type": {
+          "name": "MetafieldDefinition",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "id",
+        "description": "A globally-unique ID.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "jsonValue",
+        "description": "The data stored in the metafield in JSON format.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "JSON",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "key",
+        "description": "The unique identifier for the metafield within its namespace.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "legacyResourceId",
+        "description": "The ID of the corresponding resource in the REST Admin API.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "UnsignedInt64",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "namespace",
+        "description": "The container for a group of metafields that the metafield is associated with.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "owner",
+        "description": "The resource that the metafield is attached to.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "HasMetafields",
+            "kind": "INTERFACE",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "ownerType",
+        "description": "The type of resource that the metafield is attached to.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "MetafieldOwnerType",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "reference",
+        "description": "Returns a reference object if the metafield definition's type is a resource reference.",
+        "type": {
+          "name": "MetafieldReference",
+          "kind": "UNION",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "references",
+        "description": "A list of reference objects if the metafield's type is a resource reference list.",
+        "type": {
+          "name": "MetafieldReferenceConnection",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": [
+          {
+            "name": "first",
+            "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "after",
+            "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "last",
+            "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "before",
+            "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "type",
+        "description": "The type of data that's stored in the metafield.\nRefer to the list of [supported types](https://shopify.dev/apps/metafields/types).",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "updatedAt",
+        "description": "The date and time when the metafield was updated.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "value",
+        "description": "The data stored in the metafield. Always stored as a string, regardless of the metafield's type.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      }
+    ],
+    "inputFields": null,
+    "enumValues": null
+  }
+}

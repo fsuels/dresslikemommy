@@ -1,0 +1,34 @@
+✔ en mother: Dress → Cardigan → Dress; selected/unselected size; units and reopen (759.378792ms)
+✔ en girl: Dress → Cardigan → Dress; selected/unselected size; units and reopen (855.328417ms)
+✔ fr mother: Dress → Cardigan → Dress; selected/unselected size; units and reopen (746.888458ms)
+✔ fr girl: Dress → Cardigan → Dress; selected/unselected size; units and reopen (831.7855ms)
+✔ ar mother: Dress → Cardigan → Dress; selected/unselected size; units and reopen (753.426167ms)
+✔ ar girl: Dress → Cardigan → Dress; selected/unselected size; units and reopen (874.609666ms)
+✔ two independent cards retain different Types and sizes (487.502458ms)
+✔ unselected Type shows choice prompt and no helper, tooltip, table or selected highlight (19.975125ms)
+✔ reversed tables preserve exact chart and tooltip source (414.133708ms)
+✔ missing Cardigan source never falls back to Dress (223.662042ms)
+✔ untyped Cardigan source never falls back to Dress (518.222666ms)
+✔ conflicting-heading Cardigan source never falls back to Dress (227.32325ms)
+✔ duplicate Cardigan source never falls back to Dress (628.81575ms)
+✔ role pruning returns no chart when only the other role is present, and rejects unknown mixed rows (21.788125ms)
+✔ single generic single-Type chart and no-Type family chart remain useful (496.752ms)
+✔ single unclassified garment chart remains available; multi-Type unknown cannot choose another garment (20.767875ms)
+✔ inline highlight requires this card size and cannot borrow a nearby/native size (464.610667ms)
+✔ French role labels and four prepared controls are preserved for fr and fr-CA (865.500833ms)
+✔ one shared chart with explicit garment columns retains correct measurements for both Types (56.515375ms)
+✔ single chart with Mother/Girl measurement columns preserves separate role groups (21.171541ms)
+✔ Arabic jacket wording only resolves to Cardigan with compatible product chart provenance (41.759417ms)
+✔ independent review: available Mother M with only Mother L source cannot borrow L tooltip values (233.122458ms)
+✔ independent review: Cardigan ID and heading cannot override explicit Dress Length header (406.238625ms)
+✔ exact normalized XXL/2XL aliases remain available without nearby size substitution (408.558417ms)
+✔ a single-role mixed garment-column chart retains exact Type-specific tooltips (27.158791ms)
+✔ actual French cm/po source selects preserved pouces values in the compact imperial panel (435.538708ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10885.434458

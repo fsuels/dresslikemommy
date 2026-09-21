@@ -1,0 +1,27 @@
+Confidence: H for local source behavior; browser acceptance remains root-owned and NOT RUN in this lane.
+
+The assigned module is IMPLEMENTED and locally VERIFIED. The exact delta is `module.diff`: 165 added lines and 90 removed lines against the parent-preserved candidate baseline. This lane changed only `assets/product-desktop-ux-20260513-ruler-sync.js` and files under this `module/` packet. No API, browser, network, Git, canonical, product-data or external write was performed.
+
+The successor recognizes Cardigan in English/French and the observed Arabic chart heading. Arabic Type `سترة` is resolved as Cardigan only when the same product provides a consistent canonical `size-chart-cardigan` source; it remains an unclassified generic jacket outside that source context. The helper text and fit trigger derive from the selected family-card Type. Independent card states, variant resolution, IDs, prices and measurements remain unchanged.
+
+Chart and compact-tooltip selection now require compatible role and garment provenance. A matching table title/ID supplies garment context; a single generic chart can inherit its product's only Type, while shared multi-Type charts require explicit garment columns. Conflicting table title/ID, missing matching sources and equally eligible duplicate sources produce no misleading chart. No-role-match fallback no longer selects another group's first chart. Unknown rows in mixed tables are excluded unless their existing group provides compatible role evidence. Role-specific header groups and single-chart/no-Type/Sweater holdouts pass.
+
+The saved Arabic original tables contain seven `للبنات عمر ...` rows and five `الأم ...` rows. The added source-confirmed Girl aliases cause the actual role grouper to return two groups with 7 and 5 rows. Mother fit and tooltip paths now select the Mother measurements in both Dress and Cardigan charts. The numeric unit checks also found that Arabic compact-tooltip headers were compared as `سم/بوصة` against `cm/in`, selecting metric values in imperial mode. The two existing tooltip unit-extraction sites now use the existing unit normalizer; original cells remain unchanged.
+
+The four prepared French controls are preserved. Role size groups use `Taille pour Maman` and `Taille pour Fille` in `fr` and `fr-CA`. If Type is pending, the ruler opens a status panel with the existing choose-Type wording (Arabic uses `اختر {axis}`). Missing or ambiguous charts open a concise localized unavailable status in English/French/Arabic. These states render neither a measurement table nor a selected-size highlight. A valid chart without a card size remains viewable with no highlight. Inline highlights use only that card's matching size; native/global and merely nearby sizes cannot supply a highlight. The existing broader approximate-fit scoring functions are unchanged.
+
+Verification: bundled Node syntax passed, the focused Node suite passed 21/21 tests, and added diff lines have no trailing whitespace. Six locale/role scenarios cover 108 production table/tooltip Type-size-unit render cycles. Cases include Mother/Girl Dress→Cardigan→Dress; selected/unselected size and Type; metric/imperial/reopen; independent cards; reversed, missing, untyped, conflicting and duplicated sources; chart/header/tooltip/highlight provenance; Arabic 5/7 row grouping; French controls; generic and mixed-column holdouts. `VERIFICATION.json` records commands, timestamps and hashes; `regressions-output.txt` records the actual run.
+
+The tests execute the real module's classifiers, variant role grouping, table parser, pruning, matching, card and table HTML rendering, tooltip extraction and unit formatting. They use the parent's saved Arabic headers/rows. English/French fixtures localize labels and unit suffixes around those same saved numbers; they are not independently fetched EN/FR product bodies. Variant fixtures are modeled, and DOM selector methods, locale state, display bindings and card-selection/unit state transitions are modeled. CSS, layout, keyboard/focus, real event listeners, storage, actual native variant state, mobile scrolling and browser behavior remain NOT RUN here. The parent must verify those on the exact saved successor.
+
+Before SHA256: `3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20`.
+
+After SHA256: `705d634a620347a733e5b3bf842bfc60f13b9ec62c35e8c4aa392f96fe6b1092`.
+
+Rollback is the parent's existing `candidate-before/assets/product-desktop-ux-20260513-ruler-sync.js`; this lane has not applied or staged any rollback.
+
+Residual risk: other locale aliases and opaque legacy role/table layouts are not a complete catalog audit. Conservative missing/ambiguous source handling can show an unavailable message where provenance cannot be established. Numeric landing-variant preselection code was not changed; the root's exact AU variant holdout remains a separate browser acceptance check. This module contains no measurement or product repair.
+
+Next action: independently review this hash and focused evidence before root saves the exact successor to the existing unpublished candidate, then run EN/FR/AR desktop/mobile acceptance. Root owns all canonical updates, external writes, final integration and publication boundaries.
+
+Continuation: review `VERIFICATION.json`, `module.diff` and `buyer-truth.test.cjs` at the frozen hash; preserve the frozen diagnosis and FAQ packets and the other six owners' files.

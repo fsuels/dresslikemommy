@@ -1,0 +1,966 @@
+{
+  "status": "PASS_WITH_DOCUMENTED_LIMITS",
+  "observedAt": "2026-09-15T02:16:09.202385+00:00",
+  "checksPassed": 352,
+  "guideCases": 48,
+  "compactUnitCases": 24,
+  "imperialGuideCases": 12,
+  "reopenCases": 12,
+  "noTypeCases": 6,
+  "noSizeCase": 1,
+  "productLocales": [
+    "en",
+    "fr",
+    "ar"
+  ],
+  "viewports": [
+    "1280x720",
+    "390x844"
+  ],
+  "articleCtaStates": [
+    {
+      "locale": "en",
+      "state": "normal",
+      "text": "Matching Family Outfits",
+      "href": "https://www.dresslikemommy.com/collections/matching-outfits",
+      "contrastRatio": 18.73
+    },
+    {
+      "locale": "en",
+      "state": "hover",
+      "text": "Matching Family Outfits",
+      "href": "https://www.dresslikemommy.com/collections/matching-outfits",
+      "contrastRatio": 18.73
+    },
+    {
+      "locale": "en",
+      "state": "focus",
+      "text": "Matching Family Outfits",
+      "href": "https://www.dresslikemommy.com/collections/matching-outfits",
+      "contrastRatio": 18.73
+    },
+    {
+      "locale": "ar",
+      "state": "normal",
+      "text": "Matching Family Outfits",
+      "href": "https://www.dresslikemommy.com/ar/collections/matching-outfits",
+      "contrastRatio": 18.73
+    },
+    {
+      "locale": "ar",
+      "state": "hover",
+      "text": "Matching Family Outfits",
+      "href": "https://www.dresslikemommy.com/ar/collections/matching-outfits",
+      "contrastRatio": 18.73
+    },
+    {
+      "locale": "ar",
+      "state": "focus",
+      "text": "Matching Family Outfits",
+      "href": "https://www.dresslikemommy.com/ar/collections/matching-outfits",
+      "contrastRatio": 18.73
+    },
+    {
+      "locale": "nl",
+      "state": "normal",
+      "text": "Matching Family Outfits",
+      "href": "https://www.dresslikemommy.com/nl/collections/matching-outfits",
+      "contrastRatio": 18.73
+    },
+    {
+      "locale": "nl",
+      "state": "hover",
+      "text": "Matching Family Outfits",
+      "href": "https://www.dresslikemommy.com/nl/collections/matching-outfits",
+      "contrastRatio": 18.73
+    },
+    {
+      "locale": "nl",
+      "state": "focus",
+      "text": "Matching Family Outfits",
+      "href": "https://www.dresslikemommy.com/nl/collections/matching-outfits",
+      "contrastRatio": 18.73
+    }
+  ],
+  "auAutomaticVariantCases": 3,
+  "cartStayedZero": true,
+  "finalModuleSha256": "dbd748d10828f52bb24c2dfb22d019261f4abeb7f3e9f61eb86d350ee96c1bcb",
+  "sourceBindingSha256": "932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a",
+  "limits": [
+    "Browser product examples use MotherS/youngestGirl, not every product/size. Missing/reversed/ambiguous sources are covered by26 synthetic regression tests.",
+    "Three AU cases were successful on saved86; final one-line French alias correction preserves variant functions. Successful AU cases were not repeated.",
+    "CTA labels/destinations are preserved, including existing English copy in AR/NL. No full accessibility/RTL certification.",
+    "Compact/table unit controls retain separate in-memory selections. Baseline single-piece role switch resets size/type; no persistence or multiple-card browser claim.",
+    "French source16,1dans/29,1dans remains Merchant-owned product translation; neither theme save introduced it.",
+    "No populated cart/checkout/purchase or fresh PageSpeed test. Cart tax/shipping text source-reviewed. No conversion-lift claim.",
+    "Acceptance uses cited final accepted-* raw captures; earlier diagnostic labeling/test-format mismatches and first-save French unit failure remain historical evidence."
+  ],
+  "checks": [
+    "accepted-en-desktop final locale/module",
+    "accepted-en-desktop no-Type guidance",
+    "accepted-en-desktopmothercardigan-initial source values/rows",
+    "accepted-en-desktopmothercardigan-initial highlight",
+    "accepted-en-desktopmothercardigan-initial context",
+    "accepted-en-desktopmothercardigan-initial viewport/cart",
+    "accepted-en-desktopmotherdress source values/rows",
+    "accepted-en-desktopmotherdress highlight",
+    "accepted-en-desktopmotherdress context",
+    "accepted-en-desktopmotherdress viewport/cart",
+    "accepted-en-desktopmothercardigan source values/rows",
+    "accepted-en-desktopmothercardigan highlight",
+    "accepted-en-desktopmothercardigan context",
+    "accepted-en-desktopmothercardigan viewport/cart",
+    "accepted-en-desktopmotherdress-return source values/rows",
+    "accepted-en-desktopmotherdress-return highlight",
+    "accepted-en-desktopmotherdress-return context",
+    "accepted-en-desktopmotherdress-return viewport/cart",
+    "accepted-en-desktopmothermetric compact values",
+    "accepted-en-desktopmothermetric compact selected unit",
+    "accepted-en-desktopmothermetric compact labels",
+    "accepted-en-desktopmetric Mother weight",
+    "accepted-en-desktopmotherimperial compact values",
+    "accepted-en-desktopmotherimperial compact selected unit",
+    "accepted-en-desktopmotherimperial compact labels",
+    "accepted-en-desktopimperial Mother weight",
+    "accepted-en-desktopmother imperial guide",
+    "accepted-en-desktopmother reopen",
+    "accepted-en-desktopgirlcardigan-initial source values/rows",
+    "accepted-en-desktopgirlcardigan-initial highlight",
+    "accepted-en-desktopgirlcardigan-initial context",
+    "accepted-en-desktopgirlcardigan-initial viewport/cart",
+    "accepted-en-desktopgirldress source values/rows",
+    "accepted-en-desktopgirldress highlight",
+    "accepted-en-desktopgirldress context",
+    "accepted-en-desktopgirldress viewport/cart",
+    "accepted-en-desktopgirlcardigan source values/rows",
+    "accepted-en-desktopgirlcardigan highlight",
+    "accepted-en-desktopgirlcardigan context",
+    "accepted-en-desktopgirlcardigan viewport/cart",
+    "accepted-en-desktopgirldress-return source values/rows",
+    "accepted-en-desktopgirldress-return highlight",
+    "accepted-en-desktopgirldress-return context",
+    "accepted-en-desktopgirldress-return viewport/cart",
+    "accepted-en-desktopgirlmetric compact values",
+    "accepted-en-desktopgirlmetric compact selected unit",
+    "accepted-en-desktopgirlmetric compact labels",
+    "accepted-en-desktopgirlimperial compact values",
+    "accepted-en-desktopgirlimperial compact selected unit",
+    "accepted-en-desktopgirlimperial compact labels",
+    "accepted-en-desktopgirl imperial guide",
+    "accepted-en-desktopgirl reopen",
+    "accepted-en-mobile final locale/module",
+    "accepted-en-mobile no-Type guidance",
+    "accepted-en-mobilemothercardigan-initial source values/rows",
+    "accepted-en-mobilemothercardigan-initial highlight",
+    "accepted-en-mobilemothercardigan-initial context",
+    "accepted-en-mobilemothercardigan-initial viewport/cart",
+    "accepted-en-mobilemotherdress source values/rows",
+    "accepted-en-mobilemotherdress highlight",
+    "accepted-en-mobilemotherdress context",
+    "accepted-en-mobilemotherdress viewport/cart",
+    "accepted-en-mobilemothercardigan source values/rows",
+    "accepted-en-mobilemothercardigan highlight",
+    "accepted-en-mobilemothercardigan context",
+    "accepted-en-mobilemothercardigan viewport/cart",
+    "accepted-en-mobilemotherdress-return source values/rows",
+    "accepted-en-mobilemotherdress-return highlight",
+    "accepted-en-mobilemotherdress-return context",
+    "accepted-en-mobilemotherdress-return viewport/cart",
+    "accepted-en-mobilemothermetric compact values",
+    "accepted-en-mobilemothermetric compact selected unit",
+    "accepted-en-mobilemothermetric compact labels",
+    "accepted-en-mobilemetric Mother weight",
+    "accepted-en-mobilemotherimperial compact values",
+    "accepted-en-mobilemotherimperial compact selected unit",
+    "accepted-en-mobilemotherimperial compact labels",
+    "accepted-en-mobileimperial Mother weight",
+    "accepted-en-mobilemother imperial guide",
+    "accepted-en-mobilemother reopen",
+    "accepted-en-mobilegirlcardigan-initial source values/rows",
+    "accepted-en-mobilegirlcardigan-initial highlight",
+    "accepted-en-mobilegirlcardigan-initial context",
+    "accepted-en-mobilegirlcardigan-initial viewport/cart",
+    "accepted-en-mobilegirldress source values/rows",
+    "accepted-en-mobilegirldress highlight",
+    "accepted-en-mobilegirldress context",
+    "accepted-en-mobilegirldress viewport/cart",
+    "accepted-en-mobilegirlcardigan source values/rows",
+    "accepted-en-mobilegirlcardigan highlight",
+    "accepted-en-mobilegirlcardigan context",
+    "accepted-en-mobilegirlcardigan viewport/cart",
+    "accepted-en-mobilegirldress-return source values/rows",
+    "accepted-en-mobilegirldress-return highlight",
+    "accepted-en-mobilegirldress-return context",
+    "accepted-en-mobilegirldress-return viewport/cart",
+    "accepted-en-mobilegirlmetric compact values",
+    "accepted-en-mobilegirlmetric compact selected unit",
+    "accepted-en-mobilegirlmetric compact labels",
+    "accepted-en-mobilegirlimperial compact values",
+    "accepted-en-mobilegirlimperial compact selected unit",
+    "accepted-en-mobilegirlimperial compact labels",
+    "accepted-en-mobilegirl imperial guide",
+    "accepted-en-mobilegirl reopen",
+    "accepted-fr-desktop final locale/module",
+    "accepted-fr-desktop no-Type guidance",
+    "accepted-fr-desktopmothercardigan-initial source values/rows",
+    "accepted-fr-desktopmothercardigan-initial highlight",
+    "accepted-fr-desktopmothercardigan-initial context",
+    "accepted-fr-desktopmothercardigan-initial viewport/cart",
+    "accepted-fr-desktopmotherdress source values/rows",
+    "accepted-fr-desktopmotherdress highlight",
+    "accepted-fr-desktopmotherdress context",
+    "accepted-fr-desktopmotherdress viewport/cart",
+    "accepted-fr-desktopmothercardigan source values/rows",
+    "accepted-fr-desktopmothercardigan highlight",
+    "accepted-fr-desktopmothercardigan context",
+    "accepted-fr-desktopmothercardigan viewport/cart",
+    "accepted-fr-desktopmotherdress-return source values/rows",
+    "accepted-fr-desktopmotherdress-return highlight",
+    "accepted-fr-desktopmotherdress-return context",
+    "accepted-fr-desktopmotherdress-return viewport/cart",
+    "accepted-fr-desktopmothermetric compact values",
+    "accepted-fr-desktopmothermetric compact selected unit",
+    "accepted-fr-desktopmothermetric compact labels",
+    "accepted-fr-desktopmetric Mother weight",
+    "accepted-fr-desktopmothermetric French capitalization",
+    "accepted-fr-desktopmotherimperial compact values",
+    "accepted-fr-desktopmotherimperial compact selected unit",
+    "accepted-fr-desktopmotherimperial compact labels",
+    "accepted-fr-desktopimperial Mother weight",
+    "accepted-fr-desktopmotherimperial French capitalization",
+    "accepted-fr-desktopmother imperial guide",
+    "accepted-fr-desktopmother reopen",
+    "accepted-fr-desktopgirlcardigan-initial source values/rows",
+    "accepted-fr-desktopgirlcardigan-initial highlight",
+    "accepted-fr-desktopgirlcardigan-initial context",
+    "accepted-fr-desktopgirlcardigan-initial viewport/cart",
+    "accepted-fr-desktopgirldress source values/rows",
+    "accepted-fr-desktopgirldress highlight",
+    "accepted-fr-desktopgirldress context",
+    "accepted-fr-desktopgirldress viewport/cart",
+    "accepted-fr-desktopgirlcardigan source values/rows",
+    "accepted-fr-desktopgirlcardigan highlight",
+    "accepted-fr-desktopgirlcardigan context",
+    "accepted-fr-desktopgirlcardigan viewport/cart",
+    "accepted-fr-desktopgirldress-return source values/rows",
+    "accepted-fr-desktopgirldress-return highlight",
+    "accepted-fr-desktopgirldress-return context",
+    "accepted-fr-desktopgirldress-return viewport/cart",
+    "accepted-fr-desktopgirlmetric compact values",
+    "accepted-fr-desktopgirlmetric compact selected unit",
+    "accepted-fr-desktopgirlmetric compact labels",
+    "accepted-fr-desktopgirlmetric French capitalization",
+    "accepted-fr-desktopgirlimperial compact values",
+    "accepted-fr-desktopgirlimperial compact selected unit",
+    "accepted-fr-desktopgirlimperial compact labels",
+    "accepted-fr-desktopgirlimperial French capitalization",
+    "accepted-fr-desktopgirl imperial guide",
+    "accepted-fr-desktopgirl reopen",
+    "accepted-fr-mobile final locale/module",
+    "accepted-fr-mobile no-Type guidance",
+    "accepted-fr-mobilemothercardigan-initial source values/rows",
+    "accepted-fr-mobilemothercardigan-initial highlight",
+    "accepted-fr-mobilemothercardigan-initial context",
+    "accepted-fr-mobilemothercardigan-initial viewport/cart",
+    "accepted-fr-mobilemotherdress source values/rows",
+    "accepted-fr-mobilemotherdress highlight",
+    "accepted-fr-mobilemotherdress context",
+    "accepted-fr-mobilemotherdress viewport/cart",
+    "accepted-fr-mobilemothercardigan source values/rows",
+    "accepted-fr-mobilemothercardigan highlight",
+    "accepted-fr-mobilemothercardigan context",
+    "accepted-fr-mobilemothercardigan viewport/cart",
+    "accepted-fr-mobilemotherdress-return source values/rows",
+    "accepted-fr-mobilemotherdress-return highlight",
+    "accepted-fr-mobilemotherdress-return context",
+    "accepted-fr-mobilemotherdress-return viewport/cart",
+    "accepted-fr-mobilemothermetric compact values",
+    "accepted-fr-mobilemothermetric compact selected unit",
+    "accepted-fr-mobilemothermetric compact labels",
+    "accepted-fr-mobilemetric Mother weight",
+    "accepted-fr-mobilemothermetric French capitalization",
+    "accepted-fr-mobilemotherimperial compact values",
+    "accepted-fr-mobilemotherimperial compact selected unit",
+    "accepted-fr-mobilemotherimperial compact labels",
+    "accepted-fr-mobileimperial Mother weight",
+    "accepted-fr-mobilemotherimperial French capitalization",
+    "accepted-fr-mobilemother imperial guide",
+    "accepted-fr-mobilemother reopen",
+    "accepted-fr-mobilegirlcardigan-initial source values/rows",
+    "accepted-fr-mobilegirlcardigan-initial highlight",
+    "accepted-fr-mobilegirlcardigan-initial context",
+    "accepted-fr-mobilegirlcardigan-initial viewport/cart",
+    "accepted-fr-mobilegirldress source values/rows",
+    "accepted-fr-mobilegirldress highlight",
+    "accepted-fr-mobilegirldress context",
+    "accepted-fr-mobilegirldress viewport/cart",
+    "accepted-fr-mobilegirlcardigan source values/rows",
+    "accepted-fr-mobilegirlcardigan highlight",
+    "accepted-fr-mobilegirlcardigan context",
+    "accepted-fr-mobilegirlcardigan viewport/cart",
+    "accepted-fr-mobilegirldress-return source values/rows",
+    "accepted-fr-mobilegirldress-return highlight",
+    "accepted-fr-mobilegirldress-return context",
+    "accepted-fr-mobilegirldress-return viewport/cart",
+    "accepted-fr-mobilegirlmetric compact values",
+    "accepted-fr-mobilegirlmetric compact selected unit",
+    "accepted-fr-mobilegirlmetric compact labels",
+    "accepted-fr-mobilegirlmetric French capitalization",
+    "accepted-fr-mobilegirlimperial compact values",
+    "accepted-fr-mobilegirlimperial compact selected unit",
+    "accepted-fr-mobilegirlimperial compact labels",
+    "accepted-fr-mobilegirlimperial French capitalization",
+    "accepted-fr-mobilegirl imperial guide",
+    "accepted-fr-mobilegirl reopen",
+    "accepted-ar-desktop final locale/module",
+    "accepted-ar-desktop no-Type guidance",
+    "accepted-ar-desktopmothercardigan-initial source values/rows",
+    "accepted-ar-desktopmothercardigan-initial highlight",
+    "accepted-ar-desktopmothercardigan-initial context",
+    "accepted-ar-desktopmothercardigan-initial viewport/cart",
+    "accepted-ar-desktopmotherdress source values/rows",
+    "accepted-ar-desktopmotherdress highlight",
+    "accepted-ar-desktopmotherdress context",
+    "accepted-ar-desktopmotherdress viewport/cart",
+    "accepted-ar-desktopmothercardigan source values/rows",
+    "accepted-ar-desktopmothercardigan highlight",
+    "accepted-ar-desktopmothercardigan context",
+    "accepted-ar-desktopmothercardigan viewport/cart",
+    "accepted-ar-desktopmotherdress-return source values/rows",
+    "accepted-ar-desktopmotherdress-return highlight",
+    "accepted-ar-desktopmotherdress-return context",
+    "accepted-ar-desktopmotherdress-return viewport/cart",
+    "accepted-ar-desktopmothermetric compact values",
+    "accepted-ar-desktopmothermetric compact selected unit",
+    "accepted-ar-desktopmothermetric compact labels",
+    "accepted-ar-desktopmetric Mother weight",
+    "accepted-ar-desktopmotherimperial compact values",
+    "accepted-ar-desktopmotherimperial compact selected unit",
+    "accepted-ar-desktopmotherimperial compact labels",
+    "accepted-ar-desktopimperial Mother weight",
+    "accepted-ar-desktopmother imperial guide",
+    "accepted-ar-desktopmother reopen",
+    "accepted-ar-desktopgirlcardigan-initial source values/rows",
+    "accepted-ar-desktopgirlcardigan-initial highlight",
+    "accepted-ar-desktopgirlcardigan-initial context",
+    "accepted-ar-desktopgirlcardigan-initial viewport/cart",
+    "accepted-ar-desktopgirldress source values/rows",
+    "accepted-ar-desktopgirldress highlight",
+    "accepted-ar-desktopgirldress context",
+    "accepted-ar-desktopgirldress viewport/cart",
+    "accepted-ar-desktopgirlcardigan source values/rows",
+    "accepted-ar-desktopgirlcardigan highlight",
+    "accepted-ar-desktopgirlcardigan context",
+    "accepted-ar-desktopgirlcardigan viewport/cart",
+    "accepted-ar-desktopgirldress-return source values/rows",
+    "accepted-ar-desktopgirldress-return highlight",
+    "accepted-ar-desktopgirldress-return context",
+    "accepted-ar-desktopgirldress-return viewport/cart",
+    "accepted-ar-desktopgirlmetric compact values",
+    "accepted-ar-desktopgirlmetric compact selected unit",
+    "accepted-ar-desktopgirlmetric compact labels",
+    "accepted-ar-desktopgirlimperial compact values",
+    "accepted-ar-desktopgirlimperial compact selected unit",
+    "accepted-ar-desktopgirlimperial compact labels",
+    "accepted-ar-desktopgirl imperial guide",
+    "accepted-ar-desktopgirl reopen",
+    "accepted-ar-mobile final locale/module",
+    "accepted-ar-mobile no-Type guidance",
+    "accepted-ar-mobilemothercardigan-initial source values/rows",
+    "accepted-ar-mobilemothercardigan-initial highlight",
+    "accepted-ar-mobilemothercardigan-initial context",
+    "accepted-ar-mobilemothercardigan-initial viewport/cart",
+    "accepted-ar-mobilemotherdress source values/rows",
+    "accepted-ar-mobilemotherdress highlight",
+    "accepted-ar-mobilemotherdress context",
+    "accepted-ar-mobilemotherdress viewport/cart",
+    "accepted-ar-mobilemothercardigan source values/rows",
+    "accepted-ar-mobilemothercardigan highlight",
+    "accepted-ar-mobilemothercardigan context",
+    "accepted-ar-mobilemothercardigan viewport/cart",
+    "accepted-ar-mobilemotherdress-return source values/rows",
+    "accepted-ar-mobilemotherdress-return highlight",
+    "accepted-ar-mobilemotherdress-return context",
+    "accepted-ar-mobilemotherdress-return viewport/cart",
+    "accepted-ar-mobilemothermetric compact values",
+    "accepted-ar-mobilemothermetric compact selected unit",
+    "accepted-ar-mobilemothermetric compact labels",
+    "accepted-ar-mobilemetric Mother weight",
+    "accepted-ar-mobilemotherimperial compact values",
+    "accepted-ar-mobilemotherimperial compact selected unit",
+    "accepted-ar-mobilemotherimperial compact labels",
+    "accepted-ar-mobileimperial Mother weight",
+    "accepted-ar-mobilemother imperial guide",
+    "accepted-ar-mobilemother reopen",
+    "accepted-ar-mobilegirlcardigan-initial source values/rows",
+    "accepted-ar-mobilegirlcardigan-initial highlight",
+    "accepted-ar-mobilegirlcardigan-initial context",
+    "accepted-ar-mobilegirlcardigan-initial viewport/cart",
+    "accepted-ar-mobilegirldress source values/rows",
+    "accepted-ar-mobilegirldress highlight",
+    "accepted-ar-mobilegirldress context",
+    "accepted-ar-mobilegirldress viewport/cart",
+    "accepted-ar-mobilegirlcardigan source values/rows",
+    "accepted-ar-mobilegirlcardigan highlight",
+    "accepted-ar-mobilegirlcardigan context",
+    "accepted-ar-mobilegirlcardigan viewport/cart",
+    "accepted-ar-mobilegirldress-return source values/rows",
+    "accepted-ar-mobilegirldress-return highlight",
+    "accepted-ar-mobilegirldress-return context",
+    "accepted-ar-mobilegirldress-return viewport/cart",
+    "accepted-ar-mobilegirlmetric compact values",
+    "accepted-ar-mobilegirlmetric compact selected unit",
+    "accepted-ar-mobilegirlmetric compact labels",
+    "accepted-ar-mobilegirlimperial compact values",
+    "accepted-ar-mobilegirlimperial compact selected unit",
+    "accepted-ar-mobilegirlimperial compact labels",
+    "accepted-ar-mobilegirl imperial guide",
+    "accepted-ar-mobilegirl reopen",
+    "No size/no selected row",
+    "ennormal CTA contrast",
+    "ennormal actual interaction",
+    "enhover CTA contrast",
+    "enhover actual interaction",
+    "enfocus CTA contrast",
+    "enfocus actual interaction",
+    "en CTA navigation/cart",
+    "arnormal CTA contrast",
+    "arnormal actual interaction",
+    "arhover CTA contrast",
+    "arhover actual interaction",
+    "arfocus CTA contrast",
+    "arfocus actual interaction",
+    "ar CTA navigation/cart",
+    "nlnormal CTA contrast",
+    "nlnormal actual interaction",
+    "nlhover CTA contrast",
+    "nlhover actual interaction",
+    "nlfocus CTA contrast",
+    "nlfocus actual interaction",
+    "nl CTA navigation/cart",
+    "AU 41871506735201 automatic role/size/price",
+    "AU 41871506735201 color",
+    "AU 41871506735201 cart0",
+    "AU 41871520235617 automatic role/size/price",
+    "AU 41871520235617 color",
+    "AU 41871520235617 cart0",
+    "AU 44047092613217 automatic role/size/price",
+    "AU 44047092613217 color",
+    "AU 44047092613217 cart0",
+    "No captured console errors"
+  ],
+  "evidence": [
+    {
+      "path": "browser/accepted-en-desktop-initial.json",
+      "sha256": "5ec23e9c1f887bcc42a396f90800459c0096d51d29b8edd6499610530012e758"
+    },
+    {
+      "path": "browser/accepted-en-desktop-no-type.json",
+      "sha256": "211421f3e26997847e8ceb7ad7652ea76f84c174abbf41ba1ce493c7252a45ab"
+    },
+    {
+      "path": "browser/accepted-en-desktop-mother-cardigan-initial-metric.json",
+      "sha256": "fa86d15059cb864189561491f7d65cf9eef48e3938cac156c0f5ddf95878f35d"
+    },
+    {
+      "path": "browser/accepted-en-desktop-mother-dress-metric.json",
+      "sha256": "436cf361cc704cb97ff9e5b6d8ee8b0b914ba0b9ade451916c4800fddf33625c"
+    },
+    {
+      "path": "browser/accepted-en-desktop-mother-cardigan-metric.json",
+      "sha256": "c8b97c56efc3b6830e3f7e0fa32c99e9c851247b56f2c8582a9cee33c9a00e66"
+    },
+    {
+      "path": "browser/accepted-en-desktop-mother-dress-return-metric.json",
+      "sha256": "59f22d88fbbd98fb819e43f9a73976d2401f8ba84e3e5e249b1779ea3b9e0516"
+    },
+    {
+      "path": "browser/accepted-en-desktop-mother-cardigan-compact-metric.json",
+      "sha256": "55080c9048b3a0bdb5a5c5f6bf351372d317109886f2a65a6ecc908b75cd9246"
+    },
+    {
+      "path": "browser/accepted-en-desktop-mother-cardigan-compact-imperial.json",
+      "sha256": "789b8dd9ee81397af24b3f48b9eb194a622cf86d2bf0afa2a3cf1a4630c0d333"
+    },
+    {
+      "path": "browser/accepted-en-desktop-mother-cardigan-guide-imperial.json",
+      "sha256": "3fcc552cbfc222741de916f7c82d8de421a6bd9de17284c3783f9da666e02341"
+    },
+    {
+      "path": "browser/accepted-en-desktop-mother-cardigan-reopen.json",
+      "sha256": "c19798eb9168aa518d20ee174af7171a60cb5c329aeed4ef3b98c882ae7d8f3f"
+    },
+    {
+      "path": "browser/accepted-en-desktop-girl-cardigan-initial-metric.json",
+      "sha256": "e5ac143269f805c2b93ceeae9e1c44f5ef58222dc6fd3779838adb0fbe23db62"
+    },
+    {
+      "path": "browser/accepted-en-desktop-girl-dress-metric.json",
+      "sha256": "fa56fa84b7f1bde654832f35bce9edfca4d82cc023dde4cc8a87fed040825d9d"
+    },
+    {
+      "path": "browser/accepted-en-desktop-girl-cardigan-metric.json",
+      "sha256": "1d5fb36d2e3562f6cb0555417ec41b0fe35d8d33968355e30ce1ef5e83eac415"
+    },
+    {
+      "path": "browser/accepted-en-desktop-girl-dress-return-metric.json",
+      "sha256": "e766ff636723d8eb289c297a9eefbbec0c6b6d719d3d556d70b96a59cc86f359"
+    },
+    {
+      "path": "browser/accepted-en-desktop-girl-cardigan-compact-metric.json",
+      "sha256": "61bee29c671dee4b6c4402ad3866191053e2ac3367b11e1839ee9deccd5034a4"
+    },
+    {
+      "path": "browser/accepted-en-desktop-girl-cardigan-compact-imperial.json",
+      "sha256": "56338ef33ce1c26f30cac3c1a2896fdb0a629453db869413dac1dad091718afe"
+    },
+    {
+      "path": "browser/accepted-en-desktop-girl-cardigan-guide-imperial.json",
+      "sha256": "938d07b5f933e92309bcec9a592b876a42fd28c761b9dea4901857dc5b4ebb5b"
+    },
+    {
+      "path": "browser/accepted-en-desktop-girl-cardigan-reopen.json",
+      "sha256": "a1649bd938bdaf34b43ef2a9ed591349a21c4babc8e9c1a7a57e6a1f66e2b294"
+    },
+    {
+      "path": "browser/accepted-en-mobile-initial.json",
+      "sha256": "16ef1a3d1ea093a7b723517a63f95cba2daf4240375d23766aca23f65d3cd38c"
+    },
+    {
+      "path": "browser/accepted-en-mobile-no-type.json",
+      "sha256": "d0ac16cbd468b423c7f19617f5c86c9387cbaa3f1c296149faa2613b51714a9d"
+    },
+    {
+      "path": "browser/accepted-en-mobile-mother-cardigan-initial-metric.json",
+      "sha256": "dcb762f540143b434522d9c574bfe960e64ceb7edb0f1ab35db272204a4e36b5"
+    },
+    {
+      "path": "browser/accepted-en-mobile-mother-dress-metric.json",
+      "sha256": "458b58a24fe38b686f6833677e35be57ec0358aa6954f3996cf6a2feef19c724"
+    },
+    {
+      "path": "browser/accepted-en-mobile-mother-cardigan-metric.json",
+      "sha256": "6661c3215dde3cab51bfd5efc53b915b117b971b1ccac8e4318895d674bc598e"
+    },
+    {
+      "path": "browser/accepted-en-mobile-mother-dress-return-metric.json",
+      "sha256": "78b674a9567ac869b4410373ccf062241a9c6ec14c746a8e539d97baea52dccf"
+    },
+    {
+      "path": "browser/accepted-en-mobile-mother-cardigan-compact-metric.json",
+      "sha256": "8fee58d26d6cac0681009bc218162fa3f09891d732cff41329b40c611a1cbd95"
+    },
+    {
+      "path": "browser/accepted-en-mobile-mother-cardigan-compact-imperial.json",
+      "sha256": "4653bbf1294b855f1590d51a822172621287a3c1b537a75e670c7a9dc827e33b"
+    },
+    {
+      "path": "browser/accepted-en-mobile-mother-cardigan-guide-imperial.json",
+      "sha256": "55acab0edd1d4cbd43a480766cc6d48020339d7efef4873bd6f68275ff639cce"
+    },
+    {
+      "path": "browser/accepted-en-mobile-mother-cardigan-reopen.json",
+      "sha256": "c1825adde95ea16faa8425118d29b8c1b79f43cabf353629eacfdd343b9d1011"
+    },
+    {
+      "path": "browser/accepted-en-mobile-girl-cardigan-initial-metric.json",
+      "sha256": "7977006a4c3669af33bdd3afd3cef8ac9d1b8c53fe361f2670ac3d2914f37b83"
+    },
+    {
+      "path": "browser/accepted-en-mobile-girl-dress-metric.json",
+      "sha256": "fc08b1881151518599471742d3f7d0b4bddc2f86fdd197c94279c04e3116b026"
+    },
+    {
+      "path": "browser/accepted-en-mobile-girl-cardigan-metric.json",
+      "sha256": "f477680ca20f3caa4c8980ba377da62d2bd1b861d81e5a1a92399f2acff10137"
+    },
+    {
+      "path": "browser/accepted-en-mobile-girl-dress-return-metric.json",
+      "sha256": "fc0fe5ea040c354dfe84d78416c57509b6ff3726189ccd6f9dded461b53498ec"
+    },
+    {
+      "path": "browser/accepted-en-mobile-girl-cardigan-compact-metric.json",
+      "sha256": "09cf815e85e3dd8f4546049e851737b61f509ae77b832bcc8316fbf33eb0c3a6"
+    },
+    {
+      "path": "browser/accepted-en-mobile-girl-cardigan-compact-imperial.json",
+      "sha256": "a2b0d933d869579ebbd48f52813391e510865fc6228669056ab71fc6f2f33d59"
+    },
+    {
+      "path": "browser/accepted-en-mobile-girl-cardigan-guide-imperial.json",
+      "sha256": "1f201912d6248e90b8d0ff86d92d2aebf110826d746673b7dca611cd36640e04"
+    },
+    {
+      "path": "browser/accepted-en-mobile-girl-cardigan-reopen.json",
+      "sha256": "929c87a5558a3c9e2a5a40d3cdde5b7a7963f9bf7db75a9d55103c7f8b327d4f"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-initial.json",
+      "sha256": "11861d0c7aecc4f577210d08e16118cdbd18bf4ac536f23d14c5e0195f371cc9"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-no-type.json",
+      "sha256": "b39403cf801aecb8004b316f4476deb0410908e708aa50722c345a1400141c7c"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-mother-cardigan-initial-metric.json",
+      "sha256": "f923a397cbe6b61cdebd8f87791824e371475c4adfbaa1988202998f1e07596e"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-mother-dress-metric.json",
+      "sha256": "56e9ddc1c28c72b666e04e4ddcef68b92d8ef3b54a138b013cc03394d4054ca0"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-mother-cardigan-metric.json",
+      "sha256": "ec8e42edd9abf4d6a165d2b5d461a88d8b8c4c69ba78fdab2b5c9e792e825bad"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-mother-dress-return-metric.json",
+      "sha256": "2f812f162d6a03a8f727922917962974b9f8863a1e28dc94a5caa055e2a8e57c"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-mother-cardigan-compact-metric.json",
+      "sha256": "995bc94777fde5f2efe0312855c8f8c9da7733f3b2a9bc58c7256c45a0d85af4"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-mother-cardigan-compact-imperial.json",
+      "sha256": "b8da30953afda88c520b4ca9f7e7660fe544804947ef2c5c642c74844ca00e1b"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-mother-cardigan-guide-imperial.json",
+      "sha256": "48ae49f1852173270c9be70d34de6dedad586e1043ef842a73a1df132bb74151"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-mother-cardigan-reopen.json",
+      "sha256": "df2020cb5cf6c3fdbd7292b66518c311e10a741c0806a465f663d4fb2e93d9eb"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-girl-cardigan-initial-metric.json",
+      "sha256": "8faa73d2f82d4bb3c6ea6d67c8f5eea48d5a7a5362f2bb3be99d7163a6568b11"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-girl-dress-metric.json",
+      "sha256": "28748047a0eb25a4980a63a2304cf23356ee9eb0b45cdefa7483c88a44da07d9"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-girl-cardigan-metric.json",
+      "sha256": "74b93c04605b673fe6eeeed0c441f70c17a6fd61be23e9129d972874e131414b"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-girl-dress-return-metric.json",
+      "sha256": "5ae2144dc5ab76f3556e166936217d3c138af087b9a10700372aab40d3e48ae0"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-girl-cardigan-compact-metric.json",
+      "sha256": "ca0056a32ced777ba431b6843feea3f4cac2d916ccfac721fcf486d17d8445a8"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-girl-cardigan-compact-imperial.json",
+      "sha256": "c99589e7a2196810517285ed152bb282779bd7b69405545d141eabf3ef1f67da"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-girl-cardigan-guide-imperial.json",
+      "sha256": "69b004eb95c033fbb4e4af0fcc8993498df4acc4ad4f6fe8221234583b619a3d"
+    },
+    {
+      "path": "browser/accepted-fr-desktop-girl-cardigan-reopen.json",
+      "sha256": "2e19b9ac1a8bf871ee75eb51edeac4d958f9c39530f73dc8a5555ec6b32dba6c"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-initial.json",
+      "sha256": "b7ae5ed993d26c265e6b824cb21eeed6a8e19612c5eac49e820c6f804e27a5aa"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-no-type.json",
+      "sha256": "dc217ccb60be03aa76820bfbe784c84ed04ea2f8f1357d86f75fb9acda6dcc42"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-mother-cardigan-initial-metric.json",
+      "sha256": "07443e824c1b8b1a3399ac79be619841774f010de4bff5f3903e5a2abe38ec25"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-mother-dress-metric.json",
+      "sha256": "fb96302d0bc313782b377f5f88054423a4fb09cc4d569776cc127af301ded330"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-mother-cardigan-metric.json",
+      "sha256": "74c7d7b2b18b3d84242080cab8bafed6021f54b35dcbd8578121e2f883fe3394"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-mother-dress-return-metric.json",
+      "sha256": "73f38a4d3383c2d96f922e84d021ee78fa3d4114f9efb5859f641a5789a59d9c"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-mother-cardigan-compact-metric.json",
+      "sha256": "72a109af7cb8a313848c688d6a3c55d972d365e2f5742a186fc4dd9aeb63e136"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-mother-cardigan-compact-imperial.json",
+      "sha256": "c658916382d2e9f5de86396527bf805c43415dee8e69387abac451d2a76977f4"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-mother-cardigan-guide-imperial.json",
+      "sha256": "fa662ef308ed5991bdc41239e52c9b67fc7d1a4f28f3034d47d0d211c625eba4"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-mother-cardigan-reopen.json",
+      "sha256": "deef0b9c1912155297d967e0b1beae1320cbb03016724c226688bc982663907c"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-girl-cardigan-initial-metric.json",
+      "sha256": "05a72960eb9a2f111a1a566fde905b10d06874c7a2f41c694ae28129506a752e"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-girl-dress-metric.json",
+      "sha256": "b86cc402f67f1acc847515a7b9c6dd69f159636eca90cd1dbbf82ccc43232afd"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-girl-cardigan-metric.json",
+      "sha256": "33bc9f8fe1ace9149be2989e1113fc79510601539716b355682e0ef93cbd0d8f"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-girl-dress-return-metric.json",
+      "sha256": "f9172452244a98ac34c9b8d078a3fd58145433eb5435aa752d2433c4cb5e2ba8"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-girl-cardigan-compact-metric.json",
+      "sha256": "39f74bd129a64939b2aedc662dc2d48106f5040091900bf5672f8226e154fee7"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-girl-cardigan-compact-imperial.json",
+      "sha256": "97f6ee002336df24181dbe0d431deb942011b358b6fc7ab572a1199cf1aae081"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-girl-cardigan-guide-imperial.json",
+      "sha256": "01e92623aa544bd226f97b9af74a737481235038e235c03952cc05f6e4e90282"
+    },
+    {
+      "path": "browser/accepted-fr-mobile-girl-cardigan-reopen.json",
+      "sha256": "46052fbe4ec2b8116908c8fcbc23c9cdfb7de92b2511fffd58a59035765a0e76"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-initial.json",
+      "sha256": "303860e9ac6083bb5c496a4fe5012b4ecb23a3c9b5860a07ff280676bc8cff1c"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-no-type.json",
+      "sha256": "5156957993c5db5f7eb206bfb080f34496d46c368a25bbb251db0236470c5140"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-mother-cardigan-initial-metric.json",
+      "sha256": "d11438b932865fb2b41f88a9f77514f38cf6e019d379e432a34f928f7663af7d"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-mother-dress-metric.json",
+      "sha256": "9e40fcdb6390caeabf5c54483d37f8b4c5c6f2df054ca6719fd4391453dabe89"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-mother-cardigan-metric.json",
+      "sha256": "c2ec2e554bd452e1e41c07416ca2b1c34c116f2a006cbfb1944afa43a02dd9c1"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-mother-dress-return-metric.json",
+      "sha256": "f058e15663220f0c81ddd11eb4a813d68f0effd90cb16022d4f4655491ab2abb"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-mother-cardigan-compact-metric.json",
+      "sha256": "bb9f875d6f51c0f2c29c09e363a34f2398e20d51d7fbfff27ccc72869f7882dd"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-mother-cardigan-compact-imperial.json",
+      "sha256": "ba24bccf316cf6f76652b918884c5162f47909f3ebc3927bf94e40bf5e85fa5f"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-mother-cardigan-guide-imperial.json",
+      "sha256": "1010a648bc92d06eb28b707a760e3b0fa27e93ef88399fb7219c7bb280eb3153"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-mother-cardigan-reopen.json",
+      "sha256": "2fd83d2870620cca41b400ddabbf72a9ccfbcbaca189ccf3535cabceb28a0174"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-girl-cardigan-initial-metric.json",
+      "sha256": "ade789058b9cfcc48b8d917403532a9d25d46bae6e7550e13d36cfc463a9b816"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-girl-dress-metric.json",
+      "sha256": "2a4a96d4cd2f538608543dbca5277b83573ef4ff399c37b454809c6faff21174"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-girl-cardigan-metric.json",
+      "sha256": "95608aa740092baac31590e192f263a549e269af7d987b09f2654a03f3d2755b"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-girl-dress-return-metric.json",
+      "sha256": "b74d336838ac8ecd611f3fba3d86d057e032f2b9f6d615e964bda64516be6742"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-girl-cardigan-compact-metric.json",
+      "sha256": "28cd7279ae39f181259ed35eb31d0b2d232c5f17cb975cabd1d8a0c46ad32a75"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-girl-cardigan-compact-imperial.json",
+      "sha256": "85b07351c80433e813d2a6a1398fb07af7b5e1ed2c6410ade078ab31ee43c8fb"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-girl-cardigan-guide-imperial.json",
+      "sha256": "c17bc49b61aa2361b763f0c54e59c155fc3f4077ef6249b0ed59f46dc633d794"
+    },
+    {
+      "path": "browser/accepted-ar-desktop-girl-cardigan-reopen.json",
+      "sha256": "7f7e51d87ab0f0a61de4a831aac180601866b375986c032505a3b36286d31470"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-initial.json",
+      "sha256": "f952599fe091b8f721f5004bf88473b854ecaa27af47f400fd9b3b3e01591d9e"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-no-type.json",
+      "sha256": "e388218c6d815f36ff07f6cfedfbb3a6a1b1ad6be19e27efd1d5c53d13e773a2"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-mother-cardigan-initial-metric.json",
+      "sha256": "5881cb62009455723265e01622b618838e28a392801b8adf008d11926453b090"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-mother-dress-metric.json",
+      "sha256": "b90d7b2ef1bc4aa143ec9a4fb2451f27e2c51b2e134c2532996f62a241f807c9"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-mother-cardigan-metric.json",
+      "sha256": "0a07196536414a96adc5cf5f9654a80e75bcb4ab5c5d6342ab352843bd2e8943"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-mother-dress-return-metric.json",
+      "sha256": "ee8c691ff252234f7410acaacebd529a55a997e6a62aec16c481954cc464df93"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-mother-cardigan-compact-metric.json",
+      "sha256": "7cf7dd8dd41aea7ea66abbc5840219b4f25daafb26cfbbd4c8a950e741919836"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-mother-cardigan-compact-imperial.json",
+      "sha256": "52dc6d09c80861f64c0c2871482c9fb0faac2a46422650e6c9c33ef9f03029bc"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-mother-cardigan-guide-imperial.json",
+      "sha256": "d2601a1baaa0fce0fe06533c71eeea96e235a9de7ac2c66ce5cd454e03752d59"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-mother-cardigan-reopen.json",
+      "sha256": "5af80413074132e77bb5f122f14114bd98219058bbbc0672a3be6fd1a52070d9"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-girl-cardigan-initial-metric.json",
+      "sha256": "d75c4a947490a909d7b8d83a6f27ec5f7298cfb4e64722c007addecab14caa3c"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-girl-dress-metric.json",
+      "sha256": "a4d0f7b7a240eae2200991a9d12dd3867a51eac407386fc3726cd6e45e1f8edc"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-girl-cardigan-metric.json",
+      "sha256": "7cd802756772890efe0d910ff646967f0b1ec9b7ce8c336b4a48b2bfdeaa0cf8"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-girl-dress-return-metric.json",
+      "sha256": "0bf5021b8ee17a68ac8f698e3a58414f52e66d5508f2f6459f7c32ead3f718d0"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-girl-cardigan-compact-metric.json",
+      "sha256": "3d3d84c3bb1ceb4a6806525c229c94576a5f921a8a3b2068d4d58f1aab2c442e"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-girl-cardigan-compact-imperial.json",
+      "sha256": "2ab641facfd2a3962c19e8c5412e9fe8ae289c482d03438f8909e0c1783750c3"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-girl-cardigan-guide-imperial.json",
+      "sha256": "28ad44a34a2406b5a99d004bc2c5081af9eb13bcb7e0cf6274671675a71b7d2e"
+    },
+    {
+      "path": "browser/accepted-ar-mobile-girl-cardigan-reopen.json",
+      "sha256": "372e451a6a2507c8ab17254ec72d6daa732c5afa0ea9b006ccf8ed9044ac63de"
+    },
+    {
+      "path": "browser/accepted-en-desktop-dress-no-size.json",
+      "sha256": "f493dbbe7b06cd7aad7b93eafae27322122e407c0f5a947aad7ab74b7dd68f8f"
+    },
+    {
+      "path": "browser/en-article-normal.json",
+      "sha256": "bb0ef2a3e1f10c4475091a76b8bfe70ded43a6af1eb2a0b3e555bda270fd4647"
+    },
+    {
+      "path": "browser/en-article-hover-verified.json",
+      "sha256": "78e0ad49f69cc03d82a208bb29d10de9be1ac1f14ee163df56c6e8044b8a2a5a"
+    },
+    {
+      "path": "browser/en-article-focus-verified.json",
+      "sha256": "9b71adc4bca3d8bca71866833dc1976a67ed91c7add410e95783e14038d9a42d"
+    },
+    {
+      "path": "browser/en-article-arrival.json",
+      "sha256": "91797111af9f29262e6947d6275aed75380d26f3b95661be04accc0e1592bea3"
+    },
+    {
+      "path": "browser/ar-article-normal.json",
+      "sha256": "543ca19a85b6e8b04b2f8adb1c1da516326b318ba0d99ee180585c5644fe47e3"
+    },
+    {
+      "path": "browser/ar-article-hover-verified.json",
+      "sha256": "b85e3104c5bb0e767d6639330035fc8a44bc1e9b74bf2a3132a8eadb60ae3645"
+    },
+    {
+      "path": "browser/ar-article-focus-verified.json",
+      "sha256": "a0083d3bc9d6205ad41fb87577fe807f9b221404869a2b299e23de8d925acabc"
+    },
+    {
+      "path": "browser/ar-article-arrival.json",
+      "sha256": "3f04a9ee83e0003bc1b8a42ee8086b741b7201b505ea1771a26e8f61a7381ccb"
+    },
+    {
+      "path": "browser/nl-article-normal.json",
+      "sha256": "f5d779e0d21a3b6f794f94c5a2d6c74c292f7a9e36cb806c1ed9f33473168000"
+    },
+    {
+      "path": "browser/nl-article-hover-verified.json",
+      "sha256": "b7620eb2083e1fed82484fdb03dcd41645f92a716c5c8e0b48904536c447bf97"
+    },
+    {
+      "path": "browser/nl-article-focus-verified.json",
+      "sha256": "926b8cb2ca0fabe54bd7cf769e0d9c10fcf0b5586d2627aae3a3af1e2615a1ee"
+    },
+    {
+      "path": "browser/nl-article-arrival.json",
+      "sha256": "ce39457d24e575497654f510cddbed48b43e553a2472455f9e522a283d5a655c"
+    },
+    {
+      "path": "browser/au-numeric-41871506735201.json",
+      "sha256": "79c3e659b47038fc13c99e3583193fff14fa69b9b2e564fcb4fff534f1006850"
+    },
+    {
+      "path": "browser/au-numeric-41871506735201-native.json",
+      "sha256": "ffb703246d1c3cc9ddb0473841ce31e667a84fa6cb71df2efad1758c6181a6ba"
+    },
+    {
+      "path": "browser/au-numeric-41871520235617.json",
+      "sha256": "7ff830a2b92295341d64f6a24144d5e6ba1b4e67273884fb046e86b4101ab12b"
+    },
+    {
+      "path": "browser/au-numeric-41871520235617-native.json",
+      "sha256": "8b0ccd537dd1a1150b0b5838cbdbcdc72ea0bfb51329fbc5838769674a3b8ec2"
+    },
+    {
+      "path": "browser/au-numeric-44047092613217.json",
+      "sha256": "9ffccefb5bbd113322efa8c363b573e5ec340566da1878f35c828c74577a556d"
+    },
+    {
+      "path": "browser/au-numeric-44047092613217-native.json",
+      "sha256": "c13e681f86793008d8ca8d3e825080ea88407d8d69cc31da95f9933d6d47047f"
+    },
+    {
+      "path": "browser/captured-console-errors.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  ]
+}

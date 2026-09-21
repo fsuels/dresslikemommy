@@ -1,0 +1,9 @@
+query FaqCandidateSource {
+  theme(id:"gid://shopify/OnlineStoreTheme/137888792673") {
+    id role updatedAt
+    files(first:10, filenames:["layout/theme.liquid","templates/page.json","sections/main-page.liquid","assets/global.js"]) {
+      nodes { filename checksumMd5 body { ... on OnlineStoreThemeFileBodyText { content } } }
+      pageInfo { hasNextPage endCursor }
+    }
+  }
+}

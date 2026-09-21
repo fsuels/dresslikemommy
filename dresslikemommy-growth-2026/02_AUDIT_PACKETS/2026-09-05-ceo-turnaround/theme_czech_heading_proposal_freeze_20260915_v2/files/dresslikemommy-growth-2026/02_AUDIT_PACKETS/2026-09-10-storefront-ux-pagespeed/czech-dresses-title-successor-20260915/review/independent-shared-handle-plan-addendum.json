@@ -1,0 +1,235 @@
+{
+  "schema": "dlm-independent-shared-handle-plan-addendum-v1",
+  "status": "PASS_PLAN_ONLY",
+  "reviewed_at_utc": "2026-09-15T04:39:15.084487+00:00",
+  "reviewer": "/root/main_sync_review",
+  "scope": "Only the revised after-verification plan, prior-plan archival mapping and unchanged artifact bindings. Original language, 783-leaf, payload semantics and source-guard review were not repeated.",
+  "verdict": "The plan explicitly covers both source-mapped handles at desktop and narrow widths, records actual redirects/unavailable outcomes without inferring coverage, and preserves the reviewed source/payload bytes.",
+  "reviewed_bindings": {
+    "original_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/review/independent-czech-context-review.json",
+      "sha256": "a1c3aad52ba0a45d8721ccdc2500b0614ba34d1fd8c8c15935db3aef695ea002",
+      "bytes": 16144
+    },
+    "archived_proposal": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/prior-plan/PROPOSAL.json",
+      "sha256": "844a5a6472f61155f9d282edbcbab03f717f6ec4fa1a19e66bf2052886e0f727",
+      "bytes": 8389
+    },
+    "current_proposal": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/PROPOSAL.json",
+      "sha256": "ecd87760a17e8ce69198cff8718ecd2eff9ce132481757d4902e0edeeb1c0027",
+      "bytes": 10349
+    },
+    "merchant_context_reference": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/czech_copy_proposal_20260915/independent_czech_review.json",
+      "sha256": "9d2b5947555a5a51119592ecaf438f89c58952bb60240af1f4fa20e0a254d291",
+      "bytes": 7063
+    }
+  },
+  "original_review_mapping": {
+    "original_recorded_proposal_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/PROPOSAL.json",
+    "archived_exact_bytes_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/prior-plan/PROPOSAL.json",
+    "original_review_binds_proposal_sha256": "844a5a6472f61155f9d282edbcbab03f717f6ec4fa1a19e66bf2052886e0f727",
+    "this_addendum_binds_current_proposal_sha256": "ecd87760a17e8ce69198cff8718ecd2eff9ce132481757d4902e0edeeb1c0027",
+    "original_59_check_receipt_is_immutable": true
+  },
+  "planned_matrix": [
+    {
+      "handle": "dresses",
+      "url": "https://www.dresslikemommy.com/cs/collections/dresses?country=US&currency=USD&preview_theme_id=137888792673",
+      "viewport": {
+        "name": "desktop",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "handle": "dresses",
+      "url": "https://www.dresslikemommy.com/cs/collections/dresses?country=US&currency=USD&preview_theme_id=137888792673",
+      "viewport": {
+        "name": "narrow",
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "handle": "mother-daughter-matching-dresses",
+      "url": "https://www.dresslikemommy.com/cs/collections/mother-daughter-matching-dresses?country=US&currency=USD&preview_theme_id=137888792673",
+      "viewport": {
+        "name": "desktop",
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "handle": "mother-daughter-matching-dresses",
+      "url": "https://www.dresslikemommy.com/cs/collections/mother-daughter-matching-dresses?country=US&currency=USD&preview_theme_id=137888792673",
+      "viewport": {
+        "name": "narrow",
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "coverage_semantics": {
+    "attempts": 4,
+    "records": [
+      "requested URL",
+      "final URL",
+      "direct arrival or actual redirect",
+      "visible H1"
+    ],
+    "redirect": "Verifies observed destination only; not an independent direct page.",
+    "unavailable_or_404": "Record actual unavailable outcome; route coverage remains unverified. No substitute route or inferred pass.",
+    "existing_checks": "Exact heading, clipping/overflow, collection contents/navigation, Czech product-card arrival, cart preservation and evidence capture remain in the plan."
+  },
+  "unchanged_artifact_bindings": [
+    {
+      "artifact": "before",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/before.cs.json",
+      "sha256": "b942083af422129281ccdb7f745d6fa51f5ad54a8a002a0c52f76cc92e7a9106",
+      "bytes": 73875,
+      "unchanged": true
+    },
+    {
+      "artifact": "proposed",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/candidate.cs.json",
+      "sha256": "9e8e70419398c315373bf647bdbe4d06b48f18d2c1e1ca0b24f411e1dc6a7493",
+      "bytes": 73879,
+      "unchanged": true
+    },
+    {
+      "artifact": "diff",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/exact-one-string.diff",
+      "sha256": "6c624f56a7cc4bc452d443f11b34fadb585ed5b0b20bd23e3ebd41a30594df8e",
+      "bytes": 488,
+      "unchanged": true
+    },
+    {
+      "artifact": "upload",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/proposed-upload.variables.json",
+      "sha256": "83124b14ec23e6c502ec127696e515cdd36d71721e436aeb2e0611daf7f26c3d",
+      "bytes": 78851,
+      "unchanged": true
+    },
+    {
+      "artifact": "rollback",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/proposed-rollback.variables.json",
+      "sha256": "d6329e70898270f04519e861e873e987dc299422a359c065acf4f224a794a198",
+      "bytes": 78847,
+      "unchanged": true
+    },
+    {
+      "artifact": "operation",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/proposed-upsert.graphql",
+      "sha256": "1550957c64be79ebdcb591f11ad7beaa859937ae13ee744c007ac5724dabfb6a",
+      "bytes": 269,
+      "unchanged": true
+    },
+    {
+      "artifact": "fresh_read",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/fresh-source-readback.json",
+      "sha256": "352bed17424e5eee24d44ad4dfaeaf4b5a5f1a7fa0b8f715594b2d6b07eeb233",
+      "bytes": 398703,
+      "unchanged": true
+    },
+    {
+      "artifact": "guards",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/FRESH_SOURCE_GUARDS.json",
+      "sha256": "3f032aa934f6cf8974381834c64498f133354d451308aeef8ea3d8d5136284bc",
+      "bytes": 2568,
+      "unchanged": true
+    },
+    {
+      "artifact": "expected_map",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/EXPECTED_AFTER_527_SOURCE_BINDING.json",
+      "sha256": "980cd2bc606a1b30fa82d811fa78a510903878543d542debe78e4a5211d043e7",
+      "bytes": 223918,
+      "unchanged": true
+    }
+  ],
+  "checks_passed": 18,
+  "checks": [
+    {
+      "check": "original_review_immutable",
+      "passed": true
+    },
+    {
+      "check": "archived_proposal_exact_original_review_binding",
+      "passed": true
+    },
+    {
+      "check": "current_proposal_exact_requested_hash",
+      "passed": true
+    },
+    {
+      "check": "changes_only_after_plan_and_explicit_binding_addendum",
+      "passed": true
+    },
+    {
+      "check": "exact_two_distinct_handles",
+      "passed": true
+    },
+    {
+      "check": "dresses_exact_czech_preview_target",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-matching-dresses_exact_czech_preview_target",
+      "passed": true
+    },
+    {
+      "check": "exact_desktop_and_narrow_viewports",
+      "passed": true
+    },
+    {
+      "check": "original_browser_checks_preserved",
+      "passed": true
+    },
+    {
+      "check": "plan_remains_not_run",
+      "passed": true
+    },
+    {
+      "check": "four_attempts_explicit",
+      "passed": true
+    },
+    {
+      "check": "requested_final_and_visible_heading_recorded",
+      "passed": true
+    },
+    {
+      "check": "redirect_is_destination_only_not_separate_direct_coverage",
+      "passed": true
+    },
+    {
+      "check": "unavailable_is_unverified_and_no_substitution",
+      "passed": true
+    },
+    {
+      "check": "reviewed_source_payload_guard_map_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "check": "addendum_references_exact_prior_proposal_and_review",
+      "passed": true
+    },
+    {
+      "check": "merchant_context_reference_hash",
+      "passed": true
+    },
+    {
+      "check": "reviewed_plan_files_stable_at_close",
+      "passed": true
+    }
+  ],
+  "blockers": [],
+  "limits": [
+    "Plan-only review. Four attempts are planned, not executed; no browser, network, production-source, Git or external action was performed.",
+    "Merchant context artifact hash was bound; its language or business conclusions were not re-audited.",
+    "Original59-check review remains bound to the archived prior proposal; this separate receipt binds only the updated plan and stable dependencies.",
+    "Action-time source/role guards, execution authority and actual after-state browser verification remain separate requirements owned by the parent."
+  ],
+  "next_action": "Parent may freeze this preparation addendum; any future execution must use the exact current plan and separately bound action scope."
+}

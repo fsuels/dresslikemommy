@@ -1,0 +1,39 @@
+{
+  "action": "TA07-FR-25-REPAIR-20260914",
+  "stage": "BUILD",
+  "objective": "Repair verified outdated global French product fields while theme release and country commercial facts remain independent gates.",
+  "authority": "Current user all-language Merchant correction mandate; sole Merchant/product translation owner; prior ten-product Spanish repair boundaries reused. No theme, FAQ, English, handle, price, availability or feed writes.",
+  "entities": [
+    "gid://shopify/Product/7227375714401",
+    "gid://shopify/Product/7227378892897",
+    "gid://shopify/Product/7229026304097",
+    "gid://shopify/Product/7536709664865",
+    "gid://shopify/Product/7536984359009",
+    "gid://shopify/Product/7545279217761",
+    "gid://shopify/Product/7545279512673",
+    "gid://shopify/Product/7545279840353",
+    "gid://shopify/Product/7545373130849",
+    "gid://shopify/Product/7546613530721"
+  ],
+  "sourceObservedAt": "2026-09-14T23:20:32Z",
+  "hypothesis": "The same source-grounded repairs that resolved Spanish stale translations can correct corresponding global French fields without changing product facts.",
+  "alternative": "Waiting for theme publication would delay independent data correction without improving its evidence.",
+  "success": [
+    "Exactly25 reviewed FR fields saved",
+    "All60 source fields/digests and25 untargeted FR fields unchanged",
+    "Fresh independent readback clears exact25 outdated flags",
+    "Public French buyer text checked for representative title/body routes"
+  ],
+  "kill": [
+    "Any source/product/FR before-state drift",
+    "Independent review flags unresolved source ambiguity",
+    "Unexpected permissions or mutation errors"
+  ],
+  "rollback": "Exact private before values retained; source digests must be checked before any reviewed reverse mutation. No automatic rollback across intervening edits.",
+  "excluded": [
+    "Tropical7227378925665 source-weight concern",
+    "New feed submission or approval claims",
+    "Theme publication and independent FAQ page owner",
+    "Supplier shipping/returns invention"
+  ]
+}

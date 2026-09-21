@@ -1,0 +1,17 @@
+query MerchantAustraliaContext {
+  marketsResolvedValues(buyerSignal:{countryCode:AU}) {
+    currencyCode
+    catalogs(first:50) { nodes { id status publication { id } markets(first:50) { nodes { id name status } pageInfo { hasNextPage endCursor } } } pageInfo { hasNextPage endCursor } }
+    webPresences(first:50) { nodes { id defaultLocale { locale published } alternateLocales { locale published } } pageInfo { hasNextPage endCursor } }
+  }
+  australia: market(id:"gid://shopify/Market/22986424417") { ...ContextMarket }
+  international: market(id:"gid://shopify/Market/544866401") { ...ContextMarket }
+  shopLocales(published:true) { locale primary published }
+}
+fragment ContextMarket on Market {
+ id name status
+ currencySettings { baseCurrency { currencyCode } localCurrencies }
+ conditions { regionsCondition { regions(first:250) { nodes { ... on MarketRegionCountry { id code } } pageInfo { hasNextPage endCursor } } } }
+ catalogs(first:50) { nodes { id status publication { id } } pageInfo { hasNextPage endCursor } }
+ webPresences(first:50) { nodes { id defaultLocale { locale published } alternateLocales { locale published } } pageInfo { hasNextPage endCursor } }
+}

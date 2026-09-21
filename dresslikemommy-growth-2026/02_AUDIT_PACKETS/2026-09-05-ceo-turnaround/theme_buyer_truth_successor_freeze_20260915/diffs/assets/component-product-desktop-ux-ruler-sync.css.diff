@@ -1,0 +1,12 @@
+--- candidate-before/assets/component-product-desktop-ux-ruler-sync.css
++++ candidate-after/assets/component-product-desktop-ux-ruler-sync.css
+@@ -1832,6 +1832,9 @@
+   color: rgba(255, 255, 255, 0.7);
+   text-transform: capitalize;
+ }
++html[lang^="fr"] .product__info-container--matching-set .product-matching-set__measurement-row dt {
++  text-transform: none;
++}
+ .product__info-container--matching-set .product-matching-set__measurement-row dd {
+   margin: 0;
+   font-size: 1.1rem;

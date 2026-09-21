@@ -1,0 +1,10 @@
+{
+  "observedAt": "2026-09-14T21:23:09.760058+00:00",
+  "status": "KNOWN_CLIENT_READ_LIMIT_REOBSERVED__NO_NEW_GOOGLE_FAILURE_ESTABLISHED",
+  "currentEvidence": "cloud_before_readback.json",
+  "historicalEvidence": "ops/PROBLEM_TRACKER.md:PROB-2026-09-09-MERCHANT-MARKET-CATALOG-GAPS",
+  "historicalFinding": "September11 qualified-cohort follow-through already records public CLI403 alongside successful native Google source ingestion.",
+  "currentFinding": "The new single public GET returned403; authenticated Worker and R2 metadata read back successfully. No retry, bypass or external write occurred.",
+  "causalConclusion": "The response does not establish expired source, disabled host or Google failure. Exact present request rejection cause remains unknown.",
+  "futureVerification": "Qualify normal supported public delivery and native Google source processing after an authorized real refresh; preserve freshness and access controls."
+}

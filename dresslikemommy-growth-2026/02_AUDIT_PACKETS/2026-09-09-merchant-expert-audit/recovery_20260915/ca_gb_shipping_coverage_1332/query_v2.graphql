@@ -1,0 +1,23 @@
+query MerchantCanadaUKShippingCoverage {
+  shop { id myshopifyDomain }
+  deliveryProfiles(first: 5) {
+    nodes {
+      id name default
+      profileLocationGroups {
+        locationGroupZones(first: 8) {
+          nodes {
+            zone { id name countries { code { countryCode restOfWorld } provinces { code } } }
+            methodDefinitions(first: 5) {
+              nodes { id name active methodConditions { id field operator }
+                rateProvider { __typename ... on DeliveryRateDefinition { id price { amount currencyCode } } }
+              }
+              pageInfo { hasNextPage endCursor }
+            }
+          }
+          pageInfo { hasNextPage endCursor }
+        }
+      }
+    }
+    pageInfo { hasNextPage endCursor }
+  }
+}

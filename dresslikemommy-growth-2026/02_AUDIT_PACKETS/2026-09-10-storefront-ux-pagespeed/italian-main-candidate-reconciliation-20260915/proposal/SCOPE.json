@@ -1,0 +1,98 @@
+{
+  "status": "LOCAL_PROPOSAL_ONLY_NOT_APPLIED",
+  "targetThemeId": 137888792673,
+  "requiredRole": "UNPUBLISHED",
+  "accepted527BindingSha256": "1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058",
+  "files": [
+    {
+      "filename": "sections/footer.liquid",
+      "beforeSha256": "bf94102671a334dde28a87bb97e22c942c805ddd1633673cabec847594b32bc8",
+      "afterSha256": "3330dfb30577609891a67e3c3c440832c328818340ddf3669f794e9908ca79e9",
+      "beforeMd5": "0975d039b49a52684fd140064e639990",
+      "afterMd5": "8ef0883c95088a7340997bc57cad9976",
+      "beforeBytes": 32858,
+      "afterBytes": 33395,
+      "byteDelta": 537
+    },
+    {
+      "filename": "locales/it.json",
+      "beforeSha256": "1447e1752a0487e5f2e671eef486e1b71e77cd5330975bc8fbc360b666d8a353",
+      "afterSha256": "7578ce24aaf11c3118540def28a03bf2c8f3399cdd81138bfdb9f265d4c4c83f",
+      "beforeMd5": "ec9f789301fd29a0bd5a380a98c7cbcb",
+      "afterMd5": "c1be540b83992b3ef26056497725c42a",
+      "beforeBytes": 75765,
+      "afterBytes": 75783,
+      "byteDelta": 18
+    }
+  ],
+  "intendedLabels": {
+    "company_info": "Informazioni sull'azienda",
+    "help_support": "Aiuto e supporto",
+    "customer_care": "Servizio clienti"
+  },
+  "provenance": "Fresh Italian theme translations expose three translated key aliases; paired actual MAIN and candidate DOM shows missing-error versus menu-placeholder headings. Labels describe each existing menu group.",
+  "preservedFooterLinks": [
+    {
+      "href": "/it/pages/about-us",
+      "text": "Chi siamo"
+    },
+    {
+      "href": "/it/search",
+      "text": "Ricerca"
+    },
+    {
+      "href": "/it/blogs/news",
+      "text": "Blog"
+    },
+    {
+      "href": "/it/pages/shipping-info",
+      "text": "Informazioni sulla spedizione"
+    },
+    {
+      "href": "/it/pages/return-policy",
+      "text": "Ritorni"
+    },
+    {
+      "href": "/it/policies/refund-policy",
+      "text": "Rimborsi"
+    },
+    {
+      "href": "/it/pages/faqs",
+      "text": "Come ordinare"
+    },
+    {
+      "href": "/it/pages/track-your-order",
+      "text": "Come monitorare"
+    },
+    {
+      "href": "/it/pages/contact-us",
+      "text": "Contattaci"
+    }
+  ],
+  "unchangedCandidateFiles": 525,
+  "preservedSurfaces": [
+    "all9footer links and menu order",
+    "footer-group configuration",
+    "all non-Italian locale files",
+    "all other Italian locale keys and values",
+    "footer HTML, CSS, consent, forms, schema and all logic outside alias case",
+    "picker module and both accepted mobile heading stylesheets",
+    "MAIN133290917985 and local main cb7ff3a"
+  ],
+  "rollback": {
+    "method": "Only if an exact future two-file save is accepted, restore these two before files to137888792673 and independently read back matching before hashes. Do not touch MAIN.",
+    "files": [
+      "proposal/before/sections/footer.liquid",
+      "proposal/before/locales/it.json"
+    ]
+  },
+  "alternativeConsidered": "Editing three theme-specific translation records directly would fix the current labels but leave equivalent canonical Italian headings in English and place the correction outside the file-bound theme source. The proposed change reuses the existing alias and locale-key paths; no new rendering logic or public text is hardcoded in Liquid.",
+  "releaseGate": "Parent independent review and exact acceptance required before any candidate upload. Actual MAIN publication and Git push remain prohibited through the blocked connector path.",
+  "afterSavePlan": [
+    "fresh two-file before hash and complete527 inventory check",
+    "one exact existing-candidate two-file save after parent acceptance",
+    "read back both file bodies and527 inventory; verify only two files differ",
+    "verify three expected Italian headings, both Italian picker steps and nine unchanged menu links on desktop and narrow viewport",
+    "native Exit preview and actual MAIN readback; preserve buyer/cart/country and release gates"
+  ]
+}

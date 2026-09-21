@@ -1,0 +1,99 @@
+{
+  "status": "LOCAL_PROPOSAL__INDEPENDENT_REVIEW_PENDING__NO_SAVE",
+  "authority": "Parent task01a08223 preparation dispatch only. No execution until root binds exact source/candidate scope; user correction authorization persists.",
+  "target": {
+    "resourceId": "gid://shopify/Product/7607764287585",
+    "locale": "cs",
+    "key": "body_html",
+    "marketId": null,
+    "translatableContentDigest": "d825a242d7853f9ac59d19c4185d4c93b82d653e3bcc5cdb0bb87db712227498"
+  },
+  "originalMetadata": {
+    "key": "body_html",
+    "locale": "cs",
+    "outdated": false,
+    "updatedAt": "2026-09-09T18:22:50Z",
+    "market": null
+  },
+  "replacements": [
+    {
+      "before": "Ptisk:",
+      "after": "Potisk:",
+      "reason": "Repair missing vowel in the print label."
+    },
+    {
+      "before": "Srozsah velikostí:",
+      "after": "Rozsah velikostí:",
+      "reason": "Remove stray leading S; retain every size value."
+    },
+    {
+      "before": "Matka + dcera zápas:",
+      "after": "Sladěné šaty pro maminku a dceru:",
+      "reason": "Use coordinated clothing meaning, not a sporting contest."
+    },
+    {
+      "before": "Volníky na studených ramenech:",
+      "after": "Volánky a odhalená ramena:",
+      "reason": "Correct ruffle spelling and cold-shoulder construction. The unchanged English source explicitly says cold-shoulder ruffle neckline and spaghetti straps."
+    },
+    {
+      "before": "<p>APřidejte",
+      "after": "<p>Přidejte",
+      "reason": "The standalone source paragraph begins Add, not And add; remove the stray A without rewriting the rest."
+    }
+  ],
+  "sourceEnglishClosing": "<p>Add the sizes you need and create a cheerful matching dress moment for the next sunny family memory.</p>",
+  "sourceCzechClosing": "<p>APřidejte velikosti, které potřebujete, a vytvořte si veselé ladící šaty pro příští slunečnou rodinnou vzpomínku.</p>",
+  "candidateClosing": "<p>Přidejte velikosti, které potřebujete, a vytvořte si veselé ladící šaty pro příští slunečnou rodinnou vzpomínku.</p>",
+  "collection": {
+    "id": "gid://shopify/Collection/240127941",
+    "handle": "dresses",
+    "originalCzechTitle": {
+      "key": "title",
+      "value": "Šaty",
+      "locale": "cs",
+      "outdated": false,
+      "updatedAt": "2026-04-10T07:47:45Z",
+      "market": null
+    },
+    "proposedCollectionWrites": [],
+    "finding": "Current cs/title is Šaty. Local theme collection-seo-fallback uses sections.collection_seo.display_titles.dresses, whose cs.json value equals the reported incorrect H1. Actual MAIN/candidate theme binding is routed to existing UX owner; no wrong-field collection change.",
+    "themeHeadingProposal": {
+      "before": "Šaty pro mámu a já",
+      "after": "Šaty pro maminku a dceru",
+      "executionOwner": "existing UX owner after parent scope binding",
+      "sourceStatus": "LOCAL_SOURCE_MATCH__LIVE_THEME_BINDING_DEFERRED_TO_UX"
+    }
+  },
+  "protected": {
+    "productNativeFields": "Exact snapshot in source_before_1.json, including all9 variants and complete pagination.",
+    "englishSource": "All6 translatableContent values/digests remain protected.",
+    "otherCzechProductRecords": "All4 non-body records, values/outdated/updatedAt/market binding.",
+    "collection": "All native fields, all5 English source digests and all4 Czech records preserved; zero collection changes.",
+    "marketOverrides": "All12 exact product/collection Czech market-context arrays are empty in source_before_3.json.",
+    "body": "All HTML tags/attributes, size table HTML and cells, numeric values, estimate caveats, size ranges, prices/variants and separate-piece disclosure remain byte-exact outside the5 replacements."
+  },
+  "rollback": {
+    "operation": "Same translationsRegister query with rollback.variables.json.",
+    "scope": "Restore exact original cs/body_html only, after fresh English source digest and target-current-value guards.",
+    "limits": "Restores original content. Shopify-managed translation updatedAt cannot be restored; all other readback fields must be compared."
+  },
+  "residualUnchangedCopy": [
+    "S Tabulka velikostí – květinové šaty heading",
+    "Volný výstřih na chladná ramena design sentence",
+    "Matka S matce XL range wording",
+    "Koralová label spelling",
+    "Remaining awkward closing copy and other Czech product/collection prose"
+  ],
+  "completionLimits": [
+    "Narrow lexical repair only; not full Czech copy quality certification.",
+    "No Czechia price, shipping, cart, checkout, market feed or paid eligibility qualification.",
+    "Other locales are outside this bounded source review and no writes to them are proposed."
+  ],
+  "saveRequirements": [
+    "Parent binds exact source/candidate hashes and one-field scope before any save.",
+    "Fresh source/metadata/market checks must match these before-states; do not overwrite source drift.",
+    "One supported translationsRegister call; zero userErrors; exact API after-value and protected-field readback.",
+    "Public exact product prose readback after actual save; no theme/collection save or feed refresh."
+  ]
+}

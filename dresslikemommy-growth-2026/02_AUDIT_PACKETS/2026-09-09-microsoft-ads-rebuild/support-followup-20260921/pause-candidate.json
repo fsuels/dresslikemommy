@@ -1,0 +1,52 @@
+{
+  "schema": "dlm.microsoft.status_only_pause_candidate.v1",
+  "status": "OWNER_DECISION_PENDING_NOT_EXECUTED",
+  "created_at_utc": "2026-09-21T20:36:15.157145+00:00",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "targets": [
+    "506254907",
+    "506255284",
+    "506255071",
+    "506255081",
+    "506255080",
+    "506255076"
+  ],
+  "operation": "Status Enabled to Paused only, conditional on explicit owner approval",
+  "reason": "Reconcile new live launches and increased US CPC ceiling with open consent/purchase measurement and paid-authority gates. Not a claim that the clicks are waste or that no real orders occurred.",
+  "protected_current_paused_ids": [
+    "506255078",
+    "506255077",
+    "506254908"
+  ],
+  "protected_fields": [
+    "budget",
+    "bid strategy",
+    "maximum CPC",
+    "ads",
+    "keywords",
+    "negative keywords",
+    "targeting",
+    "conversion goals",
+    "all non-target campaign settings"
+  ],
+  "existing_review": {
+    "verifier": "/root/support_followup_review",
+    "verdict": "PASS_WITH_GATES",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE"
+  },
+  "before_action": [
+    "Require explicit approval for exactly six IDs; no elapsed-time approval.",
+    "Refresh exact account and all six current statuses/budgets/strategy/cap. Only US cap has been read in this packet. Stop on changed target identity or scope.",
+    "Capture all already-paused rows and relevant protected settings."
+  ],
+  "after_action": [
+    "Read all six IDs as Paused through native campaign table.",
+    "Compare protected budgets, strategy/caps and all existing paused rows; content edits must remain zero.",
+    "Record native acknowledgment and change history when available."
+  ],
+  "rollback": "Store original Enabled statuses. Re-enable only with explicit approval; no automatic rollback into spend.",
+  "request_status": "One asynchronous owner question submitted September21 in the existing task. Pending numeric total daily budget and maximum30-day test loss question not repeated.",
+  "authorized_by_heartbeat": false,
+  "executed": false
+}

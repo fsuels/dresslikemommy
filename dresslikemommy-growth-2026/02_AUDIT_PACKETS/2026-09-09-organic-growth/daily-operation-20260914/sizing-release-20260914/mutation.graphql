@@ -1,0 +1,6 @@
+mutation UpdateSizingArticle($id: ID!, $article: ArticleUpdateInput!) {
+ articleUpdate(id: $id, article: $article) {
+  article { id body updatedAt isPublished }
+  userErrors { field message code }
+ }
+}

@@ -1,0 +1,7 @@
+query FrenchProductLabelSource {
+  translatableResource(resourceId: "gid://shopify/Product/7670609346657") {
+    resourceId
+    global: translations(locale: "fr") { key locale value outdated updatedAt }
+    canada: translations(locale: "fr", marketId: "gid://shopify/Market/22986326113") { key locale value outdated updatedAt }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "status": "FINAL_CHECKS_PASS__ACTUAL_THEME_PUBLICATION_STILL_PENDING",
+  "recordedAtUTC": "2026-09-15T13:58:15.917Z",
+  "themeReadback": {
+    "observed": {
+      "startedAt": "2026-09-15T13:57:35.894Z",
+      "receivedAt": "2026-09-15T13:57:36.504Z"
+    },
+    "query": "query MerchantThemeReleaseStatus { shop { id myshopifyDomain } themes(first: 20) { nodes { id name role } pageInfo { hasNextPage } } }",
+    "result": {
+      "data": {
+        "shop": {
+          "id": "gid://shopify/Shop/15571635",
+          "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+        },
+        "themes": {
+          "nodes": [
+            {
+              "id": "gid://shopify/OnlineStoreTheme/133290917985",
+              "name": "dresslikemommy/main",
+              "role": "MAIN"
+            },
+            {
+              "id": "gid://shopify/OnlineStoreTheme/137782591585",
+              "name": "DLM SEO DA NL 2026-09-06",
+              "role": "UNPUBLISHED"
+            },
+            {
+              "id": "gid://shopify/OnlineStoreTheme/137850814561",
+              "name": "DLM DA NL SEO only 2026-09-08",
+              "role": "UNPUBLISHED"
+            },
+            {
+              "id": "gid://shopify/OnlineStoreTheme/137880666209",
+              "name": "DLM Consent Preferences 2026-09-09",
+              "role": "UNPUBLISHED"
+            },
+            {
+              "id": "gid://shopify/OnlineStoreTheme/137881223265",
+              "name": "DLM Merchant Landing Fixes 2026-09-09",
+              "role": "UNPUBLISHED"
+            },
+            {
+              "id": "gid://shopify/OnlineStoreTheme/137888792673",
+              "name": "DLM UX Performance QA 2026-09-10",
+              "role": "UNPUBLISHED"
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false
+          }
+        }
+      }
+    }
+  },
+  "checks": {
+    "graphqlSchemaValidation": "VALID before read",
+    "rightShop": true,
+    "completeThemePagination": true,
+    "candidateStillUnpublished": true,
+    "mainStill133290917985": true,
+    "italianFrozenFilesVerified": 37,
+    "italianJsonFilesParsed": 29,
+    "scopedGitDiffCheck": "PASS exit0",
+    "strictContinuity": "CONTINUITY_OK exit0, 10 checks, observed completion13:56:16UTC",
+    "strictContinuityAnchor": "2026-09-15-ceo-italian-exact-scope-bound"
+  },
+  "parentCandidateReview": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_ca_gb_cost_only_candidate_independent_review_20260915.json",
+    "sha256": "f833211b8b760520f8872212db3211aa53a179de24715927e7635ff3f00bc107",
+    "status": "PASS_WITH_LIMITS_LOCAL_CANDIDATE__DEPLOYMENT_AND_ACTUAL_MAIN_BUYER_GATES_OPEN",
+    "reportedAdditionalIndependentCases": 6
+  },
+  "limits": [
+    "These checks do not create a new release, resubmit a feed or qualify a new country.",
+    "Earlier all_market_morning_handoff_20260915.json and Italian37-file freeze are unchanged. This is a separate final read-only annotation.",
+    "Parent owns subsequent shared canonical integration and its checks."
+  ]
+}

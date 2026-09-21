@@ -1,0 +1,396 @@
+{
+  "schema": "dlm-primary-source-shipping-requirement-review-v1",
+  "reviewed_at_utc": "2026-09-15 13:21:59 UTC",
+  "reviewer": "/root/navy_variant_history",
+  "action": "TA-07 Canada/United Kingdom Merchant launch: documentation requirement review only",
+  "status": "PASS_WITH_LIMITS_DOCUMENTED_COST_ONLY_OVERRIDE_AND_OPTIONAL_RETURNS_SUBMISSION__NO_COUNTRY_RELEASE",
+  "conclusion": {
+    "verified": "Google documents manual shipping estimates and requires complete, correct shipping speed and cost information. Its ordinary manual setup and free-listing eligibility instructions do not list historical delivered orders, tracking uploads, or a minimum delivered-order cohort as prerequisites.",
+    "inferred": "The blanket assumption that CA/GB free listings must wait for past delivered-order proof is not supported by these official instructions. An existing truthful, applicable, operationally supported policy may support manual estimates without historical deliveries; this is a synthesis of the documented manual route and accuracy requirements, not a guarantee of account approval.",
+    "unknown": "This documentation review does not establish DLM's actual fulfillment capability, current CA/GB shipping settings, website consistency, country eligibility, or launch readiness."
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Set up shipping settings for an entire account",
+      "url": "https://support.google.com/merchants/answer/12577710?hl=en",
+      "sections": [
+        "Reminders",
+        "Step 5",
+        "Regions functionality for speed",
+        "Step 6",
+        "Carrier rate"
+      ],
+      "paraphrase": "Manual speeds use cutoff/time zone, handling range and business days, and transit range or zones. CA and UK support postal-code speed regions. Shipping currency must match product currency. Product overrides and API/Shopify updates can supersede manual settings. UK carrier rates concern cost."
+    },
+    {
+      "id": "S2",
+      "title": "Set up estimated delivery time",
+      "url": "https://support.google.com/merchants/answer/14949917?hl=en",
+      "sections": [
+        "Understanding estimated delivery date",
+        "Estimated delivery time set up"
+      ],
+      "quote": "Enter specific delivery times manually.",
+      "quoted_words": 6,
+      "paraphrase": "The manual process supplies handling and transit business-day ranges; cutoff affects the arrival calculation. Cutoff is optional with a documented default. No historical-order step or minimum delivery count appears in this process."
+    },
+    {
+      "id": "S3",
+      "title": "Shipping [shipping]",
+      "url": "https://support.google.com/merchants/answer/6324484?hl=en",
+      "sections": [
+        "When to use",
+        "Minimum requirements",
+        "Exclude shipping destinations",
+        "Shipping from outside the target country"
+      ],
+      "quote": "Submit complete and correct shipping information, including speed and costs.",
+      "quoted_words": 11,
+      "paraphrase": "Shipping costs are required for CA/UK free listings. Costs must include applicable merchant shipping charges and may be conservatively overstated when exact cost cannot be represented. Destination coverage must reflect reality. Cross-border customs charges must be disclosed where applicable; government import duties are not shipping costs."
+    },
+    {
+      "id": "S4",
+      "title": "Free listings for products",
+      "url": "https://support.google.com/merchants/answer/13889434?hl=en",
+      "sections": [
+        "Eligibility and requirements",
+        "How free listings work"
+      ],
+      "paraphrase": "CA/UK require account shipping settings or shipping costs in product data. Policies and product requirements also apply. The free-listing status permits showing products but does not guarantee display. No delivered-order-history prerequisite is listed."
+    },
+    {
+      "id": "S5",
+      "title": "Calculate shipping speeds based on the carrier",
+      "url": "https://support.google.com/merchants/answer/12579417?hl=en",
+      "sections": [
+        "How Google calculates",
+        "Eligibility"
+      ],
+      "paraphrase": "Merchant handling information plus origin, destination and selected carrier/service drive calculated transit estimates. The detailed eligibility page lists domestic US, DE and FR, not CA/GB. It does not specify merchant delivery-history uploads for this carrier-transit route."
+    },
+    {
+      "id": "S6",
+      "title": "Link a partner with your Merchant Center account",
+      "url": "https://support.google.com/merchants/answer/14172216?hl=en",
+      "sections": [
+        "Introduction",
+        "Eligibility",
+        "How Google uses the data"
+      ],
+      "paraphrase": "Optional partner linking supplies order tracking history for personalized shipping-speed improvements and annotation validation. The documented linking eligibility includes US customers and supported partners. This history-dependent feature is separate from manual estimates."
+    },
+    {
+      "id": "S7",
+      "title": "About automatic shipping updates",
+      "url": "https://support.google.com/merchants/answer/16371720?hl=en",
+      "sections": [
+        "Introduction",
+        "How it works"
+      ],
+      "paraphrase": "Automatic updates can use crawled site information and historical tracking/performance data. The page says these updates currently take effect in the US; merchants outside it may opt in. This is not a manual-setup prerequisite."
+    },
+    {
+      "id": "S8",
+      "title": "How to fix: Inaccurate shipping costs",
+      "url": "https://support.google.com/merchants/answer/10248678?hl=en",
+      "sections": [
+        "Problem description",
+        "Step 1"
+      ],
+      "paraphrase": "Merchant rates below checkout rates can trigger account warnings or suspension. Match checkout rates; a slight overestimate is allowed when exact configuration is impractical. This exception concerns cost, not permission to invent delivery speeds."
+    },
+    {
+      "id": "S9",
+      "title": "Free listings policies",
+      "url": "https://support.google.com/merchants/answer/12073010?hl=en",
+      "sections": [
+        "Misrepresentation"
+      ],
+      "paraphrase": "Free listings and their relevant purchase information must be truthful and not misleading."
+    }
+  ],
+  "source_access": {
+    "method": "Public Google Merchant Center Help via web tool only; no account or browser access",
+    "accessed_date_utc": "2026-09-15",
+    "retrieval_completed_at_utc": "2026-09-15 13:18:58 UTC",
+    "primary_sources_only": true,
+    "community_results_used": false,
+    "evidence_form": "Short bounded quotes and paraphrases with direct URLs; no full-page archive",
+    "no_more_than_25_quoted_words_per_source": true
+  },
+  "distinctions": [
+    {
+      "status": "VERIFIED",
+      "item": "Manual estimate",
+      "result": "Merchant inputs define the estimate. Current instructions prescribe values and accuracy, not a specific evidence packet, prior sales minimum, or tracking integration.",
+      "sources": [
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "status": "VERIFIED",
+      "item": "Carrier-calculated transit",
+      "result": "Carrier/location inputs and merchant handling data determine transit. Do not conflate this with carrier-rate cost calculation or history-based performance estimates.",
+      "sources": [
+        "S1",
+        "S5"
+      ]
+    },
+    {
+      "status": "VERIFIED",
+      "item": "Partner/performance automation",
+      "result": "Tracking history supports these optional automated improvements and certain annotations; its data needs do not transfer to the ordinary manual path.",
+      "sources": [
+        "S6",
+        "S7"
+      ]
+    },
+    {
+      "status": "INFERRED",
+      "item": "Business substantiation",
+      "result": "A truthful policy plus a current feasible fulfillment basis can support manual settings. Delivered orders are useful calibration when available, not the sole permissible basis. Publishing a policy alone does not make an unsupported promise true.",
+      "sources": [
+        "S2",
+        "S3",
+        "S9"
+      ]
+    },
+    {
+      "status": "UNKNOWN",
+      "item": "Account-specific demands",
+      "result": "No DLM account notice or specialized review requirement was inspected. An explicit current Google request, if any, must be evaluated separately; generic documentation cannot waive it.",
+      "sources": []
+    }
+  ],
+  "documentation_qualification": {
+    "status": "CONFLICTED_DETAIL__NONBLOCKING_FOR_CA_GB_MANUAL_ROUTE",
+    "detail": "The broad account setup page labels carrier speed US-only, while the detailed carrier-speed page lists domestic US/DE/FR. Neither includes CA/GB. Do not generalize the broad label to all countries or treat UK carrier-cost availability as UK carrier-speed availability.",
+    "sources": [
+      "S1",
+      "S5"
+    ]
+  },
+  "parent_provided_dated_context": {
+    "provenance": "Root message in this task; not independently reread or upgraded to fresh account/fulfillment proof",
+    "frozen_20260911_CA": "Handling 3 plus transit 2–3 = 5–6 business days; Mon–Fri; 12 AM cutoff; timezone not rendered.",
+    "frozen_20260911_GB": "Handling 3 plus transit 6–12 = 9–15 business days; Mon–Fri; 12 AM cutoff; timezone not rendered.",
+    "observed_20260914_CA_checkout": "Free Standard Shipping, with no delivery estimate shown.",
+    "observed_20260914_CA_PDP": "Sep 26–30 displayed.",
+    "order_cohort": "The last 30 completed days produced no CA/GB transit observations; this does not establish all-history absence or future incapability.",
+    "assessment": "Configuration and site display are dated observations. Their relation to a currently truthful promise, checkout route, timezone and business-day calculation remains with the Merchant owner. No replacement day values are prescribed."
+  },
+  "business_inputs_not_resolved_by_this_review": [
+    {
+      "input": "Current applicable CA and GB shipping policy and covered product/region scope",
+      "required_resolution": "Owner binds the existing policy to actual coverage, exceptions and fulfillment capability; a new historical-order collection is not automatically required."
+    },
+    {
+      "input": "Actual processing range, processing weekdays, cutoff and timezone",
+      "required_resolution": "Resolve the unrendered timezone and whether the dated 12 AM cutoff and handling settings accurately represent operations."
+    },
+    {
+      "input": "Applicable transit basis to CA/GB and regional exceptions",
+      "required_resolution": "Use current factual fulfillment/provider terms or another credible operational basis; determine whether stated times are transit-only or include processing and whether business/calendar days differ."
+    },
+    {
+      "input": "Website, PDP, checkout and Merchant consistency",
+      "required_resolution": "Reconcile the dated CA checkout/PDP observations and current policy with each current country-specific estimate; do not call different dated displays a confirmed mismatch without context."
+    },
+    {
+      "input": "Actual shipping charge, thresholds, product currency and cross-border treatment",
+      "required_resolution": "Bind destination checkout amounts and currency, applicable merchant surcharges, exclusions, and any customs disclosure; no DLM amounts are invented here."
+    },
+    {
+      "input": "Current shipping-setting ownership and overrides",
+      "required_resolution": "Owner verifies account versus item overrides and Shopify/API synchronization so a manual value is not silently superseded."
+    }
+  ],
+  "narrow_success_criteria": [
+    "Remove a history-only launch blocker if it has no separate current account-specific basis; retain genuine unknown business inputs as factual qualification gaps.",
+    "Existing Merchant owner supplies a current, applicable, truth-supported policy/operational basis for each CA/GB manual setting and reconciles destination cost, currency, cutoff/timezone, weekdays, handling/transit and coverage.",
+    "Parent separately decides exact country/source scope under existing authorization; this receipt neither approves nor performs release.",
+    "For any separately authorized change, exact target after-state and relevant storefront/checkout behavior must be read back; product eligibility or exposure must not be inferred from merely saving settings."
+  ],
+  "confidence": "High on the documented distinction and absence of a general delivered-order prerequisite; no account-specific or DLM operational verification.",
+  "scope_actions": {
+    "public_documentation_reads": true,
+    "account_queries": 0,
+    "browser_actions": 0,
+    "business_writes": 0,
+    "customer_order_reads": 0,
+    "other_task_messages": 0,
+    "git_operations": 0,
+    "shared_ops_edits": 0,
+    "owned_report_writes": 2
+  },
+  "revision": 2,
+  "revision_history": [
+    {
+      "revision": 1,
+      "sha256": "01bde6fbef1b430ef0cf871ef37cd0de48ce1f3a9b67ac999a9d722e8f777086",
+      "scope": "Original manual-estimate and historical-order requirement review; findings retained below."
+    }
+  ],
+  "cost_only_and_returns_addendum": {
+    "reviewed_at_utc": "2026-09-15 13:21:59 UTC",
+    "status": "DOCUMENTED_COST_ONLY_OVERRIDE_SUPPORTED__RETURNS_SUBMISSION_OPTIONAL__NO_LAUNCH_ACCEPTANCE",
+    "sources_added": [
+      {
+        "id": "S10",
+        "title": "What shipping information do I need to provide?",
+        "url": "https://support.google.com/merchants/answer/12578516?hl=en",
+        "sections": [
+          "Introduction/account setup",
+          "You can also submit shipping information with your product data"
+        ],
+        "quote": "Handling and transit times configured at the account level will be ignored even if those values aren’t included in your product data.",
+        "quoted_words": 22,
+        "paraphrase": "The general account-setup introduction asks for delivery times. Its explicit item-level exception says a shipping cost overrides account handling/transit even if product data omits them. CA shipping costs exclude tax."
+      },
+      {
+        "id": "S11",
+        "title": "Set up your return policies for Shopping ads and free listings",
+        "url": "https://support.google.com/merchants/answer/14011730?hl=en",
+        "sections": [
+          "Introduction",
+          "Requirements",
+          "Add return policy label attribute to products"
+        ],
+        "paraphrase": "Submitting policy data is a choice; visible website returns/refund terms must remain accessible, clear and consistent. Google can obtain policies from the website. Omitting a label can use a configured default; verified uploaded policies take precedence over crawled ones."
+      },
+      {
+        "id": "S12",
+        "title": "Returns [returns]",
+        "url": "https://support.google.com/merchants/answer/17081382?hl=en",
+        "sections": [
+          "When to use",
+          "Minimum requirements"
+        ],
+        "paraphrase": "Offer-level returns data is optional and highly recommended. Submitted values must accurately match the website. Optional parent attributes do not make sub-attributes optional once a return override is submitted."
+      },
+      {
+        "id": "S13",
+        "title": "Return policy label [return_policy_label]",
+        "url": "https://support.google.com/merchants/answer/9445425?hl=en",
+        "sections": [
+          "When to use",
+          "Minimum requirements"
+        ],
+        "paraphrase": "This optional label selects a non-default policy; without it, an existing configured default applies. Blank labels are not a way to clear or isolate return policies."
+      },
+      {
+        "id": "S14",
+        "title": "How to fix: Missing shipping sub-attribute",
+        "url": "https://support.google.com/merchants/answer/15072779?hl=en",
+        "sections": [
+          "Why this issue is happening"
+        ],
+        "paraphrase": "The shipping price remains usable when handling or transit is absent. The three fields needed for delivery-date calculation are price, maximum handling time and maximum transit time. A partial time declaration can produce an invalidated-time warning."
+      },
+      {
+        "id": "S15",
+        "title": "About Shipping Confidence Values",
+        "url": "https://support.google.com/merchants/answer/15757595?hl=en",
+        "sections": [
+          "How CVs affect your product listings",
+          "How it works"
+        ],
+        "paraphrase": "Google evaluates account/offer configurations, crawled website data and modeled estimates; inconsistent data can be suppressed or replaced. Listings without shipping speeds are explicitly discussed, with possible ranking/annotation disadvantages."
+      }
+    ],
+    "findings": [
+      {
+        "status": "VERIFIED",
+        "claim": "A matching offer-level shipping price suppresses inherited account shipping service times, even when time fields are omitted.",
+        "sources": [
+          "S10",
+          "S3"
+        ],
+        "scope": "Documented configured-data precedence for that product and matching destination only; it does not erase the account service."
+      },
+      {
+        "status": "VERIFIED",
+        "claim": "A cost-only shipping value is supported. Supplying time values is conditional on asking Google to calculate a delivery date from those fields.",
+        "sources": [
+          "S14",
+          "S3"
+        ],
+        "scope": "Specific price-only support qualifies the general account-setup wording. It does not excuse inaccurate information or imply that all delivery details are universally unnecessary."
+      },
+      {
+        "status": "INFERRED",
+        "claim": "CA:::0.00 CAD and GB:::0.00 GBP fit the documented plain shipping TSV four-position form.",
+        "sources": [
+          "S3"
+        ],
+        "conditions": "Correct plain shipping header; one intended service per destination; currency matches each offer; exact full coverage and unconditional free delivery are factually supported. Different custom headers, XML or API payloads need their corresponding representation."
+      },
+      {
+        "status": "VERIFIED",
+        "claim": "Submitting return-policy data in Merchant Center is recommended/optional for ordinary free listings, not a general CA/GB eligibility prerequisite.",
+        "sources": [
+          "S4",
+          "S11",
+          "S12"
+        ],
+        "scope": "No CA/GB-specific mandate for that submission is stated in these documents. Clear website returns/refund information and applicable policy/legal obligations remain."
+      },
+      {
+        "status": "VERIFIED",
+        "claim": "Omitting return_policy_label does not suppress an existing default return policy or guarantee that no return information appears.",
+        "sources": [
+          "S11",
+          "S13"
+        ],
+        "scope": "Return inheritance is separate from the shipping-price override. Existing applicable defaults, product returns data and crawled website policies must be considered."
+      },
+      {
+        "status": "INFERRED",
+        "claim": "No inherited account ETA is a justified narrow expectation; no Google-displayed ETA anywhere is not.",
+        "sources": [
+          "S10",
+          "S15",
+          "S7"
+        ],
+        "scope": "Other effective item attributes, enrichment and Google's crawled/modeled data can matter. The US-only automatic-update documentation must not be generalized into proof that CA/GB cannot display derived data."
+      }
+    ],
+    "challenged_or_rejected_assertions": [
+      "REJECT: Historical delivered-order evidence is mandatory before any ordinary manual CA/GB free-listing launch.",
+      "REJECT: Cost-only overrides leave the old account handling/transit times inherited by the matching offer.",
+      "REJECT: Price-only syntax proves effective processed attributes, factual free-shipping coverage, or country/source readiness.",
+      "REJECT: Omitting return_policy_label removes any existing/default/crawled return information.",
+      "REJECT: Omitting times guarantees Google will never show an ETA or makes unsupported website delivery promises acceptable.",
+      "QUALIFY: The account-setup requirement for delivery information is not a prohibition on the specifically documented offer-level cost-only override."
+    ],
+    "parent_reported_new_business_evidence": {
+      "provenance": "Root's relay of Merchant owner's independent read; no source/account read repeated by this reviewer",
+      "General_deliveryProfile": "Complete owner-reported General profile with explicit CA/GB zone 21400485985.",
+      "active_method": "Owner reports active unconditional Free Standard Shipping method 36297965665 at zero, plus September14 zero-cost checkout.",
+      "proposal": "CA:::0.00 CAD / GB:::0.00 GBP, no handling/transit or return_policy_label, preserving real buyer and six-source holds.",
+      "limits": "These facts support evaluating the cost proposal; this reviewer has not proven profile membership for every proposed offer, destination checkout coverage, merged attributes, website policy truth, or final Merchant status.",
+      "dated_return_policy": "Root reports prior owner evidence of Austrian policy 9309759641 only. Current applicability/default assignment for CA/GB is UNKNOWN in this review; no account read performed."
+    },
+    "exact_remaining_acceptance_inputs": [
+      "Merchant owner/parent binds the proposed offer set to the supported profile/country coverage, actual zero-cost checkout conditions and CAD/GBP product currencies.",
+      "Owner inspects effective processed shipping attributes after all data-source rules/merges if a release is separately authorized: exact country/price, no unintended shipping options or time values, and no inherited account handling/transit. An omitted source field alone is not processed-state proof.",
+      "Owner establishes actual applicable return behavior: clear current website terms plus any existing default, exception or offer-level return policy. Omission must not conceal a conflicting existing policy. Any current Terms-versus-Refund-page contradiction must be resolved on its own facts; optional Merchant submission does not waive website consistency.",
+      "Parent retains buyer and six-source holds; handles account-specific restrictions and separates technical processing, eligibility, display, clicks and sales.",
+      "Any observed Google ETA remains tied to its evidence/source and is checked for truth; do not certify universal absence from the cost-only submission."
+    ],
+    "narrow_gate_change": {
+      "recommendation": "Parent can remove unsupported historical-delivery and mandatory Merchant-return-submission gates, and can evaluate the documented cost-only route without inventing replacement days.",
+      "preserved_requirement": "Truthful fulfillment, zero-cost coverage, website policy clarity, processed-data integrity, real buyer/six-source holds and exact release authorization remain.",
+      "conflict_resolution": "For this cost-only branch, exact handling/transit numbers and timezone need not be invented or submitted. The prior review's timing-input success criterion applies to manual ETA configuration, not a universal prerequisite for a cost-only submission.",
+      "action_authorized_by_this_review": "NONE",
+      "account_or_feed_acceptance": "NOT RUN",
+      "Google_display_or_business_outcome": "UNKNOWN"
+    }
+  },
+  "narrow_success_criteria_qualification": "Original timing-input criteria apply only when configuring a manual ETA. Cost-only branch has distinct acceptance inputs in the addendum; do not retain an unsupported mandatory ETA gate.",
+  "review_completion": "FINAL_READY_FOR_PARENT_INTAKE; documentary review only, no feed/country approval"
+}

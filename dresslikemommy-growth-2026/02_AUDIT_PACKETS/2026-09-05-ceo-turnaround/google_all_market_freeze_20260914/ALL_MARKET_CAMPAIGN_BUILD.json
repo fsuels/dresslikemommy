@@ -1,0 +1,2714 @@
+{
+  "schema_version": "dlm.all_market_campaign_plan.v1",
+  "as_of_utc": "2026-09-14 20:39:34 UTC",
+  "owner": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+  "status": "IMPLEMENTED_LOCAL__LIVE_CAMPAIGN_CREATION_BLOCKED",
+  "scope": "All 65 currently configured country codes and all 21 published language asset packs; source market and language metadata are live verified, geographic language mapping is a strategy candidate.",
+  "is_import_payload": false,
+  "external_writes": 0,
+  "new_account_campaigns": 0,
+  "new_account_ads": 0,
+  "new_account_keywords": 0,
+  "source_readback": "MARKETS_LIVE_READBACK.json",
+  "legacy_prepared_drafts": "../SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+  "preserve_legacy_qualified_set_empty": true,
+  "market_count": 6,
+  "country_membership_rows": 68,
+  "unique_country_count": 65,
+  "published_locale_count": 21,
+  "all_locale_asset_pack_codes": [
+    "ar",
+    "cs",
+    "da",
+    "de",
+    "el",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "he",
+    "hi",
+    "it",
+    "ja",
+    "ko",
+    "nl",
+    "no",
+    "pl",
+    "pt-BR",
+    "ro",
+    "ru",
+    "sv"
+  ],
+  "language_mapping_evidence": "INFERENCE: proposed language segments, not API-declared market language associations or measured demand",
+  "unassigned_to_non_russia_countries": [
+    "ar",
+    "he",
+    "hi",
+    "ja",
+    "ko",
+    "ru"
+  ],
+  "unassigned_language_policy": "Prepare templates only; qualify demand among speakers in an existing allowed country before assigning. Do not infer additional countries from a published language.",
+  "partition_rule": "One prospective Search campaign per qualified country, with language-specific ad groups and matched language landing pages; not one budget per language and not simultaneous 65-country launches. No wildcard worldwide targeting.",
+  "platform_language_rule": {
+    "as_of": "2026-09-14",
+    "source": "https://support.google.com/google-ads/answer/1722078?hl=en",
+    "fact": "Starting September 2026 Search campaign language settings are removed; Search delivery aligns to ad/landing language. PMax language setting remains relevant to non-Search channels; Shopping is not controlled by it.",
+    "account_rollout": "PMax Languages field observed and English selected; Search creation interface not verified",
+    "execution": "Do not require a missing Search language selector; validate creative language, exact country, localized landing, query language and language performance. If selector persists, record actual rollout state."
+  },
+  "cost_control": {
+    "campaign_type": "SEARCH",
+    "strategy": "MANUAL_CPC",
+    "max_cpc_usd": 0.15,
+    "upward_bid_modifiers": false,
+    "search_partners": false,
+    "display_network": false,
+    "ai_max": false,
+    "search_term_matching": false,
+    "text_customization": false,
+    "final_url_expansion": false,
+    "auto_apply_recommendations": false,
+    "conversion_goal": "Existing verified Purchase only after reconciliation; do not promote add_to_cart/page_view for bidding",
+    "target_roas_setting": null,
+    "business_roas_goal": 6.5,
+    "all_in_profit_margin_goal": 0.3,
+    "launch_budget": null,
+    "maximum_new_money_allocated": 0
+  },
+  "economics": {
+    "revenue": "Retained merchandise after discounts/refunds plus retained shipping, excluding taxes",
+    "allowable_ad_cost": "min(R/6.5, R - actual_variable_costs - allocated_overhead - 0.30*R, exact_authorized_loss_allowance)",
+    "unknown_cost_rule": "No profit-qualified paid launch without actual basket/settlement/fulfillment/fees/refund evidence",
+    "cpc_note": "Planner historical low bid or low average CPC does not certify auction eligibility or profit."
+  },
+  "negative_policy": {
+    "match_type": "PHRASE",
+    "intent": "Sewing-pattern and how-to-sew requests for a finished-clothing campaign",
+    "language": "Use explicit reviewed local phrases. Negatives do not automatically cover synonyms, singular/plural or translations; casing/misspellings are already handled by current Google behavior.",
+    "accent_rule": "Review accent variants where needed; do not generate endless spelling/case duplicates",
+    "protected_terms": [
+      "free",
+      "shipping",
+      "adult",
+      "cheap",
+      "pattern",
+      "patterned",
+      "floral",
+      "pajamas",
+      "wedding",
+      "matching dress",
+      "family",
+      "mother",
+      "daughter"
+    ],
+    "scope": "Campaign-specific only after inherited lists/account negatives are read back; no blanket category suppression",
+    "review": "Compare proposed negatives against positive seed terms, local finished-garment intent, actual search terms and cross-language false positives."
+  },
+  "phasing": {
+    "first_test": "Select exactly one source-qualified country/product/keyword cohort from existing evidence; US/AU/CA prospects are alternatives, not winners.",
+    "next": "Add one qualified country or language only when its own buyer path, costs and budget permit interpretable measurement.",
+    "remaining": "All other country/language drafts remain queued and visible; no country silently omitted.",
+    "success": "Native saved targets/ad text/negative matches verified, matched landing and selected variants pass, genuine valued purchase accepted; subsequent attributed retained contribution measured.",
+    "kill": "Stop candidate promotion on wrong product/language/currency, unavailable shipping, exceeded authorized exposure/CPC control, unverified primary purchase or unsupported claims.",
+    "unchanged_empty_data": "Do not rerun completed 18 native candidate tests or repeat zero-report audits absent changed evidence."
+  },
+  "campaign_drafts": [
+    {
+      "country_code": "AD",
+      "country_name": "Andorra",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Catalan is not a published locale; Spanish/French are research alternatives, not complete local-language coverage.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | AD | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "es",
+          "creative_language": "es",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/es/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/es/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "es",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        },
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "AI",
+      "country_name": "Anguilla",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "XCD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | AI | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "AT",
+      "country_name": "Austria",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | AT | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "de",
+          "creative_language": "de",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/de/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/de/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "de",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "AU",
+      "country_name": "Australia",
+      "market_ids": [
+        "gid://shopify/Market/22986424417",
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "Australia",
+        "International"
+      ],
+      "configured_currencies": [
+        "AUD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | AU | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": "../SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "AX",
+      "country_name": "Åland Islands",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | AX | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "sv",
+          "creative_language": "sv",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/sv/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/sv/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "sv",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "BE",
+      "country_name": "Belgium",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | BE | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        },
+        {
+          "locale": "nl",
+          "creative_language": "nl",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/nl/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/nl/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "nl",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        },
+        {
+          "locale": "de",
+          "creative_language": "de",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/de/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/de/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "de",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "BG",
+      "country_name": "Bulgaria",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Bulgarian is not published; English candidate is limited to comprehending shoppers.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | BG | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "BL",
+      "country_name": "St. Barthélemy",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | BL | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "BM",
+      "country_name": "Bermuda",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "USD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | BM | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "BS",
+      "country_name": "Bahamas",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "BSD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | BS | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "CA",
+      "country_name": "Canada",
+      "market_ids": [
+        "gid://shopify/Market/22986326113",
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "Canada",
+        "International"
+      ],
+      "configured_currencies": [
+        "CAD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | CA | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": "../SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        },
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "CH",
+      "country_name": "Switzerland",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "CHF"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | CH | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "de",
+          "creative_language": "de",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/de/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/de/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "de",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        },
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        },
+        {
+          "locale": "it",
+          "creative_language": "it",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/it/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/it/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "it",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "CK",
+      "country_name": "Cook Islands",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "NZD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | CK | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "CY",
+      "country_name": "Cyprus",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Turkish is not published; no all-language Cyprus claim.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | CY | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "el",
+          "creative_language": "el",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/el/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/el/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "el",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        },
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "CZ",
+      "country_name": "Czechia",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "CZK"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | CZ | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "cs",
+          "creative_language": "cs",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/cs/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/cs/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "cs",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "DE",
+      "country_name": "Germany",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | DE | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "de",
+          "creative_language": "de",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/de/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/de/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "de",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "DK",
+      "country_name": "Denmark",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "DKK"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | DK | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "da",
+          "creative_language": "da",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/da/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/da/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "da",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "ES",
+      "country_name": "Spain",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | ES | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "es",
+          "creative_language": "es",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/es/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/es/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "es",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "FI",
+      "country_name": "Finland",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | FI | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fi",
+          "creative_language": "fi",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fi/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fi/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fi",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        },
+        {
+          "locale": "sv",
+          "creative_language": "sv",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/sv/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/sv/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "sv",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "FJ",
+      "country_name": "Fiji",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "FJD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | FJ | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "FR",
+      "country_name": "France",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | FR | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "GB",
+      "country_name": "United Kingdom",
+      "market_ids": [
+        "gid://shopify/Market/544800865",
+        "gid://shopify/Market/22986260577"
+      ],
+      "market_names": [
+        "Eurozone",
+        "United Kingdom"
+      ],
+      "configured_currencies": [
+        "GBP"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | GB | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": "../SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "GF",
+      "country_name": "French Guiana",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | GF | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "GL",
+      "country_name": "Greenland",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "DKK"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Kalaallisut is not published; Danish candidate requires demand and buyer-route validation.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | GL | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "da",
+          "creative_language": "da",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/da/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/da/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "da",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "GP",
+      "country_name": "Guadeloupe",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | GP | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "GR",
+      "country_name": "Greece",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | GR | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "el",
+          "creative_language": "el",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/el/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/el/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "el",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "HR",
+      "country_name": "Croatia",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Croatian is not published; English candidate is limited to comprehending shoppers.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | HR | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "IE",
+      "country_name": "Ireland",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | IE | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "IS",
+      "country_name": "Iceland",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "ISK"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Icelandic is not published; English candidate is limited to comprehending shoppers.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | IS | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "IT",
+      "country_name": "Italy",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | IT | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "it",
+          "creative_language": "it",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/it/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/it/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "it",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "KY",
+      "country_name": "Cayman Islands",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "KYD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | KY | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "LT",
+      "country_name": "Lithuania",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Lithuanian is not published; English candidate is limited to comprehending shoppers.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | LT | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "LU",
+      "country_name": "Luxembourg",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Luxembourgish is not published; French/German candidates do not cover every local language.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | LU | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        },
+        {
+          "locale": "de",
+          "creative_language": "de",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/de/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/de/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "de",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "LV",
+      "country_name": "Latvia",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Latvian is not published; English candidate is limited to comprehending shoppers.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | LV | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "MC",
+      "country_name": "Monaco",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | MC | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "ME",
+      "country_name": "Montenegro",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Montenegrin/Serbian localization is not established; English candidate is limited to comprehending shoppers.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | ME | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "MF",
+      "country_name": "St. Martin",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | MF | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "MQ",
+      "country_name": "Martinique",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | MQ | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "MT",
+      "country_name": "Malta",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | MT | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "MX",
+      "country_name": "Mexico",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "USD"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Configured currency is USD; do not advertise MXN pricing or assume checkout currency.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | MX | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "es",
+          "creative_language": "es",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/es/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/es/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "es",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "NL",
+      "country_name": "Netherlands",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | NL | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "nl",
+          "creative_language": "nl",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/nl/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/nl/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "nl",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "NO",
+      "country_name": "Norway",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Configured currency is EUR; do not advertise NOK pricing or assume checkout currency.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | NO | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "no",
+          "creative_language": "no",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/no/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/no/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "no",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "NZ",
+      "country_name": "New Zealand",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "NZD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | NZ | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "PL",
+      "country_name": "Poland",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "PLN"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | PL | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "pl",
+          "creative_language": "pl",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/pl/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/pl/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "pl",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "PM",
+      "country_name": "St. Pierre & Miquelon",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | PM | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "PT",
+      "country_name": "Portugal",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Published pt-BR at /pt/ needs European-Portuguese adaptation and current route review.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | PT | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "pt-BR",
+          "creative_language": "pt-BR",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/pt/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/pt/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "pt-BR",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "RE",
+      "country_name": "Réunion",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | RE | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "RO",
+      "country_name": "Romania",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "RON"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | RO | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "ro",
+          "creative_language": "ro",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/ro/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/ro/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "ro",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "RS",
+      "country_name": "Serbia",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "RSD"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Serbian is not published; English candidate is limited to comprehending shoppers.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | RS | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "RU",
+      "country_name": "Russia",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "PLATFORM_GEO_SERVING_PAUSED",
+      "gap": "Google currently pauses ads to users located in Russia; no launch or bypass. Russian-language templates may later qualify for a different allowed country.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | RU | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "ru",
+          "creative_language": "ru",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/ru/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/ru/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "ru",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "NO_RUSSIA_LAUNCH"
+        }
+      ]
+    },
+    {
+      "country_code": "SE",
+      "country_name": "Sweden",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "SEK"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | SE | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "sv",
+          "creative_language": "sv",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/sv/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/sv/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "sv",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "SI",
+      "country_name": "Slovenia",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Slovenian is not published; English candidate is limited to comprehending shoppers.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | SI | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "SK",
+      "country_name": "Slovakia",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Slovak is not published; English candidate is limited to comprehending shoppers.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | SK | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "SM",
+      "country_name": "San Marino",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | SM | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "it",
+          "creative_language": "it",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/it/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/it/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "it",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "SV",
+      "country_name": "El Salvador",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "USD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | SV | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "es",
+          "creative_language": "es",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/es/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/es/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "es",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "TC",
+      "country_name": "Turks & Caicos Islands",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "USD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | TC | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "TF",
+      "country_name": "French Southern Territories",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Google country targeting availability and practical consumer delivery are unverified; do not create an account target from ISO code alone.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | TF | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "TV",
+      "country_name": "Tuvalu",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "AUD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | TV | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "UM",
+      "country_name": "U.S. Outlying Islands",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "USD"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Google country targeting availability and practical consumer delivery are unverified; do not create an account target from ISO code alone.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | UM | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "US",
+      "country_name": "United States",
+      "market_ids": [
+        "gid://shopify/Market/544735329"
+      ],
+      "market_names": [
+        "United States"
+      ],
+      "configured_currencies": [
+        "USD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | US | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": "../SEARCH_CAMPAIGN_DRAFTS_20260912_SOURCE_REFRESH.json",
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        },
+        {
+          "locale": "es",
+          "creative_language": "es",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/es/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/es/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "es",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "VG",
+      "country_name": "British Virgin Islands",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "USD"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | VG | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "WF",
+      "country_name": "Wallis & Futuna",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "XPF"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | WF | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "WS",
+      "country_name": "Samoa",
+      "market_ids": [
+        "gid://shopify/Market/544866401"
+      ],
+      "market_names": [
+        "International"
+      ],
+      "configured_currencies": [
+        "WST"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | WS | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "XK",
+      "country_name": "Kosovo",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_WITH_SPECIFIC_GAP",
+      "gap": "Albanian/Serbian are not published; English candidate is limited to comprehending shoppers.",
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | XK | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "en",
+          "creative_language": "en",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "en",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    },
+    {
+      "country_code": "YT",
+      "country_name": "Mayotte",
+      "market_ids": [
+        "gid://shopify/Market/544800865"
+      ],
+      "market_names": [
+        "Eurozone"
+      ],
+      "configured_currencies": [
+        "EUR"
+      ],
+      "coverage_status": "LOCAL_BUILD_REQUIRES_QUALIFICATION",
+      "gap": null,
+      "account_campaign_id": null,
+      "proposed_campaign_name": "DLM | YT | Search | Matching Dresses | HOLD",
+      "existing_english_draft_reference": null,
+      "budget_usd": null,
+      "authorized_incremental_spend_usd": 0,
+      "google_geo_target_id": null,
+      "native_target_eligibility": "NOT_VERIFIED",
+      "initial_status": "PAUSED",
+      "country_presence": "PRESENCE_PEOPLE_IN_OR_REGULARLY_IN",
+      "language_group_candidates": [
+        {
+          "locale": "fr",
+          "creative_language": "fr",
+          "locale_root_from_shopify": "https://www.dresslikemommy.com/fr/",
+          "candidate_collection_url": "https://www.dresslikemommy.com/fr/collections/mommy-and-me",
+          "final_url": null,
+          "route_status": "CANDIDATE_ONLY_EXACT_COUNTRY_LOCALIZED_ROUTE_NOT_VERIFIED",
+          "asset_pack_locale": "fr",
+          "qualified_keywords": [],
+          "negative_scope": "Campaign union of reviewed language-specific sewing-intent phrases; not account-wide",
+          "status": "LOCAL_BUILD_NATIVE_REVIEW_AND_ECONOMICS_REQUIRED"
+        }
+      ]
+    }
+  ]
+}

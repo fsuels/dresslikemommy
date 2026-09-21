@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "preparationValidation": {
+    "status": "PASS_PREPARATION_ARTIFACTS",
+    "checksPassed": 15,
+    "proposalSha256": "844a5a6472f61155f9d282edbcbab03f717f6ec4fa1a19e66bf2052886e0f727"
+  },
+  "strictContinuity": {
+    "exitCode": 0,
+    "output": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 52103 lines; latest anchor 2026-09-15-ceo-microsoft-german-negatives-and-czech-routing\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-15-ceo-microsoft-german-negatives-and-czech-routing\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n"
+  },
+  "gitReadOnlyChecks": {
+    "exitCode": 0,
+    "output": ""
+  },
+  "scope": "Local proposal and read-only source verification. No theme or Git mutation."
+}

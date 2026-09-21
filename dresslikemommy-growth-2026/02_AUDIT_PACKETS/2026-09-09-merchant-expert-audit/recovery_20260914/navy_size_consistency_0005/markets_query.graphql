@@ -1,0 +1,1 @@
+query NavyMarketIdentity($after:String){shop{id myshopifyDomain} markets(first:50,after:$after){nodes{id name status}pageInfo{hasNextPage endCursor}}}

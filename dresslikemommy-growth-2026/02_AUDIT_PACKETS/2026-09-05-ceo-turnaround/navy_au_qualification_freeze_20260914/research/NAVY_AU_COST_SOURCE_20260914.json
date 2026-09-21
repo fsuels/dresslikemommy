@@ -1,0 +1,639 @@
+{
+  "schema": "dlm.navy_au_catalog_cost_source.v1",
+  "scope": "One exact existing Search research product; configured catalog costs and AU prices only, not supplier invoices, settlement, checkout or profit proof.",
+  "source_method": "Schema-discovered and twice-validated Shopify Admin read-only GraphQL query",
+  "recorded_time": {
+    "started": "2026-09-14 23:17:04 UTC",
+    "completed": "2026-09-14 23:17:05 UTC"
+  },
+  "query_artifact_id": "d9947394-f9d6-40c8-8a18-ce7b12958a9f",
+  "revision": 1,
+  "query": "query NavyAustraliaCostRead($id: ID!, $after: String) {\n  shop { id name currencyCode }\n  product(id: $id) {\n    id handle status onlineStoreUrl\n    variants(first: 50, after: $after) {\n      nodes {\n        id selectedOptions { name value }\n        contextualPricing(context: {country: AU}) { price { amount currencyCode } }\n        inventoryItem { unitCost { amount currencyCode } }\n      }\n      pageInfo { hasNextPage endCursor }\n    }\n  }\n}",
+  "variables": {
+    "id": "gid://shopify/Product/7670609346657"
+  },
+  "result": {
+    "data": {
+      "shop": {
+        "id": "gid://shopify/Shop/15571635",
+        "name": "Dress Like Mommy",
+        "currencyCode": "USD"
+      },
+      "product": {
+        "id": "gid://shopify/Product/7670609346657",
+        "handle": "navy-sprig-mommy-and-me-dresses",
+        "status": "ACTIVE",
+        "onlineStoreUrl": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses",
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46501139349601",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 2 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "35.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "12.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139382369",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 3 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "35.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "12.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139415137",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 4 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "35.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "12.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139447905",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 5 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "35.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "12.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139480673",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 6-7 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "35.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "12.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139513441",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 8 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "35.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "12.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139546209",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 9-10 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "35.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "12.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139578977",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Mother S"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "40.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "14.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139611745",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Mother M"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "40.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "14.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139644513",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Mother L"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "40.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "14.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139677281",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Mother XL"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "40.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "14.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139710049",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Dress"
+                },
+                {
+                  "name": "Size",
+                  "value": "Mother 2XL"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "40.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "14.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139742817",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 2 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "26.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "9.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139775585",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 3 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "26.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "9.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139808353",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 4 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "26.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "9.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139841121",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 5 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "26.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "9.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139873889",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 6-7 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "26.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "9.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139906657",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 8 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "26.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "9.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139939425",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Child 9-10 Years"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "26.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "9.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501139972193",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Mother S"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "29.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "10.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501140004961",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Mother M"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "29.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "10.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501140037729",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Mother L"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "29.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "10.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501140070497",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Mother XL"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "29.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "10.0",
+                  "currencyCode": "USD"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46501140103265",
+              "selectedOptions": [
+                {
+                  "name": "Type",
+                  "value": "Cardigan"
+                },
+                {
+                  "name": "Size",
+                  "value": "Mother 2XL"
+                }
+              ],
+              "contextualPricing": {
+                "price": {
+                  "amount": "29.0",
+                  "currencyCode": "AUD"
+                }
+              },
+              "inventoryItem": {
+                "unitCost": {
+                  "amount": "10.0",
+                  "currencyCode": "USD"
+                }
+              }
+            }
+          ],
+          "pageInfo": {
+            "hasNextPage": false,
+            "endCursor": "eyJsYXN0X2lkIjo0NjUwMTE0MDEwMzI2NSwibGFzdF92YWx1ZSI6IjI0In0="
+          }
+        }
+      }
+    }
+  },
+  "external_account_writes": 0
+}

@@ -1,0 +1,90 @@
+{
+  "status": "PASS",
+  "anchor": "2026-09-15-ceo-faq-sizing-progress-and-navy-label-scope",
+  "files": [
+    {
+      "path": "ops/marketing/action_queue.md",
+      "before_sha256": "81faaf6937930ff8cca87b9bbe4508573a847a7a391ff1f5449eca4a420449f4",
+      "after_sha256": "aa27846908fca574ee1645db0eabfd4c3c7598f49ebf6fa9c370c91752f15107",
+      "before_snapshot": "/private/tmp/dlm-hip-scope-integration-20260915/ops/marketing/action_queue.md"
+    },
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "before_sha256": "41bca2d5c55fc1793c0ffde2c35e6f16b80c2d0291b54549ba521dc4b6070c76",
+      "after_sha256": "ac6c373037de020195ebc79dc2b97531b2e175570d07c19f69497d0b2d0ae934",
+      "before_snapshot": "/private/tmp/dlm-hip-scope-integration-20260915/ops/AGENT_COORDINATION.md"
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "before_sha256": "7af090f5ab9aa2bc621e0e94a613983eea5f0e11656d26c06a4e237109864b97",
+      "after_sha256": "2c1886865d1e9746d438d5664c0ee4c80f490ff87e7ca1bd4a6ecd4a9227b6e4",
+      "before_snapshot": "/private/tmp/dlm-hip-scope-integration-20260915/ops/PROBLEM_TRACKER.md"
+    },
+    {
+      "path": "ops/marketing/decision_log.md",
+      "before_sha256": "ba00c70b52bb4e808fc24ee8d9e89c92a9edf4a0e6d44edf6ca4356bd2b0ecbf",
+      "after_sha256": "e8fb8d1aabf1b47d2fa6bbfb3fec17634a5d6845e1d0409f6d83692289fc10ec",
+      "before_snapshot": "/private/tmp/dlm-hip-scope-integration-20260915/ops/marketing/decision_log.md"
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "before_sha256": "7608d79e28c39dd5baa730948ae250bfda1c02e9378ece9de119aebf198e6af3",
+      "after_sha256": "87eca07a32b067fda7262105d6752cc98bd11664a9e402be7a2b46bcc7e1bc8e",
+      "before_snapshot": "/private/tmp/dlm-hip-scope-integration-20260915/ops/AGENT_WORKLOG.md"
+    }
+  ],
+  "checks": [
+    {
+      "cmd": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/render_marketing_cockpit.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Rendered ops/marketing/operator_cockpit.html\n",
+      "stderr": ""
+    },
+    {
+      "cmd": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/audit_marketing_command_integration.py",
+        "--write-report",
+        "--fail-on-risk"
+      ],
+      "exit_code": 0,
+      "stdout": "# Marketing Command Layer Integration Audit\n\nIntegration status: `GENERATED`\n\nLast generated: 2026-09-14 20:24\n\nPurpose: identify command-layer files that risk becoming side documents nobody uses.\n\n## Summary\n\n- Tracked files: `25`\n- Integrated/generated/archive files: `25`\n- Side-document risks: `0`\n\nA side-document risk means a file is missing from the source registry, has too few command-loop references, or is not connected to an action surface.\n\n## Required Rule\n\nNo new `ops/marketing/` artifact counts as done unless it is either:\n\n- registered in `ops/marketing/AGENTS.md`,\n- linked from an action surface such as `action_queue.md`, `current_marketing_state.md`, `daily_scorecard.md`, `blocker_board.md`, `operator_cockpit.md`, or `ops/PROBLEM_TRACKER.md`,\n- logged in continuity files such as `ops/AGENT_WORKLOG.md`, `ops/AGENT_COORDINATION.md`, `decision_log.md`, `review_log.md`, `assumption_log.md`, or `memory_digest.md`,\n- or explicitly marked as `Integration status: ARCHIVE_REFERENCE` or `Integration status: GENERATED`.\n\n## File Results\n\n| File | Status | Registered | Ref count | Action surface | Fix |\n|---|---|---:|---:|---:|---|\n| `ops/marketing/AGENTS.md` | `PASS_CORE` | `true` | `11` | `true` | none |\n| `ops/marketing/action_queue.md` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/assumption_log.md` | `PASS_CORE` | `true` | `3` | `false` | none |\n| `ops/marketing/blocker_board.md` | `PASS_CORE` | `true` | `7` | `true` | none |\n| `ops/marketing/campaign_explorer.json` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/command_layer_integration_audit.md` | `PASS_GENERATED` | `true` | `9` | `true` | generated integration audit |\n| `ops/marketing/current_marketing_state.md` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/daily_scorecard.md` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/decision_log.md` | `PASS_CORE` | `true` | `6` | `true` | none |\n| `ops/marketing/dream_consolidation_prompt.md` | `PASS_INTEGRATED` | `true` | `4` | `true` | none |\n| `ops/marketing/expert_growth_playbook_2026.md` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |\n| `ops/marketing/keyword_factory_015_cpc_criteria.md` | `PASS_INTEGRATED` | `true` | `12` | `true` | none |\n| `ops/marketing/keyword_scoring_rubric.md` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |\n| `ops/marketing/keyword_strategy.md` | `PASS_INTEGRATED` | `true` | `13` | `true` | none |\n| `ops/marketing/keyword_universe.csv` | `PASS_INTEGRATED` | `true` | `14` | `true` | none |\n| `ops/marketing/memory_digest.md` | `PASS_CORE` | `true` | `2` | `false` | none |\n| `ops/marketing/migration_trace.md` | `PASS_ARCHIVE_REFERENCE` | `true` | `4` | `true` | none |\n| `ops/marketing/operator_cockpit.html` | `PASS_GENERATED` | `true` | `9` | `true` | generated cockpit |\n| `ops/marketing/operator_cockpit.md` | `PASS_CORE` | `true` | `5` | `true` | none |\n| `ops/marketing/prompt_log.md` | `PASS_CORE` | `true` | `2` | `false` | none |\n| `ops/marketing/review_log.md` | `PASS_CORE` | `true` | `5` | `true` | none |\n| `ops/marketing/reviewer_checklist.md` | `PASS_CORE` | `true` | `7` | `true` | none |\n| `ops/marketing/spend_authorization.md` | `PASS_CORE` | `true` | `10` | `true` | none |\n| `ops/marketing/team_registry.md` | `PASS_CORE` | `true` | `3` | `false` | none |\n| `ops/marketing/us_primary_keyword_lane.md` | `PASS_INTEGRATED` | `true` | `11` | `true` | none |\n\n## Risks To Fix\n\n- None.\n\n## Command\n\n```bash\npython3.13 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk\n```\n\n",
+      "stderr": ""
+    },
+    {
+      "cmd": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/check_continuity_integrity.py",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 51865 lines; latest anchor 2026-09-15-ceo-faq-sizing-progress-and-navy-label-scope\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-15-ceo-faq-sizing-progress-and-navy-label-scope\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+      "stderr": ""
+    },
+    {
+      "cmd": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "ops/marketing/action_queue.md",
+        "ops/AGENT_COORDINATION.md",
+        "ops/PROBLEM_TRACKER.md",
+        "ops/marketing/decision_log.md",
+        "ops/AGENT_WORKLOG.md",
+        "ops/marketing/operator_cockpit.html",
+        "ops/marketing/command_layer_integration_audit.md"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "checkpoint_sha256": "14dec3f29f52596b89800cd82ad02b3db8076db0c5df322cf8544862cf0a1d55",
+  "owner_integrations": 59,
+  "scheduled_wakes": 60,
+  "recorded_at_utc": "2026-09-15T00:24:32.198356+00:00"
+}

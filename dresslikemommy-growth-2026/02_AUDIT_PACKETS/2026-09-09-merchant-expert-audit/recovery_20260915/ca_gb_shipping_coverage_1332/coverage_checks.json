@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "sourceObserved": {
+    "startedAt": "2026-09-15T13:34:36.538Z",
+    "receivedAt": "2026-09-15T13:34:37.245Z"
+  },
+  "checks": [
+    {
+      "check": "shop",
+      "pass": true
+    },
+    {
+      "check": "all_profiles_enumerated",
+      "pass": true
+    },
+    {
+      "check": "single_default_profile",
+      "pass": true
+    },
+    {
+      "check": "zone_page_complete",
+      "pass": true
+    },
+    {
+      "check": "method_page_complete:gid://shopify/DeliveryZone/21400485985",
+      "pass": true
+    },
+    {
+      "check": "method_page_complete:gid://shopify/DeliveryZone/21400715361",
+      "pass": true
+    },
+    {
+      "check": "one_CA_GB_zone",
+      "pass": true
+    },
+    {
+      "check": "Canada_explicit",
+      "pass": true
+    },
+    {
+      "check": "UK_explicit",
+      "pass": true
+    },
+    {
+      "check": "Canada_13_provinces_territories",
+      "pass": true
+    },
+    {
+      "check": "UK_constituent_countries",
+      "pass": true
+    },
+    {
+      "check": "existing_standard_method",
+      "pass": true
+    },
+    {
+      "check": "active_standard",
+      "pass": true
+    },
+    {
+      "check": "unconditional_standard",
+      "pass": true
+    },
+    {
+      "check": "zero_standard_rate",
+      "pass": true
+    }
+  ],
+  "checkCount": 15,
+  "sourceSHA256": "482e430c12ff3ec74cfe205bb5f4fad82ea6e734f1225695af7491d9faf5abd2",
+  "scope": "Current fully enumerated delivery-profile configuration for CA/GB; separate published buyer/variant/price/checkout acceptance remains required. No new ETA or return promise.",
+  "CA_shipping_proposal": "CA:::0.00 CAD",
+  "GB_shipping_proposal": "GB:::0.00 GBP",
+  "externalWrites": 0,
+  "initialFailure": "V1 unsupported coversAllItems field rejected. V2 uses supported schema, validated by MCP and CLI, and returned complete data."
+}

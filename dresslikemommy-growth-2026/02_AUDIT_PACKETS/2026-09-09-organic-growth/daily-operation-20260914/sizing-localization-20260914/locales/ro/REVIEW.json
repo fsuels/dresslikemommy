@@ -1,0 +1,358 @@
+{
+  "schema": "dlm.sizing_localized_body_independent_review.v1",
+  "action_id": "TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+  "locale": "ro",
+  "target_resource": "gid://shopify/Article/559700574305",
+  "target_key": "body_html",
+  "market": null,
+  "reviewer": "/root/daily_operation_review",
+  "candidate_author": "/root/sizing_locales_b",
+  "reviewed_at_utc": "2026-09-14T23:35:25.475769+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "blocking_findings": [],
+  "independence": "Reviewer did not author this Group B candidate and made no candidate edits. Reviewer authored separate Group A candidates only.",
+  "candidate_sha256": "01649e4a013b5f4b6577f9604935be8d1fe2d160bddcaea7c4d62ca9b72fe3ce",
+  "english_source_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "before_sha256": "97b313fdb8a915028dc979713a902596b9b90d9e19c307556aeffb714e7c6a8f",
+  "source_sha256": {
+    "ROOT_PLAN.json": "923dd593b8d656dc5f70387e7b7e6f0e1ce8514b9254c3ae74f875a51009e6f7",
+    "english-final.html": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+    "english-before.html": "7c6d26272eac0068e189434ea3bb2dd4990c5d6c018843141f8ca6fb624989c1",
+    "english-change-plan.json": "4960d5976e7a411b4e17ec24c5940e6b33526d79a0d08176e9ae71663cb1f704",
+    "ROUTES.json": "9f67a31a1463503fbd26a96669ce71f7d095a088d1a3941dee80d62be89999d5",
+    "locales/ro/before.html": "97b313fdb8a915028dc979713a902596b9b90d9e19c307556aeffb714e7c6a8f",
+    "locales/ro/before.json": "200a64a9217ad4a60926702284f23b40071f89cd6f854043ff3a3373d16cc308",
+    "locales/ro/candidate.html": "01649e4a013b5f4b6577f9604935be8d1fe2d160bddcaea7c4d62ca9b72fe3ce",
+    "locales/ro/AUTHOR_NOTES.json": "e0d228af848b6ffd3fe5b9f31f096b9eb1ba9889508ad80f21cf8def7e7a0a9c"
+  },
+  "static_check_count": 12,
+  "static_checks": [
+    {
+      "id": "source_and_candidate_hash_bound",
+      "status": "PASS",
+      "evidence": "English final, candidate and before hashes independently recomputed and bound."
+    },
+    {
+      "id": "correct_existing_locale_identity",
+      "status": "PASS",
+      "evidence": "Existing global body_html row for the exact locale/article; no new locale or market identity."
+    },
+    {
+      "id": "reviewer_is_not_author",
+      "status": "PASS",
+      "evidence": "Reviewer authored Group A, not this Group B candidate."
+    },
+    {
+      "id": "balanced_forty_three_element_sequence",
+      "status": "PASS",
+      "evidence": "All43element positions match source and remain balanced."
+    },
+    {
+      "id": "all_four_discovered_locale_hrefs",
+      "status": "PASS",
+      "evidence": "All four hrefs equal locale routes in ROUTES.json; actual arrivals remain root-owned."
+    },
+    {
+      "id": "all_thirteen_styles_match_final_english",
+      "status": "PASS",
+      "evidence": "One table and twelve cell style attributes exactly match verified final English."
+    },
+    {
+      "id": "unchanged_headings_labels_and_intro_preserved",
+      "status": "PASS",
+      "evidence": "Unchanged headings/table labels, intro text and shopping-link labels preserved, with the required locale href change only."
+    },
+    {
+      "id": "final_paragraph_unchanged_prefix_preserved",
+      "status": "PASS",
+      "evidence": "Original final-paragraph prefix and first shopping label are retained; only the contact help clause changes."
+    },
+    {
+      "id": "no_other_byte_changes",
+      "status": "PASS",
+      "evidence": "Reversing only22semantic element spans,4hrefs and13style additions reproduces every original byte."
+    },
+    {
+      "id": "universal_ranges_and_unrelated_markup_absent",
+      "status": "PASS",
+      "evidence": "Invented universal size ranges removed; no executable or submission markup added."
+    },
+    {
+      "id": "all_nineteen_semantic_changes_reviewed",
+      "status": "PASS",
+      "evidence": "Every19source change reviewed individually across22corresponding element spans, including both contact paragraphs and six revised table cells."
+    },
+    {
+      "id": "language_findings_scoped_honestly",
+      "status": "PASS",
+      "evidence": "Changed guidance is intelligible and semantically faithful. Per-locale idiomatic limitations and proven inherited wording weaknesses are recorded; this is not full legacy-copy or human-native certification."
+    }
+  ],
+  "semantic_check_count": 19,
+  "semantic_checks": [
+    {
+      "english_change_id": 1,
+      "element_indices_zero_based": [
+        5
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Exact product chart; body versus garment measurements; same units/method; flat width distinct from circumference; clarify unclear method.",
+      "candidate_spans": [
+        "Începe cu tabelul de mărimi al articolului exact pe care vrei să îl comanzi. Verifică ce măsurători solicită și dacă prezintă măsurile corpului sau dimensiunile hainei. Urmează instrucțiunile și folosește aceleași unități de măsură ca în tabel. Lățimea unei haine întinse pe o suprafață plană nu este aceeași măsurătoare ca circumferința corpului. Dacă metoda de măsurare nu este clară, cere lămuriri înainte de a alege mărimea."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 2,
+      "element_indices_zero_based": [
+        6
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Adult women heading directs to the selected piece chart.",
+      "candidate_spans": [
+        "Mărimile pentru femei adulte: verifică tabelul articolului ales"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 3,
+      "element_indices_zero_based": [
+        7
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Compare each measurement; no size choice from letters/photos; cross-size or unclear fit requires help; larger size is not a universal solution.",
+      "candidate_spans": [
+        "Pentru rochii, topuri și seturi asortate pentru mamă și copil, compară măsurile tale cu tabelul articolului concret pentru adulți. Verifică fiecare dimensiune indicată, în loc să alegi mărimea doar după litera de pe etichetă sau după cum arată ținuta într-o fotografie. Dacă măsurile tale corespund unor mărimi diferite sau tabelul nu clarifică felul în care ai nevoie să se așeze haina, cere ajutor înainte de a comanda. Nu presupune că alegerea unei mărimi mai mari va rezolva orice întrebare despre potrivire."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 4,
+      "element_indices_zero_based": [
+        9
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Measure each child separately using current chart dimensions; age alone is insufficient; available age ranges cannot be assumed.",
+      "candidate_spans": [
+        "Măsoară fiecare copil separat, urmând dimensiunile cerute de tabelul produsului ales. Folosește măsurători actuale; vârsta de pe etichetă nu confirmă singură că haina se potrivește. Verifică mărimile pentru copii disponibile la produsul respectiv, în loc să presupui că fiecare model asortat include același interval de vârstă."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 5,
+      "element_indices_zero_based": [
+        10
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Disclose layers/future wear; no automatic growth upsizing; use product dimensions and verified fit guidance.",
+      "candidate_spans": [
+        "Dacă ținuta va fi purtată cu încă un strat de îmbrăcăminte sau plănuiești să o folosești la o dată ulterioară, precizează acest lucru când întrebi despre potrivire. Evită să comanzi automat o mărime mai mare pentru creșterea viitoare. Alegerea trebuie să se bazeze pe dimensiunile produsului și pe eventualele instrucțiuni verificate privind potrivirea."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 6,
+      "element_indices_zero_based": [
+        12
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Specific adult shirt/piece; S/M/L/XL alone insufficient; garment comparison requires same method; body charts require body instructions.",
+      "candidate_spans": [
+        "Pentru cămăși asortate pentru tată și copil și alte articole pentru adulți, verifică dimensiunile de pe pagina produsului exact. O etichetă familiară S, M, L sau XL nu este suficientă pentru a confirma că un alt articol se va potrivi. Dacă tabelul indică dimensiunile hainei, le poți compara cu o haină care îți vine bine numai dacă folosești aceeași metodă de măsurare. Dacă tabelul indică măsurile corpului, urmează în schimb instrucțiunile sale pentru măsurarea corpului."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 7,
+      "element_indices_zero_based": [
+        13
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Family-member checklist heading.",
+      "candidate_spans": [
+        "Ce să verifici pentru fiecare membru al familiei"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 8,
+      "element_indices_zero_based": [
+        14
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Current chart and available options; shopping aid is not a universal chart or size-range promise.",
+      "candidate_spans": [
+        "Folosește tabelul actual și opțiunile disponibile pentru fiecare articol ales. Această listă te ajută la cumpărături; nu este un tabel universal de mărimi și nici o promisiune că fiecare model este disponibil în aceleași mărimi:"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 9,
+      "element_indices_zero_based": [
+        20
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Confirm before ordering column heading.",
+      "candidate_spans": [
+        "Confirmă înainte de a comanda"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 10,
+      "element_indices_zero_based": [
+        24,
+        25
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Adult piece measurements, chart units, measurement method and available size.",
+      "candidate_spans": [
+        "Măsurătorile cerute pentru articolul ales pentru adulți",
+        "Unitățile din tabel, metoda de măsurare și mărimea disponibilă"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 11,
+      "element_indices_zero_based": [
+        28,
+        29
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Current child measurements and selected child size rather than age alone.",
+      "candidate_spans": [
+        "Măsurătorile actuale ale fiecărui copil, conform cerințelor tabelului",
+        "Mărimea aleasă pentru copil, nu doar vârsta"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 12,
+      "element_indices_zero_based": [
+        32,
+        33
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Selected shirt/other-piece measurements; distinguish body from garment chart.",
+      "candidate_spans": [
+        "Măsurătorile cerute pentru cămașa sau alt articol ales",
+        "Dacă tabelul indică măsurile corpului sau dimensiunile hainei"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 13,
+      "element_indices_zero_based": [
+        34
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Unclear-size help heading.",
+      "candidate_spans": [
+        "Ce să faci când mărimea nu este clară"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 14,
+      "element_indices_zero_based": [
+        36
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Recheck exact chart, units and measurement instructions.",
+      "candidate_spans": [
+        "Verifică din nou tabelul produsului exact, unitățile sale și instrucțiunile de măsurare."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 15,
+      "element_indices_zero_based": [
+        37
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Use verified product details; do not infer fit or stretch from photos.",
+      "candidate_spans": [
+        "Folosește detaliile verificate ale produsului, în loc să ghicești potrivirea sau elasticitatea dintr-o fotografie."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 16,
+      "element_indices_zero_based": [
+        38
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Request help for measurements spanning sizes or incomplete chart.",
+      "candidate_spans": [
+        "Cere ajutor dacă măsurătorile corespund unor mărimi diferite sau dacă tabelul este incomplet."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 17,
+      "element_indices_zero_based": [
+        39
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Each cart row: wearer, piece, size, quantity; separate selections may be needed; confirm included items.",
+      "candidate_spans": [
+        "Înainte de finalizarea comenzii, verifică pentru fiecare poziție din coș cui îi este destinat articolul, piesa aleasă, mărimea și cantitatea. Articolele asortate pot necesita selecții separate; confirmă ce include produsul."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 18,
+      "element_indices_zero_based": [
+        2
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Contact before ordering with product, wearer and unclear measurements; no response or delivery promise.",
+      "candidate_spans": [
+        "Dacă tabelul de mărimi al produsului nu îți răspunde la întrebare, <a href=\"/ro/pages/contact-us\">contactează-ne</a> înainte de a comanda. Menționează numele produsului, pentru cine este articolul ales și măsurătorile pe care ai nevoie de ajutor să le interpretezi."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 19,
+      "element_indices_zero_based": [
+        40
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Preserve prior shopping guidance and direct remaining sizing questions to contact before ordering.",
+      "candidate_spans": [
+        "Cel mai bun pas final este să construiești coșul încet, verificând fiecare membru al familiei față de pagina produsului, în loc să tratezi întregul set ca o singură decizie de mărime. Începe cu <a href=\"/ro/collections/matching-outfits\">Ținute Asortate</a> și <a href=\"/ro/pages/contact-us\">contactează-ne</a> dacă informațiile despre mărimile produsului au nevoie de clarificări înainte de a comanda."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    }
+  ],
+  "language_review": {
+    "confidence": "High for bounded semantic review; medium-high for idiomatic detail. No native certification.",
+    "notes": "Măsurile corpului versus dimensiunile hainei and lățimea pe o suprafață plană versus circumferință accurately retain the distinction. Elasticitate avoids reintroducing an elastane/material claim. Conditional separate selections and all cart fields are preserved.",
+    "inherited": [
+      {
+        "element": 8,
+        "excerpt": "toddler",
+        "note": "Legacy English loanword retained in unchanged child heading."
+      },
+      {
+        "element": 27,
+        "excerpt": "toddlers",
+        "note": "Legacy English loanword retained in unchanged table category."
+      }
+    ],
+    "style_limits": [
+      "The contact sentence is understandable but could be smoother around ai nevoie de ajutor să le interpretezi; no decision-changing meaning loss found."
+    ]
+  },
+  "reviewer_language_basis": "Model multilingual competence used for direct source/target comparison; no human review or native-speaker certification claimed.",
+  "scope_qualification": "Acceptance covers the exact19English semantic corrections, four locale paths, formatting and unchanged-copy preservation. Existing legacy grammatical/style weaknesses deliberately retained under the narrow task are not certified as polished full-article copy.",
+  "not_verified": [
+    "Actual per-locale article/shopping/contact arrivals, displayed language and market behavior.",
+    "Public desktop/mobile table layout and long-word wrapping after save.",
+    "Live translation persistence, fresh source digest and preservation of unrelated translation/source fields.",
+    "Traffic, sales, contribution profit or customer-message delivery."
+  ],
+  "external_actions": 0,
+  "candidate_edits_by_reviewer": 0,
+  "next_action": "Root may use this exact hash in its bounded publication packet after remaining route/render/source guards; any candidate change requires review of the changed bytes."
+}

@@ -1,0 +1,52 @@
+{
+  "checkedAtUtc": "2026-09-15T05:19:56.423Z",
+  "checks": [
+    {
+      "name": "exact-before-source",
+      "status": "PASS",
+      "checks": 39,
+      "receipt": "ACTION_TIME_GUARDS.json"
+    },
+    {
+      "name": "independent-action-time",
+      "status": "PASS",
+      "checks": 49,
+      "receipt": "review/independent-action-time-review.json"
+    },
+    {
+      "name": "immediate-prewrite-state",
+      "status": "PASS",
+      "receipt": "PREWRITE_FINAL_GUARD.json"
+    },
+    {
+      "name": "exact-after-source",
+      "status": "PASS",
+      "checks": 40,
+      "receipt": "AFTER_GUARDS.json"
+    },
+    {
+      "name": "desktop-and-mobile-browser-matrix",
+      "status": "FAILED_MOBILE_HEADING_READABILITY",
+      "receipt": "BROWSER_ACCEPTANCE.json"
+    },
+    {
+      "name": "git-diff-check-locales",
+      "status": "PASS",
+      "command": "git diff --check -- locales/cs.json",
+      "exitCode": 0
+    },
+    {
+      "name": "continuity",
+      "status": "PASS",
+      "command": "bundled python3 ops/scripts/check_continuity_integrity.py --strict",
+      "exitCode": 0,
+      "output": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 52155 lines; latest anchor 2026-09-15-ceo-czech-source-and-heading-repairs-dispatched\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-15-ceo-czech-source-and-heading-repairs-dispatched\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n"
+    },
+    {
+      "name": "full-theme-check",
+      "status": "SKIPPED",
+      "reason": "One locale value only, with exact bytes/JSON leaf checks and full source preservation; no Liquid/JS/CSS mutation in this scope."
+    }
+  ],
+  "currentIndependentAfterReview": "Pending separate receipt; source completion is not mobile/publication acceptance."
+}

@@ -1,0 +1,70 @@
+--- a/src/generator.js
++++ b/src/generator.js
+@@ -100,6 +100,33 @@
+   fraction = fraction.slice(0, places).padEnd(places, '0');
+   assert(/[1-9]/.test(whole + fraction), 'non_positive_price');
+   return `${whole}${places ? '.' + fraction : ''} ${market.currency}`;
++}
++// Optional evidence-bound cost only; no ETA or return annotations are inferred.
++function costOnlyShipping(config, market) {
++  assert(config.shippingCostOnly === undefined, 'shipping_cost_only_must_be_market_scoped');
++  const spec = market.shippingCostOnly;
++  if (spec === undefined) return null;
++  assert(spec && typeof spec === 'object' && Object.getPrototypeOf(spec) === Object.prototype,
++    'invalid_shipping_cost_only_configuration');
++  const fields = ['amount', 'country', 'currency', 'evidenceSha256', 'verified'];
++  assert(JSON.stringify(Object.keys(spec).sort()) === JSON.stringify(fields),
++    'invalid_shipping_cost_only_fields');
++  const currencies = { CA: 'CAD', GB: 'GBP' };
++  assert(Object.hasOwn(currencies, market.country) && market.currency === currencies[market.country] &&
++    market.key === `${market.country.toLowerCase()}-en` && market.locale === 'en' && config.sourceLocale === 'en' &&
++    spec.country === market.country && spec.currency === market.currency,
++    'shipping_cost_only_scope_mismatch');
++  assert(market.enabled === true, 'shipping_cost_only_market_disabled');
++  assert(market.landingContextVerified === true, 'landing_context_unverified');
++  assert(market.landingQuery?.country === market.country && market.landingQuery?.currency === market.currency,
++    'shipping_cost_only_landing_scope_mismatch');
++  assert(config.eligibilityHolds !== undefined, 'shipping_cost_only_requires_eligibility_holds');
++  assert(config.returnPolicy?.emitLabels === false, 'shipping_cost_only_requires_return_labels_disabled');
++  assert(spec.amount === '0.00', 'shipping_cost_only_must_be_zero');
++  assert(spec.verified === true && typeof spec.evidenceSha256 === 'string' &&
++    /^[a-f0-9]{64}$/.test(spec.evidenceSha256) && !/^0{64}$/.test(spec.evidenceSha256),
++    'shipping_cost_only_unverified');
++  return `${market.country}:::0.00 ${market.currency}`;
+ }
+ function httpsUrl(raw, code) {
+   let url;
+@@ -188,6 +215,7 @@
+   const sourceCounts = validateSnapshot(snapshot, config, market, now);
+   assert(/^[a-z]{2}-[a-z]{2}(?:-[a-z]{2})?$/.test(market.key) && /^[A-Z]{2}$/.test(market.country) && /^[A-Z]{3}$/.test(market.currency), 'invalid_market_configuration');
+   const eligibilityHolds = readEligibilityHolds(config.eligibilityHolds);
++  const shipping = costOnlyShipping(config, market);
+   if (config.eligibilityHolds !== undefined) {
+     assert(market.landingContextVerified === true, 'landing_context_unverified');
+     httpsUrl(market.landingBaseUrl, 'invalid_landing_base');
+@@ -285,6 +313,7 @@
+           brand, gtin, mpn, identifier_exists: identifier, age_group: age, gender, color, size,
+           return_policy_label: config.returnPolicy?.emitLabels === false ? '' : returns.label, excluded_destination: 'Shopping_ads',
+         };
++        if (shipping !== null) row.shipping = shipping;
+         assert(!SUPPLIER.test(JSON.stringify(row)), 'supplier_reference_in_output');
+         if (translationRejectedCode) {
+           // Validate source price, identity, image and landing safety first. A
+@@ -310,9 +339,16 @@
+     lifecycle: { added: rowIds.filter(id => !previous.has(id)), removed: previousIds.filter(id => !current.has(id)), retained: rowIds.filter(id => previous.has(id)), previousIdsProvided: previousIds.length > 0 },
+     limits: ['Shopify buyability is not owned physical inventory.', 'Google source must separately target Free listings only.', 'Removal requires the next successful primary-file fetch and processing; serving can take 24–48 hours.', 'No explicit exception identified is not a certification of individual return eligibility.'],
+   };
++  if (shipping !== null) diagnostics.shippingCostOnly = {
++    country: market.country, currency: market.currency, amount: '0.00',
++    evidenceSha256: market.shippingCostOnly.evidenceSha256,
++    deliveryTimesSubmitted: false, returnAnnotationsSubmitted: false,
++    displayLimit: 'Google may still use crawled or modeled delivery times or default return information.',
++  };
+   // A malformed variant never turns a complete source scan into a partial live feed.
+   if (errors.length) return { ok: false, diagnostics, tsv: null, rows: [], rowIds: [] };
+-  const columns = config.returnPolicy?.emitLabels === false ? COLUMNS.filter(c => c !== 'return_policy_label') : COLUMNS;
++  const baseColumns = config.returnPolicy?.emitLabels === false ? COLUMNS.filter(c => c !== 'return_policy_label') : COLUMNS;
++  const columns = shipping === null ? baseColumns : [...baseColumns, 'shipping'];
+   if (!materialize) {
+     let bytes = 0; for (const chunk of tsvChunks(rows, columns)) bytes += chunk.byteLength;
+     return { ok: true, tsv: null, rows, rowIds, columns, bytes, diagnostics };

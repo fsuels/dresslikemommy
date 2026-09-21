@@ -1,0 +1,6 @@
+mutation CzechBodyTranslationCorrection($resourceId: ID!, $translations: [TranslationInput!]!) {
+  translationsRegister(resourceId: $resourceId, translations: $translations) {
+    userErrors { field message }
+    translations { key value locale outdated updatedAt market { id name } }
+  }
+}

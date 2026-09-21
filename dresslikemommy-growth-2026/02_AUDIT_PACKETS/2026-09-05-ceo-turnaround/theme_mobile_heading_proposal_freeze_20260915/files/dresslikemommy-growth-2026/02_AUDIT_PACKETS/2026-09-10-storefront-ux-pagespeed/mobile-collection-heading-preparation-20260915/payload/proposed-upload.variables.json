@@ -1,0 +1,12 @@
+{
+  "themeId": "gid://shopify/OnlineStoreTheme/137888792673",
+  "files": [
+    {
+      "filename": "assets/theme-inline-body-static-07.css",
+      "body": {
+        "type": "TEXT",
+        "value": "/* Mobile view adjustments — collection pages */\n@media (max-width: 767px) {\n    /* Show the existing heading; keep the compact mobile banner. */\n    .collection-hero {\n        display: block !important;\n    }\n\n    .collection-hero__image-container,\n    .collection-hero__text-wrapper > :not(.collection-hero__title) {\n        display: none !important;\n    }\n\n    /* Remove space reserved for the hidden collection image. */\n    .collection-hero.collection-hero--with-image,\n    .collection-hero .collection-hero__text-wrapper {\n        padding: 0;\n    }\n\n    .collection-hero .collection-hero__inner {\n        padding-bottom: 0;\n    }\n\n    .collection-hero .collection-hero__text-wrapper {\n        flex-basis: 100%;\n    }\n\n    .collection-hero .collection-hero__title {\n        margin: 1.8rem auto 0;\n        max-width: 24ch;\n        text-wrap: balance;\n    }\n\n    /* Small gap between search bar and pills */\n    .page-width--collection-breadcrumbs {\n        margin-top: 0;\n        padding-top: 10px;\n    }\n}\n\n    \n"
+      }
+    }
+  ]
+}

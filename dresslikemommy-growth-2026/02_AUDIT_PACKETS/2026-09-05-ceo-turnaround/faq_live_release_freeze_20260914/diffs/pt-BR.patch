@@ -1,0 +1,196 @@
+--- pt-BR.before
++++ pt-BR.candidate
+@@ -1,42 +1,19 @@
+ <div id="page-content">
+-<script>// <![CDATA[
+-function remove_classes_active() {
+-    alert( 'FOUND' );
+-    var $aSelected = $('.question-answer-block').find('a');
+-    
+-    if( $aSelected.hasClass('active') ){
+-      alert( 'FOUND' );
+-      $('.question-answer-block > a').removeClass('active');
+-    }else{
+-      alert( 'NOT FOUND' );
+-    }
+-  }
+-// ]]></script><script>// <![CDATA[
+-jQuery("document").ready(function($){
+-    var nav = $('#nav');
+-    $(window).scroll(function () {
+-     	if(getWidthBrowser() > 1200){
+-    		if ($(this).scrollTop() > 136){
+-              nav.addClass("on animated"); 		
+-            } 
+-            else {
+-              nav.removeClass("on animated"); 		
+-            } 
+-  		}
+-          $('#goGrid').trigger('click');
++<style>
++#page-content .help-page summary.ask { display: list-item; list-style: disclosure-closed inside; min-height: 44px; padding: 10px 0; cursor: pointer; }
++#page-content .help-page details[open] > summary.ask { list-style-type: disclosure-open; }
++#page-content .help-page summary.ask::-webkit-details-marker { display: inline; }
++#page-content .help-page summary.ask h3 { display: inline; margin: 0; }
++#page-content .help-page summary.ask:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
++</style>
+ 
+-      
+-    });  
+-    
+-  });
+-// ]]></script>
+ <div class="help-page">
+ <div id="General Questions">
+ <div class="faq-item-title" name="General Questions">
+ <h2>Sobre nós</h2>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Perguntas Gerais</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Perguntas Gerais</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Este site é seguro para usar? </strong></p>
+ <p>Com certeza é seguro. Usamos PayPal para processar pagamentos. Assim, nem mesmo nossa equipe vê seus dados de pagamento. PayPal é o maior provedor de pagamento seguro do mundo. Nosso site é construído na plataforma segura Shopify. Todas as suas informações pessoais estão protegidas.</p>
+ <p> </p>
+@@ -48,36 +25,36 @@
+ <p> </p>
+ <p><strong>4. Por que vocês são tão baratos?</strong></p>
+ <p>Eliminamos todos os intermediários e entregamos os produtos diretamente aos consumidores a partir de nossos fabricantes, o que nos permite oferecer preços extremamente baixos.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="Before You Place an Order">
+ <div class="faq-item-title" name="before you place an order">
+ <h2>Antes de Você Fazer um Pedido</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Tamanhos</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Tamanhos</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Onde posso encontrar a tabela de tamanhos em centímetros?</strong></p>
+ <p>Você pode encontrar tabelas de tamanhos em centímetros em nossa página de tamanhos aqui: <a href="http://www.assassinshoodies.com/pages/sizing-information" alt="Página de Tamanhos">Página de Tamanhos</a> ou na descrição de cada produto.</p>
+ <p> </p>
+ <p><strong>2. Vou receber um item dois tamanhos maior?</strong></p>
+ <p>Não. Enviaremos o tamanho que você pediu. Se você normalmente usa tamanho médio europeu, selecione o tamanho médio (M) e receberá o tamanho médio.</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Pagamentos</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. Pagamentos</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Quais tipos de pagamento vocês aceitam?</strong></p>
+ <p>Aceitamos PayPal e cartões de crédito/débito (Visa, Mastercard, American Express, Discover).</p>
+ <p> </p>
+ <p><strong>2. Quero pagar com meu cartão de crédito, mas sou redirecionado para a página do PayPal?</strong></p>
+ <p>Usamos PayPal para processar todos os nossos pagamentos. Na página do PayPal à direita, você pode escolher entre duas opções: "Pagar com minha conta PayPal" <i>ou</i> "Pagar com meu cartão de crédito ou débito"</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">C. Envio</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>C. Envio</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Qual é o preço do frete?</strong></p>
+ <p>Oferecemos entrega absolutamente GRÁTIS para todo o mundo.</p>
+ <p> </p>
+@@ -89,16 +66,16 @@
+ <p> </p>
+ <p><strong>4. Preciso pagar alguma taxa de alfândega?</strong></p>
+ <p>Não, você não precisa pagar taxa de alfândega. Marcamos todos os nossos pedidos como presentes de baixo valor. Além disso, enviamos pedidos maiores em pacotes separados.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="After You Place an Order">
+ <div class="faq-item-title" name="After You Place an Order">
+ <h2>Após Você Fazer um Pedido</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Status do Pedido</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Status do Pedido</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. O que significa: status do pedido "Não Cumprido"?</strong></p>
+ <p>Seu pedido está sendo processado e o número de rastreamento do pedido está pendente. Normalmente, cumprimos os pedidos e enviamos aos nossos clientes o número de rastreamento quando o número de rastreamento do pedido é submetido ao Sistema Postal, o que leva de 5 a 7 dias após o pedido já ter sido enviado.</p>
+ <p> </p>
+@@ -107,11 +84,11 @@
+ <p> </p>
+ <p><strong>3. Já faz muito tempo, onde está meu pedido?</strong></p>
+ <p>Por favor, verifique o rastreamento do seu pedido para mais informações. Se o problema persistir, envie um e-mail para nós: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Rastreamento de Pedido</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. Rastreamento de Pedido</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Como faço para rastrear meu pedido?</strong></p>
+ <p>Fornecemos o código de rastreamento do pedido 5-7 dias após você fazer o pedido. Você pode rastrear seu pedido aqui: <a hef="www.assassinshoodies.com/pages/track-your-order" alt="Rastrear Seu Pedido">Rastrear Seu Pedido</a></p>
+ <p> </p>
+@@ -123,11 +100,11 @@
+ <p> </p>
+ <p><strong>4. Como posso me manter atualizado sobre o rastreamento do meu pedido?</strong></p>
+ <p>Usamos o sistema de rastreamento After Ship para acompanhar os pedidos dos nossos clientes, então sempre que a informação de rastreamento for atualizada, você deve receber um e-mail.</p>
+-</div>
+-</div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Quero trocar ou cancelar meu pedido</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++</div>
++</details>
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. Quero trocar ou cancelar meu pedido</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Eu pedi algo, mas quero cancelar</strong></p>
+ <p>Você deve entrar em contato conosco dentro de 1 dia útil após fazer o pedido para organizar a troca do pedido. Você pode fazer isso enviando um e-mail para <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> com o número do seu pedido no assunto.</p>
+ <p> </p>
+@@ -136,16 +113,16 @@
+ <p> </p>
+ <p><strong>3. Eu pedi algo, mas quero mudar o endereço de entrega</strong></p>
+ <p>Você deve entrar em contato conosco dentro de 1 dia útil após fazer o pedido para organizar a troca do pedido. Você pode fazer isso enviando um e-mail para <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> com seu novo endereço de entrega.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ <div id="After You Receive an Order">
+ <div class="faq-item-title" name="After You Receive an Orde">
+ <h2>Após você receber um pedido</h2>
+ </div>
+-<div class="question-answer-block">
+-<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Quero trocar ou devolver meu pedido</a></h3>
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>A. Quero trocar ou devolver meu pedido</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ <p><strong>1. Meu pedido chegou, mas os itens estavam dois tamanhos maiores</strong></p>
+ <p>Observe que todos os tamanhos em nossa loja são exibidos nas unidades de medida EU e US. Enquanto o tamanho real da peça (escrito no produto) geralmente é duas vezes maior. Nossos fabricantes estão localizados no Leste Asiático e enviamos automaticamente o equivalente asiático do tamanho Europeu/US. Isso significa que se você pedir Medium (M – EU/US) enviaremos o equivalente Extra Large (XL) asiático.</p>
+ <p> </p>
+@@ -157,8 +134,8 @@
+ <p> </p>
+ <p><strong>4. Meu pedido chegou, mas quero devolvê-lo.</strong></p>
+ <p>Por favor, entre em contato conosco em <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> e nos forneça o número do seu pedido. Você pode nos enviar o item de volta e nós emitiremos um reembolso. *Os custos de postagem serão por sua conta.</p>
+-</div>
+-</div>
++</div>
++</details>
+ </div>
+ </div>
+ </div>

@@ -1,0 +1,76 @@
+{
+  "action_id": "TA07-SOURCE-COLOR47-20260915",
+  "accepted_at_utc": "2026-09-15T02:25:46.415817+00:00",
+  "status": "IMPLEMENTED_VERIFIED_SHOPIFY_COLOR47__GOOGLE_PROPAGATION_SEPARATE",
+  "shop_id": "15571635",
+  "source_owner_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "plan": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_color47_source_plan_20260915.json",
+    "sha256": "95f5b000a00c90947fba9e9e38b27cfc105fca3c82659abbd0b3a02169413cbc"
+  },
+  "frozen_handoff": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_color47_source_release_freeze_20260915/execution_handoff.json",
+    "sha256": "9c6d409d580b34cebbcdc086939ddebbe6ad3ed31df87139f5211fa2ccf9b4c9"
+  },
+  "frozen_manifest": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_color47_source_release_freeze_20260915/packet_freeze_v2.json",
+    "sha256": "ca17fd95b9ecac709b35fc76a232a2e5e3f2c08d11242668d23293957b230f9e"
+  },
+  "timing_addendum": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_color47_source_release_freeze_20260915/timing_addendum.json",
+    "sha256": "53c2d5fde61e949c1601580a430dd860fb5453eff30d645f4fa3be66c33190a3"
+  },
+  "root_independent_acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_color47_source_independent_acceptance_20260915.json",
+    "sha256": "1c499c5a0735058845c5c27610646def9ed80023175566a1049e2ceba88ebd01"
+  },
+  "source_owner_independent_after": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_color47_source_release_freeze_20260915/independent_after_review.json",
+    "sha256": "adf7c32bfdf95b7ce192da48816f5ab851ca0da77b3dba5a2687d4c03be84ee8"
+  },
+  "counts": {
+    "new_product_fields": 8,
+    "new_variant_fields": 39,
+    "new_fields": 47,
+    "preserved_metadata_records": 491,
+    "after_metadata_records": 538,
+    "parents": 9,
+    "current_variants": 252,
+    "resources": 261,
+    "frozen_source_artifacts": 27,
+    "root_frozen_files_with_manifest": 28
+  },
+  "mutation_receipt_times_utc": [
+    "2026-09-15T02:03:15.436Z",
+    "2026-09-15T02:04:08.308Z"
+  ],
+  "source_after_at_utc": "2026-09-15T02:05:23.788Z",
+  "metadata_scope": "mm-google-shopping.color; single_line_text_field; no PRODUCT or PRODUCTVARIANT definition created",
+  "preservation": "All captured non-color fields reconstruct exactly except expected Product.updatedAt. Existing metadata preserved. No source replay.",
+  "history_preserved": [
+    "Plain-versus-HTML original comparison failure and exact plain-source V2 recovery",
+    "Incomplete first10 metadata read and complete first50 successor",
+    "Literal claim row drift stopped before writes; exact same-owner/scope rebind",
+    "Historical progress hash reconstructed, not unexplained overwrite",
+    "47.584ms batch1 guard/receipt timing addendum retained without rewriting base packet"
+  ],
+  "limits": [
+    "Merchant-authored explicit palette prose, not supplier or image verification",
+    "Captured-field comparison only; root did not perform fresh API or browser replay",
+    "No current Google color receipt, US/AU feed approval or business-lift claim",
+    "Excluded Cobalt, unresolved As-image, all six holds and future palettes remain outside scope"
+  ],
+  "source_live_evidence_as_of": "2026-09-15T02:05:23.788Z",
+  "live_state_mode": "LIVE_VERIFIED exact Shopify source; standing paid STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "Existing user direct nonspend mandate plus exact root-delegated plan and fresh independent guards",
+  "approved_external_scope": "Completed 47 target source fields only; no root business write; standing paid NONE",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "Separate fresh full US/AU source delta, exact release bindings and current native receiving",
+  "if_evidence_supports_recommendation": "Accept the separately reviewed existing-source propagation after its exact bounded release and receiving",
+  "if_evidence_opposes_recommendation": "Keep feed release held; retain accepted source fields and all actual failures; no blind replay",
+  "material_decision": "Accept exact completed source correction",
+  "independent_verifier": "/root/navy_variant_history",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "root_business_writes": 0,
+  "canonical_integration_pending": true
+}

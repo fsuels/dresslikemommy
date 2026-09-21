@@ -1,0 +1,59 @@
+{
+  "status": "UNCHANGED_THEME_PUBLICATION_GATE_VERIFIED",
+  "wake_id": "2026-09-15T10:22:22.436Z",
+  "started_at_utc": "2026-09-15T10:26:10.265Z",
+  "received_at_utc": "2026-09-15T10:26:10.960Z",
+  "scope": "One supported read of the two exact theme metadata records; no repeated publication attempt, full source audit, order/feed read or browser access.",
+  "query": "query DlmExactThemePublicationGate { shop { id name myshopifyDomain } current: theme(id: \"gid://shopify/OnlineStoreTheme/133290917985\") { id name role updatedAt processing processingFailed } candidate: theme(id: \"gid://shopify/OnlineStoreTheme/137888792673\") { id name role updatedAt processing processingFailed } }",
+  "schema_types_read": [
+    "QueryRoot",
+    "OnlineStoreTheme",
+    "Shop"
+  ],
+  "validation": {
+    "artifact_id": "dlm-theme-role-gate-20260915-0843",
+    "revision": 1,
+    "status": "VALID",
+    "response": [
+      "## Validation Summary\n\n**Overall Status:** ✅ VALID\n**Total Code Blocks:** 1\n\n## Detailed Results\n\n### Code Block 1\n**Artifact ID:** dlm-theme-role-gate-20260915-0843\n**Revision:** 1\n*Use same ID & increment revision when retrying on an improvement of this artifact*\n\n**Status:** ✅ SUCCESS\n**Details:** Successfully validated GraphQL query against schema.\nRequired scopes: read_themes\n\n"
+    ]
+  },
+  "actual_data": {
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "name": "Dress Like Mommy",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+    },
+    "current": {
+      "id": "gid://shopify/OnlineStoreTheme/133290917985",
+      "name": "dresslikemommy/main",
+      "role": "MAIN",
+      "updatedAt": "2026-09-14T20:57:48Z",
+      "processing": false,
+      "processingFailed": false
+    },
+    "candidate": {
+      "id": "gid://shopify/OnlineStoreTheme/137888792673",
+      "name": "DLM UX Performance QA 2026-09-10",
+      "role": "UNPUBLISHED",
+      "updatedAt": "2026-09-15T07:01:18Z",
+      "processing": false,
+      "processingFailed": false
+    }
+  },
+  "prior_receipt": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_publication_gate_20260915_0846.json",
+  "owner_statuses": "All seven exact existing owner cursors and latest turns are unchanged; no owner resumed.",
+  "canonical_readback": {
+    "unchanged_files": 11,
+    "generated_html_hash_changed": true,
+    "generated_html_reconciliation": "PASS: byte-identical to the current renderer output with its observed 2026-09-15 04:48 EDT build clock. Cause of the earlier rerender is unknown; no source mismatch was found and no file was rewritten.",
+    "generated_html_sha256": "58808dbcbe157485c05f0f97e267758658a43fdcc5529f313a83d5adeadf31f8",
+    "initial_strict_hash_check": "FAILED only for generated HTML; the bounded read-only render comparison resolves content drift without claiming the old file hash still matches."
+  },
+  "source_527_revalidated": false,
+  "publication_performed": false,
+  "root_business_writes": 0,
+  "dispatches": [],
+  "all_other_clocks_and_gates": "Preserved; next sales19:01:34UTC, US/AUSep16 source, existing organic/Pinterest/X and Microsoft support windows.",
+  "notification": "DONT_NOTIFY; owner publication request is still pending with no new actionable change."
+}

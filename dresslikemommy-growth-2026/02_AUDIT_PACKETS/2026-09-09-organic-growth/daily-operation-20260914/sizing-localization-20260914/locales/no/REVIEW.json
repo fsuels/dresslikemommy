@@ -1,0 +1,361 @@
+{
+  "schema": "dlm.sizing_localized_body_independent_review.v1",
+  "action_id": "TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+  "locale": "no",
+  "target_resource": "gid://shopify/Article/559700574305",
+  "target_key": "body_html",
+  "market": null,
+  "reviewer": "/root/daily_operation_review",
+  "candidate_author": "/root/sizing_locales_b",
+  "reviewed_at_utc": "2026-09-14T23:35:25.473706+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "blocking_findings": [],
+  "independence": "Reviewer did not author this Group B candidate and made no candidate edits. Reviewer authored separate Group A candidates only.",
+  "candidate_sha256": "51c01281843a4c3b75d0854bb86a901b2610ecf952ce09aa4a38ecd6b453ad5c",
+  "english_source_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "before_sha256": "4e7d2deb0031d040bd167ddb26fdaa18c5a14eb5026db436d5145df3ab2f8421",
+  "source_sha256": {
+    "ROOT_PLAN.json": "923dd593b8d656dc5f70387e7b7e6f0e1ce8514b9254c3ae74f875a51009e6f7",
+    "english-final.html": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+    "english-before.html": "7c6d26272eac0068e189434ea3bb2dd4990c5d6c018843141f8ca6fb624989c1",
+    "english-change-plan.json": "4960d5976e7a411b4e17ec24c5940e6b33526d79a0d08176e9ae71663cb1f704",
+    "ROUTES.json": "9f67a31a1463503fbd26a96669ce71f7d095a088d1a3941dee80d62be89999d5",
+    "locales/no/before.html": "4e7d2deb0031d040bd167ddb26fdaa18c5a14eb5026db436d5145df3ab2f8421",
+    "locales/no/before.json": "d13f74f4adb44ceb8d9cde3d96248efdd403f902f167e2f6b6438d60d18111e5",
+    "locales/no/candidate.html": "51c01281843a4c3b75d0854bb86a901b2610ecf952ce09aa4a38ecd6b453ad5c",
+    "locales/no/AUTHOR_NOTES.json": "b7cc4560a45596205c88899bc283dbe42eeec1a56543b9109d241f6b09df2783"
+  },
+  "static_check_count": 12,
+  "static_checks": [
+    {
+      "id": "source_and_candidate_hash_bound",
+      "status": "PASS",
+      "evidence": "English final, candidate and before hashes independently recomputed and bound."
+    },
+    {
+      "id": "correct_existing_locale_identity",
+      "status": "PASS",
+      "evidence": "Existing global body_html row for the exact locale/article; no new locale or market identity."
+    },
+    {
+      "id": "reviewer_is_not_author",
+      "status": "PASS",
+      "evidence": "Reviewer authored Group A, not this Group B candidate."
+    },
+    {
+      "id": "balanced_forty_three_element_sequence",
+      "status": "PASS",
+      "evidence": "All43element positions match source and remain balanced."
+    },
+    {
+      "id": "all_four_discovered_locale_hrefs",
+      "status": "PASS",
+      "evidence": "All four hrefs equal locale routes in ROUTES.json; actual arrivals remain root-owned."
+    },
+    {
+      "id": "all_thirteen_styles_match_final_english",
+      "status": "PASS",
+      "evidence": "One table and twelve cell style attributes exactly match verified final English."
+    },
+    {
+      "id": "unchanged_headings_labels_and_intro_preserved",
+      "status": "PASS",
+      "evidence": "Unchanged headings/table labels, intro text and shopping-link labels preserved, with the required locale href change only."
+    },
+    {
+      "id": "final_paragraph_unchanged_prefix_preserved",
+      "status": "PASS",
+      "evidence": "Original final-paragraph prefix and first shopping label are retained; only the contact help clause changes."
+    },
+    {
+      "id": "no_other_byte_changes",
+      "status": "PASS",
+      "evidence": "Reversing only22semantic element spans,4hrefs and13style additions reproduces every original byte."
+    },
+    {
+      "id": "universal_ranges_and_unrelated_markup_absent",
+      "status": "PASS",
+      "evidence": "Invented universal size ranges removed; no executable or submission markup added."
+    },
+    {
+      "id": "all_nineteen_semantic_changes_reviewed",
+      "status": "PASS",
+      "evidence": "Every19source change reviewed individually across22corresponding element spans, including both contact paragraphs and six revised table cells."
+    },
+    {
+      "id": "language_findings_scoped_honestly",
+      "status": "PASS",
+      "evidence": "Changed guidance is intelligible and semantically faithful. Per-locale idiomatic limitations and proven inherited wording weaknesses are recorded; this is not full legacy-copy or human-native certification."
+    }
+  ],
+  "semantic_check_count": 19,
+  "semantic_checks": [
+    {
+      "english_change_id": 1,
+      "element_indices_zero_based": [
+        5
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Exact product chart; body versus garment measurements; same units/method; flat width distinct from circumference; clarify unclear method.",
+      "candidate_spans": [
+        "Start med størrelsestabellen for akkurat det plagget du vil bestille. Sjekk hvilke mål den ber om, og om den oppgir kroppsmål eller plaggets mål. Følg veiledningen og bruk de samme måleenhetene som i tabellen. Bredden på et plagg som ligger flatt, er ikke det samme målet som kroppens omkrets. Hvis målemetoden er uklar, be om en forklaring før du velger størrelse."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 2,
+      "element_indices_zero_based": [
+        6
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Adult women heading directs to the selected piece chart.",
+      "candidate_spans": [
+        "Størrelser for voksne kvinner: sjekk tabellen for det valgte plagget"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 3,
+      "element_indices_zero_based": [
+        7
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Compare each measurement; no size choice from letters/photos; cross-size or unclear fit requires help; larger size is not a universal solution.",
+      "candidate_spans": [
+        "For matchende kjoler, topper og sett til mor og barn må du sammenligne målene dine med tabellen for det konkrete voksenplagget. Sjekk hvert oppgitt mål fremfor å velge størrelse ut fra bokstavmerkingen eller hvordan antrekket ser ut på et bilde. Hvis målene dine faller innenfor forskjellige størrelser, eller tabellen ikke forklarer passformen du trenger, be om hjelp før du bestiller. Ikke anta at en større størrelse løser alle spørsmål om passform."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 4,
+      "element_indices_zero_based": [
+        9
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Measure each child separately using current chart dimensions; age alone is insufficient; available age ranges cannot be assumed.",
+      "candidate_spans": [
+        "Mål hvert barn separat etter målene som etterspørres i tabellen for det valgte produktet. Bruk oppdaterte mål; en aldersmerking alene viser ikke om plagget passer. Sjekk de tilgjengelige barnestørrelsene for det konkrete produktet fremfor å anta at alle matchende modeller dekker samme aldersspenn."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 5,
+      "element_indices_zero_based": [
+        10
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Disclose layers/future wear; no automatic growth upsizing; use product dimensions and verified fit guidance.",
+      "candidate_spans": [
+        "Hvis antrekket skal brukes sammen med et ekstra lag, eller du planlegger å bruke det på et senere tidspunkt, opplys om det når du spør om passformen. Unngå å bestille en større størrelse automatisk for å gi plass til fremtidig vekst. La produktets mål og eventuelle bekreftede veiledninger om passform styre valget."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 6,
+      "element_indices_zero_based": [
+        12
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Specific adult shirt/piece; S/M/L/XL alone insufficient; garment comparison requires same method; body charts require body instructions.",
+      "candidate_spans": [
+        "For matchende skjorter til far og barn og andre voksenplagg må du sjekke målene på den konkrete produktsiden. En kjent S-, M-, L- eller XL-merking er ikke nok til å bekrefte passformen på et annet plagg. Hvis tabellen oppgir plaggets mål, kan du bare sammenligne med et plagg som passer godt når du bruker samme målemetode. Hvis tabellen oppgir kroppsmål, følg i stedet veiledningen for å måle kroppen."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 7,
+      "element_indices_zero_based": [
+        13
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Family-member checklist heading.",
+      "candidate_spans": [
+        "Hva du bør sjekke for hvert familiemedlem"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 8,
+      "element_indices_zero_based": [
+        14
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Current chart and available options; shopping aid is not a universal chart or size-range promise.",
+      "candidate_spans": [
+        "Bruk den gjeldende tabellen og de tilgjengelige alternativene for hvert valgt plagg. Denne sjekklisten er et hjelpemiddel ved kjøp, ikke en universell størrelsestabell eller et løfte om at alle modeller tilbys i de samme størrelsene:"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 9,
+      "element_indices_zero_based": [
+        20
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Confirm before ordering column heading.",
+      "candidate_spans": [
+        "Bekreft før bestilling"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 10,
+      "element_indices_zero_based": [
+        24,
+        25
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Adult piece measurements, chart units, measurement method and available size.",
+      "candidate_spans": [
+        "Målene som etterspørres for det valgte voksenplagget",
+        "Tabellens måleenheter, målemetode og tilgjengelige størrelse"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 11,
+      "element_indices_zero_based": [
+        28,
+        29
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Current child measurements and selected child size rather than age alone.",
+      "candidate_spans": [
+        "Hvert barns oppdaterte mål, slik tabellen ber om",
+        "Den valgte barnestørrelsen fremfor alder alene"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 12,
+      "element_indices_zero_based": [
+        32,
+        33
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Selected shirt/other-piece measurements; distinguish body from garment chart.",
+      "candidate_spans": [
+        "Målene som etterspørres for den valgte skjorten eller det andre plagget",
+        "Om tabellen oppgir kroppsmål eller plaggets mål"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 13,
+      "element_indices_zero_based": [
+        34
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Unclear-size help heading.",
+      "candidate_spans": [
+        "Hva du gjør når størrelsen er uklar"
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 14,
+      "element_indices_zero_based": [
+        36
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Recheck exact chart, units and measurement instructions.",
+      "candidate_spans": [
+        "Sjekk den konkrete produkttabellen, måleenhetene og måleveiledningen på nytt."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 15,
+      "element_indices_zero_based": [
+        37
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Use verified product details; do not infer fit or stretch from photos.",
+      "candidate_spans": [
+        "Bruk bekreftede produktopplysninger fremfor å gjette passform eller elastisitet ut fra et bilde."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 16,
+      "element_indices_zero_based": [
+        38
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Request help for measurements spanning sizes or incomplete chart.",
+      "candidate_spans": [
+        "Be om hjelp hvis målene faller innenfor forskjellige størrelser eller tabellen er ufullstendig."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 17,
+      "element_indices_zero_based": [
+        39
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Each cart row: wearer, piece, size, quantity; separate selections may be needed; confirm included items.",
+      "candidate_spans": [
+        "Sjekk hvem plagget er til, valgt plagg, størrelse og antall på hver linje i handlekurven før du går til kassen. Matchende varer kan kreve separate valg; bekreft hva produktet inneholder."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 18,
+      "element_indices_zero_based": [
+        2
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Contact before ordering with product, wearer and unclear measurements; no response or delivery promise.",
+      "candidate_spans": [
+        "Hvis produktets størrelsestabell ikke besvarer spørsmålet ditt, <a href=\"/no/pages/contact-us\">kontakt oss</a> før du bestiller. Oppgi produktnavnet, hvem det valgte plagget er til, og målene du trenger hjelp til å forstå."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    },
+    {
+      "english_change_id": 19,
+      "element_indices_zero_based": [
+        40
+      ],
+      "status": "PASS_WITH_LIMITS",
+      "criterion": "Preserve prior shopping guidance and direct remaining sizing questions to contact before ordering.",
+      "candidate_spans": [
+        "Det beste siste steget er å bygge handlekurven sakte, og sjekke hver familiemedlem opp mot produktsiden i stedet for å behandle hele settet som én størrelsesavgjørelse. Start med <a href=\"/no/collections/matching-outfits\">Matchende antrekk</a>, og <a href=\"/no/pages/contact-us\">kontakt oss</a> hvis du trenger å få produktets størrelsesopplysninger avklart før bestilling."
+      ],
+      "assessment": "Independently read against the English final meaning; no material omission, reversal or unsupported new customer claim found."
+    }
+  ],
+  "language_review": {
+    "confidence": "High for the bounded Bokmål semantic comparison; medium-high for idiomatic detail. No native certification.",
+    "notes": "Kroppsmål versus plaggets mål and flat bredde versus kroppens omkrets are accurate. The direct instructions preserve exact chart/method, conditional individual selections and all four cart checks.",
+    "inherited": [
+      {
+        "element": 0,
+        "excerpt": "et gjetning",
+        "note": "Legacy gender agreement issue retained in the unchanged introduction."
+      },
+      {
+        "element": 40,
+        "excerpt": "hver familiemedlem",
+        "note": "Legacy gender agreement issue retained in the unchanged prefix."
+      },
+      {
+        "element": 11,
+        "excerpt": "pappa-og-me",
+        "note": "Existing mixed-language heading retained because this English heading was unchanged."
+      }
+    ],
+    "style_limits": []
+  },
+  "reviewer_language_basis": "Model multilingual competence used for direct source/target comparison; no human review or native-speaker certification claimed.",
+  "scope_qualification": "Acceptance covers the exact19English semantic corrections, four locale paths, formatting and unchanged-copy preservation. Existing legacy grammatical/style weaknesses deliberately retained under the narrow task are not certified as polished full-article copy.",
+  "not_verified": [
+    "Actual per-locale article/shopping/contact arrivals, displayed language and market behavior.",
+    "Public desktop/mobile table layout and long-word wrapping after save.",
+    "Live translation persistence, fresh source digest and preservation of unrelated translation/source fields.",
+    "Traffic, sales, contribution profit or customer-message delivery."
+  ],
+  "external_actions": 0,
+  "candidate_edits_by_reviewer": 0,
+  "next_action": "Root may use this exact hash in its bounded publication packet after remaining route/render/source guards; any candidate change requires review of the changed bytes."
+}

@@ -1,0 +1,21 @@
+{
+  "status": "VERIFIED_RENDERED_SEPARATE_THEME_ISSUE",
+  "scope": "Theme-injected .article-cta-inline a, not stored article body HTML",
+  "observed_locales": [
+    "ar",
+    "nl",
+    "en"
+  ],
+  "text": "Matching Family Outfits",
+  "foreground": "rgba(18,18,18,0.85)",
+  "background": "rgb(18,18,18)",
+  "visual_observation": "Arabic mobile screenshot displayed a dark button with unreadable label; same computed foreground/background on Dutch desktop and unchanged English desktop.",
+  "inference": "Shared theme styling, not introduced by the Arabic/Hebrew wrapper; exact CSS cause not investigated in this scoped action.",
+  "not_changed": [
+    "English source",
+    "Theme",
+    "CTA injection code"
+  ],
+  "action": "Parent routes to existing UX/theme owner for a scoped correction under that owner authority; source article shopping/contact links already verified working.",
+  "additional_page_scope_limit": "Theme-injected CTA/TOC/footer and other chrome retain English or legacy strings; no whole-store localization completeness claim."
+}

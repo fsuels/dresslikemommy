@@ -1,0 +1,44 @@
+{
+  "actionId": "TA06-THEME-BUYER-TRUTH-SUCCESSOR-20260915",
+  "status": "BUILD__BEFORE_REVIEW_PENDING",
+  "authorityPlan": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_buyer_truth_successor_plan_20260915.json",
+  "authoritySha256": "d91de44661b03d19452ea1cbac50f6d6091cf63af009d7b5bef1c950fcd4d184",
+  "candidate": {
+    "id": "137888792673",
+    "requiredRole": "UNPUBLISHED"
+  },
+  "preserveMain": "133290917985",
+  "allowedFiles": [
+    "assets/product-desktop-ux-20260513-ruler-sync.js",
+    "assets/component-product-desktop-ux-ruler-sync.css",
+    "assets/section-blog-post.css",
+    "sections/main-cart-footer.liquid",
+    "snippets/cart-drawer.liquid",
+    "locales/fr.json",
+    "snippets/product-page-copy-map.liquid"
+  ],
+  "before": "api-before.json; candidate-before/; local-before/; current-before/; BASELINE_GUARD.json",
+  "candidateFooter": "Apply only approved French text changes to actual candidate source; retain the separate subtotal ID fix only in local source.",
+  "review": "Independent source review with exact candidate-after hashes is required before any save.",
+  "validation": {
+    "graphqlConnector": "PASS",
+    "graphqlCli": {
+      "artifactId": "ce871257-6ea3-43fb-a08b-e4d21a74c002",
+      "revision": 1,
+      "status": "PASS",
+      "script": "shopify-admin/scripts/validate.mjs",
+      "observedExitCode": 0
+    },
+    "sixNonModuleFiles": "PASS",
+    "module": "PENDING"
+  },
+  "saveGuard": "Immediately re-read roles and every candidate/MAIN filename/checksum. Require exact before manifest, no processing, unchanged protected MAIN and exact independently reviewed payload. Save only seven approved existing files through supported themeFilesUpsert.",
+  "after": "Read every candidate/MAIN filename/checksum and seven exact sources. Candidate must equal before inventory except approved after hashes; MAIN must remain exact. Verify EN/FR/AR desktop/mobile buyer behavior and en/ar/nl CTA, plus one AU numeric variant landing. Preserve cart and product data.",
+  "rollback": "Before rollback, require candidate still UNPUBLISHED and only our reviewed after checksums on affected files. Restore only those changed files from candidate-before via supported mutation. Do not overwrite drift or a newly published MAIN; stop that action and report.",
+  "unchanged": "No product/source measurement/variant/price/cart/checkout/locale/account/theme publication/Git push or shared canonical writes.",
+  "auRegression": {
+    "url": "https://www.dresslikemommy.com/products/matching-family-yellow-beach-outfits-summer-vacation-dresses-shorts-set?country=AU&currency=AUD&variant=41871506735201",
+    "expected": "AU/AUD; Girl 3-4 Years yellow preselected; A$47; no cart or checkout action.",
+    "scope": "Acceptance only; source expansion requires parent reconciliation."
+  }
+}

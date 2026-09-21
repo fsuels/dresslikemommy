@@ -1,0 +1,227 @@
+{
+  "started_at_utc": "2026-09-15T13:37:35.508Z",
+  "completed_at_utc": "2026-09-15T13:37:36.270Z",
+  "query": "query GiftGuideReleaseInventory($id: ID!, $after: String) {\n shop { id name myshopifyDomain ianaTimezone }\n shopLocales { locale primary published }\n markets(first:50, after:$after) { nodes { id name } pageInfo { hasNextPage endCursor } }\n article(id:$id) { id title handle body summary tags templateSuffix isPublished publishedAt updatedAt createdAt author { name } blog { id handle title } image { id url altText width height } }\n translatableResource(resourceId:$id) { resourceId translatableContent { key locale value digest type } }\n}",
+  "data": {
+    "shop": {
+      "id": "gid://shopify/Shop/15571635",
+      "name": "Dress Like Mommy",
+      "myshopifyDomain": "dresslikemommy-com.myshopify.com",
+      "ianaTimezone": "America/New_York"
+    },
+    "shopLocales": [
+      {
+        "locale": "ar",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "cs",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "da",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "de",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "el",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "en",
+        "primary": true,
+        "published": true
+      },
+      {
+        "locale": "es",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "fi",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "fr",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "he",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "hi",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "it",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ja",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ko",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "nl",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "no",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "pl",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "pt-BR",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ro",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "ru",
+        "primary": false,
+        "published": true
+      },
+      {
+        "locale": "sv",
+        "primary": false,
+        "published": true
+      }
+    ],
+    "markets": {
+      "nodes": [
+        {
+          "id": "gid://shopify/Market/22986424417",
+          "name": "Australia"
+        },
+        {
+          "id": "gid://shopify/Market/22986326113",
+          "name": "Canada"
+        },
+        {
+          "id": "gid://shopify/Market/544800865",
+          "name": "Eurozone"
+        },
+        {
+          "id": "gid://shopify/Market/544866401",
+          "name": "International"
+        },
+        {
+          "id": "gid://shopify/Market/22986260577",
+          "name": "United Kingdom"
+        },
+        {
+          "id": "gid://shopify/Market/544735329",
+          "name": "United States"
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "eyJsYXN0X2lkIjo1NDQ3MzUzMjksImxhc3RfdmFsdWUiOiJVbml0ZWQgU3RhdGVzIn0="
+      }
+    },
+    "article": {
+      "id": "gid://shopify/Article/559471886433",
+      "title": "Family Matching Pajamas: Our Top Picks for Cozy Nights",
+      "handle": "family-matching-pajamas-our-top-picks-for-cozy-nights",
+      "body": "<p>There’s nothing quite like the whole family matching in cozy pajamas. Whether it’s movie night, Christmas morning, or a lazy Sunday, <a href=\"/collections/pajamas\">family matching pajamas</a> turn an ordinary evening into something special. And honestly? They make for the best photos you’ll ever take.</p>\n\n<p>From holiday traditions to everyday comfort, this guide covers the best matching pajama styles, fabrics, and tips to help your family find the perfect sets.</p>\n\n<h2>Why Matching Pajamas Are a Family Must-Have</h2>\n\n<p>Matching pajamas have gone from a holiday novelty to a year-round family tradition. Here’s why everyone’s doing it:</p>\n<ul>\n<li>\n<strong>Instant bonding</strong> — there’s something about wearing the same PJs that makes everyone feel closer</li>\n<li>\n<strong>Photo-ready</strong> — matching jammies are the easiest way to get a great family photo without anyone complaining about what to wear</li>\n<li>\n<strong>Holiday traditions</strong> — Christmas Eve in matching PJs has become THE family tradition</li>\n<li>\n<strong>Gift-worthy</strong> — matching pajama sets make fantastic gifts for holidays, baby showers, and family reunions</li>\n<li>\n<strong>Kids love it</strong> — seriously, try telling your kid they get to match with mom AND dad. Watch their face light up.</li>\n</ul>\n\n<h2>Best Styles of Family Matching Pajamas</h2>\n\n<h3>Classic Long-Sleeve Sets</h3>\n<p>The gold standard. Long-sleeve top with matching pants in coordinating prints. These work year-round and come in everything from plaid to florals to fun characters. Perfect for cooler nights and the go-to choice for holiday photos. Browse our full <a href=\"/collections/pajamas\">pajama collection</a> for classic sets the whole family will love.</p>\n\n<h3>Short-Sleeve Pajama Sets</h3>\n<p>For warmer climates or summer nights. Short-sleeve matching sets are lighter and more comfortable when the temperature rises. Tropical prints, bright colors, and playful patterns shine in summer PJ sets. Great for family vacations and sleepovers.</p>\n\n<h3>Onesies and Footie Pajamas</h3>\n<p>Yes, they make adult onesies — and they’re amazing. Matching family onesies for the holidays have become hugely popular on social media. Baby in a footie, toddler in a onesie, and mom and dad in matching adult versions? Peak family content.</p>\n\n<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>\n\n<h2>Best Fabrics for Family Pajamas</h2>\n\n<p>Not all pajamas are created equal. Here’s what to look for:</p>\n<ul>\n<li>\n<strong>Cotton</strong> — breathable, soft, and great for year-round wear. The classic choice.</li>\n<li>\n<strong>Bamboo</strong> — incredibly soft, temperature-regulating, and eco-friendly. Premium feel.</li>\n<li>\n<strong>Flannel</strong> — warm and cozy for winter nights. The traditional holiday pajama fabric.</li>\n<li>\n<strong>Jersey knit</strong> — stretchy and comfortable. Like wearing your favorite t-shirt to bed.</li>\n<li>\n<strong>Fleece</strong> — ultra-warm for cold winter nights. Best for onesies and cold climates.</li>\n</ul>\n\n<p><strong>For kids:</strong> Choose size-appropriate sleepwear and follow its safety label and intended fit. Check the product details rather than assuming that a fabric or a daytime outfit is suitable for sleeping. The <a href=\"https://www.cpsc.gov/s3fs-public/5132.pdf\">CPSC children’s sleepwear guide</a> explains why oversized, loose-fitting cotton sleepwear can be a hazard.</p>\n\n<h2>Matching Pajamas for Every Occasion</h2>\n\n<h3>Christmas Morning</h3>\n<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>\n\n<h3>Halloween</h3>\n<p>Spooky-themed matching pajamas — think skeletons, bats, pumpkins, and glow-in-the-dark prints. Perfect for Halloween movie nights and trick-or-treat prep.</p>\n\n<h3>Valentine’s Day</h3>\n<p>Heart prints and pink-red color schemes for the cutest family Valentine’s photos. See our <a href=\"/collections/matching-outfits\">matching outfits</a> for Valentine’s options beyond pajamas.</p>\n\n<h3>Everyday / No Occasion Needed</h3>\n<p>You don’t need a holiday to match. Solid colors, subtle stripes, or fun all-over prints work for any night of the week. Make “Family PJ Night” a weekly tradition — your kids will remember it forever.</p>\n\n<h2>How to Get the Whole Family On Board</h2>\n\n<p>Getting everyone to match can be tricky (especially teenagers). Here are some tips:</p>\n<ol>\n<li>\n<strong>Let everyone pick the pattern</strong> — take a family vote on which print to get</li>\n<li>\n<strong>Start with holidays</strong> — “Just for Christmas morning” is an easy sell</li>\n<li>\n<strong>Make it fun</strong> — pair matching PJs with movie night, hot cocoa, or breakfast in bed</li>\n<li>\n<strong>Include the pets</strong> — yes, matching pet pajamas exist and they’re amazing</li>\n<li>\n<strong>Make it a tradition</strong> — once you start, everyone will look forward to it</li>\n</ol>\n\n<h2>Sizing Tips for Family Pajama Sets</h2>\n\n<p>The trickiest part of matching pajamas is getting the sizing right for everyone:</p>\n<ul>\n<li>\n<strong>Kids:</strong> Compare current measurements with the product’s size chart and follow the intended fit and safety label. Do not automatically size up</li>\n<li>\n<strong>Adults:</strong> Check the size chart — PJ sizing varies more than regular clothes</li>\n<li>\n<strong>Babies:</strong> Choose sleepwear that fits now, using the size chart and label guidance; do not buy oversized sleepwear to grow into</li>\n<li>\n<strong>Before ordering:</strong> Check that every person’s size is available and select each wearer’s option separately</li>\n</ul>\n\n<h2>Care Tips to Keep Matching PJs Looking Fresh</h2>\n\n<ul>\n<li>Wash inside out in cold water to preserve prints</li>\n<li>Avoid bleach — it fades matching colors unevenly</li>\n<li>Tumble dry low or hang dry for longest life</li>\n<li>Buy two sets if you want them to last all season (rotation = less washing)</li>\n</ul>\n\n<h2>Shop Family Matching Pajamas</h2>\n\n<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>\n\n<p>Start with a design you both like, then use the product details and size chart to plan your matching look.</p>",
+      "summary": "",
+      "tags": [
+        "Christmas Pajamas",
+        "Cozy Nights",
+        "Family Fashion",
+        "Family Matching",
+        "Matching Outfits",
+        "Pajamas"
+      ],
+      "templateSuffix": "article",
+      "isPublished": true,
+      "publishedAt": "2024-12-08T13:00:00Z",
+      "updatedAt": "2026-09-06T18:12:30Z",
+      "createdAt": "2026-01-28T03:00:35Z",
+      "author": {
+        "name": "Jessica Martinez"
+      },
+      "blog": {
+        "id": "gid://shopify/Blog/41450437",
+        "handle": "news",
+        "title": "News"
+      },
+      "image": {
+        "id": "gid://shopify/ArticleImage/108371509345",
+        "url": "https://cdn.shopify.com/s/files/1/1557/1635/articles/comfy-matching-family-outfits-cozy-pajamas.jpg?v=1774301468",
+        "altText": null,
+        "width": 1000,
+        "height": 1000
+      }
+    },
+    "translatableResource": {
+      "resourceId": "gid://shopify/Article/559471886433",
+      "translatableContent": [
+        {
+          "key": "title",
+          "locale": "en",
+          "value": "Family Matching Pajamas: Our Top Picks for Cozy Nights",
+          "digest": "ea077fbcf2390db6bb026fda3e0fca126ec5e7314071b97c4a35a6f1b7d489e1",
+          "type": "SINGLE_LINE_TEXT_FIELD"
+        },
+        {
+          "key": "body_html",
+          "locale": "en",
+          "value": "<p>There’s nothing quite like the whole family matching in cozy pajamas. Whether it’s movie night, Christmas morning, or a lazy Sunday, <a href=\"/collections/pajamas\">family matching pajamas</a> turn an ordinary evening into something special. And honestly? They make for the best photos you’ll ever take.</p>\n\n<p>From holiday traditions to everyday comfort, this guide covers the best matching pajama styles, fabrics, and tips to help your family find the perfect sets.</p>\n\n<h2>Why Matching Pajamas Are a Family Must-Have</h2>\n\n<p>Matching pajamas have gone from a holiday novelty to a year-round family tradition. Here’s why everyone’s doing it:</p>\n<ul>\n<li>\n<strong>Instant bonding</strong> — there’s something about wearing the same PJs that makes everyone feel closer</li>\n<li>\n<strong>Photo-ready</strong> — matching jammies are the easiest way to get a great family photo without anyone complaining about what to wear</li>\n<li>\n<strong>Holiday traditions</strong> — Christmas Eve in matching PJs has become THE family tradition</li>\n<li>\n<strong>Gift-worthy</strong> — matching pajama sets make fantastic gifts for holidays, baby showers, and family reunions</li>\n<li>\n<strong>Kids love it</strong> — seriously, try telling your kid they get to match with mom AND dad. Watch their face light up.</li>\n</ul>\n\n<h2>Best Styles of Family Matching Pajamas</h2>\n\n<h3>Classic Long-Sleeve Sets</h3>\n<p>The gold standard. Long-sleeve top with matching pants in coordinating prints. These work year-round and come in everything from plaid to florals to fun characters. Perfect for cooler nights and the go-to choice for holiday photos. Browse our full <a href=\"/collections/pajamas\">pajama collection</a> for classic sets the whole family will love.</p>\n\n<h3>Short-Sleeve Pajama Sets</h3>\n<p>For warmer climates or summer nights. Short-sleeve matching sets are lighter and more comfortable when the temperature rises. Tropical prints, bright colors, and playful patterns shine in summer PJ sets. Great for family vacations and sleepovers.</p>\n\n<h3>Onesies and Footie Pajamas</h3>\n<p>Yes, they make adult onesies — and they’re amazing. Matching family onesies for the holidays have become hugely popular on social media. Baby in a footie, toddler in a onesie, and mom and dad in matching adult versions? Peak family content.</p>\n\n<h3>Mommy-and-Daughter Matching Pajamas</h3>\n<p>For a mother-daughter bedtime routine or a coordinated photo, browse our <a href=\"/collections/pajamas\">mommy-and-me pajamas</a>. Check the available adult and child sizes on each product page, then choose the right option for each person. Read the product details to confirm what each selection includes.</p>\n\n<h2>Best Fabrics for Family Pajamas</h2>\n\n<p>Not all pajamas are created equal. Here’s what to look for:</p>\n<ul>\n<li>\n<strong>Cotton</strong> — breathable, soft, and great for year-round wear. The classic choice.</li>\n<li>\n<strong>Bamboo</strong> — incredibly soft, temperature-regulating, and eco-friendly. Premium feel.</li>\n<li>\n<strong>Flannel</strong> — warm and cozy for winter nights. The traditional holiday pajama fabric.</li>\n<li>\n<strong>Jersey knit</strong> — stretchy and comfortable. Like wearing your favorite t-shirt to bed.</li>\n<li>\n<strong>Fleece</strong> — ultra-warm for cold winter nights. Best for onesies and cold climates.</li>\n</ul>\n\n<p><strong>For kids:</strong> Choose size-appropriate sleepwear and follow its safety label and intended fit. Check the product details rather than assuming that a fabric or a daytime outfit is suitable for sleeping. The <a href=\"https://www.cpsc.gov/s3fs-public/5132.pdf\">CPSC children’s sleepwear guide</a> explains why oversized, loose-fitting cotton sleepwear can be a hazard.</p>\n\n<h2>Matching Pajamas for Every Occasion</h2>\n\n<h3>Christmas Morning</h3>\n<p>Coordinating pajamas can be part of a Christmas-morning photo or breakfast tradition without a holiday-specific print. Browse our <a href=\"/collections/pajamas\">currently available matching pajamas</a> and check the sizes offered for each person before choosing a design.</p>\n\n<h3>Halloween</h3>\n<p>Spooky-themed matching pajamas — think skeletons, bats, pumpkins, and glow-in-the-dark prints. Perfect for Halloween movie nights and trick-or-treat prep.</p>\n\n<h3>Valentine’s Day</h3>\n<p>Heart prints and pink-red color schemes for the cutest family Valentine’s photos. See our <a href=\"/collections/matching-outfits\">matching outfits</a> for Valentine’s options beyond pajamas.</p>\n\n<h3>Everyday / No Occasion Needed</h3>\n<p>You don’t need a holiday to match. Solid colors, subtle stripes, or fun all-over prints work for any night of the week. Make “Family PJ Night” a weekly tradition — your kids will remember it forever.</p>\n\n<h2>How to Get the Whole Family On Board</h2>\n\n<p>Getting everyone to match can be tricky (especially teenagers). Here are some tips:</p>\n<ol>\n<li>\n<strong>Let everyone pick the pattern</strong> — take a family vote on which print to get</li>\n<li>\n<strong>Start with holidays</strong> — “Just for Christmas morning” is an easy sell</li>\n<li>\n<strong>Make it fun</strong> — pair matching PJs with movie night, hot cocoa, or breakfast in bed</li>\n<li>\n<strong>Include the pets</strong> — yes, matching pet pajamas exist and they’re amazing</li>\n<li>\n<strong>Make it a tradition</strong> — once you start, everyone will look forward to it</li>\n</ol>\n\n<h2>Sizing Tips for Family Pajama Sets</h2>\n\n<p>The trickiest part of matching pajamas is getting the sizing right for everyone:</p>\n<ul>\n<li>\n<strong>Kids:</strong> Compare current measurements with the product’s size chart and follow the intended fit and safety label. Do not automatically size up</li>\n<li>\n<strong>Adults:</strong> Check the size chart — PJ sizing varies more than regular clothes</li>\n<li>\n<strong>Babies:</strong> Choose sleepwear that fits now, using the size chart and label guidance; do not buy oversized sleepwear to grow into</li>\n<li>\n<strong>Before ordering:</strong> Check that every person’s size is available and select each wearer’s option separately</li>\n</ul>\n\n<h2>Care Tips to Keep Matching PJs Looking Fresh</h2>\n\n<ul>\n<li>Wash inside out in cold water to preserve prints</li>\n<li>Avoid bleach — it fades matching colors unevenly</li>\n<li>Tumble dry low or hang dry for longest life</li>\n<li>Buy two sets if you want them to last all season (rotation = less washing)</li>\n</ul>\n\n<h2>Shop Family Matching Pajamas</h2>\n\n<p>Ready to choose a matching look? Explore our <a href=\"/collections/pajamas\">mommy-and-me pajama collection</a> and compare the available mother and child sizes. Select each person’s option separately, check the size chart, and read what is included before adding items to your cart.</p>\n\n<p>Start with a design you both like, then use the product details and size chart to plan your matching look.</p>",
+          "digest": "01c2e9ab6b5c02346c0653bcc526205b5d52c856679e4f8446698999ba53522d",
+          "type": "HTML"
+        },
+        {
+          "key": "summary_html",
+          "locale": "en",
+          "value": "",
+          "digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "type": "HTML"
+        },
+        {
+          "key": "handle",
+          "locale": "en",
+          "value": "family-matching-pajamas-our-top-picks-for-cozy-nights",
+          "digest": "2e9b392b58feb4572113b7043625a858e3baccdc646a87cacf3a15b513d251e0",
+          "type": "URI"
+        },
+        {
+          "key": "meta_description",
+          "locale": "en",
+          "value": "Explore family matching pajama styles and sizing tips. Browse mommy-and-me pajamas, check each person’s size, and confirm what each selection includes.",
+          "digest": "4f64e7c30500a6a6b03f20cfa30740dcac7e14ac92a45e457f9c13cc37de5ba8",
+          "type": "MULTI_LINE_TEXT_FIELD"
+        }
+      ]
+    }
+  }
+}

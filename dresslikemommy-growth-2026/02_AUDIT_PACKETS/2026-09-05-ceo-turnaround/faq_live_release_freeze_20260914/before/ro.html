@@ -1,0 +1,165 @@
+<div id="page-content">
+<script>// <![CDATA[
+function remove_classes_active() {
+    alert( 'FOUND' );
+    var $aSelected = $('.question-answer-block').find('a');
+    
+    if( $aSelected.hasClass('active') ){
+      alert( 'FOUND' );
+      $('.question-answer-block > a').removeClass('active');
+    }else{
+      alert( 'NOT FOUND' );
+    }
+  }
+// ]]></script><script>// <![CDATA[
+jQuery("document").ready(function($){
+    var nav = $('#nav');
+    $(window).scroll(function () {
+     	if(getWidthBrowser() > 1200){
+    		if ($(this).scrollTop() > 136){
+              nav.addClass("on animated"); 		
+            } 
+            else {
+              nav.removeClass("on animated"); 		
+            } 
+  		}
+          $('#goGrid').trigger('click');
+
+      
+    });  
+    
+  });
+// ]]></script>
+<div class="help-page">
+<div id="General Questions">
+<div class="faq-item-title" name="General Questions">
+<h2>Despre noi</h2>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Întrebări generale</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Este acest site sigur de utilizat? </strong></p>
+<p>Cu siguranță este. Folosim PayPal pentru procesarea plăților. Astfel, nici măcar personalul nostru nu vede detaliile dvs. de plată. PayPal este cel mai mare furnizor de plăți securizate din lume. Site-ul nostru este construit pe platforma securizată Shopify. Toate informațiile dvs. personale sunt bine protejate.</p>
+<p> </p>
+<p><strong>2. Cât de repede răspundeți la întrebările prin email?</strong></p>
+<p>Răspundem la toate emailurile în decurs de o zi lucrătoare.</p>
+<p> </p>
+<p><strong>3. Unde aveți sediul?</strong></p>
+<p>Operațiunile noastre principale se desfășoară în Uniunea Europeană, însoțite de Centrul nostru de Suport din Lituania și de Producători și Depozite din Asia de Est.</p>
+<p> </p>
+<p><strong>4. De ce sunteți atât de ieftini?</strong></p>
+<p>Eliminăm toți intermediarii și livrăm produsele direct consumatorilor de la producătorii noștri, ceea ce ne permite să oferim prețuri extrem de mici.</p>
+</div>
+</div>
+</div>
+<div id="Before You Place an Order">
+<div class="faq-item-title" name="before you place an order">
+<h2>Înainte să plasați o comandă</h2>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Mărimi</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Unde pot găsi tabelul de mărimi în centimetri?</strong></p>
+<p>Puteți găsi tabelele de mărimi în centimetri pe pagina noastră de mărimi aici: <a href="http://www.assassinshoodies.com/pages/sizing-information" alt="Pagina de Mărimi">Pagina de Mărimi</a> sau în descrierea fiecărui produs.</p>
+<p> </p>
+<p><strong>2. Voi primi un articol cu două mărimi mai mare?</strong></p>
+<p>Nu. Vă vom trimite mărimea pe care ați comandat-o. Dacă de obicei purtați mărimea medie europeană, selectați mărimea medie (M) și veți primi mărimea medie.</p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Plăți</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Ce tipuri de plăți acceptați?</strong></p>
+<p>Acceptăm PayPal și carduri de credit/debit (Visa, Mastercard, American Express, Discover).</p>
+<p> </p>
+<p><strong>2. Vreau să plătesc cu cardul de credit, dar sunt redirecționat către pagina PayPal?</strong></p>
+<p>Folosim PayPal pentru a procesa toate plățile noastre. Pe pagina PayPal din dreapta puteți selecta dintre două opțiuni: „Plătește cu contul meu PayPal” <i>sau</i> „Plătește cu cardul meu de credit sau debit”</p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">C. Transport</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Care este prețul transportului?</strong></p>
+<p>Oferim livrare absolut GRATUITĂ la nivel mondial.</p>
+<p> </p>
+<p><strong>2. Livrați în țara mea?</strong></p>
+<p>Da, livrăm. Livrăm în toate țările din lume.</p>
+<p> </p>
+<p><strong>3. Cât timp va dura să primesc comanda?</strong></p>
+<p>Livrarea durează de obicei aproximativ 15-30 de zile. Totuși, puteți verifica estimările exacte de livrare aici: <a href="https://www.dresslikemommy.com/pages/shipping-and-delivery" alt="Pagina de Livrare">Pagina de Livrare</a></p>
+<p> </p>
+<p><strong>4. Trebuie să plătesc taxe vamale?</strong></p>
+<p>Nu, nu trebuie să plătiți taxe vamale. Marcăm toate comenzile noastre ca fiind cadouri de valoare mică. Mai mult, trimitem comenzile mai mari în pachete separate.</p>
+</div>
+</div>
+</div>
+<div id="After You Place an Order">
+<div class="faq-item-title" name="After You Place an Order">
+<h2>După ce plasați o comandă</h2>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Statusul comenzii</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Ce înseamnă: statusul comenzii „Neonorată”?</strong></p>
+<p>Comanda dvs. este în curs de procesare, iar numărul de urmărire al comenzii este în așteptare. De obicei, onorăm comenzile și trimitem clienților numărul de urmărire când acesta este transmis către Sistemul Poștal, ceea ce durează 5-7 zile după ce comanda a fost deja expediată.</p>
+<p> </p>
+<p><strong>2. Ce înseamnă: statusul comenzii „Finalizat”?</strong></p>
+<p>Asta înseamnă că comanda dumneavoastră este în curs de expediere.</p>
+<p> </p>
+<p><strong>3. A trecut prea mult timp, unde este comanda mea?</strong></p>
+<p>Vă rugăm să verificați urmărirea comenzii pentru mai multe informații. Dacă problema persistă, vă rugăm să ne trimiteți un email: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Urmărirea Comenzii</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Cum îmi urmăresc comanda?</strong></p>
+<p>Furnizăm codul de urmărire al comenzii la 5-7 zile după ce plasați comanda. Puteți urmări comanda aici: <a hef="www.assassinshoodies.com/pages/track-your-order" alt="Urmărește Comanda Ta">Urmărește Comanda Ta</a></p>
+<p> </p>
+<p><strong>2. Codul meu de urmărire spune „în așteptare” sau „nu există informații disponibile momentan”.</strong></p>
+<p>Uneori primele rezultate de urmărire apar la 5-10 zile lucrătoare după ce primiți numărul de urmărire al comenzii. Dacă problema persistă mai mult de 10 zile lucrătoare, vă rugăm să ne contactați: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+<p> </p>
+<p><strong>3. Codul meu de urmărire spune „expirat”</strong></p>
+<p>Vă rugăm să ne contactați: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> și vom rezolva rapid această problemă.</p>
+<p> </p>
+<p><strong>4. Cum rămân informat despre urmărirea comenzii mele?</strong></p>
+<p>Folosim sistemul de urmărire After Ship pentru a monitoriza comenzile clienților noștri, așa că ori de câte ori informațiile de urmărire sunt actualizate, ar trebui să primiți un email.</p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Vreau să schimb sau să anulez comanda</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Am comandat ceva, dar vreau să anulez</strong></p>
+<p>Trebuie să ne contactați în termen de 1 zi lucrătoare de la plasarea comenzii pentru a aranja o modificare a comenzii. Puteți face acest lucru trimițând un email la <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> cu numărul comenzii ca subiect.</p>
+<p> </p>
+<p><strong>2. Am comandat ceva, dar vreau să schimb culoarea sau mărimea produsului.</strong></p>
+<p>Trebuie să ne contactați în termen de 1 zi lucrătoare de la plasarea comenzii pentru a aranja o modificare a comenzii. Puteți face acest lucru trimițând un email la <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> cu noua dumneavoastră opțiune de culoare sau mărime.</p>
+<p> </p>
+<p><strong>3. Am comandat ceva, dar vreau să schimb adresa de livrare</strong></p>
+<p>Trebuie să ne contactați în termen de 1 zi lucrătoare de la plasarea comenzii pentru a aranja o modificare a comenzii. Puteți face acest lucru trimițând un email la <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> cu noua dumneavoastră adresă de livrare.</p>
+</div>
+</div>
+</div>
+<div id="After You Receive an Order">
+<div class="faq-item-title" name="After You Receive an Orde">
+<h2>După ce primiți o comandă</h2>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Vreau să schimb sau să returnez comanda</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Comanda mea a sosit, dar produsele erau cu două mărimi mai mari</strong></p>
+<p>Rețineți că toate mărimile din magazinul nostru sunt afișate în unități de măsură EU și US. În timp ce mărimea efectivă a articolului (scrisă pe produs) este de obicei de două ori mai mare. Producătorii noștri sunt localizați în Asia de Est și trimitem automat echivalentul mărimii asiatice pentru mărimea europeană/americană. Asta înseamnă că dacă comandați Medium (M – EU/US) vă vom trimite echivalentul XL asiatic.</p>
+<p> </p>
+<p><strong>2. Comanda mea a sosit, dar am primit produsele greșite</strong></p>
+<p>Vă rugăm să ne contactați la <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> și furnizați-ne numărul comenzii dumneavoastră. Dacă greșeala este de partea noastră, puteți să ne trimiteți înapoi produsele și vă vom trimite produsele corecte pe cheltuiala noastră (sau vă vom returna banii).</p>
+<p> </p>
+<p><strong>3. Comanda mea a sosit și vreau să schimb mărimea/culoarea</strong></p>
+<p>Vă rugăm să ne contactați la <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> și furnizați-ne numărul comenzii dumneavoastră. Puteți să ne trimiteți înapoi produsul și vă vom trimite un produs nou cu mărimea actualizată. *Costurile de expediere vor fi suportate de dumneavoastră.</p>
+<p> </p>
+<p><strong>4. Comanda mea a sosit, dar vreau să o returnez.</strong></p>
+<p>Vă rugăm să ne contactați la <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> și furnizați-ne numărul comenzii dumneavoastră. Puteți să ne trimiteți înapoi produsul și vă vom returna banii. *Costurile de expediere vor fi suportate de dumneavoastră.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

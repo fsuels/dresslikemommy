@@ -1,0 +1,57 @@
+{
+  "action": "TA07-NAVY-FR-HIP-LABEL-FOLLOWUP",
+  "reviewer": "merchant_lifecycle_code_inventory",
+  "reviewedAt": "2026-09-15T00:41:35.814675+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "phase": "PRELIMINARY_LOCAL_CANDIDATE_ONLY",
+  "candidatePath": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/french_hip_label_followup/proposal.json",
+  "candidateSha256": "bfb1be4aad96a16c9ae13774ba7c988e207062c9391ba46b55d9189031cc8c9c",
+  "parentCandidatePath": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/navy_size_consistency_0005/proposal.json",
+  "parentCandidateSha256": "d200d5dc31fdfb443641e40e1729cfbf347a294938a8a3c7461c4f9eb5a28661",
+  "parentFrenchBodySha256": "d53c181559e9ac10fcf8d2a1b1f9afee9be3b6f062ef60a69aa44f5b5c807b89",
+  "candidateFrenchBodySha256": "d9289e4ea7c86b903d9cf5e36cd6aac74d9d65153e97c998c797b484d654b595",
+  "scope": {
+    "resourceId": "gid://shopify/Product/7670609346657",
+    "locale": "fr",
+    "marketId": null,
+    "key": "body_html",
+    "exactReplacements": 2
+  },
+  "terminology": "Hanches is natural French for the hip region in this clothing measurement header. It translates Hip without adding an unverified circumference claim. Existing cm/po units remain exact.",
+  "checks": {
+    "independentlyRecomputed": true,
+    "exactUtf8ReplacementAndReverse": true,
+    "allOtherBytesUnchanged": true,
+    "allMarkupAndAttributesUnchanged": true,
+    "allNumericTokensUnchanged": true,
+    "unchangedDataCells": 240,
+    "unchangedOtherHeaders": 18,
+    "changedHeaders": 2,
+    "tables": [
+      {
+        "tableId": "size-chart",
+        "columnIndexOneBased": 8,
+        "dataCellsUnchanged": 120,
+        "otherHeadersUnchanged": 9,
+        "rowCountIncludingHeader": 13
+      },
+      {
+        "tableId": "size-chart-cardigan",
+        "columnIndexOneBased": 8,
+        "dataCellsUnchanged": 120,
+        "otherHeadersUnchanged": 9,
+        "rowCountIncludingHeader": 13
+      }
+    ],
+    "proposalOffsetsExact": true,
+    "parentReviewHashBindingVerified": true
+  },
+  "limits": [
+    "This compares two local candidates; it does not prove the preceding 42-field repair has completed or that these bytes are currently live.",
+    "After the 42-field repair is completed and independently verified, root must freshly read the actual global French body and current English source digest. Require exact equality with the bound parent French body or rebase and review.",
+    "No registration or live acceptance/rendering is approved as completed by this preliminary review. No measurements, units, geometry, other fields, locales, theme or FAQ changes are included."
+  ],
+  "externalCalls": 0,
+  "externalWrites": 0,
+  "reviewFileOnly": true
+}

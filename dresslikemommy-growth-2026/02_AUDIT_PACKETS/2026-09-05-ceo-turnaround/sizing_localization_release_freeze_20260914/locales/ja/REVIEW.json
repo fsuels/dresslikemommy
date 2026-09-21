@@ -1,0 +1,88 @@
+{
+  "action_id": "TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+  "locale": "ja",
+  "candidate_sha256": "ed69f0715c2da38d5227922081bb017c72d9ef43974e91773b1e33499ce9b6c7",
+  "source_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "before_sha256": "ae686291ad13eb5b35d26ef44549d2240da63d352c31d48bd52c6fbc674823cc",
+  "routes_sha256": "9f67a31a1463503fbd26a96669ce71f7d095a088d1a3941dee80d62be89999d5",
+  "reviewer": "/root/sizing_locales_b",
+  "author": "/root/sizing_locales_c",
+  "status": "PASS_WITH_LIMITS",
+  "reviewed_at_utc": "2026-09-14T23:43:57.777639+00:00",
+  "review_scope": "Independent full-text reading of all 31 leaf elements, detailed comparison of all 22 changed leaf elements carrying the 19 English semantic replacements, plus independently recomputed static checks. Candidate author did not perform this review.",
+  "reviewed_changed_leaf_positions": [
+    1,
+    3,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    12,
+    15,
+    17,
+    18,
+    20,
+    21,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "semantic_assessment": "Read all candidate text. The distinction between body dimensions and garment dimensions, and between flat width and circumference, is precise. The garment comparison uses an explicit same-method-only condition. Current child measurements, size options, larger-size caution, incomplete-chart help, and wearer/item/size/quantity checks all match the final source.",
+  "language_assessment": "New Japanese is natural, polite and coherent. 採寸, 寸法, 伸縮性 and フィット感 are appropriate terminology; conditional wording does not add a fit or inventory promise. Collection labels remain in their pre-existing English form.",
+  "terminology_observed": [
+    "身体の寸法",
+    "衣服の寸法",
+    "衣服を平らに置いて測った幅",
+    "身体の周囲を測った寸法"
+  ],
+  "findings": [
+    {
+      "severity": "NON_BLOCKING_EXISTING",
+      "leaf_positions": [
+        0
+      ],
+      "description": "The original introductory same-way wording was localized as same-size, and Matching Outfits labels remain English. Both are unchanged, with the new product-specific sizing instructions clear."
+    }
+  ],
+  "blocking_findings": [],
+  "checks": {
+    "source_sha_matches_final": true,
+    "candidate_hash_bound": true,
+    "before_hash_bound": true,
+    "before_html_equals_existing_value": true,
+    "existing_global_body_identity": true,
+    "author_is_other_agent": true,
+    "source_changed_leaf_positions_match": true,
+    "notes_exact_candidate_spans": true,
+    "html_balanced": true,
+    "all_31_leaf_elements_preserved": true,
+    "unchanged_nine_leaf_contents_preserved": true,
+    "four_hrefs_match_route_manifest": true,
+    "table_and_twelve_cell_styles_equal_english": true,
+    "only_bounded_rtl_wrapper_added": true,
+    "original_43_element_order_preserved": true,
+    "old_general_ranges_removed": true
+  },
+  "competence": {
+    "basis": "Independent model-based bilingual editorial assessment of the complete supplied text, not inferred from structural tests.",
+    "language": "Japanese",
+    "bounded_assessment": "Sufficient confidence for this everyday apparel sizing guidance; no unresolved meaning ambiguity or new grammatical error requiring a hold was found.",
+    "human_native_certification": false
+  },
+  "limits": [
+    "No native-speaker or human certification is claimed.",
+    "This review approves the exact textual candidate and bounded markup only; root retains publication authority.",
+    "Actual localized destination arrivals, public rendering, mobile layout and computed RTL behavior were NOT RUN by this reviewer; root must verify them.",
+    "Existing unchanged localized copy was checked for preservation and noted where awkward; this is not a broad quality certification of the entire storefront.",
+    "Review is invalid if source or candidate hashes change."
+  ],
+  "external_writes": 0,
+  "business_lift_claimed": false
+}

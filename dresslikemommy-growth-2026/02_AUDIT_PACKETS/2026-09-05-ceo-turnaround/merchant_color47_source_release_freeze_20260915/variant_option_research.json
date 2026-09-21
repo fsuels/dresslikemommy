@@ -1,0 +1,585 @@
+{
+  "action": "READ_ONLY_OFFICIAL_VARIANT_OPTION_RESEARCH",
+  "status": "RESEARCH_COMPLETE_LOCAL_PROOF_RECOMMENDED_LIVE_RELEASE_HELD",
+  "preparedAtUtc": "2026-09-15T02:05:12.878170+00:00",
+  "authority": "Research and one owned JSON artifact only; no code, product, feed, locale, namespace, configuration, theme or external-account changes authorized or performed.",
+  "researchScope": "Official public Google documentation plus the frozen native-holds US source/output and current local generator. No authenticated browser/account calls.",
+  "officialSources": [
+    {
+      "id": "color",
+      "url": "https://support.google.com/merchants/answer/6324487?hl=en",
+      "title": "Color [color]",
+      "effectiveDateStatement": "May 2026 addition stated by Google",
+      "facts": "Google recommends also providing variant_option when color distinguishes variants; keep the standard color attribute.",
+      "locations": "Introduction, May 2026 notice",
+      "retrievedAtUtc": "2026-09-15T02:05:12.878170+00:00",
+      "publishedLastUpdated": null
+    },
+    {
+      "id": "variant_option",
+      "url": "https://support.google.com/merchants/answer/17085214?hl=en",
+      "title": "Variant option [variant_option]",
+      "facts": "Optional worldwide. Repeated name/value pairs: each component at most 250 characters, up to 30 pairs. Both components are needed. Names must be consistent within a group, and complete value combinations unique. Values must match the landing page. Use alongside group ID/title and relevant standard attributes. TSV uses name:value pairs separated by commas. Comma, colon and backslash require escaping. Similar but distinct products are not automatically variants.",
+      "locations": "When to use; Format; Minimum requirements; Best practices; Examples",
+      "retrievedAtUtc": "2026-09-15T02:05:12.878170+00:00",
+      "publishedLastUpdated": null
+    },
+    {
+      "id": "item_group_id",
+      "url": "https://support.google.com/merchants/answer/6324507?hl=en",
+      "title": "Item group ID [item_group_id]",
+      "facts": "Required for free-listing variants. IDs identify genuine variant groups, should remain stable, and must align with the landing-page choices. Individual variants need separate IDs and distinct variant URLs. The parent SKU is not a separate offer. Google gives a suit jacket and pants as an example of pieces that are not variants merely by belonging together.",
+      "locations": "When to use; Minimum requirements; Best practices",
+      "retrievedAtUtc": "2026-09-15T02:05:12.878170+00:00",
+      "publishedLastUpdated": null
+    },
+    {
+      "id": "item_group_title",
+      "url": "https://support.google.com/merchants/answer/17085146?hl=en",
+      "title": "Item group title [item_group_title]",
+      "facts": "Optional worldwide; 1–150 characters. One common group title must differ from individual variant titles, describe shared product facts, and use the source language. More specific variant titles identify the selections.",
+      "locations": "Format; Minimum requirements; Best practices",
+      "retrievedAtUtc": "2026-09-15T02:05:12.878170+00:00",
+      "publishedLastUpdated": null
+    },
+    {
+      "id": "size",
+      "url": "https://support.google.com/merchants/answer/6324492?hl=en",
+      "title": "Size [size]",
+      "effectiveDateStatement": "May 2026 addition stated by Google",
+      "facts": "Required for clothing/shoe free listings. Submit a standardized target-country size, only size information, consistently formatted. Keep size when also submitting the corresponding variant option. Size system/type provide separate context; do not invent a country conversion.",
+      "locations": "Introduction; Minimum requirements; Best practices",
+      "retrievedAtUtc": "2026-09-15T02:05:12.878170+00:00",
+      "publishedLastUpdated": null
+    },
+    {
+      "id": "age_group",
+      "url": "https://support.google.com/merchants/answer/6324463?hl=en",
+      "title": "Age group [age_group]",
+      "facts": "Required for apparel free listings, subject to listed accessory exceptions. Supported categories are newborn, infant, toddler, kids and adult. The page describes 0–3 months, 3–12 months, 1–5 years, 5–13 years and typically 13+ respectively. It recommends both age_group and variant_option when age distinguishes variants.",
+      "locations": "When to use; Supported values; Best practices",
+      "retrievedAtUtc": "2026-09-15T02:05:12.878170+00:00",
+      "publishedLastUpdated": null
+    },
+    {
+      "id": "gender",
+      "url": "https://support.google.com/merchants/answer/6324479?hl=en",
+      "title": "Gender [gender]",
+      "facts": "Required for apparel free listings, subject to listed exceptions. Supported English values are male, female and unisex. Google uses gender with age and size, and recommends duplicating identifying gender in variant_option. A relationship label is not an additional gender enum.",
+      "locations": "When to use; Format; Best practice",
+      "retrievedAtUtc": "2026-09-15T02:05:12.878170+00:00",
+      "publishedLastUpdated": null
+    },
+    {
+      "id": "product_type",
+      "url": "https://support.google.com/merchants/answer/6324406?hl=en",
+      "title": "Product type [product_type]",
+      "facts": "Optional merchant-defined classification hierarchy used for organization and reporting. It is not the same field as a Shopify selectable option named Type.",
+      "locations": "Introduction; When to use",
+      "retrievedAtUtc": "2026-09-15T02:05:12.878170+00:00",
+      "publishedLastUpdated": null
+    },
+    {
+      "id": "search_variant_markup",
+      "url": "https://developers.google.com/search/docs/appearance/structured-data/product-variants",
+      "title": "Product variant structured data (ProductGroup, Product)",
+      "publishedLastUpdated": "2026-09-08 UTC",
+      "facts": "The storefront mechanism uses ProductGroup and Product with shared group identity. Direct variant URLs must preselect the matching image, price, availability and add-to-cart choice. Google lists supported variesBy properties as color, size, suggestedAge, suggestedGender, material and pattern; the arbitrary feed option names Type and Wearer are not listed. Feed fields do not themselves add theme markup or guarantee search presentation.",
+      "locations": "Technical guidelines; ProductGroup variesBy; Troubleshooting; Last updated",
+      "retrievedAtUtc": "2026-09-15T02:05:12.878170+00:00"
+    }
+  ],
+  "localEvidence": {
+    "frozenRun": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260915T005200Z-us-navy-refresh/candidate",
+    "sourceCompletedAt": "2026-09-15T00:55:07.539Z",
+    "inputs": [
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260915T005200Z-us-navy-refresh/candidate/us-en.snapshot.json",
+        "sha256": "16583317982df66149643d3e1986f225e4cf7e8f5c3cbe13efbbff893f82bf33"
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260915T005200Z-us-navy-refresh/candidate/us-en.tsv",
+        "sha256": "00b9e1ec7ae36448fec9a2c1ae08b511065853d0c7113f3337612feae07c8ae4"
+      },
+      {
+        "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260915T005200Z-us-navy-refresh/candidate/us-en.diagnostics.json",
+        "sha256": "bd0f29601624ba84958b405198cf17556de9eb6f99144af2101635a4202a53f9"
+      }
+    ],
+    "generator": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js",
+      "sha256": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f",
+      "lines": [
+        "4: fixed columns omit both new fields",
+        "38–56: age/gender role parsing",
+        "111–116: parent content selection",
+        "279–280: parent group ID and repeated parent title",
+        "315: optional return-policy column removal"
+      ]
+    },
+    "collectorQuery": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/queries.js",
+      "sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+      "relevantFact": "selectedOptions already collected; no additional Shopify field needed for literal selection serialization."
+    },
+    "lifecycle": {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+      "sha256": "08580cd0f7d9bc61ade2b98e0d8b46d9c86f9a8ed6987936d6cecf85b7c6e14c",
+      "profile": "native-holds-20260914",
+      "scopeNote": "This report does not execute or modify the profile."
+    },
+    "currentColorWriteBoundary": "The frozen run predates the concurrent color47 work. Warning/collision measurements here are historical to this exact source time, not a post-color-release readback."
+  },
+  "observedGap": {
+    "counts": {
+      "emittedParents": 232,
+      "emittedRows": 4741,
+      "uniformOptionNameSets": 232,
+      "uniqueFullOptionVectors": 232,
+      "singleTitleGroups": 232,
+      "standardTupleCollisionRows": 766,
+      "multiTypeRows": 1008
+    },
+    "distinctEmittedItemGroups": 232,
+    "multiTypeGroups": 39,
+    "multiTypeRows": 1008,
+    "standardTupleCollisionGroups": 39,
+    "standardTupleCollisionRows": 766,
+    "multiTypeAndCollisionIntersectionGroups": 35,
+    "collisionGroupsWithOtherOptionKinds": 4,
+    "allUniqueVariantLinks": 4741,
+    "allVariantQueryIdsMatch": true,
+    "newFieldsPresent": false,
+    "productTypeFieldPresent": false,
+    "optionNameOccurrences": {
+      "Size": 4689,
+      "Color": 3586,
+      "size": 52,
+      "Text": 92,
+      "Design": 36,
+      "Style": 31,
+      "Type": 1026
+    },
+    "sizeLabelRolePrefixCounts": {
+      "child": 2427,
+      "mother": 817,
+      "adult": 693,
+      "father": 536,
+      "girl": 129,
+      "boy": 78,
+      "baby": 56,
+      "no_explicit_role_prefix": 5
+    },
+    "explicitSeparateWearerOptionObserved": false,
+    "definition": "Within each existing item_group_id, repeated tuples use exactly current color, gender, age_group and size. They are not duplicate IDs, disapprovals, or proof of invalid grouping. Full source selectedOptions distinguish all 4,741 emitted variants.",
+    "cohortExamples": [
+      {
+        "productId": "gid://shopify/Product/7536341024865",
+        "title": "Ivory Stripe Cargo Family Matching Set — Dress, Shirt & Shorts",
+        "snapshotProductPointer": "/products/166",
+        "emittedVariants": 39,
+        "optionNames": [
+          "Size",
+          "Type"
+        ],
+        "typeValues": [
+          "Dress",
+          "Shirt",
+          "Shorts"
+        ],
+        "standardTupleCollisionRows": 36,
+        "standardTupleCollisionSets": 14,
+        "uniqueOptionCombinations": 39
+      },
+      {
+        "productId": "gid://shopify/Product/7670609346657",
+        "title": "Navy Sprig Mommy and Me Dresses — Dress & Cardigan",
+        "snapshotProductPointer": "/products/227",
+        "emittedVariants": 24,
+        "optionNames": [
+          "Size",
+          "Type"
+        ],
+        "typeValues": [
+          "Cardigan",
+          "Dress"
+        ],
+        "standardTupleCollisionRows": 24,
+        "standardTupleCollisionSets": 12,
+        "uniqueOptionCombinations": 24
+      },
+      {
+        "productId": "gid://shopify/Product/7545279217761",
+        "title": "Scarlet Ruffle Mommy and Me Tank Top - Breezy Beach Top",
+        "snapshotProductPointer": "/products/211",
+        "emittedVariants": 8,
+        "optionNames": [
+          "Size",
+          "Type"
+        ],
+        "typeValues": [
+          "Tank Top"
+        ],
+        "standardTupleCollisionRows": 0,
+        "standardTupleCollisionSets": 0,
+        "uniqueOptionCombinations": 8
+      },
+      {
+        "productId": "gid://shopify/Product/7545279840353",
+        "title": "Red Heart Raglan Family Matching Tops - Cotton Tee",
+        "snapshotProductPointer": "/products/213",
+        "emittedVariants": 17,
+        "optionNames": [
+          "Color",
+          "Size"
+        ],
+        "typeValues": [],
+        "standardTupleCollisionRows": 0,
+        "standardTupleCollisionSets": 0,
+        "uniqueOptionCombinations": 17
+      },
+      {
+        "productId": "gid://shopify/Product/7502178222177",
+        "title": "Family Matching Dad & Son Tropical Palm Cotton Shirts - Blue",
+        "snapshotProductPointer": "/products/99",
+        "emittedVariants": 12,
+        "optionNames": [
+          "Color",
+          "Size"
+        ],
+        "typeValues": [],
+        "standardTupleCollisionRows": 0,
+        "standardTupleCollisionSets": 0,
+        "uniqueOptionCombinations": 12
+      },
+      {
+        "productId": "gid://shopify/Product/7535320465505",
+        "title": "White Lace Mommy and Me Dresses — Cami Dress",
+        "snapshotProductPointer": "/products/156",
+        "emittedVariants": 8,
+        "optionNames": [
+          "Color",
+          "Size"
+        ],
+        "typeValues": [],
+        "standardTupleCollisionRows": 0,
+        "standardTupleCollisionSets": 0,
+        "uniqueOptionCombinations": 8
+      }
+    ]
+  },
+  "assessment": {
+    "representationBenefit": "Material structural benefit is plausible: literal identifying options would expose omitted Type/Text/Design/Style distinctions, and specific titles would describe the selected offer. Merchant rendering and commercial benefit are unverified.",
+    "garmentGrouping": "HOLD broad mixed-garment rollout. Shared print and one Shopify parent do not independently establish that Dress, Shirt and Shorts are true Google variants. The official coordinated-pieces counterexample needs a specific semantic/landing-page review before any grouping change or endorsement.",
+    "wearer": "Preserve explicit Mother/Father/Child wording already present in Size. No separate wearer selector was observed. Do not turn Child into Girl/Boy, Mother into a garment type, or any relationship into invented age/gender. A future split of relationship and standardized size needs exact source rules and separate review.",
+    "size": "The new field can carry the existing exact Size selection while standard size remains required. Existing role-prefixed sizes such as Mother S deserve separate standards review; this research neither normalizes them nor invents measurements or size systems.",
+    "productType": "A selectable Type:Dress option does not become product_type automatically. Classification and variant grouping are distinct decisions.",
+    "structuredData": "Arbitrary feed names do not imply matching support in Search Central variesBy. No theme/schema changes are included.",
+    "marketLimit": "Documentation permits worldwide usage, but only US English was locally evaluated. No language/market rollout or approval claim follows."
+  },
+  "syntheticSyntaxExamples": [
+    {
+      "meaning": "A genuine same-garment variant, synthetic only",
+      "tsvHeader": "variant_option",
+      "tsvCell": "size:M,color:Blue",
+      "standardAttributesStillSeparate": {
+        "size": "M",
+        "color": "Blue"
+      }
+    },
+    {
+      "meaning": "Custom option grammar only; not approval to group different garments",
+      "tsvCell": "Type:Dress,Size:Mother S",
+      "groupingApproval": false
+    },
+    {
+      "meaning": "Explicit separate source selectors, if such selectors really exist; not observed in this cohort",
+      "tsvCell": "Wearer:Father,Size:M",
+      "inventedSourceSelectorsForbidden": true
+    },
+    {
+      "meaning": "XML equivalent for a synthetic size pair",
+      "xml": "<g:variant_option><g:name>size</g:name><g:value>M</g:value></g:variant_option>"
+    }
+  ],
+  "serializationLimits": {
+    "nameMaxCharacters": 250,
+    "valueMaxCharacters": 250,
+    "maxPairs": 30,
+    "reservedCharacters": [
+      ",",
+      ":",
+      "\\"
+    ],
+    "reservedCharactersObservedInFrozenSelectedOptions": 0,
+    "edgeCaseRecommendation": "Fail closed on reserved characters until the exact escaping encoder has authoritative examples and round-trip tests; no guessed escaping recipe or serializer code is supplied.",
+    "consistencyRuleSource": "variant_option"
+  },
+  "minimalIndependentProof": {
+    "status": "CANDIDATE_FOR_FUTURE_OFFLINE_ONLY_REVIEW",
+    "productId": "gid://shopify/Product/7535320465505",
+    "title": "White Lace Mommy and Me Dresses — Cami Dress",
+    "selectionReason": "Eight currently emitted variants of the same cami dress; exact Size options are unique; White and female are constant and age groups are already populated. Avoids a mixed-garment grouping endorsement.",
+    "sourceProductPointer": "/products/156",
+    "sourceTitleSha256": "bfb1d0e18b39caae8d854a0535ae3c7230f675afbaa0e5583c0f33482c676c3f",
+    "sourceDescriptionSha256": "f2a23be5b82bf4ab3b14553be12f655d5ced72fb3cc0882db86c1bc8bbdd2f90",
+    "currentItemGroupId": "shopify_US_7535320465505",
+    "stableIdsPreserved": true,
+    "candidateFieldCount": 24,
+    "candidateVariantCount": 8,
+    "wireDesign": "Propose existing Size text plus the existing age_group as named pairs; no new age is derived. Leave constant White/female out of identifying pairs. Keep the existing standard fields. Add common parent title as item_group_title and append exact Size to each feed title.",
+    "rows": [
+      {
+        "variantId": "gid://shopify/ProductVariant/44057221267553",
+        "emittedId": "shopify_US_7535320465505_44057221267553",
+        "sourceSelectedOptions": [
+          {
+            "name": "Size",
+            "value": "Child 3 Years"
+          },
+          {
+            "name": "Color",
+            "value": "White"
+          }
+        ],
+        "beforeTitle": "White Lace Mommy and Me Dresses — Cami Dress",
+        "beforeNewFields": "ABSENT_FROM_HEADER",
+        "proposedOfflineFeedFields": {
+          "item_group_title": "White Lace Mommy and Me Dresses — Cami Dress",
+          "title": "White Lace Mommy and Me Dresses — Cami Dress — Child 3 Years",
+          "variant_option": "size:Child 3 Years,age_group:toddler"
+        },
+        "unchangedExistingStandardAttributes": {
+          "size": "Child 3 Years",
+          "age_group": "toddler",
+          "gender": "female",
+          "color": "White"
+        },
+        "beforeRowSha256": "de630f9f14b1811eec6196727cb3445854fa942edbcba47ed7dd23239a46d3e5"
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/44057221300321",
+        "emittedId": "shopify_US_7535320465505_44057221300321",
+        "sourceSelectedOptions": [
+          {
+            "name": "Size",
+            "value": "Child 4 Years"
+          },
+          {
+            "name": "Color",
+            "value": "White"
+          }
+        ],
+        "beforeTitle": "White Lace Mommy and Me Dresses — Cami Dress",
+        "beforeNewFields": "ABSENT_FROM_HEADER",
+        "proposedOfflineFeedFields": {
+          "item_group_title": "White Lace Mommy and Me Dresses — Cami Dress",
+          "title": "White Lace Mommy and Me Dresses — Cami Dress — Child 4 Years",
+          "variant_option": "size:Child 4 Years,age_group:toddler"
+        },
+        "unchangedExistingStandardAttributes": {
+          "size": "Child 4 Years",
+          "age_group": "toddler",
+          "gender": "female",
+          "color": "White"
+        },
+        "beforeRowSha256": "2e97794b873c8b3b333eb2cf84b684b07432fb4a4945543e1e90d427539e2ebd"
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/44057221333089",
+        "emittedId": "shopify_US_7535320465505_44057221333089",
+        "sourceSelectedOptions": [
+          {
+            "name": "Size",
+            "value": "Child 5 Years"
+          },
+          {
+            "name": "Color",
+            "value": "White"
+          }
+        ],
+        "beforeTitle": "White Lace Mommy and Me Dresses — Cami Dress",
+        "beforeNewFields": "ABSENT_FROM_HEADER",
+        "proposedOfflineFeedFields": {
+          "item_group_title": "White Lace Mommy and Me Dresses — Cami Dress",
+          "title": "White Lace Mommy and Me Dresses — Cami Dress — Child 5 Years",
+          "variant_option": "size:Child 5 Years,age_group:kids"
+        },
+        "unchangedExistingStandardAttributes": {
+          "size": "Child 5 Years",
+          "age_group": "kids",
+          "gender": "female",
+          "color": "White"
+        },
+        "beforeRowSha256": "246216720a784555e0b2639054e6fef5b1ab947d256902044f071a466bff745b"
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/44057221365857",
+        "emittedId": "shopify_US_7535320465505_44057221365857",
+        "sourceSelectedOptions": [
+          {
+            "name": "Size",
+            "value": "Child 6-7 Years"
+          },
+          {
+            "name": "Color",
+            "value": "White"
+          }
+        ],
+        "beforeTitle": "White Lace Mommy and Me Dresses — Cami Dress",
+        "beforeNewFields": "ABSENT_FROM_HEADER",
+        "proposedOfflineFeedFields": {
+          "item_group_title": "White Lace Mommy and Me Dresses — Cami Dress",
+          "title": "White Lace Mommy and Me Dresses — Cami Dress — Child 6-7 Years",
+          "variant_option": "size:Child 6-7 Years,age_group:kids"
+        },
+        "unchangedExistingStandardAttributes": {
+          "size": "Child 6-7 Years",
+          "age_group": "kids",
+          "gender": "female",
+          "color": "White"
+        },
+        "beforeRowSha256": "16c49fa9dbf3e616c5803d8f63ac93fcf085e55bad1859d73d52c8ce3dc66481"
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/44057221398625",
+        "emittedId": "shopify_US_7535320465505_44057221398625",
+        "sourceSelectedOptions": [
+          {
+            "name": "Size",
+            "value": "Child 8 Years"
+          },
+          {
+            "name": "Color",
+            "value": "White"
+          }
+        ],
+        "beforeTitle": "White Lace Mommy and Me Dresses — Cami Dress",
+        "beforeNewFields": "ABSENT_FROM_HEADER",
+        "proposedOfflineFeedFields": {
+          "item_group_title": "White Lace Mommy and Me Dresses — Cami Dress",
+          "title": "White Lace Mommy and Me Dresses — Cami Dress — Child 8 Years",
+          "variant_option": "size:Child 8 Years,age_group:kids"
+        },
+        "unchangedExistingStandardAttributes": {
+          "size": "Child 8 Years",
+          "age_group": "kids",
+          "gender": "female",
+          "color": "White"
+        },
+        "beforeRowSha256": "9ab3f29769d94bdd497153729e13327163888ad9d462b54b0533ebfc8b4d3d25"
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/44057221431393",
+        "emittedId": "shopify_US_7535320465505_44057221431393",
+        "sourceSelectedOptions": [
+          {
+            "name": "Size",
+            "value": "Child 9-10 Years"
+          },
+          {
+            "name": "Color",
+            "value": "White"
+          }
+        ],
+        "beforeTitle": "White Lace Mommy and Me Dresses — Cami Dress",
+        "beforeNewFields": "ABSENT_FROM_HEADER",
+        "proposedOfflineFeedFields": {
+          "item_group_title": "White Lace Mommy and Me Dresses — Cami Dress",
+          "title": "White Lace Mommy and Me Dresses — Cami Dress — Child 9-10 Years",
+          "variant_option": "size:Child 9-10 Years,age_group:kids"
+        },
+        "unchangedExistingStandardAttributes": {
+          "size": "Child 9-10 Years",
+          "age_group": "kids",
+          "gender": "female",
+          "color": "White"
+        },
+        "beforeRowSha256": "077b8ffd62d504350745edfdf5f2caf4f9080dbe35254b706f539fa146c12aa7"
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/44057221464161",
+        "emittedId": "shopify_US_7535320465505_44057221464161",
+        "sourceSelectedOptions": [
+          {
+            "name": "Size",
+            "value": "Mother S"
+          },
+          {
+            "name": "Color",
+            "value": "White"
+          }
+        ],
+        "beforeTitle": "White Lace Mommy and Me Dresses — Cami Dress",
+        "beforeNewFields": "ABSENT_FROM_HEADER",
+        "proposedOfflineFeedFields": {
+          "item_group_title": "White Lace Mommy and Me Dresses — Cami Dress",
+          "title": "White Lace Mommy and Me Dresses — Cami Dress — Mother S",
+          "variant_option": "size:Mother S,age_group:adult"
+        },
+        "unchangedExistingStandardAttributes": {
+          "size": "Mother S",
+          "age_group": "adult",
+          "gender": "female",
+          "color": "White"
+        },
+        "beforeRowSha256": "0f6dcf45fbf91b886ad8a8d72622d205b3bd51fe76b697c29d326d467b367808"
+      },
+      {
+        "variantId": "gid://shopify/ProductVariant/44057221496929",
+        "emittedId": "shopify_US_7535320465505_44057221496929",
+        "sourceSelectedOptions": [
+          {
+            "name": "Size",
+            "value": "Mother M"
+          },
+          {
+            "name": "Color",
+            "value": "White"
+          }
+        ],
+        "beforeTitle": "White Lace Mommy and Me Dresses — Cami Dress",
+        "beforeNewFields": "ABSENT_FROM_HEADER",
+        "proposedOfflineFeedFields": {
+          "item_group_title": "White Lace Mommy and Me Dresses — Cami Dress",
+          "title": "White Lace Mommy and Me Dresses — Cami Dress — Mother M",
+          "variant_option": "size:Mother M,age_group:adult"
+        },
+        "unchangedExistingStandardAttributes": {
+          "size": "Mother M",
+          "age_group": "adult",
+          "gender": "female",
+          "color": "White"
+        },
+        "beforeRowSha256": "a79c90d41770171e1278b1cb53fd1d656bf5eaec338c1af4f2874d71b8ac04e2"
+      }
+    ],
+    "prerequisites": [
+      "Fresh source and landing-page read must confirm all eight exact choices, source text, in-stock state, current standard fields and correct variant preselection.",
+      "Independent standards review must accept the existing Size labels and the age-group boundaries before any live proof. The optional field does not waive required attributes.",
+      "Review the 24 proposed feed-field values and source bindings; generate a separate offline fixture only under new exact scope.",
+      "Round-trip parse the TSV pairs; verify names and uniqueness, limits, matching standard attributes, and constant group title with distinct titles.",
+      "Reject drift, added/removed options, new reserved characters, or a changed identity/stock/price/image condition.",
+      "Before any future release, root must authorize the exact feed build and destination and verify Google processing/readback. This research grants no release authority."
+    ],
+    "preserve": "All existing IDs, 4,741-row eligibility boundary, prices, links, images, stock, exclusions, grouping, standard fields, Shopify source, locale state and completed repair packets.",
+    "proofNotPerformed": [
+      "Offline candidate feed generation",
+      "Live landing-page selection check",
+      "Merchant parser/processing acceptance",
+      "Google display or traffic measurement"
+    ]
+  },
+  "verification": {
+    "officialPublicDocsRead": true,
+    "localInputHashesVerified": true,
+    "sourceOptionUniquenessChecked": true,
+    "all4741VariantQueryBindingsChecked": true,
+    "eightCandidateRowsBoundToSource": true,
+    "codeOrSharedArtifactWrites": 0,
+    "authenticatedAccountCalls": 0,
+    "externalWrites": 0,
+    "onlyOwnedResearchJsonWritten": true
+  },
+  "recommendation": "Proceed with the eight-variant offline proof after independent review; hold a blanket Type or wearer rollout until grouping semantics and standard-size treatment are resolved. Prioritize source correctness and required attribute completion; do not promise rankings, traffic or sales from this optional feature."
+}

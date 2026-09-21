@@ -1,0 +1,114 @@
+{
+  "actionId": "TA06-THEME-BUYER-TRUTH-SUCCESSOR-20260915",
+  "status": "VERIFIED_UNPUBLISHED_SUCCESSOR__OWNER_ADMIN_PUBLICATION_REQUIRED__REMOTE_THEME_SYNC_HELD",
+  "classification": "HANDOFF",
+  "authority": {
+    "planPath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_buyer_truth_successor_plan_20260915.json",
+    "planSha256": "d91de44661b03d19452ea1cbac50f6d6091cf63af009d7b5bef1c950fcd4d184",
+    "scope": "Exact seven-file successor on existing UNPUBLISHED137888792673; one-line French unit follow-up explicitly confirmed within scope; no MAIN write/Git push/publication."
+  },
+  "candidate": {
+    "id": "137888792673",
+    "name": "DLM UX Performance QA 2026-09-10",
+    "role": "UNPUBLISHED",
+    "files": 527,
+    "savedAt": "2026-09-15T01:57:14Z",
+    "firstSaveAt": "2026-09-15T01:46:17Z",
+    "netChangedFiles": 7,
+    "unchangedPriorCandidateFiles": 520,
+    "finalModuleSha256": "dbd748d10828f52bb24c2dfb22d019261f4abeb7f3e9f61eb86d350ee96c1bcb"
+  },
+  "preservedMain": {
+    "id": "133290917985",
+    "name": "dresslikemommy/main",
+    "files": 525,
+    "allFilesAndMetadataUnchanged": true,
+    "gitHubMainConnected": true
+  },
+  "bindings": {
+    "sourceMap": {
+      "path": "FINAL_527_SOURCE_BINDING.json",
+      "sha256": "932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a"
+    },
+    "browserAcceptance": {
+      "path": "BROWSER_ACCEPTANCE.json",
+      "sha256": "70840f18cbfd0214ef6101c71f0d6861232450b53c860cd2afad2f1fa1cfbd48"
+    },
+    "independentAfterReview": {
+      "path": "review/independent-final-after-review.json",
+      "sha256": "39ccae849d2631967f5d0350a3e6f0440ea6af4944700abce69734be68a8f5e7"
+    },
+    "packetManifest": {
+      "path": "FROZEN_MANIFEST.json",
+      "sha256": "cc119594723d83fcc68c8e7d2556434fc7f960fc46fde9eaa5a39ba8522acb21",
+      "fileCount": 467
+    }
+  },
+  "validation": {
+    "focusedRegressionTests": 26,
+    "rootBrowserAssertions": 352,
+    "independentRawBrowserAssertions": 656,
+    "browserArtifactHashesVerified": 128,
+    "guideCases": 48,
+    "compactUnitCases": 24,
+    "imperialGuides": 12,
+    "reopens": 12,
+    "noTypeCases": 6,
+    "noSizeCases": 1,
+    "articleCtaStates": 9,
+    "articleArrivals": 3,
+    "auAutomaticVariantCases": 3,
+    "cartStayedZero": true,
+    "strictContinuity": "PASS at recorded snapshot; parent owns subsequent shared canonical integration"
+  },
+  "localGit": {
+    "status": "VERIFIED_LOCAL_MAIN_COMMIT",
+    "recordedAt": "2026-09-15T02:18:28.669268+00:00",
+    "branch": "main",
+    "commit": "e2401a6723673ef460e4c6a40d040b5a332bd7da",
+    "parent": "4203184e6937167281ed41d8014d30f4652b0c63",
+    "files": [
+      "assets/component-product-desktop-ux-ruler-sync.css",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "assets/section-blog-post.css",
+      "locales/fr.json",
+      "sections/main-cart-footer.liquid",
+      "snippets/cart-drawer.liquid",
+      "snippets/product-page-copy-map.liquid"
+    ],
+    "allCommittedBytesMatchVerifiedLocalSource": true,
+    "remoteMain": "e077c69e06bbc729da121533a480c55456b079ba",
+    "remoteThemeDifferences": 74,
+    "gitPushPerformed": false,
+    "remainingDependency": "Current Shopify MAIN133290917985 is connected to GitHub main. Connector blocks agent publishing/MAIN writes; pending theme push remains held until owner Admin publication and connection/role verification."
+  },
+  "sourceProductFollowup": {
+    "owner": "Merchant",
+    "finding": "Existing French Girl9–10 garment-length suffixes29,1dans and16,1dans",
+    "parentNotified": true,
+    "themeRegression": false
+  },
+  "limits": [
+    "Browser product examples use MotherS/youngestGirl, not every product/size. Missing/reversed/ambiguous sources are covered by26 synthetic regression tests.",
+    "Three AU cases were successful on saved86; final one-line French alias correction preserves variant functions. Successful AU cases were not repeated.",
+    "CTA labels/destinations are preserved, including existing English copy in AR/NL. No full accessibility/RTL certification.",
+    "Compact/table unit controls retain separate in-memory selections. Baseline single-piece role switch resets size/type; no persistence or multiple-card browser claim.",
+    "French source16,1dans/29,1dans remains Merchant-owned product translation; neither theme save introduced it.",
+    "No populated cart/checkout/purchase or fresh PageSpeed test. Cart tax/shipping text source-reviewed. No conversion-lift claim.",
+    "Acceptance uses cited final accepted-* raw captures; earlier diagnostic labeling/test-format mismatches and first-save French unit failure remain historical evidence."
+  ],
+  "rollback": {
+    "ownerPublishedRollbackTheme": "133290917985",
+    "originalSevenDraftBeforePayload": "rollback-payload.json",
+    "singleModuleBeforeFrenchCorrection": "french-unit-correction/rollback-payload.json",
+    "guard": "Any draft rollback must reverify exact UNPUBLISHED target and expected after-checksums. Owner handles publication rollback in Admin; never overwrite drift."
+  },
+  "nextOwnerAction": {
+    "action": "Publish DLM UX Performance QA 2026-09-10 (137888792673) in Shopify Admin",
+    "url": "https://admin.shopify.com/store/dresslikemommy-com/themes",
+    "whyFirst": "The Shopify connector blocks agent publishing/MAIN writes, and GitHubmain still updates currentMAIN133290917985. Publication/role/connection verification must precede the pending theme push.",
+    "newPermissionQuestionRequired": false
+  },
+  "continuationPrompt": "Verify owner publication of137888792673 and actual MAIN/source/connection; safely reconcile the remaining74localtheme differences into GitHubmain, then verify affected live buyer paths and PageSpeed. Preserve peer changes and prior frozen packets.",
+  "canonicalOwner": "01a08223-036e-7fa3-8961-ecd297163fb5"
+}

@@ -1,0 +1,184 @@
+TAP version 13
+# Subtest: the candidate is derived from the exact active owner profile; configs remain disabled
+ok 1 - the candidate is derived from the exact active owner profile; configs remain disabled
+  ---
+  duration_ms: 2.70675
+  type: 'test'
+  ...
+# Subtest: absent option preserves every US default result and streaming byte with labels on/off
+ok 2 - absent option preserves every US default result and streaming byte with labels on/off
+  ---
+  duration_ms: 19.552
+  type: 'test'
+  ...
+# Subtest: absent option preserves every AU default result and streaming byte with labels on/off
+ok 3 - absent option preserves every AU default result and streaming byte with labels on/off
+  ---
+  duration_ms: 1.366875
+  type: 'test'
+  ...
+# Subtest: absent option preserves every CA default result and streaming byte with labels on/off
+ok 4 - absent option preserves every CA default result and streaming byte with labels on/off
+  ---
+  duration_ms: 1.262125
+  type: 'test'
+  ...
+# Subtest: absent option preserves every GB default result and streaming byte with labels on/off
+ok 5 - absent option preserves every GB default result and streaming byte with labels on/off
+  ---
+  duration_ms: 0.929166
+  type: 'test'
+  ...
+# Subtest: CA opt-in changes only one TSV column; stream and materialized outputs match
+ok 6 - CA opt-in changes only one TSV column; stream and materialized outputs match
+  ---
+  duration_ms: 0.938584
+  type: 'test'
+  ...
+# Subtest: CA retains all six holds, unavailable partition and complete-source-proven archival
+ok 7 - CA retains all six holds, unavailable partition and complete-source-proven archival
+  ---
+  duration_ms: 0.562584
+  type: 'test'
+  ...
+# Subtest: GB opt-in changes only one TSV column; stream and materialized outputs match
+ok 8 - GB opt-in changes only one TSV column; stream and materialized outputs match
+  ---
+  duration_ms: 0.5445
+  type: 'test'
+  ...
+# Subtest: GB retains all six holds, unavailable partition and complete-source-proven archival
+ok 9 - GB retains all six holds, unavailable partition and complete-source-proven archival
+  ---
+  duration_ms: 0.62925
+  type: 'test'
+  ...
+# Subtest: no opt-in carries over to a subsequent US or AU build
+ok 10 - no opt-in carries over to a subsequent US or AU build
+  ---
+  duration_ms: 1.149708
+  type: 'test'
+  ...
+# Subtest: invalid or broadened country/language/currency scope is rejected
+ok 11 - invalid or broadened country/language/currency scope is rejected
+  ---
+  duration_ms: 0.599208
+  type: 'test'
+  ...
+# Subtest: an accidentally global shipping option is rejected rather than silently ignored
+ok 12 - an accidentally global shipping option is rejected rather than silently ignored
+  ---
+  duration_ms: 0.122458
+  type: 'test'
+  ...
+# Subtest: missing fields, unknown fields and ETA/return/service additions fail closed
+ok 13 - missing fields, unknown fields and ETA/return/service additions fail closed
+  ---
+  duration_ms: 0.613125
+  type: 'test'
+  ...
+# Subtest: nonzero, numeric, padded and noncanonical cost values reject without conversion
+ok 14 - nonzero, numeric, padded and noncanonical cost values reject without conversion
+  ---
+  duration_ms: 0.358583
+  type: 'test'
+  ...
+# Subtest: verification must be literal true and bind a nonempty SHA256 receipt
+ok 15 - verification must be literal true and bind a nonempty SHA256 receipt
+  ---
+  duration_ms: 0.419334
+  type: 'test'
+  ...
+# Subtest: disabled or unverified landing scope cannot be bypassed even for an empty complete source
+ok 16 - disabled or unverified landing scope cannot be bypassed even for an empty complete source
+  ---
+  duration_ms: 0.773542
+  type: 'test'
+  ...
+# Subtest: new opt-in requires existing holds and explicit disabled return-label emission
+ok 17 - new opt-in requires existing holds and explicit disabled return-label emission
+  ---
+  duration_ms: 0.221834
+  type: 'test'
+  ...
+# Subtest: shipping opt-in preserves existing pagination source rejection
+ok 18 - shipping opt-in preserves existing pagination source rejection
+  ---
+  duration_ms: 0.0805
+  type: 'test'
+  ...
+# Subtest: shipping opt-in preserves existing shop identity source rejection
+ok 19 - shipping opt-in preserves existing shop identity source rejection
+  ---
+  duration_ms: 0.054709
+  type: 'test'
+  ...
+# Subtest: shipping opt-in preserves existing stale clock source rejection
+ok 20 - shipping opt-in preserves existing stale clock source rejection
+  ---
+  duration_ms: 0.053541
+  type: 'test'
+  ...
+# Subtest: shipping opt-in preserves existing future clock source rejection
+ok 21 - shipping opt-in preserves existing future clock source rejection
+  ---
+  duration_ms: 0.050542
+  type: 'test'
+  ...
+# Subtest: shipping opt-in preserves existing manifest drift source rejection
+ok 22 - shipping opt-in preserves existing manifest drift source rejection
+  ---
+  duration_ms: 0.064542
+  type: 'test'
+  ...
+# Subtest: shipping opt-in preserves existing incomplete variants source rejection
+ok 23 - shipping opt-in preserves existing incomplete variants source rejection
+  ---
+  duration_ms: 0.07325
+  type: 'test'
+  ...
+# Subtest: shipping opt-in preserves existing duplicate variant source rejection
+ok 24 - shipping opt-in preserves existing duplicate variant source rejection
+  ---
+  duration_ms: 0.06875
+  type: 'test'
+  ...
+# Subtest: shipping opt-in preserves existing market context drift source rejection
+ok 25 - shipping opt-in preserves existing market context drift source rejection
+  ---
+  duration_ms: 0.048625
+  type: 'test'
+  ...
+# Subtest: shipping opt-in preserves existing catalog identity source rejection
+ok 26 - shipping opt-in preserves existing catalog identity source rejection
+  ---
+  duration_ms: 0.053292
+  type: 'test'
+  ...
+# Subtest: malformed currency, price, numeric identity and unavailable state never yield a partial feed
+ok 27 - malformed currency, price, numeric identity and unavailable state never yield a partial feed
+  ---
+  duration_ms: 0.569334
+  type: 'test'
+  ...
+# Subtest: publication and unavailable exclusions retain exact membership and shipping applies only to kept rows
+ok 28 - publication and unavailable exclusions retain exact membership and shipping applies only to kept rows
+  ---
+  duration_ms: 1.426417
+  type: 'test'
+  ...
+# Subtest: active owner dependencies and current CA/GB config bytes are still unchanged after all builds
+ok 29 - active owner dependencies and current CA/GB config bytes are still unchanged after all builds
+  ---
+  duration_ms: 1.08025
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 81.81675

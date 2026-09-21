@@ -1,0 +1,31 @@
+{
+  "review": "TA06-THEME-BUYER-TRUTH-SUCCESSOR-20260915",
+  "status": "FAILED_PROVISIONAL_HOLDOUTS",
+  "observedAt": "2026-09-15T01:35:16.631766+00:00",
+  "productionSourceSHA256": "705d634a620347a733e5b3bf842bfc60f13b9ec62c35e8c4aa392f96fe6b1092",
+  "reviewerScriptSHA256": "ca4a16a192cf5a207b35ef00276d6be5d2bf5defce617ec52296553fa6e59a9c",
+  "runtime": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "exitCode": 1,
+  "observations": [
+    {
+      "case": "available Mother M option but source chart contains only Mother L",
+      "expected": "no tooltip measurements for a different size",
+      "actualRow": "Mother L",
+      "sourceTable": "size-chart-cardigan",
+      "pass": false
+    },
+    {
+      "case": "Cardigan table ID/heading but explicit Dress Length column",
+      "expected": "do not present another garment column as Cardigan measurements",
+      "actualHeaderRaw": "Dress Length (cm/in)",
+      "pass": false
+    }
+  ],
+  "earlierRuntimeAttempt": {
+    "runtime": "Homebrew Node22.22.0",
+    "status": "FAILED_BEFORE_TEST_EXECUTION",
+    "error": "missing libsimdjson.29.dylib",
+    "exitCode": 134
+  },
+  "scope": "Read-only independent execution of real production functions using setup from worker harness; no production or external changes."
+}

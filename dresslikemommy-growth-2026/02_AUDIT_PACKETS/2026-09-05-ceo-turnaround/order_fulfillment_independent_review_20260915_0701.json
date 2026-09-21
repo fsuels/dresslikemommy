@@ -1,0 +1,249 @@
+{
+  "schema": "dlm_order_fulfillment_saved_source_independent_review_v1",
+  "status": "PASS_WITH_LIMITS",
+  "reviewed_at_utc": "2026-09-15T07:14:21.396822+00:00",
+  "reviewer": "/root/collector_global_fallback_fix",
+  "independence": "Did not perform the source API calls or prepare the root observed summary; independently calculated from the saved raw source. This reviewer also authored the sanitized checkpoint, so this is not a separate second-person review of that output.",
+  "input_bindings": [
+    {
+      "role": "restricted_saved_source",
+      "sha256": "155a7ce3dedc58a72b69460d1844c889f2fe976a13a234ec61a4d9c41fabc425",
+      "private_path_excluded": true
+    },
+    {
+      "role": "previous_public_checkpoint",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260914_1900_v2.json",
+      "sha256": "c108602199f1f963e6f9eec9e5377bb160b1cb8e58128c43a832097a404bb47f"
+    },
+    {
+      "role": "public_preparation_and_validator",
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_checkpoint_preparation_20260915_0700.json",
+      "sha256": "9102079a63232baf2e0afc140f5b47cf2d11839ca88be56490c4f183bf46dccf"
+    }
+  ],
+  "output_checkpoint": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260915_0701.json",
+    "sha256": "6828ed0735532b87efce705758f0f153b37dced37f506434531cb82fb6ff9b52"
+  },
+  "checks_passed": 41,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "private_source_sha256_exact",
+      "status": "PASS"
+    },
+    {
+      "check": "private_directory_and_file_modes",
+      "status": "PASS"
+    },
+    {
+      "check": "previous_and_preparation_hashes_exact",
+      "status": "PASS"
+    },
+    {
+      "check": "both_actual_queries_equal_saved_validated_queries",
+      "status": "PASS"
+    },
+    {
+      "check": "saved_validator_success_for_two_read_operations",
+      "status": "PASS"
+    },
+    {
+      "check": "exact_creation_filter_and_cutoff",
+      "status": "PASS"
+    },
+    {
+      "check": "exact_shop_domain_currency_and_timezone",
+      "status": "PASS"
+    },
+    {
+      "check": "all_five_saved_responses_successful_no_graphql_errors",
+      "status": "PASS"
+    },
+    {
+      "check": "one_order_page_four_unique_rows_complete",
+      "status": "PASS"
+    },
+    {
+      "check": "all_creation_timestamps_within_filter_and_sorted",
+      "status": "PASS"
+    },
+    {
+      "check": "order_and_nested_pagination_not_truncated",
+      "status": "PASS"
+    },
+    {
+      "check": "four_exact_private_request_id_fulfillment_joins",
+      "status": "PASS"
+    },
+    {
+      "check": "all_join_shop_identities_match",
+      "status": "PASS"
+    },
+    {
+      "check": "source_capture_clocks_and_due_order",
+      "status": "PASS"
+    },
+    {
+      "check": "four_fulfillment_calls_overlap_and_envelope_bounds",
+      "status": "PASS"
+    },
+    {
+      "check": "only_integer_nonnegative_current_quantities",
+      "status": "PASS"
+    },
+    {
+      "check": "all_order_money_usd_and_exact_cent_values",
+      "status": "PASS"
+    },
+    {
+      "check": "current_record_1_four_order_recheck_fields_exact",
+      "status": "PASS"
+    },
+    {
+      "check": "current_record_1_fulfillment_quantity_and_page_coverage",
+      "status": "PASS"
+    },
+    {
+      "check": "current_record_1_fulfillment_product_variant_quantities_within_current_order",
+      "status": "PASS"
+    },
+    {
+      "check": "current_record_2_four_order_recheck_fields_exact",
+      "status": "PASS"
+    },
+    {
+      "check": "current_record_2_fulfillment_product_variant_quantities_within_current_order",
+      "status": "PASS"
+    },
+    {
+      "check": "current_record_3_four_order_recheck_fields_exact",
+      "status": "PASS"
+    },
+    {
+      "check": "current_record_3_fulfillment_product_variant_quantities_within_current_order",
+      "status": "PASS"
+    },
+    {
+      "check": "current_record_4_four_order_recheck_fields_exact",
+      "status": "PASS"
+    },
+    {
+      "check": "current_record_4_fulfillment_product_variant_quantities_within_current_order",
+      "status": "PASS"
+    },
+    {
+      "check": "independent_qualifying_rule_yields_three_eight_20725",
+      "status": "PASS"
+    },
+    {
+      "check": "separate_decimal_sum_matches_integer_cents",
+      "status": "PASS"
+    },
+    {
+      "check": "cancelled_paid_zero_value_refund_ambiguity_retained",
+      "status": "PASS"
+    },
+    {
+      "check": "qualifying_fulfillment_one_fulfilled_two_unfulfilled",
+      "status": "PASS"
+    },
+    {
+      "check": "no_source_transit_delivery_estimate_or_carrier_events",
+      "status": "PASS"
+    },
+    {
+      "check": "fulfillment_list_cap_not_reached",
+      "status": "PASS"
+    },
+    {
+      "check": "zero_creations_since_previous_cutoff",
+      "status": "PASS"
+    },
+    {
+      "check": "original_creation_window_two_records_one_current_qualifier",
+      "status": "PASS"
+    },
+    {
+      "check": "trailing_24h_exact_new_window_one_two_4082",
+      "status": "PASS"
+    },
+    {
+      "check": "completed_new_york_shop_day_exact_one_two_4082",
+      "status": "PASS"
+    },
+    {
+      "check": "prior_aggregate_totals_and_status_counts_equal",
+      "status": "PASS"
+    },
+    {
+      "check": "root_observed_summary_independently_reconciled",
+      "status": "PASS"
+    },
+    {
+      "check": "next_full_read_exact_cutoff_plus_twelve_hours",
+      "status": "PASS"
+    },
+    {
+      "check": "source_and_public_inputs_unchanged_before_output",
+      "status": "PASS"
+    },
+    {
+      "check": "public_checkpoint_has_no_private_identifiers_or_per_order_timestamps",
+      "status": "PASS"
+    }
+  ],
+  "calculation_summary": {
+    "raw_rows": 4,
+    "private_request_fulfillment_joins": 4,
+    "qualifying_orders": 3,
+    "current_units": 8,
+    "current_subtotal_cents": 20725,
+    "current_total_cents": 20725,
+    "current_tax_cents": 0,
+    "recorded_refunds_cents": 0,
+    "excluded_cancelled_paid_rows": 1,
+    "new_creations_since_previous_cutoff": 0,
+    "trailing24h": {
+      "qualifying_orders": 1,
+      "current_units": 2,
+      "current_total_cents": 4082
+    },
+    "previous_completed_shop_day": {
+      "qualifying_orders": 1,
+      "current_units": 2,
+      "current_total_cents": 4082
+    },
+    "original_creation_window": {
+      "all_status_rows": 2,
+      "qualifying_orders": 1,
+      "current_total_cents": 5447
+    },
+    "fulfillment_status_counts": {
+      "FULFILLED": 1,
+      "UNFULFILLED": 2
+    },
+    "source_events_returned": 0
+  },
+  "exact_arithmetic": "Sum integer cents converted from Decimal(amount)*100 with integral-cent checks; independently compare Decimal sums. Units sum currentQuantity, not line count or historic ordered quantity.",
+  "window_logic": "Parse timezone-aware raw creation timestamps in memory; apply inclusive start/exclusive end. Compute trailing24h as cutoff minus24hours and completed day using America/New_York midnight boundaries. Only membership booleans and public window boundaries are exported.",
+  "join_logic": "Require four distinct private request/order IDs matching all four current source rows; check same shop and equality of each returned financial status, fulfillment status, current subtotal and recorded refund. Sum fulfillment quantities by private product+variant pair and compare within currently ordered quantities. No identifiers are exported.",
+  "pagination_logic": "One order page reports hasNextPage=false; all nine order line items fit complete connections. Four fulfillment calls return one fulfillment below first50 cap; its two fulfillment lines and empty event connection report hasNextPage=false. The fulfillment list itself has no pageInfo.",
+  "comparison_limit": "The prior public report contains no stable private identity mapping accessible in this scope. Current ordinal labels, matching amounts and creation-window counts do not prove historical product/basket identity or exclude offsetting order-level changes.",
+  "source_semantic_limits": [
+    "Qualified totals are current Shopify order-state amounts and current quantities, not settled or retained cash, delivered revenue or profit.",
+    "One cancelled row remains PAID with zero current amount/units and totalRefundedSet=0.00. No refund, cancellation cause, cash settlement or retention conclusion is drawn.",
+    "Anonymous record ordinals apply only to this capture. No historical identity or product/basket mapping is inferred from matching amounts, quantities or statuses; order-level lifecycle changes remain unverified across checkpoints.",
+    "The FULFILLED/SUCCESS source status, two fulfillment units and one tracking-company record are administrative fulfillment evidence. No events, inTransitAt, deliveredAt or estimatedDeliveryAt were returned; carrier acceptance, physical transit and delivery remain unverified.",
+    "Order creation coverage ends at the exclusive order cutoff. Four fulfillment reads occurred later and in parallel; the combined snapshot is not atomic and cannot describe every intermediate state.",
+    "The creation filter covers September5 onward. It does not find older orders whose fulfillment or refund changed later, and an unchanged aggregate does not rule out offsetting lifecycle changes.",
+    "The trailing24h and completed shop-day values use different moving windows from the previous report; the lower window total is not a new negative sale or business deterioration by itself.",
+    "No attribution journey, receiver, GA4, Ads, cost, payout, settlement, customer or product research was performed. No CPA, ROAS, profit, cash or delivery improvement is claimed."
+  ],
+  "reviewer_business_queries": 0,
+  "reviewer_business_writes": 0,
+  "new_harness_or_dependency": false,
+  "source_files_modified": false,
+  "next_full_read_due_at_utc": "2026-09-15T19:01:34Z",
+  "recommended_integration": "Refresh aggregate order/fulfillment evidence clocks only. Keep totals3orders/8units/USD207.25 and zero new creations; retain cancellation/refund, carrier/delivery, identity, attribution and profit limits. Root preserves existing paid/goal/schedule/owner controls and removes the restricted source only after its verification."
+}

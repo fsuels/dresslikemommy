@@ -1,0 +1,50 @@
+{
+  "action": "TA07-NAVY-SIZE-CONSISTENCY-20260914-SEO-TITLE-RESTORE",
+  "reviewer": "/root/merchant_translation_review",
+  "reviewed_at_utc": "2026-09-15T00:31:36.833973+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "reviewed_query_sha256": "7c7bbe147207878437332b9217ab3ce765c0290c750dd88044c28e8b65a98929",
+  "reviewed_variables_sha256": "f2068b8382e2e6e6a79460d79cbcaa981c71fd81cf755e5d421f7558b98cfe8a",
+  "private_failed_after_sha256": "7591a5c45cd85df3d85099385155f31b8bbb1c4bdc4f815e874aaaae60c2c560",
+  "private_failed_artifact": "after_english_initial_failed.json",
+  "private_before_sha256": "cfee12b0feeedaf04b81da3366d96a84d6b0e9ae1129c66caff4d9f6be5e71b4",
+  "private_restore_prewrite_sha256": "db20db33f76b5e5fa828870e709488f7ef9c28dbcc1f7945fe78246a4f21dcd7",
+  "restore_prewrite_completed_at": "2026-09-15T00:28:58Z",
+  "restore_prewrite_age_seconds_at_review": 158.833973,
+  "reviewed_incident_sha256": "2be192d6123b81d73ceffdfdf7281ede59cc777cdc016c3b6bf785558a39c509",
+  "original_prewrite_review_sha256": "e315d0f5e6651a174b4b2185dcafe959a575f96dd78c55393f8d6ac1d049a93a",
+  "proposal_sha256": "d200d5dc31fdfb443641e40e1729cfbf347a294938a8a3c7461c4f9eb5a28661",
+  "confirmed_incident": "Initial ProductUpdate cleared Product.seo.title and English meta_title, removed global.title_tag, and marked all 20 existing meta_title translations outdated. Their values are unchanged. Entire failed-state data was independently reconstructed; no additional difference remains unexplained.",
+  "restore_scope": {
+    "productId": "gid://shopify/Product/7670609346657",
+    "input_fields": [
+      "product.id",
+      "product.seo.title",
+      "product.seo.description"
+    ],
+    "title_value_sha256": "e681b560708f91843170aef817dca4286d47e7f2d3996cd64325781d7cf84b7c",
+    "description_value_sha256": "a44148db3c4eca52966ce99aecc2711be52785df0fff06d6aedd1c80ce70ee4d",
+    "body_or_other_input_fields": false
+  },
+  "independent_checks": {
+    "exact_original_title": true,
+    "exact_reviewed_new_description": true,
+    "fresh_data_identical_to_failed_snapshot": true,
+    "all_24_variants_options_inventory_publications_unchanged": true,
+    "all_100_translation_values_unchanged": true,
+    "unrelated_25_retained_metafields_unchanged": true,
+    "external_calls": 0
+  },
+  "required_after_readback": [
+    "Restore exact original Product.seo.title and English meta_title value/digest; retain corrected body and SEO description.",
+    "Document any recreated global.title_tag ID explicitly; require original namespace/key/type/value. No unexplained metadata difference is accepted.",
+    "Check all 20 meta_title translated values and outdated flags against original before; do not silently mark them fresh or register additional fields.",
+    "Compare the complete protected product/variant/options/inventory/publication/source/translation state. Preserve original guard failure and frozen snapshots."
+  ],
+  "findings": [],
+  "limits": [
+    "Approves only this exact corrective payload. Does not relax the original guard or certify an unobserved restored state.",
+    "Root retains immediate prewrite guarding. The planned 40-field translation stage still needs newly read source digests and its separate binding review."
+  ],
+  "next_action": "Root sends the exact restoration once after its fresh comparison and obtains complete readback before continuing translations."
+}

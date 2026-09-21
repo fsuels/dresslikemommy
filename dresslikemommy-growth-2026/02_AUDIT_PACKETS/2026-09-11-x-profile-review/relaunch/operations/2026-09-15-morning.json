@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "checkpoint": "September 15 morning completed-day X measurement",
+  "actual_heartbeat_utc": "2026-09-15T13:00:53.456Z",
+  "actual_heartbeat_local": "2026-09-15T09:00:53.456-04:00",
+  "first_observed_work_clock_utc": "2026-09-15T13:01:14Z",
+  "automation_id": "run-dress-like-mommy-x-organic-pilot",
+  "task_stage": "VERIFY",
+  "source_context": {
+    "instructions_read": [
+      "AGENTS.md",
+      "ops/AGENT_HARNESS_V3.md"
+    ],
+    "compiler": "continue X returned TA-24 and the current X claim; exact sources inspected.",
+    "task": "ops/marketing/action_queue.md:260",
+    "claim": "ops/AGENT_COORDINATION.md:45",
+    "latest_exact_X_anchor": "2026-09-12-x-operation-context-and-morning-handoff-verified",
+    "newer_X_proposal_anchor": "2026-09-14-ceo-x-publisher-proposal-and-n2-receipt",
+    "excluded_context_candidate": "Google tag migration at coordination row54 has a different target and owner; no X ownership or authority is taken from that candidate.",
+    "approved_publisher": "No callable supported X publisher found in current tools. Buffer Free remains an independently reviewed proposal; owner setup authorization has not arrived.",
+    "unchanged_question": "Do not repeat the already-presented Buffer Free setup question.",
+    "fresh_user_AGENTS_meaning": "New operating guidance is not an approval for Buffer setup, new service access, credentials or publication."
+  },
+  "reporting_window": {
+    "since": "2026-09-14",
+    "until": "2026-09-14",
+    "date_boundaries": "Inclusive unquoted explicit ShopifyQL dates",
+    "coverage": "Completed calendar day as reported at this morning check; late processing and attribution gaps remain possible.",
+    "timezone": "EDT",
+    "timezone_evidence": "Previously observed through connected shop-info on September13; not queried again today.",
+    "timezone_receipt": "operations/2026-09-13-morning.json",
+    "first_full_X_reporting_date": "2026-09-12",
+    "completed_full_X_dates_observed": 3
+  },
+  "accepted_campaign_report": {
+    "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-14 UNTIL 2026-09-14",
+    "columns": [],
+    "rows": [],
+    "rowCount": 0,
+    "shopDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "accepted_referrer_report": {
+    "query": "FROM sessions SHOW sessions GROUP BY referrer_source, referrer_name SINCE 2026-09-14 UNTIL 2026-09-14 ORDER BY sessions DESC LIMIT 100",
+    "columns": [
+      {
+        "name": "referrer_source",
+        "dataType": "STRING"
+      },
+      {
+        "name": "referrer_name",
+        "dataType": "STRING"
+      },
+      {
+        "name": "sessions",
+        "dataType": "INTEGER"
+      }
+    ],
+    "rows": [
+      [
+        "direct",
+        "",
+        "139"
+      ],
+      [
+        "search",
+        "google",
+        "48"
+      ],
+      [
+        "search",
+        "duckduckgo",
+        "2"
+      ],
+      [
+        "unknown",
+        "balrampartapsingh",
+        "1"
+      ],
+      [
+        "search",
+        "yahoo!",
+        "1"
+      ],
+      [
+        "unknown",
+        "chatgpt",
+        "1"
+      ]
+    ],
+    "rowCount": 6,
+    "chartHint": {
+      "type": "bar",
+      "xAxisColumnIndex": 0,
+      "yAxisColumnIndices": [
+        2
+      ],
+      "yAxisFormat": "number"
+    },
+    "summaryMetric": {
+      "label": "sessions",
+      "value": "192"
+    },
+    "shopDomain": "dresslikemommy-com.myshopify.com"
+  },
+  "report_validation": {
+    "status": "PASS",
+    "checks": {
+      "report_0_fulfilled": true,
+      "report_0_not_error": true,
+      "report_0_correct_shop": true,
+      "report_0_exact_query": true,
+      "report_0_row_count": true,
+      "report_1_fulfilled": true,
+      "report_1_not_error": true,
+      "report_1_correct_shop": true,
+      "report_1_exact_query": true,
+      "report_1_row_count": true,
+      "referrer_columns": true,
+      "nonnegative_integer_sessions": true,
+      "summary_matches_sum": true,
+      "category_limit_not_reached": true,
+      "no_duplicate_categories": true
+    },
+    "passed": 15,
+    "total": 15
+  },
+  "measurement": {
+    "x_campaign_rows": 0,
+    "named_x_twitter_tco_referrer_rows": 0,
+    "referrer_rows_returned": 6,
+    "referrer_limit": 100,
+    "referrer_session_total": 192,
+    "acquired_x_visits": null,
+    "qualified_x_visits": null,
+    "confirmed_paid_noncancelled_x_orders": null,
+    "supported_x_contribution": null,
+    "interpretation": "No matched X campaign or named X/Twitter/t.co referrer row appears. Direct and unknown categories can include unattributed traffic; this is not proof of zero actual visitors, orders or X influence.",
+    "qa": "No storefront QA, tagged visit, cart or purchase action occurred in this run. Earlier operator QA remains separate without invented subtraction.",
+    "separate_cohorts": "Article, Sunshine Pin, Pinterest and parent sales clocks are unchanged. The same guide visit is not counted as a second acquisition.",
+    "no_order_replay": "September14's separate real-order attribution review is preserved; no new order query or reinterpretation of those orders was needed."
+  },
+  "publication": {
+    "R001": "Preserve September11 publication/pin receipt; no fresh readback claimed.",
+    "original_native_submissions": 7,
+    "current_native_pending_count": null,
+    "R002": {
+      "planned_local": "2026-09-13T12:15:00-04:00",
+      "status": "DUE__PUBLICATION_UNVERIFIED",
+      "platform_post_id": null
+    },
+    "R003": {
+      "planned_local": "2026-09-15T12:15:00-04:00",
+      "planned_utc": "2026-09-15T16:15:00Z",
+      "status": "PLANNED_TIME_NOT_YET_DUE__CURRENT_PLATFORM_STATE_UNVERIFIED",
+      "platform_post_id": null,
+      "meaning": "September11 saved submission is historical proof; future scheduled time is not an actual publication receipt."
+    },
+    "remaining_future_planned_count_at_morning": 6,
+    "resubmissions": 0
+  },
+  "decision": {
+    "action": "HOLD_WITH_EVIDENCE; preserve the baseline and execute the existing afternoon evidence check.",
+    "reason": "Three completed report dates have not produced an identified X result. This is insufficient to select a winner, diagnose a tag failure, expand cadence, add a draft or bypass the pending connection authorization.",
+    "candidate_status": "R009/R010/R011 remain reviewed local options. Buffer Free remains proposal-only and NOT CONNECTED.",
+    "new_content_drafts": 0,
+    "next_decision_checkpoint": "2026-09-19"
+  },
+  "next_action": "At the existing September15 4 PM New York check, assess newly available permitted R003/R002 publication evidence after R003's planned12:15time, plus a concrete opportunity only if evidence supports it. Do not resubmit uncertain posts or repeat the Buffer question.",
+  "modifications": {
+    "analytics_queries": 2,
+    "X_writes": 0,
+    "Buffer_writes": 0,
+    "new_accounts": 0,
+    "credential_actions": 0,
+    "automation_changes": 0,
+    "goal_changes": 0,
+    "new_drafts": 0,
+    "new_spend": 0,
+    "shared_canonical_writes": 0
+  },
+  "verification": {
+    "report_validation": "PASS15/15",
+    "preservation_checks": {
+      "status": "PASS",
+      "passed": 10,
+      "total": 10,
+      "checks": {
+        "POST_QUEUE.json_preserved": true,
+        "proactive-20260911/NEXT_EXPERIMENT_CANDIDATES.json_preserved": true,
+        "product-photo-20260914/CANDIDATE_R011.json_preserved": true,
+        "publishing-connection-20260914/PLAN.md_preserved": true,
+        "publishing-connection-20260914/EVIDENCE.json_preserved": true,
+        "launch_receipts_preserved": true,
+        "active_same_heartbeat": true,
+        "same_schedule": true,
+        "same_prompt": true,
+        "connection_not_promoted": true
+      }
+    },
+    "strict_continuity": "PASS: exit0, CONTINUITY_OK,10 checks",
+    "scoped_diff": "PASS: exit0, no output"
+  },
+  "effort": {
+    "known_previous_rolling_seven_day_minutes": 80.33,
+    "known_previous_current_calendar_week_minutes": 51.54,
+    "elapsed_wall_minutes": 4.67,
+    "known_recorded_rolling_seven_day_minutes": 85.0,
+    "known_recorded_current_calendar_week_minutes": 56.21,
+    "weekly_limit": 120,
+    "limitations": "Observed work clock only, including closeout; earlier setup/coordination gaps remain unquantified. This is not full weekly-cap certification."
+  },
+  "notification_decision": {
+    "decision": "DONT_NOTIFY",
+    "reason": "No material acquisition result or changed connection/action requirement. The existing Buffer setup question is already pending once."
+  },
+  "overall_requested_outcome": "PARTIAL; daily operation ACTIVE, business goal BLOCKED, profitable X contribution UNVERIFIED.",
+  "completed_at_utc": "2026-09-15T13:05:54.301757+00:00",
+  "parent_notification": {
+    "sent": false,
+    "reason": "Routine unchanged result; own dated source retained without repeating an owner question or waking another task solely for an unchanged report."
+  }
+}

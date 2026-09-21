@@ -1,0 +1,250 @@
+--- es.before
++++ es.candidate
+@@ -1,36 +1,13 @@
+ <div id="page-content">
+-
+-<script>// <![CDATA[
+-function remove_classes_active() {
+-    alert( 'FOUND' );
+-    var $aSelected = $('.question-answer-block').find('a');
+-    
+-    if( $aSelected.hasClass('active') ){
+-      alert( 'FOUND' );
+-      $('.question-answer-block > a').removeClass('active');
+-    }else{
+-      alert( 'NOT FOUND' );
+-    }
+-  }
+-// ]]></script><script>// <![CDATA[
+-jQuery("document").ready(function($){
+-    var nav = $('#nav');
+-    $(window).scroll(function () {
+-     	if(getWidthBrowser() > 1200){
+-    		if ($(this).scrollTop() > 136){
+-              nav.addClass("on animated"); 		
+-            } 
+-            else {
+-              nav.removeClass("on animated"); 		
+-            } 
+-  		}
+-          $('#goGrid').trigger('click');
+-
+-      
+-    });  
+-    
+-  });
+-// ]]></script>
++<style>
++#page-content .help-page summary.ask { display: list-item; list-style: disclosure-closed inside; min-height: 44px; padding: 10px 0; cursor: pointer; }
++#page-content .help-page details[open] > summary.ask { list-style-type: disclosure-open; }
++#page-content .help-page summary.ask::-webkit-details-marker { display: inline; }
++#page-content .help-page summary.ask h3 { display: inline; margin: 0; }
++#page-content .help-page summary.ask:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
++</style>
++
++
+ <div class="help-page">
+ 
+ <div id="General Questions">
+@@ -39,12 +16,10 @@
+ 
+ <h2> Sobre nosotros</h2>
+ 
+-<div class="question-answer-block">
+-
+-<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Preguntas generales</a>
+-</h3>
+-
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3> A. Preguntas generales
++</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ 
+ <p> <strong>1. ¿Es seguro utilizar este sitio?</strong></p>
+ 
+@@ -70,9 +45,7 @@
+ 
+ 
+ </div>
+-
+-
+-</div>
++</details>
+ 
+ 
+ </div>
+@@ -86,12 +59,10 @@
+ 
+ </div>
+ 
+-<div class="question-answer-block">
+-
+-<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Dimensionamiento</a>
+-</h3>
+-
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3> A. Dimensionamiento
++</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ 
+ <p> <strong>1. ¿Dónde puedo encontrar la tabla de tallas en centímetros?</strong></p>
+ 
+@@ -105,16 +76,12 @@
+ 
+ 
+ </div>
+-
+-
+-</div>
+-
+-<div class="question-answer-block">
+-
+-<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Pagos</a>
+-</h3>
+-
+-<div class="answer" style="display: none; font-size: 16px;">
++</details>
++
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3> B. Pagos
++</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ 
+ <p> <strong>1. ¿Qué tipos de pagos aceptan?</strong></p>
+ 
+@@ -128,16 +95,12 @@
+ 
+ 
+ </div>
+-
+-
+-</div>
+-
+-<div class="question-answer-block">
+-
+-<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">C. Envío</a>
+-</h3>
+-
+-<div class="answer" style="display: none; font-size: 16px;">
++</details>
++
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3> C. Envío
++</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ 
+ <p> <strong>1. ¿Cuál es el precio del envío?</strong></p>
+ 
+@@ -163,9 +126,7 @@
+ 
+ 
+ </div>
+-
+-
+-</div>
++</details>
+ 
+ 
+ </div>
+@@ -179,12 +140,10 @@
+ 
+ </div>
+ 
+-<div class="question-answer-block">
+-
+-<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Estado del pedido</a>
+-</h3>
+-
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3> A. Estado del pedido
++</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ 
+ <p> <strong>1. ¿Qué significa: estado del pedido "No cumplido"?</strong></p>
+ 
+@@ -204,16 +163,12 @@
+ 
+ 
+ </div>
+-
+-
+-</div>
+-
+-<div class="question-answer-block">
+-
+-<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Seguimiento de pedidos</a>
+-</h3>
+-
+-<div class="answer" style="display: none; font-size: 16px;">
++</details>
++
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3> B. Seguimiento de pedidos
++</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ 
+ <p> <strong>1. ¿Cómo puedo rastrear mi pedido?</strong></p>
+ 
+@@ -239,15 +194,11 @@
+ 
+ 
+ </div>
+-
+-
+-</div>
+-
+-<div class="question-answer-block">
+-
+- <h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Quiero cambiar o cancelar mi pedido</a></h3>
+-
+-<div class="answer" style="display: none; font-size: 16px;">
++</details>
++
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3>B. Quiero cambiar o cancelar mi pedido</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ 
+ <p> <strong>1. Pedí algo, pero quiero cancelarlo.</strong></p>
+ 
+@@ -267,9 +218,7 @@
+ 
+ 
+ </div>
+-
+-
+-</div>
++</details>
+ 
+ 
+ </div>
+@@ -283,12 +232,10 @@
+ 
+ </div>
+ 
+-<div class="question-answer-block">
+-
+-<h3> <a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Quiero cambiar o devolver mi pedido</a>
+-</h3>
+-
+-<div class="answer" style="display: none; font-size: 16px;">
++<details class="question-answer-block" name="dlm-faq">
++<summary class="ask"><h3> A. Quiero cambiar o devolver mi pedido
++</h3></summary>
++<div class="answer" style="font-size: 16px;">
+ 
+ <p> <strong>1. Mi pedido llegó, pero los artículos eran dos tallas más grandes.</strong></p>
+ 
+@@ -314,9 +261,7 @@
+ 
+ 
+ </div>
+-
+-
+-</div>
++</details>
+ 
+ 
+ </div>

@@ -1,0 +1,52 @@
+{
+  "schema": "dlm.merchant.us-navy-refresh.independent-after-review.v1",
+  "verdict": "PASS_WITH_LIMITS",
+  "independent": true,
+  "reviewer": "/root/merchant_lifecycle_code_inventory",
+  "reviewed_at_utc": "2026-09-15T01:30:40.990Z",
+  "scope": {
+    "merchant_account_id": "513542500",
+    "source_id": "10727274744",
+    "market": "us-en",
+    "pointer": "merchant/us-en/current.json",
+    "run": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260915T005200Z-us-navy-refresh"
+  },
+  "method": "Read-only examination of saved receipts and candidate/source bytes. Thirty-three independent local assertions passed; no replay, external calls or writes.",
+  "evidence_sha256": {
+    "independent_review.json": "3f820c5dae0553827d46422b677896714a2e5f8d92b12ccd1acb66c4f35af1ec",
+    "promote.intent.json": "5e6bed5ecf44410b6597a4d5518223b3f6c8493c330c232665e5ab7ac49f0c7b",
+    "promote.result-20260915T010729718832Z.json": "9f37e7cc68cc89fb80afa36b717c7fcd8bc6a586ab2eb9769610291883e8d68f",
+    "native_before_source.json": "9c4a4f30b6d852c0f66001bc7ebb4403d742233abeff57ebda86a438a83048bb",
+    "native_fetch_intent.json": "ee7b94252493d6243ba6c81e9729bc806d4ce808c8f2aaee476d22a04588bb05",
+    "native_receiving_initial.json": "e07c42a67a9777884592d0230306ad854ad511c22fdc24d6b2d22e54be8d6711",
+    "native_receiving_final.json": "2ba879c4de7154fca1586da33bdff110bf5045851a74ab7e251ae9f20d72df36",
+    "native_offer_before.json": "3da2885c48933e6497da9dac3345f94c199caa84afa9a032b17f54eb371f0778",
+    "native_offer_after.json": "a2e9ccaf9b7f796c8ecb2346a3c457a3eb9561d63ef9e53f678c400ec2194a08",
+    "native_receiving_diagnosis.json": "59e59081157f4a5216b12a137784484dd4c964195f0029f75d72bea74992df26",
+    "candidate/us-en.manifest.json": "c85735466d14b4a78735a550533263fcb719e1d8f58b0192fd95f9d22c08870c",
+    "candidate/us-en.snapshot.json": "16583317982df66149643d3e1986f225e4cf7e8f5c3cbe13efbbff893f82bf33",
+    "candidate/us-en.tsv": "00b9e1ec7ae36448fec9a2c1ae08b511065853d0c7113f3337612feae07c8ae4"
+  },
+  "verified": [
+    "Ten review/candidate-packet artifact bindings match actual files. Promotion intent binds the exact independent review, before pointer, feed and canonical manifest serialization; its manifest hash difference from the formatted file is expected.",
+    "Complete source: 238 unique ACTIVE parents, 4925 unique variants, matching initial/final counts and U.S. market context. Source completed 2026-09-15T00:55:07.539Z inside the recorded live build, advancing the prior source clock without restamping.",
+    "All 4741 feed IDs and contextual USD prices reconcile to eligible source variants. Six unchanged holds omit 162 available variants; 22 others are unavailable. No second filter applied.",
+    "Before/candidate bytes independently show zero additions/removals, exactly 24 Navy description-only changes, and 4717 byte-identical other rows. All 24 descriptions contain 2XL and no 3XL; all prices, availability, IDs and links remain unchanged.",
+    "Promotion at 01:07:29.718797 UTC was COMMITTED_VERIFIED: exact R2 pointer/immutable bytes and unchanged Worker metadata. Source age was 742.180 seconds, within the reviewed two-hour window.",
+    "Exactly one native Update at 01:08:05.271 UTC. Initial 0 updated/0 new and old description were pending propagation, not final success or demonstrated host failure.",
+    "At 01:23:54.705 UTC, offer shopify_US_7670609346657_46501139349601 showed Mother S–2XL, zero 3XL, Approved/free listings/United States and unchanged USD23.99.",
+    "At 01:25:54.688 UTC, source receiving showed 4741 updated, 0 new, all attributes recognized and no issues. This supersedes initial processing observations and the diagnosis's pending payload status."
+  ],
+  "limits": [
+    "Native evidence is root's saved readbacks; reviewer made no fresh account observations. One sampled offer does not individually verify all 24 descriptions.",
+    "Public Worker fetch was NOT RUN. R2 byte verification and native receiving are distinct evidence; neither supplies the missing public HTTP response.",
+    "Native displayed timezone remains unverified. Processing-delay cause is unresolved; cache/304 explanations remain hypotheses.",
+    "No impressions, events, traffic, sales or vendor physical-stock proof. Existing pre-release warnings and separate policy/storefront qualifications remain outside this refresh."
+  ],
+  "blocking_findings": [],
+  "external_calls": 0,
+  "external_writes": 0,
+  "changed_files": [
+    "independent_after_review.json"
+  ]
+}

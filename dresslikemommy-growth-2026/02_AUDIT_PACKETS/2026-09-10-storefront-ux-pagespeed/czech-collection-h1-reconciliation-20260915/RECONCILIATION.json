@@ -1,0 +1,220 @@
+{
+  "schema": "dlm.ux.czech_collection_h1_saved_reconciliation.v1",
+  "status": "TWO_BUYBOX_LABELS_FIXED_IN_CANDIDATE__ONE_CZECH_COLLECTION_H1_KEY_STILL_DEFECTIVE",
+  "observedAtUtc": "2026-09-15 04:22:06 UTC",
+  "ownerTask": "01a088c3-c890-71a1-98ee-f19b6905af55",
+  "canonicalOwnerTask": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "scope": "Read-only additive reconciliation of the exact Czech dresses H1. No source/candidate build or edit, external/browser read or write, or Git write.",
+  "priorBuyboxReconciliation": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-buybox-reconciliation-20260915/RECONCILIATION.json",
+    "sha256": "960c3d97090f16d46454c9bbcfae0150a52e857a9c761a97348c1f79fba3843d",
+    "manifestPath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-buybox-reconciliation-20260915/MANIFEST.json",
+    "manifestSha256": "7664129273c51685876a4a3da76e2017879dd56bb80592b7ccd7caa5e1c8818e",
+    "preserved": true
+  },
+  "acceptedCandidateBinding": {
+    "candidateId": "137888792673",
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/FINAL_527_SOURCE_BINDING.json",
+    "sha256": "932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a",
+    "unchanged": true
+  },
+  "savedMainApiBinding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/FINAL_API_READBACK.json",
+    "sha256": "55ef0e12e7048239ed72d3a1e3a26e9f72ab1d28b718c314fd10cf5025248924",
+    "observedAtUtc": "2026-09-15T02:12:34.748Z",
+    "mainId": "133290917985",
+    "qualification": "Historical saved MAIN inventory; no current Admin read. Source bytes below match that saved inventory's MD5 and byte size."
+  },
+  "collectionIdentity": {
+    "id": "240127941",
+    "handle": "dresses",
+    "url": "https://www.dresslikemommy.com/cs/collections/dresses",
+    "globalCzechTitle": "Šaty",
+    "titleProvenance": "Parent relayed Merchant read at 2026-09-15T04:13:32.455Z. Raw current collection-title evidence will be bound by parent; this task did not repeat that API read.",
+    "titleAndMetadataChangeRequired": false
+  },
+  "exactThemeKey": {
+    "filename": "locales/cs.json",
+    "key": "sections.collection_seo.display_titles.dresses",
+    "savedMainValue": "Šaty pro mámu a já",
+    "acceptedCandidateValue": "Šaty pro mámu a já",
+    "savedMainLine": 801,
+    "candidateLine": 806,
+    "gap": "GRAMMATICAL_COPY_DEFECT_REMAINS_IN_ACCEPTED_CANDIDATE",
+    "proposalFromIncomingReviewedReceipt": "Šaty pro maminku a dceru",
+    "proposalStatus": "SOURCE_RECONCILIATION_ONLY__NO_PATCH_BUILT_OR_APPLIED",
+    "sharedHandleBranch": [
+      "dresses",
+      "mother-daughter-matching-dresses"
+    ]
+  },
+  "candidateSources": [
+    {
+      "filename": "locales/cs.json",
+      "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/locales/cs.json",
+      "sha256": "b942083af422129281ccdb7f745d6fa51f5ad54a8a002a0c52f76cc92e7a9106",
+      "md5": "6077f54fd2a4d0c8a02d534fd1edacdc",
+      "bytes": 73875,
+      "line": 806
+    },
+    {
+      "filename": "snippets/collection-seo-fallback.liquid",
+      "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/snippets/collection-seo-fallback.liquid",
+      "sha256": "9a7036c88e13ab1e14196e1c9ecdc208bbbbfe5b4caa79cb80d6278575e4113f",
+      "md5": "9ff6ec2d6f0911298e957f9d10bbd49c",
+      "bytes": 40071,
+      "lines": [
+        22,
+        24,
+        142,
+        513,
+        514
+      ]
+    },
+    {
+      "filename": "sections/main-collection-banner.liquid",
+      "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/selector-recovery-20260911/couples-grid-repair/proposed/sections/main-collection-banner.liquid",
+      "sha256": "4549a997352be781db58c9eaedbb82a946caac3c3285b7c5b4acdf91275af8d0",
+      "md5": "0356570fb8e920e666e41fe5b994f396",
+      "bytes": 6154,
+      "lines": [
+        7,
+        27,
+        28,
+        29,
+        63,
+        64
+      ]
+    }
+  ],
+  "savedMainSources": [
+    {
+      "filename": "locales/cs.json",
+      "gitRef": "e077c69e06bbc729da121533a480c55456b079ba",
+      "gitObjectPath": "locales/cs.json",
+      "sha256": "b0e9378a0be73c287b7c361eb279b768d89087d839d584dd1ff0512d89557e6c",
+      "md5": "8efbea65c2f87fa9bc647fd60dc448b5",
+      "bytes": 73342,
+      "line": 801
+    },
+    {
+      "filename": "snippets/collection-seo-fallback.liquid",
+      "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/snippets/collection-seo-fallback.liquid",
+      "sha256": "9a7036c88e13ab1e14196e1c9ecdc208bbbbfe5b4caa79cb80d6278575e4113f",
+      "md5": "9ff6ec2d6f0911298e957f9d10bbd49c",
+      "bytes": 40071,
+      "lines": [
+        22,
+        24,
+        142,
+        513,
+        514
+      ]
+    },
+    {
+      "filename": "sections/main-collection-banner.liquid",
+      "sourcePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/candidate/sections/main-collection-banner.liquid",
+      "sha256": "5d10ef1d8d6b480437c228620a2d971be595066b80ca072505153bee9c3abdef",
+      "md5": "ac772ca4f1ed2aff97af9282542be929",
+      "bytes": 6009,
+      "lines": [
+        7,
+        27,
+        28,
+        29,
+        61,
+        62
+      ]
+    },
+    {
+      "filename": "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "gitRef": "e077c69e06bbc729da121533a480c55456b079ba",
+      "gitObjectPath": "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "sha256": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+      "md5": "61ded53111ee5002eb5c37b42a2c4b3f",
+      "bytes": 258347
+    }
+  ],
+  "trace": [
+    "main-collection-banner captures collection-seo-fallback with field=display_title.",
+    "For dresses or mother-daughter-matching-dresses, the fallback selects sections.collection_seo.display_titles.dresses and applies the t filter.",
+    "A nonblank result overrides collection.title for collection_display_title.",
+    "The banner escapes collection_display_title inside h1.collection-hero__title.",
+    "The saved MAIN and accepted candidate follow this same H1 path; both Czech locale values remain the reported defective wording."
+  ],
+  "savedMainBuyboxComparison": {
+    "savedMainRef": "e077c69e06bbc729da121533a480c55456b079ba",
+    "sourceSha256": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+    "method": "Unmodified saved MAIN script in local context, no DOM callbacks run.",
+    "result": {
+      "locale": "cs",
+      "role": "Choose who this piece is for",
+      "options": "Choose size and options",
+      "hasRoleKey": false,
+      "hasOptionsKey": false
+    },
+    "browserRenderingVerified": false
+  },
+  "combinedResult": [
+    {
+      "surface": "Product7607764287585 Step1",
+      "key": "UI_LABELS_BY_LOCALE.cs.chooseRoleStep",
+      "savedMain": "Missing Czech key; English fallback",
+      "candidate": "Vyberte, pro koho je tento kus",
+      "candidateGap": false
+    },
+    {
+      "surface": "Product7607764287585 Step2",
+      "key": "UI_LABELS_BY_LOCALE.cs.chooseOptionsStep",
+      "savedMain": "Missing Czech key; English fallback",
+      "candidate": "Vyberte velikost a možnosti",
+      "candidateGap": false
+    },
+    {
+      "surface": "Collection240127941 dresses H1",
+      "key": "sections.collection_seo.display_titles.dresses",
+      "savedMain": "Šaty pro mámu a já",
+      "candidate": "Šaty pro mámu a já",
+      "candidateGap": true
+    }
+  ],
+  "postPublicationAcceptanceAddendum": {
+    "operation": "ADD_ONLY",
+    "retainsPriorAddendum": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-buybox-reconciliation-20260915/RECONCILIATION.json",
+      "sha256": "960c3d97090f16d46454c9bbcfae0150a52e857a9c761a97348c1f79fba3843d"
+    },
+    "retained": "All original buyer/PageSpeed/source/connection checks plus both Spanish pilot variants, both corrected French Girl9–10 rows, and the exact Czech7607764287585 two-instruction desktop/mobile case remain queued.",
+    "newCase": {
+      "caseId": "CS-240127941-DRESSES-H1",
+      "url": "https://www.dresslikemommy.com/cs/collections/dresses",
+      "locale": "cs",
+      "viewports": [
+        "desktop",
+        "mobile"
+      ],
+      "status": "OPEN_SOURCE_COPY_GAP__NOT_RUN",
+      "expectedFromCurrentAcceptedCandidate": "Šaty pro mámu a já",
+      "correctionTargetPendingSeparateThemeScope": "Šaty pro maminku a dceru",
+      "conditionForAcceptance": "Verify a separately reviewed correction before claiming the Czech H1 fixed. Publication of the current accepted candidate alone is not expected to correct this heading.",
+      "collectionTitleAndMetadata": "Preserve the actual collection cs/title and metadata.",
+      "countryCurrency": "Observe the actual session context. A Czech-language URL does not require Czech-country currency."
+    }
+  },
+  "limits": [
+    "Saved source trace and local label lookup only; no Liquid engine render or preview/live browser test in this reconciliation.",
+    "One H1 key is confirmed; this is not a broader Czech localization or metadata audit.",
+    "No native-human language certification.",
+    "No current MAIN identity, source or GitHub connection claim."
+  ],
+  "preservedAuthority": {
+    "candidateSourceBindingUnchanged": true,
+    "ownerAdminPublicationRecommendationUnchanged": true,
+    "rollbackMainId": "133290917985",
+    "gitPush": "HELD",
+    "parentSoleCanonicalWriter": true,
+    "merchantScope": "Five exact product-body spans only; collection cs/title and metadata preserved.",
+    "newPermissionQuestion": false
+  },
+  "nextOwnerAction": "Existing owner Admin publication of the accepted theme remains the parent-owned next action. This one-key theme gap is returned for separate bounded repair scope; it does not itself authorize a candidate change."
+}

@@ -1,0 +1,89 @@
+{
+  "schema": "dlm.daily_organic_execution_handoff.v1",
+  "created_at_utc": "2026-09-15T14:04:51.029Z",
+  "task_id": "01a0870a-e632-7773-ac5d-8ee2616b31bc",
+  "automation_id": "review-organic-article-and-sunshine-results",
+  "overall": "IMPLEMENTED_AND_VERIFIED_WITH_LIMITS",
+  "result": "Existing gift guide corrected in English and17 existing localized bodies; all18 public routes verified",
+  "article_id": "gid://shopify/Article/559471886433",
+  "url": "https://www.dresslikemommy.com/blogs/news/family-matching-pajamas-our-top-picks-for-cozy-nights",
+  "publication": {
+    "english_save_updatedAt": "2026-09-15T13:45:25Z",
+    "english_saved_sha256": "3dcef8da979c7a8772f47db7b3ad3090457a0f85b0142746f0aad240ff8fba06",
+    "english_reviewed_input_sha256": "e224120f4608e5266b09938c47a6e07dc436b62356a2bc705eff4692fe10f6ba",
+    "exact_serialization_delta": "Eight LF insertions before strong tags inside li elements; no other byte differences",
+    "localized_updatedAt_min": "2026-09-15T13:52:01Z",
+    "localized_updatedAt_max": "2026-09-15T13:52:02Z",
+    "english_mutations": 1,
+    "localized_mutations": 1,
+    "localized_records": 17,
+    "user_errors": 0,
+    "rollback_executed": false
+  },
+  "independent_acceptance": {
+    "english": "ENGLISH_RELEASE_SUPPLEMENT_REVIEW.json",
+    "locale_reviews": "locales/{locale}/REVIEW.json",
+    "mechanics": "RELEASE_MECHANICS_REVIEW_V2.json",
+    "serialization": "ENGLISH_SERIALIZATION_REVIEW.json",
+    "after_api": "AFTER_API_REVIEW.json",
+    "public_saved_receipts": "PUBLIC_READBACK_REVIEW.json"
+  },
+  "verified_scope": {
+    "after_api_checks": 244,
+    "translation_identities": 53,
+    "exact_current_localized_bodies": 17,
+    "unchanged_other_translation_rows": 36,
+    "protected_article_fields": 12,
+    "unchanged_other_source_entries": 4,
+    "published_locales": 21,
+    "empty_market_contexts": 6,
+    "public_routes": 18,
+    "public_viewport_checks": 36,
+    "successful_internal_arrivals": 23,
+    "primary_collection_arrivals": 18,
+    "distinct_product_destinations_per_collection": 22
+  },
+  "preserved_failed_evidence": [
+    "RELEASE_MECHANICS_REVIEW.json",
+    "verification-after-english.json",
+    "PUBLIC_READBACK.json navigation_checks false rows and documented navigation-wait timeout"
+  ],
+  "automation": {
+    "status": "ACTIVE",
+    "cadence": "Daily09:00 America/New_York, weekends included, no expiry",
+    "actual_daily_wake": "2026-09-15T13:01:23.220Z",
+    "next_scheduled_local": "2026-09-16T09:00:00-04:00",
+    "schedule_mutations_this_run": 0,
+    "duplicate_schedule_created": false,
+    "availability_dependency": "Local Mac/Codex/project access must be available; one observed wake does not guarantee uninterrupted future execution"
+  },
+  "clocks": "MEASUREMENT_WINDOWS.json",
+  "qa": "PUBLIC_READBACK.json",
+  "cleanup": "BROWSER_CLEANUP.json",
+  "existing_owner_findings": [
+    "MEOW_UNIT_LABEL_FINDING.json",
+    "LEGACY_THEME_HERO_FINDING.json",
+    "Hebrew and Dutch collection-title entities recorded in PUBLIC_READBACK.json"
+  ],
+  "business_result": {
+    "measured_traffic_lift": "NOT_CLAIMED",
+    "measured_sales_lift": "NOT_CLAIMED",
+    "causal_attribution": "NOT_CLAIMED",
+    "retained_profit": "NOT_CLAIMED"
+  },
+  "canonical_integration": {
+    "owner_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+    "status": "READY_FOR_PARENT_INTEGRATION",
+    "shared_files_changed_by_this_task": 0,
+    "requested_update": "Mark existing TA-20 gift-guide correction published and verified; preserve prior sizing release, paid NONE, all channel owners/schedules and separate measurement clocks. Append this dated receipt and findings; do not repeat live writes.",
+    "root_continuity_check": "CONTINUITY_READBACK.json"
+  },
+  "next_action": "September16 daily run: resume the canonical organic queue, consume the Pinterest owner's actual-publication receipts, preserve completed releases, and assess only due completed windows. Original article assessment September17; Sunshine Pin September18; new gift-guide revision September23.",
+  "limitations": [
+    "Independent language reviews are model reviews.",
+    "After API and public reviews validate saved receipts, without a second live browser session.",
+    "Published body verification does not certify all markets, product attributes, inventory, checkout or delivery.",
+    "Existing product-unit, theme-header and collection-heading issues are recorded for their current owners.",
+    "Operator QA is not buyer acquisition; exclusion must be applied where identifiable."
+  ]
+}

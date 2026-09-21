@@ -1,0 +1,98 @@
+{
+  "status": "PREPARATION_COMPLETE_INDEPENDENTLY_REVIEWED__NOT_SAVED",
+  "preparedAtUtc": "2026-09-15T05:38:27.711556+00:00",
+  "ownerTask": "01a088c3-c890-71a1-98ee-f19b6905af55",
+  "canonicalWriterTask": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "objective": "Expose the existing mobile collection H1 while preserving compact layout, hidden images/descriptions and desktop behavior.",
+  "candidateId": 137888792673,
+  "requiredCandidateRole": "UNPUBLISHED",
+  "mainIdToPreserve": 133290917985,
+  "proposedFile": "assets/theme-inline-body-static-07.css",
+  "beforeSha256": "63d4589f6c6a7bd06dea98eea70e35a0ca2b37274fe4ade7a36ba3e141da67d8",
+  "afterSha256": "cde012519aca7deab9cb065962166e8010dfee9a720405d0958b25f89f620736",
+  "afterBytes": 1019,
+  "proposedUpserts": 1,
+  "actualCssUpserts": 0,
+  "proposal": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/PROPOSAL.json",
+    "sha256": "484e98f94ffc1e3e57f0df9b587313e0b30e6078c36e1270b3f6f1510e25c283"
+  },
+  "sourceDiagnosis": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/DIAGNOSIS.json",
+    "sha256": "079a1d3f9e5eee25233b2139c23131b2895cf5cb689c7a84f84843b5e6982b9c"
+  },
+  "sourceAgentManifest": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/MANIFEST.json",
+    "sha256": "a76e546c0cfd73c19f65be3a993a264585448725d2b000f16d0708010233c274"
+  },
+  "independentReview": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/review/independent-mobile-heading-proposal-review.json",
+    "sha256": "97c15e3467c6636220bbb05787a5f6bf15db994ecf1253c3e82d15c73c247d61",
+    "checksPassed": 52,
+    "verdict": "PASS_LOCAL_PROPOSAL_ONLY",
+    "verifierIndependence": "Did not build or execute"
+  },
+  "payloadBinding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/payload/PAYLOAD_BINDING.json",
+    "sha256": "2649e0e9411f16ab89cccdc5dcff04f4652376690debe76d4ad35725bd2fa0fb"
+  },
+  "query": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/payload/proposed-upsert.graphql",
+    "sha256": "1550957c64be79ebdcb591f11ad7beaa859937ae13ee744c007ac5724dabfb6a"
+  },
+  "variables": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/payload/proposed-upload.variables.json",
+    "sha256": "3591b52521d2742ce2768e812b5831af74ac4f9043f83a5565814cf111dc0f19"
+  },
+  "rollback": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/payload/proposed-rollback.variables.json",
+    "sha256": "43d5ba120c2d0b5672fe81eca637678fddbda0d8b8333b44c6cd74385e3c32a8"
+  },
+  "expectedAfter527Map": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/payload/EXPECTED_AFTER_527_SOURCE_BINDING.json",
+    "sha256": "1aac9b21a88ca582167025eb61a2c505a9f818b6587bfaa01430d09b93a1bf87"
+  },
+  "beforeActual527Map": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/ACTUAL_527_SOURCE_BINDING.json",
+    "sha256": "1c7774546b9c58a412fe7e0a6d34c7965ccdbec3755fc22915ca944027bbbbf7"
+  },
+  "pairedSourceReadback": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/fresh-source-readback.json",
+    "sha256": "38c474a924e51c965a9dd91a8cd47a6b303c80d2eb9ba405aaaf1c26d4d6873b"
+  },
+  "sourceReadbackAtUtc": "2026-09-15T05:15:51.682Z",
+  "validation": {
+    "sourceModelAssertions": 278,
+    "syntheticCases": 32,
+    "rootPreparationChecks": 37,
+    "rootIndependentBindingsVerified": 32,
+    "graphQL": "Read and proposed upsert VALID",
+    "authoredCssDiff": "No whitespace diagnostics; no-index returned1 for expected difference",
+    "browserAfter": "NOT_RUN",
+    "coldLoadCLS": "NOT_RUN",
+    "performance": "NOT_RUN"
+  },
+  "scopeAndRisk": [
+    "Shared collection CSS: all collection templates/locales at widths<=767, not just the Czech routes.",
+    "Existing ordinary stylesheet is linked after main content. A late heading reveal could shift cards/navigation. Actual cold-cache filmstrip and CLS acceptance is required; no performance improvement is claimed.",
+    "Only native H1 is exposed. Hero image and all other direct text-wrapper children remain hidden; empty image padding/flex widths are neutralized. Desktop>=768 receives no modified declaration.",
+    "No new image/font/script source or template/schema/locale/cart/product/tracking changes. Full paired source guard must preserve526 othercandidate records andall525MAIN records/metadata."
+  ],
+  "exactNextAction": "Parent binds exact reviewed one-file candidate-only scope and current claim, preserving browser/performance gates. Root then refreshes roles/full inventories/current target bytes before any save. No additional user approval question is needed for preparation.",
+  "existingCompletedWork": "Czech locale save05:07:39UTC and exact local copy are complete; sourcePASS and mobile-headingFAILED remain frozen in prior completion packet. Do not replay that save.",
+  "localGit": {
+    "mainAtPreparation": "da7d37d1cf976613bdfdf8b017dcc278e0125c99",
+    "productionCssChanged": false,
+    "preparedRecordCommit": "Records are included in the commit containing this handoff; root reports resulting ID separately.",
+    "gitPushes": 0,
+    "sevenAdditionalLocalFiles": "Preserved as detailed in prior SEVEN_ADDITIONAL_LOCAL_FILES.json; these are not included in current accepted draft."
+  },
+  "publication": "HOLD until actual visible mobile heading and independent after/browser acceptance. User publication mandate persists; connector Publish/MAIN restriction remains.",
+  "approved_external_scope": "NONE for this additional CSS preparation; exact future parent scope required",
+  "live_state_mode": "REPO_KNOWN source plus dated candidate readback; LIVE_READBACK_REQUIRED before save",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "Any fresh source/role/claim drift or actual rendering/cold-load regression",
+  "if_evidence_supports_recommendation": "Execute only exact newly bound draft scope, read back actual527 binding, check bounded buyer matrix and independent review",
+  "if_evidence_opposes_recommendation": "Stop affected save/publication recommendation and retain actual evidence; no MAIN/Git workaround",
+  "frozenManifestPath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/FROZEN_MANIFEST.json"
+}

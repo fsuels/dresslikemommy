@@ -1,0 +1,77 @@
+{
+  "recorded_at_utc": "2026-09-14T23:55:45.680525+00:00",
+  "candidate_checks": {
+    "result": "PASS",
+    "passed": 288,
+    "total": 288
+  },
+  "prewrite_readback_checks": {
+    "result": "PASS",
+    "passed": 323,
+    "total": 323
+  },
+  "after_readback_checks": {
+    "result": "PASS",
+    "passed": 323,
+    "total": 323
+  },
+  "independent_release_mechanics": {
+    "result": "PASS_WITH_LIMITS",
+    "checks": 24,
+    "synthetic_guard_cases": 15
+  },
+  "strict_continuity": {
+    "command": "bundled python ops/scripts/check_continuity_integrity.py --strict",
+    "result": "CONTINUITY_OK",
+    "exit_code": 0,
+    "scope": "Shared command layer unchanged by this action; read-only continuity validation.",
+    "after_final_handoff": "CONTINUITY_OK",
+    "verified_at_utc": "2026-09-15T00:09:05.771728+00:00"
+  },
+  "browser_cleanup": {
+    "temporary_viewport_reset": true,
+    "own_browser2_tab2_closed": true,
+    "other_tabs_untouched": true
+  },
+  "git_commands": "NOT RUN in this scoped continuation; parent excluded Git work.",
+  "language_reviews": 18,
+  "final_after_reviews": {
+    "A": {
+      "file": "AFTER_REVIEW_GROUP_A.json",
+      "sha256": "1c0f53ecb30b6469184edac2af6830a2d715fb4f2c2908c0254601559770c93b",
+      "reviewer": "/root/sizing_locales_c",
+      "status": "PASS_WITH_LIMITS",
+      "checks_passed": 97,
+      "checks_total": 97,
+      "bound_input_files": 44
+    },
+    "B": {
+      "file": "AFTER_REVIEW_GROUP_B.json",
+      "sha256": "ea3b8ce9aa7a77ebe674ed2c58eeed0352587a37667aa8763c510933255e1bfe",
+      "reviewer": "/root/daily_operation_review",
+      "status": "PASS_WITH_LIMITS",
+      "checks_passed": 348,
+      "checks_total": 348,
+      "bound_input_files": 43
+    },
+    "C": {
+      "file": "AFTER_REVIEW_GROUP_C.json",
+      "sha256": "f219e9ea6e874f39baf070741f2eecee930fe4c03f4d8ad1306d97d3b862d981",
+      "reviewer": "/root/sizing_locales_b",
+      "status": "PASS_WITH_LIMITS",
+      "checks_passed": 421,
+      "checks_total": 421,
+      "bound_input_files": 42
+    }
+  },
+  "tests_do_not_prove_business_lift": true,
+  "final_after_input_bindings": {
+    "unique_files_checked": 97,
+    "mismatches": 0
+  },
+  "english_frozen_packet_preservation": {
+    "source_files": 38,
+    "final_bindings": 5,
+    "mismatches": 0
+  }
+}

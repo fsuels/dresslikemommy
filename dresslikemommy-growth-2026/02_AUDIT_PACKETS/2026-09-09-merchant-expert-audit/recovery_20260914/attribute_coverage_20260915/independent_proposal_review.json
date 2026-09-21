@@ -1,0 +1,127 @@
+{
+  "schema": "dlm.merchant.source-color.independent-proposal-review.v1",
+  "verdict": "APPROVABLE_NARROW_SUBSET_WITH_LIMITS__COBALT_CHANGE_HELD",
+  "reviewer": "/root/merchant_lifecycle_code_inventory",
+  "independent": true,
+  "reviewed_at_utc": "2026-09-15T01:43:37.720Z",
+  "release_authority": false,
+  "proposal": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/attribute_coverage_20260915/proposal.json",
+    "sha256": "7bbd271f484e989f653d780dfe7182bb24fa6ff440a7047d8017b3bbbdd4a0ef"
+  },
+  "source_completed_at_utc": "2026-09-15T00:55:07.539Z",
+  "source_evidence": "674 independent assertions passed: four input hashes, two code hashes, exact prose offsets/hashes, options/variant bindings, 291 emitted blank-color IDs, 48 unique null targets, ACTIVE identity and exclusion of all six held parents.",
+  "approved_scope": {
+    "namespace": "mm-google-shopping",
+    "key": "color",
+    "exact_target_selector": "proposal.nextImplementationProposal.proposedTargets, preserving order, excluding evidenceParentId gid://shopify/Product/7537370628193",
+    "target_count": 47,
+    "parent_fields": 8,
+    "variant_fields": 39,
+    "affected_current_us_rows": 252,
+    "target_array_canonical_sha256": "5c7495c5878e4cbc67f61c400ed47a6eee74dbaab3764568ea05a03aae54ac5d",
+    "sorted_affected_offer_ids_canonical_sha256": "2f7af972e61217abe36bc47d0d69df2adfe6e6c37bf53ba6271f60bcd083555b",
+    "canonicalization": "UTF-8 JSON; sorted object keys, compact separators, unescaped Unicode; target-array order preserved.",
+    "variant_mapping": {
+      "product_id": "gid://shopify/Product/7536341024865",
+      "title": "Ivory Stripe Cargo",
+      "mappings": [
+        {
+          "type": "Dress",
+          "value": "Ivory",
+          "variants": 11,
+          "exact_ids": "proposal.candidates[0].mappings[0].variantIds"
+        },
+        {
+          "type": "Shirt",
+          "value": "Ivory",
+          "variants": 14,
+          "exact_ids": "proposal.candidates[0].mappings[1].variantIds"
+        },
+        {
+          "type": "Shorts",
+          "value": "Sage",
+          "variants": 14,
+          "exact_ids": "proposal.candidates[0].mappings[2].variantIds"
+        }
+      ],
+      "basis": "Body explicitly distinguishes ivory dresses/shirts from sage shorts; taxonomy White/Green is consistent. Parent-wide Ivory would misclassify shorts."
+    },
+    "parent_mappings": [
+      {
+        "product_id": "gid://shopify/Product/7585867432033",
+        "value": "Pink/Blue/Green",
+        "rows": 30,
+        "basis": "All three gradient colors explicitly named; taxonomy agrees."
+      },
+      {
+        "product_id": "gid://shopify/Product/7536700391521",
+        "value": "Sky blue/Yellow",
+        "rows": 28,
+        "basis": "Sky-blue ground, blue petals and yellow florals explicit; no green inferred from leafy accents."
+      },
+      {
+        "product_id": "gid://shopify/Product/7537002971233",
+        "value": "Ivory/Rust red",
+        "rows": 28,
+        "basis": "Ivory ground and rust-red motif explicitly shared across all three garment types."
+      },
+      {
+        "product_id": "gid://shopify/Product/7537041342561",
+        "value": "Blue/White/Gold",
+        "rows": 26,
+        "basis": "Blue swirls, white space and golden accent strokes explicit; Gold is a color, not a material assertion."
+      },
+      {
+        "product_id": "gid://shopify/Product/7585980055649",
+        "value": "Yellow/White",
+        "rows": 26,
+        "basis": "Yellow fabric and white daisy embroidery explicit."
+      },
+      {
+        "product_id": "gid://shopify/Product/7536340729953",
+        "value": "Blue/White",
+        "rows": 25,
+        "basis": "Blue/white check and included white skirt explicit; styling-only shorts excluded."
+      },
+      {
+        "product_id": "gid://shopify/Product/7536457941089",
+        "value": "Sky blue/Ivory",
+        "rows": 25,
+        "basis": "Both stripe colors explicit."
+      },
+      {
+        "product_id": "gid://shopify/Product/7536947003489",
+        "value": "Scarlet red/Ivory",
+        "rows": 25,
+        "basis": "Scarlet-red ground and ivory florals explicit."
+      }
+    ]
+  },
+  "held_change": {
+    "product_id": "gid://shopify/Product/7537370628193",
+    "proposed_value": "Cobalt",
+    "affected_rows": 39,
+    "reason": "Body supports cobalt ground but leaves medallion colors unspecified; taxonomy additionally lists White and Checkered. Primary-only Cobalt omits unresolved secondary color; Cobalt/White would require further qualification. Exclude this metadata change; listing eligibility is unchanged."
+  },
+  "behavior_and_verification": {
+    "precedence": "generator.js:262: variant gColor > Color option > parent gColor > sole taxonomy value. Current accepted variants have no conflicting Color option/override. Parent defaults also reach future variants; new palettes/types require requalification.",
+    "hypothetical_preview": "Existing generator, in-memory clone only: baseline matches frozen feed; 47 targets change exactly 252 color cells; missing_color 971→719; all 4741 rows, non-color fields and exclusions unchanged. No source clock changed or generated artifact persisted.",
+    "images": "All 291 feed image links match their saved variant/parent image references. Image pixels were NOT REVIEWED; URLs/filenames are not color proof."
+  },
+  "separate_as_image_issue": {
+    "product_id": "gid://shopify/Product/7497751986273",
+    "rows": 8,
+    "source_pointer": "/products/98/variants",
+    "status": "SEPARATE_EXACT_SOURCE_FIX_REQUIRED__VALUE_UNRESOLVED",
+    "reason": "All eight Color options contain As image, outranking any parent gColor and escaping missing-color warnings. Body names no actual colors; White/Red/Floral taxonomy alone does not resolve them. After exact palette qualification, eight reviewed variant gColor overrides could correct feed output without changing options. No replacement approved here."
+  },
+  "limits": [
+    "Product prose is merchant-authored source, not independent supplier-backed or visual truth. No colors inferred from print names alone.",
+    "Approval is semantic/local only. Root must freshly verify identities, options, null target fields and source evidence, validate definitions/types and review exact mutation/rollback bindings before any write.",
+    "Other markets/languages need separate preview/readback. No Google acceptance, visibility, traffic or sales claim; existing ambiguous/conflicted and six held products stay outside this subset.",
+    "No source, generator, config, shared state or completed release files changed; only this review written."
+  ],
+  "external_calls": 0,
+  "external_writes": 0
+}

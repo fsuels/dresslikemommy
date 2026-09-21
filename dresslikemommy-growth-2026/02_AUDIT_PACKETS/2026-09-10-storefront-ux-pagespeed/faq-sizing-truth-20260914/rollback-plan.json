@@ -1,0 +1,12 @@
+{
+  "target": "gid://shopify/Page/161933381",
+  "allowed": "Only exact changed body/source and17existing translations; restore native-disclosure before bodies, never obsolete jQuery markup.",
+  "conditions": [
+    "Read current English and17candidate hashes; no intervening changes",
+    "Obtain current translatable source digest before registration",
+    "Restore only changed translations first using a fresh digest of the current English source; then restore the exact English native-disclosure before-body last. Stop on any intervening value drift.",
+    "Stop on source or locale/market record drift; do not overwrite others"
+  ],
+  "original_metadata": "Restoring values does not restore original updatedAt/outdated metadata. English-last restoration may mark translations outdated again.",
+  "rollback_executed": false
+}

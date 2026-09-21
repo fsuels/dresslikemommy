@@ -1,0 +1,1 @@
+mutation BuyerTruthThemeFiles($themeId: ID!, $files: [OnlineStoreThemeFilesUpsertFileInput!]!) { themeFilesUpsert(themeId:$themeId,files:$files) { upsertedThemeFiles { filename checksumMd5 size updatedAt } userErrors { code field filename message } job { id done } } }

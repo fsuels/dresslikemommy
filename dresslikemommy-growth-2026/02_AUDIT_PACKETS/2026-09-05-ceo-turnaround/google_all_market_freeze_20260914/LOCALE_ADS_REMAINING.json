@@ -1,0 +1,1435 @@
+{
+  "schema_version": "1.0",
+  "artifact": "LOCALE_ADS_REMAINING",
+  "created_at_utc": "2026-09-14T20:46:15.473402+00:00",
+  "owner": "/root/locale_ads_remaining",
+  "status": "LOCAL_DRAFT_NATIVE_REVIEW_REQUIRED",
+  "scope": "Candidate Search ad templates for ten published storefront locales; root owns verified geography, landing routing, campaign assembly and approval.",
+  "external_writes": 0,
+  "campaigns_created_in_google_ads": 0,
+  "spend_authority": "NONE",
+  "budgets_assigned": false,
+  "human_native_review": "NOT_PERFORMED",
+  "product_truth_basis": "Finished matching mother-and-daughter dresses; each person’s item and size are selected separately; check product details and size guide.",
+  "excluded_claims": [
+    "bundle or set pricing",
+    "promotions",
+    "shipping or delivery promises",
+    "returns promises",
+    "materials",
+    "bestseller or review claims",
+    "stock or owned inventory",
+    "guaranteed conversions or profit"
+  ],
+  "language_setting_note": "The September 2026 Search language-settings removal rollout means language matching must be planned through creative and verified landing language, plus supported geographic routing. The root must verify current account UI and policy; do not assume a language-target field remains available.",
+  "negative_keyword_note": "Candidate phrase negatives cover only sewing-pattern and how-to-sew intent. They are not account-wide upload instructions. Check actual search terms, native usage, segmentation, and false positives before application. Literal substring checks below do not simulate Google matching and do not prove all variants are covered.",
+  "keyword_note": "Exact seeds are research candidates only. No search volume, CPC, auction eligibility, conversion, or profit qualification has been established. Previously deferred candidates stay deferred.",
+  "country_note": "Language presence is not country targeting, market eligibility, shipping availability or paid-readiness proof. No countries are added by this artifact.",
+  "character_validation": {
+    "method": "NFC text; each Unicode code point counts one, except Unicode East Asian Width W or F counts two. Combining marks count separately as a conservative estimate. Google Ads final editor acceptance remains unverified.",
+    "headline_limit": 30,
+    "description_limit": 90,
+    "limits_and_duplicates_status": "PASS",
+    "literal_seed_negative_overlap_status": "PASS",
+    "literal_protected_example_overlap_status": "PASS",
+    "locale_count": 10,
+    "headline_count": 60,
+    "description_count": 30,
+    "exact_research_seed_count": 20,
+    "phrase_negative_candidate_count": 40,
+    "maximum_headline_weighted_characters": 29,
+    "maximum_description_weighted_characters": 90
+  },
+  "locales": [
+    {
+      "locale": "en",
+      "language": "English",
+      "status": "LOCAL_DRAFT_NATIVE_REVIEW_REQUIRED",
+      "native_human_reviewed": false,
+      "country_assignment": {
+        "status": "ROOT_VERIFIED_MARKET_ROUTING_REQUIRED",
+        "country_codes": [],
+        "excluded_country_codes": [],
+        "note": "Do not create new country targets from a language alone."
+      },
+      "verified_landing_page": null,
+      "headlines": [
+        {
+          "text": "Mom & Daughter Dresses",
+          "english_meaning": "Dresses for mothers and daughters",
+          "weighted_characters": 22,
+          "character_limit": 30
+        },
+        {
+          "text": "Find Your Matching Look",
+          "english_meaning": "Find a coordinated look",
+          "weighted_characters": 23,
+          "character_limit": 30
+        },
+        {
+          "text": "Explore Matching Styles",
+          "english_meaning": "Browse matching styles",
+          "weighted_characters": 23,
+          "character_limit": 30
+        },
+        {
+          "text": "Dress Up Together",
+          "english_meaning": "Dress up together",
+          "weighted_characters": 17,
+          "character_limit": 30
+        },
+        {
+          "text": "Choose Each Person's Size",
+          "english_meaning": "Choose a size for each person separately",
+          "weighted_characters": 25,
+          "character_limit": 30
+        },
+        {
+          "text": "Discover Coordinated Dresses",
+          "english_meaning": "Explore coordinated dresses",
+          "weighted_characters": 28,
+          "character_limit": 30
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Discover matching mother-and-daughter dresses. Choose an item and size for each person.",
+          "english_meaning": "Browse matching mother-and-daughter dresses; select an item and size for each person.",
+          "weighted_characters": 87,
+          "character_limit": 90
+        },
+        {
+          "text": "Explore coordinated looks for you and your daughter. Check each product's details.",
+          "english_meaning": "Explore coordinated looks and check each product description.",
+          "weighted_characters": 82,
+          "character_limit": 90
+        },
+        {
+          "text": "Find your preferred style, then review the size guide before choosing each garment.",
+          "english_meaning": "Choose a preferred style and consult the size guide for every garment.",
+          "weighted_characters": 83,
+          "character_limit": 90
+        }
+      ],
+      "exact_intent_research_seeds": [
+        {
+          "text": "matching mother daughter dresses",
+          "match_type": "EXACT",
+          "english_meaning": "Matching mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        },
+        {
+          "text": "mommy and me dresses",
+          "match_type": "EXACT",
+          "english_meaning": "Mother-and-child matching dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        }
+      ],
+      "phrase_negative_candidates": [
+        {
+          "text": "sewing pattern",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing pattern",
+          "excluded_intent": "Instructions or templates for sewing garments",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "matching floral mother daughter dresses",
+            "english_meaning": "Buy finished matching floral-print dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "sewing patterns",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing patterns",
+          "excluded_intent": "Instructions or templates for sewing garments",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "patterned mommy and me dresses",
+            "english_meaning": "Buy finished dresses with printed patterns"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "how to sew",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew",
+          "excluded_intent": "Do-it-yourself sewing instructions",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "mother daughter matching dresses to buy",
+            "english_meaning": "Buy finished matching mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "sewing tutorial",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing tutorial",
+          "excluded_intent": "Learning to sew rather than buying a finished garment",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "mommy and me wedding guest dresses",
+            "english_meaning": "Buy coordinated dresses for attending a wedding"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        }
+      ],
+      "review_notes": [
+        "Mommy-and-me can include broader parent-child intent; inspect actual terms before any activation."
+      ]
+    },
+    {
+      "locale": "ar",
+      "language": "Arabic",
+      "status": "LOCAL_DRAFT_NATIVE_REVIEW_REQUIRED",
+      "native_human_reviewed": false,
+      "country_assignment": {
+        "status": "UNASSIGNED_MULTILINGUAL_CANDIDATE_ONLY",
+        "country_codes": [],
+        "excluded_country_codes": [],
+        "note": "Do not create new country targets from a language alone."
+      },
+      "verified_landing_page": null,
+      "headlines": [
+        {
+          "text": "فساتين للأم وابنتها",
+          "english_meaning": "Dresses for mother and daughter",
+          "weighted_characters": 19,
+          "character_limit": 30
+        },
+        {
+          "text": "إطلالات متناسقة لكما",
+          "english_meaning": "Coordinated looks for both of you",
+          "weighted_characters": 20,
+          "character_limit": 30
+        },
+        {
+          "text": "اختاري إطلالتكما",
+          "english_meaning": "Choose your looks",
+          "weighted_characters": 16,
+          "character_limit": 30
+        },
+        {
+          "text": "تألقي مع ابنتك",
+          "english_meaning": "Dress up with your daughter",
+          "weighted_characters": 14,
+          "character_limit": 30
+        },
+        {
+          "text": "اختاري مقاس كل منكما",
+          "english_meaning": "Choose a size for each of you",
+          "weighted_characters": 20,
+          "character_limit": 30
+        },
+        {
+          "text": "اكتشفي تصاميم الفساتين",
+          "english_meaning": "Explore dress designs",
+          "weighted_characters": 22,
+          "character_limit": 30
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "اكتشفي فساتين متناسقة للأم وابنتها. اختاري قطعة ومقاسًا لكل منكما على حدة.",
+          "english_meaning": "Explore coordinated mother-and-daughter dresses. Select an item and size separately for each person.",
+          "weighted_characters": 74,
+          "character_limit": 90
+        },
+        {
+          "text": "تصفحي التصاميم واختاري إطلالة لك ولابنتك. راجعي تفاصيل كل منتج قبل الاختيار.",
+          "english_meaning": "Browse designs for you and your daughter. Check each product’s details before choosing.",
+          "weighted_characters": 76,
+          "character_limit": 90
+        },
+        {
+          "text": "ابحثي عن أسلوب يعجبكما وراجعي دليل المقاسات قبل اختيار كل فستان.",
+          "english_meaning": "Find a style you both like and check the size guide before choosing each dress.",
+          "weighted_characters": 64,
+          "character_limit": 90
+        }
+      ],
+      "exact_intent_research_seeds": [
+        {
+          "text": "فساتين متطابقة للأم والبنت",
+          "match_type": "EXACT",
+          "english_meaning": "Matching mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        },
+        {
+          "text": "فساتين أم وابنتها متناسقة",
+          "match_type": "EXACT",
+          "english_meaning": "Coordinated dresses for a mother and her daughter",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        }
+      ],
+      "phrase_negative_candidates": [
+        {
+          "text": "باترون خياطة",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing pattern",
+          "excluded_intent": "A sewing template rather than a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "فساتين أم وبنت بنقشات زهور",
+            "english_meaning": "Finished floral-print mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "باترونات خياطة",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing patterns",
+          "excluded_intent": "Sewing templates rather than finished dresses",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "فساتين أم وبنت منقوشة",
+            "english_meaning": "Finished patterned mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "طريقة خياطة",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew",
+          "excluded_intent": "Instructions for sewing a garment",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "شراء فساتين متطابقة للأم والبنت",
+            "english_meaning": "Buy finished matching mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "كيفية خياطة",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew",
+          "excluded_intent": "Instructions for sewing a garment",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "فساتين متناسقة للأم وابنتها",
+            "english_meaning": "Shop coordinated mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        }
+      ],
+      "review_notes": [
+        "Use Modern Standard Arabic as a candidate only; native and regional phrasing review is outstanding.",
+        "No country assignment or launch proposal is made from the Arabic locale."
+      ]
+    },
+    {
+      "locale": "he",
+      "language": "Hebrew",
+      "status": "LOCAL_DRAFT_NATIVE_REVIEW_REQUIRED",
+      "native_human_reviewed": false,
+      "country_assignment": {
+        "status": "UNASSIGNED_MULTILINGUAL_CANDIDATE_ONLY",
+        "country_codes": [],
+        "excluded_country_codes": [],
+        "note": "Do not create new country targets from a language alone."
+      },
+      "verified_landing_page": null,
+      "headlines": [
+        {
+          "text": "שמלות לאמא ולבת",
+          "english_meaning": "Dresses for mother and daughter",
+          "weighted_characters": 15,
+          "character_limit": 30
+        },
+        {
+          "text": "למצוא מראה מתואם",
+          "english_meaning": "Find a coordinated look",
+          "weighted_characters": 16,
+          "character_limit": 30
+        },
+        {
+          "text": "לגלות דגמים תואמים",
+          "english_meaning": "Discover matching styles",
+          "weighted_characters": 18,
+          "character_limit": 30
+        },
+        {
+          "text": "להתלבש יחד בסטייל",
+          "english_meaning": "Dress up together in style",
+          "weighted_characters": 17,
+          "character_limit": 30
+        },
+        {
+          "text": "מידה נפרדת לכל אחת",
+          "english_meaning": "A separately chosen size for each person",
+          "weighted_characters": 18,
+          "character_limit": 30
+        },
+        {
+          "text": "בוחרים כל שמלה בנפרד",
+          "english_meaning": "Choose each dress separately",
+          "weighted_characters": 20,
+          "character_limit": 30
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "גלי שמלות תואמות לאמא ולבת. בחרי פריט ומידה לכל אחת בנפרד.",
+          "english_meaning": "Discover matching mother-and-daughter dresses. Select an item and size separately for each person.",
+          "weighted_characters": 58,
+          "character_limit": 90
+        },
+        {
+          "text": "עייני בדגמים למראה מתואם לך ולבת שלך. בדקי את הפרטים של כל מוצר.",
+          "english_meaning": "Browse styles for a coordinated look for you and your daughter. Check each product’s details.",
+          "weighted_characters": 64,
+          "character_limit": 90
+        },
+        {
+          "text": "מצאי סגנון ששתיכן אוהבות ועייני במדריך המידות לפני בחירת כל שמלה.",
+          "english_meaning": "Find a style you both like and consult the size guide before choosing each dress.",
+          "weighted_characters": 65,
+          "character_limit": 90
+        }
+      ],
+      "exact_intent_research_seeds": [
+        {
+          "text": "שמלות תואמות לאמא ולבת",
+          "match_type": "EXACT",
+          "english_meaning": "Matching dresses for mother and daughter",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        },
+        {
+          "text": "שמלות אמא ובת",
+          "match_type": "EXACT",
+          "english_meaning": "Mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        }
+      ],
+      "phrase_negative_candidates": [
+        {
+          "text": "גזרת תפירה",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing pattern",
+          "excluded_intent": "A sewing template rather than a finished garment",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "שמלות פרחוניות תואמות לאמא ולבת",
+            "english_meaning": "Finished matching floral dresses for mother and daughter"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "גזרות תפירה",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing patterns",
+          "excluded_intent": "Sewing templates rather than finished garments",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "שמלות מודפסות לאמא ולבת",
+            "english_meaning": "Finished printed dresses for mother and daughter"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "איך לתפור",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew",
+          "excluded_intent": "Do-it-yourself sewing instructions",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "קניית שמלות תואמות לאמא ולבת",
+            "english_meaning": "Buying finished matching mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "הדרכת תפירה",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing tutorial",
+          "excluded_intent": "Instruction in sewing rather than buying a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "שמלות אמא ובת לאירוע",
+            "english_meaning": "Mother-and-daughter dresses for an occasion"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        }
+      ],
+      "review_notes": [
+        "Right-to-left display and maternal-address wording require native review.",
+        "No country assignment or launch proposal is made from the Hebrew locale."
+      ]
+    },
+    {
+      "locale": "hi",
+      "language": "Hindi",
+      "status": "LOCAL_DRAFT_NATIVE_REVIEW_REQUIRED",
+      "native_human_reviewed": false,
+      "country_assignment": {
+        "status": "UNASSIGNED_MULTILINGUAL_CANDIDATE_ONLY",
+        "country_codes": [],
+        "excluded_country_codes": [],
+        "note": "Do not create new country targets from a language alone."
+      },
+      "verified_landing_page": null,
+      "headlines": [
+        {
+          "text": "माँ-बेटी की मैचिंग ड्रेस",
+          "english_meaning": "Matching dresses for mother and daughter",
+          "weighted_characters": 24,
+          "character_limit": 30
+        },
+        {
+          "text": "माँ और बेटी के लिए",
+          "english_meaning": "For mother and daughter",
+          "weighted_characters": 18,
+          "character_limit": 30
+        },
+        {
+          "text": "साथ चुनें अपना अंदाज़",
+          "english_meaning": "Choose your style together",
+          "weighted_characters": 21,
+          "character_limit": 30
+        },
+        {
+          "text": "हर एक का साइज़ अलग चुनें",
+          "english_meaning": "Choose each person’s size separately",
+          "weighted_characters": 24,
+          "character_limit": 30
+        },
+        {
+          "text": "मैचिंग ड्रेस देखें",
+          "english_meaning": "Browse matching dresses",
+          "weighted_characters": 18,
+          "character_limit": 30
+        },
+        {
+          "text": "साथ सजें, साथ मुस्कुराएँ",
+          "english_meaning": "Dress up and smile together",
+          "weighted_characters": 24,
+          "character_limit": 30
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "माँ-बेटी की मैचिंग ड्रेस देखें। हर एक की ड्रेस और साइज़ अलग चुनें।",
+          "english_meaning": "Browse matching mother-and-daughter dresses. Choose each person’s dress and size separately.",
+          "weighted_characters": 66,
+          "character_limit": 90
+        },
+        {
+          "text": "अपना पसंदीदा डिज़ाइन चुनें। हर ड्रेस लेने से पहले उत्पाद की जानकारी देखें।",
+          "english_meaning": "Choose a preferred design. Check the product information before choosing each dress.",
+          "weighted_characters": 74,
+          "character_limit": 90
+        },
+        {
+          "text": "आपके और बेटी के लिए मिलता-जुलता लुक। चुनने से पहले साइज़ गाइड देखें।",
+          "english_meaning": "A coordinated look for you and your daughter. Check the size guide before choosing.",
+          "weighted_characters": 68,
+          "character_limit": 90
+        }
+      ],
+      "exact_intent_research_seeds": [
+        {
+          "text": "माँ बेटी की मैचिंग ड्रेस",
+          "match_type": "EXACT",
+          "english_meaning": "Matching dresses for mother and daughter",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        },
+        {
+          "text": "माँ बेटी की एक जैसी ड्रेस",
+          "match_type": "EXACT",
+          "english_meaning": "Identical-style dresses for mother and daughter",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        }
+      ],
+      "phrase_negative_candidates": [
+        {
+          "text": "सिलाई पैटर्न",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing pattern",
+          "excluded_intent": "A sewing template rather than a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "माँ बेटी की फूलों वाली मैचिंग ड्रेस",
+            "english_meaning": "Finished matching floral dresses for mother and daughter"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "सिलाई के पैटर्न",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing patterns",
+          "excluded_intent": "Sewing templates rather than finished dresses",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "माँ बेटी की प्रिंट वाली ड्रेस",
+            "english_meaning": "Finished printed mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "सिलाई कैसे करें",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew",
+          "excluded_intent": "Do-it-yourself sewing instructions",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "माँ बेटी की मैचिंग ड्रेस खरीदें",
+            "english_meaning": "Buy matching mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "ड्रेस कैसे सिलें",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew a dress",
+          "excluded_intent": "Instructions for making a dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "माँ बेटी की तैयार ड्रेस",
+            "english_meaning": "Finished mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        }
+      ],
+      "review_notes": [
+        "Hindi/English loanword choice and local shopping usage need native review.",
+        "No country assignment or launch proposal is made from the Hindi locale."
+      ]
+    },
+    {
+      "locale": "ja",
+      "language": "Japanese",
+      "status": "LOCAL_DRAFT_NATIVE_REVIEW_REQUIRED",
+      "native_human_reviewed": false,
+      "country_assignment": {
+        "status": "UNASSIGNED_MULTILINGUAL_CANDIDATE_ONLY",
+        "country_codes": [],
+        "excluded_country_codes": [],
+        "note": "Do not create new country targets from a language alone."
+      },
+      "verified_landing_page": null,
+      "headlines": [
+        {
+          "text": "母娘おそろいワンピース",
+          "english_meaning": "Matching mother-and-daughter dresses",
+          "weighted_characters": 22,
+          "character_limit": 30
+        },
+        {
+          "text": "親子でおそろいコーデ",
+          "english_meaning": "Matching parent-and-child outfits",
+          "weighted_characters": 20,
+          "character_limit": 30
+        },
+        {
+          "text": "母娘で楽しむおしゃれ",
+          "english_meaning": "Enjoy dressing up with your daughter",
+          "weighted_characters": 20,
+          "character_limit": 30
+        },
+        {
+          "text": "一人ずつサイズを選ぶ",
+          "english_meaning": "Choose a size for each person",
+          "weighted_characters": 20,
+          "character_limit": 30
+        },
+        {
+          "text": "気になるデザインを探す",
+          "english_meaning": "Find a design that interests you",
+          "weighted_characters": 22,
+          "character_limit": 30
+        },
+        {
+          "text": "それぞれの一着を選ぶ",
+          "english_meaning": "Choose one garment for each person",
+          "weighted_characters": 20,
+          "character_limit": 30
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "母娘のおそろいワンピースを探そう。商品とサイズは一人ずつお選びください。",
+          "english_meaning": "Browse matching mother-and-daughter dresses. Select the product and size for each person separately.",
+          "weighted_characters": 72,
+          "character_limit": 90
+        },
+        {
+          "text": "気になるデザインをチェック。選ぶ前に各商品の詳細をご確認ください。",
+          "english_meaning": "Explore designs that interest you. Check each product’s details before choosing.",
+          "weighted_characters": 66,
+          "character_limit": 90
+        },
+        {
+          "text": "サイズガイドを確認して、お母さまと娘さんそれぞれの一着をお選びください。",
+          "english_meaning": "Consult the size guide and choose a dress separately for mother and daughter.",
+          "weighted_characters": 72,
+          "character_limit": 90
+        }
+      ],
+      "exact_intent_research_seeds": [
+        {
+          "text": "母娘 おそろい ワンピース",
+          "match_type": "EXACT",
+          "english_meaning": "Matching mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        },
+        {
+          "text": "親子 おそろい ワンピース",
+          "match_type": "EXACT",
+          "english_meaning": "Matching parent-and-child dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        }
+      ],
+      "phrase_negative_candidates": [
+        {
+          "text": "ワンピース 型紙",
+          "match_type": "PHRASE",
+          "english_meaning": "Dress sewing pattern",
+          "excluded_intent": "A dress sewing template rather than a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "母娘 おそろい 花柄 ワンピース",
+            "english_meaning": "Finished matching floral-print mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "洋裁 型紙",
+          "match_type": "PHRASE",
+          "english_meaning": "Dressmaking pattern",
+          "excluded_intent": "A dressmaking template rather than a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "親子 おそろい 柄 ワンピース",
+            "english_meaning": "Finished matching patterned parent-and-child dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "ワンピース 縫い方",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew a dress",
+          "excluded_intent": "Dress sewing instructions",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "母娘 おそろい ワンピース 通販",
+            "english_meaning": "Buy matching mother-and-daughter dresses online"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "ワンピース 作り方",
+          "match_type": "PHRASE",
+          "english_meaning": "How to make a dress",
+          "excluded_intent": "Do-it-yourself dress construction instructions",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "母娘 おそろい ワンピース 購入",
+            "english_meaning": "Purchase matching mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        }
+      ],
+      "review_notes": [
+        "Double-width characters count as two; native review of Japanese phrasing and keyword segmentation is outstanding.",
+        "Parent-and-child seed can broaden intent and needs actual search-term review.",
+        "No Japan or other country assignment is made from the Japanese locale."
+      ]
+    },
+    {
+      "locale": "ko",
+      "language": "Korean",
+      "status": "LOCAL_DRAFT_NATIVE_REVIEW_REQUIRED",
+      "native_human_reviewed": false,
+      "country_assignment": {
+        "status": "UNASSIGNED_MULTILINGUAL_CANDIDATE_ONLY",
+        "country_codes": [],
+        "excluded_country_codes": [],
+        "note": "Do not create new country targets from a language alone."
+      },
+      "verified_landing_page": null,
+      "headlines": [
+        {
+          "text": "엄마와 딸 커플 원피스",
+          "english_meaning": "Matching dresses for mother and daughter",
+          "weighted_characters": 21,
+          "character_limit": 30
+        },
+        {
+          "text": "모녀가 함께 고르는 스타일",
+          "english_meaning": "Styles mother and daughter choose together",
+          "weighted_characters": 25,
+          "character_limit": 30
+        },
+        {
+          "text": "함께 입는 커플룩",
+          "english_meaning": "Coordinated looks to wear together",
+          "weighted_characters": 16,
+          "character_limit": 30
+        },
+        {
+          "text": "각자 사이즈를 골라요",
+          "english_meaning": "Choose each person’s size",
+          "weighted_characters": 20,
+          "character_limit": 30
+        },
+        {
+          "text": "원피스 디자인 둘러보기",
+          "english_meaning": "Browse dress designs",
+          "weighted_characters": 22,
+          "character_limit": 30
+        },
+        {
+          "text": "엄마와 딸의 코디 찾기",
+          "english_meaning": "Find a coordinated look for mother and daughter",
+          "weighted_characters": 21,
+          "character_limit": 30
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "모녀 커플 원피스를 만나보세요. 상품과 사이즈는 한 사람씩 따로 선택하세요.",
+          "english_meaning": "Explore matching mother-and-daughter dresses. Select the product and size separately for each person.",
+          "weighted_characters": 73,
+          "character_limit": 90
+        },
+        {
+          "text": "마음에 드는 디자인을 찾아보세요. 선택 전 각 상품의 상세 정보를 확인하세요.",
+          "english_meaning": "Find a design you like. Check each product’s details before choosing.",
+          "weighted_characters": 74,
+          "character_limit": 90
+        },
+        {
+          "text": "사이즈 가이드를 확인하고 엄마와 딸의 원피스를 각각 골라보세요.",
+          "english_meaning": "Check the size guide and choose mother’s and daughter’s dresses separately.",
+          "weighted_characters": 62,
+          "character_limit": 90
+        }
+      ],
+      "exact_intent_research_seeds": [
+        {
+          "text": "엄마 딸 커플 원피스",
+          "match_type": "EXACT",
+          "english_meaning": "Matching mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        },
+        {
+          "text": "모녀 커플 원피스",
+          "match_type": "EXACT",
+          "english_meaning": "Matching mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        }
+      ],
+      "phrase_negative_candidates": [
+        {
+          "text": "원피스 재봉 패턴",
+          "match_type": "PHRASE",
+          "english_meaning": "Dress sewing pattern",
+          "excluded_intent": "A dress sewing template rather than a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "엄마 딸 꽃무늬 커플 원피스",
+            "english_meaning": "Finished matching floral mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "원피스 바느질 방법",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew a dress",
+          "excluded_intent": "Dress sewing instructions",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "모녀 커플 원피스 구매",
+            "english_meaning": "Purchase matching mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "원피스 재봉 강좌",
+          "match_type": "PHRASE",
+          "english_meaning": "Dress sewing tutorial",
+          "excluded_intent": "Instruction in sewing a dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "엄마 딸 커플 원피스 쇼핑",
+            "english_meaning": "Shop matching mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "원피스 봉제 도안",
+          "match_type": "PHRASE",
+          "english_meaning": "Dress sewing template",
+          "excluded_intent": "A sewing template rather than a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "모녀 프린트 원피스",
+            "english_meaning": "Finished printed mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        }
+      ],
+      "review_notes": [
+        "Double-width characters count as two; native review of Korean phrasing and keyword segmentation is outstanding.",
+        "No Korea or other country assignment is made from the Korean locale."
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "language": "Brazilian Portuguese",
+      "status": "LOCAL_DRAFT_NATIVE_REVIEW_REQUIRED",
+      "native_human_reviewed": false,
+      "country_assignment": {
+        "status": "ROOT_VERIFIED_MARKET_ROUTING_REQUIRED",
+        "country_codes": [],
+        "excluded_country_codes": [],
+        "note": "Do not create new country targets from a language alone."
+      },
+      "verified_landing_page": null,
+      "headlines": [
+        {
+          "text": "Vestidos para mãe e filha",
+          "english_meaning": "Dresses for mother and daughter",
+          "weighted_characters": 25,
+          "character_limit": 30
+        },
+        {
+          "text": "Encontre looks combinando",
+          "english_meaning": "Find coordinated looks",
+          "weighted_characters": 25,
+          "character_limit": 30
+        },
+        {
+          "text": "Explore estilos para vocês",
+          "english_meaning": "Explore styles for both of you",
+          "weighted_characters": 26,
+          "character_limit": 30
+        },
+        {
+          "text": "Escolha o tamanho de cada uma",
+          "english_meaning": "Choose a size for each person",
+          "weighted_characters": 29,
+          "character_limit": 30
+        },
+        {
+          "text": "Veja os modelos de vestidos",
+          "english_meaning": "Browse dress styles",
+          "weighted_characters": 27,
+          "character_limit": 30
+        },
+        {
+          "text": "Vista-se em sintonia",
+          "english_meaning": "Dress in a coordinated style",
+          "weighted_characters": 20,
+          "character_limit": 30
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Veja vestidos combinando para mãe e filha. Escolha peça e tamanho para cada uma.",
+          "english_meaning": "Browse coordinated mother-and-daughter dresses. Select an item and size for each person.",
+          "weighted_characters": 80,
+          "character_limit": 90
+        },
+        {
+          "text": "Encontre um estilo para vocês duas. Confira os detalhes de cada vestido antes de escolher.",
+          "english_meaning": "Find a style for both of you. Check each dress’s details before choosing.",
+          "weighted_characters": 90,
+          "character_limit": 90
+        },
+        {
+          "text": "Consulte o guia de tamanhos e escolha separadamente o vestido de cada uma.",
+          "english_meaning": "Consult the size guide and choose each person’s dress separately.",
+          "weighted_characters": 74,
+          "character_limit": 90
+        }
+      ],
+      "exact_intent_research_seeds": [
+        {
+          "text": "vestidos mãe e filha iguais",
+          "match_type": "EXACT",
+          "english_meaning": "Matching mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        },
+        {
+          "text": "vestidos combinando mãe e filha",
+          "match_type": "EXACT",
+          "english_meaning": "Coordinated mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        }
+      ],
+      "phrase_negative_candidates": [
+        {
+          "text": "molde de costura",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing pattern",
+          "excluded_intent": "A sewing template rather than a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "vestidos florais mãe e filha",
+            "english_meaning": "Finished floral mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "moldes de costura",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing patterns",
+          "excluded_intent": "Sewing templates rather than finished dresses",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "vestidos estampados mãe e filha",
+            "english_meaning": "Finished printed mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "como costurar",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew",
+          "excluded_intent": "Do-it-yourself sewing instructions",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "comprar vestidos iguais mãe e filha",
+            "english_meaning": "Buy matching mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "tutorial de costura",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing tutorial",
+          "excluded_intent": "Learning to sew rather than buying a finished garment",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "vestidos mãe e filha para casamento",
+            "english_meaning": "Mother-and-daughter dresses for a wedding"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        }
+      ],
+      "review_notes": [
+        "SOURCE_LOCALE_PT_BR_REGIONAL_ADAPTATION_REQUIRED.",
+        "The published pt-BR locale and /pt/ route do not establish Portugal-native copy. Do not label these templates pt-PT or assign Portugal without adaptation and landing-language review.",
+        "No Brazil or new country target is inferred from the pt-BR locale."
+      ]
+    },
+    {
+      "locale": "ro",
+      "language": "Romanian",
+      "status": "LOCAL_DRAFT_NATIVE_REVIEW_REQUIRED",
+      "native_human_reviewed": false,
+      "country_assignment": {
+        "status": "ROOT_VERIFIED_MARKET_ROUTING_REQUIRED",
+        "country_codes": [],
+        "excluded_country_codes": [],
+        "note": "Do not create new country targets from a language alone."
+      },
+      "verified_landing_page": null,
+      "headlines": [
+        {
+          "text": "Rochii pentru mamă și fiică",
+          "english_meaning": "Dresses for mother and daughter",
+          "weighted_characters": 27,
+          "character_limit": 30
+        },
+        {
+          "text": "Ținute asortate mamă-fiică",
+          "english_meaning": "Coordinated mother-and-daughter outfits",
+          "weighted_characters": 26,
+          "character_limit": 30
+        },
+        {
+          "text": "Alegeți un stil care vă place",
+          "english_meaning": "Choose a style you like",
+          "weighted_characters": 29,
+          "character_limit": 30
+        },
+        {
+          "text": "Mărimi alese separat",
+          "english_meaning": "Sizes selected separately",
+          "weighted_characters": 20,
+          "character_limit": 30
+        },
+        {
+          "text": "Descoperiți modele de rochii",
+          "english_meaning": "Discover dress styles",
+          "weighted_characters": 28,
+          "character_limit": 30
+        },
+        {
+          "text": "Alegeți fiecare rochie",
+          "english_meaning": "Choose each dress",
+          "weighted_characters": 22,
+          "character_limit": 30
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Descoperiți rochii asortate pentru mamă și fiică. Alegeți separat fiecare piesă și mărime.",
+          "english_meaning": "Explore coordinated mother-and-daughter dresses. Choose each item and size separately.",
+          "weighted_characters": 90,
+          "character_limit": 90
+        },
+        {
+          "text": "Explorați modele pentru un look asortat. Consultați detaliile fiecărui produs.",
+          "english_meaning": "Explore styles for a coordinated look. Check the details of each product.",
+          "weighted_characters": 78,
+          "character_limit": 90
+        },
+        {
+          "text": "Verificați ghidul de mărimi înainte să alegeți rochia fiecăreia.",
+          "english_meaning": "Check the size guide before choosing each person’s dress.",
+          "weighted_characters": 64,
+          "character_limit": 90
+        }
+      ],
+      "exact_intent_research_seeds": [
+        {
+          "text": "rochii mamă fiică asortate",
+          "match_type": "EXACT",
+          "english_meaning": "Matching mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        },
+        {
+          "text": "rochii identice mamă fiică",
+          "match_type": "EXACT",
+          "english_meaning": "Identical-style mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        }
+      ],
+      "phrase_negative_candidates": [
+        {
+          "text": "tipar de cusut",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing pattern",
+          "excluded_intent": "A sewing template rather than a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "rochii florale mamă fiică",
+            "english_meaning": "Finished floral mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "tipare de cusut",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing patterns",
+          "excluded_intent": "Sewing templates rather than finished dresses",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "rochii cu imprimeu mamă fiică",
+            "english_meaning": "Finished printed mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "cum se coase",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew",
+          "excluded_intent": "Do-it-yourself sewing instructions",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "cumpără rochii asortate mamă fiică",
+            "english_meaning": "Buy matching mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "tutorial de cusut",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing tutorial",
+          "excluded_intent": "Learning to sew rather than buying a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "rochii mamă fiică pentru nuntă",
+            "english_meaning": "Mother-and-daughter dresses for a wedding"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        }
+      ],
+      "review_notes": [
+        "These unmeasured seed suggestions do not overturn previously deferred Romanian demand candidates or qualify a paid launch."
+      ]
+    },
+    {
+      "locale": "ru",
+      "language": "Russian",
+      "status": "LOCAL_DRAFT_NATIVE_REVIEW_REQUIRED",
+      "native_human_reviewed": false,
+      "country_assignment": {
+        "status": "ROOT_VERIFIED_MARKET_ROUTING_REQUIRED",
+        "country_codes": [],
+        "excluded_country_codes": [
+          "RU"
+        ],
+        "note": "Do not create new country targets from a language alone."
+      },
+      "verified_landing_page": null,
+      "headlines": [
+        {
+          "text": "Платья для мамы и дочки",
+          "english_meaning": "Dresses for mother and daughter",
+          "weighted_characters": 23,
+          "character_limit": 30
+        },
+        {
+          "text": "Подберите общий стиль",
+          "english_meaning": "Find a shared style",
+          "weighted_characters": 21,
+          "character_limit": 30
+        },
+        {
+          "text": "Сочетающиеся платья",
+          "english_meaning": "Coordinated dresses",
+          "weighted_characters": 19,
+          "character_limit": 30
+        },
+        {
+          "text": "Выберите размер каждой",
+          "english_meaning": "Choose each person’s size",
+          "weighted_characters": 22,
+          "character_limit": 30
+        },
+        {
+          "text": "Мама и дочка в одном стиле",
+          "english_meaning": "Mother and daughter in a coordinated style",
+          "weighted_characters": 26,
+          "character_limit": 30
+        },
+        {
+          "text": "Найдите ваш любимый фасон",
+          "english_meaning": "Find a style you like",
+          "weighted_characters": 25,
+          "character_limit": 30
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Подберите сочетающиеся платья для мамы и дочки. Товар и размер выбирайте отдельно.",
+          "english_meaning": "Find coordinated mother-and-daughter dresses. Choose the item and size separately.",
+          "weighted_characters": 82,
+          "character_limit": 90
+        },
+        {
+          "text": "Выберите фасон, который нравится вам обеим. Проверьте описание каждого товара.",
+          "english_meaning": "Choose a style you both like. Check each product’s description.",
+          "weighted_characters": 78,
+          "character_limit": 90
+        },
+        {
+          "text": "Сверьтесь с таблицей размеров и выберите платье для каждой из вас отдельно.",
+          "english_meaning": "Check the size chart and choose a dress separately for each person.",
+          "weighted_characters": 75,
+          "character_limit": 90
+        }
+      ],
+      "exact_intent_research_seeds": [
+        {
+          "text": "одинаковые платья мама дочь",
+          "match_type": "EXACT",
+          "english_meaning": "Matching mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        },
+        {
+          "text": "парные платья мама и дочка",
+          "match_type": "EXACT",
+          "english_meaning": "Coordinated mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        }
+      ],
+      "phrase_negative_candidates": [
+        {
+          "text": "выкройка для шитья",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing pattern",
+          "excluded_intent": "A sewing template rather than a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "платья с цветочным принтом мама дочь",
+            "english_meaning": "Finished floral-print mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "выкройки для шитья",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing patterns",
+          "excluded_intent": "Sewing templates rather than finished dresses",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "платья с узором мама дочь",
+            "english_meaning": "Finished patterned mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "как сшить платье",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew a dress",
+          "excluded_intent": "Do-it-yourself dress sewing instructions",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "купить одинаковые платья мама дочь",
+            "english_meaning": "Buy matching mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "урок шитья",
+          "match_type": "PHRASE",
+          "english_meaning": "Sewing lesson",
+          "excluded_intent": "Learning to sew rather than buying a finished garment",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "платья мама дочь на свадьбу",
+            "english_meaning": "Mother-and-daughter dresses for a wedding"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        }
+      ],
+      "review_notes": [
+        "RUSSIAN_LANGUAGE_DOES_NOT_AUTHORIZE_RUSSIA_TARGETING.",
+        "Russia is excluded from these candidates. Google’s advertising pause for Russia remains a root-verified policy gate; there is no Russia launch proposal.",
+        "Only verified supported active countries may be considered for Russian-language creative after native and landing-language review."
+      ]
+    },
+    {
+      "locale": "sv",
+      "language": "Swedish",
+      "status": "LOCAL_DRAFT_NATIVE_REVIEW_REQUIRED",
+      "native_human_reviewed": false,
+      "country_assignment": {
+        "status": "ROOT_VERIFIED_MARKET_ROUTING_REQUIRED",
+        "country_codes": [],
+        "excluded_country_codes": [],
+        "note": "Do not create new country targets from a language alone."
+      },
+      "verified_landing_page": null,
+      "headlines": [
+        {
+          "text": "Klänningar för mor och dotter",
+          "english_meaning": "Dresses for mother and daughter",
+          "weighted_characters": 29,
+          "character_limit": 30
+        },
+        {
+          "text": "Matchande klänningar",
+          "english_meaning": "Matching dresses",
+          "weighted_characters": 20,
+          "character_limit": 30
+        },
+        {
+          "text": "Hitta er gemensamma stil",
+          "english_meaning": "Find your shared style",
+          "weighted_characters": 24,
+          "character_limit": 30
+        },
+        {
+          "text": "Välj storlek för var och en",
+          "english_meaning": "Choose a size for each person",
+          "weighted_characters": 27,
+          "character_limit": 30
+        },
+        {
+          "text": "Utforska klänningsmodeller",
+          "english_meaning": "Explore dress styles",
+          "weighted_characters": 26,
+          "character_limit": 30
+        },
+        {
+          "text": "Välj varje klänning separat",
+          "english_meaning": "Choose each dress separately",
+          "weighted_characters": 27,
+          "character_limit": 30
+        }
+      ],
+      "descriptions": [
+        {
+          "text": "Upptäck matchande klänningar för mor och dotter. Välj plagg och storlek för var och en.",
+          "english_meaning": "Explore matching mother-and-daughter dresses. Select a garment and size for each person.",
+          "weighted_characters": 87,
+          "character_limit": 90
+        },
+        {
+          "text": "Utforska stilar som passar ihop. Läs detaljerna för varje produkt innan du väljer.",
+          "english_meaning": "Explore coordinated styles. Read each product’s details before choosing.",
+          "weighted_characters": 82,
+          "character_limit": 90
+        },
+        {
+          "text": "Titta i storleksguiden och välj varje persons klänning separat.",
+          "english_meaning": "Check the size guide and choose each person’s dress separately.",
+          "weighted_characters": 63,
+          "character_limit": 90
+        }
+      ],
+      "exact_intent_research_seeds": [
+        {
+          "text": "matchande klänningar mor och dotter",
+          "match_type": "EXACT",
+          "english_meaning": "Matching mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        },
+        {
+          "text": "likadana klänningar mamma dotter",
+          "match_type": "EXACT",
+          "english_meaning": "Identical-style mother-and-daughter dresses",
+          "status": "UNMEASURED_UNQUALIFIED_RESEARCH_SEED",
+          "measured_demand": null,
+          "cpc": null
+        }
+      ],
+      "phrase_negative_candidates": [
+        {
+          "text": "symönster klänning",
+          "match_type": "PHRASE",
+          "english_meaning": "Dress sewing pattern",
+          "excluded_intent": "A dress sewing template rather than a finished dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "blommiga klänningar mor och dotter",
+            "english_meaning": "Finished floral mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "symönster klänningar",
+          "match_type": "PHRASE",
+          "english_meaning": "Dress sewing patterns",
+          "excluded_intent": "Dress sewing templates rather than finished dresses",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "mönstrade klänningar mamma dotter",
+            "english_meaning": "Finished patterned mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "hur man syr",
+          "match_type": "PHRASE",
+          "english_meaning": "How to sew",
+          "excluded_intent": "Do-it-yourself sewing instructions",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "köpa matchande klänningar mor och dotter",
+            "english_meaning": "Buy matching mother-and-daughter dresses"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        },
+        {
+          "text": "syinstruktioner klänning",
+          "match_type": "PHRASE",
+          "english_meaning": "Dress sewing instructions",
+          "excluded_intent": "Instructions for making a dress",
+          "must_not_exclude_apparel_intent": {
+            "example_query": "matchande klänningar mamma dotter bröllop",
+            "english_meaning": "Matching mother-and-daughter dresses for a wedding"
+          },
+          "status": "CANDIDATE_SEARCH_TERM_AND_NATIVE_REVIEW_REQUIRED"
+        }
+      ],
+      "review_notes": []
+    }
+  ]
+}

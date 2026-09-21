@@ -1,0 +1,12 @@
+{
+  "method": "Before-release qualification of public DOM normalization against the complete current Admin HTML",
+  "expected_blocks": 48,
+  "expected_sha256": "5179a1d41ae9c67d906cfe6e051e3f155882dc0be8d2d30e45ca6b0016f059f2",
+  "browser_blocks": 48,
+  "browser_sha256": "5179a1d41ae9c67d906cfe6e051e3f155882dc0be8d2d30e45ca6b0016f059f2",
+  "selector": ".article-template__content p,h2,li, excluding .article-toc and .article-cta-inline",
+  "first_attempt": "Included nine generated table-of-contents blocks; excluded their observed .article-toc container and compared again. No content change.",
+  "digest_method": "SHA-256 via Web Crypto over NFC whitespace-normalized DOM block text joined by LF; expected independently computed with Python hashlib",
+  "root_public_before": "browser-main-before.json",
+  "status": "PASS"
+}

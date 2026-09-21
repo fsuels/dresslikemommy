@@ -1,0 +1,165 @@
+<div id="page-content">
+<script>// <![CDATA[
+function remove_classes_active() {
+    alert( 'FOUND' );
+    var $aSelected = $('.question-answer-block').find('a');
+    
+    if( $aSelected.hasClass('active') ){
+      alert( 'FOUND' );
+      $('.question-answer-block > a').removeClass('active');
+    }else{
+      alert( 'NOT FOUND' );
+    }
+  }
+// ]]></script><script>// <![CDATA[
+jQuery("document").ready(function($){
+    var nav = $('#nav');
+    $(window).scroll(function () {
+     	if(getWidthBrowser() > 1200){
+    		if ($(this).scrollTop() > 136){
+              nav.addClass("on animated"); 		
+            } 
+            else {
+              nav.removeClass("on animated"); 		
+            } 
+  		}
+          $('#goGrid').trigger('click');
+
+      
+    });  
+    
+  });
+// ]]></script>
+<div class="help-page">
+<div id="General Questions">
+<div class="faq-item-title" name="General Questions">
+<h2>Om os</h2>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Generelle spørgsmål</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Er denne side sikker at bruge? </strong></p>
+<p>Det er det bestemt. Vi bruger PayPal til at behandle betalinger. Så ikke engang vores personale får adgang til dine betalingsoplysninger. PayPal er verdens største sikre betalingsudbyder. Vores hjemmeside er bygget på Shopify’s sikre platform. Alle dine personlige oplysninger er godt beskyttet.</p>
+<p> </p>
+<p><strong>2. Hvor hurtigt svarer I på e-mail henvendelser?</strong></p>
+<p>Vi svarer på alle e-mails inden for en arbejdsdag.</p>
+<p> </p>
+<p><strong>3. Hvor er I baseret?</strong></p>
+<p>Vores hovedaktiviteter foregår i Den Europæiske Union ledsaget af vores supportcenter i Litauen samt producenter og lagre i Østasien.</p>
+<p> </p>
+<p><strong>4. Hvorfor er I så billige?</strong></p>
+<p>Vi fjerner alle mellemled og leverer produkterne direkte til forbrugerne fra vores producenter, hvilket gør det muligt for os at tilbyde ekstremt lave priser.</p>
+</div>
+</div>
+</div>
+<div id="Before You Place an Order">
+<div class="faq-item-title" name="before you place an order">
+<h2>Før du afgiver en ordre</h2>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Størrelser</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Hvor kan jeg finde størrelsestabellen i centimeter?</strong></p>
+<p>Du kan finde størrelsestabeller i centimeter på vores størrelsesside her: <a href="http://www.assassinshoodies.com/pages/sizing-information" alt="Sizing Page">Størrelsesside</a> eller i beskrivelsen af hvert produkt.</p>
+<p> </p>
+<p><strong>2. Vil jeg modtage en vare to størrelser større?</strong></p>
+<p>Nej. Vi sender den størrelse, du har bestilt. Hvis du normalt bruger europæisk medium størrelse, vælg medium (M) størrelse, og du vil modtage en medium størrelse.</p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Betalinger</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Hvilke betalingsmetoder accepterer I?</strong></p>
+<p>Vi accepterer PayPal og kredit-/betalingskort (Visa, Mastercard, American Express, Discover).</p>
+<p> </p>
+<p><strong>2. Jeg vil betale med mit kreditkort, men bliver omdirigeret til PayPal-siden?</strong></p>
+<p>Vi bruger PayPal til at behandle alle vores betalinger. På PayPal-siden til højre kan du vælge mellem to muligheder: "Betal med min PayPal-konto" <i>eller</i> "Betal med mit kredit- eller betalingskort"</p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">C. Forsendelse</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Hvad er forsendelsesprisen?</strong></p>
+<p>Vi tilbyder helt GRATIS levering verden over.</p>
+<p> </p>
+<p><strong>2. Leverer I til mit land?</strong></p>
+<p>Ja, det gør vi. Vi leverer til alle lande i hele verden.</p>
+<p> </p>
+<p><strong>3. Hvor lang tid tager det at modtage min ordre?</strong></p>
+<p>Leveringen tager normalt omkring 15-30 dage. Du kan dog tjekke de præcise leveringsestimater her: <a href="https://www.dresslikemommy.com/pages/shipping-and-delivery" alt="Shipping Page">Forsendelsesside</a></p>
+<p> </p>
+<p><strong>4. Skal jeg betale told?</strong></p>
+<p>Nej, du behøver ikke betale toldafgift. Vi markerer alle vores ordrer som lavværdi-gaver. Desuden sender vi større ordrer i separate pakker.</p>
+</div>
+</div>
+</div>
+<div id="After You Place an Order">
+<div class="faq-item-title" name="After You Place an Order">
+<h2>Efter du har afgivet en ordre</h2>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Ordrestatus</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Hvad betyder det: ordrestatus "Ikke opfyldt"?</strong></p>
+<p>Din ordre behandles, og ordrenummerets sporingsnummer afventer. Vi opfylder normalt ordrerne og sender vores kunder sporingsnummeret, når ordren er indsendt til postvæsenet, hvilket tager 5-7 dage efter ordren allerede er afsendt.</p>
+<p> </p>
+<p><strong>2. Hvad betyder det: ordrestatus "Fuldført"?</strong></p>
+<p>Det betyder, at din ordre er under forsendelse.</p>
+<p> </p>
+<p><strong>3. Det er gået for lang tid, hvor er min ordre?</strong></p>
+<p>Tjek venligst din ordres sporingsinformation for mere info. Hvis problemet fortsætter, send os en e-mail: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Ordresporing</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Hvordan sporer jeg min ordre?</strong></p>
+<p>Vi giver sporingskoden 5-7 dage efter, du har afgivet en ordre. Du kan spore din ordre her: <a hef="www.assassinshoodies.com/pages/track-your-order" alt="Spor din ordre">Spor din ordre</a></p>
+<p> </p>
+<p><strong>2. Min sporingskode siger "afventer" eller "ingen information tilgængelig i øjeblikket".</strong></p>
+<p>Nogle gange vises de første sporingsresultater 5-10 hverdage efter, du modtager ordrenummeret til sporing. Hvis problemet varer mere end 10 hverdage, kontakt os venligst: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+<p> </p>
+<p><strong>3. Min sporingskode siger "udløbet"</strong></p>
+<p>Kontakt os venligst: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> og vi vil hurtigt løse problemet.</p>
+<p> </p>
+<p><strong>4. Hvordan holder jeg mig opdateret om min ordre?</strong></p>
+<p>Vi bruger After Ship tracking-system til at følge vores kunders ordrer, så når sporingsinformationen opdateres, vil du modtage en e-mail.</p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Jeg vil ændre eller annullere min ordre</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Jeg bestilte noget, men vil annullere</strong></p>
+<p>Du skal kontakte os inden for 1 hverdag efter bestillingen for at arrangere en ændring af ordren. Det kan du gøre ved at sende en e-mail til <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> med dit ordrenummer som emne.</p>
+<p> </p>
+<p><strong>2. Jeg bestilte noget, men vil ændre varefarve eller størrelse.</strong></p>
+<p>Du skal kontakte os inden for 1 hverdag efter bestillingen for at arrangere en ændring af ordren. Det kan du gøre ved at sende en e-mail til <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> med din nye farve- eller størrelsesmulighed.</p>
+<p> </p>
+<p><strong>3. Jeg bestilte noget, men vil ændre leveringsadressen</strong></p>
+<p>Du skal kontakte os inden for 1 hverdag efter bestillingen for at arrangere en ændring af ordren. Det kan du gøre ved at sende en e-mail til <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> med din nye leveringsadresse.</p>
+</div>
+</div>
+</div>
+<div id="After You Receive an Order">
+<div class="faq-item-title" name="After You Receive an Orde">
+<h2>Efter du modtager en ordre</h2>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Jeg vil ændre eller returnere min ordre</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Min ordre er ankommet, men varerne var to størrelser for store</strong></p>
+<p>Bemærk, at alle størrelser i vores butik vises i EU- og US-måleenheder. Selve tøjets størrelse (angivet på produktet) er normalt dobbelt så stor. Vores producenter er placeret i Østasien, og vi sender automatisk den asiatiske størrelsesækvivalent til europæisk/amerikansk størrelse. Det betyder, at hvis du bestiller Medium (M – EU/US), sender vi dig Extra Large (XL) asiatisk ækvivalent.</p>
+<p> </p>
+<p><strong>2. Min ordre er ankommet, men jeg har modtaget de forkerte varer</strong></p>
+<p>Kontakt os venligst på <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> og oplys os om dit ordrenummer. Hvis fejlen er vores, kan du sende varerne tilbage, og vi sender de korrekte varer til dig på vores regning (eller refunderer).</p>
+<p> </p>
+<p><strong>3. Min ordre er ankommet, og jeg vil ændre størrelse/farve</strong></p>
+<p>Kontakt os venligst på <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> og oplys os om dit ordrenummer. Du kan sende varen tilbage til os, og vi sender dig en ny vare i den opdaterede størrelse. *Forsendelsesomkostninger er for egen regning.</p>
+<p> </p>
+<p><strong>4. Min ordre er ankommet, men jeg vil returnere den.</strong></p>
+<p>Kontakt os venligst på <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> og oplys os om dit ordrenummer. Du kan sende varen tilbage til os, og vi vil refundere beløbet. *Forsendelsesomkostninger er for egen regning.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

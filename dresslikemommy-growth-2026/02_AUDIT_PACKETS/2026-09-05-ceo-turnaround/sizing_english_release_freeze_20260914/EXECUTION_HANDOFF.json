@@ -1,0 +1,113 @@
+{
+  "schema": "dlm.organic_sizing_execution_handoff.v1",
+  "action_id": "TA20-SIZING-GUIDE-EDITORIAL-20260914",
+  "execution_status": "IMPLEMENTED_LIVE_VERIFIED",
+  "recorded_at_utc": "2026-09-14T23:08:18.543Z",
+  "owner_task_id": "01a0870a-e632-7773-ac5d-8ee2616b31bc",
+  "parent_integrator_task_id": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "target": {
+    "id": "gid://shopify/Article/559700574305",
+    "url": "https://www.dresslikemommy.com/blogs/news/matching-outfit-sizing-guide-right-fit-for-everyone",
+    "title": "Matching Outfit Sizing Guide: How to Get the Right Fit for Everyone",
+    "field": "body"
+  },
+  "implemented": "Nineteen exact content replacements remove blanket sizing assumptions and invented general size ranges, distinguish body/garment measurements, direct uncertain shoppers to Contact us, and retain shopping links. A table style and12cell styles make three columns wrap inside desktop/mobile content width.",
+  "final_body_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "writes": [
+    {
+      "revision": 2,
+      "at_utc": "2026-09-14T22:53:37Z",
+      "scope": "19 reviewed text/link replacements",
+      "result": "SUCCESS_EXACT_READBACK",
+      "body_sha256": "7f8ccb04c9e4951b00b1a4c123640b46f2b090da700784b5f96bf2e2ab2ed975",
+      "public_qa": "English copy and links verified; mobile table required excessive sideways scrolling"
+    },
+    {
+      "revision": 3,
+      "at_utc": "2026-09-14T23:00:02Z",
+      "scope": "One table style attribute",
+      "result": "SUCCESS_EXACT_READBACK__LAYOUT_FAILED",
+      "body_sha256": "367db0385db73a1a31c81af0f99184d693a1a57db5790748bd1ae63857f68c98",
+      "public_qa": "Explicit cell nowrap rule overrides table inheritance; failure preserved"
+    },
+    {
+      "revision": 4,
+      "at_utc": "2026-09-14T23:05:21Z",
+      "scope": "12 inline cell white-space overrides",
+      "result": "SUCCESS_EXACT_READBACK__DESKTOP_MOBILE_PASS_WITH_LIMITS",
+      "body_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+      "public_qa": "All12cells normal whitespace, no cell/table/document horizontal overflow; long words may wrap on mobile"
+    }
+  ],
+  "write_count": 3,
+  "errors_in_mutation_results": 0,
+  "exact_candidate_no_normalization_required": true,
+  "preservation": {
+    "checks_passed": 130,
+    "checks_failed": 0,
+    "unrelated_article_fields_preserved": 12,
+    "nonbody_translatable_source_keys_preserved": 5,
+    "translation_values_preserved": 90,
+    "translation_values_changed": 0,
+    "source_keys_changed": [
+      "body_html"
+    ],
+    "existing_body_translations_now_outdated": 18
+  },
+  "translation_limits": "The18 existing localized body values retain earlier advice and have not been repaired. All21enabled locales queried;en/ru/sv return no translation rows. No translated public route, native-language quality or market-specific override completeness claim.",
+  "public_verification": {
+    "english_us": true,
+    "desktop_requested": "1280x900",
+    "desktop_table_width_and_scroll_width": 700,
+    "mobile_requested": "390x844",
+    "mobile_table_width_and_scroll_width": 345,
+    "all12cells_wrap": true,
+    "shopping_link_actual_arrival": "/collections/matching-outfits",
+    "collection_cards": 36,
+    "support_link_actual_arrival": "/pages/contact-us",
+    "support_form_visible": true,
+    "contact_submission": false,
+    "cart_mutation": false,
+    "cart_count": 0
+  },
+  "rollback": {
+    "executed": false,
+    "current_body_guard": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+    "preferred_layout_fallback": "table-cells/rollback-variables.json restores corrected revision2 text without layout attributes",
+    "original_full_body_backup": "rollback-variables.json",
+    "warning": "Inspect current source before rollback and do not overwrite intervening edits. Original full-body backup contains the superseded sizing advice; prefer corrected revision2 for layout-only recovery. Body rollback may not restore translation metadata."
+  },
+  "evidence_manifest": "SOURCE_MANIFEST.json",
+  "root_preservation_file": "RELEASE_PRESERVATION_CHECKS.json",
+  "public_evidence_file": "PUBLIC_FINAL_VERIFICATION.json",
+  "independent_after_review_file": "INDEPENDENT_AFTER_REVIEW.json",
+  "shared_canonical_writes_by_this_continuation": [],
+  "parent_integration": "Parent retains queue/state/worklog/claims/cockpit/problem/decision integration. Do not publish this article again or reopen first17candidate. Record exact3write chronology and finalverified English state, retain translation/FAQ issues.",
+  "next_action": "Bring the same corrected buying guidance and working help routes to the18 existing translated article bodies through an exact independently reviewed localization update.",
+  "why_first": "Those existing versions still retain the sizing assumptions removed from English.",
+  "separate_problem": {
+    "page": "/pages/faqs",
+    "finding": "A.Sizing expansion fails on two actual activations with ReferenceError jQuery is not defined",
+    "action": "Parent records and routes FAQ defect separately; no FAQ/theme mutation in this action."
+  },
+  "source_live_evidence_as_of": "2026-09-14T23:05:55Z connector readback;23:06–23:07UTC public rendered checks",
+  "live_state_mode": "LIVE_VERIFIED_ENGLISH_ARTICLE_ONLY",
+  "effective_approval_policy": "Existing current daily organic editorial mandate; routine reviewed owned-article publication permitted without repeated generic approval. Supported connector flow used; all3writes succeeded.",
+  "approved_external_scope": "Only Article559700574305 body correction and article-contained formatting; no theme/product/price/policy/tracking/account/paid/Pin/message write.",
+  "decision_depends_on_uncertain_state": true,
+  "decision_changing_evidence": "For subsequent localization, exact source digest, current translations and qualified language review; for rollback, current body equality and live display regression.",
+  "if_evidence_supports_recommendation": "Prepare and apply exact same-article translated correction under current organic mandate with current field readback and independent review.",
+  "if_evidence_opposes_recommendation": "Do not overwrite drifted or unqualified translated text; retain exact unresolved locale evidence and reroute to another authorized daily organic task.",
+  "material_decision": "MATERIAL_PUBLIC_ARTICLE_CORRECTION",
+  "independent_verifier": "/root/daily_operation_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "review_clocks_preserved": {
+    "family_photo_article_first_review": "2026-09-17",
+    "sunshine_pin_first_review": "2026-09-18",
+    "p1_guide_pin_first_review": "2026-09-21"
+  },
+  "measurement_reads_this_continuation": 0,
+  "no_measured_traffic_or_sales_lift_claimed": true,
+  "scheduled_operation": "Existing daily09:00America/New_York organic heartbeat remains the owner; no scheduler change in this article continuation.",
+  "continuation_prompt_path": "ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

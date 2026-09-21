@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "scope": "Pure source functions only; no browser, DOM interaction, storefront or network execution",
+  "cases": [
+    {
+      "source": "main",
+      "sourceSha256": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+      "inputLang": "fr",
+      "localeRoot": "fr",
+      "labels": {
+        "chooseRoleStep": "Choose who this piece is for",
+        "chooseOptionsStep": "Choose size and options",
+        "readyToAdd": "Ready to add",
+        "addCurrentPiece": "Add this piece to bag"
+      }
+    },
+    {
+      "source": "main",
+      "sourceSha256": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+      "inputLang": "fr-CA",
+      "localeRoot": "fr",
+      "labels": {
+        "chooseRoleStep": "Choose who this piece is for",
+        "chooseOptionsStep": "Choose size and options",
+        "readyToAdd": "Ready to add",
+        "addCurrentPiece": "Add this piece to bag"
+      }
+    },
+    {
+      "source": "main",
+      "sourceSha256": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024",
+      "inputLang": "en",
+      "localeRoot": "en",
+      "labels": {
+        "chooseRoleStep": "Choose who this piece is for",
+        "chooseOptionsStep": "Choose size and options",
+        "readyToAdd": "Ready to add",
+        "addCurrentPiece": "Add this piece to bag"
+      }
+    },
+    {
+      "source": "candidate",
+      "sourceSha256": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20",
+      "inputLang": "fr",
+      "localeRoot": "fr",
+      "labels": {
+        "chooseRoleStep": "Choisissez à qui cette pièce est destinée",
+        "chooseOptionsStep": "Choisissez la taille et les options",
+        "readyToAdd": "Prête à être ajoutée",
+        "addCurrentPiece": "Ajouter cette pièce au panier"
+      }
+    },
+    {
+      "source": "candidate",
+      "sourceSha256": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20",
+      "inputLang": "fr-CA",
+      "localeRoot": "fr",
+      "labels": {
+        "chooseRoleStep": "Choisissez à qui cette pièce est destinée",
+        "chooseOptionsStep": "Choisissez la taille et les options",
+        "readyToAdd": "Prête à être ajoutée",
+        "addCurrentPiece": "Ajouter cette pièce au panier"
+      }
+    },
+    {
+      "source": "candidate",
+      "sourceSha256": "3f830b1bd48153ee4ac429240928a2eb8316e95a436e3c53e8743d3d8c5bba20",
+      "inputLang": "en",
+      "localeRoot": "en",
+      "labels": {
+        "chooseRoleStep": "Choose who this piece is for",
+        "chooseOptionsStep": "Choose size and options",
+        "readyToAdd": "Ready to add",
+        "addCurrentPiece": "Add this piece to bag"
+      }
+    }
+  ],
+  "checks": {
+    "candidateFrAndFrCAExactFourLabels": true,
+    "mainFrFallsBackToEnglish": true
+  }
+}

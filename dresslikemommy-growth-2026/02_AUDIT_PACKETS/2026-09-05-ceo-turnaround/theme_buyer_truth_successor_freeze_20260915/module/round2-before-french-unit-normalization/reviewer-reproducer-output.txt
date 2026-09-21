@@ -1,0 +1,65 @@
+PROVISIONAL_SOURCE_SHA256 86c6bf6ab98ee2a61f60dd755c41a2861c3d371d040db45655de23e9ce0f46b3
+{
+  "sourceSha256": "86c6bf6ab98ee2a61f60dd755c41a2861c3d371d040db45655de23e9ce0f46b3",
+  "observations": [
+    {
+      "case": "available Mother M option but source chart contains only Mother L",
+      "expected": "no tooltip measurements for a different size",
+      "actualRow": null,
+      "sourceTable": null,
+      "pass": true
+    },
+    {
+      "case": "Cardigan table ID/heading but explicit Dress Length column",
+      "expected": "do not present another garment column as Cardigan measurements",
+      "actualHeaders": [
+        {
+          "raw": "Size",
+          "label": "Size",
+          "units": []
+        },
+        {
+          "raw": "Weight (kg/lbs)",
+          "label": "Weight",
+          "units": [
+            "kg",
+            "lbs"
+          ]
+        },
+        {
+          "raw": "Chest/Bust (cm/in)",
+          "label": "Chest/Bust",
+          "units": [
+            "cm",
+            "in"
+          ]
+        },
+        {
+          "raw": "Hip (cm/in)",
+          "label": "Hip",
+          "units": [
+            "cm",
+            "in"
+          ]
+        },
+        {
+          "raw": "Waist (cm/in)",
+          "label": "Waist",
+          "units": [
+            "cm",
+            "in"
+          ]
+        },
+        {
+          "raw": "Garment Length (cm/in)",
+          "label": "Garment Length",
+          "units": [
+            "cm",
+            "in"
+          ]
+        }
+      ],
+      "pass": true
+    }
+  ]
+}

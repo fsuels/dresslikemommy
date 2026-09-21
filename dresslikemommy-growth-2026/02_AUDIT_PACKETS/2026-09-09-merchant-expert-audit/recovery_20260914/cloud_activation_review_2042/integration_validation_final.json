@@ -1,0 +1,68 @@
+{
+  "status": "LOCAL_FINAL_VALIDATION_PASS__INDEPENDENT_REVIEW_PENDING",
+  "observedAt": "2026-09-14T21:08:21.743908+00:00",
+  "supersedes": "integration_validation.json",
+  "changesSincePrevious": [
+    "16minute token safety margin covers15minute Queue invocation plus1minute",
+    "Split Cloudflare variables remain1643and3461bytes and reconstruct unchanged reviewed config exactly",
+    "Missing or ambiguous external hold binding fails closed",
+    "Fixed actual prior-review evidence path"
+  ],
+  "runtimeSuite": {
+    "command": "node --test test/*.test.mjs",
+    "tests": 77,
+    "pass": 77,
+    "fail": 0,
+    "exitCode": 0,
+    "log": "runtime-tests-final.txt",
+    "logSha256": "8edb4c0e79f21a2b8cf4310188ad5b7f4bec942bb1b8192789a937cd2a8edecd"
+  },
+  "packaging": {
+    "command": "wrangler deploy --dry-run --config wrangler.toml --env-file /dev/null --experimental-autoconfig=false --outdir package-final --metafile package-final/bundle-meta.json",
+    "wranglerVersion": "4.86.0",
+    "exitCode": 0,
+    "reportedBundleKiB": 70.44,
+    "reportedGzipKiB": 18.73,
+    "didDeploy": false,
+    "externalWrite": false
+  },
+  "variableBytes": {
+    "SHOPIFY_AUTH_MODE": 18,
+    "MERCHANT_CONFIG_JSON": 1643,
+    "MERCHANT_ELIGIBILITY_HOLDS_JSON": 3461
+  },
+  "effectiveConfigEqualsReviewedJson": true,
+  "effectiveConfigPreservesFingerprint": true,
+  "configJsonSha256": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+  "files": {
+    "src/admin-reader.js": "77c501a87a66cc6b391be840dcc1557c992e4a02527c18f24928382d3d4ff326",
+    "src/automation.js": "d85d465ff5fe7ae0b9f2f564c6c30a11416b782e7a161509365770e7f3cb4be5",
+    "src/checkpoint.js": "5c859d5e8d336420324ae87b356269b4f25734ced709c0d3213606ad27d6ab5a",
+    "src/collector.js": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8",
+    "src/eligibility.js": "5441bb6aade0f2900f3770602109e14f0e4e964d3e819fff77bf935350038ac8",
+    "src/generator.js": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f",
+    "src/host.js": "666883d2d62989ef57f11e2a4b2ac5f067c2fc68478b14db908d219c5e7c6518",
+    "src/queries.js": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9",
+    "src/shopify-auth.js": "11c3253ff5a5a4afcdf15d32e46d368a656078d604f769f918079b720256a8d3",
+    "src/stream-publish.js": "bf49e3dedc35120edba1c6483260e1739f3953e92cca320f362a8c863afa508e",
+    "src/worker.js": "00288587ad8f555e07e4244901d0c4fd24125f9f88eb1d78cc5b7722bbc60941",
+    "config.json": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8",
+    "wrangler.toml": "1c852929a6aff41443e316b701125fee67037bb1de4abeea50adacfd6ba60c4e",
+    "package.json": "b9b3f45df1dcabae85da66410d29da4fb58c947108b472d52f6375e9cf432d0f",
+    "test/auth-integration.test.mjs": "864a3905d1f1715873e86a8b04a21f33f442c686b051d29afe6a829a11ba149b",
+    "test/shopify-auth.test.mjs": "e028f85cd6cb3580e77c0006753adbaed72fba417afaf3c07451580314b908cc"
+  },
+  "bundleFiles": {
+    "package-final/README.md": "24aa0382f9bc72310e9d612f4cd11c9637446e63ce8871bfa10dbf00ddd9a9f5",
+    "package-final/automation.js": "5dac031ca9f8f6d25324bef43557373332f3898bb6335892da8b696b1300b256",
+    "package-final/automation.js.map": "48f80af03d3216cc8410414efba4859ef49648b5cd63428955879d172e4a5dce",
+    "package-final/bundle-meta.json": "fa5b02ce0094fad55a4ca953e3d05ea07dcbc032158dbc14a604e8a5ff79c885"
+  },
+  "priorHoldReview": "../cloud_hold_independent_review_2042/review.json",
+  "tokenRepairReceipt": "../cloud_readonly_auth_2046/cache_lifetime_repair_receipt.json",
+  "credentialTransfer": false,
+  "appCreation": false,
+  "queueCreation": false,
+  "liveLimitedTokenCheck": "NOT_RUN",
+  "productionRefresh": "NOT_RUN"
+}

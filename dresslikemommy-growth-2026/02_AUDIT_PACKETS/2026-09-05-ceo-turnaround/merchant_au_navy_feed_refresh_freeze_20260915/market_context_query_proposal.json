@@ -1,0 +1,49 @@
+{
+  "schema": "dlm.au.market-context-query-proposal.v1",
+  "status": "LOCAL_SOURCE_REVIEW_COMPLETE__FRESH_SCHEMA_VALIDATION_AND_READ_NOT_RUN",
+  "created_at_utc": "2026-09-15T01:11:34.410Z",
+  "scope": "Read-only proposal; no external calls, credentials, config/code changes or source-clock update. Frozen workflow inventory unchanged.",
+  "paths": {
+    "deployment": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment",
+    "recovery": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914"
+  },
+  "discrepancy": {
+    "configured_market": "gid://shopify/Market/544866401",
+    "dedicated_australia_market": "gid://shopify/Market/22986424417",
+    "evidence": "Root reports both ACTIVE at 2026-09-15 00:42 UTC; stored navy_size_consistency_0005/markets_before.json independently contains both identities/statuses. Names alone cannot establish effective catalog assignment.",
+    "configured_catalog": "gid://shopify/MarketCatalog/910622817",
+    "configured_publication": "gid://shopify/Publication/77105823841"
+  },
+  "guard_findings": [
+    "collector.js:22-35 queries country-resolved catalogs; rejects non-AUD currency, incomplete/inactive catalogs, absent configured ACTIVE market membership, and changed catalog/publication IDs.",
+    "Membership uses some(), not uniqueness. A catalog shared by Australia and International passes with the old market ID. This does not identify a unique winning country market.",
+    "collector.js:85 checks globally published locale; it does not verify AU web-presence languages. Country AU still drives contextual prices and publication checks (90,112); configured marketId drives translation scope. An ID/name discrepancy alone does not prove incorrect AUD prices.",
+    "collector.js:156-157 compares start/end context. generator.js:141-150 rechecks currency, membership, catalogs and exact configured snapshot market."
+  ],
+  "offline_checks": {
+    "method": "Imported existing readMarketContext; five injected fixtures, no external reader.",
+    "legacy_membership": "PASS",
+    "dedicated_au_only": "configured_market_not_resolved",
+    "shared_legacy_and_au": "PASS",
+    "changed_catalog": "resolved_catalog_identity_changed",
+    "changed_currency": "resolved_market_currency_mismatch"
+  },
+  "query": "query MerchantAuContextPreflight($country: CountryCode!, $after: String) {\n  shop {\n    id\n    primaryDomain { marketWebPresence {\n      id defaultLocale { locale published }\n      alternateLocales { locale published }\n      rootUrls { locale url }\n    } }\n  }\n  shopLocales { locale primary published }\n  markets(first: 50) {\n    nodes {\n      id name status\n      conditions {\n        conditionTypes\n        regionsCondition {\n          applicationLevel\n          regions(first: 250) {\n            nodes { __typename ... on MarketRegionCountry { code } }\n            pageInfo { hasNextPage endCursor }\n          }\n        }\n      }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n  marketsResolvedValues(buyerSignal: { countryCode: $country }) {\n    currencyCode\n    catalogs(first: 50, after: $after) {\n      nodes {\n        id status publication { id }\n        markets(first: 50) {\n          nodes { id name status }\n          pageInfo { hasNextPage endCursor }\n        }\n      }\n      pageInfo { hasNextPage endCursor }\n    }\n    webPresences(first: 50) {\n      nodes {\n        id defaultLocale { locale published }\n        alternateLocales { locale published }\n        rootUrls { locale url }\n      }\n      pageInfo { hasNextPage endCursor }\n    }\n  }\n}",
+  "variables": {
+    "country": "AU",
+    "after": null
+  },
+  "query_provenance": [
+    "deployment/automation_release_v1/src/queries.js:2-5,19-29",
+    "recovery/market_matrix_refresh_2005/shopify_source_evidence.json: queries[0..2], previously validated artifacts 49b73f1a-09a6-4f96-8e72-dc431c6153bc, ee53f62c-61a2-4d1d-87d0-19c4d841acfb, 5ee851de-6a0d-434f-a46a-e7c4c35a68af",
+    "recovery/market_matrix_refresh_2005/schema_validation.json: observed 2026-09-14T20:25:39.578Z; QueryRoot, MarketsResolvedValues, Market, MarketConditions, RegionsCondition, MarketRegionCountry, MarketWebPresence, ShopLocale."
+  ],
+  "interpretation": [
+    "Root must freshly discover/validate selected schema fields, then execute this composed query; its exact new text has not received external validation.",
+    "Confirm shop identity. Inspect actual AU currency, complete resolved catalog/publication IDs and their ACTIVE market memberships; compare Australia/International country conditions, including applicationLevel and conditionTypes. Do not substitute market names for these results.",
+    "Use resolved web-presence default/alternate locales and root URLs, intersecting published shopLocales. If none resolve, inspect the returned primary-domain presence; absence is not proof that languages are unsupported.",
+    "Require every nested pageInfo.hasNextPage=false. Paginate catalogs with after; if another connection is incomplete, use separately schema-validated pagination before drawing a completeness conclusion.",
+    "Dedicated AU-only membership or a different effective catalog requires a newly reviewed AU config/freeze and new full AU collection. Shared membership may remain compatible; verify applicable conditions instead of changing IDs reflexively. Multi-catalog resolution violates the current single-reviewed-catalog contract.",
+    "This preflight establishes configuration context, not full product inclusion, variant prices, landing behavior, checkout or Google serving."
+  ]
+}

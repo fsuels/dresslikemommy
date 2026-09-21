@@ -1,0 +1,134 @@
+{
+  "schema": "dlm.sizing_table_cells_independent_prewrite_review.v1",
+  "action_id": "TA20-SIZING-GUIDE-EDITORIAL-20260914",
+  "revision": 4,
+  "reviewed_at_utc": "2026-09-14T23:04:30.277544+00:00",
+  "reviewer": "/root/daily_operation_review",
+  "verdict": "PASS_WITH_LIMITS",
+  "blocking_findings": [],
+  "target_id": "gid://shopify/Article/559700574305",
+  "candidate_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "before_body_sha256": "367db0385db73a1a31c81af0f99184d693a1a57db5790748bd1ae63857f68c98",
+  "checks_passed": 16,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "id": "exact_existing_target_and_before_hash",
+      "status": "PASS",
+      "evidence": "Exact existing published article and saved revision3 source body are bound."
+    },
+    {
+      "id": "revision_four_candidate_hash",
+      "status": "PASS",
+      "evidence": "Exact final cell-correction candidate bytes independently hashed."
+    },
+    {
+      "id": "three_header_nine_data_cell_changes",
+      "status": "PASS",
+      "evidence": "Only the three table headers and nine data cells receive one white-space style attribute each."
+    },
+    {
+      "id": "forward_and_twelve_cell_reverse_exact",
+      "status": "PASS",
+      "evidence": "All twelve direct cell changes reproduce the candidate and reverse exactly to revision3."
+    },
+    {
+      "id": "balanced_unchanged_structure_and_text",
+      "status": "PASS",
+      "evidence": "Balanced element sequence, every text node and all four shopping/support links are unchanged."
+    },
+    {
+      "id": "only_twelve_cell_attributes",
+      "status": "PASS",
+      "evidence": "Exactly twelve th/td style attributes changed; the table style and every other attribute remain unchanged."
+    },
+    {
+      "id": "table_layout_and_wrap_retained",
+      "status": "PASS",
+      "evidence": "Reviewed fixed 100-percent table layout and inherited overflow-wrap:anywhere remain intact."
+    },
+    {
+      "id": "explicit_cell_css_failure_evidence",
+      "status": "PASS",
+      "evidence": "Saved rendered evidence falsifies inherited wrapping: the theme directly declares nowrap on cells without important priority. Prior revision3 rendered result remains FAILED."
+    },
+    {
+      "id": "direct_normal_override_addresses_observed_rule",
+      "status": "PASS",
+      "evidence": "A direct inline normal declaration on every affected cell overrides the observed non-important author stylesheet nowrap declaration, unlike the previous inherited table value. This is CSS reasoning only; computed styles and visual acceptance still require root verification."
+    },
+    {
+      "id": "exact_body_only_mutation",
+      "status": "PASS",
+      "evidence": "One exact article body update is proposed; no theme or unrelated field mutation."
+    },
+    {
+      "id": "failure_rollback_restores_corrected_revision_two",
+      "status": "PASS",
+      "evidence": "Both failure rollback files restore corrected revision2, retaining factual advice and contact links. They do not restore the original unsafe sizing copy; require an exact current after-body guard and preserve intervening changes."
+    },
+    {
+      "id": "twelve_original_fields_preserved",
+      "status": "PASS",
+      "evidence": "All twelve protected fields still match the initial article before-state in the current saved revision3 readback."
+    },
+    {
+      "id": "source_body_and_nonbody_content_preserved",
+      "status": "PASS",
+      "evidence": "Source body/digest and five unchanged nonbody translatable entries independently verified from the saved source."
+    },
+    {
+      "id": "ninety_translation_values_preserved",
+      "status": "PASS",
+      "evidence": "All90 translation values match the initial fingerprints; eighteen body values are already outdated and remain untranslated by this correction."
+    },
+    {
+      "id": "root_preservation_receipt_consistent",
+      "status": "PASS",
+      "evidence": "The supplied130-check revision3 source-preservation receipt agrees with independent field/value/hash checks; it does not override the separate rendered layout failure."
+    },
+    {
+      "id": "same_validated_single_operation",
+      "status": "PASS",
+      "evidence": "Same frozen single articleUpdate and supplied schema-validation success; no new schema or remote action performed."
+    }
+  ],
+  "source_sha256": {
+    "change-plan.json": "07862e6810caa5c710af75b6e2055371d750908748426a8d6fea7f3caa0b26a9",
+    "candidate-final.html": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+    "mutation-variables.json": "02ac9fd722897e4220f33c9bccbd0c2267dc88a2df4ea35182d81605b8b65ece",
+    "rollback-variables.json": "3cbda9a2c45fc8dd213766f38e797c69554aa9827779fd1dee2aa13f5acf7c1c",
+    "../table-layout/article-after.json": "ea0b3dd30fab3d351b1ae02c23cdc6ac1f901bc77e82b7cc9891f9c934b5ef23",
+    "../table-layout/translations-after.json": "d689281500e874a0e5446f8566748cd27e71ce4343f5e90ed6c72a05049f2dd3",
+    "../table-layout/PUBLIC_LAYOUT_CHECK.json": "e6df7197794dbf5db37d8e6fd938335668cdff7a15be8b2b361407bf6600e401",
+    "../table-layout/rollback-variables.json": "3cbda9a2c45fc8dd213766f38e797c69554aa9827779fd1dee2aa13f5acf7c1c",
+    "../FINAL_PRESERVATION_CHECKS.json": "07a4b2f2f94f671a1a91055ce27a0fd3b01c9d7b4019e1d2fa1099412ace3c9b",
+    "../change-plan.json": "4960d5976e7a411b4e17ec24c5940e6b33526d79a0d08176e9ae71663cb1f704",
+    "../INDEPENDENT_PREWRITE_REVIEW.json": "9f22208f6aed560cdd25efcede3b12ba91b96604d0d3df5bed7570a7faad8d4b",
+    "../mutation.graphql": "7cec8ec41c1082ff46178895b4581bc9c780e7baa86c55688f95596d1ec2c95a",
+    "../mutation-validation.json": "a2d2b3ca34d0c9c660e93e73b299144a8cb1c462dba7d6a5d9743ed87a5799bc"
+  },
+  "scope_verdict": "Twelve direct cell white-space overrides are justified by newly observed explicit non-important cell CSS. Text, links, element order, reviewed table layout and all other store surfaces are preserved.",
+  "previous_rendered_result": "Revision3 LAYOUT_FAILED: source-preservation PASS does not establish rendered acceptance. This candidate changes the now-identified cell-level cause.",
+  "rollback_on_failure": {
+    "target_revision": 2,
+    "body_sha256": "7f8ccb04c9e4951b00b1a4c123640b46f2b090da700784b5f96bf2e2ab2ed975",
+    "variables": "rollback-variables.json (byte-equivalent object to ../table-layout/rollback-variables.json)",
+    "condition": "If final rendered acceptance fails, parent should use a fresh exact current-body guard and restore corrected revision2; stop this layout iteration rather than restoring unsupported original advice.",
+    "side_effect_limit": "Body metadata and stale translation timestamps may not reverse exactly."
+  },
+  "limitations": [
+    "This review is static and based on frozen root live-read receipts; reviewer performed no browser/account mutation or independent live render.",
+    "Inline cell normal overrides the observed non-important rule in the normal cascade, but actual persisted styles, all12computed cells, overflow-wrap inheritance and readable wrapping must still be checked after publication.",
+    "All90 translation values and12protectedfields must remain unchanged;18localized bodies remain outdated and contain the prior advice.",
+    "No measured traffic, purchase or profit improvement is established."
+  ],
+  "required_after_state": [
+    "Fresh exact revision3 body and protected-field guard before the third article-body write.",
+    "Exact revision4 saved body plus independent original-to-final field/source/translation comparison.",
+    "Root mobile and desktop published verification: all12cells computed white-space normal, text readable and no table, cell or document horizontal overflow.",
+    "Preserve factual shopping/contact routes; no cart, checkout, purchase or contact submission.",
+    "If rendered acceptance fails, execute only the guarded corrected-revision2 rollback and record the unresolved layout limitation."
+  ],
+  "next_action": "Parent may execute this exact reviewed cell correction after fresh source guard, then provide final frozen source and rendered evidence."
+}

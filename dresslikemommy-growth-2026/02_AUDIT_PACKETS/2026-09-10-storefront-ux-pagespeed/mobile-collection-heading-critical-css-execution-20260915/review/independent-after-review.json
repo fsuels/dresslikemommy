@@ -1,0 +1,852 @@
+{
+  "scopeId": "TA06-MOBILE-H1-CRITICAL-PLACEMENT-20260915",
+  "status": "PASS_WITH_LIMITS",
+  "confidence": "H",
+  "reviewedAtUtc": "2026-09-15T07:13:34.536880+00:00",
+  "reviewer": "/root/main_sync_review",
+  "independence": "Reviewer did not build or execute this repair. Review used saved raw API, browser and trace evidence; no browser/API/Git/source mutation was performed.",
+  "verdicts": {
+    "source": "PASS",
+    "renderedHeadingAndPreservation": "PASS",
+    "interactions": "PASS",
+    "headingFirstPaintAndCLS": "PASS_QUALIFIED",
+    "exactTwoCSSLocalCopy": "ACCEPTED_WITH_EXISTING_LOCAL_DRIFT_GUARD",
+    "overallPageSpeed": "NOT_CERTIFIED",
+    "publication": "NO_AUTHORITY_FROM_THIS_REVIEW"
+  },
+  "summary": [
+    "The single head03 save at 07:01:18Z matches the frozen payload and exact after bytes. Raw readbacks preserve all 526 other candidate inventory records, saved body07, candidate identity/role and all 525 MAIN records plus metadata. The actual 527-file map is bound to the after readback; all 527 mapped local SHA256/MD5/size values match their API inventories.",
+    "All 16 raw rendered pairs support the 208-check comparison: unchanged labels, routes, product order, country/cart and desktop geometry; readable single mobile H1, hidden support/image blocks, full-width text and no horizontal overflow. Independent raw evidence supports all 11 interactions, including actual price-sort navigation, both controls, restored full product order, category/product arrivals and cart zero.",
+    "All five trace hashes and navigation/frame-bound metrics reconcile. Three corrected 390px CLS runs are 0.039574619981433204, below 0.04527027807507376 before heading and the failed body-only runs. 760px is 0.05311951665809481; desktop 0.005162570868847971 equals its body-only baseline. Independent visual inspection of frames 0003/0004/0006 shows the heading; frame0004 at 980.873ms follows FCP966.066ms and precedes body07 response998.195ms. Czech/Arabic320 settled images are readable.",
+    "Exact head03 fe043438… and body07 cde012… are accepted for the parent-owned two-file local copy, preserving all other local edits. Served CSS equivalence is verified while preserving descendant-selector whitespace. Initial reviewer normalization failed only because the minifier omitted two spaces before !important; that failure and precise correction remain recorded."
+  ],
+  "limitations": [
+    "Mobile FCP966–1426ms remains slower than the earlier258ms sample. Late CSS discovery supports an earlier navigation/discovery delay but does not establish cause or general speed improvement.",
+    "Bounded desktop-browser main-frame cache-bypass traces retain existing US/USD preview cookies, connections and unthrottled CPU/network. They exclude other frames and do not certify PageSpeed, CrUX, real-device, sales or conversion improvement.",
+    "Image-enabled and scroll-reveal runtime branches remain disabled; Arabic preserves baseline LTR and is not full RTL certification. No cart/checkout order or cookie/country-independent arrival was tested.",
+    "Original body-only failures, premature sort captures and instrumentation histories remain preserved. Local-copy acceptance grants no Publish, MAIN write or Git push authority."
+  ],
+  "nextAction": "Parent checks local drift, copies exactly the two accepted CSS sources into local main, verifies those bytes and preservation, and completes the existing release handoff.",
+  "acceptedLocalFiles": [
+    {
+      "filename": "assets/theme-inline-head-static-03.css",
+      "sourcePath": "source/assets/theme-inline-head-static-03.css",
+      "sha256": "fe0434381d34757f889dcf3e2c2bc86defe2c16e1987d52e97a69bcd49b87d31",
+      "md5": "5af87229fdfba2daeed15f0f511982d7",
+      "bytes": 14552
+    },
+    {
+      "filename": "assets/theme-inline-body-static-07.css",
+      "sourcePath": "../mobile-collection-heading-execution-20260915/source/assets/theme-inline-body-static-07.css",
+      "sha256": "cde012519aca7deab9cb065962166e8010dfee9a720405d0958b25f89f620736",
+      "md5": "70bc51581a240afcb82f16366384fa0a",
+      "bytes": 1019
+    }
+  ],
+  "actual527BindingSha256": "1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058",
+  "independentChecks": {
+    "count": 39,
+    "passed": 39,
+    "failed": [],
+    "results": {
+      "actual_map_exact_hash": true,
+      "main525_and_all_selected_metadata_bytefields_unchanged": true,
+      "candidate_unique_complete527_samekeys": true,
+      "candidate_only_head_inventory_row_changes": true,
+      "candidate_protected_metadata_exact": true,
+      "roles_and_processing": true,
+      "selected_body07_record_exact": true,
+      "head_api_body_checksum_size": true,
+      "body_api_body_checksum_size": true,
+      "before_and_after_exact_reviewed_head": true,
+      "after_body07_exact_cde012": true,
+      "actual527_parentkeys_exact": true,
+      "actual526_prior_hashes_exact": true,
+      "actual527_local_sha_md5_size_and_api_inventory": true,
+      "before527_matches_parent_inventory": true,
+      "scope_variables_hash_exact": true,
+      "scope_mutation_hash_exact": true,
+      "scope_rollback_hash_exact": true,
+      "scope_independent_review_hash_exact": true,
+      "scope_proposal_hash_exact": true,
+      "payload_one_exact_head": true,
+      "one_successful_mutation_result": true,
+      "guard_mutation_readback_chronology": true,
+      "PREWRITE_GUARDS.json_receipt_binding": true,
+      "AFTER_GUARDS.json_receipt_binding": true,
+      "before_case_binding_exact": true,
+      "all16_raw_render_pairs": true,
+      "root208_checks_agree": true,
+      "all11_interaction_readbacks": true,
+      "two_served_css_equivalent": true,
+      "critical-dresses-1280_hash": true,
+      "critical-dresses-390-firstpaint-detail_hash": true,
+      "frame0004_between_fcp_body_response": true,
+      "critical-dresses-390-repeat_hash": true,
+      "critical-dresses-390_hash": true,
+      "critical-dresses-760_hash": true,
+      "all5_frame_bound_trace_metrics": true,
+      "three390_cls_below_preheading": true,
+      "desktop_cls_exact_body_baseline": true
+    }
+  },
+  "renderedPairs": [
+    {
+      "label": "critical-dresses-390",
+      "width": 390,
+      "lang": "cs",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "hidden_support_and_image": true,
+        "padding_and_basis": true,
+        "category_below_heading": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-dresses-320",
+      "width": 320,
+      "lang": "cs",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "hidden_support_and_image": true,
+        "padding_and_basis": true,
+        "category_below_heading": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-dresses-749",
+      "width": 749,
+      "lang": "cs",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "hidden_support_and_image": true,
+        "padding_and_basis": true,
+        "category_below_heading": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-dresses-750",
+      "width": 750,
+      "lang": "cs",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "hidden_support_and_image": true,
+        "padding_and_basis": true,
+        "category_below_heading": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-dresses-767",
+      "width": 767,
+      "lang": "cs",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "hidden_support_and_image": true,
+        "padding_and_basis": true,
+        "category_below_heading": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-dresses-768",
+      "width": 768,
+      "lang": "cs",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "desktop_geometries": true,
+        "desktop_support_exact": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-dresses-1280",
+      "width": 1280,
+      "lang": "cs",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "desktop_geometries": true,
+        "desktop_support_exact": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-mother-daughter-1280",
+      "width": 1280,
+      "lang": "cs",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "desktop_geometries": true,
+        "desktop_support_exact": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-mother-daughter-390",
+      "width": 390,
+      "lang": "cs",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "hidden_support_and_image": true,
+        "padding_and_basis": true,
+        "category_below_heading": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-mother-daughter-320",
+      "width": 320,
+      "lang": "cs",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "hidden_support_and_image": true,
+        "padding_and_basis": true,
+        "category_below_heading": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-mommy-and-me-1280",
+      "width": 1280,
+      "lang": "en",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "desktop_geometries": true,
+        "desktop_support_exact": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-mommy-and-me-320",
+      "width": 320,
+      "lang": "en",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "hidden_support_and_image": true,
+        "padding_and_basis": true,
+        "category_below_heading": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-pajamas-1280",
+      "width": 1280,
+      "lang": "en",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "desktop_geometries": true,
+        "desktop_support_exact": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-pajamas-320",
+      "width": 320,
+      "lang": "en",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "hidden_support_and_image": true,
+        "padding_and_basis": true,
+        "category_below_heading": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-arabic-dresses-1280",
+      "width": 1280,
+      "lang": "ar",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "desktop_geometries": true,
+        "desktop_support_exact": true
+      },
+      "pass": true
+    },
+    {
+      "label": "critical-arabic-dresses-320",
+      "width": 320,
+      "lang": "ar",
+      "checks": {
+        "same_route_locale": true,
+        "draft_identity": true,
+        "single_readable_h1": true,
+        "inside_width": true,
+        "ordered_products": true,
+        "country_cart": true,
+        "console_and_filter": true,
+        "raw_capture_exact": true,
+        "hidden_support_and_image": true,
+        "padding_and_basis": true,
+        "category_below_heading": true
+      },
+      "pass": true
+    }
+  ],
+  "interactions": {
+    "native_filter_expanded": true,
+    "sorted_actual_url": true,
+    "both_sort_controls": true,
+    "changed_first_product": true,
+    "restored_actual_url": true,
+    "both_restored_controls": true,
+    "restored_full_order": true,
+    "category_actual_arrival": true,
+    "product_actual_arrival": true,
+    "console_clear": true,
+    "cart_preserved": true
+  },
+  "traceRuns": [
+    {
+      "label": "critical-dresses-1280",
+      "cls": 0.005162570868847971,
+      "fcpMs": 249.013,
+      "shiftCount": 2,
+      "pass": true,
+      "durationSeconds": 10.57
+    },
+    {
+      "label": "critical-dresses-390-firstpaint-detail",
+      "cls": 0.039574619981433204,
+      "fcpMs": 966.066,
+      "shiftCount": 2,
+      "pass": true,
+      "durationSeconds": 11.184
+    },
+    {
+      "label": "critical-dresses-390-repeat",
+      "cls": 0.039574619981433204,
+      "fcpMs": 1157.761,
+      "shiftCount": 2,
+      "pass": true,
+      "durationSeconds": 11.227
+    },
+    {
+      "label": "critical-dresses-390",
+      "cls": 0.039574619981433204,
+      "fcpMs": 1425.575,
+      "shiftCount": 2,
+      "pass": true,
+      "durationSeconds": 10.902
+    },
+    {
+      "label": "critical-dresses-760",
+      "cls": 0.05311951665809481,
+      "fcpMs": 1053.751,
+      "shiftCount": 2,
+      "pass": true,
+      "durationSeconds": 11.113
+    }
+  ],
+  "traceTimingAndBaselines": {
+    "fcpMs": 966.066,
+    "frame0003Ms": 959.116,
+    "frame0004Ms": 980.873,
+    "bodyResponseMs": 998.195,
+    "frame0006Ms": 1048.089,
+    "before-dresses-390-comparable-trace.json": {
+      "cls": 0.04527027807507376,
+      "fcpMs": 258.647
+    },
+    "after-dresses-390-trace.json": {
+      "cls": 0.10356439770401292,
+      "fcpMs": 1834.245
+    },
+    "after-dresses-390-repeat-trace.json": {
+      "cls": 0.10799276858517014,
+      "fcpMs": 287.779
+    },
+    "before-dresses-760-trace.json": {
+      "cls": 0.09565015127330696,
+      "fcpMs": 254.297
+    },
+    "after-dresses-760-trace.json": {
+      "cls": 0.06059584779317187,
+      "fcpMs": 955.993
+    },
+    "after-dresses-1280-trace.json": {
+      "cls": 0.005162570868847971,
+      "fcpMs": 227.168
+    }
+  },
+  "servedCSS": [
+    {
+      "filename": "assets/theme-inline-head-static-03.css",
+      "servedSha256": "9c06ec76b24d68a5d349d7c4ce02556268f2a8a23919c5b510e84c062babe59e",
+      "sourceSha256": "fe0434381d34757f889dcf3e2c2bc86defe2c16e1987d52e97a69bcd49b87d31",
+      "pass": true,
+      "parent": "HEAD"
+    },
+    {
+      "filename": "assets/theme-inline-body-static-07.css",
+      "servedSha256": "a928f67e42479c969a765e62aac99b901cd10e9d792a595555a6b1cade3e3d4e",
+      "sourceSha256": "cde012519aca7deab9cb065962166e8010dfee9a720405d0958b25f89f620736",
+      "pass": true,
+      "parent": "BODY"
+    }
+  ],
+  "instrumentationHistory": [
+    {
+      "phase": "initial_reviewer_css_canonicalization",
+      "status": "FAILED",
+      "check": "two_served_css_equivalent",
+      "reason": "Body07 source contains two spaces before !important which the served minifier removes; every other canonical byte, including descendant-selector spaces, is identical."
+    },
+    {
+      "phase": "targeted_correction",
+      "status": "PASS",
+      "method": "Confirmed exactly two insignificant !important spaces account for the difference; no source or payload changed.",
+      "evidence": {
+        "only_difference_two_spaces_before_important": true,
+        "canonical_preserves_descendant_selector_spaces": true,
+        "after_local_receipt": {
+          "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/LOCAL_BEFORE_COPY.json",
+          "sha256": "cb0dadecbc7e148a3929a7772fb89c2020878d602cc79a4067323c58813efded",
+          "bytes": 1615,
+          "keys": [
+            "status",
+            "head",
+            "files"
+          ]
+        }
+      }
+    }
+  ],
+  "boundInputHashes": {
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/scope.json": {
+      "sha256": "1084a7106666602dda98aff3237a8bd48e9ba5700eeb384c92f001af335a88c9",
+      "bytes": 16703
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/before-readback.json": {
+      "sha256": "cc4448645442a0ab615dc0d9f2b721382bae2c3016bbccec4f2ca83284f12475",
+      "bytes": 272834
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/after-readback.json": {
+      "sha256": "f5e835029b640f8bf2da3762dfcdb6038e127927cfddcc4a47eb47847396114d",
+      "bytes": 273696
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/ACTUAL_527_SOURCE_BINDING.json": {
+      "sha256": "1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058",
+      "bytes": 225118
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/ACTUAL_527_SOURCE_BINDING.json": {
+      "sha256": "41c42505144c16bec4457f2e72e0881adf36d1c631ddc4c0a3fa4416ef8b3b95",
+      "bytes": 225022
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_mobile_heading_critical_proposal_freeze_20260915/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/payload/proposed-upload.variables.json": {
+      "sha256": "8b6e77940fc8ef2aff16d26ba79b82d70d12fe01130fa285b30d307d8cc1f543",
+      "bytes": 15400
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_mobile_heading_critical_proposal_freeze_20260915/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/payload/proposed-upsert.graphql": {
+      "sha256": "1550957c64be79ebdcb591f11ad7beaa859937ae13ee744c007ac5724dabfb6a",
+      "bytes": 269
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_mobile_heading_critical_proposal_freeze_20260915/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/payload/proposed-rollback.variables.json": {
+      "sha256": "f4b9d56c2b7d62cf1f1aae2d294af1f84dbba1d0a13e84b10a2e254b16c63365",
+      "bytes": 14538
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_mobile_heading_critical_proposal_freeze_20260915/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/review/independent-source-review.json": {
+      "sha256": "9152cb74ed09b85660be733d5e6c5a3b2548df8ade5ebbd44d9ed5c415b004c7",
+      "bytes": 13244
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_mobile_heading_critical_proposal_freeze_20260915/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-preparation-20260915/PROPOSAL.json": {
+      "sha256": "0225a80fd7a989c08ca5c7014aa019ab1366efcd9b67885ea8d40194cd717c5b",
+      "bytes": 16751
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/mutation-receipt.json": {
+      "sha256": "c90a26e3df7954823446f99bde91561773ab63c9197be27ff5317be48c128735",
+      "bytes": 1263
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/PREWRITE_GUARDS.json": {
+      "sha256": "25ff72a6fa2638292511017b24a8091c8ddffdedc7125d5e710d1f90aad34fb5",
+      "bytes": 4792
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/AFTER_GUARDS.json": {
+      "sha256": "7f9cec405d9a239ed3249a2a2583425c646c4d5c18adda74fc9c4a158a77f36e",
+      "bytes": 4930
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/BASELINE_AND_METHOD.json": {
+      "sha256": "1454ffe923cf66d2109d98be2387b38799a0295c14c7fa361f5c5431188f7676",
+      "bytes": 1353
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/after-cases.json": {
+      "sha256": "d1db365f7a1ce09dfce1f9f9cc0e17f79a1af9d8471cbfc6db4c9dc2aeb20ed1",
+      "bytes": 643635
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/after-shared-cases.json": {
+      "sha256": "816b4aaa02d47fa4c2598869f3735eae63abe65358485d43aa8463fab0077c2a",
+      "bytes": 351684
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/after-cases.json": {
+      "sha256": "728b60b8c808038d959f18a4fcffc7c2171224b18baa5a3d8d3df8c666d068e3",
+      "bytes": 643665
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/after-shared-cases.json": {
+      "sha256": "8d7323953c02359b779b80733d2c0af779b541bec59aaa839468e3e7d66d769c",
+      "bytes": 351702
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-390.json": {
+      "sha256": "8b87cafe231e5bcd8519a7fd391116faf72cbf90f9bb247efcf11965a778f076",
+      "bytes": 59699
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-390.ax.txt": {
+      "sha256": "ff2de546481215a98d49c2d4b8eedf09313021f91fd0f4e17642a9d8b3b58ac0",
+      "bytes": 33618
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-320.json": {
+      "sha256": "f2d5f38ac84d54b49632d35e3dfb9dab79fd6c171bd7427cfed2cac6566d99f4",
+      "bytes": 59583
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-320.ax.txt": {
+      "sha256": "e405a474402d477534a2cf6043f956c6325f9b367a0fe08e7707d21178b37580",
+      "bytes": 33601
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-749.json": {
+      "sha256": "4ef595757bb7c84d1d097b5f025bf7dcf3123bc58371b6e9d1a5946a272663c6",
+      "bytes": 59509
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-749.ax.txt": {
+      "sha256": "9d270e09a52fbd58c2849df710288d36f44f0442083a151f790e730ac1a584e3",
+      "bytes": 33327
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-750.json": {
+      "sha256": "5bb5da874d19a48b166c338dc6ac258835e3eed9db5bc8e50f4d8e38ab863901",
+      "bytes": 59916
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-750.ax.txt": {
+      "sha256": "2a5fc7c6aee3b200cb806d273558d86e91d7ab3b5b264b152fa0ebc00e6dee93",
+      "bytes": 34272
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-767.json": {
+      "sha256": "32578a914b95207620a36f58404dbcd1b12752ddd2cf6de96d256fb545eee302",
+      "bytes": 59646
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-767.ax.txt": {
+      "sha256": "20c3ba2c0899ad4c0936adf5250595877d01ae45b7bd1e3b747d5792312b6d8b",
+      "bytes": 34636
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-768.json": {
+      "sha256": "3073a4b534309ab06d2b4e28476a471b8416d5636267565c7237c16ab4cb40a6",
+      "bytes": 59944
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-768.ax.txt": {
+      "sha256": "b76c83a1fcbde0f84bfc33f522fd4e6a1c6e43d62a3a8d3d2027cc793c836465",
+      "bytes": 34885
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-1280.json": {
+      "sha256": "3059a8feb7cd9d63f74e0776bf3d48902f50806f91e15bfac137b9a550d4142f",
+      "bytes": 60085
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-1280.ax.txt": {
+      "sha256": "a4507ba927a16da972a6849801eac5cd4e78166d4cb1eb9fbca753be8f244b9d",
+      "bytes": 35901
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-mother-daughter-1280.json": {
+      "sha256": "c392ff0210d875e6dc8f63c5fea446f389597132259bec1d6d9f58d188159477",
+      "bytes": 60492
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-mother-daughter-1280.ax.txt": {
+      "sha256": "56d87b91e7265b1733ca7efdb545c1eec3de216f5c5b1458629bd4a807b6dcda",
+      "bytes": 35631
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-mother-daughter-390.json": {
+      "sha256": "402fba41dda11645eaafd8b005d8c9b47474e1c36e5cb09d59ee0603a824befe",
+      "bytes": 60107
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-mother-daughter-390.ax.txt": {
+      "sha256": "518f64b2afd4a33b9fc58de9e0307f65512828af191bb15d5df96f0a9b29a5a1",
+      "bytes": 33652
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-mother-daughter-320.json": {
+      "sha256": "9e3b6370e9abc1ac7001a214472f7d58249c9e7d6c84be08185f6ed60f80860b",
+      "bytes": 59991
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-mother-daughter-320.ax.txt": {
+      "sha256": "7dc5bd0837933a9177d66043256d92b8a23c032f6f10abb821ba1b06eca60dc6",
+      "bytes": 33737
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-mommy-and-me-1280.json": {
+      "sha256": "cfb66e52bb17323759ab2351cb1301c02a3a5a50d198c1f22655241b7d83f236",
+      "bytes": 60122
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-mommy-and-me-1280.ax.txt": {
+      "sha256": "779c7e7885dc7dad67888fe5346b75732a37687156419a4aa3f045998ee98c9d",
+      "bytes": 33214
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-mommy-and-me-320.json": {
+      "sha256": "d2435877a7083447b821f1e9969531393ec1c7c60ff3ff21c9d736f822f37203",
+      "bytes": 59715
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-mommy-and-me-320.ax.txt": {
+      "sha256": "4e8604c441cc774367a6c82a27b312a495a19c7130da259c9d86c56858d5edb1",
+      "bytes": 30764
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-pajamas-1280.json": {
+      "sha256": "38efe602884c1a7d3ee2c3be41212f1dee79f06fc90de89aabe36853e6e14b41",
+      "bytes": 42151
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-pajamas-1280.ax.txt": {
+      "sha256": "4f1b7ca5900ddde0f04f0a98defa88df5fc1a4252128cf33e26347a3c13f4c2d",
+      "bytes": 24892
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-pajamas-320.json": {
+      "sha256": "0128575f581d8dfc570d90db112c61ba0fd33fe956982d767d2e1b30c58e106c",
+      "bytes": 41770
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-pajamas-320.ax.txt": {
+      "sha256": "0262a852ee472e2c645f2e033867acd9aad1eefc53865e857aaf6d43d59d1186",
+      "bytes": 22225
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-arabic-dresses-1280.json": {
+      "sha256": "86ad57b36a4873fca07bf307182e7e0934e86bb484adf1559562c5d6e25e219f",
+      "bytes": 61879
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-arabic-dresses-1280.ax.txt": {
+      "sha256": "ef93ab1ba26a94dc020dc2475466b58e8e668c1c82ed50a76271bbbedba358ba",
+      "bytes": 42368
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-arabic-dresses-320.json": {
+      "sha256": "cbe85c2aa865541cc85e258444908680991383557badebd471c816dd5a8d123b",
+      "bytes": 61488
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-arabic-dresses-320.ax.txt": {
+      "sha256": "9b37006e201708b3bf7740c48bb1eedc57641c973284839ec6180b26a1c989f4",
+      "bytes": 39267
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/BROWSER_COMPARISON.json": {
+      "sha256": "781934bc82db20346ddf947b4b77fef389135af88a8b9451311146ca8c2d2132",
+      "bytes": 23982
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-price-sorted-settled.json": {
+      "sha256": "7fa22c26b91bdfdfbf05b476bb32a716679221cb441e488c7ea2002d64d497bb",
+      "bytes": 59596
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-sort-restored-settled.json": {
+      "sha256": "9c44d6864512d8416f2050990bcbb6d30a7fea71b1685437e078c0d1f4072a0b",
+      "bytes": 59558
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-category-pajamas-arrival.json": {
+      "sha256": "09ef19196135aee598cfa14d7be9cb0669fa4b57e41f4adf28408be18b2331ab",
+      "bytes": 41627
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/product-arrival.json": {
+      "sha256": "9673c46c0b59108d74806b251995da2c55d9e8b101ca7cb8b3a98499c0983130",
+      "bytes": 490
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/filter-open.ax.txt": {
+      "sha256": "cf98de24d3754711edfd35804f503b67c9703473afb684572e4a28b629793f2c",
+      "bytes": 34065
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/INTERACTION_ACCEPTANCE.json": {
+      "sha256": "dbd2a6d8a7fd52c3d40effecb83a1697976026a65b6d6dc8ca70df3305f2a689",
+      "bytes": 1351
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-price-sorted.json": {
+      "sha256": "7a5d12cec9161aa8614bdfe0d42c0f3a43a27afb53bedbf3420dd0bb32c18a76",
+      "bytes": 59405
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-price-sorted.ax.txt": {
+      "sha256": "baf7ee85cdf6c0cc5550df2a26fe0665a8b010d3308fa12ddcb36017b7ace213",
+      "bytes": 34061
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-sort-restored.json": {
+      "sha256": "193f4d83983e21c4eb6b8588f0c31c94dc56fa3cb138a08e7edaef606ee4eca7",
+      "bytes": 59409
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-sort-restored.ax.txt": {
+      "sha256": "6d2b538df450811fb6d2b1c21f68bd4a6daac4589947845a01d66dae12c14a1c",
+      "bytes": 34098
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/after-served-css.json": {
+      "sha256": "c0e7ff7363b2434ed0e11ec6ff9cfb32ed97fbf5450ce5f57b590371d3a0479d",
+      "bytes": 16926
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/SERVED_CSS_ACCEPTANCE.json": {
+      "sha256": "d8fe5098fe8f27d0c84824aa7db3f2c24536e0f64665672aec1c7dece9eecadd",
+      "bytes": 973
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/PERFORMANCE_ACCEPTANCE.json": {
+      "sha256": "01790021653f84a03a2f20fa1b643725572435a0d5832c3506209b3da72fabee",
+      "bytes": 7242
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-1280-trace.json": {
+      "sha256": "a0ab5df4f12f33535a5306838487172e065cd4da04777b332f935df3bab3988d",
+      "bytes": 18210
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-390-firstpaint-detail-trace.json": {
+      "sha256": "e4a39a9304e41b908ff60722a6ee77a35464372d758b51fc51a49717acb340b9",
+      "bytes": 21678
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-390-repeat-trace.json": {
+      "sha256": "75db233dc44f1710ef5d29fc45b123561cf9d98e2f2fb8dc7f63f4e6f55d1258",
+      "bytes": 19392
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-390-trace.json": {
+      "sha256": "694d892d5a473dedd4642517194f84a3955ef0a6167bc1454e43c204482e6cec",
+      "bytes": 21021
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-760-trace.json": {
+      "sha256": "ebe65450666fb5e0f0e539f1c2a44d4365d5dd312773e548ecba9d8a3045bd84",
+      "bytes": 21715
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/before-dresses-390-comparable-trace.json": {
+      "sha256": "f0b89c3e2f1b464753da13dd68674efa07fbb0bc4df8ec5fb170a3ca0caaf06b",
+      "bytes": 19466
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/after-dresses-390-trace.json": {
+      "sha256": "dbc7860453f4a970b768a0d6c26ad5e303d34bc2e000953a71b1a22459b63139",
+      "bytes": 22663
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/after-dresses-390-repeat-trace.json": {
+      "sha256": "04a08ae4fea9f62cda92f89c0a95ea7e4bb1124776881f57b142a70366aed975",
+      "bytes": 20259
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/before-dresses-760-trace.json": {
+      "sha256": "ccd82a8f888e087128f4d0e9a1e15c4d2910e1dd583b3f3a18a857a7d5850055",
+      "bytes": 20727
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/after-dresses-760-trace.json": {
+      "sha256": "a02c90c40b88397a792af120374010d46dce7cb938f842ff9a38d4020fc137fb",
+      "bytes": 20687
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-execution-20260915/browser/after-dresses-1280-trace.json": {
+      "sha256": "35a31f2e064002ea8f0a9b8ca565ca9fa84d70fab621022f1c3aff92f9a3458d",
+      "bytes": 19547
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-390-firstpaint-detail-filmstrip/0003.jpg": {
+      "sha256": "2654f9441fb8085b9b50da8d5ca20243b70ea1b643ae3f773ab8fbcb0dc51f23",
+      "bytes": 4306
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-390-firstpaint-detail-filmstrip/0004.jpg": {
+      "sha256": "d703eec731634911db0496017249a1299ab8835d330cdc5754967e68cbd185b5",
+      "bytes": 8921
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-390-firstpaint-detail-filmstrip/0006.jpg": {
+      "sha256": "0e3371ba36782fd1acfae4867c669f1ded01063443a4e9a0da2c5659085f2cec",
+      "bytes": 26703
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-dresses-320.png": {
+      "sha256": "a61db66ea8129e997ddeea0d8a62d0debbc08e5725acd528bae96bf871a5890c",
+      "bytes": 45954
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/browser/critical-arabic-dresses-320.png": {
+      "sha256": "49422dc1b58a094da380648fd5ff281d5912c79a91bbc1a74f1c08f0fda7e6fd",
+      "bytes": 44816
+    },
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/LOCAL_BEFORE_COPY.json": {
+      "sha256": "cb0dadecbc7e148a3929a7772fb89c2020878d602cc79a4067323c58813efded",
+      "bytes": 1615,
+      "reviewScope": "Metadata binding only; existing root bytes were not changed or audited from this receipt."
+    }
+  },
+  "externalWriteAuthority": false,
+  "gitPushAuthority": false,
+  "publishedMainAcceptance": false
+}

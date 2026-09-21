@@ -1,0 +1,24 @@
+{
+  "action_id": "TA20-SIZING-GUIDE-EDITORIAL-20260914",
+  "revision": 3,
+  "target_id": "gid://shopify/Article/559700574305",
+  "reason": "Published mobile QA found inherited nowrap enlarges table content from598px original to1022px in345px scroll area; improve readability within this article only.",
+  "changes": [
+    {
+      "before": "<table>",
+      "after": "<table style=\"display: table; width: 100%; table-layout: fixed; white-space: normal; overflow-wrap: anywhere;\">"
+    }
+  ],
+  "before_sha256": "7f8ccb04c9e4951b00b1a4c123640b46f2b090da700784b5f96bf2e2ab2ed975",
+  "candidate_sha256": "367db0385db73a1a31c81af0f99184d693a1a57db5790748bd1ae63857f68c98",
+  "copy_changed": false,
+  "scope": "One style attribute in article body table; no theme or other field edit.",
+  "before_article": "../article-after.json",
+  "before_translations": "../translations-after.json",
+  "protected_fields_source": "../change-plan.json",
+  "mutation_operation": "../mutation.graphql",
+  "validation": "../mutation-validation.json",
+  "expected_after": "Exact same text and links; table columns wrap within mobile content width;12protectedfields,5other sourcekeys and90translationvalues preserved.",
+  "rollback": "Body-only original corrected text without style; guard actual current body against after hash and preserve intervening edits. Original pre-editorial rollback remains separately retained.",
+  "business_lift_claimed": false
+}

@@ -1,0 +1,30 @@
+{
+  "action_id": "TA20-SIZING-GUIDE-EDITORIAL-20260914",
+  "revision": 4,
+  "target_id": "gid://shopify/Article/559700574305",
+  "before_sha256": "367db0385db73a1a31c81af0f99184d693a1a57db5790748bd1ae63857f68c98",
+  "candidate_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "reason": "Revision3 table-level white-space was insufficient. Current rendered CSS matches table th, table td {white-space:nowrap} with no important priority in public theme-inline-head-static-03.css. Override each of12cells directly within this article body.",
+  "changes": [
+    {
+      "before": "<th>",
+      "after": "<th style=\"white-space: normal;\">",
+      "count": 3
+    },
+    {
+      "before": "<td>",
+      "after": "<td style=\"white-space: normal;\">",
+      "count": 9
+    }
+  ],
+  "copy_changed": false,
+  "scope": "12cell style attributes only; inherited overflow-wrap:anywhere and reviewed table layout preserved. No theme or other field edit.",
+  "mutation_operation": "../mutation.graphql",
+  "validation": "../mutation-validation.json",
+  "before_article": "../table-layout/article-after.json",
+  "before_translations": "../table-layout/translations-after.json",
+  "protected_fields_source": "../change-plan.json",
+  "success": "All12cellcomputed white-space normal; no table/cell/document horizontal overflow on desktop/mobile, text readable. Exact candidate,12protectedfields/90translationvalues preserved.",
+  "rollback": "Body-only guarded revision2 corrected content available at ../table-layout/rollback-variables.json if formatting does not pass; do not restore unsupported sizing advice. Capture current body before rollback and preserve intervening edits.",
+  "business_lift_claimed": false
+}

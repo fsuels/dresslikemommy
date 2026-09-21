@@ -1,0 +1,75 @@
+{
+  "schema": "dlm.merchant_cloud_activation_plan.v1",
+  "status": "LOCAL_IMPLEMENTED__FINAL_REVIEW_PENDING__EXACT_ACCESS_APPROVAL_REQUIRED",
+  "merchantAccount": "513542500",
+  "shopifyShop": "gid://shopify/Shop/15571635",
+  "shopifyDomain": "dresslikemommy-com.myshopify.com",
+  "newAppName": "DLM Merchant Feed Reader",
+  "requestedScopes": [
+    "read_products",
+    "read_publications",
+    "read_markets",
+    "read_locales",
+    "read_translations",
+    "read_metaobjects"
+  ],
+  "credentialDestination": {
+    "cloudflareAccount": "6b1df53f8a1ce4b5b5312f833a2cd966",
+    "worker": "dlm-merchant-feed-worker",
+    "encryptedBindings": ["SHOPIFY_CLIENT_ID", "SHOPIFY_CLIENT_SECRET"],
+    "legacyAdminTokenTransfer": false,
+    "accessTokens": "Short-lived tokens obtained from the exact shop and cached in Worker memory only."
+  },
+  "cloudResources": {
+    "existingBucket": "dlm-merchant-feeds",
+    "newQueue": "dlm-merchant-feed-refresh",
+    "queueConcurrency": 1,
+    "schedule": "Hourly, at minute zero, UTC",
+    "initialMarket": "us-en",
+    "existingSource": "10727274744",
+    "existingPublicFeed": "https://dlm-merchant-feed-worker.dresslikemommy.workers.dev/feeds/us-en.tsv",
+    "billingChanges": false,
+    "otherMarketsEnabledByThisPlan": false
+  },
+  "behavior": [
+    "Read complete current Shopify products, publications, markets, language content, contextual prices and availability.",
+    "Include eligible active and purchasable variants, preserve six explicit product holds, and exclude unavailable or unpublished variants.",
+    "Publish a complete replacement only after every source and integrity check passes, so qualifying additions appear and removed or archived products leave the next successful replacement.",
+    "Preserve the existing good feed when a read or validation fails; retain the existing 48-hour source-age limit.",
+    "Google continues fetching the existing US source on its configured schedule. Hourly hosted generation does not imply hourly Google ingestion or approval."
+  ],
+  "implementationEvidence": "integration_validation_final.json",
+  "implementationEvidenceSha256": "39a5aacd0b4966c086508d5481604a3167ca02877b3563264a31839c4563c46a",
+  "localTests": {"passed": 77, "failed": 0},
+  "bundleSha256": "5dac031ca9f8f6d25324bef43557373332f3898bb6335892da8b696b1300b256",
+  "independentReview": "../cloud_final_independent_review_2102/",
+  "livePreconditions": [
+    "Owner approves creation and installation of this exact dedicated read-only app and encrypted client credentials at the named Cloudflare Worker.",
+    "Verify that the app and store meet Shopify's same-organization requirement. Stop if owner authentication, installation or organization access is required.",
+    "Verify granted scopes exactly, then complete a real collector run with the new limited credential. Do not add permissions silently or use the existing broad Admin token as a substitute.",
+    "Recheck current Worker deployment, settings, source pointer and exact reviewed implementation hashes before mutation.",
+    "Resolve and qualify the public-host HTTP403 observed during the single local GET at about21:15UTC. Do not claim Google has failed from that client response alone.",
+    "Confirm the existing account supports the proposed resources without a billing or plan change."
+  ],
+  "activationSequenceAfterApproval": [
+    "Create and install the dedicated app through a supported owner-authorized Shopify flow; retain credentials only in the private credential directory until destination storage is authorized.",
+    "Read back narrow scopes and complete a fresh limited-token source collection locally without publication.",
+    "Capture the exact current deployment and settings for rollback; preserve the existing R2 pointer and feed object.",
+    "Create the isolated queue, bind the dedicated encrypted credentials, and deploy the exact reviewed package with only us-en enabled.",
+    "Observe the first successful cloud job, inspect the complete source partition and pointer, verify public feed content and source age, then verify Google processing on the existing source.",
+    "Observe a later scheduled run before calling continuous operation verified. Maintain the existing local daily agent follow-up until that proof exists."
+  ],
+  "rollback": [
+    "Disable only the newly installed Merchant refresh trigger and queue consumer if the new job fails; preserve the last validated pointer.",
+    "Restore the captured prior Merchant Worker deployment and its read-only host settings after verifying the exact target.",
+    "Remove the new dedicated client bindings and revoke the new app if reverting the access change is required; never alter unrelated apps or Workers.",
+    "Do not restore an expired feed, weaken freshness checks, or replay a partial snapshot."
+  ],
+  "historicalApprovalGate": {
+    "source": "../../recovery_20260911/direct-feed-deployment/automation_activation_gate.json",
+    "date": "2026-09-11",
+    "reason": "Automatic approval review rejected transferring the existing Shopify Admin token to Cloudflare because the credential destination and access change were not explicitly authorized.",
+    "saferPreparedAlternative": "Separate app with only the six named read scopes; no existing broad credential transfer."
+  },
+  "executed": {"appCreated": false, "credentialTransferred": false, "queueCreated": false, "workerDeployed": false, "firstCloudRefreshVerified": false}
+}

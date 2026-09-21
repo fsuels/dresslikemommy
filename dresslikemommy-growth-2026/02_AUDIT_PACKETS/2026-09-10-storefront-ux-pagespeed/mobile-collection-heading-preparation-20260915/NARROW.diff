@@ -1,0 +1,37 @@
+--- before/assets/theme-inline-body-static-07.css
++++ proposal/assets/theme-inline-body-static-07.css
+@@ -1,8 +1,33 @@
+ /* Mobile view adjustments — collection pages */
+ @media (max-width: 767px) {
+-    /* Hide the collection title on mobile — the active pill already shows the name */
++    /* Show the existing heading; keep the compact mobile banner. */
+     .collection-hero {
++        display: block !important;
++    }
++
++    .collection-hero__image-container,
++    .collection-hero__text-wrapper > :not(.collection-hero__title) {
+         display: none !important;
++    }
++
++    /* Remove space reserved for the hidden collection image. */
++    .collection-hero.collection-hero--with-image,
++    .collection-hero .collection-hero__text-wrapper {
++        padding: 0;
++    }
++
++    .collection-hero .collection-hero__inner {
++        padding-bottom: 0;
++    }
++
++    .collection-hero .collection-hero__text-wrapper {
++        flex-basis: 100%;
++    }
++
++    .collection-hero .collection-hero__title {
++        margin: 1.8rem auto 0;
++        max-width: 24ch;
++        text-wrap: balance;
+     }
+ 
+     /* Small gap between search bar and pills */

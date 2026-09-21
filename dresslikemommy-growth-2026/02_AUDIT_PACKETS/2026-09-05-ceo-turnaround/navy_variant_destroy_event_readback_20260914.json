@@ -1,0 +1,30 @@
+{
+  "action_id": "NAVY-SPRIG-MISSING-VARIANT-DESTROY-HISTORY-20260914",
+  "read_at_utc": "2026-09-14 23:39:59 UTC",
+  "query": "query NavyMissingVariantDestroyEvents($after: String) {\n  events(first: 50, after: $after, query: \"subject_type:PRODUCT_VARIANT AND action:destroy AND created_at:>=2026-08-31 AND created_at:<2026-09-12 AND comments:false\") {\n    nodes { id action createdAt ... on BasicEvent { subjectId subjectType } }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+  "validation": "Schema-discovered QueryRoot.events/BasicEvent; connector and skill validators SUCCESS",
+  "returned_count": 50,
+  "exact_target_matches": [
+    {
+      "id": "gid://shopify/BasicEvent/162571097669729",
+      "action": "destroy",
+      "createdAt": "2026-09-02T16:16:33Z",
+      "subjectId": "gid://shopify/ProductVariant/46501286608993",
+      "subjectType": "PRODUCT_VARIANT"
+    },
+    {
+      "id": "gid://shopify/BasicEvent/162571097702497",
+      "action": "destroy",
+      "createdAt": "2026-09-02T16:16:33Z",
+      "subjectId": "gid://shopify/ProductVariant/46501286641761",
+      "subjectType": "PRODUCT_VARIANT"
+    }
+  ],
+  "unrelated_rows_persisted": false,
+  "pageInfo": {
+    "hasNextPage": true,
+    "endCursor": "eyJsYXN0X2lkIjoxNjI1NzczNjMwNzUxNjksImxhc3RfdmFsdWUiOiIxNjI1NzczNjMwNzUxNjkifQ=="
+  },
+  "errors": [],
+  "limitation": "Bounded filtered event surface, not a guaranteed complete audit of every deletion mechanism or fulfillment decision. No raw other-product event rows retained."
+}

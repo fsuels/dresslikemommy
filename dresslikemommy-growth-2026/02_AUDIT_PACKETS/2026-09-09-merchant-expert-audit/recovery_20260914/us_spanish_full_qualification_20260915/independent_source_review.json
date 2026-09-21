@@ -1,0 +1,61 @@
+{
+  "verdict": "PASS_WITH_LIMITS",
+  "qualification_decision": "ACCEPT_EXACT_FRESH_SOURCE_PARTITION",
+  "release_decision": "HOLD_PUBLISHED_BUYER_VARIANT_SELECTION_FAILED",
+  "independent": true,
+  "reviewer": "/root/merchant_translation_review",
+  "confidence": "High for saved-source fidelity and reproducible partition; public observations are root-saved evidence.",
+  "reviewed_at_utc": "2026-09-15T03:39:51.347943+00:00",
+  "private_source_sha256": "5b868f1470ec06834a9b74b2960021a24fcc6da1c1c6b17b8f6b2d094a39ad88",
+  "source_completed_at_utc": "2026-09-15T03:23:50.568Z",
+  "artifact_sha256": {
+    "collect_source_only.mjs": "7a4085b8b44f3f0b52051909c65dbe97d7e56b5eebdb67b7cca5368fdc930693",
+    "collection_receipt.json": "aec6e8b5ec3e92a85d0801b9c1b26f81f4308c073fbd0a304981527272dc5f67",
+    "execution_intent.json": "839754e89eae096546513f24bffc94df171521dea6be7f0211312c8f4ad28bb4",
+    "qualification.mjs": "f7f2c852e5077d2b493701f4ddcc376fce6c9efbe9511a05928976b73b020b83",
+    "source_qualification.json": "ae3ffe4879f37b1b008b585089c32dc7d783ba7460dc85f0d5a69e75ba373696",
+    "complete_source_partition.csv": "247bf1835d26f1c2c62073220fb7b3e199a72c5420306f5a024c3bbb08005bf6",
+    "parent_translation_qualification.csv": "f053f730655f57a5dc0c58e7f82d951fcc4a7745249a12f0aa69314d26ef7099",
+    "representative_plan.json": "6e342d6a2a276f4e583ee8d12f1adbbf8eb09cdebc67c96e293e808c8517b91a",
+    "buyer_readback.json": "34cfe4010ada9fc368c91a771a1fddd56ef5f0c0a8fb563ef2262a1a2142e7bb",
+    "root_reconciliation.json": "684cc956c3e5761a9b3278e4447b4eafb2b38752383275c8e1fc4d8e4d23537e"
+  },
+  "counts": {
+    "active_parents": 238,
+    "unique_source_variants": 4925,
+    "available": 4903,
+    "source_qualified_parents": 231,
+    "source_qualified_offers": 4718,
+    "existing_six_hold_offers": 162,
+    "unavailable": 22,
+    "required_stale_Tropical_offers": 23,
+    "selected_global_translations": 1186,
+    "selected_market_overrides": 0,
+    "current_translation_records": 1183,
+    "stale_translation_records": 3
+  },
+  "collection_and_clocks": "290 recorded requests reconcile to 288 completed pagination entries plus two identities. All 238 variant connections, initial/final manifests, exact counts, locale publication and country/catalog context match. Source 03:21:10.453–03:23:50.568Z; market translation observations 03:21:11.341–03:21:16.490Z, global observations 03:23:34.552–03:23:49.313Z. Original clocks retained; no cached replay presented as fresh.",
+  "context": "Shop15571635; United States market544735329; es/USD; catalog6881083489/publication77106053217 and Online Store55169925. Every parent ACTIVE and online/country/catalog published. Wrapper receipt pins and current 14-file dependency contract match.",
+  "independent_reconciliation": [
+    "Independently recomputed every source ID, availability and USD price; all 4925 CSV rows and all 238 parent rows match exactly. Disjoint partition confirms the previous conditional 4718 count as a current source-qualified count, not feed approval. Qualified prices USD14.99–39.99 and valid HTTPS image URLs.",
+    "All nontranslation product/variant fields equal the earlier US Color47 snapshot. All 25 repaired Spanish values and all 55 bounded values/flags are unchanged: 54 current, Tropical body stale. No cosmetic registration occurred.",
+    "All eight representative IDs, options, prices and exact /es links match the source: six protected offers plus Yellow and Golden Daisy. Language, US/USD query and numeric variant identity are correct in constructed links; construction is not browser acceptance."
+  ],
+  "raw_source_validation": {
+    "status": "PASS",
+    "validator": "Pinned validateSnapshot",
+    "evaluation_time": "2026-09-15T03:23:50.568Z",
+    "supplier_predicate_matches": 0,
+    "source_modified": false,
+    "redaction_before_validation": false,
+    "qualification": "Zero matches under the current predicate is not a complete semantic or internal-link audit."
+  },
+  "retained_issues": [
+    "Tropical7227378925665/body_html remains the sole required stale field, affecting23available variants; child-weight truth requires authoritative evidence. Preserve its separate factual hold and the existing six holds.",
+    "Optional stale product_type7537367679073 and meta_description7537372463201 remain unchanged; neither changes the current required title/body partition."
+  ],
+  "published_buyer_gate": "Root saved public observations at03:26:23.710Z and03:26:45.605Z match the first two representative URLs/source options/prices. Spanish and US/USD load, but39756755861601 and41883237220449 fail automatic variant selection and single-price/Add readiness. No preview parameter or manual repair; cart/checkout/mobile not tested. These actual failures supersede the plan-only NOT_RUN labels for those two cases; the other six representatives remain untested.",
+  "limits": "Keep enabled=false and landingContextVerified=false. No executable Spanish TSV, new Google source, upload, serving, sales or profit established. Current flags do not certify translation semantics. Raw source remains private; reviewer made no external calls, credential reads, source/code/config/feed/theme writes, or URL disclosures. Source-only acceptance does not authorize release.",
+  "local_review_notes": "Two diagnostic assertions were corrected locally: initial config path and an assumed supplier failure; actual raw validation passed. Parent CSV uses REJECTED rather than the older rejection label. These checker corrections required no artifact/source changes.",
+  "blocking_findings_against_source_reconciliation": []
+}

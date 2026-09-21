@@ -1,0 +1,117 @@
+{
+  "action": "TA20-GIFT-GUIDE-ARTICLE559471886433",
+  "reviewer": "/root/sizing_locales_b",
+  "status": "HOLD",
+  "scope": "Independent static release-mechanics and in-memory preservation-check review. Does not certify any locale authored by this reviewer, language quality, PDP claims or product safety/compliance.",
+  "reviewed_at_utc": "2026-09-15T13:33:45.069074+00:00",
+  "english_source_sha256": "e224120f4608e5266b09938c47a6e07dc436b62356a2bc705eff4692fe10f6ba",
+  "input_sha256": {
+    "GIFT_GUIDE_RELEASE_PLAN.json": "1b36588600cd9e759b8f203cc84f6b6d8810d5ec4952b3bcc9fa30bd23802490",
+    "gift-guide-candidate.html": "e224120f4608e5266b09938c47a6e07dc436b62356a2bc705eff4692fe10f6ba",
+    "ENGLISH_REVISION_2.json": "16372888e75d1db1b0a69b409729582251fc2869fad79017c85e46cd662ca787",
+    "english-mutation-request.json": "c27dca6d29d8be0ed8d73716ea5b5cc402f93b24b080b297c37ae32801fdb4ed",
+    "english-rollback-request.json": "c79b0df997ec18d0806e07791112a6b5d28faccc2e45070484292cc633450a78",
+    "gift-guide-inventory.json": "e05867c47f8ea0a8e550bb97b6a67dc9310f0c979e63bf2fd30990f698166f0e",
+    "gift-guide-translations.json": "e08dfb15904593a91062533006b0f30bc81775224e93c901fecba88b6155e0a7",
+    "gift-guide-market-translations.json": "257d1d0dac52a467b84f13d12ccf00fd2c3de00bf1b34b20cb7e90df7c15ae66",
+    "verify_release.py": "8b2b752fe4cc4f37ff09b526268ac2db78b4f9edd39a4ad1a5484fbcea5bbdba",
+    "BROWSER_TEXT_METHOD_CHECK.json": "227cbbba97174d50766eb5727ff9ab615614e572d143015ece6bf658a40237ba",
+    "browser-main-before.json": "3faf9de78e28a3fb6436eea9d7f16b7413616db3dfe0dbd1cefc7d7019db4b32",
+    "ENGLISH_RELEASE_SUPPLEMENT_REVIEW.json": "d11e140b46f17e7284a472eeec0431785370a3fae3add65f9a0245750b4f18bd",
+    "translation-mutation.graphql": "b64af67739a0df397509e4da3d0fef0d31ba93cabfd87d3e0d0358d0c1d22236",
+    "gift-guide-before.html": "f3d39891dd50bc9be511472f98d0e5fb396733e312e67b5652a33c65fe1b5a89"
+  },
+  "checks": {
+    "plan_source_review_same_revision2": true,
+    "english_exact_body_only_request": true,
+    "english_exact_rollback": true,
+    "existing_request_status_not_executed": true,
+    "baseline_article_and_source_identity": true,
+    "baseline_source_body_matches_digest": true,
+    "five_source_entries_four_nonbody": true,
+    "21_published_locale_inventory": true,
+    "six_markets_complete": true,
+    "53_unique_global_36_other_17_bodies": true,
+    "all_global_rows_market_null": true,
+    "six_empty_market_sources_126_locale_rows": true,
+    "no_new_locales_or_nonbody_authorized": true,
+    "market_inventory_alias_queries_bound": true,
+    "prepared_translation_operation_single_register": true,
+    "published_main_before_receipt": true,
+    "12_protected_fields_declared": true,
+    "browser_method_baseline_recomputed": true,
+    "verifier_accepts_identical_before_fixture": true,
+    "verifier_rejects_wrong_global_resource_fixture": false,
+    "verifier_accepts_only_expected_body_stale_timestamp_fixture": false,
+    "input_frozen_GIFT_GUIDE_RELEASE_PLAN.json": true,
+    "input_frozen_gift-guide-candidate.html": true,
+    "input_frozen_ENGLISH_REVISION_2.json": true,
+    "input_frozen_english-mutation-request.json": true,
+    "input_frozen_english-rollback-request.json": true,
+    "input_frozen_gift-guide-inventory.json": true,
+    "input_frozen_gift-guide-translations.json": true,
+    "input_frozen_gift-guide-market-translations.json": true,
+    "input_frozen_verify_release.py": true,
+    "input_frozen_BROWSER_TEXT_METHOD_CHECK.json": true,
+    "input_frozen_browser-main-before.json": true,
+    "input_frozen_ENGLISH_RELEASE_SUPPLEMENT_REVIEW.json": true,
+    "input_frozen_translation-mutation.graphql": true,
+    "input_frozen_gift-guide-before.html": true,
+    "ancillary_before_html_only_terminal_newline": true
+  },
+  "checks_passed": 34,
+  "checks_total": 36,
+  "failed_checks": [
+    "verifier_rejects_wrong_global_resource_fixture",
+    "verifier_accepts_only_expected_body_stale_timestamp_fixture"
+  ],
+  "findings": [
+    {
+      "id": "GLOBAL_TRANSLATION_RESOURCE_ID_GUARD",
+      "severity": "REQUIRED_GUARD",
+      "evidence": "In-memory prewrite fixture with current global translatableResource.resourceId changed to another article still passes every verifier check. rows() drops resourceId.",
+      "fix": "Assert both before/current inventory translatableResource and global translatableResource resourceId equal the exact target before accepting row preservation."
+    },
+    {
+      "id": "EXPECTED_BODY_TRANSLATION_METADATA",
+      "severity": "REQUIRED_VERIFICATION_FIX",
+      "evidence": "In-memory after-English fixture preserves all 17 body values/identities but sets outdated=true and refreshes updatedAt. 17 checks fail: unmodified_body_translation_ar, unmodified_body_translation_cs, unmodified_body_translation_da, unmodified_body_translation_de, unmodified_body_translation_el, unmodified_body_translation_es, unmodified_body_translation_fi, unmodified_body_translation_fr, unmodified_body_translation_he, unmodified_body_translation_hi, unmodified_body_translation_it, unmodified_body_translation_ja, unmodified_body_translation_ko, unmodified_body_translation_nl, unmodified_body_translation_no, unmodified_body_translation_pt-BR, unmodified_body_translation_ro",
+      "fix": "Keep exact identity/value/other metadata preservation and explicitly validate only the permitted body outdated/updatedAt change. This scenario is a modeled allowed metadata transition, not a claimed live result."
+    },
+    {
+      "id": "FINAL_TRANSLATION_PAYLOAD_BINDING_PENDING",
+      "severity": "PLANNED_EXECUTION_GATE",
+      "evidence": "No exact final 17-row translation payload or translation rollback request has been supplied for review; verify_release.py currently checks English request and saved states only.",
+      "required": "Before translation execution bind each existing locale/body_html/market-null value to its independent revision2 candidate hash, fresh post-English source digest, target resource and exact before-value rollback. Reject extra keys/rows/locales or stale/mismatched reviews; read any uncertain outcome before retry."
+    },
+    {
+      "id": "ANCILLARY_BEFORE_HTML_TERMINAL_NEWLINE",
+      "severity": "NON_BLOCKING_PROVENANCE_NOTE",
+      "evidence": "gift-guide-before.html has exactly one appended terminal LF relative to the canonical Admin body. The actual English rollback request uses the exact Admin body and passes its byte comparison. Browser text normalization also matches.",
+      "effect": "Use the Admin baseline/request for exact rollback hash; do not substitute the ancillary HTML file without accounting for that single known newline."
+    }
+  ],
+  "verified_baseline_counts": {
+    "protected_article_fields": 12,
+    "source_entries": 5,
+    "protected_nonbody_source_entries": 4,
+    "global_translation_records": 53,
+    "existing_body_translations": 17,
+    "other_global_records": 36,
+    "published_locales": 21,
+    "markets": 6,
+    "empty_market_locale_results": 126
+  },
+  "test_scope": "Actual reviewed verify() executed only with in-memory copies and overridden data reader; no __main__, evidence-file writer, live tool or external action executed. Baseline/candidate/code files were not modified.",
+  "execution_state": "English request and rollback marked not executed, baseline captured before release, no mutation result/after-state supplied. This supports packet preparation state only, not an independent audit of all external activity. Root separately performed a reported authorized preview exit, which is not article publication.",
+  "not_yet_reviewed": "Exact final 17-row translation payload, fresh action-time capture/digest, actual mutation/readback and public acceptance.",
+  "rollback": "Exact English prior body is prepared; all existing localized before values are captured. Final translation rollback variables and action-time after-state hash guards remain to be bound by root.",
+  "limits": [
+    "Current saved baselines are dated captures; before applying, root must take fresh exact-surface drift reads and validate supported GraphQL operations.",
+    "Browser text-method PASS was recomputed from saved before HTML and root browser fingerprint; no independent browser replay occurred.",
+    "In-memory fault cases reveal guard behavior, not observed production mutations.",
+    "No live write, source/canonical edit, language/product compliance certification or traffic/sales claim."
+  ],
+  "next_action": "Root fixes the two identified verifier behaviors, then binds and independently reviews the final translation payload before release.",
+  "external_writes": 0
+}

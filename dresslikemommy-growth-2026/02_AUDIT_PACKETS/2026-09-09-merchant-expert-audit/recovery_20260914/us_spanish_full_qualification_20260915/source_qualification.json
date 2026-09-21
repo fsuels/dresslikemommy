@@ -1,0 +1,260 @@
+{
+  "schema": "dlm.us_es_full_source_qualification.v1",
+  "status": "SOURCE_PARTITION_COMPLETE__UPLOAD_BLOCKED",
+  "sourceStartedAt": "2026-09-15T03:21:10.453Z",
+  "sourceCompletedAt": "2026-09-15T03:23:50.568Z",
+  "sourceReceiptAt": "2026-09-15T03:23:50.622Z",
+  "privateSourcePath": "/Users/fsuels/.config/dresslikemommy/merchant-evidence/20260915-us-es-full/source.json",
+  "sourceSha256": "5b868f1470ec06834a9b74b2960021a24fcc6da1c1c6b17b8f6b2d094a39ad88",
+  "sourceBytes": 8506376,
+  "market": {
+    "key": "us-es",
+    "country": "US",
+    "locale": "es",
+    "currency": "USD",
+    "marketId": "gid://shopify/Market/544735329"
+  },
+  "marketContext": {
+    "currency": "USD",
+    "catalogs": [
+      {
+        "id": "gid://shopify/MarketCatalog/6881083489",
+        "publicationId": "gid://shopify/Publication/77106053217"
+      }
+    ],
+    "activeMarketIds": [
+      "gid://shopify/Market/544735329"
+    ]
+  },
+  "translationContext": {
+    "strategy": "global_with_market_overrides",
+    "clockBasis": "page_response_observations",
+    "locale": "es",
+    "marketId": "gid://shopify/Market/544735329",
+    "global": {
+      "firstObservedAt": "2026-09-15T03:23:34.552Z",
+      "lastObservedAt": "2026-09-15T03:23:49.313Z",
+      "parents": 238
+    },
+    "market": {
+      "firstObservedAt": "2026-09-15T03:21:11.341Z",
+      "lastObservedAt": "2026-09-15T03:21:16.490Z",
+      "parents": 238
+    }
+  },
+  "sourceCounts": {
+    "parents": 238,
+    "variants": 4925,
+    "available": 4903,
+    "potentialParents": 231,
+    "potentialOffers": 4718
+  },
+  "partition": {
+    "SOURCE_TRANSLATION_QUALIFIED_LANDING_UNVERIFIED": 4718,
+    "TRANSLATION_REJECTED": 23,
+    "SOURCE_NOT_AVAILABLE": 22,
+    "EXISTING_ELIGIBILITY_HOLD": 162
+  },
+  "exclusionPrecedence": [
+    "SOURCE_NOT_AVAILABLE",
+    "EXISTING_ELIGIBILITY_HOLD",
+    "PUBLICATION_OR_MARKET_REJECTED",
+    "TRANSLATION_REJECTED",
+    "TROPICAL_FACTUAL_HOLD",
+    "SOURCE_TRANSLATION_QUALIFIED_LANDING_UNVERIFIED"
+  ],
+  "selectedTranslationScopes": {
+    "global": 1186,
+    "market": 0
+  },
+  "staleFields": [
+    {
+      "productId": "gid://shopify/Product/7227378925665",
+      "key": "body_html",
+      "selectedScope": "global",
+      "valueSha256": "bebb67e32b2d2f87958d635df3b7f13d467e4d8b27e64ba63407fea418f3aac1"
+    },
+    {
+      "productId": "gid://shopify/Product/7537367679073",
+      "key": "product_type",
+      "selectedScope": "global",
+      "valueSha256": "295632cff642823dd97e2205cdb9e08d02226d267814ca41d3188cc51b1fa9b0"
+    },
+    {
+      "productId": "gid://shopify/Product/7537372463201",
+      "key": "meta_description",
+      "selectedScope": "global",
+      "valueSha256": "b74690a3d69b4e48211c565a6173d2ca641c6d89678e828c4488900e84d98721"
+    }
+  ],
+  "existingHolds": {
+    "sourceSha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+    "configuredParentIds": [
+      "gid://shopify/Product/7516369715297",
+      "gid://shopify/Product/7516479848545",
+      "gid://shopify/Product/7536337125473",
+      "gid://shopify/Product/7536992976993",
+      "gid://shopify/Product/7536988520545",
+      "gid://shopify/Product/7536086089825"
+    ],
+    "sourceAbsentParentIds": [],
+    "removedAvailableRows": 162
+  },
+  "tropicalFactualHold": {
+    "productId": "gid://shopify/Product/7227378925665",
+    "key": "body_html",
+    "retained": true,
+    "sourceParentPresent": true,
+    "availableRows": 23,
+    "selectedBodyOutdated": true,
+    "reason": "Unresolved child-weight source truth; no cosmetic re-registration or factual certification."
+  },
+  "supportedValidateSnapshot": {
+    "status": "PASS",
+    "code": null,
+    "result": {
+      "parents": 238,
+      "variants": 4925
+    },
+    "snapshotModified": false,
+    "evaluationTime": "2026-09-15T03:23:50.622Z",
+    "clockMeaning": "Reproducible guard evaluation at the original collection receipt; not a new source observation."
+  },
+  "supplierReferences": {
+    "fields": 0,
+    "parents": 0,
+    "records": []
+  },
+  "checks": {
+    "passed": 37928,
+    "failed": 0,
+    "counts": {
+      "supported_local_arguments": 1,
+      "pinned_input": 9,
+      "complete_receipt_identity": 1,
+      "source_only_authority": 1,
+      "private_source_regular_file": 1,
+      "unaltered_private_source": 1,
+      "isolated_us_es_configuration": 1,
+      "no_schedule_or_return_label_change": 1,
+      "source_clock_and_completeness": 1,
+      "original_clock_order": 1,
+      "two_complete_shop_identities": 1,
+      "stable_locale_manifest": 1,
+      "complete_final_manifest": 1,
+      "exact_us_catalog_context": 1,
+      "request_trace_reconciled": 1,
+      "current_collector_translation_provenance": 1,
+      "separate_complete_translation_clocks": 1,
+      "unchanged_hold_authority": 1,
+      "six_existing_holds_reconciled": 1,
+      "fixed_public_spanish_base": 1,
+      "valid_Product_id": 238,
+      "unique_active_parent": 238,
+      "complete_parent_variants": 238,
+      "selected_translation_identity": 1186,
+      "selected_translation_scope": 1186,
+      "translation_source_map_complete": 238,
+      "public_source_domain": 238,
+      "valid_ProductVariant_id": 4925,
+      "unique_variant_membership": 4925,
+      "exact_variant_availability": 4925,
+      "exact_USD_price": 4925,
+      "unique_intended_offer_id": 4925,
+      "exact_intended_buyer_link": 4925,
+      "all_parent_membership_reconciled": 1,
+      "complete_disjoint_variant_partition": 1,
+      "supplier_guard_matches_unaltered_source": 1,
+      "accepted_tsv_parse_complete": 1,
+      "accepted_tsv_width": 4741,
+      "representative_source_membership": 8,
+      "representative_potential_membership": 8,
+      "representative_options_safe": 8,
+      "representative_prior_membership": 8,
+      "six_protected_prices_reconciled": 1,
+      "private_snapshot_never_modified": 1,
+      "pinned_input_after_analysis": 9
+    }
+  },
+  "protectedRepresentatives": {
+    "count": 6,
+    "exactIdsAndCurrentUSDPricesReconciled": true
+  },
+  "bindings": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_full_qualification_20260915/qualification.mjs",
+      "sha256": "f7f2c852e5077d2b493701f4ddcc376fce6c9efbe9511a05928976b73b020b83"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_full_qualification_20260915/collection_receipt.json",
+      "sha256": "aec6e8b5ec3e92a85d0801b9c1b26f81f4308c073fbd0a304981527272dc5f67"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_full_qualification_20260915/execution_intent.json",
+      "sha256": "839754e89eae096546513f24bffc94df171521dea6be7f0211312c8f4ad28bb4"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_full_qualification_20260915/collect_source_only.mjs",
+      "sha256": "7a4085b8b44f3f0b52051909c65dbe97d7e56b5eebdb67b7cca5368fdc930693"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/collector.js",
+      "sha256": "1d0c5ef07628ed41b5b0a66f612ef454f35abe54355dfd76803f1a73259716b8"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/queries.js",
+      "sha256": "0b7803e02adbb4f32442a0a628396d95f40a79e140b3f761c10e7824d66dbaf9"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/generator.js",
+      "sha256": "a028e2f7f3bb1f0c1f03e222e6b2a608b742f46b6a8f13cc97572885fe009c4f"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/src/eligibility.js",
+      "sha256": "5441bb6aade0f2900f3770602109e14f0e4e964d3e819fff77bf935350038ac8"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/automation_release_v1/config.json",
+      "sha256": "668e512e5c60c7a6a5696d35b6ef47903157bcc347167f7712315c59b17b2ec8"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/us_spanish_qualification/isolated_config.json",
+      "sha256": "2c85719db86f8fb4e041c6d4ef66001dfe5e8817d2f1a2e8cf37c641ed98582e"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/eligibility_holds_20260911.json",
+      "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260915T015530Z-us-color47-refresh/candidate/us-en.tsv",
+      "sha256": "fc7aa665746887d1ce37f5bce2d3afa5ed6ea363f9cd362007d4825313797bb3"
+    }
+  ],
+  "outputs": {
+    "complete_source_partition.csv": {
+      "sha256": "247bf1835d26f1c2c62073220fb7b3e199a72c5420306f5a024c3bbb08005bf6",
+      "bytes": 3030861
+    },
+    "parent_translation_qualification.csv": {
+      "sha256": "f053f730655f57a5dc0c58e7f82d951fcc4a7745249a12f0aa69314d26ef7099",
+      "bytes": 94786
+    },
+    "representative_plan.json": {
+      "sha256": "6e342d6a2a276f4e583ee8d12f1adbbf8eb09cdebc67c96e293e808c8517b91a",
+      "bytes": 10430
+    }
+  },
+  "limits": [
+    "Potential means complete source/publication/selected required-translation partition only; not an executable or approved feed.",
+    "Supported validateSnapshot was run once on the unaltered private snapshot; any failure remains a blocker. No sanitized snapshot was substituted for a passing guard.",
+    "No new source-clock, translation refresh, semantic measurement certification, buyer verification, Google submission or serving result.",
+    "Raw product prose/vendor references stay private; outputs contain safe identifiers, source prices, hashes and derived brand-domain buyer links only.",
+    "The six existing holds and separate Tropical factual hold remain. LandingContextVerified stays false; no production config, code or theme is changed."
+  ],
+  "sourceCollectionPerformedByThisScript": false,
+  "externalCalls": 0,
+  "productionWrites": 0,
+  "feedBuilt": false,
+  "googleSubmission": false,
+  "linguisticQualityCertified": false
+}

@@ -1,0 +1,110 @@
+{
+  "verdict": "PASS_WITH_LIMITS",
+  "decision": "APPROVE_EXACT_LOCAL_CZECH_CANDIDATE_FOR_PARENT_REVIEW_ONLY",
+  "independent": true,
+  "reviewer": "/root/merchant_translation_review",
+  "reviewed_at_utc": "2026-09-15T04:26:01.052401+00:00",
+  "confidence": "High for exact scope/preservation; Czech assessment is model review, not native-human certification.",
+  "live_save_authorized": false,
+  "artifact_sha256": {
+    "source_before_1.json": "2349dfae863bcfc1a7531b0dea61228fd6bd6668fd57fd3daf104b9c5e823af4",
+    "source_before_2.json": "275c84afc3fa895fe7fca951e2ceeebc18bf4d6d44fca94c27dc407933b3b3f2",
+    "source_before_3.json": "4940651151df6377108e9c319fe9d0c10a60725c74198108851f5078b9cb1b87",
+    "proposal.json": "cebf0b93a4a48c9bc7d64d8ae06f4613914797a940a357027da3202c4509318a",
+    "candidate.variables.json": "c8de7fd87f13607c7525c330b117f18c48d501731af9047360f7b8cca0c56022",
+    "rollback.variables.json": "54f012c31b68062240f1381e688e4a8f0a89637ae60d45a19da45813efd1a1e8",
+    "correction.graphql": "96ab00f06e77ec1b84f17e533eb5eaba099864dcb66ca43124105b2c17f282a1",
+    "collection_heading_provenance.json": "13a8c36cb1a5f4c9306d3c320158b337ea223bfb205986b5c27b113cc2966039"
+  },
+  "reviewed_proposal_sha256": "cebf0b93a4a48c9bc7d64d8ae06f4613914797a940a357027da3202c4509318a",
+  "reviewed_candidate_sha256": "c8de7fd87f13607c7525c330b117f18c48d501731af9047360f7b8cca0c56022",
+  "reviewed_rollback_sha256": "54f012c31b68062240f1381e688e4a8f0a89637ae60d45a19da45813efd1a1e8",
+  "reviewed_query_sha256": "96ab00f06e77ec1b84f17e533eb5eaba099864dcb66ca43124105b2c17f282a1",
+  "source_observation_windows": {
+    "product_and_collection_received": "2026-09-15T04:13:32.455Z",
+    "collection_source_received": "2026-09-15T04:15:33.831Z",
+    "market_overrides_received": "2026-09-15T04:16:41.642Z"
+  },
+  "target": {
+    "resourceId": "gid://shopify/Product/7607764287585",
+    "locale": "cs",
+    "key": "body_html",
+    "marketId": null,
+    "translatableContentDigest": "d825a242d7853f9ac59d19c4185d4c93b82d653e3bcc5cdb0bb87db712227498"
+  },
+  "per_span_assessment": [
+    {
+      "before": "Ptisk:",
+      "after": "Potisk:",
+      "accepted": true,
+      "reason": "Potisk is the correct Czech noun for a garment print; the missing vowel is a spelling error."
+    },
+    {
+      "before": "Srozsah velikostí:",
+      "after": "Rozsah velikostí:",
+      "accepted": true,
+      "reason": "Removes the stray initial S and gives the normal size-range heading; all listed sizes stay unchanged."
+    },
+    {
+      "before": "Matka + dcera zápas:",
+      "after": "Sladěné šaty pro maminku a dceru:",
+      "accepted": true,
+      "reason": "Zápas means a contest here. Sladěné šaty expresses the English coordinated floral dresses; pro correctly governs maminku and dceru."
+    },
+    {
+      "before": "Volníky na studených ramenech:",
+      "after": "Volánky a odhalená ramena:",
+      "accepted": true,
+      "reason": "Volánky correctly names ruffles. Odhalená ramena conveys exposed shoulders in the stated cold-shoulder neckline and remains compatible with the unchanged spaghetti straps; it does not claim strapless construction."
+    },
+    {
+      "before": "<p>APřidejte",
+      "after": "<p>Přidejte",
+      "accepted": true,
+      "reason": "The English standalone paragraph begins Add, not And add. Přidejte is the appropriate imperative; deleting the glued A is justified without rewriting the rest."
+    }
+  ],
+  "preservation": {
+    "original_body_sha256": "cadfefdddcee8a0b9a32e8fa519e73ef47647d2ff830b6b5e6662216692b5eea",
+    "candidate_body_sha256": "178fb432324f7509d57085987463d9d95684af0a3da68621ac2c576ef2939c12",
+    "table_html_sha256": "3701b0214a7448f7aecf084c135bd8e16cecd21428cfef6a94afea949dff0689",
+    "exact_five_forward_and_inverse_replacements": true,
+    "all_five_targeted_bad_spans_absent": true,
+    "HTML_tags_attributes_and_numeric_sequence_unchanged": true,
+    "table_count": 1,
+    "unchanged_data_cells": 90,
+    "unchanged_header_cells": 10,
+    "size_rows": 9,
+    "estimate_caveats_and_separate_piece_disclosure_preserved": true,
+    "introduced_test_placeholder_markers": false
+  },
+  "payload_and_protected_scopes": "Exactly one global cs/body_html TranslationInput for Product7607764287585, using the observed English digest; no collection, native product, price, variant or other locale field is submitted. Before evidence covers all six English product values/digests, four other Czech product records, nine variants with complete pagination, collection native fields/five English source records/four Czech records, and twelve empty product/collection override arrays across six named markets. Market status was not queried; no fresh ACTIVE-market assertion is made.",
+  "rollback_assessment": "Exact original body is supplied with the same one-field scope. Execution and rollback each require fresh English digest and expected current-body guards. Rollback restores content, not Shopify-managed updatedAt; subsequent source/protected-field and public readback remain required.",
+  "collection_heading": {
+    "actual_collection_cs_title": "Šaty",
+    "collection_mutation_proposed": false,
+    "local_theme_key": "sections.collection_seo.display_titles.dresses",
+    "suggested_wording": "Šaty pro maminku a dceru",
+    "linguistic_assessment": "Natural Czech for the source collection of matching mother-and-daughter dresses. It removes the incorrect nominative já after pro.",
+    "local_three_file_hashes_verified": {
+      "sections/main-collection-banner.liquid": "4549a997352be781db58c9eaedbb82a946caac3c3285b7c5b4acdf91275af8d0",
+      "snippets/collection-seo-fallback.liquid": "9a7036c88e13ab1e14196e1c9ecdc208bbbbfe5b4caa79cb80d6278575e4113f",
+      "locales/cs.json": "b942083af422129281ccdb7f745d6fa51f5ad54a8a002a0c52f76cc92e7a9106"
+    },
+    "shared_handles": [
+      "dresses",
+      "mother-daughter-matching-dresses"
+    ],
+    "execution_boundary": "Local banner overrides collection.title with the translated fallback display-title key. Live MAIN/candidate binding and any repair remain UX-owned; both shared handles require attention."
+  },
+  "out_of_scope_residuals": [
+    "S Tabulka velikostí and Srukáv retain stray S prefixes.",
+    "Pant/Short remains untranslated inside the protected table header.",
+    "Volný výstřih na chladná ramena remains an awkward literal construction.",
+    "Matka S matce XL remains an awkward size-range phrase.",
+    "Koralová lacks the expected long vowel in Korálová.",
+    "The closing veselé ladící šaty wording and literal product/collection prose remain outside the five-span correction."
+  ],
+  "limits": "This is a narrow local lexical review, not complete Czech quality, measurement accuracy, live theme identity, buyer-route or feed qualification. No save, API/browser call, source/config/theme/collection change or extra candidate edit was performed. Parent must separately authorize the exact save after fresh guards. No candidate changes are requested.",
+  "blocking_findings": []
+}

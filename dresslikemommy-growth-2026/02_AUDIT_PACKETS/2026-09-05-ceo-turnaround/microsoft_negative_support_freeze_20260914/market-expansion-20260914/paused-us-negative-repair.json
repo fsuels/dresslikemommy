@@ -1,0 +1,404 @@
+{
+  "schema": "microsoft-paused-negative-repair.v1",
+  "recorded_at_utc": "2026-09-14T21:15:36.347Z",
+  "status": "IMPLEMENTED_AND_NATIVE_READBACK_VERIFIED",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "campaign_id": "506254907",
+  "campaign_name": "DLM | MS | US | EN | Search | 202609",
+  "campaign_state": "Paused",
+  "source_url": "https://ui.ads.microsoft.com/campaign/vnext/negative-keywords?aid=477439&campaignId=506254907&cid=770182&uid=2290164",
+  "scope": "THREE_CAMPAIGN_PHRASE_TEXT_REPLACEMENTS_AND_THREE_PLURAL_ADDITIONS_US_PAUSED_ONLY",
+  "authorization": {
+    "user_request": "Use negative keywords to avoid paying for bad clicks and create expert language campaigns.",
+    "interpretation": "Current negative-keyword optimization intent; existing paused campaign only. No funded launch or new budget authority.",
+    "root_claim": "Sole Microsoft writer, task01a08703",
+    "shared_canonical_write_lease": false,
+    "financial_settings_unchanged": true
+  },
+  "before": [
+    {
+      "id": "14098189106545",
+      "text": "sewing pattern",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106546",
+      "text": "sewing patterns",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106547",
+      "text": "diy",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106548",
+      "text": "costume rental",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106549",
+      "text": "wholesale",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106550",
+      "text": "svg",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106551",
+      "text": "printable",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    }
+  ],
+  "proposed": [
+    {
+      "id": "14098189106547",
+      "before": "diy",
+      "after": "sewing tutorial",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106549",
+      "before": "wholesale",
+      "after": "wholesale supplier",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106551",
+      "before": "printable",
+      "after": "printable template",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    }
+  ],
+  "unchanged": [
+    "All campaign statuses",
+    "Budgets",
+    "Bids and CPC ceilings",
+    "Positive keywords",
+    "Ads",
+    "Tracking",
+    "Other campaigns",
+    "Other negative keyword rows"
+  ],
+  "independent_review": {
+    "reviewer": "/root/microsoft_plan_independent_review",
+    "verdict": "PASS_THREE_EDITS_PRESERVE_SVG",
+    "authorization_scope": "Current explicit negative optimization request and sole root claim support these three paused edits only.",
+    "positive_conflicts": 0,
+    "adversarial_change": "Rejected svg to svg file because it admits digital-file intent with no supported buyer benefit; preserve svg.",
+    "plural_coverage_gaps": [
+      "sewing tutorials",
+      "wholesale suppliers",
+      "printable templates"
+    ],
+    "separate_plural_addition_review": "PENDING",
+    "native_no_change_by_reviewer": true,
+    "plural_addition_review": {
+      "verdict": "PASS",
+      "reviewer": "/root/microsoft_plan_independent_review",
+      "scope": "Exactly three Campaign/Phrase plural additions to US506254907 only",
+      "positive_conflicts": 0,
+      "ordinary_buyer_holdouts_preserved": 21,
+      "remaining_tradeoff": "Phrase negatives can block mixed buy-instead-of-instructions queries; synthetic tests are not observed native traffic."
+    }
+  },
+  "verification_plan": [
+    "COMPLETED: exact10Campaign/Phrase rows,3replacementIDmappings,3newIDs,4unchangedIDs.",
+    "COMPLETED: sameaccount/campaign,3ExactpositiveIDs/statuses.",
+    "COMPLETED: USPaused,5.00USDdailybudget,MaxClicks0.15USDcap,English,noexpansion.",
+    "COMPLETED: all13campaignID/status/type/budgettuplesidenticalbeforeafter."
+  ],
+  "rollback": "Restore prior text using the current native row mapped to each root edit; Microsoft may regenerate the negative ID again. Remove only root newly added plural rows if needed through the reviewed recoverable flow, preserving unrelated rows and all campaign settings.",
+  "implemented": true,
+  "profit_effect_verified": false,
+  "original_proposed": [
+    {
+      "id": "14098189106547",
+      "before": "diy",
+      "after": "sewing tutorial",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106549",
+      "before": "wholesale",
+      "after": "wholesale supplier",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106550",
+      "before": "svg",
+      "after": "svg file",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106551",
+      "before": "printable",
+      "after": "printable template",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    }
+  ],
+  "updated_at_utc": "2026-09-14T21:22:17.971271+00:00",
+  "approved_additions": [
+    {
+      "text": "sewing tutorials",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "text": "wholesale suppliers",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "text": "printable templates",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    }
+  ],
+  "native_edit_behavior": {
+    "negative_ids_regenerated": true,
+    "first_verified_mapping": {
+      "old_id": "14098189106547",
+      "new_id": "14098190306018",
+      "old_text": "diy",
+      "new_text": "sewing tutorial"
+    },
+    "implication": "Normal inline edit regenerated a negative ID; record actual old/new IDs. Do not promise stable negative IDs or reuse stale IDs. Campaign/ad/group IDs are separate and preserved."
+  },
+  "native_after": [
+    {
+      "id": "14098189106545",
+      "text": "sewing pattern",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106546",
+      "text": "sewing patterns",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106548",
+      "text": "costume rental",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098189106550",
+      "text": "svg",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098190306018",
+      "text": "sewing tutorial",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098190306216",
+      "text": "wholesale supplier",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098190306220",
+      "text": "printable template",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098190306266",
+      "text": "sewing tutorials",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098190306267",
+      "text": "wholesale suppliers",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    },
+    {
+      "id": "14098190306268",
+      "text": "printable templates",
+      "match_type": "Phrase",
+      "scope": "Campaign"
+    }
+  ],
+  "verified_edit_mappings": [
+    {
+      "old_id": "14098189106547",
+      "new_id": "14098190306018",
+      "before": "diy",
+      "after": "sewing tutorial"
+    },
+    {
+      "old_id": "14098189106549",
+      "new_id": "14098190306216",
+      "before": "wholesale",
+      "after": "wholesale supplier"
+    },
+    {
+      "old_id": "14098189106551",
+      "new_id": "14098190306220",
+      "before": "printable",
+      "after": "printable template"
+    }
+  ],
+  "verified_added_ids": [
+    "14098190306266",
+    "14098190306267",
+    "14098190306268"
+  ],
+  "verified_unchanged_native_negative_ids": [
+    "14098189106545",
+    "14098189106546",
+    "14098189106548",
+    "14098189106550"
+  ],
+  "after_readback_at_utc": "2026-09-14T21:24:59.371888+00:00",
+  "campaign_paused_after_save": true,
+  "save_behavior_note": "Initial plural Save was clipped below viewport and had no effect; table remained seven rows. After scrolling the control into view, one effective Save produced exactly three additions and ten total rows.",
+  "positive_keywords_after": [
+    {
+      "id": "79509076877976",
+      "text": "mother daughter matching dresses",
+      "match_type": "Exact",
+      "status": "Paused"
+    },
+    {
+      "id": "79509076877975",
+      "text": "mother daughter dresses that match",
+      "match_type": "Exact",
+      "status": "Paused"
+    },
+    {
+      "id": "79509076877974",
+      "text": "mommy and me matching dresses",
+      "match_type": "Exact",
+      "status": "Paused"
+    }
+  ],
+  "campaign_controls_after": {
+    "campaign_id": "506254907",
+    "status": "Paused",
+    "language": "English",
+    "bid_strategy": "Maximize Clicks",
+    "maximum_cpc_checkbox": true,
+    "maximum_cpc_usd": "0.15",
+    "daily_budget_usd": "5.00",
+    "text_customization": false,
+    "final_url_expansion": false,
+    "search_term_matching": false,
+    "settings_edited": false,
+    "readback_at_utc": "2026-09-14T21:26:53.023107+00:00"
+  },
+  "all_campaign_comparison": {
+    "before_count": 13,
+    "after_count": 13,
+    "all_ids_statuses_types_budgets_identical": true,
+    "all_after_paused": true,
+    "method": "Compared parsed13native campaign rows before and after; exact ID/status/type/budget fields identical.",
+    "after": [
+      {
+        "id": "291532658",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "10.00"
+      },
+      {
+        "id": "291536445",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "15.00"
+      },
+      {
+        "id": "291766575",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "15.00"
+      },
+      {
+        "id": "291766588",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "15.00"
+      },
+      {
+        "id": "291767149",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "15.00"
+      },
+      {
+        "id": "291767159",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "15.00"
+      },
+      {
+        "id": "291767342",
+        "status": "Paused",
+        "type": "Shopping",
+        "daily_budget_usd": "15.00"
+      },
+      {
+        "id": "402056808",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "5.00"
+      },
+      {
+        "id": "402056809",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "5.00"
+      },
+      {
+        "id": "402056810",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "5.00"
+      },
+      {
+        "id": "402056811",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "5.00"
+      },
+      {
+        "id": "506254907",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "5.00"
+      },
+      {
+        "id": "506254908",
+        "status": "Paused",
+        "type": "Search",
+        "daily_budget_usd": "3.00"
+      }
+    ]
+  },
+  "verification_completed_at_utc": "2026-09-14T21:28:21.259387+00:00",
+  "independent_post_execution_review": "PENDING_READBACK_RECEIPT_REVIEW"
+}

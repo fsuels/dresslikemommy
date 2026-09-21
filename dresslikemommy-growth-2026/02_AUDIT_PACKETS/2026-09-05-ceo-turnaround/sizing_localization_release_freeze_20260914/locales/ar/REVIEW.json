@@ -1,0 +1,89 @@
+{
+  "action_id": "TA20-SIZING-18-LOCALIZED-BODIES-20260914",
+  "locale": "ar",
+  "candidate_sha256": "a1441f9bd6ca79110c59620331f0d22322fe9ed6e131fe649728f476e4e5006a",
+  "source_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "before_sha256": "5baf0efc4da6fbe241a062d243a5e4e7bfc87f8ae669768315c772e50c93503d",
+  "routes_sha256": "9f67a31a1463503fbd26a96669ce71f7d095a088d1a3941dee80d62be89999d5",
+  "reviewer": "/root/sizing_locales_b",
+  "author": "/root/sizing_locales_c",
+  "status": "PASS_WITH_LIMITS",
+  "reviewed_at_utc": "2026-09-14T23:43:57.772314+00:00",
+  "review_scope": "Independent full-text reading of all 31 leaf elements, detailed comparison of all 22 changed leaf elements carrying the 19 English semantic replacements, plus independently recomputed static checks. Candidate author did not perform this review.",
+  "reviewed_changed_leaf_positions": [
+    1,
+    3,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    12,
+    15,
+    17,
+    18,
+    20,
+    21,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "semantic_assessment": "Read all candidate text. The measurement paragraph explicitly separates body from garment measurements and flat width from circumference; the adult comparison is permitted only with the same method. Current child measurements, product-specific sizes, conditional layering/later-use help, no automatic larger size, incomplete-chart help, and wearer/piece/size/quantity checks all preserve the English meaning. The new support paragraphs accurately request the product, wearer and measurements without promises.",
+  "language_assessment": "New standard written Arabic is understandable and grammatically serviceable. Imperatives and the terms for fit, chart and measurement are consistent; the phrasing about resolving every fit question is slightly literal but does not change its caution.",
+  "terminology_observed": [
+    "قياسات للجسم",
+    "لقطعة الملابس",
+    "عرض قطعة الملابس وهي مفرودة",
+    "محيط الجسم"
+  ],
+  "findings": [
+    {
+      "severity": "NON_BLOCKING_EXISTING",
+      "leaf_positions": [
+        6,
+        19
+      ],
+      "description": "Unchanged Arabic heading and child row use infant terms (الرضع) where English says toddler. These are inherited labels, outside the nineteen changed meanings; the new text explicitly tells shoppers to check the actual available child sizes."
+    }
+  ],
+  "blocking_findings": [],
+  "checks": {
+    "source_sha_matches_final": true,
+    "candidate_hash_bound": true,
+    "before_hash_bound": true,
+    "before_html_equals_existing_value": true,
+    "existing_global_body_identity": true,
+    "author_is_other_agent": true,
+    "source_changed_leaf_positions_match": true,
+    "notes_exact_candidate_spans": true,
+    "html_balanced": true,
+    "all_31_leaf_elements_preserved": true,
+    "unchanged_nine_leaf_contents_preserved": true,
+    "four_hrefs_match_route_manifest": true,
+    "table_and_twelve_cell_styles_equal_english": true,
+    "only_bounded_rtl_wrapper_added": true,
+    "original_43_element_order_preserved": true,
+    "old_general_ranges_removed": true
+  },
+  "competence": {
+    "basis": "Independent model-based bilingual editorial assessment of the complete supplied text, not inferred from structural tests.",
+    "language": "Modern Standard Arabic",
+    "bounded_assessment": "Sufficient confidence for this everyday apparel sizing guidance; no unresolved meaning ambiguity or new grammatical error requiring a hold was found.",
+    "human_native_certification": false
+  },
+  "limits": [
+    "No native-speaker or human certification is claimed.",
+    "This review approves the exact textual candidate and bounded markup only; root retains publication authority.",
+    "Actual localized destination arrivals, public rendering, mobile layout and computed RTL behavior were NOT RUN by this reviewer; root must verify them.",
+    "Existing unchanged localized copy was checked for preservation and noted where awkward; this is not a broad quality certification of the entire storefront.",
+    "Review is invalid if source or candidate hashes change."
+  ],
+  "external_writes": 0,
+  "business_lift_claimed": false
+}

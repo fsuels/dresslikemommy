@@ -1,0 +1,67 @@
+{
+  "action_id": "TA07-US-ES-QUALIFICATION-PRIORITY-20260915",
+  "status": "BOUNDED_PRIOR_COHORT_RECONCILIATION_ACCEPTED__FULL_SCAN_PENDING",
+  "accepted_at_utc": "2026-09-15T03:24:31.539079+00:00",
+  "source_completed_at_utc": "2026-09-15T02:56:09.456Z",
+  "frozen_handoff": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_es_bounded_reconciliation_freeze_20260915/execution_handoff.json",
+    "sha256": "7f9e5287d727fdad4acb7e12760e730759a3a97baf1d66daad771ae075b7e6e2"
+  },
+  "frozen_manifest": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_es_bounded_reconciliation_freeze_20260915/packet_freeze.json",
+    "sha256": "a202a765ce30a74b75a24cd2c5c0ba38e568fc9e4d656117704480b81dca507b"
+  },
+  "frozen_reconciliation": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_es_bounded_reconciliation_freeze_20260915/source_reconciliation.json",
+    "sha256": "e31351232407eb7732b750968a028511c78e2ede716ae683d9b0d22a5f80a49e"
+  },
+  "frozen_independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_es_bounded_reconciliation_freeze_20260915/independent_review.json",
+    "sha256": "cbe69956b8b54958bf600483d4d424e53d4fc435b91379ed237498494ff5b823"
+  },
+  "counts": {
+    "active_parents_read": 11,
+    "required_fields": 22,
+    "required_current": 21,
+    "required_stale": 1,
+    "global_records_current": 54,
+    "global_records_stale": 1,
+    "explicit_US_market_records": 0,
+    "prior_required_stale_fields_cleared": 12,
+    "prior_completed_repairs_preserved": 25,
+    "all_prior_global_values_and_flags_unchanged": 55,
+    "English_source_digests_unchanged": 66,
+    "checks_passed": 231,
+    "checks_failed": 0
+  },
+  "remaining_factual_hold": [
+    {
+      "product_id": "gid://shopify/Product/7227378925665",
+      "handle": "tropical-matching-family-beach-outfits-colorful-leaf-print-summer-dresses-shorts-set",
+      "key": "body_html",
+      "selected_scope": "global",
+      "outdated": true,
+      "current_English_source_digest": "39870518565c9b7e0d9743389bfb4d5c1386eaafac104551e2bdfa57d486fd28",
+      "current_Spanish_value_sha256": "bebb67e32b2d2f87958d635df3b7f13d467e4d8b27e64ba63407fea418f3aac1",
+      "current_US_English_emitted_rows": 23,
+      "reason": "Questionable child-weight chart remains a factual source dependency; no measurement was changed or recertified."
+    }
+  ],
+  "conditional_eligibility": {
+    "US_catalog_source_completed_at_utc": "2026-09-15T02:11:13.020Z",
+    "fresh_English_rows_in_cohort": 189,
+    "current_English_rows_for_10_cleared_parents": 166,
+    "current_English_rows_for_stale_parent": 23,
+    "historical_potential_Spanish_offers": 4552,
+    "conditional_potential_Spanish_offers": 4718,
+    "explanation": "4741-23=4718 (also historical 4552+166) is only a local eligibility implication, conditional on unchanged eligibility/translations elsewhere. Fresh full US/es collection and buyer-route qualification are required; no executable Spanish feed is established."
+  },
+  "independent_checks": 202,
+  "root_checks": "All11 frozen file hashes/byte lengths, receipt bindings, exact25 repairs/54currentrecords/66digests/one23-offer factual hold/zero business writes matched. Private historical body files were not reopened or restamped.",
+  "root_new_business_reads_or_writes": 0,
+  "owner_integrations_added": 0,
+  "integration_role": "Bounded prior stage of the same full US/es qualification; no second release/integration count.",
+  "next": "Same owner full current US/es source-only qualification with genuine clock, six configured holds and Tropical Spanish required-stale exclusion; actual published buyer-route acceptance before submission.",
+  "limits": "Only 11 products were freshly read. Current flags do not certify language quality or resolve retained content issues. Preserve all current records and six existing holds. Fresh complete US/es collection and published buyer-route acceptance remain prerequisites to an exact feed proposal; no executable Spanish feed, submission, serving or sales established. No external call, source mutation, browser action or supplier URL disclosure by reviewer.",
+  "canonical_integration_pending": true
+}

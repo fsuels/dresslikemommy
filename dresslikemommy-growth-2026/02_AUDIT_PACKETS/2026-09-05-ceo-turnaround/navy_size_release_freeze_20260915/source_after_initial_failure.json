@@ -1,0 +1,27 @@
+{
+  "status": "FAILED",
+  "phase": "source-after initial English readback",
+  "command": "python3 verify_repair.py source-after",
+  "exitCode": 1,
+  "error": "AssertionError: protect() expected27 product metafields, observed26",
+  "guardUnchanged": "c48fc08d905fbba6b538f99260223b4f2d5d1aef3b5e0bf0571a80c958207436",
+  "actualSubmittedVariablesFile": "update_english.variables.json",
+  "actualSubmittedVariablesSha256": "bacab73819f08bbae5b66c37bc3cd7e08c606c5ebcce63d0b13d8f9511f0a459",
+  "topLevelProductInputKeys": [
+    "id",
+    "descriptionHtml",
+    "seo"
+  ],
+  "submittedSeoKeys": [
+    "description"
+  ],
+  "mutationReceiptFile": "english_mutation_receipt.json",
+  "observedUnexpectedChanges": [
+    "SEOtitle became null",
+    "global.title_tag absent",
+    "English meta_title empty with emptycontentdigest",
+    "20 existing meta_title translation values unchanged but outdatedtrue"
+  ],
+  "provenanceLimit": "This records exact object passed to Shopify connector and returned mutation/query data. Lower-level connector serialization/wire payload not observed; do not infer universal Shopify API omission semantics.",
+  "actionTaken": "Translation mutation stopped; distinct original-title restoration prepared for independent review."
+}

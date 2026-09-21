@@ -1,0 +1,413 @@
+{
+  "schema": "dlm.microsoft.market_expansion_strategy_controls.v1",
+  "prepared_at_utc": "2026-09-14T20:49:31.419599+00:00",
+  "status": "LOCAL_PAUSED_BUILD_BLUEPRINT_NOT_IMPLEMENTED",
+  "owner": "/root/microsoft_campaign_research",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "authority": {
+    "local_preparation": true,
+    "paused_native_creation_requested_by_user": true,
+    "external_writes_by_this_agent": false,
+    "launch_authorized": false,
+    "paid_spend_authorized": false,
+    "approved_daily_budget_usd": null,
+    "approved_total_cash_usd": null,
+    "approved_max_test_loss_usd": null,
+    "approved_target_cpa_usd": null,
+    "invoice_backed_margin": null,
+    "preserved_max_cpc_usd": 0.15,
+    "cpc_cap_changes_authorized": false,
+    "shared_canonical_changes": false,
+    "note": "Creation intent does not supply required numeric campaign budgets or a paid-loss envelope. Never invent a required native budget field; hold that native creation if no approved or expressly inherited amount exists."
+  },
+  "strategy": {
+    "objective": "Retained contribution from incremental new-customer purchases; CPC, CTR and traffic quality are diagnostics.",
+    "first_candidate": "Existing US/English exact-intent dress Search campaign; Germany has its own readiness and economics gate. Prepare all actual supported market-language cohorts without funding all at once.",
+    "market_comparison": "Rank by actual delivered-product contribution, truthful localized route, payment/consent readiness, then native demand evidence. Low estimated CPC alone is not a market selection rule.",
+    "alternative": "Selected-product Standard Shopping only after Microsoft-specific offer, shipping, price/currency, conversion and contribution evidence. PMax and Audience prospecting remain later experiments.",
+    "asset_policy": "Use existing ads and queries first. Fifteen headlines do not guarantee better conversion or lower CPC. Keep optional additions as one reviewable candidate; do not create multiple redundant RSAs by default.",
+    "test_policy": "After launch acceptance and an exact loss envelope, alter one meaningful variable at a time; compare matured, country-specific new-customer contribution rather than branded/blended ROAS. No statistical confidence or results exist yet."
+  },
+  "inventory_dependency": {
+    "owner": "/root/international_campaign_build",
+    "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/market-expansion-20260914/market-language-inventory.json",
+    "required_status": "Finalized dated read-only inventory with country-language-route applicability, not BUILDING_READ_ONLY_INVENTORY.",
+    "rule": "Do not generate a Cartesian product of every country and every published language. Bind only actual eligible country-language combinations and verify offer/checkout separately. No market list is certified by this controls file."
+  },
+  "legacy_cohort_compatibility": [
+    {
+      "campaign_key": "ms_us_en_202609",
+      "country_code": "US",
+      "shopify_locale": "en",
+      "microsoft_language": "English",
+      "campaign_id": "506254907",
+      "basis": "EXISTING_LOCAL_PACKET_CANDIDATE_NOT_CURRENT_MARKET_ELIGIBILITY",
+      "target_status": "Paused",
+      "approved_daily_budget_usd": null,
+      "inventory_join": "Must join to finalized sibling inventory and retain its market/route exclusions."
+    },
+    {
+      "campaign_key": "ms_us_es_202609",
+      "country_code": "US",
+      "shopify_locale": "es",
+      "microsoft_language": "Spanish",
+      "campaign_id": null,
+      "basis": "EXISTING_LOCAL_PACKET_CANDIDATE_NOT_CURRENT_MARKET_ELIGIBILITY",
+      "target_status": "Paused",
+      "approved_daily_budget_usd": null,
+      "inventory_join": "Must join to finalized sibling inventory and retain its market/route exclusions."
+    },
+    {
+      "campaign_key": "ms_es_es_202609",
+      "country_code": "ES",
+      "shopify_locale": "es",
+      "microsoft_language": "Spanish",
+      "campaign_id": null,
+      "basis": "EXISTING_LOCAL_PACKET_CANDIDATE_NOT_CURRENT_MARKET_ELIGIBILITY",
+      "target_status": "Paused",
+      "approved_daily_budget_usd": null,
+      "inventory_join": "Must join to finalized sibling inventory and retain its market/route exclusions."
+    },
+    {
+      "campaign_key": "ms_fr_fr_202609",
+      "country_code": "FR",
+      "shopify_locale": "fr",
+      "microsoft_language": "French",
+      "campaign_id": null,
+      "basis": "EXISTING_LOCAL_PACKET_CANDIDATE_NOT_CURRENT_MARKET_ELIGIBILITY",
+      "target_status": "Paused",
+      "approved_daily_budget_usd": null,
+      "inventory_join": "Must join to finalized sibling inventory and retain its market/route exclusions."
+    },
+    {
+      "campaign_key": "ms_de_de_202609",
+      "country_code": "DE",
+      "shopify_locale": "de",
+      "microsoft_language": "German",
+      "campaign_id": "506254908",
+      "basis": "EXISTING_LOCAL_PACKET_CANDIDATE_NOT_CURRENT_MARKET_ELIGIBILITY",
+      "target_status": "Paused",
+      "approved_daily_budget_usd": null,
+      "inventory_join": "Must join to finalized sibling inventory and retain its market/route exclusions."
+    },
+    {
+      "campaign_key": "ms_dk_da_202609",
+      "country_code": "DK",
+      "shopify_locale": "da",
+      "microsoft_language": "Danish",
+      "campaign_id": null,
+      "basis": "EXISTING_LOCAL_PACKET_CANDIDATE_NOT_CURRENT_MARKET_ELIGIBILITY",
+      "target_status": "Paused",
+      "approved_daily_budget_usd": null,
+      "inventory_join": "Must join to finalized sibling inventory and retain its market/route exclusions."
+    },
+    {
+      "campaign_key": "ms_nl_nl_202609",
+      "country_code": "NL",
+      "shopify_locale": "nl",
+      "microsoft_language": "Dutch",
+      "campaign_id": null,
+      "basis": "EXISTING_LOCAL_PACKET_CANDIDATE_NOT_CURRENT_MARKET_ELIGIBILITY",
+      "target_status": "Paused",
+      "approved_daily_budget_usd": null,
+      "inventory_join": "Must join to finalized sibling inventory and retain its market/route exclusions."
+    },
+    {
+      "campaign_key": "ms_it_it_202609",
+      "country_code": "IT",
+      "shopify_locale": "it",
+      "microsoft_language": "Italian",
+      "campaign_id": null,
+      "basis": "EXISTING_LOCAL_PACKET_CANDIDATE_NOT_CURRENT_MARKET_ELIGIBILITY",
+      "target_status": "Paused",
+      "approved_daily_budget_usd": null,
+      "inventory_join": "Must join to finalized sibling inventory and retain its market/route exclusions."
+    },
+    {
+      "campaign_key": "ms_cz_cs_202609",
+      "country_code": "CZ",
+      "shopify_locale": "cs",
+      "microsoft_language": "Czech",
+      "campaign_id": null,
+      "basis": "EXISTING_LOCAL_PACKET_CANDIDATE_NOT_CURRENT_MARKET_ELIGIBILITY",
+      "target_status": "Paused",
+      "approved_daily_budget_usd": null,
+      "inventory_join": "Must join to finalized sibling inventory and retain its market/route exclusions."
+    },
+    {
+      "campaign_key": "ms_ro_ro_202609",
+      "country_code": "RO",
+      "shopify_locale": "ro",
+      "microsoft_language": "Romanian",
+      "campaign_id": null,
+      "basis": "EXISTING_LOCAL_PACKET_CANDIDATE_NOT_CURRENT_MARKET_ELIGIBILITY",
+      "target_status": "Paused",
+      "approved_daily_budget_usd": null,
+      "inventory_join": "Must join to finalized sibling inventory and retain its market/route exclusions."
+    },
+    {
+      "campaign_key": "ms_au_en_202609",
+      "country_code": "AU",
+      "shopify_locale": "en",
+      "microsoft_language": "English",
+      "campaign_id": null,
+      "basis": "EXISTING_LOCAL_PACKET_CANDIDATE_NOT_CURRENT_MARKET_ELIGIBILITY",
+      "target_status": "Paused",
+      "approved_daily_budget_usd": null,
+      "inventory_join": "Must join to finalized sibling inventory and retain its market/route exclusions."
+    }
+  ],
+  "cohort_template": {
+    "cohort_key": null,
+    "existing_campaign_key": null,
+    "existing_campaign_id": null,
+    "existing_ad_group_id": null,
+    "existing_rsa_id": null,
+    "country_code": null,
+    "shopify_market_id": null,
+    "shopify_locale": null,
+    "microsoft_ad_language": null,
+    "source_inventory_evidence": null,
+    "campaign_type": "Search",
+    "ad_group_type": "SearchStandard",
+    "campaign_status": "Paused",
+    "ad_group_status": "Paused",
+    "ad_status": "Paused",
+    "keyword_status": "Paused",
+    "intent": "mother-daughter matching dresses",
+    "final_url": null,
+    "route_language_verified": false,
+    "product_offer_verified": false,
+    "checkout_currency": null,
+    "delivery_terms_verified_for_country": false,
+    "size_and_per_person_selection_verified": false,
+    "consent_acceptance_verified": false,
+    "purchase_acceptance_verified": false,
+    "attribution_acceptance_verified": false,
+    "cost_backed_contribution_allowance": null,
+    "native_editorial_status": null,
+    "daily_budget_account_currency": null,
+    "paid_test_cash_envelope_account_currency": null,
+    "maximum_test_loss_account_currency": null,
+    "bid_strategy": "Maximize Clicks",
+    "max_cpc_account_currency": 0.15,
+    "account_currency": "USD_PENDING_FRESH_NATIVE_READBACK",
+    "max_cpc_checkbox_required": true,
+    "max_cpc_billed_currency_must_equal": "USD",
+    "target_country_presence": "People in your targeted locations",
+    "use_location_interest_expansion": false,
+    "target_language": "Exactly one verified language for this cohort; do not use all languages",
+    "ad_distribution_preference": "Microsoft sites and select traffic if supported and native readback agrees",
+    "ad_distribution_is_search_only": false,
+    "all_automated_expansion_requires_explicit_review": true,
+    "native_duplicate_check_required": true,
+    "negative_profile_scope": "Campaign only; never upscope product-routing negatives",
+    "parent_action_before_native_creation": "Resolve all mandatory native fields from approved inputs; preserve existing IDs and current paused state."
+  },
+  "native_controls_to_read_back": [
+    {
+      "id": "C01",
+      "control": "Entity identity and paused status",
+      "required": "Account477439/customer770182; exact parent campaign/group/RSA IDs; every new row and existing affected entity stays Paused before and after.",
+      "failure_action": "Do not save to a different account or duplicate an existing cohort."
+    },
+    {
+      "id": "C02",
+      "control": "Native Maximize Clicks cap",
+      "required": "Strategy, checked Max CPC field, numeric0.15 and actual USD account currency; all bid adjustments/strategy associations and inheritance.",
+      "failure_action": "No substitute eCPC, uncapped bidding or silent cap increase."
+    },
+    {
+      "id": "C03",
+      "control": "October1 rule",
+      "required": "Recheck new nonportfolio cap availability after2026-10-01. The earlier August31 announcement retains existing caps and portfolio caps, but arbitrary migrations are not certified.",
+      "failure_action": "Hold incompatible creation; parent reviews a compatible portfolio or explicit cap decision, with no launch rush."
+    },
+    {
+      "id": "C04",
+      "control": "Distribution and targeting",
+      "required": "Country presence setting, language, ad-group distribution and permitted publisher exclusions. Both documented distribution options include Search and Audience; some select partners aggregate.",
+      "failure_action": "Do not describe this as Bing-only or guaranteed Search-only."
+    },
+    {
+      "id": "C05",
+      "control": "Automation layers",
+      "required": "Account auto-apply types, campaign AI Max/search matching/text customization/final URL expansion, RSA text generation, DSA and active import schedules/options. New Search defaults AI Max on per August27 announcement.",
+      "failure_action": "Prepare reviewed off/disabled-expansion configuration. Do not rely on one global switch."
+    },
+    {
+      "id": "C06",
+      "control": "Negative inheritance",
+      "required": "Account list, shared lists, campaign and ad-group negatives against master, every in-scope existing positive, mixed-query holdouts and native conflict report.",
+      "failure_action": "Keep held garment exclusions and tee-only negatives out of dress campaigns; review each conflicting negative at its exact scope."
+    },
+    {
+      "id": "C07",
+      "control": "RSA full-state merge",
+      "required": "Ad/asset IDs, complete existing headline/description lists, pins, URL suffix and editorial states. Bulk/API updates replace supplied asset lists.",
+      "failure_action": "No append-only assumption, duplicate-RSA shortcut or loss of baseline assets; validate entire merged object and read back."
+    },
+    {
+      "id": "C08",
+      "control": "Destinations",
+      "required": "Keyword/ad/template hierarchy, localized final URL, redirects, country/currency persistence, product selection, mobile route and click-ID/query-parameter continuity.",
+      "failure_action": "Hold cohort when traffic lands in a wrong language, unavailable offer or broken purchase flow."
+    },
+    {
+      "id": "C09",
+      "control": "Budget and acceptance",
+      "required": "Actual native required budget, exact approved cash/loss envelope, test timing, reconciled purchase/value/currency/deduplication and consent acceptance.",
+      "failure_action": "Paid launch stays blocked. Saved5/3USD figures are historical settings, not new authority or a hard cumulative stop."
+    }
+  ],
+  "negative_strategy": {
+    "file": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/market-expansion-20260914/NEGATIVE_STRATEGY.md",
+    "machine_rows": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/market-expansion-20260914/english-master-assets.json#/negative_profile",
+    "native_writes_performed": false,
+    "new_campaign_scope": "Only reviewed English retail dress cohorts; translate intent and variants for other languages.",
+    "existing_seed_policy": "Three existing narrow phrases reused; four single-word seeds flagged for narrower alternatives. No automatic removal of current native negatives.",
+    "qualified_seed_warning": "The48 qualified local seeds include zero US dress-scope rows. Ad-group routing exclusions must retain scope and must not be copied campaign-wide."
+  },
+  "brand_cannibalization": {
+    "status": "REVIEW_REQUIRED_NO_AUTOMATIC_BRAND_BUILD",
+    "rule": "Report own-brand terms and existing-customer orders separately. Do not claim incremental acquisition from blended branded ROAS.",
+    "negative_policy": "Consider reviewed own-brand exclusion only after native query and brand-control inspection; no competitor or own-brand exclusion is invented in the English waste list."
+  },
+  "bulk_or_editor_policy": {
+    "current_artifacts": "Local review JSON/Markdown and legacy review CSVs; not a Microsoft Bulk import file.",
+    "future_conversion": "Use a current native export/schema, explicit correct IDs and Paused states, complete merged asset arrays and reviewed JSON escaping.",
+    "default_status_hazard": "Never accept an Active default from a sample, import or creation wizard.",
+    "governance": "Disable or scope scheduled import updates to prevent budget/status/bid/AI changes; verify import preview and per-row outcome.",
+    "readback": "Capture every created/updated ID, asset text/pins, status, destination, keyword match type, negative scope, cap and editorial status after save."
+  },
+  "source_register": [
+    {
+      "id": "P01",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_aboutnegativekeywords",
+      "date": "2026-06-19",
+      "date_type": "updated",
+      "checked_this_pass": true,
+      "scope": "Negative Phrase/Exact, precise variants and scope inheritance; native report remains separate."
+    },
+    {
+      "id": "P02",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_matchoptions",
+      "date": "2026-06-26",
+      "date_type": "updated",
+      "checked_this_pass": true,
+      "scope": "Positive Exact uses meaning and close variants, not literal-only matching."
+    },
+    {
+      "id": "P03",
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/responsivesearchad?view=bingads-13",
+      "date": "2024-11-13",
+      "date_type": "updated",
+      "checked_this_pass": true,
+      "scope": "RSA text lengths/counts, replacement behavior and asset/ID readback; static English text only."
+    },
+    {
+      "id": "P04",
+      "url": "https://learn.microsoft.com/en-us/advertising/bulk-service/responsive-search-ad?view=bingads-13",
+      "date": "2024-11-13",
+      "date_type": "updated",
+      "checked_this_pass": true,
+      "scope": "Native Bulk RSA asset JSON, CSV escaping, full-list replacements, IDs and returned editorial status."
+    },
+    {
+      "id": "P05",
+      "url": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/maxclicksbiddingscheme?view=bingads-13",
+      "date": "2024-11-13",
+      "date_type": "updated",
+      "checked_this_pass": true,
+      "scope": "Optional MaxCpc per-click control; not purchase optimization, available volume or a verified total-spend limit."
+    },
+    {
+      "id": "P06",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_aboutaddistributionhidden",
+      "date": "2026-06-19",
+      "date_type": "updated",
+      "checked_this_pass": true,
+      "scope": "Both options include Search and Audience; selected-partner aggregate reporting."
+    },
+    {
+      "id": "P07",
+      "url": "https://about.ads.microsoft.com/en/blog/post/august-2026/reimagining-search-campaigns-for-the-ai-era-with-ai-max",
+      "date": "2026-08-27",
+      "date_type": "published",
+      "checked_this_pass": true,
+      "scope": "AI Max is GA and new-Search default; separate matching/text/URL controls and scheduled import inheritance."
+    },
+    {
+      "id": "P08",
+      "url": "https://about.ads.microsoft.com/en/blog/post/august-2026/ai-max-for-search-and-other-product-news-for-august-2026",
+      "date": "2026-08-31",
+      "date_type": "published",
+      "checked_this_pass": false,
+      "basis": "Reuse complete earlier2026-09-14 research/campaign_sources.json S01; first open this pass returned metadata, two subsequent body requests timed out.",
+      "scope": "Announced October1 new nonportfolio Max CPC removal for MaxClicks, MaxConversions(tCPA), MaxConversionValue(tROAS); current capped/portfolio retention; native eligibility remains unverified."
+    },
+    {
+      "id": "P09",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_importwhatinfo",
+      "date": "2026-06-26",
+      "date_type": "updated",
+      "checked_this_pass": false,
+      "basis": "Reuse complete same-day research/campaign_sources.json S21.",
+      "scope": "Imports can overwrite bid, budget, status and settings; never treat local files as import-ready."
+    },
+    {
+      "id": "P10",
+      "url": "https://learn.microsoft.com/en-us/advertising/msa-help/hlp_ba_conc_autoapplyrec",
+      "date": "2026-06-19",
+      "date_type": "updated",
+      "checked_this_pass": false,
+      "basis": "Reuse complete same-day research/campaign_sources.json S19.",
+      "scope": "Account auto-apply is distinct from campaign AI controls and scheduled imports."
+    }
+  ],
+  "inputs": [
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/campaigns.csv",
+      "sha256": "a2176510931436bb5a941fe6a986eac1bdd00d15b890aa80d499e8738ffb651e"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/keywords.csv",
+      "sha256": "0657311cdb7146c86b7a7fffa28398c94e215d878e64e1c1ebcc66b6a1470012"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/negative_keywords.csv",
+      "sha256": "6594c5ae6404228f8da10b605151592ee56f8c97e8901f0e07439cbee54de839"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/responsive_search_ads.csv",
+      "sha256": "235659d43f15223c85758f28bf8b1f32cc3bef5db3aab7cebc8cb86fc3317f07"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/negative-review-20260911/qualified_local_seeds.csv",
+      "sha256": "42b803e1e04d245334a9b84a52e3e8862d3a361a5ce5b262676378ca9a08b49b"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/research-20260914/MICROSOFT_OPERATING_PLAN.md",
+      "sha256": "a0ad90443edb52e279d119f785b5d0e0d0eb241a689edd36e927371c1f410a29"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/research-20260914/campaign_platform_findings.md",
+      "sha256": "8e9019bea56349b880081a44f4fb9051547f412bf3b62ea0b889d1e831dc1d41"
+    },
+    {
+      "path": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/research-20260914/campaign_sources.json",
+      "sha256": "1dc75edfbc1221fe8b9d1bdfd5ffceff5b42c47e30160ce00ff1bc3b06590d46"
+    }
+  ],
+  "validation": {
+    "local_json_schema_contract": "PASS_REQUIRED_FIELDS_AND_PAUSED_BOUNDARIES",
+    "native_writes": "NOT_RUN",
+    "native_campaigns_created": 0,
+    "native_campaigns_changed": 0,
+    "launch_acceptance": "NOT_PASSED",
+    "profit_effect": "UNKNOWN",
+    "independent_parent_review": "PENDING",
+    "corresponding_asset_validation": "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/market-expansion-20260914/english-master-assets.json#/validation"
+  }
+}

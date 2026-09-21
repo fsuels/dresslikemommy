@@ -1,0 +1,434 @@
+{
+  "schema": "dlm.sizing_article_independent_after_review.v1",
+  "action_id": "TA20-SIZING-GUIDE-EDITORIAL-20260914",
+  "reviewed_at_utc": "2026-09-14T23:13:13.723227+00:00",
+  "reviewer": "/root/daily_operation_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE_PUBLIC_CHANGES; independently reviewed frozen source, mutation, chronology and preservation evidence",
+  "verdict": "PASS_WITH_LIMITS",
+  "blocking_findings": [],
+  "target_id": "gid://shopify/Article/559700574305",
+  "target_url": "https://www.dresslikemommy.com/blogs/news/matching-outfit-sizing-guide-right-fit-for-everyone",
+  "final_body_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+  "checks_passed": 33,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "id": "all_thirty_eight_frozen_hashes",
+      "status": "PASS",
+      "evidence": "All38 declared frozen artifacts are present and byte-identical to SOURCE_MANIFEST.json."
+    },
+    {
+      "id": "article_identity_and_exact_final_body",
+      "status": "PASS",
+      "evidence": "Final published source equals the exact revision4 candidate; no whitespace normalization is required."
+    },
+    {
+      "id": "original_source_hash_bound",
+      "status": "PASS",
+      "evidence": "Original English body matches the frozen prewrite baseline."
+    },
+    {
+      "id": "revision_2_successful_exact_single_body_write",
+      "status": "PASS",
+      "evidence": "Mutation receipt reports no errors; reviewed body-only input, mutation return and separate article readback exactly match for revision2."
+    },
+    {
+      "id": "revision_2_guard_and_review_precede_write",
+      "status": "PASS",
+      "evidence": "Saved action-time before-read matches preceding revision and protected fields; independent review was recorded before this write."
+    },
+    {
+      "id": "revision_2_timestamp_and_readback_sequence",
+      "status": "PASS",
+      "evidence": "Server updatedAt, request interval, separate after-read and handoff chronology agree; server timestamp has second precision."
+    },
+    {
+      "id": "revision_3_successful_exact_single_body_write",
+      "status": "PASS",
+      "evidence": "Mutation receipt reports no errors; reviewed body-only input, mutation return and separate article readback exactly match for revision3."
+    },
+    {
+      "id": "revision_3_guard_and_review_precede_write",
+      "status": "PASS",
+      "evidence": "Saved action-time before-read matches preceding revision and protected fields; independent review was recorded before this write."
+    },
+    {
+      "id": "revision_3_timestamp_and_readback_sequence",
+      "status": "PASS",
+      "evidence": "Server updatedAt, request interval, separate after-read and handoff chronology agree; server timestamp has second precision."
+    },
+    {
+      "id": "revision_4_successful_exact_single_body_write",
+      "status": "PASS",
+      "evidence": "Mutation receipt reports no errors; reviewed body-only input, mutation return and separate article readback exactly match for revision4."
+    },
+    {
+      "id": "revision_4_guard_and_review_precede_write",
+      "status": "PASS",
+      "evidence": "Saved action-time before-read matches preceding revision and protected fields; independent review was recorded before this write."
+    },
+    {
+      "id": "revision_4_timestamp_and_readback_sequence",
+      "status": "PASS",
+      "evidence": "Server updatedAt, request interval, separate after-read and handoff chronology agree; server timestamp has second precision."
+    },
+    {
+      "id": "three_recorded_writes_and_order",
+      "status": "PASS",
+      "evidence": "Exactly three mutation receipts in the frozen packet, ordered22:53:37,23:00:02,23:05:21UTC; handoff does not collapse corrective writes into one."
+    },
+    {
+      "id": "initial_review_append_timing_preserved",
+      "status": "PASS",
+      "evidence": "Original22-check review and later two schema/operation checks retain separate timestamps; all24 were recorded before first write, without claiming the root initial guard saw24."
+    },
+    {
+      "id": "nineteen_content_plus_thirteen_style_changes_reproduce_final",
+      "status": "PASS",
+      "evidence": "Nineteen content replacements, one table attribute and twelve cell attributes exactly reproduce final body from original."
+    },
+    {
+      "id": "full_change_chain_reverses_exactly",
+      "status": "PASS",
+      "evidence": "Reversing the style additions and19content replacements restores every original body byte."
+    },
+    {
+      "id": "balanced_element_sequence_preserved",
+      "status": "PASS",
+      "evidence": "All revisions retain the same balanced HTML element sequence."
+    },
+    {
+      "id": "layout_only_after_content_and_links_verified",
+      "status": "PASS",
+      "evidence": "Both later corrections preserve every revision2 text node and all four hrefs, so the recorded distinct shopping/support navigation remains applicable."
+    },
+    {
+      "id": "thirteen_expected_style_attributes_only",
+      "status": "PASS",
+      "evidence": "Final article contains the exact one table style and twelve cell overrides; no additional styling or content change."
+    },
+    {
+      "id": "twelve_protected_article_fields_preserved",
+      "status": "PASS",
+      "evidence": "All12protected fields match original and final sources. Only body and platform updatedAt changed among captured article fields."
+    },
+    {
+      "id": "five_nonbody_source_keys_preserved",
+      "status": "PASS",
+      "evidence": "Five nonbody translatable source entries, including values/digests/locales, are unchanged; only body_html changes to exact final source/digest."
+    },
+    {
+      "id": "ninety_translation_values_and_identities_preserved",
+      "status": "PASS",
+      "evidence": "All90translation identities and value bytes independently compared original to final; none added, removed or changed."
+    },
+    {
+      "id": "eighteen_body_metadata_changes_only",
+      "status": "PASS",
+      "evidence": "Only18body translation rows change outdated false-to-true and updatedAt. All72nonbody translation rows are entirely unchanged; localized body text remains old."
+    },
+    {
+      "id": "locale_scope_qualified",
+      "status": "PASS",
+      "evidence": "Same21enabled locales observed; en/ru/sv have no translation rows; no market-specific rows returned. This does not certify absence of all market overrides or localized public correctness."
+    },
+    {
+      "id": "root_130_preservation_report_consistent",
+      "status": "PASS",
+      "evidence": "Root130-check report agrees with independent original-to-final comparisons; source success is distinct from rendered QA."
+    },
+    {
+      "id": "failed_intermediate_layout_evidence_retained",
+      "status": "PASS",
+      "evidence": "Initial excessive scrolling and revision3 explicit cell nowrap failure are retained; neither intermediate stage is represented as final rendered acceptance."
+    },
+    {
+      "id": "root_desktop_render_consistent",
+      "status": "PASS",
+      "evidence": "Root live desktop receipt reports all12cells normal and no horizontal cell/table/document overflow; table width700px. This verifier reviewed the frozen receipt, not the live browser."
+    },
+    {
+      "id": "root_mobile_render_consistent",
+      "status": "PASS",
+      "evidence": "Root live mobile receipt reports all12cells normal and no horizontal cell/table/document overflow; table width345px. This verifier reviewed the frozen receipt, not the live browser."
+    },
+    {
+      "id": "public_scope_and_limitations_consistent",
+      "status": "PASS",
+      "evidence": "English US rendered acceptance retains requested-versus-actual widths and long-word wrapping limitation; native screenshots were viewed by root and are not supplied as local files."
+    },
+    {
+      "id": "actual_distinct_destination_navigation_qualified",
+      "status": "PASS",
+      "evidence": "Root clicked the two distinct article destinations under revision2; later exact href/text invariants preserve applicability.36cards and a contact form are visibility evidence, not availability, order or delivery proof."
+    },
+    {
+      "id": "qa_and_no_commercial_claims",
+      "status": "PASS",
+      "evidence": "No cart/contact transaction or measured commercial lift claimed. Conservative operator QA interval is retained without blanket customer-traffic exclusion."
+    },
+    {
+      "id": "corrected_copy_rollback_retained_not_executed",
+      "status": "PASS",
+      "evidence": "Preferred guarded layout fallback restores corrected revision2, preserving improved advice; it was not executed. Original superseded body is separately retained only as historical backup."
+    },
+    {
+      "id": "handoff_matches_frozen_evidence",
+      "status": "PASS",
+      "evidence": "Execution handoff accurately preserves article-only scope, actual chronology, unresolved localization and existing separate article/Sunshine/P1 review dates."
+    }
+  ],
+  "frozen_manifest_file_count": 38,
+  "source_hash_count_including_manifest_and_handoff": 40,
+  "source_sha256": {
+    "article-before.json": "ab4706b544df738b9261754a9c9dfa96b1d2294e8b770658a53c71854f96580b",
+    "translations-before.json": "568b6e69327850ff17f46c310d902f42f9ef88dc6e980d3cc8e3ab7b96f5ded1",
+    "change-plan.json": "4960d5976e7a411b4e17ec24c5940e6b33526d79a0d08176e9ae71663cb1f704",
+    "candidate-final.html": "7f8ccb04c9e4951b00b1a4c123640b46f2b090da700784b5f96bf2e2ab2ed975",
+    "mutation.graphql": "7cec8ec41c1082ff46178895b4581bc9c780e7baa86c55688f95596d1ec2c95a",
+    "mutation-validation.json": "a2d2b3ca34d0c9c660e93e73b299144a8cb1c462dba7d6a5d9743ed87a5799bc",
+    "mutation-variables.json": "3cbda9a2c45fc8dd213766f38e797c69554aa9827779fd1dee2aa13f5acf7c1c",
+    "rollback-variables.json": "6b5ec3de61913b4d5e046ea9e4e98d2def708b703da95d616cb5b25a4ee04901",
+    "article-action-before.json": "688f4ca3ddbd44f717856bf1abbdba1cbfb0dec8de5427b66e9a5cd5427e6d6c",
+    "INDEPENDENT_PREWRITE_REVIEW.json": "9f22208f6aed560cdd25efcede3b12ba91b96604d0d3df5bed7570a7faad8d4b",
+    "mutation-result.json": "95a9447cd1d1cc5b2a95a105ce218bdbb7b44ab5a78a3c8b60a786e5d7c458d5",
+    "article-after.json": "7aad6d2057f8d136eb23a1f693cc3c007a16dafb014412e0238d08b7eb95d679",
+    "translations-after.json": "77b09ed48e4c849ac0a2670380db1919bf907ef4948e50de23194cfaef2ad59f",
+    "PRESERVATION_CHECKS.json": "ccde6ea994a7f54095cf3d811a7e8b4fb913b74b8916bc3f80aa1765a329dd36",
+    "PUBLIC_INITIAL_MOBILE_QA.json": "1f44d5a578798c187b717387dd74245240e0ab337c93cf6278ce2d27a4143afb",
+    "PUBLIC_LINK_VERIFICATION.json": "316148e8b354459869b28a1120991901f0dd87e27abf5406448602cef4af981c",
+    "PUBLIC_FINAL_VERIFICATION.json": "f5067aa21f098e15befa2471d3290991266a1b2262c9708289857a25b73adc71",
+    "table-layout/change-plan.json": "191af10f6c389e390d986c3f92e914941240c452690b5a935b8492ef28b6e63f",
+    "table-layout/candidate-final.html": "367db0385db73a1a31c81af0f99184d693a1a57db5790748bd1ae63857f68c98",
+    "table-layout/mutation-variables.json": "7c860664e944e9029559e8fc4642b80464ac5e89558cccf6b15488ff67d1768a",
+    "table-layout/rollback-variables.json": "3cbda9a2c45fc8dd213766f38e797c69554aa9827779fd1dee2aa13f5acf7c1c",
+    "table-layout/INDEPENDENT_PREWRITE_REVIEW.json": "06a0dca72034749ec6f0ac7c336c4dae31eaf6bb171b44b6cf249c39c8ebf4c9",
+    "table-layout/article-action-before.json": "76d2aa37c7e35716eb98b9be1ef6e398d020ccd758b0ee7a17f3e3ec4dc7499c",
+    "table-layout/mutation-result.json": "26012cddd29ed4e3d7ee56eb8c16f3901fbc2086002d9555c5ff184e129c19ed",
+    "table-layout/article-after.json": "ea0b3dd30fab3d351b1ae02c23cdc6ac1f901bc77e82b7cc9891f9c934b5ef23",
+    "table-layout/translations-after.json": "d689281500e874a0e5446f8566748cd27e71ce4343f5e90ed6c72a05049f2dd3",
+    "table-cells/change-plan.json": "07862e6810caa5c710af75b6e2055371d750908748426a8d6fea7f3caa0b26a9",
+    "table-cells/candidate-final.html": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+    "table-cells/mutation-variables.json": "02ac9fd722897e4220f33c9bccbd0c2267dc88a2df4ea35182d81605b8b65ece",
+    "table-cells/rollback-variables.json": "3cbda9a2c45fc8dd213766f38e797c69554aa9827779fd1dee2aa13f5acf7c1c",
+    "table-cells/INDEPENDENT_PREWRITE_REVIEW.json": "94e2034e7837ea96f9f171cae1b80b20b8befac198de06f56da8f142b6cb2c3d",
+    "table-cells/article-action-before.json": "8a70fdd0e1018693c8e505d8116ffbbe988583395752adcea145e4a17d281a9c",
+    "table-cells/mutation-result.json": "39cd8581f884e14d8a7be662b92dbcd84ff9907ab3a381c8843517dca54c1c0e",
+    "table-cells/article-after.json": "e2177cf1c98c015d84114e892636c4be0d3cc8185098e2fc08d7b8279ff8a926",
+    "table-cells/translations-after.json": "04d4625e94ff5ddce2bbc486decfab9a7c27e85625a02ffdd5de7c24950ab7b7",
+    "table-layout/PUBLIC_LAYOUT_CHECK.json": "e6df7197794dbf5db37d8e6fd938335668cdff7a15be8b2b361407bf6600e401",
+    "FINAL_PRESERVATION_CHECKS.json": "07a4b2f2f94f671a1a91055ce27a0fd3b01c9d7b4019e1d2fa1099412ace3c9b",
+    "RELEASE_PRESERVATION_CHECKS.json": "77d59e8680c86e099a8831dd95391906e67650c90ea9b3712e062c874b847fdf",
+    "SOURCE_MANIFEST.json": "c7ae64a91f1c7927f19780f8203c9fa757b8fd9c3e9638b88886caade257cf77",
+    "EXECUTION_HANDOFF.json": "f2ed6f3df6059920213136b72d8675b5e0ae86e57a2963b1261c45b0fe9b5270"
+  },
+  "recorded_successful_body_writes": 3,
+  "write_chronology": [
+    {
+      "revision": 2,
+      "reviewed_at_utc": "2026-09-14T22:52:55.985022+00:00",
+      "guard_read_at_utc": "2026-09-14T22:51:56.945Z",
+      "mutation_started_at_utc": "2026-09-14T22:53:36.965Z",
+      "mutation_completed_at_utc": "2026-09-14T22:53:37.729Z",
+      "server_updated_at": "2026-09-14T22:53:37Z",
+      "after_read_at_utc": "2026-09-14T22:54:04.380Z",
+      "body_sha256": "7f8ccb04c9e4951b00b1a4c123640b46f2b090da700784b5f96bf2e2ab2ed975",
+      "mutation_user_errors": 0,
+      "root_review_check_count": 24
+    },
+    {
+      "revision": 3,
+      "reviewed_at_utc": "2026-09-14T22:59:11.764538+00:00",
+      "guard_read_at_utc": "2026-09-14T22:59:51.335Z",
+      "mutation_started_at_utc": "2026-09-14T23:00:02.221Z",
+      "mutation_completed_at_utc": "2026-09-14T23:00:02.835Z",
+      "server_updated_at": "2026-09-14T23:00:02Z",
+      "after_read_at_utc": "2026-09-14T23:00:22.784Z",
+      "body_sha256": "367db0385db73a1a31c81af0f99184d693a1a57db5790748bd1ae63857f68c98",
+      "mutation_user_errors": 0,
+      "root_review_check_count": 16
+    },
+    {
+      "revision": 4,
+      "reviewed_at_utc": "2026-09-14T23:04:30.277544+00:00",
+      "guard_read_at_utc": "2026-09-14T23:05:12.876Z",
+      "mutation_started_at_utc": "2026-09-14T23:05:21.442Z",
+      "mutation_completed_at_utc": "2026-09-14T23:05:22.102Z",
+      "server_updated_at": "2026-09-14T23:05:21Z",
+      "after_read_at_utc": "2026-09-14T23:05:55.760Z",
+      "body_sha256": "c1c3ca1fa58097d25857d12fb361f82ac60ae7d45f5545a717ca9a6ab04aea88",
+      "mutation_user_errors": 0,
+      "root_review_check_count": 16
+    }
+  ],
+  "verified_result": {
+    "content_replacements": 19,
+    "style_attributes_added": 13,
+    "protected_article_fields_unchanged": 12,
+    "nonbody_source_entries_unchanged": 5,
+    "translation_values_unchanged": 90,
+    "translation_values_changed": 0,
+    "body_translation_rows_now_outdated": 18,
+    "nonbody_translation_rows_entirely_unchanged": 72,
+    "root_preservation_checks": 130,
+    "root_desktop_table_width_scroll_width": 700,
+    "root_mobile_table_width_scroll_width": 345,
+    "root_all12cells_normal_and_no_horizontal_overflow": true,
+    "commerce_lift_measured": false
+  },
+  "translation_metadata_changes": [
+    {
+      "locale": "ar",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "cs",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "da",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "de",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "el",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "es",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "fi",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "fr",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "he",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "hi",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "it",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "ja",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "ko",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "nl",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "no",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "pl",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "pt-BR",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    },
+    {
+      "locale": "ro",
+      "key": "body_html",
+      "fields": [
+        "outdated",
+        "updatedAt"
+      ]
+    }
+  ],
+  "public_evidence_classification": "ROOT_LIVE_BROWSER_PROOF_REVIEWED_FOR_CONSISTENCY; no independent live browser replay or screenshot-file inspection by this verifier",
+  "limitations": [
+    "Final rendered verification covers the English US article only. The18existing localized body values remain unchanged/outdated and still contain earlier sizing advice; no localized public route, native-language quality or complete market-override acceptance is claimed.",
+    "On mobile, long words may wrap inside narrow columns. Root recorded no horizontal cell/table/document overflow and readable normal vertical flow; this verifier independently checked the frozen receipt against the exact final source, not the live browser.",
+    "Actual shopping/contact navigation occurred under revision2. Both later revisions preserved all text and hrefs, so those route observations are reused explicitly; no contact delivery, item availability, cart/checkout completion or purchase was certified.",
+    "Three successful body writes are evidenced, including the failed intermediate table-only layout. No rollback occurred. Body rollback may not restore translation metadata; prefer corrected revision2 for any future layout recovery after a fresh guard.",
+    "No incremental visits, distinct new buyers, sales lift or contribution profit is established by this publication. Existing cohort review dates remain separate."
+  ],
+  "next_action": "Parent integrates this verified English release and its three-write chronology into existing canonical records, preserving the unresolved18localized-body correction and separate FAQ defect; do not republish this completed article."
+}

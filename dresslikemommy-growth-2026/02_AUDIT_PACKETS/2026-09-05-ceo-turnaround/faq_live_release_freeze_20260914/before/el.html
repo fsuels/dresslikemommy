@@ -1,0 +1,165 @@
+<div id="page-content">
+<script>// <![CDATA[
+function remove_classes_active() {
+    alert( 'FOUND' );
+    var $aSelected = $('.question-answer-block').find('a');
+    
+    if( $aSelected.hasClass('active') ){
+      alert( 'FOUND' );
+      $('.question-answer-block > a').removeClass('active');
+    }else{
+      alert( 'NOT FOUND' );
+    }
+  }
+// ]]></script><script>// <![CDATA[
+jQuery("document").ready(function($){
+    var nav = $('#nav');
+    $(window).scroll(function () {
+     	if(getWidthBrowser() > 1200){
+    		if ($(this).scrollTop() > 136){
+              nav.addClass("on animated"); 		
+            } 
+            else {
+              nav.removeClass("on animated"); 		
+            } 
+  		}
+          $('#goGrid').trigger('click');
+
+      
+    });  
+    
+  });
+// ]]></script>
+<div class="help-page">
+<div id="General Questions">
+<div class="faq-item-title" name="General Questions">
+<h2>Σχετικά με εμάς</h2>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Γενικές Ερωτήσεις</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Είναι ασφαλές να χρησιμοποιώ αυτόν τον ιστότοπο; </strong></p>
+<p>Σίγουρα είναι. Χρησιμοποιούμε το PayPal για την επεξεργασία των πληρωμών. Έτσι ούτε το προσωπικό μας βλέπει τα στοιχεία πληρωμής σας. Το PayPal είναι ο μεγαλύτερος παγκόσμιος πάροχος ασφαλών πληρωμών. Ο ιστότοπός μας είναι χτισμένος στην ασφαλή πλατφόρμα Shopify. Όλες οι προσωπικές σας πληροφορίες είναι απόλυτα προστατευμένες.</p>
+<p> </p>
+<p><strong>2. Πόσο γρήγορα απαντάτε στα ερωτήματα μέσω email;</strong></p>
+<p>Απαντάμε σε όλα τα email εντός μιας εργάσιμης ημέρας.</p>
+<p> </p>
+<p><strong>3. Πού εδρεύετε;</strong></p>
+<p>Οι κύριες δραστηριότητές μας πραγματοποιούνται στην Ευρωπαϊκή Ένωση, συνοδευόμενες από το Κέντρο Υποστήριξής μας στη Λιθουανία και τους Κατασκευαστές και Αποθήκες στην Ανατολική Ασία.</p>
+<p> </p>
+<p><strong>4. Γιατί είστε τόσο φθηνοί;</strong></p>
+<p>Αποφεύγουμε όλους τους μεσάζοντες και παραδίδουμε τα προϊόντα απευθείας στους καταναλωτές από τους κατασκευαστές μας, κάτι που μας επιτρέπει να προσφέρουμε εξαιρετικά χαμηλές τιμές.</p>
+</div>
+</div>
+</div>
+<div id="Before You Place an Order">
+<div class="faq-item-title" name="before you place an order">
+<h2>Πριν Καταχωρήσετε Παραγγελία</h2>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Μεγέθη</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Πού μπορώ να βρω τον πίνακα μεγεθών σε εκατοστά;</strong></p>
+<p>Μπορείτε να βρείτε πίνακες μεγεθών σε εκατοστά στη σελίδα μεγεθών μας εδώ: <a href="http://www.assassinshoodies.com/pages/sizing-information" alt="Σελίδα Μεγεθών">Σελίδα Μεγεθών</a> ή στην περιγραφή κάθε προϊόντος.</p>
+<p> </p>
+<p><strong>2. Θα λάβω προϊόν δύο μεγέθη μεγαλύτερο;</strong></p>
+<p>Όχι. Θα στείλουμε το μέγεθος που έχετε παραγγείλει. Αν συνήθως φοράτε ευρωπαϊκό μέγεθος medium, επιλέξτε μέγεθος medium (M) και θα λάβετε μέγεθος medium.</p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">B. Πληρωμές</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Τι είδους πληρωμές δέχεστε;</strong></p>
+<p>Δεχόμαστε PayPal και πιστωτικές/χρεωστικές κάρτες (Visa, Mastercard, American Express, Discover).</p>
+<p> </p>
+<p><strong>2. Θέλω να πληρώσω με πιστωτική κάρτα, αλλά με ανακατευθύνει στη σελίδα του PayPal;</strong></p>
+<p>Χρησιμοποιούμε το PayPal για την επεξεργασία όλων των πληρωμών μας. Στη σελίδα του PayPal στα δεξιά μπορείτε να επιλέξετε ανάμεσα σε δύο επιλογές: "Πληρωμή με τον λογαριασμό μου στο PayPal" <i>ή</i> "Πληρωμή με την πιστωτική ή χρεωστική μου κάρτα"</p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">Γ. Αποστολή</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Ποια είναι η τιμή αποστολής;</strong></p>
+<p>Προσφέρουμε απολύτως ΔΩΡΕΑΝ παράδοση παγκοσμίως.</p>
+<p> </p>
+<p><strong>2. Παραδίδετε στη χώρα μου;</strong></p>
+<p>Ναι, κάνουμε. Παραδίδουμε σε όλες τις χώρες του κόσμου.</p>
+<p> </p>
+<p><strong>3. Πόσο χρόνο θα χρειαστεί να παραλάβω την παραγγελία μου;</strong></p>
+<p>Η παράδοση συνήθως διαρκεί περίπου 15-30 ημέρες. Ωστόσο, μπορείτε να ελέγξετε τις ακριβείς εκτιμήσεις παράδοσης εδώ: <a href="https://www.dresslikemommy.com/pages/shipping-and-delivery" alt="Σελίδα Αποστολής">Σελίδα Αποστολής</a></p>
+<p> </p>
+<p><strong>4. Χρειάζεται να πληρώσω τελωνειακά τέλη;</strong></p>
+<p>Όχι, δεν χρειάζεται να πληρώσετε τελωνειακά τέλη. Σημειώνουμε όλες τις παραγγελίες μας ως δώρα χαμηλής αξίας. Επιπλέον, στέλνουμε μεγαλύτερες παραγγελίες σε ξεχωριστά πακέτα.</p>
+</div>
+</div>
+</div>
+<div id="After You Place an Order">
+<div class="faq-item-title" name="After You Place an Order">
+<h2>Μετά την Καταχώρηση Παραγγελίας</h2>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">A. Κατάσταση Παραγγελίας</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Τι σημαίνει: κατάσταση παραγγελίας "Μη εκπληρωμένη";</strong></p>
+<p>Η παραγγελία σας επεξεργάζεται και ο αριθμός παρακολούθησης της παραγγελίας εκκρεμεί. Συνήθως εκπληρώνουμε τις παραγγελίες και στέλνουμε στους πελάτες μας τον αριθμό παρακολούθησης όταν ο αριθμός παρακολούθησης υποβληθεί στο Ταχυδρομικό Σύστημα, κάτι που διαρκεί 5-7 ημέρες μετά την αποστολή της παραγγελίας.</p>
+<p> </p>
+<p><strong>2. Τι σημαίνει: κατάσταση παραγγελίας "Εκπληρώθηκε";</strong></p>
+<p>Αυτό σημαίνει ότι η παραγγελία σας αποστέλλεται.</p>
+<p> </p>
+<p><strong>3. Έχει περάσει πολύς χρόνος, πού είναι η παραγγελία μου;</strong></p>
+<p>Παρακαλούμε ελέγξτε την παρακολούθηση της παραγγελίας σας για περισσότερες πληροφορίες. Αν το πρόβλημα παραμένει, παρακαλούμε στείλτε μας email: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">Β. Παρακολούθηση Παραγγελίας</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Πώς μπορώ να παρακολουθήσω την παραγγελία μου;</strong></p>
+<p>Παρέχουμε τον κωδικό παρακολούθησης της παραγγελίας 5-7 ημέρες μετά την τοποθέτηση της παραγγελίας. Μπορείτε να παρακολουθήσετε την παραγγελία σας εδώ: <a hef="www.assassinshoodies.com/pages/track-your-order" alt="Παρακολούθηση της Παραγγελίας σας">Παρακολούθηση της Παραγγελίας σας</a></p>
+<p> </p>
+<p><strong>2. Ο κωδικός παρακολούθησής μου λέει «εκκρεμεί» ή «δεν υπάρχουν διαθέσιμες πληροφορίες αυτή τη στιγμή».</strong></p>
+<p>Μερικές φορές τα πρώτα αποτελέσματα παρακολούθησης εμφανίζονται 5-10 εργάσιμες ημέρες μετά τη λήψη του αριθμού παρακολούθησης της παραγγελίας. Αν το πρόβλημα παραμένει για πάνω από 10 εργάσιμες ημέρες, παρακαλούμε επικοινωνήστε μαζί μας: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a></p>
+<p> </p>
+<p><strong>3. Ο κωδικός παρακολούθησής μου λέει «λήξη»</strong></p>
+<p>Παρακαλούμε επικοινωνήστε μαζί μας: <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> και θα λύσουμε γρήγορα αυτό το ζήτημα.</p>
+<p> </p>
+<p><strong>4. Πώς μπορώ να ενημερώνομαι για την παρακολούθηση της παραγγελίας μου;</strong></p>
+<p>Χρησιμοποιούμε το σύστημα παρακολούθησης After Ship για να παρακολουθούμε τις παραγγελίες των πελατών μας, οπότε κάθε φορά που ενημερώνονται οι πληροφορίες παρακολούθησης, θα λαμβάνετε ένα email.</p>
+</div>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">Β. Θέλω να αλλάξω ή να ακυρώσω την παραγγελία μου</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Παρήγγειλα κάτι, αλλά θέλω να ακυρώσω</strong></p>
+<p>Πρέπει να επικοινωνήσετε μαζί μας εντός 1 εργάσιμης ημέρας από την τοποθέτηση της παραγγελίας για να κανονίσετε αλλαγή παραγγελίας. Μπορείτε να το κάνετε στέλνοντας email στο <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> με τον αριθμό της παραγγελίας σας ως θέμα.</p>
+<p> </p>
+<p><strong>2. Παρήγγειλα κάτι, αλλά θέλω να αλλάξω το χρώμα ή το μέγεθος του προϊόντος.</strong></p>
+<p>Πρέπει να επικοινωνήσετε μαζί μας εντός 1 εργάσιμης ημέρας από την τοποθέτηση της παραγγελίας για να κανονίσετε αλλαγή παραγγελίας. Μπορείτε να το κάνετε στέλνοντας email στο <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> με τη νέα σας επιλογή χρώματος ή μεγέθους.</p>
+<p> </p>
+<p><strong>3. Παρήγγειλα κάτι, αλλά θέλω να αλλάξω τη διεύθυνση παράδοσης</strong></p>
+<p>Πρέπει να επικοινωνήσετε μαζί μας εντός 1 εργάσιμης ημέρας από την τοποθέτηση της παραγγελίας για να κανονίσετε αλλαγή παραγγελίας. Μπορείτε να το κάνετε στέλνοντας email στο <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> με τη νέα σας διεύθυνση παράδοσης.</p>
+</div>
+</div>
+</div>
+<div id="After You Receive an Order">
+<div class="faq-item-title" name="After You Receive an Orde">
+<h2>Μετά τη λήψη μιας παραγγελίας</h2>
+</div>
+<div class="question-answer-block">
+<h3><a class="ask" onclick="if (jQuery(this).parent().next('div').css('display') == 'block') { jQuery('.answer').slideUp(); $(this).removeClass('active');}else{ jQuery('.answer').slideUp(); jQuery(this).parent().next('div').slideDown(); $('.active').removeClass('active'); $(this).addClass('active');} return false;">Α. Θέλω να αλλάξω ή να επιστρέψω την παραγγελία μου</a></h3>
+<div class="answer" style="display: none; font-size: 16px;">
+<p><strong>1. Η παραγγελία μου έφτασε, αλλά τα προϊόντα ήταν δύο μεγέθη μεγαλύτερα</strong></p>
+<p>Σημειώστε ότι όλα τα μεγέθη στο κατάστημά μας εμφανίζονται σε μονάδες μέτρησης ΕΕ και ΗΠΑ. Ενώ το πραγματικό μέγεθος του ενδύματος (γραμμένο στο προϊόν) είναι συνήθως δύο φορές μεγαλύτερο. Οι κατασκευαστές μας βρίσκονται στην Ανατολική Ασία και στέλνουμε αυτόματα το ασιατικό ισοδύναμο του ευρωπαϊκού/αμερικανικού μεγέθους. Αυτό σημαίνει ότι αν παραγγείλετε Medium (M – ΕΕ/ΗΠΑ) θα σας στείλουμε το ασιατικό ισοδύναμο Extra Large (XL).</p>
+<p> </p>
+<p><strong>2. Η παραγγελία μου έφτασε, αλλά έλαβα τα λάθος προϊόντα</strong></p>
+<p>Παρακαλούμε επικοινωνήστε μαζί μας στο <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> και δώστε μας τον αριθμό της παραγγελίας σας. Αν φταίμε εμείς, μπορείτε να μας επιστρέψετε τα προϊόντα και θα σας στείλουμε τα σωστά προϊόντα με δικά μας έξοδα (ή θα εκδώσουμε επιστροφή χρημάτων).</p>
+<p> </p>
+<p><strong>3. Η παραγγελία μου έφτασε και θέλω να αλλάξω το μέγεθος/χρώμα</strong></p>
+<p>Παρακαλούμε επικοινωνήστε μαζί μας στο <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> και δώστε μας τον αριθμό της παραγγελίας σας. Μπορείτε να μας στείλετε το προϊόν πίσω και θα σας στείλουμε ένα νέο προϊόν με το ενημερωμένο μέγεθος. *Τα έξοδα αποστολής βαρύνουν εσάς.</p>
+<p> </p>
+<p><strong>4. Η παραγγελία μου έφτασε, αλλά θέλω να την επιστρέψω.</strong></p>
+<p>Παρακαλούμε επικοινωνήστε μαζί μας στο <a href="mail%20to:support@dresslikemommy.com">support@dresslikemommy.com</a> και δώστε μας τον αριθμό της παραγγελίας σας. Μπορείτε να μας στείλετε το προϊόν πίσω και θα εκδώσουμε επιστροφή χρημάτων. *Τα έξοδα αποστολής βαρύνουν εσάς.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

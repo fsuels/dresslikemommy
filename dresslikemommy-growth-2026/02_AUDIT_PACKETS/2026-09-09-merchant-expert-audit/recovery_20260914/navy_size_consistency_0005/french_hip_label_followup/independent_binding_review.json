@@ -1,0 +1,36 @@
+{
+  "action": "TA07-NAVY-FR-HIP-LABEL-FOLLOWUP",
+  "reviewer": "merchant_lifecycle_code_inventory",
+  "reviewed_at_utc": "2026-09-15T00:46:59.670126+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "phase": "EXECUTABLE_BINDING_REVIEW_CONDITIONAL_ON_ROOT_GATES",
+  "reviewed_variables_sha256": "22c35681108a7f47126c6677d44d4f3a074b00cb06b8dcb04cb24d8624cbee89",
+  "reviewed_query_sha256": "e46e4a322fad20c499e3d93e1d63893cdae8ae9c8087cd8f2658be0a4bc87f26",
+  "current_private_after_sha256": "84903f9d3bd5c5465611d8ceb8007ed6bb9734d4fc6692cad6ed63436dc1352d",
+  "current_private_after_completed_at": "2026-09-15T00:43:21Z",
+  "reviewed_candidate_sha256": "bfb1be4aad96a16c9ae13774ba7c988e207062c9391ba46b55d9189031cc8c9c",
+  "reviewed_candidate_review_sha256": "b4f23586f5054646d195f97ab575a4d690ebadc2e5d004c5f6fb141c7e0f4498",
+  "current_french_body_sha256": "d53c181559e9ac10fcf8d2a1b1f9afee9be3b6f062ef60a69aa44f5b5c807b89",
+  "current_english_body_digest": "af819a75e9947b8a0075e301217679f87fad2fcae08f06fa3fa81773385183b6",
+  "candidate_french_body_sha256": "d9289e4ea7c86b903d9cf5e36cd6aac74d9d65153e97c998c797b484d654b595",
+  "scope": "One global fr/body_html translation for Product/7670609346657; exactly two Hip (cm/po) to Hanches (cm/po) headers.",
+  "checks": {
+    "actual_after_shop_product_resource_verified": true,
+    "actual_french_body_matches_reviewed_baseline": true,
+    "actual_french_body_outdated": false,
+    "digest_from_actual_english_source_field": true,
+    "one_exact_translation_input_no_extra_keys": true,
+    "query_identical_to_existing_validated_operation": true,
+    "candidate_and_prior_review_hashes_match": true,
+    "exact_two_replacements_and_reverse": true,
+    "all_240_data_cells_and_numeric_tokens_unchanged": true,
+    "complete_resource_pagination": true
+  },
+  "required_before_write": [
+    "Independent after-review of the preceding 42-field repair must PASS. This binding review does not substitute for that review.",
+    "Root must freshly guard the complete source against the bound after.json immediately before registration. On body/digest/protected-state drift, stop and rebase for review."
+  ],
+  "limits": "Local evidence binding only; no external calls, registration, live acceptance or rendered verification performed. Existing candidate review retains the 18-other-header, units and geometry preservation findings.",
+  "external_calls": 0,
+  "external_writes": 0
+}

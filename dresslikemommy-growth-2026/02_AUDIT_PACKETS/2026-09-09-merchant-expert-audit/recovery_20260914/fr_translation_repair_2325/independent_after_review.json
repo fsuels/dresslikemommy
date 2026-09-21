@@ -1,0 +1,446 @@
+{
+  "action": "TA07-FR-25-REPAIR-20260914",
+  "reviewer": "/root/merchant_translation_review",
+  "reviewed_at_utc": "2026-09-14T23:43:33.156093+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "independence": {
+    "did_not_author_candidate": true,
+    "did_not_execute_registration": true,
+    "external_calls": 0,
+    "owned_artifact": "independent_after_review.json only",
+    "method": "Inspected the unchanged reviewed after guard and independently executed exact private-response/payload/receipt/diff comparisons in memory; did not overwrite the root guard report."
+  },
+  "reviewed_proposal_sha256": "02fe42ca418668e1354ea1b6d962cbad6ee396a8c6b1199a8e8a7e91fb2da8d1",
+  "reviewed_query_sha256": "64a288bb10f71b6e4ea93f72f72334d48f8df7edd8c594bfdb33d8f582b35db4",
+  "reviewed_variables_sha256": "fa43d1c476ebff7c395a5d70a47303ac152a4fc5c028efdcdb4d5782d21cdd3d",
+  "private_after_sha256": "3492cbcd948f4deb4f2e8ab76d90fae683c6f68e1ce426a36d703c0f77f2da9d",
+  "after_completed_at": "2026-09-14T23:36:28Z",
+  "bindings": [
+    {
+      "file": "proposal.json",
+      "sha256": "02fe42ca418668e1354ea1b6d962cbad6ee396a8c6b1199a8e8a7e91fb2da8d1"
+    },
+    {
+      "file": "register.graphql",
+      "sha256": "64a288bb10f71b6e4ea93f72f72334d48f8df7edd8c594bfdb33d8f582b35db4"
+    },
+    {
+      "file": "register.variables.json",
+      "sha256": "fa43d1c476ebff7c395a5d70a47303ac152a4fc5c028efdcdb4d5782d21cdd3d"
+    },
+    {
+      "file": "independent_prewrite_review.json",
+      "sha256": "170115ce5c38021e689546f18764365ba5777599fcb8d7e2cb8b99263d28ae44"
+    },
+    {
+      "file": "verify_repair.py",
+      "sha256": "b224d712eb946b170d2f34a8d10f151a4c02a012d85fe5d7c8e98970bcd17933"
+    },
+    {
+      "file": "mutation_receipt.json",
+      "sha256": "5cfccfd6d185a577d41da8ac7be0ebba1a84ec23a9cbaf49c86daafe498a9c4f"
+    },
+    {
+      "file": "execution_intent.json",
+      "sha256": "3234e26a8c1444f13dd637fc54828add0021b3b1be79eb42d12a8332037a589f"
+    },
+    {
+      "file": "prewrite_verification.json",
+      "sha256": "176e6d28720d5565a686ac9cc9b4d5c0382974aa3b3dca0b1dfae6384c60943e"
+    },
+    {
+      "file": "after_verification.json",
+      "sha256": "90055a670d31230fdd65ad51de447021f5bb0d39fdf9c5561c8b58dd7c0dea71"
+    }
+  ],
+  "private_evidence_bindings": {
+    "before_sha256": "84c842273c969225d307b2718e9767e0d4744da1db0172a3fdb702efbc33f44e",
+    "prewrite_sha256": "8be509d021f4277452e0e19413558cf35ac8e00db8662982cd8c4e8b20129b90",
+    "after_sha256": "3492cbcd948f4deb4f2e8ab76d90fae683c6f68e1ce426a36d703c0f77f2da9d"
+  },
+  "verified": {
+    "exact_proposal_query_variables_approval_binding": true,
+    "mutation_aliases": 10,
+    "returned_values_exact": 25,
+    "user_errors": 0,
+    "new_French_values_exact_and_outdated_false": 25,
+    "untargeted_French_records_unchanged": 25,
+    "English_source_fields_and_digests_unchanged": 60,
+    "ACTIVE_product_identity_title_handle_URL_records_unchanged": 10,
+    "French_outdated_before": 25,
+    "French_outdated_after": 0,
+    "only_approved_value_and_outdated_properties_changed": true,
+    "entire_after_data_matches_expected_reconstruction": true,
+    "resource_and_field_membership_preserved": true,
+    "pagination_complete": true,
+    "guard_code_unchanged_from_prewrite_review": true,
+    "root_after_counts_independently_reproduced": true
+  },
+  "changed_fields": [
+    {
+      "resourceId": "gid://shopify/Product/7227375714401",
+      "key": "body_html",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "4d7754c73ded929a78eae303bde802579d54815e4398606f6c3a288cfd6fabd1"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227378892897",
+      "key": "title",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "449a54f5e28da33ba87645bf3871e3f0ab1db01c9081f8b2c9d3d7f86bfc4508"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227378892897",
+      "key": "meta_title",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "ec122690a00af21d0bb26fa5fb90ffaf3a1993b3b5a659784046886d7df92795"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227378892897",
+      "key": "meta_description",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "3c75fb652b011c12b44beab9a4d43178a82afd8478532ca17efb78e584f83877"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229026304097",
+      "key": "body_html",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "8cf88b51c206908d24b6c8c77ce1bb9862bc3b4ca676408640e1edddad9987bc"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536709664865",
+      "key": "title",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "6fde1e5db5cb40f657876790d6717a660ddcc3d5002a1dcbcd858871926ef508"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536984359009",
+      "key": "title",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "5c2699830320c723ebd47a090a83c5025f96a422bfb677c5f6815bb51217f29c"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279217761",
+      "key": "title",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "cbaf64bd0ac3da884e2fe2504318ea6091a1140241976a9b5fd59f9a8e971dab"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279217761",
+      "key": "body_html",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "b35e960caa20e91a69ae5b0d13abdcdebc43fac64845ad8b81d3546b31b5f53b"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279217761",
+      "key": "product_type",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "d1c10b44546f7ede4bac0dfdc540c563ab63b55003920c92127f6c6c1ceb43f4"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279217761",
+      "key": "meta_title",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "92722528e38196f3df93a4ce3fa023f9d09324821ffa3e894a8b05375d53d2a8"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279217761",
+      "key": "meta_description",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "f4f826dbdcbb18b35060bdde855c797ef6c87c55adc15d5b128a224fbd487700"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279512673",
+      "key": "body_html",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "d3558ed233d9a52fd208c48f89bbedef85b67187de519bbd44eb111aec42268c"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279512673",
+      "key": "meta_title",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "f2574d2948ca9d0add5de0f43332ce50715e3980a1b2687747bc1d56aac43cb3"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279512673",
+      "key": "meta_description",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "681763de13fcc630c7f6ed365d18c520124306b9d0acb7550d0b8896e42d070e"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279840353",
+      "key": "body_html",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "d2365a2e0c8c5743eef328b4a7ffa8d41fa930b3d2293695ef5fee0bd43c79f1"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279840353",
+      "key": "meta_title",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "2390952a37f2c78453a4cc279f242b4edf8b6e17e06d685d1e67ac53a87f22aa"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279840353",
+      "key": "meta_description",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "2c56ff6f868bc83dbb68eed859f8e814e95bc2fa4313ecdf0cec5dfb5630d544"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545373130849",
+      "key": "body_html",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "637240aa41932aa2c86cc7002eceae8517dd672c7f962564051c8be3ece45b7e"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545373130849",
+      "key": "meta_title",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "6fac16fb5836be3aa7a7fc0eb11b3078ae4a1a45fec02a343f8b05482f68e665"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545373130849",
+      "key": "meta_description",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "9341aa382084d08649f8257ff9ec0587319a277cf8b865ba7b63a9c8f5b08d7d"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7546613530721",
+      "key": "title",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "d026f1f4a197383fd220a4a555a11f6be9b22a47d0c1655f84a8b586c936c4b9"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7546613530721",
+      "key": "body_html",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "b975c9362f71d41fc5712517674f5b8a13254e253e28f59abef05bfdd4c51993"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7546613530721",
+      "key": "meta_title",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "a54b007841d6faea7bee69179abc75137f38debb9d155da1eb68acf60c0c81fb"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7546613530721",
+      "key": "meta_description",
+      "changed_properties": [
+        "value",
+        "outdated"
+      ],
+      "afterValueSha256": "33cdb18968affe565d242584d939ae3c6dc40f5774368b60d2507229f3213aec"
+    }
+  ],
+  "untargeted_French_bindings": [
+    {
+      "resourceId": "gid://shopify/Product/7227375714401",
+      "key": "title",
+      "valueSha256": "db2c1322e44e6ffd49a8c3fd0c5ac94d215c9fbce721546794fd983a598555c5"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227375714401",
+      "key": "product_type",
+      "valueSha256": "ab5ce430947eed79b90209e7a03f5a0e6e0b5df33f0d9dc44d9361b1842e68ff"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227375714401",
+      "key": "meta_title",
+      "valueSha256": "0e5a025579074b9dc5326409b5c78b7d0daa2ac1a9f7e1831ec1d6946f6c5ab5"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227375714401",
+      "key": "meta_description",
+      "valueSha256": "4c41007589cd694696d7991d0fcb044600827808560586244ec003a4ce4377fe"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227378892897",
+      "key": "body_html",
+      "valueSha256": "5e88cb47105d7e07ad445f1ef25ec2352d415d4f9463cc1fbaabcc161a16f7ba"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227378892897",
+      "key": "product_type",
+      "valueSha256": "ab5ce430947eed79b90209e7a03f5a0e6e0b5df33f0d9dc44d9361b1842e68ff"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229026304097",
+      "key": "title",
+      "valueSha256": "73b69f2d0e93f4b5386ee1f1ab3080a9171449bd480003eb6b825296f3fda25b"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229026304097",
+      "key": "product_type",
+      "valueSha256": "2cf664617c2df11b7fd508c839d37d47c1e1a2ed8f0bca18b47765b2d8684e01"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229026304097",
+      "key": "meta_title",
+      "valueSha256": "cbfbb2d637b4060246a1aaed22ac34685e9b15906b5a54e016bd123a434851eb"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229026304097",
+      "key": "meta_description",
+      "valueSha256": "70b17cc00efe5fbfbe1d88f53e949687284104c439f09f88c6b5d7938809b0ee"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536709664865",
+      "key": "body_html",
+      "valueSha256": "b02d4f46e18d3eff1d1e639343fd0262440a749f5444a13fac518d8d9e72a295"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536709664865",
+      "key": "product_type",
+      "valueSha256": "acbc5123b40cf23ab59be87946ed1fb7bf8920d2320de9bf7cb1a853c1dce405"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536709664865",
+      "key": "meta_title",
+      "valueSha256": "d0ecf0ab1cee213ecc2f81628f2ab0c90c9886879464fbbea4c4e2172ed3bebc"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536709664865",
+      "key": "meta_description",
+      "valueSha256": "6eca8fe85215c887edadf65268c774fa46d05bd14c0e33b7ab098fae3640fbc1"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536984359009",
+      "key": "body_html",
+      "valueSha256": "073fd05e84f5e2bd24ef663c6703a9d146131c4fb67cf88f0a5cf5487360b7fc"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536984359009",
+      "key": "product_type",
+      "valueSha256": "89e6f08d82f9a4753406fa527a4b16cd64f7bf8dced1270ae5d961766476e2b0"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536984359009",
+      "key": "meta_title",
+      "valueSha256": "b454c4bd6da79ee29e6c5a9273e885766cc11ef65c1bd28ccab24fe552360fb1"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7536984359009",
+      "key": "meta_description",
+      "valueSha256": "f5e7acbaea4ef03078ac4995c443fb8f4a07da0950b648b986a4e1d8e88e3bfe"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279512673",
+      "key": "title",
+      "valueSha256": "b30d463b3660836ceb6e933f2e0e8d2ac4868b4f689bcf536bf07218cfbe2768"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279512673",
+      "key": "product_type",
+      "valueSha256": "1486b57b3df6b5312643cf745906a7b8ced619747be38cf9cd50cf35568ec79f"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279840353",
+      "key": "title",
+      "valueSha256": "f278858d07bcdc520b9c9f4f02b79d6cb0a58392ce5ed8f6bdb34f3ea8072435"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545279840353",
+      "key": "product_type",
+      "valueSha256": "1486b57b3df6b5312643cf745906a7b8ced619747be38cf9cd50cf35568ec79f"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545373130849",
+      "key": "title",
+      "valueSha256": "14202df4d0ee82bc78851481018fa3e49f3803e048774600c7c85da5815f9b81"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7545373130849",
+      "key": "product_type",
+      "valueSha256": "89e6f08d82f9a4753406fa527a4b16cd64f7bf8dced1270ae5d961766476e2b0"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7546613530721",
+      "key": "product_type",
+      "valueSha256": "89e6f08d82f9a4753406fa527a4b16cd64f7bf8dced1270ae5d961766476e2b0"
+    }
+  ],
+  "findings": [],
+  "exclusions": [
+    "Tropical product 7227378925665 is absent from the ten-product operation; its separate source-weight concern is not resolved or changed by this repair.",
+    "No language-feed submission, Merchant receipt/approval, landing-page readiness or performance claim is included."
+  ],
+  "limits": [
+    "This review independently checks saved exact private source responses and the captured structured mutation receipt; it did not make a new live API request.",
+    "Raw source values and supplier/Admin URLs were not reproduced in the report.",
+    "Other locales, variant prices and publication records were not separately reread; the bound operation only registers 25 global-FR translation fields.",
+    "Product/material/measurement facts were preserved rather than newly verified against supplier evidence.",
+    "Public French rendering and the wider Merchant account remain separate verification tasks; this exact 25-field operation is complete."
+  ],
+  "next_action": "Parent may close the exact FR 25 repair and integrate this after-state proof, then continue the separate market/feed and buyer-route work without replaying this successful registration."
+}

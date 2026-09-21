@@ -1,0 +1,9 @@
+query FaqSourceDiagnosis {
+  pages(first: 5, query: "handle:faqs") {
+    nodes { id handle body updatedAt templateSuffix }
+    pageInfo { hasNextPage endCursor }
+  }
+  current: theme(id: "gid://shopify/OnlineStoreTheme/133290917985") { id role processing processingFailed updatedAt }
+  candidate: theme(id: "gid://shopify/OnlineStoreTheme/137888792673") { id role processing processingFailed updatedAt }
+}
+

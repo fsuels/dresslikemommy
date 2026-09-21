@@ -1,0 +1,47 @@
+{
+  "schema": "dlm.merchant.image-automation-independent-review.v1",
+  "created_at_utc": "2026-09-14T23:24:10Z",
+  "review_mode": "READ_ONLY_INDEPENDENT_RECOMMENDATION",
+  "merchant_account_id": "513542500",
+  "verdict": "NO_ACTION_PREFERRED_ON_CURRENT_EVIDENCE",
+  "recommendation": "Leave automatic image improvements OFF for now. The notification is an optional recommendation; no affected-image benefit has been demonstrated. This setting is not necessary for automatic catalog lifecycle synchronization.",
+  "confidence": {
+    "documented_behavior": "HIGH",
+    "incremental_benefit_now": "NOT_ESTABLISHED"
+  },
+  "supplied_account_evidence": {
+    "provenance": "Parent-reported native readback; not independently inspected in this lane",
+    "last_setting": "OFF",
+    "observed_window_utc": "2026-09-14 21:00–21:03",
+    "image_issues": "None reported; no invented affected-product count",
+    "current_notification": "Turn on automatic image improvements"
+  },
+  "documented_facts": [
+    "The feature is OFF by default and can be enabled separately under Products > Automations > image improvements > View details > toggle > Save.",
+    "Google attempts to remove detected text, watermarks, overlays or logos. Successful repair can resolve the associated image disapproval.",
+    "Needs attention can identify Improved image quality [image_link]; affected product pages show the original and improved images.",
+    "For an unsatisfactory result, Google instructs uploading a new image without the promotional overlay."
+  ],
+  "benefit_and_risk": {
+    "benefit": "Possible future recovery of promotional-overlay image disapprovals; no current approval, traffic or profit gain demonstrated.",
+    "risk": "Detection may change content beyond an intended promotional label. Product-detail distortion is a review risk inferred from automated removal, not an observed defect here.",
+    "reversibility": "The permission toggle is reversible. The documentation does not establish automatic restoration of already replaced images when it is switched OFF."
+  },
+  "optional_activation_boundary": {
+    "authority": "The parent's stated owner authorization can support this narrow preventive option; this review does not request another user approval.",
+    "narrower_claim_required": "Describe it as optional Google image post-processing, not a guaranteed current repair or fully reversible image transformation.",
+    "before_after": "Root must bind the exact Merchant account and image-only OFF→ON readback, preserving price, availability, condition and all other controls.",
+    "preservation": "Do not edit Shopify images, feed image URLs, original files, Product Studio, paid options, Customer Reviews or customer data.",
+    "verification": "If images are changed, compare the Google original and improved product image for faithful garment detail and recheck the affected image issue.",
+    "rollback": "Set the image toggle OFF to withdraw permission. Any unsatisfactory processed image needs the documented clean-image replacement path and separate exact source ownership/readback."
+  },
+  "next_action": "Keep the setting OFF and continue correcting demonstrated catalog or destination issues; reconsider after a current affected-image record establishes a useful repair.",
+  "external_actions_performed": [],
+  "independent_of_proposer_and_executor": true,
+  "source": {
+    "title": "Allow Merchant Center to improve your product images",
+    "url": "https://support.google.com/merchants/answer/12724659?hl=en",
+    "accessed_at_utc": "2026-09-14T23:24:10Z",
+    "visible_publication_or_update_date": null
+  }
+}

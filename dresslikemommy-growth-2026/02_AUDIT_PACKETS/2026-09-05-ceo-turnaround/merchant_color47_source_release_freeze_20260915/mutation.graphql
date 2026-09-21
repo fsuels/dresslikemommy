@@ -1,0 +1,9 @@
+mutation MerchantColorFieldsSet($metafields: [MetafieldsSetInput!]!) {
+  metafieldsSet(metafields: $metafields) {
+    metafields {
+      id namespace key type value jsonValue compareDigest
+      owner { ... on Product { id } ... on ProductVariant { id } }
+    }
+    userErrors { field message code elementIndex }
+  }
+}

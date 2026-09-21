@@ -1,0 +1,89 @@
+{
+  "checkedAt": "2026-09-15T01:39:30.844287+00:00",
+  "reviewer": "/root/main_sync_review",
+  "moduleSha256": "86c6bf6ab98ee2a61f60dd755c41a2861c3d371d040db45655de23e9ce0f46b3",
+  "moduleAfterExecutionSha256": "86c6bf6ab98ee2a61f60dd755c41a2861c3d371d040db45655de23e9ce0f46b3",
+  "testScriptSha256": "d4d7a1ee42aa0ea04c3d20b9469dcc7cdd2b6b0bad7e8dc2afcf75a39cb55442",
+  "checks": [
+    {
+      "name": "production_syntax",
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--check",
+        "assets/product-desktop-ux-20260513-ruler-sync.js"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "worker_focused_regressions_independently_executed",
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "--test",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/module/buyer-truth.test.cjs"
+      ],
+      "exitCode": 0,
+      "stdout": "\u2714 en mother: Dress \u2192 Cardigan \u2192 Dress; selected/unselected size; units and reopen (725.73275ms)\n\u2714 en girl: Dress \u2192 Cardigan \u2192 Dress; selected/unselected size; units and reopen (805.101ms)\n\u2714 fr mother: Dress \u2192 Cardigan \u2192 Dress; selected/unselected size; units and reopen (692.728834ms)\n\u2714 fr girl: Dress \u2192 Cardigan \u2192 Dress; selected/unselected size; units and reopen (795.94275ms)\n\u2714 ar mother: Dress \u2192 Cardigan \u2192 Dress; selected/unselected size; units and reopen (743.58975ms)\n\u2714 ar girl: Dress \u2192 Cardigan \u2192 Dress; selected/unselected size; units and reopen (828.002291ms)\n\u2714 two independent cards retain different Types and sizes (471.288667ms)\n\u2714 unselected Type shows choice prompt and no helper, tooltip, table or selected highlight (17.296542ms)\n\u2714 reversed tables preserve exact chart and tooltip source (405.652209ms)\n\u2714 missing Cardigan source never falls back to Dress (219.292791ms)\n\u2714 untyped Cardigan source never falls back to Dress (508.337125ms)\n\u2714 conflicting-heading Cardigan source never falls back to Dress (219.649209ms)\n\u2714 duplicate Cardigan source never falls back to Dress (615.64325ms)\n\u2714 role pruning returns no chart when only the other role is present, and rejects unknown mixed rows (19.718333ms)\n\u2714 single generic single-Type chart and no-Type family chart remain useful (485.785375ms)\n\u2714 single unclassified garment chart remains available; multi-Type unknown cannot choose another garment (19.157416ms)\n\u2714 inline highlight requires this card size and cannot borrow a nearby/native size (460.419959ms)\n\u2714 French role labels and four prepared controls are preserved for fr and fr-CA (855.9515ms)\n\u2714 one shared chart with explicit garment columns retains correct measurements for both Types (53.808709ms)\n\u2714 single chart with Mother/Girl measurement columns preserves separate role groups (18.67825ms)\n\u2714 Arabic jacket wording only resolves to Cardigan with compatible product chart provenance (37.915875ms)\n\u2714 independent review: available Mother M with only Mother L source cannot borrow L tooltip values (229.018417ms)\n\u2714 independent review: Cardigan ID and heading cannot override explicit Dress Length header (410.677125ms)\n\u2714 exact normalized XXL/2XL aliases remain available without nearby size substitution (400.0185ms)\n\u2714 a single-role mixed garment-column chart retains exact Type-specific tooltips (25.647208ms)\n\u2139 tests 25\n\u2139 suites 0\n\u2139 pass 25\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 10113.70325\n",
+      "stderr": ""
+    }
+  ],
+  "preservedFunctions": [
+    {
+      "name": "getExplicitLandingVariant",
+      "byteIdentical": true,
+      "beforeSha256": "2c243d457f4f55fd1970a61777036d022cd8785d8bc3bb8813ff918c97b1c959",
+      "afterSha256": "2c243d457f4f55fd1970a61777036d022cd8785d8bc3bb8813ff918c97b1c959"
+    },
+    {
+      "name": "renderBuilder",
+      "byteIdentical": true,
+      "beforeSha256": "ef1d9c577b425caeb5a6291c0ffde997fac261a38aa22fe4ace668c49d7e7c0c",
+      "afterSha256": "ef1d9c577b425caeb5a6291c0ffde997fac261a38aa22fe4ace668c49d7e7c0c"
+    },
+    {
+      "name": "resolveVariantInGroup",
+      "byteIdentical": true,
+      "beforeSha256": "52d68291ecb372b20e4ef64c84604805132c72f38dc7288a1033d3920416b919",
+      "afterSha256": "52d68291ecb372b20e4ef64c84604805132c72f38dc7288a1033d3920416b919"
+    },
+    {
+      "name": "getSelectedItems",
+      "byteIdentical": true,
+      "beforeSha256": "c81697ced93bf6b214c824edcff972373d558aeaed473accb4995b75055bec93",
+      "afterSha256": "c81697ced93bf6b214c824edcff972373d558aeaed473accb4995b75055bec93"
+    },
+    {
+      "name": "getGuideRowMatchScore",
+      "byteIdentical": true,
+      "beforeSha256": "a828d299ba9917208d146dac10b2205017ff46b8bc55fafd9cb179a99fcc5fb3",
+      "afterSha256": "a828d299ba9917208d146dac10b2205017ff46b8bc55fafd9cb179a99fcc5fb3"
+    },
+    {
+      "name": "sizeTokenMatchRank",
+      "byteIdentical": true,
+      "beforeSha256": "9ce8a8b51cd7477434cf0f3cb29cbed7263add769759b9a3daedbc97d3f13f2d",
+      "afterSha256": "9ce8a8b51cd7477434cf0f3cb29cbed7263add769759b9a3daedbc97d3f13f2d"
+    },
+    {
+      "name": "parseSizeGuideTable",
+      "byteIdentical": true,
+      "beforeSha256": "97d06846eadc0ed5d968700e1ecc703fdea608b2969d802aae4d160924131893",
+      "afterSha256": "97d06846eadc0ed5d968700e1ecc703fdea608b2969d802aae4d160924131893"
+    },
+    {
+      "name": "buildRoleGroups",
+      "byteIdentical": true,
+      "beforeSha256": "6df1621e573b537208f714b44ae731b35e53b3fa54896020479fccac9fb278ae",
+      "afterSha256": "6df1621e573b537208f714b44ae731b35e53b3fa54896020479fccac9fb278ae"
+    },
+    {
+      "name": "getRoleInfoForVariant",
+      "byteIdentical": true,
+      "beforeSha256": "5975599d5d251bc4a5fec913dc96c74e875798765b02d215b2c24952d47d5be2",
+      "afterSha256": "5975599d5d251bc4a5fec913dc96c74e875798765b02d215b2c24952d47d5be2"
+    }
+  ],
+  "limits": "Tests use real production functions in a synthetic DOM; this is not candidate browser or sales verification.",
+  "status": "PASS"
+}

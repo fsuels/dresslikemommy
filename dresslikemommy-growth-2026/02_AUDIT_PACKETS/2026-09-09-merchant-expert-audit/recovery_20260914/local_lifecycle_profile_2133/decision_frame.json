@@ -1,0 +1,31 @@
+{
+  "action": "TA07-LOCAL-REFRESH-PROFILE-20260914-2133",
+  "stage": "BUILD",
+  "objective": "Restore a usable exact-reviewed local source refresh path before the next proactive freshness target, while cloud-app approval remains pending.",
+  "source": "Existing same-task cloud candidate and complete prior US/AU receipts.",
+  "authority": "Local implementation and offline verification only in existing Merchant executor claim; no external action in this heartbeat.",
+  "hypothesis": "An explicit new pinned dependency profile with verification-only generator replay can reuse the reviewed publisher without double-filtering holds or blocking complete-source-proven removals.",
+  "alternativeRejected": "Changing old digest constants in place or reapplying legacy containment would erase the distinction between releases and corrupt hold accounting.",
+  "success": [
+    "Legacy tests pass unchanged",
+    "Current dependency/config/bin drift fails closed",
+    "Complete native output replays exactly without restamping or filtering twice",
+    "Absent held parents remain held on reactivation",
+    "Eligible protected rows remain required; source-proven omitted IDs and reasons need exact independent review",
+    "Publication freshness, drift and uncertain-write guards remain intact"
+  ],
+  "rollback": "Default legacy profile and old freeze remain; current profile has no production write yet. Revert only these local changes if review fails.",
+  "deadline": "2026-09-15T13:16:10.466Z proactive US source target",
+  "heartbeatDelivery": "2026-09-14T21:27:49.466Z",
+  "cloudAppAnswer": "NOT_RECEIVED",
+  "independentImplementationReview": "PENDING",
+  "newContractSha256": "82a3f587677d260cbe1af569a069ad26f318e91a33c97f9767b43dbab80b3e59",
+  "filesOwned": [
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/lifecycle.py",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/native_release_profile.py",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/verify_native_candidate.mjs",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/release_contract_20260914.json",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/native_profile_fixture.mjs",
+    "/Users/fsuels/Projects/dresslikemommy/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/test_native_release_profile.py"
+  ]
+}

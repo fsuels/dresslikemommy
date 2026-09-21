@@ -1,0 +1,30 @@
+{
+  "method": "Separate in-memory flatten/reduce and uniqueness/date validation against retained ephemeral query result; no repeated API read.",
+  "checked_at_utc": "2026-09-14T23:44:58.891Z",
+  "checks": {
+    "expected_shop_matched": true,
+    "exact_thirty_completed_ny_dates": true,
+    "all_nodes_non_test": true,
+    "every_creation_in_exact_half_open_interval": true,
+    "unique_ephemeral_order_ids": true,
+    "count_matches_receipt": true,
+    "ca_count_matches": true,
+    "gb_count_matches": true,
+    "missing_country_count_matches": true,
+    "fully_enumerated": true,
+    "below_500_cap": true,
+    "no_ca_gb_order_detail_calls_needed": true,
+    "no_rows_needed_for_saved_country_aggregate": true
+  },
+  "orders": 10,
+  "ca_orders": 0,
+  "gb_orders": 0,
+  "missing_country_orders": 0,
+  "ephemeral_raw_state_cleared_before_write": true,
+  "independent_python_zoneinfo_boundary_check": {
+    "status": "PASS",
+    "completed_new_york_dates": 30,
+    "start_utc": "2026-08-15T04:00:00+00:00",
+    "end_utc": "2026-09-14T04:00:00+00:00"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "status": "LOCAL_GUARD_FAILED_BEFORE_CANONICAL_WRITE",
+  "recorded_at_utc": "2026-09-15T05:23:11.097745+00:00",
+  "cause": "Parent parser selected status before verdict and incorrectly expected PASS_WITH_LIMITS in status. Actual immutable review has status PASS, verdict PASS_WITH_LIMITS and apply_ready true.",
+  "canonical_writes_at_failure": 0,
+  "root_business_writes": 0,
+  "all11_current_files_still_match_before": true,
+  "review_sha256": "48ce4a90dd9bdd6dd1b554cb3dcdefe8f57d1ced07ce0672d66d67a96e5960a8",
+  "resolution": "Require the actual separate status, verdict, apply_ready and exact manifest binding; no review, scope or candidate bytes changed."
+}

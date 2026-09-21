@@ -1,0 +1,821 @@
+{
+  "schema": "dlm-independent-czech-heading-after-review-v1",
+  "reviewed_at_utc": "2026-09-15T05:20:59.894454+00:00",
+  "reviewer": "/root/main_sync_review",
+  "status": "SOURCE_PASS__BROWSER_MOBILE_FAILED__PUBLICATION_HOLD",
+  "source_verdict": "PASS",
+  "browser_acceptance_verdict": "FAILED: both narrow H1 readability cases",
+  "independence": "Reviewer inspected local raw API/browser evidence and five final screenshots; did not author or execute the save, run root receipt-writing validator, operate a browser/API, change Git or edit production sources. Only this review receipt was written.",
+  "action": "TA06-CZECH-DRESSES-H1-20260915",
+  "source_result": {
+    "recorded_upserts": 1,
+    "mutation_received_at_utc": "2026-09-15T05:07:39.646Z",
+    "user_errors": 0,
+    "job": null,
+    "saved_theme_id": "137888792673",
+    "role": "UNPUBLISHED",
+    "saved_file": "locales/cs.json",
+    "saved_value": "Šaty pro maminku a dceru",
+    "saved_bytes": {
+      "sha256": "9e8e70419398c315373bf647bdbe4d06b48f18d2c1e1ca0b24f411e1dc6a7493",
+      "md5": "417ee9c23d7f75a841db85f0dc762414",
+      "bytes": 73879
+    },
+    "changed_candidate_files": 1,
+    "preserved_candidate_files": 526,
+    "MAIN_id": "133290917985",
+    "preserved_MAIN_files": 525,
+    "MAIN_metadata_unchanged": true,
+    "verified_source_files": 527,
+    "actual_map_sha256": "1c7774546b9c58a412fe7e0a6d34c7965ccdbec3755fc22915ca944027bbbbf7",
+    "source_changes_are_not_publication_readiness": true
+  },
+  "source_checks_passed": 40,
+  "source_checks": [
+    {
+      "check": "exact_scope_and_previous_independent_review",
+      "passed": true
+    },
+    {
+      "check": "frozen_before",
+      "passed": true
+    },
+    {
+      "check": "frozen_candidate",
+      "passed": true
+    },
+    {
+      "check": "frozen_variables",
+      "passed": true
+    },
+    {
+      "check": "frozen_mutation",
+      "passed": true
+    },
+    {
+      "check": "frozen_rollback",
+      "passed": true
+    },
+    {
+      "check": "frozen_before_full_source_binding",
+      "passed": true
+    },
+    {
+      "check": "frozen_expected_after_source_binding",
+      "passed": true
+    },
+    {
+      "check": "frozen_reviewed_proposal",
+      "passed": true
+    },
+    {
+      "check": "prewrite_exact_reviewed_action_state",
+      "passed": true
+    },
+    {
+      "check": "prewrite_guard_binds_previous_review_and_zero_prior_calls",
+      "passed": true
+    },
+    {
+      "check": "chronological_guard_save_readback",
+      "passed": true
+    },
+    {
+      "check": "single_recorded_mutation_zero_errors_no_async_job",
+      "passed": true
+    },
+    {
+      "check": "mutation_result_exact_file_hash_size_timestamp",
+      "passed": true
+    },
+    {
+      "check": "frozen_upload_exact_target_and_body",
+      "passed": true
+    },
+    {
+      "check": "frozen_inverse_exact_before",
+      "passed": true
+    },
+    {
+      "check": "exact_reviewed_string_delta_and_inverse",
+      "passed": true
+    },
+    {
+      "check": "all_MAIN_data_and_525_records_exact",
+      "passed": true
+    },
+    {
+      "check": "current_exact_identity_unprocessed",
+      "passed": true
+    },
+    {
+      "check": "current_complete_unique_same_inventory_paths",
+      "passed": true
+    },
+    {
+      "check": "current_one_selected_cs_file",
+      "passed": true
+    },
+    {
+      "check": "current_expected_record_changes",
+      "passed": true,
+      "detail": {
+        "changed_files": [],
+        "preserved_files": 525
+      }
+    },
+    {
+      "check": "current_protected_theme_metadata",
+      "passed": true
+    },
+    {
+      "check": "current_selected_body_exact",
+      "passed": true
+    },
+    {
+      "check": "current_selected_body_matches_digest_and_inventory",
+      "passed": true
+    },
+    {
+      "check": "candidate_exact_identity_unprocessed",
+      "passed": true
+    },
+    {
+      "check": "candidate_complete_unique_same_inventory_paths",
+      "passed": true
+    },
+    {
+      "check": "candidate_one_selected_cs_file",
+      "passed": true
+    },
+    {
+      "check": "candidate_expected_record_changes",
+      "passed": true,
+      "detail": {
+        "changed_files": [
+          "locales/cs.json"
+        ],
+        "preserved_files": 526
+      }
+    },
+    {
+      "check": "candidate_protected_theme_metadata",
+      "passed": true
+    },
+    {
+      "check": "candidate_selected_body_exact",
+      "passed": true
+    },
+    {
+      "check": "candidate_selected_body_matches_digest_and_inventory",
+      "passed": true
+    },
+    {
+      "check": "candidate_expected_timestamps_only",
+      "passed": true
+    },
+    {
+      "check": "candidate_result_record_matches_after_inventory",
+      "passed": true
+    },
+    {
+      "check": "actual_map_binds_fresh_read_and_prior_map",
+      "passed": true
+    },
+    {
+      "check": "actual_map_exact_527_unique_and_526_unchanged",
+      "passed": true
+    },
+    {
+      "check": "actual_map_matches_expected_except_observation_annotation",
+      "passed": true
+    },
+    {
+      "check": "all_527_actual_local_hashes_match_fresh_API",
+      "passed": true,
+      "detail": {
+        "files": 527,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "root_after_receipt_consistent_not_sole_proof",
+      "passed": true
+    },
+    {
+      "check": "source_inputs_stable_at_close",
+      "passed": true
+    }
+  ],
+  "browser_evidence_checks_passed": 44,
+  "browser_evidence_checks": [
+    {
+      "check": "exact_browser_receipt_hash",
+      "passed": true
+    },
+    {
+      "check": "dresses-desktop_receipt_exact_raw_fields",
+      "passed": true
+    },
+    {
+      "check": "dresses-desktop_requested_Czech_handle_retained",
+      "passed": true
+    },
+    {
+      "check": "dresses-desktop_exact_preview_locale_selector_and_heading_source",
+      "passed": true
+    },
+    {
+      "check": "dresses-desktop_cards_no_overflow_cart0_no_captured_errors",
+      "passed": true
+    },
+    {
+      "check": "dresses-desktop_captured_US_USD_context",
+      "passed": true
+    },
+    {
+      "check": "dresses-desktop_H1_accessibility_agrees_visibility",
+      "passed": true
+    },
+    {
+      "check": "dresses-desktop_desktop_geometry_readable",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-desktop_receipt_exact_raw_fields",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-desktop_requested_Czech_handle_retained",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-desktop_exact_preview_locale_selector_and_heading_source",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-desktop_cards_no_overflow_cart0_no_captured_errors",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-desktop_captured_US_USD_context",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-desktop_H1_accessibility_agrees_visibility",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-desktop_desktop_geometry_readable",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-narrow_receipt_exact_raw_fields",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-narrow_requested_Czech_handle_retained",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-narrow_exact_preview_locale_selector_and_heading_source",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-narrow_cards_no_overflow_cart0_no_captured_errors",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-narrow_captured_US_USD_context",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-narrow_H1_accessibility_agrees_visibility",
+      "passed": true
+    },
+    {
+      "check": "mother-daughter-narrow_mobile_failure_correctly_retained",
+      "passed": true
+    },
+    {
+      "check": "dresses-narrow_receipt_exact_raw_fields",
+      "passed": true
+    },
+    {
+      "check": "dresses-narrow_requested_Czech_handle_retained",
+      "passed": true
+    },
+    {
+      "check": "dresses-narrow_exact_preview_locale_selector_and_heading_source",
+      "passed": true
+    },
+    {
+      "check": "dresses-narrow_cards_no_overflow_cart0_no_captured_errors",
+      "passed": true
+    },
+    {
+      "check": "dresses-narrow_captured_US_USD_context",
+      "passed": true
+    },
+    {
+      "check": "dresses-narrow_H1_accessibility_agrees_visibility",
+      "passed": true
+    },
+    {
+      "check": "dresses-narrow_mobile_failure_correctly_retained",
+      "passed": true
+    },
+    {
+      "check": "four_actual_shared_handle_viewport_attempts",
+      "passed": true
+    },
+    {
+      "check": "browser_receipt_keeps_two_mobile_failures",
+      "passed": true
+    },
+    {
+      "check": "observed_hero_display_none_and_zero_rect",
+      "passed": true
+    },
+    {
+      "check": "arrival_matches_observed_collection_card_link",
+      "passed": true
+    },
+    {
+      "check": "arrival_exact_preview_Czech_steps_cart0",
+      "passed": true
+    },
+    {
+      "check": "arrival_summary_and_cleanup_match_raw",
+      "passed": true
+    },
+    {
+      "check": "session_scope_and_no_cart_country_language_mutations",
+      "passed": true
+    },
+    {
+      "check": "original_checker_failure_and_transition_retained",
+      "passed": true
+    },
+    {
+      "check": "suppression_current_assets/theme-inline-head-static-03.css",
+      "passed": true
+    },
+    {
+      "check": "suppression_candidate_assets/theme-inline-head-static-03.css",
+      "passed": true
+    },
+    {
+      "check": "suppression_same_MAIN_candidate_assets/theme-inline-head-static-03.css",
+      "passed": true
+    },
+    {
+      "check": "suppression_current_assets/theme-inline-body-static-07.css",
+      "passed": true
+    },
+    {
+      "check": "suppression_candidate_assets/theme-inline-body-static-07.css",
+      "passed": true
+    },
+    {
+      "check": "suppression_same_MAIN_candidate_assets/theme-inline-body-static-07.css",
+      "passed": true
+    },
+    {
+      "check": "browser_evidence_stable_at_close",
+      "passed": true
+    }
+  ],
+  "unexpected_verification_failures": [],
+  "browser_cases": [
+    {
+      "case": "dresses-desktop",
+      "requested_url": "https://www.dresslikemommy.com/cs/collections/dresses?preview_theme_id=137888792673",
+      "final_url": "https://www.dresslikemommy.com/cs/collections/dresses",
+      "theme_id": 137888792673,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "H1_source_correct": true,
+      "H1_visible": true,
+      "H1_readability": "PASS",
+      "raw_rect": {
+        "bottom": 223.65625,
+        "height": 36.390625,
+        "left": 486.75,
+        "right": 778.25,
+        "top": 187.265625,
+        "width": 291.5,
+        "x": 486.75,
+        "y": 187.265625
+      },
+      "accessibility_tree_contains_H1": true,
+      "visual_inspection": "Reviewer viewed the final screenshot: corrected heading readable on desktop.",
+      "country_currency_evidence": "Existing-session US/USD selector/source and visible narrow announcement/prices; no new country eligibility certification."
+    },
+    {
+      "case": "mother-daughter-desktop",
+      "requested_url": "https://www.dresslikemommy.com/cs/collections/mother-daughter-matching-dresses?preview_theme_id=137888792673",
+      "final_url": "https://www.dresslikemommy.com/cs/collections/mother-daughter-matching-dresses",
+      "theme_id": 137888792673,
+      "viewport": {
+        "height": 720,
+        "width": 1280
+      },
+      "H1_source_correct": true,
+      "H1_visible": true,
+      "H1_readability": "PASS",
+      "raw_rect": {
+        "bottom": 223.65625,
+        "height": 36.390625,
+        "left": 486.75,
+        "right": 778.25,
+        "top": 187.265625,
+        "width": 291.5,
+        "x": 486.75,
+        "y": 187.265625
+      },
+      "accessibility_tree_contains_H1": true,
+      "visual_inspection": "Reviewer viewed the final screenshot: corrected heading readable on desktop.",
+      "country_currency_evidence": "Existing-session US/USD selector/source and visible narrow announcement/prices; no new country eligibility certification."
+    },
+    {
+      "case": "mother-daughter-narrow",
+      "requested_url": "https://www.dresslikemommy.com/cs/collections/mother-daughter-matching-dresses",
+      "final_url": "https://www.dresslikemommy.com/cs/collections/mother-daughter-matching-dresses",
+      "theme_id": 137888792673,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "H1_source_correct": true,
+      "H1_visible": false,
+      "H1_readability": "FAILED",
+      "raw_rect": {
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "accessibility_tree_contains_H1": false,
+      "visual_inspection": "Reviewer viewed the final screenshot: collection navigation/cards visible, heading absent.",
+      "country_currency_evidence": "Existing-session US/USD selector/source and visible narrow announcement/prices; no new country eligibility certification."
+    },
+    {
+      "case": "dresses-narrow",
+      "requested_url": "https://www.dresslikemommy.com/cs/collections/dresses?preview_theme_id=137888792673",
+      "final_url": "https://www.dresslikemommy.com/cs/collections/dresses",
+      "theme_id": 137888792673,
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "H1_source_correct": true,
+      "H1_visible": false,
+      "H1_readability": "FAILED",
+      "raw_rect": {
+        "bottom": 0,
+        "height": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "accessibility_tree_contains_H1": false,
+      "visual_inspection": "Reviewer viewed the final screenshot: collection navigation/cards visible, heading absent.",
+      "country_currency_evidence": "Existing-session US/USD selector/source and visible narrow announcement/prices; no new country eligibility certification."
+    }
+  ],
+  "browser_acceptance_counts": {
+    "route_viewport_attempts": 4,
+    "H1_source_correct": 4,
+    "readable_desktop_pass": 2,
+    "readable_narrow_failed": 2,
+    "product_card_arrivals_in_existing_preview_session": 1
+  },
+  "mobile_failure": {
+    "observed": "Both corrected H1 nodes have width0/height0 and are absent from their accessibility trees. Captured .collection-hero ancestor display is none; four final screenshots visually corroborate desktop visibility and narrow absence.",
+    "cause_evidence": "Two cited .collection-hero display:none!important CSS sources are byte-identical in MAIN/candidate and match unchanged after/prewrite inventories. The suppression predates this one-string save.",
+    "effect_on_acceptance": "Existing cause does not excuse the planned visible-mobile-H1 failure. Publication recommendation remains on hold.",
+    "next_scope": "Parent-authorized separate local-only preparation of the smallest heading visibility correction; no additional save is authorized by this review."
+  },
+  "product_card_arrival": {
+    "observed_url": "https://www.dresslikemommy.com/cs/products/coral-blossom-mommy-and-me-dresses",
+    "recorded_click_matches_visible_collection_card": true,
+    "observed_Czech_step_labels": [
+      {
+        "text": "Vyberte, pro koho je tento kus",
+        "visible": true
+      },
+      {
+        "text": "Vyberte velikost a možnosti",
+        "visible": true
+      }
+    ],
+    "cart_count": 0,
+    "country_currency": "Existing US/USD preview session",
+    "product_id_provenance": "Parent identifies this route as Product7607764287585; this browser receipt exposes its handle rather than an independent numeric-ID readback.",
+    "limitation": "Does not certify cookie-independent direct feed arrival, published MAIN behavior or other countries."
+  },
+  "evidence_corrections": "Original generic-H1 capture selected hidden Shipping Policy and is retained; final cases use #MainContent h1.collection-hero__title. Loading-transition JSON/screenshot are retained and excluded from final desktop readability acceptance. No failure was removed or treated as a pass.",
+  "input_bindings": {
+    "scope": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_heading_scope_20260915.json",
+      "sha256": "c2363cd16ddb14b9fdcc64574bb6e0b0174e95aeaf8063478ae85cf09a032f85",
+      "md5": "55af394d781d7a215e5a2af0bf8c89b7",
+      "bytes": 13886
+    },
+    "independent_before": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/review/independent-action-time-review.json",
+      "sha256": "03cb699b7547142aef13746d4b0a702b90dada8c0a812ddf437fd1798dae5795",
+      "md5": "d6577a7fe8a46dfacb5efd56d613d315",
+      "bytes": 16751
+    },
+    "action_time": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/action-time-readback.json",
+      "sha256": "2fa0a030b4c9d37aab0077e398cf0a466e9a24381e9519decc9755adb49c42e2",
+      "md5": "d56f3c6eaec6f1ba180701ab18307aeb",
+      "bytes": 398705
+    },
+    "prewrite": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/prewrite-final-readback.json",
+      "sha256": "e622887b101697fcf307e4e8e17d35d18940441d79a03f0051eaad201519ec0c",
+      "md5": "137bd04e0f958316ae4e7ddd5dc46351",
+      "bytes": 398705
+    },
+    "prewrite_guard": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/PREWRITE_FINAL_GUARD.json",
+      "sha256": "e499ea94e8e0fb7a349fe50c645a868f11b2c3d8597ae7328aa40189c5051c72",
+      "md5": "84a8c09e7c274b6c86c7b009387ac62b",
+      "bytes": 325
+    },
+    "mutation": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/mutation-receipt.json",
+      "sha256": "e0ca1d6207bc87d5d00b4477217a436ead3955d6965f55844e341a06f1a66f12",
+      "md5": "638449296e560f1820a2004f44e7328e",
+      "bytes": 1392
+    },
+    "after": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/after-readback.json",
+      "sha256": "74ec80438569581aa6e4e83c63432af355a3aaaf029b606bca8631b6d2d20f5a",
+      "md5": "3b3fd71fdf69384bb379f378727f2e19",
+      "bytes": 398709
+    },
+    "after_guards": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/AFTER_GUARDS.json",
+      "sha256": "38483c779f30da1657fa23f336cf0bcb8cb15105141ca6f53f393e6a6293a09c",
+      "md5": "19d5e25c1514f151918d1005ac29c42a",
+      "bytes": 4069
+    },
+    "actual_map": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/ACTUAL_527_SOURCE_BINDING.json",
+      "sha256": "1c7774546b9c58a412fe7e0a6d34c7965ccdbec3755fc22915ca944027bbbbf7",
+      "md5": "96f8c6c2643f39464fbf78eeba2fc4ea",
+      "bytes": 224738
+    },
+    "browser_acceptance": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/BROWSER_ACCEPTANCE.json",
+      "sha256": "c9146819b861589c228bf3f01ed1eb28ef966f24b5ca2f5cb8fb0ab7e2c96b8b",
+      "md5": "026f0c239ce8e7a34aac3b3d80b96c2a",
+      "bytes": 7985
+    },
+    "execution_scope": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/EXECUTION_SCOPE.json",
+      "sha256": "9be77d0981240c09e21543a03cbbd29b5e1fcfb87ee6e1120689298df125eaca",
+      "md5": "da8f384302163c53397ddc80cf4867ea",
+      "bytes": 8167
+    },
+    "visibility_limit": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/MOBILE_VISIBILITY_SOURCE_LIMIT.json",
+      "sha256": "624dd3de67882c47e51d93c8ec7bdd75f63b27b3a88b7a3d5a34d78212b13b98",
+      "md5": "9baa3fada3d6929fafceec1a16df67e5",
+      "bytes": 1885
+    }
+  },
+  "frozen_payload_and_source_bindings": {
+    "before": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_heading_proposal_freeze_20260915_v2/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/before.cs.json",
+      "sha256": "b942083af422129281ccdb7f745d6fa51f5ad54a8a002a0c52f76cc92e7a9106",
+      "md5": "6077f54fd2a4d0c8a02d534fd1edacdc",
+      "bytes": 73875
+    },
+    "candidate": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_heading_proposal_freeze_20260915_v2/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/candidate.cs.json",
+      "sha256": "9e8e70419398c315373bf647bdbe4d06b48f18d2c1e1ca0b24f411e1dc6a7493",
+      "md5": "417ee9c23d7f75a841db85f0dc762414",
+      "bytes": 73879
+    },
+    "variables": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_heading_proposal_freeze_20260915_v2/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/proposed-upload.variables.json",
+      "sha256": "83124b14ec23e6c502ec127696e515cdd36d71721e436aeb2e0611daf7f26c3d",
+      "md5": "b406dd96fdd7b8ceaac9a170241d22d3",
+      "bytes": 78851
+    },
+    "mutation": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_heading_proposal_freeze_20260915_v2/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/proposed-upsert.graphql",
+      "sha256": "1550957c64be79ebdcb591f11ad7beaa859937ae13ee744c007ac5724dabfb6a",
+      "md5": "61b744e55d31aa73d5c9a7c7eecd6d38",
+      "bytes": 269
+    },
+    "rollback": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_heading_proposal_freeze_20260915_v2/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/proposed-rollback.variables.json",
+      "sha256": "d6329e70898270f04519e861e873e987dc299422a359c065acf4f224a794a198",
+      "md5": "68ce4df91c9ee064c060e6ce97fe8d87",
+      "bytes": 78847
+    },
+    "before_full_source_binding": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_heading_proposal_freeze_20260915_v2/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/theme-buyer-truth-successor-20260915/FINAL_527_SOURCE_BINDING.json",
+      "sha256": "932baa049fcaade2483d5a85b9c79489a806486fddfc7af05c549da110e72b8a",
+      "md5": "8d37bf99618434412a878284c9b650a0",
+      "bytes": 225985
+    },
+    "expected_after_source_binding": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_heading_proposal_freeze_20260915_v2/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/EXPECTED_AFTER_527_SOURCE_BINDING.json",
+      "sha256": "980cd2bc606a1b30fa82d811fa78a510903878543d542debe78e4a5211d043e7",
+      "md5": "2dc8b1039beb6fe878614442d275c4a9",
+      "bytes": 223918
+    },
+    "reviewed_proposal": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/theme_czech_heading_proposal_freeze_20260915_v2/files/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-successor-20260915/PROPOSAL.json",
+      "sha256": "ecd87760a17e8ce69198cff8718ecd2eff9ce132481757d4902e0edeeb1c0027",
+      "md5": "1d7fcbdf98874c781e44bd0eb9548738",
+      "bytes": 10349
+    }
+  },
+  "browser_artifact_bindings": {
+    "browser/dresses-desktop.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/dresses-desktop.json",
+      "sha256": "dfead5ecc02bbffc87603f9cf68de165bf3568efcf3206677bc4bfc30da3bb8c",
+      "md5": "901388968e670744ed25d1fdf9e32096",
+      "bytes": 10725
+    },
+    "browser/dresses-desktop.ax.txt": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/dresses-desktop.ax.txt",
+      "sha256": "f4a47fef42eba3a8d6888c97ea31a4f3062852d567f6e3293792ca56ffa9adfb",
+      "md5": "3ac9c4c131e54aee271431bc6a076693",
+      "bytes": 35597
+    },
+    "browser/dresses-desktop.png": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/dresses-desktop.png",
+      "sha256": "01cbd357a1052772a6238c862ece899bd027e5a2306009f1da40a48dec1551c4",
+      "md5": "77d754b94c07408fcbddad3808216b7d",
+      "bytes": 71164
+    },
+    "browser/mother-daughter-desktop.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/mother-daughter-desktop.json",
+      "sha256": "f1774674feee9f3611edeb395ff20a9a2f032f4fac764b5ad8a290d857b9d61a",
+      "md5": "fefc6eeb30b2d85144c13419562bea4a",
+      "bytes": 10772
+    },
+    "browser/mother-daughter-desktop.ax.txt": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/mother-daughter-desktop.ax.txt",
+      "sha256": "eb8698a33cf8597e5571524385068079a2d3db295cd71cd83b8dc188084936c1",
+      "md5": "eba1868f01e4fa1b98cfe7d5621f19a9",
+      "bytes": 35631
+    },
+    "browser/mother-daughter-desktop.png": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/mother-daughter-desktop.png",
+      "sha256": "c6e7bb9f4a3bf467807ea57b3f5ee308d0d134a52d514c5b89960de483e1bd13",
+      "md5": "6e84dd0fecedf28faddb367428255e79",
+      "bytes": 71246
+    },
+    "browser/mother-daughter-narrow.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/mother-daughter-narrow.json",
+      "sha256": "00614bbe09aa71e45953d2b0ea1f8221d4edd820026e7384264d1bee4f7e2746",
+      "md5": "bbb12f7e26483e99139be73d2e825483",
+      "bytes": 23378
+    },
+    "browser/mother-daughter-narrow.ax.txt": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/mother-daughter-narrow.ax.txt",
+      "sha256": "a5e9bf195b1371b767b3622ae067cfa86720c341e1842630e65a73a54f5ca681",
+      "md5": "8ca6ebab33ad6aab8e5dbed395657079",
+      "bytes": 33159
+    },
+    "browser/mother-daughter-narrow.png": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/mother-daughter-narrow.png",
+      "sha256": "bc19cc4e303bf14b910a896e9c9a0389e0d3d0b381156dbb8f8bfe3afc29b330",
+      "md5": "04e8722d63ba4336c76c4c2b767282b2",
+      "bytes": 57409
+    },
+    "browser/dresses-narrow.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/dresses-narrow.json",
+      "sha256": "c4939d432347fdb89e675e413192af316fac241f4af99077f2e8ed6a50aee886",
+      "md5": "1480bbe2b29d2dc464e1bfa95015722a",
+      "bytes": 4789
+    },
+    "browser/dresses-narrow.ax.txt": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/dresses-narrow.ax.txt",
+      "sha256": "b7b2a6d76865470bee0421edd7d4dbfdd0fcf4e1e90c4cbac052907262aa4b12",
+      "md5": "828d04b1d153365ac6d5d32b01695ce0",
+      "bytes": 33193
+    },
+    "browser/dresses-narrow.png": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/dresses-narrow.png",
+      "sha256": "33c639cf7369a9c2e465bbcbb73ce76685d0e6f06f91c76f6dbdb5a583ea7ade",
+      "md5": "de0f88abdfaba64c220be4f8311d8f16",
+      "bytes": 58145
+    },
+    "browser/mother-daughter-desktop.navigation-transition.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/mother-daughter-desktop.navigation-transition.json",
+      "sha256": "935efea8d9f3853e0c822d45f6d45b6930a089a4d22aa885a5f518ae4b621a0b",
+      "md5": "7aa7333cb91da4bbf4178f69520a89b4",
+      "bytes": 10683
+    },
+    "browser/mother-daughter-desktop.navigation-transition.png": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/mother-daughter-desktop.navigation-transition.png",
+      "sha256": "7b321cca63df392d53a2f642d02b7797e0f77c044a4fe9d0c1bd69afb9e449b3",
+      "md5": "304a98b130cb601e949a82c835ca00de",
+      "bytes": 53798
+    },
+    "browser/four-cases.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/four-cases.json",
+      "sha256": "9353051d10a208515de3dccdb4700c7dde8e04a3f920fd77ba6ef7f35e2febe4",
+      "md5": "6a289ee08759d61b142e5dafee52deb4",
+      "bytes": 51723
+    },
+    "browser/dresses-desktop.initial-generic-h1.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/dresses-desktop.initial-generic-h1.json",
+      "sha256": "19dbf4475f7dd4fc38ee0744d9dbf1c080962db878ff309123b39197ca9c6c43",
+      "md5": "a9b67ed9a6e175bdfd126f7338899e16",
+      "bytes": 10497
+    },
+    "browser/cleanup.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/cleanup.json",
+      "sha256": "1df0f14cc4ceb00467cddd9a65626d8434dea18503c299a33f08591374a4cef0",
+      "md5": "2e2de2498a4f3e68eb5f65625f36e4c8",
+      "bytes": 356
+    },
+    "browser/product-card-arrival.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/product-card-arrival.json",
+      "sha256": "97bb5f0a8f7b6a84348ecc6b28e7c57b1360c7ab098b8c06d9253f1c9a9089ae",
+      "md5": "2588a4cc8675201a03bb42981466b6b7",
+      "bytes": 1290
+    },
+    "browser/mobile-heading-visibility-detail.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/mobile-heading-visibility-detail.json",
+      "sha256": "79f1d6c07516efa965ce1b7479ba8e0d5db7411edc45beed09a1ff2499f8dd81",
+      "md5": "d8c32b9b56b9decd2390d7ff97ad05a3",
+      "bytes": 371
+    },
+    "browser/product-card-arrival.ax.txt": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/product-card-arrival.ax.txt",
+      "sha256": "b4c17b4dabce995b58548a029a874a3e02afad3e515614fa005583b3851e9333",
+      "md5": "3bf195742967ce5ad9f1bd025edc48d9",
+      "bytes": 14725
+    },
+    "browser/product-card-arrival.png": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/czech-dresses-title-execution-20260915/browser/product-card-arrival.png",
+      "sha256": "34d134af6c582ab3f44e22572750673936528fad4caad0eebffe2321a2aba570",
+      "md5": "7271d5a828dce03f68c5cf9fc9772bd6",
+      "bytes": 54819
+    }
+  },
+  "suppression_source_bindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/source/current/assets/theme-inline-head-static-03.css",
+      "sha256": "13d8c7a58b8c4fc489317ed615a081bd990e56a7e6e7b3f1f9294c9671736571",
+      "md5": "04ef41cf3abe10fae9727b7be8e3327c",
+      "bytes": 13719
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/source/candidate/assets/theme-inline-head-static-03.css",
+      "sha256": "13d8c7a58b8c4fc489317ed615a081bd990e56a7e6e7b3f1f9294c9671736571",
+      "md5": "04ef41cf3abe10fae9727b7be8e3327c",
+      "bytes": 13719
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/source/current/assets/theme-inline-body-static-07.css",
+      "sha256": "63d4589f6c6a7bd06dea98eea70e35a0ca2b37274fe4ade7a36ba3e141da67d8",
+      "md5": "265b2123fbd6c72251a1a218ca7f9886",
+      "bytes": 387
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-preparation-20260915/source/candidate/assets/theme-inline-body-static-07.css",
+      "sha256": "63d4589f6c6a7bd06dea98eea70e35a0ca2b37274fe4ade7a36ba3e141da67d8",
+      "md5": "265b2123fbd6c72251a1a218ca7f9886",
+      "bytes": 387
+    }
+  ],
+  "screenshots_independently_viewed": [
+    "browser/dresses-desktop.png",
+    "browser/mother-daughter-desktop.png",
+    "browser/dresses-narrow.png",
+    "browser/mother-daughter-narrow.png",
+    "browser/product-card-arrival.png"
+  ],
+  "limits": [
+    "Single saved locale-source correction is VERIFIED in the unpublished candidate; publication, mobile readiness, full checkout, PageSpeed, native-human translation quality and conversion effects are not certified.",
+    "After-source snapshot is05:07:54UTC; source proof and browser result are separately recorded. Root owns future action-time drift guards.",
+    "Four route attempts retained their Czech paths in the existing preview session; preview query removal is recorded. This is not cookie-independent routing proof.",
+    "Available captured console errors are empty. No broader warnings/network or whole-site audit is claimed.",
+    "The actual527 source map supersedes source bytes only; its existence does not override failed narrow readability or authorize MAIN/Git/publication actions."
+  ],
+  "next_action": "Prepare and independently review the separate local-only mobile H1 visibility correction while retaining the publication hold."
+}
