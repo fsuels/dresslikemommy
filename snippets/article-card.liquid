@@ -163,8 +163,8 @@
           {%- endif -%}
 
           <div class="article-card__footer">
-            <span class="article-card__read-time">{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read</span>
-            <a href="{{ article.url }}" class="article-card__read-more link">Read article &rarr;</a>
+            <span class="article-card__read-time">{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} {% if request.locale.iso_code == 'da' %}min. læsetid{% else %}min read{% endif %}</span>
+            <a href="{{ article.url }}" class="article-card__read-more link">{% if request.locale.iso_code == 'da' %}Læs artiklen{% else %}Read article{% endif %} &rarr;</a>
           </div>
         </div>
 

@@ -48,6 +48,9 @@
                   endif
                   if link.handle == 'family-matching' or link.handle == 'matching-outfits' or link.handle == 'family-matching-outfits' or normalized_link_title == 'family matching' or normalized_link_title == 'family matching outfits'
                     assign nav_link_title = 'Family Matching'
+                    if request.locale.iso_code == 'da'
+                      assign nav_link_title = 'Matchende familietøj'
+                    endif
                     assign use_family_direct_link = true
                     assign family_hub_collection = collections['new-women-outfits']
                     if family_hub_collection == blank

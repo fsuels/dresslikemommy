@@ -256,6 +256,9 @@
             if footer_locale contains 'es'
               assign footer_journal_summary = 'Consejos de moda familiar, ideas de conjuntos a juego y guías de estilo de temporada.'
               assign footer_journal_cta_prefix = 'Leer el '
+            elsif request.locale.iso_code == 'da'
+              assign footer_journal_summary = 'Tips til familiemode, idéer til matchende tøj og sæsonens stilguider.'
+              assign footer_journal_cta_prefix = 'Læs '
             endif
           -%}
           <div class="footer-block grid__item footer-block--journal{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">

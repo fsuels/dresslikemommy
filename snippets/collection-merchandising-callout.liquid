@@ -78,6 +78,57 @@
       assign secondary_url = '/collections/mommy-and-me'
   endcase
 
+  if request.locale.iso_code == 'da'
+    assign primary_label = 'Se kollektionen'
+    case collection_handle
+      when 'matching-couples-t-shirts'
+        assign callout_eyebrow = 'Find hurtigere det rette'
+        assign callout_title = 'Sammenlign matchende t-shirts til par, og udforsk derefter flere matchende looks'
+        assign callout_body = 'Sammenlign motiverne på t-shirts til par her på siden. Udforsk derefter matchende familietøj, hvis du ønsker mere end t-shirts.'
+        assign primary_label = 'Se t-shirts nedenfor'
+        assign secondary_label = 'Se matchende familietøj'
+      when 'mommy-and-me'
+        assign callout_eyebrow = 'Find hurtigere det rette'
+        assign callout_title = 'Se hele kollektionen til mor og barn, og gå videre til de nyeste pyjamasser'
+        assign callout_body = 'Start med det brede udvalg af matchende tøj her. Hvis du leder efter nattøj, kan du gå videre til kollektionen med nye pyjamasser.'
+        assign primary_label = 'Se denne kollektion'
+        assign secondary_label = 'Se nye pyjamasser'
+        assign tertiary_label = 'Se alle pyjamasser'
+      when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits'
+        assign callout_eyebrow = 'Find hurtigere det rette'
+        assign callout_title = 'Start med familietøjet, og gå videre til de nyeste pyjamasser'
+        assign callout_body = 'Sammenlign det brede udvalg af matchende familietøj her. Hvis du leder efter det nyeste nattøj, kan du gå videre til kollektionen med nye pyjamasser.'
+        assign primary_label = 'Se denne kollektion'
+        assign secondary_label = 'Se nye pyjamasser'
+        assign tertiary_label = 'Se alle pyjamasser'
+      when 'pajamas'
+        assign callout_eyebrow = 'Find hurtigere det rette'
+        assign callout_title = 'Se alle pyjamasser først, og gå derefter videre til nyhederne'
+        assign callout_body = 'Sammenlign alle pyjamasmodellerne her. Gå videre til nyhederne, hvis du vil se de nyeste mønstre først.'
+        assign primary_label = 'Se pyjamasser nedenfor'
+        assign secondary_label = 'Se de seneste nyheder'
+        assign tertiary_label = 'Se tøj til mor og barn'
+      when 'new-pajama-drop'
+        assign callout_eyebrow = 'Netop tilføjet'
+        assign callout_title = 'Nye matchende pyjamasser samlet ét sted'
+        assign callout_body = 'Se de nyeste mønstre samlet her. Gå videre til hele pyjamaskollektionen, hvis du vil sammenligne alle modellerne.'
+        assign primary_label = 'Se nyhederne'
+        assign secondary_label = 'Se alle pyjamasser'
+      when 'new-matching-outfits'
+        assign callout_eyebrow = 'Nye varer'
+        assign callout_title = 'Se de nyeste matchende looks samlet her'
+        assign callout_body = 'Start med nyhederne her, og udforsk derefter den bredere kollektion til mor og barn, hvis du vil se flere muligheder.'
+        assign primary_label = 'Se nyhederne'
+        assign secondary_label = 'Se tøj til mor og barn'
+    endcase
+    if secondary_url != blank
+      assign secondary_url = routes.root_url | append: secondary_url
+    endif
+    if tertiary_url != blank
+      assign tertiary_url = routes.root_url | append: tertiary_url
+    endif
+  endif
+
   if collection.image != blank
     assign callout_media = collection.image
   elsif collection.products_count > 0 and collection.products.first.featured_media != blank
@@ -104,9 +155,15 @@
       </div>
       <div class="collection-merchandising-callout__utility">
         <ul class="collection-merchandising-callout__meta" role="list">
-          <li>{{ collection_live_count }} live styles</li>
-          <li>Standard shipping included</li>
-          <li>30-day return window</li>
+          {%- if request.locale.iso_code == 'da' -%}
+            <li>Modeller i kollektionen: {{ collection_live_count }}</li>
+            <li>Standardfragt inkluderet</li>
+            <li>30 dages returfrist</li>
+          {%- else -%}
+            <li>{{ collection_live_count }} live styles</li>
+            <li>Standard shipping included</li>
+            <li>30-day return window</li>
+          {%- endif -%}
         </ul>
         <div class="collection-merchandising-callout__actions">
           <a href="{{ primary_url }}" class="button">{{ primary_label }}</a>
