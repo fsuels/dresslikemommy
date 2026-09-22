@@ -20,8 +20,10 @@ function runCart({
   readyState = 'complete',
   meta = {},
   storageThrows = false,
+  storageEntries,
 } = {}) {
-  let stored = rawStorage;
+  const storageKey = `dlm_recently_viewed:${root === '/' ? '/' : `${root.replace(/\/$/, '')}/`}`;
+  const storage = storageEntries || new Map([[storageKey, rawStorage]]);
   const elements = new Map();
   const events = new Map();
   const subscriptions = new Map();
@@ -55,14 +57,14 @@ function runCart({
       },
     },
     localStorage: {
-      getItem: () => {
+      getItem: (key) => {
         if (storageThrows) throw new Error('Storage unavailable');
-        return stored;
+        return storage.get(key) || null;
       },
       setItem: (key, value) => {
         if (storageThrows) throw new Error('Storage unavailable');
-        assert.equal(key, 'dlm_recently_viewed');
-        stored = value;
+        assert.equal(key, storageKey);
+        storage.set(key, value);
         writes.push(value);
       },
     },
@@ -86,7 +88,7 @@ function runCart({
     elements,
     definitions,
     writes,
-    stored: () => stored,
+    stored: () => storage.get(storageKey),
     html: (surface) => elements.get(`Cart${surface}-RecentlyViewedGrid`)?.innerHTML || '',
     addSurface,
     domReady: () => (events.get('DOMContentLoaded') || []).forEach((callback) => callback()),
@@ -111,7 +113,7 @@ for (const [priorUrl, root, expected] of [
   ['/da/products/skyfade-family-matching-set', '/da/', '/da/products/skyfade-family-matching-set'],
   ['/fr-ca/products/skyfade-family-matching-set?currency=CAD&country=CA', '/da', '/da/products/skyfade-family-matching-set'],
 ]) {
-  test(`switch from ${priorUrl} to ${root} keeps exactly the current locale`, () => {
+  test(`a card in the current locale history normalizes ${priorUrl} to ${root}`, () => {
     const page = runCart({ root, history: [{ ...skyfade, url: priorUrl }] });
     for (const surface of ['Drawer', 'Page']) {
       assert.ok(page.html(surface).includes(`href="${expected}"`));
@@ -130,6 +132,25 @@ test('untrusted stored text remains text and image attributes cannot break out',
     assert.match(page.html(surface), /src="https:\/\/cdn\.shopify\.com\/a\.jpg\?q=%22/);
     assert.match(page.html(surface), /&amp;x=1/);
   }
+});
+
+test('switching languages never reuses cached titles from another locale or legacy history', () => {
+  const storage = new Map([
+    ['dlm_recently_viewed', JSON.stringify([{ ...skyfade, title: 'Legacy unknown language' }])],
+    ['dlm_recently_viewed:/sv/', JSON.stringify([{ ...skyfade, title: 'Matchande familjekläder' }])],
+  ]);
+  const emptyDanish = runCart({ root: '/da/', storageEntries: storage });
+  assert.equal(emptyDanish.html('Drawer'), '');
+  assert.equal(emptyDanish.html('Page'), '');
+  runCart({ root: '/da/', pathname: '/da/products/skyfade-family-matching-set', storageEntries: storage,
+    meta: { 'meta[property="og:title"]': { content: 'Matchende familietøj' } } });
+  const danish = runCart({ root: '/da/', storageEntries: storage });
+  assert.match(danish.html('Drawer'), /Matchende familietøj/);
+  assert.doesNotMatch(danish.html('Drawer'), /familjekläder|Legacy/);
+  const swedish = runCart({ root: '/sv/', storageEntries: storage });
+  assert.match(swedish.html('Page'), /Matchande familjekläder/);
+  assert.doesNotMatch(swedish.html('Page'), /familietøj|Legacy/);
+  assert.ok(storage.has('dlm_recently_viewed'), 'legacy history is preserved without using its unknown-language titles');
 });
 
 test('external, executable, invalid, and non-product links are not rendered', () => {

@@ -384,7 +384,9 @@ customElements.define('cart-items', CartItems);
 
 /* ── Recently Viewed Products — lazy: only track on product pages, only render when empty cart containers exist ── */
 (function() {
-  const STORAGE_KEY = 'dlm_recently_viewed';
+  // Product titles belong to the language/market where the product was viewed.
+  // Leave legacy unscoped history untouched: its titles have no reliable locale.
+  const STORAGE_KEY = `dlm_recently_viewed:${getLocaleAwareRoute('/')}`;
   const MAX_ITEMS = 6;
 
   function productPath(value) {

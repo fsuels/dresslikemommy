@@ -1732,6 +1732,7 @@ def build_translation_payload(
                     and clean(existing.value)
                     and snapshot.resource_type == "Product"
                     and key == "body_html"
+                    and not existing.outdated
                     and not force_refresh
                 ):
                     repaired_existing_value = repair_product_html_translation(

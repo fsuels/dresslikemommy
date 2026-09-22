@@ -413,6 +413,9 @@ def build_payload(candidates, digest_map, translator):
         if not key_info:
             skipped[f"missing_key:{candidate['type']}:{candidate['field']}"] += 1
             continue
+        if candidate["default"] != key_info.get("value"):
+            skipped[f"source_changed:{candidate['type']}:{candidate['field']}"] += 1
+            continue
         grouped[(live["resource_id"], candidate["locale"], candidate["field"], candidate["default"])] = {
             "resource_id": live["resource_id"],
             "locale": candidate["locale"],
