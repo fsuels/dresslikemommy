@@ -1,5 +1,15 @@
 # Problem Tracker
 
+## PROB-2026-09-22-MULTILINGUAL-STOREFRONT-GAPS
+
+Status: FIXED_VERIFIED_SCOPED_DEFECT_CLASSES. Owner: task01a0c99c-7966-71d1-aac0-7b312c4651af. User-requested repeated Danish localization failures were repaired across all21published languages through canonical main and the same existing published theme.
+
+VERIFIED:867unique translated fields across20non-English locales/23resources with exact/outdated=false readbacks;2English FAQ/About source corrections align with existing policies. Theme commits0dd8c90/7f9a05f onmain; final MAIN133290917985 import completed19:16:20UTC, processing=false/processingFailed=false. Final528filemanifest,18actualchangedlocale bodies and28public apparel labels matchmain. Theme Check0findings;12filterregressions, key/tokenparity and independentreviews pass.631public route checks passed scopedmissingtoken/404/locale/footerkey gates;23shirts/11tees and productcohorts preserved all21locales; desktop/narrow/Danish/Hebrew accordions/footer/shippingpanel/Arabic textfit checked.
+
+Earlier checksum/body disagreement was normal observed propagation lag and is superseded by actualbody/public acceptance. No local-only storefront fixes remain from this task. Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/RELEASE_REPORT.md.
+
+Preserved scope limits:family-swimsuits redirects to broad new-women-outfits inall21languages; no narrower routingnegative relaxed.17TRACK native ar/he/hi resultlanguage unknown (translatedcontrols retained); no order/tracking/checkout submission. First7journalcards repaired; later/fullarticle/product bodies notcomprehensively certified. No ad/budget/producttruth/underlyingpolicyterm mutation or business-lift claim. Use scoped evidence for destination-readiness review, without deriving campaign activation authority.
+
 ## PROB-2026-09-22-HALLOWEEN-ARCHIVED-RECOMMENDATION
 
 Status: OPEN; exact editorial correction DISPATCH_RECEIVED_ACTIVE, publication NOT_VERIFIED. Owner: existing Organic task01a0870a; parent integrates shared evidence.

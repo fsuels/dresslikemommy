@@ -1,0 +1,197 @@
+{
+  "status": "PASS_FOR_SCOPED_SHARED_DEFECT_CLASSES",
+  "date": "2026-09-22",
+  "method": "Root used existing Codex in-app browser, ordinary published canonical URLs, DOM readback after footer attached; latest row per locale/path retained. No preview theme. No checkout/order/newsletter/tracking submission.",
+  "locales": [
+    "ar",
+    "cs",
+    "da",
+    "de",
+    "el",
+    "en",
+    "es",
+    "fi",
+    "fr",
+    "he",
+    "hi",
+    "it",
+    "ja",
+    "ko",
+    "nl",
+    "no",
+    "pl",
+    "pt-BR",
+    "ro",
+    "ru",
+    "sv"
+  ],
+  "uniqueLocaleRouteChecks": 631,
+  "routesPerLocale": 30,
+  "additionalCheck": "es /pages/data-sale-opt-out",
+  "canonicalPortuguesePrefix": "/pt",
+  "paths": [
+    "/blogs/news",
+    "/pages/faqs",
+    "/pages/shipping-info",
+    "/pages/about-us",
+    "/pages/return-policy",
+    "/pages/contact-us",
+    "/pages/track-your-order",
+    "",
+    "/policies/refund-policy",
+    "/policies/privacy-policy",
+    "/policies/terms-of-service",
+    "/policies/shipping-policy",
+    "/policies/contact-information",
+    "/collections/daddy-me-shirts",
+    "/collections/daddy-me-t-shirts",
+    "/collections/new-pajama-drop",
+    "/collections/daddy-me?dlm-daddy-filter=button-downs",
+    "/collections/mommy-and-me",
+    "/collections/new-women-outfits",
+    "/collections/pajamas",
+    "/collections/dresses",
+    "/collections/swimsuits",
+    "/collections/daddy-me",
+    "/collections/matching-family-vacation-outfits",
+    "/collections/matching-outfits",
+    "/collections/family-swimsuits",
+    "/collections/formal-dresses",
+    "/products/red-panda-mommy-and-me-pajamas",
+    "/products/father-son-matching-cotton-tropical-shirts-black-white-palm-print",
+    "/search"
+  ],
+  "failures": {
+    "missingTranslationToken": 0,
+    "rendered404": 0,
+    "languageMismatch": 0,
+    "rawFooterTranslationToken": 0
+  },
+  "englishScan": {
+    "method": "Targeted known shared/help English fallback phrases only; not a whole-catalog English detector.",
+    "knownPhraseFailures": 0
+  },
+  "collectionChecks": {
+    "shirtVisibleCount": 23,
+    "teeVisibleCount": 11,
+    "localesChecked": 21,
+    "exactHandleSetsMatchEnglish": true,
+    "localizedCountsCorrect": true,
+    "parentButtonDownQuery": {
+      "visibleCount": 23,
+      "hiddenCount": 13,
+      "exactEnglishCohort": true,
+      "activeButtonAssertion": "NOT_APPLICABLE: actual child collections are links, so there are no data-daddy-filter buttons; initial assertion was corrected without changing implementation."
+    }
+  },
+  "returnPages": "All21 revisited after17 final body replacements.",
+  "journal": "Russian/Swedish template headings and intro plus31first-page card title/excerpt fields in ru/sv/he/de repaired and public retested.",
+  "tracking": {
+    "localizedControls": 20,
+    "documentedNonEnglishNativeWidgetLocales": 17,
+    "nativeWidgetLanguageUnknown": [
+      "ar",
+      "he",
+      "hi"
+    ],
+    "fallback": "en retained for three unsupported/unknown native result languages; controls themselves translated.",
+    "syntheticLogicChecks": 40,
+    "actualCarrierRequests": 0
+  },
+  "preservedRoutingLimitation": {
+    "path": "/collections/family-swimsuits",
+    "actualDestination": "/collections/new-women-outfits",
+    "locales": 21,
+    "decision": "Language preserved; broad redirect is not proof of a dedicated family-swimwear destination. Preserve narrower routing negatives."
+  },
+  "responsive": {
+    "method": "Browser viewport.set did not change innerWidth. Used documented tab CDP Emulation.setDeviceMetricsOverride; read actual dimensions, then cleared override and reset viewport.",
+    "checks": [
+      {
+        "locale": "sv",
+        "path": "/blogs/news",
+        "width": 1366,
+        "height": 900,
+        "scrollWidth": 1351,
+        "heading": "Stiljournal för familjen",
+        "result": "PASS"
+      },
+      {
+        "locale": "da",
+        "path": "/pages/faqs",
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 390,
+        "interaction": "General FAQ accordion opens with translated answers",
+        "result": "PASS"
+      },
+      {
+        "locale": "ar",
+        "path": "/collections/daddy-me-shirts",
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 390,
+        "result": "PASS_FOR_TEXT_FIT"
+      },
+      {
+        "locale": "he",
+        "path": "/pages/faqs",
+        "width": 390,
+        "height": 844,
+        "scrollWidth": 390,
+        "interaction": "FAQ and footer accordions open; shipping link opens localized shipping-country panel",
+        "result": "PASS"
+      }
+    ],
+    "limitation": "Text-fit checks in Arabic/Hebrew are not a comprehensive RTL design certification."
+  },
+  "transientRecoveries": [
+    "Greek daddy collection navigation timed out once; loaded document inspected and remaining batch resumed, PASS.",
+    "Dutch product footer load timed out once; document inspected and bounded wait repeated, PASS."
+  ],
+  "limitations": [
+    "Public route check does not prove every product/article body has a reviewed translation.",
+    "No claims about purchases, attribution, profit, campaign readiness, or narrower routing eligibility.",
+    "First7journal cards audited across21locales; later article pages and full catalog bodies not comprehensively reviewed."
+  ],
+  "journalSupplementPublic": {
+    "status": "PASS",
+    "locales": [
+      "ru",
+      "sv",
+      "he",
+      "de"
+    ],
+    "cardsPerLocale": 7,
+    "translatedFields": 31,
+    "method": "Published /blogs/news DOM title/excerpt readback after API exact verification. Full featured excerpt and normal theme-truncated card excerpts observed in their selected language."
+  },
+  "finalApparelLabels": {
+    "status": "PASS",
+    "sourceCommit": "7f9a05f0adf021746d5eb96a7365440f706acc94",
+    "changedValues": 28,
+    "changedLocales": 18,
+    "actualLocaleBodiesExact": 18,
+    "publicLocales": [
+      "ar",
+      "cs",
+      "el",
+      "es",
+      "fi",
+      "fr",
+      "he",
+      "hi",
+      "it",
+      "ja",
+      "ko",
+      "nl",
+      "no",
+      "pl",
+      "pt-BR",
+      "ro",
+      "ru",
+      "sv"
+    ],
+    "method": "Root read tees/shirts/trunks links in main content on ordinary published daddy-me pages after propagation; every changed value matches the independently reviewed candidate. All18actual API file bodies also byte-match local main."
+  }
+}

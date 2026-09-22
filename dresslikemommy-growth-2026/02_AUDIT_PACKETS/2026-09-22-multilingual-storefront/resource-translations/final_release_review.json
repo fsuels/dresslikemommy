@@ -1,0 +1,161 @@
+{
+  "status": "PASS",
+  "scope": "Independent reconciliation of saved candidate/bound payloads, receipts and independent readbacks only. No network/provider/API calls, no candidate edits, no Git/index changes.",
+  "counts": {
+    "initialTranslations": 813,
+    "blogTranslations": 6,
+    "returnTranslations": 17,
+    "uniqueTranslations": 836,
+    "nonEnglishLocales": 20,
+    "resources": 16,
+    "englishSourceBodyUpdates": 2
+  },
+  "checks": [
+    {
+      "check": "unique_release_groups",
+      "status": "PASS",
+      "detail": {
+        "initial": 813,
+        "blog": 6,
+        "return": 17,
+        "uniqueFields": 836,
+        "locales": 20,
+        "resources": 16
+      }
+    },
+    {
+      "check": "english_locale_excluded_from_translation_writes",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "check": "initial_candidate_bound_payload_and41_receipts",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "check": "blog_candidate_six_receipt_values_digests_and_false_outdated",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "check": "return_candidate_seventeen_four_batch_receipts",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "check": "initial813_plus_blog6_independent_readback",
+      "status": "PASS",
+      "detail": {
+        "fields": 819,
+        "errors": []
+      }
+    },
+    {
+      "check": "return17_independent_readback",
+      "status": "PASS",
+      "detail": {
+        "fields": 17,
+        "errors": []
+      }
+    },
+    {
+      "check": "latest_captured_state_exact836_values_outdated_false",
+      "status": "PASS",
+      "detail": {
+        "fields": 836,
+        "errors": [],
+        "localeMatch": "exact requested locale/key and market:null; MAIN returned all-locale rows filtered"
+      }
+    },
+    {
+      "check": "all20_return_page_bodies_current",
+      "status": "PASS",
+      "detail": {
+        "locales": 20,
+        "errors": []
+      }
+    },
+    {
+      "check": "two_english_body_updates_receipts_and_independent_source_readback",
+      "status": "PASS",
+      "detail": {
+        "bodies": 2,
+        "sourceSnapshots": 42,
+        "identityTitleHandlePublicationTemplatePreserved": true,
+        "errors": []
+      }
+    },
+    {
+      "check": "all_reviewed_artifacts_stable_during_check",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Verification reflects the saved post-mutation API snapshots and exact file hashes, not a new live query.",
+    "Initial41 and return4 mutation receipts are saved success summaries; exact published values and outdated=false were independently recomputed from saved after queries.",
+    "Rendered/public route QA remains parent-owned. Static values/readbacks do not establish every public route or account/login flow.",
+    "Tracking widget native language remains unknown for Arabic/Hebrew/Hindi; localized page controls retain documented English widget fallback.",
+    "No claim of native-speaker certification or unchanged external state after the recorded readbacks."
+  ],
+  "evidenceSha256": {
+    "content_release_candidate.json": "dbb40ecb9bd220c6902ae11c2551de3c358a0a7fe9d4a40be204c5a9d1b988bf",
+    "content_release_bound.json": "7c9d340f59a219be136f88e457569e5a061bb1d1ccca25e1c62c16106d93f277",
+    "content_mutation_receipts.json": "9f97bd0d1f62a110b08b2ac1c8e869458f757443e1517aa8937c76ccabf9ef2d",
+    "content_after_apply.json": "7797a468ac33c5b3fd527b4f035afdbe9ff03656ca719c05446b69852ae64da5",
+    "resource-translations/blog_template_candidate.json": "d7fa183e93db0d913934daaa03de6fcca916e1f7a6aaebad77c6f511d2fdc2e0",
+    "resource-translations/blog_template_receipt.json": "f35e7437b1ddbba90ad2319d59fd9fafe8a6a9168210c0939b4c7bfeb2dd9300",
+    "resource-translations/return_page_stale_replacements17.json": "639cb24714df64f3c3e7703074f11135c076488d8c92f0c7f13adcb92800b1ed",
+    "resource-translations/return_page_receipts.json": "e6900c3576b88737ed883916ab4675e983bb4c4d5a1b1e68d20b7a524b44c9ca",
+    "resource-translations/return_page_after.json": "5d6b7ca39cdf7d791feeefe5655d4248b4945b3548742a84dd660df791d90443",
+    "help-translations/english_source_updates.json": "bb8ea603134b274f73ac215d176e5275d7838470004e790f44eefde7b1efdfc0",
+    "help-translations/english_source_applied.json": "15858753257e01f0736e53f4071cc6f24eda1d5bf9e42de7f32b37812d090649",
+    "mutation_batches/000.json": "b6ffbeb7f5ec7a85bd81a98484ea16720ac9426480e9e26f0eb65afaf9bef545",
+    "mutation_batches/001.json": "e6f1bb492655e8159cb252f548d0739da5bbc66b5dd1d6ad2684eade8fe5e27f",
+    "mutation_batches/002.json": "5a1857dceea18db5e8bb70a4cac6ebe7220a9fd14ca3bcca9478abc2dde1e799",
+    "mutation_batches/003.json": "21a09b1ed8c922b2792eacc582cc16a99ca90a8bf52349999ac4ae9187c57db4",
+    "mutation_batches/004.json": "8d6dc473add4c9557f544c8f7faa4397ce42796ac564fc4506cfb0ef932d951e",
+    "mutation_batches/005.json": "3587ac13c9fc0ff246ef8803185504742ab6cf81d53874f05832788df6c4e00c",
+    "mutation_batches/006.json": "f5365b4cfed0354e1eed31b90740f25a45c9feda2b51f2f3851705d9808796d6",
+    "mutation_batches/007.json": "06a452569e97709460bb44585fffbc3e5fd6be8c068824fd3b07f4caaad7dcd0",
+    "mutation_batches/008.json": "3771695d38dedac19c97c0657c0329a2db2a53721b07036776858798dfecd17c",
+    "mutation_batches/009.json": "241df4fc6c002576ce799e8952abfa2dab84117d2c9e333c3aac9b568ee30ea9",
+    "mutation_batches/010.json": "5c9d8ed7248f5f5588207777e19ffbc8e975d0fba1911559888061c25a8ffee1",
+    "mutation_batches/011.json": "eafa048b7fe1e0d2aa7d8f0b2a8e60f3fe5089bd519b5ff83fbeaea7f6027a8d",
+    "mutation_batches/012.json": "11d697807923b57d0c384fcf047617211f80dc3f70688c6196273782e6ffb3b2",
+    "mutation_batches/013.json": "2e23909a7b426a11fd0cd7aea01a363f791e4eaaa4d06a76ad4e273fc4bf612d",
+    "mutation_batches/014.json": "1e678e878a4273dfc533fb80fe748f265eea4b2a31128a88744ed3509d60540a",
+    "mutation_batches/015.json": "ec6b2e22244301a6a3a84fdb97a257e80aa14f8f35979fa66e2a4d21e04ab80f",
+    "mutation_batches/016.json": "03ff6d80c93c6887f9ada0c6888e824df265d3e13baed15614a154731443adbb",
+    "mutation_batches/017.json": "46d0009e31968451fb1ea0775706a85e19b9faf63a78fc72b2567e7b95529056",
+    "mutation_batches/018.json": "ded2cca186cd4e7829fbc1bbb853b587d11b1d6ceadb52be76f4ececbf0f418f",
+    "mutation_batches/019.json": "37188de0b4965352c2ea658291f4ae6b7a33eaa4c5a800b3d508fec9de1b013c",
+    "mutation_batches/020.json": "4b2bb40ac190a411e11aa88814b1b88f5f4b75db352b6b08e8c85087db0b59bc",
+    "mutation_batches/021.json": "446ad44254536d9080e17567685259d5e9dab4f78b200ccf469c7dfaa0bcc110",
+    "mutation_batches/022.json": "ce9fa305d2a0d452bf96e7e6dcd138c305164be94516712512a25eacf53631c6",
+    "mutation_batches/023.json": "5c648bbbfc8399653e9233cafc33d6b343710fd07fbbcbde31754b5970202764",
+    "mutation_batches/024.json": "cedec3f5e4803557ebb4bdcb1d35c564c01242e955946c0011f8733f33af6b42",
+    "mutation_batches/025.json": "2559ad52cf4abb82b5c5a12148e6e487f054c5171396b6bf7a97cbbd9adb32e0",
+    "mutation_batches/026.json": "8165ea636850db06c177080c05c041d661c399998e9b43ebff69c1a49bc06f3a",
+    "mutation_batches/027.json": "a7277d91246012b4e649227220fdd1c952d3a9028e4e29914e7ef014e319ca5a",
+    "mutation_batches/028.json": "4c77cffb76086c8fc4e7f2993e135db6db0131c73ad14d266e53ebd7ae224af8",
+    "mutation_batches/029.json": "48234c1da7c11b895b54a068fcdf8fb3451cb30cd85efcb727d1623b82cc47f6",
+    "mutation_batches/030.json": "371e9b805bb8f9d1a57ceb60ddb3263758ea8543ce3b35f7a6021566221a10c9",
+    "mutation_batches/031.json": "b81f6660fe90f71df36ea9361c0a60fa83ee3f82e0994690630164ae982686cf",
+    "mutation_batches/032.json": "f0874b5abed567f088d09b9d51ebaec25d4a796efacd9c998adc804e919e3e78",
+    "mutation_batches/033.json": "e74ab556afed420f4fc706bb9e7570b480d019399de7bafdc0c3c9e2c277ca26",
+    "mutation_batches/034.json": "b7dc6e492015db813efc8613f45b4d423c29edad08179adf5029700736c4d6a0",
+    "mutation_batches/035.json": "59853616e139628fdd94fa06ec5c5a144c52d632a3f233a13154250d513f6b87",
+    "mutation_batches/036.json": "92a204d89ceaac11112803e22a1c2c08c8186821a8bc61703c578c0e482c735d",
+    "mutation_batches/037.json": "ef2865708c6010bfeca9f2df392587a213fced00c8bd1bf8bc12d2e1e20dc5ff",
+    "mutation_batches/038.json": "59d96939f4a324eef89f23e5b01e682047097f99759fc95f988243216dfc26eb",
+    "mutation_batches/039.json": "7b2496c4627a04ee0b08beb6ea8516be3d57c965535dee35e54856d810691814",
+    "mutation_batches/040.json": "6f9409921a71455ab66999e4d8cfeb554b942169f15dbda934865312906e610a",
+    "resource-translations/return_page_batch_0.json": "27e408bee0d2f1d7e035f219cc570b9f01c1b5927eff6ab5635f59d21827c9e2",
+    "resource-translations/return_page_batch_1.json": "b1dcf3e3fc4ae35ec2142199e507972bcb6e33af6567f65d28a1ef4edd21f486",
+    "resource-translations/return_page_batch_2.json": "ba652bb0984a07dd36cf30ffa9be0b5471ad24af65ae0d23659303f594ed76f3",
+    "resource-translations/return_page_batch_3.json": "366d93de877827f263c2f66f63d53979b50fad5dc3db09d5275bb59b2db001b3"
+  }
+}
