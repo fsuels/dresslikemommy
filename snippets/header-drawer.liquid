@@ -44,13 +44,10 @@
                   assign skip_nav_link = false
                   assign visible_child_count = visible_child_count_raw | plus: 0
                   if link.url contains '/blogs/'
-                    assign nav_link_title = 'Style Journal'
+                    assign nav_link_title = 'storefront.journal.title' | t
                   endif
                   if link.handle == 'family-matching' or link.handle == 'matching-outfits' or link.handle == 'family-matching-outfits' or normalized_link_title == 'family matching' or normalized_link_title == 'family matching outfits'
-                    assign nav_link_title = 'Family Matching'
-                    if request.locale.iso_code == 'da'
-                      assign nav_link_title = 'Matchende familietøj'
-                    endif
+                    assign nav_link_title = 'sections.home_category_copy.family_matching' | t
                     assign use_family_direct_link = true
                     assign family_hub_collection = collections['new-women-outfits']
                     if family_hub_collection == blank
@@ -83,7 +80,7 @@
                   {%- if use_family_direct_link and family_hub_destination_visible -%}
                     <a
                       id="HeaderDrawer-{{ link.handle }}"
-                      href="{{ nav_link_url }}"
+                      href="{% render 'storefront-localized-url', url: nav_link_url %}"
                       class="menu-drawer__menu-item menu-drawer__menu-item--top-level list-menu__item link link--text focus-inset{% if link.current or link.child_active %} menu-drawer__menu-item--active{% endif %}"
                       {% if link.current %}
                         aria-current="page"
@@ -132,7 +129,7 @@
                                 {%- if childlink_visible_grandchild_count == 0 -%}
                                   <a
                                     id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
-                                    href="{{ childlink_url | strip }}"
+                                    href="{% render 'storefront-localized-url', url: childlink_url %}"
                                     class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
                                     {% if childlink.current %}
                                       aria-current="page"
@@ -181,7 +178,7 @@
                                           <li>
                                             <a
                                               id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                              href="{{ grandchildlink_url | strip }}"
+                                              href="{% render 'storefront-localized-url', url: grandchildlink_url %}"
                                               class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
                                               {% if grandchildlink.current %}
                                                 aria-current="page"
@@ -204,7 +201,7 @@
                   {%- else -%}
                     <a
                       id="HeaderDrawer-{{ link.handle }}"
-                      href="{{ nav_link_url }}"
+                      href="{% render 'storefront-localized-url', url: nav_link_url %}"
                       class="menu-drawer__menu-item menu-drawer__menu-item--top-level list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
                       {% if link.current %}
                         aria-current="page"

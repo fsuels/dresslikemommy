@@ -18,109 +18,67 @@
   case collection_handle
     when 'matching-couples-t-shirts'
       assign show_callout = true
-      assign callout_eyebrow = 'Shop faster'
-      assign callout_title = 'Compare the couple tees here, then branch into broader matching looks'
-      assign callout_body = 'Keep shoppers on the grid first so they can scan the strongest couple graphics side by side, then widen out into family matching if they want more than tees.'
-      assign primary_label = 'Shop the tee grid'
+      assign callout_eyebrow = 'storefront.callout.matching_couples_t_shirts.callout_eyebrow' | t
+      assign callout_title = 'storefront.callout.matching_couples_t_shirts.callout_title' | t
+      assign callout_body = 'storefront.callout.matching_couples_t_shirts.callout_body' | t
+      assign primary_label = 'storefront.callout.matching_couples_t_shirts.primary_label' | t
       assign primary_url = '#product-grid'
-      assign secondary_label = 'Browse family matching'
+      assign secondary_label = 'storefront.callout.matching_couples_t_shirts.secondary_label' | t
       assign secondary_url = '/collections/matching-outfits'
     when 'mommy-and-me'
       assign show_callout = true
-      assign callout_eyebrow = 'Shop faster'
-      assign callout_title = 'Browse the full Mommy & Me collection, then jump to the newest pajamas'
-      assign callout_body = 'Use this page as the broad matching browse first. When the shopper already knows she wants sleepwear, the dedicated pajama drop is the clean next step instead of the starting point.'
-      assign primary_label = 'Browse this collection'
+      assign callout_eyebrow = 'storefront.callout.mommy_and_me.callout_eyebrow' | t
+      assign callout_title = 'storefront.callout.mommy_and_me.callout_title' | t
+      assign callout_body = 'storefront.callout.mommy_and_me.callout_body' | t
+      assign primary_label = 'storefront.callout.mommy_and_me.primary_label' | t
       assign primary_url = '#product-grid'
-      assign secondary_label = 'Shop new pajamas'
+      assign secondary_label = 'storefront.callout.mommy_and_me.secondary_label' | t
       assign secondary_url = '/collections/new-pajama-drop'
-      assign tertiary_label = 'Browse all pajamas'
+      assign tertiary_label = 'storefront.callout.mommy_and_me.tertiary_label' | t
       assign tertiary_url = '/collections/pajamas'
     when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits'
       assign show_callout = true
-      assign callout_eyebrow = 'Shop faster'
-      assign callout_title = 'Start with the family grid, then use the pajama launch as the focused edit'
-      assign callout_body = 'The broad family collection should stay easy to scan above the fold. When the shopper wants the newest sleepwear specifically, route her into the pajama drop as the tighter follow-on path.'
-      assign primary_label = 'Browse this collection'
+      assign callout_eyebrow = 'storefront.callout.matching_outfits.callout_eyebrow' | t
+      assign callout_title = 'storefront.callout.matching_outfits.callout_title' | t
+      assign callout_body = 'storefront.callout.matching_outfits.callout_body' | t
+      assign primary_label = 'storefront.callout.matching_outfits.primary_label' | t
       assign primary_url = '#product-grid'
-      assign secondary_label = 'Shop new pajamas'
+      assign secondary_label = 'storefront.callout.matching_outfits.secondary_label' | t
       assign secondary_url = '/collections/new-pajama-drop'
-      assign tertiary_label = 'Browse all pajamas'
+      assign tertiary_label = 'storefront.callout.matching_outfits.tertiary_label' | t
       assign tertiary_url = '/collections/pajamas'
     when 'pajamas'
       assign show_callout = true
-      assign callout_eyebrow = 'Shop faster'
-      assign callout_title = 'See the full pajama grid first, then jump to the newest drop'
-      assign callout_body = 'This collection works best as the main browse. Let shoppers compare every live pajama style right here, then offer the new-arrivals edit for anyone who wants the freshest prints first.'
-      assign primary_label = 'Shop the pajamas below'
+      assign callout_eyebrow = 'storefront.callout.pajamas.callout_eyebrow' | t
+      assign callout_title = 'storefront.callout.pajamas.callout_title' | t
+      assign callout_body = 'storefront.callout.pajamas.callout_body' | t
+      assign primary_label = 'storefront.callout.pajamas.primary_label' | t
       assign primary_url = '#product-grid'
-      assign secondary_label = 'Newest arrivals'
+      assign secondary_label = 'storefront.callout.pajamas.secondary_label' | t
       assign secondary_url = '/collections/new-pajama-drop'
-      assign tertiary_label = 'Browse Mommy & Me'
+      assign tertiary_label = 'storefront.callout.pajamas.tertiary_label' | t
       assign tertiary_url = '/collections/mommy-and-me'
     when 'new-pajama-drop'
       assign show_callout = true
-      assign callout_eyebrow = 'Just added'
-      assign callout_title = 'Fresh matching pajamas, all in one focused edit'
-      assign callout_body = 'Keep the newest prints grouped together here for a tighter browse, then let shoppers widen back out into the full pajama collection when they want every live option.'
-      assign primary_label = 'Shop new arrivals'
+      assign callout_eyebrow = 'storefront.callout.new_pajama_drop.callout_eyebrow' | t
+      assign callout_title = 'storefront.callout.new_pajama_drop.callout_title' | t
+      assign callout_body = 'storefront.callout.new_pajama_drop.callout_body' | t
+      assign primary_label = 'storefront.callout.new_pajama_drop.primary_label' | t
       assign primary_url = '#product-grid'
-      assign secondary_label = 'Browse all pajamas'
+      assign secondary_label = 'storefront.callout.new_pajama_drop.secondary_label' | t
       assign secondary_url = '/collections/pajamas'
     when 'new-matching-outfits'
       assign show_callout = true
-      assign callout_eyebrow = 'Fresh arrivals'
-      assign callout_title = 'See the latest matching looks without losing the main grid'
-      assign callout_body = 'This page should still feel easy to scan. Keep the newest arrivals visible here first, then use the broader Mommy & Me collection as the backup path when shoppers want more depth.'
-      assign primary_label = 'Shop new arrivals'
+      assign callout_eyebrow = 'storefront.callout.new_matching_outfits.callout_eyebrow' | t
+      assign callout_title = 'storefront.callout.new_matching_outfits.callout_title' | t
+      assign callout_body = 'storefront.callout.new_matching_outfits.callout_body' | t
+      assign primary_label = 'storefront.callout.new_matching_outfits.primary_label' | t
       assign primary_url = '#product-grid'
-      assign secondary_label = 'Browse Mommy & Me'
+      assign secondary_label = 'storefront.callout.new_matching_outfits.secondary_label' | t
       assign secondary_url = '/collections/mommy-and-me'
   endcase
 
-  if request.locale.iso_code == 'da'
-    assign primary_label = 'Se kollektionen'
-    case collection_handle
-      when 'matching-couples-t-shirts'
-        assign callout_eyebrow = 'Find hurtigere det rette'
-        assign callout_title = 'Sammenlign matchende t-shirts til par, og udforsk derefter flere matchende looks'
-        assign callout_body = 'Sammenlign motiverne på t-shirts til par her på siden. Udforsk derefter matchende familietøj, hvis du ønsker mere end t-shirts.'
-        assign primary_label = 'Se t-shirts nedenfor'
-        assign secondary_label = 'Se matchende familietøj'
-      when 'mommy-and-me'
-        assign callout_eyebrow = 'Find hurtigere det rette'
-        assign callout_title = 'Se hele kollektionen til mor og barn, og gå videre til de nyeste pyjamasser'
-        assign callout_body = 'Start med det brede udvalg af matchende tøj her. Hvis du leder efter nattøj, kan du gå videre til kollektionen med nye pyjamasser.'
-        assign primary_label = 'Se denne kollektion'
-        assign secondary_label = 'Se nye pyjamasser'
-        assign tertiary_label = 'Se alle pyjamasser'
-      when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits'
-        assign callout_eyebrow = 'Find hurtigere det rette'
-        assign callout_title = 'Start med familietøjet, og gå videre til de nyeste pyjamasser'
-        assign callout_body = 'Sammenlign det brede udvalg af matchende familietøj her. Hvis du leder efter det nyeste nattøj, kan du gå videre til kollektionen med nye pyjamasser.'
-        assign primary_label = 'Se denne kollektion'
-        assign secondary_label = 'Se nye pyjamasser'
-        assign tertiary_label = 'Se alle pyjamasser'
-      when 'pajamas'
-        assign callout_eyebrow = 'Find hurtigere det rette'
-        assign callout_title = 'Se alle pyjamasser først, og gå derefter videre til nyhederne'
-        assign callout_body = 'Sammenlign alle pyjamasmodellerne her. Gå videre til nyhederne, hvis du vil se de nyeste mønstre først.'
-        assign primary_label = 'Se pyjamasser nedenfor'
-        assign secondary_label = 'Se de seneste nyheder'
-        assign tertiary_label = 'Se tøj til mor og barn'
-      when 'new-pajama-drop'
-        assign callout_eyebrow = 'Netop tilføjet'
-        assign callout_title = 'Nye matchende pyjamasser samlet ét sted'
-        assign callout_body = 'Se de nyeste mønstre samlet her. Gå videre til hele pyjamaskollektionen, hvis du vil sammenligne alle modellerne.'
-        assign primary_label = 'Se nyhederne'
-        assign secondary_label = 'Se alle pyjamasser'
-      when 'new-matching-outfits'
-        assign callout_eyebrow = 'Nye varer'
-        assign callout_title = 'Se de nyeste matchende looks samlet her'
-        assign callout_body = 'Start med nyhederne her, og udforsk derefter den bredere kollektion til mor og barn, hvis du vil se flere muligheder.'
-        assign primary_label = 'Se nyhederne'
-        assign secondary_label = 'Se tøj til mor og barn'
-    endcase
+  if routes.root_url != '/'
     if secondary_url != blank
       assign secondary_url = routes.root_url | append: secondary_url
     endif
@@ -155,15 +113,9 @@
       </div>
       <div class="collection-merchandising-callout__utility">
         <ul class="collection-merchandising-callout__meta" role="list">
-          {%- if request.locale.iso_code == 'da' -%}
-            <li>Modeller i kollektionen: {{ collection_live_count }}</li>
-            <li>Standardfragt inkluderet</li>
-            <li>30 dages returfrist</li>
-          {%- else -%}
-            <li>{{ collection_live_count }} live styles</li>
-            <li>Standard shipping included</li>
-            <li>30-day return window</li>
-          {%- endif -%}
+          <li>{{ 'storefront.callout.style_count' | t: count: collection_live_count }}</li>
+          <li>{{ 'storefront.callout.shipping' | t }}</li>
+          <li>{{ 'storefront.callout.returns' | t }}</li>
         </ul>
         <div class="collection-merchandising-callout__actions">
           <a href="{{ primary_url }}" class="button">{{ primary_label }}</a>

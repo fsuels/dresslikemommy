@@ -60,6 +60,15 @@
               >
                 {%- if block.settings.heading != blank -%}
                   {%- assign footer_block_heading = block.settings.heading | strip -%}
+                  {%- assign footer_menu_handle = block.settings.menu.handle | default: block.settings.menu -%}
+                  {%- case footer_menu_handle -%}
+                    {%- when 'footer-menu' -%}
+                      {%- assign footer_block_heading = 't:sections.footer_headings.company_info' -%}
+                    {%- when 'footer-menu-2' -%}
+                      {%- assign footer_block_heading = 't:sections.footer_headings.help_support' -%}
+                    {%- when 'footer-menu-3' -%}
+                      {%- assign footer_block_heading = 't:sections.footer_headings.customer_care' -%}
+                  {%- endcase -%}
                   {%- assign footer_block_heading_prefix = footer_block_heading | slice: 0, 2 -%}
                   {%- assign footer_heading_lookup = footer_block_heading | downcase -%}
                   {%- if footer_block_heading_prefix == 't:' -%}
@@ -172,7 +181,7 @@
                           {%- unless footer_link_url contains '/pages/size-guide' -%}
                             <li>
                               <a
-                                href="{{ link.url }}"
+                                href="{% render 'storefront-localized-url', url: link.url %}"
                                 class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
                               >
                                 {{ link.title }}
@@ -250,23 +259,15 @@
 
         {%- if journal_blog != blank and section.settings.show_journal_link -%}
           {%- liquid
-            assign footer_journal_label = section.settings.journal_link_label | default: 'Style Journal'
-            assign footer_journal_summary = 'Family fashion tips, matching outfit ideas, and seasonal style guides.'
-            assign footer_journal_cta_prefix = 'Read the '
-            if footer_locale contains 'es'
-              assign footer_journal_summary = 'Consejos de moda familiar, ideas de conjuntos a juego y guías de estilo de temporada.'
-              assign footer_journal_cta_prefix = 'Leer el '
-            elsif request.locale.iso_code == 'da'
-              assign footer_journal_summary = 'Tips til familiemode, idéer til matchende tøj og sæsonens stilguider.'
-              assign footer_journal_cta_prefix = 'Læs '
-            endif
+            assign footer_journal_label = 'storefront.journal.title' | t
+            assign footer_journal_summary = 'storefront.journal.footer_summary' | t
           -%}
           <div class="footer-block grid__item footer-block--journal{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
             <h2 class="footer-block__heading inline-richtext">{{ footer_journal_label }}</h2>
             <div class="footer-block__details-content rte">
               <p>{{ footer_journal_summary }}</p>
               <a href="{{ journal_blog.url }}" class="link link--text list-menu__item list-menu__item--link">
-                {{ footer_journal_cta_prefix }}{{ footer_journal_label }} &rarr;
+                {{ 'storefront.journal.footer_cta' | t: title: footer_journal_label }} &rarr;
               </a>
             </div>
           </div>

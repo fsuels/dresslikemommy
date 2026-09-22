@@ -170,7 +170,7 @@
       },
       "view_full_details": "詳細を表示する",
       "include_taxes": "税込",
-      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
+      "shipping_policy_html": "対象国への通常配送料は商品価格に含まれています。住所の入力後、チェックアウトで具体的な配送方法、お届け予定、速達への変更オプションが表示されます。 <a href=\"{{ link }}\">配送ポリシー</a>",
       "choose_options": "オプションを選択",
       "choose_product_options": "{{ product_name }}のオプションを選択する",
       "value_unavailable": "{{ option_value }}は利用できません",
@@ -201,7 +201,7 @@
         "error": "選択した作品を追加できません。もう一度試してください。"
       },
       "occasions": {
-        "title": "Perfect for"
+        "title": "おすすめのシーン"
       },
       "social_proof": {
         "new_arrival": "新着",
@@ -351,7 +351,7 @@
       "estimated_delivery": "お届け予定日:",
       "standard_delivery_window": "12-16日",
       "premium_delivery_window": "エクスプレス オプションは、利用可能な場合はチェックアウト時に表示されます。",
-      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
+      "faster_shipping_prefix": "対応している地域では、チェックアウトで速達を選べる場合があります。",
       "free_premium_shipping": "特急配送",
       "return_policy_title": "返品ポリシー",
       "return_policy_line_1": "返品または交換をリクエストするには、配達から 30 日以内に限ります。",
@@ -377,28 +377,28 @@
       "eyebrow": "配送先国の確認",
       "page_title_country": "はい、現在 {{ country }} へ配送しています",
       "page_title_default": "現在の配送対象国",
-      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
-      "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
+      "page_summary": "チェックアウトの国選択に表示される国と地域への通常配送料は商品価格に含まれています。チェックアウトで住所をすべて入力し、お支払い前に具体的な配送方法、お届け予定、速達への変更オプションをご確認ください。",
+      "page_note_html": "お住まいの国がここに表示されない場合や、入力した住所への配送方法がチェックアウトに表示されない場合は、ご注文前に<a href=\"mailto:{{ email }}\">{{ email }}</a>へメールでお問い合わせください。",
       "schema_standard_shipping": "標準配送込み",
       "country_list_heading": "現在配送している国 ({{ count }})",
       "country_list_highlight": "このリストの国はすべてチェックアウトで有効です。Shopify が検出できる場合、選択された国が強調表示されます。",
-      "checker_trigger": "Do we ship to my country?",
-      "checker_trigger_meta": "{{ count }} countries enabled",
-      "checker_trigger_meta_country": "{{ country }} selected / {{ count }} countries",
-      "checker_footer_heading": "Check shipping before you order",
-      "checker_footer_text": "Search the live checkout country list and confirm your destination in seconds.",
-      "checker_title": "Do we ship to my country?",
-      "checker_summary": "Yes if your country appears below. These {{ count }} countries and regions are enabled in checkout right now.",
-      "checker_current_country": "Your current country selection is {{ country }}.",
-      "checker_search_label": "Search country or region",
-      "checker_search_placeholder": "Type a country name, code, or currency",
-      "checker_result_label": "countries shown",
-      "checker_selected_badge": "Selected",
-      "checker_available_badge": "Ships here",
-      "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
-      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
-      "checker_close": "Close country checker",
-      "checker_result_single_label": "country shown"
+      "checker_trigger": "お住まいの国へ配送できますか？",
+      "checker_trigger_meta": "{{ count }}か国への配送が有効",
+      "checker_trigger_meta_country": "選択中：{{ country }} / {{ count }}か国",
+      "checker_footer_heading": "ご注文前に配送先をご確認ください",
+      "checker_footer_text": "チェックアウトで現在選択できる国の一覧を検索し、配送先をすぐに確認できます。",
+      "checker_title": "お住まいの国へ配送できますか？",
+      "checker_summary": "下の一覧に国があれば配送できます。現在、チェックアウトではこれら{{ count }}の国と地域が有効です。",
+      "checker_current_country": "現在選択されている国は{{ country }}です。",
+      "checker_search_label": "国または地域を検索",
+      "checker_search_placeholder": "国名、国コード、通貨を入力",
+      "checker_result_label": "か国を表示",
+      "checker_selected_badge": "選択中",
+      "checker_available_badge": "配送可能",
+      "checker_no_results": "現在のチェックアウト一覧に一致する国が見つかりません。別の表記を試すか、ご注文前にメールでお問い合わせください。",
+      "checker_note_html": "通常配送が利用できる場合、その配送料は商品価格に含まれます。お支払い前にチェックアウトで具体的な配送方法、お届け予定、速達への変更オプションをご確認いただけます。 <a href=\"{{ link }}\">配送の詳細</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_close": "配送先の確認を閉じる",
+      "checker_result_single_label": "か国を表示"
     }
   },
   "templates": {
@@ -469,10 +469,10 @@
       "empty": "カートは空です",
       "cart_error": "カートをアップデートするときにエラーが発生しました。もう一度お試しください。",
       "cart_quantity_error_html": "このアイテムは{{ quantity }}個しかカートに追加することができません。",
-      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
-      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
-      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
-      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_and_shipping_policy_at_checkout_html": "税金と割引はチェックアウトで計算されます。 通常配送が利用できる場合は配送料が含まれます。速達への変更オプションはチェックアウトに表示されます。 <a href=\"{{ link }}\">配送ポリシー</a>",
+      "taxes_included_but_shipping_at_checkout": "税込み。割引はチェックアウトで計算されます。 通常配送が利用できる場合は配送料が含まれます。速達への変更オプションはチェックアウトに表示されます。",
+      "taxes_included_and_shipping_policy_html": "税込み。割引はチェックアウトで計算されます。 通常配送が利用できる場合は配送料が含まれます。速達への変更オプションはチェックアウトに表示されます。 <a href=\"{{ link }}\">配送ポリシー</a>",
+      "taxes_and_shipping_at_checkout": "税金と割引はチェックアウトで計算されます。 通常配送が利用できる場合は配送料が含まれます。速達への変更オプションはチェックアウトに表示されます。",
       "headings": {
         "product": "商品",
         "price": "価格",
@@ -491,9 +491,9 @@
       "est_delivery": "チェックアウト時の配送詳細",
       "store_rating_prefix": "",
       "store_rating_suffix": "",
-      "we_accept": "We accept",
+      "we_accept": "ご利用可能なお支払い方法",
       "complete_the_look": "見た目を完成させる",
-      "you_may_also_like": "You may also like",
+      "you_may_also_like": "こちらもおすすめ",
       "trust": {
         "secure_checkout": "安全なチェックアウト",
         "ssl_encrypted": "SSL暗号化",
@@ -509,7 +509,7 @@
       "popular_with_families": "家族連れに人気",
       "recently_viewed": "最近見たもの",
       "savings_html": "<strong>{{ amount }}</strong> を節約しています",
-      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included; exact delivery estimate and any express upgrade show before payment."
+      "shipping_country_reassurance": "{{ country }}への配送。通常配送料込み。具体的なお届け予定と速達への変更オプションはお支払い前に表示されます。"
     },
     "footer": {
       "cookie_preferences": "Cookieの設定",
@@ -583,12 +583,12 @@
       "step_error": "このアイテムは、{{ step }}の増分でのみ追加できます"
     },
     "related_products": {
-      "you_may_also_like": "You may also like"
+      "you_may_also_like": "こちらもおすすめ"
     },
     "footer_headings": {
-      "company_info": "Company info",
-      "help_support": "Help & support",
-      "customer_care": "Customer care"
+      "company_info": "会社情報",
+      "help_support": "ヘルプとサポート",
+      "customer_care": "カスタマーサービス"
     },
     "breadcrumbs": {
       "home": "家",
@@ -871,6 +871,46 @@
           "part_8_html": "<p><a href=\"{{ dresses_url }}\">マッチするドレスを購入する</a> 季節の春のスタイリングを超えて、ドレスに焦点を当てた幅広い編集を実現します。</p>"
         }
       }
+    },
+    "home_category_copy": {
+      "heading_category": "カテゴリーから探す",
+      "heading_occasion": "シーンから探す",
+      "trust_free_shipping": "通常配送料込み",
+      "trust_matching_moments": "家族のひとときにおそろいコーデ",
+      "trust_easy_outfits": "写真撮影、旅行、お祝いに着やすいコーデ",
+      "trust_sizing_support": "サイズ選びをサポート",
+      "trust_family_matching": "家族のおそろいコーデを手軽に",
+      "trust_family_support": "1営業日以内に返信",
+      "mommy_me": "ママとおそろい",
+      "family_matching": "家族でおそろい",
+      "pajamas": "パジャマ",
+      "matching_dresses": "おそろいワンピース",
+      "swimsuits": "水着",
+      "daddy_me": "パパとおそろい",
+      "vacation": "バケーション",
+      "photo_days": "写真撮影",
+      "birthdays": "誕生日",
+      "beach_days": "ビーチの日",
+      "caption_mommy_me": "ママと娘のお気に入り",
+      "caption_family_matching": "みんなで楽しむおそろいコーデ",
+      "caption_pajamas": "くつろぎの夜に柔らかなセット",
+      "caption_matching_dresses": "写真映えするワンピース",
+      "caption_swimsuits": "ビーチで楽しむ水着コーデ",
+      "caption_daddy_me": "パパと子どものおそろい時間",
+      "caption_vacation": "旅の間ずっと楽しめるリゾートコーデ",
+      "caption_photo_days": "家族写真のために",
+      "caption_birthdays": "お祝いにぴったりのかわいいコーデ",
+      "caption_beach_days": "晴れた日に楽しむおそろいスタイル",
+      "badge_most_loved": "みんなのお気に入り",
+      "badge_vacation_favorite": "バケーションのお気に入り",
+      "badge_spring_event_pick": "春のイベントにおすすめ",
+      "badge_new_pajama_drop": "新作パジャマ",
+      "cta_shop_this_look": "このコーデを購入",
+      "cta_shop_new_pajamas": "新作パジャマを購入",
+      "link_mother_daughter_dresses": "ママと娘の結婚式お呼ばれワンピースを購入",
+      "link_family_vacation": "家族でおそろいのバケーションコーデを購入",
+      "link_spring_dresses": "春のイベント向けおそろいワンピースを見る",
+      "link_new_pajamas": "新作パジャマを見る"
     }
   },
   "localization": {
@@ -1029,5 +1069,99 @@
     "page_titles": {
       "search": "検索"
     }
+  },
+  "storefront": {
+    "journal": {
+      "trending": "今のトレンド",
+      "spotlight_title": "写真映えする家族のおそろい水着",
+      "spotlight_body": "購入前に水着ガイドを参考に、ママと娘の水着、家族のおそろい水着、ビーチコーデを比較しましょう。",
+      "shop_swimsuits": "水着を購入する",
+      "shop_family_swim": "ファミリースイムを購入する",
+      "featured": "注目記事",
+      "read_time": "分で読めます",
+      "read_article": "記事を読む",
+      "about_eyebrow": "スタイルジャーナルの使い方",
+      "about_title": "ガイドを見つけて、一致するルックを購入してください",
+      "about_body": "すべての記事は、家族の写真、ビーチでの休暇、父の日、母の日、休日、毎日のマッチングなど、実際のショッピングの瞬間を中心に構成されています。まずは自分のシーンに合ったガイドから始めて、コレクションのリンクを使用して、ぴったりのアイテムを比較してください。",
+      "newsletter_eyebrow": "常に最新情報を入手",
+      "newsletter_title": "スタイリングのヒントを入手 + 10% オフ",
+      "newsletter_body": "スタイル ジャーナルのニュースレターに参加して、コーディネートのインスピレーション、新着アイテム、特別なウェルカム割引を入手してください。",
+      "email_placeholder": "あなたのメールアドレス",
+      "email_label": "メールアドレス",
+      "subscribe": "購読する",
+      "title": "スタイルジャーナル",
+      "description": "ママと私、パパと私、家族のペアルックのための服装ガイド、スタイリングのヒント、ショッピングのアドバイス。",
+      "footer_summary": "家族のファッションのヒント、おそろいの服装のアイデア、季節のスタイルガイド。",
+      "footer_cta": "{{ title }}を読む"
+    },
+    "menu": {
+      "trending_now": "今のトレンド",
+      "best_selling_family_looks": "人気のファミリーコーデ",
+      "resort_favorite": "バケーションのお気に入り",
+      "getaway_edit": "バケーション向けセレクション",
+      "dress_best_sellers": "ベストセラーのワンピース",
+      "easy_sets": "手軽に着られるセット",
+      "cold_weather_pick": "寒冷地向けのピック",
+      "pool_day_favorite": "プールの日のお気に入り",
+      "new_pajama_styles": "新しいパジャマのスタイル",
+      "shop_now": "今すぐ購入",
+      "shop_edit": "セレクト商品を見る",
+      "family_description": "まず家族のおそろいコーデを見てから、バケーション用コーデ、おそろい水着、パパと子どものシャツもチェックしましょう。"
+    },
+    "callout": {
+      "matching_couples_t_shirts": {
+        "callout_eyebrow": "より早く買い物をする",
+        "callout_title": "カップルのおそろいTシャツを比較して、ほかのおそろいコーデもチェック",
+        "callout_body": "ここでカップルのおそろいTシャツのデザインを比較し、家族のおそろいコーデでほかのスタイルも探しましょう。",
+        "primary_label": "下のTシャツを見る",
+        "secondary_label": "ファミリーマッチングを閲覧する"
+      },
+      "mommy_and_me": {
+        "callout_eyebrow": "より早く買い物をする",
+        "callout_title": "マミー アンド ミーの全コレクションを閲覧し、最新のパジャマにジャンプしましょう",
+        "callout_body": "まずは、ここでマッチする衣装の幅広いセレクションから始めましょう。寝間着をお探しなら、新しいパジャマ コレクションを続けてください。",
+        "primary_label": "このコレクションを閲覧する",
+        "secondary_label": "新しいパジャマを購入する",
+        "tertiary_label": "すべてのパジャマを閲覧する"
+      },
+      "matching_outfits": {
+        "callout_eyebrow": "より早く買い物をする",
+        "callout_title": "家族の服装から始めて、最新のパジャマを探索してください",
+        "callout_body": "ここで、おそろいの家族衣装の幅広い選択肢を比較してください。最新のパジャマをお探しの場合は、新しいパジャマ コレクションをご覧ください。",
+        "primary_label": "このコレクションを閲覧する",
+        "secondary_label": "新しいパジャマを購入する",
+        "tertiary_label": "すべてのパジャマを閲覧する"
+      },
+      "pajamas": {
+        "callout_eyebrow": "より早く買い物をする",
+        "callout_title": "まずすべてのパジャマを見てから新作をチェック",
+        "callout_body": "ここですべてのパジャマのスタイルを比較してください。最新のプリントを最初に確認したい場合は、新着アイテムを検索してください。",
+        "primary_label": "パジャマは以下から購入できます",
+        "secondary_label": "最新の到着",
+        "tertiary_label": "ママとミーを閲覧する"
+      },
+      "new_pajama_drop": {
+        "callout_eyebrow": "追加したばかりです",
+        "callout_title": "新作のおそろいパジャマをひとつのセレクションに",
+        "callout_body": "最新プリントはこちらでまとめてご覧いただけます。すべてのスタイルを比較したい場合は、パジャマの全コレクションをご覧ください。",
+        "primary_label": "新着アイテムを購入する",
+        "secondary_label": "すべてのパジャマを閲覧する"
+      },
+      "new_matching_outfits": {
+        "callout_eyebrow": "新着情報",
+        "callout_title": "最新のマッチングルックをここで一緒にご覧ください",
+        "callout_body": "まずはここの新着アイテムから始めて、さらにオプションが必要な場合は、より幅広い ママと子ども コレクションを探索してください。",
+        "primary_label": "新着アイテムを購入する",
+        "secondary_label": "ママとミーを閲覧する"
+      },
+      "style_count": "スタイル数：{{ count }}",
+      "shipping": "標準配送料込み",
+      "returns": "返品受付期間は30日間"
+    },
+    "collection_filter_hint": "まずはサイズ、カラー、価格から。製品タイプは、コレクション タブですでに整理されています。",
+    "home_title": "ママと娘のおそろいワンピース | 家族のおそろいコーデ",
+    "home_description": "写真撮影、バケーション、日常のひとときに、ママと娘のワンピース、ママと子どもや家族のおそろいコーデをお選びください。",
+    "collection_fallback_description": "Dress Like Mommy で {{ title }} を閲覧します。各製品ページでスタイルを比較し、サイズと製品の詳細を確認してください。",
+    "collection_fallback_body_html": "<p>{{ title }} を参照して、コレクション内のスタイルを比較してください。</p><p>各製品ページを開いて、選択する前に利用可能なオプション、サイズ ガイド、製品の詳細を確認してください。</p>"
   }
 }

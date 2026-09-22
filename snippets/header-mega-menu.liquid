@@ -30,14 +30,11 @@
         assign skip_nav_link = false
         assign visible_child_count = visible_child_count_raw | plus: 0
         if link.url contains '/blogs/'
-          assign nav_link_title = 'Style Journal'
+          assign nav_link_title = 'storefront.journal.title' | t
         endif
         if link.handle == 'family-matching' or link.handle == 'matching-outfits' or link.handle == 'family-matching-outfits' or normalized_link_title == 'family matching' or normalized_link_title == 'family matching outfits'
           assign use_family_visual_mega_menu = true
-          assign nav_link_title = 'Family Matching'
-          if request.locale.iso_code == 'da'
-            assign nav_link_title = 'Matchende familietøj'
-          endif
+          assign nav_link_title = 'sections.home_category_copy.family_matching' | t
           assign family_hub_collection = collections['new-women-outfits']
           if family_hub_collection == blank
             assign family_hub_collection = collections['matching-outfits']
@@ -69,7 +66,7 @@
         {%- if use_family_visual_mega_menu and family_hub_destination_visible -%}
           <a
             id="HeaderMenu-{{ link.handle }}"
-            href="{{ nav_link_url }}"
+            href="{% render 'storefront-localized-url', url: nav_link_url %}"
             class="header__menu-item list-menu__item link link--text focus-inset"
             {% if link.current %}
               aria-current="page"
@@ -283,7 +280,7 @@
                         {%- if childlink_destination_is_visible == 'true' -%}
                           <a
                             id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                            href="{{ childlink.url }}"
+                            href="{% render 'storefront-localized-url', url: childlink.url %}"
                             class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
                             {% if childlink.current %}
                               aria-current="page"
@@ -309,7 +306,7 @@
                               <li>
                                 <a
                                   id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                  href="{{ grandchildlink.url }}"
+                                  href="{% render 'storefront-localized-url', url: grandchildlink.url %}"
                                   class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
                                   {% if grandchildlink.current %}
                                     aria-current="page"
@@ -331,7 +328,7 @@
         {%- else -%}
           <a
             id="HeaderMenu-{{ link.handle }}"
-            href="{{ nav_link_url }}"
+            href="{% render 'storefront-localized-url', url: nav_link_url %}"
             class="header__menu-item list-menu__item link link--text focus-inset"
             {% if link.current %}
               aria-current="page"

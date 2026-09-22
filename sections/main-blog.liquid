@@ -90,13 +90,13 @@
             >
           </div>
           <div class="main-blog__spotlight-copy">
-            <p class="main-blog__spotlight-eyebrow">{% if request.locale.iso_code == 'da' %}Populært lige nu{% else %}Trending now{% endif %}</p>
-            <h2 class="main-blog__spotlight-title">{% if request.locale.iso_code == 'da' %}Familiebadetøj, der ser flot ud på billeder{% else %}Family swimwear that looks polished in photos{% endif %}</h2>
-            <p class="main-blog__spotlight-text">{% if request.locale.iso_code == 'da' %}Brug badetøjsguiderne til at sammenligne badedragter til mor og datter, matchende badedragter til familien og strandtøj, før du handler.{% else %}Use the swim guides to compare mother-daughter swimsuits, matching family bathing suits, and beach outfits before you shop.{% endif %}</p>
+            <p class="main-blog__spotlight-eyebrow">{{ 'storefront.journal.trending' | t }}</p>
+            <h2 class="main-blog__spotlight-title">{{ 'storefront.journal.spotlight_title' | t }}</h2>
+            <p class="main-blog__spotlight-text">{{ 'storefront.journal.spotlight_body' | t }}</p>
           </div>
           <div class="main-blog__spotlight-actions">
-            <a href="{{ routes.collections_url }}/swimsuits" class="button">{% if request.locale.iso_code == 'da' %}Se badedragter{% else %}Shop swimsuits{% endif %}</a>
-            <a href="{{ routes.collections_url }}/family-swimsuits" class="button button--secondary">{% if request.locale.iso_code == 'da' %}Se familiebadetøj{% else %}Shop family swim{% endif %}</a>
+            <a href="{{ routes.collections_url }}/swimsuits" class="button">{{ 'storefront.journal.shop_swimsuits' | t }}</a>
+            <a href="{{ routes.collections_url }}/family-swimsuits" class="button button--secondary">{{ 'storefront.journal.shop_family_swim' | t }}</a>
           </div>
         </div>
       </section>
@@ -143,7 +143,7 @@
           </a>
         {%- endif -%}
         <div class="main-blog__featured-content">
-          <p class="main-blog__featured-kicker">{% if request.locale.iso_code == 'da' %}Udvalgt artikel{% else %}Featured article{% endif %}</p>
+          <p class="main-blog__featured-kicker">{{ 'storefront.journal.featured' | t }}</p>
           <h2 class="main-blog__featured-title">
             <a href="{{ featured_article.url }}">{{ featured_article.title | escape }}</a>
           </h2>
@@ -152,7 +152,7 @@
               {{ featured_article.published_at | time_tag: format: 'date' }}
             </div>
             <span class="main-blog__featured-read-time">
-              {{ featured_article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} {% if request.locale.iso_code == 'da' %}minutters læsetid{% else %}min read{% endif %}
+              {{ featured_article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} {{ 'storefront.journal.read_time' | t }}
             </span>
           {%- endif -%}
           {%- if featured_excerpt != blank -%}
@@ -161,7 +161,7 @@
             </p>
           {%- endif -%}
           <a href="{{ featured_article.url }}" class="main-blog__featured-link button button--secondary">
-            {% if request.locale.iso_code == 'da' %}Læs artiklen{% else %}Read article{% endif %}
+            {{ 'storefront.journal.read_article' | t }}
           </a>
         </div>
       </article>
@@ -200,19 +200,19 @@
 
     <section class="main-blog__about{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="main-blog__about-card">
-        <p class="main-blog__about-eyebrow">{% if request.locale.iso_code == 'da' %}Sådan bruger du stiljournalen{% else %}How to use the Style Journal{% endif %}</p>
-        <h2 class="main-blog__about-title">{% if request.locale.iso_code == 'da' %}Find guiden, og køb det matchende look{% else %}Find the guide, then shop the matching look{% endif %}</h2>
+        <p class="main-blog__about-eyebrow">{{ 'storefront.journal.about_eyebrow' | t }}</p>
+        <h2 class="main-blog__about-title">{{ 'storefront.journal.about_title' | t }}</h2>
         <div class="main-blog__about-content">
-          <p>{% if request.locale.iso_code == 'da' %}Hver artikel tager udgangspunkt i en konkret anledning: familiebilleder, strandferier, fars dag, mors dag, højtider og matchende hverdagstøj. Start med den guide, der passer til din anledning, og brug derefter links til kollektionerne til at sammenligne det relevante tøj.{% else %}Every article is organized around a real shopping moment: family photos, beach vacations, Father's Day, Mother's Day, holidays, and everyday matching. Start with the guide that matches your occasion, then use the collection links to compare the pieces that fit.{% endif %}</p>
+          <p>{{ 'storefront.journal.about_body' | t }}</p>
         </div>
       </div>
     </section>
 
     <section class="main-blog__newsletter" id="newsletter-blog">
       <div class="main-blog__newsletter-card">
-        <p class="main-blog__newsletter-eyebrow">{% if request.locale.iso_code == 'da' %}Hold dig opdateret{% else %}Stay in the loop{% endif %}</p>
-        <h2 class="main-blog__newsletter-title">{% if request.locale.iso_code == 'da' %}Få stylingtips + 10% rabat{% else %}Get styling tips + 10% off{% endif %}</h2>
-        <p class="main-blog__newsletter-text">{% if request.locale.iso_code == 'da' %}Tilmeld dig stiljournalens nyhedsbrev, og få inspiration til matchende tøj, nyheder og en eksklusiv velkomstrabat.{% else %}Join our Style Journal newsletter for matching outfit inspiration, new arrivals, and an exclusive welcome discount.{% endif %}</p>
+        <p class="main-blog__newsletter-eyebrow">{{ 'storefront.journal.newsletter_eyebrow' | t }}</p>
+        <h2 class="main-blog__newsletter-title">{{ 'storefront.journal.newsletter_title' | t }}</h2>
+        <p class="main-blog__newsletter-text">{{ 'storefront.journal.newsletter_body' | t }}</p>
         {% form 'customer', id: 'NewsletterBlog', class: 'main-blog__newsletter-form' %}
           <input type="hidden" name="contact[tags]" value="newsletter,blog-signup">
           <div class="main-blog__newsletter-field">
@@ -220,10 +220,10 @@
               id="NewsletterBlog-email"
               type="email"
               name="contact[email]"
-              placeholder="{% if request.locale.iso_code == 'da' %}Din e-mailadresse{% else %}Your email address{% endif %}"
+              placeholder="{{ 'storefront.journal.email_placeholder' | t }}"
               required
               class="main-blog__newsletter-input field__input"
-              aria-label="{% if request.locale.iso_code == 'da' %}E-mailadresse{% else %}Email address{% endif %}"
+              aria-label="{{ 'storefront.journal.email_label' | t }}"
               value="{{ form.email }}"
               autocorrect="off"
               autocapitalize="off"
@@ -236,7 +236,7 @@
                 aria-describedby="NewsletterBlog-success"
               {% endif %}
             >
-            <button type="submit" class="main-blog__newsletter-button button">{% if request.locale.iso_code == 'da' %}Tilmeld dig{% else %}Subscribe{% endif %}</button>
+            <button type="submit" class="main-blog__newsletter-button button">{{ 'storefront.journal.subscribe' | t }}</button>
           </div>
           {% if form.errors %}
             <p

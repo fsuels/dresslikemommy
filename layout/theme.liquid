@@ -150,20 +150,13 @@
     endif
 
     if request.page_type == 'index'
-      assign resolved_page_title = 'Mommy and Me Dresses | Family Matching Outfits'
-      assign resolved_page_description = 'Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.'
-      if request.locale.iso_code == 'da'
-        assign resolved_page_title = 'Kjoler til mor og datter | Matchende familietøj'
-        assign resolved_page_description = 'Find kjoler til mor og datter, matchende tøj til mor og barn og matchende familietøj til billeder, ferier og hverdagens øjeblikke.'
-      endif
+      assign resolved_page_title = 'storefront.home_title' | t
+      assign resolved_page_description = 'storefront.home_description' | t
       assign append_shop_name_to_title = false
     elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
-      assign resolved_page_title = 'Style Journal'
-      if request.locale.iso_code == 'da'
-        assign resolved_page_title = 'Stiljournal'
-        if current_tags == blank
-          assign resolved_page_description = 'Guider til matchende tøj, stylingtips og købsråd til mor og barn, far og barn og hele familien.'
-        endif
+      assign resolved_page_title = 'storefront.journal.title' | t
+      if current_tags == blank
+        assign resolved_page_description = 'storefront.journal.description' | t
       endif
     endif
 
@@ -192,10 +185,7 @@
       if request.page_type == 'collection' and collection != blank and collection_seo_meta_description != blank
         assign resolved_page_description = collection_seo_meta_description
       elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
-        assign resolved_page_description = 'Outfit guides, styling tips, and shopping advice for mommy and me, daddy and me, and family matching looks.'
-        if request.locale.iso_code == 'da'
-          assign resolved_page_description = 'Guider til matchende tøj, stylingtips og købsråd til mor og barn, far og barn og hele familien.'
-        endif
+        assign resolved_page_description = 'storefront.journal.description' | t
       elsif request.page_type == 'article' and article != blank
         assign resolved_page_description = article.excerpt | default: article.content | strip_html | truncatewords: 28
       endif

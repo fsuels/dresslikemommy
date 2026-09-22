@@ -5,25 +5,26 @@
   const SHIRTS_HANDLE = "daddy-me-shirts";
   const BUTTON_DOWNS_FILTER = "button-downs";
   const TEES_FILTER = "tees";
-  const COUNT_PLACEHOLDER = "__DLM_COUNT__";
-  const pluralRules = new Intl.PluralRules(document.documentElement.lang || "en");
+  const IS_DANISH = (document.documentElement.lang || "")
+    .toLowerCase()
+    .split("-")[0] === "da";
 
-  function normalizeHandle(value) {
+  function normalizeTitle(value) {
     return ` ${(value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()} `;
   }
 
-  function isButtonDownCard(card) {
-    // Handles retain the source-language classification when display titles are translated.
-    const normalized = normalizeHandle(card.dataset.analyticsHandle);
+  function isButtonDownTitle(title) {
+    const normalized = normalizeTitle(title);
     const hasShirtText =
-      normalized.includes(" shirt ") || normalized.includes(" shirts ");
-    const isTee =
+      normalized.includes(" shirt ") || normalized.includes(" shirts ") ||
+      (IS_DANISH && /(?:^|[^a-zæøå])[a-zæøå]*skjorte(?:r|sæt)?(?=$|[^a-zæøå])/i.test(title || ""));
+    const isTeeTitle =
       normalized.includes(" t shirt ") ||
       normalized.includes(" t shirts ") ||
       normalized.includes(" tee ") ||
       normalized.includes(" tees ");
 
-    return hasShirtText && !isTee;
+    return hasShirtText && !isTeeTitle;
   }
 
   function currentFilter() {
@@ -51,28 +52,25 @@
     return null;
   }
 
-  function matchesFilter(card, filter) {
+  function matchesFilter(title, filter) {
     if (filter === BUTTON_DOWNS_FILTER) {
-      return isButtonDownCard(card);
+      return isButtonDownTitle(title);
     }
 
     if (filter === TEES_FILTER) {
-      return !isButtonDownCard(card);
+      return !isButtonDownTitle(title);
     }
 
     return true;
   }
 
-  function updateCount(nav, visibleCount) {
-    const category = pluralRules.select(visibleCount);
-    const template = nav.getAttribute(`data-daddy-count-${category}`) ||
-      nav.getAttribute("data-daddy-count-other");
-    if (!template) return;
-    const text = template.replaceAll(COUNT_PLACEHOLDER, String(visibleCount));
+  function updateCount(visibleCount) {
     ["ProductCount", "ProductCountDesktop"].forEach((id) => {
       const element = document.getElementById(id);
-      if (!element || element.textContent === text) return;
-      element.textContent = text;
+      if (!element) return;
+      element.textContent = IS_DANISH
+        ? `${visibleCount} produkt${visibleCount === 1 ? "" : "er"}`
+        : `${visibleCount} product${visibleCount === 1 ? "" : "s"}`;
     });
   }
 
@@ -90,7 +88,8 @@
 
   function updateNavAvailability(nav, cards) {
     const buttonDownCount = cards.reduce((count, card) => {
-      return matchesFilter(card, BUTTON_DOWNS_FILTER) ? count + 1 : count;
+      const title = card.dataset.analyticsTitle || "";
+      return matchesFilter(title, BUTTON_DOWNS_FILTER) ? count + 1 : count;
     }, 0);
 
     nav.querySelectorAll("[data-daddy-filter]").forEach((link) => {
@@ -134,7 +133,8 @@
       const gridItem = card.closest("li.grid__item");
       if (!gridItem) return;
 
-      const matches = matchesFilter(card, filter);
+      const title = card.dataset.analyticsTitle || "";
+      const matches = matchesFilter(title, filter);
 
       gridItem.hidden = !matches;
       if (matches) visibleCount += 1;
@@ -143,7 +143,7 @@
     if (currentHandle === PARENT_HANDLE) {
       updateNav(nav, filter === BUTTON_DOWNS_FILTER ? BUTTON_DOWNS_FILTER : "all");
     }
-    updateCount(nav, visibleCount);
+    updateCount(visibleCount);
   }
 
   function setFilter(filter) {

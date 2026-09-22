@@ -1,0 +1,36 @@
+{%- comment -%}Keep internal navigation in the active storefront language; preserve external and already localized URLs.{%- endcomment -%}
+{%- liquid
+  assign localized_url = url | default: routes.root_url | strip
+  assign store_origin_removed = false
+  assign store_origins = 'https://www.dresslikemommy.com,https://dresslikemommy.com' | split: ','
+  for store_origin in store_origins
+    assign origin_length = store_origin | size
+    assign url_origin = localized_url | slice: 0, origin_length
+    assign origin_boundary = localized_url | slice: origin_length, 1
+    if url_origin == store_origin
+      if origin_boundary == '/' or origin_boundary == '?' or origin_boundary == '#' or origin_boundary == blank
+        assign localized_url = localized_url | remove_first: store_origin
+        assign store_origin_removed = true
+      endif
+    endif
+  endfor
+  assign first_character = localized_url | slice: 0, 1
+  assign first_two_characters = localized_url | slice: 0, 2
+  if localized_url == blank or localized_url == '/'
+    assign localized_url = routes.root_url
+  elsif first_two_characters == '/?' or first_two_characters == '/#'
+    assign home_suffix = localized_url | remove_first: '/'
+    assign localized_url = routes.root_url | append: home_suffix
+  elsif first_character == '?' or first_character == '#'
+    if store_origin_removed
+      assign localized_url = routes.root_url | append: localized_url
+    endif
+  elsif routes.root_url != '/'
+    assign path_segment = localized_url | split: '/' | slice: 1 | first | split: '?' | first | split: '#' | first
+    assign internal_segments = 'collections,products,pages,blogs,search,cart,policies' | split: ','
+    if first_character == '/' and internal_segments contains path_segment
+      assign localized_url = routes.root_url | append: localized_url
+    endif
+  endif
+  echo localized_url
+-%}

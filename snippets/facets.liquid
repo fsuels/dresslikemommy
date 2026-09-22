@@ -31,10 +31,7 @@
   endif
 
   if results.handle == 'new-women-outfits' or results.handle == 'family-matching-outfits' or results.handle == 'family-matching' or results.handle == 'matching-outfits'
-    assign collection_filter_hint = 'Start with size, color, and price. Product type is already organized through the collection tabs.'
-    if request.locale.iso_code == 'da'
-      assign collection_filter_hint = 'Start med størrelse, farve og pris. Produkttyperne er allerede inddelt under kollektionens faner.'
-    endif
+    assign collection_filter_hint = 'storefront.collection_filter_hint' | t
     assign hide_product_type_active_filters = true
   endif
 -%}

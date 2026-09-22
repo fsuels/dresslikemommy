@@ -1,0 +1,7 @@
+# Shared storefront localization release
+
+The same journal, footer, navigation and product-count defects appeared across the published storefront languages. Shared Liquid now uses translation keys for all21 published locales; internal header/footer/callout links preserve the selected language. Daddy-and-me filtering classifies stable product handles and uses locale plural count templates, preventing translated display names from changing product visibility.
+
+Verified before release: full recommended Shopify Theme Check has0findings;12actual-script regression tests pass across21locale fixtures and100source collection memberships; JS syntax and scoped diff checks pass. Locale audit covers896Englishleaf keys, placeholder/markup preservation and all21published count/footer keys.14unpublished languages retain explicit fallbackcopy for the new keys; they are not claimed translated or launch-ready. Baseline528-file target manifest includes the new URLhelper and all preexisting source.
+
+Root owns Git/main integration and the same existing MAIN133290917985. No new theme, alternate release branch, ad/routing-negative, price/product, financial or checkout mutation. Shopify content translations/help corrections are a separate pending phase in this same task; this record does not claim those applied or the overall task complete. Public acceptance and native source sync remain required after the push.

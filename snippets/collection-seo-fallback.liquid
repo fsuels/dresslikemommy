@@ -374,10 +374,8 @@
   capture generated_meta_description
     if meta_description_key != blank
       echo meta_description_key | t
-    elsif request.locale.iso_code == 'da'
-      echo 'Se '
-      echo effective_display_title
-      echo ' hos Dress Like Mommy. Sammenlign modellerne, og se størrelser og produktdetaljer på hver produktside.'
+    elsif request.locale.iso_code != 'en'
+      echo 'storefront.collection_fallback_description' | t: title: effective_display_title
     elsif collection_handle == 'all'
       echo 'Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Comfortable styles with fast shipping.'
     elsif collection_handle == 'mommy-and-me'
@@ -423,11 +421,8 @@
       endcapture
       assign translated_body_description = translated_body_description | replace: '&lt;', '<' | replace: '&gt;', '>' | replace: '&quot;', '"' | replace: '&#39;', "'" | replace: '&amp;', '&'
       echo translated_body_description
-    elsif request.locale.iso_code == 'da'
-      echo '<p>Se udvalget af '
-      echo effective_display_title | escape
-      echo ', og sammenlign modellerne i kollektionen.</p>'
-      echo '<p>Åbn den enkelte produktside for at se de tilgængelige varianter, størrelsesguiden og produktdetaljerne, før du vælger.</p>'
+    elsif request.locale.iso_code != 'en'
+      echo 'storefront.collection_fallback_body_html' | t: title: effective_display_title
     elsif collection_handle == 'mommy-and-me'
       echo '<p>Shop our '
       echo effective_display_title | escape

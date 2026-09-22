@@ -24,43 +24,43 @@
   assign image_width = 900
   assign image_height = 1200
   assign image_sizes = '(min-width: 990px) 18vw, 50vw'
-  assign card_label = 'Trending now'
+  assign card_label = 'storefront.menu.trending_now' | t
   assign card_description = blank
-  assign card_cta = 'Shop now'
+  assign card_cta = 'storefront.menu.shop_now' | t
 
   if card_kind == 'promo'
     assign image_width = 1600
     assign image_height = 700
     assign image_sizes = '(min-width: 990px) 72vw, 100vw'
-    assign card_label = 'Best-selling family looks'
-    assign card_cta = 'Shop the edit'
+    assign card_label = 'storefront.menu.best_selling_family_looks' | t
+    assign card_cta = 'storefront.menu.shop_edit' | t
   endif
 
   if menu_link_url contains '/collections/matching-hawaiian-outfits'
     assign card_asset = 'family-mega-menu-hawaiian-tropical.jpg'
-    assign card_label = 'Resort favorite'
+    assign card_label = 'storefront.menu.resort_favorite' | t
   elsif menu_link_url contains '/collections/matching-family-vacation-outfits'
     assign card_asset = 'family-mega-menu-vacation-outfits.jpg'
-    assign card_label = 'Getaway edit'
+    assign card_label = 'storefront.menu.getaway_edit' | t
   elsif menu_link_url contains '/collections/mother-daughter-matching-dresses'
     assign card_asset = 'family-mega-menu-mother-daughter-dresses.jpg'
-    assign card_label = 'Dress best sellers'
+    assign card_label = 'storefront.menu.dress_best_sellers' | t
   elsif menu_link_url contains '/collections/family-sets'
     assign card_asset = 'family-mega-menu-family-sets.jpg'
-    assign card_label = 'Easy sets'
+    assign card_label = 'storefront.menu.easy_sets' | t
   elsif menu_link_url contains '/collections/family-sweaters'
     assign custom_product_handle = 'family-matching-cable-knit-sweaters-heart-embroidered-unisex-pullovers'
     assign custom_image_index = 2
-    assign card_label = 'Cold-weather pick'
+    assign card_label = 'storefront.menu.cold_weather_pick' | t
     assign image_crop = 'top'
   elsif menu_link_url contains '/collections/family-swimsuits'
     assign custom_product_handle = 'blue-tropical-floral-family-matching-beach-dress-and-shirt-set'
     assign custom_image_index = 1
-    assign card_label = 'Pool-day favorite'
+    assign card_label = 'storefront.menu.pool_day_favorite' | t
   elsif menu_link_source_url contains '/collections/family-pajamas' or menu_handle == 'family-pajamas' or menu_handle == 'pajamas'
     assign custom_product_handle = 'ladybug-dots-mommy-and-me-pajamas'
     assign custom_image_index = 0
-    assign card_label = 'New pajama styles'
+    assign card_label = 'storefront.menu.new_pajama_styles' | t
   elsif menu_link_url contains '/collections/new-women-outfits'
     assign card_asset = 'family-mega-menu-promo.jpg'
     assign fallback_collection = collections['new-women-outfits']
@@ -73,41 +73,11 @@
     if fallback_collection != blank
       assign menu_link_url = fallback_collection.url
     endif
-    assign menu_link_display_title = 'Family Matching'
-    assign card_description = 'Start with family matching outfits, then branch into matching family vacation outfits, matching beach swimsuits, or daddy and me shirts.'
-    if request.locale.iso_code == 'da'
-      assign menu_link_display_title = 'Matchende familietøj'
-      assign card_description = 'Start med matchende familietøj, og udforsk derefter matchende ferietøj til familien, badetøj til stranden eller skjorter til far og barn.'
-    endif
+    assign menu_link_display_title = 'sections.home_category_copy.family_matching' | t
+    assign card_description = 'storefront.menu.family_description' | t
+
   endif
 
-  if request.locale.iso_code == 'da'
-    if card_cta == 'Shop the edit'
-      assign card_cta = 'Se udvalget'
-    else
-      assign card_cta = 'Se mere'
-    endif
-    case card_label
-      when 'Trending now'
-        assign card_label = 'Populært lige nu'
-      when 'Best-selling family looks'
-        assign card_label = 'Mest solgte familielooks'
-      when 'Resort favorite'
-        assign card_label = 'Feriefavorit'
-      when 'Getaway edit'
-        assign card_label = 'Udvalgt til ferien'
-      when 'Dress best sellers'
-        assign card_label = 'Mest solgte kjoler'
-      when 'Easy sets'
-        assign card_label = 'Nemme sæt'
-      when 'Cold-weather pick'
-        assign card_label = 'Udvalgt til koldt vejr'
-      when 'Pool-day favorite'
-        assign card_label = 'Favorit til pooldage'
-      when 'New pajama styles'
-        assign card_label = 'Nye pyjamasmodeller'
-    endcase
-  endif
 
   if custom_product_handle != blank
     assign custom_product = all_products[custom_product_handle]
@@ -184,7 +154,7 @@
   endif
 -%}
 
-<a href="{{ menu_link_url }}" class="{{ card_classes }}">
+<a href="{% render 'storefront-localized-url', url: menu_link_url %}" class="{{ card_classes }}">
   <span class="mega-menu__visual-media{% if card_asset == blank and menu_image == blank %} mega-menu__visual-media--placeholder{% endif %}">
     {%- if card_asset != blank -%}
       <img

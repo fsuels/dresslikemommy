@@ -271,6 +271,14 @@
       {% if is_daddy_collection_nav %}
         data-daddy-collection-nav="true"
         data-current-collection-handle="{{ current_collection_handle | escape }}"
+        {% assign daddy_count_forms = 'zero,one,two,few,many,other' | split: ',' %}
+        {% for daddy_count_form in daddy_count_forms %}
+          {% assign daddy_count_key = 'products.facets.product_count_simple.' | append: daddy_count_form %}
+          {% assign daddy_count_template = daddy_count_key | t: count: '__DLM_COUNT__' %}
+          {% unless daddy_count_template contains 'Translation missing' or daddy_count_template contains 'translation missing' %}
+            data-daddy-count-{{ daddy_count_form }}="{{ daddy_count_template | escape }}"
+          {% endunless %}
+        {% endfor %}
       {% endif %}
     >
       <div class="collection-category-nav__row collection-category-nav__row--primary">
