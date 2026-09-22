@@ -1,0 +1,2204 @@
+{
+  "schema_version": 1,
+  "artifact_type": "LOCAL_DRAFT_BUILD_PAYLOAD",
+  "created_at_utc": "2026-09-22T17:05:54.985563+00:00",
+  "source": {
+    "path": "/Users/fsuels/.codex/attachments/25001adb-eb38-4875-82c3-c75f8c00cd7c/Pasted text.txt",
+    "sha256": "26f43ab53bdb959faf498f17d7c4505a55150790cab0679211e0b136c1aaa9b5",
+    "copy_changes": []
+  },
+  "authority": {
+    "scope": "PREPARE_DRAFT_OR_PAUSED_SEARCH_CAMPAIGN_ONLY",
+    "basis": "Current user requests creation using this attachment; attachment explicitly requires draft/paused preparation and separate financial and activation approval. Parent owns interpretation, account verification and all external writes.",
+    "activation_authorized": false,
+    "spend_authorized": false,
+    "selected_budget": null,
+    "currency_verified": false,
+    "state_note": "All statuses are intended build state, not a claim of saved Google Ads objects. No external account access or writes were performed by the payload worker.",
+    "existing_campaign_recreation_or_budget_change_authorized": false
+  },
+  "campaign": {
+    "name": "DLM | GADS | US | EN | Search | 202609",
+    "type": "SEARCH",
+    "objective": "SALES",
+    "role": "NON_BRAND_CATEGORY_ACQUISITION",
+    "preparation_status": "DRAFT_OR_PAUSED",
+    "proposed_bidding_strategy": "MANUAL_CPC",
+    "bid_amount_currency_assumption": "USD_VERIFY_BEFORE_ENTRY",
+    "neutral_bid_adjustments_required": true,
+    "settings": [
+      {
+        "field": "Campaign type / objective",
+        "requested_value": "Search / Sales"
+      },
+      {
+        "field": "Campaign role",
+        "requested_value": "Non-brand category acquisition"
+      },
+      {
+        "field": "Campaign conversion goal",
+        "requested_value": "One authoritative completed-purchase action"
+      },
+      {
+        "field": "Ad groups",
+        "requested_value": "Six regular keyword-based Search groups—not Dynamic Search Ads"
+      },
+      {
+        "field": "Status during preparation",
+        "requested_value": "Draft or paused"
+      },
+      {
+        "field": "Country",
+        "requested_value": "United States"
+      },
+      {
+        "field": "Advanced location option",
+        "requested_value": "Presence: people in or regularly in the United States"
+      },
+      {
+        "field": "Language",
+        "requested_value": "English while the selector remains available; maintain English ads and destinations"
+      },
+      {
+        "field": "Google Search Partners",
+        "requested_value": "Off"
+      },
+      {
+        "field": "Display expansion",
+        "requested_value": "Off, if presented"
+      },
+      {
+        "field": "Broad match",
+        "requested_value": "Not included"
+      },
+      {
+        "field": "AI Max / expanded matching",
+        "requested_value": "Off initially"
+      },
+      {
+        "field": "Text customization / automatic ad text",
+        "requested_value": "Off initially"
+      },
+      {
+        "field": "Final URL expansion",
+        "requested_value": "Off initially"
+      },
+      {
+        "field": "Audiences",
+        "requested_value": "None required; Observation, not Targeting, for deliberately selected eligible audiences"
+      },
+      {
+        "field": "Devices / schedule",
+        "requested_value": "All eligible devices; all days and hours; neutral bid adjustments"
+      },
+      {
+        "field": "Demographics",
+        "requested_value": "No assumption-based exclusions of men, older shoppers, or Unknown"
+      },
+      {
+        "field": "New-customer-only/value inflation",
+        "requested_value": "Do not enable without a justified measurement strategy"
+      },
+      {
+        "field": "Auto-apply recommendations",
+        "requested_value": "Audit; do not authorize unreviewed material changes"
+      },
+      {
+        "field": "Automated/inherited assets",
+        "requested_value": "Review all eligible associations before activation"
+      },
+      {
+        "field": "Auto-tagging",
+        "requested_value": "Verify enabled and functioning through redirects and checkout"
+      },
+      {
+        "field": "Tracking template",
+        "requested_value": "Preserve a validated existing setup; otherwise do not invent one"
+      }
+    ],
+    "optional_final_url_suffix": {
+      "text": "utm_source=google&utm_medium=cpc&utm_campaign=dlm_us_en_search_202609",
+      "use_gate": "Inspect existing tracking first; do not duplicate parameters or overwrite validated tracking."
+    },
+    "budget": {
+      "selected_method": null,
+      "selected_amount": null,
+      "approved": false,
+      "proposals_only": [
+        {
+          "type": "CAMPAIGN_TOTAL",
+          "amount_usd": "210.00",
+          "duration_days": 7,
+          "gate": "Confirm offered for new Search campaign; approve dates and no daily spending cap."
+        },
+        {
+          "type": "AVERAGE_DAILY",
+          "amount_usd": "30.00",
+          "management_stop_usd": "210.00",
+          "gate": "Management stop is not an enforced lifetime cap; explicit exposure approval required."
+        },
+        {
+          "type": "AVERAGE_DAILY",
+          "amount_usd": "15.00",
+          "exact_active_calendar_days": 7,
+          "gate": "Explicit seven-day dates, unchanged daily amount and exposure approval required."
+        }
+      ],
+      "additional_gate": "Any temporary exception to the all-channel 15%-of-revenue restriction must be explicit; no transfer of Microsoft budget authority."
+    }
+  },
+  "ad_groups": [
+    {
+      "name": "Mommy & Me Dresses",
+      "source_lines": [
+        162,
+        215
+      ],
+      "intended_status": "PAUSED",
+      "type": "STANDARD_SEARCH",
+      "proposed_default_cpc_usd": "0.15",
+      "proposed_default_cpc_micros": 150000,
+      "keywords": [
+        {
+          "text": "mommy and me dresses",
+          "match_type": "EXACT",
+          "paste_text": "[mommy and me dresses]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me dresses",
+          "match_type": "PHRASE",
+          "paste_text": "\"mommy and me dresses\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mother daughter matching dresses",
+          "match_type": "EXACT",
+          "paste_text": "[mother daughter matching dresses]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mother daughter matching dresses",
+          "match_type": "PHRASE",
+          "paste_text": "\"mother daughter matching dresses\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me floral dresses",
+          "match_type": "EXACT",
+          "paste_text": "[mommy and me floral dresses]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED",
+          "activation_gate": "Relevant floral products and buyer paths must be cleared."
+        },
+        {
+          "text": "mommy and me floral dresses",
+          "match_type": "PHRASE",
+          "paste_text": "\"mommy and me floral dresses\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED",
+          "activation_gate": "Relevant floral products and buyer paths must be cleared."
+        },
+        {
+          "text": "mommy and me maxi dresses",
+          "match_type": "EXACT",
+          "paste_text": "[mommy and me maxi dresses]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me maxi dresses",
+          "match_type": "PHRASE",
+          "paste_text": "\"mommy and me maxi dresses\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        }
+      ],
+      "rsa": {
+        "intended_status": "PAUSED",
+        "final_url": "https://www.dresslikemommy.com/collections/dresses",
+        "display_paths": [
+          {
+            "text": "mommy-me",
+            "characters": 8
+          },
+          {
+            "text": "dresses",
+            "characters": 7
+          }
+        ],
+        "headlines": [
+          {
+            "text": "Mommy & Me Dresses",
+            "characters": 18,
+            "pinned_field": null
+          },
+          {
+            "text": "Mother & Daughter Dresses",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Mommy & Me Floral Dresses",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Matching Maxi Dresses",
+            "characters": 21,
+            "pinned_field": null
+          },
+          {
+            "text": "Find Your Matching Dress",
+            "characters": 24,
+            "pinned_field": null
+          },
+          {
+            "text": "Floral Styles for Mom & Mini",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Dress Up Together",
+            "characters": 17,
+            "pinned_field": null
+          },
+          {
+            "text": "Matching Looks for Photo Days",
+            "characters": 29,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose Mom & Daughter Sizes",
+            "characters": 27,
+            "pinned_field": null
+          },
+          {
+            "text": "Shop Mother Daughter Dresses",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Pick Each Dress Size",
+            "characters": 20,
+            "pinned_field": null
+          },
+          {
+            "text": "Dress Like Mommy",
+            "characters": 16,
+            "pinned_field": null
+          }
+        ],
+        "descriptions": [
+          {
+            "text": "Shop matching dresses for mom and daughter. Each dress is priced and sold separately.",
+            "characters": 85,
+            "pinned_field": "DESCRIPTION_1"
+          },
+          {
+            "text": "Explore floral and maxi styles for shared photos and outings. Find your matching look.",
+            "characters": 86,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose a dress style, then select each size. Compare both sizes with the product chart.",
+            "characters": 87,
+            "pinned_field": null
+          },
+          {
+            "text": "Browse mother and daughter dresses. Review checkout delivery estimates before ordering.",
+            "characters": 87,
+            "pinned_field": null
+          }
+        ]
+      },
+      "activation_qualification": "NOT_VERIFIED_BY_PAYLOAD_REVIEW",
+      "hypothesis": "Category-specific choice will qualify dress shoppers better than a generic family message or a single-design destination.",
+      "risk": "Queries may imply infant sizes, formalwear, particular fabrics, or delivery deadlines the reviewed assortment cannot satisfy."
+    },
+    {
+      "name": "Family Matching Outfits",
+      "source_lines": [
+        216,
+        269
+      ],
+      "intended_status": "PAUSED",
+      "type": "STANDARD_SEARCH",
+      "proposed_default_cpc_usd": "0.12",
+      "proposed_default_cpc_micros": 120000,
+      "keywords": [
+        {
+          "text": "family matching outfits",
+          "match_type": "EXACT",
+          "paste_text": "[family matching outfits]",
+          "proposed_max_cpc_usd": "0.18",
+          "proposed_max_cpc_micros": 180000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "family matching outfits",
+          "match_type": "PHRASE",
+          "paste_text": "\"family matching outfits\"",
+          "proposed_max_cpc_usd": "0.12",
+          "proposed_max_cpc_micros": 120000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "matching family dress and shirt",
+          "match_type": "EXACT",
+          "paste_text": "[matching family dress and shirt]",
+          "proposed_max_cpc_usd": "0.18",
+          "proposed_max_cpc_micros": 180000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "matching family dress and shirt",
+          "match_type": "PHRASE",
+          "paste_text": "\"matching family dress and shirt\"",
+          "proposed_max_cpc_usd": "0.12",
+          "proposed_max_cpc_micros": 120000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "matching family outfits for pictures",
+          "match_type": "EXACT",
+          "paste_text": "[matching family outfits for pictures]",
+          "proposed_max_cpc_usd": "0.18",
+          "proposed_max_cpc_micros": 180000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "matching family outfits for pictures",
+          "match_type": "PHRASE",
+          "paste_text": "\"matching family outfits for pictures\"",
+          "proposed_max_cpc_usd": "0.12",
+          "proposed_max_cpc_micros": 120000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "matching family vacation outfits",
+          "match_type": "EXACT",
+          "paste_text": "[matching family vacation outfits]",
+          "proposed_max_cpc_usd": "0.18",
+          "proposed_max_cpc_micros": 180000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "matching family vacation outfits",
+          "match_type": "PHRASE",
+          "paste_text": "\"matching family vacation outfits\"",
+          "proposed_max_cpc_usd": "0.12",
+          "proposed_max_cpc_micros": 120000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        }
+      ],
+      "rsa": {
+        "intended_status": "PAUSED",
+        "final_url": "https://www.dresslikemommy.com/collections/new-women-outfits",
+        "display_paths": [
+          {
+            "text": "family",
+            "characters": 6
+          },
+          {
+            "text": "matching-looks",
+            "characters": 14
+          }
+        ],
+        "headlines": [
+          {
+            "text": "Family Matching Outfits",
+            "characters": 23,
+            "pinned_field": null
+          },
+          {
+            "text": "Matching Looks for Your Family",
+            "characters": 30,
+            "pinned_field": null
+          },
+          {
+            "text": "Coordinate Your Family Look",
+            "characters": 27,
+            "pinned_field": null
+          },
+          {
+            "text": "Outfits for Family Photos",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Family Dresses & Shirts",
+            "characters": 23,
+            "pinned_field": null
+          },
+          {
+            "text": "Match for Shared Moments",
+            "characters": 24,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose Each Person's Size",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Find Your Family's Next Look",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Shop Coordinated Family Looks",
+            "characters": 29,
+            "pinned_field": null
+          },
+          {
+            "text": "Explore Matching Family Sets",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Pick Your Pieces & Sizes",
+            "characters": 24,
+            "pinned_field": null
+          },
+          {
+            "text": "Dress Like Mommy",
+            "characters": 16,
+            "pinned_field": null
+          }
+        ],
+        "descriptions": [
+          {
+            "text": "Shop matching family outfits. Prices apply to each selected item, not the whole family.",
+            "characters": 87,
+            "pinned_field": "DESCRIPTION_1"
+          },
+          {
+            "text": "Browse coordinated dresses, shirts and sets. Find a shared look for photos and outings.",
+            "characters": 87,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose each person's pieces and sizes. Check which matching options are available.",
+            "characters": 82,
+            "pinned_field": null
+          },
+          {
+            "text": "Plan your coordinated family look. Check delivery estimates before ordering for an event.",
+            "characters": 89,
+            "pinned_field": null
+          }
+        ]
+      },
+      "activation_qualification": "NOT_VERIFIED_BY_PAYLOAD_REVIEW",
+      "hypothesis": "Coordinated dress-and-shirt messaging will help shoppers assemble suitable multi-item orders.",
+      "risk": "The desired father/mother/child combination may not be available in every design. Vacation and photo-event searches can also carry arrival deadlines."
+    },
+    {
+      "name": "Family Matching Shirts",
+      "source_lines": [
+        270,
+        323
+      ],
+      "intended_status": "PAUSED",
+      "type": "STANDARD_SEARCH",
+      "proposed_default_cpc_usd": "0.15",
+      "proposed_default_cpc_micros": 150000,
+      "keywords": [
+        {
+          "text": "family matching shirts",
+          "match_type": "EXACT",
+          "paste_text": "[family matching shirts]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "family matching shirts",
+          "match_type": "PHRASE",
+          "paste_text": "\"family matching shirts\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "matching family t shirts",
+          "match_type": "EXACT",
+          "paste_text": "[matching family t shirts]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "matching family t shirts",
+          "match_type": "PHRASE",
+          "paste_text": "\"matching family t shirts\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "matching family button up shirts",
+          "match_type": "EXACT",
+          "paste_text": "[matching family button up shirts]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "matching family button up shirts",
+          "match_type": "PHRASE",
+          "paste_text": "\"matching family button up shirts\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "family matching tops",
+          "match_type": "EXACT",
+          "paste_text": "[family matching tops]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "family matching tops",
+          "match_type": "PHRASE",
+          "paste_text": "\"family matching tops\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        }
+      ],
+      "rsa": {
+        "intended_status": "PAUSED",
+        "final_url": "https://www.dresslikemommy.com/collections/family-tops",
+        "display_paths": [
+          {
+            "text": "family",
+            "characters": 6
+          },
+          {
+            "text": "matching-shirts",
+            "characters": 15
+          }
+        ],
+        "headlines": [
+          {
+            "text": "Family Matching Shirts",
+            "characters": 22,
+            "pinned_field": null
+          },
+          {
+            "text": "Matching Shirts for the Family",
+            "characters": 30,
+            "pinned_field": null
+          },
+          {
+            "text": "Button-Up Shirts & Tees",
+            "characters": 23,
+            "pinned_field": null
+          },
+          {
+            "text": "Prints to Wear Together",
+            "characters": 23,
+            "pinned_field": null
+          },
+          {
+            "text": "Find Your Family's Next Shirts",
+            "characters": 30,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose Adult & Child Sizes",
+            "characters": 26,
+            "pinned_field": null
+          },
+          {
+            "text": "Matching Tops for Photo Days",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Create a Coordinated Look",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Shop Matching Family Tops",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Explore Family Shirt Styles",
+            "characters": 27,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose Each Shirt Separately",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Dress Like Mommy",
+            "characters": 16,
+            "pinned_field": null
+          }
+        ],
+        "descriptions": [
+          {
+            "text": "Shop family matching shirts and tops. Each item is selected and priced separately.",
+            "characters": 82,
+            "pinned_field": "DESCRIPTION_1"
+          },
+          {
+            "text": "Explore button-up shirts and tees in coordinated prints. Find your next matching look.",
+            "characters": 86,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose adult and child options. Check the size chart and availability for every person.",
+            "characters": 87,
+            "pinned_field": null
+          },
+          {
+            "text": "Find matching tops for family photos and days together. Review delivery at checkout.",
+            "characters": 84,
+            "pinned_field": null
+          }
+        ]
+      },
+      "activation_qualification": "NOT_VERIFIED_BY_PAYLOAD_REVIEW",
+      "hypothesis": "Shirt-specific advertising and a shirt-focused destination will reduce selection friction compared with generic outfit advertising.",
+      "risk": "Some family-shirt searches are for custom slogans, licensed characters, or personalization that may not be offered."
+    },
+    {
+      "name": "Mommy & Me Pajamas",
+      "source_lines": [
+        324,
+        377
+      ],
+      "intended_status": "PAUSED",
+      "type": "STANDARD_SEARCH",
+      "proposed_default_cpc_usd": "0.15",
+      "proposed_default_cpc_micros": 150000,
+      "keywords": [
+        {
+          "text": "mommy and me pajamas",
+          "match_type": "EXACT",
+          "paste_text": "[mommy and me pajamas]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me pajamas",
+          "match_type": "PHRASE",
+          "paste_text": "\"mommy and me pajamas\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mother daughter matching pajamas",
+          "match_type": "EXACT",
+          "paste_text": "[mother daughter matching pajamas]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mother daughter matching pajamas",
+          "match_type": "PHRASE",
+          "paste_text": "\"mother daughter matching pajamas\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me short sleeve pajamas",
+          "match_type": "EXACT",
+          "paste_text": "[mommy and me short sleeve pajamas]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me short sleeve pajamas",
+          "match_type": "PHRASE",
+          "paste_text": "\"mommy and me short sleeve pajamas\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me long sleeve pajamas",
+          "match_type": "EXACT",
+          "paste_text": "[mommy and me long sleeve pajamas]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me long sleeve pajamas",
+          "match_type": "PHRASE",
+          "paste_text": "\"mommy and me long sleeve pajamas\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        }
+      ],
+      "rsa": {
+        "intended_status": "PAUSED",
+        "final_url": "https://www.dresslikemommy.com/collections/pajamas",
+        "display_paths": [
+          {
+            "text": "mommy-me",
+            "characters": 8
+          },
+          {
+            "text": "pajamas",
+            "characters": 7
+          }
+        ],
+        "headlines": [
+          {
+            "text": "Mommy & Me Pajamas",
+            "characters": 18,
+            "pinned_field": null
+          },
+          {
+            "text": "Mother & Daughter Pajamas",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Matching Pajamas for Mom & Me",
+            "characters": 29,
+            "pinned_field": null
+          },
+          {
+            "text": "Prints for Your Matching PJs",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Browse Mommy & Me Sleepwear",
+            "characters": 27,
+            "pinned_field": null
+          },
+          {
+            "text": "Short & Long Sleeve Styles",
+            "characters": 26,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose Each Person's Size",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Create Your Matching PJ Look",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Shop Matching Pajamas",
+            "characters": 21,
+            "pinned_field": null
+          },
+          {
+            "text": "Find Your Favorite PJ Print",
+            "characters": 27,
+            "pinned_field": null
+          },
+          {
+            "text": "Match Your Pajama Style",
+            "characters": 23,
+            "pinned_field": null
+          },
+          {
+            "text": "Dress Like Mommy",
+            "characters": 16,
+            "pinned_field": null
+          }
+        ],
+        "descriptions": [
+          {
+            "text": "Shop mommy and me pajamas. Each person's pajama set is selected and priced separately.",
+            "characters": 86,
+            "pinned_field": "DESCRIPTION_1"
+          },
+          {
+            "text": "Explore short- and long-sleeve pajama styles in coordinated prints for mom and child.",
+            "characters": 85,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose your matching print, then compare the measurements for each adult and child size.",
+            "characters": 88,
+            "pinned_field": null
+          },
+          {
+            "text": "Browse matching sleepwear and review delivery options at checkout before you order.",
+            "characters": 83,
+            "pinned_field": null
+          }
+        ]
+      },
+      "activation_qualification": "NOT_VERIFIED_BY_PAYLOAD_REVIEW",
+      "hypothesis": "Matching-print and sleeve-specific messages will attract shoppers suited to the actual selection.",
+      "risk": "Full-family, Christmas, infant, fabric-specific, or safety-certification searches can imply requirements not established for this launch."
+    },
+    {
+      "name": "Father & Son Shirts",
+      "source_lines": [
+        378,
+        431
+      ],
+      "intended_status": "PAUSED",
+      "type": "STANDARD_SEARCH",
+      "proposed_default_cpc_usd": "0.15",
+      "proposed_default_cpc_micros": 150000,
+      "keywords": [
+        {
+          "text": "father son matching shirts",
+          "match_type": "EXACT",
+          "paste_text": "[father son matching shirts]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "father son matching shirts",
+          "match_type": "PHRASE",
+          "paste_text": "\"father son matching shirts\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "father son matching button up shirts",
+          "match_type": "EXACT",
+          "paste_text": "[father son matching button up shirts]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "father son matching button up shirts",
+          "match_type": "PHRASE",
+          "paste_text": "\"father son matching button up shirts\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "daddy and me button up shirts",
+          "match_type": "EXACT",
+          "paste_text": "[daddy and me button up shirts]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "daddy and me button up shirts",
+          "match_type": "PHRASE",
+          "paste_text": "\"daddy and me button up shirts\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "father son matching hawaiian shirts",
+          "match_type": "EXACT",
+          "paste_text": "[father son matching hawaiian shirts]",
+          "proposed_max_cpc_usd": "0.20",
+          "proposed_max_cpc_micros": 200000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "father son matching hawaiian shirts",
+          "match_type": "PHRASE",
+          "paste_text": "\"father son matching hawaiian shirts\"",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        }
+      ],
+      "rsa": {
+        "intended_status": "PAUSED",
+        "final_url": "https://www.dresslikemommy.com/collections/daddy-me-shirts",
+        "display_paths": [
+          {
+            "text": "dad-and-son",
+            "characters": 11
+          },
+          {
+            "text": "shirts",
+            "characters": 6
+          }
+        ],
+        "headlines": [
+          {
+            "text": "Father & Son Matching Shirts",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Dad & Son Matching Shirts",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Daddy & Me Button-Up Shirts",
+            "characters": 27,
+            "pinned_field": null
+          },
+          {
+            "text": "Match With Your Mini",
+            "characters": 20,
+            "pinned_field": null
+          },
+          {
+            "text": "Tropical Prints for Dad & Son",
+            "characters": 29,
+            "pinned_field": null
+          },
+          {
+            "text": "Shop Matching Button-Up Shirts",
+            "characters": 30,
+            "pinned_field": null
+          },
+          {
+            "text": "Pick Each Shirt Size",
+            "characters": 20,
+            "pinned_field": null
+          },
+          {
+            "text": "Explore Father & Son Styles",
+            "characters": 27,
+            "pinned_field": null
+          },
+          {
+            "text": "Find Your Next Matching Look",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Hawaiian Shirts for Dad & Son",
+            "characters": 29,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose Dad & Child Sizes",
+            "characters": 24,
+            "pinned_field": null
+          },
+          {
+            "text": "Dress Like Mommy",
+            "characters": 16,
+            "pinned_field": null
+          }
+        ],
+        "descriptions": [
+          {
+            "text": "Shop matching shirts for dad and son. Each shirt is priced and purchased separately.",
+            "characters": 84,
+            "pinned_field": "DESCRIPTION_1"
+          },
+          {
+            "text": "Explore tropical prints and coordinated button-up shirts for photos and days together.",
+            "characters": 86,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose dad and child sizes separately. Check both measurements before placing your order.",
+            "characters": 89,
+            "pinned_field": null
+          },
+          {
+            "text": "Browse the Daddy & Me shirt collection. Review delivery estimates before a planned trip.",
+            "characters": 88,
+            "pinned_field": null
+          }
+        ]
+      },
+      "activation_qualification": "NOT_VERIFIED_BY_PAYLOAD_REVIEW",
+      "hypothesis": "Button-up and tropical-print specificity will qualify buyers better than general “daddy and me” messaging.",
+      "risk": "Generic father/son shirt queries may seek printed tees rather than button-ups. Monitor the actual queries before expanding further."
+    },
+    {
+      "name": "Mommy & Me Outfits",
+      "source_lines": [
+        432,
+        485
+      ],
+      "intended_status": "PAUSED",
+      "type": "STANDARD_SEARCH",
+      "proposed_default_cpc_usd": "0.10",
+      "proposed_default_cpc_micros": 100000,
+      "keywords": [
+        {
+          "text": "mommy and me outfits",
+          "match_type": "EXACT",
+          "paste_text": "[mommy and me outfits]",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me outfits",
+          "match_type": "PHRASE",
+          "paste_text": "\"mommy and me outfits\"",
+          "proposed_max_cpc_usd": "0.10",
+          "proposed_max_cpc_micros": 100000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mother daughter matching outfits",
+          "match_type": "EXACT",
+          "paste_text": "[mother daughter matching outfits]",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mother daughter matching outfits",
+          "match_type": "PHRASE",
+          "paste_text": "\"mother daughter matching outfits\"",
+          "proposed_max_cpc_usd": "0.10",
+          "proposed_max_cpc_micros": 100000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me matching sets",
+          "match_type": "EXACT",
+          "paste_text": "[mommy and me matching sets]",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me matching sets",
+          "match_type": "PHRASE",
+          "paste_text": "\"mommy and me matching sets\"",
+          "proposed_max_cpc_usd": "0.10",
+          "proposed_max_cpc_micros": 100000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me outfits for pictures",
+          "match_type": "EXACT",
+          "paste_text": "[mommy and me outfits for pictures]",
+          "proposed_max_cpc_usd": "0.15",
+          "proposed_max_cpc_micros": 150000,
+          "bid_method": "KEYWORD_OVERRIDE",
+          "intended_status": "PAUSED"
+        },
+        {
+          "text": "mommy and me outfits for pictures",
+          "match_type": "PHRASE",
+          "paste_text": "\"mommy and me outfits for pictures\"",
+          "proposed_max_cpc_usd": "0.10",
+          "proposed_max_cpc_micros": 100000,
+          "bid_method": "INHERIT_AD_GROUP_DEFAULT",
+          "intended_status": "PAUSED"
+        }
+      ],
+      "rsa": {
+        "intended_status": "PAUSED",
+        "final_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+        "display_paths": [
+          {
+            "text": "mommy-me",
+            "characters": 8
+          },
+          {
+            "text": "outfits",
+            "characters": 7
+          }
+        ],
+        "headlines": [
+          {
+            "text": "Mommy & Me Outfits",
+            "characters": 18,
+            "pinned_field": null
+          },
+          {
+            "text": "Mother & Daughter Outfits",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Matching Looks for Mom & Me",
+            "characters": 27,
+            "pinned_field": null
+          },
+          {
+            "text": "Your Next Matching Moment",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Discover Coordinated Styles",
+            "characters": 27,
+            "pinned_field": null
+          },
+          {
+            "text": "Browse Matching Dresses & Sets",
+            "characters": 30,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose Your Matching Look",
+            "characters": 25,
+            "pinned_field": null
+          },
+          {
+            "text": "Find Your Favorite Print",
+            "characters": 24,
+            "pinned_field": null
+          },
+          {
+            "text": "Shop Mother & Daughter Looks",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Styles for Shared Photo Days",
+            "characters": 28,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose Pieces for Each Person",
+            "characters": 29,
+            "pinned_field": null
+          },
+          {
+            "text": "Dress Like Mommy",
+            "characters": 16,
+            "pinned_field": null
+          }
+        ],
+        "descriptions": [
+          {
+            "text": "Shop mommy and me outfits. Prices apply to each chosen item, not the whole matching look.",
+            "characters": 89,
+            "pinned_field": "DESCRIPTION_1"
+          },
+          {
+            "text": "Browse matching dresses, sets and coordinated styles. Find a look to share together.",
+            "characters": 84,
+            "pinned_field": null
+          },
+          {
+            "text": "Choose the pieces and sizes for each person. Review the product chart before ordering.",
+            "characters": 86,
+            "pinned_field": null
+          },
+          {
+            "text": "Explore mother and daughter looks for shared occasions. Check delivery before your event.",
+            "characters": 89,
+            "pinned_field": null
+          }
+        ]
+      },
+      "activation_qualification": "NOT_VERIFIED_BY_PAYLOAD_REVIEW",
+      "hypothesis": "Broader selection-led messaging will capture shoppers who want matching clothing but have not selected dresses, shirts, or pajamas.",
+      "risk": "This group can attract browsing and inspiration searches. Its phrase keywords should not consume the campaign unchecked."
+    }
+  ],
+  "negative_keywords": {
+    "campaign": [
+      {
+        "text": "sewing pattern",
+        "match_type": "PHRASE",
+        "paste_text": "\"sewing pattern\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "sewing patterns",
+        "match_type": "PHRASE",
+        "paste_text": "\"sewing patterns\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "sewing tutorial",
+        "match_type": "PHRASE",
+        "paste_text": "\"sewing tutorial\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "sewing tutorials",
+        "match_type": "PHRASE",
+        "paste_text": "\"sewing tutorials\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "knitting pattern",
+        "match_type": "PHRASE",
+        "paste_text": "\"knitting pattern\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "knitting patterns",
+        "match_type": "PHRASE",
+        "paste_text": "\"knitting patterns\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "crochet pattern",
+        "match_type": "PHRASE",
+        "paste_text": "\"crochet pattern\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "crochet patterns",
+        "match_type": "PHRASE",
+        "paste_text": "\"crochet patterns\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "pdf pattern",
+        "match_type": "PHRASE",
+        "paste_text": "\"pdf pattern\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "pdf patterns",
+        "match_type": "PHRASE",
+        "paste_text": "\"pdf patterns\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "printable pattern",
+        "match_type": "PHRASE",
+        "paste_text": "\"printable pattern\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "printable patterns",
+        "match_type": "PHRASE",
+        "paste_text": "\"printable patterns\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "free download",
+        "match_type": "PHRASE",
+        "paste_text": "\"free download\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "free downloads",
+        "match_type": "PHRASE",
+        "paste_text": "\"free downloads\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "how to sew",
+        "match_type": "PHRASE",
+        "paste_text": "\"how to sew\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "how to crochet",
+        "match_type": "PHRASE",
+        "paste_text": "\"how to crochet\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "job application",
+        "match_type": "PHRASE",
+        "paste_text": "\"job application\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "job openings",
+        "match_type": "PHRASE",
+        "paste_text": "\"job openings\"",
+        "scope": "CAMPAIGN",
+        "category": "DIY_DOWNLOAD_EMPLOYMENT"
+      },
+      {
+        "text": "dresslikemommy.com",
+        "match_type": "EXACT",
+        "paste_text": "[dresslikemommy.com]",
+        "scope": "CAMPAIGN",
+        "category": "NAVIGATIONAL_EXACT"
+      },
+      {
+        "text": "dresslikemommy",
+        "match_type": "EXACT",
+        "paste_text": "[dresslikemommy]",
+        "scope": "CAMPAIGN",
+        "category": "NAVIGATIONAL_EXACT"
+      },
+      {
+        "text": "dress like mommy jobs",
+        "match_type": "EXACT",
+        "paste_text": "[dress like mommy jobs]",
+        "scope": "CAMPAIGN",
+        "category": "NAVIGATIONAL_EXACT"
+      },
+      {
+        "text": "dress like mommy careers",
+        "match_type": "EXACT",
+        "paste_text": "[dress like mommy careers]",
+        "scope": "CAMPAIGN",
+        "category": "NAVIGATIONAL_EXACT"
+      },
+      {
+        "text": "christmas pajamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"christmas pajamas\"",
+        "scope": "CAMPAIGN",
+        "category": "TEMPORARY_CATEGORY_SAFEGUARD"
+      },
+      {
+        "text": "christmas pyjamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"christmas pyjamas\"",
+        "scope": "CAMPAIGN",
+        "category": "TEMPORARY_CATEGORY_SAFEGUARD"
+      },
+      {
+        "text": "halloween costume",
+        "match_type": "PHRASE",
+        "paste_text": "\"halloween costume\"",
+        "scope": "CAMPAIGN",
+        "category": "TEMPORARY_CATEGORY_SAFEGUARD"
+      },
+      {
+        "text": "halloween costumes",
+        "match_type": "PHRASE",
+        "paste_text": "\"halloween costumes\"",
+        "scope": "CAMPAIGN",
+        "category": "TEMPORARY_CATEGORY_SAFEGUARD"
+      }
+    ],
+    "ad_groups": [
+      {
+        "text": "pajama",
+        "match_type": "PHRASE",
+        "paste_text": "\"pajama\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Dresses",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pajamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"pajamas\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Dresses",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pyjama",
+        "match_type": "PHRASE",
+        "paste_text": "\"pyjama\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Dresses",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pyjamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"pyjamas\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Dresses",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "sleepwear",
+        "match_type": "PHRASE",
+        "paste_text": "\"sleepwear\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Dresses",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pajama",
+        "match_type": "PHRASE",
+        "paste_text": "\"pajama\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pajamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"pajamas\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pyjama",
+        "match_type": "PHRASE",
+        "paste_text": "\"pyjama\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pyjamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"pyjamas\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "sleepwear",
+        "match_type": "PHRASE",
+        "paste_text": "\"sleepwear\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pajama",
+        "match_type": "PHRASE",
+        "paste_text": "\"pajama\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Shirts",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pajamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"pajamas\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Shirts",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pyjama",
+        "match_type": "PHRASE",
+        "paste_text": "\"pyjama\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Shirts",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pyjamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"pyjamas\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Shirts",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "sleepwear",
+        "match_type": "PHRASE",
+        "paste_text": "\"sleepwear\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Shirts",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pajama",
+        "match_type": "PHRASE",
+        "paste_text": "\"pajama\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Father & Son Shirts",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pajamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"pajamas\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Father & Son Shirts",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pyjama",
+        "match_type": "PHRASE",
+        "paste_text": "\"pyjama\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Father & Son Shirts",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pyjamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"pyjamas\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Father & Son Shirts",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "sleepwear",
+        "match_type": "PHRASE",
+        "paste_text": "\"sleepwear\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Father & Son Shirts",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pajama",
+        "match_type": "PHRASE",
+        "paste_text": "\"pajama\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pajamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"pajamas\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pyjama",
+        "match_type": "PHRASE",
+        "paste_text": "\"pyjama\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "pyjamas",
+        "match_type": "PHRASE",
+        "paste_text": "\"pyjamas\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "sleepwear",
+        "match_type": "PHRASE",
+        "paste_text": "\"sleepwear\"",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "category": "SLEEPWEAR_ROUTING",
+        "receiving_ad_group": "Mommy & Me Pajamas",
+        "activation_gate": "Receiving pajama group is eligible, or owner deliberately leaves this traffic outside the test."
+      },
+      {
+        "text": "family matching shirts",
+        "match_type": "EXACT",
+        "paste_text": "[family matching shirts]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Family Matching Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "matching family t shirts",
+        "match_type": "EXACT",
+        "paste_text": "[matching family t shirts]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Family Matching Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "matching family button up shirts",
+        "match_type": "EXACT",
+        "paste_text": "[matching family button up shirts]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Family Matching Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "family matching tops",
+        "match_type": "EXACT",
+        "paste_text": "[family matching tops]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Family Matching Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "father son matching shirts",
+        "match_type": "EXACT",
+        "paste_text": "[father son matching shirts]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Father & Son Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "father son matching button up shirts",
+        "match_type": "EXACT",
+        "paste_text": "[father son matching button up shirts]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Father & Son Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "daddy and me button up shirts",
+        "match_type": "EXACT",
+        "paste_text": "[daddy and me button up shirts]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Father & Son Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "father son matching hawaiian shirts",
+        "match_type": "EXACT",
+        "paste_text": "[father son matching hawaiian shirts]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Father & Son Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "father son matching shirts",
+        "match_type": "EXACT",
+        "paste_text": "[father son matching shirts]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Shirts",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Father & Son Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "father son matching button up shirts",
+        "match_type": "EXACT",
+        "paste_text": "[father son matching button up shirts]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Shirts",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Father & Son Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "daddy and me button up shirts",
+        "match_type": "EXACT",
+        "paste_text": "[daddy and me button up shirts]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Shirts",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Father & Son Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "father son matching hawaiian shirts",
+        "match_type": "EXACT",
+        "paste_text": "[father son matching hawaiian shirts]",
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Shirts",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Father & Son Shirts",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "mommy and me dresses",
+        "match_type": "EXACT",
+        "paste_text": "[mommy and me dresses]",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Mommy & Me Dresses",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "mother daughter matching dresses",
+        "match_type": "EXACT",
+        "paste_text": "[mother daughter matching dresses]",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Mommy & Me Dresses",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "mommy and me floral dresses",
+        "match_type": "EXACT",
+        "paste_text": "[mommy and me floral dresses]",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Mommy & Me Dresses",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      },
+      {
+        "text": "mommy and me maxi dresses",
+        "match_type": "EXACT",
+        "paste_text": "[mommy and me maxi dresses]",
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "category": "EXACT_CATEGORY_ROUTING",
+        "receiving_ad_group": "Mommy & Me Dresses",
+        "activation_gate": "Intended receiving group must be active and eligible; an exclusion does not guarantee that it serves."
+      }
+    ],
+    "account_or_shared_list_changes": null,
+    "unapproved_conditional_topics": [
+      "wholesale",
+      "bulk",
+      "personalized/custom",
+      "used clothing",
+      "doll clothing",
+      "competitor names",
+      "urgent delivery"
+    ],
+    "do_not_broadly_exclude": [
+      "free",
+      "cheap",
+      "sale",
+      "pattern",
+      "baby",
+      "family",
+      "mother",
+      "daughter",
+      "men",
+      "women"
+    ]
+  },
+  "assets": {
+    "callouts": [
+      {
+        "text": "Adult & Child Options",
+        "characters": 21
+      },
+      {
+        "text": "Choose Sizes Separately",
+        "characters": 23
+      },
+      {
+        "text": "Matching Prints",
+        "characters": 15
+      },
+      {
+        "text": "Product Size Charts",
+        "characters": 19
+      }
+    ],
+    "callout_association": {
+      "proposed_scope": "CAMPAIGN",
+      "scope_origin": "OPERATOR_INFERENCE_SOURCE_DOES_NOT_SPECIFY",
+      "gate": "Parent verifies intended campaign association and inherited assets."
+    },
+    "sitelinks": [
+      {
+        "id": "Mommy & Me Dresses",
+        "text": "Mommy & Me Dresses",
+        "description_1": "Explore matching dress styles",
+        "description_2": "Choose each dress size separately",
+        "final_url": "https://www.dresslikemommy.com/collections/dresses",
+        "characters": {
+          "text": 18,
+          "description_1": 29,
+          "description_2": 33
+        },
+        "association_gate": "Associate only after destination and advertised selection clearance; inspect inherited eligible assets."
+      },
+      {
+        "id": "Family Matching Outfits",
+        "text": "Family Matching Outfits",
+        "description_1": "Find coordinated family looks",
+        "description_2": "Select pieces for each person",
+        "final_url": "https://www.dresslikemommy.com/collections/new-women-outfits",
+        "characters": {
+          "text": 23,
+          "description_1": 29,
+          "description_2": 29
+        },
+        "association_gate": "Associate only after destination and advertised selection clearance; inspect inherited eligible assets."
+      },
+      {
+        "id": "Family Matching Shirts",
+        "text": "Family Matching Shirts",
+        "description_1": "Explore matching shirts and tees",
+        "description_2": "Choose adult and child sizes",
+        "final_url": "https://www.dresslikemommy.com/collections/family-tops",
+        "characters": {
+          "text": 22,
+          "description_1": 32,
+          "description_2": 28
+        },
+        "association_gate": "Associate only after destination and advertised selection clearance; inspect inherited eligible assets."
+      },
+      {
+        "id": "Mommy & Me Pajamas",
+        "text": "Mommy & Me Pajamas",
+        "description_1": "Browse matching sleepwear",
+        "description_2": "Choose each person's pajama size",
+        "final_url": "https://www.dresslikemommy.com/collections/pajamas",
+        "characters": {
+          "text": 18,
+          "description_1": 25,
+          "description_2": 32
+        },
+        "association_gate": "Associate only after destination and advertised selection clearance; inspect inherited eligible assets."
+      },
+      {
+        "id": "Father & Son Shirts",
+        "text": "Father & Son Shirts",
+        "description_1": "Browse matching button-up shirts",
+        "description_2": "Choose dad and child sizes",
+        "final_url": "https://www.dresslikemommy.com/collections/daddy-me-shirts",
+        "characters": {
+          "text": 19,
+          "description_1": 32,
+          "description_2": 26
+        },
+        "association_gate": "Associate only after destination and advertised selection clearance; inspect inherited eligible assets."
+      },
+      {
+        "id": "Mommy & Me Outfits",
+        "text": "Mommy & Me Outfits",
+        "description_1": "Explore dresses and matching sets",
+        "description_2": "Find your next coordinated look",
+        "final_url": "https://www.dresslikemommy.com/collections/mommy-and-me",
+        "characters": {
+          "text": 18,
+          "description_1": 33,
+          "description_2": 31
+        },
+        "association_gate": "Associate only after destination and advertised selection clearance; inspect inherited eligible assets."
+      }
+    ],
+    "sitelink_associations": [
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Dresses",
+        "sitelink_id": "Mommy & Me Outfits"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Dresses",
+        "sitelink_id": "Family Matching Outfits"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "sitelink_id": "Family Matching Shirts"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "sitelink_id": "Father & Son Shirts"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Outfits",
+        "sitelink_id": "Mommy & Me Outfits"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Shirts",
+        "sitelink_id": "Family Matching Outfits"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Family Matching Shirts",
+        "sitelink_id": "Father & Son Shirts"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Pajamas",
+        "sitelink_id": "Mommy & Me Outfits"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Pajamas",
+        "sitelink_id": "Mommy & Me Dresses"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Father & Son Shirts",
+        "sitelink_id": "Family Matching Shirts"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Father & Son Shirts",
+        "sitelink_id": "Family Matching Outfits"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "sitelink_id": "Mommy & Me Dresses"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "sitelink_id": "Mommy & Me Pajamas"
+      },
+      {
+        "scope": "AD_GROUP",
+        "ad_group": "Mommy & Me Outfits",
+        "sitelink_id": "Family Matching Outfits"
+      }
+    ],
+    "structured_snippet": {
+      "scope": "AD_GROUP",
+      "ad_group": "Mommy & Me Outfits",
+      "header": "Types",
+      "values": [
+        {
+          "text": "Dresses",
+          "characters": 7
+        },
+        {
+          "text": "Pajamas",
+          "characters": 7
+        },
+        {
+          "text": "Matching Sets",
+          "characters": 13
+        }
+      ],
+      "activation_gate": "Destination/category clearance including pajamas remains required."
+    },
+    "business_name": "Dress Like Mommy",
+    "logo": null,
+    "other_assets": "No unverified price, promotion, review-rating, guaranteed-delivery, free-return or image claims."
+  },
+  "activation_gates": [
+    {
+      "gate": "Purchase measurement",
+      "required_evidence": "Correct transaction ID, purchase value, and currency from a completed order",
+      "status": "NOT_VERIFIED_BY_PAYLOAD_REVIEW"
+    },
+    {
+      "gate": "No duplicated optimization",
+      "required_evidence": "One authoritative purchase action; native and imported purchases not both counted as primary for the same order",
+      "status": "NOT_VERIFIED_BY_PAYLOAD_REVIEW"
+    },
+    {
+      "gate": "Campaign goals",
+      "required_evidence": "Purchases—not a mixture of page views, cart additions, and checkout starts",
+      "status": "NOT_VERIFIED_BY_PAYLOAD_REVIEW"
+    },
+    {
+      "gate": "Consent and attribution",
+      "required_evidence": "Google & YouTube integration, consent behavior, enhanced conversions where used, and click attribution checked",
+      "status": "NOT_VERIFIED_BY_PAYLOAD_REVIEW"
+    },
+    {
+      "gate": "Category readiness",
+      "required_evidence": "Matching pieces/sizes purchasable; product information and mobile selection understandable",
+      "status": "NOT_VERIFIED_BY_PAYLOAD_REVIEW"
+    },
+    {
+      "gate": "Shipping readiness",
+      "required_evidence": "Actual US checkout cost and delivery estimate acceptable for the advertised intention",
+      "status": "NOT_VERIFIED_BY_PAYLOAD_REVIEW"
+    },
+    {
+      "gate": "Financial approval",
+      "required_evidence": "Budget type, amount, dates, maximum exposure, and any temporary 15% policy exception explicitly approved",
+      "status": "NOT_VERIFIED_BY_PAYLOAD_REVIEW"
+    },
+    {
+      "gate": "Account controls",
+      "required_evidence": "Networks, location option, bid adjustments, automation, inherited negatives, and assets reviewed",
+      "status": "NOT_VERIFIED_BY_PAYLOAD_REVIEW"
+    },
+    {
+      "gate": "Activation",
+      "required_evidence": "Explicit owner approval",
+      "status": "NOT_VERIFIED_BY_PAYLOAD_REVIEW"
+    }
+  ],
+  "operating_guardrail": "Never finish a creation flow that enables the campaign and assume pausing afterward is an adequate safeguard.",
+  "validation": {
+    "ad_groups": 6,
+    "positive_keywords": 48,
+    "unique_expressions": 24,
+    "exact_keywords": 24,
+    "phrase_keywords": 24,
+    "rsas": 6,
+    "headlines": 72,
+    "descriptions": 24,
+    "campaign_negative_entries": 26,
+    "ad_group_negative_associations": 41,
+    "total_negative_associations": 67,
+    "sitelinks": 6,
+    "sitelink_associations": 14,
+    "callouts": 4,
+    "structured_snippets": 1,
+    "pasted_character_count_mismatches": [],
+    "duplicate_positive_entries": [],
+    "duplicate_positive_entries_across_campaign": 0,
+    "duplicate_negative_entries_same_scope": [],
+    "duplicate_copy_within_rsa": [],
+    "literal_positive_negative_collisions": [],
+    "independently_authored_wanted_query_checks": [
+      {
+        "group": "Family Matching Outfits",
+        "query": "matching family dress and shirt",
+        "blocked_by": []
+      },
+      {
+        "group": "Family Matching Outfits",
+        "query": "matching family outfits free shipping",
+        "blocked_by": []
+      },
+      {
+        "group": "Mommy & Me Dresses",
+        "query": "mommy and me dresses on sale",
+        "blocked_by": []
+      },
+      {
+        "group": "Family Matching Shirts",
+        "query": "matching family t shirts for pictures",
+        "blocked_by": []
+      },
+      {
+        "group": "Father & Son Shirts",
+        "query": "father son matching hawaiian shirts for vacation",
+        "blocked_by": []
+      },
+      {
+        "group": "Mommy & Me Pajamas",
+        "query": "mommy and me short sleeve pajamas",
+        "blocked_by": []
+      },
+      {
+        "group": "Mommy & Me Pajamas",
+        "query": "mommy and me long sleeve pajamas",
+        "blocked_by": []
+      },
+      {
+        "group": "Mommy & Me Outfits",
+        "query": "mother daughter matching outfits baby",
+        "blocked_by": []
+      }
+    ],
+    "result": "PASS_LOCAL_PAYLOAD_ONLY"
+  }
+}

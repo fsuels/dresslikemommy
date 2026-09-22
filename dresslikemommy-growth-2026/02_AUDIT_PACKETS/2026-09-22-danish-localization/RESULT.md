@@ -37,10 +37,10 @@ A meaningful failure was caught during verification: Danish daddy-me-shirts rend
 
 Final checks: `check_continuity_integrity.py --strict` returned CONTINUITY_OK and scoped `git diff --check` passed. Results are recorded in continuity_final.txt and diff_check_final.txt. System Python 3.9 could not run continuity; bundled Python was used.
 
-## One next action
+## Current release outcome — supersedes the former next step
 
-Final draft checks are complete. The owner must publish theme 137888792673 through Shopify Admin, preserve current MAIN 133290917985 for rollback, and obtain a fresh published-source/route readback. Shopify's mutation tool explicitly blocks theme publication and MAIN theme-file writes; no alternate write path was used.
+The earlier owner-publication instruction is superseded by the user's canonical main-to-live mandate and the verified September22 release. Reviewed source e1a5bfae was pushed to fsuels/dresslikemommy/main and synchronized into the existing MAIN133290917985. All527source files matched at17:10:01UTC;30scoped ordinary public routes and desktop/narrow controls subsequently passed. Full recommended Theme Check of the complete baseline and candidate returned no findings. See main-sync/RESULT.md and its source/browser receipts.
 
-Theme publication is not a Danish advertising-launch approval. Preserve the family-swim destination limitation and narrower routing negatives.
+No new theme publication is required for this completed repair. Keep existing family-swim destination limitations and narrower routing negatives. Full catalog, sizing and checkout acceptance remain outside this scoped result.
 
-Continuation prompt: “Verify the Danish storefront after owner publication of theme 137888792673. Read this packet and the owning continuity anchor, confirm current MAIN/source binding, recheck Denmark/DKK desktop and narrow routes and the 23-shirt and 11-tee controls, and preserve narrower routing negatives.”
+Continuation prompt: “Continue the remaining storefront audit from the verified main-to-live source. Preserve completed Danish repairs and narrower routing negatives; prioritize the documented untested conversion-critical cases.”

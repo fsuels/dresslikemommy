@@ -29,3 +29,9 @@ The complete approved update was sent and a human support agent read back its ex
 Next action: Francisco joins the current Microsoft support chat and confirms: “This is Francisco. Please add the six-part update above to my existing case 7108824779.” Continue from the sent six parts; do not resend them or open a duplicate case. If the session ends, preserve this receipt and use the existing case channel with the owner. The current blocker is the support agent's direct-owner request, not missing user authorization to send the update.
 
 Original approved body: [SUPPORT_UPDATE_READY.md](SUPPORT_UPDATE_READY.md). Audit and existing owner handoff: [CURRENT_TASK_VERIFICATION.md](CURRENT_TASK_VERIFICATION.md). Continue through existing TA-15 / PROB-2026-09-06-MICROSOFT-PURCHASE-TRUTH; do not duplicate the case or tracking sender.
+
+## Subsequent user-supplied email
+
+The user later pasted a Microsoft reply acknowledging the detailed six-part update for case 7108824779 and requesting three consent clarifications: default ordering before bat.js, Shopify Customer Privacy API updates and UET Tag Helper denied/granted evidence. This is user-supplied correspondence, not a fresh mailbox readback. The email's file-transfer label and final reference name 7109193190, while its opening names 7108824779. Linkage between those references is UNCONFIRMED; no duplicate case creation by this task is asserted. The sensitive transfer URL was not opened or retained in the repository.
+
+The current next action is to reply with the available dated evidence and request case linkage and integration-specific testing instructions. [MICROSOFT_CONSENT_REPLY_READY.md](MICROSOFT_CONSENT_REPLY_READY.md) is DRAFT_NOT_SENT. The earlier live-chat handoff remains historical; this email establishes support's acknowledgment of the update as supplied by the user, but does not establish a repair or verified consent transition.

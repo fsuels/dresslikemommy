@@ -52787,3 +52787,29 @@ The user repeated the instruction to sync all local project changes, including t
 Git/index/ref ownership was explicitly returned for the remaining non-theme snapshot. Preserve existing peer records, 23 private exclusions and two private local document originals; use their established `[PRIVATE_SUPPLIER_URL]` public projection. The candidate will be bound to a frozen cutoff, independently reviewed, validated and pushed normally. Preliminary checks passed JSON parsing, seven Python syntax checks, five JavaScript syntax checks using the bundled Node runtime, and tracked diff whitespace checks. System Node could not start because a Homebrew shared library is missing; bundled Node completed the checks.
 
 Evidence and final release receipt: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-project-main-sync/`. Completion requires the exact GitHub main after-state and preserved theme/private-source checks. The remaining Shopify synchronization outcome belongs to the existing Danish owner and must remain explicit.
+
+
+## 2026-09-22 — Exact Google Search draft identity/save gate
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-google-search-draft-identity-gated
+
+- task_entities: draft10215314947, creationcampaign281499249292033, OCID8520129103, PROB-2026-09-11-ADS-CAMPAIGN-QUALITY-AND-CPC
+- task_stage: BLOCKED
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Task01a0ca0f created the exact new Google Search draft shell10215314947 (creationcampaign281499249292033), but the overall six-group creation is PARTIAL. One default-name group/8keywords/1RSA was entered; final persistence is unconfirmed. Google repeated Confirm it's you and Changes failed to save after the user reported verification completed. The six-group payload is complete locally; ManualCPC, keyword bids, group naming, remaining groups/negatives/assets and budget/date selection remain unfinished. The UI auto-selected11.53/day, not approved exposure; no Publish or activation. First next action for this exact task is normal account-verification/save recovery, then existing-draft readback; do not create a duplicate. Standing paidNONE and unrelated owner actions/claims remain unchanged. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/READBACK.md`; anchor `2026-09-22-google-search-draft-identity-gated`.
+
+Requested name: `DLM | GADS | US | EN | Search | 202609`. Source and337assertion local validation are retained in the packet. Current Purchase goal shows inactive/unverified/No recent conversions; no attribution or actual-cost proof. AI three switch controls readfalse while review summary said expansionson: conflicted until successful persistence reconciliation. CUA IAB only; no personal-Chrome/API/bypass fallback, no existing-campaign mutation. Independent saved-record reviewer `campaign_payload` PASS_WITH_LIMITS; native field persistence unverified. Canonical continuation: `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, restricted to this exact draft.
+
+
+## 2026-09-22 — Main record snapshot verified and live storefront acceptance integrated
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-project-main-sync-verified
+task_entities: fsuels/dresslikemommy/main, b75ecc06328942a3707e781c0b58edbeec793903, 133290917985, PROB-2026-09-22-DANISH-STOREFRONT-LOCALIZATION
+task_stage: HANDOFF
+
+Normal push and independent remote readback verify project snapshot b75ecc06328942a3707e781c0b58edbeec793903 at17:17:39UTC. Independent tree831ac806 review passed597captured/596netpaths and all527theme files preserved;453JSON,8Python,5JS and strict continuity passed. Six raw archival files retain documented whitespace, with scoped whitespace check passing.23private exclusions and2private local document originals remain intact;6supplier links are replaced only in public projections. The reviewer caught two consumed Markdown backticks in the initial projection; the corrected exact successor was independently accepted before push.
+
+The Danish owner delivered completed source/scoped public acceptance: all527MAIN133290917985 files match reviewed e1a5bfa at17:10:01UTC;30ordinary public routes and desktop/narrow23shirt/11tee/English23control checks pass. One native reset-to-latest recovery used the same existing connected MAIN. Earlier processing and owner-publication-only instructions are superseded by this observed result. Broader catalog/ARIA/Shoppe routing/full checkout/size/conditional-template and conversion limits remain; no new PageSpeed score is claimed.
+
+Current canonical Danish coordination/problem status and parent packet next step are reconciled to SOURCE_AND_SCOPED_PUBLIC_VERIFIED, preserving historical evidence. Final receipt and later completed records are captured in the separate bounded closure snapshot; future peer changes remain local for their next reviewed sync. Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-project-main-sync/ and the Danish main-sync packet. Git ownership closes only after the final receipt reaches main and its exact remote ref is read back; all527theme blobs must remain identical.

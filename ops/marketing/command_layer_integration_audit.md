@@ -2,7 +2,7 @@
 
 Integration status: `GENERATED`
 
-Last generated: 2026-09-22 09:34
+Last generated: 2026-09-22 13:11
 
 Purpose: identify command-layer files that risk becoming side documents nobody uses.
 
